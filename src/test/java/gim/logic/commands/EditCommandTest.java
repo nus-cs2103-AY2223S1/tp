@@ -3,7 +3,7 @@ package gim.logic.commands;
 import static gim.logic.commands.CommandTestUtil.DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.DESC_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -58,10 +58,10 @@ public class EditCommandTest {
 
         ExerciseBuilder exerciseInList = new ExerciseBuilder(lastExercise);
         Exercise editedExercise = exerciseInList.withName(VALID_NAME_BOB).withWeight(VALID_WEIGHT_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withDates(VALID_DATE).build();
 
         EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withWeight(VALID_WEIGHT_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withWeight(VALID_WEIGHT_BOB).withDates(VALID_DATE).build();
         EditCommand editCommand = new EditCommand(indexLastExercise, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);

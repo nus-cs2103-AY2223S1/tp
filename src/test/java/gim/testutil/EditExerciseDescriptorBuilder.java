@@ -10,7 +10,7 @@ import gim.model.exercise.Name;
 import gim.model.exercise.Rep;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.tag.Tag;
+import gim.model.tag.Date;
 
 /**
  * A utility class to help with building EditExerciseDescriptor objects.
@@ -36,7 +36,7 @@ public class EditExerciseDescriptorBuilder {
         descriptor.setWeight(exercise.getWeight());
         descriptor.setSets(exercise.getSets());
         descriptor.setRep(exercise.getRep());
-        descriptor.setTags(exercise.getTags());
+        descriptor.setTags(exercise.getDates());
     }
 
     /**
@@ -72,12 +72,12 @@ public class EditExerciseDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditExerciseDescriptor}
+     * Parses the {@code dates} into a {@code Set<Tag>} and set it to the {@code EditExerciseDescriptor}
      * that we are building.
      */
-    public EditExerciseDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditExerciseDescriptorBuilder withDates(String... dates) {
+        Set<Date> dateSet = Stream.of(dates).map(Date::new).collect(Collectors.toSet());
+        descriptor.setTags(dateSet);
         return this;
     }
 

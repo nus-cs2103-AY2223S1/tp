@@ -10,6 +10,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_WEIGHT = new Prefix("p/");
     public static final Prefix PREFIX_SETS = new Prefix("s/");
     public static final Prefix PREFIX_REP = new Prefix("r/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_DATE = new Prefix("t/");
 
 }

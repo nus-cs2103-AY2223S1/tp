@@ -3,7 +3,7 @@ package gim.model.exercise;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_REP_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
@@ -22,7 +22,7 @@ public class ExerciseTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Exercise exercise = new ExerciseBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> exercise.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> exercise.getDates().remove(0));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class ExerciseTest {
 
         // same name, all other attributes different -> returns true
         Exercise editedAlice = new ExerciseBuilder(ALICE).withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_BOB)
-                .withRep(VALID_REP_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withRep(VALID_REP_BOB).withDates(VALID_DATE).build();
         assertTrue(ALICE.isSameExercise(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -87,7 +87,7 @@ public class ExerciseTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new ExerciseBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new ExerciseBuilder(ALICE).withDates(VALID_DATE).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

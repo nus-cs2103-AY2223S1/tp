@@ -1,37 +1,33 @@
 package gim.logic.parser;
 
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static gim.logic.commands.CommandTestUtil.DATE_DESC;
+import static gim.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_REP_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_SETS_DESC;
-import static gim.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_WEIGHT_DESC;
 import static gim.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.REP_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.REP_DESC_BOB;
 import static gim.logic.commands.CommandTestUtil.SETS_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.SETS_DESC_BOB;
-import static gim.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static gim.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static gim.logic.commands.CommandTestUtil.VALID_REP_AMY;
 import static gim.logic.commands.CommandTestUtil.VALID_REP_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_AMY;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_AMY;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static gim.logic.commands.CommandTestUtil.WEIGHT_DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.WEIGHT_DESC_BOB;
-import static gim.logic.parser.CliSyntax.PREFIX_TAG;
+import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static gim.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import static gim.testutil.TypicalIndexes.INDEX_SECOND_EXERCISE;
 import static gim.testutil.TypicalIndexes.INDEX_THIRD_EXERCISE;
-
-import org.junit.jupiter.api.Test;
 
 import gim.commons.core.index.Index;
 import gim.logic.commands.EditCommand;
@@ -40,14 +36,15 @@ import gim.model.exercise.Name;
 import gim.model.exercise.Rep;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.tag.Tag;
+import gim.model.tag.Date;
 import gim.testutil.EditExerciseDescriptorBuilder;
+import org.junit.jupiter.api.Test;
 
 
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String TAG_EMPTY = " " + PREFIX_DATE;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -87,7 +84,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_WEIGHT_DESC, Weight.MESSAGE_CONSTRAINTS); // invalid weight
         assertParseFailure(parser, "1" + INVALID_SETS_DESC, Sets.MESSAGE_CONSTRAINTS); // invalid sets
         assertParseFailure(parser, "1" + INVALID_REP_DESC, Rep.MESSAGE_CONSTRAINTS); // invalid rep
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid weight followed by valid sets
         assertParseFailure(parser, "1" + INVALID_WEIGHT_DESC + SETS_DESC_AMY, Weight.MESSAGE_CONSTRAINTS);
@@ -98,9 +95,9 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Exercise} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + DATE_DESC + DATE_DESC + TAG_EMPTY, Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + DATE_DESC + TAG_EMPTY + DATE_DESC, Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + DATE_DESC + DATE_DESC, Date.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_SETS_DESC + VALID_REP_AMY + VALID_WEIGHT_AMY,
@@ -110,12 +107,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_EXERCISE;
-        String userInput = targetIndex.getOneBased() + WEIGHT_DESC_BOB + TAG_DESC_HUSBAND
-                + SETS_DESC_AMY + REP_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + WEIGHT_DESC_BOB + DATE_DESC
+                + SETS_DESC_AMY + REP_DESC_AMY + NAME_DESC_AMY + DATE_DESC;
 
         EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_AMY).withRep(VALID_REP_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withDates(VALID_DATE, VALID_DATE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -161,8 +158,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditExerciseDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + DATE_DESC;
+        descriptor = new EditExerciseDescriptorBuilder().withDates(VALID_DATE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -171,11 +168,11 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_EXERCISE;
         String userInput = targetIndex.getOneBased() + WEIGHT_DESC_AMY + REP_DESC_AMY + SETS_DESC_AMY
-                + TAG_DESC_FRIEND + WEIGHT_DESC_AMY + REP_DESC_AMY + SETS_DESC_AMY + TAG_DESC_FRIEND
-                + WEIGHT_DESC_BOB + REP_DESC_BOB + SETS_DESC_BOB + TAG_DESC_HUSBAND;
+                + DATE_DESC + WEIGHT_DESC_AMY + REP_DESC_AMY + SETS_DESC_AMY + DATE_DESC
+                + WEIGHT_DESC_BOB + REP_DESC_BOB + SETS_DESC_BOB + DATE_DESC;
 
         EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withWeight(VALID_WEIGHT_BOB)
-                .withSets(VALID_SETS_BOB).withRep(VALID_REP_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withSets(VALID_SETS_BOB).withRep(VALID_REP_BOB).withDates(VALID_DATE, VALID_DATE)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -205,7 +202,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_EXERCISE;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withTags().build();
+        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withDates().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

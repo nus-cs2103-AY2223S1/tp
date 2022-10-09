@@ -5,7 +5,7 @@ import static gim.logic.commands.CommandTestUtil.DESC_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_REP_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -55,7 +55,7 @@ public class EditExerciseDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditExerciseDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditExerciseDescriptorBuilder(DESC_AMY).withDates(VALID_DATE).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

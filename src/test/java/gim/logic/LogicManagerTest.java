@@ -83,7 +83,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + WEIGHT_DESC_AMY + SETS_DESC_AMY
                 + REP_DESC_AMY;
-        Exercise expectedExercise = new ExerciseBuilder(AMY).withTags().build();
+        Exercise expectedExercise = new ExerciseBuilder(AMY).withDates().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addExercise(expectedExercise);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

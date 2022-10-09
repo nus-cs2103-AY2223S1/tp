@@ -3,7 +3,7 @@ package gim.logic.commands;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_REP;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
-import static gim.logic.parser.CliSyntax.PREFIX_TAG;
+import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static gim.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,8 +36,7 @@ public class CommandTestUtil {
     public static final String VALID_SETS_BOB = "5";
     public static final String VALID_REP_AMY = "1";
     public static final String VALID_REP_BOB = "2";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DATE = "11/01/2007";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -47,14 +46,13 @@ public class CommandTestUtil {
     public static final String SETS_DESC_BOB = " " + PREFIX_SETS + VALID_SETS_BOB;
     public static final String REP_DESC_AMY = " " + PREFIX_REP + VALID_REP_AMY;
     public static final String REP_DESC_BOB = " " + PREFIX_REP + VALID_REP_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String DATE_DESC = " " + PREFIX_DATE + VALID_DATE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "911a"; // 'a' not allowed in weights
     public static final String INVALID_SETS_DESC = " " + PREFIX_SETS; // empty string not allowed for sets
     public static final String INVALID_REP_DESC = " " + PREFIX_REP; // empty string not allowed for reps
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2022/05/02"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -65,10 +63,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditExerciseDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withWeight(VALID_WEIGHT_AMY).withSets(VALID_SETS_AMY).withRep(VALID_REP_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withDates(VALID_DATE).build();
         DESC_BOB = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_BOB).withRep(VALID_REP_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withDates(VALID_DATE).build();
     }
 
     /**

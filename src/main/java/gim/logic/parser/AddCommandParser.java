@@ -4,7 +4,7 @@ import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_REP;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
-import static gim.logic.parser.CliSyntax.PREFIX_TAG;
+import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import java.util.Set;
@@ -17,10 +17,7 @@ import gim.model.exercise.Name;
 import gim.model.exercise.Rep;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.tag.Tag;
-
-
-
+import gim.model.tag.Date;
 
 
 /**
@@ -35,7 +32,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_WEIGHT, PREFIX_SETS, PREFIX_REP, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_WEIGHT, PREFIX_SETS, PREFIX_REP, PREFIX_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_REP, PREFIX_WEIGHT, PREFIX_SETS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -46,9 +43,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Weight weight = ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get());
         Sets sets = ParserUtil.parseSets(argMultimap.getValue(PREFIX_SETS).get());
         Rep rep = ParserUtil.parseRep(argMultimap.getValue(PREFIX_REP).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Date> dateList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_DATE));
 
-        Exercise exercise = new Exercise(name, weight, sets, rep, tagList);
+        Exercise exercise = new Exercise(name, weight, sets, rep, dateList);
 
         return new AddCommand(exercise);
     }

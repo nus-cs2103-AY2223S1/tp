@@ -3,7 +3,7 @@ package gim.logic.commands;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_REP;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
-import static gim.logic.parser.CliSyntax.PREFIX_TAG;
+import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static gim.model.Model.PREDICATE_SHOW_ALL_EXERCISES;
 import static java.util.Objects.requireNonNull;
@@ -24,7 +24,7 @@ import gim.model.exercise.Name;
 import gim.model.exercise.Rep;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.tag.Tag;
+import gim.model.tag.Date;
 
 
 
@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_SETS + "SETS] "
             + "[" + PREFIX_REP + "REP] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_DATE + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_WEIGHT + "91234567 "
             + PREFIX_SETS + "johndoe@example.com";
@@ -100,9 +100,9 @@ public class EditCommand extends Command {
         Weight updatedWeight = editExerciseDescriptor.getWeight().orElse(exerciseToEdit.getWeight());
         Sets updatedSets = editExerciseDescriptor.getSets().orElse(exerciseToEdit.getSets());
         Rep updatedRep = editExerciseDescriptor.getRep().orElse(exerciseToEdit.getRep());
-        Set<Tag> updatedTags = editExerciseDescriptor.getTags().orElse(exerciseToEdit.getTags());
+        Set<Date> updatedDates = editExerciseDescriptor.getTags().orElse(exerciseToEdit.getDates());
 
-        return new Exercise(updatedName, updatedWeight, updatedSets, updatedRep, updatedTags);
+        return new Exercise(updatedName, updatedWeight, updatedSets, updatedRep, updatedDates);
     }
 
     @Override
@@ -132,27 +132,27 @@ public class EditCommand extends Command {
         private Weight weight;
         private Sets sets;
         private Rep rep;
-        private Set<Tag> tags;
+        private Set<Date> dates;
 
         public EditExerciseDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code dates} is used internally.
          */
         public EditExerciseDescriptor(EditExerciseDescriptor toCopy) {
             setName(toCopy.name);
             setWeight(toCopy.weight);
             setSets(toCopy.sets);
             setRep(toCopy.rep);
-            setTags(toCopy.tags);
+            setTags(toCopy.dates);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, weight, sets, rep, tags);
+            return CollectionUtil.isAnyNonNull(name, weight, sets, rep, dates);
         }
 
         public void setName(Name name) {
@@ -188,20 +188,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code dates} to this object's {@code dates}.
+         * A defensive copy of {@code dates} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(Set<Date> dates) {
+            this.dates = (dates != null) ? new HashSet<>(dates) : null;
         }
 
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code dates} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Date>> getTags() {
+            return (dates != null) ? Optional.of(Collections.unmodifiableSet(dates)) : Optional.empty();
         }
 
         @Override

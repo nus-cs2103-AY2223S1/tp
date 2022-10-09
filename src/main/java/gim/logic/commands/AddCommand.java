@@ -3,7 +3,7 @@ package gim.logic.commands;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_REP;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
-import static gim.logic.parser.CliSyntax.PREFIX_TAG;
+import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static java.util.Objects.requireNonNull;
 
@@ -25,13 +25,13 @@ public class AddCommand extends Command {
             + PREFIX_WEIGHT + "WEIGHT "
             + PREFIX_SETS + "SETS "
             + PREFIX_REP + "REPS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_DATE + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Squat "
             + PREFIX_WEIGHT + "60 "
             + PREFIX_SETS + "1 "
             + PREFIX_REP + "5 "
-            + PREFIX_TAG + "25/01/2022";
+            + PREFIX_DATE + "25/01/2022";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the address book";

@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import gim.model.tag.Tag;
+import gim.model.tag.Date;
 
 /**
  * Represents an Exercise in the address book.
@@ -22,18 +22,18 @@ public class Exercise {
 
     // Data fields
     private final Rep rep;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Date> dates = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Exercise(Name name, Weight weight, Sets sets, Rep rep, Set<Tag> tags) {
-        requireAllNonNull(name, weight, sets, rep, tags);
+    public Exercise(Name name, Weight weight, Sets sets, Rep rep, Set<Date> dates) {
+        requireAllNonNull(name, weight, sets, rep, dates);
         this.name = name;
         this.weight = weight;
         this.sets = sets;
         this.rep = rep;
-        this.tags.addAll(tags);
+        this.dates.addAll(dates);
     }
 
     public Name getName() {
@@ -56,8 +56,8 @@ public class Exercise {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Date> getDates() {
+        return Collections.unmodifiableSet(dates);
     }
 
     /**
@@ -92,13 +92,13 @@ public class Exercise {
                 && otherExercise.getWeight().equals(getWeight())
                 && otherExercise.getSets().equals(getSets())
                 && otherExercise.getRep().equals(getRep())
-                && otherExercise.getTags().equals(getTags());
+                && otherExercise.getDates().equals(getDates());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, weight, sets, rep, tags);
+        return Objects.hash(name, weight, sets, rep, dates);
     }
 
     @Override
@@ -112,10 +112,10 @@ public class Exercise {
                 .append("; Rep: ")
                 .append(getRep());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Date> dates = getDates();
+        if (!dates.isEmpty()) {
+            builder.append("; Dates: ");
+            dates.forEach(builder::append);
         }
         return builder.toString();
     }

@@ -15,7 +15,7 @@ import gim.model.exercise.Name;
 import gim.model.exercise.Rep;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.tag.Tag;
+import gim.model.tag.Date;
 
 
 /**
@@ -55,7 +55,7 @@ class JsonAdaptedExercise {
         weight = source.getWeight().value;
         sets = source.getSets().value;
         rep = source.getRep().value;
-        tagged.addAll(source.getTags().stream()
+        tagged.addAll(source.getDates().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
@@ -66,9 +66,9 @@ class JsonAdaptedExercise {
      * @throws IllegalValueException if there were any data constraints violated in the adapted exercise.
      */
     public Exercise toModelType() throws IllegalValueException {
-        final List<Tag> exerciseTags = new ArrayList<>();
+        final List<Date> exerciseDates = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            exerciseTags.add(tag.toModelType());
+            exerciseDates.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -103,8 +103,8 @@ class JsonAdaptedExercise {
         }
         final Rep modelRep = new Rep(rep);
 
-        final Set<Tag> modelTags = new HashSet<>(exerciseTags);
-        return new Exercise(modelName, modelWeight, modelSets, modelRep, modelTags);
+        final Set<Date> modelDates = new HashSet<>(exerciseDates);
+        return new Exercise(modelName, modelWeight, modelSets, modelRep, modelDates);
     }
 
 }

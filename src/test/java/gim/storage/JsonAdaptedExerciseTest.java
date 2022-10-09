@@ -30,7 +30,7 @@ public class JsonAdaptedExerciseTest {
     private static final String VALID_WEIGHT = BENSON.getWeight().toString();
     private static final String VALID_SETS = BENSON.getSets().toString();
     private static final String VALID_REP = BENSON.getRep().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getDates().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 

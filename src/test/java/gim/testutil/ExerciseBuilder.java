@@ -8,7 +8,7 @@ import gim.model.exercise.Name;
 import gim.model.exercise.Rep;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.tag.Tag;
+import gim.model.tag.Date;
 import gim.model.util.SampleDataUtil;
 
 
@@ -26,7 +26,7 @@ public class ExerciseBuilder {
     private Weight weight;
     private Sets sets;
     private Rep rep;
-    private Set<Tag> tags;
+    private Set<Date> dates;
 
     /**
      * Creates a {@code ExerciseBuilder} with the default details.
@@ -36,7 +36,7 @@ public class ExerciseBuilder {
         weight = new Weight(DEFAULT_WEIGHT);
         sets = new Sets(DEFAULT_SETS);
         rep = new Rep(DEFAULT_REP);
-        tags = new HashSet<>();
+        dates = new HashSet<>();
     }
 
     /**
@@ -47,7 +47,7 @@ public class ExerciseBuilder {
         weight = exerciseToCopy.getWeight();
         sets = exerciseToCopy.getSets();
         rep = exerciseToCopy.getRep();
-        tags = new HashSet<>(exerciseToCopy.getTags());
+        dates = new HashSet<>(exerciseToCopy.getDates());
     }
 
     /**
@@ -59,10 +59,10 @@ public class ExerciseBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Exercise} that we are building.
+     * Parses the {@code dates} into a {@code Set<Tag>} and set it to the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public ExerciseBuilder withDates(String ... dates) {
+        this.dates = SampleDataUtil.getDateSet(dates);
         return this;
     }
 
@@ -91,7 +91,7 @@ public class ExerciseBuilder {
     }
 
     public Exercise build() {
-        return new Exercise(name, weight, sets, rep, tags);
+        return new Exercise(name, weight, sets, rep, dates);
     }
 
 }

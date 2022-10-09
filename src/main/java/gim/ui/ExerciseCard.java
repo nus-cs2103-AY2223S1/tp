@@ -39,7 +39,7 @@ public class ExerciseCard extends UiPart<Region> {
     @FXML
     private Label sets;
     @FXML
-    private FlowPane tags;
+    private FlowPane dates;
 
     /**
      * Creates a {@code ExerciseCode} with the given {@code Exercise} and index to display.
@@ -52,9 +52,9 @@ public class ExerciseCard extends UiPart<Region> {
         weight.setText("Weight: " + exercise.getWeight().value);
         rep.setText("Reps: " + exercise.getRep().value);
         sets.setText("Sets: " + exercise.getSets().value);
-        exercise.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        exercise.getDates().stream()
+                .sorted(Comparator.comparing(tag -> tag.date))
+                .forEach(tag -> dates.getChildren().add(new Label(tag.date)));
     }
 
     @Override

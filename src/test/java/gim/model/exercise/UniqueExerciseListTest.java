@@ -1,7 +1,7 @@
 package gim.model.exercise;
 
 import static gim.logic.commands.CommandTestUtil.VALID_REP_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
 import static gim.testutil.TypicalExercises.BOB;
@@ -42,7 +42,7 @@ public class UniqueExerciseListTest {
     @Test
     public void contains_exerciseWithSameIdentityFieldsInList_returnsTrue() {
         uniqueExerciseList.add(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BOB).withTags(VALID_TAG_HUSBAND)
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BOB).withDates(VALID_DATE)
                 .build();
         assertTrue(uniqueExerciseList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueExerciseListTest {
     @Test
     public void setExercise_editedExerciseHasSameIdentity_success() {
         uniqueExerciseList.add(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BOB).withTags(VALID_TAG_HUSBAND)
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BOB).withDates(VALID_DATE)
                 .build();
         uniqueExerciseList.setExercise(ALICE, editedAlice);
         UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
