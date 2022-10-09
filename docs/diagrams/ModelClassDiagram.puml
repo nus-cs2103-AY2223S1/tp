@@ -20,6 +20,7 @@ Class Email
 Class Name
 Class Phone
 Class ModuleClass
+Class Session
 }
 
 Class HiddenOutside #FFFFFF
@@ -45,6 +46,8 @@ Student *--> "0..1" Phone
 Student *--> "0..1" Email
 Student *--> "0..1" Address
 Student -up-> "~*" ModuleClass
+
+ModuleClass -> "*" Session
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
