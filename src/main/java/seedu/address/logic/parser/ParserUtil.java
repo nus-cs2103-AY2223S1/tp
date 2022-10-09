@@ -14,7 +14,6 @@ import seedu.address.model.application.Contact;
 import seedu.address.model.application.Date;
 import seedu.address.model.application.Email;
 import seedu.address.model.application.Position;
-
 // deprecated
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
