@@ -97,6 +97,11 @@ public class AddressBookTest {
         public ObservableList<Stall> getStallList() {
             return stalls;
         }
+
+        @Override
+        public ObservableList<Stall> getReviewList() {
+            return stalls;
+        }
     }
 
 }

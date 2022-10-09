@@ -44,10 +44,10 @@ public class SAddCommandTest {
     @Test
     public void execute_duplicateStall_throwsCommandException() {
         Stall validStall = new StallBuilder().build();
-        SAddCommand SAddCommand = new SAddCommand(validStall);
+        SAddCommand sAddCommand = new SAddCommand(validStall);
         ModelStub modelStub = new ModelStubWithStall(validStall);
 
-        assertThrows(CommandException.class, SAddCommand.MESSAGE_DUPLICATE_STALL, () -> SAddCommand.execute(modelStub));
+        assertThrows(CommandException.class, SAddCommand.MESSAGE_DUPLICATE_STALL, () -> sAddCommand.execute(modelStub));
     }
 
     @Test

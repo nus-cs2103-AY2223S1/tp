@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Stall> filteredStalls;
+    private final FilteredList<Stall> filteredReviews;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStalls = new FilteredList<>(this.addressBook.getStallList());
+        filteredReviews = new FilteredList<>(this.addressBook.getReviewList());
     }
 
     public ModelManager() {

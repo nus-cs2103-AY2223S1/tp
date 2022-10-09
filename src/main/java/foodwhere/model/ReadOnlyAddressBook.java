@@ -14,4 +14,5 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Stall> getStallList();
 
+    ObservableList<Stall> getReviewList();
 }
