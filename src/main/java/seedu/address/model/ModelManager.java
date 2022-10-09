@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * Represents the in-memory model of the client book data.
@@ -111,6 +112,9 @@ public class ModelManager implements Model {
         myInsuRec.setClient(target, editedClient);
     }
 
+    public void addMeeting(Meeting meeting) {
+        myInsuRec.addMeeting(meeting);
+    }
     //=========== Filtered Client List Accessors =============================================================
 
     /**

@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * The API of the Model component.
@@ -68,6 +69,8 @@ public interface Model {
      * {@code client} must not already exist in the MyInsuRec.
      */
     void addClient(Client client);
+
+    void addMeeting(Meeting meeting);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
