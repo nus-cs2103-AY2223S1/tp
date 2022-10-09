@@ -22,6 +22,7 @@ public class VenuesApiTest {
 
     /**
      * Test that list of all venues for academic year and semester can be retrieved
+     *
      * @throws ApiException if error occured during request
      */
     @Test
@@ -35,6 +36,7 @@ public class VenuesApiTest {
 
     /**
      * Test that detailed information for all venues in given academic year and semester can be retrieved
+     *
      * @throws ApiException if error occured during request
      */
     @Test
