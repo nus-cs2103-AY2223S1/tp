@@ -28,5 +28,4 @@ public interface ReadOnlyAddressBook {
      * @return
      */
     ObservableList<Schedule> getScheduleList();
-
 }
