@@ -1,19 +1,22 @@
 package swift.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static swift.logic.commands.CommandTestUtil.assertCommandFailure;
+import static swift.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static swift.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static swift.testutil.TypicalTaskIndexes.INDEX_FIRST_TASK;
+import static swift.testutil.TypicalTaskIndexes.INDEX_SECOND_TASK;
+import static swift.testutil.TypicalTasks.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
+
 import swift.commons.core.Messages;
 import swift.commons.core.index.Index;
 import swift.model.Model;
 import swift.model.ModelManager;
 import swift.model.UserPrefs;
 import swift.model.task.Task;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static swift.logic.commands.CommandTestUtil.*;
-import static swift.testutil.TypicalTaskIndexes.INDEX_FIRST_TASK;
-import static swift.testutil.TypicalTaskIndexes.INDEX_SECOND_TASK;
-import static swift.testutil.TypicalTasks.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

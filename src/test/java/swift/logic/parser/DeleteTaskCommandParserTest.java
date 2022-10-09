@@ -1,12 +1,13 @@
 package swift.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import swift.logic.commands.DeleteTaskCommand;
-
 import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static swift.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static swift.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static swift.testutil.TypicalTaskIndexes.INDEX_FIRST_TASK;
+
+import org.junit.jupiter.api.Test;
+
+import swift.logic.commands.DeleteTaskCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
