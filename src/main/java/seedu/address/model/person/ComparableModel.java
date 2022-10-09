@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+/**
+ * Represents category which values can be compared
+ */
 public abstract class ComparableModel {
 
     /**

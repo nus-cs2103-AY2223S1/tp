@@ -137,7 +137,7 @@ public class ModelManager implements Model {
         addressBook.sortPersonList(new Comparator<Person>() {
             @Override
             public int compare(Person p1, Person p2) {
-                return p1.compareTo(p2,category);
+                return p1.compareTo(p2, category);
             }
         });
     }

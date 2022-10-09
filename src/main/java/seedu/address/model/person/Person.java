@@ -2,7 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
@@ -74,6 +77,13 @@ public class Person {
         return applicationProcess;
     }
 
+
+    /**
+     * Compares two person based on the category to be compared by
+     * @param o The other person to be compared to
+     * @param category The category to be compared by
+     * @return a non-negative number if this person is before the other and negative number otherwise
+     */
     public int compareTo(Person o, ComparableCategory category) {
         switch (category) {
         case NAME:
