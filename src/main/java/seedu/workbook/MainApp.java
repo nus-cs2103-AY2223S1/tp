@@ -15,19 +15,19 @@ import seedu.workbook.commons.util.ConfigUtil;
 import seedu.workbook.commons.util.StringUtil;
 import seedu.workbook.logic.Logic;
 import seedu.workbook.logic.LogicManager;
-import seedu.workbook.model.AddressBook;
 import seedu.workbook.model.Model;
 import seedu.workbook.model.ModelManager;
-import seedu.workbook.model.ReadOnlyAddressBook;
 import seedu.workbook.model.ReadOnlyUserPrefs;
+import seedu.workbook.model.ReadOnlyWorkBook;
 import seedu.workbook.model.UserPrefs;
+import seedu.workbook.model.WorkBook;
 import seedu.workbook.model.util.SampleDataUtil;
-import seedu.workbook.storage.AddressBookStorage;
-import seedu.workbook.storage.JsonAddressBookStorage;
 import seedu.workbook.storage.JsonUserPrefsStorage;
+import seedu.workbook.storage.JsonWorkBookStorage;
 import seedu.workbook.storage.Storage;
 import seedu.workbook.storage.StorageManager;
 import seedu.workbook.storage.UserPrefsStorage;
+import seedu.workbook.storage.WorkBookStorage;
 import seedu.workbook.ui.Ui;
 import seedu.workbook.ui.UiManager;
 
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing WorkBook ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        WorkBookStorage workBookStorage = new JsonWorkBookStorage(userPrefs.getWorkBookFilePath());
+        storage = new StorageManager(workBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +69,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s work book and {@code userPrefs}. <br>
+     * The data from the sample work book will be used instead if {@code storage}'s work book is not found,
+     * or an empty work book will be used instead if errors occur when reading {@code storage}'s work book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyWorkBook> workBookOptional;
+        ReadOnlyWorkBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            workBookOptional = storage.readWorkBook();
+            if (!workBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample WorkBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = workBookOptional.orElseGet(SampleDataUtil::getSampleWorkBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty WorkBook");
+            initialData = new WorkBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty WorkBook");
+            initialData = new WorkBook();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty WorkBook");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +167,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting WorkBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Work Book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

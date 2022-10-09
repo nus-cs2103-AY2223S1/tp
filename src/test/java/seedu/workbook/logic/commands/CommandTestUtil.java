@@ -15,7 +15,7 @@ import java.util.List;
 
 import seedu.workbook.commons.core.index.Index;
 import seedu.workbook.logic.commands.exceptions.CommandException;
-import seedu.workbook.model.AddressBook;
+import seedu.workbook.model.WorkBook;
 import seedu.workbook.model.Model;
 import seedu.workbook.model.person.NameContainsKeywordsPredicate;
 import seedu.workbook.model.person.Person;
@@ -99,21 +99,21 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the work book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        WorkBook expectedWorkBook = new WorkBook(actualModel.getWorkBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedWorkBook, actualModel.getWorkBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s work book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());

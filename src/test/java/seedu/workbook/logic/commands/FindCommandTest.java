@@ -8,7 +8,7 @@ import static seedu.workbook.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.workbook.testutil.TypicalPersons.CARL;
 import static seedu.workbook.testutil.TypicalPersons.ELLE;
 import static seedu.workbook.testutil.TypicalPersons.FIONA;
-import static seedu.workbook.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.workbook.testutil.TypicalPersons.getTypicalWorkBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.workbook.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalWorkBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalWorkBook(), new UserPrefs());
 
     @Test
     public void equals() {

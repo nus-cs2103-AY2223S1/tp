@@ -7,7 +7,7 @@ import seedu.workbook.commons.core.GuiSettings;
 import seedu.workbook.logic.commands.CommandResult;
 import seedu.workbook.logic.commands.exceptions.CommandException;
 import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.ReadOnlyAddressBook;
+import seedu.workbook.model.ReadOnlyWorkBook;
 import seedu.workbook.model.person.Person;
 
 /**
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the WorkBook.
      *
-     * @see seedu.workbook.model.Model#getAddressBook()
+     * @see seedu.workbook.model.Model#getWorkBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyWorkBook getWorkBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' work book file path.
      */
-    Path getAddressBookFilePath();
+    Path getWorkBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

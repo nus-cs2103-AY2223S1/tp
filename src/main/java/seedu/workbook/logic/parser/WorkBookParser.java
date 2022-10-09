@@ -20,7 +20,7 @@ import seedu.workbook.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class WorkBookParser {
 
     /**
      * Used for initial separation of command word and args.

@@ -14,7 +14,7 @@ import seedu.workbook.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path workBookFilePath = Paths.get("data" , "workbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +35,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setWorkBookFilePath(newUserPrefs.getWorkBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,13 +47,14 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    @Override
+    public Path getWorkBookFilePath() {
+        return workBookFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setWorkBookFilePath(Path workBookFilePath) {
+        requireNonNull(workBookFilePath);
+        this.workBookFilePath = workBookFilePath;
     }
 
     @Override
@@ -68,19 +69,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && workBookFilePath.equals(o.workBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, workBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + workBookFilePath);
         return sb.toString();
     }
 

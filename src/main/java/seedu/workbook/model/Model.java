@@ -35,22 +35,22 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' work book file path.
      */
-    Path getAddressBookFilePath();
+    Path getWorkBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' work book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setWorkBookFilePath(Path workBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces work book data with the data in {@code workBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setWorkBook(ReadOnlyWorkBook workBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the WorkBook */
+    ReadOnlyWorkBook getWorkBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

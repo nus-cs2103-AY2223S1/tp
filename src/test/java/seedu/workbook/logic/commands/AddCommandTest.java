@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.workbook.commons.core.GuiSettings;
 import seedu.workbook.logic.commands.exceptions.CommandException;
-import seedu.workbook.model.AddressBook;
+import seedu.workbook.model.WorkBook;
 import seedu.workbook.model.Model;
-import seedu.workbook.model.ReadOnlyAddressBook;
+import seedu.workbook.model.ReadOnlyWorkBook;
 import seedu.workbook.model.ReadOnlyUserPrefs;
 import seedu.workbook.model.person.Person;
 import seedu.workbook.testutil.PersonBuilder;
@@ -99,12 +99,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getWorkBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setWorkBookFilePath(Path workBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setWorkBook(ReadOnlyWorkBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyWorkBook getWorkBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,8 +186,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyWorkBook getWorkBook() {
+            return new WorkBook();
         }
     }
 

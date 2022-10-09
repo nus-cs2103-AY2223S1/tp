@@ -1,11 +1,11 @@
 package seedu.workbook.logic.commands;
 
 import static seedu.workbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.workbook.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.workbook.testutil.TypicalPersons.getTypicalWorkBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.workbook.model.AddressBook;
+import seedu.workbook.model.WorkBook;
 import seedu.workbook.model.Model;
 import seedu.workbook.model.ModelManager;
 import seedu.workbook.model.UserPrefs;
@@ -13,7 +13,7 @@ import seedu.workbook.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyWorkBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,10 +21,10 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+    public void execute_nonEmptyWorkBook_success() {
+        Model model = new ModelManager(getTypicalWorkBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalWorkBook(), new UserPrefs());
+        expectedModel.setWorkBook(new WorkBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
