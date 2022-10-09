@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -108,6 +109,21 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code NetWorth}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code NetWorth} is invalid.
+     */
+    public static NetWorth parseNetWorth(String netWorth) throws ParseException {
+        requireNonNull(netWorth);
+        String trimmedNetWorth = netWorth.trim();
+        if (!NetWorth.isValidNetWorth(trimmedNetWorth)) {
+            throw new ParseException(NetWorth.MESSAGE_CONSTRAINTS);
+        }
+        return new NetWorth(trimmedNetWorth);
     }
 
     /**
