@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Category;
+import seedu.address.model.person.ComparableCategory;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -150,7 +151,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortList(Category category) {
+        public void sortList(ComparableCategory category) {
             throw new AssertionError("This method should not be called.");
         }
 

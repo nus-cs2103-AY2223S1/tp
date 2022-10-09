@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Category;
+import seedu.address.model.person.ComparableCategory;
 import seedu.address.model.person.Person;
 
 /**
@@ -87,7 +87,7 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
 
-    void sortList(Category category);
+    void sortList(ComparableCategory category);
 
     void reverseList();
 }

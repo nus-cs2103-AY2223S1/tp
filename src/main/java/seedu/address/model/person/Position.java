@@ -1,12 +1,14 @@
 package seedu.address.model.person;
 
+import javafx.geometry.Pos;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the position of the internship.
  */
-public class Position {
+public class Position extends ComparableModel {
     public static final String MESSAGE_CONSTRAINTS =
             "Position should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -37,6 +39,13 @@ public class Position {
         return test.matches(VALIDATION_REGEX);
     }
 
+    @Override
+    public int compareTo(ComparableModel other) {
+        if (other instanceof Position) {
+            return this.toString().compareTo(((Position) other).toString());
+        }
+        return 0;
+    }
 
     @Override
     public String toString() {

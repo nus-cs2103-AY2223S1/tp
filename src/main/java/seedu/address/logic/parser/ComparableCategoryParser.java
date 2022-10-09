@@ -5,13 +5,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.model.person.Category;
+import seedu.address.model.person.ComparableCategory;
 
 
 /**
  * Parses input arguments
  */
-public class CategoryParser {
+public class ComparableCategoryParser {
 
 
     private static final String CATEGORY_PATTERN = PREFIX_CATEGORY.getPrefix() + "*";
@@ -20,7 +20,7 @@ public class CategoryParser {
      * and returns a Category
      * @throws ClassNotFoundException if no such category is found
      */
-    public static Category parse(String keyword) throws ClassNotFoundException {
+    public static ComparableCategory parse(String keyword) throws ClassNotFoundException {
         keyword = keyword.toLowerCase().trim();
         Pattern p = Pattern.compile(PREFIX_CATEGORY.getPrefix() + "(.+)");
         Matcher m = p.matcher(keyword);
@@ -29,19 +29,16 @@ public class CategoryParser {
             switch (keyword) {
             case "name":
             case "n":
-                return Category.NAME;
-            case "address":
-            case "a":
-                return Category.ADDRESS;
-            case "email":
-            case "e":
-                return Category.EMAIL;
-            case "phone":
+                return ComparableCategory.NAME;
+            case "application_process":
+            case "pr":
+                return ComparableCategory.APPLICATION_PROCESS;
+            case "position":
             case "p":
-                return Category.PHONE;
-            case "tag":
-            case "t":
-                return Category.TAG;
+                return ComparableCategory.POSITION;
+            case "date":
+            case "d":
+                return ComparableCategory.DATE;
             default:
                 throw new ClassNotFoundException();
             }

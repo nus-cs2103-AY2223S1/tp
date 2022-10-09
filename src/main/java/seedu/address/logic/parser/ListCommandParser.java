@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Category;
+import seedu.address.model.person.ComparableCategory;
 
 
 /**
@@ -20,17 +20,17 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.length() == 0) {
-            return new ListCommand(Category.NULL, false);
+            return new ListCommand(ComparableCategory.NULL, false);
         }
         String[] keywords = trimmedArgs.split("\\s+");
 
         if (keywords.length == 1) {
             if (keywords[0].equals("true") || keywords[0].equals("false")) {
                 boolean reverse = keywords[0].equals("true");
-                return new ListCommand(Category.NULL, reverse);
+                return new ListCommand(ComparableCategory.NULL, reverse);
             } else {
                 try {
-                    Category category = CategoryParser.parse(keywords[0]);
+                    ComparableCategory category = ComparableCategoryParser.parse(keywords[0]);
                     return new ListCommand(category, false);
                 } catch (ClassNotFoundException cnf) {
                     throw new ParseException(
@@ -39,7 +39,7 @@ public class ListCommandParser implements Parser<ListCommand> {
             }
         } else if (keywords.length == 2) {
             try {
-                Category category = CategoryParser.parse(keywords[0]);
+                ComparableCategory category = ComparableCategoryParser.parse(keywords[0]);
                 boolean reverse = keywords[1].equals("true");
                 return new ListCommand(category, reverse);
             } catch (ClassNotFoundException cnf) {

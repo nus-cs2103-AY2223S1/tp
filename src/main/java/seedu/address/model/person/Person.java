@@ -2,10 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.model.tag.Tag;
 
@@ -77,20 +74,18 @@ public class Person {
         return applicationProcess;
     }
 
-    public String getAttribute(Category category) {
+    public int compareTo(Person o, ComparableCategory category) {
         switch (category) {
         case NAME:
-            return getName().toString();
-        case PHONE:
-            return getPhone().toString();
-        case EMAIL:
-            return getEmail().toString();
-        case ADDRESS:
-            return getAddress().toString();
-        case TAG:
-            return getTags().toString();
+            return this.getName().compareTo(o.getName());
+        case APPLICATION_PROCESS:
+            return this.getApplicationProcess().compareTo(o.getApplicationProcess());
+        case POSITION:
+            return this.getPosition().compareTo(o.getPosition());
+        case DATE:
+            return this.getDate().compareTo(o.getDate());
         default:
-            return "";
+            return 0;
         }
     }
 

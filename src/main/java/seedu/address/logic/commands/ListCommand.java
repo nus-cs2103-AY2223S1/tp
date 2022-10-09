@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.Category;
+import seedu.address.model.person.ComparableCategory;
 
 /**
  * Lists all persons in the address book to the user.
@@ -24,21 +24,21 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all internships";
 
-    private final Category category;
+    private final ComparableCategory category;
     private final boolean reverse;
 
     /**
      * Creates a ListCommand
      */
     public ListCommand() {
-        this.category = Category.NULL;
+        this.category = null;
         this.reverse = false;
     }
 
     /**
      * Creates a ListCommand sorted by the category in ascending or descending order
      */
-    public ListCommand(Category category, boolean reverse) {
+    public ListCommand(ComparableCategory category, boolean reverse) {
         this.category = category;
         this.reverse = reverse;
     }
@@ -47,7 +47,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        if (category != Category.NULL) {
+        if (category != null) {
             model.sortList(category);
         }
         if (reverse) {
