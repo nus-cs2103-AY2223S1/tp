@@ -6,6 +6,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.profile.AddProfileCommandParser;
 import seedu.address.logic.parser.profile.EditProfileCommandParser;
+import seedu.address.logic.parser.profile.ViewProfilesCommandParser;
 
 /**
  * Contains helper methods for testing command parsers.
@@ -21,6 +22,8 @@ public class CommandParserTestUtil {
             userInput = " -a " + userInput;
         } else if (parser instanceof EditProfileCommandParser) {
             userInput = " -e " + userInput;
+        } else if (parser instanceof ViewProfilesCommandParser) {
+            userInput = " -v " + userInput;
         }
 
         try {

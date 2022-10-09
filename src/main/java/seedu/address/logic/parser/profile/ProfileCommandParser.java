@@ -52,8 +52,7 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
         case EditProfileCommand.COMMAND_OPTION:
             return new EditProfileCommandParser().parse(args);
         case ViewProfilesCommand.COMMAND_OPTION:
-            return new ViewProfilesCommand();
-
+            return new ViewProfilesCommandParser().parse(args);
         default:
             throw new ParseException(ProfileCommand.OPTION_UNKNOWN + ProfileCommand.VALID_FLAGS);
         }

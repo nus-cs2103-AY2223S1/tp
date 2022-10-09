@@ -1,14 +1,11 @@
 package seedu.address.logic.parser.profile;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.profile.ProfileCommand;
-import seedu.address.logic.commands.profile.ViewProfilesCommand;
 
 public class ProfileCommandParserTest {
 
@@ -36,13 +33,6 @@ public class ProfileCommandParserTest {
     public void parse_profileOption_failure() {
         assertParseFailure(parser, " -unknowncommand",
                 ProfileCommand.OPTION_UNKNOWN + ProfileCommand.VALID_FLAGS);
-    }
-
-    @Test
-    public void parse_viewProfiles() throws Exception {
-        String viewProfilesOption = " " + PREFIX_OPTION + ViewProfilesCommand.COMMAND_OPTION;
-        assertTrue(parser.parse(viewProfilesOption) instanceof ViewProfilesCommand);
-        assertTrue(parser.parse(viewProfilesOption + " 3") instanceof ViewProfilesCommand);
     }
 
 }
