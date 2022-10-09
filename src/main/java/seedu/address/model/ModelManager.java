@@ -122,6 +122,7 @@ public class ModelManager implements Model {
         addressBook.addNote(note);
     }
 
+
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);

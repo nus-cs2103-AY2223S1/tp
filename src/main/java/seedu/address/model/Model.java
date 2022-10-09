@@ -76,6 +76,7 @@ public interface Model {
 
     void addNote(Note target);
 
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
