@@ -27,6 +27,7 @@ public class ItemQuantityValidator {
 
     /**
      * Validates a given input String.
+     *
      * @param itemQuantityString String representation of item quantity to validate against.
      */
     public static void validate(String itemQuantityString) {
@@ -43,7 +44,7 @@ public class ItemQuantityValidator {
      *
      * @param itemQuantityString a string that represents the quantity of the {@link Item}.
      */
-    private static boolean isParsableQuantity(String itemQuantityString) {
+    public static boolean isParsableQuantity(String itemQuantityString) {
         try {
             Double.parseDouble(itemQuantityString);
         } catch (NumberFormatException e) {
@@ -57,7 +58,7 @@ public class ItemQuantityValidator {
      *
      * @param itemQuantityString a string that represents the quantity of the {@link Item}.
      */
-    private static boolean isQuantityTooPrecise(String itemQuantityString) {
+    public static boolean isQuantityTooPrecise(String itemQuantityString) {
         if (!itemQuantityString.contains(DECIMAL_POINT)) {
             return true;
         }
@@ -70,7 +71,7 @@ public class ItemQuantityValidator {
      *
      * @param itemQuantity a double that represents the quantity of the {@link Item}.
      */
-    private static boolean isQuantityMoreThanMaxQuantity(double itemQuantity) {
+    public static boolean isQuantityMoreThanMaxQuantity(double itemQuantity) {
         return itemQuantity > MAX_QUANTITY;
     }
 
@@ -79,7 +80,7 @@ public class ItemQuantityValidator {
      *
      * @param itemQuantity a double that represents the quantity of the {@link Item}.
      */
-    private static boolean isQuantityNegative(double itemQuantity) {
+    public static boolean isQuantityNegative(double itemQuantity) {
         return itemQuantity < 0;
     }
 }

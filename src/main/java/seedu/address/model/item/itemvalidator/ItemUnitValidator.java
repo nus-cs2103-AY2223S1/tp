@@ -23,6 +23,7 @@ public class ItemUnitValidator {
 
     /**
      * Validates a given input String.
+     *
      * @param unitString String representation of item unit to validate against.
      */
     public static void validate(String unitString) {
@@ -35,7 +36,7 @@ public class ItemUnitValidator {
      *
      * @param itemUnit a string that represents the unit of the {@link Item}.
      */
-    private static boolean doesUnitContainInvalidCharacters(String itemUnit) {
+    public static boolean doesUnitContainInvalidCharacters(String itemUnit) {
         return !itemUnit.matches(VALIDATION_REGEX);
     }
 
@@ -44,7 +45,7 @@ public class ItemUnitValidator {
      *
      * @param itemUnit a string that represents the unit of the {@link Item}.
      */
-    private static boolean isUnitLengthMoreThanMaxLength(String itemUnit) {
+    public static boolean isUnitLengthMoreThanMaxLength(String itemUnit) {
         return itemUnit.length() > MAX_LENGTH;
     }
 }

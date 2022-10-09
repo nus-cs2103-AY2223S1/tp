@@ -24,6 +24,7 @@ public class ItemNameValidator {
 
     /**
      * Validates a given input String.
+     *
      * @param itemName String representation of item name to validate against.
      */
     public static void validate(String itemName) {
@@ -37,7 +38,7 @@ public class ItemNameValidator {
      *
      * @param itemName a string that represents the name of the {@link Item}.
      */
-    private static boolean doesNameContainInvalidCharacters(String itemName) {
+    public static boolean doesNameContainInvalidCharacters(String itemName) {
         return !itemName.matches(VALIDATION_REGEX);
     }
 
@@ -46,7 +47,7 @@ public class ItemNameValidator {
      *
      * @param itemName a string that represents the name of the {@link Item}.
      */
-    private static boolean isNameLengthMoreThanMaxLength(String itemName) {
+    public static boolean isNameLengthMoreThanMaxLength(String itemName) {
         return itemName.length() > MAX_LENGTH;
     }
 
@@ -55,7 +56,7 @@ public class ItemNameValidator {
      *
      * @param itemName a string that represents the name of the {@link Item}.
      */
-    private static boolean isNameBlank(String itemName) {
+    public static boolean isNameBlank(String itemName) {
         return itemName.isEmpty();
     }
 }
