@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.user.EmptyUser;
+import seedu.address.model.person.user.User;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +16,9 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private User user = new EmptyUser();
     private final UniquePersonList persons;
+    private final EmptyUser emptyUser = new EmptyUser();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -54,6 +58,29 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+    }
+
+    //// user operations
+
+    /**
+     * Returns true if a user is already saved in the address book.
+     */
+    public boolean hasUser() {
+        return !(user.equals(emptyUser));
+    }
+
+    /**
+     * Adds user to the address book.
+     */
+    public void addUser(User u) {
+        user = u;
+    }
+
+    /**
+     * Deletes the current user from the address book and replaces it with an EmptyUser.
+     */
+    public void deleteUser() {
+        user = new EmptyUser();
     }
 
     //// person-level operations
@@ -104,6 +131,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public User getUser() {
+        return user;
     }
 
     @Override
