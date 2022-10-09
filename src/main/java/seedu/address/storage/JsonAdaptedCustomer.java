@@ -88,9 +88,9 @@ class JsonAdaptedCustomer {
             customerTags.add(tag.toModelType());
         }
 
-        final UniqueCommissionList personCommissions = new UniqueCommissionList();
+        final UniqueCommissionList customerCommissions = new UniqueCommissionList();
         for (JsonAdaptedCommission commission : commissions) {
-            personCommissions.add(commission.toModelType());
+            customerCommissions.add(commission.toModelType());
         }
 
         if (name == null) {
@@ -134,7 +134,7 @@ class JsonAdaptedCustomer {
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
         Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(modelName, modelPhone, modelEmail,
-                modelTags).setCommissions(personCommissions);
+                modelTags).setCommissions(customerCommissions);
         modelAddress.ifPresent(customerBuilder::setAddress);
         Customer customer = customerBuilder.build();
         customer.getCommissions().forEach(commission -> commission.setCustomer(customer));
