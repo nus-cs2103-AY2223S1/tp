@@ -58,6 +58,10 @@ public class RecordList {
         recordList.add(record);
     }
 
+    public boolean delete(Record record) {
+        return recordList.remove(record);
+    }
+
     @Override
     public int hashCode() {
         return recordList.hashCode();

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Record;
 
@@ -94,4 +95,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecordList(Predicate<Record> predicate);
+
+    /**
+     * Deletes the given record.
+     * {@code record} must exist in the filtered record list.
+     */
+    void deleteRecord(Record record);
 }

@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.net.SecureCacheResponse;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,19 +24,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final RecordList recordList;
+    private final RecordList records;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, RecordList recordList) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, RecordList records) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.recordList = recordList;
+        this.records = records;
     }
 
     public Name getName() {
@@ -55,7 +56,7 @@ public class Person {
     }
 
     public RecordList getRecordList() {
-        return recordList;
+        return records;
     }
 
     /**
@@ -77,6 +78,12 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    //======= Record List ========================================
+
+    public void deleteRecord(Record record) {
+        records.delete(record);
     }
 
     /**
