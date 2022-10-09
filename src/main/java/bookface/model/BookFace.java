@@ -52,13 +52,24 @@ public class BookFace implements ReadOnlyBookFace {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setBooks(List<Book> books) {
+        this.books.setBooks(books);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyBookFace newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setBooks(newData.getBookList());
     }
+
+
 
     //// person-level operations
 
@@ -128,6 +139,11 @@ public class BookFace implements ReadOnlyBookFace {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Book> getBookList() {
+        return books.asUnmodifiableObservableList();
     }
 
     @Override

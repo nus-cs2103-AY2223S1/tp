@@ -1,5 +1,6 @@
 package bookface.model;
 
+import bookface.model.book.Book;
 import bookface.model.person.Person;
 import javafx.collections.ObservableList;
 
@@ -14,4 +15,5 @@ public interface ReadOnlyBookFace {
      */
     ObservableList<Person> getPersonList();
 
+    ObservableList<Book> getBookList();
 }

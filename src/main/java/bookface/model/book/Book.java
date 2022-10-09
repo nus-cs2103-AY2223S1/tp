@@ -5,6 +5,7 @@ import java.util.Objects;
 import bookface.commons.util.CollectionUtil;
 import bookface.model.person.Person;
 
+
 /**
  * Represents a Book in the BookFace application.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -16,6 +17,7 @@ public class Book {
     private final Author author;
     private boolean isLoaned = false;
     private Person loanee = null;
+
 
     /**
      * Every field must be present and not null.
@@ -37,6 +39,8 @@ public class Book {
     public boolean isLoaned() {
         return this.isLoaned;
     }
+
+
 
     /**
      * Sets the book's isLoaned status to false and loanee to null.

@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final BookFace bookFace;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Book> filteredBooks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.bookFace = new BookFace(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.bookFace.getPersonList());
+        filteredBooks = new FilteredList<>(this.bookFace.getBookList());
     }
 
     public ModelManager() {
@@ -114,12 +116,12 @@ public class ModelManager implements Model {
     @Override
     public void addBook(Book book) {
         bookFace.addBook(book);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         CollectionUtil.requireAllNonNull(target, editedPerson);
-
         bookFace.setPerson(target, editedPerson);
     }
 
@@ -134,10 +136,25 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Book> getFilteredBookList() {
+        return filteredBooks;
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredBookList(Predicate<Book> predicate) {
+        requireNonNull(predicate);
+        filteredBooks.setPredicate(predicate);
     }
 
     @Override
@@ -156,7 +173,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return bookFace.equals(other.bookFace)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredBooks.equals(other.filteredBooks);
     }
 
 }
