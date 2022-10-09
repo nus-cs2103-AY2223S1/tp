@@ -1,11 +1,13 @@
 package bookface.model.person;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import bookface.commons.util.CollectionUtil;
+import bookface.model.book.Title;
 import bookface.model.tag.Tag;
 
 /**
@@ -18,6 +20,8 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+
+    private final ArrayList<Title> loanedBook = new ArrayList<>();
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -43,6 +47,14 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public String getLoanedBookTitle() {
+        return loanedBook.toString();
+    }
+
+    public void addLoanedBookTitle(Title title) {
+        loanedBook.add(title);
     }
 
     /**

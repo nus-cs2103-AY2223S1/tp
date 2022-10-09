@@ -40,6 +40,16 @@ public class Book {
         return this.isLoaned;
     }
 
+    public String getLoanStatus() {
+        boolean temp = isLoaned;
+        if (temp) {
+            return "Loaned to " + loanee.getName();
+        } else {
+            return "Available";
+        }
+    }
+
+
 
 
     /**
@@ -56,9 +66,10 @@ public class Book {
      *
      * @param loanee the person borrowing this book
      */
-    public void loanTo(Person loanee) {
+    public void loanTo(Person loanee, Book book) {
         this.isLoaned = true;
         this.loanee = loanee;
+        loanee.addLoanedBookTitle(book.getTitle());
     }
 
     /**

@@ -128,6 +128,7 @@ public class BookFace implements ReadOnlyBookFace {
     public void loan(Person person, Book book) {
         CollectionUtil.requireAllNonNull(person, book);
         books.loan(person, book);
+        persons.loan(person, book);
     }
 
     /**

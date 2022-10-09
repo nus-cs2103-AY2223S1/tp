@@ -18,7 +18,7 @@ public class BookList extends ArrayList<Book> implements Iterable<Book> {
     private ArrayList<Book> bookList = new ArrayList<>();
 
     private final ObservableList<Book> internalList = FXCollections.observableArrayList();
-    //private final ObservableList<Book> internalList = FXCollections.observableArrayList(bookList); doesnt work?
+    //private final ObservableList<Book> internalList = FXCollections.observableArrayList(bookList); //doesnt work?
     private final ObservableList<Book> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -141,6 +141,8 @@ public class BookList extends ArrayList<Book> implements Iterable<Book> {
      */
     public void loan(Person person, Book book) {
         CollectionUtil.requireAllNonNull(person, book);
-        book.loanTo(person);
+        book.loanTo(person, book);
+        int index = internalList.indexOf(book);
+        internalList.set(index, book);
     }
 }

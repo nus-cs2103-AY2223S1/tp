@@ -64,7 +64,6 @@ public class LoanCommand extends Command {
         }
 
         model.loan(personToLoan, bookToLoan);
-
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredBookList(Model.PREDICATE_SHOW_ALL_BOOKS);
         return new CommandResult(String.format(MESSAGE_LOAN_SUCCESS, personToLoan.getName(), bookToLoan.getTitle()));
