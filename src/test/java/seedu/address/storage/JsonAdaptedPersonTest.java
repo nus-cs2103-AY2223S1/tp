@@ -27,7 +27,8 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedHomework> VALID_HOMEWORK = BENSON.getHomeworkList().homeworkList.stream()
             .map(JsonAdaptedHomework::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedAttendance> VALID_ATTENDANCE = BENSON.getAttendanceList().attendanceList.stream()
+    private static final List<JsonAdaptedAttendance> VALID_ATTENDANCE = BENSON.getAttendanceList()
+            .attendanceList.stream()
             .map(JsonAdaptedAttendance::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
@@ -89,7 +90,9 @@ public class JsonAdaptedPersonTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_LESSON_PLAN, VALID_HOMEWORK, VALID_ATTENDANCE, invalidTags);
+                new JsonAdaptedPerson(VALID_NAME,
+                        VALID_PHONE, VALID_LESSON_PLAN,
+                        VALID_HOMEWORK, VALID_ATTENDANCE, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 

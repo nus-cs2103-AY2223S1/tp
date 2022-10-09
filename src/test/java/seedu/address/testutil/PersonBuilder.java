@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.*;
+import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.HomeworkList;
+import seedu.address.model.person.LessonPlan;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -73,6 +78,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code AttendanceList} into a {@code List<Attendance} and set it to the {@code Person}
+     * that we are building.
+     */
     public PersonBuilder withAttendance(String ... attendanceList) {
         this.attendanceList.attendanceList.addAll(SampleDataUtil.getAttendanceList(attendanceList));
         return this;
