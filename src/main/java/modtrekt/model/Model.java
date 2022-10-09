@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import modtrekt.commons.core.GuiSettings;
-import modtrekt.model.task.Task;
 import modtrekt.model.module.Module;
+import modtrekt.model.task.Task;
 
 /**
  * The API of the Model component.

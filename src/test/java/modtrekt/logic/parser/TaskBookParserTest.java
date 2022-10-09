@@ -32,7 +32,7 @@ public class TaskBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         RemoveTaskCommand command = (RemoveTaskCommand) parser.parseCommand(
-                RemoveTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+                RemoveTaskCommand.COMMAND_WORD + " -t " + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new RemoveTaskCommand(INDEX_FIRST_TASK), command);
     }
 

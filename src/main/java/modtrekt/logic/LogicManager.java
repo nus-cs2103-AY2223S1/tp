@@ -13,12 +13,10 @@ import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.TaskBookParser;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.Model;
-import modtrekt.model.ReadOnlyTaskBook;
-import modtrekt.model.task.Task;
-import modtrekt.logic.parser.exceptions.ParseException;
-import modtrekt.model.Model;
 import modtrekt.model.ReadOnlyModuleList;
+import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.module.Module;
+import modtrekt.model.task.Task;
 import modtrekt.storage.Storage;
 
 /**

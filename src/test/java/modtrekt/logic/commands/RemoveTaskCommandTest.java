@@ -4,6 +4,7 @@ import static modtrekt.logic.commands.CommandTestUtil.assertCommandFailure;
 import static modtrekt.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static modtrekt.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static modtrekt.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static modtrekt.testutil.TypicalModules.getTypicalModuleList;
 import static modtrekt.testutil.TypicalTasks.getTypicalTaskBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,7 +24,7 @@ import modtrekt.model.task.Task;
  */
 public class RemoveTaskCommandTest {
 
-    private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalModuleList(), getTypicalTaskBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -32,7 +33,7 @@ public class RemoveTaskCommandTest {
 
         String expectedMessage = String.format(RemoveTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getModuleList(), model.getTaskBook(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
 
         assertCommandSuccess(removeTaskCommand, model, expectedMessage, expectedModel);

@@ -6,7 +6,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import modtrekt.model.task.Task;
-import modtrekt.model.module.Module;
 
 /**
  * An UI component that displays information of a {@code Module}.

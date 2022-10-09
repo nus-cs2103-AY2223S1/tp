@@ -56,11 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             return new AddCommand(module);
         }
 
-//        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MOD_NAME, CliSyntax.PREFIX_MOD_CODE,
-//                CliSyntax.PREFIX_MOD_CREDIT)
-//                || !argMultimap.getPreamble().isEmpty()) {
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-//        }
     }
 
 }

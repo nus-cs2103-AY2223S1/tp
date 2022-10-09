@@ -3,12 +3,13 @@ package modtrekt.logic.commands;
 import static modtrekt.logic.commands.CommandTestUtil.assertCommandFailure;
 import static modtrekt.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static modtrekt.testutil.TypicalModules.getTypicalModuleList;
+import static modtrekt.testutil.TypicalTasks.getTypicalTaskBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import modtrekt.model.Model;
-import modtrekt.model.ModuleManager;
+import modtrekt.model.ModelManager;
 import modtrekt.model.UserPrefs;
 import modtrekt.model.module.Module;
 import modtrekt.testutil.ModuleBuilder;
@@ -22,14 +23,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModuleManager(getTypicalModuleList(), new UserPrefs());
+        model = new ModelManager(getTypicalModuleList(), getTypicalTaskBook(), new UserPrefs());
     }
 
     @Test
     public void execute_newModule_success() {
         Module validModule = new ModuleBuilder().build();
 
-        Model expectedModel = new ModuleManager(model.getModuleList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getModuleList(), model.getTaskBook(), new UserPrefs());
         expectedModel.addModule(validModule);
 
         assertCommandSuccess(new AddCommand(validModule), model,

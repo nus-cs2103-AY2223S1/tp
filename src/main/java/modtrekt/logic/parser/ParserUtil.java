@@ -5,14 +5,10 @@ import static java.util.Objects.requireNonNull;
 import modtrekt.commons.core.index.Index;
 import modtrekt.commons.util.StringUtil;
 import modtrekt.logic.parser.exceptions.ParseException;
-//import modtrekt.model.person.Address;
-//import modtrekt.model.person.Email;
-//import modtrekt.model.person.Phone;
-import modtrekt.model.tag.Tag;
-import modtrekt.model.task.Description;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.ModCredit;
 import modtrekt.model.module.ModName;
+import modtrekt.model.task.Description;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -48,6 +44,13 @@ public class ParserUtil {
         }
         return new Description(trimmedName);
     }
+
+    /**
+     * Parses a {@code String name} into a {@code ModName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static ModName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();

@@ -6,11 +6,11 @@ import static modtrekt.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 import org.junit.jupiter.api.Test;
 
 import modtrekt.model.Model;
-import modtrekt.model.ModuleManager;
+import modtrekt.model.ModelManager;
 
 public class ExitCommandTest {
-    private Model model = new ModuleManager();
-    private Model expectedModel = new ModuleManager();
+    private Model model = new ModelManager();
+    private Model expectedModel = new ModelManager();
 
     @Test
     public void execute_exit_success() {

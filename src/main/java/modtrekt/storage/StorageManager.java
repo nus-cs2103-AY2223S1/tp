@@ -7,8 +7,8 @@ import java.util.logging.Logger;
 
 import modtrekt.commons.core.LogsCenter;
 import modtrekt.commons.exceptions.DataConversionException;
-import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyModuleList;
+import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyUserPrefs;
 import modtrekt.model.UserPrefs;
 
@@ -25,7 +25,8 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code ModuleListStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(TaskBookStorage taskBookStorage, ModuleListStorage moduleListStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(TaskBookStorage taskBookStorage, ModuleListStorage moduleListStorage,
+                          UserPrefsStorage userPrefsStorage) {
         this.taskBookStorage = taskBookStorage;
         this.moduleListStorage = moduleListStorage;
         this.userPrefsStorage = userPrefsStorage;

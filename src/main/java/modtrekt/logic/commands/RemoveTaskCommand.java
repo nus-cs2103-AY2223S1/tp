@@ -9,7 +9,6 @@ import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.model.Model;
 import modtrekt.model.task.Task;
-import modtrekt.model.module.Module;
 
 /**
  * Deletes a module identified using it's displayed index from the address book.

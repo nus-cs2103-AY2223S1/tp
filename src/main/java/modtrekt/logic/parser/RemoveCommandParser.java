@@ -2,13 +2,13 @@ package modtrekt.logic.parser;
 
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.stream.Stream;
+
 import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.Command;
 import modtrekt.logic.commands.RemoveModuleCommand;
 import modtrekt.logic.commands.RemoveTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments for remove command and returns a Command object
@@ -23,6 +23,11 @@ public class RemoveCommandParser implements Parser<RemoveTaskCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of RemoveCommand.
+     *
+     * @throws ParseException if the user input does not conform to the expected format
+     */
     public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_TASK);

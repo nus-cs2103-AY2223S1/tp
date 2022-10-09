@@ -3,11 +3,7 @@ package modtrekt.logic.parser;
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static modtrekt.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static modtrekt.logic.parser.CommandParserTestUtil.assertParseSuccess;
-<<<<<<< HEAD:src/test/java/modtrekt/logic/parser/RemoveTaskCommandParserTest.java
 import static modtrekt.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-=======
-import static modtrekt.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
->>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands:src/test/java/modtrekt/logic/parser/DeleteCommandParserTest.java
 
 import org.junit.jupiter.api.Test;
 
@@ -26,11 +22,7 @@ public class RemoveTaskCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-<<<<<<< HEAD:src/test/java/modtrekt/logic/parser/RemoveTaskCommandParserTest.java
         assertParseSuccess(parser, "1", new RemoveTaskCommand(INDEX_FIRST_TASK));
-=======
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_MODULE));
->>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands:src/test/java/modtrekt/logic/parser/DeleteCommandParserTest.java
     }
 
     @Test

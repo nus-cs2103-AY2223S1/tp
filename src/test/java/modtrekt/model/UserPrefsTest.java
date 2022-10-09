@@ -15,11 +15,8 @@ public class UserPrefsTest {
     @Test
     public void setModuleListFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
-<<<<<<< HEAD
         assertThrows(NullPointerException.class, () -> userPrefs.setTaskBookFilePath(null));
-=======
         assertThrows(NullPointerException.class, () -> userPrefs.setModuleListFilePath(null));
->>>>>>> junhao/HoJunHao2000/week-8/implement-module-commands
     }
 
 }

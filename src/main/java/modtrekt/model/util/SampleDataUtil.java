@@ -1,19 +1,15 @@
 package modtrekt.model.util;
 
-import modtrekt.model.ReadOnlyTaskBook;
-import modtrekt.model.TaskBook;
-import modtrekt.model.task.Description;
-import modtrekt.model.task.Task;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
 import modtrekt.model.ModuleList;
 import modtrekt.model.ReadOnlyModuleList;
+import modtrekt.model.ReadOnlyTaskBook;
+import modtrekt.model.TaskBook;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.ModCredit;
 import modtrekt.model.module.ModName;
 import modtrekt.model.module.Module;
-import modtrekt.model.tag.Tag;
+import modtrekt.model.task.Description;
+import modtrekt.model.task.Task;
 
 /**
  * Contains utility methods for populating {@code ModuleList} with sample data.

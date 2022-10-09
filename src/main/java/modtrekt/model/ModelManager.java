@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import modtrekt.commons.core.GuiSettings;
 import modtrekt.commons.core.LogsCenter;
-import modtrekt.model.task.Task;
 import modtrekt.model.module.Module;
+import modtrekt.model.task.Task;
 
 /**
  * Represents the in-memory model of the task book data.

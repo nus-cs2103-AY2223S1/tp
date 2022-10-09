@@ -17,16 +17,15 @@ import modtrekt.logic.Logic;
 import modtrekt.logic.LogicManager;
 import modtrekt.model.Model;
 import modtrekt.model.ModelManager;
-import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ModuleList;
-//import modtrekt.model.ModuleManager;
 import modtrekt.model.ReadOnlyModuleList;
+import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyUserPrefs;
 import modtrekt.model.TaskBook;
 import modtrekt.model.UserPrefs;
 import modtrekt.model.util.SampleDataUtil;
-import modtrekt.storage.JsonTaskBookStorage;
 import modtrekt.storage.JsonModuleListStorage;
+import modtrekt.storage.JsonTaskBookStorage;
 import modtrekt.storage.JsonUserPrefsStorage;
 import modtrekt.storage.ModuleListStorage;
 import modtrekt.storage.Storage;
@@ -104,31 +103,10 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             taskBook = new TaskBook();
             moduleList = new ModuleList();
-        } 
-
+        }
         return new ModelManager(moduleList, taskBook, userPrefs);
     }
 
-
-//    private Model initModuleManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-//        Optional<ReadOnlyModuleList> addressBookOptional;
-//        ReadOnlyModuleList initialData;
-//        try {
-//            addressBookOptional = storage.readModuleList();
-//            if (!addressBookOptional.isPresent()) {
-//                logger.info("Data file not found. Will be starting with a sample ModuleList");
-//            }
-//            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTaskBook);
-//        } catch (DataConversionException e) {
-//            logger.warning("Data file not in the correct format. Will be starting with an empty ModuleList");
-//            initialData = new ModuleList();
-//        } catch (IOException e) {
-//            logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
-//            initialData = new ModuleList();
-//        }
-//
-//        return new ModuleManager(initialData, userPrefs);
-//    }
 
     private void initLogging(Config config) {
         LogsCenter.init(config);
