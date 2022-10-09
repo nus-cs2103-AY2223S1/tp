@@ -18,7 +18,7 @@ Project team leaders can:
 
 ## User stories
 
-#### Priorities: 
+#### Priorities:
 - High (must have) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- `* * *`
 - Medium (nice to have) - `* *`
 - Low (unlikely to have) &nbsp;- `*`
@@ -80,7 +80,7 @@ Use case ends.
 
 **Extensions:**
 
-&nbsp;&nbsp; 
+&nbsp;&nbsp;
 1a. The contact already exists in TABS.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -164,7 +164,7 @@ Use case ends.
 &nbsp;&nbsp;
 1a. The group already exists in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS displays that the group already exists inside TABS.
 
 &nbsp;&nbsp;
@@ -344,7 +344,7 @@ Use case ends.
 &nbsp;&nbsp;
 3a. The person does not have the specified task.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 3a1. TABS terminates the operation by the user.
 
 &nbsp;&nbsp;
@@ -386,7 +386,7 @@ Use case ends.
 &nbsp;&nbsp;
 1a. The person specified is not found in TABS.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 1a1. TABS terminates the operation by the user.
 
 &nbsp;&nbsp;
