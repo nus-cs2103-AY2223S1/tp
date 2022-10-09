@@ -2,31 +2,25 @@ package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.waddle.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.waddle.commons.core.Messages;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.util.CollectionUtil;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
-import seedu.waddle.model.itinerary.Address;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
-import seedu.waddle.model.itinerary.Email;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
-import seedu.waddle.model.itinerary.Phone;
 
 /**
  * Edits the details of an existing itinerary.

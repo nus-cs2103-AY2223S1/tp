@@ -2,10 +2,11 @@ package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
+
 
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;

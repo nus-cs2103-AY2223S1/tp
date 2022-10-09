@@ -1,23 +1,14 @@
 package seedu.waddle.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
-import seedu.waddle.model.itinerary.Address;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
-import seedu.waddle.model.itinerary.Email;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
-import seedu.waddle.model.itinerary.Phone;
 
 /**
  * Jackson-friendly version of {@link Itinerary}.

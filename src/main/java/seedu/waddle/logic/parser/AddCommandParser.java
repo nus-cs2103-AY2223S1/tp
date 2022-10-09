@@ -2,25 +2,21 @@ package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.waddle.logic.commands.AddCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
-import seedu.waddle.model.itinerary.Address;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
-import seedu.waddle.model.itinerary.Email;
-import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
-import seedu.waddle.model.itinerary.Phone;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -48,7 +44,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Date startDate  = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
         Date endDate  = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
         People people = ParserUtil.parsePeople(argMultimap.getValue(PREFIX_PEOPLE).get());
-
 
         Itinerary itinerary = new Itinerary(name, country, startDate, endDate, people);
 

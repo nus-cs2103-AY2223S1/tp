@@ -2,20 +2,14 @@ package seedu.waddle.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.util.StringUtil;
 import seedu.waddle.logic.parser.exceptions.ParseException;
-import seedu.waddle.model.itinerary.Address;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
-import seedu.waddle.model.itinerary.Email;
 import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
-import seedu.waddle.model.itinerary.Phone;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
