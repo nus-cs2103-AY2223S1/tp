@@ -10,7 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
-import static seedu.address.testutil.TypicalClients.getTypicalClientBook;
+import static seedu.address.testutil.TypicalClients.getTypicalMyInsuRec;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 
@@ -19,9 +19,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
-import seedu.address.model.ClientBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.MyInsuRec;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.testutil.ClientBuilder;
@@ -32,7 +32,7 @@ import seedu.address.testutil.EditClientDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalClientBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalMyInsuRec(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MyInsuRec(model.getMyInsuRec()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MyInsuRec(model.getMyInsuRec()), new UserPrefs());
         expectedModel.setClient(lastClient, editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MyInsuRec(model.getMyInsuRec()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +92,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
 
-        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MyInsuRec(model.getMyInsuRec()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -111,8 +111,8 @@ public class EditCommandTest {
     public void execute_duplicateClientFilteredList_failure() {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
 
-        // edit client in filtered list into a duplicate in client book
-        Client clientInList = model.getClientBook().getClientList().get(INDEX_SECOND_CLIENT.getZeroBased());
+        // edit client in filtered list into a duplicate in MyInsuRec
+        Client clientInList = model.getMyInsuRec().getClientList().get(INDEX_SECOND_CLIENT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT,
                 new EditClientDescriptorBuilder(clientInList).build());
 
@@ -130,14 +130,14 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of client book
+     * but smaller than size of MyInsuRec
      */
     @Test
     public void execute_invalidClientIndexFilteredList_failure() {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
         Index outOfBoundIndex = INDEX_SECOND_CLIENT;
-        // ensures that outOfBoundIndex is still in bounds of client book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getClientBook().getClientList().size());
+        // ensures that outOfBoundIndex is still in bounds of client list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getMyInsuRec().getClientList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());

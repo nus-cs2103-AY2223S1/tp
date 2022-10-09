@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
-import static seedu.address.testutil.TypicalClients.getTypicalClientBook;
+import static seedu.address.testutil.TypicalClients.getTypicalMyInsuRec;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalClientBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getClientBook(), new UserPrefs());
+        model = new ModelManager(getTypicalMyInsuRec(), new UserPrefs());
+        expectedModel = new ModelManager(model.getMyInsuRec(), new UserPrefs());
     }
 
     @Test

@@ -16,18 +16,18 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ClientBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyClientBook;
+import seedu.address.model.MyInsuRec;
+import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.testutil.ClientBuilder;
 
-public class AddCommandTest {
+public class AddClientCommandTest {
 
     @Test
     public void constructor_nullClient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddClientCommand(null));
     }
 
     @Test
@@ -35,33 +35,34 @@ public class AddCommandTest {
         ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
         Client validClient = new ClientBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validClient).execute(modelStub);
+        CommandResult commandResult = new AddClientCommand(validClient).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validClient), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddClientCommand.MESSAGE_SUCCESS, validClient), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validClient), modelStub.clientsAdded);
     }
 
     @Test
     public void execute_duplicateClient_throwsCommandException() {
         Client validClient = new ClientBuilder().build();
-        AddCommand addCommand = new AddCommand(validClient);
+        AddClientCommand addCommand = new AddClientCommand(validClient);
         ModelStub modelStub = new ModelStubWithClient(validClient);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CLIENT, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddClientCommand.MESSAGE_DUPLICATE_CLIENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Client alice = new ClientBuilder().withName("Alice").build();
         Client bob = new ClientBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddClientCommand addAliceCommand = new AddClientCommand(alice);
+        AddClientCommand addBobCommand = new AddClientCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddClientCommand addAliceCommandCopy = new AddClientCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -99,12 +100,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getClientBookFilePath() {
+        public Path getMyInsuRecFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setClientBookFilePath(Path clientBookFilePath) {
+        public void setMyInsuRecFilePath(Path myInsuRecFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setClientBook(ReadOnlyClientBook newData) {
+        public void setMyInsuRec(ReadOnlyMyInsuRec myInsuRec) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyClientBook getClientBook() {
+        public ReadOnlyMyInsuRec getMyInsuRec() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,8 +187,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyClientBook getClientBook() {
-            return new ClientBook();
+        public ReadOnlyMyInsuRec getMyInsuRec() {
+            return new MyInsuRec();
         }
     }
 

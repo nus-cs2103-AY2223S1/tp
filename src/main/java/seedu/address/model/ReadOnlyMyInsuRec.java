@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
 
 /**
- * Unmodifiable view of a client book
+ * Unmodifiable view of a MyInsuRec
  */
-public interface ReadOnlyClientBook {
+public interface ReadOnlyMyInsuRec {
 
     /**
      * Returns an unmodifiable view of the clients list.
