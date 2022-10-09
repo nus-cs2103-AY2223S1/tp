@@ -1,12 +1,11 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,19 +22,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final RecordList recordList;
+    private final RecordList records;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, RecordList recordList) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, RecordList records) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.recordList = recordList;
+        this.records = records;
     }
 
     public Name getName() {
@@ -55,7 +54,7 @@ public class Person {
     }
 
     public RecordList getRecordList() {
-        return recordList;
+        return records;
     }
 
     /**
@@ -79,10 +78,38 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    //======= Record List ========================================
+
+    /**
+     * Replaces the contents of the record list with {@code records}.
+     * {@code records} must not contain duplicate persons.
+     */
+    public void setRecords(RecordList records) {
+        this.records.setRecordList(records);
+    }
+
+    /**
+     * Returns true if a record with the same identity as {@code record} exists in the record list.
+     */
+    public boolean hasRecord(Record record) {
+        requireNonNull(record);
+        return records.contains(record);
+    }
+
+    /**
+     * Adds a record to the record list.
+     * The record must not already exist in the record list.
+     */
+    public void addRecord(Record r) {
+        records.add(r);
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
+
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

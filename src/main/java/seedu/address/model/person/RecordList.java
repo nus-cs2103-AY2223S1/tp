@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a record list in the address book.
  */
@@ -28,6 +30,11 @@ public class RecordList {
         return internalUnmodifiableRecordList;
     }
 
+    public void setRecordList(RecordList replacement) {
+        requireNonNull(replacement);
+        recordList.setAll(replacement.recordList);
+    }
+
     /**
      * Getter for size of list.
      *
@@ -37,6 +44,7 @@ public class RecordList {
         return this.recordList.size();
     }
 
+    // TODO IMPLEMENT THIS
     @Override
     public String toString() {
         return "Number of Records: " + recordList.size();
@@ -56,6 +64,14 @@ public class RecordList {
      */
     public void add(Record record) {
         recordList.add(record);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent record as the given argument.
+     */
+    public boolean contains(Record toCheck) {
+        requireNonNull(toCheck);
+        return recordList.stream().anyMatch(toCheck::equals);
     }
 
     @Override
