@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.company.Company;
+import seedu.address.model.poc.Poc;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -173,8 +176,16 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public CompanyListPanel getCompanyListPanel() {
-        return companyListPanel;
+    private void updatePocList() {
+        ObservableList<Company> companies = logic.getFilteredCompanyList();
+
+        if (companies.size() == 0) {
+            return;
+        }
+
+        Company firstCompany = companies.get(0);
+        ObservableList<Poc> pocs = firstCompany.getPocs().asUnmodifiableObservableList();
+        pocListPanel.setPocList(pocs);
     }
 
     /**
@@ -196,7 +207,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            pocListPanel.setPocList(logic.getFilteredCompanyList().get(0).getPocs().asUnmodifiableObservableList());
+            updatePocList();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
