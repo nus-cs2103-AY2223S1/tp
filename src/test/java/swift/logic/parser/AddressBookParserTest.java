@@ -22,7 +22,7 @@ import swift.logic.commands.EditCommand.EditPersonDescriptor;
 import swift.logic.commands.ExitCommand;
 import swift.logic.commands.FindCommand;
 import swift.logic.commands.HelpCommand;
-import swift.logic.commands.ListCommand;
+import swift.logic.commands.ListContactCommand;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.person.NameContainsKeywordsPredicate;
 import swift.model.person.Person;
@@ -88,8 +88,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD) instanceof ListContactCommand);
+        assertTrue(parser.parseCommand(ListContactCommand.COMMAND_WORD + " 3") instanceof ListContactCommand);
     }
 
     @Test

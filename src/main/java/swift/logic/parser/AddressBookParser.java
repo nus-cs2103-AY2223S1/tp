@@ -5,8 +5,17 @@ import static swift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import swift.logic.commands.*;
+import swift.logic.commands.AddContactCommand;
+import swift.logic.commands.AddTaskCommand;
+import swift.logic.commands.ClearCommand;
+import swift.logic.commands.Command;
+import swift.logic.commands.DeleteCommand;
+import swift.logic.commands.DeleteTaskCommand;
+import swift.logic.commands.EditCommand;
+import swift.logic.commands.ExitCommand;
+import swift.logic.commands.FindCommand;
+import swift.logic.commands.HelpCommand;
+import swift.logic.commands.ListContactCommand;
 import swift.logic.parser.exceptions.ParseException;
 
 /**
@@ -49,8 +58,8 @@ public class AddressBookParser {
         return new ClearCommand();
       case FindCommand.COMMAND_WORD:
         return new FindCommandParser().parse(arguments);
-      case ListCommand.COMMAND_WORD:
-        return new ListCommand();
+      case ListContactCommand.COMMAND_WORD:
+        return new ListContactCommand();
       case AddTaskCommand.COMMAND_WORD:
         return new AddTaskCommandParser().parse(arguments);
       case DeleteTaskCommand.COMMAND_WORD:

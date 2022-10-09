@@ -19,7 +19,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import swift.logic.commands.AddContactCommand;
 import swift.logic.commands.CommandResult;
-import swift.logic.commands.ListCommand;
+import swift.logic.commands.ListContactCommand;
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.Model;
@@ -64,8 +64,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListContactCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListContactCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
