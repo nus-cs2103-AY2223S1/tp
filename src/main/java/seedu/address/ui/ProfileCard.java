@@ -37,6 +37,8 @@ public class ProfileCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label telegram;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -49,6 +51,7 @@ public class ProfileCard extends UiPart<Region> {
         name.setText(profile.getName().fullName);
         phone.setText(profile.getPhone().value);
         email.setText(profile.getEmail().value);
+        telegram.setText(profile.getTelegram().username);
         profile.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
