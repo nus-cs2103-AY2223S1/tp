@@ -2,6 +2,8 @@ package seedu.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTags.VALID_TAG_FRIENDS;
+import static seedu.address.testutil.TypicalTags.VALID_TAG_OWES_MONEY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,14 +44,11 @@ public class TagTest {
 
     @Test
     public void toString_nonEmptyCollection_returnsTagStrings() {
-        Tag tag1 = new Tag("limao");
-        Tag tag2 = new Tag("ais");
-        Tag tag3 = new Tag("satu");
+        List<Tag> oneTag = List.of(VALID_TAG_FRIENDS);
+        List<Tag> multipleTags = Arrays.asList(VALID_TAG_FRIENDS, VALID_TAG_OWES_MONEY);
 
-        List<Tag> oneTag = List.of(tag1);
-        List<Tag> multipleTags = Arrays.asList(tag1, tag2, tag3);
-
-        assertEquals("limao", Tag.toString(oneTag));
-        assertEquals("limao, ais, satu", Tag.toString(multipleTags));
+        assertEquals(VALID_TAG_FRIENDS.tagName, Tag.toString(oneTag));
+        assertEquals(VALID_TAG_FRIENDS.tagName + ", " + VALID_TAG_OWES_MONEY.tagName,
+                Tag.toString(multipleTags));
     }
 }
