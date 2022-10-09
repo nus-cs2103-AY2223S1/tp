@@ -58,6 +58,9 @@ public class Person {
     public Position getPosition() {
         return position;
     }
+    public String getDetails() {
+        return getPosition().getDetails();
+    }
 
     public Address getAddress() {
         return address;

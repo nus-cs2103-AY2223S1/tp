@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -11,38 +11,39 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.position.TeachingAssistant;
+import seedu.address.model.person.position.Professor;
 
 /**
- * Changes the availability of an existing teaching assistant in the address book.
+ * Changes the roles of an existing professor in the address book.
  */
-public class AvailabilityCommand extends Command {
-    public static final String COMMAND_WORD = "avail";
+public class RolesCommand extends Command {
+    public static final String COMMAND_WORD = "roles";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the availability of the Teaching Assistant identified "
+            + ": Edits the roles of the Professor identified "
             + "by the index number used in the last person listing.\n"
+            + "Multiple roles may be added and must be separated by a comma.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_AVAILABILITY
-            + "[AVAILABILITY]\n"
+            + PREFIX_ROLES
+            + "[ROLES]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_AVAILABILITY + "available.";
-    public static final String MESSAGE_PERSON_NOT_TA = "The person to edit is not a teaching assistant, there is no"
-            + "availability to be edited.";
-    public static final String MESSAGE_EDIT_AVAILABILITY_SUCCESS = "Edited availability to Teaching Assistant: %1$s";
+            + PREFIX_ROLES + "Coordinator, Lecturer, Advisor";
+    public static final String MESSAGE_PERSON_NOT_PROFESSOR = "The person to edit is not a Professor, there are no "
+            + "roles to be edited.";
+    public static final String MESSAGE_EDIT_ROLES_SUCCESS = "Edited roles to Professor: %1$s";
 
     private final Index index;
-    private final String availability;
+    private final String roles;
 
     /**
-     * @param index of the teaching assistant in the filtered person list to edit the availability
-     * @param availability of the teaching assistant to be updated to
+     * @param index of the professor in the filtered person list to edit the roles
+     * @param roles of the professor to be updated to
      */
-    public AvailabilityCommand(Index index, String availability) {
-        requireAllNonNull(index, availability);
+    public RolesCommand(Index index, String roles) {
+        requireAllNonNull(index, roles);
 
         this.index = index;
-        this.availability = availability;
+        this.roles = roles;
     }
 
     /**
@@ -61,11 +62,11 @@ public class AvailabilityCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        if (!(personToEdit.getPosition() instanceof TeachingAssistant)) {
-            throw new CommandException(MESSAGE_PERSON_NOT_TA);
+        if (!(personToEdit.getPosition() instanceof Professor)) {
+            throw new CommandException(MESSAGE_PERSON_NOT_PROFESSOR);
         }
-        TeachingAssistant currPosition = (TeachingAssistant) personToEdit.getPosition();
-        currPosition.setDetails(availability);
+        Professor currPosition = (Professor) personToEdit.getPosition();
+        currPosition.setDetails(roles);
         Person editedPerson = personToEdit;
 
         model.setPerson(personToEdit, editedPerson);
@@ -75,11 +76,11 @@ public class AvailabilityCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the availability is edited for
+     * Generates a command execution success message based on whether the roles are edited for
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        return String.format(MESSAGE_EDIT_AVAILABILITY_SUCCESS, personToEdit);
+        return String.format(MESSAGE_EDIT_ROLES_SUCCESS, personToEdit);
     }
 
     @Override
@@ -90,13 +91,13 @@ public class AvailabilityCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AvailabilityCommand)) {
+        if (!(other instanceof RolesCommand)) {
             return false;
         }
 
         // state check
-        AvailabilityCommand e = (AvailabilityCommand) other;
+        RolesCommand e = (RolesCommand) other;
         return index.equals(e.index)
-                && availability.equals(e.availability);
+                && roles.equals(e.roles);
     }
 }
