@@ -56,7 +56,7 @@ Format: `help`
 
 Adds a patient to the patient list.
 
-Format: `addPatient [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [d/TASK_DESCRIPTION…]`
+Format: `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]... [t/TAG]...`
 
 Examples:
 * `addPatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine [t/Severe]`
