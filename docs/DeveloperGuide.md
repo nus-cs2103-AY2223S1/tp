@@ -353,7 +353,7 @@ and the **Actor** is the `user`, unless specified otherwise)
     * 2a1. ArtBuddy shows an error message.
 
       Use case ends.
-    
+
 **Use case: Delete a commission**
 
 **MSS**
@@ -391,7 +391,7 @@ and the **Actor** is the `user`, unless specified otherwise)
 * 2a. Necessary commission details not given.
 
     * 2a1. ArtBuddy shows an error message.
-    
+
       Use case ends.
 
 **Use case: Delete a Customer**
@@ -510,10 +510,8 @@ Preconditions: AB currently has a commission opened.<br>**
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 500 customers, 2000 commissions and 8000 iterations without a noticeable sluggishness
-in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
-able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 500 customers, 2000 commissions and 8000 iterations without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The app should be designed for and used by a single user.
 5. The app data should be stored in a human-editable text file and not a DBMS.
 6. Images and other app assets should be stored locally and not in a remote server.
@@ -526,7 +524,7 @@ able to accomplish most of the tasks faster using commands than using the mouse.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Customer**: A contact detail. Contains information about the customer, and a list of commissions.
 * **Commission**: An art piece requested by a customer that has been delivered or is in progress. Contains specifics about the commission and a list of iterations.
-* **Iteration**: A single version of a commission. Contains an image and a text comment on the image. 
+* **Iteration**: A single version of a commission. Contains an image and a text comment on the image.
 
 --------------------------------------------------------------------------------------------------------------------
 

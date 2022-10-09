@@ -1,31 +1,79 @@
 {
-  "customers" : [ {
-    "name" : "Trixx",
-    "phone" : "12345678",
-    "email" : "Trixx@gmail.com",
-    "address" : "",
-    "tagged" : [ ],
-    "commissions" : [ {
-      "title" : "Trixx Sunshine",
-      "description" : "Paint forest with blinding sunlight",
-      "fee" : 0.5,
-      "deadline" : "2022-04-04",
-      "tagged" : [ "test2", "test" ],
-      "isCompleted" : true
-    }, {
-      "title" : "Trixx Trixx",
-      "description" : "Paint Trixx portrait",
-      "fee" : 0.5,
-      "deadline" : "2022-04-04",
-      "tagged" : [ "test2", "test" ],
-      "isCompleted" : true
-    }, {
-      "title" : "Trixx Moonshine",
-      "description" : "Paint the alcoholic drink",
-      "fee" : 0.5,
-      "deadline" : "2022-04-04",
-      "tagged" : [ "test2", "test" ],
-      "isCompleted" : true
-    } ]
-  } ]
+  "customers": [
+    {
+      "name": "Trixx",
+      "phone": "12345678",
+      "email": "Trixx@gmail.com",
+      "address": "",
+      "tagged": [],
+      "commissions": [
+        {
+          "title": "Trixx Sunshine",
+          "description": "Paint forest with blinding sunlight",
+          "fee": 0.5,
+          "deadline": "2022-04-04",
+          "tagged": [
+            "test2",
+            "test"
+          ],
+          "isCompleted": true
+        },
+        {
+          "title": "Trixx Trixx",
+          "description": "Paint Trixx portrait",
+          "fee": 0.5,
+          "deadline": "2022-04-04",
+          "tagged": [
+            "test2",
+            "test"
+          ],
+          "isCompleted": true
+        },
+        {
+          "title": "Trixx Moonshine",
+          "description": "Paint the alcoholic drink",
+          "fee": 0.5,
+          "deadline": "2022-04-04",
+          "tagged": [
+            "test2",
+            "test"
+          ],
+          "isCompleted": true
+        }
+      ]
+    },
+    {
+      "name": "Meg",
+      "phone": "123",
+      "email": "test@gmail.com",
+      "address": "",
+      "tagged": [
+        "test"
+      ],
+      "commissions": [
+        {
+          "title": "Meg Shark",
+          "description": "Shark swallowing a boat",
+          "fee": 0.5,
+          "deadline": "2022-04-04",
+          "tagged": [
+            "test2",
+            "test"
+          ],
+          "isCompleted": true
+        },
+        {
+          "title": "Meg Casino",
+          "description": "Painting of high end casino",
+          "fee": 0.5,
+          "deadline": "2022-04-04",
+          "tagged": [
+            "test2",
+            "test"
+          ],
+          "isCompleted": true
+        }
+      ]
+    }
+  ]
 }
