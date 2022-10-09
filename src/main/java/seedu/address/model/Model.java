@@ -119,7 +119,6 @@ public interface Model {
     void addMeeting(Meeting newMeeting);
 
     /**
-<<<<<<< HEAD
      * Updates the filter of the filtered meeting list to filter by implementation.
      *
      * @throws NullPointerException if {@param predicate} is null.

@@ -19,7 +19,6 @@ import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

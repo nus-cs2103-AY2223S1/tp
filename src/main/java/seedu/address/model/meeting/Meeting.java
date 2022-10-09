@@ -48,7 +48,11 @@ public class Meeting {
         this.meetingLocation = meetingLocation;
     }
 
-
+    /**
+     * converts array of string to array of person
+     *
+     * @param peopleToMeet the array of people names
+     */
     public static ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet) {
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
@@ -100,6 +104,10 @@ public class Meeting {
         this.meetingDateAndTime = validator.processDateTime(dateAndTime);
     }
 
+    /**
+     * Adds the array of persons to the unique persons list
+     * @param people
+     */
     public void addPersons(ArrayList<Person> people) {
         for (int i = 0; i < people.size(); i++) {
             this.peopleToMeet.add(people.get(i));
