@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -34,6 +36,28 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * // TODO
+     * @param oneBasedIndex
+     * @return
+     * @throws ParseException
+     */
+    public static List<Index> parseTwoIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        String[] indexes = trimmedIndex.split(" ");
+
+        if (indexes.length != 2 || (
+                !StringUtil.isNonZeroUnsignedInteger(indexes[0]) && !StringUtil.isNonZeroUnsignedInteger(indexes[1]))) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        List<Index> indices = new LinkedList<>();
+        indices.add(Index.fromOneBased(Integer.parseInt(indexes[0])));
+        indices.add(Index.fromOneBased(Integer.parseInt(indexes[1])));
+
+        return indices;
     }
 
     /**
