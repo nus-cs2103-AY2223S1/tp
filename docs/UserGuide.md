@@ -43,10 +43,10 @@ This app is targeted at small F&B businesses which may struggle in inventory man
 
 ### Audience
 
-This guide is targeted at users using foodRem who wants to find out more about the different commands to manage their inventory in a quicker and more efficient manner. 
+This guide is targeted at users using FoodRem who wants to find out more about the different commands to manage their inventory in a quicker and more efficient manner. 
 
 Readers do not have to be familiar with the command line to use this guide effectively. 
-The only expectation we have of you is to carefully read through the different sections which might be a bit dry due to the details provided.
+The only expectation we have of you is to carefully read through the different sections.
 
 <div style="page-break-after: always"></div> <! ---Testing line break-->
 
