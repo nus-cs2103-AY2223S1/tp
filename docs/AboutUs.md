@@ -29,7 +29,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/lesterong.png" width="200px">
 
-[[github](http://github.com/lesterong)] 
+[[github](http://github.com/lesterong)]
 [[portfolio](team/lesterong.md)]
 
 * Role: Developer
