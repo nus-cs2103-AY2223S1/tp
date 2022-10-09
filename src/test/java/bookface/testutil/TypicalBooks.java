@@ -1,5 +1,7 @@
 package bookface.testutil;
 
+import static bookface.testutil.TypicalPersons.getSinglePerson;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 import bookface.logic.commands.CommandTestUtil;
 import bookface.model.BookFace;
 import bookface.model.book.Book;
+import bookface.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Book} objects to be used in tests.
@@ -37,10 +40,17 @@ public class TypicalBooks {
         for (Book book : getTypicalBooks()) {
             ab.addBook(book);
         }
+        for (Person person: getSinglePerson()) {
+            ab.addPerson(person);
+        }
         return ab;
     }
 
     public static List<Book> getTypicalBooks() {
         return new ArrayList<>(Arrays.asList(HOWTOSPELL, MAKINGACOMPUTER, GETMOTIVATED));
+    }
+
+    public static List<Book> getSingleBook() {
+        return new ArrayList<>(Arrays.asList(HOWTOSPELL));
     }
 }
