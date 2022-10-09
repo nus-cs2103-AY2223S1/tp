@@ -6,9 +6,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.model.TaskList;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**

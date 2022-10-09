@@ -73,7 +73,8 @@ public class TaskList implements ReadOnlyTaskList {
         return false;
     }
 
-     /** Replaces the given task {@code target} in the list with {@code editedTask}.
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the task list.
      */
     public void setTask(Task target, Index targetIndex) {

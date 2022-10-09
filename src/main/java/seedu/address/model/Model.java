@@ -72,7 +72,6 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
-<<<<<<< HEAD
      * Adds a new task to taskList
      */
     void addTask(Task task);
@@ -82,7 +81,8 @@ public interface Model {
      */
     boolean hasTask(Task task);
 
-     /** Replaces the given task {@code target} with {@code editedTask}.
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
      * {@code task} must exist in the task list.
      */
     void setTask(Task task, Index targetIndex);
