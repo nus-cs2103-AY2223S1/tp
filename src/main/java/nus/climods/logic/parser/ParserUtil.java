@@ -2,11 +2,10 @@ package nus.climods.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import nus.climods.commons.core.index.Index;
+import nus.climods.commons.core.module.ModuleCode;
 import nus.climods.commons.util.StringUtil;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.person.Address;
@@ -21,6 +20,17 @@ import nus.climods.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    /**
+     * Parses a {@code String} and returns Optional of a {@code ModuleCode} if supplied string represents a module code
+     * in full list. Returns empty Optional otherwise
+     * @param listModuleCode String representing input from user for a list module code
+     * @return Optional of ModuleCode if supplied string valid or empty optional otherwise
+     */
+    public static Optional<ModuleCode> parseListModuleCode(String listModuleCode) {
+        // TODO: check if ModuleCode is in full list of module codes
+        return Optional.of(new ModuleCode(listModuleCode));
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
