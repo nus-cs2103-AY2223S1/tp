@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.listing.Listing;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Listing> filteredListings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredListings = new FilteredList<>(this.addressBook.getListingList());
     }
 
     public ModelManager() {
@@ -105,13 +109,51 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Person getPerson(Name name) {
+        return addressBook.getPerson(name);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+
+    @Override
+    public boolean hasListing(Listing listing) {
+        requireNonNull(listing);
+        return addressBook.hasListing(listing);
+    }
+
+    @Override
+    public void deleteListing(Listing target) {
+        addressBook.removeListing(target);
+    }
+
+    @Override
+    public void addListing(Listing listing) {
+        addressBook.addListing(listing);
+        updateFilteredListingList(PREDICATE_SHOW_ALL_LISTINGS);
+    }
+
+    /**
+     * Gets the listing with the given id {@code id}.
+     * @param id id of the listing
+     * @return listing with given id
+     */
+    public Listing getListing(String id) {
+        return addressBook.getListing(id);
+    }
+
+    @Override
+    public void setListing(Listing target, Listing editedListing) {
+        requireAllNonNull(target, editedListing);
+        addressBook.setListing(target, editedListing);
+    }
+
+    //=========== Filtered List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -126,6 +168,17 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Listing> getFilteredListingList() {
+        return filteredListings;
+    }
+
+    @Override
+    public void updateFilteredListingList(Predicate<Listing> predicate) {
+        requireNonNull(predicate);
+        filteredListings.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +197,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredListings.equals(other.filteredListings);
     }
 
 }
