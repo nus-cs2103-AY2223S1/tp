@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalItems.getTypicalAddressBook;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -33,13 +33,13 @@ public class AddCommandIntegrationTest {
         expectedModel.addItem(validItem);
 
         assertCommandSuccess(new AddCommand(validItem), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validItem), expectedModel);
+            String.format(AddCommand.MESSAGE_SUCCESS, validItem), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Item personInList = model.getAddressBook().getItemList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_ITEM);
     }
 
 }

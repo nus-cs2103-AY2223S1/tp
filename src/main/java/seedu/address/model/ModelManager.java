@@ -88,9 +88,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasItem(Item person) {
-        requireNonNull(person);
-        return addressBook.hasItem(person);
+    public boolean hasItem(Item item) {
+        requireNonNull(item);
+        return addressBook.hasItem(item);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class ModelManager implements Model {
     @Override
     public void addItem(Item item) {
         addressBook.addItem(item);
-        updateFilteredItemList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override
@@ -143,8 +143,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredItems.equals(other.filteredItems);
+            && userPrefs.equals(other.userPrefs)
+            && filteredItems.equals(other.filteredItems);
     }
 
 }

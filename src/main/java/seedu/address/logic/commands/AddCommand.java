@@ -7,13 +7,13 @@ import seedu.address.model.Model;
 import seedu.address.model.item.Item;
 
 /**
- * Adds a person to the address book.
+ * Adds an item to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an item to the address book. ";
     //+ "Parameters: "
     //+ PREFIX_NAME + "NAME "
     //+ PREFIX_PHONE + "PHONE "
@@ -28,13 +28,13 @@ public class AddCommand extends Command {
     //+ PREFIX_TAG + "friends "
     //+ PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New item added: %1$s";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the address book";
 
     private final Item toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Item}
      */
     public AddCommand(Item item) {
         requireNonNull(item);
@@ -46,7 +46,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasItem(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
         model.addItem(toAdd);
@@ -56,7 +56,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+            || (other instanceof AddCommand // instanceof handles nulls
+            && toAdd.equals(((AddCommand) other).toAdd));
     }
 }

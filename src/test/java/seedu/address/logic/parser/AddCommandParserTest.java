@@ -22,8 +22,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_UNIT_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.CUCUMBERS;
-import static seedu.address.testutil.TypicalPersons.POTATOES;
+import static seedu.address.testutil.TypicalItems.CUCUMBERS;
+import static seedu.address.testutil.TypicalItems.POTATOES;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.item.Item;

@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,14 +24,14 @@ import seedu.address.model.item.ItemQuantity;
 import seedu.address.model.item.ItemUnit;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing item in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-        + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item identified "
+        + "by the index number used in the displayed item list. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_ITEM_NAME + "NAME] "
@@ -50,8 +50,8 @@ public class EditCommand extends Command {
     private final Index index;
 
     /**
-     * @param index              of the person in the filtered person list to edit
-     * @param editItemDescriptor details to edit the person with
+     * @param index              of the item in the filtered item list to edit
+     * @param editItemDescriptor details to edit the item with
      */
     public EditCommand(Index index, EditItemDescriptor editItemDescriptor) {
         requireNonNull(index);
@@ -83,7 +83,7 @@ public class EditCommand extends Command {
         List<Item> lastShownList = model.getFilteredItemList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
         }
 
         Item itemToEdit = lastShownList.get(index.getZeroBased());
@@ -94,7 +94,7 @@ public class EditCommand extends Command {
         }
 
         model.setItem(itemToEdit, editedItem);
-        model.updateFilteredItemList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
 
@@ -117,8 +117,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the item with. Each non-empty field value will replace the
+     * corresponding field value of the item.
      */
     public static class EditItemDescriptor {
         private ItemName name;

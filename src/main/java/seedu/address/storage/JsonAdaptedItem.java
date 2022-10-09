@@ -10,10 +10,6 @@ import seedu.address.model.item.ItemExpiryDate;
 import seedu.address.model.item.ItemName;
 import seedu.address.model.item.ItemQuantity;
 import seedu.address.model.item.ItemUnit;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 
 /**
  * Jackson-friendly version of {@link Item}.
@@ -68,7 +64,8 @@ class JsonAdaptedItem {
         //}
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ItemName.class.getSimpleName()));
         }
         // TODO: Change Validation
         //if (!Name.isValidName(name)) {
@@ -77,7 +74,8 @@ class JsonAdaptedItem {
         final ItemName modelItemName = new ItemName(name);
 
         if (quantity == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ItemQuantity.class.getSimpleName()));
         }
         // TODO: Change Validation
         //if (!Phone.isValidPhone(quantity)) {
@@ -86,7 +84,8 @@ class JsonAdaptedItem {
         final ItemQuantity modelItemQuantity = new ItemQuantity(quantity);
 
         if (unit == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ItemUnit.class.getSimpleName()));
         }
         // TODO: Change Validation
         //if (!Email.isValidEmail(unit)) {
@@ -95,7 +94,8 @@ class JsonAdaptedItem {
         final ItemUnit modelItemUnit = new ItemUnit(unit);
 
         if (boughtDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ItemBoughtDate.class.getSimpleName()));
         }
         // TODO: Change Validation
         //if (!Address.isValidAddress(boughtDate)) {
@@ -104,7 +104,8 @@ class JsonAdaptedItem {
         final ItemBoughtDate modelItemBoughtDate = new ItemBoughtDate(boughtDate);
 
         if (expiryDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ItemExpiryDate.class.getSimpleName()));
         }
         // TODO: Change Validation
         //if (!Address.isValidAddress(expiryDate)) {

@@ -47,33 +47,33 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditItemDescriptor editPersonDescriptor = new EditItemDescriptor();
+        EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
         if (argMultimap.getValue(PREFIX_ITEM_NAME).isPresent()) {
-            editPersonDescriptor.setItemName(ParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get()));
+            editItemDescriptor.setItemName(ParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_ITEM_QUANTITY).isPresent()) {
-            editPersonDescriptor.setItemQuantity(
+            editItemDescriptor.setItemQuantity(
                 ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get()));
         }
         if (argMultimap.getValue(PREFIX_ITEM_UNIT).isPresent()) {
-            editPersonDescriptor.setItemUnit(
+            editItemDescriptor.setItemUnit(
                 ParserUtil.parseUnit(argMultimap.getValue(PREFIX_ITEM_UNIT).get()));
         }
         if (argMultimap.getValue(PREFIX_ITEM_BOUGHT_DATE).isPresent()) {
-            editPersonDescriptor.setItemBoughtDate(
+            editItemDescriptor.setItemBoughtDate(
                 ParserUtil.parseBoughtDate(argMultimap.getValue(PREFIX_ITEM_BOUGHT_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_ITEM_EXPIRY_DATE).isPresent()) {
-            editPersonDescriptor.setItemExpiryDate(
+            editItemDescriptor.setItemExpiryDate(
                 ParserUtil.parseExpiryDate(argMultimap.getValue(PREFIX_ITEM_EXPIRY_DATE).get()));
         }
-        // parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        // parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editItemDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editItemDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editItemDescriptor);
     }
 
     /**

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.CUCUMBERS;
+import static seedu.address.testutil.TypicalItems.CUCUMBERS;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
@@ -35,7 +35,7 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedItem person =
-                new JsonAdaptedItem(INVALID_NAME, VALID_QUANTITY, VALID_UNIT, VALID_BOUGHT_DATE, VALID_EXPIRY_DATE);
+            new JsonAdaptedItem(INVALID_NAME, VALID_QUANTITY, VALID_UNIT, VALID_BOUGHT_DATE, VALID_EXPIRY_DATE);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -43,10 +43,10 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedItem person = new JsonAdaptedItem(null,
-                VALID_QUANTITY,
-                VALID_UNIT,
-                VALID_BOUGHT_DATE,
-                VALID_EXPIRY_DATE);
+            VALID_QUANTITY,
+            VALID_UNIT,
+            VALID_BOUGHT_DATE,
+            VALID_EXPIRY_DATE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -54,11 +54,11 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedItem person =
-                new JsonAdaptedItem(VALID_NAME,
-                        INVALID_QUANTITY,
-                        VALID_UNIT,
-                        VALID_BOUGHT_DATE,
-                        VALID_EXPIRY_DATE);
+            new JsonAdaptedItem(VALID_NAME,
+                INVALID_QUANTITY,
+                VALID_UNIT,
+                VALID_BOUGHT_DATE,
+                VALID_EXPIRY_DATE);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -66,11 +66,11 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedItem person = new JsonAdaptedItem(
-                VALID_NAME,
-                null,
-                VALID_UNIT,
-                VALID_BOUGHT_DATE,
-                VALID_EXPIRY_DATE);
+            VALID_NAME,
+            null,
+            VALID_UNIT,
+            VALID_BOUGHT_DATE,
+            VALID_EXPIRY_DATE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -78,11 +78,11 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedItem person =
-                new JsonAdaptedItem(VALID_NAME,
-                        VALID_QUANTITY,
-                        INVALID_UNIT,
-                        VALID_BOUGHT_DATE,
-                        VALID_EXPIRY_DATE);
+            new JsonAdaptedItem(VALID_NAME,
+                VALID_QUANTITY,
+                INVALID_UNIT,
+                VALID_BOUGHT_DATE,
+                VALID_EXPIRY_DATE);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -90,10 +90,10 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedItem person = new JsonAdaptedItem(VALID_NAME,
-                VALID_QUANTITY,
-                null,
-                VALID_BOUGHT_DATE,
-                VALID_EXPIRY_DATE);
+            VALID_QUANTITY,
+            null,
+            VALID_BOUGHT_DATE,
+            VALID_EXPIRY_DATE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -101,11 +101,11 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedItem person =
-                new JsonAdaptedItem(VALID_NAME,
-                        VALID_QUANTITY,
-                        VALID_UNIT,
-                        INVALID_BOUGHT_DATE,
-                        VALID_EXPIRY_DATE);
+            new JsonAdaptedItem(VALID_NAME,
+                VALID_QUANTITY,
+                VALID_UNIT,
+                INVALID_BOUGHT_DATE,
+                VALID_EXPIRY_DATE);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -113,10 +113,10 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedItem person = new JsonAdaptedItem(VALID_NAME,
-                VALID_QUANTITY,
-                VALID_UNIT,
-                null,
-                VALID_EXPIRY_DATE);
+            VALID_QUANTITY,
+            VALID_UNIT,
+            null,
+            VALID_EXPIRY_DATE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

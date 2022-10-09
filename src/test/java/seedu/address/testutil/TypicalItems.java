@@ -10,7 +10,7 @@ import seedu.address.model.item.Item;
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalItems {
 
     public static final Item POTATOES = new ItemBuilder()
         .withItemName("Potatoes")
@@ -60,7 +60,7 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {
+    private TypicalItems() {
     } // prevents instantiation
 
     /**

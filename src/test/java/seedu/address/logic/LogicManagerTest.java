@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_NAME_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.POTATOES;
+import static seedu.address.testutil.TypicalItems.POTATOES;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -58,7 +58,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
     }
 
     @Test

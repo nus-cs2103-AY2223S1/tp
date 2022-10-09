@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_BOUGHT_DATE_POTATOES;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.POTATOES;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalItems.POTATOES;
+import static seedu.address.testutil.TypicalItems.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -46,8 +46,8 @@ public class AddressBookTest {
     public void resetData_withDuplicateItems_throwsDuplicateItemException() {
         // Two persons with the same identity fields
         Item editedPotatoes = new ItemBuilder(POTATOES)
-                .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_POTATOES)
-                .build();
+            .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_POTATOES)
+            .build();
         List<Item> newItems = Arrays.asList(POTATOES, editedPotatoes);
         AddressBookStub newData = new AddressBookStub(newItems);
 
@@ -74,8 +74,8 @@ public class AddressBookTest {
     public void hasItem_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addItem(POTATOES);
         Item editedPotatoes = new ItemBuilder(POTATOES)
-                .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_POTATOES)
-                .build();
+            .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_POTATOES)
+            .build();
         assertTrue(addressBook.hasItem(editedPotatoes));
     }
 

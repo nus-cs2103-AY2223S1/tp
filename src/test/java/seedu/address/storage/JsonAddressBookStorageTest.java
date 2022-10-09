@@ -6,9 +6,9 @@ import org.junit.jupiter.api.io.TempDir;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.CUCUMBERS;
-import static seedu.address.testutil.TypicalPersons.POTATOES;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalItems.CUCUMBERS;
+import static seedu.address.testutil.TypicalItems.POTATOES;
+import static seedu.address.testutil.TypicalItems.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
