@@ -42,7 +42,7 @@ public class DeleteMeetingCommand extends Command {
         List<Client> lastShownList = model.getFilteredClientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
         Client clientToEdit = lastShownList.get(index.getZeroBased());

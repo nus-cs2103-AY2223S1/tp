@@ -36,7 +36,7 @@ public class DeleteClientCommand extends Command {
         List<Client> lastShownList = model.getFilteredClientList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
