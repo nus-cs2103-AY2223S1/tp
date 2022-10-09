@@ -25,7 +25,7 @@
     "address" : "wall street",
     "gender": "Male",
     "university": "SUTD",
-    "major": "Computer Science",
+    "major": "Chemical Engineering",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -34,7 +34,7 @@
     "address" : "10th street",
     "gender": "Male",
     "university": "SMU",
-    "major": "Computer Engineering",
+    "major": "Civil Engineering",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -43,7 +43,7 @@
     "address" : "michegan ave",
     "gender": "Female",
     "university": "Lasalle",
-    "major": "Chemical Engineering",
+    "major": "Electrical Engineering",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -52,7 +52,7 @@
     "address" : "little tokyo",
     "gender": "Female",
     "university": "Nanyang Polytechnic",
-    "major": "Civil Engineering",
+    "major": "Animal Sciences",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -61,7 +61,7 @@
     "address" : "4th street",
     "gender": "Male",
     "university": "Temasek Polytechnic",
-    "major": "Electrical Engineering",
+    "major": "Accounting",
     "tagged" : [ ]
   } ]
 }
