@@ -65,8 +65,8 @@ public class Tag {
 
         String result = tags.stream().reduce(
                 "", (tagString, tag) -> tagString + ", " + tag.tagName, (x, y) -> x + y);
-        // Remove unneeded preceding comma
-        result = result.substring(1);
+        // Remove unneeded preceding comma and space
+        result = result.substring(2);
         return result;
     }
 }
