@@ -51,9 +51,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         ResidentDescriptor editResidentDescriptor = new ResidentDescriptor();
-        if (!editResidentDescriptor.isAnyFieldNonNull()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editResidentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -78,6 +75,10 @@ public class EditCommandParser implements Parser<EditCommand> {
                     argMultimap.getValue(PREFIX_MATRIC_NUMBER).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editResidentDescriptor::setTags);
+
+        if (!editResidentDescriptor.isAnyFieldNonNull()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
 
         return new EditCommand(index, editResidentDescriptor);
     }

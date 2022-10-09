@@ -1,7 +1,5 @@
 package seedu.rc4hdb.model.resident.predicates;
 
-import static java.util.Objects.isNull;
-
 import java.util.function.Predicate;
 
 import seedu.rc4hdb.model.resident.Resident;
@@ -19,33 +17,14 @@ public class AttributesMatchKeywordsPredicate implements Predicate<Resident> {
 
     @Override
     public boolean test(Resident resident) {
-        boolean predicate = true;
-        if (!isNull(descriptor.getName())) {
-            predicate = predicate && descriptor.getName().equals(resident.getName());
-        }
-        if (!isNull(descriptor.getRoom())) {
-            predicate = predicate && resident.getRoom().equals(descriptor.getRoom());
-        }
-        if (!isNull(descriptor.getPhone())) {
-            predicate = predicate && resident.getPhone().equals(descriptor.getPhone());
-        }
-        if (!isNull(descriptor.getEmail())) {
-            predicate = predicate && resident.getEmail().equals(descriptor.getEmail());
-        }
-        if (!isNull(descriptor.getGender())) {
-            predicate = predicate && resident.getGender().equals(descriptor.getGender());
-        }
-        if (!isNull(descriptor.getHouse())) {
-            predicate = predicate && resident.getHouse().equals(descriptor.getHouse());
-        }
-        if (!isNull(descriptor.getMatricNumber())) {
-            predicate = predicate && resident.getMatricNumber().equals(descriptor.getMatricNumber());
-        }
-        if (!isNull(descriptor.getTags())) {
-            predicate = predicate && resident.getTags().equals(descriptor.getTags());
-        }
-        return predicate;
-
+        return descriptor.getName().map(name -> name.equals(resident.getName())).orElse(true)
+                && descriptor.getPhone().map(phone -> phone.equals(resident.getPhone())).orElse(true)
+                && descriptor.getEmail().map(email -> email.equals(resident.getEmail())).orElse(true)
+                && descriptor.getRoom().map(room -> room.equals(resident.getRoom())).orElse(true)
+                && descriptor.getGender().map(gender -> gender.equals(resident.getGender())).orElse(true)
+                && descriptor.getHouse().map(house -> house.equals(resident.getHouse())).orElse(true)
+                && descriptor.getMatricNumber().map(matric -> matric.equals(resident.getMatricNumber())).orElse(true)
+                && descriptor.getTags().map(tags -> tags.equals(resident.getTags())).orElse(true);
     }
 
     @Override

@@ -41,10 +41,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                         PREFIX_HOUSE, PREFIX_MATRIC_NUMBER, PREFIX_TAG);
 
         ResidentDescriptor filterResidentDescriptor = new ResidentDescriptor();
-        if (!filterResidentDescriptor.isAnyFieldNonNull()) {
-            throw new ParseException(FilterCommand.MESSAGE_NOT_FILTERED);
-        }
-
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             filterResidentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -68,6 +64,10 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                     argMultimap.getValue(PREFIX_MATRIC_NUMBER).get()));
         }
         parseTagsForfilter(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(filterResidentDescriptor::setTags);
+
+        if (!filterResidentDescriptor.isAnyFieldNonNull()) {
+            throw new ParseException(FilterCommand.MESSAGE_NOT_FILTERED);
+        }
 
         return new FilterCommand(filterResidentDescriptor);
     }
