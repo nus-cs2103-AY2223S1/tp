@@ -1,8 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -25,13 +24,12 @@ public class AddGroupMemberCommand extends Command {
     public static final String COMMAND_WORD = "addmember";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds member to a specified group"
-            + "Parameters: NAME " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK\n"
-            + "Example: " + COMMAND_WORD + " alice g/Group Alpha t/Coursework 0";
+            + " Parameters: NAME " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
+            + "Example: " + COMMAND_WORD + " g/Group Alpha n/Alice Chee";
 
-    public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_GROUP = "This person already exists in the address book.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
-    public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "ASSIGNTASK";
+    public static final String MESSAGE_ASSIGN_GROUP_SUCCESS = "Added member";
 
     private final Name name;
     private final PersonGroup personGroup;
@@ -56,7 +54,8 @@ public class AddGroupMemberCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
-        HashMap<String, ArrayList<Assignment>> assignments = personToGroup.getAssignments();
+
+        ArrayList<PersonGroup> personGroup1 = personToGroup.getPersonGroup();
 
         Person editedPerson = new Person(
                 personToGroup.getName(), personToGroup.getPhone(), personToGroup.getEmail(),
@@ -64,13 +63,13 @@ public class AddGroupMemberCommand extends Command {
                 personGroup);
 
         if (!personToGroup.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_GROUP);
         }
 
         model.setPerson(personToGroup, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS));
+        return new CommandResult(String.format(MESSAGE_ASSIGN_GROUP_SUCCESS));
     }
 
     @Override

@@ -17,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.PersonGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
+    private final String personGroup;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,7 +42,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("assignments") HashMap<String, ArrayList<Assignment>> assignments) {
+                             @JsonProperty("assignments") HashMap<String, ArrayList<Assignment>> assignments,
+                             @JsonProperty("group") String personGroup) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +52,7 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.assignments.putAll(assignments);
+        this.personGroup = personGroup;
     }
 
     /**
@@ -63,6 +67,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         assignments.putAll(source.getAssignments());
+        personGroup = source.getPersonGroup().toString();
     }
 
     /**
@@ -112,7 +117,9 @@ class JsonAdaptedPerson {
 
         final HashMap<String, ArrayList<Assignment>> modelAssignment = new HashMap<>(assignments);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAssignment);
+        final PersonGroup modelPersonGroup = new PersonGroup(personGroup);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAssignment, modelPersonGroup);
     }
 
 }

@@ -20,6 +20,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.PersonGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -47,8 +48,9 @@ public class AddUserCommandParser implements Parser<AddUserCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
+        PersonGroup personGroup = new PersonGroup();
 
-        Person person = new Person(name, phone, email, address, tagList, assignments);
+        Person person = new Person(name, phone, email, address, tagList, assignments, personGroup);
 
         return new AddUserCommand(person);
     }

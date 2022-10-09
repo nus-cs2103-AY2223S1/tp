@@ -27,12 +27,12 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
 
-    private final PersonGroup personGroup;
+    private final ArrayList<PersonGroup> personGroups = new PersonGroup();
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  HashMap<String, ArrayList<Assignment>> assignments, PersonGroup personGroup) {
+                  HashMap<String, ArrayList<Assignment>> assignments, ArrayList<PersonGroup> personGroups) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -40,7 +40,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.assignments.putAll(assignments);
-        this.personGroup = personGroup;
+        this.personGroups.addAll(personGroups);
     }
 
     public Name getName() {
@@ -71,8 +71,8 @@ public class Person {
         return this.assignments;
     }
 
-    public PersonGroup getPersonGroup() {
-        return this.personGroup;
+    public ArrayList<PersonGroup> getPersonGroup() {
+        return this.personGroups;
     }
 
     /**
@@ -144,7 +144,7 @@ public class Person {
 
         }
 
-        if (!personGroup.isEmpty()) {
+        if (!personGroups.isEmpty()) {
             builder.append("; Group: ");
             assignments.forEach((key, value) -> {
                 String group = key + " " + value;

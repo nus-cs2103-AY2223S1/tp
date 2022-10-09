@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.ArrayList;
+
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -8,9 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's group in the address book.
  * Guarantees: immutable; is valid as declared in {}
  */
-public class PersonGroup {
+public class PersonGroup extends ArrayList<PersonGroup> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Group can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Group has to exist currently, and it should not be blank";
 
     /*
      * The first character of the group must not be a whitespace,
@@ -18,7 +20,7 @@ public class PersonGroup {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    private String group;
+    private String value;
 
     /**
      * Empty constructor to prevent error reading from jsonFile.
@@ -32,8 +34,8 @@ public class PersonGroup {
      */
     public PersonGroup(String group) {
         requireNonNull(group);
-        //checkArgument(isValidGroup(group, MESSAGE_CONSTRAINTS));
-        group = group;
+        checkArgument(isValidGroup(group), MESSAGE_CONSTRAINTS);
+        value = group;
     }
 
     /**
@@ -47,27 +49,27 @@ public class PersonGroup {
      * Get name of Group
      */
     public String getGroup() {
-        return group;
+        return value;
     }
 
     public boolean isEmpty() {
-        return isNull(group);
+        return isNull(value);
     }
     @Override
     public String toString() {
-        return group;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PersonGroup // instanceof handles nulls
-                && group.equals(((PersonGroup)other).group)); // state check
+                && value.equals(((PersonGroup)other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return group.hashCode();
+        return value.hashCode();
     }
 
 }

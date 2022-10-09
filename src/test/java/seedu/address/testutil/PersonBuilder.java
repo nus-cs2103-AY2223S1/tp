@@ -10,6 +10,7 @@ import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonGroup;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -32,6 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private HashMap<String, ArrayList<Assignment>> assignments;
+    private PersonGroup personGroup;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,6 +45,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         assignments = new HashMap<>();
+        personGroup = new PersonGroup();
     }
 
     /**
@@ -55,6 +58,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         assignments = new HashMap<>(personToCopy.getAssignments());
+        personGroup = personToCopy.getPersonGroup();
     }
 
     /**
@@ -111,8 +115,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code PersonGroup} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGroup(String group) {
+        this.personGroup = new PersonGroup(group);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, assignments);
+        return new Person(name, phone, email, address, tags, assignments, personGroup);
     }
 
 }
