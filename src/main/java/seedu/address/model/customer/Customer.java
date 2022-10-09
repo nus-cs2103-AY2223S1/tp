@@ -1,5 +1,6 @@
 package seedu.address.model.customer;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -198,6 +199,7 @@ public class Customer {
          * Builds CustomerBuilder with all required fields.
          */
         public CustomerBuilder(Name name, Phone phone, Email email, Set<Tag> tags) {
+            requireAllNonNull(name, phone, email, tags);
             this.name = name;
             this.phone = phone;
             this.email = email;
@@ -208,6 +210,7 @@ public class Customer {
          * Sets address and returns itself.
          */
         public CustomerBuilder setAddress(Address address) {
+            requireNonNull(address);
             this.address = address;
             return this;
         }
@@ -216,6 +219,7 @@ public class Customer {
          * Sets commissions and returns itself.
          */
         public CustomerBuilder setCommissions(UniqueCommissionList commissions) {
+            requireNonNull(commissions);
             this.commissions.setCommissions(commissions);
             return this;
         }

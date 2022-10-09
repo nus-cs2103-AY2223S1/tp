@@ -11,43 +11,45 @@ import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 
 /**
- * Deletes a customer identified using it's displayed index from the address book.
+ * Selects a customer and shows their details.
  */
-public class DeleteCommand extends Command {
-
-    public static final String COMMAND_WORD = "delete";
+public class OpenCustomerCommand extends Command {
+    public static final String COMMAND_WORD = "opencus";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the customer identified by the index number used in the displayed customer list.\n"
+            + ": Opens a customer and shows customer details and switches tab "
+            + "to commissions to show commissions made by the customer.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_CUSTOMER_SUCCESS = "Deleted Customer: %1$s";
+    public static final String MESSAGE_OPEN_CUSTOMER_SUCCESS = "Opened Customer: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public OpenCustomerCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
         }
 
-        Customer customerToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteCustomer(customerToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete));
+        Customer customerToOpen = lastShownList.get(targetIndex.getZeroBased());
+        model.selectCustomer(customerToOpen);
+
+        return new CommandResult(String.format(MESSAGE_OPEN_CUSTOMER_SUCCESS, customerToOpen));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof OpenCustomerCommand // instanceof handles nulls
+                && targetIndex.equals(((OpenCustomerCommand) other).targetIndex)); // state check
     }
 }
