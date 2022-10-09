@@ -22,20 +22,26 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withPhone("94351253").withLessonPlan("Algorithms")
+            .withPhone("94351253").withLessonPlan("Algorithms").withGradeProgress("Math: A")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withHomework("Science test").withPhone("98765432").withLessonPlan("Trigonometry")
+            .withHomework("Science worksheet").withPhone("98765432").withLessonPlan("Trigonometry")
+            .withGradeProgress("Math: A")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
+            .withGradeProgress("Math: A")
             .withLessonPlan("Cell structure").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
+            .withGradeProgress("Math: A")
             .withLessonPlan("Chemistry").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
+            .withGradeProgress("Math: A")
             .withLessonPlan("Sec 4 Physics").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
+            .withGradeProgress("Math: A")
             .withLessonPlan("Higher chinese").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
+            .withGradeProgress("Math: A")
             .withLessonPlan("Javascript").build();
 
     // Manually added

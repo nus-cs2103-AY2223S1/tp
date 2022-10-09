@@ -22,18 +22,20 @@ public class Person {
     // Data fields
     private final LessonPlan lessonPlan;
     private final HomeworkList homeworkList;
+    private final GradeProgressList gradeProgressList;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, LessonPlan lessonPlan,
-                  HomeworkList homeworkList, Set<Tag> tags) {
+                  HomeworkList homeworkList, GradeProgressList gradeProgressList, Set<Tag> tags) {
         requireAllNonNull(name, phone, tags);
         this.name = name;
         this.phone = phone;
         this.lessonPlan = lessonPlan;
         this.homeworkList = homeworkList;
+        this.gradeProgressList = gradeProgressList;
         this.tags.addAll(tags);
     }
 
@@ -52,6 +54,8 @@ public class Person {
     public HomeworkList getHomeworkList() {
         return homeworkList;
     }
+
+    public GradeProgressList getGradeProgressList() {return gradeProgressList;}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -92,13 +96,15 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getLessonPlan().equals(getLessonPlan())
+                && otherPerson.getHomeworkList().equals(getHomeworkList())
+                && otherPerson.getGradeProgressList().equals(getGradeProgressList())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, lessonPlan, tags);
+        return Objects.hash(name, phone, lessonPlan, homeworkList, gradeProgressList, tags);
     }
 
     @Override
@@ -110,7 +116,9 @@ public class Person {
                 .append("; Lesson Plan: ")
                 .append(getLessonPlan())
                 .append("; Homework: ")
-                .append(getHomeworkList());
+                .append(getHomeworkList())
+                .append("; Grade Progress: ")
+                .append(getGradeProgressList());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
