@@ -10,7 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Logic;
+import seedu.address.logic.ApplicationLogic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -21,19 +21,19 @@ import java.util.logging.Logger;
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class ApplicationMainWindow extends UiPart<Stage> {
+public class ApplicationMainWindow extends ApplicationUiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "ApplicationMainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-    private Logic logic;
+    private ApplicationLogic applicationLogic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ApplicationListPanel applicationListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private ApplicationHelpWindow applicationHelpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +42,7 @@ public class ApplicationMainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane applicationListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -51,21 +51,21 @@ public class ApplicationMainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     /**
-     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code ApplicationMainWindow} with the given {@code Stage} and {@code ApplicationLogic}.
      */
-    public ApplicationMainWindow(Stage primaryStage, Logic logic) {
+    public ApplicationMainWindow(Stage primaryStage, ApplicationLogic applicationLogic) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
-        this.logic = logic;
+        this.applicationLogic = applicationLogic;
 
         // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        setWindowDefaultSize(applicationLogic.getGuiSettings());
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        applicationHelpWindow = new ApplicationHelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -110,13 +110,13 @@ public class ApplicationMainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        applicationListPanel = new ApplicationListPanel(applicationLogic.getFilteredApplicationList());
+        applicationListPanelPlaceholder.getChildren().add(applicationListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getApplicationBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(applicationLogic.getApplicationBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -140,10 +140,10 @@ public class ApplicationMainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
+        if (!applicationHelpWindow.isShowing()) {
+            applicationHelpWindow.show();
         } else {
-            helpWindow.focus();
+            applicationHelpWindow.focus();
         }
     }
 
@@ -158,23 +158,23 @@ public class ApplicationMainWindow extends UiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
-        logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
+        applicationLogic.setGuiSettings(guiSettings);
+        applicationHelpWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ApplicationListPanel getApplicationListPanel() {
+        return applicationListPanel;
     }
 
     /**
      * Executes the command and returns the result.
      *
-     * @see Logic#execute(String)
+     * @see ApplicationLogic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult = applicationLogic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

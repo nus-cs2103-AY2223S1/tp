@@ -13,8 +13,8 @@ import seedu.address.logic.ApplicationLogicManager;
 import seedu.address.model.*;
 import seedu.address.model.util.SampleDataUtilApplicationBook;
 import seedu.address.storage.*;
+import seedu.address.ui.ApplicationUiManager;
 import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -55,7 +55,7 @@ public class ApplicationMainApp extends Application {
 
         applicationLogic = new ApplicationLogicManager(applicationModel, applicationStorage);
 
-        ui = new UiManager(applicationLogic);
+        ui = new ApplicationUiManager(applicationLogic);
     }
 
     /**

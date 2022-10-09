@@ -5,11 +5,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import seedu.address.MainApp;
+import seedu.address.ApplicationMainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.ApplicationLogic;
-import seedu.address.logic.Logic;
 
 import java.util.logging.Logger;
 
@@ -24,7 +23,7 @@ public class ApplicationUiManager implements Ui {
     private static final String ICON_APPLICATION = "/images/internship.png";
 
     private ApplicationLogic applicationLogic;
-    private MainWindow mainWindow;
+    private ApplicationMainWindow applicationMainWindow;
 
     /**
      * Creates a {@code ApplicationUiManager} with the given {@code ApplicationLogic}.
@@ -41,9 +40,9 @@ public class ApplicationUiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, applicationLogic); // resume here
-            mainWindow.show(); //This should be called before creating other UI parts
-            mainWindow.fillInnerParts();
+            applicationMainWindow = new ApplicationMainWindow(primaryStage, applicationLogic);
+            applicationMainWindow.show(); //This should be called before creating other UI parts
+            applicationMainWindow.fillInnerParts();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -52,11 +51,11 @@ public class ApplicationUiManager implements Ui {
     }
 
     private Image getImage(String imagePath) {
-        return new Image(MainApp.class.getResourceAsStream(imagePath));
+        return new Image(ApplicationMainApp.class.getResourceAsStream(imagePath));
     }
 
     void showAlertDialogAndWait(AlertType type, String title, String headerText, String contentText) {
-        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
+        showAlertDialogAndWait(applicationMainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
 
     /**
