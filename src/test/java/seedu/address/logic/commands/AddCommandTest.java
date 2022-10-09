@@ -52,6 +52,17 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_duplicateStudentId_throwsCommandException() {
+        Student existingStudent = new StudentBuilder().build();
+        String existingStudentId = existingStudent.getStudentId().toString();
+        ModelStub modelStub = new ModelStubWithStudent(existingStudent);
+        Student copyIdStudent = new StudentBuilder().withName("Other Name").withStudentId(existingStudentId).build();
+        AddCommand addCommand = new AddCommand(copyIdStudent);
+        String expectedMessage = String.format(AddCommand.MESSAGE_DUPLICATE_ID, existingStudentId);
+        assertThrows(CommandException.class, expectedMessage, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
 
         Student alice = new StudentBuilder().withName("Alice").build();
@@ -172,6 +183,12 @@ public class AddCommandTest {
         public boolean hasStudent(Student student) {
             requireNonNull(student);
             return this.student.isSameStudent(student);
+        }
+
+        @Override
+        public boolean hasStudentWithMatchingId(Student student) {
+            requireNonNull(student);
+            return this.student.hasSameId(student);
         }
 
     }

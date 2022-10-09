@@ -33,6 +33,7 @@ import seedu.address.testutil.StudentBuilder;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    public static String TEST_STUDENT_NAME = "A random Name";
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -100,13 +101,23 @@ public class EditCommandTest {
     }
 
     @Test
-
     public void execute_duplicateStudentUnfilteredList_failure() {
         Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
+    }
+
+    @Test
+    public void execute_duplicateStudentIdUnfilteredList_failure() {
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student secondStudent = model.getFilteredStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
+        String duplicateId = secondStudent.getStudentId().toString();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).withName(TEST_STUDENT_NAME)
+                .withStudentId(duplicateId).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, descriptor);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ID);
     }
 
     @Test
@@ -120,6 +131,21 @@ public class EditCommandTest {
                 new EditStudentDescriptorBuilder(studentInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
+    }
+
+    @Test
+    public void execute_duplicateStudentIdFilteredList_failure() {
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+
+        // edit student in filtered list into a duplicate in address book
+
+        Student studentInList = model.getAddressBook().getStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
+        String duplicateId = studentInList.getStudentId().toString();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT,
+                new EditStudentDescriptorBuilder(studentInList).withName(TEST_STUDENT_NAME)
+                        .withStudentId(duplicateId).build());
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ID);
     }
 
     @Test
