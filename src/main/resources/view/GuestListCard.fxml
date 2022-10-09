@@ -28,8 +28,8 @@
       </HBox>
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="numberOfGuests" styleClass="cell_small_label" text="\$numberOfGuests" />
       <Label fx:id="dateRange" styleClass="cell_small_label" text="\$dateRange" />
+      <Label fx:id="numberOfGuests" styleClass="cell_small_label" text="\$numberOfGuests" />
     </VBox>
   </GridPane>
 </HBox>
