@@ -11,18 +11,20 @@ import java.util.HashMap;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonGroup;
 
 /**
  * Changes the remark of an existing person in the address book.
  */
-public class AssignTaskCommand extends Command {
+public class AddGroupMemberCommand extends Command {
 
-    public static final String COMMAND_WORD = "assigntask";
+    public static final String COMMAND_WORD = "addmember";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign task to a user with the given name in a group"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds member to a specified group"
             + "Parameters: NAME " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK\n"
             + "Example: " + COMMAND_WORD + " alice g/Group Alpha t/Coursework 0";
 
@@ -32,52 +34,40 @@ public class AssignTaskCommand extends Command {
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "ASSIGNTASK";
 
     private final Name name;
-    private final String group;
-    private final Assignment task;
+    private final PersonGroup personGroup;
 
     /**
      * @param name of the person in the filtered person list to edit the remark
-     * @param task of the person to be updated to
+     * @param group of the person to be added to
      */
-    public AssignTaskCommand(String name, String group, String task) {
-        requireAllNonNull(name, group, task);
+    public AddGroupMemberCommand(String group, String name) {
+        requireAllNonNull(name, group);
         this.name = new Name(name);
-        this.group = group;
-        this.task = new Assignment(task);
+        this.personGroup = new PersonGroup(group);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         ObservableList<Person> personList = model.getPersonWithName(this.name);
-        Person personToAssignTask;
+        Person personToGroup;
 
         try {
-            personToAssignTask = personList.get(0);
+            personToGroup = personList.get(0);
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
-        HashMap<String, ArrayList<Assignment>> assignments = personToAssignTask.getAssignments();
-
-        ArrayList<Assignment> listOfAssignment;
-        if (assignments.containsKey(group)) {
-            listOfAssignment = assignments.get(group);
-        } else {
-            listOfAssignment = new ArrayList<>();
-        }
-
-        listOfAssignment.add(task);
-        assignments.put(group, listOfAssignment);
+        HashMap<String, ArrayList<Assignment>> assignments = personToGroup.getAssignments();
 
         Person editedPerson = new Person(
-                personToAssignTask.getName(), personToAssignTask.getPhone(), personToAssignTask.getEmail(),
-                personToAssignTask.getAddress(), personToAssignTask.getTags(), assignments,
-                personToAssignTask.getPersonGroup());
+                personToGroup.getName(), personToGroup.getPhone(), personToGroup.getEmail(),
+                personToGroup.getAddress(), personToGroup.getTags(), personToGroup.getAssignments(),
+                personGroup);
 
-        if (!personToAssignTask.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!personToGroup.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToAssignTask, editedPerson);
+        model.setPerson(personToGroup, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS));
@@ -91,14 +81,13 @@ public class AssignTaskCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AssignTaskCommand)) {
+        if (!(other instanceof AddGroupMemberCommand)) {
             return false;
         }
 
         // state check
-        AssignTaskCommand e = (AssignTaskCommand) other;
+        AddGroupMemberCommand e = (AddGroupMemberCommand) other;
         return name.equals(e.name)
-                && group.equals(e.group)
-                && task.equals(e.task);
+                && personGroup.equals(e.personGroup);
     }
 }
