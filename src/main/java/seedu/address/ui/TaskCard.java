@@ -1,13 +1,13 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.task.Task;
+
+import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Task}.
@@ -35,9 +35,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
-    private Label address;
-    @FXML
-    private Label email;
+    private Label status;
     @FXML
     private FlowPane tags;
 
@@ -50,6 +48,7 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle());
         deadline.setText(task.getDeadline());
+        status.setText(task.getParsedStatus());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
