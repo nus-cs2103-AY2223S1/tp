@@ -12,6 +12,7 @@ public class Task {
     private final TaskName name;
     private final Module module;
     private final Deadline deadline;
+    private Status status = new Status(false);
 
     /**
      * Constructs a new Task. Every field must be present and not null.
@@ -33,6 +34,16 @@ public class Task {
 
     public Deadline getDeadline() {
         return deadline;
+    }
+
+    public Status getStatus() { return status; }
+
+    public void setStatus(boolean isComplete) {
+        this.status = new Status(isComplete);
+    }
+
+    public void setStatus(String status) {
+        this.status = new Status(status);
     }
 
     /**
