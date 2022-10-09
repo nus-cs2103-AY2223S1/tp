@@ -27,7 +27,7 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing client in the client book.
+ * Edits the details of an existing client in MyInsuRec.
  */
 public class EditCommand extends Command {
 
@@ -48,7 +48,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the client book.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in MyInsuRec.";
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;

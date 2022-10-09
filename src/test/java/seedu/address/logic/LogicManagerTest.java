@@ -24,10 +24,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyClientBook;
+import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
-import seedu.address.storage.JsonClientBookStorage;
+import seedu.address.storage.JsonMyInsuRecStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.ClientBuilder;
@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonClientBookStorage clientBookStorage =
-                new JsonClientBookStorage(temporaryFolder.resolve("clientBook.json"));
+        JsonMyInsuRecStorage myInsuRecStorage =
+                new JsonMyInsuRecStorage(temporaryFolder.resolve("myInsuRec.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(clientBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(myInsuRecStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -70,12 +70,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonClientBookIoExceptionThrowingStub
-        JsonClientBookStorage clientBookStorage =
-                new JsonClientBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionClientBook.json"));
+        // Setup LogicManager with JsonMyInsuRecIoExceptionThrowingStub
+        JsonMyInsuRecStorage myInsuRecStorage =
+                new JsonMyInsuRecIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionMyInsuRec.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(clientBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(myInsuRecStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -129,7 +129,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getClientBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMyInsuRec(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +149,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonClientBookIoExceptionThrowingStub extends JsonClientBookStorage {
-        private JsonClientBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonMyInsuRecIoExceptionThrowingStub extends JsonMyInsuRecStorage {
+        private JsonMyInsuRecIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveClientBook(ReadOnlyClientBook addressBook, Path filePath) throws IOException {
+        public void saveMyInsuRec(ReadOnlyMyInsuRec myInsuRec, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

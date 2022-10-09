@@ -16,11 +16,12 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ClientBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyClientBook;
+import seedu.address.model.MyInsuRec;
+import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.testutil.ClientBuilder;
 
 public class AddClientCommandTest {
@@ -100,12 +101,12 @@ public class AddClientCommandTest {
         }
 
         @Override
-        public Path getClientBookFilePath() {
+        public Path getMyInsuRecFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setClientBookFilePath(Path clientBookFilePath) {
+        public void setMyInsuRecFilePath(Path myInsuRecFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -115,12 +116,12 @@ public class AddClientCommandTest {
         }
 
         @Override
-        public void setClientBook(ReadOnlyClientBook newData) {
+        public void setMyInsuRec(ReadOnlyMyInsuRec myInsuRec) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyClientBook getClientBook() {
+        public ReadOnlyMyInsuRec getMyInsuRec() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -146,6 +147,16 @@ public class AddClientCommandTest {
 
         @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meeting> getFilteredMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -187,8 +198,8 @@ public class AddClientCommandTest {
         }
 
         @Override
-        public ReadOnlyClientBook getClientBook() {
-            return new ClientBook();
+        public ReadOnlyMyInsuRec getMyInsuRec() {
+            return new MyInsuRec();
         }
     }
 

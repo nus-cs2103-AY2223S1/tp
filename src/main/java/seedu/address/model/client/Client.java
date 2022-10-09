@@ -11,7 +11,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Client in the client book.
+ * Represents a Client in MyInsuRec.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Client {
@@ -65,6 +65,10 @@ public class Client {
 
     public Address getAddress() {
         return address;
+    }
+
+    public boolean hasMeeting() {
+        return meeting != null;
     }
 
     public Meeting getMeeting() {

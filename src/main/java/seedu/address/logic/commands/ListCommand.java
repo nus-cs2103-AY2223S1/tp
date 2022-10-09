@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the client book to the user.
+ * Lists all persons in MyInsuRec to the user.
  */
 public class ListCommand extends Command {
 
@@ -19,6 +19,6 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
     }
 }

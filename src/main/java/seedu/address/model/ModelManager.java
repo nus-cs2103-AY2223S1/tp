@@ -20,25 +20,28 @@ import seedu.address.model.meeting.Meeting;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ClientBook clientBook;
+    private final MyInsuRec myInsuRec;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
+    private final FilteredList<Meeting> filteredMeetings;
 
     /**
-     * Initializes a ModelManager with the given clientBook and userPrefs.
+     * Initializes a ModelManager with the given myInsuRec and userPrefs.
      */
-    public ModelManager(ReadOnlyClientBook clientBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(clientBook, userPrefs);
+    public ModelManager(ReadOnlyMyInsuRec myInsuRec, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(myInsuRec, userPrefs);
 
-        logger.fine("Initializing with client book: " + clientBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with client book: " + myInsuRec + " and user prefs " + userPrefs);
 
-        this.clientBook = new ClientBook(clientBook);
+        this.myInsuRec = new MyInsuRec(myInsuRec);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredClients = new FilteredList<>(this.clientBook.getClientList());
+
+        filteredClients = new FilteredList<>(this.myInsuRec.getClientList());
+        filteredMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
     }
 
     public ModelManager() {
-        this(new ClientBook(), new UserPrefs());
+        this(new MyInsuRec(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,42 +69,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getClientBookFilePath() {
-        return userPrefs.getClientBookFilePath();
+    public Path getMyInsuRecFilePath() {
+        return userPrefs.getMyInsuRecFilePath();
     }
 
     @Override
-    public void setClientBookFilePath(Path clientBookFilePath) {
-        requireNonNull(clientBookFilePath);
-        userPrefs.setClientBookFilePath(clientBookFilePath);
+    public void setMyInsuRecFilePath(Path myInsuRecFilePath) {
+        requireNonNull(myInsuRecFilePath);
+        userPrefs.setMyInsuRecFilePath(myInsuRecFilePath);
     }
 
-    //=========== clientBook ================================================================================
+    //=========== myInsuRec ================================================================================
 
     @Override
-    public void setClientBook(ReadOnlyClientBook clientBook) {
-        this.clientBook.resetData(clientBook);
+    public void setMyInsuRec(ReadOnlyMyInsuRec myInsuRec) {
+        this.myInsuRec.resetData(myInsuRec);
     }
 
     @Override
-    public ReadOnlyClientBook getClientBook() {
-        return clientBook;
+    public ReadOnlyMyInsuRec getMyInsuRec() {
+        return myInsuRec;
     }
 
     @Override
     public boolean hasClient(Client client) {
         requireNonNull(client);
-        return clientBook.hasClient(client);
+        return myInsuRec.hasClient(client);
     }
 
     @Override
     public void deleteClient(Client target) {
-        clientBook.removeClient(target);
+        myInsuRec.removeClient(target);
     }
 
     @Override
     public void addClient(Client client) {
-        clientBook.addClient(client);
+        myInsuRec.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
@@ -109,12 +112,12 @@ public class ModelManager implements Model {
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
-        clientBook.setClient(target, editedClient);
+        myInsuRec.setClient(target, editedClient);
     }
 
     @Override
     public void deleteMeeting(Meeting meeting) {
-        clientBook.removeMeeting(meeting);
+        myInsuRec.removeMeeting(meeting);
     }
 
     //=========== Filtered Client List Accessors =============================================================
@@ -134,6 +137,23 @@ public class ModelManager implements Model {
         filteredClients.setPredicate(predicate);
     }
 
+    //=========== Filtered Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedclientBook}
+     */
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -148,7 +168,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return clientBook.equals(other.clientBook)
+        return myInsuRec.equals(other.myInsuRec)
                 && userPrefs.equals(other.userPrefs)
                 && filteredClients.equals(other.filteredClients);
     }

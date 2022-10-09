@@ -12,8 +12,11 @@ import seedu.address.model.meeting.Meeting;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /** {@code Predicate} that always evaluate to true. Used for filtered client list. */
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true. Used for filtered meeting list. */
+    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETING = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -36,44 +39,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' client book file path.
+     * Returns the user prefs' MyInsuRec file path.
      */
-    Path getClientBookFilePath();
+    Path getMyInsuRecFilePath();
 
     /**
-     * Sets the user prefs' client book file path.
+     * Sets the user prefs' MyInsuRec file path.
      */
-    void setClientBookFilePath(Path clientBookFilePath);
+    void setMyInsuRecFilePath(Path myInsuRecFilePath);
 
     /**
-     * Replaces client book data with the data in {@code ClientBook}.
+     * Replaces MyInsuRec data with the data in {@code MyInsuRec}.
      */
-    void setClientBook(ReadOnlyClientBook clientBook);
+    void setMyInsuRec(ReadOnlyMyInsuRec myInsuRec);
 
-    /** Returns the ClientBook */
-    ReadOnlyClientBook getClientBook();
+    /** Returns the MyInsuRec */
+    ReadOnlyMyInsuRec getMyInsuRec();
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the client book.
+     * Returns true if a client with the same identity as {@code client} exists in the MyInsuRec.
      */
     boolean hasClient(Client client);
 
     /**
      * Deletes the given client.
-     * The client must exist in the client book.
+     * The client must exist in the MyInsuRec.
      */
     void deleteClient(Client target);
 
     /**
      * Adds the given client.
-     * {@code client} must not already exist in the client book.
+     * {@code client} must not already exist in the MyInsuRec.
      */
     void addClient(Client client);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
-     * {@code target} must exist in the client book.
-     * The client identity of {@code editedClient} must not be the same as another existing client in the client book.
+     * {@code target} must exist in the MyInsuRec.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the MyInsuRec.
      */
     void setClient(Client target, Client editedClient);
 
@@ -87,4 +90,13 @@ public interface Model {
     void updateFilteredClientList(Predicate<Client> predicate);
 
     void deleteMeeting(Meeting meeting);
+
+    /** Returns an unmodifiable view of the filtered meeting list */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
+     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
 }
