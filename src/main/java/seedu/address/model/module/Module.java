@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.Student;
 import seedu.address.model.module.schedule.Schedule;
+import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
 /**
