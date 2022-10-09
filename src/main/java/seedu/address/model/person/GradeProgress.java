@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's GradeProgress in the address book.
- * Guarantees: immutable; is always valid
+ * Guarantees: immutable; is valid
  */
 public class GradeProgress {
     public final String value;

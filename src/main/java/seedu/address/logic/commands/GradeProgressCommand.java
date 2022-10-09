@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
  */
 public class GradeProgressCommand extends Command {
 
-    public static final String COMMAND_WORD = "gradeprogress";
+    public static final String COMMAND_WORD = "gradeProgress";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds grade progress to the person identified "
@@ -70,7 +70,7 @@ public class GradeProgressCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the homework is added to or removed from
+     * the gradeProgress is added to or removed from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {

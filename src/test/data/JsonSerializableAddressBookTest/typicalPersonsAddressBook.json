@@ -4,8 +4,8 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "lessonPlan" : "Algorithms",
-    "homework": [  ],
-    "gradeProgress": ["Math: A"],
+    "homework": [ ],
+    "gradeProgress": [ ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -19,35 +19,35 @@
     "phone" : "95352563",
     "lessonPlan" : "Cell structure",
     "homework": [ ],
-    "gradeProgress": ["Math: A"],
+    "gradeProgress": [ ],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "lessonPlan" : "Chemistry",
     "homework": [  ],
-    "gradeProgress": ["Math: A"],
+    "gradeProgress": [ ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "lessonPlan" : "Sec 4 Physics",
     "homework": [ ],
-    "gradeProgress": ["Math: A"],
+    "gradeProgress": [ ],
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "lessonPlan" : "Higher chinese",
     "homework": [ ],
-    "gradeProgress": ["Math: A"],
+    "gradeProgress": [ ],
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "lessonPlan" : "Javascript",
     "homework": [ ],
-    "gradeProgress": ["Math: A"],
+    "gradeProgress": [ ],
     "tagged" : [ ]
   } ]
 }

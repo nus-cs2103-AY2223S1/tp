@@ -62,11 +62,11 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case HomeworkCommand.COMMAND_WORD:
-            return new HomeworkCommandParser().parse(arguments);
-
         case GradeProgressCommand.COMMAND_WORD:
             return new GradeProgressCommandParser().parse(arguments);
+
+        case HomeworkCommand.COMMAND_WORD:
+            return new HomeworkCommandParser().parse(arguments);
 
         case LessonPlanCommand.COMMAND_WORD:
             return new LessonPlanCommandParser().parse(arguments);

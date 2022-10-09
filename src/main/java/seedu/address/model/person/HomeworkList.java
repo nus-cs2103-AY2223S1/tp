@@ -1,11 +1,13 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Represents a Person's homework list in the address book.
- * Guarantees: -
+ * Guarantees: list is present, and list and objects list are not null.
  */
 
 public class HomeworkList {
@@ -19,6 +21,7 @@ public class HomeworkList {
     }
 
     public HomeworkList(List<Homework> homeworkList) {
+        requireNonNull(homeworkList);
         this.homeworkList = homeworkList;
     }
 
@@ -28,6 +31,7 @@ public class HomeworkList {
      * @param homework The homework object to be added.
      */
     public void addHomework(Homework homework) {
+        requireNonNull(homework);
         homeworkList.add(homework);
     }
 

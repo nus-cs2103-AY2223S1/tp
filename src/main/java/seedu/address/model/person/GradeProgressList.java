@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents a Person's Grade Progress list in the address book.
- * Guarantees: -
+ * Represents a Person's GradeProgress list in the address book.
+ * Guarantees: Mutable
  */
 
 public class GradeProgressList {
@@ -43,9 +43,10 @@ public class GradeProgressList {
             description.append(gradeProgressList.get(i));
             if (i != gradeProgressList.size() - 1) {
                 description.append(", ");
+            } else {
+                description.append("]");
             }
         }
-        description.append("]");
         return description.toString();
     }
 

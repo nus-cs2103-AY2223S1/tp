@@ -14,7 +14,7 @@ class JsonAdaptedGradeProgress {
     private final String gradeProgress;
 
     /**
-     * Constructs a {@code JsonAdaptedHomework} with the given {@code homeworkName}.
+     * Constructs a {@code JsonAdaptedGradeProgress} with the given {@code gradeProgress}.
      */
     @JsonCreator
     public JsonAdaptedGradeProgress(String tagName) {
@@ -22,7 +22,7 @@ class JsonAdaptedGradeProgress {
     }
 
     /**
-     * Converts a given {@code Homework} into this class for Jackson use.
+     * Converts a given {@code GradeProgress} into this class for Jackson use.
      */
     public JsonAdaptedGradeProgress(GradeProgress source) {
         gradeProgress = source.value;
