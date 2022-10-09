@@ -1,12 +1,16 @@
 package seedu.address.model.team;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.team.exceptions.DuplicateTeamException;
 import seedu.address.model.team.exceptions.TeamNotFoundException;
 
@@ -50,6 +54,14 @@ public class UniqueTeamList implements Iterable<Team> {
         if (!internalTeams.remove(teamToRemove)) {
             throw new TeamNotFoundException();
         }
+    }
+
+    /**
+     * Replaces the contents of this list with {@code teams}.
+     */
+    public void setTeams(List<Team> teams) {
+        requireAllNonNull(teams);
+        internalTeams.setAll(teams);
     }
 
     /**

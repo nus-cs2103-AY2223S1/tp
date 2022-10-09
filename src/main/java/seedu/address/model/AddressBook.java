@@ -30,9 +30,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        currentTeam = new Team("default", new ArrayList<>());
+//        currentTeam = new Team("default", new ArrayList<>());
         teams = new UniqueTeamList();
-        teams.add(currentTeam);
+//        teams.add(currentTeam);
     }
 
     public AddressBook() {
@@ -62,6 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
+        setTeams(newData.getTeamList());
         setTeam(newData.getTeam());
     }
 
@@ -119,6 +120,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void deleteTeam(Team teamToDelete) {
         teams.remove(teamToDelete);
+    }
+
+    /**
+     * Replaces the contents of the team list with {@code teams}.
+     * {@code teams} must not contain duplicate persons.
+     */
+    public void setTeams(List<Team> teams) {
+        this.teams.setTeams(teams);
     }
 
     //// util methods
