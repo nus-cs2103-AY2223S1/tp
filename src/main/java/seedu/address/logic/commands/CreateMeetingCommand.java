@@ -36,6 +36,7 @@ public class CreateMeetingCommand extends Command {
         this.meetingInfo = meetingInfo;
     }
 
+<<<<<<< HEAD
     private ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet) {
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
@@ -61,6 +62,8 @@ public class CreateMeetingCommand extends Command {
         return output;
     }
 
+=======
+>>>>>>> add-person-to-meeting
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -70,7 +73,12 @@ public class CreateMeetingCommand extends Command {
         String meetingDateAndTime = newMeetingInformation[2].strip();
         String meetingLocation = newMeetingInformation[3].strip();
 
+<<<<<<< HEAD
         ArrayList<Person> arrayOfPeopleToMeet = convertNameToPerson(model, peopleToMeet);
+=======
+        ArrayList<Person> arrayOfPeopleToMeet = Meeting.convertNameToPerson(model, peopleToMeet);
+
+>>>>>>> add-person-to-meeting
         Meeting newMeeting = model.createNewMeeting(arrayOfPeopleToMeet, meetingTitle,
             meetingDateAndTime, meetingLocation);
         model.addMeeting(newMeeting);

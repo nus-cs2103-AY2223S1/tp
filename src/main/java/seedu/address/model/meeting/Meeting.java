@@ -4,10 +4,15 @@ import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.Model;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.util.DateTimeProcessor;
 
 /**
@@ -43,6 +48,29 @@ public class Meeting {
         this.meetingLocation = meetingLocation;
     }
 
+
+    public static ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet) {
+        ArrayList<Person> output = new ArrayList<>();
+        // Takes in the name of the address book contact, split by words in the name
+        for (String personName: peopleToMeet) {
+            NameContainsKeywordsPredicate personNamePredicate =
+                    new NameContainsKeywordsPredicate(Arrays.asList(personName.strip()));
+
+            // updates the list of persons in address book based on predicate
+            model.updateFilteredPersonList(personNamePredicate);
+            ObservableList<Person> listOfPeople = model.getFilteredPersonList();
+
+            // Am thinking if there's a better way to check if the person exists
+            // Since model.hasPerson only takes in a person object as argument
+            if (listOfPeople.isEmpty()) {
+                throw new PersonNotFoundException();
+            } else { // get the first person in the address book whose name matches
+                output.add(listOfPeople.get(0));
+            }
+        }
+        return output;
+    }
+
     /**
      * modifies the location of the meeting
      *
@@ -70,6 +98,12 @@ public class Meeting {
      */
     public void editMeetingDateAndTime(String dateAndTime) throws ParseException {
         this.meetingDateAndTime = validator.processDateTime(dateAndTime);
+    }
+
+    public void addPersons(ArrayList<Person> people) {
+        for (int i = 0; i < people.size(); i++) {
+            this.peopleToMeet.add(people.get(i));
+        }
     }
 
     public UniquePersonList getPersonToMeet() {

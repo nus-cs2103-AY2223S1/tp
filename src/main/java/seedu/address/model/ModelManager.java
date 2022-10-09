@@ -38,6 +38,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
+
     }
 
     public ModelManager() {
@@ -151,11 +152,14 @@ public class ModelManager implements Model {
         filteredMeetings.setPredicate(predicate);
     }
 
+    public void deleteMeeting(Meeting target) {
+        addressBook.removeMeeting(target);
+    }
+
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
         return filteredMeetings;
     }
-
 
     //=========== Others ================================================================================
 
