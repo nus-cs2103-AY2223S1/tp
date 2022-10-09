@@ -93,8 +93,7 @@ public class DeleteDebtCommand extends Command {
             i++;
         }
 
-        //return new CommandResult(bui);
-        return new CommandResult(String.format(builder.toString()));
+        return new CommandResult(builder.toString());
     }
 
     /**

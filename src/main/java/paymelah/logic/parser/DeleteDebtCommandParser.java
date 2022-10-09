@@ -2,9 +2,9 @@ package paymelah.logic.parser;
 
 import static paymelah.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
+import static paymelah.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.DeleteDebtCommand;
@@ -38,12 +38,5 @@ public class DeleteDebtCommandParser implements Parser<DeleteDebtCommand> {
         }
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 
 }
