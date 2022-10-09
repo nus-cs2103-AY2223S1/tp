@@ -45,6 +45,14 @@ public class Task {
     }
 
     /**
+     * Returns the string representation of the completion status of the task.
+     * @return [X] if the task is done. Otherwise, return [ ].
+     */
+    public String getStatus() {
+        return isDone() ? "[X]" : "[ ]";
+    }
+
+    /**
      * Returns true if both tasks have the same description, person and assignment.
      * This defines a weaker notion of equality between two tasks.
      */
