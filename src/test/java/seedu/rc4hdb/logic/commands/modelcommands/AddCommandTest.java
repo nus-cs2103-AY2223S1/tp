@@ -48,7 +48,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RESIDENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyAddressBook getResidentBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -140,7 +140,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getFilteredResidentList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -187,7 +187,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyAddressBook getResidentBook() {
             return new AddressBook();
         }
     }

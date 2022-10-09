@@ -4,12 +4,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditPersonDescriptor;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditResidentDescriptor;
 import seedu.rc4hdb.model.person.Address;
 import seedu.rc4hdb.model.person.Person;
-import seedu.rc4hdb.model.resident.Email;
-import seedu.rc4hdb.model.resident.Name;
-import seedu.rc4hdb.model.resident.Phone;
+import seedu.rc4hdb.model.resident.fields.Email;
+import seedu.rc4hdb.model.resident.fields.Name;
+import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.tag.Tag;
 
 /**
@@ -17,25 +17,25 @@ import seedu.rc4hdb.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditResidentDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditResidentDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditResidentDescriptor descriptor) {
+        this.descriptor = new EditResidentDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditResidentDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setRoom(person.getAddress());
         descriptor.setTags(person.getTags());
     }
 
@@ -67,7 +67,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setRoom(new Address(address));
         return this;
     }
 
@@ -81,7 +81,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditResidentDescriptor build() {
         return descriptor;
     }
 }

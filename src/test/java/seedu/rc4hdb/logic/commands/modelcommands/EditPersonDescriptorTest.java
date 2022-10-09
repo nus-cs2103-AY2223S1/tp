@@ -12,7 +12,7 @@ import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VAL
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditPersonDescriptor;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditResidentDescriptor;
 import seedu.rc4hdb.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
@@ -20,7 +20,7 @@ public class EditPersonDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
+        EditResidentDescriptor descriptorWithSameValues = new EditResidentDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,7 +36,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditResidentDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

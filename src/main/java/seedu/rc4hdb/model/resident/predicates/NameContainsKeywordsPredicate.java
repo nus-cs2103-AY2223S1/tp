@@ -1,15 +1,15 @@
-package seedu.rc4hdb.model.person.predicates;
+package seedu.rc4hdb.model.resident.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.rc4hdb.commons.util.StringUtil;
-import seedu.rc4hdb.model.person.Person;
+import seedu.rc4hdb.model.resident.Resident;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Resident}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Person> {
+public class NameContainsKeywordsPredicate implements Predicate<Resident> {
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
@@ -17,9 +17,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Resident resident) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(resident.getName().fullName, keyword));
     }
 
     @Override

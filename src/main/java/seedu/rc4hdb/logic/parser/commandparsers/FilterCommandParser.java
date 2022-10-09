@@ -1,10 +1,13 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_HOUSE;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -18,6 +21,7 @@ import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
 import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.ParserUtil;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
+import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.tag.Tag;
 
 /**
@@ -33,9 +37,10 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOM, PREFIX_GENDER,
+                        PREFIX_HOUSE, PREFIX_MATRIC_NUMBER, PREFIX_TAG);
 
-        FilterCommand.FilterPersonDescriptor filterPersonDescriptor = new FilterCommand.FilterPersonDescriptor();
+        ResidentDescriptor filterPersonDescriptor = new ResidentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             filterPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -45,12 +50,22 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             filterPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            filterPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_ROOM).isPresent()) {
+            filterPersonDescriptor.setRoom(ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get()));
+        }
+        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
+            filterPersonDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+        }
+        if (argMultimap.getValue(PREFIX_HOUSE).isPresent()) {
+            filterPersonDescriptor.setHouse(ParserUtil.parseHouse(argMultimap.getValue(PREFIX_HOUSE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_MATRIC_NUMBER).isPresent()) {
+            filterPersonDescriptor.setMatricNumber(ParserUtil.parseMatricNumber(
+                    argMultimap.getValue(PREFIX_MATRIC_NUMBER).get()));
         }
         parseTagsForfilter(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(filterPersonDescriptor::setTags);
 
-        if (!filterPersonDescriptor.isAnyFieldfiltered()) {
+        if (!filterPersonDescriptor.isAnyFieldNonNull()) {
             throw new ParseException(FilterCommand.MESSAGE_NOT_FILTERED);
         }
 

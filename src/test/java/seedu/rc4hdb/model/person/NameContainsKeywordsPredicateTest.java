@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
 import seedu.rc4hdb.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {

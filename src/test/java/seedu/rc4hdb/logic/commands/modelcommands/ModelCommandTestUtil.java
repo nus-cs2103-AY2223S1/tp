@@ -16,11 +16,11 @@ import java.util.List;
 import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditPersonDescriptor;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditResidentDescriptor;
 import seedu.rc4hdb.model.AddressBook;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.person.Person;
-import seedu.rc4hdb.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
 import seedu.rc4hdb.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -59,8 +59,8 @@ public class ModelCommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditPersonDescriptor DESC_AMY;
-    public static final EditPersonDescriptor DESC_BOB;
+    public static final EditResidentDescriptor DESC_AMY;
+    public static final EditResidentDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -106,25 +106,25 @@ public class ModelCommandTestUtil {
     public static void assertCommandFailure(ModelCommand command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        AddressBook expectedAddressBook = new AddressBook(actualModel.getResidentBook());
+        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredResidentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedAddressBook, actualModel.getResidentBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredResidentList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredResidentList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Person person = model.getFilteredResidentList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredResidentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredResidentList().size());
     }
 
 }

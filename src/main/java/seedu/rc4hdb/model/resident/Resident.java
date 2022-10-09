@@ -7,10 +7,17 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.rc4hdb.model.resident.fields.Email;
+import seedu.rc4hdb.model.resident.fields.Gender;
+import seedu.rc4hdb.model.resident.fields.House;
+import seedu.rc4hdb.model.resident.fields.MatricNumber;
+import seedu.rc4hdb.model.resident.fields.Name;
+import seedu.rc4hdb.model.resident.fields.Phone;
+import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.tag.Tag;
 
 /**
- * Represents a resident in the address book.
+ * Represents a resident in the resident book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Resident {
