@@ -20,15 +20,17 @@ public class Review {
 
     // Data fields
     private final Date date;
+    private final Content content;
     private final Set<Detail> details = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Review(StallName name, Date date, Set<Detail> details) {
-        requireAllNonNull(name, date, details);
+    public Review(StallName name, Date date, Content content, Set<Detail> details) {
+        requireAllNonNull(name, date, content, details);
         this.name = name;
         this.date = date;
+        this.content = content;
         this.details.addAll(details);
     }
 
@@ -38,6 +40,10 @@ public class Review {
 
     public Date getDate() {
         return date;
+    }
+
+    public Content getContent() {
+        return content;
     }
 
     /**
@@ -78,13 +84,14 @@ public class Review {
         Review otherStall = (Review) other;
         return otherStall.getName().equals(getName())
                 && otherStall.getDate().equals(getDate())
+                && otherStall.getContent().equals(getContent())
                 && otherStall.getDetails().equals(getDetails());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, details);
+        return Objects.hash(name, date, content, details);
     }
 
     @Override
@@ -92,7 +99,9 @@ public class Review {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Date: ")
-                .append(getDate());
+                .append(getDate())
+                .append("; Content: ")
+                .append(getContent());
 
         Set<Detail> details = getDetails();
         if (!details.isEmpty()) {
