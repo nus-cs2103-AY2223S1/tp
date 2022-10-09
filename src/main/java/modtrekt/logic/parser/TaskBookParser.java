@@ -46,7 +46,7 @@ public class TaskBookParser {
 //        case AddTaskCommand.COMMAND_WORD:
 //            return new AddTaskCommandParser().parse(arguments);
         case RemoveTaskCommand.COMMAND_WORD:
-            return new RemoveTaskCommandParser().parse(arguments);
+            return new RemoveCommandParser().parse(arguments);
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
