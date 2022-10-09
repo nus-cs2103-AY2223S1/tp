@@ -1,10 +1,10 @@
 package swift.logic.parser;
 
+import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import swift.commons.core.index.Index;
 import swift.logic.commands.DeleteTaskCommand;
 import swift.logic.parser.exceptions.ParseException;
-
-import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new DeleteTaskCommand object

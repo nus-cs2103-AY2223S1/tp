@@ -1,15 +1,18 @@
 package swift.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import swift.commons.core.Messages;
 import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
 import swift.model.Model;
 import swift.model.task.Task;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Deletes a task identified using it's displayed index from the address book.
+ */
 public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_task";
