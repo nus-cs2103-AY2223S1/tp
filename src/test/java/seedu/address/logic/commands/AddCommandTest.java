@@ -173,6 +173,7 @@ public class AddCommandTest {
             requireNonNull(student);
             return this.student.isSameStudent(student);
         }
+
     }
 
     /**
@@ -192,6 +193,12 @@ public class AddCommandTest {
         public void addStudent(Student student) {
             requireNonNull(student);
             studentsAdded.add(student);
+        }
+
+        @Override
+        public boolean hasStudentWithMatchingId(Student student) {
+            requireNonNull(student);
+            return studentsAdded.stream().anyMatch(student::hasSameId);
         }
 
         @Override
