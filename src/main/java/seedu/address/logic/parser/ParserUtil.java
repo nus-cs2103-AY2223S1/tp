@@ -13,6 +13,7 @@ import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -96,6 +97,15 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Address.isValidAddress(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
+    }
+
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
@@ -110,6 +120,7 @@ public class ParserUtil {
         }
         return new Email(trimmedEmail);
     }
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
@@ -182,4 +193,6 @@ public class ParserUtil {
         }
         return new Slot(dateTime);
     }
+
+
 }
