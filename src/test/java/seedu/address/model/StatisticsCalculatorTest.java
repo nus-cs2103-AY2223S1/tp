@@ -2,8 +2,8 @@ package seedu.address.model;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalPersons.AVA;
-import static seedu.address.testutil.TypicalPersons.BEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.testutil.TypicalPersons.*;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 public class StatisticsCalculatorTest {
 
@@ -28,12 +29,12 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void calculates_emptyAddressBook_moneyOwed() {
-        assertEquals(0, statisticsCalculator.getAmountOwed());
+        assertEquals("$0", statisticsCalculator.getAmountOwed());
     }
 
     @Test
     public void calculates_emptyAddressBook_moneyPaid() {
-        assertEquals(0, statisticsCalculator.getAmountPaid());
+        assertEquals("$0", statisticsCalculator.getAmountPaid());
     }
 
     @Test
@@ -50,7 +51,7 @@ public class StatisticsCalculatorTest {
         List<Person> newPersons = Arrays.asList(AVA, BEN);
         StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
-        assertEquals(80, newCalculator.getAmountOwed());
+        assertEquals("$80", newCalculator.getAmountOwed());
     }
 
     @Test
@@ -59,7 +60,31 @@ public class StatisticsCalculatorTest {
         StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
-        assertEquals(700, newCalculator.getAmountPaid());
+        assertEquals("$700", newCalculator.getAmountPaid());
+    }
+
+    @Test
+    public void calculates_amountOwedOverflow() {
+        Person editedAva = new PersonBuilder(AVA).withMoneyOwed(Integer.MAX_VALUE).build();
+        Person editedBen = new PersonBuilder(BEN).withMoneyOwed(1).build();
+        List<Person> newPersons = Arrays.asList(editedAva, editedBen);
+        StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
+        StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
+
+        assertEquals("Owed amount too large to calculate.", newCalculator.getAmountOwed());
+
+    }
+
+    @Test
+    public void calculates_amountPaidOverflow() {
+        Person editedAva = new PersonBuilder(AVA).withMoneyPaid(Integer.MAX_VALUE).build();
+        Person editedBen = new PersonBuilder(BEN).withMoneyPaid(1).build();
+        List<Person> newPersons = Arrays.asList(editedAva, editedBen);
+        StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
+        StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
+
+        assertEquals("Paid amount too large to calculate.", newCalculator.getAmountPaid());
+
     }
 
     /**
