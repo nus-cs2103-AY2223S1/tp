@@ -44,6 +44,22 @@ public class Iteration {
         return feedback;
     }
 
+    /**
+     * Returns true if both iterations have the same image.
+     * This defines a weaker notion of equality between two commissions.
+     */
+    public boolean isSameIteration(Iteration otherIteration) {
+        if (otherIteration == this) {
+            return true;
+        }
+
+        // return otherIteration != null
+        //         && otherIteration.getArt().equals(getArt());
+        // TODO implement isSameIteration once the artwork/ image attribute has been added
+        return otherIteration != null
+                && otherIteration.getDescription().equals(getDescription());
+    }
+
     @Override
     public boolean equals(Object object) {
         if (object == this) {

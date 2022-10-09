@@ -1,5 +1,6 @@
 package seedu.address.model.commission;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -7,7 +8,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.iteration.Iteration;
+import seedu.address.model.iteration.UniqueIterationList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +29,9 @@ public class Commission {
     private final Set<Tag> tags = new HashSet<>();
     private Customer customer;
 
+    // Data field
+    private final UniqueIterationList iterations;
+
     /**
      * Every field must be present and not null.
      */
@@ -38,6 +45,7 @@ public class Commission {
         this.tags.addAll(tags);
         this.completionStatus = completionStatus;
         this.customer = customer;
+        iterations = new UniqueIterationList();
     }
 
     public Title getTitle() {
@@ -72,6 +80,14 @@ public class Commission {
         return customer;
     }
 
+    public UniqueIterationList getIterations() {
+        return iterations;
+    }
+
+    public ObservableList<Iteration> getIterationList() {
+        return iterations.asUnmodifiableObservableList();
+    }
+
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -87,6 +103,45 @@ public class Commission {
 
         return otherCommission != null
                 && otherCommission.getTitle().equals(getTitle());
+    }
+
+    /**
+     * Adds an iteration to the commission.
+     *
+     * @param iteration The iteration to be added to the commission.
+     */
+    public void addIteration(Iteration iteration) {
+        requireNonNull(iteration);
+        iterations.add(iteration);
+    }
+
+    /**
+     * Checks whether an iteration with the same identity as {@code iteration}
+     * exists in the commission's iteration list.
+     */
+    public boolean hasIteration(Iteration iteration) {
+        requireNonNull(iteration);
+        return iterations.contains(iteration);
+    }
+
+    /**
+     * Replaces the given iteration {@code target} in the list with {@code editedIteration}.
+     * {@code target} must exist in the address book.
+     * The iteration identity of {@code editedIteration} must not be the same as another
+     * existing iteration in the commission's iteration list.
+     */
+    public void setIteration(Iteration target, Iteration editedIteration) {
+        requireAllNonNull(target, editedIteration);
+        iterations.setIteration(target, editedIteration);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Commission}.
+     * {@code key} must exist in the commission's iteration list.
+     */
+    public void removeIteration(Iteration key) {
+        requireNonNull(key);
+        iterations.remove(key);
     }
 
     /**
