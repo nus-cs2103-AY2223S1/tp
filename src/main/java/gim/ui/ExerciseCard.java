@@ -35,7 +35,7 @@ public class ExerciseCard extends UiPart<Region> {
     @FXML
     private Label weight;
     @FXML
-    private Label rep;
+    private Label reps;
     @FXML
     private Label sets;
     @FXML
@@ -50,7 +50,7 @@ public class ExerciseCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(exercise.getName().fullName);
         weight.setText("Weight: " + exercise.getWeight().value);
-        rep.setText("Reps: " + exercise.getRep().value);
+        reps.setText("Reps: " + exercise.getReps().value);
         sets.setText("Sets: " + exercise.getSets().value);
         exercise.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

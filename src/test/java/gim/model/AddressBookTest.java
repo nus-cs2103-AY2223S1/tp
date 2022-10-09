@@ -1,6 +1,6 @@
 package gim.model;
 
-import static gim.logic.commands.CommandTestUtil.VALID_REP_BENCH_PRESS;
+import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
@@ -46,7 +46,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateExercises_throwsDuplicateExerciseException() {
         // Two exercises with the same identity fields
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Exercise> newExercises = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newExercises);
@@ -73,7 +73,7 @@ public class AddressBookTest {
     @Test
     public void hasExercise_exerciseWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addExercise(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasExercise(editedAlice));
     }

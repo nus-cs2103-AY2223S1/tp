@@ -3,7 +3,7 @@ package gim.logic.commands;
 import static gim.logic.commands.CommandTestUtil.DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.DESC_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
-import static gim.logic.commands.CommandTestUtil.VALID_REP_BENCH_PRESS;
+import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
@@ -52,7 +52,7 @@ public class EditExerciseDescriptorTest {
         assertFalse(DESC_ARM_CURLS.equals(editedArmCurls));
 
         // different address -> returns false
-        editedArmCurls = new EditExerciseDescriptorBuilder(DESC_ARM_CURLS).withRep(VALID_REP_BENCH_PRESS).build();
+        editedArmCurls = new EditExerciseDescriptorBuilder(DESC_ARM_CURLS).withRep(VALID_REPS_BENCH_PRESS).build();
         assertFalse(DESC_ARM_CURLS.equals(editedArmCurls));
 
         // different tags -> returns false

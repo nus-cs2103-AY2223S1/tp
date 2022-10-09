@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import gim.commons.exceptions.IllegalValueException;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
-import gim.model.exercise.Rep;
+import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
@@ -28,7 +28,7 @@ class JsonAdaptedExercise {
     private final String name;
     private final String weight;
     private final String sets;
-    private final String rep;
+    private final String reps;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,12 +36,12 @@ class JsonAdaptedExercise {
      */
     @JsonCreator
     public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("weight") String weight,
-            @JsonProperty("sets") String sets, @JsonProperty("rep") String rep,
+            @JsonProperty("sets") String sets, @JsonProperty("reps") String reps,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.weight = weight;
         this.sets = sets;
-        this.rep = rep;
+        this.reps = reps;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,7 +54,7 @@ class JsonAdaptedExercise {
         name = source.getName().fullName;
         weight = source.getWeight().value;
         sets = source.getSets().value;
-        rep = source.getRep().value;
+        reps = source.getReps().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -95,16 +95,16 @@ class JsonAdaptedExercise {
         }
         final Sets modelSets = new Sets(sets);
 
-        if (rep == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rep.class.getSimpleName()));
+        if (reps == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Reps.class.getSimpleName()));
         }
-        if (!Rep.isValidRep(rep)) {
-            throw new IllegalValueException(Rep.MESSAGE_CONSTRAINTS);
+        if (!Reps.isValidReps(reps)) {
+            throw new IllegalValueException(Reps.MESSAGE_CONSTRAINTS);
         }
-        final Rep modelRep = new Rep(rep);
+        final Reps modelReps = new Reps(reps);
 
         final Set<Tag> modelTags = new HashSet<>(exerciseTags);
-        return new Exercise(modelName, modelWeight, modelSets, modelRep, modelTags);
+        return new Exercise(modelName, modelWeight, modelSets, modelReps, modelTags);
     }
 
 }

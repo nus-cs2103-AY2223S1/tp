@@ -2,8 +2,8 @@ package gim.testutil;
 
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
-import static gim.logic.commands.CommandTestUtil.VALID_REP_ARM_CURLS;
-import static gim.logic.commands.CommandTestUtil.VALID_REP_BENCH_PRESS;
+import static gim.logic.commands.CommandTestUtil.VALID_REPS_ARM_CURLS;
+import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -52,10 +52,10 @@ public class TypicalExercises {
     // Manually added - Exercise's details found in {@code CommandTestUtil}
     public static final Exercise ARM_CURLS = new ExerciseBuilder()
             .withName(VALID_NAME_ARM_CURLS).withWeight(VALID_WEIGHT_ARM_CURLS).withSets(VALID_SETS_ARM_CURLS)
-            .withRep(VALID_REP_ARM_CURLS).withTags(VALID_TAG_FRIEND).build();
+            .withRep(VALID_REPS_ARM_CURLS).withTags(VALID_TAG_FRIEND).build();
     public static final Exercise BENCH_PRESS = new ExerciseBuilder()
             .withName(VALID_NAME_BENCH_PRESS).withWeight(VALID_WEIGHT_BENCH_PRESS).withSets(VALID_SETS_BENCH_PRESS)
-            .withRep(VALID_REP_BENCH_PRESS).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withRep(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
