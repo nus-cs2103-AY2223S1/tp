@@ -2,7 +2,7 @@
   "exercises": [ {
     "name": "Exercise with invalid name field: Ha!ns Mu@ster",
     "weight": "9482424",
-    "sets": "hans@example.com",
+    "sets": "1",
     "reps": "1"
   } ]
 }
