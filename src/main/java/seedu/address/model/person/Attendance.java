@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,6 +11,15 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: immutable; is always valid
  */
 public class Attendance {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Attendance should only be in the format of yyyy-MM-dd.";
+
+    /**
+     * The string input must match the format of yyyy-MM-dd.
+     */
+    public static final String VALIDATION_REGEX = "^(\\d){4}-(\\d){2}-(\\d){2}$";
+
     protected static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public final LocalDate time;
 
@@ -20,7 +30,15 @@ public class Attendance {
      */
     public Attendance(String attendance) {
         requireNonNull(attendance);
+        checkArgument(isValidAttendance(attendance), MESSAGE_CONSTRAINTS);
         this.time = LocalDate.parse(attendance, DTF);
+    }
+
+    /**
+     * Returns true if a given string is a valid attendance.
+     */
+    public static boolean isValidAttendance(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
