@@ -21,17 +21,22 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_emptyArg_throwsParseException2() {
+        assertParseFailure(parser, "Buyer", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Alice", "Bob")),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList("Alice", "Bob")),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList("Alice", "Bob")),
+                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
                         "Buyer");
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, "Buyer Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, "Buyer \n Alice \n \t Bob  \t", expectedFindCommand);
     }
 
 }

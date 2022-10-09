@@ -60,6 +60,7 @@ public class FindCommand extends Command {
                 || (other instanceof FindCommand // instanceof handles nulls
                 && bPredicate.equals(((FindCommand) other).bPredicate) // state checck
                 && dPredicate.equals(((FindCommand) other).dPredicate)
-                && sPredicate.equals(((FindCommand) other).sPredicate));
+                && sPredicate.equals(((FindCommand) other).sPredicate)
+                && type.equals(((FindCommand) other).type));
     }
 }
