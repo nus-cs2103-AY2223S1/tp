@@ -94,7 +94,6 @@ public interface Model {
     /** Specifies the given customer as the selected customer. */
     void selectCustomer(Customer customer);
 
-
     /**
      * Returns an unmodifiable view of the filtered customer list
      */
@@ -114,8 +113,21 @@ public interface Model {
     void updateFilteredCommissionList(Predicate<Commission> predicate);
 
     boolean hasSelectedCustomer();
+
     /**
      * Returns ObservableObject containing the currently selected customer or null if no customer is currently selected.
      */
     ObservableObject<Customer> getSelectedCustomer();
+
+    /** Specifies a commission as the selected commission. */
+    void selectCommission(Commission commission);
+
+    /**
+     * Returns ObservableObject containing the currently selected commission
+     * or an empty ObservableObject if no commission is currently selected.
+     */
+    ObservableObject<Commission> getSelectedCommission();
+
+    /** Returns whether any commission is currently being selected. **/
+    boolean hasSelectedCommission();
 }
