@@ -23,6 +23,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonData;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -118,13 +119,14 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        PersonData personData = new PersonData();
+        personData.setName(editPersonDescriptor.getName().orElse(personToEdit.getName()));
+        personData.setPhone(editPersonDescriptor.getPhone().orElse(personToEdit.getPhone()));
+        personData.setEmail(editPersonDescriptor.getEmail().orElse(personToEdit.getEmail()));
+        personData.setAddress(editPersonDescriptor.getAddress().orElse(personToEdit.getAddress()));
+        personData.setTags(editPersonDescriptor.getTags().orElse(personToEdit.getTags()));
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(personData);
     }
 
     @Override

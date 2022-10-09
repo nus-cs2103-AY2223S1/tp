@@ -7,6 +7,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonData;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -89,8 +90,18 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the person using the given parameters.
+     * @return New Person.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        PersonData personData = new PersonData();
+        personData.setName(this.name);
+        personData.setPhone(this.phone);
+        personData.setEmail(this.email);
+        personData.setAddress(this.address);
+        personData.setTags(this.tags);
+        return new Person(personData);
     }
 
 }

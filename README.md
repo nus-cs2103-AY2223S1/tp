@@ -3,10 +3,11 @@
 StudMap (SM) is a desktop app for managing your students, optimized for use via a Command Line Interface (CLI)
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SM can get your student management tasks done faster than traditional GUI apps.
 
+
 ![Ui](docs/images/Ui.png)
 
-
 ## Site Map
+
 * [About Us](docs/AboutUs.md)
 * [User Guide](docs/UserGuide.md)
 * [Developer Guide](docs/DeveloperGuide.md)

@@ -87,4 +87,5 @@ public interface Model {
 
     /** Sorts filteredList by name in alphabetical order. */
     void sortFilteredPersonList();
+
 }

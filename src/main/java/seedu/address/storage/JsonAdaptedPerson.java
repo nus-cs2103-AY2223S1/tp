@@ -14,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonData;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -103,7 +104,14 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        PersonData personData = new PersonData();
+        personData.setName(modelName);
+        personData.setPhone(modelPhone);
+        personData.setEmail(modelEmail);
+        personData.setAddress(modelAddress);
+        personData.setTags(modelTags);
+        return new Person(personData);
     }
 
 }
