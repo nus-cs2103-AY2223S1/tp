@@ -294,16 +294,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-* a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the storage file.
-    * a2. MassLinkers closes the program. \
+* *a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the storage file. \
       Use case ends.
 
-**Use case 2: Delete a classmate**
+**Use case 2: Remove a classmate**
 
 **MSS**
 1. Student requests for the list of classmates.
-2. MassLinkers displays the current list of classmates.
+2. MassLinkers shows the current list of classmates.
 3. Student requests to delete a specific classmate in the list.
 4. MassLinkers deletes the classmate using his or her index.
    \
@@ -315,13 +314,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Use case ends.
 
 * 4a. The given index is invalid.
-    * 3a1. MassLinkers shows an error message.
-      \
-      Use case resumes at step 2.
+    * a1. MassLinkers prompts for another index.
+    * Step a1 is repeated until a valid index is given. \
+  Use case resumes from step 4.
 
-* a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the written storage file.
-    * a2. MassLinkers closes the program.
+* *a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the storage file.
       \
       Use case ends.
 
@@ -337,13 +335,14 @@ Use case ends.
 
 **Extensions**
 * 2a. The list of tags is empty.
-  \
+  * a1. MassLinkers returns an empty list. 
+    \
   Use case ends.
 * 2b. MassLinkers detects there is no such tag.
   * b1. MassLinkers requests for another tag.
   * Step b1 is repeated until a valid tag is found. \
   Use case resumes from step 2.
-* a. At any time, Student chooses to close MassLinkers.
+* *a. At any time, Student chooses to close MassLinkers.
     * a1. MassLinkers updates the storage file.
       \
       Use case ends.
@@ -359,23 +358,47 @@ Use case ends.
    \
    Use case ends.
 
-**Extensions*
+**Extensions**
 * 2a. The list of classmates is empty.
   * a1. MassLinkers warns adding a tag is invalid.
     \
     Use case ends.
 * 2b. MassLinkers is unable to find the classmate.
-    * b1. MassLinkers prompts for new classmate details. \
-  Step b1 is repeated until a classmate is found.
+    * b1. MassLinkers prompts for new classmate details. 
+    * Step b1 is repeated until a classmate is found.
       \
       Use case resumes from step 2.
 
-* a. At any time, Student chooses to close MassLinkers.
+* *a. At any time, Student chooses to close MassLinkers.
     * a1. MassLinkers updates the storage file.
       \
       Use case ends.
 
+**Use case 5: Mark a task completed**
 
+**MSS**
+
+1. Student requests the list of tasks.
+2. MassLinkers searches through the list of tasks for the selected task.
+3. MassLinkers marks the task completed.
+   \
+   Use case ends.
+
+**Extensions**
+* 2a. The list of tasks is empty.
+    * a1. MassLinkers warns marking a task is invalid.
+      \
+      Use case ends.
+* 2b. The task selected is out of range.
+    * b1. MassLinkers prompts for new task.
+    * Step b1 is repeated until a task is found.
+      \
+      Use case resumes from step 2.
+
+* *a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the storage file.
+      \
+      Use case ends.
 
 ### Non-Functional Requirements
 
