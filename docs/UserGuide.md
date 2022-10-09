@@ -2,9 +2,41 @@
 layout: page
 title: User Guide
 ---
-UniNurse is a **desktop app** designed for **private nurses to manage their patient contacts, optimized for use via a
-Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type
-fast, UniNurse can get your patient management tasks done faster than traditional GUI apps.
+
+**UniNurse** is a desktop app tailored for you, a **private duty nurse**, to:
+- Manage your patients' contacts.
+- Organize your patient-related tasks.
+- Keep track of your patients' medical conditions.
+
+<div markdown="block" class="alert alert-info">
+
+**Fastest fingers first!**
+
+If your fingers are as quick as your wit, UniNurse helps you to get your patient management tasks done in no time!
+It leverages on a no-frills _Command Line Interface (CLI)_ to give fast typists such as yourself a painless user
+experience.
+
+</div>
+
+UniNurse offers the following features:
+- Add details such as phone numbers, addresses and more.
+- Find any patient by name _(more to be added later...)_.
+- Add tasks to a patient.
+- Categorize patients using tags.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Using this guide
+
+This guide walks you through all the features of UniNurse, as well as tips, so you can reap all the benefits of
+UniNurse!
+
+If you are a **new user**, this guide equips you with the necessary know-how to [get started](#quick-start)
+with UniNurse.
+
+If you are an **experienced user**, you can refer to the [Command Summary](#command-summary) at the end of this guide.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Table of Contents
 
@@ -14,8 +46,37 @@ fast, UniNurse can get your patient management tasks done faster than traditiona
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
-_To be updated ..._
 
+1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above 
+   installed on your computer. To check your Java version, open a Command Prompt or Terminal window and type:
+
+```
+java -version
+```
+
+2. Download the latest `uninurse.jar` [here](https://github.com/AY2223S1-CS2103T-T12-4/tp/releases).
+3. Move `uninurse.jar` to the folder you want to use as the home folder for UniNurse.
+4. Double-click the file to start UniNurse. A user interface similar to the one below should appear in a few seconds.
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Tip:** The app comes with some sample contacts by default. Type `clear` in the command box to remove them.
+
+</div>
+
+  ![Ui](images/Ui.png)
+
+5. Type your command in the command box and hit `Enter` to execute the command. Here are some example commands
+you can try:
+   * **`help`**: Opens the help window.
+   * **`addPatient`**`n/Jane Doe p/91234567 e/janed@example.com a/20 Anderson Road, block 123, #01-01`: Adds a
+     patient named `Jane Doe` to your contacts.
+   * **`delete`**`3`: Deletes the 3rd contact shown in the current list.
+   * **`list`**: Lists all contacts.
+   * **`clear`**: Deletes all contacts.
+   * **`exit`**: Exits from UniNurse.
+6. Refer to the [Features](#features) below for details of each command. Alternatively, you may refer to the
+   [Command Summary](#command-summary) at the end of this guide.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -48,10 +109,10 @@ _To be updated ..._
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
+![help message](images/helpMessage.png)
+_Help window displayed after running the `help` command_
 
 ### Adding a patient: `addPatient`
 
@@ -62,12 +123,6 @@ Format: `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/TASK_DESCRIPTION�
 Examples:
 * `addPatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine`
 * `addPatient n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
 
 ### Editing a patient’s details : `editPatient`
 
@@ -88,9 +143,23 @@ Example:
 * `editPatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 * `editPatient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Listing all persons : `list`
+### Deleting a patient: `deletePatient`
 
-Shows a list of all persons in the address book.
+Deletes the specified patient from the patient list.
+
+Format: `deletePatient INDEX`
+
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `deletePatient 2` deletes the 2nd patient in the patient book.
+* `find Betsy` followed by `deletePatient 1` deletes the 1st person in the results of the `find` command.
+
+### Listing all patients: `list`
+
+Shows a list of all patients.
 
 Format: `list`
 
@@ -103,66 +172,18 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`.
+* Partial words can be matched e.g. `Han` will match `Hans`.
 * Patients matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
 * `find jo` returns `Joe` and `John`.
-* `find alex david` returns `Alex Tan` & `David Ho`.
+* `find alex david` returns `Alex Yeoh` & `David Li`.
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+  _Contact list displayed after running the `find alex david` command_
 
-### Deleting a patient : `deletePatient`
+### Adding a task: `addTask`
 
-Deletes the specified patient from the patient list.
-
-Format: `deletePatient INDEX`
-
-* Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the patient book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Listing all tasks : `listTask`
-
-Shows a list of all tasks to be completed.
-
-Format: `listTask`
-
-Examples:
-
-Suppose the following patients were added.
-
-`addPatient n/John Doe d/Administer 3ml of example medicine`
-
-`addPatient n/Betsy Crowe d/Change dressing on left arm`
-* `listTask` will display:
-    * `Administer 3ml of example medicine FOR John Doe`
-    * `Change dressing on left arm FOR Betsy Crowe`
-
-### View all tasks associated with a patient : `viewTask`
-
-Shows all the tasks that are associated with the specified patient.
-
-Format: `viewTask INDEX`
-
-Examples:
-
-Suppose the following patients were added.
-
-`addPatient n/John Doe d/Administer 3ml of example medicine`
-
-`addPatient n/Betsy Crowe d/Change dressing on left arm`
-* `viewTask 1` will display:
-    * `Administer 3ml of example medicine`
-* `viewTask 2` will display:
-    * `Change dressing on left arm`
-
-### Adding a task : `addTask`
-
-Edits the specified task associated with a patient.
+Adds a task associated with a patient.
 
 Format: `addTask PATIENT_INDEX [d/TASK_DESCRIPTION]`
 
@@ -174,7 +195,7 @@ Examples:
 * `list` followed by `addTask 1 d/Administer 3ml of example medicine` adds a task to the 1st person in the patient list.
 * `find Betsy` followed by `addTask 2 d/Change dressing on left arm` adds a task to the 2nd person in results of the `find` command.
 
-### Editing a task : `editTask`
+### Editing a task: `editTask`
 
 Edits the specified task associated with a patient.
 
@@ -189,8 +210,7 @@ Examples:
 * `list` followed by `editTask 1 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st person in the patient list.
 * `find Betsy` followed by `editTask 2 3 d/Change dressing on left arm` edits the description of the 3rd task of the 2nd person in results of the `find` command.
 
-
-### Deleting a task : `deleteTask`
+### Deleting a task: `deleteTask`
 
 Deletes the specified task associated with a patient.
 
@@ -203,15 +223,50 @@ Format: `deleteTask PATIENT_INDEX TASK_INDEX`
 
 Examples:
 * `list` followed by `deleteTask 2 3` deletes the 3rd task of the 2nd person in the patient list.
-* `find Betsy` followed by `deleteTask 1 2` deletes the 2nd task of the 1st person in results of the find command.
+* `find Betsy` followed by `deleteTask 1 2` deletes the 2nd task of the 1st person in results of the `find` command.
 
-### Clearing all entries : `clear`
+### Listing all tasks: `listTask`
 
-Clears all entries from the address book.
+Shows a list of all tasks to be completed.
+
+Format: `listTask`
+
+Examples:
+
+Suppose the following patients were added.
+
+`addPatient n/John Doe d/Administer 3ml of example medicine`
+
+`addPatient n/Betsy Crowe d/Change dressing on left arm`
+* `listTask` will display:
+  * `Administer 3ml of example medicine FOR John Doe`
+  * `Change dressing on left arm FOR Betsy Crowe`
+  
+### View all tasks associated with a patient: `viewTask`
+
+Shows all the tasks that are associated with the specified patient.
+
+Format: `viewTask INDEX`
+
+Examples:
+
+Suppose the following patients were added.
+
+`addPatient n/John Doe d/Administer 3ml of example medicine`
+
+`addPatient n/Betsy Crowe d/Change dressing on left arm`
+* `viewTask 1` will display:
+  * `Administer 3ml of example medicine`
+* `viewTask 2` will display:
+  * `Change dressing on left arm`
+
+### Clearing all entries: `clear`
+
+Clears all patient entries.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -224,13 +279,12 @@ There is no need to save manually.
 
 ### Editing the data file
 
-_[To update name of json file]_
-
-UniNurse data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
+UniNurse data are saved as a JSON file `[JAR file location]/data/uninurse.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, UniNurse will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, UniNurse will discard all data and start with an empty
+data file at the next run.
 </div>
 
 ### Adding recurring tasks `[coming in v1.3]`
@@ -242,28 +296,29 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
-
-| Action                          | Format                                                                           |
-|---------------------------------|----------------------------------------------------------------------------------|
-| **Help**                        | `help`                                                                           |
-| **Add patient**                 | `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/TASK_DESCRIPTION [t/TAG]…` |
-| **Edit patient**                | `editPatient INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`     |
-| **Delete patient**              | `deletePatient INDEX`                                                            |
-| **List all patients**           | `list`                                                                           |
-| **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                                   |
-| **Add task**                    | `addTask PATIENT_INDEX [d/TASK_DESCRIPTION]`                                     |
-| **Edit task**                   | `editTask PATIENT_INDEX TASK_INDEX [d/TASK_DESCRIPTION]`                         |
-| **Delete task**                 | `deleteTask PATIENT_INDEX TASK_INDEX`                                            |
-| **List all tasks**              | `listTask`                                                                       |
-| **View all tasks of a patient** | `viewTask INDEX`                                                                 |
-| **Clear all patients**          | `clear`                                                                          |
-| **Exit**                        | `exit`                                                                           |
-
---------------------------------------------------------------------------------------------------------------------
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous UniNurse home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+| Action                          | Format                                                                              |
+|---------------------------------|-------------------------------------------------------------------------------------|
+| **Help**                        | `help`                                                                              |
+| **Add patient**                 | `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…` |
+| **Edit patient**                | `editPatient INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`        |
+| **Delete patient**              | `deletePatient INDEX`                                                               |
+| **List all patients**           | `list`                                                                              |
+| **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                                      |
+| **Add task**                    | `addTask PATIENT_INDEX [d/TASK_DESCRIPTION]`                                        |
+| **Edit task**                   | `editTask PATIENT_INDEX TASK_INDEX [d/TASK_DESCRIPTION]`                            |
+| **Delete task**                 | `deleteTask PATIENT_INDEX TASK_INDEX`                                               |
+| **List all tasks**              | `listTask`                                                                          |
+| **View all tasks of a patient** | `viewTask INDEX`                                                                    |
+| **Clear all patients**          | `clear`                                                                             |
+| **Exit**                        | `exit`                                                                              |
+

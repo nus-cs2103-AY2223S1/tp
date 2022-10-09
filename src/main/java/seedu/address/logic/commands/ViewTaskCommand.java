@@ -11,22 +11,23 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using its displayed index from the person list.
+ * Shows all tasks associcated with the given patient in the address book to the user.
  */
-public class DeleteCommand extends Command {
+public class ViewTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "viewTask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Shows a list of tasks associated with the patient identified by the index number\n"
+            + "used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_SUCCESS = "Showing Tasks for Patient: %1$s\n%2$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public ViewTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -39,15 +40,8 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+        Person person = lastShownList.get(targetIndex.getZeroBased());
+        model.updateFilteredPersonListWithTasks(p -> p.equals(person));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName(), person.getTasks().toString()));
     }
 }

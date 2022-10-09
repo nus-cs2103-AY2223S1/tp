@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -23,16 +24,23 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, Supplier<Boolean> taskListFlagSupplier) {
         super(FXML);
         personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new PersonListViewCell(taskListFlagSupplier));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
+        private final Supplier<Boolean> taskListFlagSupplier;
+
+        PersonListViewCell(Supplier<Boolean> taskListFlagSupplier) {
+            super();
+            this.taskListFlagSupplier = taskListFlagSupplier;
+        }
+
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
@@ -41,7 +49,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1, taskListFlagSupplier.get()).getRoot());
             }
         }
     }
