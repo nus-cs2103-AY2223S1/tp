@@ -3,9 +3,11 @@ package seedu.address.model.module;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -16,6 +18,9 @@ import seedu.address.model.tag.Tag;
 public class Module {
 
     // Identity fields
+    public static final String MESSAGE_MODULE_CODE_CONSTRAINT = "Each module of study has a unique module code "
+            + "consisting of a two‐letter or three‐letter prefix that denotes the discipline, four digits the first of "
+            + "which indicates the level of the module, and one or zero letter postfix.";
     private final ModuleName name;
     private final ModuleCode code;
     private final ModuleDescription description;
@@ -23,6 +28,8 @@ public class Module {
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Person> students = new ArrayList<>();
+
+    private final List<Schedule> schedules;
 
     /**
      * Every field must be present and not null.
@@ -34,6 +41,7 @@ public class Module {
         this.description = description;
         this.tags.addAll(tags);
         this.students.addAll(students);
+        this.schedules = new ArrayList<>();
     }
 
     public ModuleName getName() {
@@ -60,6 +68,10 @@ public class Module {
         return students;
     }
 
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
     /**
      * Returns true if both modules have the same name.
      * This defines a weaker notion of equality between two modules.
@@ -71,6 +83,31 @@ public class Module {
 
         return otherModule != null
                 && otherModule.getName().equals(getName());
+    }
+
+    /**
+     * Checks if any of existing schedules conflicts with the new one
+     * @param newSchedule new schedule to be added
+     * @return true if conflicts; false otherwise
+     */
+    public boolean conflictAnySchedule(Schedule newSchedule) {
+        return schedules.stream().anyMatch(newSchedule::isConflict);
+    }
+
+    /**
+     * Adds a new schedule
+     * @param newSchedule new schedule to be added
+     */
+    public void addSchedule(Schedule newSchedule) {
+        schedules.add(newSchedule);
+    }
+
+    /**
+     * Adds a list of new schedules
+     * @param newSchedules new schedule list
+     */
+    public void addAllSchedules(List<Schedule> newSchedules) {
+        schedules.addAll(newSchedules);
     }
 
     /**

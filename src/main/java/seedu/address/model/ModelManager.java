@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
 
 /**
@@ -102,6 +103,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean conflictSchedule(Schedule schedule) {
+        requireNonNull(schedule);
+        return addressBook.conflictSchedule(schedule);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -118,9 +125,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Module getModuleByModuleCode(String moduleCode) {
+        return addressBook.getModuleByModuleCode(moduleCode);
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addSchedule(Schedule schedule) {
+        addressBook.addSchedule(schedule);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
@@ -136,6 +154,8 @@ public class ModelManager implements Model {
 
         addressBook.setModule(target, editedModule);
     }
+
+
 
     //=========== Filtered Person List Accessors =============================================================
 
