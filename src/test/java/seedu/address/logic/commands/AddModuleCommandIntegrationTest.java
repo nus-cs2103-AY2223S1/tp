@@ -33,7 +33,7 @@ public class AddModuleCommandIntegrationTest {
         expectedModel.addModule(validModule);
 
         assertCommandSuccess(new AddModuleCommand(validModule), model,
-                String.format(AddModuleCommand.MESSAGE_SUCCESS, validModule), expectedModel);
+                String.format(AddModuleCommand.MESSAGE_ADD_MODULE_SUCCESS, validModule), expectedModel);
     }
 
     @Test

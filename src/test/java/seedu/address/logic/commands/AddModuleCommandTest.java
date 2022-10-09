@@ -32,7 +32,7 @@ public class AddModuleCommandTest {
 
         CommandResult commandResult = new AddModuleCommand(validModule).execute(modelStub);
 
-        assertEquals(String.format(AddModuleCommand.MESSAGE_SUCCESS, validModule),
+        assertEquals(String.format(AddModuleCommand.MESSAGE_ADD_MODULE_SUCCESS, validModule),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validModule), modelStub.modulesAdded);
     }

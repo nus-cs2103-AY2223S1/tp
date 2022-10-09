@@ -13,13 +13,13 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new {@code AddModuleCommand} object.
  */
 public class AddModuleCommandParser implements Parser<AddModuleCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of {@code AddModuleCommand}
+     * and returns an {@code AddModuleCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddModuleCommand parse(String args) throws ParseException {

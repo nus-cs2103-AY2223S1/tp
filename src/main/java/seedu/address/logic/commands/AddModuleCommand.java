@@ -23,7 +23,7 @@ public class AddModuleCommand extends Command {
             + PREFIX_MODULE_CODE + "CS1231S "
             + PREFIX_MODULE_TITLE + "Discrete Structures";
 
-    public static final String MESSAGE_SUCCESS = "New module added: %1$s";
+    public static final String MESSAGE_ADD_MODULE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "Oops, it looks like you have already "
             + "added the module";
 
@@ -46,7 +46,7 @@ public class AddModuleCommand extends Command {
         }
 
         model.addModule(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_MODULE_SUCCESS, toAdd));
     }
 
     @Override
