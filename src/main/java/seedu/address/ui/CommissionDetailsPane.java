@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
 
@@ -35,6 +36,8 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private Label customerName;
     @FXML
     private FlowPane tags;
+    @FXML
+    private VBox iterationListPlaceholder;
 
     /**
      * Creates a {@code CommissionDetailsPane} with the given {@code Commission} and index to display.
@@ -57,6 +60,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
             completionStatus.setText("");
             customerName.setText("");
             tags.getChildren().clear();
+            iterationListPlaceholder.getChildren().clear();
         } else {
             title.setText(commission.getTitle().title);
             description.setText(commission.getDescription().description);
@@ -68,6 +72,29 @@ public class CommissionDetailsPane extends UiPart<Region> {
             commission.getTags().stream()
                     .sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            commission.getIterationList().stream()
+                    .sorted(Comparator.comparing(iteration -> iteration.getDate().date))
+                    .forEach(iteration -> iterationListPlaceholder.getChildren().add(
+                            new IterationListItem(iteration).getRoot()
+                    ));
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof CommissionDetailsPane)) {
+            return false;
+        }
+
+        // state check
+        CommissionDetailsPane otherPane = (CommissionDetailsPane) other;
+        return title.getText().equals(otherPane.title.getText())
+                && commission.equals(otherPane.commission);
     }
 }

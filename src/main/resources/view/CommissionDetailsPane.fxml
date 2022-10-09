@@ -40,6 +40,8 @@
         <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline"/>
         <Label fx:id="completionStatus" styleClass="cell_small_label" text="\$completionStatus"/>
         <Label fx:id="customerName" styleClass="cell_small_label" text="\$customerName"/>
+        <VBox fx:id="iterationListPlaceholder">
+        </VBox>
     </VBox>
     <rowConstraints>
         <RowConstraints/>
