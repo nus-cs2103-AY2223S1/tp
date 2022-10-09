@@ -31,6 +31,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,9 +42,9 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient/nurse identified "
-            + "by the index number used in the displayed person list. "
+            + "by the unique id number used in the displayed person list."
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: UID (must be a positive integer) "
             + "[" + PREFIX_CATEGORY + "CATEGORY] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_GENDER + "GENDER] "
@@ -53,7 +54,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Date and Time are only applicable to patient.\n"
             + "[" + PREFIX_DATE_AND_TIME + "DATE_AND_TIME] \n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + PREFIX_UID +  " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -65,7 +66,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -81,21 +82,30 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        //if (index.getZeroBased() >= lastShownList.size()) {
+        //    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        //}
+
+        //Person personToEdit = lastShownList.get(index.getZeroBased());
+        //Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        
+        Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getId() == targetUid).findFirst();
+        if (!personToEdit.isPresent()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
         }
-
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        
+        Person confirmedPersonToEdit = personToEdit.get();
+        Person editedPerson = createEditedPerson(confirmedPersonToEdit, editPersonDescriptor);
+       
+       
+        if (!confirmedPersonToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             if (personToEdit instanceof Patient) {
                 throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, PATIENT_INDICATOR));
             }
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, PERSON_INDICATOR));
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(confirmedPersonToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         if (personToEdit instanceof Patient) {
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, PATIENT_INDICATOR, editedPerson));
@@ -112,21 +122,22 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         String updatedCategory = editPersonDescriptor.getCategory().orElse(personToEdit.getCategory());
+        Uid id = personToEdit.getId();
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
+        
         if (personToEdit instanceof Patient && updatedCategory.equals("P")) {
             List<DateTime> updatedDateTime = editPersonDescriptor.getDatesTimes()
                     .orElse(((Patient) personToEdit).getDatesTimes());
-            return new Patient(updatedName, updatedGender, updatedPhone, updatedEmail,
+            return new Patient(id, updatedName, updatedGender, updatedPhone, updatedEmail,
                         updatedAddress, updatedTags, updatedDateTime);
         }
 
-        return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -148,10 +159,13 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the patient/nurse with. Each non-empty field value will replace the
-     * corresponding field value of the patient/nurse.
+     * Stores the details to edit the person with. Each non-empty field value will
+     * replace the
+     * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+        
+        private Uid id;
         private String category;
         private Name name;
         private Gender gender;
@@ -161,7 +175,8 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private List<DateTime> datesTimes;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -169,6 +184,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setCategory(toCopy.category);
+            setId(toCopy.id);
             setName(toCopy.name);
             setGender(toCopy.gender);
             setPhone(toCopy.phone);
@@ -195,6 +211,21 @@ public class EditCommand extends Command {
         public Optional<String> getCategory() {
             return Optional.ofNullable(category);
         }
+
+        /**
+         * @param id the id to set
+         */
+        public void setId(Uid id) {
+            this.id = id;
+        }
+
+        /**
+         * @return the id
+         */
+        public Optional<Uid> getId() {
+            return Optional.ofNullable(id);
+        }
+
         public void setName(Name name) {
             this.name = name;
         }
@@ -282,8 +313,9 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getCategory().equals(e.getCategory())
+            return getId().equals(e.getId())
                     && getName().equals(e.getName())
+                    && getCategory().equals(e.getCategory())
                     && getGender().equals(e.getGender())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
