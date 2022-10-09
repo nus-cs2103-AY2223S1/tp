@@ -39,23 +39,20 @@ public class DeleteMeetingCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Client> lastShownList = model.getFilteredClientList();
+        List<Client> lastShownClientList = model.getFilteredClientList();
+        List<Meeting> lastShownMeetingList = model.getFilteredMeetingList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownMeetingList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
-        Client clientToEdit = lastShownList.get(index.getZeroBased());
+        Meeting meeting = lastShownMeetingList.get(index.getZeroBased());
+
+        Client clientToEdit = meeting.getClient();
         Client editedClient = new Client(
                 clientToEdit.getName(), clientToEdit.getPhone(), clientToEdit.getEmail(),
                 clientToEdit.getAddress(), clientToEdit.getTags()
         );
-
-        if (!clientToEdit.hasMeeting()) {
-            throw new CommandException(String.format(MESSAGE_MEETING_NOT_FOUND, clientToEdit));
-        }
-
-        Meeting meeting = clientToEdit.getMeeting();
 
         model.deleteMeeting(meeting);
         model.setClient(clientToEdit, editedClient);
