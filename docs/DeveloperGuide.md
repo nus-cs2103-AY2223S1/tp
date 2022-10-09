@@ -316,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The request given is invalid.
   * 1a1. JerylFypManager shows an error message.
   * 1a2. Professor enters a new request.
-  
+
   Steps 1a1-1a2 are repeated until the request entered is correct.
 
   Use case resumes from step 2.
@@ -452,8 +452,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
-able to accomplish most of the tasks faster using commands than using the mouse.
+2.  User with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 3.  The system should respond in at most 1 second.
 4.  A user with no coding background should be able to use JerylFypManager.
 5.  Notification sent to users upon updates to FYPs.
