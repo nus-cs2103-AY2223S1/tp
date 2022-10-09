@@ -29,9 +29,9 @@ import eatwhere.foodguide.testutil.PersonBuilder;
 import eatwhere.foodguide.testutil.PersonUtil;
 import eatwhere.foodguide.testutil.TypicalIndexes;
 
-public class AddressBookParserTest {
+public class FoodGuideParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final FoodGuideParser parser = new FoodGuideParser();
 
     @Test
     public void parseCommand_add() throws Exception {
