@@ -28,7 +28,7 @@ class JsonAdaptedHomework {
     }
 
     @JsonValue
-    public String getTagName() {
+    public String getHomeworkName() {
         return homeworkName;
     }
 

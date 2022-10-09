@@ -20,6 +20,9 @@ public class HomeworkList {
         homeworkList = new ArrayList<>();
     }
 
+    /**
+     * Constructs a {@code HomeworkList} from a given List.
+     */
     public HomeworkList(List<Homework> homeworkList) {
         requireNonNull(homeworkList);
         this.homeworkList = homeworkList;
@@ -35,9 +38,38 @@ public class HomeworkList {
         homeworkList.add(homework);
     }
 
+    /**
+     * Returns a String description of the homework list. If homework list size is greater than two,
+     * only the first two are shown.
+     *
+     * @return a truncated homework list.
+     */
+    public String shortDescription() {
+        if (homeworkList.size() <= 2) {
+            return toString();
+        }
+
+        StringBuilder description = new StringBuilder("Homework:\n");
+        for (int i = 0; i < 2; i++) {
+            description.append(i + 1).append(". ").append(homeworkList.get(i)).append("\n");
+        }
+        description.append("...\n");
+        return description.toString();
+    }
+
+    /**
+     * Clears the homework list.
+     */
+    public void clearList() {
+        homeworkList.clear();
+    }
+
     @Override
     public String toString() {
         StringBuilder description = new StringBuilder("Homework:\n");
+        if (homeworkList.isEmpty()) {
+            description.append("No homework found!\n");
+        }
         for (int i = 0; i < homeworkList.size(); i++) {
             description.append(i + 1).append(". ").append(homeworkList.get(i)).append("\n");
         }
