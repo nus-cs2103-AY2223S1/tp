@@ -49,9 +49,9 @@ public class ExerciseCard extends UiPart<Region> {
         this.exercise = exercise;
         id.setText(displayedIndex + ". ");
         name.setText(exercise.getName().fullName);
-        weight.setText(exercise.getWeight().value);
-        rep.setText(exercise.getRep().value);
-        sets.setText(exercise.getSets().value);
+        weight.setText("Weight: " + exercise.getWeight().value);
+        rep.setText("Reps: " + exercise.getRep().value);
+        sets.setText("Sets: " + exercise.getSets().value);
         exercise.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
