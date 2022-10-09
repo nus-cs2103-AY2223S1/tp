@@ -15,8 +15,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 
-public class BuyCommand extends Command {
-    public static final String COMMAND_WORD = "buy";
+public class SellCommand extends Command {
+    public static final String COMMAND_WORD = "sell";
 
     //Update here
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the company. "
@@ -28,9 +28,9 @@ public class BuyCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_QUANTITY + "1000 "
             + PREFIX_GOODS + "Apples "
-            + PREFIX_PRICE + "1.50 ";
+            + PREFIX_PRICE + "2 ";
 
-    public static final String MESSAGE_SUCCESS = "New transaction created: \nBought %2$s %3$s from %1$s for %4$s each";
+    public static final String MESSAGE_SUCCESS = "New transaction created: \nSold %2$s %3$s from %1$s for %4$s each";
     public static final String MESSAGE_TRANSACTION_INVALID = "Transaction cannot be created. " +
             "Enter a valid transaction:\n"
             + "index "
@@ -45,7 +45,7 @@ public class BuyCommand extends Command {
      * @param index of the company in the company list to add the POC to
      * @param transaction to be added
      */
-    public BuyCommand(Index index, Transaction transaction) {
+    public SellCommand(Index index, Transaction transaction) {
         requireNonNull(index);
         requireNonNull(transaction);
 
@@ -79,8 +79,8 @@ public class BuyCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CreateCommand // instanceof handles nulls
-                && index.equals(((BuyCommand) other).index)
-                && transaction.equals(((BuyCommand) other).transaction));
+                && index.equals(((SellCommand) other).index)
+                && transaction.equals(((SellCommand) other).transaction));
     }
 
 }
