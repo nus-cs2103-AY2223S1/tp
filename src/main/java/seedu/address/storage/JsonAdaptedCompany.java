@@ -33,9 +33,9 @@ class JsonAdaptedCompany {
      * Constructs a {@code JsonAdaptedCompany} with the given company details.
      */
     @JsonCreator
-    public JsonAdaptedCompany(@JsonProperty("name") String name, @JsonProperty("pocs") List<JsonAdaptedPoc> pocs,
-            @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedCompany(@JsonProperty("name") String name, @JsonProperty("address") String address,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("pocs") List<JsonAdaptedPoc> pocs) {
         this.name = name;
         this.pocs.addAll(pocs);
         this.address = address;
