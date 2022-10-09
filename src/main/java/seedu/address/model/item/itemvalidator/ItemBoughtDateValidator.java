@@ -1,7 +1,5 @@
 package seedu.address.model.item.itemvalidator;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -15,10 +13,9 @@ public class ItemBoughtDateValidator {
 
     // Validation for parsing
     private static final String DATE_INPUT_PATTERN_REGEX = "yyyy-MM-dd";
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN_REGEX);
-    private static final String MESSAGE_FOR_UNABLE_TO_PARSE =
+    public static final String MESSAGE_FOR_UNABLE_TO_PARSE =
         String.format("Dates must follow the format %s.", DATE_INPUT_PATTERN_REGEX);
-
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN_REGEX);
     // Validation for year
     private static final int MIN_YEAR = 1000;
     private static final String MESSAGE_FOR_YEAR_TOO_SMALL =
@@ -34,10 +31,11 @@ public class ItemBoughtDateValidator {
      * @param dateString String representation of date to validate against.
      */
     public static void validate(String dateString) {
-        checkArgument(isParsableItemDatetime(dateString), MESSAGE_FOR_UNABLE_TO_PARSE);
-        LocalDate date = LocalDate.parse(dateString);
-        checkArgument(!isYearMoreThanMaxYear(date), MESSAGE_FOR_YEAR_TOO_LARGE);
-        checkArgument(!isYearLessThanMaxYear(date), MESSAGE_FOR_YEAR_TOO_SMALL);
+        // TODO: Fix validation for item bought date
+        // checkArgument(isParsableItemDatetime(dateString), MESSAGE_FOR_UNABLE_TO_PARSE);
+        // LocalDate date = LocalDate.parse(dateString);
+        // checkArgument(!isYearMoreThanMaxYear(date), MESSAGE_FOR_YEAR_TOO_LARGE);
+        // checkArgument(!isYearLessThanMaxYear(date), MESSAGE_FOR_YEAR_TOO_SMALL);
     }
 
     /**

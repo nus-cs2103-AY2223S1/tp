@@ -53,14 +53,14 @@ public class EditCommandTest {
         Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
         Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
 
-        ItemBuilder personInList = new ItemBuilder(lastItem);
-        Item editedItem = personInList
+        ItemBuilder itemInList = new ItemBuilder(lastItem);
+        Item editedItem = itemInList
             .withItemName(VALID_ITEM_NAME_CUCUMBERS)
             .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
             .build();
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
-            .withItemName(VALID_ITEM_QUANTITY_CUCUMBERS)
+            .withItemName(VALID_ITEM_NAME_CUCUMBERS)
             .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
             .build();
         EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
@@ -89,10 +89,10 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showItemAtIndex(model, INDEX_FIRST_PERSON);
 
-        Item personInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Item editedItem = new ItemBuilder(personInFilteredList).withItemName(VALID_ITEM_NAME_CUCUMBERS).build();
+        Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Item editedItem = new ItemBuilder(itemInFilteredList).withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-            new EditItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_CUCUMBERS).build());
+            new EditItemDescriptorBuilder().withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
@@ -115,10 +115,10 @@ public class EditCommandTest {
     public void execute_duplicateItemFilteredList_failure() {
         showItemAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit person in filtered list into a duplicate in address book
-        Item personInList = model.getAddressBook().getItemList().get(INDEX_SECOND_PERSON.getZeroBased());
+        // edit item in filtered list into a duplicate in address book
+        Item itemInList = model.getAddressBook().getItemList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-            new EditItemDescriptorBuilder(personInList).build());
+            new EditItemDescriptorBuilder(itemInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ITEM);
     }

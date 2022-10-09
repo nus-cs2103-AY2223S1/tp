@@ -68,8 +68,8 @@ public class EditCommand extends Command {
     private static Item createEditedItem(Item itemToEdit, EditItemDescriptor editItemDescriptor) {
         assert itemToEdit != null;
 
-        ItemName updatedName = editItemDescriptor.getName().orElse(itemToEdit.getName());
-        ItemQuantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getQuantity());
+        ItemName updatedName = editItemDescriptor.getItemName().orElse(itemToEdit.getName());
+        ItemQuantity updatedQuantity = editItemDescriptor.getItemQuantity().orElse(itemToEdit.getQuantity());
         ItemUnit updatedUnit = editItemDescriptor.getItemUnit().orElse(itemToEdit.getUnit());
         ItemBoughtDate updatedBoughtDate = editItemDescriptor.getItemBoughtDate().orElse(itemToEdit.getBoughtDate());
         ItemExpiryDate updatedExpiryDate = editItemDescriptor.getItemExpiryDate().orElse(itemToEdit.getExpiryDate());
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, quantity, unit, boughtDate, expiryDate);
         }
 
-        public Optional<ItemName> getName() {
+        public Optional<ItemName> getItemName() {
             return Optional.ofNullable(name);
         }
 
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
             this.name = name;
         }
 
-        public Optional<ItemQuantity> getQuantity() {
+        public Optional<ItemQuantity> getItemQuantity() {
             return Optional.ofNullable(quantity);
         }
 
@@ -221,8 +221,8 @@ public class EditCommand extends Command {
             // state check
             EditItemDescriptor e = (EditItemDescriptor) other;
 
-            return getName().equals(e.getName())
-                && getQuantity().equals(e.getQuantity())
+            return getItemName().equals(e.getItemName())
+                && getItemQuantity().equals(e.getItemQuantity())
                 && getItemUnit().equals(e.getItemUnit())
                 && getItemBoughtDate().equals(e.getItemBoughtDate())
                 && getItemExpiryDate().equals(e.getItemExpiryDate());

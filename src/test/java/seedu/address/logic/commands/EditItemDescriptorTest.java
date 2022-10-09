@@ -20,7 +20,7 @@ public class EditItemDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditItemDescriptorBuilder descriptorWithSameValues = new EditItemDescriptorBuilder(DESC_POTATOES);
+        EditItemDescriptor descriptorWithSameValues = new EditItemDescriptor(DESC_POTATOES);
         assertTrue(DESC_POTATOES.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,28 +36,28 @@ public class EditItemDescriptorTest {
         assertFalse(DESC_POTATOES.equals(DESC_CUCUMBERS));
 
         // different name -> returns false
-        EditItemDescriptor editedAmy = new EditItemDescriptorBuilder(DESC_POTATOES)
+        EditItemDescriptor editedPotato = new EditItemDescriptorBuilder(DESC_POTATOES)
             .withItemName(VALID_ITEM_NAME_CUCUMBERS).build();
-        assertFalse(DESC_POTATOES.equals(editedAmy));
+        assertFalse(DESC_POTATOES.equals(editedPotato));
 
         // different phone -> returns false
-        editedAmy = new EditItemDescriptorBuilder(DESC_POTATOES)
+        editedPotato = new EditItemDescriptorBuilder(DESC_POTATOES)
             .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS).build();
-        assertFalse(DESC_POTATOES.equals(editedAmy));
+        assertFalse(DESC_POTATOES.equals(editedPotato));
 
         // different email -> returns false
-        editedAmy = new EditItemDescriptorBuilder(DESC_POTATOES)
+        editedPotato = new EditItemDescriptorBuilder(DESC_POTATOES)
             .withItemUnit(VALID_ITEM_UNIT_CUCUMBERS).build();
-        assertFalse(DESC_POTATOES.equals(editedAmy));
+        assertFalse(DESC_POTATOES.equals(editedPotato));
 
         // different address -> returns false
-        editedAmy = new EditItemDescriptorBuilder(DESC_POTATOES)
+        editedPotato = new EditItemDescriptorBuilder(DESC_POTATOES)
             .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_CUCUMBERS).build();
-        assertFalse(DESC_POTATOES.equals(editedAmy));
+        assertFalse(DESC_POTATOES.equals(editedPotato));
 
         // different tags -> returns false
-        editedAmy = new EditItemDescriptorBuilder(DESC_POTATOES)
+        editedPotato = new EditItemDescriptorBuilder(DESC_POTATOES)
             .withItemExpiryDate(VALID_ITEM_EXPIRY_DATE_CUCUMBERS).build();
-        assertFalse(DESC_POTATOES.equals(editedAmy));
+        assertFalse(DESC_POTATOES.equals(editedPotato));
     }
 }

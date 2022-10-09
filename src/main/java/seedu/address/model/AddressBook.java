@@ -42,8 +42,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the person list with {@code items}.
+     * {@code items} must not contain duplicate items.
      */
     public void setItems(List<Item> items) {
         this.items.setItems(items);
@@ -99,7 +99,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return items.asUnmodifiableObservableList().size() + " persons";
+        return items.asUnmodifiableObservableList().size() + " items";
         // TODO: refine later
     }
 
@@ -111,8 +111,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && items.equals(((AddressBook) other).items));
+            || (other instanceof AddressBook // instanceof handles nulls
+            && items.equals(((AddressBook) other).items));
     }
 
     @Override

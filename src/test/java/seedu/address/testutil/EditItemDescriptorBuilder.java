@@ -24,15 +24,15 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditItemDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditItemDescriptor} with fields containing {@code item}'s details
      */
-    public EditItemDescriptorBuilder(Item person) {
+    public EditItemDescriptorBuilder(Item item) {
         descriptor = new EditItemDescriptor();
-        descriptor.setItemName(person.getName());
-        descriptor.setItemQuantity(person.getQuantity());
-        descriptor.setItemUnit(person.getUnit());
-        descriptor.setItemBoughtDate(person.getBoughtDate());
-        descriptor.setItemExpiryDate(person.getExpiryDate());
+        descriptor.setItemName(item.getName());
+        descriptor.setItemQuantity(item.getQuantity());
+        descriptor.setItemUnit(item.getUnit());
+        descriptor.setItemBoughtDate(item.getBoughtDate());
+        descriptor.setItemExpiryDate(item.getExpiryDate());
     }
 
     /**

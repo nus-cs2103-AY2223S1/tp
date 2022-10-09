@@ -39,29 +39,46 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args,
-                        PREFIX_ITEM_NAME,
-                        PREFIX_ITEM_QUANTITY,
-                        PREFIX_ITEM_UNIT,
-                        PREFIX_ITEM_BOUGHT_DATE,
-                        PREFIX_ITEM_EXPIRY_DATE);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME,
+            ArgumentTokenizer.tokenize(args,
+                PREFIX_ITEM_NAME,
                 PREFIX_ITEM_QUANTITY,
                 PREFIX_ITEM_UNIT,
                 PREFIX_ITEM_BOUGHT_DATE,
-                PREFIX_ITEM_EXPIRY_DATE)
-                || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_ITEM_EXPIRY_DATE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME)
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         ItemName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
-        ItemQuantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get());
-        ItemUnit unit = ParserUtil.parseUnit(argMultimap.getValue(PREFIX_ITEM_UNIT).get());
-        ItemBoughtDate boughtDate = ParserUtil.parseBoughtDate(argMultimap.getValue(PREFIX_ITEM_BOUGHT_DATE).get());
-        ItemExpiryDate expiryDate = ParserUtil.parseExpiryDate(argMultimap.getValue(PREFIX_ITEM_EXPIRY_DATE).get());
 
-        Item item = new Item(name, quantity, unit, boughtDate, expiryDate);
+        // TODO: Refactor this to have default values / copy edit command.
+        String quantity = "";
+        if (argMultimap.getValue(PREFIX_ITEM_QUANTITY).isPresent()) {
+            quantity = argMultimap.getValue(PREFIX_ITEM_QUANTITY).get();
+        }
+        ItemQuantity itemQuantity = ParserUtil.parseQuantity(quantity);
+
+        String unit = "";
+        if (argMultimap.getValue(PREFIX_ITEM_UNIT).isPresent()) {
+            unit = argMultimap.getValue(PREFIX_ITEM_UNIT).get();
+        }
+        ItemUnit itemUnit = ParserUtil.parseUnit(unit);
+
+        String boughtDate = "";
+        if (argMultimap.getValue(PREFIX_ITEM_BOUGHT_DATE).isPresent()) {
+            boughtDate = argMultimap.getValue(PREFIX_ITEM_BOUGHT_DATE).get();
+        }
+        ItemBoughtDate itemBoughtDate = ParserUtil.parseBoughtDate(boughtDate);
+
+        String expiryDate = "";
+        if (argMultimap.getValue(PREFIX_ITEM_EXPIRY_DATE).isPresent()) {
+            expiryDate = argMultimap.getValue(PREFIX_ITEM_EXPIRY_DATE).get();
+        }
+        ItemExpiryDate itemExpiryDate = ParserUtil.parseExpiryDate(expiryDate);
+
+        Item item = new Item(name, itemQuantity, itemUnit, itemBoughtDate, itemExpiryDate);
 
         return new AddCommand(item);
     }

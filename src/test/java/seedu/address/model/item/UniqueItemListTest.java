@@ -3,7 +3,7 @@ package seedu.address.model.item;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_CUCUMBERS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CUCUMBERS;
 import static seedu.address.testutil.TypicalItems.POTATOES;
@@ -28,22 +28,23 @@ public class UniqueItemListTest {
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_itemNotInList_returnsFalse() {
         assertFalse(uniqueItemList.contains(POTATOES));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_itemInList_returnsTrue() {
         uniqueItemList.add(POTATOES);
         assertTrue(uniqueItemList.contains(POTATOES));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_itemWithSameIdentityFieldsInList_returnsTrue() {
         uniqueItemList.add(POTATOES);
-        Item editedAlice = new ItemBuilder(POTATOES).withItemQuantity(VALID_DESC_ITEM_QUANTITY_CUCUMBERS)
+        Item editedPotato = new ItemBuilder(POTATOES)
+            .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
             .build();
-        assertTrue(uniqueItemList.contains(editedAlice));
+        assertTrue(uniqueItemList.contains(editedPotato));
     }
 
     @Test
@@ -84,11 +85,12 @@ public class UniqueItemListTest {
     @Test
     public void setItem_editedItemHasSameIdentity_success() {
         uniqueItemList.add(POTATOES);
-        Item editedAlice = new ItemBuilder(POTATOES).withItemQuantity(VALID_DESC_ITEM_QUANTITY_CUCUMBERS)
+        Item editedPotato = new ItemBuilder(POTATOES)
+            .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
             .build();
-        uniqueItemList.setItem(POTATOES, editedAlice);
+        uniqueItemList.setItem(POTATOES, editedPotato);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(editedAlice);
+        expectedUniqueItemList.add(editedPotato);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
@@ -114,7 +116,7 @@ public class UniqueItemListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsItemNotFoundException() {
+    public void remove_itemDoesNotExist_throwsItemNotFoundException() {
         assertThrows(ItemNotFoundException.class, () -> uniqueItemList.remove(POTATOES));
     }
 
@@ -148,8 +150,8 @@ public class UniqueItemListTest {
     @Test
     public void setItems_list_replacesOwnListWithProvidedList() {
         uniqueItemList.add(POTATOES);
-        List<Item> personList = Collections.singletonList(CUCUMBERS);
-        uniqueItemList.setItems(personList);
+        List<Item> itemList = Collections.singletonList(CUCUMBERS);
+        uniqueItemList.setItems(itemList);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
         expectedUniqueItemList.add(CUCUMBERS);
         assertEquals(expectedUniqueItemList, uniqueItemList);

@@ -1,7 +1,5 @@
 package seedu.address.model.item.itemvalidator;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import seedu.address.model.item.Item;
 
 /**
@@ -9,12 +7,11 @@ import seedu.address.model.item.Item;
  */
 public class ItemNameValidator {
 
+    public static final String MESSAGE_FOR_INVALID_CHARACTERS =
+        "Item name should only contain alphanumeric characters and spaces, and it should not be blank";
     // Validation for characters used in name
     // TODO: Change validation to match FoodREM
     private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    private static final String MESSAGE_FOR_INVALID_CHARACTERS =
-        "Item name should only contain alphanumeric characters and spaces, and it should not be blank";
-
     // Validation for name length
     private static final int MAX_LENGTH = 200;
     private static final String MESSAGE_FOR_NAME_TOO_LONG =
@@ -28,9 +25,10 @@ public class ItemNameValidator {
      * @param itemName String representation of item name to validate against.
      */
     public static void validate(String itemName) {
-        checkArgument(!doesNameContainInvalidCharacters(itemName), MESSAGE_FOR_INVALID_CHARACTERS);
-        checkArgument(!isNameLengthMoreThanMaxLength(itemName), MESSAGE_FOR_NAME_TOO_LONG);
-        checkArgument(!isNameBlank(itemName), MESSAGE_FOR_NAME_IS_BLANK);
+        // TODO: Fix validation for item name
+        // checkArgument(!doesNameContainInvalidCharacters(itemName), MESSAGE_FOR_INVALID_CHARACTERS);
+        // checkArgument(!isNameLengthMoreThanMaxLength(itemName), MESSAGE_FOR_NAME_TOO_LONG);
+        // checkArgument(!isNameBlank(itemName), MESSAGE_FOR_NAME_IS_BLANK);
     }
 
     /**

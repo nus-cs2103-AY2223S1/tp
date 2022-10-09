@@ -1,7 +1,5 @@
 package seedu.address.model.item.itemvalidator;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import seedu.address.model.item.Item;
 
 /**
@@ -9,13 +7,12 @@ import seedu.address.model.item.Item;
  */
 public class ItemUnitValidator {
 
+    public static final String MESSAGE_FOR_INVALID_CHARACTERS =
+        "Item unit should only contain alphanumeric characters and spaces, and it should not be blank";
     // Validation for characters used in unit
     // TODO: Change validation to match FoodREM
     // TODO: SHOULD ABSTRACT OUT LOGIC FROM ITEM NAME, UNIT, TAG NAME COMMON TO VALIDATION
     private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    private static final String MESSAGE_FOR_INVALID_CHARACTERS =
-        "Item unit should only contain alphanumeric characters and spaces, and it should not be blank";
-
     // Validation for unit length
     private static final int MAX_LENGTH = 10;
     private static final String MESSAGE_FOR_NAME_TOO_LONG =
@@ -27,8 +24,9 @@ public class ItemUnitValidator {
      * @param unitString String representation of item unit to validate against.
      */
     public static void validate(String unitString) {
-        checkArgument(!doesUnitContainInvalidCharacters(unitString), MESSAGE_FOR_INVALID_CHARACTERS);
-        checkArgument(!isUnitLengthMoreThanMaxLength(unitString), MESSAGE_FOR_NAME_TOO_LONG);
+        // TODO: Fix validation for item unit
+        // checkArgument(!doesUnitContainInvalidCharacters(unitString), MESSAGE_FOR_INVALID_CHARACTERS);
+        // checkArgument(!isUnitLengthMoreThanMaxLength(unitString), MESSAGE_FOR_NAME_TOO_LONG);
     }
 
     /**

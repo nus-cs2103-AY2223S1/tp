@@ -110,7 +110,7 @@ public class CommandTestUtil {
             .build();
         DESC_CUCUMBERS = new EditItemDescriptorBuilder()
             .withItemName(VALID_ITEM_EXPIRY_DATE_CUCUMBERS)
-            .withItemQuantity(VALID_ITEM_EXPIRY_DATE_CUCUMBERS)
+            .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
             .withItemUnit(VALID_ITEM_EXPIRY_DATE_CUCUMBERS)
             .withItemBoughtDate(VALID_ITEM_EXPIRY_DATE_CUCUMBERS)
             .withItemExpiryDate(VALID_ITEM_EXPIRY_DATE_CUCUMBERS)

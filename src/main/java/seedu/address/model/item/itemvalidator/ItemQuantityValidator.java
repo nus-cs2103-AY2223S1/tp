@@ -1,7 +1,5 @@
 package seedu.address.model.item.itemvalidator;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import seedu.address.model.item.Item;
 
 /**
@@ -10,7 +8,7 @@ import seedu.address.model.item.Item;
 public class ItemQuantityValidator {
 
     // Validation for quantity is a number
-    private static final String MESSAGE_FOR_NOT_A_NUMBER = "Quantities should be a number.";
+    public static final String MESSAGE_FOR_NOT_A_NUMBER = "Quantities should be a number.";
 
     // Validation for quantity precision
     private static final int MAX_DECIMAL_PLACE = 4;
@@ -31,12 +29,12 @@ public class ItemQuantityValidator {
      * @param itemQuantityString String representation of item quantity to validate against.
      */
     public static void validate(String itemQuantityString) {
-        checkArgument(isParsableQuantity(itemQuantityString), MESSAGE_FOR_NOT_A_NUMBER);
-        checkArgument(!isQuantityTooPrecise(itemQuantityString), MESSAGE_FOR_PRECISION_TOO_HIGH);
-
-        double quantity = Double.parseDouble(itemQuantityString);
-        checkArgument(!isQuantityMoreThanMaxQuantity(quantity), MESSAGE_FOR_QUANTITY_TOO_LARGE);
-        checkArgument(!isQuantityNegative(quantity), MESSAGE_FOR_QUANTITY_IS_NEGATIVE);
+        // TODO: Fix validation for item quantity
+        // checkArgument(isParsableQuantity(itemQuantityString), MESSAGE_FOR_NOT_A_NUMBER);
+        // checkArgument(!isQuantityTooPrecise(itemQuantityString), MESSAGE_FOR_PRECISION_TOO_HIGH);
+        // double quantity = Double.parseDouble(itemQuantityString);
+        // checkArgument(!isQuantityMoreThanMaxQuantity(quantity), MESSAGE_FOR_QUANTITY_TOO_LARGE);
+        // checkArgument(!isQuantityNegative(quantity), MESSAGE_FOR_QUANTITY_IS_NEGATIVE);
     }
 
     /**

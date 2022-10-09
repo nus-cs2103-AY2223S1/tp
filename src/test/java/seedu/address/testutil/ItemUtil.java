@@ -1,5 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
 import seedu.address.model.item.Item;
@@ -20,18 +26,34 @@ public class ItemUtil {
      * Returns the part of command string for the given {@code item}'s details.
      */
     public static String getItemDetails(Item item) {
-        return item.toString();
+        return String.format("%s%s %s%s %s%s %s%s %s%s",
+            PREFIX_ITEM_NAME,
+            item.getName(),
+            PREFIX_ITEM_QUANTITY,
+            item.getQuantity(),
+            PREFIX_ITEM_UNIT,
+            item.getUnit(),
+            PREFIX_ITEM_BOUGHT_DATE,
+            item.getBoughtDate(),
+            PREFIX_ITEM_EXPIRY_DATE,
+            item.getExpiryDate());
     }
 
     /**
      * Returns the part of command string for the given {@code EditItemDescriptor}'s details.
      */
     public static String getEditItemDescriptorDetails(EditItemDescriptor descriptor) {
-        //StringBuilder sb = new StringBuilder();
-        //descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        //descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        //descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        //descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        StringBuilder sb = new StringBuilder();
+        descriptor.getItemName()
+            .ifPresent(name -> sb.append(PREFIX_ITEM_NAME).append(name).append(" "));
+        descriptor.getItemQuantity()
+            .ifPresent(quantity -> sb.append(PREFIX_ITEM_QUANTITY).append(quantity).append(" "));
+        descriptor.getItemUnit()
+            .ifPresent(unit -> sb.append(PREFIX_ITEM_UNIT).append(unit).append(" "));
+        descriptor.getItemExpiryDate()
+            .ifPresent(boughtDate -> sb.append(PREFIX_ITEM_BOUGHT_DATE).append(boughtDate).append(" "));
+        descriptor.getItemBoughtDate()
+            .ifPresent(expiryDate -> sb.append(PREFIX_ITEM_EXPIRY_DATE).append(expiryDate).append(" "));
         //if (descriptor.getTags().isPresent()) {
         //    Set<Tag> tags = descriptor.getTags().get();
         //    if (tags.isEmpty()) {
@@ -40,8 +62,7 @@ public class ItemUtil {
         //        tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
         //    }
         //}
-        // return sb.toString();
-        // TODO: Fix this
-        return "";
+        return sb.toString();
+
     }
 }

@@ -79,11 +79,11 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD
-            + VALID_DESC_ITEM_NAME_POTATOES
-            + VALID_DESC_ITEM_QUANTITY_POTATOES
-            + VALID_DESC_ITEM_UNIT_POTATOES
-            + VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
+        String addCommand = AddCommand.COMMAND_WORD + " "
+            + VALID_DESC_ITEM_NAME_POTATOES + " "
+            + VALID_DESC_ITEM_QUANTITY_POTATOES + " "
+            + VALID_DESC_ITEM_UNIT_POTATOES + " "
+            + VALID_DESC_ITEM_BOUGHT_DATE_POTATOES + " "
             + VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
         Item expectedItem = new ItemBuilder(POTATOES).build();
         ModelManager expectedModel = new ModelManager();
