@@ -19,6 +19,7 @@ import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
 import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.ReadOnlyUserPrefs;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 import foodwhere.testutil.StallBuilder;
 import javafx.collections.ObservableList;
@@ -144,7 +145,17 @@ public class SAddCommandTest {
         }
 
         @Override
+        public ObservableList<Review> getFilteredReviewList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredStallList(Predicate<Stall> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredReviewList(Predicate<Review> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

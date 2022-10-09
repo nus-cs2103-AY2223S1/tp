@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import foodwhere.commons.core.GuiSettings;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 import javafx.collections.ObservableList;
 
@@ -79,9 +80,18 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered stall list */
     ObservableList<Stall> getFilteredStallList();
 
+    /** Returns an unmodifiable view of the filtered review list */
+    ObservableList<Review> getFilteredReviewList();
+
     /**
      * Updates the filter of the filtered stall list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStallList(Predicate<Stall> predicate);
+
+    /**
+     * Updates the filter of the filtered stall list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredReviewList(Predicate<Review> predicate);
 }
