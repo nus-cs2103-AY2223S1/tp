@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ALPHA;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BETA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BETA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASK_BETA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_BETA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASK_BETA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HIGH_PRIORITY;
 
 import org.junit.jupiter.api.Test;
