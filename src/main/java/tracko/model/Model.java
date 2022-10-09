@@ -64,13 +64,17 @@ public interface Model {
     void addOrder(Order order);
 
     /**
-     * Adds the given item.
+     * Deletes the given order.
      */
-    void addItem(Item item);
+    void deleteOrder(Order order);
 
     /**
      * Returns the order list.
      */
     ObservableList<Order> getOrderList();
-
+    
+    /**
+     * Adds the given item.
+     */
+    void addItem(Item item);
 }
