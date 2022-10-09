@@ -26,11 +26,11 @@ public class JsonGuestBookStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readGuestBook_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readGuestBook(null));
     }
 
-    private java.util.Optional<ReadOnlyGuestBook> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyGuestBook> readGuestBook(String filePath) throws Exception {
         return new JsonGuestBookStorage(Paths.get(filePath)).readGuestBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,22 +42,22 @@ public class JsonGuestBookStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readGuestBook("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatGuestBook.json"));
+        assertThrows(DataConversionException.class, () -> readGuestBook("notJsonFormatGuestBook.json"));
     }
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidGuestGuestBook.json"));
+        assertThrows(DataConversionException.class, () -> readGuestBook("invalidGuestGuestBook.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidGuestGuestBook.json"));
+        assertThrows(DataConversionException.class, () -> readGuestBook("invalidAndValidGuestGuestBook.json"));
     }
 
     @Test
