@@ -1,15 +1,15 @@
 package gim.testutil;
 
-import static gim.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_REP_AMY;
-import static gim.logic.commands.CommandTestUtil.VALID_REP_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_SETS_AMY;
-import static gim.logic.commands.CommandTestUtil.VALID_SETS_BOB;
+import static gim.logic.commands.CommandTestUtil.VALID_NAME_ARM_CURLS;
+import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
+import static gim.logic.commands.CommandTestUtil.VALID_REP_ARM_CURLS;
+import static gim.logic.commands.CommandTestUtil.VALID_REP_BENCH_PRESS;
+import static gim.logic.commands.CommandTestUtil.VALID_SETS_ARM_CURLS;
+import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_AMY;
-import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
+import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_ARM_CURLS;
+import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,10 +50,12 @@ public class TypicalExercises {
             .withSets("1").withRep("1").build();
 
     // Manually added - Exercise's details found in {@code CommandTestUtil}
-    public static final Exercise AMY = new ExerciseBuilder().withName(VALID_NAME_AMY).withWeight(VALID_WEIGHT_AMY)
-            .withSets(VALID_SETS_AMY).withRep(VALID_REP_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Exercise BOB = new ExerciseBuilder().withName(VALID_NAME_BOB).withWeight(VALID_WEIGHT_BOB)
-            .withSets(VALID_SETS_BOB).withRep(VALID_REP_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+    public static final Exercise ARM_CURLS = new ExerciseBuilder()
+            .withName(VALID_NAME_ARM_CURLS).withWeight(VALID_WEIGHT_ARM_CURLS).withSets(VALID_SETS_ARM_CURLS)
+            .withRep(VALID_REP_ARM_CURLS).withTags(VALID_TAG_FRIEND).build();
+    public static final Exercise BENCH_PRESS = new ExerciseBuilder()
+            .withName(VALID_NAME_BENCH_PRESS).withWeight(VALID_WEIGHT_BENCH_PRESS).withSets(VALID_SETS_BENCH_PRESS)
+            .withRep(VALID_REP_BENCH_PRESS).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

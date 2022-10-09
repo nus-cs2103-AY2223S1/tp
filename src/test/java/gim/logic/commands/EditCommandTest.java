@@ -1,10 +1,10 @@
 package gim.logic.commands;
 
-import static gim.logic.commands.CommandTestUtil.DESC_AMY;
-import static gim.logic.commands.CommandTestUtil.DESC_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static gim.logic.commands.CommandTestUtil.DESC_ARM_CURLS;
+import static gim.logic.commands.CommandTestUtil.DESC_BENCH_PRESS;
+import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
+import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.logic.commands.CommandTestUtil.showExerciseAtIndex;
@@ -57,11 +57,11 @@ public class EditCommandTest {
         Exercise lastExercise = model.getFilteredExerciseList().get(indexLastExercise.getZeroBased());
 
         ExerciseBuilder exerciseInList = new ExerciseBuilder(lastExercise);
-        Exercise editedExercise = exerciseInList.withName(VALID_NAME_BOB).withWeight(VALID_WEIGHT_BOB)
+        Exercise editedExercise = exerciseInList.withName(VALID_NAME_BENCH_PRESS).withWeight(VALID_WEIGHT_BENCH_PRESS)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withWeight(VALID_WEIGHT_BOB).withTags(VALID_TAG_HUSBAND).build();
+        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BENCH_PRESS)
+                .withWeight(VALID_WEIGHT_BENCH_PRESS).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastExercise, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
@@ -89,9 +89,9 @@ public class EditCommandTest {
         showExerciseAtIndex(model, INDEX_FIRST_EXERCISE);
 
         Exercise exerciseInFilteredList = model.getFilteredExerciseList().get(INDEX_FIRST_EXERCISE.getZeroBased());
-        Exercise editedExercise = new ExerciseBuilder(exerciseInFilteredList).withName(VALID_NAME_BOB).build();
+        Exercise editedExercise = new ExerciseBuilder(exerciseInFilteredList).withName(VALID_NAME_BENCH_PRESS).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EXERCISE,
-                new EditExerciseDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditExerciseDescriptorBuilder().withName(VALID_NAME_BENCH_PRESS).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
@@ -125,7 +125,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidExerciseIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredExerciseList().size() + 1);
-        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder()
+                .withName(VALID_NAME_BENCH_PRESS).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX);
@@ -143,17 +144,17 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getExerciseList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditExerciseDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditExerciseDescriptorBuilder().withName(VALID_NAME_BENCH_PRESS).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_EXERCISE, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_EXERCISE, DESC_ARM_CURLS);
 
         // same values -> returns true
-        EditExerciseDescriptor copyDescriptor = new EditExerciseDescriptor(DESC_AMY);
+        EditExerciseDescriptor copyDescriptor = new EditExerciseDescriptor(DESC_ARM_CURLS);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_EXERCISE, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -167,10 +168,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_EXERCISE, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_EXERCISE, DESC_ARM_CURLS)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_EXERCISE, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_EXERCISE, DESC_BENCH_PRESS)));
     }
 
 }
