@@ -16,7 +16,14 @@ import bookface.model.book.Author;
 import bookface.model.book.Book;
 import bookface.model.book.Title;
 
+/**
+ * Parses input arguments and creates the relevant new AddCommand object for the relevant entity to be added
+ */
 public class DeleteBookArgumentsParser implements ArgumentsParsable<DeleteBookCommand> {
+    /**
+     * Parses the given arguments in the context of the DeleteCommand
+     * and returns a DeleteCommand object for execution.
+     */
     @Override
     public DeleteBookCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR);

@@ -5,7 +5,6 @@ import static bookface.logic.parser.CliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
 import bookface.logic.commands.CommandResult;
-import bookface.logic.commands.delete.DeleteCommand;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.Model;
 import bookface.model.book.Book;
