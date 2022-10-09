@@ -1,13 +1,13 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -28,8 +28,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Price price,Item item,Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, price,item, address, tags);
+    public Person(Name name, Phone phone, Price price, Item item, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, price, item, address, tags);
         this.name = name;
         this.phone = phone;
         this.price = price;

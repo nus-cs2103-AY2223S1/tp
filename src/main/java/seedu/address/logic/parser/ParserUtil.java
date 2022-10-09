@@ -1,16 +1,20 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Item;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Price;
+import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -77,7 +81,12 @@ public class ParserUtil {
         return new Address(trimmedAddress);
     }
 
-
+    /**
+     * Parses a {@code String price} into an {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
@@ -87,6 +96,12 @@ public class ParserUtil {
         return new Price(trimmedPrice);
     }
 
+    /**
+     * Parses a {@code String item} into an {@code Item}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code item} is invalid.
+     */
     public static Item parseItem(String item) throws ParseException {
         requireNonNull(item);
         String trimmedItem = item.trim();
@@ -95,7 +110,6 @@ public class ParserUtil {
         }
         return new Item(trimmedItem);
     }
-
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
