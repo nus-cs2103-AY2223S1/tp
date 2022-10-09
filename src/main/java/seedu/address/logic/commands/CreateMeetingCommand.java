@@ -65,16 +65,16 @@ public class CreateMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String[] newMeetingInformation = this.meetingInfo.split(";;;");
-        String[] peopleToMeet = newMeetingInformation[0].strip().split("}}");
+        String[] peopleToMeet = newMeetingInformation[0].split("}}");
         String meetingTitle = newMeetingInformation[1].strip();
         String meetingDateAndTime = newMeetingInformation[2].strip();
         String meetingLocation = newMeetingInformation[3].strip();
 
         ArrayList<Person> arrayOfPeopleToMeet = convertNameToPerson(model, peopleToMeet);
-
         Meeting newMeeting = model.createNewMeeting(arrayOfPeopleToMeet, meetingTitle,
             meetingDateAndTime, meetingLocation);
         model.addMeeting(newMeeting);
+
 
         return new CommandResult(String.format(MESSAGE_CREATE_MEETING_SUCCESS, arrayOfPeopleToMeet.get(0)));
     }
