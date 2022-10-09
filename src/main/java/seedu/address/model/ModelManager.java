@@ -137,7 +137,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
-     * {@code versionedclientBook}
+     * {@code versionedMyInsuRec}
      */
     @Override
     public ObservableList<Client> getFilteredClientList() {
@@ -154,7 +154,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
-     * {@code versionedclientBook}
+     * {@code versionedMyInsuRec}
      */
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
