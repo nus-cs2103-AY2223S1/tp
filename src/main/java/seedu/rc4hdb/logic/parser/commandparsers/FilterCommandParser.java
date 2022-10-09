@@ -40,36 +40,36 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOM, PREFIX_GENDER,
                         PREFIX_HOUSE, PREFIX_MATRIC_NUMBER, PREFIX_TAG);
 
-        ResidentDescriptor filterPersonDescriptor = new ResidentDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            filterPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            filterPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            filterPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ROOM).isPresent()) {
-            filterPersonDescriptor.setRoom(ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get()));
-        }
-        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
-            filterPersonDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
-        }
-        if (argMultimap.getValue(PREFIX_HOUSE).isPresent()) {
-            filterPersonDescriptor.setHouse(ParserUtil.parseHouse(argMultimap.getValue(PREFIX_HOUSE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_MATRIC_NUMBER).isPresent()) {
-            filterPersonDescriptor.setMatricNumber(ParserUtil.parseMatricNumber(
-                    argMultimap.getValue(PREFIX_MATRIC_NUMBER).get()));
-        }
-        parseTagsForfilter(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(filterPersonDescriptor::setTags);
-
-        if (!filterPersonDescriptor.isAnyFieldNonNull()) {
+        ResidentDescriptor filterResidentDescriptor = new ResidentDescriptor();
+        if (!filterResidentDescriptor.isAnyFieldNonNull()) {
             throw new ParseException(FilterCommand.MESSAGE_NOT_FILTERED);
         }
 
-        return new FilterCommand(filterPersonDescriptor);
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            filterResidentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            filterResidentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            filterResidentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_ROOM).isPresent()) {
+            filterResidentDescriptor.setRoom(ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get()));
+        }
+        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
+            filterResidentDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+        }
+        if (argMultimap.getValue(PREFIX_HOUSE).isPresent()) {
+            filterResidentDescriptor.setHouse(ParserUtil.parseHouse(argMultimap.getValue(PREFIX_HOUSE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_MATRIC_NUMBER).isPresent()) {
+            filterResidentDescriptor.setMatricNumber(ParserUtil.parseMatricNumber(
+                    argMultimap.getValue(PREFIX_MATRIC_NUMBER).get()));
+        }
+        parseTagsForfilter(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(filterResidentDescriptor::setTags);
+
+        return new FilterCommand(filterResidentDescriptor);
     }
 
     private Optional<Set<Tag>> parseTagsForfilter(Collection<String> tags) throws ParseException {

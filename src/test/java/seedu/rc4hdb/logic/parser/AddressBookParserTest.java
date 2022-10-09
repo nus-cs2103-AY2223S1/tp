@@ -25,7 +25,7 @@ import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.person.Person;
 import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
-import seedu.rc4hdb.testutil.EditPersonDescriptorBuilder;
+import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 import seedu.rc4hdb.testutil.PersonBuilder;
 import seedu.rc4hdb.testutil.PersonUtil;
 
@@ -56,7 +56,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
-        EditResidentDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        EditResidentDescriptor descriptor = new ResidentDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);

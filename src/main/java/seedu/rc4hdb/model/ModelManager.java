@@ -74,7 +74,7 @@ public class ModelManager implements Model {
         userPrefs.setResidentBookFilePath(residentBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ResidentBook ===============================================================================
 
     public void setResidentBook(ReadOnlyResidentBook residentBook) {
         this.residentBook.resetData(residentBook);
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
         residentBook.setResident(target, editedResident);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Resident List Accessors ===========================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Resident} backed by the internal list of

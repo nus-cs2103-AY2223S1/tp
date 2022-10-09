@@ -10,13 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.rc4hdb.commons.exceptions.IllegalValueException;
+import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.fields.Email;
 import seedu.rc4hdb.model.resident.fields.Gender;
 import seedu.rc4hdb.model.resident.fields.House;
 import seedu.rc4hdb.model.resident.fields.MatricNumber;
 import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
-import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.tag.Tag;
 
@@ -79,9 +79,9 @@ public class JsonAdaptedResident {
      * @throws IllegalValueException if there were any data constraints violated in the adapted resident.
      */
     public Resident toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> residentTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            residentTags.add(tag.toModelType());
         }
 
         throwIfNullField(name, Name.class);
@@ -126,7 +126,7 @@ public class JsonAdaptedResident {
         }
         final MatricNumber modelMatricNumber = new MatricNumber(matricNumber);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(residentTags);
         return new Resident(modelName, modelPhone, modelEmail, modelRoom, modelGender, modelHouse, modelMatricNumber,
                 modelTags);
     }

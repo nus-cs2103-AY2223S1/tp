@@ -4,7 +4,6 @@ import static java.util.Objects.isNull;
 
 import java.util.function.Predicate;
 
-import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 

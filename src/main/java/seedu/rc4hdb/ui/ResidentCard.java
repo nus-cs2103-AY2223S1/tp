@@ -26,7 +26,7 @@ public class ResidentCard extends UiPart<Region> {
 
     public final Resident resident;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;

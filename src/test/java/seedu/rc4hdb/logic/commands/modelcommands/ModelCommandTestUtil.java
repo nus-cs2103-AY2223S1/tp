@@ -2,7 +2,6 @@ package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -16,12 +15,11 @@ import java.util.List;
 import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditResidentDescriptor;
 import seedu.rc4hdb.model.AddressBook;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.person.Person;
 import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
-import seedu.rc4hdb.testutil.EditPersonDescriptorBuilder;
+import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -63,11 +61,11 @@ public class ModelCommandTestUtil {
     public static final EditResidentDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+        DESC_AMY = new ResidentDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withRoom(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+        DESC_BOB = new ResidentDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withRoom(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

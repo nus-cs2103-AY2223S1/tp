@@ -9,7 +9,6 @@ import java.util.Set;
 import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.commons.util.StringUtil;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.person.Address;
 import seedu.rc4hdb.model.resident.fields.Email;
 import seedu.rc4hdb.model.resident.fields.Gender;
 import seedu.rc4hdb.model.resident.fields.House;
