@@ -259,8 +259,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
-Inventory managers who are proficient with typing for small F&B businesses
+**Target user profile**:  
+Purchasing managers who are proficient with typing for small F&B businesses
 
 
 **Value proposition**:  
@@ -353,7 +353,39 @@ Extensions:
 - 1a. Tag already exists.
   - 1a1. FoodRem displays error warning to user.
     Use case resumes from step 1.
-  
+
+#### UC5: Find Item
+
+Use Case: UC5 - Find Item
+MSS:
+
+1. User searches for an Item using keywords.
+2. FoodRem displays all items in inventory which name matches the given keyword.
+   Use case ends.
+
+#### UC6: Add Tag to Item
+
+Use Case: UC6 - Add Tag to an Item
+MSS:
+
+1. User enters the command to find the item of interest.
+2. FoodRem shows a list containing possible matching items.
+3. User enters command to add a specified tag from the desired items.
+4. FoodRem informs user that the tag has been updated successfully.
+   Use case ends.
+5. 
+Extensions:
+- 1a. FoodRem detects that there is an issue with the command entered.
+    - 1a1. FoodRem requests for the command to be entered again.
+    - 1a2. User re-enters the command.
+    - Steps 1a1-1a2 are repeated until the command entered is correct. Use case resumes from step 2.
+
+- 3a. FoodRem detects that there is an issue with the command entered.
+    - 3a1. FoodRem requests for the command to be entered again.
+    - 3a2. User re-enters the command.
+    - Steps 3a1-3a2 are repeated until the command entered is correct.
+      Use case resumes from step 4.
+
 #### UC7: Rename a tag
 
 Use Case: UC7 - Rename a tag
