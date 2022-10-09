@@ -70,9 +70,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setFoodGuideFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setFoodGuideFilePath(addressBookFilePath);
+    public void setFoodGuideFilePath(Path foodGuideFilePath) {
+        requireNonNull(foodGuideFilePath);
+        userPrefs.setFoodGuideFilePath(foodGuideFilePath);
     }
 
     //=========== FoodGuide ================================================================================
