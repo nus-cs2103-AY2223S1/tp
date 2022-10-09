@@ -26,15 +26,15 @@ public class TypicalExercises {
     public static final Exercise ALICE = new ExerciseBuilder().withName("Alice Pauline")
             .withRep("1").withSets("1")
             .withWeight("94351253")
-            .withDates("friends").build();
+            .withDates("11/01/2011").build();
     public static final Exercise BENSON = new ExerciseBuilder().withName("Benson Meier")
             .withRep("1")
             .withSets("1").withWeight("98765432")
-            .withDates("owesMoney", "friends").build();
+            .withDates("11/01/2011").build();
     public static final Exercise CARL = new ExerciseBuilder().withName("Carl Kurz").withWeight("95352563")
             .withSets("1").withRep("1").build();
     public static final Exercise DANIEL = new ExerciseBuilder().withName("Daniel Meier").withWeight("87652533")
-            .withSets("1").withRep("1").withDates("friends").build();
+            .withSets("1").withRep("1").withDates("11/01/2011").build();
     public static final Exercise ELLE = new ExerciseBuilder().withName("Elle Meyer").withWeight("9482224")
             .withSets("1").withRep("1").build();
     public static final Exercise FIONA = new ExerciseBuilder().withName("Fiona Kunz").withWeight("9482427")

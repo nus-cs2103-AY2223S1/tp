@@ -2,18 +2,17 @@ package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.DESC_AMY;
 import static gim.logic.commands.CommandTestUtil.DESC_BOB;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE_2;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_REP_BOB;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BOB;
-import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
-
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
 import gim.testutil.EditExerciseDescriptorBuilder;
+import org.junit.jupiter.api.Test;
 
 
 
@@ -55,7 +54,7 @@ public class EditExerciseDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditExerciseDescriptorBuilder(DESC_AMY).withDates(VALID_DATE).build();
+        editedAmy = new EditExerciseDescriptorBuilder(DESC_AMY).withDates(VALID_DATE_2).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

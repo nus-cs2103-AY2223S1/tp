@@ -32,8 +32,8 @@ public class ParserUtilTest {
     private static final String VALID_WEIGHT = "123456";
     private static final String VALID_REP = "1";
     private static final String VALID_SETS = "3";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DATE_1 = "11/01/2022";
+    private static final String VALID_DATE_2 = "05/05/2022";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -161,14 +161,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Date expectedDate = new Date(VALID_TAG_1);
-        assertEquals(expectedDate, ParserUtil.parseTag(VALID_TAG_1));
+        Date expectedDate = new Date(VALID_DATE_1);
+        assertEquals(expectedDate, ParserUtil.parseTag(VALID_DATE_1));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Date expectedDate = new Date(VALID_TAG_1);
+        String tagWithWhitespace = WHITESPACE + VALID_DATE_1 + WHITESPACE;
+        Date expectedDate = new Date(VALID_DATE_1);
         assertEquals(expectedDate, ParserUtil.parseTag(tagWithWhitespace));
     }
 
@@ -179,7 +179,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_DATE_1, INVALID_TAG)));
     }
 
     @Test
@@ -189,8 +189,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Date> actualDateSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Date> expectedDateSet = new HashSet<Date>(Arrays.asList(new Date(VALID_TAG_1), new Date(VALID_TAG_2)));
+        Set<Date> actualDateSet = ParserUtil.parseTags(Arrays.asList(VALID_DATE_1, VALID_DATE_2));
+        Set<Date> expectedDateSet = new HashSet<Date>(Arrays.asList(new Date(VALID_DATE_1), new Date(VALID_DATE_2)));
 
         assertEquals(expectedDateSet, actualDateSet);
     }

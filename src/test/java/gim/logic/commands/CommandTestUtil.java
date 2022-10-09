@@ -37,6 +37,7 @@ public class CommandTestUtil {
     public static final String VALID_REP_AMY = "1";
     public static final String VALID_REP_BOB = "2";
     public static final String VALID_DATE = "11/01/2007";
+    public static final String VALID_DATE_2 = "12/01/2007";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
