@@ -40,7 +40,7 @@ public class DeleteTaskCommand extends Command {
             + PREFIX_TASK_NUMBER + "1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS =
-            "Deleted task: %1$s";
+            "Deleted task from: %1$s";
     public static final String MESSAGE_TASK_NUMBER_DOES_NOT_EXIST =
             "Task number given does not exist.";
 
