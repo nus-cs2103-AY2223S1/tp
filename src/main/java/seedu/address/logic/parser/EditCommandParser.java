@@ -49,6 +49,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
             editPersonDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
+        if (argMultimap.getValue(PREFIX_ITEM).isPresent()) {
+            editPersonDescriptor.setItem(ParserUtil.parseItem(argMultimap.getValue(PREFIX_ITEM).get()));
+        }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
