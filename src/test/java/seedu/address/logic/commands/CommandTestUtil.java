@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -24,9 +25,11 @@ import seedu.address.testutil.EditFoodDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_APPLE_CALORIE = "50";
     public static final String VALID_APPLE_NAME = "Apple";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_BREAD_NAME = "Bread";
+    public static final String VALID_BREAD_CALORIE = "150";
     public static final String VALID_LUNCH_NAME = "Sushi";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
@@ -34,6 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_BREAKFAST_QUANTITY = "oneSlice";
     public static final String VALID_TAG_LUNCH = "lunch";
 
+    public static final String CALORIE_DESC_APPLE = " " + PREFIX_CALORIE + VALID_APPLE_CALORIE;
+    public static final String CALORIE_DESC_BREAD = " " + PREFIX_CALORIE + VALID_BREAD_CALORIE;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_APPLE_NAME;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

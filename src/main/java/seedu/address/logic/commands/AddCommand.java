@@ -28,7 +28,6 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New food added: %1$s";
     public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in the nutrition tracker.";
-    public static final String MESSAGE_ADD_FAILED = "At least once field was no provided/erroneous.";
 
     private final Food toAdd;
 

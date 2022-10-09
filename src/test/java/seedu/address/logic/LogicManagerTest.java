@@ -3,7 +3,13 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.CALORIE_DESC_BREAD;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BREAD;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_LUNCH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BREAD_CALORIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.BREAD;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,7 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-// import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -21,11 +27,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
-// import seedu.address.model.person.Food;
+import seedu.address.model.person.Food;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-// import seedu.address.testutil.FoodBuilder;
+import seedu.address.testutil.FoodBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -63,24 +69,26 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-    //    @Test
-    //    public void execute_storageThrowsIoException_throwsCommandException() {
-    //        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-    //        JsonAddressBookStorage addressBookStorage =
-    //                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-    //        JsonUserPrefsStorage userPrefsStorage =
-    //                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-    //        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-    //        logic = new LogicManager(model, storage);
-    //
-    //        // Execute add command
-    //        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY;
-    //        Food expectedFood = new FoodBuilder(AMY).withTags().build();
-    //        ModelManager expectedModel = new ModelManager();
-    //        expectedModel.addFood(expectedFood);
-    //        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-    //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    //    }
+    @Test
+    public void execute_storageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder
+                .resolve("ioExceptionAddressBook.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
+
+        // Execute add command
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_BREAD + CALORIE_DESC_BREAD + TAG_DESC_LUNCH;
+        Food expectedFood = new FoodBuilder(BREAD).withCalorie(VALID_BREAD_CALORIE)
+                .withTags(VALID_TAG_LUNCH).build();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addFood(expectedFood);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {

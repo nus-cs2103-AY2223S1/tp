@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -10,6 +11,8 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditFoodDescriptor;
 import seedu.address.model.person.Food;
 import seedu.address.model.tag.Tag;
+
+
 
 /**
  * A utility class for Person.
@@ -29,6 +32,7 @@ public class PersonUtil {
     public static String getFoodDetails(Food food) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + food.getName().fullName + " ");
+        sb.append(PREFIX_CALORIE + food.getCalorie().value + " ");
         food.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
