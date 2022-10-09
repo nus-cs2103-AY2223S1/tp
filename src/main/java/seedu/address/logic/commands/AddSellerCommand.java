@@ -31,7 +31,7 @@ public class AddSellerCommand extends Command {
     private final Seller seller;
 
     /**
-     * Creates an AddSeller Command to add the specified {@code Seller}
+     * Creates an AddSellerCommand to add the specified {@code Seller}
      * to the {@code Person} at specified {@code Index} in the last-shown list
      */
     public AddSellerCommand(Seller seller, Index index) {

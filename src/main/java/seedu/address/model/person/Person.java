@@ -162,7 +162,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Selling: ")
+                .append(getSellerProperties());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
