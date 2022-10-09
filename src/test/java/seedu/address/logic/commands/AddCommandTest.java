@@ -20,7 +20,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -109,11 +112,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -124,29 +122,95 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasBuyer(Buyer buyer) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public boolean hasSupplier(Supplier supplier) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public boolean hasDeliverer(Deliverer person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public void deleteBuyer(Buyer target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void deleteSupplier(Supplier target) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteDeliverer(Deliverer target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBuyer(Buyer buyer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSupplier(Supplier supplier) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addDeliverer(Deliverer deliverer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBuyer(Buyer target, Buyer editedBuyer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSupplier(Supplier target, Supplier editedSupplier) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDeliverer(Deliverer target, Deliverer editedDeliverer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Buyer> getFilteredBuyerList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Supplier> getFilteredSupplierList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Deliverer> getFilteredDelivererList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBuyerList(Predicate<Buyer> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredDelivererList(Predicate<Deliverer> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
@@ -160,11 +224,11 @@ public class AddCommandTest {
             this.person = person;
         }
 
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
+//        @Override
+//        public boolean hasPerson(Person person) {
+//            requireNonNull(person);
+//            return this.person.isSamePerson(person);
+//        }
     }
 
     /**
@@ -173,17 +237,17 @@ public class AddCommandTest {
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
+//        @Override
+//        public boolean hasPerson(Person person) {
+//            requireNonNull(person);
+//            return personsAdded.stream().anyMatch(person::isSamePerson);
+//        }
+//
+//        @Override
+//        public void addPerson(Person person) {
+//            requireNonNull(person);
+//            personsAdded.add(person);
+//        }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
