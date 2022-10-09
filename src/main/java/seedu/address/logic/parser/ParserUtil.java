@@ -41,10 +41,11 @@ public class ParserUtil {
     }
 
     /**
-     * // TODO
-     * @param oneBasedIndex
-     * @return
-     * @throws ParseException
+     * Parses two one based index and returns it. Leading and trailing whitespaces will be trimmed.
+     *
+     * @param oneBasedIndex to be parsed.
+     * @return a list of 2 oneBasedIndex.
+     * @throws ParseException if indices are invalid.
      */
     public static List<Index> parseTwoIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
