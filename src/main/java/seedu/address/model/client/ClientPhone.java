@@ -21,7 +21,7 @@ public class ClientPhone {
      */
     public ClientPhone(String phone) {
         requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidClientPhone(phone), MESSAGE_CONSTRAINTS);
         this.phone = phone;
     }
 
@@ -47,7 +47,7 @@ public class ClientPhone {
     /**
      * Returns true if a given string is a valid phone number.
      */
-    public static boolean isValidPhone(String test) {
+    public static boolean isValidClientPhone(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
