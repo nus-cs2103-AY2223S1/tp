@@ -30,6 +30,9 @@
           </minWidth>
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" textFill="WHITE" />
+            <padding>
+               <Insets bottom="5.0" />
+            </padding>
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" textFill="WHITE">
