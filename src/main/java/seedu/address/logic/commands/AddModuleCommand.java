@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -18,10 +18,10 @@ public class AddModuleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to Plannit."
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
-            + "[" + PREFIX_DESCRIPTION + "MODULE_TITLE]\n"
+            + "[" + PREFIX_MODULE_TITLE + "MODULE_TITLE]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CODE + "CS1231S "
-            + PREFIX_DESCRIPTION + "Discrete Structures";
+            + PREFIX_MODULE_TITLE + "Discrete Structures";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "Oops, it looks like you have already "

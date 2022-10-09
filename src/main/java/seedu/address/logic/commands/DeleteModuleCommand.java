@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
@@ -18,8 +19,8 @@ public class DeleteModuleCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the module, identified by the module code, from Plannit.\n"
-            + "Parameters: MODULE_CODE (must correspond to existing module)\n"
-            + "Example: " + COMMAND_WORD + " CS1231S";
+            + "Parameters: " + PREFIX_MODULE_CODE + "MODULE_CODE (must correspond to existing module)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS1231S";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 
