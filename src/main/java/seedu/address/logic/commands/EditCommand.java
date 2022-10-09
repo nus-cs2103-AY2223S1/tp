@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PAID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -26,6 +27,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NOKPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
@@ -42,6 +44,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_NOK_PHONE + "NOK_PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_CLASS_DATE_TIME + "CLASS_DATE_TIME] "
@@ -101,6 +104,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        NOKPhone updatedNOKPhone = editPersonDescriptor.getNOKPhone().orElse(personToEdit.getNOKPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
@@ -109,7 +113,7 @@ public class EditCommand extends Command {
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedClassDateTime,
+        return new Person(updatedName, updatedPhone, updatedNOKPhone, updatedEmail, updatedAddress, updatedClassDateTime,
                 updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
     }
 
@@ -138,6 +142,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;
+        private NOKPhone nokPhone;
         private Email email;
         private Address address;
         private Class aClass;
@@ -154,6 +159,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
+            setNOKPhone(toCopy.nokPhone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setClass(toCopy.aClass);
@@ -166,7 +172,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, aClass, moneyOwed, moneyPaid,
+            return CollectionUtil.isAnyNonNull(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid,
                     additionalNotes);
         }
 
@@ -184,6 +190,14 @@ public class EditCommand extends Command {
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
+        }
+
+        public void setNOKPhone(NOKPhone nokPhone) {
+            this.nokPhone = nokPhone;
+        }
+
+        public Optional<NOKPhone> getNOKPhone() {
+            return Optional.ofNullable(nokPhone);
         }
 
         public void setEmail(Email email) {
@@ -257,6 +271,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
+                    && getNOKPhone().equals(e.getNOKPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getAClass().toString().equals(e.getAClass().toString())
