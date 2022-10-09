@@ -94,7 +94,7 @@ public class PrimaryParserTest {
                 + ListUsersCommand.COMMAND_WORD) instanceof ListUsersCommand);
         assertTrue(parser.parse(ListCommand.COMMAND_WORD + " "
                 + ListUsersCommand.COMMAND_WORD + " 3") instanceof ListUsersCommand);
-        assertTrue(parser.parse(ListCommand.COMMAND_WORD + ""
+        assertTrue(parser.parse(ListCommand.COMMAND_WORD + " "
                 + ListBooksCommand.COMMAND_WORD) instanceof ListBooksCommand);
         assertTrue(parser.parse(ListCommand.COMMAND_WORD + " "
                 + ListBooksCommand.COMMAND_WORD + " 3") instanceof ListBooksCommand);
