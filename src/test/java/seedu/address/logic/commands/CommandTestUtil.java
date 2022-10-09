@@ -28,7 +28,10 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_NAME_ANDERSON = "Anderson Johnson";
+    public static final String VALID_NAME_BEN = "Ben Ten";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_COLIN = "Colin Lin";
     public static final String VALID_MODULE_CODE_BOB = "CS1231S";
     public static final String VALID_MODULE_CODE_CABE = "CS2100";
     public static final String VALID_NAME_CABE = "Cabe Tan";
@@ -36,11 +39,15 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_PHONE_CABE = "33333333";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
+    public static final String VALID_EMAIL_ANDERSON = "anderson@example.com";
+    public static final String VALID_EMAIL_BEN = "ben@example.com";
+    public static final String VALID_EMAIL_COLIN = "colin@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_EMAIL_CABE = "cabe@example.com";
     public static final String VALID_GENDER_AMY = "F";
     public static final String VALID_GENDER_BOB = "M";
     public static final String VALID_GENDER_CABE = "M";
+    public static final String VALID_GENDER_MALE = "M";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -77,16 +84,16 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withGender(VALID_GENDER_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withGender(VALID_GENDER_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withModuleCode(VALID_MODULE_CODE_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withGender(VALID_GENDER_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withModuleCode(VALID_MODULE_CODE_BOB)
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withGender(VALID_GENDER_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_CABE = new EditPersonDescriptorBuilder().withName(VALID_NAME_CABE)
-                .withModuleCode(VALID_MODULE_CODE_CABE)
-                .withPhone(VALID_PHONE_CABE).withEmail(VALID_EMAIL_CABE).withGender(VALID_GENDER_CABE)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withModuleCode(VALID_MODULE_CODE_CABE)
+            .withPhone(VALID_PHONE_CABE).withEmail(VALID_EMAIL_CABE).withGender(VALID_GENDER_CABE)
+            .withTags(VALID_TAG_FRIEND).build();
     }
 
     /**
@@ -95,7 +102,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -110,7 +117,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -131,6 +138,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.

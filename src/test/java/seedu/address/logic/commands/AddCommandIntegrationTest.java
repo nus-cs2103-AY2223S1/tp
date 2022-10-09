@@ -36,7 +36,7 @@ public class AddCommandIntegrationTest {
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new StudentCommand(validPerson), model,
-                String.format(StudentCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+            String.format(StudentCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class AddCommandIntegrationTest {
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new ProfCommand(validPerson), model,
-                String.format(ProfCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+            String.format(ProfCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
     }
 
     @Test
@@ -58,14 +58,14 @@ public class AddCommandIntegrationTest {
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new TaCommand(validPerson), model,
-                String.format(TaCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+            String.format(TaCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
         assertCommandFailure(new StudentCommand((Student) personInList), model,
-                StudentCommand.MESSAGE_DUPLICATE_PERSON);
+            StudentCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }
