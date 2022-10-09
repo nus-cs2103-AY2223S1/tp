@@ -41,26 +41,14 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyTaAssist getSampleTaAssist() {
-        TaAssist sampleTaAssist = new TaAssist();
-        for (Student sampleStudent : getSampleStudents()) {
-            addModuleClasses(sampleTaAssist, sampleStudent);
-            sampleTaAssist.addStudent(sampleStudent);
+        TaAssist taAssist = new TaAssist();
+        for (Student student : getSampleStudents()) {
+            student.getModuleClasses().stream()
+                    .filter(c -> !taAssist.hasModuleClass(c))
+                    .forEach(taAssist::addModuleClass);
+            taAssist.addStudent(student);
         }
-        return sampleTaAssist;
-    }
-
-    /**
-     * Adds the modules classes of a {@code Student} to a {@code TaAssist} if they do not already exist.
-     *
-     * @param taAssist The {@code TaAssist} to add the {@code ModuleClass} to.
-     * @param student The {@code Student} to get the {@code ModuleClass} from.
-     */
-    private static void addModuleClasses(TaAssist taAssist, Student student) {
-        for (ModuleClass moduleClass : student.getModuleClasses()) {
-            if (!taAssist.hasModuleClass(moduleClass)) {
-                taAssist.addModuleClass(moduleClass);
-            }
-        }
+        return taAssist;
     }
 
     /**
