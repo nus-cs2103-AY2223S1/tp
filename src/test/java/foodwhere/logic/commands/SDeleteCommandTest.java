@@ -39,9 +39,9 @@ public class SDeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStallList().size() + 1);
-        SDeleteCommand SDeleteCommand = new SDeleteCommand(outOfBoundIndex);
+        SDeleteCommand sDeleteCommand = new SDeleteCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(SDeleteCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(sDeleteCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
     }
 
     @Test
@@ -49,15 +49,15 @@ public class SDeleteCommandTest {
         CommandTestUtil.showStallAtIndex(model, TypicalIndexes.INDEX_FIRST_STALL);
 
         Stall stallToDelete = model.getFilteredStallList().get(TypicalIndexes.INDEX_FIRST_STALL.getZeroBased());
-        SDeleteCommand SDeleteCommand = new SDeleteCommand(TypicalIndexes.INDEX_FIRST_STALL);
+        SDeleteCommand sDeleteCommand = new SDeleteCommand(TypicalIndexes.INDEX_FIRST_STALL);
 
-        String expectedMessage = String.format(SDeleteCommand.MESSAGE_DELETE_STALL_SUCCESS, stallToDelete);
+        String expectedMessage = String.format(sDeleteCommand.MESSAGE_DELETE_STALL_SUCCESS, stallToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteStall(stallToDelete);
         showNoStall(expectedModel);
 
-        CommandTestUtil.assertCommandSuccess(SDeleteCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(sDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
