@@ -66,7 +66,9 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Status getStatus() { return status; }
+    public Status getStatus() {
+        return status;
+    }
 
     /**
      * Returns true if both persons have the same name.
