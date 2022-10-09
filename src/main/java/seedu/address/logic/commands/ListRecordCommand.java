@@ -42,6 +42,11 @@ public class ListRecordCommand extends Command{
         return ListRecordCommand.lastCalledPerson != null;
     }
 
+    /**
+     * Getter for the Person that is last called.
+     *
+     * @return The Person that is last called.
+     */
     public static Person getLastCalledPerson() {
         return ListRecordCommand.lastCalledPerson;
     }
