@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 /**
  * Represents a Task's deadline in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
@@ -11,12 +14,6 @@ public class Deadline implements Comparable<Deadline> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be of the form YYYY-MM-DD, eg 2022-10-07";
-
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
 
     public final String date;
 
@@ -35,7 +32,12 @@ public class Deadline implements Comparable<Deadline> {
      * Returns true if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalDate.parse(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
 
 

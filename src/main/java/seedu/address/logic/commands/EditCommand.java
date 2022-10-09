@@ -18,7 +18,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Deadline;
+import seedu.address.model.person.Module;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,6 +45,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the task tracker.";
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -69,6 +73,10 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
+        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
@@ -82,11 +90,11 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Name updatedModule = editPersonDescriptor.getModule().orElse(personToEdit.getModule());
+        Module updatedModule = editPersonDescriptor.getModule().orElse(personToEdit.getModule());
         Deadline updatedDeadline = editPersonDescriptor.getDeadline().orElse(personToEdit.getDeadline());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedModule, updatedDeadline, updatedTags);
+        return new Person(updatedName, updatedModule, updatedDeadline, updatedTags, personToEdit.isDone());
     }
 
     @Override
@@ -110,10 +118,13 @@ public class EditCommand extends Command {
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
+     *
+     * The {@code isDone} field is not affected by the edit command, and thus is not part of
+     * the descriptor.
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Name module;
+        private Module module;
         private Deadline deadline;
         private Set<Tag> tags;
 
@@ -145,11 +156,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setModule(Name module) {
+        public void setModule(Module module) {
             this.module = module;
         }
 
-        public Optional<Name> getModule() {
+        public Optional<Module> getModule() {
             return Optional.ofNullable(module);
         }
 

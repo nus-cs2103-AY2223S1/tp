@@ -16,27 +16,37 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     private final Name name;
-    private final Name module;
+    private final Module module;
     private final Deadline deadline;
     private final Set<Tag> tags = new HashSet<>();
-    private final boolean isDone = false;
+    private final boolean isDone;
 
     /**
+     * A convenience constructor for the {@code Task} class.
      * Every field must be present and not null.
      */
-    public Person(Name name, Name module, Deadline deadline, Set<Tag> tags) {
+    public Person(Name name, Module module, Deadline deadline, Set<Tag> tags) {
+        this(name, module, deadline, tags, false);
+    }
+
+    /**
+     * Constructor for the {@code Task} class.
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Module module, Deadline deadline, Set<Tag> tags, boolean isDone) {
         requireAllNonNull(name, module, deadline, tags);
         this.name = name;
         this.module = module;
         this.deadline = deadline;
         this.tags.addAll(tags);
+        this.isDone = isDone;
     }
 
     public Name getName() {
         return name;
     }
 
-    public Name getModule() {
+    public Module getModule() {
         return module;
     }
 
@@ -54,6 +64,20 @@ public class Person {
 
     public boolean isDone() {
         return isDone;
+    }
+
+    /**
+     * Returns true if both tasks have the same name and module.
+     * This defines a weaker notion of equality between two tasks.
+     */
+    public boolean isSamePerson(Person otherTask) {
+        if (this == otherTask) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getName().equals(this.getName())
+                && otherTask.getModule().equals(this.getModule());
     }
 
     @Override
@@ -96,13 +120,5 @@ public class Person {
 
         builder.append("; Done: ").append(isDone);
         return builder.toString();
-    }
-
-    /**
-     * Temporary method while morphing Person into Task.
-     * TODO: Delete
-     */
-    public boolean isSamePerson(Person person) {
-        return false;
     }
 }

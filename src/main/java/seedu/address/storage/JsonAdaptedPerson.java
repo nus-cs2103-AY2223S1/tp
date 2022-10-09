@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Deadline;
+import seedu.address.model.person.Module;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -26,19 +27,22 @@ class JsonAdaptedPerson {
     private final String module;
     private final String deadline;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final Boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("module") String module,
-                 @JsonProperty("deadline") String deadline, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                 @JsonProperty("deadline") String deadline, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                 @JsonProperty("isDone") Boolean isDone) {
         this.name = name;
         this.module = module;
         this.deadline = deadline;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.isDone = isDone;
     }
 
     /**
@@ -51,6 +55,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        isDone = source.isDone();
     }
 
     /**
@@ -73,12 +78,13 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (module == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));
         }
-        if (!Name.isValidName(module)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+
+        if (!Module.isValidModule(module)) {
+            throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
         }
-        final Name modelModule = new Name(module);
+        final Module modelModule = new Module(module);
 
         if (deadline == null) {
             throw new IllegalValueException(
@@ -90,7 +96,12 @@ class JsonAdaptedPerson {
         final Deadline modelDeadline = new Deadline(deadline);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelModule, modelDeadline, modelTags);
+
+        if (isDone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "isDone"));
+        }
+
+        return new Person(modelName, modelModule, modelDeadline, modelTags, this.isDone);
     }
 
 }
