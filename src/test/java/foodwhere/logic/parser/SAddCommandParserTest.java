@@ -21,7 +21,7 @@ import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
-import foodwhere.logic.commands.AddCommand;
+import foodwhere.logic.commands.SAddCommand;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
@@ -29,8 +29,8 @@ import foodwhere.model.stall.Stall;
 import foodwhere.testutil.StallBuilder;
 import foodwhere.testutil.TypicalStalls;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class SAddCommandParserTest {
+    private SAddCommandParser parser = new SAddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -38,22 +38,22 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
-                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedStall));
+                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new SAddCommand(expectedStall));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB
-                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedStall));
+                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new SAddCommand(expectedStall));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new AddCommand(expectedStall));
+                + ADDRESS_DESC_BOB + DETAIL_DESC_FRIEND, new SAddCommand(expectedStall));
 
         // multiple details - all accepted
         Stall expectedStallMultipleDetails =
                 new StallBuilder(TypicalStalls.BOB).withDetails(VALID_DETAIL_FRIEND, VALID_DETAIL_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB
-                + DETAIL_DESC_HUSBAND + DETAIL_DESC_FRIEND, new AddCommand(expectedStallMultipleDetails));
+                + DETAIL_DESC_HUSBAND + DETAIL_DESC_FRIEND, new SAddCommand(expectedStallMultipleDetails));
     }
 
     @Test
@@ -61,12 +61,12 @@ public class AddCommandParserTest {
         // zero details
         Stall expectedStall = new StallBuilder(TypicalStalls.AMY).withDetails().build();
         assertParseSuccess(parser, NAME_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedStall));
+                new SAddCommand(expectedStall));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SAddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + ADDRESS_DESC_BOB,
@@ -102,6 +102,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB
                 + ADDRESS_DESC_BOB + DETAIL_DESC_HUSBAND + DETAIL_DESC_FRIEND,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SAddCommand.MESSAGE_USAGE));
     }
 }

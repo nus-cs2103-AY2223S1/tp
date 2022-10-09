@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
-import foodwhere.logic.commands.AddCommand;
 import foodwhere.logic.commands.ClearCommand;
 import foodwhere.logic.commands.DeleteCommand;
 import foodwhere.logic.commands.EditCommand;
@@ -19,6 +18,7 @@ import foodwhere.logic.commands.ExitCommand;
 import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.ListCommand;
+import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
@@ -34,8 +34,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Stall stall = new StallBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(StallUtil.getAddCommand(stall));
-        assertEquals(new AddCommand(stall), command);
+        SAddCommand command = (SAddCommand) parser.parseCommand(StallUtil.getAddCommand(stall));
+        assertEquals(new SAddCommand(stall), command);
     }
 
     @Test
