@@ -51,17 +51,17 @@ public class JsonGuestBookStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
+    public void readGuestBook_invalidGuestBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readGuestBook("invalidGuestGuestBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
+    public void readGuestBook_invalidAndValidGuestBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readGuestBook("invalidAndValidGuestGuestBook.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveGuestBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         GuestBook original = getTypicalAddressBook();
         JsonGuestBookStorage jsonAddressBookStorage = new JsonGuestBookStorage(filePath);
