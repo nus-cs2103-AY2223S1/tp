@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -180,6 +181,7 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Company> companies = logic.getFilteredCompanyList();
 
         if (companies.size() == 0) {
+            pocListPanel.setPocList(FXCollections.observableArrayList());
             return;
         }
 
