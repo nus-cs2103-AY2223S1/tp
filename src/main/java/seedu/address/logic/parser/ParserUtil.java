@@ -9,11 +9,19 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.client.Birthday;
+import seedu.address.model.client.Income;
+import seedu.address.model.client.RiskAppetite;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.policy.Commission;
+import seedu.address.model.policy.Company;
+import seedu.address.model.policy.Coverage;
+import seedu.address.model.policy.Title;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -121,4 +129,113 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code String birthday} into a {@code Birthday}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Birthday parseBirthday(String birthday) throws ParseException {
+        requireNonNull(birthday);
+        String trimmedBirthday = birthday.trim();
+        if (!Birthday.isValidFormat(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_DATE_CONSTRAINTS);
+        }
+        return new Birthday(birthday);
+    }
+
+    /**
+     * Parses {@code String income} into a {@code income}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Income parseIncome(String income) throws ParseException {
+        requireNonNull(income);
+        String trimmedIncome = income.trim();
+        if (!Income.isValidFormat(trimmedIncome)) {
+            throw new ParseException(Income.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        return new Income(income);
+    }
+
+    /**
+     * Parses {@code String RA} into a {@code RiskAppetite}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static RiskAppetite parseRA(String ra) throws ParseException {
+        requireNonNull(ra);
+        String trimmedRiskAppetiteTag = ra.trim();
+        if (!RiskAppetite.isValidFormat(trimmedRiskAppetiteTag)) {
+            throw new ParseException(RiskAppetite.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        return new RiskAppetite(ra);
+    }
+
+    /**
+     * Parses {@code String Title} into a {@code Title}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitleTag = title.trim();
+        if (!Title.isValidTitle(trimmedTitleTag)) {
+            throw new ParseException(Title.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        return new Title(trimmedTitleTag);
+    }
+
+    /**
+     * Parses {@code String company} into a {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        String trimmedCompanyTag = company.trim();
+        if (!Title.isValidTitle(trimmedCompanyTag)) {
+            throw new ParseException(Company.MESSAGE_FORMAT_CONSTRAINTS);
+        }
+        return new Company(trimmedCompanyTag);
+    }
+
+    /**
+     * Parses {@code String commissions} into a {@code Commission}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Commission parseCommission(String commission) throws ParseException {
+        requireNonNull(commission);
+        String trimmedCommission = commission.trim();
+        if (!Commission.isValidCommission(trimmedCommission)) {
+            throw new ParseException(Commission.MESSAGE_CONSTRAINTS);
+        }
+        return new Commission(trimmedCommission);
+    }
+
+    /**
+     * Parses a {@code String Coverage} into a {@code Coverage}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code coverage} is invalid.
+     */
+    public static Coverage parseCoverage(String coverage) throws ParseException {
+        requireNonNull(coverage);
+        String trimmedCoverage = coverage.trim();
+        if (!Coverage.isValidCoverageName(trimmedCoverage)) {
+            throw new ParseException(Coverage.MESSAGE_CONSTRAINTS);
+        }
+        return new Coverage(trimmedCoverage);
+    }
+
+    /**
+     * Parses {@code Collection<String> coverages} into a {@code Set<Coverage>}.
+     */
+    public static Set<Coverage> parseCoverages(Collection<String> coverages) throws ParseException {
+        requireNonNull(coverages);
+        final Set<Coverage> coverageSet = new HashSet<>();
+        for (String coverage : coverages) {
+            coverageSet.add(parseCoverage(coverage));
+        }
+        return coverageSet;
+    }
+
 }

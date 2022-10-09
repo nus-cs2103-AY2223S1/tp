@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.client.Client;
 import seedu.address.model.person.Person;
+import seedu.address.model.policy.Policy;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,8 +22,12 @@ import seedu.address.model.person.Person;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate clients(s).";
+    public static final String MESSAGE_DUPLICATE_POLICY = "Policies list contains duplicate policy(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedClient> clients = new ArrayList<>();
+    private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
@@ -38,6 +44,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
+        policies.addAll(source.getPolicyList().stream().map(JsonAdaptedPolicy::new).collect(Collectors.toList()));
     }
 
     /**
@@ -54,6 +62,23 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+
+        for (JsonAdaptedClient jsonAdaptedClient : clients) {
+            Client client = jsonAdaptedClient.toModelType();
+            if (addressBook.hasClient(client)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
+            }
+            addressBook.addClient(client);
+        }
+
+        for (JsonAdaptedPolicy jsonAdaptedPolicy : policies) {
+            Policy policy = jsonAdaptedPolicy.toModelType();
+            if (addressBook.hasPolicy(policy)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_POLICY);
+            }
+            addressBook.addPolicy(policy);
+        }
+
         return addressBook;
     }
 

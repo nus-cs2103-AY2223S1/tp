@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.client.Client;
 import seedu.address.model.person.Person;
+import seedu.address.model.policy.Policy;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +25,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Client> filteredClients;
+    private final FilteredList<Policy> filteredPolicies;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +39,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        filteredPolicies = new FilteredList<>(this.addressBook.getPolicyList());
 
     }
 
@@ -113,9 +120,49 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
+    //=========== Client stuff =============================================================
+    @Override
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return addressBook.hasClient(client);
+    }
+    @Override
+    public void addClient(Client client) {
+        addressBook.addClient(client);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+    }
+
+    @Override
+    public void setClient(Client target, Client editedClient) {
+        requireAllNonNull(target, editedClient);
+        addressBook.setClient(target, editedClient);
+    }
+    @Override
+    public void deleteClient(Client client) {
+        requireNonNull(client);
+        addressBook.removeClient(client);
+    }
+
+    @Override
+    public ObservableList<Client> getFilteredClientList() {
+        return filteredClients;
+    }
+
+    @Override
+    public void updateFilteredClientList(Predicate<Client> predicate) {
+        requireNonNull(predicate);
+        filteredClients.setPredicate(predicate);
+    }
+
+
+    @Override
+    public void sort(Comparator<Person> comparator) {
+        addressBook.sort(comparator);
+    }
+
+
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -150,7 +197,44 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredClients.equals(other.filteredClients)
+                && filteredPolicies.equals(other.filteredPolicies);
     }
 
+    //=========== Policy stuff =============================================================
+
+    @Override
+    public boolean hasPolicy(Policy policy) {
+        requireNonNull(policy);
+        return addressBook.hasPolicy(policy);
+    }
+
+    @Override
+    public void addPolicy(Policy policy) {
+        addressBook.addPolicy(policy);
+        updateFilteredPolicyList(PREDICATE_SHOW_ALL_POLICIES);
+    }
+
+    @Override
+    public void setPolicy(Policy target, Policy editedPolicy) {
+        requireAllNonNull(target, editedPolicy);
+        addressBook.setPolicy(target, editedPolicy);
+    }
+    @Override
+    public void deletePolicy(Policy policy) {
+        requireNonNull(policy);
+        addressBook.removePolicy(policy);
+    }
+
+    @Override
+    public ObservableList<Policy> getFilteredPolicyList() {
+        return filteredPolicies;
+    }
+
+    @Override
+    public void updateFilteredPolicyList(Predicate<Policy> predicate) {
+        requireNonNull(predicate);
+        filteredPolicies.setPredicate(predicate);
+    }
 }

@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.client.Client;
 import seedu.address.model.person.Person;
+import seedu.address.model.policy.Policy;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -107,10 +110,19 @@ public class AddCommandTest {
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void addClient(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sort(Comparator comparator) {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
@@ -127,9 +139,22 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
-
+        @Override
+        public boolean hasClient(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteClient(Client target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setClient(Client target, Client editedClient) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -144,7 +169,47 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Client> getFilteredClientList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredClientList(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPolicy(Policy toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPolicy(Policy toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePolicy(Policy toDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPolicy(Policy target, Policy editedPolicy) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Policy> getFilteredPolicyList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPolicyList(Predicate<Policy> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
