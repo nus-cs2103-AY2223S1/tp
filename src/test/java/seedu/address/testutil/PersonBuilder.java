@@ -3,11 +3,12 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.ApplicationStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.ScholarshipName;
+import seedu.address.model.person.Scholarship;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,13 +21,15 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
 
-    public static final String DEFAULT_SCHOLARSHIPNAME = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_SCHOLARSHIP = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_APPLICATION_STATUS = "pending";
 
     private Name name;
     private Phone phone;
     private Email email;
 
-    private ScholarshipName scholarshipname;
+    private Scholarship scholarship;
+    private ApplicationStatus applicationStatus;
     private Set<Tag> tags;
 
     /**
@@ -36,7 +39,8 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        scholarshipname = new ScholarshipName(DEFAULT_SCHOLARSHIPNAME);
+        scholarship = new Scholarship(DEFAULT_SCHOLARSHIP);
+        applicationStatus = new ApplicationStatus(DEFAULT_APPLICATION_STATUS);
         tags = new HashSet<>();
     }
 
@@ -47,7 +51,8 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        scholarshipname = personToCopy.getScholarshipName();
+        scholarship = personToCopy.getScholarship();
+        applicationStatus = personToCopy.getApplicationStatus();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -70,8 +75,16 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withScholarship(String address) {
-        this.scholarshipname = new ScholarshipName(address);
+    public PersonBuilder withScholarship(String scholarship) {
+        this.scholarship = new Scholarship(scholarship);
+        return this;
+    }
+
+    /**
+     * Sets the {@code ApplicationStatus} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withApplicationStatus(String applicationStatus) {
+        this.applicationStatus = new ApplicationStatus(applicationStatus);
         return this;
     }
 
@@ -92,7 +105,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, scholarshipname, tags);
+        return new Person(name, phone, email, scholarship, applicationStatus, tags);
     }
 
 }

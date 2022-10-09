@@ -5,11 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.ApplicationStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.ScholarshipName;
+import seedu.address.model.person.Scholarship;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,7 +36,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setScholarshipName(person.getScholarshipName());
+        descriptor.setScholarship(person.getScholarship());
+        descriptor.setApplicationStatus(person.getApplicationStatus());
         descriptor.setTags(person.getTags());
     }
 
@@ -67,7 +69,15 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withScholarship(String name) {
-        descriptor.setScholarshipName(new ScholarshipName(name));
+        descriptor.setScholarship(new Scholarship(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code ApplicationStatus} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withApplicationStatus(String applicationStatus) {
+        descriptor.setApplicationStatus(new ApplicationStatus(applicationStatus));
         return this;
     }
 

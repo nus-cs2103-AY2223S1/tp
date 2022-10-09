@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-
-import java.util.Arrays;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.StatusContainsKeywordPredicate;
+
+/**
+ * Parses input arguments and creates a new FilterCommand object
+ */
 public class FilterCommandParser implements Parser<FilterCommand> {
 
     /**
@@ -28,7 +28,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
 
 
-        return new FilterCommand(new StatusContainsKeywordsPredicate(trimmedArgs));
+        return new FilterCommand(new StatusContainsKeywordPredicate(trimmedArgs));
     }
 
 }

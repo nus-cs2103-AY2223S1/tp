@@ -3,6 +3,7 @@
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com",
-    "scholarshipName": "4th street"
+    "scholarship": "4th street",
+    "applicationStatus": "pending"
   } ]
 }

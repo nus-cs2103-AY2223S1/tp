@@ -1,11 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.StatusContainsKeywordPredicate;
 
-
+/**
+ * Filters all applicants in address book whose status matches the keyword
+ * Keyword matching is case-insensitive.
+ */
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
@@ -15,9 +19,9 @@ public class FilterCommand extends Command {
             + "Parameters: KEYWORD\n"
             + "Example: " + COMMAND_WORD + " pending";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final StatusContainsKeywordPredicate predicate;
 
-    public FilterCommand(NameContainsKeywordsPredicate predicate) {
+    public FilterCommand(StatusContainsKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 
