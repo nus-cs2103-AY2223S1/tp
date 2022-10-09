@@ -10,9 +10,9 @@ import foodwhere.model.stall.Stall;
 /**
  * Adds a stall to the address book.
  */
-public class AddCommand extends Command {
+public class SAddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "sadd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a stall to the address book. "
             + "Parameters: "
@@ -31,9 +31,9 @@ public class AddCommand extends Command {
     private final Stall toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Stall}
+     * Creates an SAddCommand to add the specified {@code Stall}
      */
-    public AddCommand(Stall stall) {
+    public SAddCommand(Stall stall) {
         requireNonNull(stall);
         toAdd = stall;
     }
@@ -53,7 +53,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof SAddCommand // instanceof handles nulls
+                && toAdd.equals(((SAddCommand) other).toAdd));
     }
 }

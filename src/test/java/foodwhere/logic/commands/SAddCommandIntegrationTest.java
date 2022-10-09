@@ -14,9 +14,9 @@ import foodwhere.testutil.StallBuilder;
 import foodwhere.testutil.TypicalStalls;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code SAddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class SAddCommandIntegrationTest {
 
     private Model model;
 
@@ -32,14 +32,14 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addStall(validStall);
 
-        assertCommandSuccess(new AddCommand(validStall), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validStall), expectedModel);
+        assertCommandSuccess(new SAddCommand(validStall), model,
+                String.format(SAddCommand.MESSAGE_SUCCESS, validStall), expectedModel);
     }
 
     @Test
     public void execute_duplicateStall_throwsCommandException() {
         Stall stallInList = model.getAddressBook().getStallList().get(0);
-        assertCommandFailure(new AddCommand(stallInList), model, AddCommand.MESSAGE_DUPLICATE_STALL);
+        assertCommandFailure(new SAddCommand(stallInList), model, SAddCommand.MESSAGE_DUPLICATE_STALL);
     }
 
 }

@@ -23,11 +23,11 @@ import foodwhere.model.stall.Stall;
 import foodwhere.testutil.StallBuilder;
 import javafx.collections.ObservableList;
 
-public class AddCommandTest {
+public class SAddCommandTest {
 
     @Test
     public void constructor_nullStall_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new SAddCommand(null));
     }
 
     @Test
@@ -35,33 +35,33 @@ public class AddCommandTest {
         ModelStubAcceptingStallAdded modelStub = new ModelStubAcceptingStallAdded();
         Stall validStall = new StallBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validStall).execute(modelStub);
+        CommandResult commandResult = new SAddCommand(validStall).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStall), commandResult.getFeedbackToUser());
+        assertEquals(String.format(SAddCommand.MESSAGE_SUCCESS, validStall), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validStall), modelStub.stallsAdded);
     }
 
     @Test
     public void execute_duplicateStall_throwsCommandException() {
         Stall validStall = new StallBuilder().build();
-        AddCommand addCommand = new AddCommand(validStall);
+        SAddCommand SAddCommand = new SAddCommand(validStall);
         ModelStub modelStub = new ModelStubWithStall(validStall);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STALL, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, SAddCommand.MESSAGE_DUPLICATE_STALL, () -> SAddCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Stall alice = new StallBuilder().withName("Alice").build();
         Stall bob = new StallBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        SAddCommand addAliceCommand = new SAddCommand(alice);
+        SAddCommand addBobCommand = new SAddCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        SAddCommand addAliceCommandCopy = new SAddCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
