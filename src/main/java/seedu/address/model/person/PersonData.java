@@ -60,6 +60,10 @@ public class PersonData {
         this.attendances = attendances;
     }
 
+    public void addAttendances(Set<Attendance> attendances) {
+        this.attendances.addAll(attendances);
+    }
+
     public Set<Attendance> getAttendances() {
         return attendances;
     }

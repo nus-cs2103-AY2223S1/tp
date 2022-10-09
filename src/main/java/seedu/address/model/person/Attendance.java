@@ -11,10 +11,12 @@ public class Attendance {
 
     public static final String MESSAGE_CONSTRAINTS = "Class names should consist of " +
             "alphanumerics, space, dash and underscore";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum} -_]+";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum} \\-_]+";
+    public static final String ATTENDANCE_TRUE = "Present";
+    public static final String ATTENDANCE_FALSE = "Absent";
 
     public final String className;
-    public final Boolean hasAttended;
+    public final boolean hasAttended;
 
     /**
      * Constructs an {@code Attendance} object.
@@ -34,6 +36,10 @@ public class Attendance {
      */
     public static boolean isValidClassName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public String getString() {
+        return className + ':' + (hasAttended ? ATTENDANCE_TRUE : ATTENDANCE_FALSE);
     }
 
     public boolean getAttendance() {
@@ -56,7 +62,7 @@ public class Attendance {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + className + ':' + (hasAttended ? "Present" : "Absent") + ']';
+        return '[' + getString() + ']';
     }
 
 }
