@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AMBIGUOUS_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -13,16 +14,28 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser implements Parser<EditCommand> {
+    private Model model;
+
+    /**
+     * Constructs a {@code EditCommandParser}
+     * @param model the model of the current state
+     */
+    public EditCommandParser(Model model) {
+        this.model = model;
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -35,11 +48,20 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
-
+        String preamble = argMultimap.getPreamble();
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(preamble);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            new FindCommandParser().parse(preamble).execute(model);
+            ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
+
+            if (filteredPersonList.size() == 0) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            } else if (filteredPersonList.size() > 1) {
+                throw new ParseException(String.format(MESSAGE_INVALID_AMBIGUOUS_NAME, preamble), pe);
+            }
+
+            index = Index.fromOneBased(1);
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
