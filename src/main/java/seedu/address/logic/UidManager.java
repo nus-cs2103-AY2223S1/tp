@@ -11,21 +11,20 @@ import seedu.address.model.person.Uid;
  */
 public class UidManager {
     private Queue<Uid> records;
-    private Queue<Uid> deletedUids;
 
     /**
      * Constructs a {@code UidManager}.
      */
     public UidManager() {
         this.records = new PriorityQueue<>(Collections.reverseOrder());
-        this.deletedUids = new PriorityQueue<>();
     }
 
     /**
      * Adds a new Uid to the pool of Uids in use.
+     *
      * @param newEntry
      */
-    public void addUid(Uid newEntry) {
+    private void addUid(Uid newEntry) {
         this.records.add(newEntry);
     }
 
@@ -33,12 +32,11 @@ public class UidManager {
      * Produces a new Uid that is ensured to not be duplicated in the system.
      */
     public Uid produceUid() {
-        if (deletedUids.peek() != null) {
-            return this.deletedUids.poll();
-        }
+        Uid newUid = new Uid(1L);
         if (this.records.peek() != null) {
-            return new Uid(this.records.peek().getId() + 1L);
+            newUid = new Uid(this.records.peek().getId() + 1L);
         }
-        return new Uid(1L);
+        this.addUid(newUid);
+        return newUid;
     }
 }
