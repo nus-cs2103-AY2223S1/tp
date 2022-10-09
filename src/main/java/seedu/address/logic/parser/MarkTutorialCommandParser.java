@@ -7,8 +7,6 @@ import seedu.address.logic.commands.MarkTutorialCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
-
-
 /**
  * Parses input argument and creates a new {@code MarkTutorialCommand} object.
  */
