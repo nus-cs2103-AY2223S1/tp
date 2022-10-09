@@ -117,6 +117,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteBook(Book book) {
+        bookFace.deleteBook(book);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         CollectionUtil.requireAllNonNull(target, editedPerson);
 

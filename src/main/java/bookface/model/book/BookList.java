@@ -54,6 +54,16 @@ public class BookList extends ArrayList<Book> {
     }
 
     /**
+     * Removes the book specified from BookList.
+     * 
+     * @param book the book to be removed.
+     * @return the removed book
+     */
+    public Book delete(Book book) {
+        return this.bookList.remove(this.bookList.indexOf(book));
+    }
+
+    /**
      * Gets the book at specified index.
      *
      * @param index index of the element to return

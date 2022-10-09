@@ -100,4 +100,10 @@ public interface Model {
      * @param book a book to add to BookFace.
      */
     void addBook(Book book);
+
+    /**
+     * Deletes a book from BookFace records.
+     * @param book book to be deleted from BookFace
+     */
+    void deleteBook(Book book);
 }
