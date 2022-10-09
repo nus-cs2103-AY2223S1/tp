@@ -27,7 +27,7 @@ public class ViewMeetingCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an AddCommand to add the specified {@code Client}
+     * Creates an AddCommand to add the specified {@code Meeting}
      */
     public ViewMeetingCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
