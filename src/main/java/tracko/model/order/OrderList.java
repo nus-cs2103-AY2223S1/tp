@@ -21,12 +21,21 @@ public class OrderList implements Iterable<Order> {
         FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Adds an Order to the list.
+     * Adds an order to the list.
      * The order must not already exist in the list.
      */
     public void add(Order toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+    }
+
+    /**
+     * Delete an order from the list.
+     * The order exist in the list.
+     */
+    public void delete(Order toDelete) {
+        requireNonNull(toDelete);
+        internalList.remove(toDelete);
     }
 
     public void setOrders(OrderList replacement) {

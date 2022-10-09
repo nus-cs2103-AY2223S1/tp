@@ -119,6 +119,11 @@ public class AddOrderCommandTest {
         }
 
         @Override
+        public void deleteOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Order> getOrderList() {
             throw new AssertionError("This method should not be called.");
         }

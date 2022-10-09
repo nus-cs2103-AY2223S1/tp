@@ -1,10 +1,15 @@
 package tracko.logic.commands.order;
 
+import static java.util.Objects.requireNonNull;
+
+import javafx.collections.ObservableList;
+import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.model.Model;
+import tracko.model.order.Order;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -18,7 +23,7 @@ public class DeleteOrderCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order: %1$s";
 
     private final Index targetIndex;
 
@@ -28,18 +33,16 @@ public class DeleteOrderCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // requireNonNull(model);
-        // List<Person> lastShownList = model.getFilteredPersonList();
-        //
-        // if (targetIndex.getZeroBased() >= lastShownList.size()) {
-        //    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        // }
-        //
-        // Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        // model.deletePerson(personToDelete);
-        // return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
-        // // TODO: implement delete order functionality
-        return null;
+        requireNonNull(model);
+        ObservableList<Order> lastShownList = model.getOrderList();
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        }
+
+        Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteOrder(orderToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete));
     }
 
     @Override
