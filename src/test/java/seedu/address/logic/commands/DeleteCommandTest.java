@@ -40,6 +40,23 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_validIndexUnfilteredListAndTargetPersonShouldBeCleared_success() {
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        // set target person
+        model.setTargetPerson(personToDelete);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertTrue(model.hasTargetPerson());
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertFalse(model.hasTargetPerson());
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
