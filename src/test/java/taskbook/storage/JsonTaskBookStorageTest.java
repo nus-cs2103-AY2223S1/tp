@@ -44,24 +44,24 @@ public class JsonTaskBookStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        Assert.assertThrows(DataConversionException.class, () -> readtaskBook("notJsonFormattaskBook.json"));
+        Assert.assertThrows(DataConversionException.class, () -> readtaskBook("notJsonFormatAddressBook.json"));
     }
 
     @Test
     public void readtaskBook_invalidPersontaskBook_throwDataConversionException() {
         Assert.assertThrows(DataConversionException.class, ()
-                -> readtaskBook("invalidPersontaskBook.json"));
+                -> readtaskBook("invalidPersonAddressBook.json"));
     }
 
     @Test
     public void readtaskBook_invalidAndValidPersontaskBook_throwDataConversionException() {
         Assert.assertThrows(DataConversionException.class, ()
-                -> readtaskBook("invalidAndValidPersontaskBook.json"));
+                -> readtaskBook("invalidAndValidPersonAddressBook.json"));
     }
 
     @Test
     public void readAndSavetaskBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TemptaskBook.json");
+        Path filePath = testFolder.resolve("TempAddressBook.json");
         TaskBook original = TypicalPersons.getTypicaltaskBook();
         JsonTaskBookStorage jsontaskBookStorage = new JsonTaskBookStorage(filePath);
 
