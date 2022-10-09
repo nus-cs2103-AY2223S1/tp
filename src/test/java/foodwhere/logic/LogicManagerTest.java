@@ -55,7 +55,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "sdel 9";
         assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
     }
 

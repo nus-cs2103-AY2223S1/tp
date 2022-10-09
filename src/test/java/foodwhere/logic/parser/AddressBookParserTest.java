@@ -12,13 +12,13 @@ import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.ClearCommand;
-import foodwhere.logic.commands.DeleteCommand;
 import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.commands.ExitCommand;
 import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.ListCommand;
 import foodwhere.logic.commands.SAddCommand;
+import foodwhere.logic.commands.SDeleteCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
@@ -46,9 +46,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_STALL.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_STALL), command);
+        SDeleteCommand command = (SDeleteCommand) parser.parseCommand(
+                SDeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_STALL.getOneBased());
+        assertEquals(new SDeleteCommand(TypicalIndexes.INDEX_FIRST_STALL), command);
     }
 
     @Test
