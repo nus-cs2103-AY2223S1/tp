@@ -9,9 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEAL;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEAL;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MEAL;
 
 import org.junit.jupiter.api.Test;
 
@@ -84,7 +84,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
+        Index targetIndex = INDEX_SECOND_MEAL;
         String userInput = targetIndex.getOneBased() + TAG_DESC_BREAKFAST
                 + NAME_DESC_BREAD + TAG_DESC_QUANTITY + VALID_CALORIE_DESC;
 
@@ -100,7 +100,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_MEAL;
         String userInput = targetIndex.getOneBased() + TAG_DESC_BREAKFAST;
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withTags(VALID_TAG_BREAKFAST).build();
@@ -112,7 +112,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_MEAL;
         String userInput = targetIndex.getOneBased() + NAME_DESC_BREAD;
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_BREAD_NAME).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -133,7 +133,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_MEAL;
         String userInput = targetIndex.getOneBased()
                 + TAG_DESC_BREAKFAST + TAG_DESC_BREAKFAST
                 + TAG_DESC_QUANTITY;
@@ -148,7 +148,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_MEAL;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withTags().build();
