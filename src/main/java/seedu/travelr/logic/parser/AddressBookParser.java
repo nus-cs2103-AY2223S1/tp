@@ -36,6 +36,9 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        case DeleteEventFromTripCommand.COMMAND_WORD:
+            return new DeleteEventFromTripCommandParser().parse(arguments);
+
         case AddEventToTripCommand.COMMAND_WORD:
             return new AddEventToTripCommandParser().parse(arguments);
 

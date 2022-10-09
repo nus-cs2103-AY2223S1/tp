@@ -7,12 +7,12 @@ import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.travelr.logic.parser.CliSyntax.*;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
 
-public class AddEventToTripCommand extends Command{
+public class DeleteEventFromTripCommand extends Command{
 
-    public static final String COMMAND_WORD = "add-et";
+    public static final String COMMAND_WORD = "delete-et";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to specified trip. "
             + "Parameters: "
@@ -23,35 +23,36 @@ public class AddEventToTripCommand extends Command{
             + PREFIX_TITLE + "Swim "
             + PREFIX_TRIP + "Honeymoon ";
 
-    public static final String MESSAGE_SUCCESS = "Event added to trip: %1$s";
-    public static final String MESSAGE_DUPLICATE_TRIP = "This event already exists in the specified trip";
+    public static final String MESSAGE_SUCCESS = "Event removed to trip: %1$s";
+    public static final String MESSAGE_DUPLICATE_TRIP = "This event doesn't exists in the specified trip";
 
-    private final Event toAdd;
-    private final Trip toAddInto;
+    private Event toDelete;
+    private Trip toDeleteFrom;
 
     /**
      * Creates an AddCommand to add the specified {@code Trip}
      */
-    public AddEventToTripCommand(Event event, Trip trip) {
+    public DeleteEventFromTripCommand(Event event, Trip trip) {
         requireNonNull(event);
         requireNonNull(trip);
-        toAdd = event;
-        toAddInto = trip;
+        toDelete = event;
+        toDeleteFrom = trip;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        AddressBook.bucketList.removeEvent(toAdd);
-        toAddInto.addEvent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        toDeleteFrom.removeEvent(toDelete);
+        AddressBook.bucketList.addEvent(toDelete);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddEventToTripCommand // instanceof handles nulls
-                && toAdd.equals(((AddEventToTripCommand) other).toAdd));
+                || (other instanceof DeleteEventFromTripCommand // instanceof handles nulls
+                && toDelete.equals(((DeleteEventFromTripCommand) other).toDelete));
     }
 }
