@@ -20,32 +20,32 @@ import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import eatwhere.foodguide.model.ReadOnlyUserPrefs;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.PersonBuilder;
+import eatwhere.foodguide.testutil.EateryBuilder;
 import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullEatery_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Eatery validEatery = new PersonBuilder().build();
+    public void execute_eateryAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingEateryAdded modelStub = new ModelStubAcceptingEateryAdded();
+        Eatery validEatery = new EateryBuilder().build();
 
         CommandResult commandResult = new AddCommand(validEatery).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validEatery), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validEatery), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validEatery), modelStub.eateriesAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Eatery validEatery = new PersonBuilder().build();
+        Eatery validEatery = new EateryBuilder().build();
         AddCommand addCommand = new AddCommand(validEatery);
-        ModelStub modelStub = new ModelStubWithPerson(validEatery);
+        ModelStub modelStub = new ModelStubWithEatery(validEatery);
 
         Assert.assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, ()
                 -> addCommand.execute(modelStub));
@@ -53,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Eatery alice = new PersonBuilder().withName("Alice").build();
-        Eatery bob = new PersonBuilder().withName("Bob").build();
+        Eatery alice = new EateryBuilder().withName("Alice").build();
+        Eatery bob = new EateryBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -153,10 +153,10 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single eatery.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithEatery extends ModelStub {
         private final Eatery eatery;
 
-        ModelStubWithPerson(Eatery eatery) {
+        ModelStubWithEatery(Eatery eatery) {
             requireNonNull(eatery);
             this.eatery = eatery;
         }
@@ -171,19 +171,19 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the eatery being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Eatery> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingEateryAdded extends ModelStub {
+        final ArrayList<Eatery> eateriesAdded = new ArrayList<>();
 
         @Override
         public boolean hasEatery(Eatery eatery) {
             requireNonNull(eatery);
-            return personsAdded.stream().anyMatch(eatery::isSameEatery);
+            return eateriesAdded.stream().anyMatch(eatery::isSameEatery);
         }
 
         @Override
         public void addEatery(Eatery eatery) {
             requireNonNull(eatery);
-            personsAdded.add(eatery);
+            eateriesAdded.add(eatery);
         }
 
         @Override

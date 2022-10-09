@@ -61,7 +61,7 @@ public class JsonFoodGuideStorageTest {
     @Test
     public void readAndSaveFoodGuide_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        FoodGuide original = TypicalEateries.getTypicalAddressBook();
+        FoodGuide original = TypicalEateries.getTypicalFoodGuide();
         JsonFoodGuideStorage jsonFoodGuideStorage = new JsonFoodGuideStorage(filePath);
 
         // Save in new file and read back
