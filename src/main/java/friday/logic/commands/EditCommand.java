@@ -5,7 +5,7 @@ import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
 import static friday.logic.parser.CliSyntax.PREFIX_NAME;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
 import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
-import static friday.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static friday.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
@@ -84,7 +84,7 @@ public class EditCommand extends Command {
         }
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 
