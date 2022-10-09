@@ -23,11 +23,11 @@ public class ProfileInfoBox extends UiPart<Region> {
     @FXML
     private Label timezone;
 
-    public ProfileInfoBox() {
+    public ProfileInfoBox(String name, String title, String github, String timezone) {
         super(FXML);
-        name.setText("name");
-        title.setText("title");
-        github.setText("github");
-        timezone.setText("time zone");
+        this.name.setText(name);
+        this.title.setText(title);
+        this.github.setText(github);
+        this.timezone.setText(timezone);
     }
 }

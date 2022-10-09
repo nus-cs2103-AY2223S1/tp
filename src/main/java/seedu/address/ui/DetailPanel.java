@@ -29,7 +29,11 @@ public class DetailPanel extends MainPanel {
     public DetailPanel(Person person) {
         super(FXML);
         contactHeader.setText("Contact");
-        ProfileBox profileBox = new ProfileBox();
+        ProfileBox profileBox = new ProfileBox("default",
+                                         "name",
+                                          "title",
+                                        "github",
+                                      "timezone");
         HBox.setHgrow(profileBox.getRoot(), Priority.ALWAYS);
         profileBoxContainer.getChildren().add(profileBox.getRoot());
 

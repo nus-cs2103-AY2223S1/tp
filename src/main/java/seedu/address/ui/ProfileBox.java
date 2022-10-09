@@ -22,12 +22,13 @@ public class ProfileBox extends UiPart<Region> {
     @FXML
     private VBox profileInfoContainer;
 
-    private Image defaultDp = new Image(this.getClass().getResourceAsStream("/images/default.png"));
 
-    public ProfileBox() {
+
+    public ProfileBox(String img, String name, String title, String github, String timezone) {
         super(FXML);
+        Image defaultDp = new Image(this.getClass().getResourceAsStream("/images/" + img + ".png"));
         dp.setImage(defaultDp);
-        ProfileInfoBox profileInfoBox = new ProfileInfoBox();
+        ProfileInfoBox profileInfoBox = new ProfileInfoBox(name, title, github, timezone);
         VBox.setVgrow(profileInfoBox.getRoot(), Priority.ALWAYS);
         profileInfoContainer.getChildren().add(profileInfoBox.getRoot());
     }
