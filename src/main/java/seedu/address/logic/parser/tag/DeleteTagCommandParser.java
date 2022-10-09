@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -14,33 +14,37 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditContactCommand;
-import seedu.address.logic.commands.EditContactCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.tag.AddTagCommand;
+import seedu.address.logic.commands.tag.DeleteTagCommand;
+import seedu.address.logic.commands.tag.DeleteTagCommand.EditPersonDescriptor;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditContactCommand object
+ * Parses input arguments and creates a new EditCommand object
  */
-public class EditContactCommandParser implements Parser<EditContactCommand> {
+public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditContactCommand
-     * and returns an EditContactCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditCommand
+     * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditContactCommand parse(String args) throws ParseException {
+    public DeleteTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE), pe);
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
@@ -59,10 +63,10 @@ public class EditContactCommandParser implements Parser<EditContactCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditContactCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(AddTagCommand.MESSAGE_TAG_NOT_ADDED);
         }
 
-        return new EditContactCommand(index, editPersonDescriptor);
+        return new DeleteTagCommand(index, editPersonDescriptor);
     }
 
     /**

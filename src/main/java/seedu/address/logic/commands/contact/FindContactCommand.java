@@ -1,10 +1,12 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.contact;
 
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -19,9 +21,9 @@ public class FindContactCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final PersonContainsKeywordsPredicate predicate;
 
-    public FindContactCommand(NameContainsKeywordsPredicate predicate) {
+    public FindContactCommand(PersonContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

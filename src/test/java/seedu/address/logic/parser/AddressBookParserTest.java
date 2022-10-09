@@ -7,23 +7,17 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteContactCommand;
-import seedu.address.logic.commands.EditContactCommand;
-import seedu.address.logic.commands.EditContactCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListContactCommand;
+import seedu.address.logic.commands.contact.AddContactCommand;
+import seedu.address.logic.commands.contact.DeleteContactCommand;
+import seedu.address.logic.commands.contact.EditContactCommand;
+import seedu.address.logic.commands.contact.EditContactCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.contact.ListContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -70,10 +64,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindContactCommand command = (FindContactCommand) parser.parseCommand(
-                FindContactCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindContactCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        // TODO
     }
 
     @Test
