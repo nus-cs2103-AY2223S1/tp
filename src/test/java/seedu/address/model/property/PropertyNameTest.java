@@ -6,7 +6,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class NameTest {
+import seedu.address.model.person.Name;
+
+
+public class PropertyNameTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
