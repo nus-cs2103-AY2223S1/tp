@@ -35,7 +35,7 @@ public class JsonAdaptedReviewTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedReview review = new JsonAdaptedReview(VALID_DATE, VALID_CONTENT, new ArrayList<>());
         String expectedMessage =
-                String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+                String.format(JsonAdaptedReview.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> review.toModelType(null));
     }
 

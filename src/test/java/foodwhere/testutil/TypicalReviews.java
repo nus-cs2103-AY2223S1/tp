@@ -11,11 +11,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import foodwhere.model.AddressBook;
 import foodwhere.model.review.Review;
 
 /**
- * A utility class containing a list of {@code Stall} objects to be used in tests.
+ * A utility class containing a list of {@code Review} objects to be used in tests.
  */
 public class TypicalReviews {
 
@@ -52,17 +51,6 @@ public class TypicalReviews {
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalReviews() {} // prevents instantiation
-
-    /**
-     * Returns an {@code AddressBook} with all the typical stalls.
-     */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Review review : getTypicalReviews()) {
-            ab.addReview(review);
-        }
-        return ab;
-    }
 
     public static List<Review> getTypicalReviews() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
