@@ -23,7 +23,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-
 public class AddCommandTest {
 
     @Test
