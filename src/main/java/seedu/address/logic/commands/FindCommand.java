@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Deliverer;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Supplier;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -27,6 +30,18 @@ public class FindCommand extends Command {
 
     private final String type;
 
+    /**
+     * Constructs a FindCommand, which has three predicates - one
+     * for Buyers, one for Deliverers and one for Suppliers.
+     * Keyword matching is case insensitive.
+     *
+     * @param bPredicate A Predicate for Buyers.
+     * @param dPredicate A Predicate for Deliverers.
+     * @param sPredicate A Predicate for Suppliers.
+     * @param type Whether to return a CommandResult relevant to the
+     *             Buyer, Deliverer or Supplier.
+     * @return FindCommand.
+     */
     public FindCommand(NameContainsKeywordsPredicate<Buyer> bPredicate,
                        NameContainsKeywordsPredicate<Deliverer> dPredicate,
                        NameContainsKeywordsPredicate<Supplier> sPredicate, String type) {
