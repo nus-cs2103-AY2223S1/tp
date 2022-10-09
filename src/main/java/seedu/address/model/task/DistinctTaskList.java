@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 
-
 /**
  * This class represents a list which contains Tasks objects which are distinct from
  * each other. Tasks are distinct from each other when they have different descriptions and
@@ -43,7 +42,6 @@ public class DistinctTaskList implements Iterable<Task> {
         }
         taskList.add(taskAdded);
     }
-
 
     @Override
     public Iterator<Task> iterator() {

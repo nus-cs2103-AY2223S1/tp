@@ -101,6 +101,7 @@ public class ModelManager implements Model {
         return addressBook.hasPerson(person);
     }
 
+
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
@@ -144,11 +145,14 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
 
     //=============================Module Commands================================
     @Override
