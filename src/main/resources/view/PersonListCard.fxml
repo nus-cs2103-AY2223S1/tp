@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,8 +16,9 @@
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-color: #02030A;" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-color: #191b1d;" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
@@ -33,6 +36,50 @@
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" textFill="WHITE" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" textFill="WHITE" />
     </VBox>
+      <VBox minHeight="105.0" style="-fx-background-color: #191b1d;" GridPane.columnIndex="1">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+               <children>
+                  <Label fx:id="id1" styleClass="cell_big_label" text="\$Appointment" textFill="WHITE">
+                     <minWidth>
+                        <Region fx:constant="USE_PREF_SIZE" />
+                     </minWidth>
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../../Downloads/icons8-calendar-24%20(1).png" />
+                           </image></ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <Label text="\$date" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../../Downloads/icons8-calendar-24%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic></Label>
+            <Label text="\$time" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../../Downloads/icons8-clock-24.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Label>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>
