@@ -8,10 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.NewAddCommand;
+import seedu.address.logic.commands.ApplicationAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.application.Application;
 import seedu.address.model.application.Company;
@@ -23,20 +22,20 @@ import seedu.address.model.application.Position;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class NewAddCommandParser implements Parser<NewAddCommand> {
+public class ApplicationAddCommandParser implements ApplicationParser<ApplicationAddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public NewAddCommand parse(String args) throws ParseException {
+    public ApplicationAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_POSITION, PREFIX_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_POSITION, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewAddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ApplicationAddCommand.MESSAGE_USAGE));
         }
 
         Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
@@ -47,7 +46,7 @@ public class NewAddCommandParser implements Parser<NewAddCommand> {
 
         Application application = new Application(company, contact, email, position, date);
 
-        return new NewAddCommand(application);
+        return new ApplicationAddCommand(application);
     }
 
     /**
