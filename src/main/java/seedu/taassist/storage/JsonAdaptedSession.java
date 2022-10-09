@@ -1,7 +1,6 @@
 package seedu.taassist.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.taassist.commons.exceptions.IllegalValueException;
@@ -12,6 +11,7 @@ import seedu.taassist.model.session.Session;
  */
 class JsonAdaptedSession {
 
+    @JsonProperty("name")
     private final String sessionName;
 
     /**
@@ -27,11 +27,6 @@ class JsonAdaptedSession {
      */
     public JsonAdaptedSession(Session source) {
         this.sessionName = source.getSessionName();
-    }
-
-    @JsonGetter("name")
-    public String getSessionName() {
-        return sessionName;
     }
 
     /**

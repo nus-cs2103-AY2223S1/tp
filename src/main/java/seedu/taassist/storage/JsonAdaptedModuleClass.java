@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.taassist.commons.exceptions.IllegalValueException;
@@ -17,7 +16,10 @@ import seedu.taassist.model.session.Session;
  */
 class JsonAdaptedModuleClass {
 
+    @JsonProperty("name")
     private final String className;
+
+    @JsonProperty("sessions")
     private final List<JsonAdaptedSession> sessions = new ArrayList<>();
 
     /**
@@ -39,16 +41,6 @@ class JsonAdaptedModuleClass {
     public JsonAdaptedModuleClass(ModuleClass source) {
         className = source.getClassName();
         sessions.addAll(source.getSessions().stream().map(JsonAdaptedSession::new).collect(Collectors.toList()));
-    }
-
-    @JsonGetter("name")
-    public String getClassName() {
-        return className;
-    }
-
-    @JsonGetter("sessions")
-    public List<JsonAdaptedSession> getSessions() {
-        return sessions;
     }
 
     /**
