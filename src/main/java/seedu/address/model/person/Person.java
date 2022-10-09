@@ -4,9 +4,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.person.task.Task;
+import seedu.address.model.person.task.TaskList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,17 +27,34 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final TaskList taskList;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.taskList = new TaskList();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, List<Task> tasks) {
+        requireAllNonNull(name, phone, email, address, tags, tasks);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.taskList = new TaskList(tasks);
     }
 
     public Name getName() {
@@ -58,6 +79,20 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an unmodifiable {@code ObservableList} of the tasks available.
+     */
+    public ObservableList<Task> getTasks() {
+        return taskList.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns true if the task list contains duplicates.
+     */
+    public Boolean hasDuplicateTasks() {
+        return taskList.containsDuplicate();
     }
 
     /**
@@ -92,13 +127,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getTasks().equals(getTasks());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, taskList);
     }
 
     @Override
@@ -117,6 +153,13 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        List<Task> tasks = getTasks();
+        if (!tasks.isEmpty()) {
+            builder.append("; Tasks: ");
+            tasks.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
