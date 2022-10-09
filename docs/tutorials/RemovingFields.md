@@ -96,7 +96,7 @@ After removing the `Label`, we can proceed to formally test our code. If everyth
 
 ## Tidying up
 
-At this point, your application is working as intended and all your tests are passing. What’s left to do is to clean up references to `Address` in test data and documentation.
+At this point, your application is working as intended and all your tests are passing. What’s left to do is to clean up references to `StudentId` in test data and documentation.
 
 In `src/test/data/`, data meant for testing purposes are stored. While keeping the `studentId` field in the json files does not cause the tests to fail, it is not good practice to let cruft from old features accumulate.
 
@@ -108,7 +108,7 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
     "name": "Student with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com",
-    "studentId": "4th street"
+    "studentId": "e0842531"
   } ]
 }
 ```
