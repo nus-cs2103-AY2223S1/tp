@@ -1,6 +1,7 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
+    "id": "1",
     "name" : "Alice Pauline",
     "category" : "P",
     "gender" : "M",
@@ -10,6 +11,7 @@
     "dateTimes" : [ "2022-11-11T12:00" ],
     "tagged" : [ "friends" ]
   }, {
+    "id": "2",
     "name" : "Benson Meier",
     "category" : "P",
     "gender" : "M",
@@ -19,6 +21,7 @@
     "dateTimes" : [ "2022-10-23T10:00" ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
+    "id": "3",
     "name" : "Carl Kurz",
     "category" : "P",
     "gender" : "M",
@@ -28,6 +31,7 @@
     "dateTimes" : [ "2022-11-10T15:00", "2022-12-10T14:00" ],
     "tagged" : [ ]
   }, {
+    "id": "4",
     "name" : "Daniel Meier",
     "category" : "P",
     "gender" : "M",
@@ -37,6 +41,7 @@
     "dateTimes" : [ "2022-11-10T15:00", "2022-09-10T14:00" ],
     "tagged" : [ "friends" ]
   }, {
+    "id": "5",
     "name" : "Elle Meyer",
     "category" : "P",
     "gender" : "F",
@@ -46,6 +51,7 @@
     "dateTimes" : [ "2022-11-15T12:00" ],
     "tagged" : [ ]
   }, {
+    "id": "6",
     "name" : "Fiona Kunz",
     "category" : "P",
     "gender" : "F",
@@ -55,6 +61,7 @@
     "dateTimes" : [ "2022-10-15T12:00" ],
     "tagged" : [ ]
   }, {
+    "id": "7",
     "name" : "George Best",
     "category" : "P",
     "gender" : "M",

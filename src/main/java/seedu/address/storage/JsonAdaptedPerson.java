@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
@@ -18,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,6 +29,7 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
+    private final Long id;
     private final String name;
     private final String category;
     private final String gender;
@@ -40,11 +43,13 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("category") String category,
+    public JsonAdaptedPerson(@JsonProperty("id") Long id, @JsonProperty("name") String name, 
+            @JsonProperty("category") String category,
             @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("dateTimes") List<JsonAdaptedDateTime> dateTime,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        this.id = id;
         this.name = name;
         this.category = category;
         this.gender = gender;
@@ -73,6 +78,8 @@ class JsonAdaptedPerson {
                     .map(JsonAdaptedDateTime::new)
                     .collect(Collectors.toList()));
         }
+
+        id = source.getId().id;
         name = source.getName().fullName;
         gender = source.getGender().gender;
         phone = source.getPhone().value;
@@ -84,9 +91,11 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
@@ -94,10 +103,16 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
+
         final List<DateTime> patientHomeVisitDatesTimes = new ArrayList<>();
         for (JsonAdaptedDateTime dateTime : dateTimes) {
             patientHomeVisitDatesTimes.add(dateTime.toModelType());
         }
+
+        if (id == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
+        }
+        final Uid modelUid = new Uid(id);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -140,17 +155,20 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         final List<DateTime> modelDatesTimes = patientHomeVisitDatesTimes;
 
         if (category != null) {
             if (!(category.equals("P") | category.equals("N"))) {
                 throw new IllegalValueException("Category can only be P or N. P for Patient, N for nurse");
             }
-            return new Patient(modelName, modelGender, modelPhone, modelEmail,
+            return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
                     modelAddress, modelTags, modelDatesTimes);
 
         }
-        return new Person(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
+        
+        return new Person(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
+
     }
 
 
