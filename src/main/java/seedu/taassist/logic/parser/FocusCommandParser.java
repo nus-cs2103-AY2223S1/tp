@@ -10,7 +10,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 /**
  * Parses input arguments and creates a new FocusCommand object.
  */
-public class ClassCommandParser implements Parser<FocusCommand> {
+public class FocusCommandParser implements Parser<FocusCommand> {
 
     @Override
     public FocusCommand parse(String args) throws ParseException {

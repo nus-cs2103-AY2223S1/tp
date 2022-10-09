@@ -85,7 +85,7 @@ public class TaAssistParser {
             return new ListcCommand();
 
         case FocusCommand.COMMAND_WORD:
-            return new ClassCommandParser().parse(arguments);
+            return new FocusCommandParser().parse(arguments);
 
         case BackCommand.COMMAND_WORD:
             return new BackCommand();
