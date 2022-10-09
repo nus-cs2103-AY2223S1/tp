@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/whysochong.png" width="200px">
 
 [[github](https://github.com/Whysochong)]
-[[portfolio](team/Whysochong.md)]
+[[portfolio](team/whysochong.md)]
 
 * Role: Developer
 * Responsibilities: Project Advisor, Code Testing
