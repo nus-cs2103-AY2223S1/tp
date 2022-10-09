@@ -62,6 +62,7 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -118,7 +119,7 @@ public interface Model {
     boolean hasModule(Module module);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
