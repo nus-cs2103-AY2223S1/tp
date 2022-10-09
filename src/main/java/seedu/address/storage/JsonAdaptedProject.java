@@ -72,7 +72,7 @@ class JsonAdaptedProject {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
-        return new Project(modelName, modelRepository, modelDeadline, "", "");
+        return new Project(modelName, modelRepository, modelDeadline);
     }
 
 }

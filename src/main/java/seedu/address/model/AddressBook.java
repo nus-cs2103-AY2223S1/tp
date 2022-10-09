@@ -144,7 +144,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given client {@code target} in the list with {@code editedProject}.
+     * Replaces the given project {@code target} in the list with {@code editedProject}.
      * {@code target} must exist in the address book.
      * The project identity of {@code editedProject} must not be the same as another
      * existing project in the address book.
@@ -156,7 +156,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given client {@code target} in the list with {@code editedIssue}.
+     * Replaces the given issue {@code target} in the list with {@code editedIssue}.
      * {@code target} must exist in the address book.
      * The issue identity of {@code editedIssue} must not be the same as another
      * existing issue in the address book.
