@@ -10,6 +10,9 @@ import seedu.address.logic.commands.AttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Attendance;
 
+/**
+ * Parses input command and creates a new AttendanceCommand object.
+ */
 public class AttendanceCommandParser implements Parser<AttendanceCommand> {
 
     /**

@@ -18,12 +18,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.HomeworkList;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.HomeworkList;
-import seedu.address.model.person.AttendanceList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -99,7 +99,9 @@ public class EditCommand extends Command {
         AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedLessonPlan, updatedHomeworkList, updatedAttendanceList, updatedTags);
+        return new Person(updatedName, updatedPhone,
+                            updatedLessonPlan, updatedHomeworkList,
+                                updatedAttendanceList, updatedTags);
     }
 
     @Override
