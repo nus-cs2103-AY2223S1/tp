@@ -4,6 +4,7 @@ package seedu.address.model.transaction;
  * Store the buy transaction process.
  */
 public class BuyTransaction extends Transaction {
+    private static final double NEGATIVE = -1;
 
     BuyTransaction(Goods goods, Price price, Quantity quantity) {
         super(goods, price, quantity);
@@ -16,7 +17,7 @@ public class BuyTransaction extends Transaction {
      */
     @Override
     double totalCost() {
-        return quantity.value() * price.value();
+        return NEGATIVE * quantity.value() * price.value();
     }
 
     @Override

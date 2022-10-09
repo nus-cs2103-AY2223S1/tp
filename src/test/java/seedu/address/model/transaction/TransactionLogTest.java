@@ -39,7 +39,7 @@ class TransactionLogTest {
 
         TransactionLog log = new TransactionLog(new ArrayList<>());
         log.addTransaction(transaction);
-        assertEquals(log.calculateNetTransacted(), -8);
+        assertEquals(log.calculateNetTransacted(), 8);
 
         Goods goods2 = new Goods("Mango");
         Price price2 = new Price("1.5");
@@ -48,7 +48,7 @@ class TransactionLogTest {
         Transaction buyTransaction = new BuyTransaction(goods2, price2, quantity2);
         log.addTransaction(buyTransaction);
 
-        assertEquals(log.calculateNetTransacted(), 7);
+        assertEquals(log.calculateNetTransacted(), -7);
     }
 
 }

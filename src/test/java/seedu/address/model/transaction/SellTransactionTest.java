@@ -20,8 +20,8 @@ class SellTransactionTest {
         Quantity quantity = new Quantity("10");
 
         Transaction transaction = new SellTransaction(goods, price, quantity);
-        assertEquals(transaction.totalCost(), -8);
-        assertFalse(transaction.totalCost() == 8);
+        assertEquals(transaction.totalCost(), 8);
+        assertFalse(transaction.totalCost() == -8);
     }
 
     @Test
