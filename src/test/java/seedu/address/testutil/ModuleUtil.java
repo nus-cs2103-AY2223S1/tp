@@ -1,14 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.module.Module;
-import seedu.address.model.tag.Tag;
-
-import java.util.Set;
-
-import static seedu.address.logic.parser.CliSyntax.COMMAND_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.COMMAND_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -19,6 +10,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM;
+
+import java.util.Set;
+
+import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.module.Module;
+import seedu.address.model.tag.Tag;
+
 
 /**
  * A utility class for Module.

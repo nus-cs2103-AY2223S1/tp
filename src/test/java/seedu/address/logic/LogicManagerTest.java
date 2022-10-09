@@ -20,7 +20,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -64,11 +63,11 @@ public class LogicManagerTest {
     }
 
     //TODO uncomment once @daofu update List to allow c and m identifier
-//    @Test
-//    public void execute_validCommand_success() throws Exception {
-//        String listCommand = ListCommand.COMMAND_WORD;
-//        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-//    }
+    //    @Test
+    //    public void execute_validCommand_success() throws Exception {
+    //        String listCommand = ListCommand.COMMAND_WORD;
+    //        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+    //    }
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
@@ -81,8 +80,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + CONTACT_COMMAND_IDENTIFIER + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + CONTACT_COMMAND_IDENTIFIER + NAME_DESC_AMY
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
