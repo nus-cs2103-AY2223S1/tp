@@ -28,7 +28,7 @@ public class TaskAddCommand extends Command {
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Adds a task to the task book.\n"
             + "Parameters: "
-            + PREFIX_ASSIGN_FROM + "/" + PREFIX_ASSIGN_TO + "/" + "Assigned from/Assigned to "
+            + PREFIX_ASSIGN_FROM + PREFIX_ASSIGN_TO + "NAME "
             + PREFIX_DESCRIPTION + "DESCRIPTION";
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Person not found in task book!";
