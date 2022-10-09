@@ -82,7 +82,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Property} with the details of {@code propertyToEdit}
      * edited with {@code editPropertyDescriptor}.
      */
-    private static Property createEditedProperty(Property propertyToEdit, EditPropertyDescriptor editPropertyDescriptor) {
+    private static Property createEditedProperty(Property propertyToEdit,
+                                                 EditPropertyDescriptor editPropertyDescriptor) {
         assert propertyToEdit != null;
 
         Name updatedName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());
