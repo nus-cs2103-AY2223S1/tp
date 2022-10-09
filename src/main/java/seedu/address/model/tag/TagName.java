@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Tag's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class TagName {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters, spaces, and the punctuations within the "
@@ -36,7 +36,7 @@ public class Name {
      *
      * @param name A valid name.
      */
-    public Name(String name) {
+    public TagName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
@@ -58,8 +58,8 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.tag.Name // instanceof handles nulls
-                && fullName.equals(((seedu.address.model.tag.Name) other).fullName)); // state check
+                || (other instanceof TagName // instanceof handles nulls
+                && fullName.equals(((TagName) other).fullName)); // state check
     }
 
     @Override

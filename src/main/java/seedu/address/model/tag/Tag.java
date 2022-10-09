@@ -12,7 +12,7 @@ public class Tag {
 
     private static final int MAX_CHAR_LIMIT = 30;
 
-    public final Name tagName;
+    public final TagName tagName;
 
     /**
      * Constructs a {@code Tag}.
@@ -22,7 +22,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = new Name(tagName);
+        this.tagName = new TagName(tagName);
     }
 
     public String getName() {
