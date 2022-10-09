@@ -3,9 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
+import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 import static seedu.address.model.module.Module.EMPTY_MODULE_TITLE;
-
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -40,14 +39,6 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
         Module module = new Module(moduleCode, moduleTitle);
 
         return new AddModuleCommand(module);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
