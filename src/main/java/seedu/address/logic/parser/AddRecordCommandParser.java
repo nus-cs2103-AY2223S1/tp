@@ -1,13 +1,14 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddRecordCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Record;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
 
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.AddRecordCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Record;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -17,23 +18,24 @@ public class AddRecordCommandParser implements Parser<AddRecordCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddRecordCommand
      * and returns a AddRecordCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddRecordCommand parse(String args) throws ParseException {
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_RECORD);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_RECORD);
 
-            if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_RECORD)
-                    || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecordCommand.MESSAGE_USAGE));
-            }
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_RECORD)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecordCommand.MESSAGE_USAGE));
+        }
 
-            String recordDate = argMultimap.getValue(PREFIX_DATE).get();
-            String recordData = argMultimap.getValue(PREFIX_RECORD).get();
+        String recordDate = argMultimap.getValue(PREFIX_DATE).get();
+        String recordData = argMultimap.getValue(PREFIX_RECORD).get();
 
-            Record record = ParserUtil.parseRecord(recordDate, recordData);
+        Record record = ParserUtil.parseRecord(recordDate, recordData);
 
-            return new AddRecordCommand(record);
+        return new AddRecordCommand(record);
     }
 
     /**

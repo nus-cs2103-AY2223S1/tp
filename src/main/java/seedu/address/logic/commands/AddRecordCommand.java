@@ -1,11 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
+
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Record;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Adds a new record into the record list of the current person whose record list is being displayed.
@@ -37,8 +38,14 @@ public class AddRecordCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.hasRecord(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        model.addRecord(toAdd);
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, true);

@@ -128,10 +128,12 @@ public class ModelManager implements Model {
 
     //=========== Record List ================================================================================
 
+    @Override
     public void addRecord(Record record) {
         personWithRecords.addRecord(record);
     }
 
+    @Override
     public boolean hasRecord(Record record) {
         return personWithRecords.hasRecord(record);
     }

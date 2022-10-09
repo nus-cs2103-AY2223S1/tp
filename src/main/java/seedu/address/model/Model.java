@@ -77,6 +77,17 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Returns true if a record with the same identity as {@code record} exists in the record list.
+     */
+    boolean hasRecord(Record record);
+
+    /**
+     * Adds the given record.
+     * {@code person} must not already exist in the record list.
+     */
+    void addRecord(Record record);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
