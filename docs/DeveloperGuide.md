@@ -285,12 +285,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `MassLinkers` and the **Actor** is the `student`, unless specified otherwise)
 
-**Use case 1: Add a classmate’s information**
+**Use case 1: Add a batchmate’s information**
 
 **MSS**
-1. Student chooses to add a classmate's contact.
-2. Student enters classmate particulars.
-3. MassLinkers adds classmate to current list of classmates. \
+1. Student chooses to add a batchmate's contact.
+2. Student enters batchmate's particulars.
+3. MassLinkers adds batchmate to current list of batchmates. \
    Use case ends.
 
 **Extensions**
@@ -298,13 +298,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * a1. MassLinkers updates the storage file. \
       Use case ends.
 
-**Use case 2: Remove a classmate**
+**Use case 2: Remove a batchmate**
 
 **MSS**
-1. Student requests for the list of classmates.
-2. MassLinkers shows the current list of classmates.
-3. Student requests to delete a specific classmate in the list.
-4. MassLinkers deletes the classmate using his or her index.
+1. Student requests for the list of batchmates.
+2. MassLinkers shows the current list of batchmates.
+3. Student requests to delete a specific batchmate in the list.
+4. MassLinkers deletes the batchmate using his or her index.
    \
    Use case ends.
 
@@ -316,7 +316,7 @@ Use case ends.
 * 4a. The given index is invalid.
     * a1. MassLinkers prompts for another index.
     * Step a1 is repeated until a valid index is given. \
-  Use case resumes from step 4.
+  Use case resumes from step 3.
 
 * *a. At any time, Student chooses to close MassLinkers.
     * a1. MassLinkers updates the storage file.
@@ -327,9 +327,9 @@ Use case ends.
 
 **MSS**
 
-1. Student requests the list of classmates with a tag.
+1. Student requests the list of batchmates with a tag.
 2. MassLinkers searches through the list of added tags.
-3. MassLinkers returns the list of classmates associated with the particular tag.
+3. MassLinkers returns the list of batchmates associated with the particular tag.
    \
    Use case ends.
 
@@ -348,24 +348,24 @@ Use case ends.
       Use case ends.
 
 
-**Use case 4: Add a tag to a classmate**
+**Use case 4: Add a tag to a batchmate**
 
 **MSS**
 
-1. Student chooses to add a tag to a classmate (could be himself or others).
-2. MassLinkers searches through the list of classmates for the selected classmate.
-3. MassLinkers adds tag to the classmate.
+1. Student chooses to add a tag to a batchmate (could be himself or others).
+2. MassLinkers searches through the list of batchmates for the selected batchmate.
+3. MassLinkers adds tag to the batchmate.
    \
    Use case ends.
 
 **Extensions**
-* 2a. The list of classmates is empty.
+* 2a. The list of batchmates is empty.
   * a1. MassLinkers warns adding a tag is invalid.
     \
     Use case ends.
-* 2b. MassLinkers is unable to find the classmate.
-    * b1. MassLinkers prompts for new classmate details. 
-    * Step b1 is repeated until a classmate is found.
+* 2b. MassLinkers is unable to find the batchmate.
+    * b1. MassLinkers prompts for new batchmate details. 
+    * Step b1 is repeated until a batchmate is found.
       \
       Use case resumes from step 2.
 
@@ -373,32 +373,7 @@ Use case ends.
     * a1. MassLinkers updates the storage file.
       \
       Use case ends.
-
-**Use case 5: Mark a task completed**
-
-**MSS**
-
-1. Student requests the list of tasks.
-2. MassLinkers searches through the list of tasks for the selected task.
-3. MassLinkers marks the task completed.
-   \
-   Use case ends.
-
-**Extensions**
-* 2a. The list of tasks is empty.
-    * a1. MassLinkers warns marking a task is invalid.
-      \
-      Use case ends.
-* 2b. The task selected is out of range.
-    * b1. MassLinkers prompts for new task.
-    * Step b1 is repeated until a task is found.
-      \
-      Use case resumes from step 2.
-
-* *a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the storage file.
-      \
-      Use case ends.
+    
 
 ### Non-Functional Requirements
 
