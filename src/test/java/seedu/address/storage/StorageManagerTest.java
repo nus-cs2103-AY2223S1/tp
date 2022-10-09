@@ -24,7 +24,11 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        Path tutorPath = getTempFilePath("tutor");
+        Path studentPath = getTempFilePath("student");
+        Path tuitionClassPath = getTempFilePath("tuitionClass");
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(tutorPath, studentPath,
+                tuitionClassPath);
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -55,14 +59,24 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
         AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        storageManager.saveAllAddressBook(original);
+        ReadOnlyAddressBook retrieved = storageManager.readAllAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getTutorAddressBookFilePath() {
+        assertNotNull(storageManager.getAddressBookFilePath(AddressBookStorage.AddressBookCategories.TUTORS));
+    }
+
+    @Test
+    public void getStudentAddressBookFilePath() {
+        assertNotNull(storageManager.getAddressBookFilePath(AddressBookStorage.AddressBookCategories.STUDENTS));
+    }
+
+    @Test
+    public void getTuitionClassAddressBookFilePath() {
+        assertNotNull(storageManager.getAddressBookFilePath(AddressBookStorage.AddressBookCategories.TUITIONCLASSES));
     }
 
 }
