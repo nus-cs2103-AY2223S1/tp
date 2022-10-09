@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Internship;
+import seedu.address.model.internship.Internship;
 
 /**
  * Panel containing the list of persons.
@@ -30,7 +30,7 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Internship} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Internship} using a {@code InternshipCard}.
      */
     class PersonListViewCell extends ListCell<Internship> {
         @Override
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(internship, getIndex() + 1).getRoot());
+                setGraphic(new InternshipCard(internship, getIndex() + 1).getRoot());
             }
         }
     }

@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Internship;
+import seedu.address.model.internship.Internship;
 
 /**
  * The API of the Model component.
@@ -53,21 +53,21 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a internship with the same identity as {@code internship} exists in the address book.
+     * Returns true if an internship with the same identity as {@code internship} exists in the address book.
      */
-    boolean hasPerson(Internship internship);
+    boolean hasInternship(Internship internship);
 
     /**
      * Deletes the given internship.
      * The internship must exist in the address book.
      */
-    void deletePerson(Internship target);
+    void deleteInternship(Internship target);
 
     /**
      * Adds the given internship.
      * {@code internship} must not already exist in the address book.
      */
-    void addPerson(Internship internship);
+    void addInternship(Internship internship);
 
     /**
      * Replaces the given internship {@code target} with {@code editedInternship}.
@@ -84,7 +84,5 @@ public interface Model {
      * Updates the filter of the filtered internship list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Internship> predicate);
-
     void updateFilteredInternshipList(Predicate<Internship> predicate);
 }
