@@ -22,12 +22,27 @@ public class ListRCommand extends Command{
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Here is the list of records:\n";
+    public static final String MESSAGE_SUCCESS = "Listed records for this patient: ";
 
     private final Index targetIndex;
 
+    private static Person lastCalledPerson;
+
     public ListRCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+    }
+
+    /**
+     * Checks if listR command is previously called.
+     *
+     * @return true if listR command is previously called, false otherwise.
+     */
+    public static boolean isCalled() {
+        return ListRCommand.lastCalledPerson != null;
+    }
+
+    public static Person getLastCalledPerson() {
+        return ListRCommand.lastCalledPerson;
     }
 
     @Override
@@ -40,11 +55,10 @@ public class ListRCommand extends Command{
         }
 
         Person personToListRecords = lastShownList.get(targetIndex.getZeroBased());
-        String recordList = personToListRecords.getRecordList().stringifyRecordList();
 
-        System.out.println(MESSAGE_SUCCESS + recordList); // print on CLI
+        ListRCommand.lastCalledPerson = personToListRecords;
 
-        return new CommandResult(MESSAGE_SUCCESS + recordList); // show list on ResultDisplay
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToListRecords)); // show list on ResultDisplay
     }
 
     @Override
