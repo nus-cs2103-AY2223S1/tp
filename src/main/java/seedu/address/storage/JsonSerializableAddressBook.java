@@ -21,14 +21,17 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
-    private final List<JsonAdaptedEntry> entries = new ArrayList<>();
+    private final List<JsonAdaptedExpenditure> expenditures = new ArrayList<>();
+    private final List<JsonAdaptedIncome> incomes = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("entries") List<JsonAdaptedEntry> entries) {
-        this.entries.addAll(entries);
+    public JsonSerializableAddressBook(@JsonProperty("expenditures") List<JsonAdaptedExpenditure> expenditures,
+                                       @JsonProperty("incomes") List<JsonAdaptedIncome> incomes) {
+        this.expenditures.addAll(expenditures);
+        this.incomes.addAll(incomes);
     }
 
     /**
@@ -37,7 +40,9 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyPennyWise source) {
-        entries.addAll(source.getExpenditureList().stream().map(JsonAdaptedEntry::new).collect(Collectors.toList()));
+        expenditures.addAll(
+                source.getExpenditureList().stream().map(JsonAdaptedExpenditure::new).collect(Collectors.toList()));
+        incomes.addAll(source.getIncomeList().stream().map(JsonAdaptedIncome::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +52,19 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedEntry jsonAdaptedEntry : entries) {
-            Entry e = jsonAdaptedEntry.toModelType();
+        for (JsonAdaptedExpenditure jsonAdaptedExpenditure : expenditures) {
+            Entry e = jsonAdaptedExpenditure.toModelType();
             if (addressBook.hasExpenditure(e)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.hasExpenditure(e);
+            addressBook.addExpenditure(e);
+        }
+        for (JsonAdaptedIncome jsonAdaptedIncome : incomes) {
+            Entry e = jsonAdaptedIncome.toModelType();
+            if (addressBook.hasIncome(e)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            addressBook.addIncome(e);
         }
         return addressBook;
     }
