@@ -32,9 +32,30 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" textFill="WHITE" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" textFill="WHITE" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" textFill="WHITE" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" textFill="WHITE" />
+      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/phone.png" />
+                  </image>
+               </ImageView>
+            </graphic></Label>
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/home.png" />
+                  </image>
+               </ImageView>
+            </graphic></Label>
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/email.png" />
+                  </image>
+               </ImageView>
+            </graphic></Label>
     </VBox>
       <VBox minHeight="105.0" style="-fx-background-color: #191b1d;" GridPane.columnIndex="1">
          <children>
