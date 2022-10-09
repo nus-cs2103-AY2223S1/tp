@@ -192,12 +192,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                                   |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **View All Tasks** | `task list`                                                                                                                                                        |
-| **View Contacts**  | `contact list`                                                                                                                                                     |
-| **Add Contact**    | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **Add Task**       | `task add [m/o]/[ASSIGNOR/ASSIGNEE] d/DESCRIPTION` <br> e.g., `task add o/Sam d/Finish the assignment`                                                             |
-| **Delete Contact** | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                            |
-| **Delete Task**    | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                  |
-| **Quit**           | `bye`                                                                                                                                                              |
+| Action                 | Format, Examples                                                                                                                                                   |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **View All Tasks**     | `task list`                                                                                                                                                        |
+| **View Contacts**      | `contact list`                                                                                                                                                     |
+| **Add Contact**        | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **Add Task: Assignor** | `task add m/ASSIGNOR d/DESCRIPTION` <br> e.g., `task add m/John d/Finish user guide`                                                                               |
+| **Add Task: Assignee** | `task add o/ASSIGNEE d/DESCRIPTION` <br> e.g., `task add o/Sam d/Finish the assignment`                                                                            |
+| **Delete Contact**     | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                            |
+| **Delete Task**        | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                  |
+| **Quit**               | `bye`                                                                                                                                                              |
