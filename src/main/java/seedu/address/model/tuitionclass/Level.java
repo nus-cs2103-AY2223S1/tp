@@ -27,6 +27,18 @@ public enum Level {
         throw new InvalidLevelException();
     }
 
+    /**
+     * Returns true if a given string is a valid value in enum Level.
+     */
+    public static boolean isValidLevel(String level) {
+        for (seedu.address.model.person.student.Level l : seedu.address.model.person.student.Level.values()) {
+            if (l.name().equals(level)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return name().charAt(0) + name().substring(1, name().length() - 1).toLowerCase()

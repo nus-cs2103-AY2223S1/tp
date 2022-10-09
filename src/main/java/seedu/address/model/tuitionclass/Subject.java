@@ -1,5 +1,6 @@
 package seedu.address.model.tuitionclass;
 
+import seedu.address.model.person.student.Level;
 import seedu.address.model.tuitionclass.exceptions.InvalidSubjectException;
 
 /**
@@ -25,6 +26,18 @@ public enum Subject {
             }
         }
         throw new InvalidSubjectException();
+    }
+
+    /**
+     * Returns true if a given string is a valid value in enum Subject.
+     */
+    public static boolean isValidSubject(String subject) {
+        for (Subject s : Subject.values()) {
+            if (s.name().equals(subject)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

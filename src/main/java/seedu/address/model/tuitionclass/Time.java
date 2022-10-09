@@ -6,7 +6,7 @@ import java.time.LocalTime;
  * Represents the timeslot of the tuition class.
  */
 public class Time {
-
+    public static final String MESSAGE_CONSTRAINTS = "Time should be in LocalTime parsable format";
     private final LocalTime startTime;
     private final LocalTime endTime;
 
@@ -19,5 +19,20 @@ public class Time {
     public Time(String startTime, String endTime) {
         this.startTime = LocalTime.parse(startTime);
         this.endTime = LocalTime.parse(endTime);
+    }
+    //TODO: add InvalidTimeFormatException
+
+    /**
+     * Returns the string representation of StartTime.
+     */
+    public String getStartTime() {
+        return startTime.toString();
+    }
+
+    /**
+     * Returns the string representation of EndTime.
+     */
+    public String getEndTime() {
+        return endTime.toString();
     }
 }

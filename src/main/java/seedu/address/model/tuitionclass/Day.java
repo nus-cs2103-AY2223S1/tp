@@ -1,5 +1,6 @@
 package seedu.address.model.tuitionclass;
 
+import seedu.address.model.person.student.Level;
 import seedu.address.model.tuitionclass.exceptions.InvalidDayException;
 
 // Solution below adapted from:
@@ -27,6 +28,18 @@ public enum Day {
             }
         }
         throw new InvalidDayException();
+    }
+
+    /**
+     * Returns true if a given string is a valid value in enum Day.
+     */
+    public static boolean isValidDay(String day) {
+        for (Day d : Day.values()) {
+            if (d.name().equals(day)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
