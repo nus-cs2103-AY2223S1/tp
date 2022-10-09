@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Record;
+import seedu.address.model.person.RecordList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -162,14 +163,14 @@ public class ModelManager implements Model {
     // - delete current implementation, replace with commented out code
     // eg. setFilteredRecords(Person person)
     private void setFilteredRecords() {
-        for (int i = 0; i < 3; i++) {
-            String toAdd = "Record " + i;
-            Record r = new Record("10-10-2022 1200", toAdd);
-            internalList.add(r);
-        }
-        filteredRecords = new FilteredList<>(internalList);
+//        for (int i = 0; i < 3; i++) {
+//            String toAdd = "Record " + i;
+//            Record r = new Record("10-10-2022 1200", toAdd);
+//            internalList.add(r);
+//        }
+//        filteredRecords = new FilteredList<>(internalList);
         // FilteredList takes in an ObservableList stored inside recordList, using the person retrieved from listR
-        // filteredRecords = new FilteredList<>(person.getRecordList().getRecordList())
+        filteredRecords = new FilteredList<>(new RecordList().getRecordList());
     }
 
     @Override

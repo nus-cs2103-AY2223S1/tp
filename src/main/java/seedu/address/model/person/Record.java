@@ -39,7 +39,7 @@ public class Record {
      * @param testDate Date to be tested.
      * @return True if valid.
      */
-    private static boolean isValidDate(String testDate) {
+    public static boolean isValidDate(String testDate) {
         try {
             LocalDateTime.parse(testDate, DATE_FORMAT);
         } catch (DateTimeParseException e) {
@@ -53,8 +53,8 @@ public class Record {
      *
      * @return The record date.
      */
-    public LocalDateTime getRecordDate() {
-        return this.recordDate;
+    public String getRecordDate() {
+        return recordDate.format(DATE_FORMAT);
     }
 
     @Override

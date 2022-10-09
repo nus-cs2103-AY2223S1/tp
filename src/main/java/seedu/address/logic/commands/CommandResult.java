@@ -18,7 +18,7 @@ public class CommandResult {
     private final boolean exit;
 
     /** The application should show recordList instead of personList. */
-    private final boolean record;
+    private final boolean showRecords;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -27,17 +27,17 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.record = false;
+        this.showRecords = false;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields for commands that display recordList
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean record) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showRecords) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.record = record;
+        this.showRecords = showRecords;
     }
 
     /**
@@ -60,8 +60,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isRecord() {
-        return record;
+    public boolean isShowRecords() {
+        return showRecords;
     }
 
     @Override
