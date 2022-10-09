@@ -1,9 +1,7 @@
 package seedu.condonery.logic.commands;
 
-import static seedu.condonery.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.condonery.logic.commands.CommandTestUtil.showPropertyAtIndex;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
-import static seedu.condonery.testutil.TypicalPersons.getTypicalPropertyDirectory;
+import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,12 +26,12 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPropertyAtIndex(model, INDEX_FIRST_PROPERTY);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST_PROPERTY);
+        CommandTestUtil.assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

@@ -6,9 +6,7 @@ import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -26,17 +24,15 @@ import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.condonery.testutil.TypicalPersons.AMY;
-import static seedu.condonery.testutil.TypicalPersons.BOB;
+import static seedu.condonery.testutil.TypicalProperties.OASIS;
+import static seedu.condonery.testutil.TypicalProperties.PINNACLE;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.condonery.logic.commands.AddCommand;
-import seedu.condonery.model.person.Address;
-import seedu.condonery.model.person.Email;
-import seedu.condonery.model.person.Name;
-import seedu.condonery.model.person.Person;
-import seedu.condonery.model.person.Phone;
+import seedu.condonery.model.property.Address;
+import seedu.condonery.model.property.Name;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 import seedu.condonery.testutil.PropertyBuilder;
 
@@ -45,31 +41,31 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PropertyBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Property expectedProperty = new PropertyBuilder(PINNACLE).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedProperty));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedProperty));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedProperty));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedProperty));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+            + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedProperty));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PropertyBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-            .build();
+        Property expectedPersonMultipleTags =
+                new PropertyBuilder(PINNACLE).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
     }
@@ -77,9 +73,9 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PropertyBuilder(AMY).withTags().build();
+        Property expectedProperty = new PropertyBuilder(OASIS).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-            new AddCommand(expectedPerson));
+            new AddCommand(expectedProperty));
     }
 
     @Test
@@ -112,14 +108,6 @@ public class AddCommandParserTest {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
-
-        // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
-
-        // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC

@@ -2,7 +2,7 @@ package seedu.condonery.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.condonery.testutil.TypicalPersons.getTypicalPropertyDirectory;
+import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
 import java.nio.file.Path;
 

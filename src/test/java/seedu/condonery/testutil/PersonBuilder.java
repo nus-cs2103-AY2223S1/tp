@@ -1,11 +1,15 @@
 package seedu.condonery.testutil;
 
-import seedu.condonery.model.person.*;
-import seedu.condonery.model.tag.Tag;
-import seedu.condonery.model.util.SampleDataUtil;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import seedu.condonery.model.person.Address;
+import seedu.condonery.model.person.Email;
+import seedu.condonery.model.person.Name;
+import seedu.condonery.model.person.Person;
+import seedu.condonery.model.person.Phone;
+import seedu.condonery.model.tag.Tag;
+import seedu.condonery.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.commons.core.Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW;
-import static seedu.condonery.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.condonery.testutil.TypicalProperties.CARL;
 import static seedu.condonery.testutil.TypicalProperties.ELLE;
 import static seedu.condonery.testutil.TypicalProperties.FIONA;
@@ -60,7 +59,7 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPropertyList());
     }
 
@@ -70,7 +69,7 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPropertyList());
     }
 

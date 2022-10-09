@@ -1,14 +1,14 @@
 package seedu.condonery.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX;
 import static seedu.condonery.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.condonery.testutil.Assert.assertThrows;
-import static seedu.condonery.testutil.TypicalPersons.AMY;
+import static seedu.condonery.testutil.TypicalProperties.PINNACLE;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -26,7 +26,7 @@ import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.UserPrefs;
-import seedu.condonery.model.person.Person;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.storage.JsonPropertyDirectoryStorage;
 import seedu.condonery.storage.JsonUserPrefsStorage;
 import seedu.condonery.storage.StorageManager;
@@ -59,7 +59,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
     }
 
     @Test
@@ -82,9 +82,9 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
             + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PropertyBuilder(AMY).withTags().build();
+        Property expectedProperty = new PropertyBuilder(PINNACLE).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addProperty(expectedProperty);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

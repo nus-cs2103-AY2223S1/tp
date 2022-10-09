@@ -38,7 +38,7 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validProperty).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validProperty), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validProperty), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validProperty), modelStub.propertiesAdded);
     }
 
     @Test
@@ -47,13 +47,14 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validProperty);
         ModelStub modelStub = new ModelStubWithProperty(validProperty);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PROPERTY, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_PROPERTY, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Property alice = new PropertyBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Property bob = new PropertyBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -109,7 +110,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addProperty(Property property) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +125,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasProperty(Property person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteProperty(Property target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setProperty(Property target, Property editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPropertyList() {
+        public ObservableList<Property> getFilteredPropertyList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPropertyList(Predicate<Property> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -152,37 +153,37 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithProperty extends ModelStub {
+        private final Property property;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithProperty(Property property) {
+            requireNonNull(property);
+            this.property = property;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasProperty(Property property) {
+            requireNonNull(property);
+            return this.property.isSameProperty(property);
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingPropertyAdded extends ModelStub {
+        final ArrayList<Property> propertiesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasProperty(Property property) {
+            requireNonNull(property);
+            return propertiesAdded.stream().anyMatch(property::isSameProperty);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addProperty(Property property) {
+            requireNonNull(property);
+            propertiesAdded.add(property);
         }
 
         @Override

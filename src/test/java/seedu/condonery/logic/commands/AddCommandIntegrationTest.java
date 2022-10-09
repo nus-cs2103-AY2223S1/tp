@@ -1,8 +1,6 @@
 package seedu.condonery.logic.commands;
 
-import static seedu.condonery.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.condonery.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.condonery.testutil.TypicalPersons.getTypicalPropertyDirectory;
+import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,14 +30,15 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getPropertyDirectory(), new UserPrefs());
         expectedModel.addProperty(validProperty);
 
-        assertCommandSuccess(new AddCommand(validProperty), model,
+        CommandTestUtil.assertCommandSuccess(new AddCommand(validProperty), model,
             String.format(AddCommand.MESSAGE_SUCCESS, validProperty), expectedModel);
     }
 
     @Test
     public void execute_duplicateProperty_throwsCommandException() {
         Property personInList = model.getPropertyDirectory().getPropertyList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PROPERTY);
+        CommandTestUtil.assertCommandFailure(
+                new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PROPERTY);
     }
 
 }

@@ -2,9 +2,6 @@ package seedu.condonery.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.condonery.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.condonery.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.condonery.logic.commands.CommandTestUtil.showPropertyAtIndex;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_SECOND_PROPERTY;
 import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
@@ -28,20 +25,15 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-<<<<<<< HEAD
-        Person personToDelete = model.getFilteredPropertyList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-=======
         Property propertyToDelete = model.getFilteredPropertyList().get(INDEX_FIRST_PROPERTY.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PROPERTY);
->>>>>>> Fix Command Unit Tests
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getPropertyDirectory(), new UserPrefs());
         expectedModel.deleteProperty(propertyToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -49,20 +41,15 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPropertyList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPropertyAtIndex(model, INDEX_FIRST_PROPERTY);
+        CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST_PROPERTY);
 
-<<<<<<< HEAD
-        Person personToDelete = model.getFilteredPropertyList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-=======
         Property propertyToDelete = model.getFilteredPropertyList().get(INDEX_FIRST_PROPERTY.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PROPERTY);
->>>>>>> Fix Command Unit Tests
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
@@ -70,12 +57,12 @@ public class DeleteCommandTest {
         expectedModel.deleteProperty(propertyToDelete);
         showNoProperty(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPropertyAtIndex(model, INDEX_FIRST_PROPERTY);
+        CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST_PROPERTY);
 
         Index outOfBoundIndex = INDEX_SECOND_PROPERTY;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -83,7 +70,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
     }
 
     @Test

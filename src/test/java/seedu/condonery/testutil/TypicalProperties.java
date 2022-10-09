@@ -1,6 +1,11 @@
 package seedu.condonery.testutil;
 
-import static seedu.condonery.logic.commands.CommandTestUtil.*;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +26,8 @@ public class TypicalProperties {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withTags("owesMoney", "friends").build();
     public static final Property CARL = new PropertyBuilder().withName("Carl Kurz").withAddress("wall street").build();
-    public static final Property DANIEL = new PropertyBuilder().withName("Daniel Meier").withAddress("10th street").withTags("friends").build();
+    public static final Property DANIEL = new PropertyBuilder()
+            .withName("Daniel Meier").withAddress("10th street").withTags("friends").build();
     public static final Property ELLE = new PropertyBuilder().withName("Elle Meyer")
             .withAddress("michegan ave").build();
     public static final Property FIONA = new PropertyBuilder().withName("Fiona Kunz")
