@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.address.Address;
 import seedu.address.model.role.Buyer;
 import seedu.address.model.role.Seller;
 import seedu.address.model.tag.Tag;

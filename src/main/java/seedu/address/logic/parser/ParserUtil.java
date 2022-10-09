@@ -13,10 +13,13 @@ import java.util.stream.Collectors;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.address.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.property.Description;
+import seedu.address.model.property.Price;
+import seedu.address.model.property.PropertyName;
 import seedu.address.model.role.Characteristics;
 import seedu.address.model.role.PriceRange;
 import seedu.address.model.tag.Tag;
@@ -130,6 +133,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    /**
      * Parses {@code String range} into a {@code PriceRange}.
      */
     public static PriceRange parsePriceRange(String range) throws ParseException {
@@ -182,4 +200,35 @@ public class ParserUtil {
 
         return propertyArray;
     }
+
+    /**
+     * Parses a {@code String price} into a {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(trimmedPrice);
+    }
+
+    /**
+     * Parses a {@code String propertyName} into a {@code PropertyName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code propertyName} is invalid.
+     */
+    public static PropertyName parsePropertyName(String propertyName) throws ParseException {
+        requireNonNull(propertyName);
+        String trimmedPropertyName = propertyName.trim();
+        if (!PropertyName.isValidPropertyName(trimmedPropertyName)) {
+            throw new ParseException(PropertyName.MESSAGE_CONSTRAINTS);
+        }
+        return new PropertyName(trimmedPropertyName);
+    }
 }
+
