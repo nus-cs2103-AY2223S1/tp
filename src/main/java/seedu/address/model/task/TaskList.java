@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -83,19 +84,103 @@ public class TaskList implements Iterable<Task> {
         internalList.set(index, editedTask);
     }
 
-    public void find(Task toFind) {
+    /**
+     * Returns a Task from the list which corresponds with {@code toFind}.
+     * {@code toFind} must exist in the list.
+     * @param toFind the Task to find in the list
+     * @return a Task from the list which corresponds with {@code toFind}
+     */
+    public Task find(Task toFind) {
         requireNonNull(toFind);
-
+        if (!contains(toFind)) {
+//            throw new TaskNotFoundException();
+        }
+        return internalList.get(internalList.indexOf(toFind));
     }
 
-    public void sort(Task toSort) {
-        requireNonNull(toSort);
-
+    /**
+     * Sorts the task list based on priority.
+     */
+    public void sortByPriority() {
+        internalList.sorted(new SortByPriority());
     }
 
-    public void filter(Task toFilter) {
+    /**
+     * Sorts the task list based on category.
+     */
+    public void sortByCategory() {
+        internalList.sorted(new SortByCategory());
+    }
+
+    /**
+     * Sorts the task list based on deadline.
+     */
+    public void sortByDeadline() {
+        internalList.sorted(new SortByDeadline());
+    }
+
+    /**
+     * Sorts the task list based on the respective people that the tasks are assigned to.
+     */
+    public void sortByPerson() {
+        internalList.sorted(new SortByPerson());
+    }
+
+    /**
+     * Sorts the task list based on status.
+     */
+    public void sortByStatus() {
+        internalList.sorted(new SortByStatus());
+    }
+
+    /**
+     * Filters the task list based on the given Priority {@code toFilter}.
+     * @param toFilter Priority to filter the task list by
+     */
+    public void filter(Task/*Priority*/ toFilter) {
         requireNonNull(toFilter);
+        Predicate<Task/*Priority*/> filterer = i -> (i == toFilter);
+        internalList.filtered(filterer);
+    }
 
+    /**
+     * Filters the task list based on the given Category {@code toFilter}.
+     * @param toFilter Category to filter the task list by
+     */
+    public void filter(Task/*Category*/ toFilter, int removeThis) {
+        requireNonNull(toFilter);
+        Predicate<Task/*Category*/> filterer = i -> (i == toFilter);
+        internalList.filtered(filterer);
+    }
+
+    /**
+     * Filters the task list based on the given Deadline {@code toFilter}.
+     * @param toFilter Deadline to filter the task list by
+     */
+    public void filter(Task /*Deadline*/ toFilter, boolean removeThis) {
+        requireNonNull(toFilter);
+        Predicate<Task/*Deadline*/> filterer = i -> (i == toFilter);
+        internalList.filtered(filterer);
+    }
+
+    /**
+     * Filters the task list based on the given assigned Person {@code toFilter}.
+     * @param toFilter Person to filter the task list by
+     */
+    public void filter(Task /*Person*/ toFilter, String removeThis) {
+        requireNonNull(toFilter);
+        Predicate<Task/*Person*/> filterer = i -> (i == toFilter);
+        internalList.filtered(filterer);
+    }
+
+    /**
+     * Filters the task list based on the given Status {@code toFilter}.
+     * @param toFilter Status to filter the task list by
+     */
+    public void filter(Task /*Status*/ toFilter, Task removeThis) {
+        requireNonNull(toFilter);
+        Predicate<Task/*Status*/> filterer = i -> (i == toFilter);
+        internalList.filtered(filterer);
     }
 
     public void setTasks(TaskList replacement) {
