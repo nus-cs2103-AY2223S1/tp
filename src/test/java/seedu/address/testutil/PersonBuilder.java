@@ -7,9 +7,11 @@ import seedu.address.model.job.Id;
 import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.University;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,6 +24,8 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_GENDER = "Female";
+    public static final String DEFAULT_UNIVERSITY = "NUS";
     public static final String DEFAULT_ID = "17839";
     public static final String DEFAULT_TITLE = "Intern, Software Engineer";
 
@@ -29,6 +33,8 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Gender gender;
+    private University university;
     private Id id;
     private Title title;
     private Set<Tag> tags;
@@ -41,6 +47,8 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        gender = new Gender(DEFAULT_GENDER);
+        university = new University(DEFAULT_UNIVERSITY);
         id = new Id(DEFAULT_ID);
         title = new Title(DEFAULT_TITLE);
         tags = new HashSet<>();
@@ -54,6 +62,8 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        gender = personToCopy.getGender();
+        university = personToCopy.getUniversity();
         id = personToCopy.getJob().getId();
         title = personToCopy.getJob().getTitle();
         tags = new HashSet<>(personToCopy.getTags());
@@ -100,6 +110,22 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
+    /**
+     * Sets the {@code University} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withUniversity(String university) {
+        this.university = new University(university);
+        return this;
+    }
+
+    /**
      * Sets the {@code Id} of the {@code Person} that we are building.
      */
     public PersonBuilder withId(String id) {
@@ -115,8 +141,17 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code Person} that we are building.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, id, title, tags);
+        return new Person(name, phone, email,
+            address,
+            gender,
+            university,
+            id,
+            title,
+            tags);
     }
 
 }

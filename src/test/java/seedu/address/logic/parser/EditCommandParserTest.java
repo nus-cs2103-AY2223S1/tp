@@ -5,15 +5,19 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ID_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_UNIVERSITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -21,10 +25,14 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_KIV;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_REJECTED;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.UNIVERSITY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.UNIVERSITY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -34,6 +42,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_KIV;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REJECTED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIVERSITY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIVERSITY_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -50,8 +60,10 @@ import seedu.address.model.job.Id;
 import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.University;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -97,6 +109,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_GENDER_DESC, Gender.MESSAGE_CONSTRAINTS); // invalid gender
+        assertParseFailure(parser, "1" + INVALID_UNIVERSITY_DESC, University.MESSAGE_CONSTRAINTS); // invalid university
         assertParseFailure(parser, "1" + INVALID_ID_DESC, Id.MESSAGE_CONSTRAINTS); // invalid job ID
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC, Title.MESSAGE_CONSTRAINTS); // invalid job title
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
@@ -115,21 +129,44 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_REJECTED + TAG_DESC_KIV, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
-                + VALID_PHONE_AMY + VALID_ID_AMY + VALID_TITLE_AMY, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1"
+                + INVALID_NAME_DESC
+                + INVALID_EMAIL_DESC
+                + VALID_ADDRESS_AMY
+                + VALID_PHONE_AMY
+                + VALID_GENDER_AMY
+                + VALID_UNIVERSITY_AMY
+                + VALID_ID_AMY
+                + VALID_TITLE_AMY,
+                Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_KIV
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_REJECTED
-                + ID_DESC_AMY + TITLE_DESC_AMY;
+        String userInput = targetIndex.getOneBased()
+                + PHONE_DESC_BOB
+                + TAG_DESC_KIV
+                + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY
+                + GENDER_DESC_BOB
+                + UNIVERSITY_DESC_BOB
+                + NAME_DESC_AMY
+                + ID_DESC_AMY
+                + TITLE_DESC_AMY
+                + TAG_DESC_REJECTED;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withId(VALID_ID_AMY).withTitle(VALID_TITLE_AMY)
-                .withTags(VALID_TAG_KIV, VALID_TAG_REJECTED).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_AMY)
+                .withAddress(VALID_ADDRESS_AMY)
+                .withGender(VALID_GENDER_BOB)
+                .withUniversity(VALID_UNIVERSITY_BOB)
+                .withId(VALID_ID_AMY)
+                .withTitle(VALID_TITLE_AMY)
+                .withTags(VALID_TAG_KIV, VALID_TAG_REJECTED)
+                .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -174,6 +211,18 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // gender
+        userInput = targetIndex.getOneBased() + GENDER_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withGender(VALID_GENDER_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // university
+        userInput = targetIndex.getOneBased() + UNIVERSITY_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withUniversity(VALID_UNIVERSITY_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // job ID
         userInput = targetIndex.getOneBased() + ID_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withId(VALID_ID_AMY).build();
@@ -196,14 +245,34 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_REJECTED + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_REJECTED
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_KIV + ID_DESC_AMY
-                + ID_DESC_BOB + TITLE_DESC_AMY + TITLE_DESC_BOB;
+        String userInput = targetIndex.getOneBased()
+                + PHONE_DESC_AMY
+                + ADDRESS_DESC_AMY
+                + EMAIL_DESC_AMY
+                + GENDER_DESC_AMY
+                + UNIVERSITY_DESC_AMY
+                + ID_DESC_AMY
+                + TITLE_DESC_AMY
+                + TAG_DESC_REJECTED
+                + PHONE_DESC_BOB
+                + ADDRESS_DESC_BOB
+                + EMAIL_DESC_BOB
+                + GENDER_DESC_BOB
+                + UNIVERSITY_DESC_BOB
+                + ID_DESC_BOB
+                + TITLE_DESC_BOB
+                + TAG_DESC_KIV;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withId(VALID_ID_BOB)
-                .withTitle(VALID_TITLE_BOB).withTags(VALID_TAG_REJECTED, VALID_TAG_KIV).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withGender(VALID_GENDER_BOB)
+                .withUniversity(VALID_UNIVERSITY_BOB)
+                .withId(VALID_ID_BOB)
+                .withTitle(VALID_TITLE_BOB)
+                .withTags(VALID_TAG_REJECTED, VALID_TAG_KIV)
+                .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -219,10 +288,22 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
-                + PHONE_DESC_BOB + ID_DESC_BOB + TITLE_DESC_BOB;
+        userInput = targetIndex.getOneBased()
+                + EMAIL_DESC_BOB
+                + INVALID_PHONE_DESC
+                + ADDRESS_DESC_BOB
+                + GENDER_DESC_BOB
+                + UNIVERSITY_DESC_BOB
+                + ID_DESC_BOB
+                + TITLE_DESC_BOB
+                + PHONE_DESC_BOB;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withId(VALID_ID_BOB).withTitle(VALID_TITLE_BOB).build();
+                .withAddress(VALID_ADDRESS_BOB)
+                .withGender(VALID_GENDER_BOB)
+                .withUniversity(VALID_UNIVERSITY_BOB)
+                .withId(VALID_ID_BOB)
+                .withTitle(VALID_TITLE_BOB)
+                .build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
