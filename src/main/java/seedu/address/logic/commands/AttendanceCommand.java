@@ -23,9 +23,9 @@ public class AttendanceCommand extends Command {
             + ": Adds attendance to the person identified "
             + "by the index number used in the last person listing. "
             + "Existing attendance will not be modified.\n"
-            + "Parameters: INDEX (must be a positiv integer)"
-            + "h / [ATTENDANCE]\n"
-            + "Exmple: " + COMMAND_WORD + " 1 "
+            + "Parameters: INDEX (must be a positive integer)"
+            + "a/ [ATTENDANCE]\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + "a/ 2022-08-08.";
 
     public static final String MESSAGE_ADD_ATTENDANCE_SUCCESS = "Added attendance to Person: %1$s";
