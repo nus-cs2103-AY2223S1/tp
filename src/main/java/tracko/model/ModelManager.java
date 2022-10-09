@@ -92,6 +92,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteOrder(Order order) {
+        trackO.deleteOrder(order);
+    }
+
+    @Override
     public ObservableList<Order> getOrderList() {
         return trackO.getOrderList();
     }

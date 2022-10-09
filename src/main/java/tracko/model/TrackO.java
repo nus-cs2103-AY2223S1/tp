@@ -50,6 +50,14 @@ public class TrackO implements ReadOnlyTrackO {
         orders.add(order);
     }
 
+    /**
+     * Deletes an order to be tracked.
+     * @param order The order to be deleted
+     */
+    public void deleteOrder(Order order) {
+        orders.delete(order);
+    }
+
     @Override
     public ObservableList<Order> getOrderList() {
         return orders.asUnmodifiableObservableList();
