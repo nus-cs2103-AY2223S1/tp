@@ -72,7 +72,6 @@ public interface Model {
      * Returns the order list.
      */
     ObservableList<Order> getOrderList();
-    
     /**
      * Adds the given item.
      */

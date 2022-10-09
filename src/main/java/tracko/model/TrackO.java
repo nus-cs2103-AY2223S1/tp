@@ -57,7 +57,7 @@ public class TrackO implements ReadOnlyTrackO {
     public void addOrder(Order order) {
         orders.add(order);
     }
-        
+
     /**
      * Deletes an order to be tracked.
      * @param order The order to be deleted
@@ -65,7 +65,6 @@ public class TrackO implements ReadOnlyTrackO {
     public void deleteOrder(Order order) {
         orders.delete(order);
     }
-    
     /**
      * Adds an item to be tracked.
      * @param item The item to be added
