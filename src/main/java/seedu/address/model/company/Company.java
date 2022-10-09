@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -43,7 +44,7 @@ public class Company implements ReadOnlyCompany {
      * @param pocs list of unique pocs.
      */
     public Company(Name name, Address address, Set<Tag> tags, UniquePocList pocs) {
-        requireAllNonNull(name, address, tags);
+        requireAllNonNull(name, address, tags, pocs);
         this.name = name;
         this.address = address;
         this.tags.addAll(tags);
@@ -79,7 +80,9 @@ public class Company implements ReadOnlyCompany {
     }
 
     /**
-     * Returns true if a poc with the same identity as {@code poc} exists in the company.
+     * Returns true if poc is in the list of pocs
+     * @param poc to be checked
+     * @return true if contains
      */
     public boolean hasPoc(Poc poc) {
         requireNonNull(poc);
@@ -136,6 +139,17 @@ public class Company implements ReadOnlyCompany {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        UniquePocList pocs = getPocs();
+        builder.append("; POCs: ");
+        Iterator<Poc> itr = pocs.iterator();
+        String prefix = "";
+        while (itr.hasNext()) {
+            Poc poc = itr.next();
+            builder.append(prefix);
+            prefix = ", ";
+            builder.append(poc.getName());
         }
         return builder.toString();
     }
