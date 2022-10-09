@@ -8,8 +8,6 @@ import java.util.function.Function;
 import nus.climods.logic.parser.ParserUtil;
 import nus.climods.logic.parser.exceptions.ParseException;
 
-
-
 /**
  * Represents a positional parameter yielding a value of type T.
  * @param <T> The expected type from the parameter
