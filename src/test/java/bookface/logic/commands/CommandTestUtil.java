@@ -17,6 +17,7 @@ import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.BookFace;
 import bookface.model.Model;
 import bookface.model.book.Book;
+import bookface.model.book.TitleContainsKeywordsPredicate;
 import bookface.model.person.NameContainsKeywordsPredicate;
 import bookface.model.person.Person;
 import bookface.testutil.EditPersonDescriptorBuilder;
@@ -138,7 +139,7 @@ public class CommandTestUtil {
 
         Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
         final String[] splitTitle = book.getTitle().bookTitle.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+        model.updateFilteredBookList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(1, model.getFilteredBookList().size());
     }
