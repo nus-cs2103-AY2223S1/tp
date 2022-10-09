@@ -2,11 +2,6 @@ package seedu.address.model.client;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
-import seedu.address.model.project.Project;
 
 /**
  * Represents a Client associated with a project. This is modelled after the AB3 Person.
@@ -63,7 +58,7 @@ public class Client {
         this.email = new ClientEmail(email);
         this.id = ClientId.generateId(this.name);
         this.projects = new ClientProjectList();
-        this.type =  Type.UNSPECIFIED;
+        this.type = Type.UNSPECIFIED;
     }
 
     /**

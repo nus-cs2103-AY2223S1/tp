@@ -1,10 +1,11 @@
 package seedu.address.model.client;
 
-import seedu.address.model.project.Project;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.project.Project;
+
 
 /**
  * Represents the list of projects the client is associated with.
@@ -42,7 +43,7 @@ public class ClientProjectList {
      * @return String representing all projects in the list
      */
     public String listAllProjects() {
-        if(projects.size() > 0) {
+        if (projects.size() > 0) {
             String list = this.projects.toArray().toString();
             return list;
         } else {
