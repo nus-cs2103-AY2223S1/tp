@@ -31,7 +31,7 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_WEIGHT = "123456";
-    private static final String VALID_REP = "123 Main Street #0505";
+    private static final String VALID_REP = "1";
     private static final String VALID_SETS = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";

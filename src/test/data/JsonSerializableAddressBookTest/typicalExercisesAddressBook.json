@@ -4,43 +4,43 @@
     "name" : "Alice Pauline",
     "weight" : "94351253",
     "sets" : "alice@example.com",
-    "rep" : "123, Jurong West Ave 6, #08-111",
+    "rep" : "1",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "weight" : "98765432",
     "sets" : "johnd@example.com",
-    "rep" : "311, Clementi Ave 2, #02-25",
+    "rep" : "1",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "weight" : "95352563",
     "sets" : "heinz@example.com",
-    "rep" : "wall street",
+    "rep" : "1",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "weight" : "87652533",
     "sets" : "cornelia@example.com",
-    "rep" : "10th street",
+    "rep" : "1",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "weight" : "9482224",
     "sets" : "werner@example.com",
-    "rep" : "michegan ave",
+    "rep" : "1",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "weight" : "9482427",
     "sets" : "lydia@example.com",
-    "rep" : "little tokyo",
+    "rep" : "1",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "weight" : "9482442",
     "sets" : "anna@example.com",
-    "rep" : "4th street",
+    "rep" : "1",
     "tagged" : [ ]
   } ]
 }
