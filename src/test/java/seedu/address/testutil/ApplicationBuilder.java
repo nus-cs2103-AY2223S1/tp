@@ -14,7 +14,7 @@ public class ApplicationBuilder {
 
     public static final String DEFAULT_COMPANY = "Google";
     public static final String DEFAULT_CONTACT = "85355255";
-    public static final String DEFAULT_DATE = "01-01-2022";
+    public static final String DEFAULT_DATE = "2022-01-01";
     public static final String DEFAULT_EMAIL = "google@gmail.com";
     public static final String DEFAULT_POSITION = "Software Engineer";
 

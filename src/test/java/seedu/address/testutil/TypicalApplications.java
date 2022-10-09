@@ -24,15 +24,15 @@ import seedu.address.model.application.Application;
 public class TypicalApplications {
 
     public static final Application SHOPEE = new ApplicationBuilder().withCompany("Shopee")
-            .withContact("94201239").withDate("31-12-2022")
+            .withContact("94201239").withDate("2022-12-31")
             .withEmail("shopee@example.com").withPosition("Frontend Engineer").build();
-    public static final Application TIKTOK = new ApplicationBuilder().withCompany("Tiktok")
-            .withContact("83920382").withDate("01-08-2022")
-            .withEmail("tiktok@example.com").withPosition("Backend Engineer").build();
+    public static final Application BYTEDANCE = new ApplicationBuilder().withCompany("ByteDance")
+            .withContact("83920382").withDate("2022-08-01")
+            .withEmail("bytedance@example.com").withPosition("Backend Engineer").build();
 
     // Manually added
     public static final Application JANE_STREET = new ApplicationBuilder().withCompany("Jane Street")
-            .withContact("91420834").withDate("01-01-2022")
+            .withContact("91420834").withDate("2022-01-01")
             .withEmail("janestreet@example.com").withPosition("Software Engineer").build();
 
     // Manually added - Application's details found in {@code ApplicationCommandTestUtil}
@@ -43,7 +43,7 @@ public class TypicalApplications {
             .withContact(VALID_CONTACT_FACEBOOK).withDate(VALID_DATE_FACEBOOK)
             .withEmail(VALID_EMAIL_FACEBOOK).withPosition(VALID_POSITION_FACEBOOK).build();
 
-    public static final String KEYWORD_MATCHING_GOOGLE = "Google"; // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_GOOGLE = "Google"; // A keyword that matches GOOGLE
 
     private TypicalApplications() {} // prevents instantiation
 
@@ -59,6 +59,6 @@ public class TypicalApplications {
     }
 
     public static List<Application> getTypicalApplications() {
-        return new ArrayList<>(Arrays.asList(SHOPEE, TIKTOK, JANE_STREET));
+        return new ArrayList<>(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET));
     }
 }

@@ -34,7 +34,7 @@ title: User Guide
 
     * **`list`** : Displays internship application.
 
-    * **`add`**`c/ABC Company d/01/01/2022 p/Software Engineer` : Adds an internship application on `01/01/2022` to company `ABC` for the role of `Software Engineer` to **CinternS**.
+    * **`add`**`c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer` : Adds an internship application on `2022-01-01` to `Google` with contact number `11111111` and email `google@example.com` for the role of `Software Engineer` to **CinternS**.
 
     * **`delete`**`2` : Deletes the 2nd application shown in the current list.
 
@@ -69,13 +69,13 @@ Adds an internship application to the list.
 Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
-Date must be specified in the format <em>dd-MM-yyyy</em>.
+Date must be specified in the format <em>yyyy-MM-dd</em>.
 </div>
 <br>
 
 Examples:
-* `add c/Google ct/11111111 d/01-01-2022 e/google@example.com p/Software Engineer`
-* `add c/Facebook ct/22222222 d/02-01-2022 e/facebook@example.com p/Backend Engineer`
+* `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer`
+* `add c/Facebook ct/22222222 d/2022-01-02 e/facebook@example.com p/Backend Engineer`
 
 ### Listing all internship applications: `list`
 
@@ -131,7 +131,7 @@ We will assist you as soon as possible.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION` <br> e.g., `add c/Google ct/11111111 d/01/01/2022 e/google@example.com p/Software Engineer`
+**Add** | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer`
 **List** | `list`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
 **Exit** | `exit`
