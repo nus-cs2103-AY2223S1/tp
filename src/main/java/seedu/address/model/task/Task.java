@@ -1,33 +1,37 @@
 package seedu.address.model.task;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Objects;
 
+import seedu.address.model.module.Module;
+
 /**
- * Represents a Task in the task list.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Task class represents a task which stores the module code and the
+ * description of the task.
  */
 public class Task {
-
-    private final Description description;
     private final Module module;
+    private final TaskDescription description;
 
     /**
-     * Every field must be present and not null.
+     * The constructor of the Task class. Sets the module and
+     * description of the task.
+     *
+     * @param module The module being added.
+     * @param description The description of the task.
      */
-    public Task(Module module, Description description) {
-        requireAllNonNull(module, description);
+    public Task(Module module, TaskDescription description) {
         this.module = module;
         this.description = description;
     }
 
-    public Module getModule() {
-        return module;
+
+    public TaskDescription getDescription() {
+        return description;
     }
 
-    public Description getDescription() {
-        return description;
+
+    public Module getModule() {
+        return module;
     }
 
     /**

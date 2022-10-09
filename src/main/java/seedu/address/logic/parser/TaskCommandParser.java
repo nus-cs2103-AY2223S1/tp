@@ -8,10 +8,13 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Module;
+import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
 
+/**
+ * Parses arguments to create a new TaskCommand Object.
+ */
 public class TaskCommandParser implements Parser<TaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the TaskCommand
@@ -28,7 +31,7 @@ public class TaskCommandParser implements Parser<TaskCommand> {
         }
 
         Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        TaskDescription description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         Task task = new Task(module, description);
 

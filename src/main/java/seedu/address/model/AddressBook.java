@@ -2,15 +2,15 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.module.DistinctModuleList;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.task.Module;
+import seedu.address.model.task.DistinctTaskList;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at the address-book level
@@ -19,9 +19,8 @@ import seedu.address.model.task.UniqueTaskList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueTaskList tasks;
-
-    private List<Module> modules = List.of(new Module("CS2103T"), new Module("CS2101"));
+    private final DistinctModuleList modules;
+    private final DistinctTaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,10 +31,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-    }
-
-    {
-        tasks = new UniqueTaskList();
+        modules = new DistinctModuleList();
+        tasks = new DistinctTaskList();
     }
 
     public AddressBook() {}
@@ -58,13 +55,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setModules(List<Module> modules) {
+        this.modules.setModules(modules);
+    }
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setTasks(newData.getTaskList());
+        setModules(newData.getModuleList());
     }
 
     //// person-level operations
@@ -103,6 +104,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         persons.remove(key);
     }
+    public void addModule(Module mod) {
+        modules.addModule(mod);
+    }
 
     //// task-level operations
 
@@ -118,20 +122,20 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a task to the task list.
      * The task must not already exist in the task list.
      */
-    public void addTask(Task t) {
-        tasks.add(t);
+    public void addTask(Task task) {
+        tasks.addTask(task);
     }
 
-    public boolean hasModule(Module module) {
-        requireNonNull(module);
-        return modules.contains(module);
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.asUnmodifiableObservableList().size() + " persons"
+                + "\n" + modules.getUnmodifiableModuleList().size() + " modules";
         // TODO: refine later
     }
 
@@ -140,9 +144,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    /**
+     * Checks whether the module list contains the module.
+     *
+     * @param module The module that is being checked.
+     * @return true if the module list contains the module; else returns false.
+     */
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return modules.containsModule(module);
+    }
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return modules.getUnmodifiableModuleList();
+    }
+
     @Override
     public ObservableList<Task> getTaskList() {
-        return tasks.asUnmodifiableObservableList();
+        return tasks.getUnmodifiableTaskList();
     }
 
     @Override

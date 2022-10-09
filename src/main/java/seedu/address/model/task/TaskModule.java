@@ -3,9 +3,10 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-
-public class Module {
-
+/**
+ * TaskModule class represents the module of the task.
+ */
+public class TaskModule {
     public static final String MESSAGE_CONSTRAINTS =
             "Modules should only contain alphanumeric characters, and it should not be blank";
 
@@ -22,7 +23,7 @@ public class Module {
      *
      * @param module A valid module.
      */
-    public Module(String module) {
+    public TaskModule(String module) {
         requireNonNull(module);
         checkArgument(isValidModule(module), MESSAGE_CONSTRAINTS);
         moduleCode = module;
@@ -43,8 +44,8 @@ public class Module {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Module // instanceof handles nulls
-                && moduleCode.equals(((Module) other).moduleCode)); // state check
+                || (other instanceof TaskModule // instanceof handles nulls
+                && moduleCode.equals(((TaskModule) other).moduleCode)); // state check
     }
 
     @Override

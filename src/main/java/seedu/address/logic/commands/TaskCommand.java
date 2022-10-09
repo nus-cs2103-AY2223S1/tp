@@ -41,12 +41,10 @@ public class TaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
-
         if (!model.hasModule(toAdd.getModule())) {
             throw new CommandException(MODULE_NOT_FOUND);
+        } else if (model.hasTask(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
         model.addTask(toAdd);

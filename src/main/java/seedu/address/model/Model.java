@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Module;
 import seedu.address.model.task.Task;
 
 /**
@@ -74,6 +74,8 @@ public interface Model {
      */
     void addPerson(Person person);
 
+    void addModule(Module module);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -83,6 +85,8 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    ObservableList<Module> getFilteredModuleList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
