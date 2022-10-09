@@ -89,7 +89,11 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(isDone ? "[X] " : "[ ] ");
+        if (isDone) {
+            builder.append("[X] ");
+        } else {
+            builder.append("[ ] ");
+        }
         builder.append(getDesc());
         if (getDeadline().deadlineExists()) {
             builder.append("\nDeadline: ").append(getDeadline());

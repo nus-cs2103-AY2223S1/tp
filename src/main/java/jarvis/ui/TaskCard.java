@@ -26,11 +26,13 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
+    private Label done;
+    @FXML
     private Label taskDesc;
     @FXML
     private Label taskDeadline;
-    @FXML
-    private Label id;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -39,6 +41,11 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
+        if (task.isDone()) {
+            done.setText("DONE");
+        } else {
+            done.setText("NOT DONE");
+        }
         taskDesc.setText(task.getDesc().taskDesc);
         taskDeadline.setText(task.getDeadline().toString());
     }
