@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Date {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Dates can take any values, and it should not be blank";
 
     /*
      * The first character of the date must not be a whitespace,
