@@ -2,8 +2,8 @@ package taskbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import taskbook.model.TaskBook;
 import taskbook.model.Model;
+import taskbook.model.TaskBook;
 
 /**
  * Clears the task book.

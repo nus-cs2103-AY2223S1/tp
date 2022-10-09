@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import taskbook.commons.exceptions.IllegalValueException;
-import taskbook.model.TaskBook;
 import taskbook.model.ReadOnlyTaskBook;
+import taskbook.model.TaskBook;
 import taskbook.model.person.Person;
 
 /**

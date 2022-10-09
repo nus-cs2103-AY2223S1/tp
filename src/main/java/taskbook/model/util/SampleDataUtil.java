@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import taskbook.model.TaskBook;
 import taskbook.model.ReadOnlyTaskBook;
+import taskbook.model.TaskBook;
 import taskbook.model.person.Address;
 import taskbook.model.person.Email;
 import taskbook.model.person.Name;
