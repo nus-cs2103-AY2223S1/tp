@@ -6,15 +6,7 @@ import static seedu.condonery.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.condonery.logic.commands.AddCommand;
-import seedu.condonery.logic.commands.ClearCommand;
-import seedu.condonery.logic.commands.Command;
-import seedu.condonery.logic.commands.DeleteCommand;
-import seedu.condonery.logic.commands.EditCommand;
-import seedu.condonery.logic.commands.ExitCommand;
-import seedu.condonery.logic.commands.FindCommand;
-import seedu.condonery.logic.commands.HelpCommand;
-import seedu.condonery.logic.commands.ListCommand;
+import seedu.condonery.logic.commands.*;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +59,9 @@ public class CondoneryParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

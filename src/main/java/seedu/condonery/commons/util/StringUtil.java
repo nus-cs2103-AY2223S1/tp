@@ -6,6 +6,7 @@ import static seedu.condonery.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Set;
 
 /**
  * Helper functions for handling strings.
@@ -32,6 +33,21 @@ public class StringUtil {
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
         String preppedSentence = sentence;
+        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+
+        return Arrays.stream(wordsInPreppedSentence)
+                .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    public static boolean containsWordIgnoreCase(Set<String> set, String word) {
+        requireNonNull(set);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        String preppedSentence = String.join(" ", set);
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
