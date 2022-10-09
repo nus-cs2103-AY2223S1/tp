@@ -16,7 +16,7 @@ public class TaskCategory {
      *
      * @return The task category.
      */
-    public TaskCategoryType TaskCategoryType() {
+    public TaskCategoryType getTaskCategoryType() {
         return this.taskCategoryType;
     }
 

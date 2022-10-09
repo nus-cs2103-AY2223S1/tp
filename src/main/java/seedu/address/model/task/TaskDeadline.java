@@ -14,7 +14,7 @@ public class TaskDeadline {
      *
      * @return The task category.
      */
-    public LocalDate TaskCategoryType() {
+    public LocalDate getDeadline() {
         return this.deadline;
     }
 

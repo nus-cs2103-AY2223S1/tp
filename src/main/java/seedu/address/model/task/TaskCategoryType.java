@@ -2,8 +2,8 @@ package seedu.address.model.task;
 
 enum TaskCategoryType {
         DATABASE,
-        Backend,
-        Frontend,
+        BACKEND,
+        FRONTEND,
         UIUX,
         PRESENTATION,
         OTHERS;
