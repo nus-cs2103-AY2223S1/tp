@@ -36,34 +36,6 @@ public class CreateMeetingCommand extends Command {
         this.meetingInfo = meetingInfo;
     }
 
-<<<<<<< HEAD
-    private ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet) {
-        ArrayList<Person> output = new ArrayList<>();
-        // Takes in the name of the address book contact, split by words in the name
-        for (String personName: peopleToMeet) {
-
-            String[] nameKeywords = personName.split("\\s+");
-
-            NameContainsKeywordsPredicate personNamePredicate =
-                new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
-
-            // updates the list of persons in address book based on predicate
-            model.updateFilteredPersonList(personNamePredicate);
-            ObservableList<Person> listOfPeople = model.getFilteredPersonList();
-
-            // Am thinking if there's a better way to check if the person exists
-            // Since model.hasPerson only takes in a person object as argument
-            if (listOfPeople.isEmpty()) {
-                throw new PersonNotFoundException();
-            } else { // get the first person in the address book whose name matches
-                output.add(listOfPeople.get(0));
-            }
-        }
-        return output;
-    }
-
-=======
->>>>>>> add-person-to-meeting
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -73,12 +45,8 @@ public class CreateMeetingCommand extends Command {
         String meetingDateAndTime = newMeetingInformation[2].strip();
         String meetingLocation = newMeetingInformation[3].strip();
 
-<<<<<<< HEAD
-        ArrayList<Person> arrayOfPeopleToMeet = convertNameToPerson(model, peopleToMeet);
-=======
         ArrayList<Person> arrayOfPeopleToMeet = Meeting.convertNameToPerson(model, peopleToMeet);
 
->>>>>>> add-person-to-meeting
         Meeting newMeeting = model.createNewMeeting(arrayOfPeopleToMeet, meetingTitle,
             meetingDateAndTime, meetingLocation);
         model.addMeeting(newMeeting);
