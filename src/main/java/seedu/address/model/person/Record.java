@@ -17,6 +17,7 @@ public class Record {
     /* Data Fields */
     public final String record;
     private final LocalDateTime recordDate;
+    public static final String MESSAGE_CONSTRAINTS = "Record date should be in the following format: " + DATE_FORMAT.toString();
 
     /**
      * Constructs a record.

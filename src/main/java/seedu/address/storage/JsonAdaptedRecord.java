@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Record;
 import seedu.address.model.tag.Tag;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
+
 
 /**
  * Jackson-friendly version of {@link Tag}.
@@ -41,7 +41,7 @@ class JsonAdaptedRecord {
      */
     public Record toModelType() throws IllegalValueException {
         if (!Record.isValidDate(recordDate)) {
-            throw new IllegalValueException(MESSAGE_INVALID_DATE_FORMAT);
+            throw new IllegalValueException(Record.MESSAGE_CONSTRAINTS);
         }
         return new Record(recordDate, record);
     }
