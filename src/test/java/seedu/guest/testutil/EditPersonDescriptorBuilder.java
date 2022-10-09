@@ -1,18 +1,12 @@
 package seedu.guest.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.guest.logic.commands.EditCommand.EditGuestDescriptor;
-import seedu.guest.model.guest.Address;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
-import seedu.guest.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -39,8 +33,6 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(guest.getEmail());
         descriptor.setDateRange(guest.getDateRange());
         descriptor.setNumberOfGuests(guest.getNumberOfGuests());
-        descriptor.setAddress(guest.getAddress());
-        descriptor.setTags(guest.getTags());
     }
 
     /**
@@ -80,24 +72,6 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withNumberOfGuests(String numberOfGuests) {
         descriptor.setNumberOfGuests(new NumberOfGuests(numberOfGuests));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
-     */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
         return this;
     }
 

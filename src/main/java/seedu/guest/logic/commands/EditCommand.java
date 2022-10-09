@@ -1,34 +1,27 @@
 package seedu.guest.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.guest.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_DATE_RANGE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.guest.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.guest.model.Model.PREDICATE_SHOW_ALL_GUESTS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.guest.commons.core.Messages;
 import seedu.guest.commons.core.index.Index;
 import seedu.guest.commons.util.CollectionUtil;
 import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.Model;
-import seedu.guest.model.guest.Address;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
-import seedu.guest.model.tag.Tag;
 
 /**
  * Edits the details of an existing guest in the guest book.
@@ -46,8 +39,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_DATE_RANGE + "DATE_RANGE] "
             + "[" + PREFIX_NUMBER_OF_GUESTS + "NUMBER_OF_GUESTS] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -105,11 +96,7 @@ public class EditCommand extends Command {
         DateRange updatedDateRange = editGuestDescriptor.getDateRange().orElse(guestToEdit.getDateRange());
         NumberOfGuests updatedNumberOfGuests = editGuestDescriptor.getNumberOfGuests()
                 .orElse(guestToEdit.getNumberOfGuests());
-        Address updatedAddress = editGuestDescriptor.getAddress().orElse(guestToEdit.getAddress());
-        Set<Tag> updatedTags = editGuestDescriptor.getTags().orElse(guestToEdit.getTags());
-
-        return new Guest(updatedName, updatedPhone, updatedEmail, updatedDateRange, updatedNumberOfGuests,
-                updatedAddress, updatedTags);
+        return new Guest(updatedName, updatedPhone, updatedEmail, updatedDateRange, updatedNumberOfGuests);
     }
 
     @Override
@@ -140,14 +127,11 @@ public class EditCommand extends Command {
         private Email email;
         private DateRange dateRange;
         private NumberOfGuests numberOfGuests;
-        private Address address;
-        private Set<Tag> tags;
 
         public EditGuestDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditGuestDescriptor(EditGuestDescriptor toCopy) {
             setName(toCopy.name);
@@ -155,15 +139,13 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setDateRange(toCopy.dateRange);
             setNumberOfGuests(toCopy.numberOfGuests);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, dateRange, numberOfGuests, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, dateRange, numberOfGuests);
         }
 
         public void setName(Name name) {
@@ -206,31 +188,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(numberOfGuests);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -250,9 +207,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getDateRange().equals(e.getDateRange())
-                    && getNumberOfGuests().equals(e.getNumberOfGuests())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getNumberOfGuests().equals(e.getNumberOfGuests());
         }
     }
 }
