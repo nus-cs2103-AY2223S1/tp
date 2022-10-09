@@ -1,12 +1,11 @@
 package seedu.address.model.client;
 
+import static java.util.Objects.requireNonNull;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.project.Project;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Client associated with a project. This is modelled after the AB3 Person.
