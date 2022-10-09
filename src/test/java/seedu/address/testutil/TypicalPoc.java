@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.poc.Poc;
+import seedu.address.model.poc.UniquePocList;
 
 /**
  * A utility class containing a list of {@code Poc} objects to be used in tests.
@@ -51,22 +52,15 @@ public class TypicalPoc {
             .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    public static final UniquePocList EMPTY_POC_LIST = new UniquePocList();
+
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPoc() {} // prevents instantiation
 
-    /**
-     * Returns an {@code AddressBook} with all the typical Pocs.
-     */
-    /* public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Poc company : getTypicalCompanies()) {
-            ab.addPoc(company);
-        }
-        return ab;
-    }*/
-
     public static List<Poc> getTypicalPocs() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
 }

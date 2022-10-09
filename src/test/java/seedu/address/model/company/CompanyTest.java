@@ -93,10 +93,10 @@ public class CompanyTest {
     public void containsPoc() {
         Company company = new CompanyBuilder(ALICE).build();
         company.addPoc(BENSON);
-        assertTrue(company.containsPoc(BENSON));
+        assertTrue(company.hasPoc(BENSON));
 
         // Invalid Poc
-        assertFalse(company.containsPoc(AMY));
+        assertFalse(company.hasPoc(AMY));
     }
 
     @Test

@@ -76,7 +76,7 @@ class CreateCommandTest {
         Model modelStub = new ModelStub(validCompany);
         CreateCommand createCommand = new CreateCommand(INDEX_FIRST_COMPANY, AMY);
         createCommand.execute(modelStub);
-        assertTrue(modelStub.getFilteredCompanyList().get(0).containsPoc(AMY));
+        assertTrue(modelStub.getFilteredCompanyList().get(0).hasPoc(AMY));
     }
 
 
