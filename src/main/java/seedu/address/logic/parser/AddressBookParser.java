@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.INCOMPLETE_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -88,6 +89,8 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             if (!descriptor.equals("")) {
                 return new ListCommand(descriptor);
+            } else if (!arguments.equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
             } else {
                 throw new ParseException(INCOMPLETE_COMMAND);
             }
