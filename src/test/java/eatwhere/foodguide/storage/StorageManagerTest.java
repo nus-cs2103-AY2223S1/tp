@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonFoodGuideStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonFoodGuideStorageTest} class.
          */
-        FoodGuide original = TypicalEateries.getTypicalAddressBook();
+        FoodGuide original = TypicalEateries.getTypicalFoodGuide();
         storageManager.saveFoodGuide(original);
         ReadOnlyFoodGuide retrieved = storageManager.readFoodGuide().get();
         assertEquals(original, new FoodGuide(retrieved));

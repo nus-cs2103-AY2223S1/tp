@@ -14,7 +14,7 @@ import eatwhere.foodguide.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Eatery objects.
  */
-public class PersonBuilder {
+public class EateryBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
@@ -30,7 +30,7 @@ public class PersonBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public EateryBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -41,7 +41,7 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code eateryToCopy}.
      */
-    public PersonBuilder(Eatery eateryToCopy) {
+    public EateryBuilder(Eatery eateryToCopy) {
         name = eateryToCopy.getName();
         phone = eateryToCopy.getPhone();
         email = eateryToCopy.getEmail();
@@ -52,7 +52,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Eatery} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public EateryBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -60,7 +60,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Eatery} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public EateryBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -68,7 +68,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Location} of the {@code Eatery} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public EateryBuilder withAddress(String address) {
         this.location = new Location(address);
         return this;
     }
@@ -76,7 +76,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Eatery} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public EateryBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -84,7 +84,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Eatery} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public EateryBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }

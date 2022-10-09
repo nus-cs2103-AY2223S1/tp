@@ -23,8 +23,8 @@ import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
-import eatwhere.foodguide.testutil.PersonBuilder;
+import eatwhere.foodguide.testutil.EditEateryDescriptorBuilder;
+import eatwhere.foodguide.testutil.EateryBuilder;
 import eatwhere.foodguide.testutil.PersonUtil;
 import eatwhere.foodguide.testutil.TypicalIndexes;
 
@@ -34,7 +34,7 @@ public class FoodGuideParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Eatery eatery = new PersonBuilder().build();
+        Eatery eatery = new EateryBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(eatery));
         assertEquals(new AddCommand(eatery), command);
     }
@@ -48,18 +48,18 @@ public class FoodGuideParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_EATERY.getOneBased());
+        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_EATERY), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Eatery eatery = new PersonBuilder().build();
-        EditCommand.EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder(eatery).build();
+        Eatery eatery = new EateryBuilder().build();
+        EditCommand.EditEateryDescriptor descriptor = new EditEateryDescriptorBuilder(eatery).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased()
+                + TypicalIndexes.INDEX_FIRST_EATERY.getOneBased()
                 + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_EATERY, descriptor), command);
     }
 
     @Test
