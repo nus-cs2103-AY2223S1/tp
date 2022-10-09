@@ -44,7 +44,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_TELEGRAMHANDLE).isPresent()) {
-            editPersonDescriptor.setTelegramHandle(ParserUtil.parsePhone(argMultimap.getValue(CliSyntax
+            editPersonDescriptor.setTelegramHandle(ParserUtil.parseTelegramHandle(argMultimap.getValue(CliSyntax
                     .PREFIX_TELEGRAMHANDLE).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_CONSULTATION).isPresent()) {

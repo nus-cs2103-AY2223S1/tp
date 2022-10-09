@@ -28,35 +28,36 @@ import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the masteryCheck book.
+ * Edits the details of an existing student in FRIDAY.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_TELEGRAMHANDLE + "PHONE] "
-            + "[" + PREFIX_CONSULTATION + "EMAIL] "
-            + "[" + PREFIX_MASTERYCHECK + "ADDRESS] "
+            + "[" + PREFIX_TELEGRAMHANDLE + "TELEGRAM HANDLE] "
+            + "[" + PREFIX_CONSULTATION + "CONSULTATION] "
+            + "[" + PREFIX_MASTERYCHECK + "MASTERY CHECK]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TELEGRAMHANDLE + "91234567 "
-            + PREFIX_CONSULTATION + "johndoe@example.com";
+            + PREFIX_TELEGRAMHANDLE + "johndoe "
+            + PREFIX_CONSULTATION + "2022-09-01 "
+            + PREFIX_MASTERYCHECK + "2022-08-24 ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the masteryCheck book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in FRIDAY.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the student in the filtered list of students to edit
+     * @param editPersonDescriptor details to edit the student with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -69,7 +70,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -78,12 +79,12 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedPerson(studentToEdit, editPersonDescriptor);
 
-        if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
+        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(studentToEdit, editedStudent);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 

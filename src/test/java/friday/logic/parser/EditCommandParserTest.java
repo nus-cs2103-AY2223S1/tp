@@ -2,24 +2,20 @@ package friday.logic.parser;
 
 import static friday.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
-/*
 import static friday.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static friday.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static friday.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
- */
 
 import org.junit.jupiter.api.Test;
 
-// import friday.commons.core.index.Index;
+import friday.commons.core.index.Index;
 import friday.logic.commands.CommandTestUtil;
 import friday.logic.commands.EditCommand;
-/*
 import friday.logic.commands.EditCommand.EditPersonDescriptor;
 import friday.model.student.Name;
 import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 import friday.testutil.EditPersonDescriptorBuilder;
- */
 
 public class EditCommandParserTest {
 
@@ -59,7 +55,7 @@ public class EditCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
-    /*
+
     @Test
     public void parse_invalidValue_failure() {
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_NAME_DESC,
@@ -155,7 +151,7 @@ public class EditCommandParserTest {
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-/*
+
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
@@ -180,9 +176,6 @@ public class EditCommandParserTest {
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-     */
-
-    /*
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
@@ -216,5 +209,5 @@ public class EditCommandParserTest {
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
-     */
+
 }

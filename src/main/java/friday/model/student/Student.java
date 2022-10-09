@@ -10,7 +10,7 @@ import java.util.Set;
 import friday.model.tag.Tag;
 
 /**
- * Represents a Person in the masteryCheck book.
+ * Represents a Student in FRIDAY.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -18,10 +18,10 @@ public class Student {
     // Identity fields
     private final Name name;
     private final TelegramHandle telegramHandle;
-    private final Consultation consultation;
 
     // Data fields
     private final MasteryCheck masteryCheck;
+    private final Consultation consultation;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -71,7 +71,7 @@ public class Student {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Student otherStudent) {
+    public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }
@@ -111,15 +111,24 @@ public class Student {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; TelegramHandle: ")
-                .append(getTelegramHandle())
-                .append("; Consultation: ")
-                .append(getConsultation())
-                .append("; MasteryCheck: ")
-                .append(getMasteryCheck())
-                .append(" Remark: ")
-                .append(getRemark());
+        builder.append(getName());
+
+        if (!telegramHandle.isDummyTelegramHandle()) {
+            builder.append("; Telegram handle: ")
+                    .append(getTelegramHandle());
+        }
+        if (!consultation.isDummyConsultation()) {
+            builder.append("; ")
+                    .append(getConsultation());
+        }
+        if (!masteryCheck.isDummyMasteryCheck()) {
+            builder.append("; ")
+                    .append(getMasteryCheck());
+        }
+        if (!remark.isEmpty()) {
+            builder.append(" Remark: ")
+                    .append(getRemark());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
