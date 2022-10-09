@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Internship}'s {@code ApplicationStatus} matches the filter given.
+ */
 public class InternshipHasApplicationStatusPredicate implements Predicate<Internship> {
     private final ApplicationStatus applicationStatus;
 
@@ -18,6 +21,7 @@ public class InternshipHasApplicationStatusPredicate implements Predicate<Intern
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof InternshipHasApplicationStatusPredicate // instanceof handles nulls
-                && applicationStatus.equals(((InternshipHasApplicationStatusPredicate) other).applicationStatus)); // state check
+                && applicationStatus.equals(((InternshipHasApplicationStatusPredicate) other)
+                    .applicationStatus)); // state check
     }
 }
