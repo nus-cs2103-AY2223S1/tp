@@ -7,7 +7,7 @@ import java.util.Objects;
 import seedu.address.model.person.PersonId;
 
 /**
- * Represents a Internship in the address book.
+ * Represents an Internship in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Internship {
@@ -23,7 +23,7 @@ public class Internship {
     private final InterviewDate interviewDate;
 
     /**
-     * Every field must be present and not null except contact person.
+     * Every field must be present and not null except contact person and interview date.
      */
     public Internship(
             InternshipId internshipId,
