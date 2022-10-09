@@ -29,8 +29,11 @@
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
          <padding>
-            <Insets left="5.0" />
+            <Insets left="25.0" />
          </padding>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
         </VBox>
         <rowConstraints>
             <RowConstraints />
