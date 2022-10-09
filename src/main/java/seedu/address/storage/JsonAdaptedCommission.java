@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class JsonAdaptedCommission {
     private final Boolean isCompleted;
 
     /**
-     * Constructs a {@code JsonAdaptedTitle} with the given person details.
+     * Constructs a {@code JsonAdaptedCommission} with the given commission details.
      */
     @JsonCreator
     public JsonAdaptedCommission(@JsonProperty("title") String title, @JsonProperty("description") String description,
@@ -53,11 +54,11 @@ public class JsonAdaptedCommission {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Commission} into this class for Jackson use.
      */
     public JsonAdaptedCommission(Commission source) {
         title = source.getTitle().title;
-        description = source.getDescription().description;
+        description = source.getDescription().orElseGet(() -> Description.NO_DESCRIPTION).description;
         fee = source.getFee().fee;
         deadline = source.getDeadline().deadline;
         tagged.addAll(source.getTags().stream()
@@ -67,7 +68,7 @@ public class JsonAdaptedCommission {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted commission object into the model's {@code Commission} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
@@ -81,13 +82,6 @@ public class JsonAdaptedCommission {
         }
 
         final Title modelTitle = new Title(title);
-
-        if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Description.class.getSimpleName()));
-        }
-
-        final Description modelDescription = new Description(description);
 
         if (fee == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Fee.class.getSimpleName()));
@@ -106,13 +100,6 @@ public class JsonAdaptedCommission {
 
         final Deadline modelDeadline = new Deadline(deadline);
 
-        final List<Tag> commissionTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            commissionTags.add(tag.toModelType());
-        }
-
-        final Set<Tag> modelTags = new HashSet<>(commissionTags);
-
         if (isCompleted == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     CompletionStatus.class.getSimpleName()));
@@ -120,8 +107,29 @@ public class JsonAdaptedCommission {
 
         final CompletionStatus modelCompletionStatus = new CompletionStatus(isCompleted);
 
-        return new Commission(modelTitle, modelDescription, modelFee, modelDeadline, modelTags, modelCompletionStatus,
-                null);
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
+        }
+
+        Optional<Description> modelDescription;
+        if (description.isEmpty()) {
+            modelDescription = Optional.empty();
+        } else {
+            modelDescription = Optional.of(new Description(description));
+        }
+
+        final List<Tag> commissionTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            commissionTags.add(tag.toModelType());
+        }
+
+        final Set<Tag> modelTags = new HashSet<>(commissionTags);
+
+        Commission.CommissionBuilder commissionBuilder = new Commission.CommissionBuilder(modelTitle, modelFee,
+                modelDeadline, modelCompletionStatus, modelTags);
+        modelDescription.ifPresent(commissionBuilder::setDescription);
+        return commissionBuilder.build();
     }
 
 }

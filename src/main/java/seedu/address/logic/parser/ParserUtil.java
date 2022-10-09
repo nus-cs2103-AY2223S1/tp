@@ -2,13 +2,21 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commission.CompletionStatus;
+import seedu.address.model.commission.Deadline;
+import seedu.address.model.commission.Description;
+import seedu.address.model.commission.Fee;
+import seedu.address.model.commission.Title;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
@@ -93,6 +101,84 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String title} into a {@code Title}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code title} is invalid.
+     */
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Title(trimmedTitle);
+    }
+
+    /**
+     * Parses a {@code String fee} into a {@code Fee}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code fee} is invalid.
+     */
+    public static Fee parseFee(String fee) throws ParseException {
+        requireNonNull(fee);
+        String trimmedFee = fee.trim();
+        try {
+            double convertedFee = Double.parseDouble(trimmedFee);
+            if (!Fee.isValidFee(convertedFee)) {
+                throw new ParseException(Fee.MESSAGE_CONSTRAINTS);
+            }
+            return new Fee(convertedFee);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_COMMISSION_FEE);
+        }
+    }
+
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadline} is invalid.
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        try {
+            LocalDate convertedDeadline = LocalDate.parse(trimmedDeadline);
+            return new Deadline(convertedDeadline);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_COMMISSION_DEADLINE);
+        }
+    }
+
+    /**
+     * Parses a {@code String completionStatus} into a {@code CompletionStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code completionStatus} is invalid.
+     */
+    public static CompletionStatus parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!CompletionStatus.isValidStatus(trimmedStatus)) {
+            throw new ParseException(CompletionStatus.MESSAGE_CONSTRAINTS);
+        }
+        return CompletionStatus.of(trimmedStatus);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Description parseDescription(String description) {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        return new Description(trimmedDescription);
     }
 
     /**

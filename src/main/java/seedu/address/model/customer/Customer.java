@@ -71,6 +71,10 @@ public class Customer {
         return commissions.asUnmodifiableObservableList();
     }
 
+    public Set<Commission> getCommissionsMutable() {
+        return commissions;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
