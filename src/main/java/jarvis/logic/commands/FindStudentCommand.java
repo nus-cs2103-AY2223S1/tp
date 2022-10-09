@@ -12,7 +12,7 @@ import jarvis.model.NameContainsKeywordsPredicate;
  */
 public class FindStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "findstudent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

@@ -15,7 +15,7 @@ import jarvis.model.Student;
  */
 public class DeleteStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deletestudent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the student identified by the index number used in the displayed student list.\n"
