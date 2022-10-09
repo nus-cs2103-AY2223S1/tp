@@ -11,9 +11,9 @@ import modtrekt.commons.util.StringUtil;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.person.Address;
 import modtrekt.model.person.Email;
-import modtrekt.model.person.Name;
 import modtrekt.model.person.Phone;
 import modtrekt.model.tag.Tag;
+import modtrekt.model.task.Description;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -41,13 +41,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static Description parseDescription(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!Description.isValidDescription(trimmedName)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Description(trimmedName);
     }
 
     /**

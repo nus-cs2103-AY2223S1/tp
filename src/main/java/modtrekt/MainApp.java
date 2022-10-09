@@ -15,18 +15,18 @@ import modtrekt.commons.util.ConfigUtil;
 import modtrekt.commons.util.StringUtil;
 import modtrekt.logic.Logic;
 import modtrekt.logic.LogicManager;
-import modtrekt.model.AddressBook;
 import modtrekt.model.Model;
 import modtrekt.model.ModelManager;
-import modtrekt.model.ReadOnlyAddressBook;
+import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyUserPrefs;
+import modtrekt.model.TaskBook;
 import modtrekt.model.UserPrefs;
 import modtrekt.model.util.SampleDataUtil;
-import modtrekt.storage.AddressBookStorage;
-import modtrekt.storage.JsonAddressBookStorage;
+import modtrekt.storage.JsonTaskBookStorage;
 import modtrekt.storage.JsonUserPrefsStorage;
 import modtrekt.storage.Storage;
 import modtrekt.storage.StorageManager;
+import modtrekt.storage.TaskBookStorage;
 import modtrekt.storage.UserPrefsStorage;
 import modtrekt.ui.Ui;
 import modtrekt.ui.UiManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
+        storage = new StorageManager(taskBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,20 +74,20 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyTaskBook> addressBookOptional;
+        ReadOnlyTaskBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readTaskBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTaskBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new TaskBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new TaskBook();
         }
 
         return new ModelManager(initialData, userPrefs);

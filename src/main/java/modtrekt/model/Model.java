@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import modtrekt.commons.core.GuiSettings;
-import modtrekt.model.person.Person;
+import modtrekt.model.task.Task;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,51 +37,46 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskBookFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTaskBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces task book data with the data in {@code taskBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTaskBook(ReadOnlyTaskBook addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the taskBook */
+    ReadOnlyTaskBook getTaskBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Deletes the given task.
+     * The task must exist in the address book.
      */
-    boolean hasPerson(Person person);
+    void deleteTask(Task target);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Adds the given task.
+     * {@code task} must not already exist in the task book.
      */
-    void deletePerson(Person target);
+    void addTask(Task t);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task book.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
      */
-    void addPerson(Person person);
+    void setTask(Task target, Task editedTask);
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredTaskList(Predicate<Task> predicate);
 }

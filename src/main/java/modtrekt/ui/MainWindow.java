@@ -126,13 +126,13 @@ public class MainWindow extends UiPart<Stage> {
         ));
         personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
-        taskListPanel = new TaskListPanel(logic.getFilteredPersonList());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

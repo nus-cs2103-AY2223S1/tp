@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import modtrekt.commons.core.LogsCenter;
 import modtrekt.commons.exceptions.DataConversionException;
-import modtrekt.model.ReadOnlyAddressBook;
+import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyUserPrefs;
 import modtrekt.model.UserPrefs;
 
@@ -17,14 +17,14 @@ import modtrekt.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private TaskBookStorage taskBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(TaskBookStorage taskBookStorage, UserPrefsStorage userPrefsStorage) {
+        this.taskBookStorage = taskBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -49,30 +49,30 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getTaskBookFilePath() {
+        return taskBookStorage.getTaskBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTaskBook> readTaskBook() throws DataConversionException, IOException {
+        return readTaskBook(taskBookStorage.getTaskBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTaskBook> readTaskBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return taskBookStorage.readTaskBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveTaskBook(ReadOnlyTaskBook addressBook) throws IOException {
+        saveTaskBook(addressBook, taskBookStorage.getTaskBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveTaskBook(ReadOnlyTaskBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        taskBookStorage.saveTaskBook(addressBook, filePath);
     }
 
 }

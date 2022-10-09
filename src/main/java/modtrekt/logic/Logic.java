@@ -8,8 +8,8 @@ import modtrekt.logic.commands.CommandResult;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.Model;
-import modtrekt.model.ReadOnlyAddressBook;
-import modtrekt.model.person.Person;
+import modtrekt.model.ReadOnlyTaskBook;
+import modtrekt.model.task.Task;
 
 /**
  * API of the Logic component
@@ -27,17 +27,17 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getTaskBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTaskBook getTaskBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Task> getFilteredTaskList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
