@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setExerciseTrackerFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setExerciseTrackerFilePath(Paths.get("exercise/tracker/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setExerciseTrackerFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setExerciseTrackerFilePath(Paths.get("new/exercise/tracker/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -67,7 +67,7 @@ public class ModelManagerTest {
 
     @Test
     public void setExerciseTrackerFilePath_validPath_setsExerciseTrackerFilePath() {
-        Path path = Paths.get("address/book/file/path");
+        Path path = Paths.get("exercise/tracker/file/path");
         modelManager.setExerciseTrackerFilePath(path);
         assertEquals(path, modelManager.getExerciseTrackerFilePath());
     }
