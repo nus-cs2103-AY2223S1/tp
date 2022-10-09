@@ -23,6 +23,10 @@ public class SavedModuleCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
+    private static final String AY_SEMESTER_BG_COLOR = "#E5C07B";
+
+    private static final String AY_SEMESTER_TEXT_COLOR = "#2E333D";
+
     public final DummyModule module;
 
     @FXML
@@ -45,7 +49,7 @@ public class SavedModuleCard extends UiPart<Region> {
         moduleCode.setText(module.getModuleCode());
         tutorial.setText(module.getTutorial());
         lecture.setText(module.getLecture());
-        ayData.getChildren().add(new Pill(module.getAcademicYear(), "#E5C07B", "#2E333D"));
+        ayData.getChildren().add(new Pill(module.getAcademicYear(), AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR));
     }
 
     @Override
