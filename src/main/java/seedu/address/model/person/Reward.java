@@ -27,7 +27,8 @@ public class Reward {
     public Reward(String reward) {
         requireNonNull(reward);
         checkArgument(isValidReward(reward), MESSAGE_CONSTRAINTS);
-        value = reward;
+        Integer integerReward = Integer.parseInt(reward);
+        value = integerReward.toString();
     }
 
     /**
