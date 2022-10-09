@@ -13,10 +13,10 @@ import eatwhere.foodguide.commons.util.ConfigUtil;
 import eatwhere.foodguide.commons.util.StringUtil;
 import eatwhere.foodguide.logic.Logic;
 import eatwhere.foodguide.logic.LogicManager;
-import eatwhere.foodguide.model.AddressBook;
+import eatwhere.foodguide.model.FoodGuide;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import eatwhere.foodguide.model.ReadOnlyUserPrefs;
 import eatwhere.foodguide.model.UserPrefs;
 import eatwhere.foodguide.model.util.SampleDataUtil;
@@ -74,8 +74,8 @@ public class MainApp extends Application {
      * or an empty food guide will be used instead if errors occur when reading {@code storage}'s food guide.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> foodGuideOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyFoodGuide> foodGuideOptional;
+        ReadOnlyFoodGuide initialData;
         try {
             foodGuideOptional = storage.readFoodGuide();
             if (!foodGuideOptional.isPresent()) {
@@ -84,10 +84,10 @@ public class MainApp extends Application {
             initialData = foodGuideOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty FoodGuide");
-            initialData = new AddressBook();
+            initialData = new FoodGuide();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty FoodGuide");
-            initialData = new AddressBook();
+            initialData = new FoodGuide();
         }
 
         return new ModelManager(initialData, userPrefs);

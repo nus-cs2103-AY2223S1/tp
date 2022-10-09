@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import eatwhere.foodguide.commons.core.GuiSettings;
-import eatwhere.foodguide.model.AddressBook;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
+import eatwhere.foodguide.model.FoodGuide;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import eatwhere.foodguide.model.UserPrefs;
-import eatwhere.foodguide.testutil.TypicalPersons;
+import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class StorageManagerTest {
 
@@ -54,10 +54,10 @@ public class StorageManagerTest {
          * {@link JsonFoodGuideStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonFoodGuideStorageTest} class.
          */
-        AddressBook original = TypicalPersons.getTypicalAddressBook();
+        FoodGuide original = TypicalEateries.getTypicalAddressBook();
         storageManager.saveFoodGuide(original);
-        ReadOnlyAddressBook retrieved = storageManager.readFoodGuide().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlyFoodGuide retrieved = storageManager.readFoodGuide().get();
+        assertEquals(original, new FoodGuide(retrieved));
     }
 
     @Test

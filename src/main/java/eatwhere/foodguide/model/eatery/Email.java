@@ -1,11 +1,11 @@
-package eatwhere.foodguide.model.person;
+package eatwhere.foodguide.model.eatery;
 
 import static java.util.Objects.requireNonNull;
 
 import eatwhere.foodguide.commons.util.AppUtil;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents an Eatery's email in the food guide.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {

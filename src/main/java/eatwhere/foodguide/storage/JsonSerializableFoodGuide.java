@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
-import eatwhere.foodguide.model.AddressBook;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
-import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.model.FoodGuide;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
+import eatwhere.foodguide.model.eatery.Eatery;
 
 /**
  * An Immutable FoodGuide that is serializable to JSON format.
@@ -36,8 +36,8 @@ class JsonSerializableFoodGuide {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableFoodGuide}.
      */
-    public JsonSerializableFoodGuide(ReadOnlyAddressBook source) {
-        eateries.addAll(source.getPersonList().stream().map(JsonAdaptedEatery::new).collect(Collectors.toList()));
+    public JsonSerializableFoodGuide(ReadOnlyFoodGuide source) {
+        eateries.addAll(source.getEateryList().stream().map(JsonAdaptedEatery::new).collect(Collectors.toList()));
     }
 
     /**
@@ -45,14 +45,14 @@ class JsonSerializableFoodGuide {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook foodGuide = new AddressBook();
+    public FoodGuide toModelType() throws IllegalValueException {
+        FoodGuide foodGuide = new FoodGuide();
         for (JsonAdaptedEatery jsonAdaptedEatery : eateries) {
-            Person eatery = jsonAdaptedEatery.toModelType();
-            if (foodGuide.hasPerson(eatery)) {
+            Eatery eatery = jsonAdaptedEatery.toModelType();
+            if (foodGuide.hasEatery(eatery)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EATERY);
             }
-            foodGuide.addPerson(eatery);
+            foodGuide.addEatery(eatery);
         }
         return foodGuide;
     }

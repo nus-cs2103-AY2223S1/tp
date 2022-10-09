@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
 import eatwhere.foodguide.commons.util.JsonUtil;
-import eatwhere.foodguide.model.AddressBook;
+import eatwhere.foodguide.model.FoodGuide;
 import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.TypicalPersons;
+import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class JsonSerializableFoodGuideTest {
 
@@ -24,8 +24,8 @@ public class JsonSerializableFoodGuideTest {
     public void toModelType_typicalFoodGuideFile_success() throws Exception {
         JsonSerializableFoodGuide dataFromFile = JsonUtil.readJsonFile(TYPICAL_FOODGUIDE_FILE,
                 JsonSerializableFoodGuide.class).get();
-        AddressBook foodGuideFromFile = dataFromFile.toModelType();
-        AddressBook typicalFoodGuide = TypicalPersons.getTypicalAddressBook();
+        FoodGuide foodGuideFromFile = dataFromFile.toModelType();
+        FoodGuide typicalFoodGuide = TypicalEateries.getTypicalAddressBook();
         assertEquals(foodGuideFromFile, typicalFoodGuide);
     }
 

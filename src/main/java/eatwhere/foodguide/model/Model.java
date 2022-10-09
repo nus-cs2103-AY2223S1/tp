@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import eatwhere.foodguide.commons.core.GuiSettings;
-import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.model.eatery.Eatery;
 import javafx.collections.ObservableList;
 
 /**
@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Eatery> PREDICATE_SHOW_ALL_EATERIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +35,53 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' food guide file path.
      */
-    Path getAddressBookFilePath();
+    Path getFoodGuideFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' food guide file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFoodGuideFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces food guide data with the data in {@code foodGuide}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setFoodGuide(ReadOnlyFoodGuide addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the FoodGuide */
+    ReadOnlyFoodGuide getFoodGuide();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an eatery with the same identity as {@code eatery} exists in the food guide.
      */
-    boolean hasPerson(Person person);
+    boolean hasEatery(Eatery eatery);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given eatery.
+     * The eatery must exist in the food guide.
      */
-    void deletePerson(Person target);
+    void deleteEatery(Eatery target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given eatery.
+     * {@code eatery} must not already exist in the food guide.
      */
-    void addPerson(Person person);
+    void addEatery(Eatery eatery);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given eatery {@code target} with {@code editedEatery}.
+     * {@code target} must exist in the food guide.
+     * The eatery identity of {@code editedEatery} must not be the same as another existing eatery in the food guide.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setEatery(Eatery target, Eatery editedEatery);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered eatery list */
+    ObservableList<Eatery> getFilteredEateryList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered eatery list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredEateryList(Predicate<Eatery> predicate);
 }

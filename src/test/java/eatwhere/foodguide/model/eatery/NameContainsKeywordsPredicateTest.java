@@ -1,4 +1,4 @@
-package eatwhere.foodguide.model.person;
+package eatwhere.foodguide.model.eatery;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,7 +34,7 @@ public class NameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different eatery -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
 import eatwhere.foodguide.model.UserPrefs;
+import eatwhere.foodguide.testutil.TypicalEateries;
 import eatwhere.foodguide.testutil.TypicalIndexes;
-import eatwhere.foodguide.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -21,8 +21,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalEateries.getTypicalAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getFoodGuide(), new UserPrefs());
     }
 
     @Test

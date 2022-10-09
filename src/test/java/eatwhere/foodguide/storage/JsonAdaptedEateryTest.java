@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
-import eatwhere.foodguide.model.person.Address;
-import eatwhere.foodguide.model.person.Email;
-import eatwhere.foodguide.model.person.Name;
-import eatwhere.foodguide.model.person.Phone;
+import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Location;
+import eatwhere.foodguide.model.eatery.Name;
+import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.TypicalPersons;
+import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class JsonAdaptedEateryTest {
     private static final String INVALID_NAME = "R@chel";
@@ -24,18 +24,18 @@ public class JsonAdaptedEateryTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = TypicalPersons.BENSON.getName().toString();
-    private static final String VALID_PHONE = TypicalPersons.BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = TypicalPersons.BENSON.getEmail().toString();
-    private static final String VALID_ADDRESS = TypicalPersons.BENSON.getAddress().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalPersons.BENSON.getTags().stream()
+    private static final String VALID_NAME = TypicalEateries.BENSON.getName().toString();
+    private static final String VALID_PHONE = TypicalEateries.BENSON.getPhone().toString();
+    private static final String VALID_EMAIL = TypicalEateries.BENSON.getEmail().toString();
+    private static final String VALID_ADDRESS = TypicalEateries.BENSON.getLocation().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalEateries.BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validEateryDetails_returnsEatery() throws Exception {
-        JsonAdaptedEatery eatery = new JsonAdaptedEatery(TypicalPersons.BENSON);
-        assertEquals(TypicalPersons.BENSON, eatery.toModelType());
+        JsonAdaptedEatery eatery = new JsonAdaptedEatery(TypicalEateries.BENSON);
+        assertEquals(TypicalEateries.BENSON, eatery.toModelType());
     }
 
     @Test
@@ -87,14 +87,14 @@ public class JsonAdaptedEateryTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedEatery eatery =
                 new JsonAdaptedEatery(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Location.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, eatery::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedEatery eatery = new JsonAdaptedEatery(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, eatery::toModelType);
     }
 

@@ -3,7 +3,7 @@ package eatwhere.foodguide.ui;
 import java.util.logging.Logger;
 
 import eatwhere.foodguide.commons.core.LogsCenter;
-import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.model.eatery.Eatery;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -14,34 +14,34 @@ import javafx.scene.layout.Region;
  * Panel containing the list of persons.
  */
 public class EateryListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
+    private static final String FXML = "EateryListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(EateryListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Eatery> personListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code EateryListPanel} with the given {@code ObservableList}.
      */
-    public EateryListPanel(ObservableList<Person> personList) {
+    public EateryListPanel(ObservableList<Eatery> eateryList) {
         super(FXML);
-        personListView.setItems(personList);
+        personListView.setItems(eateryList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Eatery} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class PersonListViewCell extends ListCell<Eatery> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Eatery eatery, boolean empty) {
+            super.updateItem(eatery, empty);
 
-            if (empty || person == null) {
+            if (empty || eatery == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new EateryCard(person, getIndex() + 1).getRoot());
+                setGraphic(new EateryCard(eatery, getIndex() + 1).getRoot());
             }
         }
     }

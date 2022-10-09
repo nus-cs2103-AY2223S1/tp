@@ -2,7 +2,7 @@ package eatwhere.foodguide.ui;
 
 import java.util.Comparator;
 
-import eatwhere.foodguide.model.person.Person;
+import eatwhere.foodguide.model.eatery.Eatery;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -24,7 +24,7 @@ public class EateryCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Eatery eatery;
 
     @FXML
     private HBox cardPane;
@@ -44,15 +44,15 @@ public class EateryCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public EateryCard(Person person, int displayedIndex) {
+    public EateryCard(Eatery eatery, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.eatery = eatery;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        name.setText(eatery.getName().fullName);
+        phone.setText(eatery.getPhone().value);
+        address.setText(eatery.getLocation().value);
+        email.setText(eatery.getEmail().value);
+        eatery.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -72,6 +72,6 @@ public class EateryCard extends UiPart<Region> {
         // state check
         EateryCard card = (EateryCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && eatery.equals(card.eatery);
     }
 }

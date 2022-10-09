@@ -1,6 +1,6 @@
 package eatwhere.foodguide.model;
 
-import static eatwhere.foodguide.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static eatwhere.foodguide.model.Model.PREDICATE_SHOW_ALL_EATERIES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,10 +12,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.commons.core.GuiSettings;
-import eatwhere.foodguide.model.person.NameContainsKeywordsPredicate;
+import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 import eatwhere.foodguide.testutil.AddressBookBuilder;
 import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.TypicalPersons;
+import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class ModelManagerTest {
 
@@ -25,7 +25,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new FoodGuide(), new FoodGuide(modelManager.getFoodGuide()));
     }
 
     @Test
@@ -61,42 +61,42 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+        Assert.assertThrows(NullPointerException.class, () -> modelManager.setFoodGuideFilePath(null));
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setFoodGuideFilePath(path);
+        assertEquals(path, modelManager.getFoodGuideFilePath());
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+        Assert.assertThrows(NullPointerException.class, () -> modelManager.hasEatery(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(TypicalPersons.ALICE));
+        assertFalse(modelManager.hasEatery(TypicalEateries.ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(TypicalPersons.ALICE);
-        assertTrue(modelManager.hasPerson(TypicalPersons.ALICE));
+        modelManager.addEatery(TypicalEateries.ALICE);
+        assertTrue(modelManager.hasEatery(TypicalEateries.ALICE));
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+        Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEateryList().remove(0));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder()
-                .withPerson(TypicalPersons.ALICE).withPerson(TypicalPersons.BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        FoodGuide addressBook = new AddressBookBuilder()
+                .withPerson(TypicalEateries.ALICE).withPerson(TypicalEateries.BENSON).build();
+        FoodGuide differentAddressBook = new FoodGuide();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
@@ -117,12 +117,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = TypicalPersons.ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = TypicalEateries.ALICE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredEateryList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredEateryList(PREDICATE_SHOW_ALL_EATERIES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.logic.commands.FindCommand;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
-import eatwhere.foodguide.model.person.NameContainsKeywordsPredicate;
+import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

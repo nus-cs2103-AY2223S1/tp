@@ -11,10 +11,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import eatwhere.foodguide.commons.exceptions.DataConversionException;
-import eatwhere.foodguide.model.AddressBook;
-import eatwhere.foodguide.model.ReadOnlyAddressBook;
+import eatwhere.foodguide.model.FoodGuide;
+import eatwhere.foodguide.model.ReadOnlyFoodGuide;
 import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.TypicalPersons;
+import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class JsonFoodGuideStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
@@ -27,7 +27,7 @@ public class JsonFoodGuideStorageTest {
         Assert.assertThrows(NullPointerException.class, () -> readFoodGuide(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readFoodGuide(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyFoodGuide> readFoodGuide(String filePath) throws Exception {
         return new JsonFoodGuideStorage(Paths.get(filePath)).readFoodGuide(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -61,26 +61,26 @@ public class JsonFoodGuideStorageTest {
     @Test
     public void readAndSaveFoodGuide_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        AddressBook original = TypicalPersons.getTypicalAddressBook();
+        FoodGuide original = TypicalEateries.getTypicalAddressBook();
         JsonFoodGuideStorage jsonFoodGuideStorage = new JsonFoodGuideStorage(filePath);
 
         // Save in new file and read back
         jsonFoodGuideStorage.saveFoodGuide(original, filePath);
-        ReadOnlyAddressBook readBack = jsonFoodGuideStorage.readFoodGuide(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
+        ReadOnlyFoodGuide readBack = jsonFoodGuideStorage.readFoodGuide(filePath).get();
+        assertEquals(original, new FoodGuide(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(TypicalPersons.HOON);
-        original.removePerson(TypicalPersons.ALICE);
+        original.addEatery(TypicalEateries.HOON);
+        original.removeEatery(TypicalEateries.ALICE);
         jsonFoodGuideStorage.saveFoodGuide(original, filePath);
         readBack = jsonFoodGuideStorage.readFoodGuide(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
+        assertEquals(original, new FoodGuide(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(TypicalPersons.IDA);
+        original.addEatery(TypicalEateries.IDA);
         jsonFoodGuideStorage.saveFoodGuide(original); // file path not specified
         readBack = jsonFoodGuideStorage.readFoodGuide().get(); // file path not specified
-        assertEquals(original, new AddressBook(readBack));
+        assertEquals(original, new FoodGuide(readBack));
 
     }
 
@@ -92,7 +92,7 @@ public class JsonFoodGuideStorageTest {
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveFoodGuide(ReadOnlyAddressBook foodGuide, String filePath) {
+    private void saveFoodGuide(ReadOnlyFoodGuide foodGuide, String filePath) {
         try {
             new JsonFoodGuideStorage(Paths.get(filePath))
                     .saveFoodGuide(foodGuide, addToTestDataPathIfNotNull(filePath));
@@ -103,6 +103,6 @@ public class JsonFoodGuideStorageTest {
 
     @Test
     public void saveFoodGuide_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> saveFoodGuide(new AddressBook(), null));
+        Assert.assertThrows(NullPointerException.class, () -> saveFoodGuide(new FoodGuide(), null));
     }
 }

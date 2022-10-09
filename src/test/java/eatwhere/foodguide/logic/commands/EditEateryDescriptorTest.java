@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
 import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
 
-public class EditPersonDescriptorTest {
+public class EditEateryDescriptorTest {
 
     @Test
     public void equals() {
