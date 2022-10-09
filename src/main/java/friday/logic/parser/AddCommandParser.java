@@ -7,7 +7,6 @@ import static friday.logic.parser.CliSyntax.PREFIX_NAME;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
 import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -53,17 +52,11 @@ public class AddCommandParser implements Parser<AddCommand> {
             telegramHandle = ParserUtil.parseTelegramHandle(argMultimap
                     .getValue(PREFIX_TELEGRAMHANDLE).get());
         } else {
-            telegramHandle = TelegramHandle.EMPTY_TELEGRAM_HANDLE;
+            telegramHandle = TelegramHandle.EMPTY_TELEGRAMHANDLE;
         }
 
         if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
-            try {
-                consultation = ParserUtil.parseConsultation(LocalDate.parse(argMultimap
-                        .getValue(PREFIX_CONSULTATION).get()));
-            } catch (DateTimeParseException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        Consultation.MESSAGE_CONSTRAINTS));
-            }
+            consultation = ParserUtil.parseConsultation(argMultimap.getValue(PREFIX_CONSULTATION).get());
         } else {
             consultation = Consultation.EMPTY_CONSULTATION;
         }
@@ -71,14 +64,13 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (argMultimap.getValue(PREFIX_MASTERYCHECK).isPresent()) {
             try {
-                masteryCheck = ParserUtil.parseMasteryCheck(LocalDate.parse(argMultimap
-                        .getValue(PREFIX_MASTERYCHECK).get()));
+                masteryCheck = ParserUtil.parseMasteryCheck(argMultimap.getValue(PREFIX_MASTERYCHECK).get());
             } catch (DateTimeParseException e) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         MasteryCheck.MESSAGE_CONSTRAINTS));
             }
         } else {
-            masteryCheck = MasteryCheck.EMPTY_MASTERY_CHECK;
+            masteryCheck = MasteryCheck.EMPTY_MASTERYCHECK;
         }
 
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away

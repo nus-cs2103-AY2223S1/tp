@@ -15,7 +15,7 @@ public class TelegramHandle {
                     + "5 characters long";
     public static final String VALIDATION_REGEX = "[a-z0-9_]{5,}";
 
-    public static final TelegramHandle EMPTY_TELEGRAM_HANDLE = new TelegramHandle();
+    public static final TelegramHandle EMPTY_TELEGRAMHANDLE = new TelegramHandle();
 
     public final String value;
 
@@ -57,7 +57,7 @@ public class TelegramHandle {
      * Returns true if the given Telegram handle is the empty value.
      */
     public boolean isEmpty() {
-        return this == EMPTY_TELEGRAM_HANDLE;
+        return this == EMPTY_TELEGRAMHANDLE;
     }
 
     @Override

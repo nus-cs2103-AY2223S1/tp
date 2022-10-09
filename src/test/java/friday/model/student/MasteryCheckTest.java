@@ -43,6 +43,6 @@ public class MasteryCheckTest {
         assertFalse(new MasteryCheck(LocalDate.of(2001, 01, 01)).isEmpty());
 
         // the empty instance
-        assertTrue(MasteryCheck.EMPTY_MASTERY_CHECK.isEmpty());
+        assertTrue(MasteryCheck.EMPTY_MASTERYCHECK.isEmpty());
     }
 }

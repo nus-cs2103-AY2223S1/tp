@@ -94,7 +94,7 @@ class JsonAdaptedPerson {
         }
         final TelegramHandle modelTelegramHandle;
         if (telegramHandle.equals("")) {
-            modelTelegramHandle = TelegramHandle.EMPTY_TELEGRAM_HANDLE;
+            modelTelegramHandle = TelegramHandle.EMPTY_TELEGRAMHANDLE;
         } else {
             modelTelegramHandle = new TelegramHandle(telegramHandle);
         }
@@ -122,7 +122,7 @@ class JsonAdaptedPerson {
         }
         final MasteryCheck modelMasteryCheck;
         if (masteryCheck.equals(LocalDate.of(0001, 01, 01))) {
-            modelMasteryCheck = MasteryCheck.EMPTY_MASTERY_CHECK;
+            modelMasteryCheck = MasteryCheck.EMPTY_MASTERYCHECK;
         } else {
             modelMasteryCheck = new MasteryCheck(masteryCheck);
         }

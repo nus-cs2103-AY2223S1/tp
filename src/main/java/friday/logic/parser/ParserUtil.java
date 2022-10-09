@@ -72,9 +72,9 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static MasteryCheck parseMasteryCheck(LocalDate desiredDate) throws ParseException {
+    public static MasteryCheck parseMasteryCheck(String desiredDate) throws ParseException {
         requireNonNull(desiredDate);
-        String trimmedDate = desiredDate.toString().trim();
+        String trimmedDate = desiredDate.trim();
         if (!MasteryCheck.isValidMasteryCheck(trimmedDate)) {
             throw new ParseException(MasteryCheck.MESSAGE_CONSTRAINTS);
         }
@@ -88,9 +88,9 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Consultation parseConsultation(LocalDate desiredDate) throws ParseException {
+    public static Consultation parseConsultation(String desiredDate) throws ParseException {
         requireNonNull(desiredDate);
-        String trimmedDate = desiredDate.toString().trim();
+        String trimmedDate = desiredDate.trim();
         if (!Consultation.isValidConsultation(trimmedDate)) {
             throw new ParseException(Consultation.MESSAGE_CONSTRAINTS);
         }

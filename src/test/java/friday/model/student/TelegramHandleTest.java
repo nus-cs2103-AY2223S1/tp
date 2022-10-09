@@ -38,6 +38,6 @@ public class TelegramHandleTest {
     public void isEmpty() {
         assertFalse(new TelegramHandle("empty").isEmpty()); // not the empty instance
 
-        assertTrue(TelegramHandle.EMPTY_TELEGRAM_HANDLE.isEmpty()); // the empty instance
+        assertTrue(TelegramHandle.EMPTY_TELEGRAMHANDLE.isEmpty()); // the empty instance
     }
 }

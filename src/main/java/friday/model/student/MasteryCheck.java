@@ -15,7 +15,7 @@ public class MasteryCheck {
     public static final String VALIDATION_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
 
     // The empty value for when there is no mastery check date attached to a student
-    public static final MasteryCheck EMPTY_MASTERY_CHECK = new MasteryCheck();
+    public static final MasteryCheck EMPTY_MASTERYCHECK = new MasteryCheck();
 
     private LocalDate value;
 
@@ -57,7 +57,7 @@ public class MasteryCheck {
      * Returns true if the given Mastery Check is the empty value.
      */
     public boolean isEmpty() {
-        return this == EMPTY_MASTERY_CHECK;
+        return this == EMPTY_MASTERYCHECK;
     }
 
     /**
