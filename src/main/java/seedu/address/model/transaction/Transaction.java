@@ -24,5 +24,15 @@ public abstract class Transaction {
      */
     abstract double totalCost();
 
+    public Goods getGoods() {
+        return goods;
+    }
 
+    public Price getPrice() {
+        return price;
+    }
+
+    public Quantity getQuantity() {
+        return quantity;
+    }
 }
