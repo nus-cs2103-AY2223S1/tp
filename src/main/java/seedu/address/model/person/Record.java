@@ -24,7 +24,7 @@ public class Record {
      * @param recordDate Date that the record was made.
      * @param record     Contents of the record.
      */
-    protected Record(String recordDate, String record) {
+    public Record(String recordDate, String record) {
         requireNonNull(recordDate);
         requireNonNull(record);
         checkArgument(isValidDate(recordDate), MESSAGE_INVALID_DATE_FORMAT);

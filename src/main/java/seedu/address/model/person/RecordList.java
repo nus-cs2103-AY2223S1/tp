@@ -1,7 +1,7 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a record list in the address book.
@@ -10,27 +10,20 @@ public class RecordList {
     /* Record List variables */
     // todo: have the commands update the record list through an additional add record command.
     // count of the record list should be accessed through the ArrayList#size() method.
-    private final List<Record> recordList;
-
     public static final String MESSAGE_EMPTY_RECORD_LIST = "Record list is empty!";
 
-    /**
-     * Constructs a {@code Record List}.
-     */
-    public RecordList() {
-        this.recordList = new ArrayList<Record>();
-    }
+    private final ObservableList<Record> recordList = FXCollections.observableArrayList();
+    private final ObservableList<Record> internalUnmodifiableRecordList =
+            FXCollections.unmodifiableObservableList(recordList);
 
-    public RecordList(List<Record> recordList) {
-        this.recordList = recordList;
-    }
+    public RecordList() {}
     /**
      * Getter for list of records.
      *
      * @return List of records.
      */
-    public List<Record> getRecordList() {
-        return this.recordList;
+    public ObservableList<Record> getRecordList() {
+        return internalUnmodifiableRecordList;
     }
 
     /**
