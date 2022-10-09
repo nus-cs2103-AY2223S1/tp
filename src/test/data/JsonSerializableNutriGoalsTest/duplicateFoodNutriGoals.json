@@ -1,0 +1,16 @@
+{
+  "foods": [ {
+    "calorie" : "2000",
+    "tagged" : [ "breakfast" ],
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Apple"
+  }, {
+    "calorie" : "2000",
+    "tagged" : [ "breakfast" ],
+    "dateTime" : "2022-10-04T13:05:29.586882100",
+    "name" : "Apple"
+  } ],
+  "calorieTarget" : {
+    "value" : "2000"
+  }
+}
