@@ -7,6 +7,8 @@ import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Represents the tasklist.
@@ -50,13 +52,13 @@ public class TaskList implements Iterable<Task> {
         requireAllNonNull(target, editedTask);
 
         int index = internalList.indexOf(target);
-//        if (index == -1) {
-//            throw new TaskNotFoundException();
-//        }
-//
-//        if (!target.isSameTask(editedTask) && contains(editedTask)) {
-//            throw new DuplicateTaskException();
-//        }
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        if (!target.isSameTask(editedTask) && contains(editedTask)) {
+            throw new DuplicateTaskException();
+        }
 
         internalList.set(index, editedTask);
     }

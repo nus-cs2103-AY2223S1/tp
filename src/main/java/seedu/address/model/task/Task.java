@@ -1,12 +1,12 @@
 package seedu.address.model.task;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Task in the TaskList.
@@ -35,9 +35,13 @@ public class Task {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Description getDescription() { return this.description; }
+    public Description getDescription() {
+        return this.description;
+    }
 
-    public boolean getIsDone() { return this.isDone; }
+    public boolean getIsDone() {
+        return this.isDone;
+    }
 
     /**
      * Returns true if task is done, false if task is not done.
@@ -61,6 +65,11 @@ public class Task {
         isDone = false;
     }
 
+    /**
+     * Returns true if both tasks have matching descriptions, false otherwise.
+     * @param otherTask Another task.
+     * @return boolean indicating whether tasks are the same.
+     */
     public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {
             return true;
