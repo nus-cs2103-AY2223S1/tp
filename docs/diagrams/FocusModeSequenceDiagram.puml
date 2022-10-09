@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaAssistParser" as TaAssistParser LOGIC_COLOR
+participant ":ClassCommandParser" as ClassCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "m:ModuleClass" as ModuleClass LOGIC_COLOR
+participant "c:ClassCommand" as ClassCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("class CS1101S")
+activate LogicManager
+
+LogicManager -> TaAssistParser : parseCommand("class CS1101S")
+activate TaAssistParser
+
+create ClassCommandParser
+TaAssistParser -> ClassCommandParser
+activate ClassCommandParser
+
+ClassCommandParser --> TaAssistParser
+deactivate ClassCommandParser
+
+TaAssistParser -> ClassCommandParser: parse("CS1101S")
+activate ClassCommandParser
+
+ClassCommandParser -> ParserUtil: parseModuleClass("CS1101S")
+activate ParserUtil
+
+create ModuleClass
+ParserUtil -> ModuleClass
+activate ModuleClass
+
+ModuleClass --> ParserUtil: m
+deactivate ModuleClass
+
+ParserUtil --> ClassCommandParser: m
+deactivate ParserUtil
+
+create ClassCommand
+ClassCommandParser -> ClassCommand: m
+activate ClassCommand
+
+ClassCommand --> ClassCommandParser: c
+deactivate ClassCommand
+
+ClassCommandParser --> TaAssistParser: c
+deactivate ClassCommandParser
+
+TaAssistParser --> LogicManager: c
+deactivate TaAssistParser
+
+LogicManager -> ClassCommand: execute()
+activate ClassCommand
+
+ClassCommand -> Model: enterFocusMode(m)
+activate Model
+
+Model --> ClassCommand
+deactivate Model
+
+create CommandResult
+ClassCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClassCommand
+deactivate CommandResult
+
+ClassCommand --> LogicManager: result
+deactivate ClassCommand
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml
