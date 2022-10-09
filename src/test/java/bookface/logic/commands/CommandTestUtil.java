@@ -34,6 +34,14 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_TITLE_HOW = "How to Spell";
+
+    public static final String VALID_TITLE_MAKING = "Making a Computer";
+
+    public static final String VALID_AUTHOR_RONALD = "Ronald Johnson";
+
+    public static final String VALID_AUTHOR_ROGER = "Roger Smith";
+
 
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;

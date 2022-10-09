@@ -151,7 +151,17 @@ public class AddUserCommandTest {
         }
 
         @Override
+        public ObservableList<Book> getFilteredBookList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBookList(Predicate<Book> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -161,7 +171,11 @@ public class AddUserCommandTest {
         }
 
         @Override
+<<<<<<< HEAD
         public void deleteBook(Book book) {
+=======
+        public void loan(Person person, Book book) {
+>>>>>>> 1507ab73c1b4f2330f4a8197027c39be601377bf
             throw new AssertionError("This method should not be called.");
         }
     }

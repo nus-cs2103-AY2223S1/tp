@@ -116,6 +116,7 @@ public class ModelManager implements Model {
     @Override
     public void addBook(Book book) {
         bookFace.addBook(book);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
 
     @Override
@@ -126,8 +127,13 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         CollectionUtil.requireAllNonNull(target, editedPerson);
-
         bookFace.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void loan(Person person, Book book) {
+        CollectionUtil.requireAllNonNull(person, book);
+        bookFace.loan(person, book);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -157,6 +163,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredBookList(Predicate<Book> predicate) {
+        requireNonNull(predicate);
+        filteredBooks.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -172,7 +184,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return bookFace.equals(other.bookFace)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredBooks.equals(other.filteredBooks);
     }
 
 }

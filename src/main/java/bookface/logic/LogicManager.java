@@ -13,6 +13,7 @@ import bookface.logic.parser.exceptions.ParseException;
 import bookface.logic.parser.primary.PrimaryParser;
 import bookface.model.Model;
 import bookface.model.ReadOnlyBookFace;
+import bookface.model.book.Book;
 import bookface.model.person.Person;
 import bookface.storage.Storage;
 import javafx.collections.ObservableList;
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Book> getFilteredBookList() {
+        return model.getFilteredBookList();
     }
 
     @Override

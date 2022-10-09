@@ -14,13 +14,38 @@ import javafx.collections.ObservableList;
 /**
  * The BookList class represents the list of books managed by BookFace.
  */
-public class BookList extends ArrayList<Book> {
+public class BookList extends ArrayList<Book> implements Iterable<Book> {
     private ArrayList<Book> bookList = new ArrayList<>();
+
+    private final ObservableList<Book> internalList = FXCollections.observableArrayList();
+    //private final ObservableList<Book> internalList = FXCollections.observableArrayList(bookList); doesnt work?
+    private final ObservableList<Book> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Constructs a BookList
      */
     public BookList() {}
+
+
+    /**
+     * Returns true if the list contains an equivalent book as the given argument.
+     */
+    public boolean contains(Book toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameBook);
+    }
+
+    /**
+     * Gets whether BookList contains a certain object.
+     *
+     * @param o element whose presence in this list is to be tested
+     * @return true if object is in BookList
+     */
+    @Override
+    public boolean contains(Object o) {
+        return this.bookList.contains(o);
+    }
 
     /**
      * Gets the size of the BookList.
@@ -40,6 +65,11 @@ public class BookList extends ArrayList<Book> {
      */
     @Override
     public boolean add(Book book) {
+        requireNonNull(book);
+        if (contains(book)) {
+            throw new DuplicateBookException();
+        }
+        internalList.add(book);
         return this.bookList.add(book);
     }
 
