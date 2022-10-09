@@ -15,9 +15,10 @@ public class Telegram {
             + "2. The username should start with an alphabet but can contain alphanumeric characters and underscores.\n"
             + "3. It cannot contain consecutive underscores or end with an underscore.\n"
             + "Usernames are case-insensitive, but your capitalization preferences will be stored.";
-    //regex adapted from https://github.com/AY2122S2-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/address/model/person/Telegram.java
+    // regex adapted from
+    // https://github.com/AY2122S2-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/address/model/person/Telegram.java
     public static final String VALIDATION_REGEX = "^@+[a-zA-Z](?:[a-zA-Z0-9]|_(?=[a-zA-Z0-9])){4,39}$";
-    public static final Telegram EMPTY_TELEGRAM = new Telegram ("");
+    public static final Telegram EMPTY_TELEGRAM = new Telegram("");
 
     public final String username;
 

@@ -1,6 +1,5 @@
 package seedu.address.model.profile;
 
-import static java.util.Objects.requireNonNullElse;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;

@@ -3,7 +3,6 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,8 +16,6 @@ import seedu.address.model.profile.Phone;
 import seedu.address.model.profile.Profile;
 import seedu.address.model.profile.Telegram;
 import seedu.address.model.tag.Tag;
-
-import static java.util.Objects.requireNonNullElse;
 
 /**
  * Jackson-friendly version of {@link Profile}.
