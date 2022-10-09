@@ -66,7 +66,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String viewProfilesCommand = ViewProfilesCommand.COMMAND_WORD + " -" + ViewProfilesCommand.COMMAND_OPTION;
+        String viewProfilesCommand = ViewProfilesCommand.COMMAND_WORD + " "
+                + PREFIX_OPTION + ViewProfilesCommand.COMMAND_OPTION;
         assertCommandSuccess(viewProfilesCommand, ViewProfilesCommand.MESSAGE_SUCCESS, model);
     }
 

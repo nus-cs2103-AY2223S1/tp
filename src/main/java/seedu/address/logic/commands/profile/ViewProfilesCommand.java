@@ -13,7 +13,7 @@ public class ViewProfilesCommand extends ProfileCommand {
 
     public static final String COMMAND_OPTION = "v";
 
-    public static final String MESSAGE_SUCCESS = "Listed all profiles";
+    public static final String MESSAGE_SUCCESS = "Listed all profiles.";
 
     @Override
     public CommandResult execute(Model model) {

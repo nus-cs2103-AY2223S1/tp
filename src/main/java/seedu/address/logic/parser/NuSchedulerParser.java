@@ -18,7 +18,7 @@ import seedu.address.logic.parser.profile.ProfileCommandParser;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class NuSchedulerParser {
 
     /**
      * Used for initial separation of command word and args.
