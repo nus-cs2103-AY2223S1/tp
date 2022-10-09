@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; any description is valid
  */
 public class Description {
-
+    public static final Description NO_DESCRIPTION = new Description("");
     public final String description;
 
     /**

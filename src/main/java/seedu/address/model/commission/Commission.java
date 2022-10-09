@@ -1,51 +1,55 @@
 package seedu.address.model.commission;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.customer.Customer;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Commission in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents a Commission in ArtBuddy.
+ * Guarantees: except description, all details are present and not null, field values are validated, immutable.
  */
 public class Commission {
 
     // Identity fields
     private final Title title;
-    private final Description description;
     private final Fee fee;
     private final Deadline deadline;
     private final CompletionStatus completionStatus;
-    private final Set<Tag> tags = new HashSet<>();
     private Customer customer;
 
+    // Data fields
+    private final Set<Tag> tags;
+
+    // Optional fields
+    private final Description description;
+
     /**
-     * Every field must be present and not null.
+     * Constructs a Commission.
+     * @param builder Instance of CommissionBuilder.
      */
-    public Commission(Title title, Description description, Fee fee, Deadline deadline, Set<Tag> tags,
-                      CompletionStatus completionStatus, Customer customer) {
-        requireAllNonNull(title, description, fee, deadline, tags, completionStatus);
-        this.title = title;
-        this.description = description;
-        this.fee = fee;
-        this.deadline = deadline;
-        this.tags.addAll(tags);
-        this.completionStatus = completionStatus;
-        this.customer = customer;
+    public Commission(CommissionBuilder builder) {
+        title = builder.title;
+        fee = builder.fee;
+        deadline = builder.deadline;
+        completionStatus = builder.status;
+        tags = builder.tags;
+        description = builder.description;
     }
 
     public Title getTitle() {
         return title;
     }
 
-    public Description getDescription() {
-        return description;
+    public Optional<Description> getDescription() {
+        return Optional.ofNullable(description);
     }
 
     public Fee getFee() {
@@ -122,14 +126,17 @@ public class Commission {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; Description: ")
-                .append(getDescription())
                 .append("; Fee: ")
                 .append(getFee())
                 .append("; Deadline: ")
                 .append(getDeadline())
-                .append("; Completed:")
+                .append("; Completed: ")
                 .append(getCompletionStatus());
+
+        if (getDescription().isPresent()) {
+            builder.append("; Description: ")
+                    .append(getDescription().get());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -139,4 +146,43 @@ public class Commission {
         return builder.toString();
     }
 
+    /**
+     * Builder class for Commission.
+     */
+    public static class CommissionBuilder {
+        // required parameters
+        private Title title;
+        private Fee fee;
+        private Deadline deadline;
+        private CompletionStatus status;
+        private Set<Tag> tags = new HashSet<>();
+
+        // optional parameters
+        private Description description;
+
+        /**
+         * Builds CommissionBuilder with all required fields.
+         */
+        public CommissionBuilder(Title title, Fee fee, Deadline deadline, CompletionStatus status, Set<Tag> tags) {
+            requireAllNonNull(title, fee, deadline, status, tags);
+            this.title = title;
+            this.fee = fee;
+            this.deadline = deadline;
+            this.status = status;
+            this.tags.addAll(tags);
+        }
+
+        /**
+         * Sets description and returns itself.
+         */
+        public CommissionBuilder setDescription(Description description) {
+            requireNonNull(description);
+            this.description = description;
+            return this;
+        }
+
+        public Commission build() {
+            return new Commission(this);
+        }
+    }
 }

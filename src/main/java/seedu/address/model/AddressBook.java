@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.commission.Commission;
@@ -128,13 +127,24 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a commission to the address book.
      * The commission must not already exist in the customer's commission list.
      */
-    public void addCommission(Customer customer, Commission commission) {
+    public Customer addCommission(Customer customer, Commission commission) {
         requireAllNonNull(customer, commission);
+        // Hashset would cause the commissions to be out of order
         HashSet<Commission> customerCommissions = new HashSet<>(getCustomerCommissions(customer));
         customerCommissions.add(commission);
+        commission.setCustomer(customer);
         commissions.add(commission);
+
         Customer newCustomer = customer.copyWithCommissions(customerCommissions);
+        // Not efficient but ensures all commissions have reference to the new customer who replaced the old one
+        // More ideal to keep same customer reference and update the object instead @Amar suggestion to add counter
+        // to observable list
+        // Also means I must update the selected customer in ModelManager though from user sense the selected customer
+        // is the same. Else subsequent adding during indexOf command of setCustomer due to the equals criteria
+        // customerNotFoundException will be thrown as the selectedCustomer is still referencing old customer version
+        customerCommissions.forEach(comm -> comm.setCustomer(newCustomer));
         setCustomer(customer, newCustomer);
+        return newCustomer;
     }
 
     /**
@@ -162,13 +172,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireAllNonNull(customer, key);
         assert hasCommission(customer, key);
         // make a copy of customer's commissions with key removed.
-        Set<Commission> filteredCommissions = getCustomerCommissions(customer).stream()
-                .filter(commission -> !commission.equals(key)).collect(Collectors.toSet());
+        //Set<Commission> filteredCommissions = getCustomerCommissions(customer).stream()
+        //        .filter(commission -> !commission.equals(key)).collect(Collectors.toSet());
         commissions.remove(key);
         // make a copy of customer with the updated commissions.
-        Customer newCustomer = customer.copyWithCommissions(filteredCommissions);
+        // Customer newCustomer = customer.copyWithCommissions(filteredCommissions);
         // replace original customer with updated customer to trigger customer list UI updates
-        setCustomer(customer, newCustomer);
+        // setCustomer(customer, newCustomer);
+        customer.getCommissionsMutable().remove(key);
     }
 
     //// util methods

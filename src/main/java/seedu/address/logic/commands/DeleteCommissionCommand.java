@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
 
@@ -47,8 +46,6 @@ public class DeleteCommissionCommand extends Command {
 
         Commission commissionToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCommission(commissionToDelete);
-
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_COMMISSION_SUCCESS, commissionToDelete));
     }

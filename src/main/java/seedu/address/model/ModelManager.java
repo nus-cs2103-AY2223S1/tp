@@ -128,6 +128,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasCommission(Commission commission) {
         requireNonNull(commission);
+        commission.setCustomer(getSelectedCustomer().getValue());
         return addressBook.hasCommission(getSelectedCustomer().getValue(), commission);
     }
 
@@ -138,8 +139,8 @@ public class ModelManager implements Model {
 
     @Override
     public void addCommission(Commission commission) {
-        addressBook.addCommission(getSelectedCustomer().getValue(), commission);
-        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        Customer updatedCustomer = addressBook.addCommission(getSelectedCustomer().getValue(), commission);
+        selectCustomer(updatedCustomer);
     }
 
     @Override
