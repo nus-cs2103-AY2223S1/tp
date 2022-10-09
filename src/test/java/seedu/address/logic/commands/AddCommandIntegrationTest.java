@@ -26,20 +26,20 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newFood_success() {
         Food validFood = new FoodBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validFood);
+        expectedModel.addFood(validFood);
 
         assertCommandSuccess(new AddCommand(validFood), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validFood), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Food foodInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(foodInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+    public void execute_duplicateFood_throwsCommandException() {
+        Food foodInList = model.getAddressBook().getFoodList().get(0);
+        assertCommandFailure(new AddCommand(foodInList), model, AddCommand.MESSAGE_DUPLICATE_FOOD);
     }
 
 }

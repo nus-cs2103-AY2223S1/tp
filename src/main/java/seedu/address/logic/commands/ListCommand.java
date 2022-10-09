@@ -18,7 +18,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(new IsFoodAddedTodayPredicate());
+        model.updateFilteredFoodList(new IsFoodAddedTodayPredicate());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

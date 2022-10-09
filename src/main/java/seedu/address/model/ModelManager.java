@@ -33,7 +33,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFoods = new FilteredList<>(this.addressBook.getPersonList().filtered(new IsFoodAddedTodayPredicate()));
+        filteredFoods = new FilteredList<>(this.addressBook.getFoodList().filtered(new IsFoodAddedTodayPredicate()));
     }
 
     public ModelManager() {
@@ -105,24 +105,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Food food) {
+    public boolean hasFood(Food food) {
         requireNonNull(food);
         return addressBook.hasPerson(food);
     }
 
     @Override
-    public void deletePerson(Food target) {
-        addressBook.removePerson(target);
+    public void deleteFood(Food target) {
+        addressBook.removeFood(target);
     }
 
     @Override
-    public void addPerson(Food food) {
+    public void addFood(Food food) {
         addressBook.addPerson(food);
-        updateFilteredPersonList(new IsFoodAddedTodayPredicate());
+        updateFilteredFoodList(new IsFoodAddedTodayPredicate());
     }
 
     @Override
-    public void setPerson(Food target, Food editedFood) {
+    public void setFood(Food target, Food editedFood) {
         requireAllNonNull(target, editedFood);
 
         addressBook.setPerson(target, editedFood);
@@ -135,12 +135,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Food> getFilteredPersonList() {
+    public ObservableList<Food> getFilteredFoodList() {
         return filteredFoods;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Food> predicate) {
+    public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
         filteredFoods.setPredicate(predicate);
     }

@@ -20,13 +20,13 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Food food) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(food);
+        return AddCommand.COMMAND_WORD + " " + getFoodDetails(food);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Food food) {
+    public static String getFoodDetails(Food food) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + food.getName().fullName + " ");
         food.getTags().stream().forEach(

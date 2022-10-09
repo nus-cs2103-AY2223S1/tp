@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BREAD;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_BREAKFAST_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BREAD_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -40,7 +40,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_BREAKFAST_NAME, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_BREAD_NAME, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -89,7 +89,7 @@ public class EditCommandParserTest {
                 + NAME_DESC_BREAD + TAG_DESC_QUANTITY + VALID_CALORIE_DESC;
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder()
-                .withName(VALID_BREAKFAST_NAME)
+                .withName(VALID_BREAD_NAME)
                 .withTags(VALID_TAG_BREAKFAST, VALID_QUANTITY_TAG)
                 .withCalorie(VALID_CALORIE)
                 .build();
@@ -114,7 +114,7 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_BREAD;
-        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_BREAKFAST_NAME).build();
+        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_BREAD_NAME).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

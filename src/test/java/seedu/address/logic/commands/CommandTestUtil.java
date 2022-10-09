@@ -24,8 +24,9 @@ import seedu.address.testutil.EditFoodDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_APPLE_NAME = "Apple";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_BREAKFAST_NAME = "Bread";
+    public static final String VALID_BREAD_NAME = "Bread";
     public static final String VALID_LUNCH_NAME = "Sushi";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
@@ -34,10 +35,13 @@ public class CommandTestUtil {
     public static final String VALID_TAG_LUNCH = "lunch";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
+    public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_APPLE_NAME;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String NAME_DESC_BREAD = " " + PREFIX_NAME + VALID_BREAKFAST_NAME;
+    public static final String NAME_DESC_BREAD = " " + PREFIX_NAME + VALID_BREAD_NAME;
+    public static final String TAG_DESC_BREAKFAST = " " + PREFIX_TAG + VALID_TAG_BREAKFAST;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_LUNCH = " " + PREFIX_TAG + VALID_TAG_LUNCH;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -48,7 +52,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditFoodDescriptor DESC_AMY;
     public static final EditCommand.EditFoodDescriptor DESC_BOB;
     public static final EditCommand.EditFoodDescriptor DESC_BREAKFAST = new EditFoodDescriptorBuilder()
-            .withName(VALID_BREAKFAST_NAME)
+            .withName(VALID_BREAD_NAME)
             .withCalorie("150")
             .withTags(VALID_TAG_BREAKFAST, VALID_TAG_BREAKFAST_QUANTITY)
             .build();
@@ -102,24 +106,24 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFoodList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredFoodList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredFoodList().size());
 
-        Food food = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Food food = model.getFilteredFoodList().get(targetIndex.getZeroBased());
         final String[] splitName = food.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredFoodList().size());
     }
 
 }
