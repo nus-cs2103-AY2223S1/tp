@@ -358,6 +358,13 @@
     -fx-padding: 36 24 24 36;
 }
 
+#commissionDetailsPane {
+    -fx-background-color: #15181F;
+    -fx-background-radius: 12px;
+    -fx-text-fill: #E8E8E8;
+    -fx-padding: 36 24 24 36;
+}
+
 #filterField, #customerListPanel, #customerWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
