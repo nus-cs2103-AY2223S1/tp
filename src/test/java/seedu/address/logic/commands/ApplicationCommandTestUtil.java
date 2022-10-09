@@ -30,8 +30,8 @@ public class ApplicationCommandTestUtil {
     public static final String VALID_COMPANY_FACEBOOK = "Facebook";
     public static final String VALID_CONTACT_GOOGLE = "11111111";
     public static final String VALID_CONTACT_FACEBOOK = "22222222";
-    public static final String VALID_DATE_GOOGLE = "01-01-2022";
-    public static final String VALID_DATE_FACEBOOK = "29-02-2024";
+    public static final String VALID_DATE_GOOGLE = "2022-01-01";
+    public static final String VALID_DATE_FACEBOOK = "2024-02-29";
     public static final String VALID_EMAIL_GOOGLE = "google@example.com";
     public static final String VALID_EMAIL_FACEBOOK = "facebook@example.com";
     public static final String VALID_POSITION_GOOGLE = "Software Engineer";
@@ -50,7 +50,7 @@ public class ApplicationCommandTestUtil {
 
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "James&"; // '&' not allowed in names
     public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2022-09-10"; // invalid date format
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "01/09/2022"; // invalid date format
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION; // empty string not allowed for positions
 
