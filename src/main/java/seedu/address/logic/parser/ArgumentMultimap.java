@@ -51,6 +51,17 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Checks if the {@code prefix} only occurs once in the user input.
+     *
+     * @param prefix the prefix to check against
+     * @return true if the {@code prefix} only occurs once, otherwise false
+     */
+    public boolean isUniquePrefix(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+        return values.size() == 1;
+    }
+
+    /**
      * Returns all values of {@code prefix}.
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.

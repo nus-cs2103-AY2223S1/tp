@@ -9,6 +9,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -120,11 +121,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
-    public int findNum(Phone phone) {
+    public int findNum(Phone phone) throws PersonNotFoundException {
         return persons.findNum(phone);
     }
 
-    public int findEmail(Email email) {
+    public int findEmail(Email email) throws PersonNotFoundException {
         return persons.findEmail(email);
     }
 }
