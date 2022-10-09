@@ -67,6 +67,10 @@ public class Client {
         return address;
     }
 
+    public boolean hasMeeting() {
+        return meeting != null;
+    }
+
     public Meeting getMeeting() {
         return meeting;
     }
