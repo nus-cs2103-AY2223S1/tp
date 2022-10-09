@@ -42,5 +42,10 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "tagged" : [ ]
+  } ],
+  "modules" : [ {
+    "moduleName": "Introduction to Software Engineering",
+    "moduleCode": "CS2103T",
+    "moduleDescription": "Basic introductory module to SWE"
   } ]
 }

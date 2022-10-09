@@ -3,6 +3,7 @@ package seedu.address.model.module;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
@@ -39,11 +40,9 @@ public class Module {
         return name;
     }
 
-
     public ModuleCode getCode() {
         return code;
     }
-
 
     public ModuleDescription getDescription() {
         return description;
@@ -59,6 +58,46 @@ public class Module {
 
     public ArrayList<Person> getStudents() {
         return students;
+    }
+
+    /**
+     * Returns true if both modules have the same name.
+     * This defines a weaker notion of equality between two modules.
+     */
+    public boolean isSameModule(Module otherModule) {
+        if (otherModule == this) {
+            return true;
+        }
+
+        return otherModule != null
+                && otherModule.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both modules have the same identity and data fields.
+     * This defines a stronger notion of equality between two modules.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Module)) {
+            return false;
+        }
+
+        Module otherModule = (Module) other;
+        return otherModule.getName().equals(getName())
+                && otherModule.getCode().equals(getCode())
+                && otherModule.getDescription().equals(getDescription())
+                && otherModule.getTags().equals(getTags());
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, code, description, tags);
     }
 
     @Override

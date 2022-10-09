@@ -4,5 +4,10 @@
     "phone": "9482424",
     "email": "invalid@email!3e",
     "address": "4th street"
+  } ],
+  "modules" : [ {
+    "moduleName": "Introduction to Software Engineering",
+    "moduleCode": "CS2103T",
+    "moduleDescription": "Basic introductory module to SWE"
   } ]
 }
