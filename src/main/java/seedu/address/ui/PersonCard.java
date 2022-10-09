@@ -35,11 +35,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label email;
+    @FXML
+    private Label telegram;
     @FXML
     private Label github;
-    @FXML
-    private Label email;
     @FXML
     private FlowPane tags;
 
@@ -52,7 +52,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText("HP: " + person.getPhone().value);
-        address.setText("Address: " + person.getAddress().value);
+        telegram.setText("Telegram: " + person.getTelegram().handle);
         email.setText("Email: " + person.getEmail().value);
         github.setText("GitHub: " + person.getGitHub().username);
         person.getTags().stream()
