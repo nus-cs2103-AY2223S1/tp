@@ -78,13 +78,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         return persons.contains(person);
     }
-
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
+    }
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    public void addTask(Task t) {
+        tasks.addTask(t);
     }
 
     /**
@@ -112,9 +119,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setTasks(List<Task> tasks) {
         this.tasks.setTasks(tasks);
     }
-    public void addTask(Task task) {
-        tasks.addTask(task);
-    }
+
     //// util methods
 
     @Override

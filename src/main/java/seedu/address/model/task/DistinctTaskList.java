@@ -7,6 +7,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 
 /**
@@ -29,6 +31,11 @@ public class DistinctTaskList implements Iterable<Task> {
         requireNonNull(taskAdded);
         //Might have to add address book as param to check if addressBook already has module
         taskList.add(taskAdded);
+    }
+
+    public boolean contains(Task toCheck) {
+        requireNonNull(toCheck);
+        return taskList.stream().anyMatch(toCheck::isSameTask);
     }
 
 

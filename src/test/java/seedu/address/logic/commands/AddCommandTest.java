@@ -114,6 +114,10 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void addModule(Module module) {
@@ -167,6 +171,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

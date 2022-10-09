@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import seedu.address.model.module.Module;
+import seedu.address.model.person.Person;
 
 /**
  * Task class represents a task which stores the module code and the
@@ -30,4 +31,12 @@ public class Task {
         return module;
     }
 
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getDescription().equals(getDescription());
+    }
 }
