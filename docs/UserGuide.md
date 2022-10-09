@@ -4,7 +4,9 @@ title: User Guide
 ---
 
 
-PleaseHireUs (PHU) is a **desktop app for managing internships, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+PleaseHireUs (PHU) is a **desktop app for managing internships for computer science students 
+optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 ## Table of Contents
 * Table of Contents
@@ -97,7 +99,7 @@ Examples:
 
 Shows a list of all internships. List of internships can be sorted by category in ascending or descending order.
 
-Format: ` list [c/CATEGORY] [REVERSE]`
+Format: `list [c/CATEGORY] [REVERSE]`
 * List the internships sorted by category and in ascending or descending order
 * The category is optional. By default, without stating the category, `list` will display all internships in no particular order
 * The CATEGORY tag refers to company_name (or n), position (or p), application_process (or pr), website (or web), date(or d) (case-insensitive)
@@ -106,7 +108,7 @@ Format: ` list [c/CATEGORY] [REVERSE]`
 
 Examples:
 * `list c/n true`
-* `list c/website`
+* `list c/website true`
 * `list c/position false`
 
 
@@ -216,5 +218,5 @@ Action | Format, Examples
 **Delete** | `delete INDEX...`<br> e.g., `delete 1 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`
-**List** | `list`
+**List** | list [c/CATEGORY] [REVERSE] <br> e.g, `list c/website true`
 **Help** | `help`

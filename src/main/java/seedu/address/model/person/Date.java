@@ -14,7 +14,9 @@ public class Date {
             "Date should be in dd-mm-yyyy format";
 
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+    public static final DateTimeFormatter DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     public final LocalDate value;
 
@@ -26,7 +28,7 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        this.value = LocalDate.parse(date, FORMATTER);
+        this.value = LocalDate.parse(date, DEFAULT_FORMATTER);
     }
 
     /**
@@ -43,7 +45,7 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         try {
-            LocalDate.parse(test, FORMATTER);
+            LocalDate.parse(test, DEFAULT_FORMATTER);
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -56,6 +58,14 @@ public class Date {
     public String toInputFormat() {
         return value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
+
+    /**
+     * Returns a string representation of the date in display format
+     */
+    public String toDisplayFormat() {
+        return DISPLAY_FORMATTER.format(value);
+    }
+
     @Override
     public String toString() {
         return value.toString();

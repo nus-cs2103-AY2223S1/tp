@@ -3,7 +3,7 @@
 ![Ui](docs/images/Ui.png)
 
 
-#Please Hire Us
+# Please Hire Us
 * This is a brownfield project adapted from AddressBook 3(AB3) for **Software Engineering (SE) Students**
 
 * The project simulates an ongoing software project for a desktop application used for managing internships details.
@@ -12,14 +12,14 @@
 * It is named `PleaseHireUs` (`PHU` for short) because as students we are constantly on the lookout for internship opportunities
 * For the detailed documentation of this project, see the **[PleaseHireUs Website](https://ay2223s1-cs2103t-w17-4.github.io/tp/)**.
 
-##Features
+## Features
 - [x] Add internship details
 - [x] Sort internships by categories
 - [x] Filter relevant internships
 - [x] Edit / Update internship details
 
 
-##Quick Start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 

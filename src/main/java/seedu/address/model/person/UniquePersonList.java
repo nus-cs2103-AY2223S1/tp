@@ -121,6 +121,22 @@ public class UniquePersonList implements Iterable<Person> {
         return internalList.hashCode();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        int index = 1;
+
+        for (Person person : this) {
+            builder.append(index);
+            builder.append(". ");
+            builder.append(person.toString());
+            builder.append("\n");
+            index++;
+        }
+
+        return builder.toString();
+    }
+
     /**
      * Returns true if {@code persons} contains only unique persons.
      */

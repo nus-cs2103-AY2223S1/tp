@@ -22,7 +22,7 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Remark remark;
     private final ApplicationProcess applicationProcess;
     private final Date date;
     private final Website website;
@@ -31,13 +31,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Position position,
+    public Person(Name name, Phone phone, Email email, Remark remark, Position position,
                   ApplicationProcess applicationProcess, Date date, Website website, Set<Tag> tags) {
         requireAllNonNull(name, position, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.remark = remark;
         this.tags.addAll(tags);
         this.position = position;
         this.applicationProcess = applicationProcess;
@@ -57,8 +57,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Remark getRemark() {
+        return remark;
     }
 
     public Position getPosition() {
@@ -116,7 +116,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getRemark().equals(getRemark())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getPosition().equals(getPosition())
                 && otherPerson.getWebsite().equals(getWebsite())
@@ -127,27 +127,27 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, position, website, date, applicationProcess);
+        return Objects.hash(name, phone, email, remark, tags, position, website, date, applicationProcess);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Position: ")
+                .append(getPosition())
+                .append("; Application Process: ")
+                .append(getApplicationProcess())
+                .append("; Date: ")
+                .append(getDate())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
-                .append("; Position: ")
-                .append(getPosition())
                 .append("; Website: ")
                 .append(getWebsite())
-                .append("; Date: ")
-                .append(getDate())
-                .append("; Application Process: ")
-                .append(getApplicationProcess());
+                .append("; Remark: ")
+                .append(getRemark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
