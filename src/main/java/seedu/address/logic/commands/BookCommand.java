@@ -68,9 +68,11 @@ public class BookCommand extends Command {
         PersonBookDescriptor personBookDescriptor = new PersonBookDescriptor(personToBookFor);
         personBookDescriptor.bookAppointment(appointment);
         Person personWithBooking = personBookDescriptor.createPersonWithBooking();
+        appointment.setPatient(personWithBooking);
 
         model.setPerson(personToBookFor, personWithBooking);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.addAppointment(appointment);
         return new CommandResult(String.format(MESSAGE_BOOK_APPOINTMENT_SUCCESS, personWithBooking));
     }
 
@@ -79,7 +81,7 @@ public class BookCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof BookCommand // instanceof handles nulls
                 && targetIndex.equals(((BookCommand) other).targetIndex)
-                && appointment.equals(((BookCommand) other).appointment)); // state check
+                && appointment.isSameAppointment(((BookCommand) other).appointment)); // state check
     }
 
     private static class PersonBookDescriptor {
