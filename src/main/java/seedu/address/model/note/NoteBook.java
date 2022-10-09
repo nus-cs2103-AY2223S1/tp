@@ -10,17 +10,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.note.exceptions.DuplicateNoteException;
 import seedu.address.model.note.exceptions.NoteNotFoundException;
-import seedu.address.model.person.Person;
 
 /**
- * A list of notes that enforces uniqueness between its elements and does not allow nulls.
+ * A list of notes enforces uniqueness between its elements and does not allow nulls.
  * A note is considered unique by comparing using {@code Note#isSameNote(Note)}. As such, adding and updating of
  * note uses Note#isSameNote(Note) for equality so as to ensure that the note being added or updated is
- * unique in terms of identity in the NoteBook. 
+ * unique in terms of identity in the NoteBook.
  *
  * Supports a minimal set of list operations.
  *
  * @see Note#isSameNote(Note)
+ *
  */
 public class NoteBook implements Iterable<Note> {
 
@@ -115,10 +115,5 @@ public class NoteBook implements Iterable<Note> {
         }
         return true;
     }
-
-
-
-
-
 
 }
