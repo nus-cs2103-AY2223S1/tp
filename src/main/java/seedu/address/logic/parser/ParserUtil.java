@@ -92,7 +92,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code LocalDate}.
+     * Parses a {@code String Deadline} into a {@code Deadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code deadline} is invalid.
