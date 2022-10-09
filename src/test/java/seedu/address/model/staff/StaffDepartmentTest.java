@@ -24,17 +24,18 @@ public class StaffDepartmentTest {
         // null name
         assertThrows(NullPointerException.class, () -> StaffDepartment.isValidStaffDepartment(null));
 
-        // invalid staff name
+        // invalid staff department
         assertFalse(StaffDepartment.isValidStaffDepartment("")); // empty string
         assertFalse(StaffDepartment.isValidStaffDepartment(" ")); // spaces only
         assertFalse(StaffDepartment.isValidStaffDepartment("^")); // only non-alphanumeric characters
         assertFalse(StaffDepartment.isValidStaffDepartment("peter*")); // contains non-alphanumeric characters
+        assertFalse(StaffDepartment.isValidStaffDepartment("12345")); // numbers only
+        assertFalse(StaffDepartment.isValidStaffDepartment("peter the 2nd")); // alphanumeric characters
 
-        // valid staff name
+        // valid staff department
         assertTrue(StaffDepartment.isValidStaffDepartment("peter jack")); // alphabets only
-        assertTrue(StaffDepartment.isValidStaffDepartment("12345")); // numbers only
-        assertTrue(StaffDepartment.isValidStaffDepartment("peter the 2nd")); // alphanumeric characters
         assertTrue(StaffDepartment.isValidStaffDepartment("Capital Tan")); // with capital letters
+        //TODO: Fix long department name test
         assertTrue(StaffDepartment.isValidStaffDepartment("David Roger Jackson Ray Jr 2nd")); // long names
     }
 }

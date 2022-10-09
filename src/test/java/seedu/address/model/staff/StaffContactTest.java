@@ -24,18 +24,19 @@ public class StaffContactTest {
         // null name
         assertThrows(NullPointerException.class, () -> StaffContact.isValidStaffContact(null));
 
-        // invalid staff name
+        // invalid staff contact
         assertFalse(StaffContact.isValidStaffContact("")); // empty string
         assertFalse(StaffContact.isValidStaffContact(" ")); // spaces only
         assertFalse(StaffContact.isValidStaffContact("^")); // only non-alphanumeric characters
         assertFalse(StaffContact.isValidStaffContact("peter*")); // contains non-alphanumeric characters
+        assertFalse(StaffContact.isValidStaffContact("peter the 2nd")); // alphanumeric characters
+        assertFalse(StaffContact.isValidStaffContact("Capital Tan")); // with capital letters
+        assertFalse(StaffContact.isValidStaffContact("David Roger Jackson Ray Jr 2nd")); // long names
+        assertFalse(StaffContact.isValidStaffContact("peter jack")); // alphabets only
 
-        // valid staff name
-        assertTrue(StaffContact.isValidStaffContact("peter jack")); // alphabets only
+        // valid staff contact
         assertTrue(StaffContact.isValidStaffContact("12345")); // numbers only
-        assertTrue(StaffContact.isValidStaffContact("peter the 2nd")); // alphanumeric characters
-        assertTrue(StaffContact.isValidStaffContact("Capital Tan")); // with capital letters
-        assertTrue(StaffContact.isValidStaffContact("David Roger Jackson Ray Jr 2nd")); // long names
+
     }
 }
 

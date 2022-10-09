@@ -35,6 +35,7 @@ public class StaffTitleTest {
         assertTrue(StaffTitle.isValidStaffTitle("12345")); // numbers only
         assertTrue(StaffTitle.isValidStaffTitle("peter the 2nd")); // alphanumeric characters
         assertTrue(StaffTitle.isValidStaffTitle("Capital Tan")); // with capital letters
+        //TODO: Fix long titles test
         assertTrue(StaffTitle.isValidStaffTitle("David Roger Jackson Ray Jr 2nd")); // long titles
     }
 }

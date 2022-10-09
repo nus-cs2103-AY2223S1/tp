@@ -24,18 +24,21 @@ public class StaffInsuranceTest {
         // null name
         assertThrows(NullPointerException.class, () -> StaffInsurance.isValidStaffInsurance(null));
 
-        // invalid staff name
+        // invalid staff insurance
         assertFalse(StaffInsurance.isValidStaffInsurance("")); // empty string
         assertFalse(StaffInsurance.isValidStaffInsurance(" ")); // spaces only
         assertFalse(StaffInsurance.isValidStaffInsurance("^")); // only non-alphanumeric characters
         assertFalse(StaffInsurance.isValidStaffInsurance("peter*")); // contains non-alphanumeric characters
+        assertFalse(StaffInsurance.isValidStaffInsurance("12345")); // numbers only
+        assertFalse(StaffInsurance.isValidStaffInsurance("peter jack")); // alphabets only
+        assertFalse(StaffInsurance.isValidStaffInsurance("peter the 2nd")); // alphanumeric characters
+        assertFalse(StaffInsurance.isValidStaffInsurance("Capital Tan")); // with capital letters
+        assertFalse(StaffInsurance.isValidStaffInsurance("David Roger Jackson Ray Jr 2nd")); // long names
 
-        // valid staff name
-        assertTrue(StaffInsurance.isValidStaffInsurance("peter jack")); // alphabets only
-        assertTrue(StaffInsurance.isValidStaffInsurance("12345")); // numbers only
-        assertTrue(StaffInsurance.isValidStaffInsurance("peter the 2nd")); // alphanumeric characters
-        assertTrue(StaffInsurance.isValidStaffInsurance("Capital Tan")); // with capital letters
-        assertTrue(StaffInsurance.isValidStaffInsurance("David Roger Jackson Ray Jr 2nd")); // long names
+        // valid staff insurance
+        assertTrue(StaffInsurance.isValidStaffInsurance("true")); // insured
+        assertTrue(StaffInsurance.isValidStaffInsurance("false")); // not insured
+
     }
 }
 
