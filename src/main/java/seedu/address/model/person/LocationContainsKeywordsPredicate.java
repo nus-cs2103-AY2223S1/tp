@@ -19,7 +19,7 @@ public class LocationContainsKeywordsPredicate
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getAddress().toString(), keyword));
     }
 
     @Override
