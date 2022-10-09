@@ -7,14 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Supplier;
 
 /**
- * An UI component that displays information of a {@code Buyer}.
+ * An UI component that displays information of a {@code Supplier}.
  */
-public class BuyerCard extends UiPart<Region> {
+public class SupplierCard extends UiPart<Region> {
 
-    private static final String FXML = "BuyerListCard.fxml";
+    private static final String FXML = "SupplierListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +24,7 @@ public class BuyerCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Buyer buyer;
+    public final Supplier supplier;
 
     @FXML
     private HBox cardPane;
@@ -42,17 +42,17 @@ public class BuyerCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code BuyerCode} with the given {@code Buyer} and index to display.
+     * Creates a {@code SupplierCard} with the given {@code Supplier} and index to display.
      */
-    public BuyerCard(Buyer buyer, int displayedIndex) {
+    public SupplierCard(Supplier supplier, int displayedIndex) {
         super(FXML);
-        this.buyer= buyer;
+        this.supplier = supplier;
         id.setText(displayedIndex + ". ");
-        name.setText(buyer.getName().fullName);
-        phone.setText(buyer.getPhone().value);
-        address.setText(buyer.getAddress().value);
-        email.setText(buyer.getEmail().value);
-        buyer.getTags().stream()
+        name.setText(supplier.getName().fullName);
+        phone.setText(supplier.getPhone().value);
+        address.setText(supplier.getAddress().value);
+        email.setText(supplier.getEmail().value);
+        supplier.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -65,13 +65,13 @@ public class BuyerCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof BuyerCard)) {
+        if (!(other instanceof SupplierCard)) {
             return false;
         }
 
         // state check
-        BuyerCard card = (BuyerCard) other;
+        SupplierCard card = (SupplierCard) other;
         return id.getText().equals(card.id.getText())
-                && buyer.equals(card.buyer);
+                && supplier.equals(card.supplier);
     }
 }

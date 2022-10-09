@@ -12,7 +12,7 @@ import seedu.address.model.person.Buyer;
 
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of Buyers.
  */
 public class BuyerListPanel extends UiPart<Region> {
     private static final String FXML = "BuyerListPanel.fxml";
@@ -20,20 +20,20 @@ public class BuyerListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(BuyerListPanel.class);
 
     @FXML
-    private ListView<Buyer> personListView;
+    private ListView<Buyer> buyerListView;
 
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code BuyerListPanel} with the given {@code ObservableList}.
      */
     public BuyerListPanel(ObservableList<Buyer> buyerList) {
         super(FXML);
-        personListView.setItems(buyerList);
-        personListView.setCellFactory(listView -> new BuyerListViewCell());
+        buyerListView.setItems(buyerList);
+        buyerListView.setCellFactory(listView -> new BuyerListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Buyer} using a {@code BuyerCard}.
      */
     class BuyerListViewCell extends ListCell<Buyer> {
         @Override

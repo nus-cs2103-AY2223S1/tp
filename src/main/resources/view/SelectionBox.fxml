@@ -4,14 +4,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-
 <StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox>
          <children>
-            <Button mnemonicParsing="false" text="Buyer" />
-            <Button alignment="CENTER" mnemonicParsing="false" text="Supplier" />
-            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Delivery" />
+            <Button fx:id="buyer" mnemonicParsing="false" onAction="#switchToBuyer" text="Buyer" />
+            <Button fx:id="supplier" alignment="CENTER" mnemonicParsing="false" onAction="#switchToSupplier" text="Supplier" />
+            <Button fx:id="deliverer" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#switchToDeliverer" text="Delivery" />
          </children>
       </HBox>
    </children>

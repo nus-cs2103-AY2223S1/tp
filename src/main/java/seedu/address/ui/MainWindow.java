@@ -32,6 +32,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private BuyerListPanel buyerListPanel;
+    private SupplierListPanel supplierListPanel;
+    private DelivererListPanel delivererListPanel;
 
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -115,6 +117,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         buyerListPanel = new BuyerListPanel(logic.getFilteredBuyerList());
+        supplierListPanel = new SupplierListPanel(logic.getFilteredSupplierList());
+        delivererListPanel = new DelivererListPanel(logic.getFilteredDelivererList());
+        personListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(buyerListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -126,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        SelectionBox selectionBox = new SelectionBox();
+        SelectionBox selectionBox = new SelectionBox(this);
         selectionBoxPlaceHolder.getChildren().add(selectionBox.getRoot());
 
     }
@@ -171,8 +176,19 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public BuyerListPanel getPersonListPanel() {
-        return buyerListPanel;
+    public void showBuyer() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(buyerListPanel.getRoot());
+    }
+
+    public void showSupplier() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(supplierListPanel.getRoot());
+    }
+
+    public void showDeliverer() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(delivererListPanel.getRoot());
     }
 
     /**
