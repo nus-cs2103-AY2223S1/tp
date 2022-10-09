@@ -89,7 +89,6 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty JeeqTracker");
             initialData = new JeeqTracker();
         }
-
         return new ModelManager(initialData, userPrefs);
     }
 

@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.company.Address;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.Name;
+import seedu.address.model.poc.Poc;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,18 +22,22 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedCompany {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Company's %s field is missing!";
+    private static final String MESSAGE_DUPLICATE_POC = "Company contains duplicate poc(s).";
 
     private final String name;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedPoc> pocs = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedCompany} with the given company details.
      */
     @JsonCreator
-    public JsonAdaptedCompany(@JsonProperty("name") String name, @JsonProperty("address") String address,
+    public JsonAdaptedCompany(@JsonProperty("name") String name, @JsonProperty("pocs") List<JsonAdaptedPoc> pocs,
+            @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.pocs.addAll(pocs);
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -45,6 +50,7 @@ class JsonAdaptedCompany {
     public JsonAdaptedCompany(Company source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
+        pocs.addAll(source.getPocList().stream().map(JsonAdaptedPoc::new).collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -78,7 +84,17 @@ class JsonAdaptedCompany {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(companyTags);
-        return new Company(modelName, modelAddress, modelTags);
+
+        Company company = new Company(modelName, modelAddress, modelTags);
+
+        for (JsonAdaptedPoc jsonAdaptedPoc : pocs) {
+            Poc poc = jsonAdaptedPoc.toModelType();
+            if (company.hasPoc(poc)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_POC);
+            }
+            company.addPoc(poc);
+        }
+        return company;
     }
 
 }
