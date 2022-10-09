@@ -9,16 +9,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Description {
 
-    public static final String MESSAGE_CONSTRAINTS =
+    private static final String MESSAGE_CONSTRAINTS =
             "Task Descriptions can take any values, and it should not be blank";
 
     /*
      * The first character of the taskname must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    private static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String taskDescription;
+    private final String taskDescription;
 
     /**
      * Constructs a {@code Name}.

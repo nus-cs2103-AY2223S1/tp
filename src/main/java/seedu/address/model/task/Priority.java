@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable;
  */
 public class Priority {
-    public final PriorityEnum priority;
+    private final PriorityEnum priority;
 
     public Priority(PriorityEnum priority) {
         requireNonNull(priority);
