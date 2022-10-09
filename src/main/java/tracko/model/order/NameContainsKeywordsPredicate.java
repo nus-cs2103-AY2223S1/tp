@@ -18,7 +18,15 @@ public class NameContainsKeywordsPredicate implements Predicate<Order> {
     @Override
     public boolean test(Order order) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getName().fullName, keyword));
+                .anyMatch(keyword -> {
+                    for (ItemQuantityPair i : order.getItemList()) {
+                        if (StringUtil.containsWordIgnoreCase(i.getItem(), keyword)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+        );
     }
 
     @Override

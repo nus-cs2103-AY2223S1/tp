@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import tracko.commons.core.GuiSettings;
 import tracko.commons.core.LogsCenter;
 import tracko.model.order.Order;
@@ -19,6 +21,7 @@ public class ModelManager implements Model {
 
     private final TrackO trackO;
     private final UserPrefs userPrefs;
+    private final FilteredList<Order> filteredOrders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -31,6 +34,7 @@ public class ModelManager implements Model {
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.trackO = new TrackO(trackO);
+        this.filteredOrders = new FilteredList<>(this.trackO.getOrderList());
     }
 
     public ModelManager() {
@@ -94,6 +98,23 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Order> getOrderList() {
         return trackO.getOrderList();
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredOrders;
+    }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
     }
 
     @Override
