@@ -1,12 +1,12 @@
 package foodwhere.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static foodwhere.testutil.Assert.assertThrows;
 import static foodwhere.testutil.TypicalStalls.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +33,7 @@ public class JsonAdaptedReviewTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedReview review = new JsonAdaptedReview(VALID_DATE, new ArrayList<>());
+        JsonAdaptedReview review = new JsonAdaptedReview(VALID_DATE, VALID_ADDRESS, new ArrayList<>());
         String expectedMessage =
                 String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> review.toModelType(null));
@@ -43,7 +43,7 @@ public class JsonAdaptedReviewTest {
     public void toModelType_invalidDetails_throwsIllegalValueException() {
         List<JsonAdaptedDetail> invalidDetails = new ArrayList<>(VALID_DETAILS);
         invalidDetails.add(new JsonAdaptedDetail(INVALID_DETAIL));
-        JsonAdaptedReview review = new JsonAdaptedReview(VALID_DATE,
+        JsonAdaptedReview review = new JsonAdaptedReview(VALID_DATE, VALID_ADDRESS,
                 invalidDetails);
         assertThrows(IllegalValueException.class, () -> review.toModelType(null));
     }

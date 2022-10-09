@@ -23,15 +23,20 @@ class JsonAdaptedReview {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Review's %s field is missing!";
 
     private final String date;
+    private final String content;
     private final List<JsonAdaptedDetail> details = new ArrayList<>();
+
+
 
     /**
      * Constructs a {@code JsonAdaptedReview} with the given stall details.
      */
     @JsonCreator
     public JsonAdaptedReview(@JsonProperty("date") String date,
+                             @JsonProperty("content") String content,
                              @JsonProperty("details") List<JsonAdaptedDetail> details) {
         this.date = date;
+        this.content = content;
         if (details != null) {
             this.details.addAll(details);
         }
@@ -42,6 +47,7 @@ class JsonAdaptedReview {
      */
     public JsonAdaptedReview(Stall source) {
         this.date = "";
+        this.content = source.getAddress().toString(); // proxy - to change
         details.addAll(source.getDetails().stream()
                 .map(JsonAdaptedDetail::new)
                 .collect(Collectors.toList()));
@@ -63,10 +69,18 @@ class JsonAdaptedReview {
             reviewDetails.add(detail.toModelType());
         }
 
-        final Address modelAddress = new Address("a");
+        if (content == null) {
+            throw new IllegalValueException(String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT,
+                    Address.class.getSimpleName()));
+        }
+        if (Address.isValidAddress(content)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+
+        final Address modelContent = new Address(content);
         final Set<Detail> modelDetails = new HashSet<>(reviewDetails);
 
-        return new Stall(modelName, modelAddress, modelDetails);
+        return new Stall(modelName, modelContent, modelDetails);
     }
 
 }
