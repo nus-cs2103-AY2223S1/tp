@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
@@ -98,10 +99,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
+        NetWorth updatedNetWorth = editPersonDescriptor.getNetWorth().orElse(personToEdit.getNetWorth());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedRemark, updatedNetWorth, updatedTags);
     }
 
     @Override
@@ -131,6 +134,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private NetWorth netWorth;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -144,6 +148,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setNetWorth(toCopy.netWorth);
             setTags(toCopy.tags);
         }
 
@@ -151,7 +156,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, netWorth, tags);
         }
 
         public void setName(Name name) {
@@ -184,6 +189,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setNetWorth(NetWorth netWorth) {
+            this.netWorth = netWorth;
+        }
+
+        public Optional<NetWorth> getNetWorth() {
+            return Optional.ofNullable(netWorth);
         }
 
         /**
