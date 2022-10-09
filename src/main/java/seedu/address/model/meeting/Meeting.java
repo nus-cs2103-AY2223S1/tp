@@ -36,6 +36,7 @@ public class Meeting {
      */
     public Meeting(ArrayList<Person> peopleToMeet, String meetingTitle,
                    String meetingDateAndTime, String meetingLocation) {
+        this.peopleToMeet = new UniquePersonList();
         this.peopleToMeet.setPersons(peopleToMeet);
         this.meetingDescription = meetingTitle;
         this.meetingDateAndTime = meetingDateAndTime;
@@ -79,6 +80,9 @@ public class Meeting {
         return this.meetingDateAndTime;
     }
 
+    public String getDescription(){
+        return meetingDescription;
+    }
     /**
      * Returns true if both meetings include the same person to meet
      * and are at the same time.
@@ -101,5 +105,6 @@ public class Meeting {
             + "On: " + this.meetingDateAndTime + "\n"
             + "For: " + this.meetingLocation + "\n";
     }
+
 
 }

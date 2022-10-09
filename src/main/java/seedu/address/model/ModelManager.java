@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Meeting> filteredMeetings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
     }
 
     public ModelManager() {
@@ -109,7 +111,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -143,6 +144,18 @@ public class ModelManager implements Model {
         addressBook.addMeeting(newMeeting);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireAllNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
+    }
+
 
     //=========== Others ================================================================================
 
