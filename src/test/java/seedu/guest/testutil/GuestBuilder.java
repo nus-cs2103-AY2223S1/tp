@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.guest.model.guest.Address;
+import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.Name;
@@ -20,12 +21,14 @@ public class GuestBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_DATE_RANGE = "13/09/22 - 15/09/22";
     public static final String DEFAULT_NUMBER_OF_GUESTS = "1";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
     private Email email;
+    private DateRange dateRange;
     private NumberOfGuests numberOfGuests;
     private Address address;
     private Set<Tag> tags;
@@ -37,6 +40,7 @@ public class GuestBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        dateRange = new DateRange(DEFAULT_DATE_RANGE);
         numberOfGuests = new NumberOfGuests(DEFAULT_NUMBER_OF_GUESTS);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -49,6 +53,7 @@ public class GuestBuilder {
         name = guestToCopy.getName();
         phone = guestToCopy.getPhone();
         email = guestToCopy.getEmail();
+        dateRange = guestToCopy.getDateRange();
         numberOfGuests = guestToCopy.getNumberOfGuests();
         address = guestToCopy.getAddress();
         tags = new HashSet<>(guestToCopy.getTags());
@@ -95,6 +100,14 @@ public class GuestBuilder {
     }
 
     /**
+     * Sets the {@code DateRange} of the {@code Person} that we are building.
+     */
+    public GuestBuilder withDateRange(String dateRange) {
+        this.dateRange = new DateRange(dateRange);
+        return this;
+    }
+
+    /**
      * Sets the {@code NumberOfGuests} of the {@code Person} that we are building.
      */
     public GuestBuilder withNumberOfGuests(String numberOfGuests) {
@@ -103,7 +116,7 @@ public class GuestBuilder {
     }
 
     public Guest build() {
-        return new Guest(name, phone, email, numberOfGuests, address, tags);
+        return new Guest(name, phone, email, dateRange, numberOfGuests, address, tags);
     }
 
 }

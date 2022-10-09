@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.guest.commons.exceptions.IllegalValueException;
 import seedu.guest.model.guest.Address;
+import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.Name;
@@ -28,6 +29,7 @@ class JsonAdaptedGuest {
     private final String name;
     private final String phone;
     private final String email;
+    private final String dateRange;
     private final String numberOfGuests;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -37,12 +39,14 @@ class JsonAdaptedGuest {
      */
     @JsonCreator
     public JsonAdaptedGuest(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("numberOfGuests") String numberOfGuests,
-                    @JsonProperty("address") String address,
+                            @JsonProperty("email") String email, @JsonProperty("dateRange") String dateRange,
+                            @JsonProperty("numberOfGuests") String numberOfGuests,
+                            @JsonProperty("address") String address,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.dateRange = dateRange;
         this.numberOfGuests = numberOfGuests;
         this.address = address;
         if (tagged != null) {
@@ -57,6 +61,7 @@ class JsonAdaptedGuest {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        dateRange = source.getDateRange().value;
         numberOfGuests = source.getNumberOfGuests().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
@@ -99,6 +104,15 @@ class JsonAdaptedGuest {
         }
         final Email modelEmail = new Email(email);
 
+        if (dateRange == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateRange.class.getSimpleName()));
+        }
+        if (!DateRange.isValidDateRange(dateRange)) {
+            throw new IllegalValueException(DateRange.MESSAGE_CONSTRAINTS);
+        }
+        final DateRange modelDateRange = new DateRange(dateRange);
+
         if (numberOfGuests == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     NumberOfGuests.class.getSimpleName()));
@@ -117,6 +131,7 @@ class JsonAdaptedGuest {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(guestTags);
-        return new Guest(modelName, modelPhone, modelEmail, modelNumberOfGuests, modelAddress, modelTags);
+        return new Guest(modelName, modelPhone, modelEmail, modelDateRange, modelNumberOfGuests, modelAddress,
+                modelTags);
     }
 }
