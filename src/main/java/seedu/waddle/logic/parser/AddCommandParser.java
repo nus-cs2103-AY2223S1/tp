@@ -7,7 +7,6 @@ import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 
-
 import java.util.stream.Stream;
 
 import seedu.waddle.logic.commands.AddCommand;
@@ -41,8 +40,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Country country = ParserUtil.parseCountry(argMultimap.getValue(PREFIX_COUNTRY).get());
-        Date startDate  = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
-        Date endDate  = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
+        Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
+        Date endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
         People people = ParserUtil.parsePeople(argMultimap.getValue(PREFIX_PEOPLE).get());
 
         Itinerary itinerary = new Itinerary(name, country, startDate, endDate, people);
