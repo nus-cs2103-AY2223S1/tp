@@ -10,19 +10,36 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.note.exceptions.DuplicateNoteException;
 import seedu.address.model.note.exceptions.NoteNotFoundException;
+import seedu.address.model.person.Person;
 
-
+/**
+ * A list of notes that enforces uniqueness between its elements and does not allow nulls.
+ * A note is considered unique by comparing using {@code Note#isSameNote(Note)}. As such, adding and updating of
+ * note uses Note#isSameNote(Note) for equality so as to ensure that the note being added or updated is
+ * unique in terms of identity in the NoteBook. 
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Note#isSameNote(Note)
+ */
 public class NoteBook implements Iterable<Note> {
 
     private final ObservableList<Note> internalList = FXCollections.observableArrayList();
     private final ObservableList<Note> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Returns true if the list contains an equivalent note as the given argument.
+     */
     public boolean contains(Note toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameNote);
     }
 
+    /**
+     * Adds a note to the list.
+     * The note must not already exist in the list.
+     */
     public void add(Note toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -46,6 +63,10 @@ public class NoteBook implements Iterable<Note> {
         internalList.set(index, editedNote);
     }
 
+    /**
+     * Removes the equivalent note from the list.
+     * The note must exist in the list.
+     */
     public void remove(Note toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {

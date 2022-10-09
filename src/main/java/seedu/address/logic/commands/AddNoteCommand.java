@@ -8,6 +8,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.note.Note;
 
+/**
+ * Adds a note to the address book.
+ */
 public class AddNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "addNote";
@@ -25,6 +28,9 @@ public class AddNoteCommand extends Command {
 
     private final Note toAdd;
 
+    /**
+     * Creates an AddNoteCommand to add the specified {@code Note}
+     */
     public AddNoteCommand(Note note) {
         requireNonNull(note);
         toAdd = note;

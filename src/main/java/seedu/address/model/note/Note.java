@@ -2,12 +2,11 @@ package seedu.address.model.note;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 
-
+/**
+ * Represents a note in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Note {
 
     //Identity field
@@ -17,6 +16,12 @@ public class Note {
     private final Content content;
     //tags to be added
 
+    /**
+     * Constructor for a Note object
+     *
+     * @param title Title of the note.
+     * @param content Contents of the note.
+     */
     public Note(Title title, Content content) {
         requireAllNonNull(title, content);
         this.title = title;
@@ -47,6 +52,13 @@ public class Note {
 
     }
 
+    /**
+     * Returns true if both notes have the same title.
+     * This defines a weaker notion of equality between two notes.
+     *
+     * @param otherNote The other note to be compared to.
+     * @return True if both notes have same title.
+     */
     public boolean isSameNote(Note otherNote) {
         if (otherNote == this) {
             return true;

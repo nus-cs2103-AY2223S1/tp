@@ -7,8 +7,19 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteNoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new DeleteNoteCommand object
+ */
 public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the DeleteNoteCommand
+     * and returns a DeleteNoteCommand object for execution.
+     *
+     * @param args Argument to be parsed.
+     * @return DeleteNoteCommand to be executed.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public DeleteNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         try {

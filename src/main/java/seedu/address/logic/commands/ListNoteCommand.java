@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.note.Note;
 
+/**
+ * Lists all the notes in address book to the user.
+ */
 public class ListNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "listNote";

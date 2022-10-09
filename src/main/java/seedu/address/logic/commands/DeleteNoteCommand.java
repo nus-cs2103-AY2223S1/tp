@@ -9,7 +9,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.note.Note;
 
-public class DeleteNoteCommand extends Command{
+/**
+ * Deletes a note identified using it's displayed index from the command listNote.
+ */
+public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteNote";
 

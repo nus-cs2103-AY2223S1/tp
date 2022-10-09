@@ -52,7 +52,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setNotes(List<Note> notes) {this.notebook.setNotes(notes);}
+    public void setNotes(List<Note> notes) {
+        this.notebook.setNotes(notes);
+    }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -65,6 +67,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// note-level operations
+
+    /**
+     * Returns true if a note with the same identity as {@code note} exists in the address book.
+     *
+     * @param note The note the check with.
+     * @return True if address book has the specified note.
+     */
     public boolean hasNote(Note note) {
         requireNonNull(note);
         return notebook.contains(note);

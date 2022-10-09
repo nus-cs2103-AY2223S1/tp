@@ -3,19 +3,26 @@ package seedu.address.model.note;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.Name;
-
+/**
+ * Represents a Note's content in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidContent(String)}
+ */
 public class Content {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Content should only contain alphanumeric characters, spaces, special characters, it should not be blank " +
-                    "and no maximum length";
+            "Content should only contain alphanumeric characters, spaces, special characters, it should not be blank "
+                    + "and no maximum length";
 
     public static final String VALIDATION_REGEX = "[\\p{ASCII}][\\p{ASCII}]*";
 
     public final String fullContent;
 
-    public Content(String content){
+    /**
+     * Constructs a {@code Content}.
+     *
+     * @param content A valid content.
+     */
+    public Content(String content) {
         requireNonNull(content);
         checkArgument(isValidContent(content), MESSAGE_CONSTRAINTS);
         fullContent = content;
