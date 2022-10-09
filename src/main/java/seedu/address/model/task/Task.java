@@ -5,7 +5,9 @@ package seedu.address.model.task;
  */
 public class Task {
     private Description description;
+    private Deadline deadline;
     private boolean isDone;
+
 
     /**
      * A constructor that creates an instance of Task.
@@ -14,6 +16,24 @@ public class Task {
     public Task(Description description) {
         this.isDone = false;
         this.description = description;
+        // TODO: Edit after implementing Deadline class
+        this.deadline = new Deadline("");
+    }
+
+    /**
+     * Returns description of task.
+     * @return Description Details of task.
+     */
+    public Description getDescription() {
+        return description;
+    }
+
+    /**
+     * Returns deadline of task.
+     * @return deadline Deadline of task.
+     */
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     /**
