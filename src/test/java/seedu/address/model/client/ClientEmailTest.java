@@ -14,7 +14,7 @@ public class ClientEmailTest {
     }
 
     @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
+    public void constructor_invalidClientEmail_throwsIllegalArgumentException() {
 
         //null email
         String invalidEmptyEmail = "";
