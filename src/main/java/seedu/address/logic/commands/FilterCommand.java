@@ -26,7 +26,7 @@ public class FilterCommand extends Command {
         requireNonNull(model);
         model.updateFilteredInternshipList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, model.getFilteredInternshipList().size()));
     }
 
     @Override
