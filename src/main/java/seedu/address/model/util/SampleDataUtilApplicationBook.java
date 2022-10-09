@@ -22,7 +22,7 @@ public class SampleDataUtilApplicationBook {
                 new Application(new Company("ByteDance"), new Contact("63334333"), new Email("hr@bytedance.com.sg"),
                         new Position("Frontend Engineer Intern"), new Date("2021-08-08")),
                 new Application(new Company("Shopee"), new Contact("67436743"), new Email("talent@shopee.com.sg"),
-                        new Position("Quality Assurance Intern"), new Date("2021-09-31")),
+                        new Position("Quality Assurance Intern"), new Date("2021-09-30")),
                 new Application(new Company("Wise"), new Contact("64164161"), new Email("humanresource@wise.org"),
                         new Position("Software Engineer Intern"), new Date("2022-09-10")),
                 new Application(new Company("Stripe"), new Contact("66210987"), new Email("intern@stripe.org"),
