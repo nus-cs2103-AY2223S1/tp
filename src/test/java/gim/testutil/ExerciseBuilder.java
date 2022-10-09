@@ -18,7 +18,7 @@ import gim.model.util.SampleDataUtil;
 public class ExerciseBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_WEIGHT = "85355255";
+    public static final String DEFAULT_WEIGHT = "50";
     public static final String DEFAULT_SETS = "5";
     public static final String DEFAULT_REP = "5";
 

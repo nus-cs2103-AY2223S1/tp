@@ -27,14 +27,26 @@ public class WeightTest {
         // invalid weight numbers
         assertFalse(Weight.isValidWeight("")); // empty string
         assertFalse(Weight.isValidWeight(" ")); // spaces only
-        assertFalse(Weight.isValidWeight("91")); // less than 3 numbers
+        assertFalse(Weight.isValidWeight("25.")); // dot written but not followed by digit(s)
+        assertFalse(Weight.isValidWeight(".25")); // dot written but not preceded by digit(s)
+        assertFalse(Weight.isValidWeight("1.250")); // more than 3 decimal place
+        assertFalse(Weight.isValidWeight("1.2500")); // more than 3 decimal place
         assertFalse(Weight.isValidWeight("weight")); // non-numeric
-        assertFalse(Weight.isValidWeight("9011p041")); // alphabets within digits
-        assertFalse(Weight.isValidWeight("9312 1534")); // spaces within digits
+        assertFalse(Weight.isValidWeight(":)")); // non-numeric
+        assertFalse(Weight.isValidWeight("125x0")); // alphabets within digits
+        assertFalse(Weight.isValidWeight("12 500")); // spaces within digits
 
         // valid weight numbers
-        assertTrue(Weight.isValidWeight("911")); // exactly 3 numbers
-        assertTrue(Weight.isValidWeight("93121534"));
-        assertTrue(Weight.isValidWeight("124293842033123")); // long weight numbers
+        assertTrue(Weight.isValidWeight("6.25")); // 2 decimal place
+        assertTrue(Weight.isValidWeight("12.5")); // 1 decimal place
+        assertTrue(Weight.isValidWeight("0")); // weight of 0 allowed
+        assertTrue(Weight.isValidWeight("0.0")); // weight of 0 allowed
+        assertTrue(Weight.isValidWeight("0.00")); // weight of 0 allowed
+        assertTrue(Weight.isValidWeight("00.0")); // weight of 0 allowed
+        assertTrue(Weight.isValidWeight("1")); // single digit
+        assertTrue(Weight.isValidWeight("10")); // double digit
+        assertTrue(Weight.isValidWeight("100")); // 3 digits
+        assertTrue(Weight.isValidWeight("1000")); // 4 digits
+        assertTrue(Weight.isValidWeight("2372384734778931340")); // long weight numbers
     }
 }

@@ -30,8 +30,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_WEIGHT_AMY = "11111111";
-    public static final String VALID_WEIGHT_BOB = "22222222";
+    public static final String VALID_WEIGHT_AMY = "100";
+    public static final String VALID_WEIGHT_BOB = "200";
     public static final String VALID_SETS_AMY = "3";
     public static final String VALID_SETS_BOB = "5";
     public static final String VALID_REP_AMY = "1";
