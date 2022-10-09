@@ -100,11 +100,7 @@ public class ModelManager implements Model {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
-    @Override
-    public boolean hasTask(Task task) {
-        requireNonNull(task);
-        return addressBook.hasTask(task);
-    }
+
 
     @Override
     public void deletePerson(Person target) {
@@ -116,16 +112,26 @@ public class ModelManager implements Model {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
-    @Override
-    public void addTask(Task task) {
-        addressBook.addTask(task);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-    }
+
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    //========== Task List ==================================================================================
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return addressBook.hasTask(task);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        addressBook.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -147,11 +153,6 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-        requireNonNull(predicate);
-        taskFilteredList.setPredicate(predicate);
-    }
 
     @Override
     public boolean equals(Object obj) {
@@ -171,6 +172,7 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
+
 
     //=============================Module Commands================================
     @Override
@@ -193,5 +195,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return taskFilteredList;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        taskFilteredList.setPredicate(predicate);
     }
 }

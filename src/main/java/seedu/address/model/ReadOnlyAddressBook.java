@@ -18,6 +18,10 @@ public interface ReadOnlyAddressBook {
 
     ObservableList<Module> getModuleList();
 
+    /**
+     * Returns an unmodifiable view of the task list.
+     * This list will not contain any duplicate tasks.
+     */
     ObservableList<Task> getTaskList();
 
 }
