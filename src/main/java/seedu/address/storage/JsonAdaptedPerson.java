@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.task.Task;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,14 +30,18 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +49,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.tasks.addAll(tasks);
     }
 
     /**
@@ -57,6 +63,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        tasks.addAll(source.getTasks().stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -66,8 +75,12 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Task> personTasks = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        for (JsonAdaptedTask task : tasks) {
+            personTasks.add(task.toModelType());
         }
 
         if (name == null) {
@@ -103,7 +116,9 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final List<Task> modelTasks = new ArrayList<>(personTasks);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, modelTasks);
     }
 
 }
