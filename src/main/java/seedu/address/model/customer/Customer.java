@@ -98,7 +98,6 @@ public class Customer {
      * @param commission new commission to add.
      */
     public void addCommission(Commission commission) {
-        requireAllNonNull(commission);
         commissions.add(commission);
     }
 
@@ -107,7 +106,6 @@ public class Customer {
      * commission list.
      */
     public boolean hasCommission(Commission commission) {
-        requireAllNonNull(commission);
         return commissions.contains(commission);
     }
 
@@ -118,7 +116,6 @@ public class Customer {
      * customer's commission list.
      */
     public void setCommission(Commission target, Commission editedCommission) {
-        assert hasCommission(target);
         commissions.setCommission(target, editedCommission);
     }
 
@@ -128,8 +125,6 @@ public class Customer {
      * {@code key} must exist in the customer's commission list.
      */
     public void removeCommission(Commission key) {
-        requireAllNonNull(key);
-        assert hasCommission(key);
         commissions.remove(key);
     }
 

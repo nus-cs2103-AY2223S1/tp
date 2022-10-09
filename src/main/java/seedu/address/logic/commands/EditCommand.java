@@ -72,7 +72,7 @@ public class EditCommand extends Command {
      */
     private static Customer createEditedCustomer(Customer customerToEdit,
                                                  EditCustomerDescriptor editCustomerDescriptor) {
-        assert customerToEdit != null;
+        requireNonNull(customerToEdit);
 
         Name updatedName = editCustomerDescriptor.getName().orElse(customerToEdit.getName());
         Phone updatedPhone = editCustomerDescriptor.getPhone().orElse(customerToEdit.getPhone());
