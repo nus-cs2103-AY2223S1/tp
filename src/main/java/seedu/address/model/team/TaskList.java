@@ -107,8 +107,7 @@ public class TaskList implements Iterable<Task> {
     @Override
     public String toString() {
         if (internalList.isEmpty()) {
-//            return NO_TASKS;
-            return "";
+            return ""; //return NO_TASKS;
         }
         StringBuilder sb = new StringBuilder();
         int i = 1;

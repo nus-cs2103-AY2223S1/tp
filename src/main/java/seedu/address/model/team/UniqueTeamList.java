@@ -8,9 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.team.exceptions.DuplicateTeamException;
 import seedu.address.model.team.exceptions.TeamNotFoundException;
 
@@ -38,7 +35,7 @@ public class UniqueTeamList implements Iterable<Team> {
      * Adds a team to the list.
      * That team must not already exist in the list.
      */
-    public void add (Team teamToAdd) {
+    public void add(Team teamToAdd) {
         requireNonNull(teamToAdd);
         if (contains(teamToAdd)) {
             throw new DuplicateTeamException();
@@ -49,7 +46,7 @@ public class UniqueTeamList implements Iterable<Team> {
     /**
      * Removes the equivalent team from the list.
      */
-    public void remove (Team teamToRemove) {
+    public void remove(Team teamToRemove) {
         requireNonNull(teamToRemove);
         if (!internalTeams.remove(teamToRemove)) {
             throw new TeamNotFoundException();
@@ -61,6 +58,9 @@ public class UniqueTeamList implements Iterable<Team> {
      */
     public void setTeams(List<Team> teams) {
         requireAllNonNull(teams);
+        if (!teamsAreUnique(teams)) {
+            throw new DuplicateTeamException();
+        }
         internalTeams.setAll(teams);
     }
 
@@ -79,5 +79,19 @@ public class UniqueTeamList implements Iterable<Team> {
     @Override
     public Iterator<Team> iterator() {
         return internalTeams.iterator();
+    }
+
+    /**
+     * Returns true if {@code team} contains only unique teams.
+     */
+    private boolean teamsAreUnique(List<Team> teams) {
+        for (int i = 0; i < teams.size() - 1; i++) {
+            for (int j = i + 1; j < teams.size(); j++) {
+                if (teams.get(i).isSameTeam(teams.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

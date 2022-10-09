@@ -7,7 +7,9 @@ import java.util.List;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Team;
-
+/**
+ * Deletes a team from the addressbook.
+ */
 public class DeleteTeamCommand extends Command {
     public static final String COMMAND_WORD = "delete_team";
 
@@ -31,7 +33,7 @@ public class DeleteTeamCommand extends Command {
         List<Team> teamList = model.getTeamList();
         Team currentTeam = model.getTeam();
         int teamIndex = teamList.indexOf(targetTeam);
-        if (teamIndex == -1 ) {
+        if (teamIndex == -1) {
             throw new CommandException(MESSAGE_TEAM_NOT_EXISTS);
         }
 

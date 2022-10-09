@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import seedu.address.logic.commands.SetTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.team.Team;
-
+/**
+ * Parses input arguments and creates a new SetTeamCommand object.
+ */
 public class SetTeamCommandParser implements Parser<SetTeamCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SetTeamCommand

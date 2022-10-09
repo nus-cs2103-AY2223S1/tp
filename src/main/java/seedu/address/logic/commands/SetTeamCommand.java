@@ -38,7 +38,7 @@ public class SetTeamCommand extends Command {
         Team currentTeam = model.getTeam();
         int teamIndex = teamList.indexOf(targetTeam);
 
-        if (teamIndex == -1 ) {
+        if (teamIndex == -1) {
             throw new CommandException(MESSAGE_TEAM_NOT_EXISTS);
         }
 

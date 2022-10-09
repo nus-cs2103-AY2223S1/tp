@@ -61,16 +61,21 @@ class JsonSerializableAddressBook {
             addressBook.addPerson(person);
         }
 
+        int counter = 0;
         for (JsonAdaptedTeam jsonAdaptedTeam : teams) {
             Team team = jsonAdaptedTeam.toModelType();
             if (addressBook.getTeamList().contains(team)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TEAMS);
             }
             addressBook.addTeam(team);
-            addressBook.setTeam(team);
+
+            if (counter == 0) {
+                addressBook.setTeam(team);
+            }
+            counter++;
         }
 
-        if (teams.size() == 0) {
+        if (counter == 0) {
             Team team = new Team("default", new ArrayList<>(), new ArrayList<>());
             addressBook.addTeam(team);
             addressBook.setTeam(team);
