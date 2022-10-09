@@ -1,15 +1,15 @@
-package seedu.address.model.person;
+package seedu.address.model.staff;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a staff name in HR Pro Max++.
+ * Represents a staff department in HR Pro Max++.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class StaffName {
+public class StaffDepartment {
     public static final String MESSAGE_CONSTRAINTS =
-            "Staff name should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -17,17 +17,17 @@ public class StaffName {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String staffName;
+    public final String staffDepartment;
 
     /**
      * Constructs a {@code Name}.
      *
-     * @param name A valid name.
+     * @param department A valid department name.
      */
-    public StaffName(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        staffName = name;
+    public StaffDepartment(String department) {
+        requireNonNull(department);
+        checkArgument(isValidName(department), MESSAGE_CONSTRAINTS);
+        staffDepartment = department;
     }
 
     /**
@@ -40,18 +40,18 @@ public class StaffName {
 
     @Override
     public String toString() {
-        return staffName;
+        return staffDepartment;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof StaffName // instanceof handles nulls
-                && staffName.equals(((StaffName) other).staffName)); // state check
+                || (other instanceof StaffDepartment // instanceof handles nulls
+                && staffDepartment.equals(((StaffDepartment) other).staffDepartment)); // state check
     }
 
     @Override
     public int hashCode() {
-        return staffName.hashCode();
+        return staffDepartment.hashCode();
     }
 }

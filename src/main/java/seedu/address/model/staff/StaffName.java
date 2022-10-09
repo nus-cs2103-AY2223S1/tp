@@ -1,15 +1,15 @@
-package seedu.address.model.person;
+package seedu.address.model.staff;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a staff title in HR Pro Max++.
+ * Represents a staff name in HR Pro Max++.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class StaffTitle {
+public class StaffName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Staff title should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Staff name should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -17,17 +17,17 @@ public class StaffTitle {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String staffTitle;
+    public final String staffName;
 
     /**
      * Constructs a {@code Name}.
      *
-     * @param title A valid name.
+     * @param name A valid name.
      */
-    public StaffTitle(String title) {
-        requireNonNull(title);
-        checkArgument(isValidName(title), MESSAGE_CONSTRAINTS);
-        staffTitle = title;
+    public StaffName(String name) {
+        requireNonNull(name);
+        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        staffName = name;
     }
 
     /**
@@ -40,18 +40,18 @@ public class StaffTitle {
 
     @Override
     public String toString() {
-        return staffTitle;
+        return staffName;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof StaffTitle // instanceof handles nulls
-                && staffTitle.equals(((StaffTitle) other).staffTitle)); // state check
+                || (other instanceof StaffName // instanceof handles nulls
+                && staffName.equals(((StaffName) other).staffName)); // state check
     }
 
     @Override
     public int hashCode() {
-        return staffTitle.hashCode();
+        return staffName.hashCode();
     }
 }
