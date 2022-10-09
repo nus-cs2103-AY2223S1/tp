@@ -9,7 +9,7 @@ import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import eatwhere.foodguide.logic.commands.AddCommand;
-import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
+import eatwhere.foodguide.logic.commands.EditCommand.EditEateryDescriptor;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.tag.Tag;
 
@@ -43,7 +43,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditEateryDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

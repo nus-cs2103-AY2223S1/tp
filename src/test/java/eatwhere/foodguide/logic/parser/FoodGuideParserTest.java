@@ -15,7 +15,6 @@ import eatwhere.foodguide.logic.commands.AddCommand;
 import eatwhere.foodguide.logic.commands.ClearCommand;
 import eatwhere.foodguide.logic.commands.DeleteCommand;
 import eatwhere.foodguide.logic.commands.EditCommand;
-import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
 import eatwhere.foodguide.logic.commands.ExitCommand;
 import eatwhere.foodguide.logic.commands.FindCommand;
 import eatwhere.foodguide.logic.commands.HelpCommand;
@@ -56,7 +55,7 @@ public class FoodGuideParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Eatery eatery = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(eatery).build();
+        EditCommand.EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder(eatery).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased()
                 + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));

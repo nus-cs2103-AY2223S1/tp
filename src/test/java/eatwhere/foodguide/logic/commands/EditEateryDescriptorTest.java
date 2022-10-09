@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
+import eatwhere.foodguide.logic.commands.EditCommand.EditEateryDescriptor;
 import eatwhere.foodguide.testutil.EditPersonDescriptorBuilder;
 
 public class EditEateryDescriptorTest {
@@ -20,7 +20,7 @@ public class EditEateryDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
+        EditEateryDescriptor descriptorWithSameValues = new EditEateryDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,7 +36,7 @@ public class EditEateryDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditCommand.EditEateryDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

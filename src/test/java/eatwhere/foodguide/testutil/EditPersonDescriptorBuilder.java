@@ -4,7 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
+import eatwhere.foodguide.logic.commands.EditCommand;
+import eatwhere.foodguide.logic.commands.EditCommand.EditEateryDescriptor;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
@@ -17,21 +18,21 @@ import eatwhere.foodguide.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditEateryDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditCommand.EditEateryDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditCommand.EditEateryDescriptor descriptor) {
+        this.descriptor = new EditEateryDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code eatery}'s details
      */
     public EditPersonDescriptorBuilder(Eatery eatery) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditEateryDescriptor();
         descriptor.setName(eatery.getName());
         descriptor.setPhone(eatery.getPhone());
         descriptor.setEmail(eatery.getEmail());
@@ -81,7 +82,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditCommand.EditEateryDescriptor build() {
         return descriptor;
     }
 }

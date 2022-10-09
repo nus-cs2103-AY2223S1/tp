@@ -28,7 +28,7 @@ public class DeleteCommandTest {
         Eatery eateryToDelete = model.getFilteredEateryList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, eateryToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EATERY_SUCCESS, eateryToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getFoodGuide(), new UserPrefs());
         expectedModel.deleteEatery(eateryToDelete);
@@ -51,7 +51,7 @@ public class DeleteCommandTest {
         Eatery eateryToDelete = model.getFilteredEateryList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, eateryToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EATERY_SUCCESS, eateryToDelete);
 
         Model expectedModel = new ModelManager(model.getFoodGuide(), new UserPrefs());
         expectedModel.deleteEatery(eateryToDelete);

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.CommandTestUtil;
 import eatwhere.foodguide.logic.commands.EditCommand;
-import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
+import eatwhere.foodguide.logic.commands.EditCommand.EditEateryDescriptor;
 import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
@@ -108,7 +108,7 @@ public class EditCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY
                 + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
+        EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(CommandTestUtil.VALID_EMAIL_AMY)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_AMY)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND, CommandTestUtil.VALID_TAG_FRIEND).build();
@@ -122,7 +122,7 @@ public class EditCommandParserTest {
         Index targetIndex = TypicalIndexes.INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(CommandTestUtil.VALID_PHONE_BOB)
+        EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(CommandTestUtil.VALID_PHONE_BOB)
                 .withEmail(CommandTestUtil.VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -134,7 +134,7 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = TypicalIndexes.INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditCommand.EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withName(CommandTestUtil.VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
@@ -173,7 +173,7 @@ public class EditCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND + CommandTestUtil.PHONE_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.TAG_DESC_HUSBAND;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(CommandTestUtil.VALID_PHONE_BOB)
+        EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(CommandTestUtil.VALID_PHONE_BOB)
                 .withEmail(CommandTestUtil.VALID_EMAIL_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -187,7 +187,7 @@ public class EditCommandParserTest {
         Index targetIndex = TypicalIndexes.INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.INVALID_PHONE_DESC
                 + CommandTestUtil.PHONE_DESC_BOB;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
@@ -208,7 +208,7 @@ public class EditCommandParserTest {
         Index targetIndex = TypicalIndexes.INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);

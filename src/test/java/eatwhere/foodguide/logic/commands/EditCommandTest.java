@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.commons.core.index.Index;
-import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
+import eatwhere.foodguide.logic.commands.EditCommand.EditEateryDescriptor;
 import eatwhere.foodguide.model.FoodGuide;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
@@ -29,10 +29,10 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Eatery editedEatery = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedEatery).build();
+        EditCommand.EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder(editedEatery).build();
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEatery);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EATERY_SUCCESS, editedEatery);
 
         Model expectedModel = new ModelManager(new FoodGuide(model.getFoodGuide()), new UserPrefs());
         expectedModel.setEatery(model.getFilteredEateryList().get(0), editedEatery);
@@ -50,11 +50,11 @@ public class EditCommandTest {
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
+        EditCommand.EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEatery);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EATERY_SUCCESS, editedEatery);
 
         Model expectedModel = new ModelManager(new FoodGuide(model.getFoodGuide()), new UserPrefs());
         expectedModel.setEatery(lastEatery, editedEatery);
@@ -64,10 +64,10 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, new EditPersonDescriptor());
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, new EditCommand.EditEateryDescriptor());
         Eatery editedEatery = model.getFilteredEateryList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEatery);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EATERY_SUCCESS, editedEatery);
 
         Model expectedModel = new ModelManager(new FoodGuide(model.getFoodGuide()), new UserPrefs());
 
@@ -84,7 +84,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEatery);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EATERY_SUCCESS, editedEatery);
 
         Model expectedModel = new ModelManager(new FoodGuide(model.getFoodGuide()), new UserPrefs());
         expectedModel.setEatery(model.getFilteredEateryList().get(0), editedEatery);
@@ -95,10 +95,10 @@ public class EditCommandTest {
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         Eatery firstEatery = model.getFilteredEateryList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstEatery).build();
+        EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder(firstEatery).build();
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_SECOND_PERSON, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EATERY);
     }
 
     @Test
@@ -111,13 +111,13 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(eateryInList).build());
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EATERY);
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEateryList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditCommand.EditEateryDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withName(CommandTestUtil.VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
@@ -147,7 +147,7 @@ public class EditCommandTest {
                 new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, CommandTestUtil.DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(CommandTestUtil.DESC_AMY);
+        EditCommand.EditEateryDescriptor copyDescriptor = new EditCommand.EditEateryDescriptor(CommandTestUtil.DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
