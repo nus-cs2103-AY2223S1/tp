@@ -117,7 +117,11 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAppointments, modelTags);
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelAppointments, modelTags);
+        for (Appointment appointment : modelAppointments) {
+            appointment.setPatient(person);
+        }
+        return person;
     }
 
 }
