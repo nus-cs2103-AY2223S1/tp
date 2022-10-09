@@ -165,15 +165,10 @@ public class ParserUtil {
     public static CompletionStatus parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        if (trimmedStatus.equalsIgnoreCase("True") || trimmedStatus.equalsIgnoreCase("T")
-                || trimmedStatus.equalsIgnoreCase("Yes") || trimmedStatus.equalsIgnoreCase("Y")) {
-            return new CompletionStatus(true);
-        } else if (trimmedStatus.equalsIgnoreCase("False") || trimmedStatus.equalsIgnoreCase("F")
-                || trimmedStatus.equalsIgnoreCase("No") || trimmedStatus.equalsIgnoreCase("N")) {
-            return new CompletionStatus(false);
-        } else {
+        if (!CompletionStatus.isValidStatus(trimmedStatus)) {
             throw new ParseException(CompletionStatus.MESSAGE_CONSTRAINTS);
         }
+        return CompletionStatus.of(trimmedStatus);
     }
 
     /**
