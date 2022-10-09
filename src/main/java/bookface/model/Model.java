@@ -106,4 +106,7 @@ public interface Model {
      * @param book book to be deleted from BookFace
      */
     void deleteBook(Book book);
+
+    /** Returns an unmodifiable view of the filtered book list */
+    ObservableList<Book> getFilteredBookList();
 }

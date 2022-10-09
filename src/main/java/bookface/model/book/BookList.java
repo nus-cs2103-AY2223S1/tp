@@ -1,6 +1,15 @@
 package bookface.model.book;
 
-import java.util.ArrayList;
+import static java.util.Objects.requireNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
+import bookface.commons.util.CollectionUtil;
+import bookface.model.person.exceptions.DuplicatePersonException;
+import bookface.model.person.exceptions.PersonNotFoundException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * The BookList class represents the list of books managed by BookFace.
@@ -83,5 +92,12 @@ public class BookList extends ArrayList<Book> {
     @Override
     public boolean contains(Object o) {
         return this.bookList.contains(o);
+    }
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ArrayList<Book> getBookList() {
+        return bookList;
     }
 }

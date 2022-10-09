@@ -14,4 +14,9 @@ public interface ReadOnlyBookFace {
      */
     ObservableList<Person> getPersonList();
 
+    /**
+     * Returns an unmodifiable view of the books list.
+     * This list will not contain any duplicate books.
+     */
+    ObservableList<Person> getBookList();
 }

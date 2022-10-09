@@ -3,6 +3,7 @@ package bookface.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import bookface.model.book.Book;
 import bookface.model.book.BookList;
@@ -137,6 +138,11 @@ public class BookFace implements ReadOnlyBookFace {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Book> getBookList() {
+        return books.asUnmodifiableObservableList();
     }
 
     @Override
