@@ -30,6 +30,13 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     private Path studentFilePath;
     private Path tuitionClassFilePath;
 
+    /**
+     * Constructor for JsonAddressBookStorage.
+     *
+     * @param tutorFilePath File path for tutor address book.
+     * @param studentFilePath File path for student address book.
+     * @param tuitionClassFilePath File path for tuition class address book.
+     */
     public JsonAddressBookStorage(Path tutorFilePath, Path studentFilePath, Path tuitionClassFilePath) {
         this.tutorFilePath = tutorFilePath;
         this.studentFilePath = studentFilePath;
@@ -206,6 +213,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         case TUITIONCLASSES:
             filePath = tuitionClassFilePath;
             break;
+        default: { }
         }
         saveAddressBook(addressBook, filePath, cat);
     }
@@ -226,10 +234,14 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         switch (cat) {
         case TUTORS:
             JsonUtil.saveJsonFile(new JsonSerializableTutorAddressBook(addressBook), filePath);
+            break;
         case STUDENTS:
             JsonUtil.saveJsonFile(new JsonSerializableStudentAddressBook(addressBook), filePath);
+            break;
         case TUITIONCLASSES:
             JsonUtil.saveJsonFile(new JsonSerializableTuitionClassAddressBook(addressBook), filePath);
+            break;
+        default: { }
         }
     }
 }

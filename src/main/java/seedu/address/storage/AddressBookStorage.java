@@ -12,6 +12,9 @@ import seedu.address.model.ReadOnlyAddressBook;
  * Represents a storage for {@link seedu.address.model.AddressBook}.
  */
 public interface AddressBookStorage {
+    /**
+     * Categories for the types of AddressBooks.
+     */
     enum AddressBookCategories {
         TUTORS, STUDENTS, TUITIONCLASSES
     }
@@ -48,7 +51,7 @@ public interface AddressBookStorage {
 
     /**
      * @see #getAddressBookFilePath(AddressBookCategories)
-     * A single addressBook for Tutors, Students and TuitionClasses.
+     *      A single addressBook for Tutors, Students and TuitionClasses.
      */
     Optional<ReadOnlyAddressBook> readAllAddressBook() throws DataConversionException, IllegalValueException;
 

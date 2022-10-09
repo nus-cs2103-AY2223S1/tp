@@ -20,7 +20,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 
 public class JsonAddressBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonAddressBookStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -83,12 +84,14 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void readStudent_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readStudentAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () ->
+                readStudentAddressBook("notJsonFormatAddressBook.json"));
     }
 
     @Test
     public void readTuitionClass_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readTuitionClassAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readTuitionClassAddressBook("notJsonFormatAddressBook.json"));
     }
 
     @Test
@@ -98,27 +101,32 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void readStudentAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readStudentAddressBook("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readStudentAddressBook("invalidPersonAddressBook.json"));
     }
 
     @Test
     public void readTuitionClassAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTuitionClassAddressBook("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readTuitionClassAddressBook("invalidPersonAddressBook.json"));
     }
 
     @Test
     public void readTutorAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTutorAddressBook("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readTutorAddressBook("invalidAndValidPersonAddressBook.json"));
     }
 
     @Test
     public void readStudentAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readStudentAddressBook("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readStudentAddressBook("invalidAndValidPersonAddressBook.json"));
     }
 
     @Test
     public void readTuitionClassAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTuitionClassAddressBook("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readTuitionClassAddressBook("invalidAndValidPersonAddressBook.json"));
     }
 
     @Test
@@ -171,7 +179,8 @@ public class JsonAddressBookStorageTest {
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath, AddressBookStorage.AddressBookCategories cat) {
+    private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath,
+                                 AddressBookStorage.AddressBookCategories cat) {
         try {
             new JsonAddressBookStorage(Paths.get(filePath), Paths.get(filePath), Paths.get(filePath))
                     .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath), cat);

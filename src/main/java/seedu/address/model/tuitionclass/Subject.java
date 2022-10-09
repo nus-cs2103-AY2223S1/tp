@@ -1,6 +1,5 @@
 package seedu.address.model.tuitionclass;
 
-import seedu.address.model.person.student.Level;
 import seedu.address.model.tuitionclass.exceptions.InvalidSubjectException;
 
 /**

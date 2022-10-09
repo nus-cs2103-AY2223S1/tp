@@ -75,19 +75,22 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readTutorAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyAddressBook> readTutorAddressBook(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return addressBookStorage.readTutorAddressBook(filePath);
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readStudentAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyAddressBook> readStudentAddressBook(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return addressBookStorage.readStudentAddressBook(filePath);
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readTuitionClassAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyAddressBook> readTuitionClassAddressBook(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return addressBookStorage.readTuitionClassAddressBook(filePath);
     }
@@ -99,7 +102,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook, AddressBookCategories cat) throws IOException {
-            saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath(cat), cat);
+        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath(cat), cat);
     }
 
     @Override

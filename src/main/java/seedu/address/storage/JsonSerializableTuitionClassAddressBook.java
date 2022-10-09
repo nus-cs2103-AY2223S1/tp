@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
@@ -28,7 +27,8 @@ class JsonSerializableTuitionClassAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given tuitionClasses.
      */
     @JsonCreator
-    public JsonSerializableTuitionClassAddressBook(@JsonProperty("tuitionClasses") List<JsonAdaptedTuitionClass> tuitionClasses) {
+    public JsonSerializableTuitionClassAddressBook(@JsonProperty("tuitionClasses")
+                                                       List<JsonAdaptedTuitionClass> tuitionClasses) {
         this.tuitionClasses.addAll(tuitionClasses);
     }
 
