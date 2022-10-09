@@ -23,6 +23,10 @@ public class ItemExpiryDate {
      */
     public ItemExpiryDate(String dateString) {
         requireNonNull(dateString);
+        if (dateString.isEmpty()) {
+            itemDate = LocalDate.now();
+            return;
+        }
         ItemExpiryDateValidator.validate(dateString);
         itemDate = LocalDate.parse(dateString);
     }

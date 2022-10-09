@@ -23,8 +23,8 @@ public class TypicalItems {
         .withItemName("Cucumbers")
         .withItemQuantity("2000")
         .withItemUnit("grams")
-        .withItemBoughtDate("2022-11-11")
-        .withItemExpiryDate("2022-11-11").build();
+        .withItemBoughtDate("2022-12-12")
+        .withItemExpiryDate("2022-12-12").build();
 
     //public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
     //        .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")

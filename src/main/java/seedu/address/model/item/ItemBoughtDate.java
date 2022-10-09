@@ -23,6 +23,10 @@ public class ItemBoughtDate {
      */
     public ItemBoughtDate(String dateString) {
         requireNonNull(dateString);
+        if (dateString.isEmpty()) {
+            itemDate = LocalDate.now();
+            return;
+        }
         ItemBoughtDateValidator.validate(dateString);
         itemDate = LocalDate.parse(dateString);
     }

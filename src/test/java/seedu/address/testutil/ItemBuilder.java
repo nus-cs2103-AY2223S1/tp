@@ -12,11 +12,11 @@ import seedu.address.model.item.ItemUnit;
  */
 public class ItemBuilder {
 
-    public static final String DEFAULT_NAME = "Potato";
-    public static final String DEFAULT_QUANTITY = "10";
-    public static final String DEFAULT_ITEM_UNIT = "kg";
-    public static final String DEFAULT_BOUGHT_DATE = "2022-11-11";
-    public static final String DEFAULT_EXPIRY_DATE = "2022-11-11";
+    public static final String DEFAULT_NAME = "";
+    public static final String DEFAULT_QUANTITY = "0.0";
+    public static final String DEFAULT_ITEM_UNIT = "";
+    public static final String DEFAULT_BOUGHT_DATE = "";
+    public static final String DEFAULT_EXPIRY_DATE = "";
 
     // Identity fields
     private ItemName name;
