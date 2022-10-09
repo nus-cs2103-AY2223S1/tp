@@ -39,6 +39,12 @@ public class StringUtil {
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
+    /**
+     * Returns true if the {@code set} of words contains the {@code word}.
+     *   Ignores case, but a full word match is required.
+     * @param set cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
     public static boolean containsWordIgnoreCase(Set<String> set, String word) {
         requireNonNull(set);
         requireNonNull(word);

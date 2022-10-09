@@ -12,10 +12,10 @@ import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.DeleteCommand;
 import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.ExitCommand;
+import seedu.condonery.logic.commands.FilterCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.ListCommand;
-import seedu.condonery.logic.commands.FilterCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 
 /**
