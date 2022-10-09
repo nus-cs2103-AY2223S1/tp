@@ -17,4 +17,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_MODULE_CODE = new Prefix("c/");
     public static final Prefix PREFIX_MODULE_DESCRIPTION = new Prefix("d/");
 
+    public static final Prefix PREFIX_WEEKDAY = new Prefix("w/");
+    public static final Prefix PREFIX_MODULE_OF_SCHEDULE = new Prefix("m/");
+    public static final Prefix PREFIX_CLASS_TIME = new Prefix("ct/");
+    public static final Prefix PREFIX_CLASS_CATEGORY = new Prefix("cc/");
+    public static final Prefix PREFIX_CLASS_VENUE = new Prefix("cv/");
+
 }
