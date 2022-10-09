@@ -28,6 +28,22 @@ public class AttendanceList {
         this.attendanceList.add(attendance);
     }
 
+    /**
+     * Returns a description of the attendance list. If attendance list size is greater than two,
+     * only the first two are shown.
+     */
+    public String shortDescription() {
+        if (attendanceList.size() <= 2) {
+            return toString();
+        }
+
+        StringBuilder description = new StringBuilder("Attendance:\n");
+        for (int i = 0; i < 2; i++) {
+            description.append(i + 1).append(". ").append(attendanceList.get(i)).append("\n");
+        }
+        description.append("...\n");
+        return description.toString();
+    }
     @Override
     public String toString() {
         StringBuilder description = new StringBuilder("Attendance: \n");

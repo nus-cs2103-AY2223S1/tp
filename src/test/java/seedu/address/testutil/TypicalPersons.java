@@ -36,13 +36,13 @@ public class TypicalPersons {
             .withLessonPlan("Chemistry")
             .withAttendance("2022-05-07" , "2022-12-01", "2022-12-17")
             .withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822243")
             .withLessonPlan("Sec 4 Physics")
             .withAttendance("2022-06-05" , "2022-07-07" , "2022-08-08")
             .build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824273")
             .withLessonPlan("Higher chinese").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
+    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824425")
             .withLessonPlan("Javascript").build();
 
     // Manually added
@@ -71,6 +71,9 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Person person : getTypicalPersons()) {
+            if (person.getAttendanceList().attendanceList.size() !=0) {
+                System.out.println(person.getAttendanceList().attendanceList.get(0));
+            }
             ab.addPerson(person);
         }
         return ab;
