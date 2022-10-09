@@ -1,13 +1,13 @@
 package nus.climods.ui.module;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import nus.climods.model.module.DummyModule;
 import nus.climods.ui.UiPart;
+import nus.climods.ui.common.Pill;
 
 /**
  * An UI component that displays information of a {@code Module}.
@@ -15,6 +15,12 @@ import nus.climods.ui.UiPart;
 public class ModuleCard extends UiPart<Region> {
 
     private static final String FXML = "ModuleListCard.fxml";
+
+    private static final String WORKLOAD_BG_COLOR = "#61AFEF";
+    private static final String WORKLOAD_TEXT_COLOR = "#FFFFFF";
+
+    private static final String SEMESTER_BG_COLOR = "#C678DD";
+    private static final String SEMESTER_TEXT_COLOR = "#000000";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX. As a consequence, UI
@@ -34,11 +40,7 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label department;
     @FXML
-    private Button workload;
-    @FXML
-    private FlowPane semesterData;
-    private String buttonStyle = "-fx-border-width:0;-fx-background-radius: 10px;"
-        + "-fx-padding: 5;-fx-font-size: 12;-fx-font-weight:bold;";
+    private FlowPane moduleInfo;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,15 +51,9 @@ public class ModuleCard extends UiPart<Region> {
         moduleCode.setText(module.getModuleCode());
         title.setText(module.getTitle());
         department.setText(module.getDepartment());
-        // TODO: find a more elegant way to add workload behind semester tag
-        workload = new Button(module.getWorkload());
-        workload.setStyle("-fx-background-color:#61AFEF;-fx-text-fill: #ffffff;" + buttonStyle);
         module.getSemesterData()
-            .forEach(tag -> semesterData.getChildren()
-                .add(new Button(tag)));
-        semesterData.getChildren().forEach(child ->
-            child.setStyle("-fx-background-color: #C678DD;-fx-text-fill: #000000;" + buttonStyle));
-        semesterData.getChildren().add(workload);
+            .forEach(tag -> moduleInfo.getChildren().add(new Pill(tag, SEMESTER_BG_COLOR, SEMESTER_TEXT_COLOR, 13)));
+        moduleInfo.getChildren().add(new Pill(module.getWorkload(), WORKLOAD_BG_COLOR, WORKLOAD_TEXT_COLOR, 13));
     }
 
     @Override
