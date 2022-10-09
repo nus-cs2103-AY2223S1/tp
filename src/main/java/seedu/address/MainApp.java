@@ -19,14 +19,18 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskPanel;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TaskPanel;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonTaskPanelStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.TaskPanelStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -48,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Arrow ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskPanelStorage taskPanelStorage = new JsonTaskPanelStorage(userPrefs.getTaskPanelFilePath());
+        storage = new StorageManager(addressBookStorage, taskPanelStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,28 +74,52 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address book, {@code storage}'s task panel
+     * and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * <br>
+     * The data from the sample task panel will be used instead if {@code storage}'s task panel is not found,
+     * or an empty address book will be used instead if errors occur when reading {@code storage}'s task panel.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyTaskPanel> taskPanelOptional;
+        ReadOnlyAddressBook initialAddressBook;
+        ReadOnlyTaskPanel initialTaskPanel;
+
         try {
             addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialAddressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialAddressBook = new AddressBook();
+
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialAddressBook = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            taskPanelOptional = storage.readTaskPanel();
+            if (taskPanelOptional.isEmpty()) {
+                logger.info("Task data file not found. Will be starting with a sample TaskPanel");
+            }
+            initialTaskPanel = taskPanelOptional.orElseGet(SampleDataUtil::getSampleTaskPanel);
+        } catch (DataConversionException e) {
+            logger.warning("Task data file not in the correct format. Will be starting with an empty TaskPanel");
+            initialTaskPanel = new TaskPanel();
+
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the task data file. "
+                + "Will be starting with an empty TaskPanel");
+            initialTaskPanel = new TaskPanel();
+        }
+
+        return new ModelManager(initialAddressBook, initialTaskPanel, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -167,13 +196,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Arrow " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Arrow ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

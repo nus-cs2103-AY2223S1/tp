@@ -9,8 +9,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.TaskPanelParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -27,6 +29,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final TaskPanelParser taskPanelParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,6 +38,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        taskPanelParser = new TaskPanelParser();
     }
 
     @Override
@@ -42,11 +46,17 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command;
+        if (commandText.startsWith(TaskCommand.COMMAND_WORD) && Character.isWhitespace(commandText.charAt(4))) {
+            command = taskPanelParser.parse(commandText);
+        } else {
+            command = addressBookParser.parseCommand(commandText);
+        }
         commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaskPanel(model.getTaskPanel());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
