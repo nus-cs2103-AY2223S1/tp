@@ -16,7 +16,6 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialDetails;
 import seedu.address.model.module.ZoomLink;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Module}.
