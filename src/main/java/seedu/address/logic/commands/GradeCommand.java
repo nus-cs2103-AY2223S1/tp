@@ -99,4 +99,5 @@ public class GradeCommand extends Command {
         return index.equals(e.index)
                 && grade.equals(e.grade);
     }
+
 }

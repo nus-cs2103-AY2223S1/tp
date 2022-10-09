@@ -38,4 +38,5 @@ public class GradeCommandParser implements Parser<GradeCommand> {
 
         return new GradeCommand(index, grade);
     }
+
 }

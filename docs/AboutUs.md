@@ -35,7 +35,7 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 
 <img src="images/cxyterence.png" width="200px">
 
-[[github](http://github.com/cxyterence)] 
+[[github](http://github.com/cxyterence)]
 [[portfolio](team/cxyterence.md)]
 
 

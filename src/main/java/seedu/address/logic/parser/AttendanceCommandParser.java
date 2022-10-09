@@ -38,4 +38,5 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
 
         return new AttendanceCommand(index, attendance);
     }
+
 }

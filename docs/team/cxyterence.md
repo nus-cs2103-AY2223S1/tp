@@ -9,26 +9,26 @@ TAB (Teacher’s Address Book) is a desktop application for managing your studen
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
   * _(to be added soon)_
 
 * **Code contributed**: [RepoSense link]()
 
-* **Project management**: 
+* **Project management**:
   * _(to be added soon)_
 
 * **Enhancements to existing features**:
   * _(to be added soon)_
 
-* **Documentation**: 
-  * User Guide: 
+* **Documentation**:
+  * User Guide:
     * _(to be added soon)_
 
-  * Developer Guide: 
+  * Developer Guide:
     * _(to be added soon)_
 
-* **Community**: 
+* **Community**:
   * _(to be added soon)_
 
-* **Tools**: 
+* **Tools**:
   * _(to be added soon)_

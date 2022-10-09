@@ -9,20 +9,20 @@ import static java.util.Objects.requireNonNull;
 public class Student extends Position {
 
     public static final String ATTENDANCE_CONSTRAINTS =
-            "Attendance should be in the format [number]/[number], where the first number is greater " +
-                    "or equal to the second number (max 999).";
+            "Attendance should be in the format [number]/[number], where the first number is greater "
+                    + "or equal to the second number (max 999).";
+
+    public static final String ATTENDANCE_VALIDATION_REGEX = "\\d{1,3}" + "/" + "\\d{1,3}";
 
     public static final String GRADE_CONSTRAINTS =
-            "Grade should be in the format [number]/[number], where the first number is greater " +
-                    "or equal to the second number (max 99999).";
+            "Grade should be in the format [number]/[number], where the first number is greater "
+                    + "or equal to the second number (max 99999).";
+
+    public static final String GRADE_VALIDATION_REGEX = "\\d{1,5}" + "/" + "\\d{1,5}";
 
     private String attendance;
 
     private String grade;
-
-    public static final String ATTENDANCE_VALIDATION_REGEX = "\\d{1,3}" + "/" + "\\d{1,3}";
-
-    public static final String GRADE_VALIDATION_REGEX = "\\d{1,5}" + "/" + "\\d{1,5}";
 
     /**
      * Creates a student and initialises their attendance to 0/0.
