@@ -15,7 +15,9 @@ public class Rep {
      * The first character of the Rep must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    //public static final String VALIDATION_REGEX = "[^\\s].*";
+
+    public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
 
     public final String value;
 
@@ -31,7 +33,7 @@ public class Rep {
     }
 
     /**
-     * Returns true if a given string is a valid sets.
+     * Returns true if a given string is a valid Rep.
      */
     public static boolean isValidRep(String test) {
         return test.matches(VALIDATION_REGEX);
