@@ -80,7 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The internship identity of {@code editedInternship} must not be the same as
      * another existing internship in the address book.
      */
-    public void setPerson(Internship target, Internship editedInternship) {
+    public void setInternship(Internship target, Internship editedInternship) {
         requireNonNull(editedInternship);
 
         persons.setPerson(target, editedInternship);

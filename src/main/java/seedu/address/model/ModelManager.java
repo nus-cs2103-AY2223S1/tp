@@ -101,14 +101,14 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Internship internship) {
         addressBook.addPerson(internship);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_INTERNSHIPS);
     }
 
     @Override
-    public void setPerson(Internship target, Internship editedInternship) {
+    public void setInternship(Internship target, Internship editedInternship) {
         requireAllNonNull(target, editedInternship);
 
-        addressBook.setPerson(target, editedInternship);
+        addressBook.setInternship(target, editedInternship);
     }
 
     //=========== Filtered Internship List Accessors =============================================================
@@ -118,7 +118,7 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Internship> getFilteredPersonList() {
+    public ObservableList<Internship> getFilteredInternshipList() {
         return filteredInternships;
     }
 

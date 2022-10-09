@@ -12,7 +12,7 @@ import seedu.address.model.person.Internship;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Internship> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -75,10 +75,10 @@ public interface Model {
      * The internship identity of {@code editedInternship} must not be the same as
      * another existing internship in the address book.
      */
-    void setPerson(Internship target, Internship editedInternship);
+    void setInternship(Internship target, Internship editedInternship);
 
     /** Returns an unmodifiable view of the filtered internship list */
-    ObservableList<Internship> getFilteredPersonList();
+    ObservableList<Internship> getFilteredInternshipList();
 
     /**
      * Updates the filter of the filtered internship list to filter by the given {@code predicate}.

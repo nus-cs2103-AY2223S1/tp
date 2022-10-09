@@ -20,7 +20,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_APPLICATION_STATUS = "applied";
+    public static final ApplicationStatus DEFAULT_APPLICATION_STATUS = ApplicationStatus.Applied;
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
@@ -37,7 +37,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        applicationStatus = ApplicationStatus.parse(DEFAULT_APPLICATION_STATUS);
+        applicationStatus = DEFAULT_APPLICATION_STATUS;
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -97,8 +97,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code ApplicationStatus} of the {@code Internship} that we are building.
      */
-    public PersonBuilder withApplicationStatus(String applicationStatus) {
-        this.applicationStatus = ApplicationStatus.parse(applicationStatus);
+    public PersonBuilder withApplicationStatus(ApplicationStatus applicationStatus) {
+        this.applicationStatus = applicationStatus;
         return this;
     }
 
