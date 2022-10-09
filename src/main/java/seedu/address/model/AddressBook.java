@@ -126,6 +126,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.addTask(task);
     }
 
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        tasks.setTask(target, editedTask);
+    }
+
     public void setTasks(List<Task> tasks) {
         this.tasks.setTasks(tasks);
     }

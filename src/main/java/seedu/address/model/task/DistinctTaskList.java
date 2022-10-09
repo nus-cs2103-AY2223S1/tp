@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 
 /**
@@ -44,7 +46,25 @@ public class DistinctTaskList implements Iterable<Task> {
         taskList.add(taskAdded);
     }
 
+    /**
+     * Replaces the task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the list.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the list.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
 
+        int index = taskList.indexOf(target);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        if (!target.isSameTask(editedTask) && contains(editedTask)) {
+            throw new DuplicateTaskException();
+        }
+
+        taskList.set(index, editedTask);
+    }
     @Override
     public Iterator<Task> iterator() {
         return taskList.iterator();

@@ -23,7 +23,6 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private boolean completed;
 
     /**
      * Every field must be present and not null.
@@ -35,7 +34,6 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.completed = false;
     }
 
     public Name getName() {
@@ -61,18 +59,6 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
-
-    public boolean isCompleted() {
-        return this.completed;
-    }
-
-    /**
-     * Marks the task as completed.
-     */
-    public void mark() {
-        this.completed = true;
-    }
-
 
     /**
      * Returns true if both persons have the same name.
@@ -106,8 +92,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && (otherPerson.isCompleted() == isCompleted());
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
