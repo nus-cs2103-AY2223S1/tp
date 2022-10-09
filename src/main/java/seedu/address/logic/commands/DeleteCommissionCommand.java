@@ -39,14 +39,14 @@ public class DeleteCommissionCommand extends Command {
         if (!model.hasSelectedCustomer()) {
             throw new CommandException(Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
         }
-        Customer selectedCustomer = model.getSelectedCustomer().getValue();
         List<Commission> lastShownList = model.getFilteredCommissionList();
         if (lastShownList == null || targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
         }
 
         Commission commissionToDelete = lastShownList.get(targetIndex.getZeroBased());
-        selectedCustomer.removeCommission(commissionToDelete);
+        Customer customer = commissionToDelete.getCustomer();
+        customer.removeCommission(commissionToDelete);
         model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_COMMISSION_SUCCESS, commissionToDelete));
