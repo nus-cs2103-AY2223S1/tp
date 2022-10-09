@@ -38,7 +38,8 @@ public class FilterCommandPredicate {
      */
     public FilterCommandPredicate(NameContainsKeywordsPredicate namePredicate,
             TagMatchesQueryPredicate tagsPredicate) {
-        this(Set.of(namePredicate), Set.of(tagsPredicate));
+        this(namePredicate == null ? null : Set.of(namePredicate),
+                tagsPredicate == null ? null : Set.of(tagsPredicate));
     }
 
 

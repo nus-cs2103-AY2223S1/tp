@@ -23,7 +23,7 @@ public class TagMatchesQueryPredicate implements Predicate<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TagMatchesQueryPredicate // instanceof handles nulls
-                        && tag.equals(((TagMatchesQueryPredicate) other).tag)); // state check
+                && tag.equals(((TagMatchesQueryPredicate) other).tag)); // state check
     }
 
     @Override

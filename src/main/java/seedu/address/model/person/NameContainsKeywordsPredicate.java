@@ -32,7 +32,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                        && keyword.equals(((NameContainsKeywordsPredicate) other).keyword)); // state check
+                && keyword.equals(((NameContainsKeywordsPredicate) other).keyword)); // state check
     }
 
     @Override
