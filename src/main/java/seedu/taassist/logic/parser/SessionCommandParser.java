@@ -18,20 +18,12 @@ public class SessionCommandParser implements Parser<SessionCommand> {
      */
     public SessionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSION);
-        if (!isPrefixPresent(argMultimap) || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.containsPrefixes(PREFIX_SESSION) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SessionCommand.MESSAGE_USAGE));
         }
 
         Session session = ParserUtil.parseSession(argMultimap.getValue(PREFIX_SESSION).get());
 
         return new SessionCommand(session);
-    }
-
-    /**
-     * Returns true if the {@code PREFIX_SESSION} does not contain empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getValue(PREFIX_SESSION).isPresent();
     }
 }
