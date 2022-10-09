@@ -30,8 +30,6 @@ public class ClearDebtsCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    //TODO Add more tests
-
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person debtorToClear = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -41,7 +39,8 @@ public class ClearDebtsCommandTest {
                 debtorToClear.getEmail(), debtorToClear.getAddress(), debtorToClear.getTags(),
                 new DebtList());
 
-        String expectedMessage = String.format(ClearDebtsCommand.MESSAGE_CLEAR_DEBTS_SUCCESS, clearedDebtor);
+        String expectedMessage = String.format(ClearDebtsCommand.MESSAGE_CLEAR_DEBTS_SUCCESS,
+                clearedDebtor.getName());
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), clearedDebtor);
 
@@ -67,7 +66,8 @@ public class ClearDebtsCommandTest {
                 debtorToClear.getEmail(), debtorToClear.getAddress(), debtorToClear.getTags(),
                 new DebtList());
 
-        String expectedMessage = String.format(ClearDebtsCommand.MESSAGE_CLEAR_DEBTS_SUCCESS, clearedDebtor);
+        String expectedMessage = String.format(ClearDebtsCommand.MESSAGE_CLEAR_DEBTS_SUCCESS,
+                clearedDebtor.getName());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList()
                 .get(INDEX_SECOND_PERSON.getZeroBased()), clearedDebtor);
