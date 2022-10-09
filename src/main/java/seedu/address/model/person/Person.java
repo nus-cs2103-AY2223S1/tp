@@ -57,8 +57,6 @@ public class Person {
     }
 
     public TaskList getTasks() {
-        // find some other place to make tasklist immutable with Collections.unmodifiableList
-        // since can't use if encapsualted in a TaskList class
         return tasks;
     }
 
@@ -116,22 +114,22 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("\nPhone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\nEmail: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("\nAddress: ")
                 .append(getAddress());
 
         TaskList tasks = getTasks();
         if (!tasks.isEmpty()) {
-            builder.append("; Tasks: ")
-                    .append(tasks.toString());
+            builder.append("\nTasks:\n")
+                    .append(tasks);
         }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("\nTags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();
