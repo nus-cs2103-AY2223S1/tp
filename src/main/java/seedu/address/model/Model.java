@@ -71,11 +71,13 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
-     * Marks the given task as completed.
-     * The task must exist in the task list.
+     * Adds a new task to taskList
      */
     void addTask(Task task);
 
+    /**
+     * Return true if there is duplicated task in the taskList
+     */
     boolean hasTask(Task task);
 
     /**

@@ -36,7 +36,7 @@ public class AddTaskCommand extends Command {
         }
         model.addTask(task);
 
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        //model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, task));
     }
 
