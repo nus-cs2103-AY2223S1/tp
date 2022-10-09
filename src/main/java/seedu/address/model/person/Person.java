@@ -28,7 +28,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Buyer buyer;
+    private Optional<Buyer> buyer = Optional.empty();
 
     private Optional<Seller> seller = Optional.empty();
 
@@ -42,7 +42,6 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.buyer = null;
     }
 
     /**
@@ -84,15 +83,12 @@ public class Person {
     }
 
     public void setBuyer(Buyer buyer) {
-        this.buyer = buyer;
+        this.buyer = Optional.of(buyer);
     }
 
     public void setSeller(Seller seller) {
-        if (this.seller.isPresent()) {
-            // seller will be overridden
-        } else {
-            this.seller = Optional.of(seller);
-        }
+        // TODO: tell using we are overriding seller if it is present
+        this.seller = Optional.of(seller);
     }
 
     public List<Integer> getSellerProperties() {
@@ -104,14 +100,16 @@ public class Person {
      * Temporarily for UI Testing of Add Buyer Command
      */
     public String getBuyerRange() {
-        return buyer.getRange();
+        Buyer b = buyer.orElseThrow();
+        return b.getRange();
     }
 
     /**
      * Temporarily for UI Testing of Add Buyer Command
      */
     public String getBuyerCharacteristics() {
-        return buyer.getCharacteristics();
+        Buyer b = buyer.orElseThrow();
+        return b.getCharacteristics();
     }
 
     /**

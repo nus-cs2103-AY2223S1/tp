@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.AddPersonCommand;
-import seedu.address.logic.commands.AddSellerCommand;
 import seedu.address.logic.commands.AddPropertyCommand;
+import seedu.address.logic.commands.AddSellerCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;

@@ -13,13 +13,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.role.Seller;
 
 /**
- * Parses input arguments and creates a new AddBuyerCommand object
+ * Parses input arguments and creates a new AddSellerCommand object
  */
 public class AddSellerCommandParser extends Parser<AddSellerCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddBuyerCommand
-     * and returns an AddBuyerCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddSellerCommand
+     * and returns an AddSellerCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddSellerCommand parse(String args) throws ParseException {
