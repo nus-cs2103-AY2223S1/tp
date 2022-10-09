@@ -3,6 +3,7 @@ package seedu.address.logic;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.ApplicationCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -42,7 +43,7 @@ public class ApplicationLogicManager implements ApplicationLogic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = applicationBookParser.parseCommand(commandText);
+        ApplicationCommand command = applicationBookParser.parseCommand(commandText);
         commandResult = command.execute(applicationModel);
 
         try {
