@@ -26,12 +26,12 @@ a `CommandResult` with an accompanying message.
 **`RemarkCommand.java`:**
 
 ``` java
-package seedu.address.logic.commands;
+package seedu.foodrem.logic.commands;
 
-import seedu.address.model.Model;
+import seedu.foodrem.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing person in FoodRem.
  */
 public class RemarkCommand extends Command {
 
@@ -102,7 +102,7 @@ change the error message to echo the values. While this is not a replacement for
 our code is functioning as intended.
 
 ``` java
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.foodrem.commons.util.CollectionUtil.requireAllNonNull;
 //...
 public class RemarkCommand extends Command {
     //...
@@ -155,7 +155,7 @@ after you are done.
 
 Now let’s move on to writing a parser that will extract the index and remark from the input provided by the user.
 
-Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package. The class must extend the `Parser`
+Create a `RemarkCommandParser` class in the `seedu.foodrem.logic.parser` package. The class must extend the `Parser`
 interface.
 
 ![The relationship between Parser and RemarkCommandParser](../images/add-remark/ParserInterface.png)
@@ -252,7 +252,7 @@ class so that we can use a `Remark` object to represent a remark given to a pers
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `seedu.address.model.person`. Since a `Remark` is a field that is similar to `Address`, we can
+Create a new `Remark` in `seedu.foodrem.model.person`. Since a `Remark` is a field that is similar to `Address`, we can
 reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something
@@ -270,7 +270,7 @@ Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get 
 person.
 
 Simply add the following
-to [`seedu.address.ui.ItemCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688)
+to [`seedu.foodrem.ui.ItemCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688)
 .
 
 **`PersonCard.java`:**
