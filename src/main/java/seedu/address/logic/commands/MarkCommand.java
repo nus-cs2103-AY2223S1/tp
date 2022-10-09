@@ -26,11 +26,11 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the attendance for person identified by the index number used in the displayed"
             + " person list.\n Marks attendance for the class or tutorial specified in the parameter.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be positive integer) OPTION (must be absent/present) "
             + PREFIX_CLASS + " [CLASS]\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CLASS + " T01";
+            + "Example: " + COMMAND_WORD + " 1 present " + PREFIX_CLASS + " T01";
 
-    public static final String MESSAGE_MARK_SUCCESS = "Marked Person as Attended: %1$s";
+    public static final String MESSAGE_MARK_SUCCESS = "Marked Person as %1$s: %2$s";
 
     private final Index index;
     private final Attendance attendance;
@@ -71,7 +71,7 @@ public class MarkCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(
-                String.format(MESSAGE_MARK_SUCCESS, editedPerson));
+                String.format(MESSAGE_MARK_SUCCESS, attendance.getAttendance(), editedPerson));
     }
 
     @Override

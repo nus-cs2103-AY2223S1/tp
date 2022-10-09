@@ -39,11 +39,11 @@ public class Attendance {
     }
 
     public String getString() {
-        return className + ':' + (hasAttended ? ATTENDANCE_TRUE : ATTENDANCE_FALSE);
+        return className + ':' + getAttendance();
     }
 
-    public boolean getAttendance() {
-        return hasAttended;
+    public String getAttendance() {
+        return (hasAttended ? ATTENDANCE_TRUE : ATTENDANCE_FALSE);
     }
 
     @Override
