@@ -6,15 +6,17 @@ import java.util.Objects;
 
 /**
  * Represents an Iteration in the address book.
- * Guarantees: all details are present and not null, field values are validated, immutable.
+ * Guarantees: date and description are present and not null, field values are validated, immutable.
  */
 public class Iteration {
 
     // Identity fields
     private final Date date;
     private final Description description;
-    private final Feedback feedback;
     // TODO add artwork (image) attribute
+
+    // Optional fields
+    private final Feedback feedback;
 
     /**
      * Constructs an Iteration.
@@ -23,7 +25,6 @@ public class Iteration {
      *
      * @param date The creation date of the iteration.
      * @param description The description of the iteration.
-     * @param feedback The feedback given to the iteration by the customer.
      */
     public Iteration(Date date, Description description, Feedback feedback) {
         requireAllNonNull(date, description, feedback);

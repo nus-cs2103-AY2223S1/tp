@@ -21,7 +21,7 @@ import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCustomerCommand object.
  */
 public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
 
@@ -34,10 +34,10 @@ public class AddCustomerCommandParser implements Parser<AddCustomerCommand> {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddCustomerCommand
+     * and returns an AddCustomerCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public AddCustomerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
