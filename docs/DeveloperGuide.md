@@ -287,6 +287,12 @@ View Inventory Items:
 3. As a purchasing manager, I can search for items by tags, so that I can view all items that have the same tag.
 
 Tag Management System
+1. As a purchasing manager, I can view a list of tags.
+2. As a purchasing manager, I can create tags to classify inventory items.
+3. As a purchasing manager, I can rename a tag.
+4. As a purchasing manager, I can delete a tag.
+5. As a purchasing manager, I can add a tag to an item.
+6. As a purchasing manager, I can remove a tag from an item.
 
 Miscellaneous
 
