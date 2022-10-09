@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-public class ListTaskCommand extends Command{
+import seedu.address.model.Model;
+
+/**
+ * Lists all tasks in the task list to the user.
+ */
+public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "listtasks";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";

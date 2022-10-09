@@ -3,7 +3,6 @@ package seedu.address.model.task;
 import java.util.Objects;
 
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Person;
 
 /**
  * Task class represents a task which stores the module code and the
