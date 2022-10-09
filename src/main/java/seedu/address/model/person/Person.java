@@ -117,6 +117,7 @@ public class Person {
                 .append(getLessonPlan())
                 .append("; Homework: ")
                 .append(getHomeworkList())
+                .append(getAttendanceList())
                 .append(getAttendanceList());
 
         Set<Tag> tags = getTags();

@@ -27,8 +27,8 @@ class JsonAdaptedAttendance {
     }
 
     @JsonValue
-    public String geTagName() {
-        return this.attendanceDesc;
+    public String getTagName() {
+        return attendanceDesc;
     }
 
     /**

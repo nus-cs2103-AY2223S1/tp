@@ -25,7 +25,7 @@ public class Attendance {
 
     @Override
     public String toString() {
-        return this.time.format(DTF);
+        return time.format(DTF);
     }
 
     @Override
@@ -41,6 +41,6 @@ public class Attendance {
 
     @Override
     public int hashCode() {
-        return this.time.hashCode();
+        return time.hashCode();
     }
 }
