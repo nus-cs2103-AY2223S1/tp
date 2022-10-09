@@ -103,6 +103,30 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     *  Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
+     *  {@code target} must exist in the address book.
+     *  The appointment {@code editedAppointment} must not be the same as another existing
+     *  appointment in the address book.
+     */
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireNonNull(editedAppointment);
+
+        appointments.setAppointment(target, editedAppointment);
+    }
+
+    /**
+     * Refreshes the given appointment {@code target},
+     * forcing the app to visually show any updated changes back to the user.
+     */
+    public void refreshAppointment(Appointment target) {
+        appointments.setAppointment(target, target);
+    }
+
+    public void refreshAppointments(List<Appointment> appointmentList) {
+        appointments.refreshAppointments(appointmentList);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -118,6 +142,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
     }
+
+    public void removeAppointments(List<Appointment> keys) {
+        appointments.removeAppointments(keys);
+    }
+
 
     //// util methods
 

@@ -34,6 +34,7 @@ public class BookCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToBookFor, editedPerson);
+        expectedModel.addAppointment(appointment);
 
         assertCommandSuccess(bookCommand, model, expectedMessage, expectedModel);
     }

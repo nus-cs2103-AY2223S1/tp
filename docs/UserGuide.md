@@ -66,22 +66,39 @@ Format:
 * `list appts`
 
 
-### Editing a person : `edit`
+### Editing a patient : `edit patients`
 
-Edits an existing person into idENTify.
+Edits an existing patient in idENTify.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* You can remove all the patient’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit patients 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit patients 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+
+### Editing an appointment: `edit appts`
+
+Edits an existing patient's appointment in idENTify.
+
+Format: `edit appts PATIENT_INDEX APPOINTMENT_INDEX [r/REASON] [d/DATE]`
+
+* `PATIENT_INDEX` refers to the index number of the patient shown in the displayed patient list.
+* `APPOINTMENT_INDEX` refers to the index number of the appointment to be unmarked for the desired patient.
+* Values of `PATIENT_INDEX` and `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples: 
+* `edit appts 1 1 r/Cough d/2022-12-10 16:30` Edits the reason and date of the first patient's first appointment to be `Cough` and `2022-12-10 16:30` 
+respectively.
+* `edit appts 1 1 r/Sore Throat` Edits the reason of the first patient's first appointment to be `Sore Throat`. Existing date will not be edited.
 
 ### Locating persons by name: `find`
 
@@ -199,6 +216,8 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Book** | `book INDEX r/REASON d/DATE`<br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00`
 **Cancel** | `cancel PATIENT_INDEX APPOINTMENT_INDEX` <br> e.g., `cancel 3 2`
+**Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
+**Edit Appointment** | `edit appts PATIENT_INDEX APPOINTMENT_INDEX [r/REASON] [d/DATE]` <br> e.g., `edit appts 1 1 r/Cough` 
 **List** | `list patients` <br> `list appointments`
 **Help** | `help`
 **Exit** | `exit`

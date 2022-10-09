@@ -34,12 +34,15 @@ class MarkCommandTest {
 
         Appointment unmarkedAppointment = new Appointment("Fever", "2019-12-31 23:45", false);
         Person unmarkedPerson = new PersonBuilder().withAppointment(unmarkedAppointment).build();
+        unmarkedAppointment.setPatient(unmarkedPerson);
 
         testModel.addPerson(unmarkedPerson);
+        testModel.addAppointment(unmarkedAppointment);
         Person personToMarkFor = testModel.getFilteredPersonList().get(targetPersonIndex.getZeroBased());
 
         Appointment markedAppointment = new Appointment("Fever", "2019-12-31 23:45", true);
         Person markedPerson = new PersonBuilder().withAppointment(markedAppointment).build();
+        markedAppointment.setPatient(markedPerson);
 
         MarkCommand markCommand = new MarkCommand(targetPersonIndex, targetAppointmentIndex);
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS,
@@ -48,6 +51,7 @@ class MarkCommandTest {
 
         ModelManager expectedModel = new ModelManager(testModel.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToMarkFor, markedPerson);
+        expectedModel.setAppointment(unmarkedAppointment, markedAppointment);
 
         assertCommandSuccess(markCommand, testModel, expectedMessage, expectedModel);
     }
