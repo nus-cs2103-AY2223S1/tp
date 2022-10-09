@@ -1,6 +1,9 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_TITLE;
 import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
@@ -12,11 +15,6 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 
 public class JsonAdaptedModuleTest {
-    // Module code cannot have brackets
-    private static final String INVALID_MODULE_CODE = "(CS2103T)";
-
-    private static final String VALID_MODULE_CODE = CS2103T.getModuleCode().toString();
-    private static final String VALID_MODULE_TITLE = CS2103T.getModuleTitle().toString();
 
     @Test
     public void toModelType_validModuleDetails_returnsModule() throws Exception {
