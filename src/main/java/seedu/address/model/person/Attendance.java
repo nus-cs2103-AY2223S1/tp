@@ -51,6 +51,7 @@ public class Attendance {
         return other == this // short circuit if same object
                 || (other instanceof Attendance // instanceof handles nulls
                 && className.equals(((Attendance) other).className)); // state check
+                // no check for hasAttended to ensure only one attendance record per className
     }
 
     @Override
