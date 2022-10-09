@@ -66,16 +66,16 @@ title: User Guide
 
 Adds an internship application to the list.
 
-Format: `add c/COMPANY_NAME d/DATE p/POSITION`
+Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
-Date must be specified in the format <em>dd/MM/yyyy</em>.
+Date must be specified in the format <em>dd-MM-yyyy</em>.
 </div>
 <br>
 
 Examples:
-* `add c/Google d/01/01/2022 p/Software Engineer`
-* `add c/Facebook d/02/01/2022 p/Backend Engineer`
+* `add c/Google ct/11111111 d/01-01-2022 e/google@example.com p/Software Engineer`
+* `add c/Facebook ct/22222222 d/02-01-2022 e/facebook@example.com p/Backend Engineer`
 
 ### Listing all internship applications: `list`
 
@@ -131,7 +131,7 @@ We will assist you as soon as possible.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add c/COMPANY_NAME d/DATE p/POSITION` <br> e.g., `add c/Google d/01/01/2022 p/Software Engineer`
+**Add** | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION` <br> e.g., `add c/Google ct/11111111 d/01/01/2022 e/google@example.com p/Software Engineer`
 **List** | `list`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
 **Exit** | `exit`
