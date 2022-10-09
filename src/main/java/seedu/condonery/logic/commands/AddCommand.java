@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "Available";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
-    public static final String MESSAGE_DUPLICATE_property = "This property already exists in Condonery";
+    public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in Condonery";
 
     private final Property toAdd;
 
