@@ -82,11 +82,11 @@ View all the members currently in the team, in the form of a list.
 
 Format: `list members`
 
-### Add task to team : `add task`
+### Add task to team : `add_task`
 
-Add a new task to the user’s team.
+Add a new task to the current team.
 
-Format: `add task “TASK_NAME”`
+Format: `add_task “TASK_NAME”`
 
 Examples:
 *  `add task “bake with butter”`
@@ -113,11 +113,11 @@ Examples:
 * `delete task fry`
 * `delete task “bake with butter”`
 
-### List tasks in team: `list tasks`
+### List tasks in team: `list_tasks`
 
 View all the tasks currently in the user’s team in the form of a list.
 
-Format: `list tasks`
+Format: `list_tasks`
 
 ### Clearing all entries : `clear`
 
