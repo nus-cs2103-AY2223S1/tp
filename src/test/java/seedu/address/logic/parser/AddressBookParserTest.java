@@ -15,20 +15,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.BookCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditAppointmentCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
-import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.EditPatientCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MarkCommand;
-import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -70,6 +59,14 @@ public class AddressBookParserTest {
                 UnmarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
                         + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
         assertEquals(new UnmarkCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
+    }
+
+    @Test
+    public void parseCommand_cancel() throws Exception {
+        CancelCommand command = (CancelCommand) parser.parseCommand(CancelCommand.COMMAND_WORD
+                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
+
+        assertEquals(new CancelCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
     }
 
     @Test
