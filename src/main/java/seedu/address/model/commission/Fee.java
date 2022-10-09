@@ -14,14 +14,14 @@ public class Fee {
     public static final String MESSAGE_CONSTRAINTS =
             "Fees should be at least 0.";
 
-    public final double fee;
+    public final Double fee;
 
     /**
      * Constructs a {@code Fee}
      *
      * @param fee A fee.
      */
-    public Fee(double fee) {
+    public Fee(Double fee) {
         requireNonNull(fee);
         checkArgument(isValidFee(fee), MESSAGE_CONSTRAINTS);
         this.fee = fee;
@@ -45,7 +45,7 @@ public class Fee {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Fee
-                && fee == ((Fee) other).fee);
+                && fee.equals(((Fee) other).fee));
     }
 
     @Override
