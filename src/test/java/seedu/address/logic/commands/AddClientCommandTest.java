@@ -169,6 +169,12 @@ public class AddClientCommandTest {
         public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

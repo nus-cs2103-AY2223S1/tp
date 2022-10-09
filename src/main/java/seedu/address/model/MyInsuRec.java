@@ -117,6 +117,15 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     }
 
     /**
+     * Removes meeting.
+     * The meeting must exist in MyInsuRec.
+     * @param meeting
+     */
+    public void removeMeeting(Meeting meeting) {
+        meetings.remove(meeting);
+    }
+
+    /**
      * Returns true if a meeting with the same identity as {@code meeting} exists in the meetings book.
      */
     public boolean hasMeeting(Meeting meeting) {

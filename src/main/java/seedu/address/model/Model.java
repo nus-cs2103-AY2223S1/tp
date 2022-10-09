@@ -100,6 +100,8 @@ public interface Model {
      */
     void updateFilteredClientList(Predicate<Client> predicate);
 
+    void deleteMeeting(Meeting meeting);
+
     /** Returns an unmodifiable view of the filtered meeting list */
     ObservableList<Meeting> getFilteredMeetingList();
 

@@ -116,6 +116,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        myInsuRec.removeMeeting(meeting);
+    }
+
+    @Override
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
         return myInsuRec.hasMeeting(meeting);
@@ -123,8 +129,10 @@ public class ModelManager implements Model {
 
     @Override
     public void addMeeting(Meeting meeting) {
+        requireNonNull(meeting);
         myInsuRec.addMeeting(meeting);
     }
+
     //=========== Filtered Client List Accessors =============================================================
 
     /**
