@@ -105,6 +105,11 @@ public class NoteBook implements Iterable<Note> {
                 && internalList.equals(((NoteBook) other).internalList));
     }
 
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
+    }
+
     private boolean notesAreUnique(List<Note> notes) {
         for (int i = 0; i < notes.size() - 1; i++) {
             for (int j = i + 1; j < notes.size(); j++) {

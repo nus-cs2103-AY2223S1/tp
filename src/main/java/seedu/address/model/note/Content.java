@@ -43,4 +43,9 @@ public class Content {
                 || (other instanceof Content // instanceof handles nulls
                 && fullContent.equals(((Content) other).fullContent)); // state check
     }
+
+    @Override
+    public int hashCode() {
+        return fullContent.hashCode();
+    }
 }

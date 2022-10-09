@@ -2,6 +2,8 @@ package seedu.address.model.note;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 
 /**
  * Represents a note in the address book.
@@ -50,6 +52,12 @@ public class Note {
         return otherNote.getTitle().equals(getTitle())
                 && otherNote.getContent().equals(getContent());
 
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(title, content);
     }
 
     /**

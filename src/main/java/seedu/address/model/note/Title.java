@@ -45,4 +45,9 @@ public class Title {
                 && fullTitle.equals(((Title) other).fullTitle)); // state check
     }
 
+    @Override
+    public int hashCode() {
+        return fullTitle.hashCode();
+    }
+
 }
