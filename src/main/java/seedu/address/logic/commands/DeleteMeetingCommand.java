@@ -60,7 +60,7 @@ public class DeleteMeetingCommand extends Command {
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
 
-        return new CommandResult(generateSuccessMessage(editedClient));
+        return new CommandResult(generateSuccessMessage(editedClient), false, false, false ,true);
     }
 
     /**

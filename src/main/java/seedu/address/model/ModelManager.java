@@ -121,6 +121,7 @@ public class ModelManager implements Model {
         myInsuRec.removeMeeting(meeting);
     }
 
+    @Override
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
         return myInsuRec.hasMeeting(meeting);
