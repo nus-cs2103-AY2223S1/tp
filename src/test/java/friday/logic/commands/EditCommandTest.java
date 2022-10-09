@@ -3,8 +3,8 @@ package friday.logic.commands;
 import static friday.logic.commands.CommandTestUtil.DESC_AMY;
 import static friday.logic.commands.CommandTestUtil.DESC_BOB;
 import static friday.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-// import static friday.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-// import static friday.logic.commands.CommandTestUtil.VALID_TELEGRAMHANDLE_BOB;
+import static friday.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static friday.logic.commands.CommandTestUtil.VALID_TELEGRAMHANDLE_BOB;
 import static friday.logic.commands.CommandTestUtil.assertCommandFailure;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static friday.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -34,7 +34,6 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    /*
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Student editedStudent = new PersonBuilder().build();
@@ -43,18 +42,17 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
+        ModelManager expectedModel = new ModelManager(model.getFriday(), new UserPrefs());
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-     */
 
-    /*
+
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Student lastStudent = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastPerson = Index.fromOneBased(model.getFilteredStudentList().size());
+        Student lastStudent = model.getFilteredStudentList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastStudent);
         Student editedStudent = personInList.withName(VALID_NAME_BOB).withTelegramHandle(VALID_TELEGRAMHANDLE_BOB)
@@ -66,13 +64,11 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(lastStudent, editedStudent);
+        Model expectedModel = new ModelManager(new Friday(model.getFriday()), new UserPrefs());
+        expectedModel.setStudent(lastStudent, editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-
-     */
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
