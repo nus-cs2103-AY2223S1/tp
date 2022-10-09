@@ -25,17 +25,23 @@ class JsonAdaptedStall {
     private final String name;
     private final String address;
     private final List<JsonAdaptedDetail> details = new ArrayList<>();
+    private final List<JsonAdaptedStall> reviews = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStall} with the given stall details.
      */
     @JsonCreator
-    public JsonAdaptedStall(@JsonProperty("name") String name, @JsonProperty("address") String address,
-            @JsonProperty("detailed") List<JsonAdaptedDetail> detailed) {
+    public JsonAdaptedStall(@JsonProperty("name") String name,
+                            @JsonProperty("address") String address,
+                            @JsonProperty("details") List<JsonAdaptedDetail> details,
+                            @JsonProperty("reviews") List<JsonAdaptedStall> reviews) {
         this.name = name;
         this.address = address;
-        if (detailed != null) {
-            this.details.addAll(detailed);
+        if (details != null) {
+            this.details.addAll(details);
+        }
+        if (reviews != null) {
+            this.reviews.addAll(reviews);
         }
     }
 
@@ -78,7 +84,7 @@ class JsonAdaptedStall {
         final Address modelAddress = new Address(address);
 
         final Set<Detail> modelDetails = new HashSet<>(stallDetails);
+
         return new Stall(modelName, modelAddress, modelDetails);
     }
-
 }
