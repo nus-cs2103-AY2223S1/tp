@@ -1,21 +1,24 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.CALORIE_DESC_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.CALORIE_DESC_BREAD;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BREAD;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BREAKFAST;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_LUNCH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLE_CALORIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLE_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BREAD_CALORIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.APPLE;
+import static seedu.address.testutil.TypicalPersons.BREAD;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,28 +33,29 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Food expectedFood = new FoodBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Food expectedFood = new FoodBuilder(BREAD).withCalorie(VALID_BREAD_CALORIE).withTags(VALID_TAG_LUNCH).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedFood));
+        assertParseSuccess(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
+                + TAG_DESC_LUNCH, new AddCommand(expectedFood));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedFood));
+        assertParseSuccess(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
+                + TAG_DESC_LUNCH, new AddCommand(expectedFood));
 
         // multiple tags - all accepted
-        Food expectedFoodMultipleTags = new FoodBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Food expectedFoodMultipleTags = new FoodBuilder(BREAD)
+                .withCalorie(VALID_BREAD_CALORIE).withTags(VALID_TAG_LUNCH, VALID_TAG_BREAKFAST)
                 .build();
-        assertParseSuccess(parser, NAME_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedFoodMultipleTags));
+        assertParseSuccess(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
+                + TAG_DESC_LUNCH + TAG_DESC_BREAKFAST, new AddCommand(expectedFoodMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Food expectedFood = new FoodBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY,
+        Food expectedFood = new FoodBuilder(APPLE).withCalorie(VALID_APPLE_CALORIE).withTags().build();
+        assertParseSuccess(parser, NAME_DESC_APPLE + CALORIE_DESC_APPLE,
                 new AddCommand(expectedFood));
     }
 
@@ -60,27 +64,27 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB,
+        assertParseFailure(parser, VALID_APPLE_NAME,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + CALORIE_DESC_BREAD
+                + TAG_DESC_BREAKFAST + TAG_DESC_LUNCH, Name.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
+                + INVALID_TAG_DESC + VALID_TAG_LUNCH, Tag.MESSAGE_CONSTRAINTS);
 
         // one invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + CALORIE_DESC_BREAD + TAG_DESC_LUNCH,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB
-                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BREAD + CALORIE_DESC_BREAD
+                        + TAG_DESC_BREAKFAST + TAG_DESC_LUNCH,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
