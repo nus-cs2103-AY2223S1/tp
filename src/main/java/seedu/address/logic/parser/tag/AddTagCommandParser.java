@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -14,23 +14,26 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddTagCommand;
-import seedu.address.logic.commands.DeleteTagCommand;
-import seedu.address.logic.commands.DeleteTagCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.tag.AddTagCommand;
+import seedu.address.logic.commands.tag.AddTagCommand.EditPersonDescriptor;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
+public class AddTagCommandParser implements Parser<AddTagCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteTagCommand parse(String args) throws ParseException {
+    public AddTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
@@ -62,7 +65,7 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
             throw new ParseException(AddTagCommand.MESSAGE_TAG_NOT_ADDED);
         }
 
-        return new DeleteTagCommand(index, editPersonDescriptor);
+        return new AddTagCommand(index, editPersonDescriptor);
     }
 
     /**

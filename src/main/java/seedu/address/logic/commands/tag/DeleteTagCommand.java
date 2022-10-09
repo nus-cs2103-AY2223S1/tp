@@ -1,10 +1,6 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -17,6 +13,8 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
@@ -29,25 +27,20 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditContactCommand extends Command {
+public class DeleteTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "editC";
+    public static final String COMMAND_WORD = "deleteL";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_TAG + "CS2103T";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_ADD_TAG_SUCCESS = "Deleted tag: %1$s";
+    public static final String MESSAGE_TAG_NOT_ADDED = "At least 1 tag to add must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
@@ -57,7 +50,7 @@ public class EditContactCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditContactCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public DeleteTagCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
@@ -83,7 +76,8 @@ public class EditContactCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS,
+        editPersonDescriptor.getTags().orElse(new HashSet<>())));
     }
 
     /**
@@ -97,7 +91,12 @@ public class EditContactCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Tag> newTags = editPersonDescriptor.getTags().orElse(new HashSet<>());
+        Set<Tag> updatedTags = new HashSet<>();
+        updatedTags.addAll(personToEdit.getTags());
+        if (newTags.size() > 0) {
+            updatedTags.removeAll(newTags);
+        }
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -110,12 +109,12 @@ public class EditContactCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditContactCommand)) {
+        if (!(other instanceof DeleteTagCommand)) {
             return false;
         }
 
         // state check
-        EditContactCommand e = (EditContactCommand) other;
+        DeleteTagCommand e = (DeleteTagCommand) other;
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
@@ -224,3 +223,4 @@ public class EditContactCommand extends Command {
         }
     }
 }
+
