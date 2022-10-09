@@ -14,6 +14,7 @@ import nus.climods.logic.parser.exceptions.ParseException;
 
 /**
  * Parses multiple optional arguments and provides an interface to check presence of the arguments
+ * Currently uses commons.cli objects internally to represent the parser
  */
 public class OptionalArgumentsParser {
     private List<OptionalArgument> argList = new ArrayList<>();
@@ -22,7 +23,7 @@ public class OptionalArgumentsParser {
 
     /**
      * Creates an OptionalArgumentsParser
-     * @param argumentsString String to parse
+     * @param argumentsString Arguments String to parse
      * @param optionalArguments Variadic list of optional arguments to check for
      * @throws ParseException if any issues occurred during parse
      */
@@ -45,7 +46,7 @@ public class OptionalArgumentsParser {
     }
 
     /**
-     * Returns true if the given optional argument was found in the parsed String, otherwise false
+     * Returns true if the given {@code OptionalArgument} was found in the parsed String, otherwise false
      * @param option Optional argument to check for presence of
      * @return boolean indicating presence of requested optional argument
      */
