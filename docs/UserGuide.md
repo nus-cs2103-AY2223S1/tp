@@ -99,6 +99,7 @@ Examples:
 Adds a task into the task list.
 
 Format:  `task add m/ASSIGNOR d/DESCRIPTION [MODIFIER]`
+
 Format:  `task add o/ASSIGNEE d/DESCRIPTION [MODIFIER]`
 
 * Adds a task with an assignor (m) or assignee (o), a description and an optional task modifier.
@@ -114,6 +115,7 @@ Examples:
 Adds a task of type Deadline into the task list.
 
 Format: `task add m/ASSIGNOR d/DESCRIPTION t/DUE_DATE`
+
 Format: `task add o/ASSIGNEE d/DESCRIPTION t/DUE_DATE`
 
 * `DUE_DATE` supports the following Date formats:
