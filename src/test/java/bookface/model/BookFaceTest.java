@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import bookface.model.book.Book;
 import bookface.model.person.Person;
 import bookface.model.person.exceptions.DuplicatePersonException;
 import bookface.testutil.PersonBuilder;
@@ -88,6 +89,8 @@ public class BookFaceTest {
     private static class BookFaceStub implements ReadOnlyBookFace {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
+        private final ObservableList<Book> books = FXCollections.observableArrayList();
+
         BookFaceStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
@@ -95,6 +98,11 @@ public class BookFaceTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Book> getBookList() {
+            return books;
         }
     }
 }

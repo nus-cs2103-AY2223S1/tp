@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import bookface.commons.exceptions.IllegalValueException;
 import bookface.model.BookFace;
 import bookface.model.ReadOnlyBookFace;
+import bookface.model.book.Book;
 import bookface.model.person.Person;
 
 /**
@@ -21,14 +22,20 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
+    public static final String MESSAGE_DUPLICATE_BOOK = "Books list contains duplicate book(s).";
+
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
+    private final List<JsonAdaptedBook> books = new ArrayList<>();
+
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons and books.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("books") List<JsonAdaptedBook> books) {
         this.persons.addAll(persons);
+        this.books.addAll(books);
     }
 
     /**
@@ -38,6 +45,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyBookFace source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        books.addAll(source.getBookList().stream().map(JsonAdaptedBook::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +61,14 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             bookFace.addPerson(person);
+        }
+
+        for (JsonAdaptedBook jsonAdaptedBook : books) {
+            Book book = jsonAdaptedBook.toModelType();
+            if (bookFace.hasBook(book)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_BOOK);
+            }
+            bookFace.addBook(book);
         }
         return bookFace;
     }

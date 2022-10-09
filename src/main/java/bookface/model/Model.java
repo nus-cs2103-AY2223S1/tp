@@ -15,6 +15,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -85,8 +88,18 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Loans to given person {@code person} from {@code book}.
+     * {@code person} and {@code book} must exist in the address book.
+     *
+     */
+    void loan(Person person, Book book);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered book list */
+    ObservableList<Book> getFilteredBookList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -100,4 +113,7 @@ public interface Model {
      * @param book a book to add to BookFace.
      */
     void addBook(Book book);
+
+
+    void updateFilteredBookList(Predicate<Book> predicate);
 }

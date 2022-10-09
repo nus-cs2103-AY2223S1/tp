@@ -1,11 +1,14 @@
 package bookface.testutil;
 
+import static bookface.testutil.TypicalBooks.getSingleBook;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import bookface.logic.commands.CommandTestUtil;
 import bookface.model.BookFace;
+import bookface.model.book.Book;
 import bookface.model.person.Person;
 
 /**
@@ -58,10 +61,17 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        for (Book book : getSingleBook()) {
+            ab.addBook(book);
+        }
         return ab;
     }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Person> getSinglePerson() {
+        return new ArrayList<>(Arrays.asList(ALICE));
     }
 }

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import bookface.commons.util.CollectionUtil;
 import bookface.model.book.Book;
 import bookface.model.book.BookList;
 import bookface.model.person.Person;
@@ -52,13 +53,24 @@ public class BookFace implements ReadOnlyBookFace {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setBooks(List<Book> books) {
+        this.books.setBooks(books);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyBookFace newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setBooks(newData.getBookList());
     }
+
+
 
     //// person-level operations
 
@@ -110,6 +122,15 @@ public class BookFace implements ReadOnlyBookFace {
     }
 
     /**
+     * Loans to the person {@code person} in the user list with the book {@code book} in the book list.
+     * {@code person} and {@code book} must exist in the address book.
+     */
+    public void loan(Person person, Book book) {
+        CollectionUtil.requireAllNonNull(person, book);
+        books.loan(person, book);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -128,6 +149,11 @@ public class BookFace implements ReadOnlyBookFace {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Book> getBookList() {
+        return books.asUnmodifiableObservableList();
     }
 
     @Override

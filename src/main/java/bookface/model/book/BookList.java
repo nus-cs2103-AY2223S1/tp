@@ -1,17 +1,51 @@
 package bookface.model.book;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import bookface.commons.util.CollectionUtil;
+import bookface.model.book.exceptions.DuplicateBookException;
+import bookface.model.person.Person;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * The BookList class represents the list of books managed by BookFace.
  */
-public class BookList extends ArrayList<Book> {
+public class BookList extends ArrayList<Book> implements Iterable<Book> {
     private ArrayList<Book> bookList = new ArrayList<>();
+
+    private final ObservableList<Book> internalList = FXCollections.observableArrayList();
+    //private final ObservableList<Book> internalList = FXCollections.observableArrayList(bookList); doesnt work?
+    private final ObservableList<Book> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Constructs a BookList
      */
     public BookList() {}
+
+
+    /**
+     * Returns true if the list contains an equivalent book as the given argument.
+     */
+    public boolean contains(Book toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameBook);
+    }
+
+    /**
+     * Gets whether BookList contains a certain object.
+     *
+     * @param o element whose presence in this list is to be tested
+     * @return true if object is in BookList
+     */
+    @Override
+    public boolean contains(Object o) {
+        return this.bookList.contains(o);
+    }
 
     /**
      * Gets the size of the BookList.
@@ -31,6 +65,11 @@ public class BookList extends ArrayList<Book> {
      */
     @Override
     public boolean add(Book book) {
+        requireNonNull(book);
+        if (contains(book)) {
+            throw new DuplicateBookException();
+        }
+        internalList.add(book);
         return this.bookList.add(book);
     }
 
@@ -64,14 +103,44 @@ public class BookList extends ArrayList<Book> {
         return this.bookList.get(index);
     }
 
+
+    public ObservableList<Book> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
+    }
+
+
     /**
-     * Gets whether BookList contains a certain object.
-     *
-     * @param o element whose presence in this list is to be tested
-     * @return true if object is in BookList
+     * Replaces the contents of this list with {@code books}.
+     * {@code books} must not contain duplicate books.
      */
-    @Override
-    public boolean contains(Object o) {
-        return this.bookList.contains(o);
+
+    public void setBooks(List<Book> books) {
+        CollectionUtil.requireAllNonNull(books);
+        if (!booksAreUnique(books)) {
+            throw new DuplicateBookException();
+        }
+        internalList.setAll(books);
+    }
+
+    /**
+     * Returns true if {@code books} contains only unique books.
+     */
+    private boolean booksAreUnique(List<Book> books) {
+        for (int i = 0; i < books.size() - 1; i++) {
+            for (int j = i + 1; j < books.size(); j++) {
+                if (books.get(i).isSameBook(books.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Loans to a person {@code person} a book {@code book} .
+     */
+    public void loan(Person person, Book book) {
+        CollectionUtil.requireAllNonNull(person, book);
+        book.loanTo(person);
     }
 }
