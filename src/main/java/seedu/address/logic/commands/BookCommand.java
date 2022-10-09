@@ -33,7 +33,7 @@ public class BookCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + PREFIX_REASON + "REASON "
             + PREFIX_DATE + "DATE "
-            + "Example: " + COMMAND_WORD + " 3"
+            + "Example: " + COMMAND_WORD + " 3 "
             + PREFIX_REASON + "sore throat "
             + PREFIX_DATE + "2022-10-12 16:30";
 
@@ -68,9 +68,11 @@ public class BookCommand extends Command {
         PersonBookDescriptor personBookDescriptor = new PersonBookDescriptor(personToBookFor);
         personBookDescriptor.bookAppointment(appointment);
         Person personWithBooking = personBookDescriptor.createPersonWithBooking();
+        appointment.setPatient(personWithBooking);
 
         model.setPerson(personToBookFor, personWithBooking);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.addAppointment(appointment);
         return new CommandResult(String.format(MESSAGE_BOOK_APPOINTMENT_SUCCESS, personWithBooking));
     }
 
@@ -79,7 +81,7 @@ public class BookCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof BookCommand // instanceof handles nulls
                 && targetIndex.equals(((BookCommand) other).targetIndex)
-                && appointment.equals(((BookCommand) other).appointment)); // state check
+                && appointment.isSameAppointment(((BookCommand) other).appointment)); // state check
     }
 
     private static class PersonBookDescriptor {

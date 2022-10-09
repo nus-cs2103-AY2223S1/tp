@@ -282,6 +282,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | cancel an appointment for the patient | ensure that the appointment schedule is updated and accurate    |
 | `* * *`  | user                                       | save the data of my contacts when I exit the app  | not lose the contacts when I open the app again     |
 | `* * *`  | user                                       | mark an appointment as done    |  know that the patient has already visited                             |
+| `* *`    | user                                       | edit information about a patient | merge and keep his information up to date                            |
+| `* *`    | clumsy user                                | edit an existing appointment   | fix my error in setting their appointment details                      |
 | `* *`    | clumsy user                         | unmark an appointment as done  | change my appointment state without deleting and adding the appointment again |
 
 *{More to be added}*

@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
@@ -23,23 +24,39 @@ public class Appointment {
     private final String reason;
     private final LocalDateTime dateTime;
     private boolean isMarked;
+    private Person patient;
 
     private final DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
 
 
     /**
-     * Creates an appointment object with the given reason, time, and status.
+     * Creates an appointment object with the given reason, dateTime string, and status.
      *
      * @param reason The given reason for appointment.
      * @param dateTime The given time to book the appointment.
      * @param isMarked Status of the appointment.
      */
     public Appointment(String reason, String dateTime, boolean isMarked) {
+        requireNonNull(reason);
+        requireNonNull(dateTime);
         checkArgument(isValidReason(reason), REASON_MESSAGE_CONSTRAINTS);
         checkArgument(isValidDateTime(dateTime), DATE_MESSAGE_CONSTRAINTS);
         this.reason = reason;
         String str = String.join(" ", dateTime.split("\\s+", 2));
         this.dateTime = LocalDateTime.parse(str, DATE_FORMATTER);
+        this.isMarked = isMarked;
+    }
+
+    /**
+     * Creates an appointment object with the given reason, LocalDateTime dateTime, and status.
+     *
+     * @param reason The given reason for appointment.
+     * @param dateTime The given time to book the appointment.
+     * @param isMarked Status of the appointment.
+     */
+    public Appointment(String reason, LocalDateTime dateTime, boolean isMarked) {
+        this.reason = reason;
+        this.dateTime = dateTime;
         this.isMarked = isMarked;
     }
 
@@ -83,6 +100,10 @@ public class Appointment {
         return dateTime;
     }
 
+    public String getFormattedDateTime() {
+        return dateTime.format(stringFormatter);
+    }
+
     public String getReason() {
         return reason;
     }
@@ -99,10 +120,22 @@ public class Appointment {
         this.isMarked = false;
     }
 
+    public void setPatient(Person patient) {
+        this.patient = patient;
+    }
+
+    public String getPatientName() {
+        return this.patient.getName().fullName;
+    }
+
+    public String getStatus() {
+        return "[" + getStateIcon() + "]";
+    }
+
+
     @Override
     public String toString() {
-        String statusIcon = "[" + getStateIcon() + "]";
-        return statusIcon + " " + dateTime.format(stringFormatter) + " for " + reason;
+        return getStatus() + " " + getFormattedDateTime() + " for " + reason;
     }
 
     private String getStateIcon() {
@@ -122,8 +155,20 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return otherAppointment.reason.equals(reason)
+
+        return otherAppointment.patient.getName().equals(patient.getName())
+                && otherAppointment.reason.equals(reason)
                 && otherAppointment.dateTime.equals(dateTime)
                 && (otherAppointment.isMarked == isMarked);
+    }
+
+    /**
+     * Returns true if both appointments have the same reason, date, time and status.
+     * This defines a weaker notion of equality between two appointments.
+     */
+    public boolean isSameAppointment(Appointment appointment) {
+        return appointment.reason.equals(reason)
+                && appointment.dateTime.equals(dateTime)
+                && (appointment.isMarked == isMarked);
     }
 }

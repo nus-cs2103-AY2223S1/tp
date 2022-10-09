@@ -63,4 +63,22 @@ public abstract class SelectAppointmentCommand extends Command {
     protected boolean hasSameIndexOfAppointment(SelectAppointmentCommand other) {
         return indexOfAppointment.equals(other.indexOfAppointment);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SelectAppointmentCommand)) {
+            return false;
+        }
+
+        // state check
+        SelectAppointmentCommand e = (SelectAppointmentCommand) other;
+        return indexOfPerson.equals(e.indexOfPerson)
+                && indexOfAppointment.equals(e.indexOfAppointment);
+    }
 }

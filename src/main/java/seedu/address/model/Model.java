@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +15,9 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -69,12 +74,25 @@ public interface Model {
      */
     void addPerson(Person person);
 
+    void addAppointment(Appointment appointment);
+    void deleteAppointment(Appointment target);
+    void deleteAppointments(List<Appointment> appointments);
+    void setAppointment(Appointment target, Appointment editedAppointment);
+    void refreshAppointment(Appointment target);
+    void refreshAppointments(List<Appointment> appointments);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Refreshes the given person {@code target}, forcing the app to visually show any updated changes back to the user.
+     * {@code target} must exist in the address book.
+     */
+    void refreshPerson(Person target);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -84,4 +102,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    ObservableList<Appointment> getFilteredAppointmentList();
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 }
