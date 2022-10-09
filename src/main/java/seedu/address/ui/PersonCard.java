@@ -40,6 +40,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+
+    // TODO: set the following labels as optional
     @FXML
     private Label buyerRole;
     @FXML
@@ -67,12 +69,15 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        buyerRole.setText(person.isBuyer() ? "Buyer" : "");
-        buyerRange.setText(person.isBuyer() ? person.getBuyerRange() : "");
-        buyerCharacteristics.setText(person.isBuyer() ? person.getBuyerCharacteristics() : "");
 
-        sellerRole.setText(person.isSeller() ? "Seller" : "");
+        if (person.isBuyer()) {
+            buyerRole.setText(person.isBuyer() ? "Buyer" : "");
+            buyerRange.setText(person.isBuyer() ? person.getBuyerRange() : "");
+            buyerCharacteristics.setText(person.isBuyer() ? person.getBuyerCharacteristics() : "");
+        }
+
         if (person.isSeller()) {
+            sellerRole.setText(person.isSeller() ? "Seller" : "");
             person.getSellerProperties()
                     .forEach(pr -> sellerProperties.getChildren()
                             .add(new Label(String.valueOf(pr))));
