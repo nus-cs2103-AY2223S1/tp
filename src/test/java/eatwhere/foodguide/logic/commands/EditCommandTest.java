@@ -14,8 +14,8 @@ import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
 import eatwhere.foodguide.model.UserPrefs;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.testutil.EditEateryDescriptorBuilder;
 import eatwhere.foodguide.testutil.EateryBuilder;
+import eatwhere.foodguide.testutil.EditEateryDescriptorBuilder;
 import eatwhere.foodguide.testutil.TypicalEateries;
 import eatwhere.foodguide.testutil.TypicalIndexes;
 
@@ -50,7 +50,8 @@ public class EditCommandTest {
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
 
-        EditCommand.EditEateryDescriptor descriptor = new EditEateryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
+        EditCommand.EditEateryDescriptor descriptor = new EditEateryDescriptorBuilder()
+                .withName(CommandTestUtil.VALID_NAME_BOB)
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastEatery, descriptor);
 
@@ -64,7 +65,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_EATERY, new EditCommand.EditEateryDescriptor());
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_EATERY,
+                new EditCommand.EditEateryDescriptor());
         Eatery editedEatery = model.getFilteredEateryList().get(TypicalIndexes.INDEX_FIRST_EATERY.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EATERY_SUCCESS, editedEatery);
@@ -147,7 +149,8 @@ public class EditCommandTest {
                 new EditCommand(TypicalIndexes.INDEX_FIRST_EATERY, CommandTestUtil.DESC_AMY);
 
         // same values -> returns true
-        EditCommand.EditEateryDescriptor copyDescriptor = new EditCommand.EditEateryDescriptor(CommandTestUtil.DESC_AMY);
+        EditCommand.EditEateryDescriptor copyDescriptor = new EditCommand
+                .EditEateryDescriptor(CommandTestUtil.DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(TypicalIndexes.INDEX_FIRST_EATERY, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

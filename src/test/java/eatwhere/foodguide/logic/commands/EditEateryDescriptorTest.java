@@ -36,7 +36,8 @@ public class EditEateryDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditCommand.EditEateryDescriptor editedAmy = new EditEateryDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditCommand.EditEateryDescriptor editedAmy = new EditEateryDescriptorBuilder(DESC_AMY)
+                .withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

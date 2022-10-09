@@ -23,8 +23,8 @@ import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.EditEateryDescriptorBuilder;
 import eatwhere.foodguide.testutil.EateryBuilder;
+import eatwhere.foodguide.testutil.EditEateryDescriptorBuilder;
 import eatwhere.foodguide.testutil.PersonUtil;
 import eatwhere.foodguide.testutil.TypicalIndexes;
 
