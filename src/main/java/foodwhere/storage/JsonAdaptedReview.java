@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import foodwhere.commons.exceptions.IllegalValueException;
+import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
-import foodwhere.model.detail.Detail;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Review;

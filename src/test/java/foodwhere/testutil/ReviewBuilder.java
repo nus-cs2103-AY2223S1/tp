@@ -3,8 +3,8 @@ package foodwhere.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
-import foodwhere.model.detail.Detail;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Review;

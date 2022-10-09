@@ -9,8 +9,8 @@ import java.util.Set;
 import foodwhere.commons.core.index.Index;
 import foodwhere.commons.util.StringUtil;
 import foodwhere.logic.parser.exceptions.ParseException;
+import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
-import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
 
 /**
