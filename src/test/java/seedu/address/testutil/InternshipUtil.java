@@ -32,6 +32,7 @@ public class InternshipUtil {
         return sb.toString();
     }
 
+    /*
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
