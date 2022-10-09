@@ -1,6 +1,7 @@
 package tracko.model;
 
 import javafx.collections.ObservableList;
+import tracko.model.items.Item;
 import tracko.model.order.Order;
 
 /**
@@ -12,5 +13,10 @@ public interface ReadOnlyTrackO {
      * Returns an unmodifeable view of the orders list.
      */
     ObservableList<Order> getOrderList();
+
+    /**
+     * Returns an unmodifeable view of the inventory list.
+     */
+    ObservableList<Item> getInventoryList();
 
 }

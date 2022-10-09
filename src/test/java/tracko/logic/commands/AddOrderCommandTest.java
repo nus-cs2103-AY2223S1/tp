@@ -20,6 +20,7 @@ import tracko.model.Model;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.ReadOnlyUserPrefs;
 import tracko.model.TrackO;
+import tracko.model.items.Item;
 import tracko.model.order.Order;
 // import tracko.model.person.Person;
 import tracko.testutil.OrderBuilder;
@@ -125,6 +126,11 @@ public class AddOrderCommandTest {
 
         @Override
         public ObservableList<Order> getOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addItem(Item item) {
             throw new AssertionError("This method should not be called.");
         }
 

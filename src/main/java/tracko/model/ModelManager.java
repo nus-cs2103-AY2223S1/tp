@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
 import tracko.commons.core.LogsCenter;
+import tracko.model.items.Item;
 import tracko.model.order.Order;
 
 /**
@@ -99,6 +100,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Order> getOrderList() {
         return trackO.getOrderList();
+    }
+
+    @Override
+    public void addItem(Item item) {
+        trackO.addItem(item);
     }
 
     @Override
