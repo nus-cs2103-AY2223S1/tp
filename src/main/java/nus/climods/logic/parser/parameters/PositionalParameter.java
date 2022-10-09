@@ -5,18 +5,24 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
+import nus.climods.logic.parser.exceptions.ParseException;
+
+
+
 /**
  * Represents a positional parameter yielding a value of type T.
  * @param <T> The expected type from the parameter
  */
 public class PositionalParameter<T> {
+    // ParseException message to show when invalid argument provided
+    protected String parseExceptionMessage;
     // Index of the parameter in delimiter-separated list of arguments
     protected final int index;
     protected final List<String> arguments;
 
     // Return non-empty Optional if valid T, else empty Optional
     protected Function<String, Optional<T>> conversionFunction;
-    protected Optional<T> argValue;
+    protected Optional<T> optionalArg;
 
     /**
      * Creates a PositionalParameter.
@@ -24,7 +30,8 @@ public class PositionalParameter<T> {
      * @param arguments A list of argument strings representing all arguments, without command name
      * @param conversionFunction A function to convert the argument string into an Optional of type T
      */
-    public PositionalParameter(int index, List<String> arguments, Function<String, Optional<T>> conversionFunction) {
+    public PositionalParameter(int index, List<String> arguments, Function<String, Optional<T>> conversionFunction,
+                               String parseExceptionMessage) {
         assert index >= 0;
         Objects.requireNonNull(arguments);
         Objects.requireNonNull(conversionFunction);
@@ -32,31 +39,23 @@ public class PositionalParameter<T> {
         this.arguments = arguments;
         this.index = index;
         this.conversionFunction = conversionFunction;
+        this.parseExceptionMessage = parseExceptionMessage;
     }
 
     /**
-     * Attempts to extract the needed argument.
-     * @return Optional representing the value required. Optional is empty if invalid index, or invalid argument value
-     *      according to provided conversion function
+     * Returns argument value parsed according to index and conversion function
+     * @return Return argument value
+     * @throws ParseException if the input for this parameter was invalid or doesn't exist
      */
-    protected Optional<T> parse() {
+    public T getArgValue() throws ParseException {
         if (index >= arguments.size()) {
-            argValue = Optional.empty();
-            return argValue;
+            throw new ParseException(parseExceptionMessage);
         }
-        argValue = conversionFunction.apply(arguments.get(index));
-        return argValue;
-    }
+        optionalArg = conversionFunction.apply(arguments.get(index));
 
-    /**
-     * Returns an Optional of the argument value which is empty if argument was invalid
-     * @return Optional of the argument value which is empty if argument was invalid
-     */
-    public Optional<T> getArgValue() {
-        // Null check to know if parse was already called
-        if (argValue == null) {
-            return parse();
+        if (optionalArg.isEmpty()) {
+            throw new ParseException(parseExceptionMessage);
         }
-        return argValue;
+        return optionalArg.get();
     }
 }
