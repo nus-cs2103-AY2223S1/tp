@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddClientCommand;
+import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteClientCommand;
@@ -72,6 +73,9 @@ public class MyInsuRecParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddMeetingCommand.COMMAND_WORD:
+            return new AddMeetingCommandParser().parse(arguments);
 
         case ListMeetingCommand.COMMAND_WORD:
             return new ListMeetingCommand();

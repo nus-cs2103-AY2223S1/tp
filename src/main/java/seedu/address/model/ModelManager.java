@@ -117,7 +117,19 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteMeeting(Meeting meeting) {
+        requireNonNull(meeting);
         myInsuRec.removeMeeting(meeting);
+    }
+
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return myInsuRec.hasMeeting(meeting);
+    }
+
+    @Override
+    public void addMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        myInsuRec.addMeeting(meeting);
     }
 
     //=========== Filtered Client List Accessors =============================================================
