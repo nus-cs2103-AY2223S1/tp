@@ -37,6 +37,8 @@ public class DateTest {
         assertFalse(Date.isValidDate("1900-02-29")); // not leap year
         assertFalse(Date.isValidDate("1700-02-29")); // not leap year
         assertFalse(Date.isValidDate("34-12-13")); //two digit year
+        assertFalse(Date.isValidDate("2022-1-13")); //one digit month
+        assertFalse(Date.isValidDate("2022/08/24")); // slash
 
 
         // valid Date
