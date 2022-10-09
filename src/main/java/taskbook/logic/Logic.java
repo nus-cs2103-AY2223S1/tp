@@ -10,6 +10,7 @@ import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.Model;
 import taskbook.model.ReadOnlyAddressBook;
 import taskbook.model.person.Person;
+import taskbook.model.task.Task;
 
 /**
  * API of the Logic component
@@ -33,6 +34,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered list of persons */
+    ObservableList<Task> getFilteredTaskList();
 
     /**
      * Returns the user prefs' address book file path.

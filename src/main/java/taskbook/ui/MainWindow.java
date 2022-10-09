@@ -1,10 +1,7 @@
 package taskbook.ui;
 
-import java.util.HashSet;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -19,14 +16,6 @@ import taskbook.logic.Logic;
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.logic.parser.exceptions.ParseException;
-import taskbook.model.person.Address;
-import taskbook.model.person.Email;
-import taskbook.model.person.Name;
-import taskbook.model.person.Person;
-import taskbook.model.person.Phone;
-import taskbook.model.task.Description;
-import taskbook.model.task.Task;
-import taskbook.model.task.enums.Assignment;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -128,31 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        //Temporary task list for basic functionality testing. To be removed when logic can retrieve taskList.
-        ObservableList<Task> temp = FXCollections.observableArrayList();
-        temp.add(new Task(new Person(new Name("Hoshimachi Suisei"),
-                                    new Phone("12345678"),
-                                    new Email("suichan@holo.net"),
-                                    new Address("HoloOffice"),
-                                    new HashSet<>()),
-                        Assignment.FROM,
-                    new Description("Datte boku wa hoshi dakara"), true));
-        temp.add(new Task(new Person(new Name("Hoshimachi Suisei"),
-                new Phone("12345678"),
-                new Email("suichan@holo.net"),
-                new Address("HoloOffice"),
-                new HashSet<>()),
-                Assignment.FROM,
-                new Description("Stellar Stellar"), true));
-        temp.add(new Task(new Person(new Name("Hoshimachi Suisei"),
-                new Phone("12345678"),
-                new Email("suichan@holo.net"),
-                new Address("HoloOffice"),
-                new HashSet<>()),
-                Assignment.TO,
-                new Description("Bukorosu"), true));
-
-        taskListPanel = new TaskListPanel(/*logic.getTaskList()*/ temp); //to be replaced later
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList()); //to be replaced later
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
