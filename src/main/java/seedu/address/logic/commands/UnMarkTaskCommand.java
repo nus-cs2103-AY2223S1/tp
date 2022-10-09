@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /**
- * Marks a task identified by its displayed index in the GUI as completed.
+ * Un marks a task identified by its displayed index in the GUI as completed.
  */
 public class UnMarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
@@ -46,7 +46,7 @@ public class UnMarkTaskCommand extends Command {
         UnMarkTaskDescriptor configureUnMarkedTask = new UnMarkTaskDescriptor();
         configureUnMarkedTask.setStatus(false);
         Task unMarkedTask = createUnMarkedTask(taskToUnMark, configureUnMarkedTask);
-        model.unMarkTask(unMarkedTask, targetIndex);
+        model.setTask(unMarkedTask, targetIndex);
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, unMarkedTask));

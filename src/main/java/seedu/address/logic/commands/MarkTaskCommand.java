@@ -46,7 +46,7 @@ public class MarkTaskCommand extends Command {
         MarkTaskDescriptor configureMarkedTask = new MarkTaskDescriptor();
         configureMarkedTask.setStatus(true);
         Task markedTask = createMarkedTask(taskToMark, configureMarkedTask);
-        model.markTask(markedTask, targetIndex);
+        model.setTask(markedTask, targetIndex);
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask));

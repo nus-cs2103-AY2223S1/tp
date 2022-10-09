@@ -72,16 +72,10 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
-     * Marks the given task as completed.
-     * The task must exist in the task list.
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code task} must exist in the task list.
      */
-    void markTask(Task task, Index targetIndex);
-
-    /**
-     * Unmarks the given task as not done.
-     * The task must exist in the task list.
-     */
-    void unMarkTask(Task task, Index targetIndex);
+    void setTask(Task task, Index targetIndex);
 
     /**
      * Adds the given person.

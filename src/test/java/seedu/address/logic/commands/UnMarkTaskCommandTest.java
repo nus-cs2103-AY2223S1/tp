@@ -30,7 +30,7 @@ public class UnMarkTaskCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(), new TaskList(model.getTaskList()));
-        expectedModel.unMarkTask(model.getFilteredTaskList().get(0), INDEX_FIRST_PERSON);
+        expectedModel.setTask(model.getFilteredTaskList().get(0), INDEX_FIRST_PERSON);
 
         assertCommandSuccess(unMarkTaskCommand, model, expectedMessage, expectedModel);
     }
