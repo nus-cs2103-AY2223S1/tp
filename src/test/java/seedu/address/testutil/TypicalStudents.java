@@ -55,7 +55,7 @@ public class TypicalStudents {
     public static final Student ELLE = new StudentBuilder()
             .withStudentName("Elle Meyer")
             .withId("890A")
-            .withId("James Meyer")
+            .withParentName("James Meyer")
             .withPhone("9482224")
             .withAddress("michegan ave").build();
     public static final Student FIONA = new StudentBuilder()
@@ -92,7 +92,7 @@ public class TypicalStudents {
             .withParentName(VALID_PARENT_NAME_AMY)
             .withPhone(VALID_PHONE_AMY)
             .withAddress(VALID_ADDRESS_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+            .withTags().build();
     public static final Student BOB = new StudentBuilder()
             .withStudentName(VALID_STUDENT_NAME_BOB)
             .withId(VALID_ID_BOB)

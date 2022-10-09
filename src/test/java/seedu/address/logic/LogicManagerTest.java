@@ -5,8 +5,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAY
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PARENT_NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.STUDENT_NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.AMY;
 
@@ -79,8 +81,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddStudCommand.COMMAND_WORD + STUDENT_NAME_DESC_AMY + PHONE_DESC_AMY + ID_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = AddStudCommand.COMMAND_WORD + STUDENT_NAME_DESC_AMY + ID_DESC_AMY + PARENT_NAME_DESC_AMY
+                + PHONE_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND;
         Student expectedPerson = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedPerson);
