@@ -1,6 +1,8 @@
 {
   "persons": [ {
+    "category": "P",
     "name": "Hans Muster",
+    "gender": "M",
     "phone": "9482424",
     "email": "invalid@email!3e",
     "address": "4th street"

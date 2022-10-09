@@ -10,12 +10,18 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
+import static seedu.address.model.category.Category.NURSE_SYMBOL;
+import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -25,6 +31,8 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String category;
+    private final String gender;
     private final String phone;
     private final String email;
     private final String address;
@@ -34,10 +42,13 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("category") String category,
+            @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.category = category;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -51,6 +62,12 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        if (source instanceof Nurse) {
+            category = ((Nurse) source).getCategory();
+        } else {
+            category = "P";
+        }
+        gender = source.getGender().gender;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -78,6 +95,14 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -103,7 +128,19 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (category == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Category.class.getSimpleName()));
+        }
+        if(category.equals(NURSE_SYMBOL)) {
+            return new Nurse(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
+        } else if (category.equals(PATIENT_SYMBOL)) {
+            // To be inserted.
+            return new Person(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
+        } else {
+            throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
+        }
+
     }
 
 }
