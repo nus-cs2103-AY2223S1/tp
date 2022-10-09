@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.property.Address;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Name;
 import seedu.address.model.property.Price;
