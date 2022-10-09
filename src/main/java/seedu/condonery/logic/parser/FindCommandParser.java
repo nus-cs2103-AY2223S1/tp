@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
-import seedu.condonery.model.person.NameContainsKeywordsPredicate;
+import seedu.condonery.model.property.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

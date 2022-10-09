@@ -8,7 +8,7 @@ import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
-import seedu.condonery.model.person.Person;
+import seedu.condonery.model.property.Property;
 
 /**
  * API of the Logic component
@@ -30,8 +30,8 @@ public interface Logic {
      */
     ReadOnlyPropertyDirectory getPropertyDirectory();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of properties */
+    ObservableList<Property> getFilteredPropertyList();
 
     /**
      * Returns the user prefs' address book file path.
