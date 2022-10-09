@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.module.schedule.Schedule;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,7 +27,7 @@ public class Module {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
-    private final ArrayList<Person> students = new ArrayList<>();
+    private final ArrayList<Student> students = new ArrayList<>();
 
     private final List<Schedule> schedules;
 
@@ -35,7 +35,7 @@ public class Module {
      * Every field must be present and not null.
      */
     public Module(ModuleName name, ModuleCode code, ModuleDescription description, Set<Tag> tags,
-                  ArrayList<Person> students) {
+                  ArrayList<Student> students) {
         this.name = name;
         this.code = code;
         this.description = description;
@@ -64,7 +64,7 @@ public class Module {
         return Collections.unmodifiableSet(tags);
     }
 
-    public ArrayList<Person> getStudents() {
+    public ArrayList<Student> getStudents() {
         return students;
     }
 
