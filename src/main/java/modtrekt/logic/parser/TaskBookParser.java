@@ -43,12 +43,12 @@ public class TaskBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddTaskCommand.COMMAND_WORD:
-            return new AddTaskCommandParser().parse(arguments);
+//        case AddTaskCommand.COMMAND_WORD:
+//            return new AddTaskCommandParser().parse(arguments);
         case RemoveTaskCommand.COMMAND_WORD:
             return new RemoveTaskCommandParser().parse(arguments);
-//        case AddCommand.COMMAND_WORD:
-//            return new AddCommandParser().parse(arguments);
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
 
 //        case DeleteCommand.COMMAND_WORD:
 //            return new DeleteCommandParser().parse(arguments);
