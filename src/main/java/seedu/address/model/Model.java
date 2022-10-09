@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+    void deleteMeeting(Meeting meeting);
 }

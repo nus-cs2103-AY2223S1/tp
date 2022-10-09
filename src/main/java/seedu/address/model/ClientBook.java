@@ -105,6 +105,15 @@ public class ClientBook implements ReadOnlyClientBook {
         meetings.add(meeting);
     }
 
+    /**
+     * Removes meeting.
+     * The meeting must exist in MyInsuRec.
+     * @param meeting
+     */
+    public void removeMeeting(Meeting meeting) {
+        meetings.remove(meeting);
+    }
+
     //// util methods
 
     @Override

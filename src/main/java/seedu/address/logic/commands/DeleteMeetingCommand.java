@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * Deletes a Meeting of specified client identified using it's displayed index from MyInsuRec.
@@ -22,7 +23,8 @@ public class DeleteMeetingCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " i/1";
 
-    public static final String MESSAGE_ADD_DELETE_MEETING_SUCCESS = "Remove meeting from Person: %1$s";
+    public static final String MESSAGE_ADD_DELETE_MEETING_SUCCESS = "Remove meeting from Client: %1$s";
+    public static final String MESSAGE_MEETING_NOT_FOUND = "Meeting not found from Client: %1$s";
 
     private final Index index;
 
@@ -48,7 +50,13 @@ public class DeleteMeetingCommand extends Command {
                 clientToEdit.getName(), clientToEdit.getPhone(), clientToEdit.getEmail(),
                 clientToEdit.getAddress(), clientToEdit.getTags()
         );
+        Meeting meeting = clientToEdit.getMeeting();
 
+        if (meeting == null) {
+            throw new CommandException(String.format(MESSAGE_MEETING_NOT_FOUND, clientToEdit));
+        }
+
+        model.deleteMeeting(meeting);
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
 

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * Represents the in-memory model of the client book data.
@@ -109,6 +110,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedClient);
 
         clientBook.setClient(target, editedClient);
+    }
+
+    @Override
+    public void deleteMeeting(Meeting meeting) {
+        clientBook.removeMeeting(meeting);
     }
 
     //=========== Filtered Client List Accessors =============================================================
