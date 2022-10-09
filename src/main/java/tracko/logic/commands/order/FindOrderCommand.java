@@ -6,7 +6,7 @@ import tracko.commons.core.Messages;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
 import tracko.model.Model;
-import tracko.model.order.NameContainsKeywordsPredicate;
+import tracko.model.order.OrderContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -21,9 +21,9 @@ public class FindOrderCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " keychain";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final OrderContainsKeywordsPredicate predicate;
 
-    public FindOrderCommand(NameContainsKeywordsPredicate predicate) {
+    public FindOrderCommand(OrderContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

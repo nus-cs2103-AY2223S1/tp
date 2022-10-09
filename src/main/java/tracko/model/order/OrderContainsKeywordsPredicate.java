@@ -8,10 +8,10 @@ import tracko.commons.util.StringUtil;
 /**
  * Tests that a {@code Order}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Order> {
+public class OrderContainsKeywordsPredicate implements Predicate<Order> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public OrderContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -32,8 +32,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Order> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof OrderContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((OrderContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }
