@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ApplicationStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -71,13 +72,28 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Scholarship parseAddress(String scholarship) throws ParseException {
+    public static Scholarship parseScholarship(String scholarship) throws ParseException {
         requireNonNull(scholarship);
-        String trimmedscholarship = scholarship.trim();
-        if (!Scholarship.isValidScholarship(trimmedscholarship)) {
+        String trimmedScholarship = scholarship.trim();
+        if (!Scholarship.isValidScholarship(trimmedScholarship)) {
             throw new ParseException(Scholarship.MESSAGE_CONSTRAINTS);
         }
-        return new Scholarship(trimmedscholarship);
+        return new Scholarship(trimmedScholarship);
+    }
+
+    /**
+     * Parses a {@code String address} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static ApplicationStatus parseApplicationStatus(String applicationStatus) throws ParseException {
+        requireNonNull(applicationStatus);
+        String trimmedApplicationStatus = applicationStatus.trim();
+        if (!ApplicationStatus.isValidApplicationStatus(trimmedApplicationStatus)) {
+            throw new ParseException(ApplicationStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new ApplicationStatus(trimmedApplicationStatus);
     }
 
     /**

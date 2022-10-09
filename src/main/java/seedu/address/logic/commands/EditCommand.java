@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -19,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.ApplicationStatus;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -41,6 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_SCHOLARSHIP + "SCHOLARSHIP] "
+            + "[" + PREFIX_APPLICATION_STATUS + "APPLICATION_STATUS]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -96,11 +99,14 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Scholarship updatedscholarship = editPersonDescriptor.getScholarship()
+        Scholarship updatedScholarship = editPersonDescriptor.getScholarship()
                 .orElse(personToEdit.getScholarship());
+        ApplicationStatus updatedApplicationStatus = editPersonDescriptor.getApplicationStatus()
+                .orElse(personToEdit.getApplicationStatus());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedscholarship, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedScholarship,
+                updatedApplicationStatus, updatedTags);
     }
 
     @Override
@@ -130,6 +136,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Scholarship scholarship;
+        private ApplicationStatus applicationStatus;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -143,6 +150,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setScholarship(toCopy.scholarship);
+            setApplicationStatus(toCopy.applicationStatus);
             setTags(toCopy.tags);
         }
 
@@ -185,6 +193,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(scholarship);
         }
 
+        public void setApplicationStatus(ApplicationStatus applicationStatus) {
+            this.applicationStatus = applicationStatus;
+        }
+
+        public Optional<ApplicationStatus> getApplicationStatus() {
+            return Optional.ofNullable(applicationStatus);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -221,6 +237,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getScholarship().equals(e.getScholarship())
+                    && getApplicationStatus().equals(e.getApplicationStatus())
                     && getTags().equals(e.getTags());
         }
     }
