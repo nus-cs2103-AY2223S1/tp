@@ -30,5 +30,5 @@ public class Birthday {
     public int hashCode() {
         return value.hashCode();
     }
-    
+
 }
