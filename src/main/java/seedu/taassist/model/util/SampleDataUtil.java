@@ -41,11 +41,14 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyTaAssist getSampleTaAssist() {
-        TaAssist sampleAb = new TaAssist();
-        for (Student sampleStudent : getSampleStudents()) {
-            sampleAb.addStudent(sampleStudent);
+        TaAssist taAssist = new TaAssist();
+        for (Student student : getSampleStudents()) {
+            student.getModuleClasses().stream()
+                    .filter(c -> !taAssist.hasModuleClass(c))
+                    .forEach(taAssist::addModuleClass);
+            taAssist.addStudent(student);
         }
-        return sampleAb;
+        return taAssist;
     }
 
     /**

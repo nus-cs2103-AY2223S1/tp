@@ -2,6 +2,7 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.taassist.commons.core.Messages;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -30,6 +31,12 @@ public class FocusCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasModuleClass(targetClass)) {
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
+                    model.getModuleClassList()));
+        }
+
         model.enterFocusMode(targetClass);
         return new CommandResult(String.format(MESSAGE_ENTERED_FOCUS_MODE, targetClass));
     }

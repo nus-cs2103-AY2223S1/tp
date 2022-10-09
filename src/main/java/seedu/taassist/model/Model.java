@@ -94,6 +94,9 @@ public interface Model {
      */
     boolean hasModuleClass(ModuleClass moduleClass);
 
+    /** Checks if all {@code ModuleClass} in {@code moduleClasses} exists in the model */
+    boolean hasModuleClasses(Collection<ModuleClass> moduleClasses);
+
     /**
      * Deletes the given class.
      * The class must exist in TA-Assist.
@@ -114,9 +117,6 @@ public interface Model {
 
     /** Returns an unmodifiable view of the module class list */
     ObservableList<ModuleClass> getModuleClassList();
-
-    /** Checks if all {@code moduleClass} in {@code moduleClasses} exists */
-    boolean hasModuleClasses(Collection<ModuleClass> moduleClasses);
 
     /** Enters focus mode. */
     void enterFocusMode(ModuleClass classToFocus);

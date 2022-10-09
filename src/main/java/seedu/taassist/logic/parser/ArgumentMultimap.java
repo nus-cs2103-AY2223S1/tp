@@ -62,8 +62,8 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns true if all the {@code prefix} in {@code prefixes} are present and do not contain empty {@code Optional}
-     * values.
+     * Returns true if all the {@code Prefix} in {@code prefixes} are present
+     * and do not contain empty {@code Optional} values.
      */
     public boolean containsPrefixes(Prefix... prefixes) {
         requireNonNull(prefixes);

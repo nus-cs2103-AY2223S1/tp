@@ -28,6 +28,7 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
+    @JsonProperty("classes")
     private final List<JsonAdaptedModuleClass> moduleClasses = new ArrayList<>();
 
     /**

@@ -43,5 +43,5 @@
     "address" : "4th street",
     "classes" : [ ]
   } ],
-  "moduleClasses" : []
+  "moduleClasses" : [ "friends", "owesMoney" ]
 }
