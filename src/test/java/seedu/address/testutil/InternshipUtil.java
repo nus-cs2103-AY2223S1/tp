@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
 
 import seedu.address.logic.commands.AddInternshipCommand;

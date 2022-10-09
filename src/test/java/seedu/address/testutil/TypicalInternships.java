@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_INTERVIEW_ABC;
+import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_INTERVIEW_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_NAME_ABC;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_NAME_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_ROLE_ABC;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_ROLE_BOBBY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_STATUS_ABC;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_STATUS_BOBBY;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_INTERVIEW_ABC;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_INTERVIEW_BOBBY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +15,6 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.InternshipStatus;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

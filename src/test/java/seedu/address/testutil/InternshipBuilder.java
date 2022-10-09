@@ -2,11 +2,11 @@ package seedu.address.testutil;
 
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.InternshipId;
-import seedu.address.model.internship.InternshipStatus;
 import seedu.address.model.internship.InternshipRole;
-import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.InternshipStatus;
 import seedu.address.model.internship.InterviewDate;
 import seedu.address.model.person.PersonId;
 
