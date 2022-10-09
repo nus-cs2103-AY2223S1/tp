@@ -40,8 +40,11 @@ public class CreateMeetingCommand extends Command {
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
         for (String personName: peopleToMeet) {
+
+            String[] nameKeywords = personName.split("\\s+");
+
             NameContainsKeywordsPredicate personNamePredicate =
-                new NameContainsKeywordsPredicate(Arrays.asList(personName));
+                new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
 
             // updates the list of persons in address book based on predicate
             model.updateFilteredPersonList(personNamePredicate);
@@ -73,7 +76,7 @@ public class CreateMeetingCommand extends Command {
             meetingDateAndTime, meetingLocation);
         model.addMeeting(newMeeting);
 
-        return new CommandResult(String.format(MESSAGE_CREATE_MEETING_SUCCESS));
+        return new CommandResult(String.format(MESSAGE_CREATE_MEETING_SUCCESS, arrayOfPeopleToMeet.get(0)));
     }
 
 }
