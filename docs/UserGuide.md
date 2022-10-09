@@ -26,7 +26,7 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 
    * **`list`** : Lists all hobby activities in HobbyList.
 
-   * **`add`**`n/Badminton d/play badminton [t/sport]` : Adds a hobby activity named `Badminton` to the list.
+   * **`add`**`n/42km run d/NUS Run event [t/sport]` : Adds a hobby activity named `42km run` to the list.
 
    * **`delete`**`3` : Deletes the 3rd hobby activity shown in the current list.
    
@@ -43,19 +43,19 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/42km run`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/42km run t/sport` or as `n/42km run`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/sport`, `t/sport t/cardio` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME d/DESCRIPTION`, `d/DESCRIPTION n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `d/NUS Run d/NUS Biathlon`, only `d/NUS Biathlon` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -69,9 +69,8 @@ Adds a hobby activity to HobbyList.
 Format: `add n/NAME d/DESCRIPTION [t/TAG]`
 
 Examples:
+* `add n/42km run d/NUS Run event [t/sport]`
 * `add n/Badminton d/play badminton [t/sport]`
-* `add n/Pottery d/make pottery [t/art]`
-
 
 ### Listing all hobby activities : `list`
 
@@ -79,6 +78,19 @@ Shows a list of all hobby activities in HobbyList.
 
 Format: `list`
 
+Example:
+* `list`
+
+### Finding a command with keywords: `find`
+
+Shows a list of all hobby activities whose names contain any of the specified keywords.
+
+Format: `find KEYWORD`
+
+* The keywords are case-insensitive.
+
+Example:
+* `find run`
 
 ### Deleting an activity : `delete`
 
@@ -90,12 +102,29 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed activity list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Example:
+
+* `delete 1`
+
+### Deleting all activities: clear
+
+Deletes all activities from HobbyList
+
+Format: `clear`
+
+Example:
+
+* `clear`
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+Example:
+
+* `exit`
 
 ### Saving the data
 
@@ -106,7 +135,7 @@ HobbyList data are saved in the hard disk automatically after any command that c
 HobbyList data are saved as a JSON file `[JAR file location]/data/hobbylist.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, HobbyList will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -120,10 +149,12 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ## Command summary
 
-| Action                  | Format                             |
-|-------------------------|------------------------------------|
-| **Add activity**        | `add n/NAME d/DESCRIPTION [t/TAG]` |
-| **Delete activity**     | `delete INDEX`                     |
-| **List all activities** | `list`                             |
-| **Exit**                | `exit`                             |
+| Action                    | Format                             |
+|---------------------------|------------------------------------|
+| **Add an activity**       | `add n/NAME d/DESCRIPTION [t/TAG]` |
+| **Find an activity**      | `find KEYWORD`                     |        
+| **Delete an activity**    | `delete INDEX`                     |
+| **List all activities**   | `list`                             |
+| **Delete all activities** | `clear`                            |
+| **Exit**                  | `exit`                             |
 
