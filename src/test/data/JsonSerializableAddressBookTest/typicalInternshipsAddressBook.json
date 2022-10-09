@@ -1,51 +1,51 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "internships" : [ {
-    "name" : "Alice Pauline",
+    "name" : "Alibaba",
     "phone" : "94351253",
-    "email" : "alice@example.com",
+    "email" : "careers@alibaba.com",
     "applicationStatus" : "applied",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ]
   }, {
-    "name" : "Benson Meier",
+    "name" : "Binance",
     "phone" : "98765432",
-    "email" : "johnd@example.com",
+    "email" : "careers@binance.com",
     "applicationStatus" : "applied",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "Carl Kurz",
+    "name" : "Citadel",
     "phone" : "95352563",
-    "email" : "heinz@example.com",
+    "email" : "careers@citadel.com",
     "applicationStatus" : "applied",
     "address" : "wall street",
     "tagged" : [ ]
   }, {
-    "name" : "Daniel Meier",
+    "name" : "Dell",
     "phone" : "87652533",
-    "email" : "cornelia@example.com",
+    "email" : "careers@dell.com",
     "applicationStatus" : "applied",
     "address" : "10th street",
     "tagged" : [ "friends" ]
   }, {
-    "name" : "Elle Meyer",
+    "name" : "Ebay",
     "phone" : "9482224",
-    "email" : "werner@example.com",
+    "email" : "careers@ebay.com",
     "applicationStatus" : "applied",
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
-    "name" : "Fiona Kunz",
+    "name" : "Facebook",
     "phone" : "9482427",
-    "email" : "lydia@example.com",
+    "email" : "careers@facebook.com",
     "applicationStatus" : "applied",
     "address" : "little tokyo",
     "tagged" : [ ]
   }, {
-    "name" : "George Best",
+    "name" : "Goldman Sachs",
     "phone" : "9482442",
-    "email" : "anna@example.com",
+    "email" : "careers@goldmansachs.com",
     "applicationStatus" : "applied",
     "address" : "4th street",
     "tagged" : [ ]
