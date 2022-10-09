@@ -15,7 +15,7 @@ import seedu.address.model.util.DateTimeProcessor;
  */
 public class Meeting {
 
-    private UniquePersonList peopleToMeet;
+    private UniquePersonList peopleToMeet = new UniquePersonList();
     private String meetingDescription;
     private String meetingDateAndTime;
     private String meetingLocation;
