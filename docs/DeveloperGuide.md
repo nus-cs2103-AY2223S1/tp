@@ -154,12 +154,14 @@ todo
 ### Tracking the state of focus mode
 The state of focus mode is tracked by `ModelManager`, which stores the current focused `ModuleClass` (`focusedClass`, as seen in the [class diagram for `Model`](#model-component)).
 When `focusedClass` is `null`, it indicates that focus mode is inactive. `ModuleManager` returns the state of the focus mode via the following methods:
-* `ModuleClass#isInFocusMode()` - Checks whether focus mode is active.
-* `ModuleClass#getFocusedClass()` - Returns the current `ModuleClass` in focus.
+* `ModelManager#isInFocusMode()` - Checks whether focus mode is active.
+* `ModelManager#getFocusedClass()` - Returns the current `ModuleClass` in focus.
 
 The following methods in `ModelManager` toggles the state of the focus mode:
-* `ModuleClass#enterFocusMode(ModuleClass classToFocus)` - Sets focus mode to be active .
+* `ModelManager#enterFocusMode(ModuleClass classToFocus)` - Sets focus mode to be active .
   * This is achieved by setting `focusedClass` to be a non-null `ModuleClass` object.
+  * This method assumes that `focusedClass` is an existing `ModuleClass` in `TaAssist`.
+
 * `ModuleClass#exitFocusMode()` - Sets focus mode to be inactive.
   * This is achieved by setting `focusedClass` to be `null`.
 
@@ -170,6 +172,11 @@ The `Logic` component calls these methods in `Model` to execute commands that re
 For example, the following sequence diagram shows how the `class` command activates focus mode:
 
 <img src="images/FocusModeSequenceDiagram.png" width="550" />
+
+The call to `ModelManager#hasModuleClass` is necessary to ensure that the `ModuleClass` to focus exists before passing it as an
+argument to `ModelManager#enterFocusMode`.
+
+On the other hand, the `back` command deactivates focus mode.
 
 
 
