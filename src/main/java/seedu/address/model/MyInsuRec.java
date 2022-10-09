@@ -116,6 +116,12 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
         meetings.add(meeting);
     }
 
+    /**
+     * Returns true if a meeting with the same identity as {@code meeting} exists in the meetings book.
+     */
+    public boolean hasMeeting(Meeting meeting) {
+        return meetings.contains(meeting);
+    }
     //// util methods
 
     @Override

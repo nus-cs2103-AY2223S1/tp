@@ -115,6 +115,16 @@ public class ModelManager implements Model {
         myInsuRec.setClient(target, editedClient);
     }
 
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return myInsuRec.hasMeeting(meeting);
+    }
+
+    @Override
+    public void addMeeting(Meeting meeting) {
+        myInsuRec.addMeeting(meeting);
+    }
     //=========== Filtered Client List Accessors =============================================================
 
     /**
