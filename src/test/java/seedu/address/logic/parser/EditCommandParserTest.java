@@ -1,61 +1,54 @@
 package seedu.address.logic.parser;
 
+import org.junit.jupiter.api.Test;
+
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESC_ITEM_NAME_CUCUMBERS;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESC_ITEM_NAME_POTATOES;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESC_ITEM_QUANTITY_CUCUMBERS;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESC_ITEM_QUANTITY_POTATOES;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESC_ITEM_UNIT_CUCUMBERS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_NAME_CUCUMBERS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_BOUGHT_DATE_POTATOES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_EXPIRY_DATE_POTATOES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_POTATOES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_POTATOES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_UNIT_POTATOES;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
-import org.junit.jupiter.api.Test;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditItemDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
-
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private final EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_DESC_ITEM_NAME_POTATOES, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -67,10 +60,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + VALID_DESC_ITEM_NAME_POTATOES, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + VALID_DESC_ITEM_NAME_POTATOES, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -81,39 +74,68 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        // Invalid Fields
+        assertParseFailure(parser, "1" + INVALID_DESC_ITEM_NAME_CUCUMBERS, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DESC_ITEM_QUANTITY_CUCUMBERS, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DESC_ITEM_UNIT_CUCUMBERS, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, Name.MESSAGE_CONSTRAINTS);
 
-        // invalid phone followed by valid email
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
+        // Invalid Name followed by valid Quantity
+        assertParseFailure(parser,
+            "1"
+                + INVALID_DESC_ITEM_NAME_CUCUMBERS
+                + VALID_DESC_ITEM_QUANTITY_POTATOES,
+            Phone.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
+        // Valid name followed by valid name.
+        // The test case for invalid name followed by valid name
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1"
+                + INVALID_DESC_ITEM_NAME_CUCUMBERS
+                + VALID_DESC_ITEM_NAME_CUCUMBERS,
+            Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        //// while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Item} being edited,
+        //// parsing it together with a valid tag results in error
+        //assertParseFailure(parser, "1"
+        //    + TAG_DESC_FRIEND
+        //    + TAG_DESC_HUSBAND
+        //    + TAG_EMPTY,
+        //    Tag.MESSAGE_CONSTRAINTS);
+        //assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        //assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1"
+                + INVALID_DESC_ITEM_NAME_POTATOES
+                + INVALID_DESC_ITEM_QUANTITY_POTATOES
+                + VALID_DESC_ITEM_EXPIRY_DATE_POTATOES
+                + VALID_DESC_ITEM_BOUGHT_DATE_POTATOES,
+            Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased()
+            + VALID_DESC_ITEM_NAME_CUCUMBERS
+            + VALID_DESC_ITEM_QUANTITY_CUCUMBERS
+            + VALID_DESC_ITEM_UNIT_CUCUMBERS
+            + VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
+            + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+            + VALID_DESC_ITEM_NAME_POTATOES
+            + VALID_DESC_ITEM_QUANTITY_POTATOES
+            + VALID_DESC_ITEM_UNIT_POTATOES
+            + VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
+            + VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
+            .withItemName(VALID_DESC_ITEM_NAME_POTATOES)
+            .withItemQuantity(VALID_DESC_ITEM_QUANTITY_POTATOES)
+            .withItemUnit(VALID_DESC_ITEM_UNIT_POTATOES)
+            .withItemBoughtDate(VALID_DESC_ITEM_BOUGHT_DATE_POTATOES)
+            .withItemExpiryDate(VALID_DESC_ITEM_EXPIRY_DATE_POTATOES).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -122,10 +144,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
+        String userInput = targetIndex.getOneBased()
+            + VALID_DESC_ITEM_NAME_CUCUMBERS
+            + VALID_DESC_ITEM_QUANTITY_POTATOES;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_AMY).build();
+        EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
+            .withItemName(VALID_DESC_ITEM_NAME_CUCUMBERS)
+            .withItemQuantity(VALID_DESC_ITEM_QUANTITY_POTATOES).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -135,32 +160,37 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        String userInput = targetIndex.getOneBased() + VALID_DESC_ITEM_NAME_POTATOES;
+        EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
+            .withItemName(VALID_ITEM_NAME_POTATOES).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
-        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        // quantity
+        userInput = targetIndex.getOneBased() + VALID_DESC_ITEM_QUANTITY_POTATOES;
+        descriptor = new EditItemDescriptorBuilder()
+            .withItemQuantity(VALID_ITEM_QUANTITY_POTATOES).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        // unit
+        userInput = targetIndex.getOneBased() + VALID_DESC_ITEM_UNIT_POTATOES;
+        descriptor = new EditItemDescriptorBuilder()
+            .withItemUnit(VALID_ITEM_UNIT_POTATOES).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        // bought date
+        userInput = targetIndex.getOneBased() + VALID_DESC_ITEM_BOUGHT_DATE_POTATOES;
+        descriptor = new EditItemDescriptorBuilder()
+            .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_POTATOES).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        // expiry date
+        userInput = targetIndex.getOneBased() + VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
+        descriptor = new EditItemDescriptorBuilder()
+            .withItemExpiryDate(VALID_ITEM_EXPIRY_DATE_POTATOES).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -168,13 +198,25 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased()
+            + VALID_DESC_ITEM_NAME_CUCUMBERS
+            + VALID_DESC_ITEM_QUANTITY_CUCUMBERS
+            + VALID_DESC_ITEM_UNIT_CUCUMBERS
+            + VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
+            + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+            + VALID_DESC_ITEM_NAME_POTATOES
+            + VALID_DESC_ITEM_QUANTITY_POTATOES
+            + VALID_DESC_ITEM_UNIT_POTATOES
+            + VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
+            + VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+
+        EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
+            .withItemName(VALID_DESC_ITEM_NAME_POTATOES)
+            .withItemQuantity(VALID_DESC_ITEM_QUANTITY_POTATOES)
+            .withItemUnit(VALID_DESC_ITEM_UNIT_POTATOES)
+            .withItemBoughtDate(VALID_DESC_ITEM_BOUGHT_DATE_POTATOES)
+            .withItemExpiryDate(VALID_DESC_ITEM_EXPIRY_DATE_POTATOES).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -184,28 +226,37 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        String userInput = targetIndex.getOneBased()
+            + INVALID_DESC_ITEM_NAME_CUCUMBERS
+            + VALID_DESC_ITEM_QUANTITY_POTATOES;
+        EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
+            .withItemQuantity(VALID_DESC_ITEM_QUANTITY_POTATOES).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
-                + PHONE_DESC_BOB;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).build();
+        userInput = targetIndex.getOneBased()
+            + VALID_DESC_ITEM_NAME_POTATOES
+            + INVALID_DESC_ITEM_NAME_CUCUMBERS
+            + VALID_DESC_ITEM_QUANTITY_POTATOES
+            + VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
+            + VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
+        descriptor = new EditItemDescriptorBuilder()
+            .withItemUnit(VALID_DESC_ITEM_UNIT_POTATOES)
+            .withItemBoughtDate(VALID_DESC_ITEM_BOUGHT_DATE_POTATOES)
+            .withItemExpiryDate(VALID_DESC_ITEM_EXPIRY_DATE_POTATOES).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
+    //@Test
+    //public void parse_resetTags_success() {
+    //    Index targetIndex = INDEX_THIRD_PERSON;
+    //    String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+    //
+    //    EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withTags().build();
+    //    EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+    //
+    //    assertParseSuccess(parser, userInput, expectedCommand);
+    //}
 }

@@ -3,7 +3,6 @@ package seedu.address.model.item;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.item.itemvalidator.ItemBoughtDateValidator;
 
@@ -13,7 +12,7 @@ import seedu.address.model.item.itemvalidator.ItemBoughtDateValidator;
  */
 public class ItemBoughtDate {
 
-    private static final String DATE_OUTPUT_PATTERN_REGEX = "dd/MM/yyyy";
+    private static final String DATE_OUTPUT_PATTERN_REGEX = "yyyy-mm-dd";
 
     private final LocalDate itemDate;
 
@@ -35,8 +34,8 @@ public class ItemBoughtDate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ItemBoughtDate // instanceof handles nulls
-                && itemDate.equals(((ItemBoughtDate) other).itemDate)); // state check
+            || (other instanceof ItemBoughtDate // instanceof handles nulls
+            && itemDate.equals(((ItemBoughtDate) other).itemDate)); // state check
     }
 
     /**
@@ -52,6 +51,6 @@ public class ItemBoughtDate {
      */
     @Override
     public String toString() {
-        return itemDate.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_PATTERN_REGEX));
+        return itemDate.toString();
     }
 }

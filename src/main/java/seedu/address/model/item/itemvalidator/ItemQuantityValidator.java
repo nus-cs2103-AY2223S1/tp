@@ -16,26 +16,27 @@ public class ItemQuantityValidator {
     private static final int MAX_DECIMAL_PLACE = 4;
     private static final String DECIMAL_POINT = ".";
     private static final String MESSAGE_FOR_PRECISION_TOO_HIGH =
-            String.format("Quantity should not have more than %d decimal places", MAX_DECIMAL_PLACE);
+        String.format("Quantity should not have more than %d decimal places", MAX_DECIMAL_PLACE);
 
     // Validation for size of quantity
     private static final int MAX_QUANTITY = 1000000;
     private static final String MESSAGE_FOR_QUANTITY_TOO_LARGE =
-            String.format("Quantity should not be more than %d.", MAX_QUANTITY);
+        String.format("Quantity should not be more than %d.", MAX_QUANTITY);
     private static final String MESSAGE_FOR_QUANTITY_IS_NEGATIVE =
-            "Quantity should not be negative.";
+        "Quantity should not be negative.";
 
     /**
      * Validates a given input String.
+     *
      * @param itemQuantityString String representation of item quantity to validate against.
      */
     public static void validate(String itemQuantityString) {
         checkArgument(isParsableQuantity(itemQuantityString), MESSAGE_FOR_NOT_A_NUMBER);
-        checkArgument(isQuantityTooPrecise(itemQuantityString), MESSAGE_FOR_PRECISION_TOO_HIGH);
+        checkArgument(!isQuantityTooPrecise(itemQuantityString), MESSAGE_FOR_PRECISION_TOO_HIGH);
 
         double quantity = Double.parseDouble(itemQuantityString);
-        checkArgument(isQuantityMoreThanMaxQuantity(quantity), MESSAGE_FOR_QUANTITY_TOO_LARGE);
-        checkArgument(isQuantityNegative(quantity), MESSAGE_FOR_QUANTITY_IS_NEGATIVE);
+        checkArgument(!isQuantityMoreThanMaxQuantity(quantity), MESSAGE_FOR_QUANTITY_TOO_LARGE);
+        checkArgument(!isQuantityNegative(quantity), MESSAGE_FOR_QUANTITY_IS_NEGATIVE);
     }
 
     /**
