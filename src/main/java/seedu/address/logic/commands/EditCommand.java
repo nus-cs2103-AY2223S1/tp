@@ -19,12 +19,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.ApplicationStatus;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Internship;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.internship.Address;
+import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.Email;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.Name;
+import seedu.address.model.internship.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -47,23 +47,23 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Internship: %1$s";
+    public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This internship already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditInternshipDescriptor editInternshipDescriptor;
 
     /**
      * @param index of the internship in the filtered internship list to edit
-     * @param editPersonDescriptor details to edit the internship with
+     * @param editInternshipDescriptor details to edit the internship with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditInternshipDescriptor editInternshipDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editInternshipDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editInternshipDescriptor = new EditInternshipDescriptor(editInternshipDescriptor);
     }
 
     @Override
@@ -76,32 +76,32 @@ public class EditCommand extends Command {
         }
 
         Internship internshipToEdit = lastShownList.get(index.getZeroBased());
-        Internship editedInternship = createEditedPerson(internshipToEdit, editPersonDescriptor);
+        Internship editedInternship = createEditedInternship(internshipToEdit, editInternshipDescriptor);
 
-        if (!internshipToEdit.isSamePerson(editedInternship) && model.hasPerson(editedInternship)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!internshipToEdit.isSameInternship(editedInternship) && model.hasInternship(editedInternship)) {
+            throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
         model.setInternship(internshipToEdit, editedInternship);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_INTERNSHIPS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedInternship));
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
     }
 
     /**
      * Creates and returns a {@code Internship} with the details of {@code internshipToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editInternshipDescriptor}.
      */
-    private static Internship createEditedPerson(Internship internshipToEdit,
-                                                 EditPersonDescriptor editPersonDescriptor) {
+    private static Internship createEditedInternship(Internship internshipToEdit,
+                                                     EditInternshipDescriptor editInternshipDescriptor) {
         assert internshipToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(internshipToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(internshipToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(internshipToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(internshipToEdit.getAddress());
+        Name updatedName = editInternshipDescriptor.getName().orElse(internshipToEdit.getName());
+        Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
+        Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
+        Address updatedAddress = editInternshipDescriptor.getAddress().orElse(internshipToEdit.getAddress());
         ApplicationStatus updatedApplicationStatus =
-                editPersonDescriptor.getApplicationStatus().orElse(internshipToEdit.getApplicationStatus());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(internshipToEdit.getTags());
+                editInternshipDescriptor.getApplicationStatus().orElse(internshipToEdit.getApplicationStatus());
+        Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
         return new Internship(updatedName, updatedPhone, updatedEmail, updatedApplicationStatus, updatedAddress,
                 updatedTags);
@@ -122,14 +122,14 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editInternshipDescriptor.equals(e.editInternshipDescriptor);
     }
 
     /**
      * Stores the details to edit the internship with. Each non-empty field value will replace the
      * corresponding field value of the internship.
      */
-    public static class EditPersonDescriptor {
+    public static class EditInternshipDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
@@ -137,13 +137,13 @@ public class EditCommand extends Command {
         private ApplicationStatus applicationStatus;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditInternshipDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditInternshipDescriptor(EditInternshipDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -224,12 +224,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditInternshipDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditInternshipDescriptor e = (EditInternshipDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

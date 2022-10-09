@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Internship;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.UniqueInternshipList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +14,7 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueInternshipList internships;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        internships = new UniqueInternshipList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Internships in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -43,8 +43,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the internship list with {@code internships}.
      * {@code internships} must not contain duplicate internships.
      */
-    public void setPersons(List<Internship> internships) {
-        this.persons.setPersons(internships);
+    public void setInternships(List<Internship> internships) {
+        this.internships.setInternships(internships);
     }
 
     /**
@@ -53,7 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setInternships(newData.getInternshipList());
     }
 
     //// internship-level operations
@@ -61,17 +61,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if an internship with the same identity as {@code internship} exists in the address book.
      */
-    public boolean hasPerson(Internship internship) {
+    public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
-        return persons.contains(internship);
+        return internships.contains(internship);
     }
 
     /**
-     * Adds a internship to the address book.
+     * Adds an internship to the address book.
      * The internship must not already exist in the address book.
      */
-    public void addPerson(Internship p) {
-        persons.add(p);
+    public void addInternship(Internship p) {
+        internships.add(p);
     }
 
     /**
@@ -83,39 +83,39 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setInternship(Internship target, Internship editedInternship) {
         requireNonNull(editedInternship);
 
-        persons.setPerson(target, editedInternship);
+        internships.setInternship(target, editedInternship);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Internship key) {
-        persons.remove(key);
+    public void removeInternship(Internship key) {
+        internships.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return internships.asUnmodifiableObservableList().size() + " internships";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Internship> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Internship> getInternshipList() {
+        return internships.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && internships.equals(((AddressBook) other).internships));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return internships.hashCode();
     }
 }

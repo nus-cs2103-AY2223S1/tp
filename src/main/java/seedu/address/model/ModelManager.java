@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Internship;
+import seedu.address.model.internship.Internship;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredInternships = new FilteredList<>(this.addressBook.getPersonList());
+        filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
     }
 
     public ModelManager() {
@@ -88,20 +88,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Internship internship) {
+    public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
-        return addressBook.hasPerson(internship);
+        return addressBook.hasInternship(internship);
     }
 
     @Override
-    public void deletePerson(Internship target) {
-        addressBook.removePerson(target);
+    public void deleteInternship(Internship target) {
+        addressBook.removeInternship(target);
     }
 
     @Override
-    public void addPerson(Internship internship) {
-        addressBook.addPerson(internship);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+    public void addInternship(Internship internship) {
+        addressBook.addInternship(internship);
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
     }
 
     @Override
@@ -120,12 +120,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Internship> getFilteredInternshipList() {
         return filteredInternships;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Internship> predicate) {
-        requireNonNull(predicate);
-        filteredInternships.setPredicate(predicate);
     }
 
     @Override
