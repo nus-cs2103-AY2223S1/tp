@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.*;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliSyntax.COMMAND_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.COMMAND_MODULE;
 
@@ -11,7 +13,6 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -55,7 +56,7 @@ public class AddressBookParser {
             case COMMAND_MODULE:
                 return new AddModuleCommandParser().parse(arguments);
             default:
-                //doesnt reach this block of code, to fix
+                //TODO doesnt reach this block of code, to fix
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND_TYPE);
             }
         case EditCommand.COMMAND_WORD:
@@ -87,8 +88,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         default:
-            //error runs to here when missing c/m
-//            throw new ParseException("test");
+            //TODO error runs to here when missing c/m
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

@@ -13,6 +13,7 @@ concerns:
 - make zoom optional? can just update in addmodulecommandparser
 - updating zoom validation
 - update error message for missing c and m
+- update checkstyle for name, not just class
 
 //new class to implement
 - AddModuleCommand

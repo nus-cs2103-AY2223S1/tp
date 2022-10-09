@@ -1,20 +1,24 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.assignmentdetails.AssignmentDetails;
-import seedu.address.model.module.LectureDetails;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.TutorialDetails;
-import seedu.address.model.module.ZoomLink;
-import seedu.address.model.module.Module;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignmentdetails.AssignmentDetails;
+import seedu.address.model.module.LectureDetails;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialDetails;
+import seedu.address.model.module.ZoomLink;
+
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -43,7 +47,8 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
         LectureDetails lecture = ParserUtil.parseLecture(argMultimap.getValue(PREFIX_LECTURE).get());
         TutorialDetails tutorial = ParserUtil.parseTutorial(argMultimap.getValue(PREFIX_TUTORIAL).get());
         ZoomLink zoom = ParserUtil.parseZoom(argMultimap.getValue(PREFIX_ZOOM).get());
-        Set<AssignmentDetails> assignmentList = ParserUtil.parseAssignments(argMultimap.getAllValues(PREFIX_ASSIGNMENT));
+        Set<AssignmentDetails> assignmentList =
+                ParserUtil.parseAssignments(argMultimap.getAllValues(PREFIX_ASSIGNMENT));
 
         Module module = new Module(moduleCode, lecture, tutorial, zoom, assignmentList);
 
