@@ -2,6 +2,7 @@ package foodwhere.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -105,6 +106,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeStall(Stall key) {
         stalls.remove(key);
+        List<Review> toRemove = new ArrayList<>();
+        for (Review review : reviews) {
+            if (review.getName().fullName.equals(key.getName().fullName)) {
+                toRemove.add(review);
+            }
+        }
+        for (Review review : toRemove) {
+            reviews.remove(review);
+        }
     }
 
     //// review methods

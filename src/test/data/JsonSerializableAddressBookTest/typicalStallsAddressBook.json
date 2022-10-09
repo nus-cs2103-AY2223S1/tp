@@ -3,30 +3,65 @@
   "stalls" : [ {
     "name" : "Alice Pauline",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "details" : [ "friends" ]
+    "details" : [ "friends" ],
+    "reviews" : [ {
+      "date" : "1/1/1",
+      "content" : "123, Jurong West Ave 6, #08-111",
+      "details" : [ "friends" ]
+    } ]
   }, {
     "name" : "Benson Meier",
     "address" : "311, Clementi Ave 2, #02-25",
-    "details" : [ "owesMoney", "friends" ]
+    "details" : [ "owesMoney", "friends" ],
+    "reviews" : [ {
+      "date" : "1/1/1",
+      "content" : "311, Clementi Ave 2, #02-25",
+      "details" : [ "owesMoney", "friends" ]
+    } ]
   }, {
     "name" : "Carl Kurz",
     "address" : "wall street",
-    "details" : [ ]
+    "details" : [ ],
+    "reviews" : [ {
+      "date" : "1/1/1",
+      "content" : "wall street",
+      "details" : [ ]
+    } ]
   }, {
     "name" : "Daniel Meier",
     "address" : "10th street",
-    "details" : [ "friends" ]
+    "details" : [ "friends" ],
+    "reviews" : [ {
+      "date" : "1/1/1",
+      "content" : "10th street",
+      "details" : [ "friends" ]
+    } ]
   }, {
     "name" : "Elle Meyer",
     "address" : "michegan ave",
-    "details" : [ ]
+    "details" : [ ],
+    "reviews" : [ {
+      "date" : "1/1/1",
+      "content" : "michegan ave",
+      "details" : [ ]
+    } ]
   }, {
     "name" : "Fiona Kunz",
     "address" : "little tokyo",
-    "details" : [ ]
+    "details" : [ ],
+    "reviews" : [ {
+      "date" : "1/1/1",
+      "content" : "little tokyo",
+      "details" : [ ]
+    } ]
   }, {
     "name" : "George Best",
     "address" : "4th street",
-    "details" : [ ]
+    "details" : [ ],
+    "reviews" : [ {
+      "date" : "1/1/1",
+      "content" : "4th street",
+      "details" : [ ]
+    } ]
   } ]
 }
