@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.entry.Entry;
-import seedu.address.model.person.Person;
 
 /**
  * Unmodifiable view of an address book
@@ -10,9 +9,15 @@ import seedu.address.model.person.Person;
 public interface ReadOnlyPennyWise {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the expenditure list.
+     * This list will not contain any duplicate expenditure.
      */
-    ObservableList<Entry> getEntryList();
+    ObservableList<Entry> getExpenditureList();
+
+    /**
+     * Returns an unmodifiable view of the income list.
+     * This list will not contain any duplicate income.
+     */
+    ObservableList<Entry> getIncomeList();
 
 }

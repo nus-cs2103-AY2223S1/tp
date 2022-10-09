@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyPennyWise;
 import seedu.address.model.entry.Entry;
-import seedu.address.model.person.Person;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -38,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyPennyWise source) {
-        entries.addAll(source.getEntryList().stream().map(JsonAdaptedEntry::new).collect(Collectors.toList()));
+        entries.addAll(source.getExpenditureList().stream().map(JsonAdaptedEntry::new).collect(Collectors.toList()));
     }
 
     /**
@@ -50,11 +49,10 @@ class JsonSerializableAddressBook {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedEntry jsonAdaptedEntry : entries) {
             Entry e = jsonAdaptedEntry.toModelType();
-            if (addressBook.hasEntry(e)) {
+            if (addressBook.hasExpenditure(e)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.hasEntry(e);
-            addressBook.addEntry(e);
+            addressBook.hasExpenditure(e);
         }
         return addressBook;
     }
