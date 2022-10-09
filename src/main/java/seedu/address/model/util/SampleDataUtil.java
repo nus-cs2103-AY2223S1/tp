@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Buyer[] getSampleBuyers() {
         return new Buyer[] {
-            new Buyer(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+            new Buyer(new Name("ThisIs BuyerList"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends"), null),
             new Buyer(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
@@ -38,56 +38,62 @@ public class SampleDataUtil {
         };
     }
 
-//    public static Supplier[] getSampleSuppliers() {
-//        return new Supplier[] {
-//                new Supplier(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-//                        new Address("Blk 30 Geylang Street 29, #06-40"),
-//                        getTagSet("friends")),
-//                new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-//                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-//                        getTagSet("colleagues", "friends")),
-//                new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-//                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-//                        getTagSet("neighbours")),
-//                new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-//                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-//                        getTagSet("family")),
-//                new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-//                        new Address("Blk 47 Tampines Street 20, #17-35"),
-//                        getTagSet("classmates")),
-//                new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-//                        new Address("Blk 45 Aljunied Street 85, #11-31"),
-//                        getTagSet("colleagues"))
-//        };
-//    }
-//
-//    public static Deliverer[] getSamplePersons() {
-//        return new Person[] {
-//                new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-//                        new Address("Blk 30 Geylang Street 29, #06-40"),
-//                        getTagSet("friends")),
-//                new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-//                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-//                        getTagSet("colleagues", "friends")),
-//                new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-//                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-//                        getTagSet("neighbours")),
-//                new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-//                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-//                        getTagSet("family")),
-//                new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-//                        new Address("Blk 47 Tampines Street 20, #17-35"),
-//                        getTagSet("classmates")),
-//                new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-//                        new Address("Blk 45 Aljunied Street 85, #11-31"),
-//                        getTagSet("colleagues"))
-//        };
-//    }
+    public static Supplier[] getSampleSuppliers() {
+        return new Supplier[] {
+                new Supplier(new Name("ThisIs SupplierList"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                        new Address("Blk 30 Geylang Street 29, #06-40"),
+                        getTagSet("friends"), null),
+                new Supplier(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        getTagSet("colleagues", "friends"), null),
+                new Supplier(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                        getTagSet("neighbours"), null),
+                new Supplier(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                        getTagSet("family"), null),
+                new Supplier(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                        new Address("Blk 47 Tampines Street 20, #17-35"),
+                        getTagSet("classmates"), null),
+                new Supplier(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                        new Address("Blk 45 Aljunied Street 85, #11-31"),
+                        getTagSet("colleagues"), null)
+        };
+    }
+
+    public static Deliverer[] getSampleDeliverers() {
+        return new Deliverer[] {
+                new Deliverer(new Name("ThisIs DelivererList"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                        new Address("Blk 30 Geylang Street 29, #06-40"),
+                        getTagSet("friends"), null),
+                new Deliverer(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        getTagSet("colleagues", "friends"), null),
+                new Deliverer(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                        getTagSet("neighbours"), null),
+                new Deliverer(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                        getTagSet("family"), null),
+                new Deliverer(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                        new Address("Blk 47 Tampines Street 20, #17-35"),
+                        getTagSet("classmates"), null),
+                new Deliverer(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                        new Address("Blk 45 Aljunied Street 85, #11-31"),
+                        getTagSet("colleagues"), null)
+        };
+    }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Buyer sampleBuyer : getSampleBuyers()) {
             sampleAb.addBuyer(sampleBuyer);
+        }
+        for (Supplier sampleSupplier : getSampleSuppliers()) {
+            sampleAb.addSupplier(sampleSupplier);
+        }
+        for (Deliverer sampleDeliverer : getSampleDeliverers()) {
+            sampleAb.addDeliverer(sampleDeliverer);
         }
         return sampleAb;
     }

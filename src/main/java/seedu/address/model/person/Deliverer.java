@@ -15,7 +15,7 @@ public class Deliverer extends Person {
     public Deliverer(Name name, Phone phone, Email email, Address address,
                      Set<Tag> tags, ArrayList<Order> orders) {
         super(name, phone, email, address, tags);
-        requireNonNull(orders);
+        //requireNonNull(orders);
         this.orders = orders;
     }
 

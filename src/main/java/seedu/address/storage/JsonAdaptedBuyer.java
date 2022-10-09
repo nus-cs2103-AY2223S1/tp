@@ -15,7 +15,7 @@ import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Buyer}.
  */
 class JsonAdaptedBuyer {
 
@@ -30,7 +30,7 @@ class JsonAdaptedBuyer {
     private final List<Order> orders = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedBuyer} with the given buyer details.
      */
     @JsonCreator
     public JsonAdaptedBuyer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -50,7 +50,7 @@ class JsonAdaptedBuyer {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Buyer} into this class for Jackson use.
      */
     public JsonAdaptedBuyer(Buyer source) {
         name = source.getName().fullName;
@@ -63,9 +63,9 @@ class JsonAdaptedBuyer {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted buyer object into the model's {@code Buyer} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted buyer.
      */
     public Buyer toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();

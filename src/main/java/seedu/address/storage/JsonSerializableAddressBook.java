@@ -12,7 +12,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -32,8 +34,12 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("buyers") List<JsonAdaptedBuyer> buyers) {
+    public JsonSerializableAddressBook(@JsonProperty("buyers") List<JsonAdaptedBuyer> buyers,
+                                       @JsonProperty("suppliers") List<JsonAdaptedSupplier> suppliers,
+                                       @JsonProperty("deliverers") List<JsonAdaptedDeliverer> deliverers) {
         this.buyers.addAll(buyers);
+        this.suppliers.addAll(suppliers);
+        this.deliverers.addAll(deliverers);
     }
 
     /**
@@ -43,6 +49,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         buyers.addAll(source.getBuyerList().stream().map(JsonAdaptedBuyer::new).collect(Collectors.toList()));
+        suppliers.addAll(source.getSupplierList().stream().map(JsonAdaptedSupplier::new).collect(Collectors.toList()));
+        deliverers.addAll(source.getDelivererList().stream().map(JsonAdaptedDeliverer::new).collect(Collectors.toList()));
     }
 
     /**
@@ -58,6 +66,20 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_BUYER);
             }
             addressBook.addBuyer(buyer);
+        }
+        for (JsonAdaptedSupplier jsonAdaptedSupplier : suppliers) {
+            Supplier supplier = jsonAdaptedSupplier.toModelType();
+            if (addressBook.hasSupplier(supplier)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SUPPLIER);
+            }
+            addressBook.addSupplier(supplier);
+        }
+        for (JsonAdaptedDeliverer jsonAdaptedDeliverer: deliverers) {
+            Deliverer deliverer = jsonAdaptedDeliverer.toModelType();
+            if (addressBook.hasDeliverer(deliverer)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_DELIEVER);
+            }
+            addressBook.addDeliverer(deliverer);
         }
         return addressBook;
     }
