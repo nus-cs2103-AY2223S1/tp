@@ -7,6 +7,7 @@ import java.util.List;
 
 import bookface.commons.util.CollectionUtil;
 import bookface.model.book.exceptions.DuplicateBookException;
+import bookface.model.person.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -133,5 +134,13 @@ public class BookList extends ArrayList<Book> implements Iterable<Book> {
             }
         }
         return true;
+    }
+
+    /**
+     * Loans to a person {@code person} a book {@code book} .
+     */
+    public void loan(Person person, Book book) {
+        CollectionUtil.requireAllNonNull(person, book);
+        book.loanTo(person);
     }
 }

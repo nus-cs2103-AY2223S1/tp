@@ -88,6 +88,13 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Loans to given person {@code person} from {@code book}.
+     * {@code person} and {@code book} must exist in the address book.
+     *
+     */
+    void loan(Person person, Book book);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

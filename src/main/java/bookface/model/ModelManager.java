@@ -125,6 +125,12 @@ public class ModelManager implements Model {
         bookFace.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void loan(Person person, Book book) {
+        CollectionUtil.requireAllNonNull(person, book);
+        bookFace.loan(person, book);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
