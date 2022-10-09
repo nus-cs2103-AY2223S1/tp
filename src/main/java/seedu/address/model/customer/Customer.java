@@ -1,12 +1,16 @@
 package seedu.address.model.customer;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,13 +27,14 @@ public class Customer {
     // Data fields
     private final Set<Tag> tags;
 
-    private final Set<Commission> commissions;
+    private final UniqueCommissionList commissions;
 
     // Optional fields
     private final Address address;
 
     /**
      * Constructs a Customer.
+     *
      * @param builder Instance of CustomerBuilder.
      */
     public Customer(CustomerBuilder builder) {
@@ -57,8 +62,12 @@ public class Customer {
         return Optional.ofNullable(address);
     }
 
-    public Set<Commission> getCommissions() {
-        return Collections.unmodifiableSet(commissions);
+    public UniqueCommissionList getCommissions() {
+        return commissions;
+    }
+
+    public ObservableList<Commission> getCommissionList() {
+        return commissions.asUnmodifiableObservableList();
     }
 
     /**
@@ -80,6 +89,47 @@ public class Customer {
 
         return otherCustomer != null
             && otherCustomer.getName().equals(getName());
+    }
+
+    /**
+     * Adds commission to current customer.
+     *
+     * @param commission new commission to add.
+     */
+    public void addCommission(Commission commission) {
+        requireAllNonNull(commission);
+        commissions.add(commission);
+    }
+
+    /**
+     * Returns true if a commission with the same identity as {@code commission} exists in the customer's
+     * commission list.
+     */
+    public boolean hasCommission(Commission commission) {
+        requireAllNonNull(commission);
+        return commissions.contains(commission);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedCommission}.
+     * {@code target} must exist in the address book.
+     * The commission identity of {@code editedCommission} must not be the same as another existing commission in the
+     * customer's commission list.
+     */
+    public void setCommission(Commission target, Commission editedCommission) {
+        assert hasCommission(target);
+        commissions.setCommission(target, editedCommission);
+    }
+
+
+    /**
+     * Removes {@code key} from this {@code Customer}.
+     * {@code key} must exist in the customer's commission list.
+     */
+    public void removeCommission(Commission key) {
+        requireAllNonNull(key);
+        assert hasCommission(key);
+        commissions.remove(key);
     }
 
     /**
@@ -121,9 +171,7 @@ public class Customer {
             .append(getEmail());
 
         Optional<Address> address = getAddress();
-        if (address.isPresent()) {
-            builder.append("; Address: ").append(getAddress().get());
-        }
+        address.ifPresent(value -> builder.append("; Address: ").append(value));
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -134,30 +182,17 @@ public class Customer {
     }
 
     /**
-     * Copies customer with new commissions.
-     * @param commissions New set of commissions for customer.
-     * @return New copied instance of customer.
-     */
-    public Customer copyWithCommissions(Set<Commission> commissions) {
-        CustomerBuilder customerBuilder = new CustomerBuilder(name, phone, email, tags)
-                .setCommissions(commissions);
-        getAddress().ifPresent(customerBuilder::setAddress);
-        return customerBuilder.build();
-    }
-
-    /**
      * Builder class for Customer.
      */
     public static class CustomerBuilder {
         // required parameters
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Set<Tag> tags = new HashSet<>();
-
+        private final Name name;
+        private final Phone phone;
+        private final Email email;
+        private final Set<Tag> tags = new HashSet<>();
+        private final UniqueCommissionList commissions = new UniqueCommissionList();
         // optional parameters
         private Address address;
-        private Set<Commission> commissions = new HashSet<>();
 
         /**
          * Builds CustomerBuilder with all required fields.
@@ -180,9 +215,8 @@ public class Customer {
         /**
          * Sets commissions and returns itself.
          */
-        public CustomerBuilder setCommissions(Set<Commission> commissions) {
-            this.commissions.clear();
-            this.commissions.addAll(commissions);
+        public CustomerBuilder setCommissions(UniqueCommissionList commissions) {
+            this.commissions.setCommissions(commissions);
             return this;
         }
 
