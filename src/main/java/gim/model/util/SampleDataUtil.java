@@ -19,22 +19,22 @@ import gim.model.tag.Tag;
 public class SampleDataUtil {
     public static Exercise[] getSampleExercises() {
         return new Exercise[] {
-            new Exercise(new Name("Alex Yeoh"), new Weight("87438807"), new Sets("1"),
+            new Exercise(new Name("Alex Yeoh"), new Weight("12.5"), new Sets("1"),
                 new Rep("1"),
                 getTagSet("friends")),
-            new Exercise(new Name("Bernice Yu"), new Weight("99272758"), new Sets("2"),
+            new Exercise(new Name("Bernice Yu"), new Weight("60"), new Sets("2"),
                 new Rep("2"),
                 getTagSet("colleagues", "friends")),
-            new Exercise(new Name("Charlotte Oliveiro"), new Weight("93210283"), new Sets("3"),
+            new Exercise(new Name("Charlotte Oliveiro"), new Weight("16.25"), new Sets("3"),
                 new Rep("3"),
                 getTagSet("neighbours")),
-            new Exercise(new Name("David Li"), new Weight("91031282"), new Sets("4"),
+            new Exercise(new Name("David Li"), new Weight("120"), new Sets("4"),
                 new Rep("4"),
                 getTagSet("family")),
-            new Exercise(new Name("Irfan Ibrahim"), new Weight("92492021"), new Sets("5"),
+            new Exercise(new Name("Irfan Ibrahim"), new Weight("100"), new Sets("5"),
                 new Rep("5"),
                 getTagSet("classmates")),
-            new Exercise(new Name("Roy Balakrishnan"), new Weight("92624417"), new Sets("6"),
+            new Exercise(new Name("Roy Balakrishnan"), new Weight("120"), new Sets("6"),
                 new Rep("1"),
                 getTagSet("colleagues"))
         };

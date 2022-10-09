@@ -28,25 +28,25 @@ import gim.testutil.EditExerciseDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_WEIGHT_AMY = "11111111";
-    public static final String VALID_WEIGHT_BOB = "22222222";
-    public static final String VALID_SETS_AMY = "3";
-    public static final String VALID_SETS_BOB = "5";
-    public static final String VALID_REP_AMY = "1";
-    public static final String VALID_REP_BOB = "2";
+    public static final String VALID_NAME_ARM_CURLS = "Arm Curls";
+    public static final String VALID_NAME_BENCH_PRESS = "Bench Press";
+    public static final String VALID_WEIGHT_ARM_CURLS = "100";
+    public static final String VALID_WEIGHT_BENCH_PRESS = "200";
+    public static final String VALID_SETS_ARM_CURLS = "3";
+    public static final String VALID_SETS_BENCH_PRESS = "5";
+    public static final String VALID_REP_ARM_CURLS = "1";
+    public static final String VALID_REP_BENCH_PRESS = "2";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String WEIGHT_DESC_AMY = " " + PREFIX_WEIGHT + VALID_WEIGHT_AMY;
-    public static final String WEIGHT_DESC_BOB = " " + PREFIX_WEIGHT + VALID_WEIGHT_BOB;
-    public static final String SETS_DESC_AMY = " " + PREFIX_SETS + VALID_SETS_AMY;
-    public static final String SETS_DESC_BOB = " " + PREFIX_SETS + VALID_SETS_BOB;
-    public static final String REP_DESC_AMY = " " + PREFIX_REP + VALID_REP_AMY;
-    public static final String REP_DESC_BOB = " " + PREFIX_REP + VALID_REP_BOB;
+    public static final String NAME_DESC_ARM_CURLS = " " + PREFIX_NAME + VALID_NAME_ARM_CURLS;
+    public static final String NAME_DESC_BENCH_PRESS = " " + PREFIX_NAME + VALID_NAME_BENCH_PRESS;
+    public static final String WEIGHT_DESC_ARM_CURLS = " " + PREFIX_WEIGHT + VALID_WEIGHT_ARM_CURLS;
+    public static final String WEIGHT_DESC_BENCH_PRESS = " " + PREFIX_WEIGHT + VALID_WEIGHT_BENCH_PRESS;
+    public static final String SETS_DESC_ARM_CURLS = " " + PREFIX_SETS + VALID_SETS_ARM_CURLS;
+    public static final String SETS_DESC_BENCH_PRESS = " " + PREFIX_SETS + VALID_SETS_BENCH_PRESS;
+    public static final String REP_DESC_ARM_CURLS = " " + PREFIX_REP + VALID_REP_ARM_CURLS;
+    public static final String REP_DESC_BENCH_PRESS = " " + PREFIX_REP + VALID_REP_BENCH_PRESS;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -59,15 +59,15 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditExerciseDescriptor DESC_AMY;
-    public static final EditCommand.EditExerciseDescriptor DESC_BOB;
+    public static final EditCommand.EditExerciseDescriptor DESC_ARM_CURLS;
+    public static final EditCommand.EditExerciseDescriptor DESC_BENCH_PRESS;
 
     static {
-        DESC_AMY = new EditExerciseDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withWeight(VALID_WEIGHT_AMY).withSets(VALID_SETS_AMY).withRep(VALID_REP_AMY)
+        DESC_ARM_CURLS = new EditExerciseDescriptorBuilder().withName(VALID_NAME_ARM_CURLS)
+                .withWeight(VALID_WEIGHT_ARM_CURLS).withSets(VALID_SETS_ARM_CURLS).withRep(VALID_REP_ARM_CURLS)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withWeight(VALID_WEIGHT_BOB).withSets(VALID_SETS_BOB).withRep(VALID_REP_BOB)
+        DESC_BENCH_PRESS = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BENCH_PRESS)
+                .withWeight(VALID_WEIGHT_BENCH_PRESS).withSets(VALID_SETS_BENCH_PRESS).withRep(VALID_REP_BENCH_PRESS)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

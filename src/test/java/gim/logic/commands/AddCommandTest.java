@@ -54,9 +54,9 @@ public class AddCommandTest {
     @Test
     public void equals() {
         Exercise alice = new ExerciseBuilder().withName("Alice").build();
-        Exercise bob = new ExerciseBuilder().withName("Bob").build();
+        Exercise benchPress = new ExerciseBuilder().withName("Bench Press").build();
         AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand addBenchPressCommand = new AddCommand(benchPress);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
@@ -72,7 +72,7 @@ public class AddCommandTest {
         assertFalse(addAliceCommand.equals(null));
 
         // different exercise -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAliceCommand.equals(addBenchPressCommand));
     }
 
     /**
