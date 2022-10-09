@@ -38,6 +38,9 @@ public class TransactionLog {
      */
     public double calculateNetTransacted() {
         double result = 0;
+        if (transactionList.isEmpty()) {
+            return result;
+        }
         for (Transaction t : transactionList) {
             result += t.totalCost();
         }
@@ -46,6 +49,14 @@ public class TransactionLog {
 
     public void addTransaction(Transaction transaction) {
         transactionList.add(transaction);
+    }
+
+    /**
+     * Checks if the transaction list is empty.
+     * @return the boolean value true if the list is empty.
+     */
+    public boolean isEmpty() {
+        return transactionList.isEmpty();
     }
 
 }

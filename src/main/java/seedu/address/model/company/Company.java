@@ -1,5 +1,6 @@
 package seedu.address.model.company;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -170,7 +171,10 @@ public class Company implements ReadOnlyCompany {
         }
 
         TransactionLog transactions = getTransactions();
-        builder.append("; Total transactions: $").append(transactions.calculateNetTransacted());
+        if (!isNull(transactions) && !transactions.isEmpty()) {
+            System.out.println(transactions.calculateNetTransacted());
+            builder.append("; Total transactions: $").append(transactions.calculateNetTransacted());
+        }
 
         return builder.toString();
     }

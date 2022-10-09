@@ -42,7 +42,7 @@ class PriceTest {
     public void testToString() {
         String value = "93121534";
         Price price = new Price(value);
-        assertEquals(price.toString(), value);
+        assertEquals(price.toString(), "$" + value);
     }
 
     @Test
