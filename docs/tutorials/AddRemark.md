@@ -225,11 +225,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-<<<<<<< HEAD
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of student data. We achieve that by working with the `Student` model. Each field in a Student is implemented as a separate class (e.g. a `Name` object represents the Student’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a Student.
-=======
 Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of student data. We achieve that by working with the `Student` model. Each field in a Student is implemented as a separate class (e.g. a `Name` object represents the student’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a student.
->>>>>>> b012f66537e903613234bb5d4f50a1013dc84649
 
 ### Add a new `Remark` class
 
