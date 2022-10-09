@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static swift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static swift.testutil.Assert.assertThrows;
-import static swift.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static swift.testutil.TypicalPersonIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;

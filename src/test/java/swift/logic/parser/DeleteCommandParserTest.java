@@ -3,7 +3,7 @@ package swift.logic.parser;
 import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static swift.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static swift.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static swift.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static swift.testutil.TypicalPersonIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 

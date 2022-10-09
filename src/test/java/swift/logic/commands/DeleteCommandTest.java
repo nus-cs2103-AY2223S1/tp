@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static swift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static swift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static swift.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static swift.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static swift.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static swift.testutil.TypicalPersonIndexes.INDEX_FIRST_PERSON;
+import static swift.testutil.TypicalPersonIndexes.INDEX_SECOND_PERSON;
 import static swift.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
