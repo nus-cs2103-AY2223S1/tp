@@ -58,8 +58,8 @@ public class RecordList {
         recordList.add(record);
     }
 
-    public boolean delete(Record record) {
-        return recordList.remove(record);
+    public void delete(Record record) {
+        recordList.remove(record);
     }
 
     @Override
