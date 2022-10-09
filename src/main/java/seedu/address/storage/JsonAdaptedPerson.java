@@ -99,7 +99,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Telegram.class.getSimpleName()));
         }
-        if (!Telegram.isValidATelegram(handle)) {
+        if (handle != null && !Telegram.isValidTelegram(handle)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         }
         final Telegram modelHandle = new Telegram(handle);

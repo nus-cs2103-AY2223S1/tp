@@ -75,7 +75,7 @@ public class ParserUtil {
     public static Telegram parseTelegram(String handle) throws ParseException {
         requireNonNull(handle);
         String trimmedHandle = handle.trim();
-        if (!Telegram.isValidATelegram(trimmedHandle)) {
+        if (!Telegram.isValidTelegram(trimmedHandle)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
         return new Telegram(trimmedHandle);

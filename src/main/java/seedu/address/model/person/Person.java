@@ -29,7 +29,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, handle, tags);
+        requireAllNonNull(name, phone, email, handle, gitHub, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;

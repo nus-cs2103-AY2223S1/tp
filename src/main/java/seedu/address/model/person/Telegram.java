@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidATelegram(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTelegram(String)}
  */
 public class Telegram {
 
@@ -26,14 +26,14 @@ public class Telegram {
      */
     public Telegram(String handle) {
         requireNonNull(handle);
-        checkArgument(isValidATelegram(handle), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTelegram(handle), MESSAGE_CONSTRAINTS);
         this.handle = handle;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidATelegram(String test) {
+    public static boolean isValidTelegram(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

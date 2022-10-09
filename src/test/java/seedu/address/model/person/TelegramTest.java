@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class AddressTest {
+public class TelegramTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -20,17 +20,17 @@ public class AddressTest {
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidTelegram() {
         // null address
-        assertThrows(NullPointerException.class, () -> Telegram.isValidATelegram(null));
+        assertThrows(NullPointerException.class, () -> Telegram.isValidTelegram(null));
 
         // invalid addresses
-        assertFalse(Telegram.isValidATelegram("")); // empty string
-        assertFalse(Telegram.isValidATelegram(" ")); // spaces only
+        assertFalse(Telegram.isValidTelegram("")); // empty string
+        assertFalse(Telegram.isValidTelegram(" ")); // spaces only
 
         // valid addresses
-        assertTrue(Telegram.isValidATelegram("fnnn"));
-        assertTrue(Telegram.isValidATelegram("-")); // one character
-        assertTrue(Telegram.isValidATelegram("jammy12")); // long address
+        assertTrue(Telegram.isValidTelegram("fnnn"));
+        assertTrue(Telegram.isValidTelegram("-")); // one character
+        assertTrue(Telegram.isValidTelegram("jammy12")); // long address
     }
 }
