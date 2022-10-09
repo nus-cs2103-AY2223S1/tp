@@ -15,6 +15,7 @@ import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.Model;
 import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.person.Person;
+import taskbook.model.task.Task;
 import taskbook.storage.Storage;
 
 /**
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return model.getFilteredTaskList();
     }
 
     @Override
