@@ -30,28 +30,13 @@
                 </MenuBar>
 
 
-                <HBox>
+                <HBox VBox.vgrow="ALWAYS">
                     <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border"
                           VBox.vgrow="ALWAYS">
                         <padding>
                             <Insets bottom="10" left="10" right="10" top="10"/>
                         </padding>
-                        <TabPane prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-                            <tabs>
-                                <Tab text="Expenses">
-                                    <content>
-                                        <StackPane fx:id="ExpenseEntryPlaceholder" VBox.vgrow="ALWAYS"/>
-                                    </content>
-                                </Tab>
-                                <Tab text="Income">
-                                    <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-                                                    prefWidth="200.0"/>
-                                        <StackPane fx:id="IncomeEntryPlaceholder" VBox.vgrow="ALWAYS"/>
-                                    </content>
-                                </Tab>
-                            </tabs>
-                        </TabPane>
+                        <StackPane fx:id="entryPanePlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
 
                     </VBox>
                     <StackPane fx:id="pieChartPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS"

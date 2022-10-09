@@ -4,14 +4,19 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 
 /**
  * Panel containing all entries
  */
-public class EntryPane {
+public class EntryPane extends UiPart<Region> {
     private static final String FXML = "EntryPane.fxml";
     private final Logger logger = LogsCenter.getLogger(seedu.address.ui.EntryPane.class);
+
+    private PersonListPanel expenseEntryPanel;
+    private PersonListPanel incomeEntryPanel;
 
     @FXML
     private Tab expenses;
@@ -19,14 +24,30 @@ public class EntryPane {
     @FXML
     private Tab income;
 
+    @FXML
+    private StackPane expenseEntryPlaceholder;
+
+    @FXML
+    private StackPane incomeEntryPlaceholder;
+
 
     /**
-     * TODO: Edit image to pie chart
-     * Creates a {@code PieChartPanel} with a default pie chart image
+     * TODO: Edit expense and income
+     * Creates a {@code EntryPane} with default entries
      */
-    public PieChartPanel() {
+    public EntryPane(PersonListPanel expenseEntry, PersonListPanel incomeEntry) {
         super(FXML);
-        // TODO: Edit to title of time period of pie chart
-        pieChartTitle.setText("PennyWise");
+        this.expenseEntryPanel = expenseEntry;
+        this.incomeEntryPanel = incomeEntry;
+        expenseEntryPlaceholder.getChildren().add(expenseEntry.getRoot());
+        incomeEntryPlaceholder.getChildren().add(incomeEntry.getRoot());
+    }
+
+    public PersonListPanel getExpenseEntryPanel() {
+        return this.expenseEntryPanel;
+    }
+
+    public PersonListPanel getIncomeEntryPanel() {
+        return this.incomeEntryPanel;
     }
 }

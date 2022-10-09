@@ -31,10 +31,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private EntryPane entryPane;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private PieChartPanel pieChartPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,10 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane ExpenseEntryPlaceholder;
-
-    @FXML
-    private StackPane IncomeEntryPlaceholder;
+    private StackPane entryPanePlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -118,8 +114,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        ExpenseEntryPlaceholder.getChildren().add(personListPanel.getRoot());
+        PersonListPanel expenseEntryPanel = new PersonListPanel(logic.getFilteredPersonList());
+        PersonListPanel incomeEntryPanel = new PersonListPanel(logic.getFilteredPersonList());
+
+        EntryPane entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
+        entryPanePlaceholder.getChildren().add(entryPane.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -175,7 +174,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+        return entryPane.getExpenseEntryPanel();
     }
 
     /**
