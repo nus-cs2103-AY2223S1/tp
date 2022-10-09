@@ -41,6 +41,18 @@ class JsonSerializableStudentAddressBook {
     }
 
     /**
+     * Returns the list of JsonAdaptedStudents.
+     */
+    public List<Student> getStudentsList() throws IllegalValueException {
+        List<Student> studentList = new ArrayList<>();
+        for (JsonAdaptedStudent jsonAdaptedStudent : students) {
+            Student student = jsonAdaptedStudent.toModelType();
+            studentList.add(student);
+        }
+        return studentList;
+    }
+
+    /**
      * Converts this address book into the model's {@code AddressBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
@@ -39,6 +40,18 @@ class JsonSerializableTuitionClassAddressBook {
     public JsonSerializableTuitionClassAddressBook(ReadOnlyAddressBook source) {
         tuitionClasses.addAll(source.getTuitionClassList().stream()
                 .map(JsonAdaptedTuitionClass::new).collect(Collectors.toList()));
+    }
+
+    /**
+     * Returns the list of JsonAdaptedTuitionClasses.
+     */
+    public List<TuitionClass> getTuitionClassesList() throws IllegalValueException {
+        List<TuitionClass> tuitionList = new ArrayList<>();
+        for (JsonAdaptedTuitionClass jsonAdaptedTuitionClass : tuitionClasses) {
+            TuitionClass tuitionClass = jsonAdaptedTuitionClass.toModelType();
+            tuitionList.add(tuitionClass);
+        }
+        return tuitionList;
     }
 
     /**

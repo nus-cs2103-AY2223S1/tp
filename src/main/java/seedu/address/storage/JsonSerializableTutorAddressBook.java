@@ -41,6 +41,18 @@ class JsonSerializableTutorAddressBook {
     }
 
     /**
+     * Returns the list of JsonAdaptedTutors.
+     */
+    public List<Tutor> getTutorsList() throws IllegalValueException {
+        List<Tutor> tutorList = new ArrayList<>();
+        for (JsonAdaptedTutor jsonAdaptedTutor : tutors) {
+            Tutor tutor = jsonAdaptedTutor.toModelType();
+            tutorList.add(tutor);
+        }
+        return tutorList;
+    }
+
+    /**
      * Converts this address book into the model's {@code AddressBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
