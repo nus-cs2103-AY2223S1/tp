@@ -37,6 +37,8 @@ public class GuestCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
+    private Label numberOfGuests;
+    @FXML
     private Label email;
     @FXML
     private Label dateRange;
@@ -55,6 +57,7 @@ public class GuestCard extends UiPart<Region> {
         address.setText(guest.getAddress().value);
         email.setText(guest.getEmail().value);
         dateRange.setText(guest.getDateRange().value);
+        numberOfGuests.setText("No. of Guests: " + guest.getNumberOfGuests().value);
         guest.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

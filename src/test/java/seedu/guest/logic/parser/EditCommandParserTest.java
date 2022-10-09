@@ -11,9 +11,12 @@ import static seedu.guest.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.guest.logic.commands.CommandTestUtil.INVALID_DATE_RANGE_DESC;
 import static seedu.guest.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.guest.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.guest.logic.commands.CommandTestUtil.INVALID_NUMBER_OF_GUESTS_DESC;
 import static seedu.guest.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.guest.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.guest.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.guest.logic.commands.CommandTestUtil.NUMBER_OF_GUESTS_DESC_AMY;
+import static seedu.guest.logic.commands.CommandTestUtil.NUMBER_OF_GUESTS_DESC_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -25,6 +28,8 @@ import static seedu.guest.logic.commands.CommandTestUtil.VALID_DATE_RANGE_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_NUMBER_OF_GUESTS_AMY;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_NUMBER_OF_GUESTS_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -45,6 +50,7 @@ import seedu.guest.model.guest.Address;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Name;
+import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
 import seedu.guest.model.tag.Tag;
 import seedu.guest.testutil.EditPersonDescriptorBuilder;
@@ -91,6 +97,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_DATE_RANGE_DESC, DateRange.MESSAGE_CONSTRAINTS); // invalid date range
+        assertParseFailure(parser, "1" + INVALID_NUMBER_OF_GUESTS_DESC,
+                NumberOfGuests.MESSAGE_CONSTRAINTS); // invalid number of guests
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
@@ -116,10 +124,11 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND + EMAIL_DESC_AMY
-                + DATE_RANGE_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + DATE_RANGE_DESC_AMY + NUMBER_OF_GUESTS_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditCommand.EditGuestDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditGuestDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withDateRange(VALID_DATE_RANGE_AMY)
+                .withNumberOfGuests(VALID_NUMBER_OF_GUESTS_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -165,6 +174,12 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // number of guests
+        userInput = targetIndex.getOneBased() + NUMBER_OF_GUESTS_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withNumberOfGuests(VALID_NUMBER_OF_GUESTS_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // address
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
@@ -182,13 +197,16 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + DATE_RANGE_DESC_AMY + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + DATE_RANGE_DESC_AMY + TAG_DESC_FRIEND + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB
-                + DATE_RANGE_DESC_BOB + TAG_DESC_HUSBAND;
+                + DATE_RANGE_DESC_AMY + TAG_DESC_FRIEND + NUMBER_OF_GUESTS_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY
+                + EMAIL_DESC_AMY + DATE_RANGE_DESC_AMY + TAG_DESC_FRIEND + NUMBER_OF_GUESTS_DESC_AMY + PHONE_DESC_BOB
+                + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + DATE_RANGE_DESC_BOB + NUMBER_OF_GUESTS_DESC_BOB
+                + TAG_DESC_HUSBAND;
 
-        EditCommand.EditGuestDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withDateRange(VALID_DATE_RANGE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+        EditGuestDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withDateRange(VALID_DATE_RANGE_BOB)
+                .withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

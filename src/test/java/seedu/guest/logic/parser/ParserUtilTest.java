@@ -18,6 +18,7 @@ import seedu.guest.model.guest.Address;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Name;
+import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
 import seedu.guest.model.tag.Tag;
 
@@ -27,6 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_DATE_RANGE = "13/09/22 - 13/09/22";
+    private static final String INVALID_NUMBER_OF_GUESTS = "5";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -34,6 +36,7 @@ public class ParserUtilTest {
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_DATE_RANGE = "13/09/22 - 15/09/22";
+    private static final String VALID_NUMBER_OF_GUESTS = "4";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -172,6 +175,29 @@ public class ParserUtilTest {
         String dateRangeWithWhitespace = WHITESPACE + VALID_DATE_RANGE + WHITESPACE;
         DateRange expectedDateRange = new DateRange(VALID_DATE_RANGE);
         assertEquals(expectedDateRange, ParserUtil.parseDateRange(dateRangeWithWhitespace));
+    }
+
+    @Test
+    public void parseNumberOfGuests_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNumberOfGuests((String) null));
+    }
+
+    @Test
+    public void parseNumberOfGuests_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfGuests(INVALID_NUMBER_OF_GUESTS));
+    }
+
+    @Test
+    public void parseNumberOfGuests_validValueWithoutWhitespace_returnsNumberOfGuests() throws Exception {
+        NumberOfGuests expectedNumberOfGuests = new NumberOfGuests(VALID_NUMBER_OF_GUESTS);
+        assertEquals(expectedNumberOfGuests, ParserUtil.parseNumberOfGuests(VALID_NUMBER_OF_GUESTS));
+    }
+
+    @Test
+    public void parseNumberOfGuests_validValueWithWhitespace_returnsTrimmedNumberOfGuests() throws Exception {
+        String numberOfGuestsWithWhitespace = WHITESPACE + VALID_NUMBER_OF_GUESTS + WHITESPACE;
+        NumberOfGuests expectedNumberOfGuests = new NumberOfGuests(VALID_NUMBER_OF_GUESTS);
+        assertEquals(expectedNumberOfGuests, ParserUtil.parseNumberOfGuests(numberOfGuestsWithWhitespace));
     }
 
     @Test

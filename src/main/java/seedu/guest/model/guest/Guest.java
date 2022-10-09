@@ -22,18 +22,21 @@ public class Guest {
 
     // Data fields
     private final DateRange dateRange;
+    private final NumberOfGuests numberOfGuests;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Guest(Name name, Phone phone, Email email, DateRange dateRange, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, dateRange, address, tags);
+    public Guest(Name name, Phone phone, Email email, DateRange dateRange, NumberOfGuests numberOfGuests,
+                 Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, numberOfGuests, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.dateRange = dateRange;
+        this.numberOfGuests = numberOfGuests;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -56,6 +59,10 @@ public class Guest {
 
     public Address getAddress() {
         return address;
+    }
+
+    public NumberOfGuests getNumberOfGuests() {
+        return numberOfGuests;
     }
 
     /**
@@ -93,11 +100,13 @@ public class Guest {
             return false;
         }
 
+
         Guest otherGuest = (Guest) other;
         return otherGuest.getName().equals(getName())
                 && otherGuest.getPhone().equals(getPhone())
                 && otherGuest.getEmail().equals(getEmail())
                 && otherGuest.getDateRange().equals(getDateRange())
+                && otherGuest.getNumberOfGuests().equals(getNumberOfGuests())
                 && otherGuest.getAddress().equals(getAddress())
                 && otherGuest.getTags().equals(getTags());
     }
@@ -105,7 +114,7 @@ public class Guest {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, dateRange, address, tags);
+        return Objects.hash(name, phone, email, dateRange, numberOfGuests, address, tags);
     }
 
     @Override
@@ -118,6 +127,8 @@ public class Guest {
                 .append(getEmail())
                 .append("; Date Range: ")
                 .append(getDateRange())
+                .append("; No. of Guests: ")
+                .append(getNumberOfGuests())
                 .append("; Address: ")
                 .append(getAddress());
 

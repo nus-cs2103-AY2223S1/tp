@@ -8,6 +8,7 @@ import static seedu.guest.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_DATE_RANGE_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_NUMBER_OF_GUESTS_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -50,6 +51,10 @@ public class EditGuestDescriptorTest {
 
         // different date range -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDateRange(VALID_DATE_RANGE_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different number of guests -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false

@@ -10,6 +10,7 @@ import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.Name;
+import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
 import seedu.guest.model.tag.Tag;
 
@@ -37,6 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(guest.getPhone());
         descriptor.setEmail(guest.getEmail());
         descriptor.setDateRange(guest.getDateRange());
+        descriptor.setNumberOfGuests(guest.getNumberOfGuests());
         descriptor.setAddress(guest.getAddress());
         descriptor.setTags(guest.getTags());
     }
@@ -70,6 +72,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withDateRange(String dateRange) {
         descriptor.setDateRange(new DateRange(dateRange));
+        return this;
+    }
+
+    /**
+     * Sets the {@code NumberOfGuests} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withNumberOfGuests(String numberOfGuests) {
+        descriptor.setNumberOfGuests(new NumberOfGuests(numberOfGuests));
         return this;
     }
 

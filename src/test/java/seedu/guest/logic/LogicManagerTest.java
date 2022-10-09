@@ -7,6 +7,7 @@ import static seedu.guest.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.DATE_RANGE_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.guest.logic.commands.CommandTestUtil.NUMBER_OF_GUESTS_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.guest.testutil.Assert.assertThrows;
 import static seedu.guest.testutil.TypicalPersons.AMY;
@@ -31,7 +32,7 @@ import seedu.guest.model.guest.Guest;
 import seedu.guest.storage.JsonGuestBookStorage;
 import seedu.guest.storage.JsonUserPrefsStorage;
 import seedu.guest.storage.StorageManager;
-import seedu.guest.testutil.PersonBuilder;
+import seedu.guest.testutil.GuestBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -44,10 +45,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonGuestBookStorage addressBookStorage =
+        JsonGuestBookStorage guestBookStorage =
                 new JsonGuestBookStorage(temporaryFolder.resolve("guestBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(guestBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,18 +72,19 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonGuestBookStorage addressBookStorage =
-                new JsonGuestBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonGuestBookIoExceptionThrowingStub
+        JsonGuestBookStorage guestBookStorage =
+                new JsonGuestBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionGuestBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(guestBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + DATE_RANGE_DESC_AMY + ADDRESS_DESC_AMY;
-        Guest expectedGuest = new PersonBuilder(AMY).withTags().build();
+                + DATE_RANGE_DESC_AMY + NUMBER_OF_GUESTS_DESC_AMY + ADDRESS_DESC_AMY;
+        Guest expectedGuest = new GuestBuilder(AMY).withTags().build();
+
         ModelManager expectedModel = new ModelManager();
         expectedModel.addGuest(expectedGuest);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -156,7 +158,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveGuestBook(ReadOnlyGuestBook addressBook, Path filePath) throws IOException {
+        public void saveGuestBook(ReadOnlyGuestBook guestBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

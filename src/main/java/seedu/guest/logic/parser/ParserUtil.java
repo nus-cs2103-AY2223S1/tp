@@ -13,6 +13,7 @@ import seedu.guest.model.guest.Address;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Name;
+import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
 import seedu.guest.model.tag.Tag;
 
@@ -109,6 +110,21 @@ public class ParserUtil {
             throw new ParseException(DateRange.MESSAGE_CONSTRAINTS);
         }
         return new DateRange(trimmedDateRange);
+    }
+
+    /**
+     * Parses a {@code String numberOfGuests} into an {@code NumberOfGuests}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code numberOfGuests} is invalid.
+     */
+    public static NumberOfGuests parseNumberOfGuests(String numberOfGuests) throws ParseException {
+        requireNonNull(numberOfGuests);
+        String trimmedNumberOfGuests = numberOfGuests.trim();
+        if (!NumberOfGuests.isValidNumberOfGuests(trimmedNumberOfGuests)) {
+            throw new ParseException(NumberOfGuests.MESSAGE_CONSTRAINTS);
+        }
+        return new NumberOfGuests(trimmedNumberOfGuests);
     }
 
     /**
