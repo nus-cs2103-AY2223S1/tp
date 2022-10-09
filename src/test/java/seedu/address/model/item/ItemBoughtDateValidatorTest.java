@@ -12,7 +12,48 @@ import seedu.address.model.item.itemvalidator.ItemBoughtDateValidator;
 
 public class ItemBoughtDateValidatorTest {
 
+    /**
+     * Checks for valid date string formatting.
+     */
+    @Test
+    public void isValidFormat() {
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-01-2000"));
 
+        // Delimiters
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01/01/2000")); // Wrong delimiter 1
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01.01.2000")); // Wrong delimiter 2
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01012000")); // Missing delimiter 1
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-012000")); // Missing delimiter 2
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("0101-2000")); // Missing delimiter 3
+
+        // Whitespace
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01 01 2000"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime(" 01-01-2000"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-2000 "));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime(" 01-01-2000 "));
+
+        // Wrong Datetime Format
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("1-01-2000")); // Wrong Day
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-1-2000")); // Wrong Month
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-200")); // Wrong Year
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-0"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("-01-2000")); // Missing Day
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01--2000")); // Missing Month
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-")); // Missing Year
+
+        // Wrong characters
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime(""));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("a"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-a"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-á"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-你"));
+    }
+
+
+    /**
+     * Checks if dates are within valid bounds.
+     */
     @Test
     public void isDateWithinValidBounds() {
         // Year Format: dd-MM-YYYY
