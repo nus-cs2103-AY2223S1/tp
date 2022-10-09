@@ -1,13 +1,12 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.project.Project;
 import seedu.address.model.staff.Staff;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Project} objects to be used in tests.
@@ -50,11 +49,13 @@ public class TypicalStaff {
             .withStaffContact("8482131").withStaffTitle("2016-05-21").build();
 
     // Manually added - Staff's details found in {@code CommandTestUtil}
-    public static final Staff AMY = new StaffBuilder().withStaffName(VALID_NAME_AMY).withStaffContact(VALID_STAFFCONTACT_AMY)
-            .withStaffTitle(VALID_STAFFTITLE_AMY).withStaffDepartment(VALID_STAFFDEPARTMENT_AMY).withStaffInsurance(VALID_STAFFINSURANCE_AMY)
+    public static final Staff AMY = new StaffBuilder().withStaffName(VALID_NAME_AMY)
+            .withStaffContact(VALID_STAFFCONTACT_AMY).withStaffTitle(VALID_STAFFTITLE_AMY)
+            .withStaffDepartment(VALID_STAFFDEPARTMENT_AMY).withStaffInsurance(VALID_STAFFINSURANCE_AMY)
             .withTags(VALID_TAG_FRIEND).build();
-    public static final Staff BOB = new StaffBuilder().withStaffName(VALID_NAME_BOB).withStaffContact(VALID_STAFFCONTACT_BOB)
-            .withStaffTitle(VALID_STAFFTITLE_BOB).withStaffDepartment(VALID_STAFFDEPARTMENT_BOB).withStaffInsurance(VALID_STAFFINSURANCE_BOB)
+    public static final Staff BOB = new StaffBuilder().withStaffName(VALID_NAME_BOB)
+            .withStaffContact(VALID_STAFFCONTACT_BOB).withStaffTitle(VALID_STAFFTITLE_BOB)
+            .withStaffDepartment(VALID_STAFFDEPARTMENT_BOB).withStaffInsurance(VALID_STAFFINSURANCE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 

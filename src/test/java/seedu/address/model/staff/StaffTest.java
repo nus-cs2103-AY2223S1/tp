@@ -15,8 +15,8 @@ public class StaffTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Staff Staff = new StaffBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> Staff.getTags().remove(0));
+        Staff staff = new StaffBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> staff.getTags().remove(0));
     }
 
     @Test
@@ -28,14 +28,15 @@ public class StaffTest {
         assertFalse(AMY.isSameStaff(null));
 
         // same name, all other attributes different -> returns true
-        Staff editedAMY = new StaffBuilder(AMY).withStaffContact(VALID_STAFFCONTACT_BOB).withStaffTitle(VALID_STAFFTITLE_BOB)
-                .withStaffDepartment(VALID_STAFFDEPARTMENT_BOB).withStaffInsurance(VALID_STAFFINSURANCE_BOB)
+        Staff editedAmy = new StaffBuilder(AMY).withStaffContact(VALID_STAFFCONTACT_BOB)
+                .withStaffTitle(VALID_STAFFTITLE_BOB).withStaffDepartment(VALID_STAFFDEPARTMENT_BOB)
+                .withStaffInsurance(VALID_STAFFINSURANCE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(AMY.isSameStaff(editedAMY));
+        assertTrue(AMY.isSameStaff(editedAmy));
 
         // different name, all other attributes same -> returns false
-        editedAMY = new StaffBuilder(AMY).withStaffName(VALID_STAFFNAME_BOB).build();
-        assertFalse(AMY.isSameStaff(editedAMY));
+        editedAmy = new StaffBuilder(AMY).withStaffName(VALID_STAFFNAME_BOB).build();
+        assertFalse(AMY.isSameStaff(editedAmy));
 
         // name differs in case, all other attributes same -> returns false
         Staff editedBob = new StaffBuilder(BOB).withStaffName(VALID_STAFFNAME_BOB.toLowerCase()).build();
@@ -50,8 +51,8 @@ public class StaffTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Staff AMYCopy = new StaffBuilder(AMY).build();
-        assertTrue(AMY.equals(AMYCopy));
+        Staff amyCopy = new StaffBuilder(AMY).build();
+        assertTrue(AMY.equals(amyCopy));
 
         // same object -> returns true
         assertTrue(AMY.equals(AMY));
@@ -66,27 +67,27 @@ public class StaffTest {
         assertFalse(AMY.equals(BOB));
 
         // different name -> returns false
-        Staff editedAMY = new StaffBuilder(AMY).withStaffName(VALID_NAME_BOB).build();
-        assertFalse(AMY.equals(editedAMY));
+        Staff editedAmy = new StaffBuilder(AMY).withStaffName(VALID_NAME_BOB).build();
+        assertFalse(AMY.equals(editedAmy));
 
         // different contact -> returns false
-        editedAMY = new StaffBuilder(AMY).withStaffContact(VALID_BUDGET_BOB).build();
-        assertFalse(AMY.equals(editedAMY));
+        editedAmy = new StaffBuilder(AMY).withStaffContact(VALID_BUDGET_BOB).build();
+        assertFalse(AMY.equals(editedAmy));
 
         // different title -> returns false
-        editedAMY = new StaffBuilder(AMY).withStaffTitle(VALID_STAFFTITLE_BOB).build();
-        assertFalse(AMY.equals(editedAMY));
+        editedAmy = new StaffBuilder(AMY).withStaffTitle(VALID_STAFFTITLE_BOB).build();
+        assertFalse(AMY.equals(editedAmy));
 
         // different department -> returns false
-        editedAMY = new StaffBuilder(AMY).withStaffDepartment(VALID_STAFFDEPARTMENT_BOB).build();
-        assertFalse(AMY.equals(editedAMY));
+        editedAmy = new StaffBuilder(AMY).withStaffDepartment(VALID_STAFFDEPARTMENT_BOB).build();
+        assertFalse(AMY.equals(editedAmy));
 
         // different insurance -> returns false
-        editedAMY = new StaffBuilder(AMY).withStaffInsurance(VALID_STAFFINSURANCE_BOB).build();
-        assertFalse(AMY.equals(editedAMY));
+        editedAmy = new StaffBuilder(AMY).withStaffInsurance(VALID_STAFFINSURANCE_BOB).build();
+        assertFalse(AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAMY = new StaffBuilder(AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(AMY.equals(editedAMY));
+        editedAmy = new StaffBuilder(AMY).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(AMY.equals(editedAmy));
     }
 }

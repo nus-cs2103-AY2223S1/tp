@@ -7,11 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.staff.StaffName;
-import seedu.address.model.staff.StaffContact;
-import seedu.address.model.staff.StaffTitle;
-import seedu.address.model.staff.StaffDepartment;
-import seedu.address.model.staff.StaffInsurance;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,7 +28,8 @@ public class Staff {
     /**
      * Every field must be present and not null.
      */
-    public Staff(StaffName name, StaffContact contact, StaffTitle title, StaffDepartment department, StaffInsurance insurance, Set<Tag> tags) {
+    public Staff(StaffName name, StaffContact contact, StaffTitle title,
+                 StaffDepartment department, StaffInsurance insurance, Set<Tag> tags) {
         requireAllNonNull(name, contact, title, department, insurance, tags);
         this.name = name;
         this.contact = contact;
