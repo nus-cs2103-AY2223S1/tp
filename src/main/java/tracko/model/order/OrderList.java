@@ -21,8 +21,8 @@ public class OrderList implements Iterable<Order> {
         FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds an Order to the list.
+     * The order must not already exist in the list.
      */
     public void add(Order toAdd) {
         requireNonNull(toAdd);

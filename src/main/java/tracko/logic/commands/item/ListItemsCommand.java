@@ -1,4 +1,4 @@
-package tracko.logic.commands.items;
+package tracko.logic.commands.item;
 
 import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
