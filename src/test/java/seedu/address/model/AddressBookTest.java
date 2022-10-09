@@ -92,20 +92,18 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final Team team = new Team("default", new ArrayList<>());
 
-
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
+
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
         }
 
-        @Override
         public Team getTeam() {
             return team;
-        };
+        }
     }
-
 }
