@@ -59,8 +59,9 @@ public class Note {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append("; Content: ")
+        builder.append("Title: ")
+                .append(getTitle())
+                .append(", Content: ")
                 .append(getContent());
 
         return builder.toString();

@@ -19,7 +19,7 @@ public class ListNoteCommand extends Command {
         ObservableList<Note> notebook = model.getAddressBook().getNoteBook();
         final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < notebook.size(); i++) {
-            builder.append(i + ":")
+            builder.append((i + 1) + ") ")
                     .append(notebook.get(i).toString())
                     .append("\n");
 
