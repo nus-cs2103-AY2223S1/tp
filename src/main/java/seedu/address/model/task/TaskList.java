@@ -1,11 +1,14 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Represents the tasklist.
@@ -33,6 +36,34 @@ public class TaskList implements Iterable<Task> {
         internalList.add(task);
 
         return TaskUi.addText(internalList.get(internalList.size() - 1).toString(), internalList.size());
+    }
+
+    /**
+     * Replaces the task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the list.
+     * The task description of {@code editedTask} must not be the same as another existing task in the list.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        if (!target.isSameTask(editedTask) && contains(editedTask)) {
+            throw new DuplicateTaskException();
+        }
+
+        internalList.set(index, editedTask);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent task as the given argument.
+     */
+    public boolean contains(Task toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameTask);
     }
 
     @Override
