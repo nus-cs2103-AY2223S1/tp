@@ -21,7 +21,7 @@ public class Tutorial {
      * Every field must be present and not null.
      */
     public Tutorial(Group group, Content content, Time time, boolean status) {
-        requireAllNonNull(group, content, time);
+        requireAllNonNull(group, content, time, status);
         this.group = group;
         this.content = content;
         this.time = time;

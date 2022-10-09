@@ -15,9 +15,9 @@ public class MarkTutorialCommandParser implements Parser<MarkTutorialCommand> {
     @Override
     public MarkTutorialCommand parse(String args) throws ParseException {
 
-        Index index;
-
         try {
+            Index index;
+
             index = ParserUtil.parseIndex(args);
             return new MarkTutorialCommand(index);
         } catch (ParseException pe) {
