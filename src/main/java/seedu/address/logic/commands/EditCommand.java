@@ -97,7 +97,7 @@ public class EditCommand extends Command {
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        ClassGroup updatedClassGroup = studentToEdit.getClassGroup();
+        ClassGroup updatedClassGroup = editStudentDescriptor.getClassGroup().orElse(studentToEdit.getClassGroup());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
@@ -130,6 +130,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private ClassGroup classGroup;
         private Address address;
         private Set<Tag> tags;
 
@@ -143,6 +144,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setClassGroup(toCopy.classGroup);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -151,7 +153,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, classGroup, address, tags);
         }
 
         public void setName(Name name) {
@@ -176,6 +178,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setClassGroup(ClassGroup classGroup) {
+            this.classGroup = classGroup;
+        }
+
+        public Optional<ClassGroup> getClassGroup() {
+            return Optional.ofNullable(classGroup);
         }
 
         public void setAddress(Address address) {
@@ -221,6 +231,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getClassGroup().equals(e.getClassGroup())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

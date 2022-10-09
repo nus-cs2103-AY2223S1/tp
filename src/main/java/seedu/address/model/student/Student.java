@@ -116,7 +116,7 @@ public class Student {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append(" Class Group: ")
+                .append("; Class Group: ")
                 .append(getClassGroup())
                 .append("; Address: ")
                 .append(getAddress());
