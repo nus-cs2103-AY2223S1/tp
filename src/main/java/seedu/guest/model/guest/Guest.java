@@ -2,12 +2,7 @@ package seedu.guest.model.guest;
 
 import static seedu.guest.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import seedu.guest.model.tag.Tag;
 
 /**
  * Represents a Guest in the guest book.
@@ -22,20 +17,16 @@ public class Guest {
 
     // Data fields
     private final NumberOfGuests numberOfGuests;
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Guest(Name name, Phone phone, Email email, NumberOfGuests numberOfGuests, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, numberOfGuests, address, tags);
+    public Guest(Name name, Phone phone, Email email, NumberOfGuests numberOfGuests) {
+        requireAllNonNull(name, phone, email, numberOfGuests);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.numberOfGuests = numberOfGuests;
-        this.address = address;
-        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -50,20 +41,8 @@ public class Guest {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
     public NumberOfGuests getNumberOfGuests() {
         return numberOfGuests;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -98,15 +77,13 @@ public class Guest {
         return otherGuest.getName().equals(getName())
                 && otherGuest.getPhone().equals(getPhone())
                 && otherGuest.getEmail().equals(getEmail())
-                && otherGuest.getNumberOfGuests().equals(getNumberOfGuests())
-                && otherGuest.getAddress().equals(getAddress())
-                && otherGuest.getTags().equals(getTags());
+                && otherGuest.getNumberOfGuests().equals(getNumberOfGuests());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, numberOfGuests, address, tags);
+        return Objects.hash(name, phone, email, numberOfGuests);
     }
 
     @Override
@@ -118,15 +95,8 @@ public class Guest {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; No. of Guests: ")
-                .append(getNumberOfGuests())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(getNumberOfGuests());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 
