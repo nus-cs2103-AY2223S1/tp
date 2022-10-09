@@ -37,6 +37,17 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_LECTURE_DETAILS_CS2103T = "Every friday";
+    public static final String VALID_LECTURE_DETAILS_CS2100 = "Every tuesday";
+    public static final String VALID_MODULE_CODE_CS2103T = "CS2103T";
+    public static final String VALID_MODULE_CODE_CS2100 = "CS2100";
+    public static final String VALID_TUTORIAL_DETAILS_CS2103T = "Every wednesday";
+    public static final String VALID_TUTORIAL_DETAILS_CS2100 = "Every friday";
+    public static final String VALID_ZOOM_LINK_CS2103T = "https://nus-sg.zoom.us";
+    public static final String VALID_ZOOM_LINK_CS2100 = "https://nus-sg.zoom.us";
+    public static final String VALID_ASSIGNMENT_DETAILS_CS2103T = "hard";
+    public static final String VALID_ASSIGNMENT_DETAILS_CS2100 = "normal";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
