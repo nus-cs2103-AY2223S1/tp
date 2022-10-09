@@ -6,7 +6,7 @@ package modtrekt.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_DESC = new Prefix("-t ");
+    public static final Prefix PREFIX_TASK = new Prefix("-t ");
     public static final Prefix PREFIX_MODULE = new Prefix("-m ");
     public static final Prefix PREFIX_DEADLINE = new Prefix("-d ");
     public static final Prefix PREFIX_MOD_NAME = new Prefix("n/");
