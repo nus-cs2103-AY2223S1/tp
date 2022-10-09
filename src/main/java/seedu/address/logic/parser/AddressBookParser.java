@@ -64,11 +64,11 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case ViewScheduleCommand.COMMAND_WORD:
+            return new ViewScheduleCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
-        case ViewScheduleCommand.COMMAND_WORD:
-            return new ViewScheduleCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
