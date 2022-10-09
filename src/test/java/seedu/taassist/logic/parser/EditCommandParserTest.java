@@ -91,7 +91,7 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the classes of the {@code Student} being edited,
+        // while parsing {@code PREFIX_CLASS} alone will reset the classes of the {@code Student} being edited,
         // parsing it together with a valid class results in error
         assertParseFailure(parser, "1" + CLASS_DESC_FRIEND + CLASS_DESC_HUSBAND + MODULE_CLASS_EMPTY,
                 ModuleClass.MESSAGE_CONSTRAINTS);

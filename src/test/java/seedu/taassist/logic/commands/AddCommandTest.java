@@ -157,6 +157,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteModuleClass(ModuleClass moduleClass) {
             throw new AssertionError("This method should not be called.");
         }
@@ -172,10 +177,6 @@ public class AddCommandTest {
         }
 
         public ObservableList<ModuleClass> getModuleClassList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -233,6 +234,11 @@ public class AddCommandTest {
         public boolean hasStudent(Student student) {
             requireNonNull(student);
             return studentsAdded.stream().anyMatch(student::isSameStudent);
+        }
+
+        @Override
+        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
+            return true;
         }
 
         @Override

@@ -7,6 +7,7 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import seedu.taassist.commons.core.Messages;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.student.Student;
@@ -52,6 +53,11 @@ public class AddCommand extends Command {
 
         if (model.hasStudent(student)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
+
+        if (!model.hasModuleClasses(student.getModuleClasses())) {
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
+                    model.getModuleClassList()));
         }
 
         model.addStudent(student);
