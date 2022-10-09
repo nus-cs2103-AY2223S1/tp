@@ -30,14 +30,14 @@ public class AddInternshipCommand extends Command {
             + PREFIX_COMPANY_NAME + "COMPANY_NAME "
             + PREFIX_INTERNSHIP_ROLE + "INTERNSHIP_ROLE "
             + PREFIX_INTERNSHIP_STATUS + "INTERNSHIP_STATUS "
-            + PREFIX_PERSON_ID + "PERSON_ID "
-            + PREFIX_INTERVIEW_DATE + "INTERVIEW_DATE\n"
+            + "[" + PREFIX_PERSON_ID + "PERSON_ID] "
+            + "[" + PREFIX_INTERVIEW_DATE + "INTERVIEW_DATE]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY_NAME + "Google "
             + PREFIX_INTERNSHIP_ROLE + "Frontend Engineer "
             + PREFIX_INTERNSHIP_STATUS + "PENDING "
             + PREFIX_PERSON_ID + "1 "
-            + PREFIX_INTERVIEW_DATE + "2022-10-21 12:00 ";
+            + PREFIX_INTERVIEW_DATE + "2022-10-21 12:00";
 
     public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book";
