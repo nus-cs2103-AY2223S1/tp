@@ -23,6 +23,7 @@ import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.PocBuilder;
+import seedu.address.testutil.TypicalCompanies;
 import seedu.address.testutil.TypicalPoc;
 
 public class CompanyTest {
@@ -86,17 +87,16 @@ public class CompanyTest {
         aliceCopy.addPoc(elleCopy);
         assertTrue(aliceCopy.getPocs().contains(elleCopy));
 
-        assertFalse(aliceCopy.getPocs().contains(BENSON));
+        assertFalse(aliceCopy.getPocs().contains(AMY));
     }
 
     @Test
     public void containsPoc() {
-        Company company = new CompanyBuilder(ALICE).build();
-        company.addPoc(BENSON);
-        assertTrue(company.containsPoc(BENSON));
+        Company company = new CompanyBuilder(TypicalCompanies.BENSON).build();
+        assertTrue(company.hasPoc(BENSON));
 
         // Invalid Poc
-        assertFalse(company.containsPoc(AMY));
+        assertFalse(company.hasPoc(AMY));
     }
 
     @Test

@@ -24,10 +24,10 @@ public class TypicalCompanies {
             .withTags("friends").build();
     public static final Company BENSON = new CompanyBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withAddedPoc(TypicalPoc.BENSON).build();
     public static final Company CARL = new CompanyBuilder().withName("Carl Kurz").withAddress("wall street").build();
     public static final Company DANIEL = new CompanyBuilder().withName("Daniel Meier")
-            .withAddress("10th street").withTags("friends").build();
+            .withAddress("10th street").withTags("friends").withAddedPoc(TypicalPoc.DANIEL).build();
     public static final Company ELLE = new CompanyBuilder().withName("Elle Meyer")
             .withAddress("michegan ave").build();
     public static final Company FIONA = new CompanyBuilder().withName("Fiona Kunz")
@@ -56,11 +56,11 @@ public class TypicalCompanies {
      * Returns an {@code JeeqTracker} with all the typical companies.
      */
     public static JeeqTracker getTypicalJeeqTracker() {
-        JeeqTracker ab = new JeeqTracker();
+        JeeqTracker jq = new JeeqTracker();
         for (Company company : getTypicalCompanies()) {
-            ab.addCompany(company);
+            jq.addCompany(company);
         }
-        return ab;
+        return jq;
     }
 
     public static List<Company> getTypicalCompanies() {
