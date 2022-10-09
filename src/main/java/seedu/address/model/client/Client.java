@@ -2,6 +2,7 @@ package seedu.address.model.client;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +26,28 @@ public class Client {
     private ClientId id;
 
     //Represents a Collection of projects that the client is responsible for
-    private Set<Project> projects;
+    private ClientProjectList projects;
+
+    //Represents the client type
+    private Type type;
+
+    /**
+     * Constructs a client with inputs given by the user.
+     * @param name String representing name of the client
+     * @param phone String representing phone number of the client
+     * @param email String representing email address of the client
+     * @param type Type representing the type of the client
+     */
+    public Client(String name, String phone, String email, Type type) {
+        //to be added
+        requireNonNull(name);
+        this.name = new ClientName(name);
+        this.phone = new ClientPhone(phone);
+        this.email = new ClientEmail(email);
+        this.id = ClientId.generateId(this.name);
+        this.projects = new ClientProjectList();
+        this.type = type;
+    }
 
     /**
      * Constructs a client with inputs given by the user.
@@ -40,40 +62,8 @@ public class Client {
         this.phone = new ClientPhone(phone);
         this.email = new ClientEmail(email);
         this.id = ClientId.generateId(this.name);
-        this.projects = new HashSet<>();
-    }
-
-
-    /**
-     * Adds a project to the set of projects under this client.
-     * @param project
-     */
-    public void addProject(Project project) {
-        this.projects.add(project);
-    }
-
-    /**
-     * Deletes a project from the set of projects under this client.
-     * @param project
-     */
-    public void removeProject(Project project) {
-        this.projects.remove(project);
-    }
-
-    /**
-     * Returns a list of all the projects under this client.
-     * @return String representing all projects under this client
-     */
-    public String listAllProjects() {
-        return this.projects.toArray().toString();
-    }
-
-    /**
-     * Returns the number of projects under this client.
-     * @return int representing number of projects under this client.
-     */
-    public int getProjectCount() {
-        return this.projects.size();
+        this.projects = new ClientProjectList();
+        this.type =  Type.UNSPECIFIED;
     }
 
     /**
@@ -106,6 +96,22 @@ public class Client {
      */
     public String getClientPhone() {
         return this.phone.getPhoneRepresentation();
+    }
+
+    /**
+     * Returns a list containing the projects the client is associated with.
+     * @return String representing client's projects.
+     */
+    public String getClientProjectList() {
+        return this.projects.listAllProjects();
+    }
+
+    /**
+     * Returns the type of the client.
+     * @return String representing client type
+     */
+    public String getClientType() {
+        return this.type.toString();
     }
 
     /**

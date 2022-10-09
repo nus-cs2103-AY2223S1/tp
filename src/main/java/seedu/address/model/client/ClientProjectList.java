@@ -11,7 +11,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class ClientProjectList {
 
-    ArrayList<Project> projects;
+    private ArrayList<Project> projects;
 
     /**
      * Constructs an empty project list.

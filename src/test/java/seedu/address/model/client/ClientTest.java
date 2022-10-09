@@ -9,23 +9,27 @@ import org.junit.jupiter.api.Test;
 public class ClientTest {
     @Test
     public void constructor_nullParam_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Client(null, "12345678", "abc@gmail.com"));
+        assertThrows(NullPointerException.class, () -> new Client(null, "12345678", "abc@gmail.com",
+                Type.UNSPECIFIED));
     }
 
     @Test
     public void constructor_invalidArguments_throwsIllegalArgumentException() {
 
         String invalidEmail = "_abc@gmail.com";
-        assertThrows(IllegalArgumentException.class, () -> new Client("Harry", "12345678", invalidEmail));
+        assertThrows(IllegalArgumentException.class, () -> new Client("Harry", "12345678", invalidEmail,
+                Type.INDIVIDUAL));
 
         String invalidPhone = "123";
-        assertThrows(IllegalArgumentException.class, () -> new Client("Harry", invalidPhone, "ac@cd.com"));
+        assertThrows(IllegalArgumentException.class, () -> new Client("Harry", invalidPhone, "ac@cd.com",
+                Type.EMPLOYER));
     }
 
     @Test
     public void constructor_generates_defaultValues() {
         Client client = new Client("Harry", "12345678", "abc@gmail.com");
         assertNotNull(client.getClientId());
-        assertEquals(0, client.getProjectCount());
+        assertEquals("none", client.getClientProjectList());
+        assertEquals("UNSPECIFIED", client.getClientType());
     }
 }

@@ -5,5 +5,5 @@ package seedu.address.model.client;
  * individual.
  */
 public enum Type {
-    INDIVIDUAL, ORGANIZATION, EMPLOYER
+    INDIVIDUAL, ORGANIZATION, EMPLOYER, UNSPECIFIED
 }
