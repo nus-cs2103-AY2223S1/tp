@@ -2,9 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.HospitalWingContainsKeywordsPredicate;
+import seedu.address.model.person.PatientType;
+import seedu.address.model.person.PatientTypePredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Finds and lists all patients within a hospital wing.
@@ -28,7 +33,10 @@ public class GetHospitalWingCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        PatientTypePredicate patientTypePredicate = new PatientTypePredicate(PatientType.PatientTypes.INPATIENT);
+        Predicate<Person> inPatientHospitalWingPredicate = patientTypePredicate.and(predicate);
+        model.updateFilteredPersonList(inPatientHospitalWingPredicate);
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
