@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.role.Buyer;
+import seedu.address.model.role.Seller;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -117,6 +118,11 @@ public class ModelManager implements Model {
         addressBook.setBuyerRole(person, buyer);
     }
 
+    @Override
+    public void setSellerRole(Person person, Seller seller) {
+        requireAllNonNull(person, seller);
+        person.setSeller(seller);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**

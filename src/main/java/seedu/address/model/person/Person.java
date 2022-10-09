@@ -4,11 +4,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.address.Address;
 import seedu.address.model.role.Buyer;
+import seedu.address.model.role.Seller;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,7 +28,9 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Buyer buyer;
+    private Optional<Buyer> buyer = Optional.empty();
+
+    private Optional<Seller> seller = Optional.empty();
 
     /**
      * Every field must be present and not null.
@@ -37,7 +42,6 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.buyer = null;
     }
 
     /**
@@ -45,6 +49,13 @@ public class Person {
      */
     public boolean isBuyer() {
         return buyer != null;
+    }
+
+    /**
+     * Temporarily for UI Testing of Add Seller Command
+     */
+    public boolean isSeller() {
+        return seller.isPresent();
     }
 
     public Name getName() {
@@ -72,21 +83,33 @@ public class Person {
     }
 
     public void setBuyer(Buyer buyer) {
-        this.buyer = buyer;
+        this.buyer = Optional.of(buyer);
+    }
+
+    public void setSeller(Seller seller) {
+        // TODO: tell using we are overriding seller if it is present
+        this.seller = Optional.of(seller);
+    }
+
+    public List<Integer> getSellerProperties() {
+        Seller s = seller.orElseThrow();
+        return s.getProperties();
     }
 
     /**
      * Temporarily for UI Testing of Add Buyer Command
      */
     public String getBuyerRange() {
-        return buyer.getRange();
+        Buyer b = buyer.orElseThrow();
+        return b.getRange();
     }
 
     /**
      * Temporarily for UI Testing of Add Buyer Command
      */
     public String getBuyerCharacteristics() {
-        return buyer.getCharacteristics();
+        Buyer b = buyer.orElseThrow();
+        return b.getCharacteristics();
     }
 
     /**
@@ -140,6 +163,10 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
+        if (seller.isPresent()) {
+            builder.append("; Selling: ")
+                    .append(getSellerProperties());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
