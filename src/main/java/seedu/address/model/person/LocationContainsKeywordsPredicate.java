@@ -8,8 +8,9 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Person}'s {@code Address} matches any of the keywords given.
  */
-public class LocationContainsKeywordsPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+public class LocationContainsKeywordsPredicate
+        implements Predicate<Person> {
+    final List<String> keywords;
 
     public LocationContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
