@@ -31,7 +31,8 @@ public class SampleDataUtil {
         personData.setEmail(new Email("alexyeoh@example.com"));
         personData.setAddress(new Address("Blk 30 Geylang Street 29, #06-40"));
         personData.setTags(getTagSet("friends"));
-        personData.setAttendances(getAttendedSet("T01"));
+        personData.setAttendances(getAttendedSet("T01", "T02"));
+        personData.addAttendances(getNotAttendedSet("T03"));
         personDatas.add(personData);
 
         personData = new PersonData();;

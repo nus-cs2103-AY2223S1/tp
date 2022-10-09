@@ -59,7 +59,12 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getAttendances().stream()
                 .sorted(Comparator.comparing(attendance -> attendance.className))
-                .forEach(attendance -> attendances.getChildren().add(new Label(attendance.className)));
+                .map(attendance -> {
+                    Label x = new Label(attendance.className);
+                    x.setId(attendance.hasAttended ? "present" : "absent");
+                    return x;
+                })
+                .forEach(attendance -> attendances.getChildren().add(attendance));
     }
 
     @Override
