@@ -171,7 +171,7 @@
     -fx-font-size: 20pt;
     -fx-text-fill: black;
     -fx-padding:  20 20 20 20;
-    -fx-background-insets: 0;
+
 }
 
 .result-display .label {

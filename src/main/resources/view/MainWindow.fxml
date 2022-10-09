@@ -32,7 +32,7 @@
           </Menu>
         </MenuBar>
 
-        <StackPane style="-fx-background-color: white;" fx:id="resultDisplayPlaceholder" mouseTransparent="true" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane style="-fx-background-color: white;" fx:id="resultDisplayPlaceholder" mouseTransparent="false" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
         </StackPane>
 
 
