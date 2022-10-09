@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.StatusContainsKeywordPredicate;
+import seedu.address.model.person.ApplicationStatusPredicate;
 
 
 
@@ -19,12 +19,12 @@ public class FilterCommandTest {
 
     @Test
     public void equals() {
-        StatusContainsKeywordPredicate firstPredicate =
-                new StatusContainsKeywordPredicate("pending");
-        StatusContainsKeywordPredicate secondPredicate =
-                new StatusContainsKeywordPredicate("accepted");
-        StatusContainsKeywordPredicate thirdPredicate =
-                new StatusContainsKeywordPredicate("rejected");
+        ApplicationStatusPredicate firstPredicate =
+                new ApplicationStatusPredicate("pending");
+        ApplicationStatusPredicate secondPredicate =
+                new ApplicationStatusPredicate("accepted");
+        ApplicationStatusPredicate thirdPredicate =
+                new ApplicationStatusPredicate("rejected");
 
         FilterCommand filterFirstCommand = new FilterCommand(firstPredicate);
         FilterCommand filterSecondCommand = new FilterCommand(secondPredicate);

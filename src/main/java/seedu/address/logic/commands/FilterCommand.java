@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.StatusContainsKeywordPredicate;
+import seedu.address.model.person.ApplicationStatusPredicate;
 
 /**
  * Filters all applicants in address book whose status matches the keyword
@@ -16,12 +16,12 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all persons by the specified "
             + "application status (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD\n"
+            + "Parameters: pending/accepted/rejected\n"
             + "Example: " + COMMAND_WORD + " pending";
 
-    private final StatusContainsKeywordPredicate predicate;
+    private final ApplicationStatusPredicate predicate;
 
-    public FilterCommand(StatusContainsKeywordPredicate predicate) {
+    public FilterCommand(ApplicationStatusPredicate predicate) {
         this.predicate = predicate;
     }
 
