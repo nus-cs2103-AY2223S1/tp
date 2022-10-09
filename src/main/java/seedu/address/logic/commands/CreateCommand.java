@@ -77,10 +77,12 @@ public class CreateCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_POC, poc.getName()));
         }
 
-        companyToEdit.addPoc(poc);
+        Company editedCompany = companyToEdit;
+        editedCompany.addPoc(poc);
+        model.setCompany(companyToEdit, editedCompany);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, poc.getName(), companyToEdit));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, poc.getName(), editedCompany));
     }
 
     @Override
