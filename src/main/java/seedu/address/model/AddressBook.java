@@ -20,7 +20,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final DistinctModuleList modules;
-
     private final DistinctTaskList tasks;
 
     /*
@@ -109,12 +108,28 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules.addModule(mod);
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks.setTasks(tasks);
+    //// task-level operations
+
+    /**
+     * Returns true if a task with the same module and description as {@code task} exists in the task list.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
     }
+
+    /**
+     * Adds a task to the task list.
+     * The task must not already exist in the task list.
+     */
     public void addTask(Task task) {
         tasks.addTask(task);
     }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
     //// util methods
 
     @Override

@@ -37,4 +37,15 @@ public class Module {
         return otherModule == this || otherModule.moduleCode.equals(this.moduleCode);
     }
 
+    @Override
+    public boolean equals(Object otherModule) {
+        return otherModule == this || (otherModule instanceof Module
+                && isSameModuleCode((Module) otherModule));
+    }
+
+    @Override
+    public String toString() {
+        return getModuleCode().toString();
+    }
+
 }

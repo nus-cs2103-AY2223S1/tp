@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
 
 
 /**
@@ -21,13 +22,25 @@ public class DistinctTaskList implements Iterable<Task> {
             .unmodifiableObservableList(taskList);
 
     /**
+     * Returns true if the list contains an equivalent task as the given argument.
+     */
+    public boolean contains(Task toCheck) {
+        requireNonNull(toCheck);
+        return taskList.stream().anyMatch(toCheck::isSameTask);
+    }
+
+    /**
      * Adds the task to the taskList.
+     * The task must not already exist in the list.
      *
      * @param taskAdded The task to be added.
      */
     public void addTask(Task taskAdded) {
         requireNonNull(taskAdded);
         //Might have to add address book as param to check if addressBook already has module
+        if (contains(taskAdded)) {
+            throw new DuplicateTaskException();
+        }
         taskList.add(taskAdded);
     }
 
