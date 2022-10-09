@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.FloorNumberContainsKeywordsPredicate;
@@ -7,17 +11,17 @@ import seedu.address.model.person.PatientType;
 import seedu.address.model.person.PatientTypePredicate;
 import seedu.address.model.person.Person;
 
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Finds and lists all patients within all given floor numbers separated by a whitespace.
+ * Integers must be positive.
+ */
 public class GetFloorNumberCommand extends Command {
     public static final String COMMAND_WORD = "get";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients within the same floor number"
             + "and displays them as a list with index numbers.\n"
             + "Parameters: FLOOR_NUMBER (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " /fn 10";
+            + "Example: " + COMMAND_WORD + " /fn 10 4 3";
 
     private final FloorNumberContainsKeywordsPredicate predicate;
 

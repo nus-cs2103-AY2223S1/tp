@@ -1,8 +1,11 @@
 package seedu.address.model.person;
 
-import java.util.function.Predicate;
 import java.util.List;
+import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Person}'s {@code Floor Number} matches any of the floor numbers given.
+ */
 public class FloorNumberContainsKeywordsPredicate implements Predicate<Person> {
     private final List<FloorNumber> floorNumbers;
 

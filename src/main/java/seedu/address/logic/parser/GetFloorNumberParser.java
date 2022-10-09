@@ -1,15 +1,18 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.logic.commands.GetFloorNumberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.FloorNumberContainsKeywordsPredicate;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
+/**
+ * Parses input arguments and creates a new GetFloorNumberCommand object
+ */
 public class GetFloorNumberParser implements Parser<GetFloorNumberCommand> {
 
     /**

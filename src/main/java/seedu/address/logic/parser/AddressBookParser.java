@@ -2,7 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FLOOR_NUMBER_PARSER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING_PARSER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INPATIENT_PARSER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_PARSER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTPATIENT_PARSER;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +24,6 @@ import seedu.address.logic.commands.GetOutpatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
 
 /**
  * Parses user input.
