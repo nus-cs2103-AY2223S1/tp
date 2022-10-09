@@ -63,12 +63,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
 
         if (argMultimap.getValue(PREFIX_MASTERYCHECK).isPresent()) {
-            try {
-                masteryCheck = ParserUtil.parseMasteryCheck(argMultimap.getValue(PREFIX_MASTERYCHECK).get());
-            } catch (DateTimeParseException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        MasteryCheck.MESSAGE_CONSTRAINTS));
-            }
+            masteryCheck = ParserUtil.parseMasteryCheck(argMultimap.getValue(PREFIX_MASTERYCHECK).get());
         } else {
             masteryCheck = MasteryCheck.EMPTY_MASTERYCHECK;
         }
