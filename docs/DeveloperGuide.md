@@ -363,89 +363,69 @@ Step 1 and 2 is repeated until all members have been added
     * 1b1. EZLead informs Team Lead that the team does not exist
 
       Use case ends
+    
+
+**Use case: UC4 - Renaming a team's name**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**Guarantee: Selected team is renamed to the new given name**
 
 **MSS**
 
-1. LinkUp request user username and password
-2. User input username and password
-3. LinkUp authorise the user
+1. Team Lead specifies the old team and the new team name.
+2. EZLead updates the name of the team.
 
-**Extension**
+**Extensions:**
 
-* 3a. Account does not exist.
+* 1a. Team Lead enters the wrong command.
 
-    * 3a1. LinkUp shows an error message.
+    * 1a1. EZLead displays an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
-* 3b. Incorrect password
+* 1b. Old team name does not exist in EZLead's database.
 
-    * 3b1. LinkUp shows an error message.
+    * 1b1. EZLead displays an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
-**Use case: Adding member into a team**
+* 1c. New name is already used by another team.
 
-**MSS**
+    * 1c1. EZLead displays an error message.
 
-1. User requests to list all team
-2. EZLead show a list of teams
-3. User requests to add a member into the teams through username
-4. EZLead add the member into the team
+      Use case ends.
 
-**Extensions**
 
-* 2a. The team list is empty.
+**Use case: UC5 - Removing team members from a team**
 
-  Use case ends.
+**Actor: Team Lead**
 
-* 3a. The given username does not exist.
+**Prerequisites: A team with existing members exists**
 
-    * 3a1. EZlead shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Delete an account**
+**Guarantee: Selected team member is removed from the selected team.**
 
 **MSS**
 
-1.  User requests to list all users
-2.  EZLead shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  EZLead deletes the person
+1. Team Lead specifies the name of the team and name of the team member to be removed.
+2. EZLead removes the team member from the team.
 
-    Use case ends.
+**Extensions:**
 
-**Extensions**
+* 1a. Specified team does not exist.
 
-* 2a. The list is empty.
+    * 1a1. EZLead displays an error message.
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
+* 1b. Specified team member does not exist.
 
-    * 3a1. LinkUp shows an error message.
+    * 1b1. EZLead displays an error message.
 
-      Use case resumes at step 2.
-
-**Use case: Creating a team**
-
-**MSS**
-
-1. User specify the name of the team
-2. EZLead create a team with specified name with User as leader
-3. User specify account username to add into the team
-4. EZLead add the accounts into the team
-
-**Extension**
-
-* 1a. Another team with the same name already exist.
-
-    * 1a1. EZLead shows an error message
-
-      Use case resumes at step 1.
-
-
+      Use case ends.
+    
 
 *{More to be added}*
 
