@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
@@ -19,7 +23,7 @@ public class Team {
 
     // Identity fields
     private final Name name;
-    private ArrayList<Person> members;
+    private UniquePersonList members;
     private TaskList tasks = new TaskList();
 
 
@@ -31,7 +35,7 @@ public class Team {
         requireAllNonNull(name);
         this.name = name;
         this.tasks = new TaskList();
-        members = new ArrayList<>();
+        this.members = new UniquePersonList();
     }
 
     /**
@@ -70,8 +74,8 @@ public class Team {
      * Returns list of members in the team
      * @return members
      */
-    public ArrayList<Person> getMembers() {
-        return members;
+    public ObservableList<Person> getMembers() {
+        return members.asUnmodifiableObservableList();
     }
 
     /**

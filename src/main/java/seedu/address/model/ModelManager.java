@@ -42,9 +42,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        // Temp code
-        // todo replace this code
-        ObservableList<Team> team = FXCollections.observableArrayList();
         filteredTeams = new FilteredList<>(this.addressBook.getTeamList());
 
     }
