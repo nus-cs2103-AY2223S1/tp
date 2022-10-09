@@ -8,15 +8,43 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.ALICE;
 import static seedu.address.testutil.TypicalCompanies.BOB;
+import static seedu.address.testutil.TypicalPoc.AMY;
+import static seedu.address.testutil.TypicalPoc.BENSON;
 import static seedu.address.testutil.TypicalPoc.ELLE;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CreateCommand;
 import seedu.address.model.poc.Poc;
+import seedu.address.model.poc.UniquePocList;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.PocBuilder;
+import seedu.address.testutil.TypicalPoc;
 
 public class CompanyTest {
+
+    @Test
+    public void constructor_nullName_throwsNullPointerException() {
+        UniquePocList pocs = new UniquePocList();
+        Set<Tag> tags = new HashSet<>();
+        assertThrows(NullPointerException.class, () -> new Company(null, new Address(VALID_ADDRESS_BOB), tags, pocs));
+    }
+
+    @Test
+    public void constructor_nullAddress_throwsNullPointerException() {
+        UniquePocList pocs = new UniquePocList();
+        Set<Tag> tags = new HashSet<>();
+        assertThrows(NullPointerException.class, () -> new Company(new Name(VALID_NAME_BOB), null, tags, pocs));
+    }
+
+    @Test
+    public void constructor_nullIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new CreateCommand(null, TypicalPoc.ALICE));
+    }
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
@@ -57,6 +85,18 @@ public class CompanyTest {
         Poc elleCopy = new PocBuilder(ELLE).build();
         aliceCopy.addPoc(elleCopy);
         assertTrue(aliceCopy.getPocs().contains(elleCopy));
+
+        assertFalse(aliceCopy.getPocs().contains(BENSON));
+    }
+
+    @Test
+    public void containsPoc() {
+        Company company = new CompanyBuilder(ALICE).build();
+        company.addPoc(BENSON);
+        assertTrue(company.containsPoc(BENSON));
+
+        // Invalid Poc
+        assertFalse(company.containsPoc(AMY));
     }
 
     @Test

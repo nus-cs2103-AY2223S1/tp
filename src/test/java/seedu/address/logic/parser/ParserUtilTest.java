@@ -57,6 +57,12 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseInvalidName_throwsParseException() {
+        assertThrows(ParseException.class, Name.MESSAGE_CONSTRAINTS, ()
+                -> ParserUtil.parsePersonName("%$&^"));
+    }
+
+    @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }
