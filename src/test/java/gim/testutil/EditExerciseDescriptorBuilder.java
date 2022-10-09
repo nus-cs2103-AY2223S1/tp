@@ -66,8 +66,8 @@ public class EditExerciseDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditExerciseDescriptor} that we are building.
      */
-    public EditExerciseDescriptorBuilder withRep(String address) {
-        descriptor.setRep(new Rep(address));
+    public EditExerciseDescriptorBuilder withRep(String rep) {
+        descriptor.setRep(new Rep(rep));
         return this;
     }
 

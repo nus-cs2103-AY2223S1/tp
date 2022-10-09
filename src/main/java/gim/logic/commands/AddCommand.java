@@ -27,12 +27,11 @@ public class AddCommand extends Command {
             + PREFIX_REP + "REPS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_WEIGHT + "98765432 "
-            + PREFIX_SETS + "johnd@example.com "
-            + PREFIX_REP + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "Squat "
+            + PREFIX_WEIGHT + "60 "
+            + PREFIX_SETS + "1 "
+            + PREFIX_REP + "5 "
+            + PREFIX_TAG + "25/01/2022";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the address book";

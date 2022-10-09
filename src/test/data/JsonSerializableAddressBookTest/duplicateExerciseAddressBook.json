@@ -3,12 +3,12 @@
     "name": "Alice Pauline",
     "weight": "94351253",
     "sets": "alice@example.com",
-    "rep": "123, Jurong West Ave 6, #08-111",
+    "rep": "1",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "weight": "94351253",
     "sets": "pauline@example.com",
-    "rep": "4th street"
+    "rep": "2"
   } ]
 }

@@ -29,8 +29,8 @@ public class RepTest {
         assertFalse(Rep.isValidRep(" ")); // spaces only
 
         // valid Reps
-        assertTrue(Rep.isValidRep("Blk 456, Den Road, #01-355"));
-        assertTrue(Rep.isValidRep("-")); // one character
-        assertTrue(Rep.isValidRep("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long Rep
+        assertTrue(Rep.isValidRep("0")); // single digit
+        assertTrue(Rep.isValidRep("15")); // double digit
+        assertTrue(Rep.isValidRep("123")); // triple digit
     }
 }
