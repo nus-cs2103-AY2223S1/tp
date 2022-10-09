@@ -14,7 +14,6 @@ import javafx.scene.layout.Region;
  * Panel containing the list of persons.
  */
 public class EateryListPanel extends UiPart<Region> {
-
     private static final String FXML = "EateryListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(EateryListPanel.class);
 
