@@ -16,4 +16,5 @@ public class Messages {
     public static final String MESSAGE_NO_ACTIVE_COMMISSION = "This command requires you to open a commission first!";
     public static final String MESSAGE_INVALID_ITERATION_DATE = "The iteration date provided is invalid. "
             + "The input format should be YYYY-MM-DD.";
+    public static final String MESSAGE_INVALID_ITERATION_DISPLAYED_INDEX = "The iteration index provided is invalid";
 }
