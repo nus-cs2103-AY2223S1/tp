@@ -31,6 +31,7 @@ public class JsonAdaptedCommission {
     private final Double fee;
     private final LocalDate deadline;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedIteration> iterations = new ArrayList<>();
     private final Boolean isCompleted;
 
     /**
@@ -41,14 +42,21 @@ public class JsonAdaptedCommission {
                                  @JsonProperty("fee") Double fee,
                                  @JsonProperty("deadline") LocalDate deadline,
                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                                 @JsonProperty("iterations") List<JsonAdaptedIteration> iterations,
                                  @JsonProperty("isCompleted") Boolean isCompleted) {
         this.title = title;
         this.description = description;
         this.fee = fee;
         this.deadline = deadline;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+
+        if (iterations != null) {
+            this.iterations.addAll(iterations);
+        }
+
         this.isCompleted = isCompleted;
     }
 
@@ -62,6 +70,9 @@ public class JsonAdaptedCommission {
         deadline = source.getDeadline().deadline;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        iterations.addAll(source.getIterations().asUnmodifiableObservableList().stream()
+                .map(JsonAdaptedIteration::new)
                 .collect(Collectors.toList()));
         isCompleted = source.getCompletionStatus().isCompleted;
     }
@@ -120,8 +131,14 @@ public class JsonAdaptedCommission {
 
         final CompletionStatus modelCompletionStatus = new CompletionStatus(isCompleted);
 
-        return new Commission(modelTitle, modelDescription, modelFee, modelDeadline, modelTags, modelCompletionStatus,
-                null);
+        Commission convertedCommission = new Commission(modelTitle, modelDescription, modelFee,
+                modelDeadline, modelTags, modelCompletionStatus, null);
+
+        for (JsonAdaptedIteration iteration : iterations) {
+            convertedCommission.addIteration(iteration.toModelType());
+        }
+
+        return convertedCommission;
     }
 
 }

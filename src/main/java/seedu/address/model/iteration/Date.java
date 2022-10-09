@@ -10,7 +10,7 @@ import java.time.LocalDate;
  */
 public class Date {
 
-    private final LocalDate date;
+    public final LocalDate date;
 
     /**
      * Constructs a {@code Date}.

@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Feedback {
 
-    private final String feedback;
+    public final String feedback;
 
     /**
      * Constructs a {@code Feedback}.
