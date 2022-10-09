@@ -58,6 +58,7 @@ public class Tag {
      * @returns "tag1, tag2, tag3"
      */
     public static String toString(Collection<Tag> tags) {
+        requireNonNull(tags);
         if (tags.isEmpty()) {
             return "";
         }
