@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.exceptions.IllegalValueException;
+import foodwhere.model.commons.Name;
 import foodwhere.model.stall.Address;
-import foodwhere.model.stall.Name;
 
 public class JsonAdaptedStallTest {
     private static final String INVALID_NAME = "R@chel";

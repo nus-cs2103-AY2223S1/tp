@@ -15,9 +15,9 @@ import foodwhere.commons.util.CollectionUtil;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.Model;
+import foodwhere.model.commons.Name;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
-import foodwhere.model.stall.Name;
 import foodwhere.model.stall.Stall;
 
 /**

@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 import foodwhere.model.AddressBook;
 import foodwhere.model.ReadOnlyAddressBook;
+import foodwhere.model.commons.Name;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
-import foodwhere.model.stall.Name;
 import foodwhere.model.stall.Stall;
 
 /**

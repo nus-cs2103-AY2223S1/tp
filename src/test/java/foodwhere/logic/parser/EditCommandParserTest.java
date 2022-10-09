@@ -23,9 +23,9 @@ import org.junit.jupiter.api.Test;
 import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.EditCommand;
+import foodwhere.model.commons.Name;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
-import foodwhere.model.stall.Name;
 import foodwhere.testutil.EditStallDescriptorBuilder;
 import foodwhere.testutil.TypicalIndexes;
 

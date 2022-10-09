@@ -13,9 +13,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.logic.parser.exceptions.ParseException;
+import foodwhere.model.commons.Name;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.stall.Address;
-import foodwhere.model.stall.Name;
 import foodwhere.testutil.TypicalIndexes;
 
 public class ParserUtilTest {

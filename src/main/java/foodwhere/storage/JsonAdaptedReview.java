@@ -10,12 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import foodwhere.commons.exceptions.IllegalValueException;
+import foodwhere.model.commons.Name;
 import foodwhere.model.detail.Detail;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Review;
-import foodwhere.model.review.StallName;
-import foodwhere.model.stall.Name;
 import foodwhere.model.stall.Stall;
 
 /**
@@ -92,7 +91,7 @@ class JsonAdaptedReview {
 
         final Set<Detail> modelDetails = new HashSet<>(reviewDetails);
 
-        return new Review(new StallName(modelName.fullName), modelDate, modelContent, modelDetails);
+        return new Review(new Name(modelName.fullName), modelDate, modelContent, modelDetails);
     }
 
 }
