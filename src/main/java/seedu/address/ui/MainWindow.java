@@ -133,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
         customerDetailsPane = new CustomerDetailsPane(logic.getSelectedCustomer());
         customerDetailsPanePlaceholder.getChildren().add(customerDetailsPane.getRoot());
 
-        commissionListPanel = new CommissionListPanel(logic.getFilteredCommissionList());
+        commissionListPanel = new CommissionListPanel(logic.getObservableFilteredCommissionList());
         commissionListPanelPlaceholder.getChildren().add(commissionListPanel.getRoot());
     }
 

@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
@@ -70,7 +71,7 @@ class JsonAdaptedCustomer {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
 
-        commissions.addAll(source.getCommissions().stream()
+        commissions.addAll(StreamSupport.stream(source.getCommissions().spliterator(), false)
                 .map(JsonAdaptedCommission::new)
                 .collect(Collectors.toList()));
 
@@ -87,7 +88,7 @@ class JsonAdaptedCustomer {
             customerTags.add(tag.toModelType());
         }
 
-        final Set<Commission> personCommissions = new HashSet<>();
+        final UniqueCommissionList personCommissions = new UniqueCommissionList();
         for (JsonAdaptedCommission commission : commissions) {
             personCommissions.add(commission.toModelType());
         }

@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.ObservableObject;
@@ -68,8 +70,8 @@ public class LogicManager implements Logic {
 
 
     @Override
-    public ObservableList<Commission> getFilteredCommissionList() {
-        return model.getFilteredCommissionList();
+    public ObservableValue<FilteredList<Commission>> getObservableFilteredCommissionList() {
+        return model.getObservableFilteredCommissionList();
     }
 
     @Override

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMMISSIONS;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
+import seedu.address.model.customer.Customer;
 
 /**
  * Deletes the commission of an existing customer in the ArtBuddy.
@@ -38,17 +39,15 @@ public class DeleteCommissionCommand extends Command {
         if (!model.hasSelectedCustomer()) {
             throw new CommandException(Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
         }
-
+        Customer selectedCustomer = model.getSelectedCustomer().getValue();
         List<Commission> lastShownList = model.getFilteredCommissionList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (lastShownList == null || targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
         }
 
         Commission commissionToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteCommission(commissionToDelete);
-
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        selectedCustomer.removeCommission(commissionToDelete);
+        model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_COMMISSION_SUCCESS, commissionToDelete));
     }
