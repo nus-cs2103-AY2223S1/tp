@@ -129,4 +129,42 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
+
+    @Test
+    public void getTargetPersonAsObservableList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () ->
+                modelManager.getTargetPersonAsObservableList().remove(0));
+    }
+
+    @Test
+    public void setTargetPerson_setPersonAsTarget_personIsSetAsTargetPerson() {
+        modelManager.setTargetPerson(ALICE);
+        assertTrue(modelManager.isTargetPerson(ALICE));
+    }
+
+    @Test
+    public void clearTargetPerson_clearTargetPerson_noTargetPersonAfterClear() {
+        modelManager.setTargetPerson(ALICE);
+        assertTrue(modelManager.hasTargetPerson());
+        modelManager.clearTargetPerson();
+        assertFalse(modelManager.hasTargetPerson());
+    }
+
+    @Test
+    public void hasTargetPerson_targetPersonNotSet_returnsFalse() {
+        assertFalse(modelManager.hasTargetPerson());
+    }
+
+    @Test
+    public void hasTargetPerson_targetPersonSet_returnsTrue() {
+        modelManager.setTargetPerson(ALICE);
+        assertTrue(modelManager.hasTargetPerson());
+    }
+
+    @Test
+    public void getTargetPerson_getTargetPerson_currentTargetPerson() {
+        modelManager.setTargetPerson(ALICE);
+        assertEquals(ALICE, modelManager.getTargetPerson());
+    }
+
 }
