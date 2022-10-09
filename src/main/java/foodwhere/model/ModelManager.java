@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import foodwhere.commons.core.GuiSettings;
 import foodwhere.commons.core.LogsCenter;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,7 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Stall> filteredStalls;
-    private final FilteredList<Stall> filteredReviews;
+    private final FilteredList<Review> filteredReviews;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.

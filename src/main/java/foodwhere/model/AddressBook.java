@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Objects;
 
+import foodwhere.model.review.Review;
+import foodwhere.model.review.UniqueReviewList;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.UniqueStallList;
 import javafx.collections.ObservableList;
@@ -16,7 +18,7 @@ import javafx.collections.ObservableList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueStallList stalls;
-    private final UniqueStallList reviews;
+    private final UniqueReviewList reviews;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,7 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         stalls = new UniqueStallList();
-        reviews = new UniqueStallList();
+        reviews = new UniqueReviewList();
     }
 
     public AddressBook() {}
@@ -54,8 +56,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the review list with {@code reviews}.
      * {@code reviews} must not contain duplicate reviews.
      */
-    public void setReviews(List<Stall> reviews) {
-        this.reviews.setStalls(reviews);
+    public void setReviews(List<Review> reviews) {
+        this.reviews.setReviews(reviews);
     }
 
     /**
@@ -110,7 +112,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a review with the same identity as {@code review} exists in the address book.
      */
-    public boolean hasReview(Stall review) {
+    public boolean hasReview(Review review) {
         requireNonNull(review);
         return reviews.contains(review);
     }
@@ -119,7 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a review to the address book.
      * The review must not already exist in the address book.
      */
-    public void addReview(Stall p) {
+    public void addReview(Review p) {
         reviews.add(p);
     }
 
@@ -128,17 +130,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The review identity of {@code editedReview} must not be the same as another existing review in the address book.
      */
-    public void setReview(Stall target, Stall editedReview) {
+    public void setReview(Review target, Review editedReview) {
         requireNonNull(editedReview);
 
-        reviews.setStall(target, editedReview);
+        reviews.setReview(target, editedReview);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeReview(Stall key) {
+    public void removeReview(Review key) {
         reviews.remove(key);
     }
 
@@ -157,7 +159,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Stall> getReviewList() {
+    public ObservableList<Review> getReviewList() {
         return reviews.asUnmodifiableObservableList();
     }
 

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import foodwhere.commons.exceptions.IllegalValueException;
 import foodwhere.model.AddressBook;
 import foodwhere.model.ReadOnlyAddressBook;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.exceptions.StallNotFoundException;
 
@@ -69,7 +70,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addStall(stall);
 
-            for (Stall review : jsonAdaptedStall.getModelReviews()) {
+            for (Review review : jsonAdaptedStall.getModelReviews()) {
                 addressBook.addReview(review);
             }
         }

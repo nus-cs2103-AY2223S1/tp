@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import foodwhere.commons.exceptions.IllegalValueException;
 import foodwhere.model.detail.Detail;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Name;
 import foodwhere.model.stall.Stall;
@@ -61,7 +62,7 @@ class JsonAdaptedStall {
      *
      * @throws IllegalValueException if there are data constraints violated in the name of the stall.
      */
-    public boolean isReviewOfStall(Stall review) throws IllegalValueException {
+    public boolean isReviewOfStall(Review review) throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -71,7 +72,7 @@ class JsonAdaptedStall {
     /**
      * Adds the review to the stall.
      */
-    public void addReview(Stall review) {
+    public void addReview(Review review) {
         reviews.add(new JsonAdaptedReview(review));
     }
 
@@ -112,8 +113,8 @@ class JsonAdaptedStall {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted stall.
      */
-    public List<Stall> getModelReviews() throws IllegalValueException {
-        final List<Stall> modelReviews = new ArrayList<>();
+    public List<Review> getModelReviews() throws IllegalValueException {
+        final List<Review> modelReviews = new ArrayList<>();
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));

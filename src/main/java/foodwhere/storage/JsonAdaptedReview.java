@@ -11,7 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import foodwhere.commons.exceptions.IllegalValueException;
 import foodwhere.model.detail.Detail;
-import foodwhere.model.stall.Address;
+import foodwhere.model.review.Content;
+import foodwhere.model.review.Date;
+import foodwhere.model.review.Review;
+import foodwhere.model.review.StallName;
 import foodwhere.model.stall.Name;
 import foodwhere.model.stall.Stall;
 
@@ -45,9 +48,9 @@ class JsonAdaptedReview {
     /**
      * Converts a given {@code Review} into this class for Jackson use.
      */
-    public JsonAdaptedReview(Stall source) {
-        this.date = "";
-        this.content = source.getAddress().toString(); // proxy - to change
+    public JsonAdaptedReview(Review source) {
+        this.date = source.getDate().value;
+        this.content = source.getContent().value;
         details.addAll(source.getDetails().stream()
                 .map(JsonAdaptedDetail::new)
                 .collect(Collectors.toList()));
@@ -58,7 +61,7 @@ class JsonAdaptedReview {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted stall.
      */
-    public Stall toModelType(Name modelName) throws IllegalValueException {
+    public Review toModelType(Name modelName) throws IllegalValueException {
         if (modelName == null) {
             throw new IllegalValueException(String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT,
                     Name.class.getSimpleName()));
@@ -69,18 +72,27 @@ class JsonAdaptedReview {
             reviewDetails.add(detail.toModelType());
         }
 
+        if (date == null) {
+            throw new IllegalValueException(String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT,
+                    Date.class.getSimpleName()));
+        }
+        if (Date.isValidDate(date)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        }
+        final Date modelDate = new Date(date);
+
         if (content == null) {
             throw new IllegalValueException(String.format(JsonAdaptedStall.MISSING_FIELD_MESSAGE_FORMAT,
-                    Address.class.getSimpleName()));
+                    Content.class.getSimpleName()));
         }
-        if (Address.isValidAddress(content)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (Content.isValidContent(content)) {
+            throw new IllegalValueException(Content.MESSAGE_CONSTRAINTS);
         }
+        final Content modelContent = new Content(content); // to add later
 
-        final Address modelContent = new Address(content);
         final Set<Detail> modelDetails = new HashSet<>(reviewDetails);
 
-        return new Stall(modelName, modelContent, modelDetails);
+        return new Review(new StallName(modelName.fullName), modelDate, modelContent, modelDetails);
     }
 
 }
