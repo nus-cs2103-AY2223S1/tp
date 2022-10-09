@@ -86,9 +86,9 @@ public class AddressBookParser {
             return new UnmarkCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            if (!descriptor.equals("")) {
+            if (!descriptor.isEmpty()) {
                 return new ListCommand(descriptor);
-            } else if (!arguments.equals("")) {
+            } else if (!arguments.isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
             } else {
                 throw new ParseException(INCOMPLETE_COMMAND);

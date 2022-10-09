@@ -60,8 +60,8 @@ public class EditPatientCommand extends Command {
      * @param editPersonDescriptor details to edit the person with
      */
     public EditPatientCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        this.index = index;
         requireNonNull(editPersonDescriptor);
+        this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -107,8 +107,8 @@ public class EditPatientCommand extends Command {
     private void updateDisplay(Model model, Person editedPerson, List<Appointment> appointments) {
         for (Appointment appointment : appointments) {
             appointment.setPatient(editedPerson);
-            model.refreshAppointment(appointment);
         }
+        model.refreshAppointments(appointments);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }

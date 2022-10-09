@@ -113,6 +113,18 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
         sortList();
     }
 
+    /**
+     * Refreshes the given appointments {@code appointments},
+     * forcing the app to visually show any updated changes back to the user.
+     *
+     * @param appointments The given list of appointments.
+     */
+    public void refreshAppointments(List<Appointment> appointments) {
+        for (Appointment appointment : appointments) {
+            setAppointment(appointment, appointment);
+        }
+    }
+
     private void sortList() {
         internalList.sort(Comparator.comparing(Appointment::getDateTime));
     }

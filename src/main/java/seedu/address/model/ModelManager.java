@@ -133,6 +133,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void refreshAppointments(List<Appointment> appointments) {
+        requireNonNull(appointments);
+
+        addressBook.refreshAppointments(appointments);
+    }
+
+    @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);

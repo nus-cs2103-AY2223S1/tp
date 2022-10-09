@@ -35,7 +35,8 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         }
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
-        addDetails(editAppointmentDescriptor, argMultimap);
+        addReason(editAppointmentDescriptor, argMultimap);
+        addDate(editAppointmentDescriptor, argMultimap);
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
@@ -44,7 +45,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         return new EditAppointmentCommand(patientIndex, appointmentIndex, editAppointmentDescriptor);
     }
 
-    private void addDetails(EditAppointmentDescriptor descriptor, ArgumentMultimap argMultimap) throws ParseException {
+    private void addReason(EditAppointmentDescriptor descriptor, ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
             String reason = argMultimap.getValue(PREFIX_REASON).get().trim();
             if (Appointment.isValidReason(reason)) {
@@ -53,7 +54,9 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                 throw new ParseException(Appointment.REASON_MESSAGE_CONSTRAINTS);
             }
         }
+    }
 
+    private void addDate(EditAppointmentDescriptor descriptor, ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             String dateTime = argMultimap.getValue(PREFIX_DATE).get().trim();
             if (Appointment.isValidDateTime(dateTime)) {
