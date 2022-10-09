@@ -4,8 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 
+import seedu.address.model.client.Client;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.person.client.Client;
 
 /**
  * Represents a Project.
