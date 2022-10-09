@@ -94,7 +94,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `CreateCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -110,8 +110,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `CreateCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `CreateCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `CreateCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -387,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. No client name was provided.
 
-    * 1a1. IBook shows an error message with suggested format
+    * 1a1. IBook shows an empty list
 
       Use case ends.
 
@@ -417,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. No such client number was found.
 
-    * 1b1. IBook shows an error message with suggested format
+    * 1b1. IBook shows an empty list
   
       Use case ends.
 
@@ -427,7 +427,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 - Delete a person**
+**Use case: UC07 - Finding a client by address**
+
+**MSS**
+1. User requests to find a specific client by address
+
+2. IBook shows a list of matching clients
+
+3. IBook informs the user of number of clients found
+
+   Use case ends.
+
+**Extensions**
+* 1a. No client address was provided.
+
+    * 1a1. IBook shows an error message with suggested format
+
+      Use case ends.
+
+* 1b. No such client address was found.
+
+    * 1b1. IBook shows an empty list
+
+      Use case ends.
+    
+**Use case: UC08 - Delete a person**
 
 **MSS**
 1. User requests to <u>find a client by name(UC05)</u>
@@ -438,7 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC08 - Clearing all entries**
+**Use case: UC09 - Clearing all entries**
 
 **MSS**
 1. User requests to clear all entries
@@ -449,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC08 - Exiting IBook**
+**Use case: UC10 - Exiting IBook**
 
 **MSS**
 1. User requests to exit
