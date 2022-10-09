@@ -3,12 +3,12 @@ package seedu.condonery.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.condonery.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.condonery.commons.core.Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW;
 import static seedu.condonery.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.condonery.testutil.TypicalPersons.CARL;
-import static seedu.condonery.testutil.TypicalPersons.ELLE;
-import static seedu.condonery.testutil.TypicalPersons.FIONA;
-import static seedu.condonery.testutil.TypicalPersons.getTypicalPropertyDirectory;
+import static seedu.condonery.testutil.TypicalProperties.CARL;
+import static seedu.condonery.testutil.TypicalProperties.ELLE;
+import static seedu.condonery.testutil.TypicalProperties.FIONA;
+import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
 import seedu.condonery.model.UserPrefs;
-import seedu.condonery.model.person.NameContainsKeywordsPredicate;
+import seedu.condonery.model.property.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -55,21 +55,21 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noPropertyFound() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPropertyList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPropertyList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPropertyList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPropertyList());
     }

@@ -41,7 +41,6 @@ import seedu.condonery.model.person.Email;
 import seedu.condonery.model.person.Name;
 import seedu.condonery.model.person.Phone;
 import seedu.condonery.model.tag.Tag;
-import seedu.condonery.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 

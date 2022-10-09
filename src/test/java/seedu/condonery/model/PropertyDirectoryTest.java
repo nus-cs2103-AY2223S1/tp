@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.condonery.model.person.Person;
 import seedu.condonery.model.person.exceptions.DuplicatePersonException;
-import seedu.condonery.testutil.PersonBuilder;
+import seedu.condonery.testutil.PropertyBuilder;
 
 public class PropertyDirectoryTest {
 
@@ -46,7 +46,7 @@ public class PropertyDirectoryTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PropertyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         PropertyDirectoryStub newData = new PropertyDirectoryStub(newPersons);
@@ -73,7 +73,7 @@ public class PropertyDirectoryTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInPropertyDirectory_returnsTrue() {
         propertyDirectory.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PropertyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         assertTrue(propertyDirectory.hasPerson(editedAlice));
     }

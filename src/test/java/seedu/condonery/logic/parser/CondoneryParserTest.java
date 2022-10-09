@@ -25,8 +25,7 @@ import seedu.condonery.logic.commands.ListCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.person.NameContainsKeywordsPredicate;
 import seedu.condonery.model.person.Person;
-import seedu.condonery.testutil.EditPersonDescriptorBuilder;
-import seedu.condonery.testutil.PersonBuilder;
+import seedu.condonery.testutil.PropertyBuilder;
 import seedu.condonery.testutil.PersonUtil;
 
 public class CondoneryParserTest {
@@ -35,7 +34,7 @@ public class CondoneryParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
+        Person person = new PropertyBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
@@ -55,7 +54,7 @@ public class CondoneryParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
+        Person person = new PropertyBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
             + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
