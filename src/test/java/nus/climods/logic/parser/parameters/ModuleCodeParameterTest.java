@@ -16,7 +16,7 @@ import nus.climods.logic.parser.exceptions.ParseException;
  */
 public class ModuleCodeParameterTest {
     private static List<String> validCodes = List.of("CS2103", "CS2106", "CS2102");
-    private static String INVALID_CODE_MESSAGE = "Invalid code";
+    private static final String INVALID_CODE_MESSAGE = "Invalid code";
     private static Optional<ModuleCode> convertModuleCode(String code) {
         if (!validCodes.contains(code)) {
             return Optional.empty();

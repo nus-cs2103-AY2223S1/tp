@@ -1,6 +1,5 @@
 package org.openapitools.client.api;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -8,9 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.openapitools.client.ApiException;
-import org.openapitools.client.model.Module;
-import org.openapitools.client.model.ModuleCondensed;
-import org.openapitools.client.model.ModuleInformation;
 
 
 /**
