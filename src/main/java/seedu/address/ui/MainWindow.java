@@ -123,6 +123,9 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        pocListPanel = new PocListPanel();
+        pocListPanelPlaceholder.getChildren().add(pocListPanel.getRoot());
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getJeeqTrackerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -192,6 +195,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            pocListPanel.setPocList(logic.getFilteredCompanyList().get(0).getPocs().asUnmodifiableObservableList());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

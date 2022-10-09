@@ -10,6 +10,8 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.poc.Poc;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Panel containing the list of pocs.
  */
@@ -21,16 +23,24 @@ public class PocListPanel extends UiPart<Region> {
     private ListView<Poc> pocListView;
 
     /**
-     * Creates a {@code PocListPanel} with the given {@code ObservableList}.
+     * Creates a {@code PocListPanel} with an empty {@code ObservableList}.
      */
-    public PocListPanel(ObservableList<Poc> pocList) {
+    public PocListPanel() {
         super(FXML);
+    }
+
+    /**
+     * Sets the {@code PocListPanel} with the pocs from {@code ObservableList}.
+     */
+    public void setPocList(ObservableList<Poc> pocList) {
+        requireNonNull(pocList);
+
         pocListView.setItems(pocList);
         pocListView.setCellFactory(listView -> new PocListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Company} using a {@code CompanyCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Poc} using a {@code PocCard}.
      */
     class PocListViewCell extends ListCell<Poc> {
         @Override
