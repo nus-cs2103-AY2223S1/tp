@@ -379,7 +379,7 @@ MSS:
 3. User enters command to add a specified tag from the desired items.
 4. FoodRem informs user that the tag has been updated successfully.
    Use case ends.
-5. 
+
 Extensions:
 - 1a. FoodRem detects that there is an issue with the command entered.
     - 1a1. FoodRem requests for the command to be entered again.
