@@ -12,7 +12,7 @@
     "phone" : "98765432",
     "lessonPlan" : "Trigonometry",
     "homework": [ "Science worksheet" ],
-    "gradeProgress": ["Math: A"],
+    "gradeProgress": [ ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
