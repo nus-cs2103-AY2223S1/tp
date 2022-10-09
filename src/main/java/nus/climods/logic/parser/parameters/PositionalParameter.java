@@ -21,7 +21,7 @@ public class PositionalParameter<T> {
     protected final int index;
     protected final List<String> arguments;
 
-    // Return non-empty Optional if valid T, else empty Optional
+    // Returns non-empty Optional if valid T, else empty Optional
     protected Function<String, Optional<T>> conversionFunction;
     protected Optional<T> optionalArg;
 
