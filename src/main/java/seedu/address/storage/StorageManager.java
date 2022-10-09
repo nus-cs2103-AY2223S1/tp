@@ -57,7 +57,6 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException {
-        // TODO: readTaskList(Path filePath)
         return readTaskList(taskStorage.getTaskListFilePath());
     }
 

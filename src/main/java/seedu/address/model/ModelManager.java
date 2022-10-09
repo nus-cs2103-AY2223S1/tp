@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -93,10 +94,15 @@ public class ModelManager implements Model {
         return taskList.hasTask(task);
     }
 
+    public void setTask(Task task, Index targetIndex) {
+        taskList.setTask(task, targetIndex);
+    }
+
     @Override
     public ReadOnlyTaskList getTaskList() {
         return taskList;
     }
+
     //=========== AddressBook ================================================================================
 
     @Override

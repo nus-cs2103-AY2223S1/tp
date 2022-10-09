@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -71,6 +72,7 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+<<<<<<< HEAD
      * Adds a new task to taskList
      */
     void addTask(Task task);
@@ -79,6 +81,11 @@ public interface Model {
      * Return true if there is duplicated task in the taskList
      */
     boolean hasTask(Task task);
+
+     /** Replaces the given task {@code target} with {@code editedTask}.
+     * {@code task} must exist in the task list.
+     */
+    void setTask(Task task, Index targetIndex);
 
     /**
      * Adds the given person.

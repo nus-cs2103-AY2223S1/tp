@@ -19,6 +19,7 @@ import seedu.address.model.task.Task;
 public class JsonAdaptedTask {
     private final String title;
     private final String deadline;
+    private final boolean status;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -26,9 +27,11 @@ public class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline,
+                           @JsonProperty("status") boolean status,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.deadline = deadline;
+        this.status = status;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -40,6 +43,7 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         title = source.getTitle();
         deadline = source.getDeadline();
+        status = source.getStatus();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -71,7 +75,9 @@ public class JsonAdaptedTask {
 
         final String modelDeadline = this.deadline;
 
+        final boolean modelStatus = this.status;
+
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelTitle, modelDeadline, modelTags);
+        return new Task(modelTitle, modelDeadline, modelStatus, modelTags);
     }
 }
