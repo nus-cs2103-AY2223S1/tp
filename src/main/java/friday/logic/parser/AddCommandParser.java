@@ -8,6 +8,7 @@ import static friday.logic.parser.CliSyntax.PREFIX_TAG;
 import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -29,6 +30,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
@@ -55,15 +57,26 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
-            consultation = ParserUtil.parseConsultation(LocalDate.parse(argMultimap
-                    .getValue(PREFIX_CONSULTATION).get()));
+            try {
+                consultation = ParserUtil.parseConsultation(LocalDate.parse(argMultimap
+                        .getValue(PREFIX_CONSULTATION).get()));
+            } catch (DateTimeParseException e) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        Consultation.MESSAGE_CONSTRAINTS));
+            }
         } else {
             consultation = Consultation.EMPTY_CONSULTATION;
         }
 
+
         if (argMultimap.getValue(PREFIX_MASTERYCHECK).isPresent()) {
-            masteryCheck = ParserUtil.parseMasteryCheck(LocalDate.parse(argMultimap
-                    .getValue(PREFIX_MASTERYCHECK).get()));
+            try {
+                masteryCheck = ParserUtil.parseMasteryCheck(LocalDate.parse(argMultimap
+                        .getValue(PREFIX_MASTERYCHECK).get()));
+            } catch (DateTimeParseException e) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        MasteryCheck.MESSAGE_CONSTRAINTS));
+            }
         } else {
             masteryCheck = MasteryCheck.EMPTY_MASTERY_CHECK;
         }
