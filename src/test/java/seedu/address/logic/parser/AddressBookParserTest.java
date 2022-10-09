@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +27,8 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -51,6 +54,22 @@ public class AddressBookParserTest {
     public void parseCommand_clear() throws ParseException {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    }
+
+    @Test
+    public void parseCommand_mark() throws ParseException {
+        MarkCommand command = (MarkCommand) parser.parseCommand(
+                MarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
+        assertEquals(new MarkCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
+    }
+
+    @Test
+    public void parseCommand_unmark() throws ParseException {
+        UnmarkCommand command = (UnmarkCommand) parser.parseCommand(
+                UnmarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
+        assertEquals(new UnmarkCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
     }
 
     @Test
