@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -29,6 +30,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_HOMEWORK_AMY = "English editing worksheet";
+    public static final String VALID_HOMEWORK_BOB = "Chemistry worksheet 14";
     public static final String VALID_LESSON_PLAN_AMY = "Amy's course basics";
     public static final String VALID_LESSON_PLAN_BOB = "Bob's course basics";
     public static final String VALID_TAG_HUSBAND = "husband";
