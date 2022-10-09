@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
+import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -91,6 +92,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Checks if the new schedule to be added conflicts with existing ones
+     * @param newSchedule new schedule to be added
+     * @return true if conflicts; otherwise, false.
+     */
+    public boolean conflictSchedule(Schedule newSchedule) {
+        requireNonNull(newSchedule);
+        Module targetModule = getModuleByModuleCode(newSchedule.getModule());
+        return targetModule.conflictAnySchedule(newSchedule);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -104,6 +116,29 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addModule(Module m) {
         modules.add(m);
+    }
+
+    /**
+     * Finds the module by the module code
+     * @param moduleCode module code
+     * @return target module
+     */
+    public Module getModuleByModuleCode(String moduleCode) {
+        for (Module module: modules) {
+            if (module.getCode().toString().equals(moduleCode)) {
+                return module;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Adds a new schedule to a module
+     * @param s
+     */
+    public void addSchedule(Schedule s) {
+        Module targetModule = getModuleByModuleCode(s.getModule());
+        targetModule.addSchedule(s);
     }
 
     /**

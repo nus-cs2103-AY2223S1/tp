@@ -5,10 +5,17 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.schedule.ClassType;
+import seedu.address.model.module.schedule.Schedule;
+import seedu.address.model.module.schedule.Venue;
+import seedu.address.model.module.schedule.Weekdays;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -160,4 +167,113 @@ public class ParserUtil {
         String trimmedID = info.trim();
         return info;
     }
+
+    /**
+     * Parses module code.
+     *
+     * @param moduleCode user's input of module code
+     * @throws ParseException if the format is incorrect
+     */
+    public static String parseModule(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        Pattern pattern = Pattern.compile("[a-z]{2,3}[0-9]{4}");
+        Matcher matcher = pattern.matcher(moduleCode);
+        if (!matcher.find()) {
+            throw new ParseException(Module.MESSAGE_MODULE_CODE_CONSTRAINT);
+        }
+        return matcher.group();
+    }
+
+    /**
+     * Parses weekday
+     * @param weekday user's input of weekday
+     * @return Weekdays
+     * @throws ParseException if weekday does not exist
+     */
+    public static Weekdays parseWeekday(String weekday) throws ParseException {
+        requireNonNull(weekday);
+        switch (weekday.trim().toLowerCase()) {
+        case "monday":
+            return Weekdays.Monday;
+        case "tuesday":
+            return Weekdays.Tuesday;
+        case "wednesday":
+            return Weekdays.Wednesday;
+        case "thursday":
+            return Weekdays.Thursday;
+        case "friday":
+            return Weekdays.Friday;
+        case "saturday":
+            return Weekdays.Saturday;
+        case "sunday":
+            return Weekdays.Sunday;
+        default:
+            throw new ParseException(Schedule.MESSAGE_WEEKDAYS_CONSTRAINT);
+        }
+    }
+
+    /**
+     * Parses class start time
+     * @param startTime user's input of class start time
+     * @return class start time
+     * @throws ParseException if time format is invalid
+     */
+    public static String parseClassStartTime(String startTime) throws ParseException {
+        requireNonNull(startTime);
+        Pattern pattern = Pattern.compile("[0-9]{2}:[0-9]{2}-[0-9]{2}:[0-9]{2}");
+        Matcher matcher = pattern.matcher(startTime.trim());
+        if (!matcher.find()) {
+            throw new ParseException(Schedule.MESSAGE_CLASS_TIME_CONSTRAINT);
+        }
+        return matcher.group().split("-")[0];
+    }
+
+    /**
+     * Parses class end time
+     * @param endTime user's input of class end time
+     * @return class end time
+     * @throws ParseException if time format is invalid
+     */
+    public static String parseClassEndTime(String endTime) throws ParseException {
+        requireNonNull(endTime);
+        Pattern pattern = Pattern.compile("[0-9]{2}:[0-9]{2}-[0-9]{2}:[0-9]{2}");
+        Matcher matcher = pattern.matcher(endTime.trim());
+        if (!matcher.find()) {
+            throw new ParseException(Schedule.MESSAGE_CLASS_TIME_CONSTRAINT);
+        }
+        return matcher.group().split("-")[1];
+    }
+
+    /**
+     * Parses class type
+     * @param classType user's input of class type
+     * @return ClassType
+     * @throws ParseException if class type doesn't exist
+     */
+    public static ClassType parseClassType(String classType) throws ParseException {
+        switch (classType.trim()) {
+        case "lec":
+            return ClassType.Lecture;
+        case "tut":
+            return ClassType.Tutorial;
+        case "lab":
+            return ClassType.Lab;
+        case "rec":
+            return ClassType.Reflection;
+        default:
+            throw new ParseException(Schedule.MESSAGE_CLASS_TYPE_CONSTRAINT);
+        }
+    }
+
+    /**
+     * Parses class venue.
+     * @param venue venue name
+     * @return venue
+     */
+    public static Venue parseVenue(String venue) {
+        requireNonNull(venue);
+        return new Venue(venue.trim());
+    }
+
+
 }
