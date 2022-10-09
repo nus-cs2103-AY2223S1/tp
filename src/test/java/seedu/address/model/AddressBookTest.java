@@ -7,8 +7,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudents.STUDENT1;
+import static seedu.address.testutil.TypicalStudents.STUDENT2;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 import static seedu.address.testutil.TypicalTutors.TUTOR1;
+import static seedu.address.testutil.TypicalTutors.TUTOR2;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,6 +27,7 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.model.tuitionclass.exceptions.DuplicateTuitionClassException;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TuitionClassBuilder;
 import seedu.address.testutil.TutorBuilder;
@@ -79,6 +83,8 @@ public class AddressBookTest {
         List<Person> newTutors = Arrays.asList();
         List<TuitionClass> newTuitionClasses = Arrays.asList(TUITIONCLASS2, editedTuitionClass);
         AddressBookStub newData = new AddressBookStub(newStudents, newTutors, newTuitionClasses);
+
+        assertThrows(DuplicateTuitionClassException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -105,6 +111,14 @@ public class AddressBookTest {
     }
 
     @Test
+    public void editStudent_checkIfEdited() {
+        Student editedStudent = new StudentBuilder(STUDENT1).withName("Benson Meier").build();
+        addressBook.addPerson(STUDENT1);
+        addressBook.setPerson(STUDENT1, editedStudent);
+        assertTrue(addressBook.hasPerson(STUDENT2));
+    }
+
+    @Test
     public void hasTutor_tutorWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(TUTOR1);
         Tutor editedTutor = new TutorBuilder(TUTOR1).withPhone("91006745").build();
@@ -112,10 +126,33 @@ public class AddressBookTest {
     }
 
     @Test
+    public void editTutor_checkIfEdited() {
+        Tutor editedTutor = new TutorBuilder(TUTOR2).withName("Alice Pauline").build();
+        addressBook.addPerson(TUTOR1);
+        addressBook.setPerson(TUTOR1, editedTutor);
+        assertFalse(addressBook.hasPerson(TUTOR2));
+    }
+
+    @Test
     public void hasTuitionClass_tuitionClassWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addTuitionClass(TUITIONCLASS2);
         TuitionClass editedTuitionClass = new TuitionClassBuilder(TUITIONCLASS2).withSubject("MATHEMATICS").build();
         assertTrue(addressBook.hasTuitionClass(editedTuitionClass));
+    }
+
+    @Test
+    public void hasTuitionClass_removeTuitionClass_checkIfRemoved() {
+        addressBook.addTuitionClass(TUITIONCLASS2);
+        addressBook.removeTuitionClass(TUITIONCLASS2);
+        assertFalse(addressBook.hasTuitionClass(TUITIONCLASS2));
+    }
+
+    @Test
+    public void editTuitionClass_checkIfEdited() {
+        TuitionClass editedTuitionClass = new TuitionClassBuilder(TUITIONCLASS2).withName("P2MATH").build();
+        addressBook.addTuitionClass(TUITIONCLASS2);
+        addressBook.setTuitionClass(TUITIONCLASS2, editedTuitionClass);
+        assertTrue(addressBook.hasTuitionClass(TUITIONCLASS1));
     }
 
     @Test
