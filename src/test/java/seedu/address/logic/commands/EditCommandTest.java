@@ -23,9 +23,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -36,12 +37,15 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
+        Person editedPerson = new PatientBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
+        String expectedMessage = "";
+        if (editedPerson instanceof Patient) {
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "patient", editedPerson);
+        } else {
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "person", editedPerson);
+        }
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
@@ -53,7 +57,7 @@ public class EditCommandTest {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastPerson);
+        PatientBuilder personInList = new PatientBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
@@ -61,7 +65,12 @@ public class EditCommandTest {
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = "";
+        if (editedPerson instanceof Patient) {
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "patient", editedPerson);
+        } else {
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "person", editedPerson);
+        }
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
@@ -74,7 +83,12 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = "";
+        if (editedPerson instanceof Patient) {
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "patient", editedPerson);
+        } else {
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "person", editedPerson);
+        }
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -86,11 +100,16 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
+        Person editedPerson = new PatientBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = "";
+        if (editedPerson instanceof Patient) {
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "patient", editedPerson);
+        } else {
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "person", editedPerson);
+        }
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -104,7 +123,14 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        String expectedMessage = "";
+        if (firstPerson instanceof Patient) {
+            expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, "patient");
+        } else {
+            expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, "person");
+        }
+
+        assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test
@@ -116,7 +142,14 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        String expectedMessage = "";
+        if (personInList instanceof Patient) {
+            expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, "patient");
+        } else {
+            expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, "person");
+        }
+
+        assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test

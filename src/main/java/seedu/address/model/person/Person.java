@@ -56,6 +56,9 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+    public String getCategory() {
+        return null;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

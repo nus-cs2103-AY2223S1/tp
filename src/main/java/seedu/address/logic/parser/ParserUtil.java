@@ -2,20 +2,21 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Gender;
-import seedu.address.model.person.Date;
-import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -68,36 +69,33 @@ public class ParserUtil {
         return trimmedCategory;
     }
 
+
     /**
-     * Parses a {@code String date} into a {@code Date}.
+     * Parses a {@code String dateTime} into a {@code DateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code date} is invalid.
+     * @throws ParseException if the given {@code dateTime} is invalid.
      */
-    public static Date parseDate(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedDate = date.trim();
+    public static DateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
 
-        if (!Date.isValidDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
-        return new Date(trimmedDate);
+        return new DateTime(trimmedDateTime);
     }
 
     /**
-     * Parses a {@code String time} into a {@code Time}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code time} is invalid.
+     * Parses {@code Collection<String> dateTime} into a {@code List<DateTime>}.
      */
-    public static Time parseTime(String time) throws ParseException {
-        requireNonNull(time);
-        String trimmedTime = time.trim();
-
-        if (!Time.isValidTime(trimmedTime)) {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+    public static List<DateTime> parseDatesTimes(Collection<String> dateTimes) throws ParseException {
+        requireNonNull(dateTimes);
+        List<DateTime> dateTimeList = new ArrayList<DateTime>();
+        for (String dateTime : dateTimes) {
+            dateTimeList.add(parseDateTime(dateTime));
         }
-        return new Time(trimmedTime);
+        return dateTimeList;
     }
 
     /**

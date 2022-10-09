@@ -8,6 +8,10 @@ import seedu.address.model.Model;
  */
 public abstract class Command {
 
+    public static final String PERSON_INDICATOR = "person";
+    public static final String PATIENT_INDICATOR = "patient";
+    public static final String NURSE_INDICATOR = "nurse";
+
     /**
      * Executes the command and returns the result message.
      *

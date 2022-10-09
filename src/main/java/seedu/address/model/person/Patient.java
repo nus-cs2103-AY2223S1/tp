@@ -2,74 +2,75 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
-import seedu.address.model.person.Date;
-import seedu.address.model.person.Time;
+
 /**
  * Represents a patient that requires home-visit in Healthcare Xpress book.
  */
 public class Patient extends Person {
 
-    private final Date date;
-    private final Time time;
+    private static final String MESSAGE_FOR_EMPTY_DATETIME = "Home Visit date and time has not been set yet.";
+    private final List<DateTime> dateTimes = new ArrayList<>();
 
-    public Patient(Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags, Date date, Time time) {
+    /**
+     * Every field must be present and not null.
+     */
+    public Patient(Name name, Gender gender, Phone phone, Email email, Address address,
+                   Set<Tag> tags, List<DateTime> dateTime) {
         super(name, gender, phone, email, address, tags);
-        this.date = date;
-        this.time = time;
+        requireAllNonNull(dateTime);
+        this.dateTimes.addAll(dateTime);
     }
 
     public String getCategory() {
         return "P";
     }
 
-    public String getDate() {
-        return date.toString();
-    }
-
-    public String getTime() {
-        return time.toString();
-    }
-
-    /**
-     * Returns true if both patients have the same name and gender.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSamePerson(Person otherPerson) {
-        if (!(otherPerson instanceof Patient)) {
-            return false;
-        } else {
-            return super.isSamePerson(otherPerson);
-        }
-    }
-
-    /**
-     * Returns true if both patients have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
-     */
-    @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof Patient)) {
-            return false;
-        } else {
-            Patient otherPatient = (Patient) other;
-            return super.equals(other) && otherPatient.getDate().equals(getDate())
-                    && otherPatient.getTime().equals(getTime());
-        }
-    }
-
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return super.hashCode() + Objects.hash(date, time);
+        return super.hashCode() + Objects.hash(dateTimes);
+    }
+
+    /**
+     * Returns a sorted date and time list
+     */
+    public List<DateTime> getDatesTimes() {
+        DateTimeComparator comp = new DateTimeComparator();
+        Collections.sort(this.dateTimes, comp);
+        return this.dateTimes;
+    }
+
+    public String getDatesTimesInString() {
+        String dateTimeList = "";
+
+        if (this.dateTimes.isEmpty()) {
+            dateTimeList = MESSAGE_FOR_EMPTY_DATETIME;
+            return dateTimeList;
+        }
+
+        DateTimeComparator comp = new DateTimeComparator();
+        Collections.sort(this.dateTimes, comp);
+
+        for (DateTime datetime: this.dateTimes) {
+            dateTimeList = dateTimeList + datetime.toString() + " , ";
+        }
+
+
+        return dateTimeList;
     }
 
     @Override
     public String toString() {
-        return "P " + super.toString() + date + time;
+        String dateTimeList = getDatesTimesInString();
+        return "Category: P " + super.toString()
+                + "; Home Visits Date and Time :" + dateTimeList;
     }
 
 }

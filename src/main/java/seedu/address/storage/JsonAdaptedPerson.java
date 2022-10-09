@@ -11,14 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Date;
-import seedu.address.model.person.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,17 +33,17 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final String date;
-    private final String time;
+    private final List<JsonAdaptedDateTime> dateTimes = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("category") String category, @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("category") String category,
+            @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("date") String date, @JsonProperty("time") String time,
+            @JsonProperty("dateTimes") List<JsonAdaptedDateTime> dateTime,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.category = category;
@@ -52,8 +51,11 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.date = date;
-        this.time = time;
+
+        if (dateTime != null) {
+            this.dateTimes.addAll(dateTime);
+        }
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -63,14 +65,13 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        if (source instanceof Patient) {
-            time = ((Patient) source).getTime();
-            date = ((Patient) source).getDate();
-            category = ((Patient) source).getCategory();
-        } else {
-            category = null;
-            time = null;
-            date = null;
+        category = source.getCategory();
+        boolean isPatient = category.equals("P");
+
+        if (isPatient) {
+            dateTimes.addAll(((Patient) source).getDatesTimes().stream()
+                    .map(JsonAdaptedDateTime::new)
+                    .collect(Collectors.toList()));
         }
         name = source.getName().fullName;
         gender = source.getGender().gender;
@@ -91,6 +92,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<DateTime> patientHomeVisitDatesTimes = new ArrayList<>();
+        for (JsonAdaptedDateTime dateTime : dateTimes) {
+            patientHomeVisitDatesTimes.add(dateTime.toModelType());
         }
 
         if (name == null) {
@@ -134,30 +140,14 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        final List<DateTime> modelDatesTimes = patientHomeVisitDatesTimes;
 
         if (category != null) {
-            if (! (category.equals("P") | category.equals("N"))) {
+            if (!(category.equals("P") | category.equals("N"))) {
                 throw new IllegalValueException("Category can only be P or N. P for Patient, N for nurse");
             }
-            if(category.equals("P")) {
-                if (date == null) {
-                    throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
-                }
-                if (!Date.isValidDate(date)) {
-                    throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
-                }
-                final Date modelDate = new Date(date);
-
-                if (time == null) {
-                    throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
-                }
-                if (!Time.isValidTime(time)) {
-                    throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
-                }
-                final Time modelTime = new Time(time);
-
-                return new Patient(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags, modelDate, modelTime);
-            }
+            return new Patient(modelName, modelGender, modelPhone, modelEmail,
+                    modelAddress, modelTags, modelDatesTimes);
 
         }
         return new Person(modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);

@@ -17,7 +17,7 @@ public class Gender {
     /**
      * The gender can only be F or M.
      */
-    public static final String VALIDATION_REGEX = "[" + FEMALE_SYMBOL +  "|" + MALE_SYMBOL + "]";
+    public static final String VALIDATION_REGEX = "[" + FEMALE_SYMBOL + "|" + MALE_SYMBOL + "]";
 
     public final String gender;
 
