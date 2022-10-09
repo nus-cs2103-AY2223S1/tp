@@ -205,7 +205,7 @@ On the other hand, the `unfocus` command deactivates focus mode.
 * prefers typing to mouse interactions.
 * is reasonably comfortable using CLI apps.
 
-**Value proposition**: 
+**Value proposition**:
 * Fast management of students' grades over the typical GUI-driven app.
 * Easy navigation and batch processing with the help of filter and search functionality.
 * CSV file generation of student data.
@@ -256,11 +256,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The class does not exist.
   * 2a1. TA Assist tells the user that the class does not exist.
-    
+  
     Use case ends
-  
+
 * 4a. The list of students is empty.
-  
+
   Use case resumes at step 5.
 
 * 5a. The list of sessions is empty.
@@ -272,7 +272,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to <u>enter focus mode for a class (UC1)</u>.
 2. User requests to allocate a score for a specific student in the class, for a specific session.
-3. TA Assist updates the score for the student. 
+3. TA Assist updates the score for the student.
 4. TA Assist indicates that the score for the student has been updated.
 
    Use case ends.
@@ -282,7 +282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. TA Assist tells the user that the student does not exist.
 
     Use case ends.
-  
+
 * 3b. The session does not exist in the class.
   * 3b1. TA Assist tells the user that the session does not exist.
 
@@ -300,19 +300,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 2a. The student name is empty.
   * 2a1. TA Assist shows an error message.
-  
+
     Use case ends.
 
 * 2b. The student already exists.
   * 2b1. TA Assist tells the user that the student already exists.
-    
+
     Use case ends.
 
 * 2c. The student's phone number, email address, home address and/or class is/are provided.
   * 2c1. TA Assist creates a student with a name along with these information.
-  
+
     Use case resumes at step 3.
-  
+
 **Use case: UC4 - Delete a student**
 
 **MSS**
@@ -331,7 +331,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
   * 3a1. TA Assist indicates that the index is invalid.
-  
+
     Use case resumes at step 2.
 
 **Use case: UC5 - Create a class**
@@ -346,12 +346,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 2a. The class already exists.
   * 2a1. TA Assist tells the user that the class already exists.
-    
+
     Use case ends.
 
 * 2b. The class name is empty.
   * 2b1. TA Assist shows an error message.
-    
+
     Use case ends.
 
 **Use case: UC6 - Create a session in a class**
@@ -367,7 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 3a. The session already exists.
   * 3a1. TA Assist tells the user that the session already exists.
-  
+
     Use case ends.
 
 * 3b. The session name is empty.
