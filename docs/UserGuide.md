@@ -130,17 +130,25 @@ Shows a list of all persons in the application.
 Format: `list [s/FIELD]`
 
 * Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one the following values:
-  * `n` sort by name
+  * `n` sort by name ignoring case differences
   * `d` Sort by date of birth
   * `g` Sort by gender
 
-* It is optional to specify the field to sort by. If no field is specified, persons are listed in the order they were inserted.
+* It is optional to specify the field to sort by. If no field is specified, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 * Persons with an empty field that is being used to sort will be placed at the top of the list.
+
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The sorted result is persistent on the underlying contacts list.<br><br>
+   
+For example, if `list s/n` and `list` are executed back-to-back, the result of the second `list` command will still display the sorted results from the first `list s/n` command since the sorted result is persistent.
+</div>
 
 Examples:
 * `list` Lists all persons in the order they were inserted.
 * `list s/n` Lists all persons sorted by their names.
+
 
 ### Editing a contact : `edit`
 
