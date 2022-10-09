@@ -12,7 +12,7 @@ public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain numbers, and it should not be blank.";
-    public static final String VALIDATION_REGEX = "\\p{Digit}+$";
+    public static final String VALIDATION_REGEX = "\\d+";
     public final String value;
 
     /**

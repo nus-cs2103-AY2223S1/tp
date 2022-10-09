@@ -51,7 +51,7 @@ public class UniquePropertyList implements Iterable<Property> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the property {@code target} in the list with {@code editedProperty}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
