@@ -61,7 +61,11 @@ public class PersonCard extends UiPart<Region> {
             category.setText("(Unassigned)");
         }
         name.setText(person.getName().fullName);
-        gender.setText(person.getGender().gender);
+        if (person.getGender().gender.equals("M")){
+            gender.setText("Male");
+        } else {
+            gender.setText("Female");
+        }
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
