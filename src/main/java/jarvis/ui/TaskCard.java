@@ -11,7 +11,7 @@ import javafx.scene.layout.Region;
  */
 public class TaskCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskListCard.fxml";
+    private static final String FXML = "TaskCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
