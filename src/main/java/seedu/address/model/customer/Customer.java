@@ -112,7 +112,7 @@ public class Customer {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedCommission}.
+     * Replaces the given commission {@code target} in the list with {@code editedCommission}.
      * {@code target} must exist in the address book.
      * The commission identity of {@code editedCommission} must not be the same as another existing commission in the
      * customer's commission list.
