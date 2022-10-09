@@ -18,9 +18,9 @@ Given below are my contributions to the project.
 * **Project management**: to be added soon
 * **Documentation**: to be added soon
   * User Guide: to be added soon
-  * Developer Guide: to be added soon 
+  * Developer Guide: to be added soon
 * **Community**:
-  * Contribution to team-based tasks: to be added soon 
+  * Contribution to team-based tasks: to be added soon
   * Review/mentoring contributions: to be added soon
 * **Tools**: to be added soon
 * **Contributions beyond the project team** :to be added soon

@@ -261,9 +261,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * private clinic practitioners who do not have access to general health service management applications like Healthhub
 * private clinic practitioners of clinics who still utilise physical paper records to store patient information
 
-**Value proposition**: 
+**Value proposition**:
 * provide doctors with a place to **store and centrally manage their patients’ information**
-* allows doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment 
+* allows doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment
   information) to patients using their stored contact information.
 
 
@@ -294,7 +294,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to add a patient with given input fields.
 2. OmniHealth adds patients with given fields into the list of patients.
-    
+
     Use case ends.
 
 **Extensions**
@@ -341,7 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. OmniHealth shows an error message.
 
         Use case ends.
-    
+
 * 3b. The given index is invalid.
 
     * 3b1. OmniHealth shows an error message.
@@ -394,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list all patients.
 2. OmniHealth shows a list of all patients.
-    
+
     Use case ends.
 
 **Extensions**
@@ -402,7 +402,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The patient list is empty.
 
     * 1a1. OmniHealth shows an error message.
-      
+    
         Use case ends.
 
 **Use case: List all records for a specified patient**
@@ -419,13 +419,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The record list is empty.
 
     * 1a1. OmniHealth shows an error message.
-       
+    
         Use case ends.
 
 * 1b. The given index is invalid.
 
     * 1b1. OmniHealth shows an error message.
-      
+    
         Use case ends.
 
 **Use case: Clear patient list**
@@ -440,7 +440,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Patient list is empty
-    
+
     Use case ends
 
 **Use case: Clear patient records**
@@ -468,7 +468,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to view help
 2. Omnihealth shows list of commands
-    
+
     Use case ends
 
 **Use case: Find patient**
@@ -509,7 +509,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. No keywords matching can be found
     * 3a1. Omnihealth displays error message
-  
+
   Use case ends
 
 *{More to be added}*

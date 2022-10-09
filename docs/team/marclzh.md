@@ -10,9 +10,9 @@ OmniHealth aims to provide doctors with a place to store and centrally manage th
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to search for relevant keywords in records.
-    * What it does: 
+    * What it does:
     * Justification:
-    * Highlights: 
+    * Highlights:
     * Credits: *{}*
 
 * **Code contributed**: [RepoSense link]()
