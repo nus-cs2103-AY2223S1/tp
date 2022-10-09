@@ -70,6 +70,15 @@ public interface Model {
      */
     void addClient(Client client);
 
+    /**
+     * Returns true if a meeting with the same time as {@code meeting} exists in the MyInsuRec.
+     */
+    boolean hasMeeting(Meeting meeting);
+
+    /**
+     * Adds the given client.
+     * {@code meeting} must not already exist in the MyInsuRec.
+     */
     void addMeeting(Meeting meeting);
 
     /**

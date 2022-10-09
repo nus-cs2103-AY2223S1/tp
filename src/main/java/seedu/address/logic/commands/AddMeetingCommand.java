@@ -15,11 +15,16 @@ import java.util.stream.Collectors;
 public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "addMeeting";
+    public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
+    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in MyInsuRec";
 
     private final MeetingDate meetingDate;
     private final MeetingTime meetingTime;
     private final String linkedClientName;
 
+    /**
+     * Creates an AddMeetingCommand to add the specified meeting.
+     */
     public AddMeetingCommand(String clientName, MeetingDate date, MeetingTime time) {
         meetingDate = date;
         meetingTime = time;
@@ -40,10 +45,15 @@ public class AddMeetingCommand extends Command {
                 oldClient.getAddress(),
                 oldClient.getTags());
         Meeting meetingToAdd = new Meeting(newClient, new Description("desc"), meetingDate, meetingTime);
+
+        if (model.hasMeeting(meetingToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+        }
+
         newClient.setMeeting(meetingToAdd);
         model.addMeeting(meetingToAdd);
         model.setClient(oldClient, newClient);
-        return new CommandResult("Add meeting success");
+        return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToAdd));
     }
 
 }
