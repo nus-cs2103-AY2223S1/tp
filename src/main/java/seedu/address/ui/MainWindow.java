@@ -114,8 +114,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        PersonListPanel expenseEntryPanel = new PersonListPanel(logic.getFilteredPersonList());
-        PersonListPanel incomeEntryPanel = new PersonListPanel(logic.getFilteredPersonList());
+
+        PersonListPanel expenseEntryPanel = new PersonListPanel(logic.getFilteredEntryList());
+        PersonListPanel incomeEntryPanel = new PersonListPanel(logic.getFilteredEntryList());
 
         EntryPane entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
         entryPanePlaceholder.getChildren().add(entryPane.getRoot());
