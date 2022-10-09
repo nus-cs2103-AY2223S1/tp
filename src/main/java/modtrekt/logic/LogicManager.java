@@ -13,7 +13,9 @@ import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.TaskBookParser;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.Model;
+import modtrekt.model.ReadOnlyModuleList;
 import modtrekt.model.ReadOnlyTaskBook;
+import modtrekt.model.module.Module;
 import modtrekt.model.task.Task;
 import modtrekt.storage.Storage;
 
@@ -48,6 +50,7 @@ public class LogicManager implements Logic {
         try {
             System.out.println("called");
             storage.saveTaskBook(model.getTaskBook());
+            storage.saveModuleList(model.getModuleList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -68,6 +71,20 @@ public class LogicManager implements Logic {
     @Override
     public Path getTaskBookFilePath() {
         return model.getTaskBookFilePath();
+    }
+
+    public ReadOnlyModuleList getModuleList() {
+        return model.getModuleList();
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return model.getFilteredModuleList();
+    }
+
+    @Override
+    public Path getModuleListFilePath() {
+        return model.getModuleListFilePath();
     }
 
     @Override

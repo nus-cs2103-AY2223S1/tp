@@ -2,17 +2,12 @@ package modtrekt.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import modtrekt.commons.core.index.Index;
 import modtrekt.commons.util.StringUtil;
 import modtrekt.logic.parser.exceptions.ParseException;
-import modtrekt.model.person.Address;
-import modtrekt.model.person.Email;
-import modtrekt.model.person.Phone;
-import modtrekt.model.tag.Tag;
+import modtrekt.model.module.ModCode;
+import modtrekt.model.module.ModCredit;
+import modtrekt.model.module.ModName;
 import modtrekt.model.task.Description;
 
 /**
@@ -36,7 +31,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code ModName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -51,74 +46,46 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String name} into a {@code ModName}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static ModName parseName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!ModName.isValidName(trimmedName)) {
+            throw new ParseException(ModName.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new ModName(trimmedName);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String credit} into an {@code ModCredit}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code credit} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static ModCredit parseCredit(String address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        String trimmedCredit = address.trim();
+        if (!ModCredit.isValidCredit(trimmedCredit)) {
+            throw new ParseException(ModCredit.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new ModCredit(trimmedCredit);
     }
-
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String code} into an {@code ModCode}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code code} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static ModCode parseCode(String code) throws ParseException {
+        requireNonNull(code);
+        String trimmedCode = code.trim();
+        if (!ModCode.isValidCode(trimmedCode)) {
+            throw new ParseException(ModCode.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
+        return new ModCode(trimmedCode);
     }
 }

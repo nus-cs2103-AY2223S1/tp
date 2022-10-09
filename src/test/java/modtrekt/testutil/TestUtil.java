@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 import modtrekt.commons.core.index.Index;
 import modtrekt.model.Model;
+import modtrekt.model.module.Module;
 import modtrekt.model.task.Task;
 
 /**
@@ -35,21 +36,41 @@ public class TestUtil {
     /**
      * Returns the middle index of the task in the {@code model}'s task list.
      */
-    public static Index getMidIndex(Model model) {
+    public static Index getMidIndexTasks(Model model) {
         return Index.fromOneBased(model.getFilteredTaskList().size() / 2);
     }
 
     /**
+     * Returns the middle index of the task in the {@code model}'s module list.
+     */
+    public static Index getMidIndexModules(Model model) {
+        return Index.fromOneBased(model.getFilteredModuleList().size() / 2);
+    }
+    /**
      * Returns the last index of the task in the {@code model}'s task list.
      */
-    public static Index getLastIndex(Model model) {
+    public static Index getLastIndexTasks(Model model) {
         return Index.fromOneBased(model.getFilteredTaskList().size());
+    }
+
+    /**
+     * Returns the last index of the task in the {@code model}'s module list.
+     */
+    public static Index getLastIndexModules(Model model) {
+        return Index.fromOneBased(model.getFilteredModuleList().size());
     }
 
     /**
      * Returns the person in the {@code model}'s person list at {@code index}.
      */
-    public static Task getPerson(Model model, Index index) {
+    public static Task getTask(Model model, Index index) {
         return model.getFilteredTaskList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns the person in the {@code model}'s person list at {@code index}.
+     */
+    public static Module getModule(Model model, Index index) {
+        return model.getFilteredModuleList().get(index.getZeroBased());
     }
 }

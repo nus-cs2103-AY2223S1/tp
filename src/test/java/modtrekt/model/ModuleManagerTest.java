@@ -1,7 +1,10 @@
 package modtrekt.model;
 
 import static modtrekt.testutil.Assert.assertThrows;
+import static modtrekt.testutil.TypicalModules.MA1521;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import modtrekt.commons.core.GuiSettings;
 
-public class ModelManagerTest {
+public class ModuleManagerTest {
 
     private ModelManager modelManager = new ModelManager();
 
@@ -19,6 +22,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new TaskBook(), new TaskBook(modelManager.getTaskBook()));
+        assertEquals(new ModuleList(), new ModuleList(modelManager.getModuleList()));
     }
 
     @Test
@@ -30,6 +34,7 @@ public class ModelManagerTest {
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setTaskBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setModuleListFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
@@ -37,6 +42,7 @@ public class ModelManagerTest {
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
         userPrefs.setTaskBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setModuleListFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -116,4 +122,69 @@ public class ModelManagerTest {
     //        differentUserPrefs.setTaskBookFilePath(Paths.get("differentFilePath"));
     //        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     //    }
+    public void setModuleListFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setModuleListFilePath(null));
+    }
+
+    @Test
+    public void setModuleListFilePath_validPath_setsModuleListFilePath() {
+        Path path = Paths.get("address/book/file/path");
+        modelManager.setModuleListFilePath(path);
+        assertEquals(path, modelManager.getModuleListFilePath());
+    }
+
+    @Test
+    public void hasModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasModule(null));
+    }
+
+    @Test
+    public void hasModule_personNotInModuleList_returnsFalse() {
+        assertFalse(modelManager.hasModule(MA1521));
+    }
+
+    @Test
+    public void hasModule_personInModuleList_returnsTrue() {
+        modelManager.addModule(MA1521);
+        assertTrue(modelManager.hasModule(MA1521));
+    }
+
+    @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredModuleList().remove(0));
+    }
+
+    /*
+    @Test
+    public void equals() {
+        ModuleList addressBook = new ModuleListBuilder().withModule(MA1521).withModule(MA2001).build();
+        ModuleList differentModuleList = new ModuleList();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        modelManager = new ModelManager(addressBook, userPrefs);
+        ModuleManager modelManagerCopy = new ModuleManager(addressBook, userPrefs);
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+        // same object -> returns true
+        assertTrue(modelManager.equals(modelManager));
+
+        // null -> returns false
+        assertFalse(modelManager.equals(null));
+
+        // different types -> returns false
+        assertFalse(modelManager.equals(5));
+
+        // different addressBook -> returns false
+        assertFalse(modelManager.equals(new ModuleManager(differentModuleList, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+
+        // different userPrefs -> returns false
+        UserPrefs differentUserPrefs = new UserPrefs();
+        differentUserPrefs.setModuleListFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModuleManager(addressBook, differentUserPrefs)));
+    }
+     */
 }

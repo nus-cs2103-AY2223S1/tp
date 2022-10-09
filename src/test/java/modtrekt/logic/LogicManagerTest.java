@@ -1,5 +1,6 @@
 package modtrekt.logic;
 
+import static modtrekt.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -17,10 +18,11 @@ import modtrekt.model.Model;
 import modtrekt.model.ModelManager;
 import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.UserPrefs;
+import modtrekt.storage.JsonModuleListStorage;
 import modtrekt.storage.JsonTaskBookStorage;
 import modtrekt.storage.JsonUserPrefsStorage;
 import modtrekt.storage.StorageManager;
-import modtrekt.testutil.Assert;
+
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -36,7 +38,8 @@ public class LogicManagerTest {
         JsonTaskBookStorage taskBookStorage =
                 new JsonTaskBookStorage(temporaryFolder.resolve("taskBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage);
+        JsonModuleListStorage moduleListStorage = new JsonModuleListStorage(temporaryFolder.resolve("modulelist.json"));
+        StorageManager storage = new StorageManager(taskBookStorage, moduleListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -48,7 +51,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "remove 9";
+        String deleteCommand = "remove -t 9";
         assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
@@ -71,6 +74,10 @@ public class LogicManagerTest {
     //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     //    }
 
+    @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredModuleList().remove(0));
+    }
 
     /**
      * Executes the command and confirms that
@@ -112,7 +119,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getModuleList(), model.getTaskBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -126,7 +133,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage, Model expectedModel) {
-        Assert.assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }
 

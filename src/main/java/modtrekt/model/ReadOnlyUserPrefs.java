@@ -12,5 +12,6 @@ public interface ReadOnlyUserPrefs {
     GuiSettings getGuiSettings();
 
     Path getTaskBookFilePath();
+    Path getModuleListFilePath();
 
 }

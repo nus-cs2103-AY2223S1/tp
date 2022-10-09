@@ -17,13 +17,17 @@ import modtrekt.logic.Logic;
 import modtrekt.logic.LogicManager;
 import modtrekt.model.Model;
 import modtrekt.model.ModelManager;
+import modtrekt.model.ModuleList;
+import modtrekt.model.ReadOnlyModuleList;
 import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyUserPrefs;
 import modtrekt.model.TaskBook;
 import modtrekt.model.UserPrefs;
 import modtrekt.model.util.SampleDataUtil;
+import modtrekt.storage.JsonModuleListStorage;
 import modtrekt.storage.JsonTaskBookStorage;
 import modtrekt.storage.JsonUserPrefsStorage;
+import modtrekt.storage.ModuleListStorage;
 import modtrekt.storage.Storage;
 import modtrekt.storage.StorageManager;
 import modtrekt.storage.TaskBookStorage;
@@ -48,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing ModuleList ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
-        storage = new StorageManager(taskBookStorage, userPrefsStorage);
+        ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getModuleListFilePath());
+        storage = new StorageManager(taskBookStorage, moduleListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,29 +74,39 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * Returns a {@code ModuleManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyTaskBook> addressBookOptional;
-        ReadOnlyTaskBook initialData;
+        Optional<ReadOnlyTaskBook> taskBookOptional;
+        ReadOnlyTaskBook taskBook;
+        Optional<ReadOnlyModuleList> moduleListOptional;
+        ReadOnlyModuleList moduleList;
         try {
-            addressBookOptional = storage.readTaskBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            taskBookOptional = storage.readTaskBook();
+            if (!taskBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample TaskBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTaskBook);
+            taskBook = taskBookOptional.orElseGet(SampleDataUtil::getSampleTaskBook);
+
+            moduleListOptional = storage.readModuleList();
+            if (!moduleListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ModuleList");
+            }
+            moduleList = moduleListOptional.orElseGet(SampleDataUtil::getSampleModuleList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new TaskBook();
+            taskBook = new TaskBook();
+            moduleList = new ModuleList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new TaskBook();
+            taskBook = new TaskBook();
+            moduleList = new ModuleList();
         }
-
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(moduleList, taskBook, userPrefs);
     }
+
 
     private void initLogging(Config config) {
         LogsCenter.init(config);
@@ -151,7 +166,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +182,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting ModuleList " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

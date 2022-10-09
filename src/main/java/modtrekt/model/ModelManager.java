@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import modtrekt.commons.core.GuiSettings;
 import modtrekt.commons.core.LogsCenter;
+import modtrekt.model.module.Module;
 import modtrekt.model.task.Task;
 
 /**
@@ -19,25 +20,29 @@ import modtrekt.model.task.Task;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final ModuleList moduleList;
     private final TaskBook taskBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Module> filteredModules;
 
     /**
      * Initializes a ModelManager with the given taskBook and userPrefs.
      */
-    public ModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(taskBook, userPrefs);
+    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(moduleList, taskBook, userPrefs);
 
         logger.fine("Initializing with task book: " + taskBook + " and user prefs " + userPrefs);
 
+        this.moduleList = new ModuleList(moduleList);
         this.taskBook = new TaskBook(taskBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.taskBook.getTaskList());
+        filteredModules = new FilteredList<>(this.moduleList.getModuleList());
     }
 
     public ModelManager() {
-        this(new TaskBook(), new UserPrefs());
+        this(new ModuleList(), new TaskBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -75,6 +80,17 @@ public class ModelManager implements Model {
         userPrefs.setTaskBookFilePath(taskBookFilePath);
     }
 
+    @Override
+    public Path getModuleListFilePath() {
+        return userPrefs.getModuleListFilePath();
+    }
+
+    @Override
+    public void setModuleListFilePath(Path moduleListFilePath) {
+        requireNonNull(moduleListFilePath);
+        userPrefs.setModuleListFilePath(moduleListFilePath);
+    }
+
     //=========== TaskBook ================================================================================
 
     @Override
@@ -103,6 +119,42 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask);
 
         taskBook.setTask(target, editedTask);
+    }
+
+    //=========== ModuleList ================================================================================
+
+    @Override
+    public void setModuleList(ReadOnlyModuleList moduleList) {
+        this.moduleList.resetData(moduleList);
+    }
+
+    @Override
+    public ReadOnlyModuleList getModuleList() {
+        return moduleList;
+    }
+
+    @Override
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return moduleList.hasModule(module);
+    }
+
+    @Override
+    public void deleteModule(Module target) {
+        moduleList.removeModule(target);
+    }
+
+    @Override
+    public void addModule(Module module) {
+        moduleList.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    @Override
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+
+        moduleList.setModule(target, editedModule);
     }
 
     //=========== Filtered Task List Accessors =============================================================
@@ -137,7 +189,25 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return taskBook.equals(other.taskBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && moduleList.equals(other.moduleList)
+                && filteredModules.equals(other.filteredModules);
+    }
+
+    //=========== Filtered Module List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
+     * {@code versionedModuleList}
+     */
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
+    }
+
+    @Override
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        filteredModules.setPredicate(predicate);
     }
 
 }

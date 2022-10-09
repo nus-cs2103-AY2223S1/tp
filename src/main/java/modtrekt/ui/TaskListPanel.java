@@ -21,7 +21,7 @@ public class TaskListPanel extends UiPart<Region> {
     private ListView<Task> taskListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
      */
     public TaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Module} using a {@code ModuleCard}.
      */
     class TaskListViewCell extends ListCell<Task> {
         @Override

@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import modtrekt.commons.exceptions.DataConversionException;
+import modtrekt.model.ReadOnlyModuleList;
 import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyUserPrefs;
 import modtrekt.model.UserPrefs;
@@ -12,7 +13,7 @@ import modtrekt.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends TaskBookStorage, UserPrefsStorage {
+public interface Storage extends TaskBookStorage, ModuleListStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -28,5 +29,12 @@ public interface Storage extends TaskBookStorage, UserPrefsStorage {
 
     @Override
     void saveTaskBook(ReadOnlyTaskBook addressBook) throws IOException;
+    Path getModuleListFilePath();
+
+    @Override
+    Optional<ReadOnlyModuleList> readModuleList() throws DataConversionException, IOException;
+
+    @Override
+    void saveModuleList(ReadOnlyModuleList addressBook) throws IOException;
 
 }

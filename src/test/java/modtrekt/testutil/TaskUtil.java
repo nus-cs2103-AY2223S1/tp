@@ -1,6 +1,6 @@
 package modtrekt.testutil;
 
-import static modtrekt.logic.parser.CliSyntax.PREFIX_DESC;
+import static modtrekt.logic.parser.CliSyntax.PREFIX_TASK;
 
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.model.task.Task;
@@ -22,7 +22,7 @@ public class TaskUtil {
      */
     public static String getTaskDetails(Task t) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_DESC + t.getDescription().description + " ");
+        sb.append(PREFIX_TASK + t.getDescription().description + " ");
         return sb.toString();
     }
 }

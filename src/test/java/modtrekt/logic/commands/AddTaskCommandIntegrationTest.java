@@ -1,6 +1,7 @@
 package modtrekt.logic.commands;
 
 import static modtrekt.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static modtrekt.testutil.TypicalModules.getTypicalModuleList;
 import static modtrekt.testutil.TypicalTasks.getTypicalTaskBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -21,14 +22,14 @@ public class AddTaskCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
+        model = new ModelManager(getTypicalModuleList(), getTypicalTaskBook(), new UserPrefs());
     }
 
     @Test
     public void execute_newTask_success() {
         Task validTask = new TaskBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getModuleList(), model.getTaskBook(), new UserPrefs());
         expectedModel.addTask(validTask);
 
         assertCommandSuccess(new AddTaskCommand(validTask), model,

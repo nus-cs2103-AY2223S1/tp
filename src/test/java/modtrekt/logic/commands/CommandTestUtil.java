@@ -1,5 +1,8 @@
 package modtrekt.logic.commands;
 
+import static modtrekt.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static modtrekt.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
+import static modtrekt.logic.parser.CliSyntax.PREFIX_MOD_NAME;
 import static modtrekt.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,7 +14,9 @@ import java.util.List;
 import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.model.Model;
+import modtrekt.model.ModuleList;
 import modtrekt.model.TaskBook;
+import modtrekt.model.module.Module;
 import modtrekt.model.person.NameContainsKeywordsPredicate;
 import modtrekt.model.task.Task;
 
@@ -25,6 +30,13 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+    public static final String VALID_NAME_AMY = "Probability and Statistics";
+    public static final String VALID_CODE_AMY = "ST2334";
+    public static final String VALID_CREDIT_AMY = "4";
+
+    public static final String NAME_DESC_AMY = " " + PREFIX_MOD_NAME + VALID_NAME_AMY;
+    public static final String CODE_DESC_AMY = " " + PREFIX_MOD_CODE + VALID_CODE_AMY;
+    public static final String CREDIT_DESC_AMY = " " + PREFIX_MOD_CREDIT + VALID_CREDIT_AMY;
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -67,6 +79,13 @@ public class CommandTestUtil {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getTaskBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
+
+        ModuleList expectedModuleList = new ModuleList(actualModel.getModuleList());
+        List<Module> expectedFilteredModuleList = new ArrayList<>(actualModel.getFilteredModuleList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedModuleList, actualModel.getModuleList());
+        assertEquals(expectedFilteredModuleList, actualModel.getFilteredModuleList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
@@ -80,6 +99,7 @@ public class CommandTestUtil {
         model.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTaskList().size());
+
     }
 
 }
