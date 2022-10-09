@@ -36,6 +36,15 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_ANIMAL = "animal";
+    public static final String VALID_TAG_FOOD = "food";
+
+    public static final String VALID_TITLE_CAT = "Cat";
+    public static final String VALID_TITLE_DOG = "Dog";
+    public static final String VALID_TITLE_ELEPHANT = "Elephant";
+    public static final String VALID_DESCRIPTION_CAT = "A white cat";
+    public static final String VALID_DESCRIPTION_DOG = "A black dog";
+    public static final String VALID_DESCRIPTION_ELEPHANT = "A red elephant";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
