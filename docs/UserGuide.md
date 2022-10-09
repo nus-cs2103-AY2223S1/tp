@@ -17,6 +17,8 @@ ConnectNUS is a **desktop app for managing contacts, optimised for use via a Com
   - [Listing modules](#listing-modules)
   - [Deleting modules](#deleting-modules)
   - [Deleting plans](#deleting-plans)
+  - [Adding user](#adding-user)
+  - [Deleting user](#deleting-user)
   - [Adding contacts](#adding-contacts)
   - [Listing contacts](#listing-contacts)
   - [Deleting contacts](#deleting-contacts)
@@ -160,6 +162,37 @@ Examples:
 * `list mod plan `followed by  `delete plan 1` deletes the first plan in the list of all plans the user has added.
 
 
+
+### Adding user
+
+Add your own user profile into the contact list.
+
+Format: `user n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] curr/[current module] prev/[previous module] plan/[future module]`
+
+
+
+* Adds your own user profile with specified details into your contact list.
+* You are able to specify the modules you are taking currently, have taken in the past, and are planning to take in the future.
+* Each module list should consist of module codes separated by commas. (E.g. `CS2103T, CS2101`)
+* Each of these module codes must be registered modules in NUS.
+
+Examples:
+
+
+* `user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive curr/CS2100 prev/CS1101S plan/CS2109`adds your own user profile to your contact list with all the details specified.
+
+
+### Deleting user
+
+Deletes the current user profile from the contacts list
+
+Format: `delete user`
+
+
+
+* Deletes the current user profile stored in the contact list.
+
+
 ### Adding contacts
 
 Add a contact to your contact list.
@@ -279,6 +312,20 @@ Format: `exit`
    </td>
   </tr>
   <tr>
+   <td><strong>Adding User</strong>
+   </td>
+   <td><code>user n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] curr/[current module] prev/[previous module] plan/[future module]</code>
+<p>
+<code>Eg. user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive curr/CS2100 prev/CS1101S plan/CS2109</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Delete User</strong>
+   </td>
+   <td><code>delete user </code>
+   </td>
+  </tr>
+<tr>
    <td><strong>Adding Contact</strong>
    </td>
    <td><code>add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module] prev/[previous module] plan/[future module]</code>
