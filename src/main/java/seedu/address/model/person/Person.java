@@ -14,7 +14,8 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
+    //counter for fullView display format.
+    private int fullView;
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -31,6 +32,7 @@ public class Person {
     public Person(Name name, Phone phone, LessonPlan lessonPlan,
                   HomeworkList homeworkList, AttendanceList attendanceList, Set<Tag> tags) {
         requireAllNonNull(name, phone, tags);
+        this.fullView = 0;
         this.name = name;
         this.phone = phone;
         this.lessonPlan = lessonPlan;
@@ -59,6 +61,25 @@ public class Person {
         return attendanceList;
     }
 
+    /**
+     * Increments fullView counter by 1 to allow for toString to be called when setting PersonListCard.
+     * This is called when ViewCommand is the command input by user.
+     */
+    public void setFullView() {
+        fullView++;
+    }
+
+    /**
+     * Decrements fullView, to reflect that fullView ticket has been used.
+     * @return a boolean to signify whether the Person object has a fullView count to go full view.
+     */
+    public boolean isFullView() {
+        if (fullView > 0) {
+            fullView--;
+            return true;
+        }
+        return false;
+    }
     /**
      * Clears the person's homework list.
      */

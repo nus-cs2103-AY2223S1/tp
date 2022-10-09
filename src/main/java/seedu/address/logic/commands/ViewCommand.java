@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameIsKeywordsPredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Finds person in the addressbook whose name is specified by user for full detailed view of his data.
@@ -28,8 +29,11 @@ public class ViewCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+        Person person = model.getFilteredPersonList().get(0);
+        person.setFullView();
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSON_FULL_VIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSON_FULL_VIEW,
+                        person.getName().fullName), false, false);
     }
 
     @Override
