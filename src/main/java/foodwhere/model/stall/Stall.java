@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import foodwhere.model.detail.Detail;
+import foodwhere.model.review.Review;
 
 /**
  * Represents a Stall in the address book.
@@ -21,6 +22,7 @@ public class Stall {
     // Data fields
     private final Address address;
     private final Set<Detail> details = new HashSet<>();
+    private final Set<Review> reviews = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -46,6 +48,14 @@ public class Stall {
      */
     public Set<Detail> getDetails() {
         return Collections.unmodifiableSet(details);
+    }
+
+    /**
+     * Returns an immutable review set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Review> getReviews() {
+        return Collections.unmodifiableSet(reviews);
     }
 
     /**
@@ -78,13 +88,14 @@ public class Stall {
         Stall otherStall = (Stall) other;
         return otherStall.getName().equals(getName())
                 && otherStall.getAddress().equals(getAddress())
-                && otherStall.getDetails().equals(getDetails());
+                && otherStall.getDetails().equals(getDetails())
+                && otherStall.getReviews().equals(getReviews());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, details);
+        return Objects.hash(name, address, details, reviews);
     }
 
     @Override
@@ -98,6 +109,12 @@ public class Stall {
         if (!details.isEmpty()) {
             builder.append("; Details: ");
             details.forEach(builder::append);
+        }
+
+        Set<Review> reviews = getReviews();
+        if (!reviews.isEmpty()) {
+            builder.append("; Reviews: ");
+            reviews.forEach(builder::append);
         }
         return builder.toString();
     }
