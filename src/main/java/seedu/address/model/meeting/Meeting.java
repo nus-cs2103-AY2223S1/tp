@@ -80,7 +80,7 @@ public class Meeting {
         return this.meetingDateAndTime;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return meetingDescription;
     }
     /**

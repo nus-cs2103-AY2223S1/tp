@@ -1,15 +1,17 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.MeetingContainsKeywordsPredicate;
 
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-
-public class FindMeetingCommand extends Command{
+/**
+ * Finds and lists all meetings in the application whose description contains the argument keyword.
+ * Keyword matching is case insensitive.
+ */
+public class FindMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "findmeeting";
 
@@ -34,6 +36,7 @@ public class FindMeetingCommand extends Command{
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredMeetingList(predicate);
-        return new CommandResult(String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW, model.getFilteredMeetingList().size()));
+        return new CommandResult(String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW,
+                model.getFilteredMeetingList().size()));
     }
 }
