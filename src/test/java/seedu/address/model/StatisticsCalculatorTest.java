@@ -2,8 +2,8 @@ package seedu.address.model;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.AVA;
+import static seedu.address.testutil.TypicalPersons.BEN;
 
 import java.util.Arrays;
 import java.util.Collection;
