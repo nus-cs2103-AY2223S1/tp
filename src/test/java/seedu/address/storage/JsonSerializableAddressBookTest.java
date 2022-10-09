@@ -30,14 +30,6 @@ public class JsonSerializableAddressBookTest {
         List<Person> lst = addressBookFromFile.getPersonList();
         AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
         List<Person> comLst = typicalPersonsAddressBook.getPersonList();
-        for (int i = 0; i < comLst.size(); i++) {
-            System.out.println(String.format("Person %d", i));
-            System.out.println(lst.get(i));
-            System.out.println("\n\n");
-            System.out.println(String.format("Com Person %d", i));
-            System.out.println(comLst.get(i));
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
-        }
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 
