@@ -61,7 +61,7 @@ public class AddressBookParserTest {
      //   EditCommand command1 = new EditCommand(INDEX_FIRST_PERSON, descriptor);
      //
      //   assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
-     //}
+    //}
 
     @Test
     public void parseCommand_exit() throws Exception {
