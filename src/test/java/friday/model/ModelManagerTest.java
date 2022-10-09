@@ -1,6 +1,6 @@
 package friday.model;
 
-import static friday.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static friday.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static friday.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -122,7 +122,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

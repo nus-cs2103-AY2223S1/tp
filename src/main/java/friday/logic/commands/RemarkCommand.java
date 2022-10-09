@@ -2,7 +2,7 @@ package friday.logic.commands;
 
 import static friday.commons.util.CollectionUtil.requireAllNonNull;
 import static friday.logic.parser.CliSyntax.PREFIX_REMARK;
-import static friday.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static friday.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 
@@ -55,7 +55,7 @@ public class RemarkCommand extends Command {
                 studentToEdit.getConsultation(), studentToEdit.getMasteryCheck(), remark, studentToEdit.getTags());
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
         return new CommandResult(generateSuccessMessage(editedStudent));
     }
