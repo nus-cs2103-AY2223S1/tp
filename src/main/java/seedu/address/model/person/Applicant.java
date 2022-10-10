@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Applicant in the address book.
+ * Represents an Applicant in TrackAScholar.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Applicant {
@@ -68,8 +68,8 @@ public class Applicant {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both applicants have the same name.
+     * This defines a weaker notion of equality between two applicants.
      */
     public boolean isSamePerson(Applicant otherApplicant) {
         if (otherApplicant == this) {
@@ -81,8 +81,8 @@ public class Applicant {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both applicants have the same identity and data fields.
+     * This defines a stronger notion of equality between two applicants.
      */
     @Override
     public boolean equals(Object other) {
