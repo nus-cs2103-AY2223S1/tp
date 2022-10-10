@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.StudentName;
 
-public class JsonAdaptedTaskTest {
+public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
 
     private static final String VALID_NAME = BENSON.getName().toString();
