@@ -35,21 +35,21 @@ title: User Guide
 
 </div>
 
-| Command    | Format                                   |
-| ---------- | ---------------------------------------- |
-| `help`     | `help`                                   |
-| `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL] [a/ADDRESS][c/CLASS_NAME...]` |
+| Command    | Format                                                                       |
+|------------|------------------------------------------------------------------------------|
+| `help`     | `help`                                                                       |
+| `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL] [a/ADDRESS][c/CLASS_NAME...]`          |
 | `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER] [e/EMAIL][a/ADDRESS] [c/CLASS_NAME...]` |
-| `delete`   | `delete INDEX`                           |
-| `find`     | `find KEYWORD [MORE_KEYWORDS...]`        |
-| `list`     | `list`                                   |
-| `addc`     | `addc c/CLASS_NAME`                      |
-| `deletec`  | `deletec c/CLASS_NAME`                   |
-| `assign`   | `assign INDEX... c/CLASS_NAME`           |
-| `unassign` | `unassign INDEX... c/CLASS_NAME`         |
-| `listc`    | `listc`                                  |
-| `exit`     | `exit`                                   |
-| `class`    | `class c/CLASS_NAME`                     |
+| `delete`   | `delete INDEX`                                                               |
+| `find`     | `find KEYWORD [MORE_KEYWORDS...]`                                            |
+| `list`     | `list`                                                                       |
+| `addc`     | `addc c/CLASS_NAME`                                                          |
+| `deletec`  | `deletec c/CLASS_NAME`                                                       |
+| `assign`   | `assign INDEX... c/CLASS_NAME`                                               |
+| `unassign` | `unassign INDEX... c/CLASS_NAME`                                             |
+| `listc`    | `listc`                                                                      |
+| `exit`     | `exit`                                                                       |
+| `focus`    | `focus c/CLASS_NAME`                                                         |
 
 ### Viewing help : `help`
 
@@ -203,20 +203,20 @@ Format: `listc`
 
 Format: `exit`
 
-### Enter focus mode: `class`
+### Enter focus mode: `focus`
 
 <aside>
 ℹ️ Enter focus mode to manage a given class, enabling features that are only available under focus mode.
 
 </aside>
 
-Format: `class c/CLASS_NAME`
+Format: `focus CLASS_NAME`
 
-- Enters focus mode for the class named `c/CLASS_NAME`
+- Enters focus mode for the class named `CLASS_NAME`
 
 Example:
 
-- `class c/CS1231S` will enter focus mode to the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
+- `class CS1231S` will enter focus mode to the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
 
 ## Features Available in Focus Mode
 
