@@ -51,6 +51,7 @@ public class StringUtil {
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
+        // Solution below adapted from https://stackoverflow.com/a/86832
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(x -> Pattern.compile(Pattern.quote(word), Pattern.CASE_INSENSITIVE).matcher(sentence).find());
     }
