@@ -209,7 +209,7 @@ public class ModelManager implements Model {
     @Override
     public void selectCustomer(Customer customer) {
         selectedCommission.setValue(null); // resets the selected commission
-        this.selectedCustomer.setValue(customer);
+        selectedCustomer.setValue(customer);
         updateFilteredCommissionListToSelectedCustomer();
     }
 

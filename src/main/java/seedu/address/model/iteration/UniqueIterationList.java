@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.commission.exceptions.DuplicateCommissionException;
 import seedu.address.model.iteration.exceptions.DuplicateIterationException;
 import seedu.address.model.iteration.exceptions.IterationNotFoundException;
 
@@ -94,7 +93,7 @@ public class UniqueIterationList implements Iterable<Iteration> {
     public void setIterations(List<Iteration> iterations) {
         requireAllNonNull(iterations);
         if (!areIterationsUnique(iterations)) {
-            throw new DuplicateCommissionException();
+            throw new DuplicateIterationException();
         }
 
         internalList.setAll(iterations);

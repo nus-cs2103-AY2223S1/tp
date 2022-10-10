@@ -15,7 +15,7 @@ public class Iteration {
     private final IterationDescription description;
     // TODO add artwork (image) attribute
 
-    // Optional fields
+    // TODO Optional fields (feedback is currently required)
     private final Feedback feedback;
 
     /**
