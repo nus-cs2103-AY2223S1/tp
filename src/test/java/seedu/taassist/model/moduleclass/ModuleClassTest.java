@@ -3,12 +3,14 @@ package seedu.taassist.model.moduleclass;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.testutil.Assert.assertThrows;
+import seedu.taassist.testutil.ModuleClassBuilder;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
 import static seedu.taassist.testutil.TypicalSessions.ASSIGNMENT_1;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -75,7 +77,7 @@ public class ModuleClassTest {
         // same object -> returns true
         assertTrue(CS1101S.equals(CS1101S));
 
-        // same name and same sessions -> returns true
+        // same name and sessions -> returns true
         ModuleClass cs1101sCopy = new ModuleClass(CS1101S.getClassName(), CS1101S.getSessions());
         assertTrue(cs1101sCopy.isSameModuleClass(CS1101S));
     }
