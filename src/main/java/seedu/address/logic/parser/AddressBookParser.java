@@ -46,9 +46,6 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = ParserTranslator.translate(commandWord, matcher.group("arguments"));
 
-        System.out.println(commandWord);
-        System.out.println(arguments);
-
         switch (commandWord) {
 
         case AddGenericCommand.COMMAND_WORD:

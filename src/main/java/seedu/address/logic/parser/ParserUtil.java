@@ -158,6 +158,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses the value of {@code String option} from {@code String arguments}.
+     */
     private static Optional<String> parseOption(String arguments, String option) {
         requireNonNull(arguments);
         requireNonNull(option);
@@ -173,6 +176,10 @@ public class ParserUtil {
         return Optional.empty();
     }
 
+    /**
+     * Parses the values of {@code Prefix... options} from {@code String arguments}
+     * and return them in a {@code ArgumentMultimap}.
+     */
     public static ArgumentMultimap parseOptions(String arguments, Prefix... options) {
         requireNonNull(arguments);
         requireNonNull(options);
@@ -186,6 +193,10 @@ public class ParserUtil {
         return optionValues;
     }
 
+    /**
+     * Erases the options and value of {@code String option} from {@code String arguments}
+     * and return the resulting {@code String}.
+     */
     private static String eraseOption(String arguments, String option) {
         requireNonNull(arguments);
         requireNonNull(option);
@@ -200,6 +211,10 @@ public class ParserUtil {
         return Arrays.stream(options).reduce((x, y) -> x + " " + y).get().trim();
     }
 
+    /**
+     * Erases the options and values of {@code Prefix... options} from {@code String arguments}
+     * and return the resulting {@code String}.
+     */
     public static String eraseOptions(String arguments, Prefix... options) {
         requireNonNull(arguments);
         requireNonNull(options);
