@@ -99,7 +99,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Internship} that we are building.
+     * Sets the {@code Interview Date} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withInterviewDate(String date) {
         this.interviewDate = new InterviewDate(date);
