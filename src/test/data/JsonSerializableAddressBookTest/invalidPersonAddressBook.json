@@ -1,8 +1,8 @@
 {
   "persons": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
+    "name" : "Assignment 2",
+    "module" : "CS2100",
+    "tagged" : [ "highPriority" ],
+    "isDone" : true
   } ]
 }
