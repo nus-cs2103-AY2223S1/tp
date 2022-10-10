@@ -1,7 +1,6 @@
 package seedu.address.model.client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +27,6 @@ public class ClientTest {
     @Test
     public void constructor_generates_defaultValues() {
         Client client = new Client("Harry", "12345678", "abc@gmail.com");
-        assertNotNull(client.getClientId());
         assertEquals("none", client.getClientProjectList());
         assertEquals("UNSPECIFIED", client.getClientType());
     }

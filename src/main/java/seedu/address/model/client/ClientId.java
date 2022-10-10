@@ -2,36 +2,33 @@ package seedu.address.model.client;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.UUID;
-
 /**
  * Represents the unique ID that a client is identified by.
  */
 
 public class ClientId {
     private String nameIdentifier;
-    private UUID uuidIdentifier;
     private String identifier;
 
     /**
      * Constructs a unique Client Id when given a String representing client's name.
      * @param clientName
      */
-    private ClientId(String clientName) {
-        this.uuidIdentifier = UUID.randomUUID();
+    private ClientId(String clientName, String inputId) {
         this.nameIdentifier = clientName;
-        this.identifier = nameIdentifier + uuidIdentifier.variant();
+        this.identifier = nameIdentifier + inputId;
     }
 
     /**
      * Generates the Client Id depending on the Client Name given by the user.
      * @param clientName Name of the Client whose Id is generated
+     * @param id String representing an identifier
      * @return Id the unique Id of the Client
      */
-    public static ClientId generateId(ClientName clientName) {
+    public static ClientId generateId(ClientName clientName, String id) {
         requireNonNull(clientName);
         String name = clientName.getFullNameRepresentation().replaceAll(" ", "").toLowerCase();
-        return new ClientId(name);
+        return new ClientId(name, id);
     }
 
     /**

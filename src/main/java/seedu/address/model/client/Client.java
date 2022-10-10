@@ -39,7 +39,6 @@ public class Client {
         this.name = new ClientName(name);
         this.phone = new ClientPhone(phone);
         this.email = new ClientEmail(email);
-        this.id = ClientId.generateId(this.name);
         this.projects = new ClientProjectList();
         this.type = type;
     }
@@ -56,7 +55,6 @@ public class Client {
         this.name = new ClientName(name);
         this.phone = new ClientPhone(phone);
         this.email = new ClientEmail(email);
-        this.id = ClientId.generateId(this.name);
         this.projects = new ClientProjectList();
         this.type = Type.UNSPECIFIED;
     }
