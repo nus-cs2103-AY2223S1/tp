@@ -42,8 +42,8 @@ public class InternshipRole {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CompanyName // instanceof handles nulls
-                && roleName.equals(((CompanyName) other).fullName)); // state check
+                || (other instanceof InternshipRole // instanceof handles nulls
+                && roleName.equals(((InternshipRole) other).roleName)); // state check
     }
 
     @Override

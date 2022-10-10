@@ -80,6 +80,28 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Updates the next PersonId to be 1 + the largest PersonId in the list.
+     */
+    public void updateNextPersonId() {
+        for (Person p : persons) {
+            if (p.getPersonId().id >= personIdCounter) {
+                personIdCounter = p.getPersonId().id + 1;
+            }
+        }
+    }
+
+    /**
+     * Updates the next InternshipId to be 1 + the largest InternshipId in the list.
+     */
+    public void updateNextInternshipId() {
+        for (Internship i : internships) {
+            if (i.getInternshipId().id >= internshipIdCounter) {
+                internshipIdCounter = i.getInternshipId().id + 1;
+            }
+        }
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -87,6 +109,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setInternships(newData.getInternshipList());
+
+        updateNextPersonId();
+        updateNextInternshipId();
     }
 
     //// person-level operations
@@ -121,9 +146,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Updates the personIdCounter to avoid duplicate Ids.
      */
     public void addPerson(Person p) {
-        if (p.getPersonId().id + 1 > personIdCounter) {
-            personIdCounter = p.getPersonId().id + 1;
-        }
+        updateNextPersonId();
 
         persons.add(p);
 
@@ -141,9 +164,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * * Updates the internshipIdCounter to avoid duplicate Ids.
      */
     public void addInternship(Internship i) {
-        if (i.getInternshipId().id + 1 > internshipIdCounter) {
-            internshipIdCounter = i.getInternshipId().id + 1;
-        }
+        updateNextInternshipId();
 
         internships.add(i);
 
