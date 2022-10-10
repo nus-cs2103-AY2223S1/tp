@@ -191,12 +191,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                         |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL dr/DATE_RANGE ng/NUMBER_OF_GUESTS​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com dr/19/05/22 - 24/05/22 ng/3`            |
-| **Clear**  | `clear`                                                                                                                                                                  |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                      |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ci/CHECK_IN_DATE] [co/CHECK_OUT_DATE] [ng/NUMBER_OF_GUESTS]​`<br> e.g.,`edit 2 n/James Lee p/962857298 e/jameslee@example.com` |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                               |
-| **List**   | `list`                                                                                                                                                                   |
-| **Help**   | `help`                                                                                                                                                                   |
+| Action     | Format, Examples                                                                                                                                              |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL dr/DATE_RANGE ng/NUMBER_OF_GUESTS​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com dr/19/05/22 - 24/05/22 ng/3` |
+| **Clear**  | `clear`                                                                                                                                                       |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                           |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS]​`<br> e.g.,`edit 2 n/James Lee p/962857298 e/jameslee@example.com`             |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                    |
+| **List**   | `list`                                                                                                                                                        |
+| **Help**   | `help`                                                                                                                                                        |
