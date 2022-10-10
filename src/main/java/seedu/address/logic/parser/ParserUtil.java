@@ -111,6 +111,54 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> names} into a {@code Set<Name>}.
+     */
+    public static Set<Name> parseNames(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final Set<Name> nameSet = new HashSet<>();
+        for (String nameName : names) {
+            nameSet.add(parseName(nameName));
+        }
+        return nameSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> phones} into a {@code Set<Phone>}.
+     */
+    public static Set<Phone> parsePhones(Collection<String> phones) throws ParseException {
+        requireNonNull(phones);
+        final Set<Phone> phoneSet = new HashSet<>();
+        for (String phoneName : phones) {
+            phoneSet.add(parsePhone(phoneName));
+        }
+        return phoneSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> emails} into a {@code Set<Email>}.
+     */
+    public static Set<Email> parseEmails(Collection<String> emails) throws ParseException {
+        requireNonNull(emails);
+        final Set<Email> emailSet = new HashSet<>();
+        for (String emailName : emails) {
+            emailSet.add(parseEmail(emailName));
+        }
+        return emailSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> addresss} into a {@code Set<Address>}.
+     */
+    public static Set<Address> parseAddresses(Collection<String> addresses) throws ParseException {
+        requireNonNull(addresses);
+        final Set<Address> addressSet = new HashSet<>();
+        for (String addressName : addresses) {
+            addressSet.add(parseAddress(addressName));
+        }
+        return addressSet;
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
