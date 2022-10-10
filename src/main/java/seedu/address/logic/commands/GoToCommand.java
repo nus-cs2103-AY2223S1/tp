@@ -4,32 +4,35 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameMatchesKeywordPredicate;
+import seedu.address.model.module.ModuleCodeMatchesKeywordPredicate;
 
 /**
- * Finds the exact persons in address book whose name is the argument keywords.
+ * Go to the exact module in address book whose module code is the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class GoToCommand extends Command {
 
     public static final String COMMAND_WORD = "goto";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Go to specific person specified.\n"
-            + "Parameters: KEYWORD keyword\n"
-            + "Example: " + COMMAND_WORD + " Alex Yeoh";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Go to specified module (case-insensitive).\n"
+            + "Example: " + COMMAND_WORD + " CS1231S";
 
-    private final NameMatchesKeywordPredicate predicate;
+    private final ModuleCodeMatchesKeywordPredicate predicate;
 
-    public GoToCommand(NameMatchesKeywordPredicate predicate) {
+    public GoToCommand(ModuleCodeMatchesKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        model.updateFilteredModuleList(predicate);
+
+        if (model.getFilteredModuleList().isEmpty()) {
+            return new CommandResult(Messages.MESSAGE_NO_SUCH_MODULE);
+        }
+
+        return new CommandResult(Messages.MESSAGE_MODULE_LISTED);
     }
 
     @Override

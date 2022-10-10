@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.GoToCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameMatchesKeywordPredicate;
+import seedu.address.model.module.ModuleCodeMatchesKeywordPredicate;
 
 /**
  * Parses input arguments and creates a new GoToCommand object
@@ -22,6 +22,6 @@ public class GoToCommandParser {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GoToCommand.MESSAGE_USAGE));
         }
 
-        return new GoToCommand(new NameMatchesKeywordPredicate(trimmedArgs));
+        return new GoToCommand(new ModuleCodeMatchesKeywordPredicate(trimmedArgs));
     }
 }
