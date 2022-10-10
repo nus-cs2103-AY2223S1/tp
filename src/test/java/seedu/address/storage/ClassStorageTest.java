@@ -25,6 +25,7 @@ public class ClassStorageTest {
                 LocalTime.of(11, 0), LocalTime.of(12, 30)));
         assertFalse(ClassStorage.hasConflict(LocalTime.of(12, 30), LocalTime.of(13, 30),
                 LocalTime.of(11, 0), LocalTime.of(12, 0)));
+        assertFalse(ClassStorage.hasConflict(null, null, null, null));
     }
 
 }

@@ -2,15 +2,13 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -77,4 +75,27 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
     }
+
+    @Test
+    public void allEqualsExceptClass() throws ParseException {
+        Person Billy = new PersonBuilder().withName("Billy").withPhone("81234567")
+                .withEmail("Billy@gmail.com").withAddress("Street 20 Building A").withClass("2022-05-05 1200-1400").
+                withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("").build();
+        Person BillyWithDifferentClass = new PersonBuilder().withName("Billy").withPhone("81234567")
+                .withEmail("Billy@gmail.com").withAddress("Street 20 Building A").withClass("2022-05-04 1100-1200").
+                withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("").build();
+        Person BillyWithDifferentPhone = new PersonBuilder().withName("Billy").withPhone("91234567")
+                .withEmail("Billy@gmail.com").withAddress("Street 20 Building A").withClass("2022-05-04 1100-1200").
+                withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("").build();
+
+        // same object -> returns true
+        assertTrue(Billy.allEqualsExceptClass(Billy));
+
+        // different class -> returns true
+        assertTrue(Billy.allEqualsExceptClass(BillyWithDifferentClass));
+
+        // different phone -> returns false
+        assertFalse(Billy.allEqualsExceptClass(BillyWithDifferentPhone));
+    }
+
 }
