@@ -1,10 +1,14 @@
 package seedu.address.logic.parser;
 
+import seedu.address.logic.commands.MarkCommand;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import seedu.address.logic.commands.MarkCommand.Status;
+
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -37,6 +41,28 @@ public class ArgumentMultimap {
     public Optional<String> getValue(Prefix prefix) {
         List<String> values = getAllValues(prefix);
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
+    }
+
+
+    /**
+     * Returns the last value of {@code prefix}.
+     */
+    public Status getStatus(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+
+        Status status = null;
+
+        switch (values.get(0))  {
+        case "YTS":
+            status =  Status.YTS;
+
+        case "IP":
+            status =  Status.IP;
+
+        case "DONE":
+            status = Status.DONE;
+        }
+        return status;
     }
 
     /**

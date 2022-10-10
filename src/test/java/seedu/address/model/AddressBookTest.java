@@ -22,7 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class    AddressBookTest {
 
     private final AddressBook addressBook = new AddressBook();
 

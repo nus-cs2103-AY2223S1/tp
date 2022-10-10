@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.logic.commands.MarkCommand.Status;
 
 /**
  * Contains helper methods for testing commands.
@@ -35,6 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final Status VALID_STATUS_AMY = Status.IP;
+    public static final Status VALID_STATUS_BOB = Status.DONE;
     public static final String VALID_PROJECTNAME_AMY = "random CS proj 1";
     public static final String VALID_PROJECTNAME_BOB = "random CS proj 2";
     public static final String VALID_TAG_HUSBAND = "husband";

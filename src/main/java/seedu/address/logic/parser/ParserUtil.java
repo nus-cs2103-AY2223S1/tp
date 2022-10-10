@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -137,5 +134,19 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static StudentID parseStudentID(String studentID) throws ParseException {
+        requireNonNull(studentID);
+        String trimmedID = studentID.trim();
+        if (!StudentID.isValidStudentID(trimmedID)) {
+            throw new ParseException(StudentID.MESSAGE_CONSTRAINTS);
+        }
+        return new StudentID(trimmedID);
     }
 }
