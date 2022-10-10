@@ -1,17 +1,19 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.logging.Filter;
+
+import org.junit.jupiter.api.Test;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.Person;
-
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class FilteredStudentsTest {
     private List<Person> li = new ArrayList<>();
@@ -32,10 +34,10 @@ class FilteredStudentsTest {
     @Test
     public void equals() {
         // Same object, return true
-        assertTrue(filteredStudents.equals(filteredStudents));
+        assertEquals(filteredStudents, filteredStudents);
 
         // Not an instance of FilteredStudents, return false
-        assertFalse(filteredStudents.equals(new Object()));
+        assertNotEquals(filteredStudents, new Object());
     }
 
 }
