@@ -9,6 +9,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.StudentID;
+import seedu.address.logic.commands.MarkCommand.Status;
 
 /**
  * Parses input arguments and creates a new {@code MarkCommand} object
@@ -30,7 +31,7 @@ public class MarkCommandParser implements Parser<MarkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), ive);
         }
 
-        String status = argMultimap.getValue(PREFIX_STATUS);
+        Status status  = argMultimap.getStatus(PREFIX_STATUS);
 
         return new MarkCommand(studentID, status);
     }

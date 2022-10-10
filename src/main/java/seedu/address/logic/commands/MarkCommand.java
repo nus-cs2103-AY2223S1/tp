@@ -25,7 +25,7 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "studentID: %1$s, Status: %2$s";
 
-    enum Status {
+    public enum Status {
         YTS,
         IP,
         DONE
