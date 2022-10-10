@@ -172,6 +172,10 @@ public class TagCommandTest {
                 int i = personList.indexOf(target);
                 personList.set(i, editedPerson);
             }
+
+            if (isTargetPerson(target)) {
+                setTargetPerson(editedPerson);
+            }
         }
 
         @Override
@@ -203,6 +207,10 @@ public class TagCommandTest {
                     target.getAddress(), target.getRemark(), newTags);
             int i = personList.indexOf(target);
             personList.set(i, untaggedPerson);
+
+            if (isTargetPerson(target)) {
+                setTargetPerson(untaggedPerson);
+            }
         }
 
         @Override
