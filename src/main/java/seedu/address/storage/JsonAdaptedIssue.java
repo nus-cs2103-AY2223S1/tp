@@ -25,7 +25,7 @@ class JsonAdaptedIssue {
     private final String deadline;
     private final String status;
     private final String issueId;
-    @JsonBackReference
+
     private final JsonAdaptedProject project;
 
     /**

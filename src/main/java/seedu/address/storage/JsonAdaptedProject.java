@@ -30,9 +30,9 @@ class JsonAdaptedProject {
     private final String repository;
     private final String deadline;
     private final String projectId;
-    @JsonBackReference
+
     private final JsonAdaptedClient client;
-    @JsonManagedReference
+
     private final List<JsonAdaptedIssue> issues = new ArrayList<>();
 
     /**

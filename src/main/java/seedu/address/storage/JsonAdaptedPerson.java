@@ -29,7 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    @JsonManagedReference
+
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
