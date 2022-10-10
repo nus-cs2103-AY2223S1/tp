@@ -2,6 +2,7 @@ package seedu.rc4hdb.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -59,6 +60,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.logic.getObservableFields().addListener(getListChangeListener());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -110,7 +112,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personTableView = new PersonTableView(logic.getFilteredPersonList());
+        personTableView = new PersonTableView(logic.getFilteredPersonList(), logic.getObservableFields());
         personTableViewPlaceholder.getChildren().add(personTableView.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -192,5 +194,10 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private ListChangeListener<String> getListChangeListener() {
+        // Update the observable field list within the logic attribute
+        return c -> personTableView.setObservableFields(logic.getObservableFields());
     }
 }
