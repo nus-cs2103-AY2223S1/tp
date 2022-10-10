@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
 
 /**
@@ -62,6 +63,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Checks if the new schedule conflicts with existing schedules.
+     */
+    boolean conflictSchedule(Schedule schedule);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -72,6 +78,11 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Adds a new schedule.
+     */
+    void addSchedule(Schedule schedule);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -96,6 +107,11 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addModule(Module module);
+
+    /**
+     * Finds the module by the given module code.
+     */
+    Module getModuleByModuleCode(String moduleCode);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

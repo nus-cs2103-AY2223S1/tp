@@ -14,7 +14,8 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleDescription;
 import seedu.address.model.module.ModuleName;
-import seedu.address.model.person.Person;
+import seedu.address.model.module.schedule.Schedule;
+import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
 
@@ -27,7 +28,8 @@ public class JsonAdaptedModule {
     private final String moduleDescription;
     private final String moduleName;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedPerson> students = new ArrayList<>();
+    private final List<JsonAdaptedStudent> students = new ArrayList<>();
+    private final List<JsonAdaptedSchedule> schedules = new ArrayList<>();
 
 
     /**
@@ -38,7 +40,8 @@ public class JsonAdaptedModule {
                              @JsonProperty("moduleDescription") String moduleDescription,
                              @JsonProperty("moduleName") String moduleName,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("students") List<JsonAdaptedPerson> students) {
+                             @JsonProperty("students") List<JsonAdaptedStudent> students,
+                             @JsonProperty("schedules") List<JsonAdaptedSchedule> schedules) {
         this.moduleCode = moduleCode;
         this.moduleDescription = moduleDescription;
         this.moduleName = moduleName;
@@ -47,6 +50,9 @@ public class JsonAdaptedModule {
         }
         if (students != null) {
             this.students.addAll(students);
+        }
+        if (schedules != null) {
+            this.schedules.addAll(schedules);
         }
     }
 
@@ -62,7 +68,10 @@ public class JsonAdaptedModule {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         students.addAll(source.getStudents().stream()
-                .map(JsonAdaptedPerson::new)
+                .map(JsonAdaptedStudent::new)
+                .collect(Collectors.toList()));
+        schedules.addAll(source.getSchedules().stream()
+                .map(JsonAdaptedSchedule::new)
                 .collect(Collectors.toList()));
     }
 
@@ -73,12 +82,16 @@ public class JsonAdaptedModule {
      */
     public Module toModelType() throws IllegalValueException {
         final List<Tag> moduleTags = new ArrayList<>();
-        final List<Person> moduleStudents = new ArrayList<>();
+        final List<Student> moduleStudents = new ArrayList<>();
+        final List<Schedule> moduleSchedules = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             moduleTags.add(tag.toModelType());
         }
-        for (JsonAdaptedPerson person : students) {
+        for (JsonAdaptedStudent person : students) {
             moduleStudents.add(person.toModelType());
+        }
+        for (JsonAdaptedSchedule schedule: schedules) {
+            moduleSchedules.add(schedule.toModelType());
         }
 
         if (moduleName == null) {
@@ -109,8 +122,11 @@ public class JsonAdaptedModule {
         final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
 
         final Set<Tag> modelModuleTags = new HashSet<>(moduleTags);
-        final ArrayList<Person> modelModuleStudents = new ArrayList<>(moduleStudents);
-        return new Module(modelModuleName, modelModuleCode, modelModuleDescription,
-                modelModuleTags, modelModuleStudents);
+        final ArrayList<Student> modelModuleStudents = new ArrayList<>(moduleStudents);
+        final List<Schedule> modelModuleSchedules = new ArrayList<>(moduleSchedules);
+        Module module = new Module(modelModuleName, modelModuleCode, modelModuleDescription, modelModuleTags,
+                modelModuleStudents);
+        module.addAllSchedules(modelModuleSchedules);
+        return module;
     }
 }
