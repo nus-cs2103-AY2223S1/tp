@@ -28,7 +28,9 @@ public class ModelManager implements Model {
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Tutor> filteredTutors;
     private final FilteredList<TuitionClass> filteredTuitionClass;
-    /** the type of the current list **/
+    /**
+     * the type of the current list
+     **/
     private ListType type;
 
     /**
@@ -55,14 +57,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -90,13 +92,13 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
     }
 
     @Override
@@ -139,6 +141,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedAddressBook}
@@ -187,21 +190,18 @@ public class ModelManager implements Model {
     //=========== List Type Accessors =============================================================
 
     @Override
-    public void updateCurrentListType(ListType type)
-    {
+    public void updateCurrentListType(ListType type) {
         this.type = type;
     }
 
     @Override
-    public ListType getCurrentListType()
-    {
+    public ListType getCurrentListType() {
         return this.type;
     }
 
     @Override
-    public FilteredList<?> getCurrentList()
-    {
-        switch(this.type) {
+    public FilteredList<?> getCurrentList() {
+        switch (this.type) {
         case STUDENT_LIST:
             return filteredStudents;
         case TUTOR_LIST:

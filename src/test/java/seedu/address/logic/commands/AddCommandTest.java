@@ -82,14 +82,13 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
-        public ListType type;
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -119,12 +118,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -184,7 +183,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateCurrentListType (ListType type) {
+        public void updateCurrentListType(ListType type) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -194,8 +193,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public FilteredList<?> getCurrentList()
-        {
+        public FilteredList<?> getCurrentList() {
             throw new AssertionError("This method should not be called.");
         }
     }
