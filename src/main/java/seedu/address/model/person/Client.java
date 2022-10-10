@@ -1,28 +1,103 @@
 package seedu.address.model.person;
 
-import java.util.Set;
+import java.util.List;
 
 import seedu.address.model.project.Project;
-import seedu.address.model.tag.Tag;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Stub class for Person.
+ * Stub class for Client.
  */
-public class Client extends Person {
+public class Client {
+    //Represents the Client's name
+    private Name name;
+
+    //Represents the Client's Email
+    private Email email;
+
+    //Represents the Client's Phone
+    private Phone phone;
+
+    //Represents a Collection of projects that the client is responsible for
+    private List<Project> projects;
+
     /**
-     * Every field must be present and not null.
-     *
-     * @param name
-     * @param phone
-     * @param email
-     * @param address
-     * @param tags
+     * Constructs a client with inputs given by the user.
+     * @param name String representing name of the client
+     * @param phone String representing phone number of the client
+     * @param email String representing email address of the client
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
+    public Client(Name name, Phone phone, Email email, List<Project> projects) {
+        requireAllNonNull(name, phone, email, projects);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.projects = projects;
     }
 
-    public Set<Project> getProjects() {
-        return null;
+    /**
+     * Returns the client name as is represented in the ClientName object.
+     * @return String representing client's name.
+     */
+    public Name getName() {
+        return this.name;
+    }
+
+    /**
+     * Returns the client email as is represented in the ClientEmail object.
+     * @return String representing client's email.
+     */
+    public Email getEmail() {
+        return this.email;
+    }
+
+    /**
+     * Returns the client phone as is represented in the ClientPhone object.
+     * @return String representing client's phone.
+     */
+    public Phone getPhone() {
+        return this.phone;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    /**
+     * Returns true if both clients have the same name.
+     * This defines a weaker notion of equality between two clients.
+     */
+    public boolean isSameClient(Client otherClient) {
+        if (otherClient == this) {
+            return true;
+        }
+
+        return otherClient != null
+                && otherClient.getName().equals(getName());
+    }
+
+
+
+    /**
+     * Checks if an object equals this.
+     * @param other Object to be checked
+     * @return boolean true if this is equal to other and false otherwise
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Client)) {
+            return false;
+        }
+
+        Client otherClient = (Client) other;
+        return otherClient.getName().equals(getName())
+                && otherClient.getPhone().equals(getPhone())
+                && otherClient.getEmail().equals(getEmail())
+                && otherClient.getProjects().equals(getProjects());
     }
 }

@@ -36,7 +36,7 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label client;
     @FXML
-    private Label issueCount;
+    private Label issues;
 
     /**
      * Creates a {@code ProjectCard} with the given {@code Project} and index to display.
@@ -48,10 +48,8 @@ public class ProjectCard extends UiPart<Region> {
         name.setText(project.getProjectName().toString());
         repository.setText(project.getRepository().getRepositoryUrl());
         deadline.setText(project.getDeadline().getFormattedDeadline());
-
-        client.setText(project.getClientList().toString());
-
-        issueCount.setText(project.getIssueList().toString());
+        client.setText(project.getClient().toString());
+        issues.setText(String.valueOf(project.getIssueList().size()));
 
     }
 
