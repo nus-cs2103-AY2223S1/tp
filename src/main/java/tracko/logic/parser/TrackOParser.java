@@ -13,6 +13,7 @@ import tracko.logic.commands.MultiLevelCommand;
 import tracko.logic.commands.item.AddItemCommand;
 import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.commands.order.DeleteOrderCommand;
+import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.logic.parser.item.AddItemCommandParser;
 import tracko.logic.parser.order.AddOrderCommandParser;
@@ -74,6 +75,10 @@ public class TrackOParser {
         //
         case DeleteOrderCommand.COMMAND_WORD:
             return new DeleteOrderCommandParser().parse(arguments);
+
+        case ListOrdersCommand.COMMAND_WORD:
+           return new ListOrdersCommand();
+
         //
         // case ClearCommand.COMMAND_WORD:
         //     return new ClearCommand();

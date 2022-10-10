@@ -16,6 +16,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -72,8 +75,18 @@ public interface Model {
      * Returns the order list.
      */
     ObservableList<Order> getOrderList();
+
     /**
      * Adds the given item.
      */
     void addItem(Item item);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Item> getFilteredItemList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredItemList(Predicate<Item> predicate);
 }
