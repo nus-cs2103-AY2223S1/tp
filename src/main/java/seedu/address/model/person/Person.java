@@ -130,6 +130,9 @@ public class Person {
                 && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
     }
 
+    /**
+     * Returns true if both persons have the same identity and data fields, excluding Class.
+     */
     public boolean allEqualsExceptClass(Object other) {
         if (other == this) {
             return true;

@@ -18,7 +18,6 @@ import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.storage.ClassStorage;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
