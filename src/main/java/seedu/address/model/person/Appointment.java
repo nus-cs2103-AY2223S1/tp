@@ -124,6 +124,10 @@ public class Appointment {
         this.patient = patient;
     }
 
+    public Person getPatient() {
+        return patient;
+    }
+
     public String getPatientName() {
         return this.patient.getName().fullName;
     }
