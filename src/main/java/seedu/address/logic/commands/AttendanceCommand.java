@@ -57,7 +57,9 @@ public class AttendanceCommand extends Command {
         attendanceList.addAttendance(attendance);
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getLessonPlan(),
-                personToEdit.getHomeworkList(), personToEdit.getAttendanceList(), personToEdit.getTags());
+                personToEdit.getHomeworkList(), personToEdit.getAttendanceList(),
+                personToEdit.getGradeProgressList(), personToEdit.getTags());
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(generateSuccessMessage(editedPerson));

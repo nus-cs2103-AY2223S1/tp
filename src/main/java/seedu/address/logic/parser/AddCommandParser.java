@@ -49,7 +49,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         GradeProgressList gradeProgressList =
                 new GradeProgressList(); // add command does not allow adding Grade Progress at the start
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, lessonPlan, homeworkList, attendanceList, gradeProgressList, tagList);
 

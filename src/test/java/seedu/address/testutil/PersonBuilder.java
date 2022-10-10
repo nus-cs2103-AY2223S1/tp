@@ -89,6 +89,7 @@ public class PersonBuilder {
      */
     public PersonBuilder withAttendance(String ... attendanceList) {
         this.attendanceList.attendanceList.addAll(SampleDataUtil.getAttendanceList(attendanceList));
+        return this;
     }
     
     /** Parses the {@code homeworkList} into a {@code List<Homework>} and set it to the {@code Person}

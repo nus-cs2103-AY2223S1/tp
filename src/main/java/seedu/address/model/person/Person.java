@@ -30,7 +30,8 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, LessonPlan lessonPlan,
-                  HomeworkList homeworkList, AttendanceList attendanceList, GradeProgressList gradeProgressList, Set<Tag> tags) {
+                  HomeworkList homeworkList, AttendanceList attendanceList,
+                  GradeProgressList gradeProgressList, Set<Tag> tags) {
         requireAllNonNull(name, phone, tags);
         this.name = name;
         this.phone = phone;
@@ -138,7 +139,7 @@ public class Person {
                 .append("; Homework: ")
                 .append(getHomeworkList())
                 .append("; Attendance: ")
-                .append(getAttendanceList());
+                .append(getAttendanceList())
                 .append("; Grade Progress: ")
                 .append(getGradeProgressList());
 

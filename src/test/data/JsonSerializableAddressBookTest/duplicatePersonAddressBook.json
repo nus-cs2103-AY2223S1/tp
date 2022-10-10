@@ -13,8 +13,7 @@
     "lessonPlan" : "Algorithms",
     "homework": [ "science worksheet" ],
     "attendance": [ "2022-08-07" ],
-    "tagged": [ "friends" ]
     "gradeProgress" : ["Math: A"],
-    "homework": [ "science worksheet" ]
+    "tagged": [ "friends" ]
   } ]
 }

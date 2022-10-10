@@ -30,6 +30,7 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedAttendance> VALID_ATTENDANCE = BENSON.getAttendanceList()
             .attendanceList.stream()
             .map(JsonAdaptedAttendance::new)
+            .collect(Collectors.toList());
     private static final List<JsonAdaptedGradeProgress> VALID_GRADE_PROGRESS = BENSON.getGradeProgressList()
             .gradeProgressList.stream()
             .map(JsonAdaptedGradeProgress::new)
