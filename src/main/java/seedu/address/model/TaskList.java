@@ -62,6 +62,13 @@ public class TaskList implements ReadOnlyTaskList {
     }
 
     /**
+     * Check a task for duplicates
+     */
+    public boolean hasTask(Task t) {
+        return tasks.contains(t);
+    }
+
+    /**
      * Replaces the given task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the task list.
      */

@@ -73,10 +73,10 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append("; Title: ")
-                .append(getDeadline())
+        builder.append("Title: ")
+                .append(getTitle())
                 .append("; Deadline: ")
+                .append(getDeadline())
                 .append(", Status: ")
                 .append(getStatus());
 
@@ -86,5 +86,25 @@ public class Task {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Task)) {
+            return false;
+        }
+
+        Task otherTask = (Task) other;
+        return otherTask.getTitle().equals(getTitle())
+                && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.getTags().equals(getTags());
     }
 }
