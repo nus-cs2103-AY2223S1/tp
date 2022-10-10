@@ -12,6 +12,9 @@ import nus.climods.model.person.Email;
 import nus.climods.model.person.Name;
 import nus.climods.model.person.Person;
 import nus.climods.model.person.Phone;
+import nus.climods.model.module.Module;
+import nus.climods.model.module.ModuleCode;
+import nus.climods.model.module.Tutorial;
 import nus.climods.model.tag.Tag;
 
 /**
@@ -35,24 +38,19 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL,
-                CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_CODE, CliSyntax.PREFIX_TUTORIAL, CliSyntax.PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ADDRESS, CliSyntax.PREFIX_PHONE,
-            CliSyntax.PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_CODE, CliSyntax.PREFIX_TUTORIAL)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
+        ModuleCode name = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_CODE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Module module = new Module(name, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(module);
     }
 
 }

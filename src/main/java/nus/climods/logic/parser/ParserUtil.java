@@ -9,6 +9,7 @@ import java.util.Set;
 import nus.climods.commons.core.index.Index;
 import nus.climods.commons.util.StringUtil;
 import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.model.module.ModuleCode;
 import nus.climods.model.person.Address;
 import nus.climods.model.person.Email;
 import nus.climods.model.person.Name;
@@ -48,6 +49,20 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}. Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static ModuleCode parseCode(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleCode(trimmedName);
     }
 
     /**
