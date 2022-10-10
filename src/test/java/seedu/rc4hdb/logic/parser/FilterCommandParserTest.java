@@ -21,7 +21,6 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
@@ -75,7 +74,7 @@ public class FilterCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being Filtered,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser,  TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 

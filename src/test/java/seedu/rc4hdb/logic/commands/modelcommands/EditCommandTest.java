@@ -12,11 +12,7 @@ import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ass
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.showPersonAtIndex;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.rc4hdb.testutil.TypicalPersons.AMY;
-import static seedu.rc4hdb.testutil.TypicalPersons.BOB;
 import static seedu.rc4hdb.testutil.TypicalPersons.getTypicalAddressBook;
-
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +23,6 @@ import seedu.rc4hdb.model.AddressBook;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
-import seedu.rc4hdb.model.person.AttributesMatchKeywordsPredicate;
-import seedu.rc4hdb.model.person.NameContainsKeywordsPredicate;
 import seedu.rc4hdb.model.person.Person;
 import seedu.rc4hdb.testutil.EditPersonDescriptorBuilder;
 import seedu.rc4hdb.testutil.PersonBuilder;

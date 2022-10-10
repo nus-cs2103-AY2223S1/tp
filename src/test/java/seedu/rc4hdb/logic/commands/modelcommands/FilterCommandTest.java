@@ -13,7 +13,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand.FilterPersonDescriptor;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;

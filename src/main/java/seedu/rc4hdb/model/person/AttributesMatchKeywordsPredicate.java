@@ -1,7 +1,5 @@
 package seedu.rc4hdb.model.person;
 
-import static java.util.Objects.isNull;
-
 import java.util.Optional;
 import java.util.function.Predicate;
 
