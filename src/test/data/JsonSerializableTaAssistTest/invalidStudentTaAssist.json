@@ -5,5 +5,11 @@
     "email": "invalid@email!3e",
     "address": "4th street"
   } ],
-  "moduleClasses" : []
+  "moduleClasses" : [{
+    "name": "CS1101S",
+    "sessions": []
+  }, {
+    "name": "CS1231S",
+    "sessions": []
+  }]
 }

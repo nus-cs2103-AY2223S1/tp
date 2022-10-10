@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
+import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,12 +15,19 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
+import seedu.taassist.model.Model;
+import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.ModelStub;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.TaAssist;
+import seedu.taassist.model.UserPrefs;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
 public class AddcCommandTest {
+
+    private Model model = new ModelManager(getTypicalTaAssist(), new UserPrefs());
+
+    //==================================== Unit Tests ================================================================
 
     @Test
     public void constructor_nullModuleClass_throwsNullPointerException() {
@@ -68,6 +76,24 @@ public class AddcCommandTest {
         // different module class -> returns false
         assertFalse(addCS1101SCommand.equals(addCS1231SCommand));
     }
+
+    //==================================== Integration Tests =========================================================
+
+    /*
+    @Test
+    public void execute_newModuleClass_success() {
+        ModuleClass validModuleClass = CS1101S;
+
+        Model expectedModel = new ModelManager(model.getTaAssist(), new UserPrefs());
+        expectedModel.addModuleClass(validModuleClass);
+
+        assertCommandSuccess(new AddcCommand(validModuleClass), model,
+                String.format(AddcCommand.MESSAGE_SUCCESS, validModuleClass), expectedModel);
+    }
+
+     */
+
+    //==================================== Model Stubs ===============================================================
 
     private class ModelStubWithModuleClass extends ModelStub {
         private final ModuleClass moduleClass;
