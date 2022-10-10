@@ -1,3 +1,67 @@
+/* Import fonts */
+
+@font-face {
+    font-family: 'SF Mono Bold';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Bold.otf');
+}
+
+@font-face {
+    font-family: 'SF Mono Bold Italic';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-BoldItalic.otf');
+}
+
+@font-face {
+    font-family: 'SF Mono Heavy';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Heavy.otf');
+}
+
+@font-face {
+    font-family: 'SF Mono Heavy Italic';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-HeavyItalic.otf');
+}
+
+@font-face {
+    font-family: 'SF Mono Light';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Light.otf');
+}
+
+@font-face {
+    font-family: 'SF Mono Light Italic';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-LightItalic.otf');
+}
+
+@font-face {
+    font-family: 'SF Mono Medium';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Medium.otf');
+}
+
+@font-face {
+    font-family: 'SF Mono Medium Italic';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-MediumItalic.otf');
+}
+
+@font-face {
+    font-family: 'SF Mono Regular';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Regular.otf');
+}
+
+@font-face {
+    font-family: 'SF Mono Regular Italic';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-RegularItalic.otf');
+}
+
+@font-face {
+    font-family: 'SF Mono Semibold';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-Semibold.otf');
+}
+
+@font-face {
+    font-family: 'SF Mono Semibold Italic';
+    src: url('/fonts/SFMono/LigaSFMonoNerdFont-SemiboldItalic.otf');
+}
+
+/* End of import fonts */
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -5,28 +69,28 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "SF Mono Semibold";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "SF Mono Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "SF Mono Light";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "SF Mono Semibold";
 }
 
 .tab-pane {
@@ -66,7 +130,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "SF Mono Light";
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -121,13 +185,13 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "SF Mono Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "SF Mono";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
@@ -148,7 +212,7 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "SF Mono Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -158,7 +222,7 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "SF Mono Light";
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -198,7 +262,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "SF Mono Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
@@ -218,7 +282,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-family: "SF Mono", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -320,10 +384,11 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: #ffffff;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-border-radius: 20px;
+    -fx-font-family: "SF Mono Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }

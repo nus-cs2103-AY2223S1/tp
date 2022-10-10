@@ -33,6 +33,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label employeeId;
+    @FXML
+    private Label position;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -49,9 +53,11 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        employeeId.setText("Employee ID:  " + String.format("%6s", person.getEmployeeId().value).replace(' ', '0'));
+        position.setText("Position:  " + person.getPosition().value);
+        phone.setText("Phone number:  " + person.getPhone().value);
+        address.setText("Address:  " + person.getAddress().value);
+        email.setText("Email address:  " + person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

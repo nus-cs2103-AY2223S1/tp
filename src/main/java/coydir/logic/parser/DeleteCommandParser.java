@@ -2,9 +2,9 @@ package coydir.logic.parser;
 
 import static coydir.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import coydir.commons.core.index.Index;
 import coydir.logic.commands.DeleteCommand;
 import coydir.logic.parser.exceptions.ParseException;
+import coydir.model.person.EmployeeId;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -18,8 +18,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteCommand(index);
+            String id = ParserUtil.parseId(args);
+            return new DeleteCommand(new EmployeeId(id));
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);

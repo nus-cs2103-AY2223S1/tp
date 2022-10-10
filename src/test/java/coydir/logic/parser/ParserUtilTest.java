@@ -18,6 +18,7 @@ import coydir.model.person.Address;
 import coydir.model.person.Email;
 import coydir.model.person.Name;
 import coydir.model.person.Phone;
+import coydir.model.person.Position;
 import coydir.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -25,12 +26,14 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_POSITION = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_POSITION = "Software Engineer";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -146,6 +149,29 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parsePosition_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePosition((String) null));
+    }
+
+    @Test
+    public void parsePosition_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePosition(INVALID_POSITION));
+    }
+
+    @Test
+    public void parsePosition_validValueWithoutWhitespace_returnsPosition() throws Exception {
+        Position expectedPosition = new Position(VALID_POSITION);
+        assertEquals(expectedPosition, ParserUtil.parsePosition(VALID_POSITION));
+    }
+
+    @Test
+    public void parsePosition_validValueWithWhitespace_returnsTrimmedPosition() throws Exception {
+        String positionWithWhitespace = WHITESPACE + VALID_POSITION + WHITESPACE;
+        Position expectedPosition = new Position(VALID_POSITION);
+        assertEquals(expectedPosition, ParserUtil.parsePosition(positionWithWhitespace));
     }
 
     @Test

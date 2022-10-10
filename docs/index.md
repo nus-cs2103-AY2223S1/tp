@@ -8,7 +8,11 @@ title: Coydir
 
 ![Ui](images/Ui.png)
 
-Coydir is a desktop application used by Human Resource Executives to manage their employee base and streamline data collection. It is made simpler with a easy-to-use graphical user interface(GUI) and can also be accessed through your Command Line Interface(CLI).
+Coydir is a desktop application used by Human Resource Executives to manage their employee database and streamline data collection. 
+
+It is made simpler with a easy-to-use graphical user interface(GUI) and can also be accessed through your Command Line Interface(CLI).
+
+**Other Links:**
 
 * If you are interested in using Coydir, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing Coydir, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
