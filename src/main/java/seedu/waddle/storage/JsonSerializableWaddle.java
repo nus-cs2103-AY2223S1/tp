@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
-import seedu.waddle.model.Waddle;
 import seedu.waddle.model.ReadOnlyWaddle;
+import seedu.waddle.model.Waddle;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
@@ -37,7 +37,8 @@ class JsonSerializableWaddle {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableWaddle(ReadOnlyWaddle source) {
-        itineraries.addAll(source.getItineraryList().stream().map(JsonAdaptedItinerary::new).collect(Collectors.toList()));
+        itineraries.addAll(source.getItineraryList().stream()
+                .map(JsonAdaptedItinerary::new).collect(Collectors.toList()));
     }
 
     /**

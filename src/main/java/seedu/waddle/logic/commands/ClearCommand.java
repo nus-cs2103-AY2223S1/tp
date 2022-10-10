@@ -2,8 +2,8 @@ package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.waddle.model.Waddle;
 import seedu.waddle.model.Model;
+import seedu.waddle.model.Waddle;
 
 /**
  * Clears the address book.

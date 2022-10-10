@@ -48,7 +48,9 @@ public class Itinerary {
         return endDate;
     }
 
-    public People getPeople() { return people; }
+    public People getPeople() {
+        return people;
+    }
 
     /**
      * Returns true if both persons have the same name.
