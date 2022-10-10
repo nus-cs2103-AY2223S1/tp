@@ -11,7 +11,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.UniqueTagTypeMap;
+import seedu.address.model.person.UniqueTagTypeMap;
+
 
 import java.util.List;
 
@@ -75,8 +76,9 @@ public class DeleteTagCommand extends Command {
 
     private static Person createEditedPerson(Person personToEdit, EditCommand.EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
-
-        UniqueTagTypeMap updatedTags = personToEdit.getTags().removeTags(editPersonDescriptor.getTags());
+        UniqueTagTypeMap updatedTags = new UniqueTagTypeMap();
+        updatedTags.setTagTypeMap(personToEdit.getTags());
+        updatedTags.removeTags(editPersonDescriptor.getTags().get());
 
         return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), updatedTags);

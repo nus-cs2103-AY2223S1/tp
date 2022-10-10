@@ -42,7 +42,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         //        UniqueTagTypeMap tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        UniqueTagTypeMap tagList = null; // to be changed
+        UniqueTagTypeMap tagList = new UniqueTagTypeMap(); // to be changed
 
         Person person = new Person(name, phone, email, address, tagList);
 
