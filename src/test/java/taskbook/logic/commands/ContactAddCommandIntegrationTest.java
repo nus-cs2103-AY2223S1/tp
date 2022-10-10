@@ -2,7 +2,7 @@ package taskbook.logic.commands;
 
 import static taskbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static taskbook.testutil.TypicalPersons.getTypicaltaskBook;
+import static taskbook.testutil.TypicalPersons.getTypicalTaskBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ public class ContactAddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicaltaskBook(), new UserPrefs());
+        model = new ModelManager(getTypicalTaskBook(), new UserPrefs());
     }
 
     @Test

@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonTaskBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonTaskBookStorageTest} class.
          */
-        TaskBook original = TypicalPersons.getTypicaltaskBook();
+        TaskBook original = TypicalPersons.getTypicalTaskBook();
         storageManager.saveTaskBook(original);
         ReadOnlyTaskBook retrieved = storageManager.readTaskBook().get();
         assertEquals(original, new TaskBook(retrieved));
