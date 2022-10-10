@@ -21,7 +21,7 @@ public class Id {
 
     @Override
     public String toString() {
-        return String.valueOf(this.issueId);
+        return "#" + String.valueOf(this.issueId);
     }
 
 }

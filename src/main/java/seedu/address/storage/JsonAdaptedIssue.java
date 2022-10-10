@@ -9,6 +9,7 @@ import seedu.address.model.issue.Deadline;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.Status;
+import seedu.address.model.project.Project;
 
 /**
  * Jackson-friendly version of {@link Issue}.
@@ -21,6 +22,7 @@ class JsonAdaptedIssue {
     private final String priority;
     private final String deadline;
     private final String status;
+    private final JsonAdaptedProject project;
 
     /**
      * Constructs a {@code JsonAdaptedIssue} with the given issue details.
@@ -29,11 +31,13 @@ class JsonAdaptedIssue {
     public JsonAdaptedIssue(@JsonProperty("description") String description,
                             @JsonProperty("priority") String priority,
                              @JsonProperty("deadline") String deadline,
-                            @JsonProperty("status") String status) {
+                            @JsonProperty("status") String status,
+                            @JsonProperty("project") JsonAdaptedProject project) {
         this.description = description;
         this.priority = priority;
         this.deadline = deadline;
         this.status = status;
+        this.project = project;
     }
 
     /**
@@ -44,6 +48,7 @@ class JsonAdaptedIssue {
         priority = source.getPriority().toString();
         deadline = source.getDeadline().toString();
         status = source.getStatus().toString();
+        project = new JsonAdaptedProject(source.getProject());
     }
 
     /**
@@ -85,7 +90,13 @@ class JsonAdaptedIssue {
         }
         final Status modelStatus = new Status(Boolean.valueOf(status));
 
-        return new Issue(modelDescription, modelDeadline, modelPriority, modelStatus);
+        if (project == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Project.class.getSimpleName()));
+        }
+
+        final Project modelProject = project.toModelType();
+
+        return new Issue(modelDescription, modelDeadline, modelPriority, modelStatus, modelProject);
     }
 
 }
