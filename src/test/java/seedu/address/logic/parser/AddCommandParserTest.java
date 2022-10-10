@@ -28,11 +28,11 @@ import static seedu.address.testutil.TypicalPersons.BETA;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Module;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
