@@ -2,23 +2,16 @@ package seedu.guest.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.guest.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.guest.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_DATE_RANGE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.guest.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
 
 import seedu.guest.commons.core.index.Index;
 import seedu.guest.logic.commands.EditCommand;
 import seedu.guest.logic.commands.EditCommand.EditGuestDescriptor;
 import seedu.guest.logic.parser.exceptions.ParseException;
-import seedu.guest.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -33,8 +26,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NUMBER_OF_GUESTS,
-                        PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DATE_RANGE,
+                        PREFIX_NUMBER_OF_GUESTS);
 
         Index index;
 
@@ -54,35 +47,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editGuestDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
+        if (argMultimap.getValue(PREFIX_DATE_RANGE).isPresent()) {
+            editGuestDescriptor.setDateRange(ParserUtil.parseDateRange(argMultimap.getValue(PREFIX_DATE_RANGE).get()));
+        }
         if (argMultimap.getValue(PREFIX_NUMBER_OF_GUESTS).isPresent()) {
             editGuestDescriptor.setNumberOfGuests(ParserUtil
                     .parseNumberOfGuests(argMultimap.getValue(PREFIX_NUMBER_OF_GUESTS).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editGuestDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editGuestDescriptor::setTags);
 
         if (!editGuestDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editGuestDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
 }

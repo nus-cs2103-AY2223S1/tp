@@ -3,8 +3,6 @@ package seedu.guest.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.guest.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.guest.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.guest.testutil.Assert.assertThrows;
 import static seedu.guest.testutil.TypicalPersons.ALICE;
 import static seedu.guest.testutil.TypicalPersons.getTypicalAddressBook;
@@ -46,8 +44,7 @@ public class GuestBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Guest editedAlice = new GuestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Guest editedAlice = new GuestBuilder(ALICE).build();
         List<Guest> newGuests = Arrays.asList(ALICE, editedAlice);
         GuestBookStub newData = new GuestBookStub(newGuests);
 
@@ -73,8 +70,7 @@ public class GuestBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         guestBook.addGuest(ALICE);
-        Guest editedAlice = new GuestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Guest editedAlice = new GuestBuilder(ALICE).build();
         assertTrue(guestBook.hasGuest(editedAlice));
     }
 

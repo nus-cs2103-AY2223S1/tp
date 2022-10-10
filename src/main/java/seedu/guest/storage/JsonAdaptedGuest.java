@@ -1,22 +1,15 @@
 package seedu.guest.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.guest.commons.exceptions.IllegalValueException;
-import seedu.guest.model.guest.Address;
+import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
-import seedu.guest.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Guest}.
@@ -28,26 +21,21 @@ class JsonAdaptedGuest {
     private final String name;
     private final String phone;
     private final String email;
+    private final String dateRange;
     private final String numberOfGuests;
-    private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedGuest} with the given guest details.
      */
     @JsonCreator
     public JsonAdaptedGuest(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("numberOfGuests") String numberOfGuests,
-                    @JsonProperty("address") String address,
-                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("email") String email, @JsonProperty("dateRange") String dateRange,
+            @JsonProperty("numberOfGuests") String numberOfGuests) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.dateRange = dateRange;
         this.numberOfGuests = numberOfGuests;
-        this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
     }
 
     /**
@@ -57,11 +45,8 @@ class JsonAdaptedGuest {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        dateRange = source.getDateRange().value;
         numberOfGuests = source.getNumberOfGuests().value;
-        address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
     }
 
     /**
@@ -70,10 +55,6 @@ class JsonAdaptedGuest {
      * @throws IllegalValueException if there were any data constraints violated in the adapted guest.
      */
     public Guest toModelType() throws IllegalValueException {
-        final List<Tag> guestTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            guestTags.add(tag.toModelType());
-        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -99,6 +80,15 @@ class JsonAdaptedGuest {
         }
         final Email modelEmail = new Email(email);
 
+        if (dateRange == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateRange.class.getSimpleName()));
+        }
+        if (!DateRange.isValidDateRange(dateRange)) {
+            throw new IllegalValueException(DateRange.MESSAGE_CONSTRAINTS);
+        }
+        final DateRange modelDateRange = new DateRange(dateRange);
+
         if (numberOfGuests == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     NumberOfGuests.class.getSimpleName()));
@@ -108,15 +98,6 @@ class JsonAdaptedGuest {
         }
         final NumberOfGuests modelNumberOfGuests = new NumberOfGuests(numberOfGuests);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
-        final Set<Tag> modelTags = new HashSet<>(guestTags);
-        return new Guest(modelName, modelPhone, modelEmail, modelNumberOfGuests, modelAddress, modelTags);
+        return new Guest(modelName, modelPhone, modelEmail, modelDateRange, modelNumberOfGuests);
     }
 }

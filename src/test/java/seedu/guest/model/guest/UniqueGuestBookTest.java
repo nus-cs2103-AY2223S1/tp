@@ -3,8 +3,6 @@ package seedu.guest.model.guest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.guest.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.guest.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.guest.testutil.Assert.assertThrows;
 import static seedu.guest.testutil.TypicalPersons.ALICE;
 import static seedu.guest.testutil.TypicalPersons.BOB;
@@ -42,8 +40,7 @@ public class UniqueGuestBookTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueGuestList.add(ALICE);
-        Guest editedAlice = new GuestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Guest editedAlice = new GuestBuilder(ALICE).build();
         assertTrue(uniqueGuestList.contains(editedAlice));
     }
 
@@ -85,8 +82,7 @@ public class UniqueGuestBookTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueGuestList.add(ALICE);
-        Guest editedAlice = new GuestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Guest editedAlice = new GuestBuilder(ALICE).build();
         uniqueGuestList.setGuest(ALICE, editedAlice);
         UniqueGuestList expectedUniqueGuestList = new UniqueGuestList();
         expectedUniqueGuestList.add(editedAlice);

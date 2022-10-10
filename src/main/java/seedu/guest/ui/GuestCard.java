@@ -1,10 +1,7 @@
 package seedu.guest.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.guest.model.guest.Guest;
@@ -35,13 +32,11 @@ public class GuestCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label numberOfGuests;
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private Label dateRange;
 
     /**
      * Creates a {@code GuestCode} with the given {@code Guest} and index to display.
@@ -52,12 +47,9 @@ public class GuestCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(guest.getName().fullName);
         phone.setText(guest.getPhone().value);
-        address.setText(guest.getAddress().value);
         email.setText(guest.getEmail().value);
+        dateRange.setText(guest.getDateRange().value);
         numberOfGuests.setText("No. of Guests: " + guest.getNumberOfGuests().value);
-        guest.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

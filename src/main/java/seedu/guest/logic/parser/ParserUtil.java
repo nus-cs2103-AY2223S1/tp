@@ -2,19 +2,14 @@ package seedu.guest.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.guest.commons.core.index.Index;
 import seedu.guest.commons.util.StringUtil;
 import seedu.guest.logic.parser.exceptions.ParseException;
-import seedu.guest.model.guest.Address;
+import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
-import seedu.guest.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -67,21 +62,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -97,6 +77,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String dateRange} into an {@code DateRange}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateRange} is invalid.
+     */
+    public static DateRange parseDateRange(String dateRange) throws ParseException {
+        requireNonNull(dateRange);
+        String trimmedDateRange = dateRange.trim();
+        if (!DateRange.isValidDateRange(trimmedDateRange)) {
+            throw new ParseException(DateRange.MESSAGE_CONSTRAINTS);
+        }
+        return new DateRange(trimmedDateRange);
+    }
+
+    /**
      * Parses a {@code String numberOfGuests} into an {@code NumberOfGuests}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -109,32 +104,5 @@ public class ParserUtil {
             throw new ParseException(NumberOfGuests.MESSAGE_CONSTRAINTS);
         }
         return new NumberOfGuests(trimmedNumberOfGuests);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 }
