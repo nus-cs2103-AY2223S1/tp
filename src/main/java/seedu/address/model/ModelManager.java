@@ -177,6 +177,7 @@ public class ModelManager implements Model {
         // FilteredList takes in an ObservableList stored inside recordList, using the person retrieved from listR
         filteredRecords = new FilteredList<>(new RecordList().getRecordList());
     }
+
     public void setFilteredRecordList(Person person) {
         filteredRecords = new FilteredList<>(person.getRecordList().asUnmodifiableObservableList());
     }
