@@ -18,6 +18,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -56,6 +57,7 @@ public class AddressBookParser {
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
         case DeleteCommand.COMMAND_WORD:
+        case ListCommand.COMMAND_WORD:
             /* Used to extract command type and arguments. */
             final Matcher parameterMatcher = COMMAND_PARAMETER_FORMAT.matcher(commandParameter);
             if (!parameterMatcher.matches()) {
@@ -83,6 +85,15 @@ public class AddressBookParser {
                 default:
                     throw new ParseException(MESSAGE_UNKNOWN_COMMAND_TYPE);
                 }
+            case ListCommand.COMMAND_WORD:
+                switch(commandType) {
+                case CONTACT_COMMAND_IDENTIFIER:
+                    return new ListCommand();
+                case MODULE_COMMAND_IDENTIFIER:
+                    return new ListModuleCommand();
+                default:
+                    throw new ParseException(MESSAGE_UNKNOWN_COMMAND_TYPE);
+                }
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND_TYPE);
             }
@@ -95,9 +106,6 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(commandParameter);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         // method that do not require m and c
         case ExitCommand.COMMAND_WORD:
