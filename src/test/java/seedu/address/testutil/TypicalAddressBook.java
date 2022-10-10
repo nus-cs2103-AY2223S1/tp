@@ -1,17 +1,23 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
 
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+/**
+ * A utility class containing an {@code AddressBook} object to be used in tests.
+ */
 public class TypicalAddressBook {
+    private TypicalAddressBook() {} //prevents instantiation
 
+    /**
+     * Returns a valid AddressBook with all valid Tutors, Students and TuitionClasses.
+     */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
 
@@ -33,6 +39,4 @@ public class TypicalAddressBook {
         return ab;
 
     }
-
-    private TypicalAddressBook() {} //prevents instantiation
 }

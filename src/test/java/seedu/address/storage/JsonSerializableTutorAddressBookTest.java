@@ -26,7 +26,8 @@ public class JsonSerializableTutorAddressBookTest {
 
     @Test
     public void toModelType_typicalTutorsFile_success() throws Exception {
-        JsonSerializableTutorAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TUTORS_FILE, JsonSerializableTutorAddressBook.class).get();
+        JsonSerializableTutorAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TUTORS_FILE,
+                JsonSerializableTutorAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         AddressBook typicalTutorsAddressBook = TypicalTutors.getTypicalTutorsAddressBook();
         assertEquals(addressBookFromFile, typicalTutorsAddressBook);
@@ -49,7 +50,8 @@ public class JsonSerializableTutorAddressBookTest {
 
     @Test
     public void getTutorsList_typicalTutorsFile_success() throws Exception {
-        JsonSerializableTutorAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TUTORS_FILE, JsonSerializableTutorAddressBook.class).get();
+        JsonSerializableTutorAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TUTORS_FILE,
+                JsonSerializableTutorAddressBook.class).get();
         List<Tutor> tutorList = new ArrayList<>(Arrays.asList(TypicalTutors.TUTOR1, TypicalTutors.TUTOR2));
         assertEquals(tutorList, dataFromFile.getTutorsList());
     }

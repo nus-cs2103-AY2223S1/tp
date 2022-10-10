@@ -24,6 +24,10 @@ public class UniqueTutorList extends UniquePersonList {
         this.internalList.setAll(tutors);
     }
 
+    /**
+     * Converts {@code ObservableList<Person>} to {@code ObservableList<Tutor>}.
+     * @return the backing list as an unmodifiable {@code ObservableList}.
+     */
     public ObservableList<Tutor> asUnmodifiableObservableTutorList() {
         ObservableList<Tutor> castToTutorList = FXCollections.observableArrayList();
         for (Person p : internalList) {
