@@ -32,10 +32,8 @@ public class CliSyntax {
         pref = prefixes.toArray(pref);
         return pref;
     }
-    public static Prefix[] getPrefixeTags() {
+    public static ArrayList<Prefix> getPrefixTags() {
         requireNonNull(prefixTags);
-        Prefix[] pref = new Prefix[prefixTags.size()];
-        pref = prefixTags.toArray(pref);
-        return pref;
+        return prefixTags;
     }
 }

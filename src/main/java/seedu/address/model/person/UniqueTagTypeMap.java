@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -12,6 +11,7 @@ import java.util.stream.StreamSupport;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.exceptions.DuplicateTagTypeException;
 import seedu.address.model.person.exceptions.TagTypeNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -36,7 +36,7 @@ import seedu.address.model.tag.exceptions.TagNotFoundException;
  * @see TagType#equals(Object)
  */
 public class UniqueTagTypeMap implements Iterable<TagType> {
-    private static final ArrayList<TagType> TAG_TYPES = new ArrayList<>();
+    private static final ObservableMap<Prefix, TagType> prefixMap = FXCollections.observableMap(new HashMap<>());
 
     private final ObservableMap<TagType, UniqueTagList> internalMap = FXCollections.observableMap(new HashMap<>());
     private final ObservableMap<TagType, UniqueTagList> internalUnmodifiableMap = FXCollections
@@ -53,7 +53,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     /**
      * Merges another UniqueTagTypeMap.
      */
-    public void mergeTagTypeList(UniqueTagTypeMap tagTypeMap) throws DuplicateTagException {
+    public void mergeTagTypeMap(UniqueTagTypeMap tagTypeMap) throws DuplicateTagException {
         requireNonNull(tagTypeMap);
         boolean isValid = tagTypeMap.toStream().filter(this::contains)
                 .allMatch(tagType -> !this.getTagList(tagType).containsAny(tagTypeMap.getTagList(tagType)));
@@ -68,7 +68,6 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             }
         }
     }
-
     /**
      * Subtracts a UniqueTagTypeMap.
      */
@@ -191,5 +190,8 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     }
     public Stream<TagType> toStream() {
         return StreamSupport.stream(this.spliterator(), false);
+    }
+    public static TagType getTagType(Prefix pref) {
+        return prefixMap.get(pref);
     }
 }
