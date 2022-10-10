@@ -9,20 +9,16 @@ import seedu.waddle.model.Model;
  * Changes the remark of an existing person in the address book.
  */
 public class StageCommand extends Command {
-    private final Stages selectedStage;
-
     public static final String COMMAND_WORD = "stage";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Switches to another planning stage according "
             + "to the specified planning stage.\n"
             + "Current available stages are \"wish\" and \"schedule\"\n"
             + "Parameters: PLANNING_STAGE\n"
             + "Example: " + COMMAND_WORD + " s/wish";
-
     public static final String MESSAGE_STAGE_SWITCH_SUCCESS = "Waddled to the %1$s stage";
-
     public static final String MESSAGE_ALREADY_AT_STAGE_SUCCESS = "Already waddling in the %1$s stage";
+    private final Stages selectedStage;
 
     public StageCommand(Stages selectedStage) {
         this.selectedStage = selectedStage;
@@ -34,7 +30,8 @@ public class StageCommand extends Command {
 
         // if already at home page, do nothing and tell user
         if (stageManager.isCurrentStage(selectedStage)) {
-            return new CommandResult(String.format(MESSAGE_ALREADY_AT_STAGE_SUCCESS, selectedStage.toString().toLowerCase()));
+            return new CommandResult(String.format(MESSAGE_ALREADY_AT_STAGE_SUCCESS,
+                    selectedStage.toString().toLowerCase()));
         }
 
         // change to home stage in stage manager

@@ -1,9 +1,12 @@
 package seedu.waddle.logic;
 
-import seedu.waddle.model.itinerary.Itinerary;
-
 import static java.util.Objects.requireNonNull;
 
+import seedu.waddle.model.itinerary.Itinerary;
+
+/**
+ * This class keeps track of the stage the user is in.
+ */
 public class StageManager {
     private static StageManager instance;
     // default stage is home
@@ -11,7 +14,7 @@ public class StageManager {
     // stores the currently selected Itinerary
     private Itinerary selectedItinerary;
 
-    private StageManager(){
+    private StageManager() {
     }
 
     public static StageManager getInstance() {

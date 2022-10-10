@@ -1,14 +1,27 @@
 package seedu.waddle.logic.parser;
 
+import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_STAGE;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.Stages;
-import seedu.waddle.logic.commands.*;
+import seedu.waddle.logic.commands.AddCommand;
+import seedu.waddle.logic.commands.ClearCommand;
+import seedu.waddle.logic.commands.Command;
+import seedu.waddle.logic.commands.DeleteCommand;
+import seedu.waddle.logic.commands.EditCommand;
+import seedu.waddle.logic.commands.ExitCommand;
+import seedu.waddle.logic.commands.FindCommand;
+import seedu.waddle.logic.commands.HelpCommand;
+import seedu.waddle.logic.commands.HomeCommand;
+import seedu.waddle.logic.commands.ListCommand;
+import seedu.waddle.logic.commands.PlanCommand;
+import seedu.waddle.logic.commands.StageCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
-
-import static seedu.waddle.commons.core.Messages.*;
 
 /**
  * Parses user input.
@@ -50,6 +63,14 @@ public class WaddleParser {
         }
     }
 
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param commandWord The command word.
+     * @param arguments The arguments.
+     * @return The command.
+     * @throws ParseException ParseException.
+     */
     public Command parseHomeCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
 
@@ -88,6 +109,14 @@ public class WaddleParser {
         }
     }
 
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param commandWord The command word.
+     * @param arguments The arguments.
+     * @return The command.
+     * @throws ParseException ParseException.
+     */
     public Command parseWishCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
 
@@ -111,6 +140,14 @@ public class WaddleParser {
         }
     }
 
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param commandWord The command word.
+     * @param arguments The arguments.
+     * @return The command.
+     * @throws ParseException ParseException.
+     */
     public Command parseScheduleCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
 

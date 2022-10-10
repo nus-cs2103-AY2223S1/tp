@@ -13,19 +13,15 @@ import seedu.waddle.model.itinerary.Itinerary;
  * Changes the remark of an existing person in the address book.
  */
 public class PlanCommand extends Command {
-    private Index index;
-
     public static final String COMMAND_WORD = "plan";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": selects an itinerary for planning "
             + "by the index number used in the last itineraries listing.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
-
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
-
     public static final String MESSAGE_PLAN_ITINERARY_SUCCESS = "Planning Itinerary: %1$s";
+    private final Index index;
 
     /**
      * @param index of the itinerary to plan
