@@ -15,6 +15,7 @@ public class Task {
 
     // Data fields
     private final TaskDeadline taskDeadline;
+    private boolean isDone;
 
     /**
      * Every field must be present and not null.
@@ -23,6 +24,7 @@ public class Task {
         requireAllNonNull(taskDesc, taskDeadline);
         this.taskDesc = taskDesc;
         this.taskDeadline = taskDeadline;
+        this.isDone = false;
     }
 
     public TaskDesc getDesc() {
@@ -31,6 +33,18 @@ public class Task {
 
     public TaskDeadline getDeadline() {
         return taskDeadline;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void markAsDone() {
+        isDone = true;
+    }
+
+    public void markAsNotDone() {
+        isDone = false;
     }
 
     /**
@@ -61,7 +75,9 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getDesc().equals(getDesc()) && otherTask.getDeadline().equals(getDeadline());
+        return otherTask.getDesc().equals(getDesc())
+                && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.isDone() == isDone();
     }
 
     @Override
@@ -73,6 +89,11 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        if (isDone) {
+            builder.append("[X] ");
+        } else {
+            builder.append("[ ] ");
+        }
         builder.append(getDesc());
         if (getDeadline().deadlineExists()) {
             builder.append("\nDeadline: ").append(getDeadline());
