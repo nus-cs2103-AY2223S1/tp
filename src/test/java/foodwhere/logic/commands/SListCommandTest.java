@@ -13,9 +13,9 @@ import foodwhere.testutil.TypicalIndexes;
 import foodwhere.testutil.TypicalStalls;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for SListCommand.
  */
-public class ListCommandTest {
+public class SListCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -28,12 +28,12 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SListCommand(), model, SListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showStallAtIndex(model, TypicalIndexes.INDEX_FIRST_STALL);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SListCommand(), model, SListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
