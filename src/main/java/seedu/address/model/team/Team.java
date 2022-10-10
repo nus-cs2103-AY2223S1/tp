@@ -20,10 +20,8 @@ public class Team {
 
     // Identity fields
     private final Name name;
-    private UniqueTaskList tasks = new UniqueTaskList();
     private UniquePersonList members = new UniquePersonList();
-
-
+    private UniqueTaskList tasks = new UniqueTaskList();
 
     /**
      * Every field must be present and not null.
@@ -31,6 +29,8 @@ public class Team {
     public Team(Name name) {
         requireAllNonNull(name);
         this.name = name;
+        this.tasks = new UniqueTaskList();
+        this.members = new UniquePersonList();
     }
 
     /**
@@ -71,6 +71,7 @@ public class Team {
      * Returns list of members in the team
      * @return members
      */
+
     public UniquePersonList getMembers() {
         return members;
     }

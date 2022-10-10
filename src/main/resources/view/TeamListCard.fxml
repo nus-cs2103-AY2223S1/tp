@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<VBox styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox spacing="15.0">
+        <VBox.margin>
+            <Insets bottom="10.0" top="10.0"/>
+        </VBox.margin>
+        <Label/>
+        <Label fx:id="id" styleClass="cell_big_label">
+            <minWidth>
+                <!-- Ensures that the label text is never truncated -->
+                <Region fx:constant="USE_PREF_SIZE" />
+            </minWidth>
+        </Label>
+        <Label fx:id="name" text="\$first" textFill="WHITE">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+    </HBox>
+    <HBox prefHeight="500" prefWidth="200.0">
+        <VBox styleClass="pane-with-border" minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS"
+              HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10"/>
+            </padding>
+            <HBox spacing="15.0">
+                <Label/>
+                <Label text="Members" textFill="WHITE">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Label>
+                <padding>
+                    <Insets bottom="10"/>
+                </padding>
+            </HBox>
+            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        </VBox>
+        <VBox styleClass="pane-with-border" minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS"
+              HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10"/>
+            </padding>
+            <HBox spacing="15.0">
+                <Label/>
+                <Label text="Tasks" textFill="WHITE">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </Label>
+                <padding>
+                    <Insets bottom="10"/>
+                </padding>
+            </HBox>
+            <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+        </VBox>
+    </HBox>
+</VBox>
+
