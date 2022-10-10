@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
  * A list of teams that enforces uniqueness between its elements and does not allow nulls.
  * A team is considered unique by comparing using {@code team#isSameTeam(Team)}. As such, adding and updating of
  * teams uses Team#isSameTeam(Tea,) for equality so as to ensure that the team being added or updated is
- * unique in terms of identity in the UniqueTea,List. However, the removal of a tea,
+ * unique in terms of identity in the UniqueTeamList.
  *
  * Supports a minimal set of list operations.
  *
