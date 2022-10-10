@@ -58,7 +58,6 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         assignments = new HashMap<>(personToCopy.getAssignments());
-        personGroup = new HashSet<>(personToCopy.getPersonGroup());
     }
 
     /**
@@ -115,16 +114,8 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code PersonGroup} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withGroup(String group) {
-        this.personGroup = SampleDataUtil.getPersonGroupSet(group);
-        return this;
-    }
-
     public Person build() {
-        return new Person(name, phone, email, address, tags, assignments, personGroup);
+        return new Person(name, phone, email, address, tags, assignments);
     }
 
 }

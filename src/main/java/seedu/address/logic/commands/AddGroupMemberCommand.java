@@ -34,7 +34,7 @@ public class AddGroupMemberCommand extends Command {
     public static final String MESSAGE_INVALID_GROUP = "This group does not exist.";
 
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
-    public static final String MESSAGE_ASSIGN_GROUP_SUCCESS = "Added member";
+    public static final String MESSAGE_ASSIGN_GROUP_SUCCESS = "%1$s was added to group: %2$s";
 
     private final Name name;
     private final String personGroup;
@@ -98,7 +98,7 @@ public class AddGroupMemberCommand extends Command {
         model.setPerson(personToGroup, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_ASSIGN_GROUP_SUCCESS));
+        return new CommandResult(String.format(MESSAGE_ASSIGN_GROUP_SUCCESS, this.name, editedGroup));
     }
 
     @Override
