@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BookCommand;
+import seedu.address.logic.commands.CancelCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
@@ -70,6 +71,14 @@ public class AddressBookParserTest {
                 UnmarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
                         + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
         assertEquals(new UnmarkCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
+    }
+
+    @Test
+    public void parseCommand_cancel() throws Exception {
+        CancelCommand command = (CancelCommand) parser.parseCommand(CancelCommand.COMMAND_WORD
+                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_SECOND_APPOINTMENT.getOneBased());
+
+        assertEquals(new CancelCommand(INDEX_FIRST_PERSON, INDEX_SECOND_APPOINTMENT), command);
     }
 
     @Test
@@ -133,6 +142,12 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws ParseException {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " patients") instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " appts") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_exitCommandCaseInsensitive_success() throws ParseException {
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD.toLowerCase()) instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD.toUpperCase()) instanceof ExitCommand);
     }
 
     @Test
