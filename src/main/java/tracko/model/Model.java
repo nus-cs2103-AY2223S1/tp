@@ -99,6 +99,7 @@ public interface Model {
      */
     int getFilteredItemListSize();
 
+    /**
      * Deletes the given item.
      */
     void deleteItem(Item item);
