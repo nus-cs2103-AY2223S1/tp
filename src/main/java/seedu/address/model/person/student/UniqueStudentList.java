@@ -6,17 +6,15 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.tutor.Tutor;
 
 /**
  * A list of students that enforces uniqueness between its elements and does not allow nulls.
  */
 public class UniqueStudentList extends UniquePersonList {
-    private final ObservableList<Student> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Student> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
-
 
     public void setStudents(List<Student> students) {
         requireAllNonNull(students);
@@ -28,7 +26,12 @@ public class UniqueStudentList extends UniquePersonList {
     }
 
     public ObservableList<Student> asUnmodifiableObservableStudentList() {
-        return internalUnmodifiableList;
+        ObservableList<Student> castToStudentList = FXCollections.observableArrayList();
+        for (Person p : internalList) {
+            Student s = (Student) p;
+            castToStudentList.add(s);
+        }
+        return FXCollections.unmodifiableObservableList(castToStudentList);
     }
 
     private boolean studentsAreUnique(List<Student> students) {
