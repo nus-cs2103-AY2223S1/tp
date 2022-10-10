@@ -37,6 +37,13 @@ public class ModuleCode {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the module code as a {@code String} in upper case.
+     */
+    public String getModuleCodeAsUpperCaseString() {
+        return value.toUpperCase();
+    }
+
 
     @Override
     public String toString() {
