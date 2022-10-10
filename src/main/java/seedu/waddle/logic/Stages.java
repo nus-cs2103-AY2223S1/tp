@@ -1,7 +1,7 @@
 package seedu.waddle.logic;
 
 public enum Stages {
-    main,
-    wishlist,
-    schedule,
+    HOME, //home page
+    WISH, //wishlist stage
+    SCHEDULE //scheduling stage
 }

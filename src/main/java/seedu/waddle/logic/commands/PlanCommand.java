@@ -2,9 +2,12 @@ package seedu.waddle.logic.commands;
 
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.waddle.commons.core.Messages;
 import seedu.waddle.commons.core.index.Index;
+import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
+import seedu.waddle.model.itinerary.Itinerary;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -22,6 +25,8 @@ public class PlanCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
 
+    public static final String MESSAGE_PLAN_ITINERARY_SUCCESS = "Planning Itinerary: %1$s";
+
     /**
      * @param index of the itinerary to plan
      */
@@ -33,8 +38,26 @@ public class PlanCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(
-                String.format(MESSAGE_ARGUMENTS, index.getOneBased()));
+        StageManager stageManager = StageManager.getInstance();
+        Itinerary selectedItinerary;
+
+        // get the selected itinerary from the last shown list of itineraries
+        try {
+            selectedItinerary = model.getFilteredItineraryList().get(this.index.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX);
+        }
+        // change to wish stage in stage manager
+        try {
+            stageManager.setWishStage(selectedItinerary);
+        } catch (NullPointerException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX);
+        }
+
+        //TODO: allow users to directly select which planning stage
+        // instead of going to wish stage by default
+
+        return new CommandResult(String.format(MESSAGE_PLAN_ITINERARY_SUCCESS, selectedItinerary.getName()));
     }
 
     @Override

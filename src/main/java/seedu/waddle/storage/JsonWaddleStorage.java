@@ -45,14 +45,14 @@ public class JsonWaddleStorage implements WaddleStorage {
     public Optional<ReadOnlyWaddle> readWaddle(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableWaddle> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableWaddle> jsonWaddle = JsonUtil.readJsonFile(
                 filePath, JsonSerializableWaddle.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonWaddle.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonWaddle.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
