@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -28,7 +30,9 @@ class JsonAdaptedProject {
     private final String repository;
     private final String deadline;
     private final String projectId;
+    @JsonBackReference
     private final JsonAdaptedClient client;
+    @JsonManagedReference
     private final List<JsonAdaptedIssue> issues = new ArrayList<>();
 
     /**

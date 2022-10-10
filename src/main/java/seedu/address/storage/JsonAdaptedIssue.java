@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -24,6 +25,7 @@ class JsonAdaptedIssue {
     private final String deadline;
     private final String status;
     private final String issueId;
+    @JsonBackReference
     private final JsonAdaptedProject project;
 
     /**
