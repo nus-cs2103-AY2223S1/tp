@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteTaskCommand;
@@ -16,22 +19,23 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTaskCommand
      * and returns a DeleteTaskCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteTaskCommand parse(String args) throws ParseException {
-        try {
-            // split string by whitespace
-            String[] indices = args.trim().split("\\s+", 2);
-            if (indices.length < 2) {
-                throw new ParseException(MESSAGE_INVALID_NUMBER_OF_INDICES);
-            }
-            Index patientIndex = ParserUtil.parseIndex(indices[0]);
-            Index taskIndex = ParserUtil.parseIndex(indices[1]);
+        requireNonNull(args);
 
-            return new DeleteTaskCommand(patientIndex, taskIndex);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+
+        List<Index> indices;
+
+        try {
+            indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE), pe);
         }
+
+        return new DeleteTaskCommand(indices.get(0), indices.get(1));
     }
 }
