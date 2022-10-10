@@ -11,6 +11,7 @@ import java.util.stream.StreamSupport;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.exceptions.DuplicateTagTypeException;
 import seedu.address.model.person.exceptions.TagTypeNotFoundException;
@@ -36,6 +37,11 @@ import seedu.address.model.tag.exceptions.TagNotFoundException;
  * @see TagType#equals(Object)
  */
 public class UniqueTagTypeMap implements Iterable<TagType> {
+    private static final Map<Prefix, TagType> initialTagTypeMap = Map.of(
+            CliSyntax.PREFIX_SKILLTAG, new TagType("Skills", CliSyntax.PREFIX_SKILLTAG),
+            CliSyntax.PREFIX_DEGREETAG, new TagType("Degree", CliSyntax.PREFIX_DEGREETAG),
+            CliSyntax.PREFIX_JOBTYPETAG, new TagType("Job Type", CliSyntax.PREFIX_JOBTYPETAG)
+    );
     private static final ObservableMap<Prefix, TagType> prefixMap = FXCollections.observableMap(new HashMap<>());
 
     private final ObservableMap<TagType, UniqueTagList> internalMap = FXCollections.observableMap(new HashMap<>());
