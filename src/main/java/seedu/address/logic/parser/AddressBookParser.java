@@ -59,7 +59,7 @@ public class AddressBookParser {
             /* Used to extract command type and arguments. */
             final Matcher parameterMatcher = COMMAND_PARAMETER_FORMAT.matcher(commandParameter);
             if (!parameterMatcher.matches()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_UNKNOWN_COMMAND_TYPE));
             }
             final String commandType = parameterMatcher.group("commandType");
             final String commandArguments = parameterMatcher.group("commandArguments");

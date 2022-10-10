@@ -4,17 +4,22 @@ add c n/John Doe p/98765432 e/johnd@example.com a/311
 add m m/CS2100 l/Lecture1 t/Tutorial1 z/https://nus-sg.zoom.us
 
 concerns:
-- tags for module?
 - update teammates on new parser
-- ABparser why not (.) in front of arguements
+    - Why not (.) in front of arguements //end, help may not have whitespace after it
 - should module commandType be in CLIsyntax or module and person class
-- update areValidLectureDetails and Tutorial in lecturedeets/tutdeets respectively
-- update isValidURL in zoomlink class
-- make zoom optional? can just update in addmodulecommandparser
-- updating zoom validation
+- new Module classes
+    - simpler name
+        - suggestions: ModuleName, Lecture, Tutorial, Assignment
+    - update areValidLectureDetails and Tutorial in lecturedeets/tutdeets respectively
+        - suggestions: isValidLecture, isValidTutorial, isValidModule, isValidAssignment
+        - should avoid plural
+    - Validation regex in tut/lec detail diff from module code?
+- update isValidURL in zoomlink class // DONE
+- do we make zoom optional? can be done by just not checking for z/ in AddModuleCommandParser
 - update error message for missing c and m
-- update checkstyle for name, not just class
-- validation regex in tut/lec detail diff from module code?
+    - UPDATE: done, but the message can be improved
+- update checkstyle for name, not just class in intellij
+- edit, do we do list m, then just edit OR list m, edit m (simpler but redundant? and requires users to go into list m just to edit)
 
 //new class to implement
 - AddModuleCommand
