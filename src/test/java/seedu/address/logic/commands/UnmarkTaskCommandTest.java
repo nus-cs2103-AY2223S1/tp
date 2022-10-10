@@ -19,7 +19,7 @@ import seedu.address.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code UnmarkTaskCommand}.
  */
 public class UnmarkTaskCommandTest {
 
