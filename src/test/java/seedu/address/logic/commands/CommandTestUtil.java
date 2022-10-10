@@ -125,4 +125,13 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s task panel.
+     */
+    public static void hideAllTasks(Model model) {
+        model.updateFilteredTaskList(Model.PREDICATE_HIDE_ALL_TASKS);
+
+        assertEquals(0, model.getFilteredTaskList().size());
+    }
 }
