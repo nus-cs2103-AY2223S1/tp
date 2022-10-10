@@ -43,23 +43,10 @@ public class MarkCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        Task editedTask = createEditedTask(taskToMark);
-        model.setTask(taskToMark, editedTask);
+        Task markedTask = taskToMark.mark();
+        model.setTask(taskToMark, markedTask);
+
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
-    }
-
-    /**
-     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
-     * marked as complete.
-     */
-    private static Task createEditedTask(Task taskToEdit) {
-        assert taskToEdit != null;
-
-        Module taskModule = taskToEdit.getModule();
-        TaskDescription taskDescription = taskToEdit.getDescription();
-
-        Task editedTask = new Task(taskModule, taskDescription, TaskStatus.COMPLETE);
-        return editedTask;
     }
 
     @Override

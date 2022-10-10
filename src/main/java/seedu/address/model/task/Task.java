@@ -65,6 +65,14 @@ public class Task {
         return this.status.isComplete();
     }
 
+    /**
+     * Marks the task as complete
+     * and returns the task.
+     */
+    public Task mark() {
+        return new Task(module, description, TaskStatus.COMPLETE);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
