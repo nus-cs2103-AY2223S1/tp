@@ -27,6 +27,11 @@ public class InventoryList implements Iterable<Item> {
         internalList.add(toAdd);
     }
 
+    public void delete(Item toDelete) {
+        requireNonNull(toDelete);
+        internalList.remove(toDelete);
+    }
+
     public void setItems(InventoryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

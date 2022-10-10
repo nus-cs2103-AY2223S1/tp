@@ -65,12 +65,21 @@ public class TrackO implements ReadOnlyTrackO {
     public void deleteOrder(Order order) {
         orders.delete(order);
     }
+
     /**
      * Adds an item to be tracked.
      * @param item The item to be added
      */
     public void addItem(Item item) {
         items.add(item);
+    }
+
+    /**
+     * Deletes an item to be tracked.
+     * @param item The item to be added
+     */
+    public void deleteItem(Item item) {
+        items.delete(item);
     }
 
     @Override
