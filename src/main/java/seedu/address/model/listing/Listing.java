@@ -72,6 +72,10 @@ public class Listing {
         return currentOffers;
     }
 
+    /**
+     * Returns true if both listings have the same address.
+     * This defines a weaker notion of equality between two listings.
+     */
     public boolean isSameListing(Listing otherListing) {
         if (otherListing == this) {
             return true;

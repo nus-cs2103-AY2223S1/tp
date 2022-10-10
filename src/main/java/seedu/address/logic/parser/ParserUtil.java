@@ -122,6 +122,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code int askingPrice} into a {@code Integer}.
+     */
     public static Integer parseAskingPrice(int askingPrice) throws ParseException {
         requireNonNull(askingPrice);
         if (askingPrice < 0) {

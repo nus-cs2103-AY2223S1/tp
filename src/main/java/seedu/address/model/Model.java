@@ -67,6 +67,10 @@ public interface Model {
      */
     void deletePerson(Person target);
 
+    /**
+     * Deletes the given listing.
+     * The listing must exist in the address book.
+     */
     void deleteListing(Listing target);
 
     /**
@@ -75,6 +79,10 @@ public interface Model {
      */
     void addPerson(Person person);
 
+    /**
+     * Adds the given listing.
+     * {@code listing} must not already exist in the address book.
+     */
     void addListing(Listing listing);
 
     /**
@@ -84,11 +92,18 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces the given listing {@code target} with {@code editedListing}.
+     * {@code target} must exist in the address book.
+     * The listing identity of {@code editedListing} must not be the same as another
+     * existing listing in the address book.
+     */
     void setListing(Listing target, Listing editedListing);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered listing list */
     ObservableList<Listing> getFilteredLisitngList();
 
     /**
@@ -97,5 +112,9 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Updates the filter of the filtered listing list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredListingList(Predicate<Listing> predicate);
 }

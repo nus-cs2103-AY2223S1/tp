@@ -31,7 +31,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         listings = new UniqueListingList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -51,6 +52,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    /**
+     * Replaces the contents of the listing list with {@code listings}.
+     * {@code listings} must not contain duplicate listings.
+     */
     public void setListings(List<Listing> listings) {
         this.listings.setListings(listings);
     }
@@ -77,6 +82,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    /**
+     * Returns true if a listing with the same identity as {@code listing} exists in the address book.
+     */
     public boolean hasListing(Listing listing) {
         requireNonNull(listing);
         return listings.contains(listing);
@@ -90,6 +98,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
     }
 
+    /**
+     * Adds a listing to the address book.
+     * The listing must not already exist in the address book.
+     */
     public void addListing(Listing l) {
         listings.add(l);
     }
@@ -105,6 +117,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+    /**
+     * Replaces the given listing {@code target} in the list with {@code editedListing}.
+     * {@code target} must exist in the address book.
+     * The listing identity of {@code editedListing} must not be the same
+     * as another existing listing in the address book.
+     */
     public void setListing(Listing target, Listing editedListing) {
         requireNonNull(editedListing);
 
@@ -119,6 +137,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
     public void removeListing(Listing key) {
         listings.remove(key);
     }
