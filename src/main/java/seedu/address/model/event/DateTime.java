@@ -22,8 +22,10 @@ public class DateTime {
     // Not an exhaustive list
     private static final Map<String, String> DATE_VALIDATION_REGEXS = new HashMap<>() {{
             put("^\\d{1,2}-\\d{1,2}-\\d{4}$", "dd-MM-yyyy");
+            put("^\\d{1,2}-\\d{1,2}-\\d{2}$", "dd-MM-yy");
             put("^\\d{4}-\\d{1,2}-\\d{1,2}$", "yyyy-MM-dd");
             put("^\\d{1,2}/\\d{1,2}/\\d{4}$", "dd/MM/yyyy");
+            put("^\\d{1,2}/\\d{1,2}/\\d{2}$", "dd/MM/yy");
             put("^\\d{4}/\\d{1,2}/\\d{1,2}$", "yyyy/MM/dd");
             put("^\\d{1,2}\\s[a-z]{3}\\s\\d{4}$", "dd MMM yyyy");
             put("^\\d{1,2}\\s[a-z]{4,}\\s\\d{4}$", "dd MMMM yyyy");
@@ -71,15 +73,10 @@ public class DateTime {
     /**
      * Returns true if given string follows a valid datetime pattern.
      */
-    public static String determineDateFormat(String dateString) {
-        for (String regexp : DATE_VALIDATION_REGEXS.keySet()) {
+    public static String determineDateFormat(String dateString, Map<String, String> regexSet) {
+        for (String regexp : regexSet.keySet()) {
             if (dateString.toLowerCase().matches(regexp)) {
-                return DATE_VALIDATION_REGEXS.get(regexp) + " HH:mm";
-            }
-        }
-        for (String regexp : TIME_VALIDATION_REGEXS.keySet()) {
-            if (dateString.toLowerCase().matches(regexp)) {
-                return TIME_VALIDATION_REGEXS.get(regexp);
+                return regexSet.get(regexp);
             }
         }
         return null;
@@ -89,9 +86,15 @@ public class DateTime {
      * Returns a LocalDateTime object from a given date string.
      */
     public static LocalDateTime parseDateTime(String dateString) {
-        String dateFormat = determineDateFormat(dateString);
+        String dateFormat = determineDateFormat(dateString, TIME_VALIDATION_REGEXS);
         if (dateFormat == null) {
-            return null;
+            dateFormat = determineDateFormat(dateString, DATE_VALIDATION_REGEXS);
+            if (dateFormat == null) {
+                return null;
+            } else {
+                dateFormat += " HH:mm";
+                dateString += " 00:00";
+            }
         }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
