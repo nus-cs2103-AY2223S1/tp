@@ -15,8 +15,13 @@ public class MarkTaskCommand extends TaskCommand{
 
     public static final String COMMAND_WORD = "mark";
 
+    public static final String COMMAND_WORD_FULL = TaskCommand.COMMAND_WORD + " " + COMMAND_WORD;
+
+    public static final String MESSAGE_SUCCESS = "Task is marked as complete";
+
     @Override
-    public CommandResult execute(Model model) throws CommandException{
-        return new CommandResult("Hello from remark");
+    public CommandResult execute(Model model) {
+        requireNonNull(model);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
