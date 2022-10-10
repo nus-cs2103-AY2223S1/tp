@@ -10,8 +10,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Team;
-import seedu.address.model.team.UniqueTeamList;
-
 
 /**
  * Adds a person to the address book.
