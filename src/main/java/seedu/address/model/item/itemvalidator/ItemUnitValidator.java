@@ -18,8 +18,9 @@ public class ItemUnitValidator {
 
     // Validation for unit length
     private static final int MAX_LENGTH = 10;
-    private static final String MESSAGE_FOR_NAME_TOO_LONG =
+    private static final String MESSAGE_FOR_UNIT_TOO_LONG =
             String.format("Item unit should not exceed %d characters", MAX_LENGTH);
+    private static final String MESSAGE_FOR_UNIT_IS_BLANK = "Item unit should not be left empty.";
 
     /**
      * Validates a given input String.
@@ -28,7 +29,8 @@ public class ItemUnitValidator {
      */
     public static void validate(String unitString) {
         checkArgument(doesUnitContainInvalidCharacters(unitString), MESSAGE_FOR_INVALID_CHARACTERS);
-        checkArgument(isUnitLengthMoreThanMaxLength(unitString), MESSAGE_FOR_NAME_TOO_LONG);
+        checkArgument(isUnitLengthMoreThanMaxLength(unitString), MESSAGE_FOR_UNIT_TOO_LONG);
+        checkArgument(isUnitBlank(unitString), MESSAGE_FOR_UNIT_IS_BLANK);
     }
 
     /**
@@ -47,5 +49,14 @@ public class ItemUnitValidator {
      */
     public static boolean isUnitLengthMoreThanMaxLength(String itemUnit) {
         return itemUnit.length() > MAX_LENGTH;
+    }
+
+    /**
+     * Returns true if a unit is {@link String#isEmpty()}, false otherwise.
+     *
+     * @param unitName a string that represents the name of the {@link Item}.
+     */
+    public static boolean isUnitBlank(String unitName) {
+        return unitName.isEmpty();
     }
 }
