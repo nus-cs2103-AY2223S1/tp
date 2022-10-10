@@ -1,8 +1,5 @@
 package modtrekt.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,7 +16,6 @@ public class JsonAdaptedTask {
 
     private final String description;
     private final String modCode;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -31,12 +27,8 @@ public class JsonAdaptedTask {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code task} into this class for Jackson use.
      */
-    //    public JsonAdaptedTask(Person source) {
-    //        description = source.getName().description;
-    //    }
-
     public JsonAdaptedTask(Task task) {
         this.description = task.getDescription().toString();
         this.modCode = task.getModule().toString();

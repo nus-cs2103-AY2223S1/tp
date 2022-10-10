@@ -51,9 +51,7 @@ public class Task {
             return true;
         }
 
-        return other != null && (other instanceof Task)
-                && ((Task) other).getDescription().equals(this.getDescription())
-                && ((Task) other).getModule().equals(this.getModule());
+        return other instanceof Task && isSameTask((Task) other);
     }
 
     @Override

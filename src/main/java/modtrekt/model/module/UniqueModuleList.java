@@ -43,10 +43,7 @@ public class UniqueModuleList implements Iterable<Module> {
         requireNonNull(toCheck);
         ObservableList<Module> checkList = internalList.filtered(x -> x.getCode().equals(toCheck));
 
-        if (checkList.size() > 0) {
-            return true;
-        }
-        return false;
+        return checkList.size() > 0;
     }
 
     /**

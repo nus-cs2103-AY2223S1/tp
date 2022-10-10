@@ -48,7 +48,6 @@ public class AddCommandParser implements Parser<AddCommand> {
             return new AddTaskCommand(t);
         } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MOD_NAME, CliSyntax.PREFIX_MOD_CODE,
                 CliSyntax.PREFIX_MOD_CREDIT)) {
-            System.out.println(argMultimap.getValue(CliSyntax.PREFIX_MOD_NAME).get());
             ModName name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_MOD_NAME).get());
             ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
             ModCredit credit = ParserUtil.parseCredit(argMultimap.getValue(CliSyntax.PREFIX_MOD_CREDIT).get());
