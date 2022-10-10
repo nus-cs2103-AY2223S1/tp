@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class TaskDeadline {
     private LocalDate deadline;
 
-    public TaskDeadline(LocalDate level){
+    public TaskDeadline(LocalDate level) {
         this.deadline = level;
     }
 
@@ -49,8 +49,7 @@ public class TaskDeadline {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskDeadline // instanceof handles nulls
-                && ((TaskDeadline) other).deadline.equals(this.deadline)
-        );
+                && ((TaskDeadline) other).deadline.equals(this.deadline));
     }
 
 }

@@ -67,8 +67,7 @@ public class TaskCategory {
         return other == this // short circuit if same object
                 || (other instanceof TaskCategory // instanceof handles nulls
                 && ((TaskCategory) other).level == this.level
-                && ((TaskCategory) other).taskCategoryType.equals(this.taskCategoryType)
-        );
+                && ((TaskCategory) other).taskCategoryType.equals(this.taskCategoryType));
     }
 
 }
