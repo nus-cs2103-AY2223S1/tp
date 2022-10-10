@@ -19,7 +19,7 @@ public class ItemQuantityValidator {
             String.format("Quantity should not have more than %d decimal places", MAX_DECIMAL_PLACE);
 
     // Validation for size of quantity
-    private static final int MAX_QUANTITY = 1000000;
+    private static final int MAX_QUANTITY = 100000;
     private static final String MESSAGE_FOR_QUANTITY_TOO_LARGE =
             String.format("Quantity should not be more than %d.", MAX_QUANTITY);
     private static final String MESSAGE_FOR_QUANTITY_IS_NEGATIVE =
