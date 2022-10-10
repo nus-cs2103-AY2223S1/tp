@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -81,9 +82,47 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        // Tag linking
+
+        Set<Tag> personToEditTagSet = personToEdit.getTags();
+        for (Tag tag : personToEditTagSet) {
+            tag.removePerson(personToEdit);
+            if (tag.isPersonListEmpty()) {
+                model.removeTag(tag);
+            }
+        }
+
+        Set<Tag> toAddTagSet = new HashSet<>();
+        ObservableList<Tag> addressBookTagList = model.getTagList();
+        Set<Tag> editedPersonReferenceTagSet = editedPerson.getTags();
+        Set<Tag> editedPersonTagSet = new HashSet<>(editedPerson.getTags());
+
+        for (Tag toAddTag : editedPersonReferenceTagSet) {
+            for (Tag currentTag : addressBookTagList) {
+                if (currentTag.isSameTag(toAddTag)) {
+                    toAddTagSet.add(currentTag);
+                    editedPersonTagSet.remove(toAddTag);
+                }
+            }
+        }
+
+        for (Tag tag : editedPersonTagSet) {
+            toAddTagSet.add(tag);
+        }
+
+        Person newEditedPerson = new Person(editedPerson.getName(), editedPerson.getPhone(),
+                editedPerson.getEmail(), editedPerson.getAddress(), toAddTagSet);
+
+        for (Tag tag : toAddTagSet) {
+            tag.addPerson(newEditedPerson);
+            model.addTag(tag);
+        }
+
+        // Tag linking finished
+
+        model.setPerson(personToEdit, newEditedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, newEditedPerson));
     }
 
     /**
