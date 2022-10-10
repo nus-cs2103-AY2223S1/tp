@@ -22,5 +22,6 @@ public class CliSyntax {
     /* Iteration Prefixes */
     public static final Prefix PREFIX_ITERATION_DATE = new Prefix("d/");
     public static final Prefix PREFIX_ITERATION_DESCRIPTION = new Prefix("n/");
+    public static final Prefix PREFIX_ITERATION_IMAGEPATH = new Prefix("p/");
     public static final Prefix PREFIX_ITERATION_FEEDBACK = new Prefix("f/");
 }

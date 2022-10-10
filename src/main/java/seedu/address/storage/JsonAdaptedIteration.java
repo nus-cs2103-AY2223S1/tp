@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.iteration.Date;
 import seedu.address.model.iteration.Feedback;
+import seedu.address.model.iteration.ImagePath;
 import seedu.address.model.iteration.Iteration;
 import seedu.address.model.iteration.IterationDescription;
 
@@ -20,6 +21,7 @@ public class JsonAdaptedIteration {
 
     private final LocalDate date;
     private final String description;
+    private final String path;
     private final String feedback;
 
     /**
@@ -27,9 +29,10 @@ public class JsonAdaptedIteration {
      */
     @JsonCreator
     public JsonAdaptedIteration(@JsonProperty("date") LocalDate date, @JsonProperty("description") String description,
-                                 @JsonProperty("feedback") String feedback) {
+                                @JsonProperty("path") String path, @JsonProperty("feedback") String feedback) {
         this.date = date;
         this.description = description;
+        this.path = path;
         this.feedback = feedback;
     }
 
@@ -39,6 +42,7 @@ public class JsonAdaptedIteration {
     public JsonAdaptedIteration(Iteration source) {
         date = source.getDate().date;
         description = source.getDescription().description;
+        path = source.getImagePath().path;
         feedback = source.getFeedback().feedback;
     }
 
@@ -67,8 +71,15 @@ public class JsonAdaptedIteration {
                     Feedback.class.getSimpleName()));
         }
 
+        final ImagePath modelImagePath = new ImagePath(path);
+
+        if (path == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ImagePath.class.getSimpleName()));
+        }
+
         final Feedback modelFeedback = new Feedback(feedback);
 
-        return new Iteration(modelDate, modelDescription, modelFeedback);
+        return new Iteration(modelDate, modelDescription, modelImagePath, modelFeedback);
     }
 }

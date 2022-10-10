@@ -3,11 +3,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
 <VBox id="iterationListItem" fx:id="iterationListItem"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
       minWidth="320" minHeight="90">
     <Label fx:id="id" styleClass="cell_big_label" text="\$id"/>
     <Label fx:id="date" styleClass="cell_big_label" text="\$date"/>
     <Label fx:id="description" styleClass="cell_big_label" text="\$description"/>
+    <ImageView fx:id="image" preserveRatio="true"/>
     <Label fx:id="feedback" styleClass="cell_big_label" text="\$feedback"/>
 </VBox>

@@ -14,18 +14,22 @@
       "iterations" : [ {
         "date" : "2022-10-10",
         "description" : "abc",
+        "path" : "saved/moonshine.png",
         "feedback" : "def"
       }, {
         "date" : "2022-10-10",
         "description" : "Changed the colour scheme.",
+        "path" : "saved/moonshine.png",
         "feedback" : "Updated colour scheme is much better."
       }, {
         "date" : "2022-10-10",
         "description" : "Changing the colour scheme.",
+        "path" : "saved/moonshine.png",
         "feedback" : "Updated colour scheme is much bette"
       }, {
         "date" : "2022-01-01",
         "description" : "ab",
+        "path" : "saved/moonshine.png",
         "feedback" : "aa"
       } ],
       "isCompleted" : true
@@ -45,10 +49,12 @@
       "iterations" : [ {
         "date" : "2022-10-09",
         "description" : "test",
+        "path" : "saved/moonshine.png",
         "feedback" : "feedback test"
       }, {
         "date" : "2022-11-01",
         "description" : "abc",
+        "path" : "saved/moonshine.png",
         "feedback" : "aaa"
       } ],
       "isCompleted" : true

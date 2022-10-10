@@ -23,6 +23,7 @@ import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.iteration.Date;
 import seedu.address.model.iteration.Feedback;
+import seedu.address.model.iteration.ImagePath;
 import seedu.address.model.iteration.IterationDescription;
 import seedu.address.model.tag.Tag;
 
@@ -236,6 +237,17 @@ public class ParserUtil {
         String trimmedDescription = description.trim();
         return new IterationDescription(trimmedDescription);
     }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ImagePath parseImagePath(String imagePath) throws ParseException {
+        requireNonNull(imagePath);
+        String trimmedImagePath = imagePath.trim();
+        return new ImagePath(trimmedImagePath);
+    }
+
 
     /**
      * Parses a {@code String feedback} into a {@code Feedback}.
