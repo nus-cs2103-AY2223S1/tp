@@ -17,6 +17,13 @@ public class ModuleTitle {
         value = moduleTitle;
     }
 
+    /**
+     * Returns the module title as a {@code String} in upper case.
+     */
+    public String getModuleTitleAsUpperCaseString() {
+        return value.toUpperCase();
+    }
+
     @Override
     public String toString() {
         return value;
