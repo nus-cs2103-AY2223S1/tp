@@ -1,0 +1,9 @@
+{
+  "applications": [ {
+    "company": "Application with invalid company field: Go@ogle",
+    "contact": "9482424",
+    "email": "hans@example.com",
+    "position": "AI programmer",
+    "date": "2022-10-10"
+  } ]
+}

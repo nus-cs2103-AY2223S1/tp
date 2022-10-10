@@ -1,0 +1,15 @@
+{
+  "applications": [ {
+    "company": "Micron",
+    "contact": "94351253",
+    "email": "micron@example.com",
+    "position": "data engineer",
+    "date": "2022-10-11"
+  }, {
+    "company": "Micron",
+    "contact": "94351253",
+    "email": "cronmi@example.com",
+    "position": "data scientist",
+    "date": "2022-10-10"
+  } ]
+}
