@@ -140,7 +140,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Finds and returns a module class with equivalent identity to {@code target}
+     * Finds and returns a module class with equivalent identity to {@code target}.
      */
     public Optional<ModuleClass> findModuleClass(ModuleClass target) {
         requireNonNull(target);
