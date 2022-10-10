@@ -54,6 +54,28 @@ public class Student extends Position {
         requireNonNull(grade);
         this.grade = grade;
     }
+    @Override
+    public void setDetails(String details) {
+        String[] gradeAndAttendance = isolateGradeAndAttendance(details);
+        String grade = gradeAndAttendance[0];
+        String attendance = gradeAndAttendance[1];
+        setGrade(grade);
+        setAttendance(attendance);
+    }
+
+    /**
+     * method used to isolate the grade and attendance values in its details
+     * @param details A valid detail.
+     * @return a String[] with its first element being the grade and the 2nd element the attendance
+     */
+    public String[] isolateGradeAndAttendance(String details) {
+        String[] gradeAndAttendance = new String[2];
+        String[] splitDetails = details.split(", grade - ");
+        String[] splitDetails2 = splitDetails[0].split("attendance - ");
+        gradeAndAttendance[0] = splitDetails[1];
+        gradeAndAttendance[1] = splitDetails2[1];
+        return gradeAndAttendance;
+    }
 
     /**
      * Returns true if a given string is a valid grade.
@@ -84,9 +106,8 @@ public class Student extends Position {
 
     @Override
     public String getDetails() {
-        return "";
+        return "attendance - " + attendance + ", grade - " + grade;
+
     }
 
-    @Override
-    public void setDetails(String grades){}
 }

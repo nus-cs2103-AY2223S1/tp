@@ -16,7 +16,7 @@
     "position" : "Student",
     "address" : "311, Clementi Ave 2, #02-25",
     "remark": "",
-    "details": "",
+    "details": "attendance - 0/0, grade - 0/0",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -43,7 +43,7 @@
     "position" : "Student",
     "address" : "michegan ave",
     "remark": "",
-    "details": "",
+    "details": "attendance - 10/10, grade - 45/50",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",

@@ -135,6 +135,8 @@ class JsonAdaptedPerson {
         if (details == null) {
             if (position.equalsIgnoreCase("TA")) {
                 details = "unavailable";
+            } else if (position.equalsIgnoreCase("Student")) {
+                details = "attendance - 0/0, grade - 0/0";
             } else {
                 details = "";
             }

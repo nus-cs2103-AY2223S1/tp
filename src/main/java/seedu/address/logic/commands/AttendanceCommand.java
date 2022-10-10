@@ -90,7 +90,7 @@ public class AttendanceCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AvailabilityCommand)) {
+        if (!(other instanceof AttendanceCommand)) {
             return false;
         }
 

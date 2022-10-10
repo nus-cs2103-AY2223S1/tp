@@ -87,7 +87,6 @@ public class AddressBookParser {
 
         case RolesCommand.COMMAND_WORD:
             return new RolesCommandParser().parse(arguments);
-            
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
