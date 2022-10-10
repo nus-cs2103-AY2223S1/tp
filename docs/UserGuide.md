@@ -33,7 +33,20 @@ success story.
 
 ## Purpose, Scope and Audience
 
-Something goes here...
+### Purpose
+
+FoodRem helps small businesses to easily manage consumables and perishable goods within a single inventory to reduce time spent on managing and restocking inventory.
+
+### Scope
+
+This app is targeted at small F&B businesses which may struggle in inventory management due to a lack of streamlined process and manpower. 
+
+### Audience
+
+This guide is targeted at users using FoodRem who wants to find out more about the different commands to manage their inventory in a quicker and more efficient manner. 
+
+Readers do not have to be familiar with the command line to use this guide effectively. 
+The only expectation we have of you is to carefully read through the different sections.
 
 <div style="page-break-after: always"></div> <! ---Testing line break-->
 
