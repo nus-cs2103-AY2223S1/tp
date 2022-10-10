@@ -1,6 +1,7 @@
 package seedu.address.model.meeting;
 
 import java.time.LocalDateTime;
+
 import seedu.address.model.listing.Listing;
 import seedu.address.model.person.Person;
 
