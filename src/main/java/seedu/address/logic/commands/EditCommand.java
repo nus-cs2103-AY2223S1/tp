@@ -22,6 +22,7 @@ import seedu.address.model.company.Company;
 import seedu.address.model.company.Name;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.TransactionLog;
 
 /**
  * Edits the details of an existing company in the address book.
@@ -90,8 +91,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editCompanyDescriptor.getAddress().orElse(companyToEdit.getAddress());
         Set<Tag> updatedTags = editCompanyDescriptor.getTags().orElse(companyToEdit.getTags());
         UniquePocList pocs = editCompanyDescriptor.getUniquePocList().orElse(companyToEdit.getPocs());
+        TransactionLog transactions = editCompanyDescriptor.getTransactionLog().orElse(companyToEdit.getTransactions());
 
-        return new Company(updatedName, updatedAddress, updatedTags, pocs);
+        return new Company(updatedName, updatedAddress, updatedTags, pocs, transactions);
     }
 
     @Override
@@ -121,6 +123,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private UniquePocList pocs;
+        private TransactionLog transactions;
 
         public EditCompanyDescriptor() {}
 
@@ -133,6 +136,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setUniquePocList(toCopy.pocs);
+            setTransactionLog(toCopy.transactions);
         }
 
         /**
@@ -164,6 +168,14 @@ public class EditCommand extends Command {
 
         public Optional<UniquePocList> getUniquePocList() {
             return Optional.ofNullable(pocs);
+        }
+
+        public void setTransactionLog(TransactionLog transactions) {
+            this.transactions = transactions;
+        }
+
+        public Optional<TransactionLog> getTransactionLog() {
+            return Optional.ofNullable(transactions);
         }
 
         /**
