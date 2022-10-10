@@ -11,12 +11,12 @@ import foodwhere.model.review.Review;
 import foodwhere.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Stall objects.
+ * A utility class to help with building Review objects.
  */
 public class ReviewBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_DATE = "1/1/1";
+    public static final String DEFAULT_DATE = "1/1/2020";
     public static final String DEFAULT_CONTENT = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
@@ -53,10 +53,10 @@ public class ReviewBuilder {
     }
 
     /**
-     * Parses the {@code details} into a {@code Set<Detail>} and set it to the {@code Review} that we are building.
+     * Sets the {@code Date} of the {@code Review} that we are building.
      */
-    public ReviewBuilder withDetails(String ... details) {
-        this.details = SampleDataUtil.getDetailSet(details);
+    public ReviewBuilder withDate(String date) {
+        this.date = new Date(date);
         return this;
     }
 
@@ -65,6 +65,14 @@ public class ReviewBuilder {
      */
     public ReviewBuilder withContent(String content) {
         this.content = new Content(content);
+        return this;
+    }
+
+    /**
+     * Parses the {@code details} into a {@code Set<Detail>} and set it to the {@code Review} that we are building.
+     */
+    public ReviewBuilder withDetails(String ... details) {
+        this.details = SampleDataUtil.getDetailSet(details);
         return this;
     }
 

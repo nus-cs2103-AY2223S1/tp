@@ -1,7 +1,9 @@
 package foodwhere.testutil;
 
-import static foodwhere.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static foodwhere.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_CONTENT_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_CONTENT_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_DATE_AMY;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_DETAIL_FRIEND;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_DETAIL_HUSBAND;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -19,34 +21,37 @@ import foodwhere.model.review.Review;
 public class TypicalReviews {
 
     public static final Review ALICE = new ReviewBuilder().withName("Alice Pauline")
+            .withDate("1/1/2020")
             .withContent("123, Jurong West Ave 6, #08-111")
             .withDetails("friends").build();
     public static final Review BENSON = new ReviewBuilder().withName("Benson Meier")
+            .withDate("31/12/2021")
             .withContent("311, Clementi Ave 2, #02-25")
             .withDetails("owesMoney", "friends").build();
     public static final Review CARL = new ReviewBuilder().withName("Carl Kurz")
-            .withContent("wall street").build();
+            .withDate("1/4/2020").withContent("wall street").build();
     public static final Review DANIEL = new ReviewBuilder().withName("Daniel Meier")
-            .withContent("10th street").withDetails("friends").build();
+            .withDate("29/2/2020").withContent("10th street").withDetails("friends").build();
     public static final Review ELLE = new ReviewBuilder().withName("Elle Meyer")
-            .withContent("michegan ave").build();
+            .withDate("29/9/2003").withContent("michegan ave").build();
     public static final Review FIONA = new ReviewBuilder().withName("Fiona Kunz")
-            .withContent("little tokyo").build();
+            .withDate("6/6/2007").withContent("little tokyo").build();
     public static final Review GEORGE = new ReviewBuilder().withName("George Best")
-            .withContent("4th street").build();
+            .withDate("20/7/2017").withContent("4th street").build();
 
     // Manually added
     public static final Review HOON = new ReviewBuilder().withName("Hoon Meier")
-            .withContent("little india").build();
+            .withDate("25/12/2020").withContent("little india").build();
     public static final Review IDA = new ReviewBuilder().withName("Ida Mueller")
-            .withContent("chicago ave").build();
+            .withDate("9/9/2022").withContent("chicago ave").build();
 
-    // Manually added - Stall's details found in {@code CommandTestUtil}
+    // Manually added - Review's details found in {@code CommandTestUtil}
     public static final Review AMY = new ReviewBuilder().withName(VALID_NAME_AMY)
-            .withContent(VALID_ADDRESS_AMY).withDetails(VALID_DETAIL_FRIEND).build();
+            .withDate(VALID_DATE_AMY).withContent(VALID_CONTENT_AMY)
+            .withDetails(VALID_DETAIL_FRIEND).build();
     public static final Review BOB = new ReviewBuilder().withName(VALID_NAME_BOB)
-            .withContent(VALID_ADDRESS_BOB).withDetails(VALID_DETAIL_HUSBAND, VALID_DETAIL_FRIEND)
-            .build();
+            .withDate(VALID_DATE_BOB).withContent(VALID_CONTENT_BOB)
+            .withDetails(VALID_DETAIL_HUSBAND, VALID_DETAIL_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

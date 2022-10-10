@@ -26,6 +26,10 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_DATE_AMY = "1/1/2020";
+    public static final String VALID_DATE_BOB = "31/12/2021";
+    public static final String VALID_CONTENT_AMY = "Good, 5/5";
+    public static final String VALID_CONTENT_BOB = "Bad, 1/5";
     public static final String VALID_DETAIL_HUSBAND = "husband";
     public static final String VALID_DETAIL_FRIEND = "friend";
 
@@ -112,5 +116,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredStallList().size());
     }
-
 }
