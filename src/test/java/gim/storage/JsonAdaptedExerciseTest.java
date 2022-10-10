@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import gim.commons.exceptions.IllegalValueException;
 import gim.model.exercise.Name;
-import gim.model.exercise.Rep;
+import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 
@@ -29,7 +29,8 @@ public class JsonAdaptedExerciseTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_WEIGHT = BENSON.getWeight().toString();
     private static final String VALID_SETS = BENSON.getSets().toString();
-    private static final String VALID_REP = BENSON.getRep().toString();
+
+    private static final String VALID_REP = BENSON.getReps().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getDates().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -92,14 +93,14 @@ public class JsonAdaptedExerciseTest {
     public void toModelType_invalidRep_throwsIllegalValueException() {
         JsonAdaptedExercise exercise =
                 new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, VALID_SETS, INVALID_REP, VALID_TAGS);
-        String expectedMessage = Rep.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Reps.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
 
     @Test
     public void toModelType_nullRep_throwsIllegalValueException() {
         JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, VALID_SETS, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Rep.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Reps.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
 

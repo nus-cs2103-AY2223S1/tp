@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import gim.commons.core.GuiSettings;
 import gim.logic.commands.exceptions.CommandException;
-import gim.model.AddressBook;
+import gim.model.ExerciseTracker;
 import gim.model.Model;
-import gim.model.ReadOnlyAddressBook;
+import gim.model.ReadOnlyExerciseTracker;
 import gim.model.ReadOnlyUserPrefs;
 import gim.model.exercise.Exercise;
 import gim.testutil.ExerciseBuilder;
@@ -54,9 +54,9 @@ public class AddCommandTest {
     @Test
     public void equals() {
         Exercise alice = new ExerciseBuilder().withName("Alice").build();
-        Exercise bob = new ExerciseBuilder().withName("Bob").build();
+        Exercise benchPress = new ExerciseBuilder().withName("Bench Press").build();
         AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand addBenchPressCommand = new AddCommand(benchPress);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
@@ -72,7 +72,7 @@ public class AddCommandTest {
         assertFalse(addAliceCommand.equals(null));
 
         // different exercise -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAliceCommand.equals(addBenchPressCommand));
     }
 
     /**
@@ -100,12 +100,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getExerciseTrackerFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setExerciseTrackerFilePath(Path exerciseTrackerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -115,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setExerciseTracker(ReadOnlyExerciseTracker newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyExerciseTracker getExerciseTracker() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -187,8 +187,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyExerciseTracker getExerciseTracker() {
+            return new ExerciseTracker();
         }
     }
 

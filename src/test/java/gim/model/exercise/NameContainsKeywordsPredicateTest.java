@@ -42,19 +42,19 @@ public class NameContainsKeywordsPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new ExerciseBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new ExerciseBuilder().withName("Alice Bench Press").build()));
 
         // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new ExerciseBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bench"));
+        assertTrue(predicate.test(new ExerciseBuilder().withName("Alice Bench Press").build()));
 
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bench", "Carol"));
         assertTrue(predicate.test(new ExerciseBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new ExerciseBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bENCH"));
+        assertTrue(predicate.test(new ExerciseBuilder().withName("Alice Bench Press").build()));
     }
 
     @Test
@@ -65,11 +65,11 @@ public class NameContainsKeywordsPredicateTest {
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new ExerciseBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new ExerciseBuilder().withName("Alice Bench Press").build()));
 
         // Keywords match weight, sets and reps, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "1", "1"));
         assertFalse(predicate.test(new ExerciseBuilder().withName("Alice").withWeight("12345")
-                .withSets("1").withRep("1").build()));
+                .withSets("1").withReps("1").build()));
     }
 }

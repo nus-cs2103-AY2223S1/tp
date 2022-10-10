@@ -21,7 +21,8 @@ public class ExerciseCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/exercisetracker-level4/issues/336">The issue on ExerciseTracker
+     * level 4</a>
      */
 
     public final Exercise exercise;
@@ -35,7 +36,7 @@ public class ExerciseCard extends UiPart<Region> {
     @FXML
     private Label weight;
     @FXML
-    private Label rep;
+    private Label reps;
     @FXML
     private Label sets;
     @FXML
@@ -50,7 +51,7 @@ public class ExerciseCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(exercise.getName().fullName);
         weight.setText("Weight: " + exercise.getWeight().value);
-        rep.setText("Reps: " + exercise.getRep().value);
+        reps.setText("Reps: " + exercise.getReps().value);
         sets.setText("Sets: " + exercise.getSets().value);
         exercise.getDates().stream()
                 .sorted(Comparator.comparing(tag -> tag.date))

@@ -1,10 +1,10 @@
 package gim.model.exercise;
 
+import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_DATE;
-import static gim.logic.commands.CommandTestUtil.VALID_REP_BOB;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
-import static gim.testutil.TypicalExercises.BOB;
+import static gim.testutil.TypicalExercises.BENCH_PRESS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -42,7 +42,8 @@ public class UniqueExerciseListTest {
     @Test
     public void contains_exerciseWithSameIdentityFieldsInList_returnsTrue() {
         uniqueExerciseList.add(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BOB).withDates(VALID_DATE).build();
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withDates(VALID_DATE)
+                .build();
         assertTrue(uniqueExerciseList.contains(editedAlice));
     }
 
@@ -84,7 +85,8 @@ public class UniqueExerciseListTest {
     @Test
     public void setExercise_editedExerciseHasSameIdentity_success() {
         uniqueExerciseList.add(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BOB).withDates(VALID_DATE).build();
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withDates(VALID_DATE)
+                .build();
         uniqueExerciseList.setExercise(ALICE, editedAlice);
         UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
         expectedUniqueExerciseList.add(editedAlice);
@@ -94,17 +96,17 @@ public class UniqueExerciseListTest {
     @Test
     public void setExercise_editedExerciseHasDifferentIdentity_success() {
         uniqueExerciseList.add(ALICE);
-        uniqueExerciseList.setExercise(ALICE, BOB);
+        uniqueExerciseList.setExercise(ALICE, BENCH_PRESS);
         UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
-        expectedUniqueExerciseList.add(BOB);
+        expectedUniqueExerciseList.add(BENCH_PRESS);
         assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
     }
 
     @Test
     public void setExercise_editedExerciseHasNonUniqueIdentity_throwsDuplicateExerciseException() {
         uniqueExerciseList.add(ALICE);
-        uniqueExerciseList.add(BOB);
-        assertThrows(DuplicateExerciseException.class, () -> uniqueExerciseList.setExercise(ALICE, BOB));
+        uniqueExerciseList.add(BENCH_PRESS);
+        assertThrows(DuplicateExerciseException.class, () -> uniqueExerciseList.setExercise(ALICE, BENCH_PRESS));
     }
 
     @Test
@@ -134,7 +136,7 @@ public class UniqueExerciseListTest {
     public void setExercises_uniqueExerciseList_replacesOwnListWithProvidedUniqueExerciseList() {
         uniqueExerciseList.add(ALICE);
         UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
-        expectedUniqueExerciseList.add(BOB);
+        expectedUniqueExerciseList.add(BENCH_PRESS);
         uniqueExerciseList.setExercises(expectedUniqueExerciseList);
         assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
     }
@@ -147,10 +149,10 @@ public class UniqueExerciseListTest {
     @Test
     public void setExercises_list_replacesOwnListWithProvidedList() {
         uniqueExerciseList.add(ALICE);
-        List<Exercise> exerciseList = Collections.singletonList(BOB);
+        List<Exercise> exerciseList = Collections.singletonList(BENCH_PRESS);
         uniqueExerciseList.setExercises(exerciseList);
         UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
-        expectedUniqueExerciseList.add(BOB);
+        expectedUniqueExerciseList.add(BENCH_PRESS);
         assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
     }
 

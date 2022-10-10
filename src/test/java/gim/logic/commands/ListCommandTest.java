@@ -2,7 +2,7 @@ package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.logic.commands.CommandTestUtil.showExerciseAtIndex;
-import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
+        expectedModel = new ModelManager(model.getExerciseTracker(), new UserPrefs());
     }
 
     @Test

@@ -4,38 +4,36 @@ import static gim.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Exercise's Reps in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidRep(String)}
+ * Represents a Exercise's Reps in the exercise tracker.
+ * Guarantees: immutable; is valid as declared in {@link #isValidReps(String)}
  */
-public class Rep {
+public class Reps {
 
     public static final String MESSAGE_CONSTRAINTS = "Reps can only take non negative integer values";
 
     /*
-     * The first character of the Rep must not be a whitespace,
+     * The first character of the Reps must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    //public static final String VALIDATION_REGEX = "[^\\s].*";
-
     public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
 
     public final String value;
 
     /**
-     * Constructs an {@code Rep}.
+     * Constructs an {@code Reps}.
      *
-     * @param rep A valid Rep.
+     * @param reps A valid Reps.
      */
-    public Rep(String rep) {
-        requireNonNull(rep);
-        checkArgument(isValidRep(rep), MESSAGE_CONSTRAINTS);
-        value = rep;
+    public Reps(String reps) {
+        requireNonNull(reps);
+        checkArgument(isValidReps(reps), MESSAGE_CONSTRAINTS);
+        value = reps;
     }
 
     /**
-     * Returns true if a given string is a valid Rep.
+     * Returns true if a given string is a valid Reps.
      */
-    public static boolean isValidRep(String test) {
+    public static boolean isValidReps(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -47,8 +45,8 @@ public class Rep {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Rep // instanceof handles nulls
-                && value.equals(((Rep) other).value)); // state check
+                || (other instanceof Reps // instanceof handles nulls
+                && value.equals(((Reps) other).value)); // state check
     }
 
     @Override

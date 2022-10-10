@@ -5,7 +5,7 @@ import java.util.Set;
 
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
-import gim.model.exercise.Rep;
+import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Date;
@@ -17,15 +17,15 @@ import gim.model.util.SampleDataUtil;
  */
 public class ExerciseBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_WEIGHT = "85355255";
+    public static final String DEFAULT_NAME = "Arm Curls";
+    public static final String DEFAULT_WEIGHT = "50";
     public static final String DEFAULT_SETS = "5";
-    public static final String DEFAULT_REP = "5";
+    public static final String DEFAULT_REPS = "5";
 
     private Name name;
     private Weight weight;
     private Sets sets;
-    private Rep rep;
+    private Reps reps;
     private Set<Date> dates;
 
     /**
@@ -35,7 +35,7 @@ public class ExerciseBuilder {
         name = new Name(DEFAULT_NAME);
         weight = new Weight(DEFAULT_WEIGHT);
         sets = new Sets(DEFAULT_SETS);
-        rep = new Rep(DEFAULT_REP);
+        reps = new Reps(DEFAULT_REPS);
         dates = new HashSet<>();
     }
 
@@ -46,7 +46,7 @@ public class ExerciseBuilder {
         name = exerciseToCopy.getName();
         weight = exerciseToCopy.getWeight();
         sets = exerciseToCopy.getSets();
-        rep = exerciseToCopy.getRep();
+        reps = exerciseToCopy.getReps();
         dates = new HashSet<>(exerciseToCopy.getDates());
     }
 
@@ -67,10 +67,10 @@ public class ExerciseBuilder {
     }
 
     /**
-     * Sets the {@code Rep} of the {@code Exercise} that we are building.
+     * Sets the {@code Reps} of the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withRep(String rep) {
-        this.rep = new Rep(rep);
+    public ExerciseBuilder withReps(String reps) {
+        this.reps = new Reps(reps);
         return this;
     }
 
@@ -91,7 +91,7 @@ public class ExerciseBuilder {
     }
 
     public Exercise build() {
-        return new Exercise(name, weight, sets, rep, dates);
+        return new Exercise(name, weight, sets, reps, dates);
     }
 
 }

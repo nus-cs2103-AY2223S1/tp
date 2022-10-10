@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
-import gim.model.exercise.Rep;
+import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Date;
@@ -35,7 +35,7 @@ public class EditExerciseDescriptorBuilder {
         descriptor.setName(exercise.getName());
         descriptor.setWeight(exercise.getWeight());
         descriptor.setSets(exercise.getSets());
-        descriptor.setRep(exercise.getRep());
+        descriptor.setReps(exercise.getReps());
         descriptor.setTags(exercise.getDates());
     }
 
@@ -66,8 +66,8 @@ public class EditExerciseDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditExerciseDescriptor} that we are building.
      */
-    public EditExerciseDescriptorBuilder withRep(String rep) {
-        descriptor.setRep(new Rep(rep));
+    public EditExerciseDescriptorBuilder withRep(String reps) {
+        descriptor.setReps(new Reps(reps));
         return this;
     }
 

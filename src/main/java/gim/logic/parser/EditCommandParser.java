@@ -3,7 +3,7 @@ package gim.logic.parser;
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
-import static gim.logic.parser.CliSyntax.PREFIX_REP;
+import static gim.logic.parser.CliSyntax.PREFIX_REPS;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static java.util.Objects.requireNonNull;
@@ -34,8 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_WEIGHT, PREFIX_SETS,
-                PREFIX_REP, PREFIX_DATE);
-
+                PREFIX_REPS, PREFIX_DATE);
 
         Index index;
 
@@ -55,8 +54,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_SETS).isPresent()) {
             editExerciseDescriptor.setSets(ParserUtil.parseSets(argMultimap.getValue(PREFIX_SETS).get()));
         }
-        if (argMultimap.getValue(PREFIX_REP).isPresent()) {
-            editExerciseDescriptor.setRep(ParserUtil.parseRep(argMultimap.getValue(PREFIX_REP).get()));
+        if (argMultimap.getValue(PREFIX_REPS).isPresent()) {
+            editExerciseDescriptor.setReps(ParserUtil.parseRep(argMultimap.getValue(PREFIX_REPS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_DATE)).ifPresent(editExerciseDescriptor::setTags);
 

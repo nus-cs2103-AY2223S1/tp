@@ -1,46 +1,46 @@
 {
-  "_comment": "AddressBook save file which contains the same Exercise values as in TypicalExercises#getTypicalAddressBook()",
+  "_comment": "ExerciseTracker save file which contains the same Exercise values as in TypicalExercises#getTypicalExerciseTracker()",
   "exercises" : [ {
     "name" : "Alice Pauline",
-    "weight" : "94351253",
+    "weight" : "10",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ "11/01/2011" ]
   }, {
     "name" : "Benson Meier",
-    "weight" : "98765432",
+    "weight" : "20",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ "11/01/2011" ]
   }, {
     "name" : "Carl Kurz",
-    "weight" : "95352563",
+    "weight" : "30",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
-    "weight" : "87652533",
+    "weight" : "40",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ "11/01/2011" ]
   }, {
     "name" : "Elle Meyer",
-    "weight" : "9482224",
+    "weight" : "50",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "weight" : "9482427",
+    "weight" : "60",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
-    "weight" : "9482442",
+    "weight" : "70",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ ]
   } ]
 }

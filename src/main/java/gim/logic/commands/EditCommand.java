@@ -2,7 +2,7 @@ package gim.logic.commands;
 
 import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
-import static gim.logic.parser.CliSyntax.PREFIX_REP;
+import static gim.logic.parser.CliSyntax.PREFIX_REPS;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static gim.model.Model.PREDICATE_SHOW_ALL_EXERCISES;
@@ -21,7 +21,7 @@ import gim.logic.commands.exceptions.CommandException;
 import gim.model.Model;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
-import gim.model.exercise.Rep;
+import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Date;
@@ -29,7 +29,7 @@ import gim.model.tag.Date;
 
 
 /**
- * Edits the details of an existing exercise in the address book.
+ * Edits the details of an existing exercise in the exercise tracker.
  */
 public class EditCommand extends Command {
 
@@ -42,7 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_SETS + "SETS] "
-            + "[" + PREFIX_REP + "REP] "
+            + "[" + PREFIX_REPS + "REP] "
             + "[" + PREFIX_DATE + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_WEIGHT + "91234567 "
@@ -50,7 +50,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_EXERCISE_SUCCESS = "Edited Exercise: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the exercise tracker.";
 
     private final Index index;
     private final EditExerciseDescriptor editExerciseDescriptor;
@@ -99,10 +99,10 @@ public class EditCommand extends Command {
         Name updatedName = editExerciseDescriptor.getName().orElse(exerciseToEdit.getName());
         Weight updatedWeight = editExerciseDescriptor.getWeight().orElse(exerciseToEdit.getWeight());
         Sets updatedSets = editExerciseDescriptor.getSets().orElse(exerciseToEdit.getSets());
-        Rep updatedRep = editExerciseDescriptor.getRep().orElse(exerciseToEdit.getRep());
+        Reps updatedReps = editExerciseDescriptor.getReps().orElse(exerciseToEdit.getReps());
         Set<Date> updatedDates = editExerciseDescriptor.getTags().orElse(exerciseToEdit.getDates());
 
-        return new Exercise(updatedName, updatedWeight, updatedSets, updatedRep, updatedDates);
+        return new Exercise(updatedName, updatedWeight, updatedSets, updatedReps, updatedDates);
     }
 
     @Override
@@ -131,7 +131,7 @@ public class EditCommand extends Command {
         private Name name;
         private Weight weight;
         private Sets sets;
-        private Rep rep;
+        private Reps reps;
         private Set<Date> dates;
 
         public EditExerciseDescriptor() {}
@@ -144,7 +144,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setWeight(toCopy.weight);
             setSets(toCopy.sets);
-            setRep(toCopy.rep);
+            setReps(toCopy.reps);
             setTags(toCopy.dates);
         }
 
@@ -152,7 +152,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, weight, sets, rep, dates);
+            return CollectionUtil.isAnyNonNull(name, weight, sets, reps, dates);
         }
 
         public void setName(Name name) {
@@ -179,12 +179,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(sets);
         }
 
-        public void setRep(Rep rep) {
-            this.rep = rep;
+        public void setReps(Reps reps) {
+            this.reps = reps;
         }
 
-        public Optional<Rep> getRep() {
-            return Optional.ofNullable(rep);
+        public Optional<Reps> getReps() {
+            return Optional.ofNullable(reps);
         }
 
         /**
@@ -222,7 +222,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getWeight().equals(e.getWeight())
                     && getSets().equals(e.getSets())
-                    && getRep().equals(e.getRep())
+                    && getReps().equals(e.getReps())
                     && getTags().equals(e.getTags());
         }
     }

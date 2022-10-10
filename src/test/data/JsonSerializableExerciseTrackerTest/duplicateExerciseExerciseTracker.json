@@ -1,14 +1,14 @@
 {
   "exercises": [ {
     "name": "Alice Pauline",
-    "weight": "94351253",
+    "weight": "10",
     "sets": "1",
-    "rep": "1",
+    "reps": "1",
     "tagged": [ "11/01/2010" ]
   }, {
     "name": "Alice Pauline",
-    "weight": "94351253",
-    "sets": "1",
-    "rep": "2"
+    "weight": "20",
+    "sets": "2",
+    "reps": "2"
   } ]
 }

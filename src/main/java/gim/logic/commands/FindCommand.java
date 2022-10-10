@@ -7,7 +7,7 @@ import gim.model.Model;
 import gim.model.exercise.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all exercises in address book whose name contains any of the argument keywords.
+ * Finds and lists all exercises in exercise tracker whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -17,7 +17,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all exercises whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " alice bench press charlie";
 
     private final NameContainsKeywordsPredicate predicate;
 

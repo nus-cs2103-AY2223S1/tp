@@ -29,9 +29,9 @@ import gim.testutil.EditExerciseDescriptorBuilder;
 import gim.testutil.ExerciseBuilder;
 import gim.testutil.ExerciseUtil;
 
-public class AddressBookParserTest {
+public class ExerciseTrackerParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ExerciseTrackerParser parser = new ExerciseTrackerParser();
 
     @Test
     public void parseCommand_add() throws Exception {
