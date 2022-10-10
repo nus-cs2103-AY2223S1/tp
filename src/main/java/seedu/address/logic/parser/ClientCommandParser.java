@@ -137,7 +137,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
 
     // TODO: implement
     private ListClientCommand parseListClientCommand(String args) throws ParseException {
-        return null;
+        return new ListClientCommand();
     }
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
