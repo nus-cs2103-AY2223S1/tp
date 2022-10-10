@@ -39,12 +39,19 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(0, 2, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static final String WELCOME_MESSAGE = "Welcome back to Rapportbook!";
+    private static final String WELCOME_MESSAGE_FIRST_LAUNCH = "Welcome to Rapportbook! Press (F1) or click (Help) to"
+            + " view the help page.\nWe have populated the app with some sample entries for you to test the app out."
+            + "\nUse the clear command to start afresh!";
+    private static final String MESSAGE_UNABLE_TO_READ_DATA = "Welcome to Rapportbook!\nUnable to load from data"
+            + " file. Either check the data file and relaunch the app, or start with a new one.";
 
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
     protected Config config;
+    private String launchMessage;
 
     @Override
     public void init() throws Exception {
@@ -80,13 +87,18 @@ public class MainApp extends Application {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
+                launchMessage = WELCOME_MESSAGE_FIRST_LAUNCH;
+            } else {
+                launchMessage = WELCOME_MESSAGE;
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            launchMessage = MESSAGE_UNABLE_TO_READ_DATA;
             initialData = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            launchMessage = MESSAGE_UNABLE_TO_READ_DATA;
             initialData = new AddressBook();
         }
 
@@ -168,7 +180,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
-        ui.start(primaryStage);
+        ui.start(primaryStage, launchMessage);
     }
 
     @Override
