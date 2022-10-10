@@ -25,6 +25,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.UserGuideCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.NameContainsKeywordsPredicate;
@@ -103,6 +104,13 @@ public class JeeqTrackerParserTest {
         CreateCommand command = (CreateCommand) parser.parseCommand(
                 PocUtil.getCreateCommand(ALICE, INDEX_FIRST_COMPANY));
         assertEquals(new CreateCommand(INDEX_FIRST_COMPANY, ALICE), command);
+    }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        ViewCommand command = (ViewCommand) parser.parseCommand(
+                ViewCommand.COMMAND_WORD + " " + INDEX_FIRST_COMPANY.getOneBased());
+        assertEquals(new ViewCommand(INDEX_FIRST_COMPANY), command);
     }
 
     @Test
