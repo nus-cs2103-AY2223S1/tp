@@ -108,19 +108,8 @@ public interface Model {
      */
     void deleteTask(Task deletedTask);
 
-    /**
-     * Returns a list of the current tasks.
-     *
-     * @return the list of tasks
-     */
-    List<Task> getTasks();
 
-    UniqueTaskList getTaskList();
+    /** Returns an unmodifiable version of task list */
+    ObservableList<Task> getFilteredTaskList();
 
-    /**
-     * Retrieve task at index.
-     * @param index Index of task that is displayed.
-     * @return Task that is inputted.
-     */
-    Task getTaskAtIndex(int index) throws IndexOutOfBoundsException;
 }

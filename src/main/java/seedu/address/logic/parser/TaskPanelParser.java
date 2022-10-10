@@ -9,8 +9,10 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
+import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.AddTaskCommandParser;
+import seedu.address.logic.parser.task.DeleteTaskCommandParser;
 
 /**
  * Parses user input for all task-related commands (starting with "tasks").
@@ -35,6 +37,9 @@ public class TaskPanelParser implements Parser<TaskCommand> {
         switch (commandWord) {
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
+
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

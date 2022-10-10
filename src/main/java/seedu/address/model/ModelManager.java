@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,6 +26,7 @@ public class ModelManager implements Model {
     private final TaskPanel taskPanel;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook, taskPanel and userPrefs.
@@ -39,6 +42,7 @@ public class ModelManager implements Model {
         this.taskPanel = new TaskPanel(taskPanel);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTasks = new FilteredList<>(this.taskPanel.getTaskList());
     }
 
     public ModelManager() {
@@ -171,4 +175,15 @@ public class ModelManager implements Model {
         taskPanel.addTask(task);
         // TODO: updateFilteredTaskList
     }
+
+    @Override
+    public void deleteTask(Task deletedTask) {
+        taskPanel.removeTask(deletedTask);
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
 }

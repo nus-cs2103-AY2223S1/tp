@@ -11,6 +11,8 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
+import java.util.List;
+
 public class DeleteTaskCommand extends TaskCommand {
     public static final String COMMAND_WORD = "delete";
     public static final String COMMAND_WORD_FULL = TaskCommand.COMMAND_WORD + " " + COMMAND_WORD;
@@ -38,14 +40,13 @@ public class DeleteTaskCommand extends TaskCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Task> taskList = model.getFilteredTaskList();
 
-        UniqueTaskList taskList = model.getTaskList();
-
-        if (targetIndex.getZeroBased() >= taskList.getTasks().size()) {
+        if (targetIndex.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task deletedTask = model.getTaskAtIndex(targetIndex.getZeroBased());
+        Task deletedTask = taskList.get(targetIndex.getZeroBased());
         model.deleteTask(deletedTask);
 
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, deletedTask));
