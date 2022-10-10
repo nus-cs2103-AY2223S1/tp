@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -25,9 +26,9 @@ public class GradeProgressCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing grade progress will not be modified.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "gp/ [GRADEPROGRESS]\n"
+            + "[" + PREFIX_GRADEPROGRESS + " GRADEPROGRESS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "gp/ MATH:A";
+            + PREFIX_GRADEPROGRESS + " MATH:A";
 
     public static final String MESSAGE_ADD_GRADEPROGRESS_SUCCESS = "Added grade progress to Person: %1$s";
     public static final String MESSAGE_DELETE_GRADEPROGRESS_SUCCESS = "Removed grade progress from Person: %1$s";
