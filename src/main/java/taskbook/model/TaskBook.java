@@ -53,12 +53,21 @@ public class TaskBook implements ReadOnlyTaskBook {
     }
 
     /**
+     * Replaces the contents of the task list with {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
      * Resets the existing data of this {@code TaskBook} with {@code newData}.
      */
     public void resetData(ReadOnlyTaskBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setTasks(newData.getTaskList());
     }
 
     //// person-level operations
@@ -108,11 +117,30 @@ public class TaskBook implements ReadOnlyTaskBook {
 
     //// task-level operations
     /**
+     * Returns true if a task {@code task} exists in the task book.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
+    }
+
+    /**
      * Adds a task to the task book.
      * The task must not already exist in the task book.
      */
     public void addTask(Task t) {
         tasks.add(t);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the task book.
+     * The task {@code editedTask} must not be the same as another existing task in the task book.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        tasks.setTask(target, editedTask);
     }
 
     /**

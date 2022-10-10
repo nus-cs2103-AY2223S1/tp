@@ -50,7 +50,7 @@ public class JsonTaskBookStorageTest {
     @Test
     public void readtaskBook_invalidPersontaskBook_throwDataConversionException() {
         Assert.assertThrows(DataConversionException.class, ()
-                -> readtaskBook("invalidPersonAddressBook.json"));
+                -> readtaskBook("invalidPersonTaskBook.json"));
     }
 
     @Test

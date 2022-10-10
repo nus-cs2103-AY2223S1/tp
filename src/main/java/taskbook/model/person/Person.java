@@ -100,6 +100,16 @@ public class Person {
         return Objects.hash(name, phone, email, address, tags);
     }
 
+    /**
+     * Returns true if a given person is a valid person.
+     */
+    public static boolean isValidPerson(Person test) {
+        return Name.isValidName(test.getName().fullName)
+            && Phone.isValidPhone(test.getPhone().value)
+            && Email.isValidEmail(test.getEmail().value)
+            && Address.isValidAddress(test.getAddress().value);
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
