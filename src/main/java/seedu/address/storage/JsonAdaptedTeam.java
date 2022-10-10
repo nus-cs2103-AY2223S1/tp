@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
@@ -55,7 +56,7 @@ public class JsonAdaptedTeam {
 
         }
 
-        List<Person> memberList = source.getMembers();
+        List<Person> memberList = new FilteredList<>(source.getMemberList());
         if (memberList != null) {
             members.addAll(memberList.stream()
                     .map(JsonAdaptedPerson::new)
@@ -64,7 +65,6 @@ public class JsonAdaptedTeam {
 
 
     }
-
 
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.

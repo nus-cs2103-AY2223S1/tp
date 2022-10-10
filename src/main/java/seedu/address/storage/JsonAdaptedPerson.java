@@ -29,7 +29,6 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final Boolean test = false;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.

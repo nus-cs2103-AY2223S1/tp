@@ -70,7 +70,6 @@ public class UniquePersonList implements Iterable<Person> {
 
     public Person getPerson(Name personName) {
         requireNonNull(personName);
-        System.out.println(internalList.size());
         for (int i = 0; i < internalList.size(); i++) {
             Person person = internalList.get(i);
             if (person.getName().equals(personName)) {
