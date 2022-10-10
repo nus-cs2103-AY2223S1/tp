@@ -10,6 +10,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 
+/**
+ * Parses input arguments and creates a new ClassGroupCommand object
+ */
 public class ClassGroupCommandParser implements Parser<ClassGroupCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.

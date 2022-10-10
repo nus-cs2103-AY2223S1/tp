@@ -9,6 +9,11 @@ import static java.util.Objects.requireNonNull;
 public class ClassGroup {
     public final String value;
 
+    /**
+     * Constructs an {@code ClassGroup}.
+     *
+     * @param classGroup A valid class group.
+     */
     public ClassGroup(String classGroup) {
         requireNonNull(classGroup);
         this.value = classGroup;

@@ -100,7 +100,8 @@ class JsonAdaptedStudent {
         final Email modelEmail = new Email(email);
 
         if (classGroup == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassGroup.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClassGroup.class.getSimpleName()));
         }
         final ClassGroup modelClassGroup = new ClassGroup(classGroup);
 

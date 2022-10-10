@@ -17,6 +17,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class ClassGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "class";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the class of the student identified "
             + "by the index number used in the last student listing. "
@@ -25,11 +26,9 @@ public class ClassGroupCommand extends Command {
             + "c/ [CLASS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "c/ AY2223S1-CS2103T-W12";
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Remark command not implemented yet";
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
-    public static final String MESSAGE_ADD_CLASS_GROUP_SUCCESS = "Added class group to Student: %1$s";
-    public static final String MESSAGE_DELETE_CLASS_GROUP_SUCCESS = "Removed remark from Student: %1$s";
+
+    public static final String MESSAGE_ADD_CLASS_GROUP_SUCCESS = "Added class to Student: %1$s";
+    public static final String MESSAGE_DELETE_CLASS_GROUP_SUCCESS = "Removed class from Student: %1$s";
 
     private final Index index;
     private final ClassGroup classGroup;
@@ -70,7 +69,9 @@ public class ClassGroupCommand extends Command {
      * {@code studentToEdit}.
      */
     private String generateSuccessMessage(Student studentToEdit) {
-        String message = !classGroup.value.isEmpty() ? MESSAGE_ADD_CLASS_GROUP_SUCCESS : MESSAGE_DELETE_CLASS_GROUP_SUCCESS;
+        String message = !classGroup.value.isEmpty()
+                ? MESSAGE_ADD_CLASS_GROUP_SUCCESS
+                : MESSAGE_DELETE_CLASS_GROUP_SUCCESS;
         return String.format(message, studentToEdit);
     }
 

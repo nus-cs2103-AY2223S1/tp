@@ -3,11 +3,13 @@
     "name": "Valid Student",
     "phone": "9482424",
     "email": "hans@example.com",
+    "classGroup": "CS2030 Lab 1",
     "address": "4th street"
   }, {
     "name": "Student With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
+    "classGroup": "CS2030 Lab 1",
     "address": "4th street"
   } ]
 }
