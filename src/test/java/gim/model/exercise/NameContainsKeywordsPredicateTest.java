@@ -70,6 +70,6 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords match weight, sets and reps, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "1", "1"));
         assertFalse(predicate.test(new ExerciseBuilder().withName("Alice").withWeight("12345")
-                .withSets("1").withRep("1").build()));
+                .withSets("1").withReps("1").build()));
     }
 }

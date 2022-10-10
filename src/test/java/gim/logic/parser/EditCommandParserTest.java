@@ -2,7 +2,7 @@ package gim.logic.parser;
 
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static gim.logic.commands.CommandTestUtil.INVALID_REP_DESC;
+import static gim.logic.commands.CommandTestUtil.INVALID_REPS_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_SETS_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_WEIGHT_DESC;
@@ -86,7 +86,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_WEIGHT_DESC, Weight.MESSAGE_CONSTRAINTS); // invalid weight
         assertParseFailure(parser, "1" + INVALID_SETS_DESC, Sets.MESSAGE_CONSTRAINTS); // invalid sets
-        assertParseFailure(parser, "1" + INVALID_REP_DESC, Reps.MESSAGE_CONSTRAINTS); // invalid rep
+        assertParseFailure(parser, "1" + INVALID_REPS_DESC, Reps.MESSAGE_CONSTRAINTS); // invalid reps
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid weight followed by valid sets

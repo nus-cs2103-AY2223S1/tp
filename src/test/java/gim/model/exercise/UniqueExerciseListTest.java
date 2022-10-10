@@ -42,7 +42,7 @@ public class UniqueExerciseListTest {
     @Test
     public void contains_exerciseWithSameIdentityFieldsInList_returnsTrue() {
         uniqueExerciseList.add(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueExerciseList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueExerciseListTest {
     @Test
     public void setExercise_editedExerciseHasSameIdentity_success() {
         uniqueExerciseList.add(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueExerciseList.setExercise(ALICE, editedAlice);
         UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();

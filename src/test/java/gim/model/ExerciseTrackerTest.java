@@ -46,7 +46,7 @@ public class ExerciseTrackerTest {
     @Test
     public void resetData_withDuplicateExercises_throwsDuplicateExerciseException() {
         // Two exercises with the same identity fields
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Exercise> newExercises = Arrays.asList(ALICE, editedAlice);
         ExerciseTrackerStub newData = new ExerciseTrackerStub(newExercises);
@@ -74,12 +74,16 @@ public class ExerciseTrackerTest {
 <<<<<<< HEAD:src/test/java/gim/model/AddressBookTest.java
     public void hasExercise_exerciseWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addExercise(ALICE);
+<<<<<<< HEAD:src/test/java/gim/model/ExerciseTrackerTest.java
         Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
 =======
     public void hasExercise_exerciseWithSameIdentityFieldsInExerciseTracker_returnsTrue() {
         exerciseTracker.addExercise(ALICE);
         Exercise editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
 >>>>>>> c0f7df5d3b3500cd7399b0b4c63352ac4d96c054:src/test/java/gim/model/ExerciseTrackerTest.java
+=======
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
+>>>>>>> reptoreps:src/test/java/gim/model/AddressBookTest.java
                 .build();
         assertTrue(exerciseTracker.hasExercise(editedAlice));
     }

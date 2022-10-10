@@ -53,7 +53,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "911a"; // 'a' not allowed in weights
     public static final String INVALID_SETS_DESC = " " + PREFIX_SETS; // empty string not allowed for sets
-    public static final String INVALID_REP_DESC = " " + PREFIX_REPS; // empty string not allowed for reps
+    public static final String INVALID_REPS_DESC = " " + PREFIX_REPS; // empty string not allowed for reps
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

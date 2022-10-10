@@ -66,14 +66,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String rep} into an {@code Reps}.
+     * Parses a {@code String reps} into an {@code Reps}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code rep} is invalid.
+     * @throws ParseException if the given {@code reps} is invalid.
      */
-    public static Reps parseRep(String rep) throws ParseException {
-        requireNonNull(rep);
-        String trimmedRep = rep.trim();
+    public static Reps parseRep(String reps) throws ParseException {
+        requireNonNull(reps);
+        String trimmedRep = reps.trim();
         if (!Reps.isValidReps(trimmedRep)) {
             throw new ParseException(Reps.MESSAGE_CONSTRAINTS);
         }

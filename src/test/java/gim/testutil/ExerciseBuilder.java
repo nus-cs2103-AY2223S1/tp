@@ -69,8 +69,8 @@ public class ExerciseBuilder {
     /**
      * Sets the {@code Reps} of the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withRep(String rep) {
-        this.reps = new Reps(rep);
+    public ExerciseBuilder withReps(String reps) {
+        this.reps = new Reps(reps);
         return this;
     }
 
