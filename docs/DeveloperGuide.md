@@ -472,7 +472,7 @@ Preconditions: The current working team is set to the team that has the existing
 
 * 3b. The given deadline is invalid.
 
-    * 3b1. TruthTable shows an error message. 
+    * 3b1. TruthTable shows an error message.
 
       Use case resumes at step 2.
 

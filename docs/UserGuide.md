@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-TruthTable is a **desktop app for managing software engineering teams, optimized for use via a Command Line Interface** 
+TruthTable is a **desktop app for managing software engineering teams, optimized for use via a Command Line Interface**
 (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TruthTable can get your
 contact management tasks done faster than traditional GUI apps.
 
@@ -20,11 +20,11 @@ contact management tasks done faster than traditional GUI apps.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the 
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the
 app contains some sample data.<br>
 ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
 open the help window.<br>
 Some example commands you can try:
 
@@ -54,7 +54,7 @@ Some example commands you can try:
 
 Add a new team member to the user’s team. Will throw an error if the member already exists in the team.
 
-Format: 
+Format:
 * `add_member INDEX`
 
 Examples:
@@ -62,7 +62,7 @@ Examples:
 
 ### Delete a member from team `delete member`
 
-Delete a team member from the user’s team. Will throw an error if no member with that name is found. Take note that 
+Delete a team member from the user’s team. Will throw an error if no member with that name is found. Take note that
 names are case-sensitive.
 
 Format:
@@ -133,16 +133,16 @@ Format: `exit`
 
 ### Saving the data
 
-TruthTable data are saved in the hard disk automatically after any command that changes the data. There is no need to 
+TruthTable data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 ### Editing the data file
 
-TruthTable data are saved as a JSON file `[JAR file location]/data/truthtable.json`. Advanced users are welcome to 
+TruthTable data are saved as a JSON file `[JAR file location]/data/truthtable.json`. Advanced users are welcome to
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TruthTable will discard all data and start with an empty 
+If your changes to the data file makes its format invalid, TruthTable will discard all data and start with an empty
 data file at the next run.
 </div>
 
@@ -155,7 +155,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous TruthTable home folder.
 
 --------------------------------------------------------------------------------------------------------------------
