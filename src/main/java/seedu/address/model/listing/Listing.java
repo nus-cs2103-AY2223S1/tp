@@ -5,6 +5,7 @@ import java.util.List;
 
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -12,7 +13,7 @@ import seedu.address.model.person.Person;
  */
 public class Listing {
     private final Address address;
-    private final Person owner;
+    private final Name owner;
     private final int askingPrice;
     private final List<Person> interestedClients;
     private final List<Offer> currentOffers;
@@ -23,7 +24,7 @@ public class Listing {
      * @param owner Person
      * @param askingPrice int
      */
-    public Listing(Address address, Person owner, int askingPrice) {
+    public Listing(Address address, Name owner, int askingPrice) {
         this.address = address;
         this.owner = owner;
         this.askingPrice = askingPrice;
@@ -43,7 +44,7 @@ public class Listing {
      * Getter for owner.
      * @return Person
      */
-    public Person getOwner() {
+    public Name getOwner() {
         return owner;
     }
 
@@ -70,6 +71,20 @@ public class Listing {
     public List<Offer> getCurrentOffers() {
         return currentOffers;
     }
+
+    /**
+     * Returns true if both listings have the same address.
+     * This defines a weaker notion of equality between two listings.
+     */
+    public boolean isSameListing(Listing otherListing) {
+        if (otherListing == this) {
+            return true;
+        }
+
+        return otherListing != null
+                && otherListing.getAddress().equals(getAddress());
+    }
+
 
     /**
      * String representation of Listing.
