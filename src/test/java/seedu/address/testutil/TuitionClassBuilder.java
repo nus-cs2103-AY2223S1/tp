@@ -3,9 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.level.Level;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.Day;
-import seedu.address.model.level.Level;
 import seedu.address.model.tuitionclass.Name;
 import seedu.address.model.tuitionclass.Subject;
 import seedu.address.model.tuitionclass.Time;
