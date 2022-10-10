@@ -65,7 +65,7 @@ public interface Model {
 
     /**
      * Adds the given Internship.
-     * {@code internship} must not already exist in the WorkBook. 
+     * {@code internship} must not already exist in the WorkBook.
      */
     void addInternship(Internship internship);
 
