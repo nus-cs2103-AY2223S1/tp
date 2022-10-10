@@ -16,9 +16,7 @@ public class ListTasksCommandParser {
      */
     public ListTasksCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        boolean areArchivedTasksShown = ArgumentTokenizer.tokenize(args, FLAG_SHOW_ARCHIVED_TASKS)
-                .getValue(FLAG_SHOW_ARCHIVED_TASKS)
-                .isPresent();
+        boolean areArchivedTasksShown = ArgumentTokenizer.isFlagPresent(args, FLAG_SHOW_ARCHIVED_TASKS);
         return new ListTasksCommand(areArchivedTasksShown);
     }
 }
