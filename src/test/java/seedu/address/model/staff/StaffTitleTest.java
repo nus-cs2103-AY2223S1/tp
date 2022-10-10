@@ -27,15 +27,14 @@ public class StaffTitleTest {
         // invalid staff title
         assertFalse(StaffTitle.isValidStaffTitle("")); // empty string
         assertFalse(StaffTitle.isValidStaffTitle(" ")); // spaces only
-        assertFalse(StaffTitle.isValidStaffTitle("^")); // only non-alphanumeric characters
+        assertFalse(StaffTitle.isValidStaffTitle("!")); // only non-alphanumeric characters
         assertFalse(StaffTitle.isValidStaffTitle("Senior UX designer*")); // contains non-alphanumeric characters
 
         // valid staff title
         assertTrue(StaffTitle.isValidStaffTitle("Senior UX Designer")); // alphabets only
-        assertTrue(StaffTitle.isValidStaffTitle("12345")); // numbers only
         assertTrue(StaffTitle.isValidStaffTitle("peter the 2nd")); // alphanumeric characters
+        assertTrue(StaffTitle.isValidStaffTitle("12345")); // numbers only
         assertTrue(StaffTitle.isValidStaffTitle("Capital Tan")); // with capital letters
-        //TODO: Fix long titles test
         assertTrue(StaffTitle.isValidStaffTitle("David Roger Jackson Ray Jr 2nd")); // long titles
     }
 }
