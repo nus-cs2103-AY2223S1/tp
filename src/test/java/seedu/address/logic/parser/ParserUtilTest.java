@@ -18,10 +18,12 @@ import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.NOKPhone;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_NOK_PHONE = "+659999";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final Integer INVALID_MONEY_OWED = -1;
@@ -31,6 +33,7 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
+    private static final String VALID_NOK_PHONE = "999999";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final Integer VALID_MONEY_OWED = 10;
@@ -103,6 +106,29 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parseNOKPhone_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNOKPhone((String) null));
+    }
+
+    @Test
+    public void parseNOKPhone_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNOKPhone(INVALID_NOK_PHONE));
+    }
+
+    @Test
+    public void parseNOKPhone_validValueWithoutWhitespace_returnsNOKPhone() throws Exception {
+        NOKPhone expectedNOKPhone = new NOKPhone(VALID_NOK_PHONE);
+        assertEquals(expectedNOKPhone, ParserUtil.parseNOKPhone(VALID_NOK_PHONE));
+    }
+
+    @Test
+    public void parseNOKPhone_validValueWithWhitespace_returnsTrimmedNOKPhone() throws Exception {
+        String nokPhoneWithWhitespace = WHITESPACE + VALID_NOK_PHONE + WHITESPACE;
+        NOKPhone expectedNOKPhone = new NOKPhone(VALID_NOK_PHONE);
+        assertEquals(expectedNOKPhone, ParserUtil.parseNOKPhone(nokPhoneWithWhitespace));
     }
 
     @Test

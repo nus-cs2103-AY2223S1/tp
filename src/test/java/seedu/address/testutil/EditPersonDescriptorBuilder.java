@@ -12,6 +12,7 @@ import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.NOKPhone;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -41,6 +42,7 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
+        descriptor.setNOKPhone(person.getNOKPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setClass(person.getAClass());
@@ -62,6 +64,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
+        return this;
+    }
+
+    /**
+     * Sets the {@code NOKPhone} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withNOKPhone(String nokPhone) {
+        descriptor.setNOKPhone(new NOKPhone(nokPhone));
         return this;
     }
 

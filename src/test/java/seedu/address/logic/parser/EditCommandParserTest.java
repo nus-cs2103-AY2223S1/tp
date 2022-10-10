@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NOK_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MONEY_OWED_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MONEY_OWED_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.MONEY_PAID_DESC_AMY;
@@ -16,6 +17,8 @@ import static seedu.address.logic.commands.CommandTestUtil.MONEY_PAID_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NOK_PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NOK_PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -27,6 +30,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_PAID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -45,6 +50,7 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.NOKPhone;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -85,15 +91,23 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(
+                parser, "1" + INVALID_NOK_PHONE_DESC, NOKPhone.MESSAGE_CONSTRAINTS); // invalid nok phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 
+        // invalid next of kin phone followed by valid email
+        assertParseFailure(parser, "1" + INVALID_NOK_PHONE_DESC + EMAIL_DESC_AMY, NOKPhone.MESSAGE_CONSTRAINTS);
+
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+
+        // valid next of kin phone followed by invalid next of kin phone.
+        assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_NOK_PHONE_DESC, NOKPhone.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
@@ -103,12 +117,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + NOK_PHONE_DESC_BOB
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + MONEY_OWED_DESC_BOB + MONEY_PAID_DESC_BOB;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withMoneyOwed(VALID_MONEY_OWED_BOB).withMoneyPaid(VALID_MONEY_PAID_BOB).build();
+                .withPhone(VALID_PHONE_BOB).withNOKPhone(VALID_NOK_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
+                .withAddress(VALID_ADDRESS_AMY).withMoneyOwed(VALID_MONEY_OWED_BOB)
+                .withMoneyPaid(VALID_MONEY_PAID_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -141,6 +156,12 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // next of kin phone
+        userInput = targetIndex.getOneBased() + NOK_PHONE_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withNOKPhone(VALID_NOK_PHONE_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
@@ -170,14 +191,14 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + MONEY_OWED_DESC_AMY + MONEY_PAID_DESC_AMY
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + NOK_PHONE_DESC_AMY + ADDRESS_DESC_AMY
+                + EMAIL_DESC_AMY + PHONE_DESC_AMY + NOK_PHONE_DESC_AMY + ADDRESS_DESC_AMY
+                + EMAIL_DESC_AMY + MONEY_OWED_DESC_AMY + MONEY_PAID_DESC_AMY
+                + PHONE_DESC_BOB + NOK_PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB
                 + MONEY_OWED_DESC_BOB + MONEY_PAID_DESC_BOB;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withNOKPhone(VALID_NOK_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withMoneyOwed(VALID_MONEY_OWED_BOB).withMoneyPaid(VALID_MONEY_PAID_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
