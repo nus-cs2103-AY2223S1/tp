@@ -82,7 +82,7 @@ public class AddStudCommandParserTest {
         // zero tags
         Student expectedPerson = new StudentBuilder(AMY).withTags().build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + PARENT_NAME_DESC_AMY
-                        + PHONE_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND,
+                        + PHONE_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddStudCommand(expectedPerson));
     }
 
