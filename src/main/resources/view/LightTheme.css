@@ -110,7 +110,7 @@
     -fx-border-width: 1;
 }
 
-.list-cell:filled:selected {
+#personListView .list-cell:filled:selected {
     -fx-background-color: #ede7fb;
     -fx-border-color: #543cdf;
 }
