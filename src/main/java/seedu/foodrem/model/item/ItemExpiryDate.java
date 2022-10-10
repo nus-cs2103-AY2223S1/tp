@@ -3,8 +3,9 @@ package seedu.foodrem.model.item;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-import seedu.foodrem.model.item.itemvalidator.ItemExpiryDateValidator;
+import seedu.foodrem.model.item.itemvalidator.ItemBoughtDateValidator;
 
 /**
  * Represents an item date in an {@link Item}.
@@ -12,34 +13,48 @@ import seedu.foodrem.model.item.itemvalidator.ItemExpiryDateValidator;
  */
 public class ItemExpiryDate {
 
-    private static final String DATE_OUTPUT_PATTERN_REGEX = "yyyy-mm-dd";
+    private static final String DATE_OUTPUT_PATTERN_REGEX = "dd-MM-yyyy";
+    private static final String EXPIRY_DATE_NOT_SET_PLACEHOLDER = "Not Set";
 
-    private final LocalDate itemDate;
+    private final LocalDate expiryDate;
 
     /**
-     * Constructs an itemDate.
+     * Constructs an expiryDate.
      *
-     * @param dateString a string that represents the itemDate of the format
+     * @param dateString a string that represents the expiryDate of the
+     *                   format {@link ItemExpiryDate#DATE_OUTPUT_PATTERN_REGEX}
      */
     public ItemExpiryDate(String dateString) {
         requireNonNull(dateString);
-        if (dateString.isEmpty()) {
-            itemDate = LocalDate.now();
+        if (dateString.isBlank()) {
+            expiryDate = null;
             return;
         }
-        ItemExpiryDateValidator.validate(dateString);
-        itemDate = LocalDate.parse(dateString);
+        ItemBoughtDateValidator.validate(dateString);
+        expiryDate = LocalDate.parse(dateString);
     }
 
     /**
-     * Returns true if both {@link ItemExpiryDate#itemDate} have the same date by
+     * Returns true if both {@link ItemExpiryDate#expiryDate} have the same date by
      * {@link LocalDate#equals(Object)}.
      */
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-            || (other instanceof ItemExpiryDate // instanceof handles nulls
-            && itemDate.equals(((ItemExpiryDate) other).itemDate)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ItemExpiryDate)) {
+            return false;
+        }
+
+        ItemExpiryDate date = (ItemExpiryDate) other;
+
+        if (date.expiryDate == null && expiryDate == null) {
+            return true;
+        }
+
+        return expiryDate.equals(((ItemExpiryDate) other).expiryDate);
     }
 
     /**
@@ -47,7 +62,7 @@ public class ItemExpiryDate {
      */
     @Override
     public int hashCode() {
-        return itemDate.hashCode();
+        return expiryDate.hashCode();
     }
 
     /**
@@ -55,6 +70,17 @@ public class ItemExpiryDate {
      */
     @Override
     public String toString() {
-        return itemDate.toString();
+        return expiryDate == null ? "" : expiryDate.toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String toListView() {
+        String date = EXPIRY_DATE_NOT_SET_PLACEHOLDER;
+        if (expiryDate != null) {
+            date = expiryDate.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_PATTERN_REGEX));
+        }
+        return String.format("(Expiry Date: %s)", date);
     }
 }

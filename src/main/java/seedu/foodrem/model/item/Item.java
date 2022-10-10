@@ -63,6 +63,23 @@ public class Item {
         return expiryDate;
     }
 
+    public String getNametoListView() {
+        return name.toListView();
+    }
+
+    public String getQuantityAndUnittoListView() {
+        String unitString = unit.isBlank() ? "" : " " + unit.toListView();
+        return quantity.toString() + unitString;
+    }
+
+    public String getBoughtDatetoListView() {
+        return boughtDate.toListView();
+    }
+
+    public String getExpiryDatetoListView() {
+        return expiryDate.toListView();
+    }
+
     /**
      * Returns true if both items have the same name.
      * This defines a weaker notion of equality between two items.
