@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.workbook.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
@@ -24,6 +25,7 @@ import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
+import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.tag.Tag;
 
 /**
@@ -38,6 +40,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -94,12 +97,13 @@ public class EditCommand extends Command {
         assert internshipToEdit != null;
 
         Company updatedCompany = editInternshipDescriptor.getCompany().orElse(internshipToEdit.getCompany());
+        Role updatedRole = editInternshipDescriptor.getRole().orElse(internshipToEdit.getRole());
         Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
         Address updatedAddress = editInternshipDescriptor.getAddress().orElse(internshipToEdit.getAddress());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedCompany, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Internship(updatedCompany, updatedRole, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -126,6 +130,7 @@ public class EditCommand extends Command {
      */
     public static class EditInternshipDescriptor {
         private Company company;
+        private Role role;
         private Phone phone;
         private Email email;
         private Address address;
@@ -139,6 +144,7 @@ public class EditCommand extends Command {
          */
         public EditInternshipDescriptor(EditInternshipDescriptor toCopy) {
             setCompany(toCopy.company);
+            setRole(toCopy.role);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -149,7 +155,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(company, role, phone, email, address, tags);
         }
 
         public void setCompany(Company company) {
@@ -158,6 +164,14 @@ public class EditCommand extends Command {
 
         public Optional<Company> getCompany() {
             return Optional.ofNullable(company);
+        }
+
+        public void setRole(Role role) {
+            this.role = role;
+        }
+
+        public Optional<Role> getRole() {
+            return Optional.ofNullable(role);
         }
 
         public void setPhone(Phone phone) {
@@ -217,6 +231,7 @@ public class EditCommand extends Command {
             EditInternshipDescriptor e = (EditInternshipDescriptor) other;
 
             return getCompany().equals(e.getCompany())
+                    && getRole().equals(e.getRole())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())

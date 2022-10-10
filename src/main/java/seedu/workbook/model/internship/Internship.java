@@ -17,7 +17,7 @@ public class Internship {
 
     // Identity fields
     private final Company company;
-    // private final Role role;
+    private final Role role;
     private final Phone phone;
     private final Email email;
 
@@ -28,9 +28,10 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Company company, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(company, phone, email, address, tags);
+    public Internship(Company company, Role role, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(company, role, phone, email, address, tags);
         this.company = company;
+        this.role = role;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -39,6 +40,10 @@ public class Internship {
 
     public Company getCompany() {
         return company;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
     public Phone getPhone() {
@@ -62,7 +67,7 @@ public class Internship {
     }
 
     /**
-     * Returns true if both internships have the same company AND ROLE. NOT IMPLEMENTED YET
+     * Returns true if both internships have the same company AND role.
      * This defines a weaker notion of equality between two internships.
      */
     public boolean isSameInternship(Internship otherInternship) {
@@ -71,7 +76,8 @@ public class Internship {
         }
 
         return otherInternship != null
-                && otherInternship.getCompany().equals(getCompany());
+                && otherInternship.getCompany().equals(getCompany())
+                && otherInternship.getRole().equals(getRole());
     }
 
     /**
@@ -90,6 +96,7 @@ public class Internship {
 
         Internship otherInternship = (Internship) other;
         return otherInternship.getCompany().equals(getCompany())
+                && otherInternship.getRole().equals(getRole())
                 && otherInternship.getPhone().equals(getPhone())
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getAddress().equals(getAddress())
@@ -99,13 +106,15 @@ public class Internship {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, phone, email, address, tags);
+        return Objects.hash(company, role, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getCompany())
+                .append("; Role: ")
+                .append(getRole())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")

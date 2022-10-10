@@ -10,6 +10,7 @@ import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
+import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.tag.Tag;
 
 /**
@@ -33,6 +34,7 @@ public class EditInternshipDescriptorBuilder {
     public EditInternshipDescriptorBuilder(Internship internship) {
         descriptor = new EditInternshipDescriptor();
         descriptor.setCompany(internship.getCompany());
+        descriptor.setRole(internship.getRole());
         descriptor.setPhone(internship.getPhone());
         descriptor.setEmail(internship.getEmail());
         descriptor.setAddress(internship.getAddress());
@@ -44,6 +46,14 @@ public class EditInternshipDescriptorBuilder {
      */
     public EditInternshipDescriptorBuilder withCompany(String name) {
         descriptor.setCompany(new Company(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Role} of the {@code EditInternshipDescriptor} that we are building.
+     */
+    public EditInternshipDescriptorBuilder withRole(String role) {
+        descriptor.setRole(new Role(role));
         return this;
     }
 

@@ -3,6 +3,7 @@ package seedu.workbook.testutil;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -31,6 +32,7 @@ public class InternshipUtil {
     public static String getInternshipDetails(Internship internship) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_COMPANY + internship.getCompany().name + " ");
+        sb.append(PREFIX_ROLE + internship.getRole().value + " ");
         sb.append(PREFIX_PHONE + internship.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + internship.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + internship.getAddress().value + " ");
@@ -46,6 +48,7 @@ public class InternshipUtil {
     public static String getEditInternshipDescriptorDetails(EditInternshipDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getCompany().ifPresent(company -> sb.append(PREFIX_COMPANY).append(company.name).append(" "));
+        descriptor.getRole().ifPresent(role -> sb.append(PREFIX_ROLE).append(role.value).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));

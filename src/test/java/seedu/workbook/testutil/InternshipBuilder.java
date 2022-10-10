@@ -8,6 +8,7 @@ import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
+import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.tag.Tag;
 import seedu.workbook.model.util.SampleDataUtil;
 
@@ -17,11 +18,13 @@ import seedu.workbook.model.util.SampleDataUtil;
 public class InternshipBuilder {
 
     public static final String DEFAULT_COMPANY = "Meta";
+    public static final String DEFAULT_ROLE = "God Developer";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Company company;
+    private Role role;
     private Phone phone;
     private Email email;
     private Address address;
@@ -32,6 +35,7 @@ public class InternshipBuilder {
      */
     public InternshipBuilder() {
         company = new Company(DEFAULT_COMPANY);
+        role = new Role(DEFAULT_ROLE);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -43,6 +47,7 @@ public class InternshipBuilder {
      */
     public InternshipBuilder(Internship internshipToCopy) {
         company = internshipToCopy.getCompany();
+        role = internshipToCopy.getRole();
         phone = internshipToCopy.getPhone();
         email = internshipToCopy.getEmail();
         address = internshipToCopy.getAddress();
@@ -54,6 +59,14 @@ public class InternshipBuilder {
      */
     public InternshipBuilder withCompany(String company) {
         this.company = new Company(company);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Role} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withRole(String role) {
+        this.role = new Role(role);
         return this;
     }
 
@@ -90,7 +103,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(company, phone, email, address, tags);
+        return new Internship(company, role, phone, email, address, tags);
     }
 
 }

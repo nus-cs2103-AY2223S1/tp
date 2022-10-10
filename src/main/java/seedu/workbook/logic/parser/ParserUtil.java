@@ -13,6 +13,7 @@ import seedu.workbook.model.internship.Address;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Phone;
+import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.tag.Tag;
 
 /**
@@ -48,6 +49,21 @@ public class ParserUtil {
             throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(trimmedCompany);
+    }
+
+    /**
+     * Parses a {@code String role} into a {@code Role}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code role} is invalid.
+     */
+    public static Role parseRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        if (!Role.isValidRole(trimmedRole)) {
+            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+        }
+        return new Role(trimmedRole);
     }
 
     /**
@@ -116,8 +132,8 @@ public class ParserUtil {
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
-        for (String tagCompany : tags) {
-            tagSet.add(parseTag(tagCompany));
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
         }
         return tagSet;
     }

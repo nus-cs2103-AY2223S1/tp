@@ -15,6 +15,7 @@ import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
+import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.tag.Tag;
 
 /**
@@ -25,6 +26,7 @@ class JsonAdaptedInternship {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Internship's %s field is missing!";
 
     private final String company;
+    private final String role;
     private final String phone;
     private final String email;
     private final String address;
@@ -34,10 +36,11 @@ class JsonAdaptedInternship {
      * Constructs a {@code JsonAdaptedInternship} with the given Internship details.
      */
     @JsonCreator
-    public JsonAdaptedInternship(@JsonProperty("company") String company, @JsonProperty("phone") String phone,
+    public JsonAdaptedInternship(@JsonProperty("company") String company, @JsonProperty("role") String role, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
+        this.role = role;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -51,6 +54,7 @@ class JsonAdaptedInternship {
      */
     public JsonAdaptedInternship(Internship source) {
         company = source.getCompany().name;
+        role = source.getRole().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -78,6 +82,14 @@ class JsonAdaptedInternship {
         }
         final Company modelCompany = new Company(company);
 
+        if (role == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
+        }
+        if (!Role.isValidRole(role)) {
+            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+        }
+        final Role modelRole = new Role(role);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -103,7 +115,7 @@ class JsonAdaptedInternship {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Internship(modelCompany, modelRole, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

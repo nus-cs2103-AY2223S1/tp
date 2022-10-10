@@ -5,7 +5,7 @@ import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Internship's company in WorkBook.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidCompany(String)}
  */
 public class Company {
 
