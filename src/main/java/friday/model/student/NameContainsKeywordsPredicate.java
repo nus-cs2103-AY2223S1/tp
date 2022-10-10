@@ -3,6 +3,8 @@ package friday.model.student;
 import java.util.List;
 import java.util.function.Predicate;
 
+import friday.commons.util.StringUtil;
+
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
@@ -17,7 +19,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         return keywords.stream()
-                .anyMatch(keyword ->student.getName().fullName.startsWith(keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getName().fullName, keyword));
     }
 
     @Override
