@@ -30,17 +30,22 @@ public class TypicalPersons {
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withHomework("Science worksheet").withPhone("98765432").withLessonPlan("Trigonometry")
+            .withAttendance("2022-07-12", "2022-07-17")
             .withGradeProgress("Math: A")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withLessonPlan("Cell structure").build();
+            .withLessonPlan("Cell structure").withAttendance("2022-06-07").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withLessonPlan("Chemistry").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withLessonPlan("Sec 4 Physics").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
+            .withLessonPlan("Chemistry")
+            .withAttendance("2022-05-07" , "2022-12-01", "2022-12-17")
+            .withTags("friends").build();
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822243")
+            .withLessonPlan("Sec 4 Physics")
+            .withAttendance("2022-06-05" , "2022-07-07" , "2022-08-08")
+            .build();
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824273")
             .withLessonPlan("Higher chinese").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
+    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824425")
             .withLessonPlan("Javascript").build();
 
     // Manually added

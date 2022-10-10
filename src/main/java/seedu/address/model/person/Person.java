@@ -22,6 +22,7 @@ public class Person {
     // Data fields
     private final LessonPlan lessonPlan;
     private final HomeworkList homeworkList;
+    private final AttendanceList attendanceList;
     private final GradeProgressList gradeProgressList;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -29,12 +30,14 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, LessonPlan lessonPlan,
-                  HomeworkList homeworkList, GradeProgressList gradeProgressList, Set<Tag> tags) {
+                  HomeworkList homeworkList, AttendanceList attendanceList,
+                  GradeProgressList gradeProgressList, Set<Tag> tags) {
         requireAllNonNull(name, phone, tags);
         this.name = name;
         this.phone = phone;
         this.lessonPlan = lessonPlan;
         this.homeworkList = homeworkList;
+        this.attendanceList = attendanceList;
         this.gradeProgressList = gradeProgressList;
         this.tags.addAll(tags);
     }
@@ -54,7 +57,9 @@ public class Person {
     public HomeworkList getHomeworkList() {
         return homeworkList;
     }
-
+    public AttendanceList getAttendanceList() {
+        return attendanceList;
+    }
     public GradeProgressList getGradeProgressList() {
         return gradeProgressList;
     }
@@ -133,6 +138,8 @@ public class Person {
                 .append(getLessonPlan())
                 .append("; Homework: ")
                 .append(getHomeworkList())
+                .append("; Attendance: ")
+                .append(getAttendanceList())
                 .append("; Grade Progress: ")
                 .append(getGradeProgressList());
 
