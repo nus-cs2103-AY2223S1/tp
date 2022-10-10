@@ -25,7 +25,7 @@ public class AddRecordCommand extends Command {
             + PREFIX_RECORD + "suffers from common cold";
 
     public static final String MESSAGE_SUCCESS = "New record added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This record already exists in the record list";
+    public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the record list";
 
     private final Record toAdd;
 
@@ -42,7 +42,7 @@ public class AddRecordCommand extends Command {
         requireNonNull(model);
 
         if (model.hasRecord(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_RECORD);
         }
 
         model.addRecord(toAdd);
