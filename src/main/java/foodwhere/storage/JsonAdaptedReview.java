@@ -15,10 +15,9 @@ import foodwhere.model.commons.Name;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Review;
-import foodwhere.model.stall.Stall;
 
 /**
- * Jackson-friendly version of {@link Stall}.
+ * Jackson-friendly version of {@link Review}.
  */
 class JsonAdaptedReview {
 
@@ -91,7 +90,7 @@ class JsonAdaptedReview {
 
         final Set<Detail> modelDetails = new HashSet<>(reviewDetails);
 
-        return new Review(new Name(modelName.fullName), modelDate, modelContent, modelDetails);
+        return new Review(modelName, modelDate, modelContent, modelDetails);
     }
 
 }

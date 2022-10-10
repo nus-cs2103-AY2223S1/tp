@@ -69,7 +69,7 @@ public class ReviewBuilder {
     }
 
     public Review build() {
-        return new Review(new Name(name.fullName), date, content, details);
+        return new Review(name, date, content, details);
     }
 
 }
