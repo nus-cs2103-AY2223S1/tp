@@ -1,12 +1,12 @@
 package taskbook.testutil;
 
-import taskbook.model.TaskBook;
-import taskbook.model.task.Task;
-import taskbook.model.task.enums.Assignment;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import taskbook.model.TaskBook;
+import taskbook.model.task.Task;
+import taskbook.model.task.enums.Assignment;
 
 /**
  * A utility class containing a list of {@code Task} objects to be used in tests.

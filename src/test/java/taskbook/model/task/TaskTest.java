@@ -2,11 +2,11 @@ package taskbook.model.task;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import taskbook.model.person.Person;
-import taskbook.model.task.enums.Assignment;
-import taskbook.testutil.*;
 
-import static taskbook.logic.commands.CommandTestUtil.*;
+import taskbook.model.task.enums.Assignment;
+import taskbook.testutil.TaskBuilder;
+import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTasks;
 
 public class TaskTest {
 
