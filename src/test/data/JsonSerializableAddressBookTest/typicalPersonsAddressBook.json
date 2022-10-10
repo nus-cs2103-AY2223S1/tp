@@ -7,6 +7,8 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "gender": "Female",
     "university": "Singapore University",
+    "id" : "171932",
+    "title" : "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ "interview", "rejected" ]
   }, {
     "name" : "Benson Meier",
@@ -15,6 +17,8 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "gender": "Male",
     "university": "NUS",
+    "id" : "J021932",
+    "title" : "Intern, Software Engineer (May'23 - Aug'23)",
     "tagged" : [ "KIV" ]
   }, {
     "name" : "Carl Kurz",
@@ -23,6 +27,8 @@
     "address" : "wall street",
     "gender": "Male",
     "university": "SUTD",
+    "id" : "171932",
+    "title" : "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +37,8 @@
     "address" : "10th street",
     "gender": "Male",
     "university": "SMU",
+    "id" : "171932",
+    "title" : "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +47,8 @@
     "address" : "michegan ave",
     "gender": "Female",
     "university": "Lasalle",
+    "id": "171932",
+    "title": "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +57,8 @@
     "address" : "little tokyo",
     "gender": "Female",
     "university": "Nanyang Polytechnic",
+    "id": "J021932",
+    "title": "Intern, Software Engineer (May'23 - Aug'23)",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -55,6 +67,8 @@
     "address" : "4th street",
     "gender": "Male",
     "university": "Temasek Polytechnic",
+    "id" : "J021932",
+    "title" : "Intern, Software Engineer (May'23 - Aug'23)",
     "tagged" : [ ]
   } ]
 }

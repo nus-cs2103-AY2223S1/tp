@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_KIV;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIVERSITY_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -49,11 +51,13 @@ public class AddressBookTest {
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE)
-            .withAddress(VALID_ADDRESS_BOB)
-            .withGender(VALID_GENDER_BOB)
-            .withUniversity(VALID_UNIVERSITY_BOB)
-            .withTags(VALID_TAG_KIV)
-            .build();
+                .withAddress(VALID_ADDRESS_BOB)
+                .withGender(VALID_GENDER_BOB)
+                .withUniversity(VALID_UNIVERSITY_BOB)
+                .withId(VALID_JOB_ID_BOB)
+                .withTitle(VALID_JOB_TITLE_BOB)
+                .withTags(VALID_TAG_KIV)
+                .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
@@ -80,11 +84,13 @@ public class AddressBookTest {
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
-            .withAddress(VALID_ADDRESS_BOB)
-            .withGender(VALID_GENDER_BOB)
-            .withUniversity(VALID_UNIVERSITY_BOB)
-            .withTags(VALID_TAG_KIV)
-            .build();
+                .withAddress(VALID_ADDRESS_BOB)
+                .withGender(VALID_GENDER_BOB)
+                .withUniversity(VALID_UNIVERSITY_BOB)
+                .withId(VALID_JOB_ID_BOB)
+                .withTitle(VALID_JOB_TITLE_BOB)
+                .withTags(VALID_TAG_KIV)
+                .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 

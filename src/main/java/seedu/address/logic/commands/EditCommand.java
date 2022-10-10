@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -21,6 +23,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.job.Id;
+import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -47,6 +51,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_UNIVERSITY + "UNIVERSITY] "
+            + "[" + PREFIX_JOB_ID + "ID] "
+            + "[" + PREFIX_JOB_TITLE + "TITLE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -105,13 +111,17 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         University updatedUniversity = editPersonDescriptor.getUniversity().orElse(personToEdit.getUniversity());
+        Id updatedJobId = editPersonDescriptor.getJobId().orElse(personToEdit.getJob().getId());
+        Title updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJob().getTitle());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
-            updatedAddress,
-            updatedGender,
-            updatedUniversity,
-            updatedTags);
+                updatedAddress,
+                updatedGender,
+                updatedUniversity,
+                updatedJobId,
+                updatedJobTitle,
+                updatedTags);
     }
 
     @Override
@@ -143,6 +153,8 @@ public class EditCommand extends Command {
         private Address address;
         private Gender gender;
         private University university;
+        private Id id;
+        private Title title;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -158,6 +170,8 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setGender(toCopy.gender);
             setUniversity(toCopy.university);
+            setId(toCopy.id);
+            setTitle(toCopy.title);
             setTags(toCopy.tags);
         }
 
@@ -169,6 +183,8 @@ public class EditCommand extends Command {
                 address,
                 gender,
                 university,
+                id,
+                title,
                 tags);
         }
 
@@ -220,6 +236,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(university);
         }
 
+        public void setId(Id id) {
+            this.id = id;
+        }
+
+        public Optional<Id> getJobId() {
+            return Optional.ofNullable(id);
+        }
+
+        public void setTitle(Title title) {
+            this.title = title;
+        }
+
+        public Optional<Title> getJobTitle() {
+            return Optional.ofNullable(title);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -258,6 +290,8 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getGender().equals(e.getGender())
                     && getUniversity().equals(e.getUniversity())
+                    && getJobId().equals(e.getJobId())
+                    && getJobTitle().equals(e.getJobTitle())
                     && getTags().equals(e.getTags());
         }
     }
