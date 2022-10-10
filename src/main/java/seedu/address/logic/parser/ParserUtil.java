@@ -78,6 +78,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String projectName} into an {@code Project}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code projectName} is invalid.
+     */
+    public static String parseProjectName(String projectName) throws ParseException {
+        requireNonNull(projectName);
+        String trimmedProjectName = projectName.trim();
+        /*
+        if (!Project.isValidProject(trimmedProjectName)) {
+            throw new ParseException("Projects can take any values, and it should not be blank");
+        }
+        */
+        return trimmedProjectName;
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
