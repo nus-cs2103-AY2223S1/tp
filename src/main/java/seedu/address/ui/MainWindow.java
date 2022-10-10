@@ -115,8 +115,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        PersonListPanel expenseEntryPanel = new PersonListPanel(logic.getFilteredEntryList());
-        PersonListPanel incomeEntryPanel = new PersonListPanel(logic.getFilteredEntryList());
+        PersonListPanel expenseEntryPanel = new PersonListPanel(logic.getFilteredExpenditureList());
+        PersonListPanel incomeEntryPanel = new PersonListPanel(logic.getFilteredIncomeList());
 
         EntryPane entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
         entryPanePlaceholder.getChildren().add(entryPane.getRoot());

@@ -25,12 +25,13 @@ public class FindCommand extends Command {
         this.predicate = predicate;
     }
 
+    // TODO: Might have to edit the getFiltered... function
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredEntryList(predicate);
         return new CommandResult(
-            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredEntryList().size()));
+            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredExpenditureList().size()));
     }
 
     @Override

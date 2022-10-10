@@ -105,9 +105,14 @@ public interface Model {
     void setIncome(Entry target, Entry editedEntry);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered expenditure list
      */
-    ObservableList<Entry> getFilteredEntryList();
+    ObservableList<Entry> getFilteredExpenditureList();
+
+    /**
+     * Returns an unmodifiable view of the filtered income list
+     */
+    ObservableList<Entry> getFilteredIncomeList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

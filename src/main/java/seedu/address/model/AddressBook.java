@@ -60,17 +60,6 @@ public class AddressBook implements ReadOnlyPennyWise {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setEntries(Entry target, Entry editedEntry) {
-        requireNonNull(editedEntry);
-
-        entries.setEntries(target, editedEntry);
-    }
-
-    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyPennyWise newData) {

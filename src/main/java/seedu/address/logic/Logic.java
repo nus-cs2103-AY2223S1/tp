@@ -31,8 +31,11 @@ public interface Logic {
      */
     ReadOnlyPennyWise getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Entry> getFilteredEntryList();
+    /** Returns an unmodifiable view of the filtered list of expenditure */
+    ObservableList<Entry> getFilteredExpenditureList();
+
+    /** Returns an unmodifiable view of the filtered list of income */
+    ObservableList<Entry> getFilteredIncomeList();
 
     /**
      * Returns the user prefs' address book file path.

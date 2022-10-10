@@ -30,10 +30,12 @@ public class DeleteCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    // TODO: Might need to edit
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Entry> lastShownList = model.getFilteredEntryList();
+//        List<Entry> lastShownList = model.getFilteredEntryList();
+        List<Entry> lastShownList = model.getFilteredExpenditureList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
