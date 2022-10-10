@@ -19,9 +19,9 @@ import seedu.guest.model.GuestBook;
 import seedu.guest.model.guest.Guest;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Guest} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalGuests {
     public static final Guest ALICE = new GuestBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com")
             .withDateRange("13/09/22 - 15/09/22").withNumberOfGuests("1")
@@ -55,7 +55,7 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withDateRange("11/11/23 - 12/11/23").withNumberOfGuests("4")
             .build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Guest's details found in {@code CommandTestUtil}
     public static final Guest AMY = new GuestBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withDateRange(VALID_DATE_RANGE_AMY)
             .withNumberOfGuests(VALID_NUMBER_OF_GUESTS_AMY)
@@ -67,20 +67,20 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalGuests() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code GuestBook} with all the typical guests.
      */
-    public static GuestBook getTypicalAddressBook() {
+    public static GuestBook getTypicalGuestBook() {
         GuestBook ab = new GuestBook();
-        for (Guest guest : getTypicalPersons()) {
+        for (Guest guest : getTypicalGuests()) {
             ab.addGuest(guest);
         }
         return ab;
     }
 
-    public static List<Guest> getTypicalPersons() {
+    public static List<Guest> getTypicalGuests() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

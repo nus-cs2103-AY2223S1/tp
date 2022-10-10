@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.guest.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.guest.logic.commands.CommandTestUtil.showGuestAtIndex;
-import static seedu.guest.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.guest.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.guest.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.guest.testutil.TypicalGuests.getTypicalGuestBook;
+import static seedu.guest.testutil.TypicalIndexes.INDEX_FIRST_GUEST;
+import static seedu.guest.testutil.TypicalIndexes.INDEX_SECOND_GUEST;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,12 +24,12 @@ import seedu.guest.model.guest.Guest;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalGuestBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Guest guestToDelete = model.getFilteredGuestList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Guest guestToDelete = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_GUEST);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_GUEST_SUCCESS, guestToDelete);
 
@@ -49,10 +49,10 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showGuestAtIndex(model, INDEX_FIRST_PERSON);
+        showGuestAtIndex(model, INDEX_FIRST_GUEST);
 
-        Guest guestToDelete = model.getFilteredGuestList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Guest guestToDelete = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_GUEST);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_GUEST_SUCCESS, guestToDelete);
 
@@ -65,9 +65,9 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showGuestAtIndex(model, INDEX_FIRST_PERSON);
+        showGuestAtIndex(model, INDEX_FIRST_GUEST);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_GUEST;
         // ensures that outOfBoundIndex is still in bounds of guest book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getGuestBook().getGuestList().size());
 
@@ -78,14 +78,14 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_GUEST);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_GUEST);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_GUEST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.guest.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.guest.testutil.Assert.assertThrows;
-import static seedu.guest.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.guest.testutil.TypicalIndexes.INDEX_FIRST_GUEST;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,9 +24,9 @@ import seedu.guest.logic.commands.ListCommand;
 import seedu.guest.logic.parser.exceptions.ParseException;
 import seedu.guest.model.guest.Guest;
 import seedu.guest.model.guest.NameContainsKeywordsPredicate;
-import seedu.guest.testutil.EditPersonDescriptorBuilder;
+import seedu.guest.testutil.EditGuestDescriptorBuilder;
 import seedu.guest.testutil.GuestBuilder;
-import seedu.guest.testutil.PersonUtil;
+import seedu.guest.testutil.GuestUtil;
 
 public class GuestBookParserTest {
 
@@ -35,7 +35,7 @@ public class GuestBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Guest guest = new GuestBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(guest));
+        AddCommand command = (AddCommand) parser.parseCommand(GuestUtil.getAddCommand(guest));
         assertEquals(new AddCommand(guest), command);
     }
 
@@ -48,17 +48,17 @@ public class GuestBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_GUEST.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_GUEST), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Guest guest = new GuestBuilder().build();
-        EditCommand.EditGuestDescriptor descriptor = new EditPersonDescriptorBuilder(guest).build();
+        EditCommand.EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder(guest).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_GUEST.getOneBased() + " " + GuestUtil.getEditGuestDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_GUEST, descriptor), command);
     }
 
     @Test
