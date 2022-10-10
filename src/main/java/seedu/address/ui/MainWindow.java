@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private TeamListPanel teamListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private DisplayUserWindow displayUserWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -70,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        displayUserWindow = new DisplayUserWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -152,6 +154,20 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+
+
+    /**
+     * Opens the User window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleDisplayUsers() {
+        if (!displayUserWindow.isShowing()) {
+            displayUserWindow.show();
+        } else {
+            displayUserWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -185,6 +201,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowUsers()) {
+                handleDisplayUsers();
             }
 
             if (commandResult.isExit()) {

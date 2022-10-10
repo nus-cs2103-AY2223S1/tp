@@ -4,11 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
+import javafx.collections.ObservableList;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
@@ -23,7 +20,7 @@ public class Team {
 
     // Identity fields
     private final Name name;
-    private UniquePersonList members;
+    private UniquePersonList members    = new UniquePersonList();;
     private TaskList tasks = new TaskList();
 
 
