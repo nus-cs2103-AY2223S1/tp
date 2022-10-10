@@ -1,0 +1,14 @@
+{
+  "persons": [ {
+    "name": "Bread",
+    "mealType": "Breakfast",
+    "calorie": "200"
+  }, {
+    "name": "Food With Invalid meal type",
+    "mealType": "Brunch",
+    "calorie": "200"
+  } ],
+  "calorieTarget" : {
+    "value" : "2000"
+  }
+}
