@@ -1,9 +1,9 @@
-package seedu.address.model.tuitionclass;
+package seedu.address.model.level;
 
-import seedu.address.model.tuitionclass.exceptions.InvalidLevelException;
+import seedu.address.model.level.exceptions.InvalidLevelException;
 
 /**
- * Represents the class level of the tuition class.
+ * Represents the level of education.
  */
 public enum Level {
     PRIMARY1, PRIMARY2, PRIMARY3, PRIMARY4, PRIMARY5, PRIMARY6, SECONDARY1, SECONDARY2, SECONDARY3, SECONDARY4;
@@ -14,7 +14,7 @@ public enum Level {
     /**
      * Creates a Level object depending on the inputLevel.
      *
-     * @param inputLevel A string representing the class level of the tuition class.
+     * @param inputLevel A string representing the level of education.
      * @return A Level object with the respective enum value.
      * @throws InvalidLevelException if the inputLevel does not match any of the enum values.
      */

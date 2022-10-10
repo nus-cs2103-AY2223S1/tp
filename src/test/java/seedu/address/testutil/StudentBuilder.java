@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.student.Level;
+import seedu.address.model.level.Level;
 import seedu.address.model.person.student.NextOfKin;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.student.Student;
