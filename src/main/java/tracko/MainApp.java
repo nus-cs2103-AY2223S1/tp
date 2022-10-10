@@ -57,7 +57,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        TrackOStorage trackOStorage = new JsonTrackOStorage(userPrefs.getOrdersFilePath());
+        TrackOStorage trackOStorage = new JsonTrackOStorage(userPrefs.getTrackOFilePath());
         storage = new StorageManager(trackOStorage, userPrefsStorage);
 
         initLogging(config);

@@ -83,8 +83,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getOrdersFilePath() {
-        return model.getOrdersFilePath();
+    public Path getTrackOFilePath() {
+        return model.getTrackOFilePath();
     }
 
     @Override

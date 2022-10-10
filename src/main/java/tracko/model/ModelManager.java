@@ -62,13 +62,13 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    public Path getOrdersFilePath() {
-        return userPrefs.getOrdersFilePath();
+    public Path getTrackOFilePath() {
+        return userPrefs.getTrackOFilePath();
     }
 
-    public void setOrdersFilePath(Path ordersFilePath) {
-        requireNonNull(ordersFilePath);
-        userPrefs.setOrdersFilePath(ordersFilePath);
+    public void setTrackOFilePath(Path trackOFilePath) {
+        requireNonNull(trackOFilePath);
+        userPrefs.setTrackOFilePath(trackOFilePath);
     }
 
     // TODO: add items file path related methods
