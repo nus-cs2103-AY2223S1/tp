@@ -51,7 +51,7 @@ public class AssignTaskCommand extends Command {
         } else if (memberIndex >= memberList.size()) {
             throw new CommandException(String.format(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS, memberIndex + 1));
         } else if (taskList.get(taskIndex).checkAssignee(memberList.get(memberIndex))) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_ASSIGNMENT, memberList.get(memberIndex)));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_ASSIGNMENT, memberList.get(memberIndex).getName()));
         }
         model.getTeam().assignTask(taskIndex, memberIndex);
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
@@ -62,6 +62,7 @@ public class AssignTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof AssignTaskCommand // instanceof handles nulls
-            && taskIndex == (((AssignTaskCommand) other).taskIndex)); // state check
+            && taskIndex == (((AssignTaskCommand) other).taskIndex)) // state check
+                && memberIndex == (((AssignTaskCommand) other).memberIndex); // state check
     }
 }

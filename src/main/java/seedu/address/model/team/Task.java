@@ -64,7 +64,7 @@ public class Task {
 
     public String getAssignees() {
         if (assignees.isEmpty()) {
-            return "(Not assigned to any member yet)";
+            return " (Not assigned to any member yet)";
         } else {
             StringBuilder assigneeNames = new StringBuilder(" (Assigned to: ");
             assigneeNames.append(assignees.get(0).getName());
