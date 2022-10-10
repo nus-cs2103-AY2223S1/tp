@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.exceptions.IllegalValueException;
-import foodwhere.model.stall.Name;
+import foodwhere.model.commons.Name;
 
 public class JsonAdaptedReviewTest {
     private static final String INVALID_DETAIL = "#friend";

@@ -5,7 +5,7 @@ import java.util.Set;
 import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.parser.CliSyntax;
-import foodwhere.model.detail.Detail;
+import foodwhere.model.commons.Detail;
 import foodwhere.model.stall.Stall;
 
 /**

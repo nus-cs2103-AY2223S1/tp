@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import foodwhere.commons.exceptions.IllegalValueException;
-import foodwhere.model.detail.Detail;
+import foodwhere.model.commons.Detail;
 
 /**
  * Jackson-friendly version of {@link Detail}.

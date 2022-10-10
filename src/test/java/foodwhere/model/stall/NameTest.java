@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import foodwhere.model.commons.Name;
+
 public class NameTest {
 
     @Test

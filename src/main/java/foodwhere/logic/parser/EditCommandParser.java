@@ -12,7 +12,7 @@ import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.commands.EditCommand.EditStallDescriptor;
 import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.detail.Detail;
+import foodwhere.model.commons.Detail;
 
 /**
  * Parses input arguments and creates a new EditCommand object

@@ -7,7 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import foodwhere.model.detail.Detail;
+import foodwhere.model.commons.Detail;
+import foodwhere.model.commons.Name;
 
 /**
  * Represents a Review in the address book.
@@ -16,7 +17,7 @@ import foodwhere.model.detail.Detail;
 public class Review {
 
     // Identity fields
-    private final StallName name;
+    private final Name name;
 
     // Data fields
     private final Date date;
@@ -26,7 +27,7 @@ public class Review {
     /**
      * Every field must be present and not null.
      */
-    public Review(StallName name, Date date, Content content, Set<Detail> details) {
+    public Review(Name name, Date date, Content content, Set<Detail> details) {
         requireAllNonNull(name, date, content, details);
         this.name = name;
         this.date = date;
@@ -34,7 +35,7 @@ public class Review {
         this.details.addAll(details);
     }
 
-    public StallName getName() {
+    public Name getName() {
         return name;
     }
 

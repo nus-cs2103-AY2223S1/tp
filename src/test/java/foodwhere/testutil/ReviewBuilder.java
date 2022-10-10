@@ -3,12 +3,11 @@ package foodwhere.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import foodwhere.model.detail.Detail;
+import foodwhere.model.commons.Detail;
+import foodwhere.model.commons.Name;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Review;
-import foodwhere.model.review.StallName;
-import foodwhere.model.stall.Name;
 import foodwhere.model.util.SampleDataUtil;
 
 /**
@@ -70,7 +69,7 @@ public class ReviewBuilder {
     }
 
     public Review build() {
-        return new Review(new StallName(name.fullName), date, content, details);
+        return new Review(new Name(name.fullName), date, content, details);
     }
 
 }
