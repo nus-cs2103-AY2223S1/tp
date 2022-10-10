@@ -17,14 +17,14 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private StudentRecordStorage studentRecordStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(StudentRecordStorage studentRecordStorage, UserPrefsStorage userPrefsStorage) {
+        this.studentRecordStorage = studentRecordStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -49,30 +49,31 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getStudentRecordFilePath() {
+        return studentRecordStorage.getStudentRecordFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyStudentRecord> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyStudentRecord> readStudentRecord() throws DataConversionException, IOException {
+        return readStudentRecord(studentRecordStorage.getStudentRecordFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyStudentRecord> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyStudentRecord> readStudentRecord(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return studentRecordStorage.readStudentRecord(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStudentRecord addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveStudentRecord(ReadOnlyStudentRecord studentRecord) throws IOException {
+        saveStudentRecord(studentRecord, studentRecordStorage.getStudentRecordFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyStudentRecord addressBook, Path filePath) throws IOException {
+    public void saveStudentRecord(ReadOnlyStudentRecord studentRecord, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        studentRecordStorage.saveStudentRecord(studentRecord, filePath);
     }
 
 }

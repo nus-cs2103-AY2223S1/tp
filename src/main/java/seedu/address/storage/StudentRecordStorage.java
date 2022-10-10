@@ -11,36 +11,36 @@ import seedu.address.model.StudentRecord;
 /**
  * Represents a storage for {@link StudentRecord}.
  */
-public interface AddressBookStorage {
+public interface StudentRecordStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getStudentRecordFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyStudentRecord}.
+     * Returns StudentRecord data as a {@link ReadOnlyStudentRecord}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyStudentRecord> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyStudentRecord> readStudentRecord() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getStudentRecordFilePath()
      */
-    Optional<ReadOnlyStudentRecord> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyStudentRecord> readStudentRecord(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyStudentRecord} to the storage.
-     * @param addressBook cannot be null.
+     * @param studentRecord cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyStudentRecord addressBook) throws IOException;
+    void saveStudentRecord(ReadOnlyStudentRecord studentRecord) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyStudentRecord)
+     * @see #saveStudentRecord(ReadOnlyStudentRecord)
      */
-    void saveAddressBook(ReadOnlyStudentRecord addressBook, Path filePath) throws IOException;
+    void saveStudentRecord(ReadOnlyStudentRecord studentRecord, Path filePath) throws IOException;
 
 }

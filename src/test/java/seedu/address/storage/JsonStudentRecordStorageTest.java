@@ -31,7 +31,8 @@ public class JsonStudentRecordStorageTest {
     }
 
     private java.util.Optional<ReadOnlyStudentRecord> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonStudentRecordStorage(Paths.get(filePath))
+                .readStudentRecord(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -64,24 +65,24 @@ public class JsonStudentRecordStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         StudentRecord original = getTypicalStudentRecord();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonStudentRecordStorage jsonAddressBookStorage = new JsonStudentRecordStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyStudentRecord readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveStudentRecord(original, filePath);
+        ReadOnlyStudentRecord readBack = jsonAddressBookStorage.readStudentRecord(filePath).get();
         assertEquals(original, new StudentRecord(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addStudent(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveStudentRecord(original, filePath);
+        readBack = jsonAddressBookStorage.readStudentRecord(filePath).get();
         assertEquals(original, new StudentRecord(readBack));
 
         // Save and read without specifying file path
         original.addStudent(IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonAddressBookStorage.saveStudentRecord(original); // file path not specified
+        readBack = jsonAddressBookStorage.readStudentRecord().get(); // file path not specified
         assertEquals(original, new StudentRecord(readBack));
 
     }
@@ -96,8 +97,8 @@ public class JsonStudentRecordStorageTest {
      */
     private void saveAddressBook(ReadOnlyStudentRecord addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+            new JsonStudentRecordStorage(Paths.get(filePath))
+                    .saveStudentRecord(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
