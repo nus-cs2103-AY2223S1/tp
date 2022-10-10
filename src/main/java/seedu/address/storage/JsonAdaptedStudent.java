@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -28,6 +29,9 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
+
+    private final String attendance;
+
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,7 +40,7 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("attendance") String attendance) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +48,7 @@ class JsonAdaptedStudent {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.attendance = attendance;
     }
 
     /**
@@ -57,6 +62,7 @@ class JsonAdaptedStudent {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        attendance = source.getAttendance().value;
     }
 
     /**
@@ -102,8 +108,14 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
+        if (attendance == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
+        }
+
+        final Attendance modelAttendance = new Attendance(attendance);
+
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAttendance);
     }
 
 }

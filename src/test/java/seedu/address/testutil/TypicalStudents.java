@@ -26,11 +26,13 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withAttendance("She likes aarvarks")
+            .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withAttendance("he can't take beer").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")

@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -21,11 +22,15 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    public static final String DEFAULT_ATTENDANCE = "She likes aardvarks.";
+
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+
+    private Attendance attendance;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -36,6 +41,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        attendance = new Attendance(DEFAULT_ATTENDANCE);
     }
 
     /**
@@ -47,6 +53,7 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
         tags = new HashSet<>(studentToCopy.getTags());
+        attendance = studentToCopy.getAttendance();
     }
 
     /**
@@ -88,9 +95,16 @@ public class StudentBuilder {
         this.email = new Email(email);
         return this;
     }
+    /**
+     * Sets the {@code Attendance} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withAttendance(String attendance) {
+        this.attendance = new Attendance(attendance);
+        return this;
+    }
 
     public Student build() {
-        return new Student(name, phone, email, address, tags);
+        return new Student(name, phone, email, address, tags, attendance);
     }
 
 }

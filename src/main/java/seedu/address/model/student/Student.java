@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,16 +25,23 @@ public class Student {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final Attendance attendance;
+
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Attendance attendance) {
+        requireAllNonNull(name, phone, email, address, tags, attendance);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.attendance = attendance;
+    }
+
+    public Attendance getAttendance() {
+        return attendance;
     }
 
     public Name getName() {
@@ -110,7 +118,9 @@ public class Student {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Attendance: ")
+                .append(getAttendance());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

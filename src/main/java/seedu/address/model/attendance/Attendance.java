@@ -9,9 +9,9 @@ import static java.util.Objects.requireNonNull;
 public class Attendance {
     public final String value;
 
-    public Attendance(String remark) {
-        requireNonNull(remark);
-        value = remark;
+    public Attendance(String attendance) {
+        requireNonNull(attendance);
+        value = attendance;
     }
 
     @Override

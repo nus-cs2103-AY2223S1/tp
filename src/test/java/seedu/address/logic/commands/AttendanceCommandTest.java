@@ -2,41 +2,86 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.AttendanceCommand.MESSAGE_ARGUMENTS;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.attendance.Attendance;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
 
 
 public class AttendanceCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
+    private static final String ATTENDANCE_STUB = "Some attendance";
     @Test
-    public void execute() {
-        final Attendance attendance = new Attendance("attendance");
+    public void execute_addAttendanceUnfilteredList_success() {
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student editedStudent = new StudentBuilder(firstStudent).withAttendance(ATTENDANCE_STUB).build();
 
-        assertCommandFailure(new AttendanceCommand(INDEX_FIRST_STUDENT, attendance), model,
-                String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_STUDENT.getOneBased(), attendance));
+        AttendanceCommand remarkCommand = new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(editedStudent.getAttendance().value));
+
+        String expectedMessage = String.format(AttendanceCommand.MESSAGE_ADD_ATTENDANCE_SUCCESS, editedStudent);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setStudent(firstStudent, editedStudent);
+
+        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
 
+    @Test
+    public void execute_deleteAttendanceUnfilteredList_success() {
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student editedStudent = new StudentBuilder(firstStudent).withAttendance("").build();
 
+        AttendanceCommand remarkCommand = new AttendanceCommand(INDEX_FIRST_STUDENT,
+                new Attendance(editedStudent.getAttendance().toString()));
+
+        String expectedMessage = String.format(AttendanceCommand.MESSAGE_DELETE_ATTENDANCE_SUCCESS, editedStudent);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setStudent(firstStudent, editedStudent);
+
+        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+    }
+    @Test
+    public void execute_invalidStudentIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        AttendanceCommand remarkCommand = new AttendanceCommand(outOfBoundIndex, new Attendance(VALID_ATTENDANCE_BOB));
+
+        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+    }
+
+    /**
+     * Edit filtered list where index is larger than size of filtered list,
+     * but smaller than size of address book
+     */
+    @Test
+    public void execute_invalidStudentIndexFilteredList_failure() {
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+        Index outOfBoundIndex = INDEX_SECOND_STUDENT;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
+
+        AttendanceCommand remarkCommand = new AttendanceCommand(outOfBoundIndex, new Attendance(VALID_ATTENDANCE_BOB));
+        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+    }
     @Test
     public void equals() {
-        final AttendanceCommand standardCommand = new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(VALID_REMARK_AMY));
+        final AttendanceCommand standardCommand = new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(VALID_ATTENDANCE_AMY));
 
         // same values -> returns true
-        AttendanceCommand commandWithSameValues = new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(VALID_REMARK_AMY));
+        AttendanceCommand commandWithSameValues = new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(VALID_ATTENDANCE_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -49,9 +94,10 @@ public class AttendanceCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new AttendanceCommand(INDEX_SECOND_STUDENT, new Attendance(VALID_REMARK_AMY))));
+        assertFalse(standardCommand.equals(new AttendanceCommand(INDEX_SECOND_STUDENT, new Attendance(VALID_ATTENDANCE_AMY))));
 
         // different remark -> returns false
-        assertFalse(standardCommand.equals(new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(VALID_REMARK_BOB))));
+        assertFalse(standardCommand.equals(new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(VALID_ATTENDANCE_BOB))));
     }
+
 }
