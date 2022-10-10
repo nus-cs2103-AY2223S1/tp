@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_HUSBAND;
+import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_CS1101S;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -55,10 +55,10 @@ public class EditCommandTest {
 
         StudentBuilder studentInList = new StudentBuilder(lastStudent);
         Student editedStudent = studentInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withModuleClasses(VALID_CLASS_HUSBAND).build();
+                .withModuleClasses(VALID_CLASS_CS1101S).build();
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withModuleClasses(VALID_CLASS_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).withModuleClasses(VALID_CLASS_CS1101S).build();
         EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
