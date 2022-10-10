@@ -11,7 +11,7 @@ import tracko.commons.core.LogsCenter;
 import tracko.model.order.Order;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of orders.
  */
 public class OrderListPanel extends UiPart<Region> {
     private static final String FXML = "OrderListPanel.fxml";
@@ -21,7 +21,7 @@ public class OrderListPanel extends UiPart<Region> {
     private ListView<Order> orderListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code OrderListPanel} with the given {@code ObservableList}.
      */
     public OrderListPanel(ObservableList<Order> orderList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class OrderListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of an {@code Order} using a {@code OrderCard}.
      */
     class OrderListViewCell extends ListCell<Order> {
         @Override
