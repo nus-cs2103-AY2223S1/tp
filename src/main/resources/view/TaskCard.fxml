@@ -23,6 +23,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
+        <Label fx:id="done" text="\$done" styleClass="cell_big_label" />
         <Label fx:id="taskDesc" text="\$taskDesc" styleClass="cell_big_label" />
       </HBox>
       <Label fx:id="taskDeadline" text="\$taskDeadline" styleClass="cell_small_label" />

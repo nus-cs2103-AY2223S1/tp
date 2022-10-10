@@ -19,14 +19,18 @@ class JsonAdaptedTask {
 
     private final String taskDesc;
     private final LocalDate deadline;
+    private final boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("taskDesc") String taskDesc, @JsonProperty("deadline") LocalDate deadline) {
+    public JsonAdaptedTask(@JsonProperty("taskDesc") String taskDesc,
+                           @JsonProperty("deadline") LocalDate deadline,
+                           @JsonProperty("isDone") boolean isDone) {
         this.taskDesc = taskDesc;
         this.deadline = deadline;
+        this.isDone = isDone;
     }
 
     /**
@@ -35,6 +39,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         taskDesc = source.getDesc().taskDesc;
         deadline = source.getDeadline().deadline;
+        isDone = source.isDone();
     }
 
     /**
@@ -50,7 +55,11 @@ class JsonAdaptedTask {
         }
         final TaskDesc modelTaskDesc = new TaskDesc(taskDesc);
         final TaskDeadline modelTaskDeadline = new TaskDeadline(deadline);
-        return new Task(modelTaskDesc, modelTaskDeadline);
+        Task task = new Task(modelTaskDesc, modelTaskDeadline);
+        if (isDone) {
+            task.markAsDone();
+        }
+        return task;
     }
 
 }
