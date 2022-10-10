@@ -20,6 +20,6 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setStudentBook(new StudentBook());
         model.setTaskBook(new TaskBook());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 }

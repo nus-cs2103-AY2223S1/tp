@@ -37,6 +37,14 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code showStudents}, {@code showTasks} and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showStudents, boolean showTasks) {
+        this(feedbackToUser, false, false, showStudents, showTasks);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
