@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -75,6 +76,10 @@ public interface Model {
 
     void addAppointment(Appointment appointment);
     void deleteAppointment(Appointment target);
+    void deleteAppointments(List<Appointment> appointments);
+    void setAppointment(Appointment target, Appointment editedAppointment);
+    void refreshAppointment(Appointment target);
+    void refreshAppointments(List<Appointment> appointments);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

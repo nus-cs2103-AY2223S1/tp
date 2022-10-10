@@ -34,12 +34,15 @@ class UnmarkCommandTest {
 
         Appointment markedAppointment = new Appointment("Cough", "2010-12-22 12:45", true);
         Person markedPerson = new PersonBuilder().withAppointment(markedAppointment).build();
+        markedAppointment.setPatient(markedPerson);
 
         testModel.addPerson(markedPerson);
+        testModel.addAppointment(markedAppointment);
         Person personToUnmarkFor = testModel.getFilteredPersonList().get(targetPersonIndex.getZeroBased());
 
         Appointment unmarkedAppointment = new Appointment("Cough", "2010-12-22 12:45", false);
         Person unmarkedPerson = new PersonBuilder().withAppointment(unmarkedAppointment).build();
+        unmarkedAppointment.setPatient(unmarkedPerson);
 
         UnmarkCommand unmarkCommand = new UnmarkCommand(targetPersonIndex, targetAppointmentIndex);
         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_PERSON_SUCCESS,
@@ -48,6 +51,7 @@ class UnmarkCommandTest {
 
         ModelManager expectedModel = new ModelManager(testModel.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToUnmarkFor, unmarkedPerson);
+        expectedModel.setAppointment(markedAppointment, unmarkedAppointment);
 
         assertCommandSuccess(unmarkCommand, testModel, expectedMessage, expectedModel);
     }

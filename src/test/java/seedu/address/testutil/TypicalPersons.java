@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_BENSON;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_CARL;
+import static seedu.address.testutil.TypicalAppointments.SECOND_APPOINTMENT_CARL;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointments;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class TypicalPersons {
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withAppointment(APPOINTMENT_CARL)
+            .withAppointment(SECOND_APPOINTMENT_CARL)
             .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();

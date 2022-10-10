@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.INCOMPLETE_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -12,7 +13,8 @@ import seedu.address.logic.commands.CancelCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditAppointmentCommand;
+import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -29,7 +31,8 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)"
+            + "(?<descriptor>(?i:\\s+appts|\\s+patients)?)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -44,15 +47,22 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
+        final String descriptor = matcher.group("descriptor").trim().toLowerCase();
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditPatientCommand.COMMAND_WORD:
+            if (descriptor.equals(EditPatientCommand.DESCRIPTOR_WORD)) {
+                return new EditPatientCommandParser().parse(arguments);
+            } else if (descriptor.equals(EditAppointmentCommand.DESCRIPTOR_WORD)) {
+                return new EditAppointmentCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(INCOMPLETE_COMMAND);
+            }
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
@@ -76,8 +86,13 @@ public class AddressBookParser {
             return new UnmarkCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommandParser().parse(arguments);
-
+            if (!descriptor.isEmpty()) {
+                return new ListCommand(descriptor);
+            } else if (!arguments.isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+            } else {
+                throw new ParseException(INCOMPLETE_COMMAND);
+            }
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 

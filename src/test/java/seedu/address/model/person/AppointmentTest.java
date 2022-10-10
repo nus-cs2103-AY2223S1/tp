@@ -6,6 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+
 public class AppointmentTest {
     @Test
     public void constructor_nullReason_throwsNullPointerException() {
@@ -14,7 +15,7 @@ public class AppointmentTest {
 
     @Test
     public void constructor_nullDateTime_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Appointment("nose pain", null, false));
+        assertThrows(NullPointerException.class, () -> new Appointment("nose pain", (String) null, false));
     }
 
     @Test

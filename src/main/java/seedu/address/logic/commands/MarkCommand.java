@@ -42,6 +42,7 @@ public class MarkCommand extends SelectAppointmentCommand {
 
         appointmentToMark.mark();
         model.refreshPerson(personToMark);
+        model.refreshAppointment(appointmentToMark);
         return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS,
                 indexOfAppointment.getOneBased(),
                 getTargetPerson(model).getName()));

@@ -42,6 +42,7 @@ public class UnmarkCommand extends SelectAppointmentCommand {
 
         appointmentToUnmark.unmark();
         model.refreshPerson(personToMark);
+        model.refreshAppointment(appointmentToUnmark);
         return new CommandResult(String.format(MESSAGE_UNMARK_PERSON_SUCCESS,
                 indexOfAppointment.getOneBased(),
                 getTargetPerson(model).getName()));
