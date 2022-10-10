@@ -12,8 +12,6 @@ import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.ListTasksCommand;
 import seedu.address.logic.commands.task.MarkTaskCommand;
 
-
-
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.AddTaskCommandParser;
 import seedu.address.logic.parser.task.MarkTaskCommandParser;
