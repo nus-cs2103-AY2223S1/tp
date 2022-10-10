@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Module;
 import seedu.address.model.task.TaskContainsModulesPredicate;
@@ -54,8 +56,9 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
 
         } else {
 
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
+            String[] nameKeywords = trimmedArgs.split("\\s+");
+
+            return new FindTaskCommand(new TaskContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
         }
     }
