@@ -54,6 +54,11 @@ public class Module {
         this.tasksList.add(t);
     }
 
+    public void removeTask(Task t) {
+        this.tasksList.remove(t);
+    }
+
+
     public void addTasks(List<Task> t) {
         this.tasksList.addAll(t);
     }

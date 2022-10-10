@@ -107,14 +107,13 @@ public class ModelManager implements Model {
     @Override
     public void deleteTask(Task target) {
         taskBook.removeTask(target);
+        updateModuleRemoveTask(target);
     }
 
     @Override
     public void addTask(Task t) {
         taskBook.addTask(t);
-        Module toUpdate = parseModuleFromCode(t.getModule());
-        toUpdate.addTask(t);
-        setModule(toUpdate, toUpdate);
+        updateModuleAddTask(t);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -123,6 +122,20 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask);
 
         taskBook.setTask(target, editedTask);
+    }
+
+
+    public void updateModuleRemoveTask(Task t) {
+        Module toUpdate = parseModuleFromCode(t.getModule());
+        toUpdate.removeTask(t);
+        setModule(toUpdate, toUpdate);
+    }
+
+
+    public void updateModuleAddTask(Task t) {
+        Module toUpdate = parseModuleFromCode(t.getModule());
+        toUpdate.addTask(t);
+        setModule(toUpdate, toUpdate);
     }
 
     //=========== ModuleList ================================================================================
@@ -172,6 +185,7 @@ public class ModelManager implements Model {
 
         moduleList.setModule(target, editedModule);
     }
+
 
     //=========== Filtered Task List Accessors =============================================================
 

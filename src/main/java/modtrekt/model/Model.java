@@ -69,6 +69,9 @@ public interface Model {
     boolean hasModule(Module module);
     boolean hasModuleWithModCode(ModCode code);
 
+    public void updateModuleRemoveTask(Task t);
+    public void updateModuleAddTask(Task t);
+
     /**
      * Adds the given task.
      * {@code task} must not already exist in the task book.
