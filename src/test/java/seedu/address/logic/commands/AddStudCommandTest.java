@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.StudentRecord;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyStudentRecord;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.StudentRecord;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
@@ -47,7 +47,9 @@ public class AddStudCommandTest {
         AddStudCommand addStudCommand = new AddStudCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddStudCommand.MESSAGE_DUPLICATE_PERSON, () -> addStudCommand.execute(modelStub));
+        assertThrows(
+                CommandException.class, AddStudCommand.MESSAGE_DUPLICATE_PERSON, () -> addStudCommand.execute(modelStub)
+        );
     }
 
     @Test

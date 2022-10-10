@@ -13,8 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Student;
 import seedu.address.model.student.Phone;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,7 +37,8 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("studentName") String studentName, @JsonProperty("id") String id,
                               @JsonProperty("parentName") String parentName, @JsonProperty("phone") String phone,
-                              @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("address") String address,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.studentName = studentName;
         this.id = id;
         this.parentName = parentName;
