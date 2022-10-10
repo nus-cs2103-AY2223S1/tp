@@ -17,7 +17,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class StudentBuilder {
 
     public static final String DEFAULT_STUDENT_NAME = "Amy Bee";
-    public static final String DEFAULT_ID = "123A";
+    public static final String DEFAULT_ID = "123Z";
     public static final String DEFAULT_PARENT_NAME = "John Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";

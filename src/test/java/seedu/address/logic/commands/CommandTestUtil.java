@@ -93,6 +93,7 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel.getFilteredStudentList(), actualModel.getFilteredStudentList());
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
@@ -118,10 +119,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+
         StudentRecord expectedStudentRecord = new StudentRecord(actualModel.getStudentRecord());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedStudentRecord, actualModel.getStudentRecord());
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }

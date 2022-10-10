@@ -23,7 +23,11 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ViewAllCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Id;
+import seedu.address.model.student.IdPredicate;
+import seedu.address.model.student.Name;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
@@ -48,9 +52,17 @@ public class StudentRecordParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        Student student = new StudentBuilder().build();
+        Id studentId = student.getId();
+        Name studentName = student.getStudentName();
+
+        DeleteCommand idCommand = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " id/" + studentId);
+        assertEquals(new DeleteCommand(studentId, new IdPredicate(studentId)), idCommand);
+
+        DeleteCommand nameCommand = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " n/" + studentName);
+        assertEquals(new DeleteCommand(studentName, new NamePredicate(studentName)), nameCommand);
     }
 
     @Test
