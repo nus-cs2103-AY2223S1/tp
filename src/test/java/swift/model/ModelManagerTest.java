@@ -16,7 +16,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import swift.commons.core.GuiSettings;
-import swift.model.person.NameContainsKeywordsPredicate;
+import swift.model.person.PersonNameContainsKeywordsPredicate;
 import swift.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -135,7 +135,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPersonList(new PersonNameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

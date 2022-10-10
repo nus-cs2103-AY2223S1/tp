@@ -18,8 +18,8 @@ import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
 import swift.model.AddressBook;
 import swift.model.Model;
-import swift.model.person.NameContainsKeywordsPredicate;
 import swift.model.person.Person;
+import swift.model.person.PersonNameContainsKeywordsPredicate;
 import swift.model.task.Task;
 import swift.testutil.EditPersonDescriptorBuilder;
 
@@ -125,7 +125,7 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new PersonNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

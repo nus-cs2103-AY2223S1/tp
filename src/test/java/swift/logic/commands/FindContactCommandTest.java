@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import swift.model.Model;
 import swift.model.ModelManager;
 import swift.model.UserPrefs;
-import swift.model.person.NameContainsKeywordsPredicate;
+import swift.model.person.PersonNameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -29,10 +29,10 @@ public class FindContactCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        PersonNameContainsKeywordsPredicate firstPredicate =
+                new PersonNameContainsKeywordsPredicate(Collections.singletonList("first"));
+        PersonNameContainsKeywordsPredicate secondPredicate =
+                new PersonNameContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindContactCommand findFirstCommand = new FindContactCommand(firstPredicate);
         FindContactCommand findSecondCommand = new FindContactCommand(secondPredicate);
@@ -57,7 +57,7 @@ public class FindContactCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        PersonNameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindContactCommand command = new FindContactCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -67,7 +67,7 @@ public class FindContactCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        PersonNameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindContactCommand command = new FindContactCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -77,7 +77,7 @@ public class FindContactCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PersonNameContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new PersonNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

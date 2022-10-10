@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import swift.logic.commands.FindContactCommand;
-import swift.model.person.NameContainsKeywordsPredicate;
+import swift.model.person.PersonNameContainsKeywordsPredicate;
 
 public class FindContactCommandParserTest {
 
@@ -25,7 +25,7 @@ public class FindContactCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindContactCommand expectedFindContactCommand =
-                new FindContactCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new FindContactCommand(new PersonNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFindContactCommand);
 
         // multiple whitespaces between keywords

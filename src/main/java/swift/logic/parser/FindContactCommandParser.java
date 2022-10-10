@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import swift.logic.commands.FindContactCommand;
 import swift.logic.parser.exceptions.ParseException;
-import swift.model.person.NameContainsKeywordsPredicate;
+import swift.model.person.PersonNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +27,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindContactCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindContactCommand(new PersonNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import swift.commons.core.Messages;
 import swift.model.Model;
-import swift.model.person.NameContainsKeywordsPredicate;
+import swift.model.person.PersonNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -19,9 +19,9 @@ public class FindContactCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final PersonNameContainsKeywordsPredicate predicate;
 
-    public FindContactCommand(NameContainsKeywordsPredicate predicate) {
+    public FindContactCommand(PersonNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

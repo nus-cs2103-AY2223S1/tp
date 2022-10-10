@@ -24,8 +24,8 @@ import swift.logic.commands.FindContactCommand;
 import swift.logic.commands.HelpCommand;
 import swift.logic.commands.ListContactCommand;
 import swift.logic.parser.exceptions.ParseException;
-import swift.model.person.NameContainsKeywordsPredicate;
 import swift.model.person.Person;
+import swift.model.person.PersonNameContainsKeywordsPredicate;
 import swift.model.task.Task;
 import swift.testutil.EditPersonDescriptorBuilder;
 import swift.testutil.PersonBuilder;
@@ -77,7 +77,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindContactCommand command = (FindContactCommand) parser.parseCommand(
                 FindContactCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindContactCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindContactCommand(new PersonNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
