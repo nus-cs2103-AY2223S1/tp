@@ -16,7 +16,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -142,11 +141,7 @@ public class AddressBookTest {
         assertNotEquals(sampleA, sampleB);
     }
 
-    /**
-     * Disabled until test methods has been updated for upgraded tags.
-     */
     @Test
-    @Disabled
     void sortByTag() {
         AddressBook sampleA = new AddressBook();
         AddressBook sampleB = new AddressBook();
@@ -154,9 +149,9 @@ public class AddressBookTest {
         sampleA.addPerson(BENSON);
         sampleB.addPerson(BENSON);
         sampleB.addPerson(ALICE);
-        sampleA.sortByTag(new Tag("owesMoney"), true);
-        assertEquals(sampleA, sampleB);
         sampleA.sortByTag(new Tag("owesMoney"), false);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByTag(new Tag("owesMoney"), true);
         assertNotEquals(sampleA, sampleB);
     }
 

@@ -13,7 +13,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
@@ -191,11 +190,7 @@ public class ModelManagerTest {
         assertNotEquals(sampleA, sampleB);
     }
 
-    /**
-     * Disabled until test methods has been updated for upgraded tags.
-     */
     @Test
-    @Disabled
     void sortByTag() {
         ModelManager sampleA = new ModelManager();
         ModelManager sampleB = new ModelManager();
@@ -203,9 +198,9 @@ public class ModelManagerTest {
         sampleA.addPerson(BENSON);
         sampleB.addPerson(BENSON);
         sampleB.addPerson(ALICE);
-        sampleA.sortByTag(new Tag("owesMoney"), true);
-        assertEquals(sampleA, sampleB);
         sampleA.sortByTag(new Tag("owesMoney"), false);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByTag(new Tag("owesMoney"), true);
         assertNotEquals(sampleA, sampleB);
     }
 }

@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.ParserUtil.parseTag;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,6 +38,13 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         List<SortArgument> sortArgs = convertPrefixArgToSortArg(argList);
+
+        for (SortArgument arg : sortArgs) {
+            if (arg == null) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+        }
+
         return new SortCommand(sortArgs);
     }
 
@@ -64,11 +72,15 @@ public class SortCommandParser implements Parser<SortCommand> {
         // Sorting is reversed if the prefix is followed by a '!'
         boolean isReverse = !arg.isEmpty() && arg.charAt(0) == '!';
 
-        if (prefix.equals(PREFIX_TAG)) {
-            Tag tag = isReverse ? new Tag(arg.substring(1)) : new Tag(arg);
-            return new SortArgument(prefix, isReverse, tag);
-        } else {
-            return new SortArgument(prefix, isReverse, null);
+        try {
+            if (prefix.equals(PREFIX_TAG)) {
+                Tag tag = isReverse ? parseTag(arg.substring(1)) : parseTag(arg);
+                return new SortArgument(prefix, isReverse, tag);
+            } else {
+                return new SortArgument(prefix, isReverse, null);
+            }
+        } catch (ParseException e) {
+            return null;
         }
     }
 }
