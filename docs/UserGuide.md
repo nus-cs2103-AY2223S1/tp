@@ -113,18 +113,15 @@ Examples:
 ### Adding a meeting : `addMeeting`
 
 Adds a new meeting to MyInsuRec. 
-DATE should be in DDMMYYYY format and TIME should be in 24-hour format.
+DATE should be in DD-MM-YYYY format and TIME should be in 24-hour format.
 
-Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Format: `addMeeting n/NAME d/DATE t/TIME dn/DESCRIPTION`
 
 * Adds a meeting.
-* A meeting contains INDEX, DATE, TIME and DESCRIPTION.
-* Adds the client at the specific `INDEX` to the meeting.
-* The index refers to the index number shown in the displayed clients' list.
+* A meeting contains the `NAME` of the client whom you are meeting with, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 
 Examples:
-* `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
-* `addMeeting i/1 t/1400 d/28092022 dn/Follow up meeting`
+* `addMeeting n/Alex Yeoh d/28092022 t/1400 dn/Team meeting`
 
 ### Listing meetings: `listMeeting`
 
@@ -170,7 +167,7 @@ MyInsuRec data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-MyInsuRec data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
@@ -185,7 +182,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app, then overwrite the myinsurec_data.json file created by the app with the version of the file from the previous computer.
+**A**: Install the app, then overwrite the `myinsurec.json` file created by the app with the version of the file from the previous computer.
 
 **Q**: I accidentally closed the app, will my data still be there?<br>
 **A**: Yes, your data is saved automatically after every action.
