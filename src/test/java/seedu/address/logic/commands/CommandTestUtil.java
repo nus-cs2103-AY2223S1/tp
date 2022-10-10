@@ -134,6 +134,12 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the module at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     * @param model
+     * @param targetIndex
+     */
     public static void showModuleWithModuleCode(Model model, Index targetIndex) {
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
         final String[] splitName = module.getName().fullName.split("\\s+");
