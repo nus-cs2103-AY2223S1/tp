@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 
@@ -13,10 +14,6 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
  * A list of tutors that enforces uniqueness between its elements and does not allow nulls.
  */
 public class UniqueTutorList extends UniquePersonList {
-    private final ObservableList<Tutor> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Tutor> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
-
 
     public void setTutors(List<Tutor> tutors) {
         requireAllNonNull(tutors);
@@ -24,11 +21,20 @@ public class UniqueTutorList extends UniquePersonList {
             throw new DuplicatePersonException();
         }
 
-        internalList.setAll(tutors);
+        this.internalList.setAll(tutors);
     }
 
+    /**
+     * Converts {@code ObservableList<Person>} to {@code ObservableList<Tutor>}.
+     * @return the backing list as an unmodifiable {@code ObservableList}.
+     */
     public ObservableList<Tutor> asUnmodifiableObservableTutorList() {
-        return internalUnmodifiableList;
+        ObservableList<Tutor> castToTutorList = FXCollections.observableArrayList();
+        for (Person p : internalList) {
+            Tutor t = (Tutor) p;
+            castToTutorList.add(t);
+        }
+        return FXCollections.unmodifiableObservableList(castToTutorList);
     }
 
     private boolean tutorsAreUnique(List<Tutor> tutors) {
