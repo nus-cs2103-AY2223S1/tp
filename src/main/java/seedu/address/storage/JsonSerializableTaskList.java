@@ -32,7 +32,7 @@ public class JsonSerializableTaskList {
      */
     public JsonSerializableTaskList(ReadOnlyTaskList source) {
         tasks.addAll(source.getTaskList().stream()
-                .map(JsonAdaptedTask::new)
+                .map(task -> new JsonAdaptedTask(task))
                 .collect(Collectors.toList()));
     }
 

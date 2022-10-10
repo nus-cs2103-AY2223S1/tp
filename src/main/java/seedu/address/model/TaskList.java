@@ -2,11 +2,11 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.task.Task;
 
 /**
@@ -14,10 +14,10 @@ import seedu.address.model.task.Task;
  */
 public class TaskList implements ReadOnlyTaskList {
 
-    private final List<Task> tasks;
+    private final ObservableList<Task> tasks;
 
     {
-        tasks = new ArrayList<>();
+        tasks = FXCollections.observableArrayList();
     }
 
     public TaskList() {}
@@ -32,7 +32,7 @@ public class TaskList implements ReadOnlyTaskList {
 
     @Override
     public ObservableList<Task> getTaskList() {
-        return FXCollections.observableList(tasks);
+        return tasks;
     }
 
     //// list overwrite operations
@@ -61,8 +61,23 @@ public class TaskList implements ReadOnlyTaskList {
         tasks.add(t);
     }
 
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     */
+    public void setTask(Task target, Index targetIndex) {
+        tasks.set(targetIndex.getZeroBased(), target);
+    }
+
     @Override
     public int hashCode() {
         return this.tasks.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if they are the same object.
+            || (other instanceof TaskList
+            && tasks.hashCode() == (((TaskList) other).tasks).hashCode()); // temp only TODO: Implement UniqueTaskList
     }
 }
