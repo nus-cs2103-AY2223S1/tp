@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskList;
+import seedu.address.model.task.UniqueTaskList;
 
 
 /**
@@ -20,7 +20,7 @@ public class Team {
 
     // Identity fields
     private final Name name;
-    private TaskList tasks = new TaskList();
+    private UniqueTaskList tasks = new UniqueTaskList();
     private UniquePersonList members = new UniquePersonList();
 
 
@@ -49,7 +49,7 @@ public class Team {
         return name;
     }
 
-    public TaskList getTasks() {
+    public UniqueTaskList getTasks() {
         return tasks;
     }
 
