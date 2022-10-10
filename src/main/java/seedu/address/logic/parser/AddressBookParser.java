@@ -6,7 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -28,8 +28,6 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Pattern TWO_COMMAND_WORDS_FORMAT = Pattern.compile("(?<commandWords>(\\S+)\\s+(\\S+))"
-            + "(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -39,35 +37,16 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        final Matcher basicCommandMatcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim()); // Eventually be deleted
-        final Matcher twoCommandWordsMatcher = TWO_COMMAND_WORDS_FORMAT.matcher(userInput.trim());
-        if (!basicCommandMatcher.matches() && !twoCommandWordsMatcher.matches()) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        if (twoCommandWordsMatcher.matches()) {
-            final String commandWords = twoCommandWordsMatcher.group("commandWords");
-            final String argumentsForTwoCommands = twoCommandWordsMatcher.group("arguments");
-
-            switch (commandWords) {
-
-            case "add contact":
-                return new AddContactCommandParser().parse(argumentsForTwoCommands);
-
-            default:
-                if (!basicCommandMatcher.matches()) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-                }
-            }
-        }
-        if (!basicCommandMatcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
-        final String commandWord = basicCommandMatcher.group("commandWord");
-        final String arguments = basicCommandMatcher.group("arguments");
+        final String commandWord = matcher.group("commandWord");
+        final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddContactCommand.COMMAND_WORD:
+            return new AddContactCommandParser().parse(arguments);
 
         case AddModuleCommand.COMMAND_WORD:
             return new AddModuleCommandParser().parse(arguments);
