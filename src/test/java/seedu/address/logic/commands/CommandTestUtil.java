@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 
@@ -45,6 +46,9 @@ public class CommandTestUtil {
     public static final String VALID_MA_MODULE_TITLE = "Linear Algebra I";
     public static final String VALID_MODULE_CODE = CS2103T.getModuleCode().toString();
     public static final String VALID_MODULE_TITLE = CS2103T.getModuleTitle().toString();
+    public static final String VALID_TASK_A = "Complete assignment for week 8";
+    public static final String VALID_TASK_B = "Submit the quiz@LumiNUS";
+    public static final String VALID_TASK_C = "Pay $5 to Ann for project costs";
 
     // Module code cannot have brackets
     public static final String INVALID_MODULE_CODE = "(CS2103T)";
@@ -63,6 +67,10 @@ public class CommandTestUtil {
     public static final String MODULE_CODE_DESC_MA2001 = " " + PREFIX_MODULE_CODE + VALID_MA_MODULE_CODE;
     public static final String MODULE_TITLE_DESC_CS2106 = " " + PREFIX_MODULE_TITLE + VALID_CS_MODULE_TITLE;
     public static final String MODULE_TITLE_DESC_MA2001 = " " + PREFIX_MODULE_TITLE + VALID_MA_MODULE_TITLE;
+    public static final String MODULE_TASK_A = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_A;
+    public static final String MODULE_TASK_B = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_B;
+    public static final String MODULE_TASK_C = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_C;
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -74,6 +82,7 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+    public static final String INVALID_TASK_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for tasks
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
