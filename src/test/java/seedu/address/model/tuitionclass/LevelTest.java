@@ -5,7 +5,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.tuitionclass.exceptions.InvalidLevelException;
+import seedu.address.model.level.Level;
+import seedu.address.model.level.exceptions.InvalidLevelException;
 
 public class LevelTest {
 
