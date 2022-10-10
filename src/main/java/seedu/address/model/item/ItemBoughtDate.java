@@ -13,7 +13,7 @@ import seedu.address.model.item.validators.ItemBoughtDateValidator;
  */
 public class ItemBoughtDate {
 
-    private static final String DATE_OUTPUT_PATTERN_REGEX = "dd/MM/yyyy";
+    private static final String DATE_OUTPUT_PATTERN_REGEX = "yyyy-MM-dd";
 
     private final LocalDate itemDate;
 
