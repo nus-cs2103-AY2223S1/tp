@@ -13,7 +13,7 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Status;
 
 /**
- * Updates the status of an Internship with upper and lowercase "p", "r" and "o" after 
+ * Updates the status of an Internship with upper and lowercase "p", "r" and "o" after
  * the s/ prefix.
  */
 public class StatusCommand extends Command {
@@ -63,9 +63,9 @@ public class StatusCommand extends Command {
         }
 
         Internship internshipToedit = lastShownList.get(index.getZeroBased());
-        Internship editedInternship = new Internship(internshipToedit.getName(), 
-                internshipToedit.getPosition(), internshipToedit.getPhone(), 
-                internshipToedit.getEmail(), status, internshipToedit.getAddress(), 
+        Internship editedInternship = new Internship(internshipToedit.getName(),
+                internshipToedit.getPosition(), internshipToedit.getPhone(),
+                internshipToedit.getEmail(), status, internshipToedit.getAddress(),
                 internshipToedit.getTags());
 
         model.setInternship(internshipToedit, editedInternship);
