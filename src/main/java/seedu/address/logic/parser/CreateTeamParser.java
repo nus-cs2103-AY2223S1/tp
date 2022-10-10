@@ -30,7 +30,7 @@ public class CreateTeamParser {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateTeamCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseTeamName(argMultimap.getValue(PREFIX_TEAM_NAME).get());

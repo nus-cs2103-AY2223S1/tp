@@ -46,14 +46,22 @@ public class JsonAdaptedTeam {
      */
     public JsonAdaptedTeam(Team source) {
         teamName = source.getName().fullName;
+
         List<Task> taskList = source.getTasks().getTaskList();
-        tasks.addAll(taskList.stream()
-                .map(JsonAdaptedTask::new)
-                .collect(Collectors.toList()));
+        if (taskList != null) {
+            tasks.addAll(taskList.stream()
+                    .map(JsonAdaptedTask::new)
+                    .collect(Collectors.toList()));
+
+        }
+
         List<Person> memberList = source.getMembers();
-        members.addAll(memberList.stream()
-                .map(JsonAdaptedPerson::new)
-                .collect(Collectors.toList()));
+        if (memberList != null) {
+            members.addAll(memberList.stream()
+                    .map(JsonAdaptedPerson::new)
+                    .collect(Collectors.toList()));
+        }
+
 
     }
 
