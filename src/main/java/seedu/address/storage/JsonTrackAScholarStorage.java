@@ -17,32 +17,32 @@ import seedu.address.model.ReadOnlyTrackAScholar;
 /**
  * A class to access TrackAScholar data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonTrackAScholarStorage implements TrackAScholarStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonTrackAScholarStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonTrackAScholarStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getTrackAScholarFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyTrackAScholar> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyTrackAScholar> readTrackAScholar() throws DataConversionException {
+        return readTrackAScholar(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readTrackAScholar()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyTrackAScholar> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyTrackAScholar> readTrackAScholar(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
@@ -60,21 +60,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTrackAScholar addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveTrackAScholar(ReadOnlyTrackAScholar trackAScholar) throws IOException {
+        saveTrackAScholar(trackAScholar, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyTrackAScholar)}.
+     * Similar to {@link #saveTrackAScholar(ReadOnlyTrackAScholar)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyTrackAScholar addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveTrackAScholar(ReadOnlyTrackAScholar trackAScholar, Path filePath) throws IOException {
+        requireNonNull(trackAScholar);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(trackAScholar), filePath);
     }
 
 }

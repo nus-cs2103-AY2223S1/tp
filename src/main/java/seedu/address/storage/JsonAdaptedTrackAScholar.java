@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Applicant}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedTrackAScholar {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Applicant's %s field is missing!";
 
@@ -30,13 +30,13 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given applicant details.
+     * Constructs a {@code JsonAdaptedTrackAScholar} with the given applicant details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("scholarship") String scholarship,
-            @JsonProperty("applicationStatus") String applicationStatus,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedTrackAScholar(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                                    @JsonProperty("email") String email, @JsonProperty("scholarship") String scholarship,
+                                    @JsonProperty("applicationStatus") String applicationStatus,
+                                    @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,7 +51,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Applicant} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Applicant source) {
+    public JsonAdaptedTrackAScholar(Applicant source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;

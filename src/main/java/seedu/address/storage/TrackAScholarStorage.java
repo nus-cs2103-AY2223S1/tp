@@ -11,12 +11,12 @@ import seedu.address.model.TrackAScholar;
 /**
  * Represents a storage for {@link TrackAScholar}.
  */
-public interface AddressBookStorage {
+public interface TrackAScholarStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getTrackAScholarFilePath();
 
     /**
      * Returns TrackAScholar data as a {@link ReadOnlyTrackAScholar}.
@@ -24,23 +24,23 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyTrackAScholar> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTrackAScholar> readTrackAScholar() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getTrackAScholarFilePath()
      */
-    Optional<ReadOnlyTrackAScholar> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyTrackAScholar> readTrackAScholar(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyTrackAScholar} to the storage.
-     * @param addressBook cannot be null.
+     * @param trackAScholar cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyTrackAScholar addressBook) throws IOException;
+    void saveTrackAScholar(ReadOnlyTrackAScholar trackAScholar) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyTrackAScholar)
+     * @see #saveTrackAScholar(ReadOnlyTrackAScholar)
      */
-    void saveAddressBook(ReadOnlyTrackAScholar addressBook, Path filePath) throws IOException;
+    void saveTrackAScholar(ReadOnlyTrackAScholar trackAScholar, Path filePath) throws IOException;
 
 }
