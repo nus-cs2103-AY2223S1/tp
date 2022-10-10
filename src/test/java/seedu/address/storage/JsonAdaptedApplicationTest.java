@@ -5,9 +5,6 @@ import static seedu.address.storage.JsonAdaptedApplication.MISSING_FIELD_MESSAGE
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalApplications.SHOPEE;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
