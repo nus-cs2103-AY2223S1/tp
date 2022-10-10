@@ -1,7 +1,5 @@
 package modtrekt.logic.commands.tasks;
 
-import static modtrekt.model.Model.PREDICATE_HIDE_ARCHIVED_TASKS;
-
 import modtrekt.logic.commands.Command;
 import modtrekt.logic.commands.CommandResult;
 import modtrekt.logic.commands.exceptions.CommandException;
@@ -26,7 +24,7 @@ public class ListTasksCommand extends Command {
             model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
             return new CommandResult("Listed all tasks, including those archived.");
         } else {
-            model.updateFilteredTaskList(PREDICATE_HIDE_ARCHIVED_TASKS);
+            model.updateFilteredTaskList(Model.PREDICATE_HIDE_ARCHIVED_TASKS);
             return new CommandResult("Listed all unarchived tasks.");
         }
     }
