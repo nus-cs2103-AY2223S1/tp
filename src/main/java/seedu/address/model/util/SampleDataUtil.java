@@ -17,11 +17,13 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Entry[] getSampleEntries() {
-        return new Entry[] {
-                new Entry(new Description("Lunch"), new Date("20-01-2022"), new Amount("20"), getTagSet("Lunch")),
-                new Entry(new Description("Dinner"), new Date("20-02-2022"), new Amount("30"), getTagSet("Dinner")),
-                new Entry(new Description("Breakfast"), new Date("21-01-2022"), new Amount("40"), getTagSet("Breakfast")),
-                new Entry(new Description("Paid this guy"), new Date("21-01-2022"), new Amount("0.10"), getTagSet("paid"))
+        return new Entry[]{
+            new Entry(new Description("Lunch"), new Date("20-01-2022"), new Amount("20"), getTagSet("Lunch")),
+            new Entry(new Description("Dinner"), new Date("20-02-2022"), new Amount("30"), getTagSet("Dinner")),
+            new Entry(new Description("Breakfast"), new Date("21-01-2022"), new Amount("40"),
+                getTagSet("Breakfast")),
+            new Entry(new Description("Paid this guy"), new Date("21-01-2022"), new Amount("0.10"),
+                getTagSet("paid"))
         };
     }
 
@@ -38,8 +40,8 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+            .map(Tag::new)
+            .collect(Collectors.toSet());
     }
 
 }

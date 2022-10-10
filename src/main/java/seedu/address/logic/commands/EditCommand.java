@@ -1,17 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,11 +14,6 @@ import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
 import seedu.address.model.entry.Entry;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -57,7 +44,7 @@ public class EditCommand extends Command {
     private final EditEntryDescriptor editEntryDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index               of the person in the filtered person list to edit
      * @param editEntryDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditEntryDescriptor editEntryDescriptor) {
@@ -133,7 +120,8 @@ public class EditCommand extends Command {
         private Set<Tag> tags = new HashSet<>();
 
 
-        public EditEntryDescriptor() {}
+        public EditEntryDescriptor() {
+        }
 
         /**
          * Copy constructor.

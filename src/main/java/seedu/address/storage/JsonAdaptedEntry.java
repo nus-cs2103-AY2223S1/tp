@@ -1,20 +1,22 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.entry.Amount;
-import seedu.address.model.entry.Date;
-import seedu.address.model.entry.Description;
-import seedu.address.model.entry.Entry;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.entry.Amount;
+import seedu.address.model.entry.Date;
+import seedu.address.model.entry.Description;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Entry}.
@@ -31,7 +33,7 @@ public class JsonAdaptedEntry {
      */
     @JsonCreator
     public JsonAdaptedEntry(@JsonProperty("description") String description, @JsonProperty("amount") String amount,
-                             @JsonProperty("date") String date, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                            @JsonProperty("date") String date, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.description = description;
         this.amount = amount;
         this.date = date;
@@ -48,8 +50,8 @@ public class JsonAdaptedEntry {
         amount = source.getAmount().amount;
         date = source.getDate().date;
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -64,7 +66,8 @@ public class JsonAdaptedEntry {
         }
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
@@ -82,7 +85,7 @@ public class JsonAdaptedEntry {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        if (!Date.isValidDate(date  )) {
+        if (!Date.isValidDate(date)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Date modelDate = new Date(date);

@@ -6,8 +6,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Amount {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Expense amount should only contain positive numbers, and it should be formatted to accept 2 decimal places";
-    public static final String VALIDATION_REGEX = "^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$";;
+        "Expense amount should only contain positive numbers, and it should be formatted to accept 2 decimal places";
+    public static final String VALIDATION_REGEX = "^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$";
+    ;
     public final String amount;
 
     /**
@@ -36,8 +37,8 @@ public class Amount {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Amount // instanceof handles nulls
-                && amount.equals(((Amount) other).amount)); // state check
+            || (other instanceof Amount // instanceof handles nulls
+            && amount.equals(((Amount) other).amount)); // state check
     }
 
     @Override

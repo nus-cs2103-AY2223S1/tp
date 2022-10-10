@@ -142,8 +142,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredEntries.equals(other.filteredEntries);
+            && userPrefs.equals(other.userPrefs)
+            && filteredEntries.equals(other.filteredEntries);
     }
 
 }

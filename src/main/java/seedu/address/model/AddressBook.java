@@ -22,12 +22,12 @@ public class AddressBook implements ReadOnlyPennyWise {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         entries = new UniqueEntryList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -45,6 +45,17 @@ public class AddressBook implements ReadOnlyPennyWise {
      */
     public void setEntries(List<Entry> entries) {
         this.entries.setEntries(entries);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setEntries(Entry target, Entry editedEntry) {
+        requireNonNull(editedEntry);
+
+        entries.setEntries(target, editedEntry);
     }
 
     /**
@@ -75,17 +86,6 @@ public class AddressBook implements ReadOnlyPennyWise {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setEntries(Entry target, Entry editedEntry) {
-        requireNonNull(editedEntry);
-
-        entries.setEntries(target, editedEntry);
-    }
-
-    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -109,8 +109,8 @@ public class AddressBook implements ReadOnlyPennyWise {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && entries.equals(((AddressBook) other).entries));
+            || (other instanceof AddressBook // instanceof handles nulls
+            && entries.equals(((AddressBook) other).entries));
     }
 
     @Override

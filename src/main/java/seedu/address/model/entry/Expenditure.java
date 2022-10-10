@@ -1,8 +1,8 @@
 package seedu.address.model.entry;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 public class Expenditure extends Entry {
     /**
@@ -13,15 +13,14 @@ public class Expenditure extends Entry {
     }
 
 
-
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
-                .append("; Date: ")
-                .append(getDate())
-                .append("; Amount: ")
-                .append(getAmount());
+            .append("; Date: ")
+            .append(getDate())
+            .append("; Amount: ")
+            .append(getAmount());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

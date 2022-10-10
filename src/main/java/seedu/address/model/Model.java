@@ -5,14 +5,15 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
 import seedu.address.model.entry.Entry;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Entry> PREDICATE_SHOW_ALL_ENTRIES = unused -> true;
 
     /**
@@ -50,7 +51,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyPennyWise addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyPennyWise getAddressBook();
 
     /**
@@ -77,11 +80,14 @@ public interface Model {
      */
     void setEntry(Entry target, Entry editedEntry);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Entry> getFilteredEntryList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEntryList(Predicate<Entry> predicate);
