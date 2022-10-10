@@ -9,30 +9,30 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Task.
  */
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code task}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Task task) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(task);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code task}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Task task) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_MODULE + person.getModule().fullName + " ");
-        sb.append(PREFIX_DEADLINE + person.getDeadline().date + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + task.getName().fullName + " ");
+        sb.append(PREFIX_MODULE + task.getModule().fullName + " ");
+        sb.append(PREFIX_DEADLINE + task.getDeadline().date + " ");
+        task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

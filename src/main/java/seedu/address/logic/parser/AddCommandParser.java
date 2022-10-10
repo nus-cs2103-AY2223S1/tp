@@ -11,10 +11,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Module;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Module;
+import seedu.address.model.task.Name;
+import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,9 +41,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, module, deadline, tagList);
+        Task task = new Task(name, module, deadline, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(task);
     }
 
     /**

@@ -8,10 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
- * Adds a person to the address book.
+ * Adds a task to the address book.
  */
 public class AddCommand extends Command {
 
@@ -32,14 +32,14 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the task tracker.";
-    private final Person toAdd;
+    private final Task toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Task}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Task task) {
+        requireNonNull(task);
+        toAdd = task;
     }
 
     @Override

@@ -3,15 +3,15 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Module;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Module;
+import seedu.address.model.task.Name;
+import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Task objects.
  */
 public class PersonBuilder {
 
@@ -37,14 +37,14 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PersonBuilder with the data of {@code taskToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        module = personToCopy.getModule();
-        deadline = personToCopy.getDeadline();
-        tags = new HashSet<>(personToCopy.getTags());
-        isDone = personToCopy.isDone();
+    public PersonBuilder(Task taskToCopy) {
+        name = taskToCopy.getName();
+        module = taskToCopy.getModule();
+        deadline = taskToCopy.getDeadline();
+        tags = new HashSet<>(taskToCopy.getTags());
+        isDone = taskToCopy.isDone();
     }
 
     /**
@@ -87,8 +87,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, module, deadline, tags, isDone);
+    public Task build() {
+        return new Task(name, module, deadline, tags, isDone);
     }
 
 }

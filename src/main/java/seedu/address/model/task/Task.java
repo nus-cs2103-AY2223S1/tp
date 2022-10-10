@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Task in the task tracker.
  * Guarantees: All details are present and not null, field values are validated and immutable
  */
-public class Person {
+public class Task {
 
     private final Name name;
     private final Module module;
@@ -25,7 +25,7 @@ public class Person {
      * A convenience constructor for the {@code Task} class.
      * Every field must be present and not null.
      */
-    public Person(Name name, Module module, Deadline deadline, Set<Tag> tags) {
+    public Task(Name name, Module module, Deadline deadline, Set<Tag> tags) {
         this(name, module, deadline, tags, false);
     }
 
@@ -33,7 +33,7 @@ public class Person {
      * Constructor for the {@code Task} class.
      * Every field must be present and not null.
      */
-    public Person(Name name, Module module, Deadline deadline, Set<Tag> tags, boolean isDone) {
+    public Task(Name name, Module module, Deadline deadline, Set<Tag> tags, boolean isDone) {
         requireAllNonNull(name, module, deadline, tags);
         this.name = name;
         this.module = module;
@@ -70,7 +70,7 @@ public class Person {
      * Returns true if both tasks have the same name and module.
      * This defines a weaker notion of equality between two tasks.
      */
-    public boolean isSamePerson(Person otherTask) {
+    public boolean isSamePerson(Task otherTask) {
         if (this == otherTask) {
             return true;
         }
@@ -86,11 +86,11 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Task)) {
             return false;
         }
 
-        Person otherTask = (Person) other;
+        Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
                 && otherTask.getModule().equals(getModule())
                 && otherTask.getDeadline().equals(getDeadline())

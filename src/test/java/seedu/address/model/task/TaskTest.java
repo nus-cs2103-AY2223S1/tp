@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,12 +14,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
-public class PersonTest {
+public class TaskTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Task task = new PersonBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> task.getTags().remove(0));
     }
 
     @Test
@@ -31,7 +31,7 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name and module, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withDeadline(VALID_DEADLINE_BETA)
+        Task editedAlice = new PersonBuilder(ALICE).withDeadline(VALID_DEADLINE_BETA)
                 .withTags(VALID_TAG_HIGH_PRIORITY).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -48,7 +48,7 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BETA).withName(VALID_NAME_TASK_BETA.toLowerCase()).build();
+        Task editedBob = new PersonBuilder(BETA).withName(VALID_NAME_TASK_BETA.toLowerCase()).build();
         assertFalse(BETA.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
@@ -60,7 +60,7 @@ public class PersonTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Task aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -72,11 +72,11 @@ public class PersonTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different task -> returns false
         assertFalse(ALICE.equals(BETA));
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_TASK_BETA).build();
+        Task editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_TASK_BETA).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false

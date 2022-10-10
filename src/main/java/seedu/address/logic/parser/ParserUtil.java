@@ -9,9 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Module;
-import seedu.address.model.person.Name;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Module;
+import seedu.address.model.task.Name;
 import seedu.address.model.tag.Tag;
 
 /**

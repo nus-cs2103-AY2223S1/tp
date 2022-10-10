@@ -28,10 +28,10 @@ import static seedu.address.testutil.TypicalPersons.BETA;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Module;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Module;
+import seedu.address.model.task.Name;
+import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -40,38 +40,38 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BETA).withTags(VALID_TAG_TUTORIAL).build();
+        Task expectedTask = new PersonBuilder(BETA).withTags(VALID_TAG_TUTORIAL).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BETA + MODULE_DESC_BETA + DEADLINE_DESC_BETA
-                + TAG_DESC_TUTORIAL, new AddCommand(expectedPerson));
+                + TAG_DESC_TUTORIAL, new AddCommand(expectedTask));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_ALPHA + NAME_DESC_BETA + MODULE_DESC_BETA + DEADLINE_DESC_BETA
-                + TAG_DESC_TUTORIAL, new AddCommand(expectedPerson));
+                + TAG_DESC_TUTORIAL, new AddCommand(expectedTask));
 
         // multiple modules - last module accepted
         assertParseSuccess(parser, NAME_DESC_BETA + MODULE_DESC_ALPHA + MODULE_DESC_BETA + DEADLINE_DESC_BETA
-                + TAG_DESC_TUTORIAL, new AddCommand(expectedPerson));
+                + TAG_DESC_TUTORIAL, new AddCommand(expectedTask));
 
         // multiple deadlines - last deadline accepted
         assertParseSuccess(parser, NAME_DESC_BETA + MODULE_DESC_BETA + DEADLINE_DESC_ALPHA + DEADLINE_DESC_BETA
-                + TAG_DESC_TUTORIAL, new AddCommand(expectedPerson));
+                + TAG_DESC_TUTORIAL, new AddCommand(expectedTask));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BETA)
+        Task expectedTaskMultipleTags = new PersonBuilder(BETA)
                 .withTags(VALID_TAG_TUTORIAL, VALID_TAG_HIGH_PRIORITY)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BETA + MODULE_DESC_BETA + DEADLINE_DESC_BETA
-                + TAG_DESC_HIGH_PRIORITY + TAG_DESC_TUTORIAL, new AddCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HIGH_PRIORITY + TAG_DESC_TUTORIAL, new AddCommand(expectedTaskMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(ALPHA).withTags().build();
+        Task expectedTask = new PersonBuilder(ALPHA).withTags().build();
         assertParseSuccess(parser, NAME_DESC_ALPHA + MODULE_DESC_ALPHA + DEADLINE_DESC_ALPHA,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedTask));
     }
 
     @Test

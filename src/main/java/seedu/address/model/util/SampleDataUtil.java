@@ -6,31 +6,31 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Module;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Module;
+import seedu.address.model.task.Name;
+import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Assignment 1"), new Module("CS2100"), new Deadline("2022-11-02"),
+    public static Task[] getSamplePersons() {
+        return new Task[] {
+            new Task(new Name("Assignment 1"), new Module("CS2100"), new Deadline("2022-11-02"),
                 getTagSet("highPriority")),
-            new Person(new Name("Tutorial 4"), new Module("CS2100"), new Deadline("2022-10-07"),
+            new Task(new Name("Tutorial 4"), new Module("CS2100"), new Deadline("2022-10-07"),
                 getTagSet("mediumPriority", "easy")),
-            new Person(new Name("Chapter 1 Revision"), new Module("CS2103T"), new Deadline("2022-10-11"),
+            new Task(new Name("Chapter 1 Revision"), new Module("CS2103T"), new Deadline("2022-10-11"),
                 getTagSet("revision"))
         };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (Task sampleTask : getSamplePersons()) {
+            sampleAb.addPerson(sampleTask);
         }
         return sampleAb;
     }

@@ -5,10 +5,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Module;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Module;
+import seedu.address.model.task.Name;
+import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,14 +27,14 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code task}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Task task) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setModule(person.getModule());
-        descriptor.setDeadline(person.getDeadline());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(task.getName());
+        descriptor.setModule(task.getModule());
+        descriptor.setDeadline(task.getDeadline());
+        descriptor.setTags(task.getTags());
     }
 
     /**
