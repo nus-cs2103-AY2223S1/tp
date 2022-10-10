@@ -57,7 +57,7 @@ public class InternshipCard extends UiPart<Region> {
         if (internship.getInterviewDate() == null) {
             interviewDate.setText("No interviews scheduled.");
         } else {
-            interviewDate.setText(internship.getInterviewDate().toString());
+            interviewDate.setText("Interview on: " + internship.getInterviewDate().toString());
         }
     }
 
