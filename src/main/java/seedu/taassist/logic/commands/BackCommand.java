@@ -1,7 +1,9 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 
+import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
@@ -12,14 +14,13 @@ public class BackCommand extends Command {
 
     public static final String COMMAND_WORD = "back";
 
-    public static final String MESSAGE_NOT_IN_FOCUS_MODE = "Not in focus mode";
     public static final String MESSAGE_SUCCESS = "Exited focus mode for %s";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.isInFocusMode()) {
-            return new CommandResult(MESSAGE_NOT_IN_FOCUS_MODE);
+            throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
         }
         ModuleClass focusedClass = model.getFocusedClass();
         model.exitFocusMode();

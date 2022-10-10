@@ -3,9 +3,10 @@ package seedu.taassist.model.moduleclass;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,7 +35,7 @@ public class UniqueModuleClassList implements Iterable<ModuleClass> {
      */
     public boolean contains(ModuleClass toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameModuleClass);
     }
 
     /**
@@ -60,6 +61,26 @@ public class UniqueModuleClassList implements Iterable<ModuleClass> {
         }
     }
 
+    /**
+     * Replaces the module class {@code target} in the list with {@code editedModuleClass}.
+     * {@code target} must exist in the list.
+     * The identity of {@code editedModuleClass} must not be the same as another existing module class in the list.
+     */
+    public void setModuleClass(ModuleClass target, ModuleClass editedModuleClass) {
+        requireAllNonNull(target, editedModuleClass);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ModuleClassNotFoundException();
+        }
+
+        if (!target.isSameModuleClass(editedModuleClass) && contains(editedModuleClass)) {
+            throw new DuplicateModuleClassException();
+        }
+
+        internalList.set(index, editedModuleClass);
+    }
+
     public void setModuleClasses(UniqueModuleClassList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -76,6 +97,18 @@ public class UniqueModuleClassList implements Iterable<ModuleClass> {
         }
 
         internalList.setAll(moduleClasses);
+    }
+
+    /**
+     * Finds a module class with equivalent identity to {@code target}.
+     */
+    public Optional<ModuleClass> findModuleClass(ModuleClass target) {
+        requireNonNull(target);
+        List<ModuleClass> result = internalList.stream()
+                .filter(target::isSameModuleClass)
+                .limit(1)
+                .collect(Collectors.toList());
+        return result.isEmpty() ? Optional.empty() : Optional.of(result.get(0));
     }
 
     /**
@@ -106,7 +139,14 @@ public class UniqueModuleClassList implements Iterable<ModuleClass> {
      * Returns true if {@code moduleClasses} contains only unique classes.
      */
     private boolean isUniqueListOfModuleClasses(List<ModuleClass> moduleClasses) {
-        return new HashSet<>(moduleClasses).size() == moduleClasses.size();
+        for (int i = 0; i + 1 < moduleClasses.size(); i++) {
+            for (int j = i + 1; j < moduleClasses.size(); j++) {
+                if (moduleClasses.get(i).isSameModuleClass(moduleClasses.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
 

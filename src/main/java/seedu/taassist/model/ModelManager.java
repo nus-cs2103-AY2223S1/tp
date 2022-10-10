@@ -30,6 +30,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final SimpleStringProperty focusLabelProperty;
+
+    // N.B. must guarantee focusedClass is equivalent to the entry in the UniqueModuleClassList.
     private ModuleClass focusedClass;
 
     /**
@@ -138,6 +140,21 @@ public class ModelManager implements Model {
     public void deleteModuleClass(ModuleClass target) {
         requireNonNull(target);
         taAssist.removeModuleClass(target);
+
+        // TODO: Should an Exception be thrown instead?
+        if (target.isSameModuleClass(focusedClass)) {
+            exitFocusMode();
+        }
+    }
+
+    @Override
+    public void setModuleClass(ModuleClass target, ModuleClass editedModuleClass) {
+        requireAllNonNull(target, editedModuleClass);
+        taAssist.setModuleClass(target, editedModuleClass);
+
+        if (target.isSameModuleClass(focusedClass)) {
+            enterFocusMode(editedModuleClass);
+        }
     }
 
     @Override
@@ -196,12 +213,19 @@ public class ModelManager implements Model {
     }
 
     //=========== Handles focus mode state ==================================================================
+
+    // TODO: Should guarantee classToFocus's equivalent identity module class must exist in TaAssist.
     @Override
     public void enterFocusMode(ModuleClass classToFocus) {
         requireNonNull(classToFocus);
-        this.focusedClass = classToFocus;
+
+        // This is done as the passed in module class might not be the exact module class needed.
+        // Hence, it should look for the module class with equivalent identity in taAssist.
+        // As it's taAssist's module class that contains the actual Session content.
+        this.focusedClass = taAssist.findModuleClass(classToFocus).get();
+
         focusLabelProperty.set(String.format(FOCUS_LABEL_FORMAT, focusedClass));
-        IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(classToFocus);
+        IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(focusedClass);
         updateFilteredStudentList(predicate);
     }
 

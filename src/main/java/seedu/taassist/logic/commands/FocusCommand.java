@@ -1,8 +1,8 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST;
 
-import seedu.taassist.commons.core.Messages;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -33,7 +33,7 @@ public class FocusCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasModuleClass(targetClass)) {
-            throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
+            throw new CommandException(String.format(MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
                     model.getModuleClassList()));
         }
 

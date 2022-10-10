@@ -12,6 +12,7 @@ import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.commons.util.StringUtil;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
@@ -139,5 +140,20 @@ public class ParserUtil {
             moduleClassSet.add(parseModuleClass(moduleClassName));
         }
         return moduleClassSet;
+    }
+
+    /**
+     * Parses a {@code String session} into a {@code Session}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code session} is invalid.
+     */
+    public static Session parseSession(String session) throws ParseException {
+        requireNonNull(session);
+        String trimmedSession = session.trim();
+        if (!Session.isValidSessionName(trimmedSession)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+        return new Session(session);
     }
 }

@@ -53,8 +53,8 @@ public class StudentCard extends UiPart<Region> {
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
         student.getModuleClasses().stream()
-                .sorted(Comparator.comparing(moduleClass -> moduleClass.className))
-                .forEach(moduleClass -> classes.getChildren().add(new Label(moduleClass.className)));
+                .sorted(Comparator.comparing(moduleClass -> moduleClass.getClassName()))
+                .forEach(moduleClass -> classes.getChildren().add(new Label(moduleClass.getClassName())));
     }
 
     @Override

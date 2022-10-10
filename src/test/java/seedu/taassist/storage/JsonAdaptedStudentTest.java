@@ -28,8 +28,8 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final List<JsonAdaptedModuleClass> VALID_CLASSES = BENSON.getModuleClasses().stream()
-            .map(JsonAdaptedModuleClass::new)
+    private static final List<String> VALID_CLASSES = BENSON.getModuleClasses().stream()
+            .map(x -> x.getClassName())
             .collect(Collectors.toList());
 
     @Test
@@ -103,8 +103,8 @@ public class JsonAdaptedStudentTest {
 
     @Test
     public void toModelType_invalidClasses_throwsIllegalValueException() {
-        List<JsonAdaptedModuleClass> invalidClasses = new ArrayList<>(VALID_CLASSES);
-        invalidClasses.add(new JsonAdaptedModuleClass(INVALID_CLASS));
+        List<String> invalidClasses = new ArrayList<>(VALID_CLASSES);
+        invalidClasses.add(INVALID_CLASS);
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidClasses);
         assertThrows(IllegalValueException.class, student::toModelType);
