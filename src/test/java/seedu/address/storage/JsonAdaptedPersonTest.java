@@ -11,8 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.MoneyPaid;
+import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -117,7 +116,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidMoneyOwed_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_CLASS_DATE_TIME, INVALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONAL_NOTES);
-        String expectedMessage = MoneyOwed.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Money.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -125,7 +124,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidMoneyPaid_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_CLASS_DATE_TIME, VALID_MONEY_OWED, INVALID_MONEY_PAID, VALID_ADDITIONAL_NOTES);
-        String expectedMessage = MoneyPaid.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Money.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 }
