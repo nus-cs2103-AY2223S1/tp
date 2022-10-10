@@ -21,6 +21,7 @@ import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
 import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.ParserUtil;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
+import seedu.rc4hdb.model.person.Name;
 import seedu.rc4hdb.model.tag.Tag;
 
 /**
@@ -48,6 +49,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            Name name = ParserUtil.parseName(argMultimap.getPreamble());
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {

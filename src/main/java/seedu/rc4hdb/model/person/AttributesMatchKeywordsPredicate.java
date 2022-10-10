@@ -2,6 +2,7 @@ package seedu.rc4hdb.model.person;
 
 import static java.util.Objects.isNull;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
@@ -19,20 +20,20 @@ public class AttributesMatchKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         boolean predicate = true;
-        if (!isNull(descriptor.getName())) {
-            predicate = predicate && descriptor.getName().equals(person.getName());
+        if (!descriptor.getName().isEmpty()) {
+            predicate = predicate && descriptor.getName().equals(Optional.of(person.getName()));
         }
-        if (!isNull(descriptor.getAddress())) {
-            predicate = predicate && person.getAddress().equals(descriptor.getAddress());
+        if (!descriptor.getAddress().isEmpty()) {
+            predicate = predicate && descriptor.getAddress().equals(Optional.of(person.getAddress()));
         }
-        if (!isNull(descriptor.getPhone())) {
-            predicate = predicate && person.getPhone().equals(descriptor.getPhone());
+        if (!descriptor.getPhone().isEmpty()) {
+            predicate = predicate && descriptor.getPhone().equals(Optional.of(person.getPhone()));
         }
-        if (!isNull(descriptor.getEmail())) {
-            predicate = predicate && person.getEmail().equals(descriptor.getEmail());
+        if (!descriptor.getEmail().isEmpty()) {
+            predicate = predicate && descriptor.getEmail().equals(Optional.of(person.getEmail()));
         }
-        if (!isNull(descriptor.getTags())) {
-            predicate = predicate && person.getTags().equals(descriptor.getTags());
+        if (!descriptor.getTags().isEmpty()) {
+            predicate = predicate && descriptor.getTags().equals(Optional.of(person.getTags()));
         }
         return predicate;
 

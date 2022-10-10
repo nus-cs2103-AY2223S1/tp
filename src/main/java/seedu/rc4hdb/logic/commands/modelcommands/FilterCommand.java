@@ -7,7 +7,9 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.rc4hdb.commons.core.Messages;
@@ -29,9 +31,7 @@ import seedu.rc4hdb.model.tag.Tag;
 public class FilterCommand extends ModelCommand {
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters the list using the attributes in the command"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -97,7 +97,8 @@ public class FilterCommand extends ModelCommand {
         private Address address;
         private Set<Tag> tags;
 
-        public FilterPersonDescriptor() {}
+        public FilterPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -112,9 +113,9 @@ public class FilterCommand extends ModelCommand {
         }
 
         /**
-         * Returns true if at least one field is filtered.
+         * Returns true if at least one field is edited.
          */
-        public boolean isAnyFieldfiltered() {
+        public boolean isAnyFieldFiltered() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
@@ -122,32 +123,32 @@ public class FilterCommand extends ModelCommand {
             this.name = name;
         }
 
-        public Name getName() {
-            return name;
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
         }
 
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
 
-        public Phone getPhone() {
-            return phone;
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
         }
 
         public void setEmail(Email email) {
             this.email = email;
         }
 
-        public Email getEmail() {
-            return email;
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
         }
 
         public void setAddress(Address address) {
             this.address = address;
         }
 
-        public Address getAddress() {
-            return address;
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
         }
 
         /**
@@ -163,8 +164,8 @@ public class FilterCommand extends ModelCommand {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Set<Tag> getTags() {
-            return tags;
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override
@@ -180,14 +181,13 @@ public class FilterCommand extends ModelCommand {
             }
 
             // state check
-            FilterCommand.FilterPersonDescriptor e = (FilterCommand.FilterPersonDescriptor) other;
+            FilterCommand.FilterPersonDescriptor f = (FilterCommand.FilterPersonDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+            return getName().equals(f.getName())
+                    && getPhone().equals(f.getPhone())
+                    && getEmail().equals(f.getEmail())
+                    && getAddress().equals(f.getAddress())
+                    && getTags().equals(f.getTags());
         }
     }
-
 }
