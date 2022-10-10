@@ -3,15 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Creates a meeting with a person in the address book
@@ -36,31 +32,6 @@ public class CreateMeetingCommand extends Command {
         this.meetingInfo = meetingInfo;
     }
 
-    private ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet) {
-        ArrayList<Person> output = new ArrayList<>();
-        // Takes in the name of the address book contact, split by words in the name
-        for (String personName: peopleToMeet) {
-
-            String[] nameKeywords = personName.split("\\s+");
-
-            NameContainsKeywordsPredicate personNamePredicate =
-                new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
-
-            // updates the list of persons in address book based on predicate
-            model.updateFilteredPersonList(personNamePredicate);
-            ObservableList<Person> listOfPeople = model.getFilteredPersonList();
-
-            // Am thinking if there's a better way to check if the person exists
-            // Since model.hasPerson only takes in a person object as argument
-            if (listOfPeople.isEmpty()) {
-                throw new PersonNotFoundException();
-            } else { // get the first person in the address book whose name matches
-                output.add(listOfPeople.get(0));
-            }
-        }
-        return output;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -70,7 +41,8 @@ public class CreateMeetingCommand extends Command {
         String meetingDateAndTime = newMeetingInformation[2].strip();
         String meetingLocation = newMeetingInformation[3].strip();
 
-        ArrayList<Person> arrayOfPeopleToMeet = convertNameToPerson(model, peopleToMeet);
+        ArrayList<Person> arrayOfPeopleToMeet = Meeting.convertNameToPerson(model, peopleToMeet);
+
         Meeting newMeeting = model.createNewMeeting(arrayOfPeopleToMeet, meetingTitle,
             meetingDateAndTime, meetingLocation);
         model.addMeeting(newMeeting);

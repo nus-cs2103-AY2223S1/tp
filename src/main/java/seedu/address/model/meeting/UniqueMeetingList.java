@@ -75,10 +75,10 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent Meeting from the list.
+     * The meeting must exist in the list.
      */
-    public void remove(Person toRemove) {
+    public void remove(Meeting toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new MeetingNotFoundException();
