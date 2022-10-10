@@ -18,7 +18,6 @@ import tracko.model.order.Order;
  */
 public class AddOrderCommand extends MultiLevelCommand {
 
-
     public static final String COMMAND_WORD = "addo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Initiates an order to add to TrackO. \n"

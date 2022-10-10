@@ -22,8 +22,8 @@ public class Quantity {
         this.quantity = quantity;
     }
 
-    public static boolean isValidQuantity(int quantity) {
-        return !(quantity < 0);
+    public static boolean isValidQuantity(int test) {
+        return !(test < 0);
     }
 
     public Integer getQuantity() {
@@ -45,7 +45,7 @@ public class Quantity {
             return false;
         }
 
-        Quantity otherPair = (Quantity) other;
-        return this.equals(otherPair.getQuantity());
+        Quantity otherQuantity = (Quantity) other;
+        return this.equals(otherQuantity.getQuantity());
     }
 }

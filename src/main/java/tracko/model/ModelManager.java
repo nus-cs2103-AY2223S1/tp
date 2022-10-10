@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import tracko.commons.core.GuiSettings;
 import tracko.commons.core.LogsCenter;
 import tracko.model.items.Item;
@@ -20,6 +22,7 @@ public class ModelManager implements Model {
 
     private final TrackO trackO;
     private final UserPrefs userPrefs;
+    private final FilteredList<Item> filteredItems;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -32,6 +35,7 @@ public class ModelManager implements Model {
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.trackO = new TrackO(trackO);
+        this.filteredItems = new FilteredList<>(this.trackO.getInventoryList());
     }
 
     public ModelManager() {
@@ -108,6 +112,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Item> getFilteredItemList() {
+        return trackO.getInventoryList();
+    }
+
+    @Override
+    public void updateFilteredItemList(Predicate<Item> predicate) {
+        requireNonNull(predicate);
+        filteredItems.setPredicate(predicate);
+    }
+
+    @Override
+    public int getFilteredItemListSize() {
+        return filteredItems.size();
+    }
+
     public void deleteItem(Item item) {
         trackO.deleteItem(item);
     }
