@@ -16,11 +16,7 @@ import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
-import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.*;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**
@@ -66,7 +62,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
