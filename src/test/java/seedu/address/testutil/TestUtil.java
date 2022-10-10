@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -51,5 +52,16 @@ public class TestUtil {
      */
     public static Person getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns a typical address book having typical persons and typical appointments
+     * @return The typical address book.
+     */
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook addressBook = new AddressBook();
+        TypicalPersons.getTypicalPersons().stream().forEach(p -> addressBook.addPerson(p));
+        TypicalAppointments.getTypicalAppointments().stream().forEach(a -> addressBook.addAppointment(a));
+        return addressBook;
     }
 }

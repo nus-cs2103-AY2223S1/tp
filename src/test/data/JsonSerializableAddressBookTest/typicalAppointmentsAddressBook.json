@@ -1,0 +1,44 @@
+{
+  "persons": [],
+  "appointments": [{
+      "name" : "Alice Pauline",
+      "medicalTest" : "gastric fluid analysis",
+      "slot" : "2022-11-01 08:00",
+      "doctor" : "Edith Hilton"
+  }, {
+      "name" : "Benson Meier",
+      "medicalTest" : "kidney function test",
+      "slot" : "2023-01-21 08:30",
+      "doctor" : "Milly Everett"
+  },{
+      "name" : "Carl Kurz",
+      "medicalTest" : "liver function test",
+      "slot" : "2022-11-01 08:00",
+      "doctor" : "Fannie Lambert"
+  },{
+      "name" : "Daniel Meier",
+      "medicalTest" : "lumbar puncture",
+      "slot" : "2022-11-01 08:00",
+      "doctor" : "Zainab Gibbons"
+  },{
+      "name" : "Elle Meyer",
+      "medicalTest" : "malabsorption test",
+      "slot" : "2022-11-01 08:00",
+      "doctor" : "Nadia Guzman"
+  },{
+      "name" : "Fiona Kunz",
+      "medicalTest" : "pap smear",
+      "slot" : "2022-11-01 08:00",
+      "doctor" : "Lucy Poole"
+  },{
+      "name" : "Amy Bee",
+      "medicalTest" : "glucose tolerance test",
+      "slot" : "2024-03-19 15:45",
+      "doctor" : "Kaitlyn Dorsey Caitie"
+  },{
+      "name" : "Bob Choo",
+      "medicalTest" : "cephalin-cholesterol flocculation",
+      "slot" : "2023-05-10 09:15",
+      "doctor" : "Amy Decker"
+  }]
+}
