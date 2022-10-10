@@ -86,7 +86,7 @@ Adds a scholarship application to the TrackAScholar.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A applicant can have any number of tags (including 0)
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -119,7 +119,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 Examples:
 *  `edit 1 n/John Cena e/johnCena@yahoo.com` Edits the name and email address of the 1st scholarship application to be `John Cena` and `johnCena@yahoo.com` respectively.
 
-*  `edit 2 n/Samuel Cheong t/` Edits the name of the 2nd person to be `Samuel Cheong` and clears all existing tags.
+*  `edit 2 n/Samuel Cheong t/` Edits the name of the 2nd applicant to be `Samuel Cheong` and clears all existing tags.
 
 ### Locating application status by name : `find`
 
@@ -146,11 +146,11 @@ Deletes the specified scholarship application from TrackAScholar
 Format: `delete INDEX`
 
 * Deletes the scholarship application at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed applicant list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd applicant in the address book.
 
 ### Clearing all entries : `clear`
 

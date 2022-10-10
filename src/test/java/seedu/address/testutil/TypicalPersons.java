@@ -18,50 +18,50 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Applicant;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Applicant} objects to be used in tests.
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
+    public static final Applicant ALICE = new PersonBuilder().withName("Alice Pauline")
             .withPhone("94351253").withEmail("alice@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending")
             .withTags("friends").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
+    public static final Applicant BENSON = new PersonBuilder().withName("Benson Meier")
             .withPhone("98765432").withEmail("johnd@example.com")
             .withScholarship("Merit").withApplicationStatus("accepted")
             .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
+    public static final Applicant CARL = new PersonBuilder().withName("Carl Kurz")
             .withPhone("95352563").withEmail("heinz@example.com")
             .withScholarship("Sports").withApplicationStatus("pending").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
+    public static final Applicant DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withPhone("87652533").withEmail("cornelia@example.com")
             .withScholarship("Arts").withApplicationStatus("rejected").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
+    public static final Applicant ELLE = new PersonBuilder().withName("Elle Meyer")
             .withPhone("9482224").withEmail("werner@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
+    public static final Applicant FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withPhone("9482427").withEmail("lydia@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best")
+    public static final Applicant GEORGE = new PersonBuilder().withName("George Best")
             .withPhone("9482442").withEmail("anna@example.com")
             .withScholarship("Global Merit").withApplicationStatus("accepted").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
+    public static final Applicant HOON = new PersonBuilder().withName("Hoon Meier")
             .withPhone("8482424").withEmail("stefan@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
+    public static final Applicant IDA = new PersonBuilder().withName("Ida Mueller")
             .withPhone("8482131").withEmail("hans@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+    // Manually added - Applicant's details found in {@code CommandTestUtil}
+    public static final Applicant AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withScholarship(VALID_SCHOLARSHIP_AMY)
             .withApplicationStatus(VALID_APPLICATION_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    public static final Applicant BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withScholarship(VALID_SCHOLARSHIP_BOB)
             .withApplicationStatus(VALID_APPLICATION_STATUS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
@@ -75,13 +75,13 @@ public class TypicalPersons {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+        for (Applicant applicant : getTypicalPersons()) {
+            ab.addPerson(applicant);
         }
         return ab;
     }
 
-    public static List<Person> getTypicalPersons() {
+    public static List<Applicant> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

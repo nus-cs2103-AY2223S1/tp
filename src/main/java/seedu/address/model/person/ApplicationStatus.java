@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's application status in the address book.
+ * Represents a Applicant's application status in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidApplicationStatus(String)}
  */
 public class ApplicationStatus {

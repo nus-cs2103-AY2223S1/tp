@@ -8,7 +8,7 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Applicant}'s {@code Status} matches the keyword given.
  */
-public class ApplicationStatusPredicate implements Predicate<Person> {
+public class ApplicationStatusPredicate implements Predicate<Applicant> {
     private final String keyword;
 
     public ApplicationStatusPredicate(String keyword) {
@@ -16,8 +16,8 @@ public class ApplicationStatusPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return StringUtil.containsWordIgnoreCase(person
+    public boolean test(Applicant applicant) {
+        return StringUtil.containsWordIgnoreCase(applicant
                 .getApplicationStatus().applicationStatus, keyword);
     }
 

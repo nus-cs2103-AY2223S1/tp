@@ -10,10 +10,10 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Applicant in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Applicant {
 
     // Identity fields
     private final Name name;
@@ -28,8 +28,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Scholarship scholarship,
-                  ApplicationStatus applicationStatus, Set<Tag> tags) {
+    public Applicant(Name name, Phone phone, Email email, Scholarship scholarship,
+                     ApplicationStatus applicationStatus, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, scholarship, applicationStatus, tags);
         this.name = name;
         this.phone = phone;
@@ -71,13 +71,13 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Applicant otherApplicant) {
+        if (otherApplicant == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherApplicant != null
+                && otherApplicant.getName().equals(getName());
     }
 
     /**
@@ -90,17 +90,17 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Applicant)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getScholarship().equals(getScholarship())
-                && otherPerson.getApplicationStatus().equals(getApplicationStatus())
-                && otherPerson.getTags().equals(getTags());
+        Applicant otherApplicant = (Applicant) other;
+        return otherApplicant.getName().equals(getName())
+                && otherApplicant.getPhone().equals(getPhone())
+                && otherApplicant.getEmail().equals(getEmail())
+                && otherApplicant.getScholarship().equals(getScholarship())
+                && otherApplicant.getApplicationStatus().equals(getApplicationStatus())
+                && otherApplicant.getTags().equals(getTags());
     }
 
     @Override
