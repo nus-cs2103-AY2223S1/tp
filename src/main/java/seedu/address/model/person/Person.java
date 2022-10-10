@@ -26,6 +26,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Gender gender;
+    private final Cap cap;
     private final University university;
     private final Job job;
     private final Set<Tag> tags = new HashSet<>();
@@ -36,6 +37,7 @@ public class Person {
     public Person(Name name, Phone phone, Email email,
                   Address address,
                   Gender gender,
+                  Cap cap,
                   University university,
                   Id id,
                   Title title,
@@ -43,6 +45,7 @@ public class Person {
         requireAllNonNull(name, phone, email,
             address,
             gender,
+            cap,
             university,
             tags);
         this.name = name;
@@ -50,6 +53,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.gender = gender;
+        this.cap = cap;
         this.university = university;
         this.job = new Job(id, title);
         this.tags.addAll(tags);
@@ -73,6 +77,10 @@ public class Person {
 
     public Gender getGender() {
         return gender;
+    }
+
+    public Cap getCap() {
+        return cap;
     }
 
     public University getUniversity() {
@@ -124,6 +132,7 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getGender().equals(getGender())
+                && otherPerson.getCap().equals(getCap())
                 && otherPerson.getUniversity().equals(getUniversity())
                 && otherPerson.getJob().equals(getJob())
                 && otherPerson.getTags().equals(getTags());
@@ -134,6 +143,7 @@ public class Person {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address,
                 gender,
+                cap,
                 university,
                 job,
                 tags);
@@ -151,6 +161,8 @@ public class Person {
                 .append(getAddress())
                 .append("; Gender: ")
                 .append(getGender())
+                .append("; CAP: ")
+                .append(getCap())
                 .append("; University: ")
                 .append(getUniversity())
                 .append("; Job ID: ")
