@@ -35,7 +35,7 @@ public class ModuleDescriptionTest {
         assertTrue(ModuleDescription.isValidDescription("No TAs for this module"));
         assertTrue(ModuleDescription.isValidDescription("No bellcurve module"));
         assertTrue(ModuleDescription.isValidDescription("T")); // one character
-        assertTrue(ModuleDescription.isValidDescription("Prerequisites are CS2105 " +
-                "CS2107 CS2103T CS2102 CS2101 CS2100")); // long description
+        assertTrue(ModuleDescription.isValidDescription("Prerequisites are CS2105 "
+                + "CS2107 CS2103T CS2102 CS2101 CS2100")); // long description
     }
 }
