@@ -56,6 +56,7 @@
                   </image>
                </ImageView>
             </graphic></Label>
+        <FlowPane fx:id="appointments" />
     </VBox>
       <VBox minHeight="105.0" GridPane.columnIndex="1">
          <children>
@@ -68,7 +69,7 @@
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../../../../Downloads/icons8-calendar-24%20(1).png" />
+                              <Image url="@../images/calendar.png" />
                            </image></ImageView>
                      </graphic>
                   </Label>
@@ -84,7 +85,7 @@
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../../Downloads/icons8-calendar-24%20(1).png" />
+                        <Image url="@../images/calendar.png" />
                      </image>
                   </ImageView>
                </graphic></Label>
@@ -92,7 +93,7 @@
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../../Downloads/icons8-clock-24.png" />
+                        <Image url="@../images/clock.png" />
                      </image>
                   </ImageView>
                </graphic></Label>
