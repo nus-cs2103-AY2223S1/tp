@@ -18,8 +18,7 @@ import seedu.address.model.module.Module;
 public class AddModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
-
-    //TODO update
+    
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + MODULE_COMMAND_IDENTIFIER + " "
             + ": Adds a person to the address book. "
             + "Parameters: "
