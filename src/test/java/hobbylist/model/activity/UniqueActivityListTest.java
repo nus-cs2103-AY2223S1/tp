@@ -41,8 +41,7 @@ public class UniqueActivityListTest {
     @Test
     public void contains_activityWithSameIdentityFieldsInList_returnsTrue() {
         uniqueActivityList.add(TypicalActivities.ACTIVITY_A);
-        Activity editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withDescription(VALID_DESCRIPTION_BOXING)
-                .withTags(VALID_TAG_ENTERTAINMENT)
+        Activity editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A)
                 .build();
         assertTrue(uniqueActivityList.contains(editedA));
     }
