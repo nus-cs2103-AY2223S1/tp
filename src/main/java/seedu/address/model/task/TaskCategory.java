@@ -65,5 +65,5 @@ public class TaskCategory {
                 && ((TaskCategory) other).taskCategoryType.equals(this.taskCategoryType)
         );
     }
-    
+
 }
