@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -48,8 +46,8 @@ public class ModuleCard extends UiPart<Region> {
         super(FXML);
         this.module = module;
         id.setText(displayedIndex + ". ");
-        moduleCode.setText(module.getModuleCode().value);
-        moduleTitle.setText(module.getModuleTitle().value);
+        moduleCode.setText(module.getModuleCodeAsUpperCaseString());
+        moduleTitle.setText(module.getModuleTitleAsUpperCaseString());
         // ToDo: Add Ui components for tasks and links.
     }
 
