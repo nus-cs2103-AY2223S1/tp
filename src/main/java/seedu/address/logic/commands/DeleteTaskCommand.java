@@ -58,6 +58,7 @@ public class DeleteTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
+        // TODO: update according to new implementation on TaskList#delete
         Task deletedTask = updatedTaskList.delete(taskIndex.getZeroBased());
 
         Person editedPerson = new Person(

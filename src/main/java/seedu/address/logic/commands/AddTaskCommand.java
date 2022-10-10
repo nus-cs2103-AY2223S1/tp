@@ -53,8 +53,7 @@ public class AddTaskCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        TaskList updatedTaskList = personToEdit.getTasks();
-        updatedTaskList.add(task);
+        TaskList updatedTaskList = personToEdit.getTasks().add(task);
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), updatedTaskList, personToEdit.getTags());
