@@ -42,6 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane assignments;
+    @FXML
+    private FlowPane personGroup;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -62,6 +64,10 @@ public class PersonCard extends UiPart<Region> {
                     String assignment = key + " : " + value + " | ";
                     assignments.getChildren().add(new Label(assignment));
                 });
+        person.getPersonGroups().stream()
+                .sorted(Comparator.comparing(group -> group.getGroupName()))
+                .forEach(group -> personGroup.getChildren()
+                        .add((new Label(" | " + group + " | "))));
     }
 
     @Override
