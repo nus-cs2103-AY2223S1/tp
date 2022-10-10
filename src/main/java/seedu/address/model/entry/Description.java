@@ -55,3 +55,4 @@ public class Description {
         return fullDescription.hashCode();
     }
 }
+
