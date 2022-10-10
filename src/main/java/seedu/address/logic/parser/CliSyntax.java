@@ -17,6 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_HOSPITAL_WING = new Prefix("hw/");
     public static final Prefix PREFIX_HOSPITAL_WING_PARSER = new Prefix("/hw");
     public static final Prefix PREFIX_FLOOR_NUMBER = new Prefix("fn/");
+    public static final Prefix PREFIX_FLOOR_NUMBER_PARSER = new Prefix("/fn");
     public static final Prefix PREFIX_WARD_NUMBER = new Prefix("wn/");
     public static final Prefix PREFIX_MEDICATION = new Prefix("m/");
 
