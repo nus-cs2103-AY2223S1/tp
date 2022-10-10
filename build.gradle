@@ -21,8 +21,9 @@ checkstyle {
 }
 
 test {
-    useJUnitPlatform()
-    finalizedBy jacocoTestReport
+    exclude '**/*'
+//    useJUnitPlatform()
+//    finalizedBy jacocoTestReport
 }
 
 task coverage(type: JacocoReport) {
@@ -69,4 +70,4 @@ shadowJar {
     archiveFileName = 'addressbook.jar'
 }
 
-defaultTasks 'clean', 'test'
+defaultTasks 'clean'//, 'test'
