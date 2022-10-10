@@ -5,6 +5,7 @@
     "email": "invalid@email!3e",
     "address": "4th street",
     "gender": "Male",
+    "graduationDate": "05-2024",
     "university": "NUS"
   } ]
 }

@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADUATION_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADUATION_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -22,6 +24,7 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 
+
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
@@ -33,6 +36,7 @@ public class TypicalPersons {
         .withEmail("alice@example.com")
         .withPhone("94351253")
         .withGender("Female")
+        .withGraduationDate("05-2024")
         .withUniversity("Singapore University")
         .withTags("interview", "rejected")
         .build();
@@ -42,6 +46,7 @@ public class TypicalPersons {
         .withEmail("johnd@example.com")
         .withPhone("98765432")
         .withGender("Male")
+        .withGraduationDate("05-2024")
         .withUniversity("NUS")
         .withTags("KIV")
         .build();
@@ -50,6 +55,7 @@ public class TypicalPersons {
         .withEmail("heinz@example.com")
         .withAddress("wall street")
         .withGender("Male")
+        .withGraduationDate("05-2024")
         .withUniversity("SUTD")
         .build();
     public static final Person DANIEL = new PersonBuilder()
@@ -58,6 +64,7 @@ public class TypicalPersons {
         .withEmail("cornelia@example.com")
         .withAddress("10th street")
         .withGender("Male")
+        .withGraduationDate("05-2024")
         .withUniversity("SMU")
         .withTags("friends")
         .build();
@@ -67,6 +74,7 @@ public class TypicalPersons {
         .withEmail("werner@example.com")
         .withAddress("michegan ave")
         .withGender("Female")
+        .withGraduationDate("05-2024")
         .withUniversity("Lasalle")
         .build();
     public static final Person FIONA = new PersonBuilder()
@@ -75,6 +83,7 @@ public class TypicalPersons {
         .withEmail("lydia@example.com")
         .withAddress("little tokyo")
         .withGender("Female")
+        .withGraduationDate("05-2024")
         .withUniversity("Nanyang Polytechnic")
         .build();
     public static final Person GEORGE = new PersonBuilder()
@@ -83,6 +92,7 @@ public class TypicalPersons {
         .withEmail("anna@example.com")
         .withAddress("4th street")
         .withGender("Male")
+        .withGraduationDate("05-2024")
         .withUniversity("Temasek Polytechnic")
         .build();
 
@@ -93,14 +103,18 @@ public class TypicalPersons {
         .withEmail("stefan@example.com")
         .withAddress("little india")
         .withGender("Male")
-        .withUniversity("UI").build();
+        .withGraduationDate("05-2024")
+        .withUniversity("UI")
+        .build();
     public static final Person IDA = new PersonBuilder()
         .withName("Ida Mueller")
         .withPhone("8482131")
         .withEmail("hans@example.com")
         .withAddress("chicago ave")
         .withGender("Female")
-        .withUniversity("SUTD").build();
+        .withGraduationDate("05-2024")
+        .withUniversity("SUTD")
+        .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder()
@@ -109,6 +123,7 @@ public class TypicalPersons {
         .withEmail(VALID_EMAIL_AMY)
         .withAddress(VALID_ADDRESS_AMY)
         .withGender(VALID_GENDER_AMY)
+        .withGraduationDate(VALID_GRADUATION_DATE_AMY)
         .withUniversity(VALID_UNIVERSITY_AMY)
         .withTags(VALID_TAG_REJECTED)
         .build();
@@ -118,6 +133,7 @@ public class TypicalPersons {
         .withEmail(VALID_EMAIL_BOB)
         .withAddress(VALID_ADDRESS_BOB)
         .withGender(VALID_GENDER_BOB)
+        .withGraduationDate(VALID_GRADUATION_DATE_BOB)
         .withUniversity(VALID_UNIVERSITY_BOB)
         .withTags(VALID_TAG_KIV, VALID_TAG_REJECTED)
         .build();

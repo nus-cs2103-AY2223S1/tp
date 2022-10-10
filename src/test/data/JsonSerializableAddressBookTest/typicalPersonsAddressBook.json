@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "gender": "Female",
+    "graduationDate": "05-2024",
     "university": "Singapore University",
     "tagged" : [ "interview", "rejected" ]
   }, {
@@ -14,6 +15,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "gender": "Male",
+    "graduationDate": "05-2024",
     "university": "NUS",
     "tagged" : [ "KIV" ]
   }, {
@@ -22,6 +24,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "gender": "Male",
+    "graduationDate": "05-2024",
     "university": "SUTD",
     "tagged" : [ ]
   }, {
@@ -30,6 +33,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "gender": "Male",
+    "graduationDate": "05-2024",
     "university": "SMU",
     "tagged" : [ "friends" ]
   }, {
@@ -38,6 +42,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "gender": "Female",
+    "graduationDate": "05-2024",
     "university": "Lasalle",
     "tagged" : [ ]
   }, {
@@ -46,6 +51,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "gender": "Female",
+    "graduationDate": "05-2024",
     "university": "Nanyang Polytechnic",
     "tagged" : [ ]
   }, {
@@ -54,6 +60,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "gender": "Male",
+    "graduationDate": "05-2024",
     "university": "Temasek Polytechnic",
     "tagged" : [ ]
   } ]

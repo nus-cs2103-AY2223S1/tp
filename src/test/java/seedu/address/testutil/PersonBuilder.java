@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GraduationDate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -23,6 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GENDER = "Female";
+    public static final String DEFAULT_GRADUATION_DATE = "05-2024";
     public static final String DEFAULT_UNIVERSITY = "NUS";
 
     private Name name;
@@ -30,6 +32,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Gender gender;
+    private GraduationDate graduationDate;
     private University university;
     private Set<Tag> tags;
 
@@ -42,6 +45,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         gender = new Gender(DEFAULT_GENDER);
+        graduationDate = new GraduationDate(DEFAULT_GRADUATION_DATE);
         university = new University(DEFAULT_UNIVERSITY);
         tags = new HashSet<>();
     }
@@ -55,6 +59,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         gender = personToCopy.getGender();
+        graduationDate = personToCopy.getGraduationDate();
         university = personToCopy.getUniversity();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -108,6 +113,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code GraduationDate} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGraduationDate(String graduationDate) {
+        this.graduationDate = new GraduationDate(graduationDate);
+        return this;
+    }
+
+    /**
      * Sets the {@code University} of the {@code Person} that we are building.
      */
     public PersonBuilder withUniversity(String university) {
@@ -122,6 +135,7 @@ public class PersonBuilder {
         return new Person(name, phone, email,
             address,
             gender,
+            graduationDate,
             university,
             tags);
     }

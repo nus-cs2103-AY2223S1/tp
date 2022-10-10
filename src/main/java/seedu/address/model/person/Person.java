@@ -23,6 +23,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Gender gender;
+    private final GraduationDate graduationDate;
     private final University university;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -32,11 +33,13 @@ public class Person {
     public Person(Name name, Phone phone, Email email,
                   Address address,
                   Gender gender,
+                  GraduationDate graduationDate,
                   University university,
                   Set<Tag> tags) {
         requireAllNonNull(name, phone, email,
             address,
             gender,
+            graduationDate,
             university,
             tags);
         this.name = name;
@@ -44,6 +47,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.gender = gender;
+        this.graduationDate = graduationDate;
         this.university = university;
         this.tags.addAll(tags);
     }
@@ -66,6 +70,10 @@ public class Person {
 
     public Gender getGender() {
         return gender;
+    }
+
+    public GraduationDate getGraduationDate() {
+        return graduationDate;
     }
 
     public University getUniversity() {
@@ -113,6 +121,7 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getGender().equals(getGender())
+                && otherPerson.getGraduationDate().equals(getGraduationDate())
                 && otherPerson.getUniversity().equals(getUniversity())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -120,7 +129,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, gender, university, tags);
+        return Objects.hash(name, phone, email, address, gender, graduationDate, university, tags);
     }
 
     @Override
@@ -135,6 +144,8 @@ public class Person {
                 .append(getAddress())
                 .append("; Gender: ")
                 .append(getGender())
+                .append("; Graduation Date: ")
+                .append(getGraduationDate())
                 .append("; University: ")
                 .append(getUniversity());
 

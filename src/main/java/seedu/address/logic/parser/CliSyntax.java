@@ -13,5 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_GENDER = new Prefix("gender/");
     public static final Prefix PREFIX_UNIVERSITY = new Prefix("university/");
     public static final Prefix PREFIX_TAG = new Prefix("tag/");
+    public static final Prefix PREFIX_GRADUATION_DATE = new Prefix("graduationDate/");
 
 }

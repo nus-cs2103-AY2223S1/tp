@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GraduationDate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.University;
@@ -28,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GENDER = "4Male";
+    private static final String INVALID_GRADUATION_DATE = "asdf-12";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_UNIVERSITY = "n()S";
 
@@ -36,6 +38,7 @@ public class ParserUtilTest {
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_GENDER = "Male";
+    private static final String VALID_GRADUATION_DATE = "05-2024";
     private static final String VALID_UNIVERSITY = "ite";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -175,6 +178,29 @@ public class ParserUtilTest {
         String genderWithWhitespace = WHITESPACE + VALID_GENDER + WHITESPACE;
         Gender expectedGender = new Gender(VALID_GENDER);
         assertEquals(expectedGender, ParserUtil.parseGender(genderWithWhitespace));
+    }
+
+    @Test
+    public void parseGraduationDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGraduationDate((String) null));
+    }
+
+    @Test
+    public void parseGraduationDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGraduationDate(INVALID_GRADUATION_DATE));
+    }
+
+    @Test
+    public void parseGraduationDate_validValueWithoutWhitespace_returnsGraduationDate() throws Exception {
+        GraduationDate expectedGraduationDate = new GraduationDate(VALID_GRADUATION_DATE);
+        assertEquals(expectedGraduationDate, ParserUtil.parseGraduationDate(VALID_GRADUATION_DATE));
+    }
+
+    @Test
+    public void parseGraduationDate_validValueWithWhitespace_returnsTrimmedGraduationDate() throws Exception {
+        String graduationDateWithWhitespace = WHITESPACE + VALID_GRADUATION_DATE + WHITESPACE;
+        GraduationDate expectedGraduationDate = new GraduationDate(VALID_GRADUATION_DATE);
+        assertEquals(expectedGraduationDate, ParserUtil.parseGraduationDate(graduationDateWithWhitespace));
     }
 
     @Test
