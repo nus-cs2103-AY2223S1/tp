@@ -1,4 +1,4 @@
-package seedu.taassist.model.uniquelist;
+package seedu.taassist.model.uniquelist.exceptions;
 
 /**
  * Signals that the operation will result in duplicate elements (Elements are considered duplicates if they have

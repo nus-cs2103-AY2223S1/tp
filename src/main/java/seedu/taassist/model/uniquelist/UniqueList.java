@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.taassist.model.uniquelist.exceptions.DuplicateElementException;
+import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
 
 /**
  * A generic list of {@code Identity<T>} elements that enforces uniqueness between its elements and doesn't allow nulls.

@@ -11,6 +11,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.taassist.model.uniquelist.exceptions.DuplicateElementException;
+import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
+
 class UniqueListTest {
 
     private static final Item DUMMY1 = new Item("dummy 1", "dummy data 1");

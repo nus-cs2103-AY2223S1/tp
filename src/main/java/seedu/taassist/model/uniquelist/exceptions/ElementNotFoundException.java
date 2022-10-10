@@ -1,4 +1,4 @@
-package seedu.taassist.model.uniquelist;
+package seedu.taassist.model.uniquelist.exceptions;
 
 /**
  * Signals that the operation is unable to find the specified element.

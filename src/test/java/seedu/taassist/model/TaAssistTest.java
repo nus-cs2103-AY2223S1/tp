@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
-import seedu.taassist.model.uniquelist.DuplicateElementException;
+import seedu.taassist.model.uniquelist.exceptions.DuplicateElementException;
 import seedu.taassist.testutil.StudentBuilder;
 
 public class TaAssistTest {
