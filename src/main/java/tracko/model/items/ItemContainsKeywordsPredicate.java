@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import tracko.commons.util.StringUtil;
 
+/**
+ * Tests that a {@code Item}'s {@code ItemName} matches any of the keywords given.
+ */
 public class ItemContainsKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
 

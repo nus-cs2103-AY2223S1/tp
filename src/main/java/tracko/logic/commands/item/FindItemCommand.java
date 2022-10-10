@@ -9,7 +9,7 @@ import tracko.model.Model;
 import tracko.model.items.ItemContainsKeywordsPredicate;
 
 /**
- * Finds items in the inventory list with a list of keywords.
+ * Finds items in the inventory list that match a list of keywords.
  * This command is not case-sensitive, and is a single-level command.
  */
 public class FindItemCommand extends Command {

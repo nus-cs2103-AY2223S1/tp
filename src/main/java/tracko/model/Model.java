@@ -81,15 +81,22 @@ public interface Model {
      */
     void addItem(Item item);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list.
+     */
     ObservableList<Item> getFilteredItemList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered item list to filter by the given {@code predicate}.
+     *
+     * @param predicate The predicate given to filter the items in the item list.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredItemList(Predicate<Item> predicate);
 
+    /**
+     * Returns the number of items in the filtered item list
+     */
     int getFilteredItemListSize();
 
 }

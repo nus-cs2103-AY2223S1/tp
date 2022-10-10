@@ -9,8 +9,16 @@ import tracko.logic.parser.Parser;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.items.ItemContainsKeywordsPredicate;
 
+/**
+ * Parses input arguments and creates a FindItemCommand object.
+ */
 public class FindItemCommandParser implements Parser<FindItemCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindItemCommand
+     * and returns an FindItemCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     public FindItemCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
