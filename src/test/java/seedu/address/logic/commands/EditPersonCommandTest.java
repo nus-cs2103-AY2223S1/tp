@@ -125,7 +125,7 @@ public class EditPersonCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditPersonCommand editPersonCommand = new EditPersonCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editPersonCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editPersonCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -142,7 +142,7 @@ public class EditPersonCommandTest {
         EditPersonCommand editPersonCommand = new EditPersonCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editPersonCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editPersonCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
 
     @Test
