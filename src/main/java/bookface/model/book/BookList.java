@@ -86,8 +86,8 @@ public class BookList implements Iterable<Book> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this 
-                || (other instanceof BookList 
+        return other == this
+                || (other instanceof BookList
                 && internalList.equals(((BookList) other).internalList));
     }
 
@@ -121,7 +121,5 @@ public class BookList implements Iterable<Book> {
     /**
      * TODO: Empties the BookList.
      */
-    public void clear() {
-        
-    }
+    public void clear() {}
 }
