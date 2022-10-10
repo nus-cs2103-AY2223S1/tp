@@ -61,8 +61,8 @@ public class PersonTableView extends UiPart<Region> {
         this.indexColumn.setCellFactory(this::populateIndexColumn);
         this.nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         this.phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        this.addressColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        this.emailColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        this.addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+        this.emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         this.tagsColumn.setCellValueFactory(new PropertyValueFactory<>("tags"));
     }
 
