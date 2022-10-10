@@ -49,7 +49,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAllAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -82,9 +82,18 @@ public class LogicManager implements Logic {
         return model.getFilteredTuitionClassList();
     }
 
+    public Path getTutorAddressBookFilePath() {
+        return model.getTutorAddressBookFilePath();
+    }
+
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getStudentAddressBookFilePath() {
+        return model.getStudentAddressBookFilePath();
+    }
+
+    @Override
+    public Path getTuitionClassAddressBookFilePath() {
+        return model.getTuitionClassAddressBookFilePath();
     }
 
     @Override

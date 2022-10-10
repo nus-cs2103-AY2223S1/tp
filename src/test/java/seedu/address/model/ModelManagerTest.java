@@ -34,17 +34,18 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
     }
 
+    // Test is only for tutor file path, can add student and tuition class also.
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setTutorAddressBookFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setTutorAddressBookFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,15 +62,39 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setTutorAddressBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setTutorAddressBookFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setStudentAddressBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setStudentAddressBookFilePath(null));
+    }
+
+    @Test
+    public void setTuitionClassAddressBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setTuitionClassAddressBookFilePath(null));
+    }
+
+    @Test
+    public void setTutorAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setTutorAddressBookFilePath(path);
+        assertEquals(path, modelManager.getTutorAddressBookFilePath());
+    }
+
+    @Test
+    public void setStudentAddressBookFilePath_validPath_setsAddressBookFilePath() {
+        Path path = Paths.get("address/book/file/path");
+        modelManager.setStudentAddressBookFilePath(path);
+        assertEquals(path, modelManager.getStudentAddressBookFilePath());
+    }
+
+    @Test
+    public void setTuitionClassAddressBookFilePath_validPath_setsAddressBookFilePath() {
+        Path path = Paths.get("address/book/file/path");
+        modelManager.setTuitionClassAddressBookFilePath(path);
+        assertEquals(path, modelManager.getTuitionClassAddressBookFilePath());
     }
 
     @Test
@@ -147,7 +172,14 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+
+        differentUserPrefs.setTutorAddressBookFilePath(Paths.get("differentTutorFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+
+        differentUserPrefs.setStudentAddressBookFilePath(Paths.get("differentStudentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+
+        differentUserPrefs.setTuitionClassAddressBookFilePath(Paths.get("differentTuitionClassFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
 }

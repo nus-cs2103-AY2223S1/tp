@@ -48,9 +48,19 @@ public interface Logic {
     ObservableList<TuitionClass> getFilteredTuitionClassList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' tutor address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTutorAddressBookFilePath();
+
+    /**
+     * Returns the user prefs' student address book file path.
+     */
+    Path getStudentAddressBookFilePath();
+
+    /**
+     * Returns the user prefs' tuition class address book file path.
+     */
+    Path getTuitionClassAddressBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

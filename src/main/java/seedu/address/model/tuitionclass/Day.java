@@ -29,6 +29,18 @@ public enum Day {
         throw new InvalidDayException();
     }
 
+    /**
+     * Returns true if a given string is a valid value in enum Day.
+     */
+    public static boolean isValidDay(String day) {
+        for (Day d : Day.values()) {
+            if (d.name().equals(day)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return name().charAt(0) + name().substring(1).toLowerCase();

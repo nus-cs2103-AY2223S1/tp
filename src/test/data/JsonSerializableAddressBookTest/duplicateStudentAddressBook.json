@@ -1,0 +1,19 @@
+{
+  "students" : [ {
+    "name" : "rick",
+    "phone" : "90183747",
+    "email" : "somewhere@gmail.com",
+    "address" : "treehouse",
+    "school" : "River Valley High School",
+    "level" : "SECONDARY2",
+    "nextOfKin" : "Janice Lam"
+  }, {
+    "name" : "rick",
+    "phone" : "90183747",
+    "email" : "somewhere@gmail.com",
+    "address" : "treehouse",
+    "school" : "River Valley High School",
+    "level" : "SECONDARY2",
+    "nextOfKin" : "Janice Lam"
+  } ]
+}
