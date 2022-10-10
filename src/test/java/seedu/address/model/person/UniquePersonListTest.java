@@ -15,7 +15,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TreeSet;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -243,11 +242,7 @@ public class UniquePersonListTest {
         assertNotEquals(sampleA, sampleB);
     }
 
-    /**
-     * Disabled until test methods has been updated for upgraded tags.
-     */
     @Test
-    @Disabled
     public void sortByTag_success() {
         UniquePersonList sampleA = new UniquePersonList();
         UniquePersonList sampleB = new UniquePersonList();
@@ -255,9 +250,9 @@ public class UniquePersonListTest {
         sampleA.add(BENSON);
         sampleB.add(BENSON);
         sampleB.add(ALICE);
-        sampleA.sortByTag(new Tag("owesMoney"), true);
-        assertEquals(sampleA, sampleB);
         sampleA.sortByTag(new Tag("owesMoney"), false);
+        assertEquals(sampleA, sampleB);
+        sampleA.sortByTag(new Tag("owesMoney"), true);
         assertNotEquals(sampleA, sampleB);
     }
 }
