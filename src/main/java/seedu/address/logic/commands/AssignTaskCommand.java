@@ -11,12 +11,12 @@ import java.util.HashMap;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Assignment;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Adds an assignment of an existing person in a group in the address book.
  */
 public class AssignTaskCommand extends Command {
 
