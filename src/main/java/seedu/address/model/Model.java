@@ -85,4 +85,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
+
+    /**
+     * Adds the given staff.
+     * {@code Staff} must not already exist in the address book. 
+     */
+    void addStaff(Staff staff);
 }
