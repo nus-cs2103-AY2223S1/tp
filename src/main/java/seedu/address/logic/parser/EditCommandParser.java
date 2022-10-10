@@ -36,9 +36,12 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_REWARD, PREFIX_TAG);
         Phone phoneIdentifier = null;
         Email emailIdentifier = null;
+        Prefix firstPrefix = argMultimap.getFirstPrefix();
 
         try {
-            if (argMultimap.getPhoneIdentifier()) {
+            if (!(firstPrefix.equals(PREFIX_PHONE) || firstPrefix.equals(PREFIX_EMAIL))) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            } else if (argMultimap.getPhoneIdentifier()) {
                 phoneIdentifier = ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(0));
             } else if (argMultimap.getEmailIdentifier()) {
                 emailIdentifier = ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(0));
