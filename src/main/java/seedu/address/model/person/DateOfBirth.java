@@ -12,7 +12,7 @@ public class DateOfBirth {
     public static final String MESSAGE_CONSTRAINTS = "Date of birth must be in format: ";
     private static final String MESSAGE_ARGUMENT_CONSTRAINTS = "compareTo() of DateOfBirth must take in argument of type LocalDate";
 
-    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
 
     public final LocalDate date;
@@ -56,7 +56,6 @@ public class DateOfBirth {
         if (!(other instanceof LocalDate)) {
             throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
         }
-        if ()
         return this.date.compareTo((LocalDate) other);
     }
 
