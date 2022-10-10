@@ -171,19 +171,19 @@ public class EditCommandParserTest {
 
         // gender
         userInput = targetIndex.getOneBased() + GENDER_DESC_AMY;
-        descriptor = new ResidentDescriptorBuilder().withRoom(VALID_GENDER_AMY).build();
+        descriptor = new ResidentDescriptorBuilder().withGender(VALID_GENDER_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // house
         userInput = targetIndex.getOneBased() + HOUSE_DESC_AMY;
-        descriptor = new ResidentDescriptorBuilder().withRoom(VALID_HOUSE_AMY).build();
+        descriptor = new ResidentDescriptorBuilder().withHouse(VALID_HOUSE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // matric number
         userInput = targetIndex.getOneBased() + MATRIC_NUMBER_DESC_AMY;
-        descriptor = new ResidentDescriptorBuilder().withRoom(VALID_MATRIC_NUMBER_AMY).build();
+        descriptor = new ResidentDescriptorBuilder().withMatricNumber(VALID_MATRIC_NUMBER_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

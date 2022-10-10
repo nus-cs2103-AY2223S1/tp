@@ -34,9 +34,11 @@ public class House {
         return test.matches(VALIDATION_REGEX);
     }
 
-
-    @Override
-    public String toString() {
+    /**
+     * Returns the house string as a full word.
+     * @return the house string as a full word.
+     */
+    public String asFullWord() {
         switch (house) {
         case ("D"):
             return "Draco";
@@ -51,6 +53,11 @@ public class House {
         default:
             return null;
         }
+    }
+
+    @Override
+    public String toString() {
+        return house;
     }
 
     @Override

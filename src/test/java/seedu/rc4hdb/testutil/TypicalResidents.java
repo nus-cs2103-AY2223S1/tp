@@ -43,7 +43,7 @@ public class TypicalResidents {
             .withName("Benson Meier")
             .withPhone("98765432")
             .withEmail("benson@example.com")
-            .withRoom("12-00")
+            .withRoom("12-01")
             .withGender("M")
             .withHouse("U")
             .withMatricNumber("A0728394U")
@@ -67,7 +67,7 @@ public class TypicalResidents {
             .withTags("friends").build();
     public static final Resident ELLE = new ResidentBuilder()
             .withName("Elle Meyer")
-            .withPhone("9482224")
+            .withPhone("94822241")
             .withEmail("werner@example.com")
             .withRoom("06-22")
             .withGender("F")
@@ -75,7 +75,7 @@ public class TypicalResidents {
             .withMatricNumber("A0827394U").build();
     public static final Resident FIONA = new ResidentBuilder()
             .withName("Fiona Kunz")
-            .withPhone("9482427")
+            .withPhone("94824271")
             .withEmail("lydia@example.com")
             .withRoom("03-7")
             .withGender("F")
@@ -83,7 +83,7 @@ public class TypicalResidents {
             .withMatricNumber("A0827360U").build();
     public static final Resident GEORGE = new ResidentBuilder()
             .withName("George Best")
-            .withPhone("9482442")
+            .withPhone("94824421")
             .withEmail("anna@example.com")
             .withRoom("09-14")
             .withGender("M")
@@ -93,7 +93,7 @@ public class TypicalResidents {
     // Manually added
     public static final Resident HOON = new ResidentBuilder()
             .withName("Hoon Meier")
-            .withPhone("8482424")
+            .withPhone("84824241")
             .withEmail("stefan@example.com")
             .withRoom("06-33")
             .withGender("M")
@@ -101,7 +101,7 @@ public class TypicalResidents {
             .withMatricNumber("A0299388U").build();
     public static final Resident IDA = new ResidentBuilder()
             .withName("Ida Mueller")
-            .withPhone("8482131")
+            .withPhone("84821311")
             .withEmail("hans@example.com")
             .withRoom("02-14")
             .withGender("F")

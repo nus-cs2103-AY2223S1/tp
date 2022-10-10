@@ -25,7 +25,7 @@ public class ResidentBuilder {
     public static final String DEFAULT_ROOM = "03-10";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_HOUSE = "D";
-    public static final String DEFAULT_MATRICNUMBER = "A0123456U";
+    public static final String DEFAULT_MATRIC_NUMBER = "A0123456U";
 
     private Name name;
     private Phone phone;
@@ -46,7 +46,7 @@ public class ResidentBuilder {
         room = new Room(DEFAULT_ROOM);
         gender = new Gender(DEFAULT_GENDER);
         house = new House(DEFAULT_HOUSE);
-        matricNumber = new MatricNumber(DEFAULT_MATRICNUMBER);
+        matricNumber = new MatricNumber(DEFAULT_MATRIC_NUMBER);
         tags = new HashSet<>();
     }
 
@@ -61,7 +61,7 @@ public class ResidentBuilder {
         gender = residentToCopy.getGender();
         house = residentToCopy.getHouse();
         matricNumber = residentToCopy.getMatricNumber();
-        tags = new HashSet<>(residentToCopy.getTags());
+        tags = residentToCopy.getTags();
     }
 
     /**
@@ -113,7 +113,7 @@ public class ResidentBuilder {
     }
 
     /**
-     * Sets the {@code MatricNumeber} of the {@code Resident} that we are building.
+     * Sets the {@code MatricNumber} of the {@code Resident} that we are building.
      */
     public ResidentBuilder withMatricNumber(String matricNumber) {
         this.matricNumber = new MatricNumber(matricNumber);

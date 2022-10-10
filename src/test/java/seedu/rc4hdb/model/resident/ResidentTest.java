@@ -3,6 +3,7 @@ package seedu.rc4hdb.model.resident;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_GENDER_BOB;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_HOUSE_BOB;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_MATRIC_NUMBER_BOB;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_NAME_BOB;
@@ -87,7 +88,7 @@ public class ResidentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different gender -> returns false
-        editedAlice = new ResidentBuilder(ALICE).withGender(VALID_ROOM_BOB).build();
+        editedAlice = new ResidentBuilder(ALICE).withGender(VALID_GENDER_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different house -> returns false

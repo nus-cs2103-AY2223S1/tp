@@ -34,14 +34,21 @@ public class Gender {
         return test.matches(VALIDATION_REGEX);
     }
 
-
-    @Override
-    public String toString() {
+    /**
+     * Returns gender string as a full word.
+     * @return gender string as a full word.
+     */
+    public String asFullWord() {
         if (gender == "M") {
             return "Male";
         } else {
             return "Female";
         }
+    }
+
+    @Override
+    public String toString() {
+        return gender;
     }
 
     @Override

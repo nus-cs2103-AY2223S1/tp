@@ -92,7 +92,7 @@ public class ParserUtil {
     public static Room parseRoom(String room) throws ParseException {
         requireNonNull(room);
         String trimmedRoom = room.trim();
-        if (!Room.isValidRoom(room)) {
+        if (!Room.isValidRoom(trimmedRoom)) {
             throw new ParseException(Room.MESSAGE_CONSTRAINTS);
         }
         return new Room(trimmedRoom);
@@ -107,7 +107,7 @@ public class ParserUtil {
     public static Gender parseGender(String gender) throws ParseException {
         requireNonNull(gender);
         String trimmedGender = gender.trim();
-        if (!Gender.isValidGender(gender)) {
+        if (!Gender.isValidGender(trimmedGender)) {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(trimmedGender);
@@ -122,7 +122,7 @@ public class ParserUtil {
     public static House parseHouse(String house) throws ParseException {
         requireNonNull(house);
         String trimmedHouse = house.trim();
-        if (!House.isValidHouse(house)) {
+        if (!House.isValidHouse(trimmedHouse)) {
             throw new ParseException(House.MESSAGE_CONSTRAINTS);
         }
         return new House(trimmedHouse);
@@ -137,7 +137,7 @@ public class ParserUtil {
     public static MatricNumber parseMatricNumber(String matricNumber) throws ParseException {
         requireNonNull(matricNumber);
         String trimmedMatricNumber = matricNumber.trim();
-        if (!MatricNumber.isValidMatricNumber(matricNumber)) {
+        if (!MatricNumber.isValidMatricNumber(trimmedMatricNumber)) {
             throw new ParseException(MatricNumber.MESSAGE_CONSTRAINTS);
         }
         return new MatricNumber(trimmedMatricNumber);

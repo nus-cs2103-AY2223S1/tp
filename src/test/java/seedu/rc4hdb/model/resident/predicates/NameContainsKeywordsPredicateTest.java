@@ -68,10 +68,10 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ResidentBuilder().withName("Alice Bob").build()));
 
         // Keywords match all other fields, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "11-04", "F", "A",
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "11-04", "F", "D",
                 "A0431582U"));
-        assertFalse(predicate.test(new ResidentBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withRoom("11-04").withGender("F").withHouse("A")
+        assertFalse(predicate.test(new ResidentBuilder().withName("Alice").withPhone("12345678")
+                .withEmail("alice@email.com").withRoom("11-04").withGender("F").withHouse("D")
                 .withMatricNumber("A0431582U").build()));
     }
 }

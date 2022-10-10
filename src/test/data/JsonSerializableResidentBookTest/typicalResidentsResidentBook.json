@@ -13,7 +13,7 @@
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "benson@example.com",
-    "room" : "12-00",
+    "room" : "12-01",
     "gender" : "M",
     "house" : "U",
     "matricNumber": "A0728394U",
@@ -38,7 +38,7 @@
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
-    "phone" : "9482224",
+    "phone" : "94822241",
     "email" : "werner@example.com",
     "room" : "06-22",
     "gender" : "F",
@@ -47,7 +47,7 @@
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "phone" : "94824271",
     "email" : "lydia@example.com",
     "room" : "03-7",
     "gender" : "F",
@@ -56,7 +56,7 @@
     "tagged" : [ ]
   }, {
     "name" : "George Best",
-    "phone" : "9482442",
+    "phone" : "94824421",
     "email" : "anna@example.com",
     "room" : "09-14",
     "gender" : "M",
