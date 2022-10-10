@@ -19,6 +19,10 @@ public class DeleteClientCommand extends ClientCommand {
 
     public static final String COMMAND_FLAG = "-d";
 
+    // TODO: Better message
+    public static final String MESSAGE_SUCCESS = "Added Client";
+
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the client identified by the index number used in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
@@ -32,6 +36,7 @@ public class DeleteClientCommand extends ClientCommand {
         this.targetIndex = targetIndex;
     }
 
+    // TODO: implementation
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);

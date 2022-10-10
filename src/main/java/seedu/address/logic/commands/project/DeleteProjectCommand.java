@@ -17,6 +17,10 @@ public class DeleteProjectCommand extends ProjectCommand {
 
     public static final String COMMAND_FLAG = "-d";
 
+    // TODO: Better message
+    public static final String MESSAGE_SUCCESS = "Edited Project";
+
+    // TODO: implement
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         return null;

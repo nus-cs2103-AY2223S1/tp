@@ -18,7 +18,7 @@ public class ListProjectCommand extends ListCommand {
 
     public static final String MESSAGE_SUCCESS = "Listed all projects";
 
-
+    // TODO: revise implementation
     @Override
     public CommandResult execute(Model model, Ui ui) {
         requireNonNull(model);

@@ -10,6 +10,10 @@ public class EditIssueCommand extends IssueCommand {
 
     public static final String COMMAND_FLAG = "-e";
 
+    // TODO: Better message
+    public static final String MESSAGE_SUCCESS = "Edited Issue";
+
+    // TODO: implement
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         return null;

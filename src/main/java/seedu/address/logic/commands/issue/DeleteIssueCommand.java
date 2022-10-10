@@ -10,6 +10,10 @@ public class DeleteIssueCommand extends IssueCommand {
 
     public static final String COMMAND_FLAG = "-d";
 
+    // TODO: Better message
+    public static final String MESSAGE_SUCCESS = "Deleted Issue";
+
+    // TODO: implement
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         return null;

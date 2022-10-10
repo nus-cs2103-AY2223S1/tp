@@ -48,6 +48,7 @@ public class AddClientCommand extends ClientCommand {
         toAdd = person;
     }
 
+    // TODO: revise implementation
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);

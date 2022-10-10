@@ -35,6 +35,9 @@ public class EditClientCommand extends ClientCommand {
 
     public static final String COMMAND_FLAG = "-e";
 
+    // TODO: Better message
+    public static final String MESSAGE_SUCCESS = "Added Client";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -55,6 +58,7 @@ public class EditClientCommand extends ClientCommand {
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
+    // TODO: revise implementation
     /**
      * @param index of the client in the filtered client list to edit
      * @param editPersonDescriptor details to edit the client with

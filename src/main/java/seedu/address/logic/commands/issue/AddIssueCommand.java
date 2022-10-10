@@ -10,6 +10,10 @@ public class AddIssueCommand extends IssueCommand {
 
     public static final String COMMAND_FLAG = "-a";
 
+    // TODO: Better message
+    public static final String MESSAGE_SUCCESS = "Added Issue";
+
+    // TODO: implement
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         return null;

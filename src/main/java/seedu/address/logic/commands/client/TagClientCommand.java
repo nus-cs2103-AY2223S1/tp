@@ -12,6 +12,10 @@ public class TagClientCommand extends ClientCommand {
 
     public static final String COMMAND_FLAG = "-t";
 
+    // TODO: Better message
+    public static final String MESSAGE_SUCCESS = "Added Client";
+
+    // TODO: implement
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         return null;

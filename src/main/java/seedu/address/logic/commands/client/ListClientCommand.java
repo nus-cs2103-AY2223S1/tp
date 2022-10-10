@@ -16,8 +16,8 @@ public class ListClientCommand extends ClientCommand {
     public static final String COMMAND_FLAG = "-l";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
-
-
+    
+    // TODO: revise implementation
     @Override
     public CommandResult execute(Model model, Ui ui) {
         requireNonNull(model);
