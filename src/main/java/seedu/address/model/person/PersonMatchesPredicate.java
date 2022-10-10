@@ -2,14 +2,13 @@ package seedu.address.model.person;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.tag.Tag;
+
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Name} and {@code ModuleCode} matches any of the keywords given.
  */
 public class PersonMatchesPredicate implements Predicate<Person> {
 
@@ -19,6 +18,10 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     private boolean hasNamesList;
     private boolean hasModuleList;
 
+    /**
+     * Creates a PersonMatchesPredicate object and initialises
+     * the required variables.
+     */
     public PersonMatchesPredicate() {
         namesList = new ArrayList<>();
         moduleList = new ArrayList<>();
@@ -31,6 +34,13 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         return nameMatches(person) && moduleMatches(person);
     }
 
+    /**
+     * Checks if a person's name matches any of the provided names.
+     * Returns true if no names have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified names
+     * @return true if a match is found or if no names were provided
+     */
     public boolean nameMatches(Person person) {
         if (!hasNamesList) {
             return true;
@@ -40,35 +50,31 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
     }
 
+    /**
+     * Checks if a person's module matches any of the provided modules.
+     * Returns true if no modules have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified modules
+     * @return true if a match is found or if no modules were provided
+     */
     public boolean moduleMatches(Person person) {
         if (!hasModuleList) {
             return true;
         }
-        Professor prof = null;
-        TeachingAssistant ta = null;
         if (person instanceof Student) {
             return false;
-        } else if (person instanceof Professor) {
-            prof = (Professor) person;
-        } else {
-            ta = (TeachingAssistant) person;
         }
-
-        if (!hasModuleList) {
-            return true;
-        } else {
-            Professor finalProf = prof;
-            TeachingAssistant finalTa = ta;
-            return moduleList.stream()
-                    .anyMatch(module -> {
-                        if (person instanceof Professor) {
-                            return StringUtil.containsWordIgnoreCase(finalProf.getModuleCode().toString(), module);
-                        } else if (person instanceof TeachingAssistant) {
-                            return StringUtil.containsWordIgnoreCase(finalTa.getModuleCode().toString(), module);
-                        }
-                        return false;
-                    });
-        }
+        return moduleList.stream()
+                .anyMatch(module -> {
+                    if (person instanceof Professor) {
+                        Professor prof = (Professor) person;
+                        return StringUtil.containsWordIgnoreCase(prof.getModuleCode().toString(), module);
+                    } else if (person instanceof TeachingAssistant) {
+                        TeachingAssistant ta = (TeachingAssistant) person;
+                        return StringUtil.containsWordIgnoreCase(ta.getModuleCode().toString(), module);
+                    }
+                    return false;
+                });
     }
 
     public boolean hasNamesListPredicate() {
