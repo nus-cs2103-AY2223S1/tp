@@ -2,11 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FLOOR_NUMBER_PARSER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOSPITAL_WING_PARSER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INPATIENT_PARSER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_PARSER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTPATIENT_PARSER;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,8 +14,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.GetInpatientCommand;
-import seedu.address.logic.commands.GetOutpatientCommand;
+import seedu.address.logic.commands.GetCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,8 +28,6 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Pattern GET_COMMAND_FORMAT = Pattern
-            .compile("(?<commandWord>[get\\s]+)(?<prefix>[/a-z]+)(?<arguments>[a-zA-Z-0-9\\s]*)");
 
     /**
      * Parses user input into command for execution.
@@ -45,34 +37,6 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-
-        final Matcher getMatcher = GET_COMMAND_FORMAT.matcher(userInput.trim());
-
-        if (getMatcher.matches()) {
-            final String prefix = getMatcher.group("prefix").trim();
-            final Prefix prefixes = new Prefix(prefix);
-            final String arguments = getMatcher.group("arguments").trim();
-
-            if (prefixes.equals(PREFIX_HOSPITAL_WING_PARSER)) {
-                return new GetHospitalWingCommandParser().parse(arguments);
-            }
-
-            if (prefixes.equals(PREFIX_FLOOR_NUMBER_PARSER)) {
-                return new GetFloorNumberParser().parse(arguments);
-            }
-
-            if (prefixes.equals(PREFIX_NAME_PARSER)) {
-                return new FindCommandParser().parse(arguments);
-            }
-
-            if (prefixes.equals(PREFIX_INPATIENT_PARSER)) {
-                return new GetInpatientCommand();
-            }
-
-            if (prefixes.equals(PREFIX_OUTPATIENT_PARSER)) {
-                return new GetOutpatientCommand();
-            }
-        }
 
         final Matcher basicCommandMatcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
 
@@ -108,12 +72,15 @@ public class AddressBookParser {
             case CountCommand.COMMAND_WORD:
                 return new CountCommand();
 
+            case GetCommand.COMMAND_WORD:
+                return new GetCommandParser().parse(arguments);
+
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
         }
 
-        if (!basicCommandMatcher.matches() && !getMatcher.matches()) {
+        if (!basicCommandMatcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
         return null;
