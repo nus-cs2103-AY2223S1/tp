@@ -1,15 +1,16 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ClassGroupCommand;
-import seedu.address.model.student.ClassGroup;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.ClassGroupCommand;
+import seedu.address.model.student.ClassGroup;
 
 class ClassGroupCommandParserTest {
 
@@ -21,7 +22,8 @@ class ClassGroupCommandParserTest {
         // have remark
         Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_CLASS_GROUP + nonEmptyClassGroup;
-        ClassGroupCommand expectedCommand = new ClassGroupCommand(INDEX_FIRST_STUDENT, new ClassGroup(nonEmptyClassGroup));
+        ClassGroupCommand expectedCommand =
+                new ClassGroupCommand(INDEX_FIRST_STUDENT, new ClassGroup(nonEmptyClassGroup));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no remark

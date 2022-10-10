@@ -1,9 +1,9 @@
 package seedu.address.model.student;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import org.junit.jupiter.api.Test;
 
 class ClassGroupTest {
     private final String nonEmptyClassGroup = "Some class group.";
