@@ -1,6 +1,8 @@
 package seedu.guest.model.guest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.testutil.Assert.assertThrows;
 
@@ -35,6 +37,13 @@ public class NumberOfGuestsTest {
         assertTrue(NumberOfGuests.isValidNumberOfGuests("2"));
         assertTrue(NumberOfGuests.isValidNumberOfGuests("3"));
         assertTrue(NumberOfGuests.isValidNumberOfGuests("4"));
+    }
+
+    @Test
+    public void hashcode() {
+        NumberOfGuests tempNumberOfGuests = new NumberOfGuests("4");
+        assertEquals(tempNumberOfGuests, new NumberOfGuests("4"));
+        assertNotEquals(tempNumberOfGuests, new NumberOfGuests("3"));
     }
 }
 

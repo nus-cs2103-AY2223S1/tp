@@ -1,6 +1,8 @@
 package seedu.guest.model.guest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -70,5 +72,30 @@ public class GuestTest {
         // different email -> returns false
         editedAlice = new GuestBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void hashcode() {
+        // same values -> returns true
+        Guest aliceCopy = new GuestBuilder(ALICE).build();
+        assertEquals(ALICE.hashCode(), aliceCopy.hashCode());
+
+        // same object -> returns true
+        assertEquals(ALICE.hashCode(), aliceCopy.hashCode());
+
+        // different person -> returns false
+        assertNotEquals(ALICE.hashCode(), BOB.hashCode());
+
+        // different name -> returns false
+        Guest editedAlice = new GuestBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different phone -> returns false
+        editedAlice = new GuestBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different email -> returns false
+        editedAlice = new GuestBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
     }
 }

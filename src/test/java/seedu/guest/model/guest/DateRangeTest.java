@@ -1,6 +1,8 @@
 package seedu.guest.model.guest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.testutil.Assert.assertThrows;
 
@@ -41,5 +43,12 @@ public class DateRangeTest {
         assertTrue(DateRange.isValidDateRange("13/09/22 - 14/09/22")); // 1 day
         assertTrue(DateRange.isValidDateRange("30/09/22 - 01/10/22")); // across months
         assertTrue(DateRange.isValidDateRange("13/09/22 - 15/09/23")); // across years
+    }
+
+    @Test
+    public void hashcode() {
+        DateRange tempDateRange = new DateRange("13/09/22 - 14/09/22");
+        assertEquals(tempDateRange, new DateRange("13/09/22 - 14/09/22"));
+        assertNotEquals(tempDateRange, new DateRange("13/09/22 - 15/09/22"));
     }
 }

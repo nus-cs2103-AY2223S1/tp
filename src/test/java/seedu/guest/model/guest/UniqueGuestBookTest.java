@@ -2,6 +2,7 @@ package seedu.guest.model.guest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.testutil.Assert.assertThrows;
 import static seedu.guest.testutil.TypicalPersons.ALICE;
@@ -162,5 +163,17 @@ public class UniqueGuestBookTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueGuestList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void hashcode() {
+        assertEquals(uniqueGuestList.hashCode(), new UniqueGuestList().hashCode());
+        uniqueGuestList.add(ALICE);
+        assertNotEquals(uniqueGuestList.hashCode(), new UniqueGuestList().hashCode());
+    }
+
+    @Test
+    public void iterator() {
+        assertNotEquals(uniqueGuestList.iterator(), new UniqueGuestList().iterator());
     }
 }

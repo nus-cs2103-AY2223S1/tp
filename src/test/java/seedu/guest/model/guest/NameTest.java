@@ -1,6 +1,8 @@
 package seedu.guest.model.guest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.testutil.Assert.assertThrows;
 
@@ -36,5 +38,12 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void hashcode() {
+        Name tempName = new Name("peter jack");
+        assertEquals(tempName, new Name("peter jack"));
+        assertNotEquals(tempName, new Name("peter the 2nd"));
     }
 }

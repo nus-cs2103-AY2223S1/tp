@@ -2,6 +2,7 @@ package seedu.guest.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.testutil.Assert.assertThrows;
 import static seedu.guest.testutil.TypicalPersons.ALICE;
@@ -95,4 +96,10 @@ public class GuestBookTest {
         }
     }
 
+    @Test
+    public void hashcode() {
+        assertEquals(guestBook.hashCode(), new GuestBook().hashCode());
+        guestBook.addGuest(ALICE);
+        assertNotEquals(guestBook.hashCode(), new GuestBook().hashCode());
+    }
 }
