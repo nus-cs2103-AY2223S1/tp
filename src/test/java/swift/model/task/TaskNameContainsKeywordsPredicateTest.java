@@ -42,7 +42,7 @@ public class TaskNameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_taskNameContainsKeywords_returnsTrue() {
         // One keyword
         TaskNameContainsKeywordsPredicate predicate = new TaskNameContainsKeywordsPredicate(Collections.singletonList("discuss"));
         assertTrue(predicate.test(new TaskBuilder().withTaskName("discuss meeting").build()));
@@ -61,7 +61,7 @@ public class TaskNameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_taskNameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         TaskNameContainsKeywordsPredicate predicate = new TaskNameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new TaskBuilder().withTaskName("discuss meeting").build()));

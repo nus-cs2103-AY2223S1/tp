@@ -20,7 +20,7 @@ public class FindTaskCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindTaskCommand() {
         // no leading and trailing whitespaces
         FindTaskCommand expectedFindTaskCommand =
                 new FindTaskCommand(new TaskNameContainsKeywordsPredicate(Arrays.asList("discuss", "meeting")));
