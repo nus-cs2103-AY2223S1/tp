@@ -24,4 +24,9 @@ public class ListTasksCommand extends TaskCommand {
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListTasksCommand);
+    }
 }
