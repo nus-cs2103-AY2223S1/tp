@@ -69,7 +69,7 @@ public class RecordList {
                 || (other instanceof RecordList // instanceof handles nulls
                 && recordList.equals(((RecordList) other).recordList)); // state check
     }
-
+    
     @Override
     public int hashCode() {
         return recordList.hashCode();
