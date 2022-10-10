@@ -8,7 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 public class UniqueEventList implements Iterable<Event> {
 
@@ -28,6 +29,31 @@ public class UniqueEventList implements Iterable<Event> {
 //            throw new Exception("Duplicate Event Exception");
 //        }
         internalList.add(toAdd);
+    }
+
+    public void setEvents(UniqueEventList replacementEvents) {
+        requireNonNull(replacementEvents);
+        internalList.setAll(replacementEvents.internalList);
+    }
+
+    public void setEvents(List<Event> replacementEvents) {
+        requireAllNonNull(replacementEvents);
+        internalList.setAll(replacementEvents);
+    }
+
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        if (!target.equals(editedEvent)) {
+            throw new DuplicatePersonException();
+        }
+
+        internalList.set(index, editedEvent);
     }
 
     //TODO: add method for editing Event at specified index here
