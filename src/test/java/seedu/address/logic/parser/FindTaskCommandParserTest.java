@@ -1,9 +1,7 @@
 package seedu.address.logic.parser;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindTaskCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
 import java.util.Arrays;

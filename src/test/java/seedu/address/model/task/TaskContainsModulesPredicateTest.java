@@ -1,10 +1,7 @@
 package seedu.address.model.task;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.PersonBuilder;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
