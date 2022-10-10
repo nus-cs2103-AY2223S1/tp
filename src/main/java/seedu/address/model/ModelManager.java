@@ -112,9 +112,30 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //========== Team Accessors ===============================================================================
     @Override
     public Team getTeam() {
         return addressBook.getTeam();
+    }
+
+    @Override
+    public void setTeam(Team teamToSet) {
+        addressBook.setTeam(teamToSet);
+    }
+
+    @Override
+    public void addTeam(Team teamToAdd) {
+        addressBook.addTeam(teamToAdd);
+    }
+
+    @Override
+    public void deleteTeam(Team teamToDelete) {
+        addressBook.deleteTeam(teamToDelete);
+    }
+
+    @Override
+    public ObservableList<Team> getTeamList() {
+        return addressBook.getTeamList();
     }
 
     //=========== Filtered Person List Accessors =============================================================

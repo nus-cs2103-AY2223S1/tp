@@ -108,7 +108,8 @@ public class TaskList implements Iterable<Task> {
     @Override
     public String toString() {
         if (internalList.isEmpty()) {
-            return NO_TASKS;
+            //Set it to an empty string for now so that the team commands will only show the name of the team.
+            return ""; //return NO_TASKS;
         }
         StringBuilder sb = new StringBuilder();
         int i = 1;
