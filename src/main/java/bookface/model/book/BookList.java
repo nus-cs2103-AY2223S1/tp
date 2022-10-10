@@ -17,8 +17,7 @@ import javafx.collections.ObservableList;
 public class BookList extends ArrayList<Book> implements Iterable<Book> {
     private ArrayList<Book> bookList = new ArrayList<>();
 
-    private final ObservableList<Book> internalList = FXCollections.observableArrayList();
-    //private final ObservableList<Book> internalList = FXCollections.observableArrayList(bookList); doesnt work?
+    private final ObservableList<Book> internalList = FXCollections.observableArrayList(bookList);
     private final ObservableList<Book> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 

@@ -12,7 +12,7 @@ import bookface.model.Model;
 import bookface.model.book.Book;
 
 /**
- * Command to delete a book from the booklist
+ * Command to delete a book from the booklist using it's displayed index from the book list
  */
 public class DeleteBookCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "book";

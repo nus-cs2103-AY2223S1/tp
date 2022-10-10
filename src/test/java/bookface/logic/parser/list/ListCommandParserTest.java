@@ -6,6 +6,7 @@ import static bookface.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
+import bookface.logic.commands.list.ListBooksCommand;
 import bookface.logic.commands.list.ListCommand;
 import bookface.logic.commands.list.ListUsersCommand;
 
@@ -16,6 +17,11 @@ public class ListCommandParserTest {
     @Test
     public void parse_validArgs_returnsListUsersCommand() {
         assertParseSuccess(parser, ListUsersCommand.COMMAND_WORD, new ListUsersCommand());
+    }
+
+    @Test
+    public void parse_validArgs_returnsListBooksCommand() {
+        assertParseSuccess(parser, ListBooksCommand.COMMAND_WORD, new ListBooksCommand());
     }
 
     @Test

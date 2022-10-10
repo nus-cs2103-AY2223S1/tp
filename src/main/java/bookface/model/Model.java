@@ -114,17 +114,11 @@ public interface Model {
      */
     void addBook(Book book);
 
-<<<<<<< HEAD
     /**
      * Deletes a book from BookFace records.
      * @param book book to be deleted from BookFace
      */
     void deleteBook(Book book);
 
-    /** Returns an unmodifiable view of the filtered book list */
-    ObservableList<Book> getFilteredBookList();
-=======
-
     void updateFilteredBookList(Predicate<Book> predicate);
->>>>>>> 1507ab73c1b4f2330f4a8197027c39be601377bf
 }
