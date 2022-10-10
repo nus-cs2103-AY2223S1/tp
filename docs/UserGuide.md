@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-InTrack is a **desktop app for managing your internship applications, optimized for use via a Command Line Interface** 
-(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InTrack can get your 
+InTrack is a **desktop app for managing your internship applications, optimized for use via a Command Line Interface**
+(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InTrack can get your
 internship management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -96,7 +96,7 @@ Format: `delete INDEX`
 * Deletes the internship application at the specified INDEX.
 * The index refers to the index number shown in the displayed internship list.
 * The index **must be a positive integer** 1, 2, 3, …
-  
+
 Examples:
 * `list` followed by `delete 1` deletes the 1st internship application in InTrack.
 

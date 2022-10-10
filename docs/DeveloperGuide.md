@@ -335,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a new internship application to the list. 
+1. User requests to add a new internship application to the list.
 2. InTrack adds the new internship application.
 
    Use case ends.
