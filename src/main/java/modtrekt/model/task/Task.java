@@ -1,25 +1,44 @@
 package modtrekt.model.task;
 
 /**
- * Represents a basic task in the task list.
+ * Represents a basic immutable task in the task list.
  * Ensures that necessary details are valid, present and non-null.
  */
 public class Task {
-
-    /** String representing description of task */
-    public final Description description;
+    /**
+     * String representing description of task
+     */
+    private final Description description;
+    private boolean isArchived;
 
     /**
      * Constructor for an instance of Task.
      *
      * @param description description of task
      */
-    public Task(Description description) {
+    public Task(Description description, boolean isArchived) {
         this.description = description;
+        this.isArchived = isArchived;
+    }
+
+    public Task(Description description) {
+        this(description, false);
     }
 
     public Description getDescription() {
         return this.description;
+    }
+
+    public boolean isArchived() {
+        return this.isArchived;
+    }
+
+    public void archive() {
+        this.isArchived = true;
+    }
+
+    public void unarchive() {
+        this.isArchived = false;
     }
 
     /**
@@ -29,10 +48,7 @@ public class Task {
         if (this == o) {
             return true;
         }
-
-        return o != null
-                && o.getDescription().equals(this.getDescription());
-
+        return o != null && o.getDescription().equals(this.getDescription()) && o.isArchived() == this.isArchived();
     }
 
     @Override
@@ -40,9 +56,7 @@ public class Task {
         if (this == other) {
             return true;
         }
-
-        return other != null && (other instanceof Task)
-                && ((Task) other).getDescription().equals(this.getDescription());
+        return (other instanceof Task) && this.isSameTask((Task) other);
     }
 
     @Override
