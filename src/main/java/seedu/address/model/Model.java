@@ -87,5 +87,9 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
+    void setTaskBook(ReadOnlyTaskBook taskBook);
+
+    ReadOnlyTaskBook getTaskBook();
+
     void addComment(Comment comment);
 }

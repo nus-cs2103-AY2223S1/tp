@@ -2,10 +2,14 @@ package seedu.address.model.comment;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
 
 import java.util.Iterator;
+import java.util.List;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class CommentList implements Iterable<Comment> {
     private final ObservableList<Comment> internalList = FXCollections.observableArrayList();
@@ -19,6 +23,12 @@ public class CommentList implements Iterable<Comment> {
     public void add(Comment toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+    }
+
+    public void setComments(List<Comment> comments) {
+        requireAllNonNull(comments);
+
+        internalList.setAll(comments);
     }
 
     /**

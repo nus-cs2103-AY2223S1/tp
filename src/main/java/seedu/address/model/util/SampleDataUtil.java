@@ -6,6 +6,11 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskBook;
+import seedu.address.model.TaskBook;
+import seedu.address.model.comment.Comment;
+import seedu.address.model.comment.CommentDescription;
+import seedu.address.model.comment.CommentTitle;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -40,12 +45,27 @@ public class SampleDataUtil {
         };
     }
 
+    public static Comment[] getSampleTasks() {
+        return new Comment[] {
+                new Comment(new CommentTitle("First comment"), new CommentDescription("First description")),
+                new Comment(new CommentTitle("Second comment"), new CommentDescription("Second description"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyTaskBook getSampleTaskBook() {
+        TaskBook sampleTb = new TaskBook();
+        for (Comment sampleTask : getSampleTasks()) {
+            sampleTb.addComment(sampleTask);
+        }
+        return sampleTb;
     }
 
     /**
