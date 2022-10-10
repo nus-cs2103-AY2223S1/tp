@@ -17,6 +17,19 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The list displayed updates to the current list **/
+    private final boolean list;
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean list) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.list = list;
+        this.showHelp = false;
+        this.exit = false;
+    }
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +37,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.list = false;
     }
 
     /**
@@ -46,6 +60,10 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isList() {
+        return list;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -60,12 +78,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && list == otherCommandResult.list;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, list);
     }
 
 }

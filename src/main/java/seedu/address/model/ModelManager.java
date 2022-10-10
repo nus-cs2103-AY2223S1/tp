@@ -12,6 +12,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +25,11 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
+    private final FilteredList<Tutor> filteredTutors;
+    private final FilteredList<TuitionClass> filteredTuitionClass;
+    /** the type of the current list **/
+    private LIST_TYPE type;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +41,11 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredTutors = new FilteredList<>(this.addressBook.getTutorList());
+        filteredTuitionClass = new FilteredList<>(this.addressBook.getTuitionClassList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
     }
 
     public ModelManager() {
@@ -127,6 +139,79 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+    /**
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
+    }
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Tutor} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Tutor> getFilteredTutorList() {
+        return filteredTutors;
+    }
+
+    @Override
+    public void updateFilteredTutorList(Predicate<Tutor> predicate) {
+        requireNonNull(predicate);
+        filteredTutors.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code TuitionClass} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<TuitionClass> getFilteredTuitionClassList() {
+        return filteredTuitionClass;
+    }
+
+    @Override
+    public void updateFilteredTuitionClassList(Predicate<TuitionClass> predicate) {
+        requireNonNull(predicate);
+        filteredTuitionClass.setPredicate(predicate);
+    }
+
+    //=========== List Type Accessors =============================================================
+
+    @Override
+    public void updateCurrentListType(LIST_TYPE type)
+    {
+        this.type = type;
+    }
+
+    @Override
+    public LIST_TYPE getCurrentListType()
+    {
+        return this.type;
+    }
+
+    @Override
+    public FilteredList<?> getCurrentList()
+    {
+        switch(this.type) {
+        case STUDENT_LIST:
+        return filteredStudents;
+        case TUTOR_LIST:
+        return filteredTutors;
+        case TUITIONCLASS_LIST:
+        return filteredTuitionClass;
+        default:
+        return filteredStudents;
+        }
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -146,5 +231,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }
