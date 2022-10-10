@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.staff.Staff;
 import seedu.address.model.tag.Tag;
 /**
  * Represents a Project in the address book.
@@ -107,5 +108,9 @@ public class Project {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    public void addStaff(Staff staff) {
+        // TODO Auto-generated method stub
     }
 }

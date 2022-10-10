@@ -1,11 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.staff;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a staff insurance in HR Pro Max++.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStaffInsurance(String)} (String)}
  */
 public class StaffInsurance {
     public static final String MESSAGE_CONSTRAINTS =
@@ -21,20 +21,20 @@ public class StaffInsurance {
     public final String staffInsurance;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code StaffName}.
      *
-     * @param insurance A valid name.
+     * @param insurance A valid StaffName.
      */
     public StaffInsurance(String insurance) {
         requireNonNull(insurance);
-        checkArgument(isValidName(insurance.toLowerCase()), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStaffInsurance(insurance.toLowerCase()), MESSAGE_CONSTRAINTS);
         staffInsurance = insurance;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid staff insurance.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidStaffInsurance(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
