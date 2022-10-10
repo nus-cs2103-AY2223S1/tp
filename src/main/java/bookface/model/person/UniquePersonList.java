@@ -7,7 +7,6 @@ import java.util.List;
 
 import bookface.commons.util.CollectionUtil;
 import bookface.model.book.Book;
-import bookface.model.book.exceptions.DuplicateBookException;
 import bookface.model.person.exceptions.DuplicatePersonException;
 import bookface.model.person.exceptions.PersonNotFoundException;
 import javafx.collections.FXCollections;
@@ -143,9 +142,9 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void loan(Person person, Book book) {
         CollectionUtil.requireAllNonNull(person, book);
-        if (person.hasSameLoanedBook(person, book.getTitle())) {
-            throw new DuplicateBookException();
-        }
+        //if (person.hasSameLoanedBook(person, book.getTitle())) {
+        //    throw new DuplicateBookException();
+        //}
         int index = internalList.indexOf(person);
         internalList.set(index, person);
     }
