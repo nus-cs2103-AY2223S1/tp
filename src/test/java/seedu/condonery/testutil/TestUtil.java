@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.model.Model;
-import seedu.condonery.model.person.Person;
+import seedu.condonery.model.property.Property;
 
 /**
  * A utility class for test cases.
@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the person in the {@code model}'s person list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
+    public static Property getProperty(Model model, Index index) {
         return model.getFilteredPropertyList().get(index.getZeroBased());
     }
 }

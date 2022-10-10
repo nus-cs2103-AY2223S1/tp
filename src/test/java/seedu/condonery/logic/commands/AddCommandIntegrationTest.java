@@ -1,8 +1,6 @@
 package seedu.condonery.logic.commands;
 
-import static seedu.condonery.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.condonery.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.condonery.testutil.TypicalPersons.getTypicalPropertyDirectory;
+import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
 import seedu.condonery.model.UserPrefs;
-import seedu.condonery.model.person.Person;
-import seedu.condonery.testutil.PersonBuilder;
+import seedu.condonery.model.property.Property;
+import seedu.condonery.testutil.PropertyBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -26,20 +24,21 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+    public void execute_newProperty_success() {
+        Property validProperty = new PropertyBuilder().build();
 
         Model expectedModel = new ModelManager(model.getPropertyDirectory(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addProperty(validProperty);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-            String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        CommandTestUtil.assertCommandSuccess(new AddCommand(validProperty), model,
+            String.format(AddCommand.MESSAGE_SUCCESS, validProperty), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getPropertyDirectory().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+    public void execute_duplicateProperty_throwsCommandException() {
+        Property personInList = model.getPropertyDirectory().getPropertyList().get(0);
+        CommandTestUtil.assertCommandFailure(
+                new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PROPERTY);
     }
 
 }

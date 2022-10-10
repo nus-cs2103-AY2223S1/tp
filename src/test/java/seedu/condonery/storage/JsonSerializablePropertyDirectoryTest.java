@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.condonery.commons.exceptions.IllegalValueException;
 import seedu.condonery.commons.util.JsonUtil;
 import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.testutil.TypicalPersons;
+import seedu.condonery.testutil.TypicalProperties;
 
 public class JsonSerializablePropertyDirectoryTest {
 
@@ -26,7 +26,7 @@ public class JsonSerializablePropertyDirectoryTest {
         JsonSerializablePropertyDirectory dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
             JsonSerializablePropertyDirectory.class).get();
         PropertyDirectory propertyDirectoryFromFile = dataFromFile.toModelType();
-        PropertyDirectory typicalPersonsPropertyDirectory = TypicalPersons.getTypicalPropertyDirectory();
+        PropertyDirectory typicalPersonsPropertyDirectory = TypicalProperties.getTypicalPropertyDirectory();
         assertEquals(propertyDirectoryFromFile, typicalPersonsPropertyDirectory);
     }
 
@@ -41,7 +41,7 @@ public class JsonSerializablePropertyDirectoryTest {
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
         JsonSerializablePropertyDirectory dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
             JsonSerializablePropertyDirectory.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializablePropertyDirectory.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializablePropertyDirectory.MESSAGE_DUPLICATE_PROPERTY,
             dataFromFile::toModelType);
     }
 

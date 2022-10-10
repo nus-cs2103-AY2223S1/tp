@@ -3,9 +3,7 @@ package seedu.condonery.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.testutil.Assert.assertThrows;
 
@@ -17,9 +15,9 @@ import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.person.NameContainsKeywordsPredicate;
-import seedu.condonery.model.person.Person;
-import seedu.condonery.testutil.EditPersonDescriptorBuilder;
+import seedu.condonery.model.property.NameContainsKeywordsPredicate;
+import seedu.condonery.model.property.Property;
+import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -39,33 +37,33 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String PHONE_DESC_AMY = " " + VALID_PHONE_AMY;
+    public static final String PHONE_DESC_BOB = " " + VALID_PHONE_BOB;
+    public static final String EMAIL_DESC_AMY = " " + VALID_EMAIL_AMY;
+    public static final String EMAIL_DESC_BOB = " " + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_PHONE_DESC = " " + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_EMAIL_DESC = " " + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditPropertyDescriptor DESC_AMY;
+    public static final EditCommand.EditPropertyDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+        DESC_AMY = new EditPropertyDescriptorBuilder().withName(VALID_NAME_AMY)
+            .withAddress(VALID_ADDRESS_AMY)
             .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+        DESC_BOB = new EditPropertyDescriptorBuilder().withName(VALID_NAME_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
@@ -105,7 +103,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         PropertyDirectory expectedPropertyDirectory = new PropertyDirectory(actualModel.getPropertyDirectory());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPropertyList());
+        List<Property> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPropertyList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedPropertyDirectory, actualModel.getPropertyDirectory());
@@ -116,12 +114,12 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showPropertyAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPropertyList().size());
 
-        Person person = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
+        Property person = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPropertyList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPropertyList().size());
     }

@@ -3,10 +3,10 @@ package seedu.condonery.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 import static seedu.condonery.testutil.Assert.assertThrows;
-import static seedu.condonery.testutil.TypicalPersons.ALICE;
-import static seedu.condonery.testutil.TypicalPersons.BENSON;
+import static seedu.condonery.testutil.TypicalProperties.OASIS;
+import static seedu.condonery.testutil.TypicalProperties.PINNACLE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.condonery.commons.core.GuiSettings;
-import seedu.condonery.model.person.NameContainsKeywordsPredicate;
+import seedu.condonery.model.property.NameContainsKeywordsPredicate;
 import seedu.condonery.testutil.PropertyDirectoryBuilder;
 
 public class ModelManagerTest {
@@ -73,30 +73,30 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasProperty_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasProperty(null));
     }
 
     @Test
-    public void hasPerson_personNotInPropertyDirectory_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasProperty_propertyNotInPropertyDirectory_returnsFalse() {
+        assertFalse(modelManager.hasProperty(PINNACLE));
     }
 
     @Test
-    public void hasPerson_personInPropertyDirectory_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasProperty_propertyInPropertyDirectory_returnsTrue() {
+        modelManager.addProperty(PINNACLE);
+        assertTrue(modelManager.hasProperty(PINNACLE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredPropertyList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPropertyList().remove(0));
     }
 
     @Test
     public void equals() {
         PropertyDirectory propertyDirectory =
-            new PropertyDirectoryBuilder().withPerson(ALICE).withPerson(BENSON).build();
+            new PropertyDirectoryBuilder().withProperty(PINNACLE).withProperty(OASIS).build();
         PropertyDirectory differentPropertyDirectory = new PropertyDirectory();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -118,12 +118,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentPropertyDirectory, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = PINNACLE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredPropertyList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(propertyDirectory, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
