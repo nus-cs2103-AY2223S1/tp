@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -55,8 +55,13 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         lessonPlan.setText(person.getLessonPlan().value);
-        homework.setText(person.getHomeworkList().shortDescription());
-        attendance.setText(person.getAttendanceList().shortDescription());
+        if (person.isFullView()) {
+            homework.setText(person.getHomeworkList().toString());
+            attendance.setText(person.getAttendanceList().toString());
+        } else {
+            homework.setText(person.getHomeworkList().shortDescription());
+            attendance.setText(person.getAttendanceList().shortDescription());
+        }
         gradeProgress.setText(person.getGradeProgressList().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

@@ -44,6 +44,13 @@ public class AttendanceList {
         description.append("...\n");
         return description.toString();
     }
+
+    /**
+     * Clears the attendance list.
+     */
+    public void clearList() {
+        attendanceList.clear();
+    }
     @Override
     public String toString() {
         StringBuilder description = new StringBuilder("Attendance: \n");
