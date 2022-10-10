@@ -51,6 +51,10 @@ public class Email {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean contains(String keyword) {
+        return value.toLowerCase().contains(keyword);
+    }
+
     @Override
     public String toString() {
         return value;
