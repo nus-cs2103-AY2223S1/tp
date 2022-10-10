@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import seedu.address.model.item.itemvalidator.ItemBoughtDateValidator;
+import seedu.address.model.item.validators.ItemBoughtDateValidator;
 
 /**
  * Represents an item date in an {@link Item}.

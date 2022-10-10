@@ -1,18 +1,17 @@
-package seedu.address.model.item;
+package seedu.address.model.item.validators;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.item.itemvalidator.ItemUnitValidator;
 
 public class ItemUnitValidatorTest {
     // TODO: Test for uniqueness of Item Unit
 
     @Test
     public void test_unitIsValidLength() {
-        assertTrue(ItemUnitValidator.isUnitBlank(""));
+        Assertions.assertTrue(ItemUnitValidator.isUnitBlank(""));
         assertFalse(ItemUnitValidator.isUnitBlank("a"));
         assertFalse(ItemUnitValidator.isUnitLengthMoreThanMaxLength("Lorem ipsum dolor si"));
         assertTrue(ItemUnitValidator.isUnitLengthMoreThanMaxLength("Lorem ipsum dolor sim"));

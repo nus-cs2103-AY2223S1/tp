@@ -2,7 +2,7 @@ package seedu.address.model.item;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.item.itemvalidator.ItemUnitValidator;
+import seedu.address.model.item.validators.ItemUnitValidator;
 
 
 /**

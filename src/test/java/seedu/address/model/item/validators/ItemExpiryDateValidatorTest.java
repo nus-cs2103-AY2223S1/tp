@@ -1,4 +1,4 @@
-package seedu.address.model.item;
+package seedu.address.model.item.validators;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,9 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.item.itemvalidator.ItemExpiryDateValidator;
 
 public class ItemExpiryDateValidatorTest {
 
@@ -17,7 +16,7 @@ public class ItemExpiryDateValidatorTest {
      */
     @Test
     public void isValidFormat() {
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("01-01-2000"));
+        Assertions.assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("01-01-2000"));
 
         // Delimiters
         assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("01/01/2000")); // Wrong delimiter 1

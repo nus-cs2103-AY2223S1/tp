@@ -2,7 +2,7 @@ package seedu.address.model.item;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.item.itemvalidator.ItemNameValidator;
+import seedu.address.model.item.validators.ItemNameValidator;
 
 /**
  * Represents an item name in an {@link Item}.

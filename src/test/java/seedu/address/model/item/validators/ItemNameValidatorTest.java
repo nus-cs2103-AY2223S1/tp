@@ -1,18 +1,17 @@
-package seedu.address.model.item;
+package seedu.address.model.item.validators;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.item.itemvalidator.ItemNameValidator;
 
 public class ItemNameValidatorTest {
     // TODO: Test for uniqueness of Item Name
 
     @Test
     public void test_nameIsValidLength() {
-        assertTrue(ItemNameValidator.isNameBlank(""));
+        Assertions.assertTrue(ItemNameValidator.isNameBlank(""));
         assertFalse(ItemNameValidator.isNameBlank("a"));
         assertFalse(ItemNameValidator.isNameLengthMoreThanMaxLength("Lorem ipsum dolor sit amet, "
                 + "consectetuer adipiscing elit. "

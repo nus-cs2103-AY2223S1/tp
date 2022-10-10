@@ -1,16 +1,15 @@
-package seedu.address.model.item;
+package seedu.address.model.item.validators;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.item.itemvalidator.ItemQuantityValidator;
 
 public class ItemQuantityValidatorTest {
     @Test
     public void test_quantityInValidRange() {
-        assertFalse(ItemQuantityValidator.isQuantityMoreThanMaxQuantity(0));
+        Assertions.assertFalse(ItemQuantityValidator.isQuantityMoreThanMaxQuantity(0));
         assertFalse(ItemQuantityValidator.isQuantityMoreThanMaxQuantity(100000));
         assertTrue(ItemQuantityValidator.isQuantityMoreThanMaxQuantity(100001));
 

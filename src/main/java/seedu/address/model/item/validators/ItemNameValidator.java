@@ -1,4 +1,4 @@
-package seedu.address.model.item.itemvalidator;
+package seedu.address.model.item.validators;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
