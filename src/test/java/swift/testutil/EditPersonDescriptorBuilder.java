@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import swift.logic.commands.EditCommand.EditPersonDescriptor;
+import swift.logic.commands.EditContactCommand.EditPersonDescriptor;
 import swift.model.person.Address;
 import swift.model.person.Email;
 import swift.model.person.Name;

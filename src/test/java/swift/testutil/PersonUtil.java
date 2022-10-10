@@ -9,7 +9,7 @@ import static swift.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import swift.logic.commands.AddContactCommand;
-import swift.logic.commands.EditCommand.EditPersonDescriptor;
+import swift.logic.commands.EditContactCommand.EditPersonDescriptor;
 import swift.model.person.Person;
 import swift.model.tag.Tag;
 
