@@ -8,11 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -24,7 +22,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagType;
+import seedu.address.model.tag.UniqueTagList;
+import seedu.address.model.tag.UniqueTagTypeMap;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -97,7 +97,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Map<TagType, UniqueTagList> map = personToEdit.getTags();
+        UniqueTagTypeMap temp = new UniqueTagTypeMap();
+        temp.setTagTypeMap(map);
+        UniqueTagTypeMap updatedTags = editPersonDescriptor.getTags().orElse(temp);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -129,7 +132,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private UniqueTagTypeMap tags;
 
         public EditPersonDescriptor() {}
 
@@ -188,8 +191,8 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(UniqueTagTypeMap tags) {
+            this.tags = tags;
         }
 
         /**
@@ -197,8 +200,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<UniqueTagTypeMap> getTags() {
+            return (tags != null) ? Optional.of(tags) : Optional.empty();
         }
 
         @Override
