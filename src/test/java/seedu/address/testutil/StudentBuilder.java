@@ -22,7 +22,7 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    public static final String DEFAULT_ATTENDANCE = "She likes aardvarks.";
+    public static final String DEFAULT_ATTENDANCE = "0";
 
     private Name name;
     private Phone phone;

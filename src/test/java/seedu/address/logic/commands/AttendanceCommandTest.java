@@ -23,7 +23,7 @@ import seedu.address.testutil.StudentBuilder;
 public class AttendanceCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    private static final String ATTENDANCE_STUB = "Some attendance";
+    private static final String ATTENDANCE_STUB = "1";
     @Test
     public void execute_addAttendanceUnfilteredList_success() {
         Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
@@ -42,7 +42,7 @@ public class AttendanceCommandTest {
     @Test
     public void execute_deleteAttendanceUnfilteredList_success() {
         Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedStudent = new StudentBuilder(firstStudent).withAttendance("").build();
+        Student editedStudent = new StudentBuilder(firstStudent).withAttendance("0").build();
 
         AttendanceCommand remarkCommand = new AttendanceCommand(INDEX_FIRST_STUDENT,
                 new Attendance(editedStudent.getAttendance().toString()));

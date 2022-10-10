@@ -67,7 +67,7 @@ public class AttendanceCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Student studentToEdit) {
-        String message = !attendance.value.isEmpty() ? MESSAGE_ADD_ATTENDANCE_SUCCESS : MESSAGE_DELETE_ATTENDANCE_SUCCESS;
+        String message = attendance.value.equals("1") ? MESSAGE_ADD_ATTENDANCE_SUCCESS : MESSAGE_DELETE_ATTENDANCE_SUCCESS;
         return String.format(message, studentToEdit);
     }
 
