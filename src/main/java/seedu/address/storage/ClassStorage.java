@@ -1,7 +1,10 @@
 package seedu.address.storage;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Person;
 
 import java.time.LocalDate;
@@ -12,7 +15,32 @@ import java.util.List;
 
 public class ClassStorage {
 
-    public static HashMap<LocalDate, List<Person>> classes = new HashMap<>();
+    private ReadOnlyAddressBook addressBook;
+    private static HashMap<LocalDate, List<Person>> classes;
+
+    public ClassStorage(ReadOnlyAddressBook addressBook) {
+        this.addressBook = addressBook;
+        this.classes = initialiseClass();
+    }
+
+    public HashMap<LocalDate, List<Person>> initialiseClass() {
+        HashMap<LocalDate, List<Person>> hmap = new HashMap<>();
+        ObservableList<Person> listOfPersons = addressBook.getPersonList();
+        for (int i = 0; i < listOfPersons.size(); i++) {
+            Person person = listOfPersons.get(i);
+            Class classOfPerson = person.getAClass();
+            if (!classOfPerson.classDateTime.equals("")) {
+                if (!hmap.containsKey(classOfPerson.date)) {
+                    List<Person> ls = new ArrayList<>();
+                    ls.add(person);
+                    hmap.put(classOfPerson.date, ls);
+                } else {
+                    hmap.get(classOfPerson.date).add(person);
+                }
+            }
+        }
+        return hmap;
+    }
 
     /**
      * Saves added classes into storage if there is no conflict between the timings of the classes.
@@ -43,6 +71,15 @@ public class ClassStorage {
         }
     }
 
+    /**
+     * Checks if there is a conflict between class timings.
+     *
+     * @param start LocalTime object.
+     * @param end LocalTime object.
+     * @param startOfCurrClass LocalTime object.
+     * @param endOfCurrClass LocalTime object.
+     * @return True if there is a conflict.
+     */
     public static boolean hasConflict(LocalTime start, LocalTime end, LocalTime startOfCurrClass,
                                       LocalTime endOfCurrClass) {
         if (start == null || end == null || startOfCurrClass == null || endOfCurrClass == null) {
@@ -54,6 +91,12 @@ public class ClassStorage {
                 start.isBefore(startOfCurrClass) && end.isAfter(startOfCurrClass);
     }
 
+    /**
+     * Removes the existing class from storage.
+     * This frees up the class slot for other students to take.
+     *
+     * @param personToEdit Person object.
+     */
     public static void removeExistingClass(Person personToEdit) {
         if (!personToEdit.getAClass().classDateTime.equals("")) {
             LocalDate date = personToEdit.getAClass().date;
