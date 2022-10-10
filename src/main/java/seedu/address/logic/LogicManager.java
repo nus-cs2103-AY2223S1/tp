@@ -55,17 +55,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyTrackAScholar getAddressBook() {
+    public ReadOnlyTrackAScholar getTrackAScholar() {
         return model.getTrackAScholar();
     }
 
     @Override
-    public ObservableList<Applicant> getFilteredPersonList() {
+    public ObservableList<Applicant> getFilteredApplicantList() {
         return model.getFilteredApplicantList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getTrackAScholarFilePath() {
         return model.getTrackAScholarFilePath();
     }
 

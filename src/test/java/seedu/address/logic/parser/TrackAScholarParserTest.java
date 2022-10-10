@@ -29,7 +29,7 @@ import seedu.address.testutil.ApplicantBuilder;
 import seedu.address.testutil.EditApplicantDescriptorBuilder;
 import seedu.address.testutil.ApplicantUtil;
 
-public class AddressBookParserTest {
+public class TrackAScholarParserTest {
 
     private final TrackAScholarParser parser = new TrackAScholarParser();
 

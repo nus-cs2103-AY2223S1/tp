@@ -28,15 +28,15 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getTrackAScholar()
      */
-    ReadOnlyTrackAScholar getAddressBook();
+    ReadOnlyTrackAScholar getTrackAScholar();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Applicant> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of applicantss */
+    ObservableList<Applicant> getFilteredApplicantList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' TrackAScholar file path.
      */
-    Path getAddressBookFilePath();
+    Path getTrackAScholarFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
