@@ -12,6 +12,7 @@ import static swift.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
@@ -19,6 +20,7 @@ import swift.model.AddressBook;
 import swift.model.Model;
 import swift.model.person.NameContainsKeywordsPredicate;
 import swift.model.person.Person;
+import swift.model.task.Task;
 import swift.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -126,6 +128,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        Predicate<Task> isSameTask = (t) -> t.equals(task);
+        model.updateFilteredTaskList(isSameTask);
+
+        assertEquals(1, model.getFilteredTaskList().size());
     }
 
 }

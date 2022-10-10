@@ -28,7 +28,6 @@ import swift.testutil.PersonBuilder;
 public class AddressBookTest {
 
     private final AddressBook addressBook = new AddressBook();
-
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
@@ -39,7 +38,6 @@ public class AddressBookTest {
     public void resetData_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
     }
-
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
         AddressBook newData = getTypicalAddressBook();
@@ -50,11 +48,12 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Person editedAlice = new PersonBuilder(ALICE)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND)
+            .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons, Arrays.asList());
-
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
 
@@ -62,12 +61,10 @@ public class AddressBookTest {
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
     }
-
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPerson(ALICE));
     }
-
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
@@ -77,8 +74,10 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Person editedAlice = new PersonBuilder(ALICE)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND)
+            .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 
@@ -91,10 +90,8 @@ public class AddressBookTest {
     public void resetData_withDuplicateTaks_throwsDuplicateTaskException() {
         List<Task> newTasks = Arrays.asList(BUY_MILK, BUY_MILK);
         AddressBookStub newData = new AddressBookStub(Arrays.asList(), newTasks);
-
         assertThrows(DuplicateTaskException.class, () -> addressBook.resetData(newData));
     }
-
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasTask(null));
@@ -104,7 +101,6 @@ public class AddressBookTest {
     public void hasTask_taskNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasTask(BUY_MILK));
     }
-
     @Test
     public void hasTask_taskInAddressBook_returnsTrue() {
         addressBook.addTask(BUY_MILK);
@@ -113,13 +109,16 @@ public class AddressBookTest {
 
     @Test
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTaskList().remove(0));
+        assertThrows(
+            UnsupportedOperationException.class, () -> addressBook.getTaskList().remove(0)
+        );
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons/tasks list can violate interface constraints.
-     */
+    * A stub ReadOnlyAddressBook whose persons/tasks list can violate interface constraints.
+    */
     private static class AddressBookStub implements ReadOnlyAddressBook {
+
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
@@ -132,11 +131,9 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
-
         @Override
         public ObservableList<Task> getTaskList() {
             return tasks;
         }
     }
-
 }

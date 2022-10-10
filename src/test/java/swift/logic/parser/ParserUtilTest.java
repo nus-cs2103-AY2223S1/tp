@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static swift.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static swift.testutil.Assert.assertThrows;
-import static swift.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static swift.testutil.TypicalPersonIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.Collections;

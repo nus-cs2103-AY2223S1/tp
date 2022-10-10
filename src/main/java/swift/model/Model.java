@@ -86,14 +86,23 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
+
     /**
      * Returns true if a task with the same identity as {@code task} exists in the address book.
      */
     boolean hasTask(Task task);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given task.
+     * The task must exist in the address book.
      */
     void deleteTask(Task target);
 

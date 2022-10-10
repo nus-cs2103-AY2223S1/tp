@@ -27,9 +27,9 @@ import static swift.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static swift.logic.parser.CliSyntax.PREFIX_TAG;
 import static swift.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static swift.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static swift.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static swift.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static swift.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static swift.testutil.TypicalPersonIndexes.INDEX_FIRST_PERSON;
+import static swift.testutil.TypicalPersonIndexes.INDEX_SECOND_PERSON;
+import static swift.testutil.TypicalPersonIndexes.INDEX_THIRD_PERSON;
 
 import org.junit.jupiter.api.Test;
 
