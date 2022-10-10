@@ -48,7 +48,7 @@ public class JsonAdaptedTeam {
     public JsonAdaptedTeam(Team source) {
         teamName = source.getName().fullName;
 
-        List<Task> taskList = source.getTasks().getTaskList();
+        List<Task> taskList = source.getTasks().asUnmodifiableObservableList();
         if (taskList != null) {
             tasks.addAll(taskList.stream()
                     .map(JsonAdaptedTask::new)

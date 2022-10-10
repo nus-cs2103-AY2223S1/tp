@@ -2,6 +2,8 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 /**
  * Represents a Task in the address book.
  */
@@ -66,6 +68,19 @@ public class Task {
     }
 
     /**
+     * Returns true if both tasks have the same name.
+     * This defines a weaker notion of equality between two tasks.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getName().equals(getName());
+    }
+
+    /**
      * Returns true if both task have the same description and both are done or both are not done.
      */
     @Override
@@ -76,7 +91,16 @@ public class Task {
     }
 
     @Override
-    public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.name.toString();
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("[" + getStatusIcon() + "]" + getName());
+        return builder.toString();
+    }
+
 }
