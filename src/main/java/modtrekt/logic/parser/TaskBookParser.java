@@ -11,7 +11,9 @@ import modtrekt.logic.commands.Command;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
 import modtrekt.logic.commands.RemoveTaskCommand;
+import modtrekt.logic.commands.tasks.ListTasksCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
+import modtrekt.logic.parser.tasks.ListTasksCommandParser;
 
 /**
  * Parses user input.
@@ -46,6 +48,8 @@ public class TaskBookParser {
             return new RemoveCommandParser().parse(arguments);
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+        case ListTasksCommand.COMMAND_WORD:
+            return new ListTasksCommandParser().parse(arguments);
 
         //case DeleteCommand.COMMAND_WORD:
         //    return new DeleteCommandParser().parse(arguments);
