@@ -1,7 +1,5 @@
 package seedu.address.model.module;
 
-import java.util.Locale;
-
 /**
  * Represents a {@code Module}'s title (optional field) in Plannit.
  * Guarantees: immutable
