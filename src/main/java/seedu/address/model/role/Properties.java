@@ -37,6 +37,10 @@ public class Properties {
         indicesArray = spaceSeparatedProperties.split(" ");
     }
 
+    public List<Property> getPropertyList() {
+        return this.propertyList;
+    }
+
     /**
      * Returns true if a given string is valid to be used in desired characteristics.
      */

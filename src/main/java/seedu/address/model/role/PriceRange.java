@@ -74,5 +74,4 @@ public class PriceRange {
                 || (other instanceof PriceRange // instanceof handles nulls
                 && this.toString().equals(((Address) other).toString())); // state check
     }
-
 }

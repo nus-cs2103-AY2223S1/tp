@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.role.Buyer;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -95,6 +96,18 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Sets the given {@code person} in the list as a {@code buyer}.
+     * {@code person} exists uniquely in the address book.
+     */
+    public void setBuyerRole(Person person, Buyer buyer) throws PersonNotFoundException {
+        int position = internalList.indexOf(person);
+        if (position == -1) {
+            throw new PersonNotFoundException();
+        }
+        internalList.get(position).setBuyer(buyer);
     }
 
     /**

@@ -63,5 +63,4 @@ public class Buyer {
                 .append(desiredCharacteristics);
         return sb.toString();
     }
-
 }

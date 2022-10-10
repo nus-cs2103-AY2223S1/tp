@@ -21,6 +21,8 @@ public class Seller {
 
     }
 
+    // Placeholder: Currently just returning an ArrayList
+    // TODO: Return properties
     public Properties getSellerProperties() {
         return this.sellerProperties;
     }
@@ -55,5 +57,4 @@ public class Seller {
                 .append(this.sellerProperties);
         return sb.toString();
     }
-
 }
