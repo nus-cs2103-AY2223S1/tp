@@ -88,7 +88,7 @@ public class MainApp extends Application {
             logger.warning("Data file not in the correct format. Will be starting with an empty TrackO");
             initialData = new TrackO();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting iwth an empty TrackO");
+            logger.warning("Problem while reading from the file. Will be starting with an empty TrackO");
             initialData = new TrackO();
         }
 

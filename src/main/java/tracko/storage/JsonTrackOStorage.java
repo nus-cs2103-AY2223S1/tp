@@ -21,33 +21,33 @@ public class JsonTrackOStorage implements TrackOStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonTrackOStorage.class);
 
-    private Path ordersFilePath;
+    private Path trackOFilePath;
 
-    public JsonTrackOStorage(Path ordersFilePath) {
-        this.ordersFilePath = ordersFilePath;
+    public JsonTrackOStorage(Path trackOFilePath) {
+        this.trackOFilePath = trackOFilePath;
     }
 
-    public Path getOrdersFilePath() {
-        return ordersFilePath;
+    public Path getTrackOFilePath() {
+        return trackOFilePath;
     }
 
     @Override
     public Optional<ReadOnlyTrackO> readTrackO() throws DataConversionException, IOException {
-        return readTrackO(ordersFilePath);
+        return readTrackO(trackOFilePath);
     }
 
     /**
      * Similar to {@link #readTrackO()}
      *
-     * @param ordersFilePath Location of the orders data file. Cannot be null.
+     * @param trackOFilePath Location of the orders data file. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
     @Override
-    public Optional<ReadOnlyTrackO> readTrackO(Path ordersFilePath) throws DataConversionException {
-        requireNonNull(ordersFilePath);
+    public Optional<ReadOnlyTrackO> readTrackO(Path trackOFilePath) throws DataConversionException {
+        requireNonNull(trackOFilePath);
 
         Optional<JsonSerializableTrackO> jsonTrackO = JsonUtil.readJsonFile(
-                ordersFilePath, JsonSerializableTrackO.class);
+                trackOFilePath, JsonSerializableTrackO.class);
 
         if (!jsonTrackO.isPresent()) {
             return Optional.empty();
@@ -56,26 +56,26 @@ public class JsonTrackOStorage implements TrackOStorage {
         try {
             return Optional.of(jsonTrackO.get().toModelType());
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + ordersFilePath + ": " + ive.getMessage());
+            logger.info("Illegal values found in " + trackOFilePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
     }
 
     @Override
     public void saveTrackO(ReadOnlyTrackO trackO) throws IOException {
-        saveTrackO(trackO, ordersFilePath);
+        saveTrackO(trackO, trackOFilePath);
     }
 
     /**
      * Similar to {@link #saveTrackO(ReadOnlyTrackO)}.
      *
-     * @param ordersFilePath Location of the orders data file. Cannot be null.
+     * @param trackOFilePath Location of the orders data file. Cannot be null.
      */
-    public void saveTrackO(ReadOnlyTrackO trackO, Path ordersFilePath) throws IOException {
+    public void saveTrackO(ReadOnlyTrackO trackO, Path trackOFilePath) throws IOException {
         requireNonNull(trackO);
-        requireNonNull(ordersFilePath);
+        requireNonNull(trackOFilePath);
 
-        FileUtil.createIfMissing(ordersFilePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTrackO(trackO), ordersFilePath);
+        FileUtil.createIfMissing(trackOFilePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTrackO(trackO), trackOFilePath);
     }
 }

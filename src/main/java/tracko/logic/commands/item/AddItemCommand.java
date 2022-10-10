@@ -2,18 +2,18 @@ package tracko.logic.commands.item;
 
 import static java.util.Objects.requireNonNull;
 
+import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
-import tracko.logic.commands.MultiLevelCommand;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
 import tracko.model.items.Item;
 
 /**
- * Adds an item to TrackO. The AddItemCommand is a multi-level command in which the user initiates the item to be
+ * Adds an item to TrackO. The AddItemCommand is a single-level command in which the user initiates the item to be
  * added using the command word.
  */
-public class AddItemCommand extends MultiLevelCommand {
+public class AddItemCommand extends Command {
     public static final String COMMAND_WORD = "addi";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Initiates an item to add to TrackO. \n"
@@ -41,9 +41,6 @@ public class AddItemCommand extends MultiLevelCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (this.isCancelled) {
-            return new CommandResult("Add Item Command Cancelled");
-        }
 
         requireNonNull(model);
         model.addItem(toAdd);

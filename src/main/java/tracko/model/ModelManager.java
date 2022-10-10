@@ -125,6 +125,14 @@ public class ModelManager implements Model {
     @Override
     public int getFilteredItemListSize() {
         return filteredItems.size();
+        
+    public void deleteItem(Item item) {
+        trackO.deleteItem(item);
+    }
+
+    @Override
+    public ObservableList<Item> getInventoryList() {
+        return trackO.getInventoryList();
     }
 
     @Override

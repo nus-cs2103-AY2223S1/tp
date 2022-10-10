@@ -99,4 +99,12 @@ public interface Model {
      */
     int getFilteredItemListSize();
 
+     * Deletes the given item.
+     */
+    void deleteItem(Item item);
+
+    /**
+     * Returns the item list.
+     */
+    ObservableList<Item> getInventoryList();
 }
