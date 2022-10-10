@@ -76,7 +76,6 @@ public interface Model {
     ObservableList<Order> getOrderList();
 
     /**
-<<<<<<< HEAD
      * Returns an unmodifiable view of the filtered order list
      */
     ObservableList<Order> getFilteredOrderList();
