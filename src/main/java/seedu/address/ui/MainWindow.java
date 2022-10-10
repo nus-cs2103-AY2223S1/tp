@@ -119,6 +119,12 @@ public class MainWindow extends UiPart<Stage> {
         recordListPanel.getRoot().setVisible(true);
         personListPanel.getRoot().setVisible(false);
     }
+
+    void updateRecordList() {
+        personListPanelPlaceholder.getChildren().remove(recordListPanel.getRoot());
+        recordListPanel = new RecordListPanel(logic.getFilteredRecordList());
+        personListPanelPlaceholder.getChildren().add(recordListPanel.getRoot());
+    }
     /**
      * Fills up all the placeholders of this window.
      */
@@ -204,6 +210,7 @@ public class MainWindow extends UiPart<Stage> {
 
             // Controls which list to display
             if (commandResult.isShowRecords()) {
+                updateRecordList();
                 showRecordList();
             } else {
                 showPersonList();
