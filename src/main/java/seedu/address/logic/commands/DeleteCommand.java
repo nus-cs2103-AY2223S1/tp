@@ -11,6 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -37,16 +38,19 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (deletePersonDescriptor.isPhoneEmpty) {
-            this.targetIndex = Index.fromZeroBased(model.findEmail(deletePersonDescriptor.getEmail()));
-        } else {
-            this.targetIndex = Index.fromZeroBased(model.findNum(deletePersonDescriptor.getPhone()));
+        int index;
+        try {
+            if (deletePersonDescriptor.isPhoneEmpty) {
+                index = model.findEmail(deletePersonDescriptor.getEmail());
+            } else {
+                index = model.findNum(deletePersonDescriptor.getPhone());
+            }
+        } catch (PersonNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
         }
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
+        this.targetIndex = Index.fromZeroBased(index);
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
@@ -55,9 +59,20 @@ public class DeleteCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DeleteCommand)) {
+            return false;
+        }
+
+        // state check
+        DeleteCommand d = (DeleteCommand) other;
+        return deletePersonDescriptor.equals(d.deletePersonDescriptor)
+                && (targetIndex == null || targetIndex.equals(d.targetIndex));
     }
 
     /**
@@ -92,6 +107,31 @@ public class DeleteCommand extends Command {
 
         public boolean isAnyFilled() {
             return this.isPhoneEmpty || this.isEmailEmpty;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof DeleteCommand.DeletePersonDescriptor)) {
+                return false;
+            }
+
+            // state check
+            DeleteCommand.DeletePersonDescriptor d = (DeleteCommand.DeletePersonDescriptor) other;
+
+            boolean isSamePhone = isPhoneEmpty || getPhone().equals(d.getPhone());
+            boolean isSameEmail = isEmailEmpty || getEmail().equals(d.getEmail());
+
+            return isPhoneEmpty == d.isPhoneEmpty
+                    && isEmailEmpty == d.isEmailEmpty
+                    && isAnyFilled() == d.isAnyFilled()
+                    && isSamePhone
+                    && isSameEmail;
         }
     }
 }

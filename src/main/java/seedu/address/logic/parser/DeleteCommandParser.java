@@ -33,10 +33,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     && !arePrefixesPresent(argMultimap, PREFIX_EMAIL);
             boolean isBothFilled = arePrefixesPresent(argMultimap, PREFIX_PHONE)
                     && arePrefixesPresent(argMultimap, PREFIX_EMAIL);
+            boolean isPrefixUnique = arePrefixesPresent(argMultimap, PREFIX_PHONE)
+                    ? argMultimap.isUniquePrefix(PREFIX_PHONE)
+                    : argMultimap.isUniquePrefix(PREFIX_EMAIL);
 
             if (isBothEmpty
                     || isBothFilled
-                    || !argMultimap.getPreamble().isEmpty()) {
+                    || !argMultimap.getPreamble().isEmpty()
+                    || !isPrefixUnique) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             } else if (arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
                 Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
@@ -46,10 +50,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 deletePersonDescriptor.setEmail(email);
             }
 
-            if (!deletePersonDescriptor.isAnyFilled()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-            }
-
+            //Checks the assumption that either the Phone_Number or Email should be filled
+            assert(deletePersonDescriptor.isAnyFilled());
             return new DeleteCommand(deletePersonDescriptor);
 
         } catch (ParseException pe) {
