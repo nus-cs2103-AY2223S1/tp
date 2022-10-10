@@ -30,12 +30,12 @@ public class ClientPhoneTest {
         assertFalse(ClientPhone.isValidClientPhone("phone")); // non-numeric
         assertFalse(ClientPhone.isValidClientPhone("9011p041")); // alphabets within digits
         assertFalse(ClientPhone.isValidClientPhone("9312 1534")); // spaces within digits
-        assertFalse(ClientPhone.isValidClientPhone("911")); // fewer than 8 numbers
-        assertFalse(ClientPhone.isValidClientPhone("124293842033123")); // more than 10 numbers
 
         // valid phone numbers
         assertTrue(ClientPhone.isValidClientPhone("12345678")); //8 numbers
         assertTrue(ClientPhone.isValidClientPhone("123456789")); //9 numbers
         assertTrue(ClientPhone.isValidClientPhone("1234567891")); //10 numbers
+        assertTrue(ClientPhone.isValidClientPhone("911")); // fewer than 8 numbers
+        assertTrue(ClientPhone.isValidClientPhone("124293842033123")); // more than 10 numbers
     }
 }

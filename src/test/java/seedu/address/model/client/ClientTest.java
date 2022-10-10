@@ -19,7 +19,7 @@ public class ClientTest {
         assertThrows(IllegalArgumentException.class, () -> new Client("Harry", "12345678", invalidEmail,
                 Type.INDIVIDUAL));
 
-        String invalidPhone = "123";
+        String invalidPhone = "12";
         assertThrows(IllegalArgumentException.class, () -> new Client("Harry", invalidPhone, "ac@cd.com",
                 Type.EMPLOYER));
     }
