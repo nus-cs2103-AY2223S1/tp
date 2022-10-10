@@ -50,14 +50,14 @@ public class InternshipCard extends UiPart<Region> {
         role.setText(internship.getInternshipRole().roleName);
         status.getChildren().add(new Label(internship.getInternshipStatus().toString()));
         if (internship.getContactPersonId() == null) {
-            contactPersonId.setText("No related contact person.");
+            contactPersonId.setText("No contact person.");
         } else {
-            contactPersonId.setText("Related contact person ID: " + internship.getContactPersonId().id.toString());
+            contactPersonId.setText(internship.getContactPersonId().id.toString());
         }
         if (internship.getInterviewDate() == null) {
             interviewDate.setText("No interviews scheduled.");
         } else {
-            interviewDate.setText("Interview on: " + internship.getInterviewDate().toString());
+            interviewDate.setText(internship.getInterviewDate().toString());
         }
     }
 
