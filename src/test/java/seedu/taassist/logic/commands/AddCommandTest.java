@@ -6,21 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.ObservableList;
-import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.model.Model;
+import seedu.taassist.model.ModelStub;
 import seedu.taassist.model.ReadOnlyTaAssist;
-import seedu.taassist.model.ReadOnlyUserPrefs;
 import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
@@ -75,140 +69,6 @@ public class AddCommandTest {
 
         // different student -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
-    }
-
-    /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getTaAssistFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setTaAssistFilePath(Path taAssistFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addStudent(Student student) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setTaAssist(ReadOnlyTaAssist newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyTaAssist getTaAssist() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasStudent(Student student) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteStudent(Student target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setStudent(Student target, Student editedStudent) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Student> getFilteredStudentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredStudentList(Predicate<Student> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasModuleClass(ModuleClass moduleClass) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteModuleClass(ModuleClass moduleClass) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteModuleClasses(Collection<ModuleClass> moduleClass) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addModuleClass(ModuleClass moduleClass) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setModuleClass(ModuleClass target, ModuleClass editedModuleClass) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        public ObservableList<ModuleClass> getModuleClassList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void enterFocusMode(ModuleClass classToFocus) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void exitFocusMode() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean isInFocusMode() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ModuleClass getFocusedClass() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public SimpleStringProperty getFocusLabelProperty() {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**
