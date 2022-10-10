@@ -2,8 +2,8 @@ package seedu.address.model.job;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
@@ -23,17 +23,17 @@ public class JobTest {
         assertFalse(ALICE.getJob().isSameJob(null));
 
         // same job ID, different job title -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
+        Person editedAlice = new PersonBuilder(ALICE).withTitle(VALID_JOB_TITLE_BOB).build();
         Job editedAliceJob = editedAlice.getJob();
         assertTrue(ALICE.getJob().isSameJob(editedAliceJob));
 
         // different job ID, same job title -> returns false
-        editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withId(VALID_JOB_ID_BOB).build();
         editedAliceJob = editedAlice.getJob();
         assertFalse(ALICE.getJob().isSameJob(editedAliceJob));
 
         // job ID differs in case, same job title -> returns false
-        Person editedBob = new PersonBuilder(BOB).withId(VALID_ID_BOB.toLowerCase()).build();
+        Person editedBob = new PersonBuilder(BOB).withId(VALID_JOB_ID_BOB.toLowerCase()).build();
         Job editedBobJob = editedBob.getJob();
         assertFalse(BOB.getJob().isSameJob(editedBobJob));
     }
@@ -57,11 +57,11 @@ public class JobTest {
         assertFalse(ALICE.getJob().equals(BOB.getJob()));
 
         // different job ID -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        Person editedAlice = new PersonBuilder(ALICE).withId(VALID_JOB_ID_BOB).build();
         assertFalse(ALICE.getJob().equals(editedAlice.getJob()));
 
         // different job title -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withTitle(VALID_JOB_TITLE_BOB).build();
         assertFalse(ALICE.getJob().equals(editedAlice.getJob()));
     }
 }

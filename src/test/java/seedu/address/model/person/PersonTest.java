@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_KIV;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIVERSITY_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -40,8 +40,8 @@ public class PersonTest {
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
-                .withId(VALID_ID_BOB)
-                .withTitle(VALID_TITLE_BOB)
+                .withId(VALID_JOB_ID_BOB)
+                .withTitle(VALID_JOB_TITLE_BOB)
                 .withTags(VALID_TAG_KIV).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -102,11 +102,11 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different id -> returns false
-        editedAlice = new PersonBuilder(ALICE).withId(VALID_ID_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withId(VALID_JOB_ID_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different title -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withTitle(VALID_JOB_TITLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

@@ -26,8 +26,8 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GENDER = "Female";
     public static final String DEFAULT_UNIVERSITY = "NUS";
-    public static final String DEFAULT_ID = "17839";
-    public static final String DEFAULT_TITLE = "Intern, Software Engineer";
+    public static final String DEFAULT_JOB_ID = "17839";
+    public static final String DEFAULT_JOB_TITLE = "Intern, Software Engineer";
 
     private Name name;
     private Phone phone;
@@ -49,8 +49,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         gender = new Gender(DEFAULT_GENDER);
         university = new University(DEFAULT_UNIVERSITY);
-        id = new Id(DEFAULT_ID);
-        title = new Title(DEFAULT_TITLE);
+        id = new Id(DEFAULT_JOB_ID);
+        title = new Title(DEFAULT_JOB_TITLE);
         tags = new HashSet<>();
     }
 

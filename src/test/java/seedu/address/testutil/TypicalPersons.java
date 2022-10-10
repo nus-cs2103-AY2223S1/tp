@@ -6,16 +6,16 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_KIV;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REJECTED;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIVERSITY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIVERSITY_BOB;
 
@@ -134,8 +134,8 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_AMY)
             .withGender(VALID_GENDER_AMY)
             .withUniversity(VALID_UNIVERSITY_AMY)
-            .withId(VALID_ID_AMY)
-            .withTitle(VALID_TITLE_AMY)
+            .withId(VALID_JOB_ID_AMY)
+            .withTitle(VALID_JOB_TITLE_AMY)
             .withTags(VALID_TAG_REJECTED)
             .build();
     public static final Person BOB = new PersonBuilder()
@@ -146,8 +146,8 @@ public class TypicalPersons {
             .withGender(VALID_GENDER_BOB)
             .withUniversity(VALID_UNIVERSITY_BOB)
             .withTags(VALID_TAG_KIV, VALID_TAG_REJECTED)
-            .withId(VALID_ID_BOB)
-            .withTitle(VALID_TITLE_BOB)
+            .withId(VALID_JOB_ID_BOB)
+            .withTitle(VALID_JOB_TITLE_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
