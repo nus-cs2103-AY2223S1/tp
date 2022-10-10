@@ -60,7 +60,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON,toAdd.getCategoryIndicator()));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, toAdd.getCategoryIndicator()));
         }
 
         model.addPerson(toAdd);

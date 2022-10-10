@@ -9,7 +9,6 @@ import java.util.Optional;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Uid;
 
@@ -38,7 +37,7 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        Optional<Person> personToDelete = lastShownList.stream().filter(p -> p.getUid() == targetUid).findFirst();
+        Optional<Person> personToDelete = lastShownList.stream().filter(p -> p.getUid().equals(targetUid)).findFirst();
         if (!personToDelete.isPresent()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
         }

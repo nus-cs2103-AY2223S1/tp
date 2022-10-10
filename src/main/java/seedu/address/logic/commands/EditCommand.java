@@ -81,7 +81,7 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid() == targetUid).findFirst();
+        Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid().equals(targetUid)).findFirst();
 
         if (!personToEdit.isPresent()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
