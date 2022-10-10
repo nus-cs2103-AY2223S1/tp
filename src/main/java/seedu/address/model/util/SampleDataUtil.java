@@ -20,11 +20,11 @@ public class SampleDataUtil {
         return new Profile[] {
             new Profile(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@u.nus.edu"),
                 getTagSet("friends")),
-            new Profile(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@duke.nus.edu"),
+            new Profile(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@u.duke.nus.edu"),
                 getTagSet("colleagues", "friends")),
             new Profile(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@comp.nus.edu.sg"),
                 getTagSet("neighbours")),
-            new Profile(new Name("David Li"), new Phone("91031282"), new Email("lidavid@u.duke.nus.edu"),
+            new Profile(new Name("David Li"), new Phone("91031282"), new Email("lidavid@u.yale-nus.edu.sg"),
                 getTagSet("family")),
             new Profile(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@nus.edu.sg"),
                 getTagSet("classmates")),

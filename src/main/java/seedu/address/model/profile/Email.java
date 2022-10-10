@@ -15,21 +15,23 @@ public class Email {
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
             + "characters.\n"
-            + "2. This is followed by a '@' and then a domain name. The domain name must be a valid NUS email domain "
-            + "such as:\n"
+            + "2. This is followed by a '@' and then a domain name. The domain name must one of the following "
+            + "NUS email domain:\n"
             + "    - u.nus.edu\n"
             + "    - u.duke.nus.edu\n"
             + "    - nus.edu.sg\n"
+            + "    - comp.nus.edu.sg\n"
             + "    - u.yale-nus.edu.sg";
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
             + ALPHANUMERIC_NO_UNDERSCORE + ")*";
 
-    private static final String STUDENT_EMAIL = "u(\\.duke)?\\.nus\\.edu";
-    private static final String STAFF_EMAIL = "nus\\.edu\\.sg";
-    private static final String YALE_NUS_EMAIL = "u\\.yale-nus\\.edu\\.sg";
-    private static final String DOMAIN_REGEX = "(" + STUDENT_EMAIL + "|" + STAFF_EMAIL + "|" + YALE_NUS_EMAIL + ")$";
+    private static final String DOMAIN_STUDENT_EMAIL = "u(\\.duke)?\\.nus\\.edu";
+    private static final String DOMAIN_STAFF_EMAIL = "(comp\\.)?nus\\.edu\\.sg";
+    private static final String DOMAIN_YALE_NUS_EMAIL = "u\\.yale-nus\\.edu\\.sg";
+    private static final String DOMAIN_REGEX = "(" + DOMAIN_STUDENT_EMAIL + "|" + DOMAIN_STAFF_EMAIL + "|"
+            + DOMAIN_YALE_NUS_EMAIL + ")$";
 
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
