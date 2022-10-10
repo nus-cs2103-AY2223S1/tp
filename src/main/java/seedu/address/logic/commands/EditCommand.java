@@ -20,12 +20,16 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
+import seedu.address.model.person.Clazz;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Personality;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Subject;
 import seedu.address.model.tag.Tag;
-
 /**
  * Edits the details of an existing person in the address book.
  */
@@ -97,9 +101,15 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Clazz updatedClazz = editPersonDescriptor.getClazz().orElse(personToEdit.getClazz());
+        Personality updatedPersonality = editPersonDescriptor.getPersonality().orElse(personToEdit.getPersonality());
+        Attendance updatedAttendance = editPersonDescriptor.getAttendance().orElse(personToEdit.getAttendance());
+        Subject updatedSubject = editPersonDescriptor.getSubject().orElse(personToEdit.getSubject());
+        Grade updatedGrade = editPersonDescriptor.getGrade().orElse(personToEdit.getGrade());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedClazz, updatedPersonality,
+                updatedAttendance, updatedSubject, updatedGrade, updatedTags);
     }
 
     @Override
@@ -129,6 +139,11 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Clazz clazz;
+        private Personality personality;
+        private Attendance attendance;
+        private Subject subject;
+        private Grade grade;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -142,6 +157,11 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setClazz(toCopy.clazz);
+            setPersonality(toCopy.personality);
+            setAttendance(toCopy.attendance);
+            setSubject(toCopy.subject);
+            setGrade(toCopy.grade);
             setTags(toCopy.tags);
         }
 
@@ -182,6 +202,46 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setClazz(Clazz clazz) {
+            this.clazz = clazz;
+        }
+
+        public Optional<Clazz> getClazz() {
+            return Optional.ofNullable(clazz);
+        }
+
+        public void setPersonality(Personality personality) {
+            this.personality = personality;
+        }
+
+        public Optional<Personality> getPersonality() {
+            return Optional.ofNullable(personality);
+        }
+
+        public void setAttendance(Attendance attendance) {
+            this.attendance = attendance;
+        }
+
+        public Optional<Attendance> getAttendance() {
+            return Optional.ofNullable(attendance);
+        }
+
+        public void setSubject(Subject subject) {
+            this.subject = subject;
+        }
+
+        public Optional<Subject> getSubject() {
+            return Optional.ofNullable(subject);
+        }
+
+        public void setGrade(Grade grade) {
+            this.grade = grade;
+        }
+
+        public Optional<Grade> getGrade() {
+            return Optional.ofNullable(grade);
         }
 
         /**
