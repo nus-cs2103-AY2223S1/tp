@@ -108,6 +108,12 @@ public interface Model {
     void updateFilteredRecordList(Predicate<Record> predicate);
 
     /**
+     * Deletes the given record.
+     * {@code record} must exist in the filtered record list.
+     */
+    void deleteRecord(Record record);
+
+    /**
      * Sets the filtered record list to the record list of the given {@code person}.
      *
      * @param person The person whose record list is to be displayed.

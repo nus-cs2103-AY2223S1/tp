@@ -82,6 +82,10 @@ public class Person {
 
     //======= Record List ========================================
 
+    public void deleteRecord(Record record) {
+        records.delete(record);
+    }
+
     /**
      * Replaces the contents of the record list with {@code records}.
      * {@code records} must not contain duplicate persons.
@@ -110,8 +114,6 @@ public class Person {
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
-
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

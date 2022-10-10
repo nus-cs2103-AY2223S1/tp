@@ -70,6 +70,10 @@ public class RecordList {
                 && recordList.equals(((RecordList) other).recordList)); // state check
     }
 
+    public void delete(Record record) {
+        recordList.remove(record);
+    }
+
     @Override
     public int hashCode() {
         return recordList.hashCode();

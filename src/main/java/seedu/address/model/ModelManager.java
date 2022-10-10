@@ -164,6 +164,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteRecord(Record record) {
+        personWithRecords.deleteRecord(record);
+    }
+
+    //stub
+    // - to be used each time listR is called to replace the recordList being displayed
+    // - delete current implementation, replace with commented out code
+    // eg. setFilteredRecords(Person person)
+    @Override
     public void setFilteredRecordList(Person person) {
         filteredRecords = new FilteredList<>(person.getRecordList().asUnmodifiableObservableList());
     }
