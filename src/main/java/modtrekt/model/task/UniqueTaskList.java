@@ -62,9 +62,7 @@ public class UniqueTaskList implements Iterable<Task> {
      */
     public void removeTasksWithModCode(ModCode code) {
         requireNonNull(code);
-
-        ObservableList<Task> updatedList = internalList.filtered(x -> !(x.getModule().equals(code)));
-        internalList.setAll(updatedList);
+        internalList.removeIf(t -> t.getModule().equals(code));
     }
 
     public void setTasks(UniqueTaskList replacement) {
