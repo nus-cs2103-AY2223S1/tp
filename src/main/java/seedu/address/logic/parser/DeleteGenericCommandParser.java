@@ -24,14 +24,14 @@ public class DeleteGenericCommandParser implements Parser<DeleteGenericCommand> 
         ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TASK_INDEX);
         args = ParserUtil.eraseOptions(args, PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TASK_INDEX);
 
-        if (options.getValue(PREFIX_OPTION_PATIENT_INDEX).isPresent() &&
-                !options.getValue(PREFIX_OPTION_TASK_INDEX).isPresent()) {
+        if (options.getValue(PREFIX_OPTION_PATIENT_INDEX).isPresent()
+                && !options.getValue(PREFIX_OPTION_TASK_INDEX).isPresent()) {
             String patientIndex = options.getValue(PREFIX_OPTION_PATIENT_INDEX).get();
             return new DeleteCommandParser().parse(patientIndex + " " + args);
         }
 
-        if (options.getValue(PREFIX_OPTION_PATIENT_INDEX).isPresent() &&
-                options.getValue(PREFIX_OPTION_TASK_INDEX).isPresent()) {
+        if (options.getValue(PREFIX_OPTION_PATIENT_INDEX).isPresent()
+                && options.getValue(PREFIX_OPTION_TASK_INDEX).isPresent()) {
             String patientIndex = options.getValue(PREFIX_OPTION_PATIENT_INDEX).get();
             String taskIndex = options.getValue(PREFIX_OPTION_TASK_INDEX).get();
             return new DeleteTaskCommandParser().parse(patientIndex + " " + taskIndex + " " + args);
