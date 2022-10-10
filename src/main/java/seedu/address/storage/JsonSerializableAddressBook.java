@@ -31,7 +31,7 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedStudent> persons,
                                        @JsonProperty("modules") List<JsonAdaptedModule> modules) {
         this.persons.addAll(persons);
         this.modules.addAll(modules);
@@ -53,6 +53,7 @@ class JsonSerializableAddressBook {
 
     /**
      * Converts this address book into the model's {@code AddressBook} object.
+     * Polymorphism occurs.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

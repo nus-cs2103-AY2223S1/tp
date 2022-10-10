@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HANDLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -17,6 +20,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -34,8 +39,25 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_MODULE_CODE_CYBERSEC = "CS2107";
+    public static final String VALID_MODULE_CODE_SWE = "CS2103T";
+    public static final String VALID_MODULE_DESCRIPTION_CYBERSEC = "Cryptography basics";
+    public static final String VALID_MODULE_DESCRIPTION_SWE = "Module teaches about software engineering";
+    public static final String VALID_MODULE_NAME_CYBERSEC = "Introduction to Cybersecurity";
+    public static final String VALID_MODULE_NAME_SWE = "Introduction to Software Engineering";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ID_AMY = "A0123456W";
+    public static final String VALID_ID_BOB = "A0123654W";
+    public static final String VALID_TELEGRAM_AMY = "@amylovescode";
+    public static final String VALID_TELEGRAM_BOB = "@bobhatescode";
+    public static final String VALID_INFO_AMY = "CS1101S";
+    public static final String VALID_INFO_BOB = "CS2030S";
+    public static final String VALID_STUDENT_ID = "A0123123X";
+    public static final String VALID_STUDENT_TELEGRAM = "amyb123";
+    public static final String VALID_STUDENT_INFO = "abc";
+    public static final String VALID_TAG_IMPORTANT = "important";
+    public static final String VALID_TAG_MODULE_COORDINATOR = "ModuleCoordinator";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -47,6 +69,9 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String STUDENT_DESC_ID = " " + PREFIX_ID + VALID_STUDENT_ID;
+    public static final String STUDENT_DESC_TELEGRAM = " " + PREFIX_HANDLE + VALID_STUDENT_TELEGRAM;
+    public static final String STUDENT_DESC_STUDENT_INFO = " " + PREFIX_STUDENT_INFO + VALID_STUDENT_INFO;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -123,6 +148,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the module at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     * @param model
+     * @param targetIndex
+     */
+    public static void showModuleWithModuleCode(Model model, Index targetIndex) {
+        Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        final String[] splitName = module.getName().fullName.split("\\s+");
+        model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredModuleList().size());
     }
 
 }
