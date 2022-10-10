@@ -136,8 +136,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.findById(personId);
     }
 
+    @Override
+    public String findPersonNameById(PersonId personId) {
+        Person p = findPersonById(personId);
+        return p == null ? null : p.getName().toString();
+    }
+
     public Internship findInternshipById(InternshipId internshipId) {
         return internships.findById(internshipId);
+    }
+
+    @Override
+    public String findInternshipNameById(InternshipId internshipId) {
+        // TODO: Update getCompanyName to the auto generated Internship Name to be displayed
+        Internship i = findInternshipById(internshipId);
+        return i == null ? null : i.getCompanyName().toString();
     }
 
     /**
@@ -201,6 +214,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
     public void removeInternship(Internship key) {
         internships.remove(key);
     }
