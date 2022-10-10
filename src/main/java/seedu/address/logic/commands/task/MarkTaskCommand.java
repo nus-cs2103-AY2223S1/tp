@@ -64,7 +64,6 @@ public class MarkTaskCommand extends TaskCommand{
 
         // state check
         MarkTaskCommand e = (MarkTaskCommand) other;
-        return task_index.equals(e.task_index)
-                && person_index.equals(e.person_index);
+        return task_index.equals(e.task_index) && person_index.equals(e.person_index);
     }
 }
