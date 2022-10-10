@@ -51,7 +51,7 @@ public class BookBuilder {
 
 
     public Book build() {
-        return new Book(title, author);
+        return new Book(title, author, "Available");
     }
 
 }

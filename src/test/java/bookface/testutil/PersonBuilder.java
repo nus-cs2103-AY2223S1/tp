@@ -3,6 +3,7 @@ package bookface.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import bookface.model.book.Title;
 import bookface.model.person.Email;
 import bookface.model.person.Name;
 import bookface.model.person.Person;
@@ -22,6 +23,8 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
+
+    private Set<Title> titles;
     private Set<Tag> tags;
 
     /**
@@ -77,7 +80,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, tags);
+        return new Person(name, phone, email, titles, tags);
     }
 
 }

@@ -18,14 +18,18 @@ class JsonAdaptedBook {
     private final String title;
     private final String author;
 
+    private final String loanStatus;
+
 
     /**
      * Constructs a {@code JsonAdaptedBook} with the given book details.
      */
     @JsonCreator
-    public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author) {
+    public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author
+            , @JsonProperty("loanStatus") String loanStatus) {
         this.title = title;
         this.author = author;
+        this.loanStatus = loanStatus;
     }
 
     /**
@@ -34,6 +38,7 @@ class JsonAdaptedBook {
     public JsonAdaptedBook(Book source) {
         title = source.getTitle().bookTitle;
         author = source.getAuthor().bookAuthor;
+        loanStatus = source.getLoanStatus();
     }
 
     /**
@@ -58,7 +63,11 @@ class JsonAdaptedBook {
         }
         final Author modelAuthor = new Author(author);
 
-        return new Book(modelTitle, modelAuthor);
+        if (loanStatus == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "loanStatus"));
+        }
+        final String modelStatus = new String(loanStatus);
+        return new Book(modelTitle, modelAuthor, modelStatus);
     }
 
 }

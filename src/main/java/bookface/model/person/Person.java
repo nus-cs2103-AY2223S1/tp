@@ -1,6 +1,5 @@
 package bookface.model.person;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -21,7 +20,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
-    private final ArrayList<Title> loanedBook = new ArrayList<>();
+    private final HashSet<Title> loanedBook = new HashSet<>();
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -29,13 +28,25 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Set<Title> loanedBook, Set<Tag> tags) {
         CollectionUtil.requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.loanedBook.addAll(loanedBook);
         this.tags.addAll(tags);
     }
+
+    /*
+    public Person(Name name, Phone phone, Email email, ArrayList<Title> loanedBook, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(name, phone, email, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.loanedBook = loanedBook;
+        this.tags.addAll(tags);
+    }
+    */
 
     public Name getName() {
         return name;
@@ -47,6 +58,11 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+
+    public Set<Title> getTitle() {
+        return loanedBook;
     }
 
     public String getLoanedBookTitle() {
@@ -76,6 +92,17 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if the person has already loaned the same book.
+     */
+    public boolean hasSameLoanedBook(Person person, Title title) {
+        if (person.getTitle().contains(title)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
