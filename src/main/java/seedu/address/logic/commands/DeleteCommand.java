@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -30,23 +31,23 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
 
-    private final Id targetId;
+    private final Optional<Id> targetId;
 
-    private final Name targetName;
+    private final Optional<Name> targetName;
 
-    private final IdPredicate idPredicate;
+    private final Optional<IdPredicate> idPredicate;
 
-    private final NamePredicate namePredicate;
+    private final Optional<NamePredicate> namePredicate;
 
     /**
      * @param targetId of the student in the filtered student list to delete
      * @param idPredicate to filter the student list
      */
     public DeleteCommand(Id targetId, IdPredicate idPredicate) {
-        this.targetId = targetId;
-        this.targetName = null;
-        this.idPredicate = idPredicate;
-        this.namePredicate = null;
+        this.targetId = Optional.of(targetId);
+        this.targetName = Optional.empty();
+        this.idPredicate = Optional.of(idPredicate);
+        this.namePredicate = Optional.empty();
     }
 
     /**
@@ -54,26 +55,26 @@ public class DeleteCommand extends Command {
      * @param namePredicate to filter the student list
      */
     public DeleteCommand(Name targetName, NamePredicate namePredicate) {
-        this.targetId = null;
-        this.targetName = targetName;
-        this.idPredicate = null;
-        this.namePredicate = namePredicate;
+        this.targetId = Optional.empty();
+        this.targetName = Optional.of(targetName);
+        this.idPredicate = Optional.empty();
+        this.namePredicate = Optional.of(namePredicate);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (targetId == null) {
-            model.updateFilteredStudentList(namePredicate);
+        if (targetId.isEmpty()) {
+            model.updateFilteredStudentList(namePredicate.get());
         } else {
-            model.updateFilteredStudentList(idPredicate);
+            model.updateFilteredStudentList(idPredicate.get());
         }
 
         List<Student> studentList = model.getFilteredStudentList();
 
         if (studentList.size() == 0) {
-            if (targetId == null) {
+            if (targetId.isEmpty()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_NAME);
             } else {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_ID);
@@ -92,7 +93,7 @@ public class DeleteCommand extends Command {
             return true;
         }
 
-        if (targetId == null) {
+        if (targetId.isEmpty()) {
             return other instanceof DeleteCommand && targetName.equals(((DeleteCommand) other).targetName);
         } else {
             return other instanceof DeleteCommand && targetId.equals(((DeleteCommand) other).targetId);
