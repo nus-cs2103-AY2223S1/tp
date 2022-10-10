@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Represents the date of a internship in the list.
  */
-public class Date {
+public class Date extends ComparableModel {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in dd-mm-yyyy format";
 
@@ -64,6 +64,14 @@ public class Date {
      */
     public String toDisplayFormat() {
         return DISPLAY_FORMATTER.format(value);
+    }
+
+    @Override
+    public int compareTo(ComparableModel other) {
+        if (other instanceof Date) {
+            return this.value.compareTo(((Date) other).value);
+        }
+        return 0;
     }
 
     @Override
