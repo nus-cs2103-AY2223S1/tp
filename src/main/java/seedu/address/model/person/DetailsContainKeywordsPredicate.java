@@ -19,9 +19,11 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
     private final Set<Email> emailKeywords;
     private final Set<Address> addressKeywords;
     private final Set<Tag> tagKeywords;
+    private final Set<Status> statusKeywords;
 
     /**
      * Constructor for DetailsContainKeywordsPredicate.
+     *
      * @param keywords List of keywords to search for.
      */
     public DetailsContainKeywordsPredicate(List<String> keywords) {
@@ -31,25 +33,28 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
         this.emailKeywords = new HashSet<>();
         this.addressKeywords = new HashSet<>();
         this.tagKeywords = new HashSet<>();
+        this.statusKeywords = new HashSet<>();
     }
 
     /**
      * Constructor for DetailsContainKeywordsPredicate.
      *
-     * @param nameKeywords Set of Name keywords to search for.
-     * @param phoneKeywords Set of Phone keywords to search for.
-     * @param emailKeywords Set of Email keywords to search for.
+     * @param nameKeywords    Set of Name keywords to search for.
+     * @param phoneKeywords   Set of Phone keywords to search for.
+     * @param emailKeywords   Set of Email keywords to search for.
      * @param addressKeywords Set of Address keywords to search for.
-     * @param tagKeywords Set of Tag keywords to search for.
+     * @param tagKeywords     Set of Tag keywords to search for.
      */
     public DetailsContainKeywordsPredicate(Set<Name> nameKeywords, Set<Phone> phoneKeywords, Set<Email> emailKeywords,
-                                           Set<Address> addressKeywords, Set<Tag> tagKeywords) {
+                                           Set<Address> addressKeywords, Set<Tag> tagKeywords,
+                                           Set<Status> statusKeywords) {
         this.keywords = new ArrayList<>();
         this.nameKeywords = nameKeywords;
         this.phoneKeywords = phoneKeywords;
         this.emailKeywords = emailKeywords;
         this.addressKeywords = addressKeywords;
         this.tagKeywords = tagKeywords;
+        this.statusKeywords = statusKeywords;
     }
 
     @Override
@@ -71,7 +76,10 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
                             keyword.value))
                     || tagKeywords.stream()
                     .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getTags().toString(),
-                            keyword.tagName));
+                            keyword.tagName))
+                    || statusKeywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getStatus().toString(),
+                            keyword.toString()));
         }
     }
 

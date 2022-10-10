@@ -112,6 +112,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String status} into a {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+        return new Status(trimmedStatus);
+    }
+
+    /**
      * Parses {@code Collection<String> names} into a {@code Set<Name>}.
      */
     public static Set<Name> parseNames(Collection<String> names) throws ParseException {
@@ -172,17 +187,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String status} into a {@code Status}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code status} is invalid.
+     * Parses {@code Collection<String> statuss} into a {@code Set<Status>}.
      */
-    public static Status parseStatus(String status) throws ParseException {
-        requireNonNull(status);
-        String trimmedStatus = status.trim();
-        if (!Status.isValidStatus(trimmedStatus)) {
-            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+    public static Set<Status> parseStatuses(Collection<String> statuses) throws ParseException {
+        requireNonNull(statuses);
+        final Set<Status> statusSet = new HashSet<>();
+        for (String statusName : statuses) {
+            statusSet.add(parseStatus(statusName));
         }
-        return new Status(trimmedStatus);
+        return statusSet;
     }
+
 }
