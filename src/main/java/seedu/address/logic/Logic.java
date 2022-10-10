@@ -50,10 +50,6 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    boolean isStudentInfoConcise();
-
-    Model getModel();
-
     FilteredStudents getFilteredStudents();
 
 }

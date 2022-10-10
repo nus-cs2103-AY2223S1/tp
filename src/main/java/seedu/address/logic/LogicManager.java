@@ -81,16 +81,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public boolean isStudentInfoConcise() {
-        return model.isStudentListInfoConcise();
-    }
-
-    @Override
-    public Model getModel() {
-        return this.model;
-    }
-
-    @Override
     public FilteredStudents getFilteredStudents() {
         return this.model.getFilteredStudents();
     }
