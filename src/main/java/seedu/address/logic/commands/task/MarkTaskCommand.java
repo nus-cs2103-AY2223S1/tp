@@ -7,13 +7,12 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.task.Task;
 import seedu.address.commons.core.index.Index;
 
 /**
  * Marks a task of a person as complete or incomplete.
  */
-public class MarkTaskCommand extends TaskCommand{
+public class MarkTaskCommand extends TaskCommand {
 
     public static final String COMMAND_WORD = "mark";
 
