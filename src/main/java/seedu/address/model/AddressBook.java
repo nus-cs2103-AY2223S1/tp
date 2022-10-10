@@ -9,6 +9,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.question.Question;
 import seedu.address.model.question.UniqueQuestionList;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.UniqueTutorialList;
 
@@ -19,6 +21,7 @@ import seedu.address.model.tutorial.UniqueTutorialList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueStudentList students;
     private final UniqueQuestionList questions;
     private final UniqueTutorialList tutorials;
 
@@ -31,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        students = new UniqueStudentList();
         questions = new UniqueQuestionList();
         tutorials = new UniqueTutorialList();
     }
@@ -105,6 +109,64 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /// student-level operations
+
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     */
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return students.contains(student);
+    }
+
+    /**
+     * Adds a student to the address book.
+     * The student must not already exist in the address book.
+     */
+    public void addStudent(Student s) {
+        students.add(s);
+    }
+
+    /**
+     * Replaces the given student {@code target} in the list with {@code editedStudent}.
+     * {@code target} must exist in the address book.
+     * The question identity of {@code editedStudent} must not be the same as another existing student in the address
+     * book.
+     */
+    public void setStudent(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
+
+        students.setStudent(target, editedStudent);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeStudent(Student key) {
+        students.remove(key);
+    }
+
+    //// util methods
+
+    /**
+     * Returns the number of students in the ObservableList for students
+     */
+    public String studentToString() {
+        return students.asUnmodifiableObservableList().size() + " questions";
+        // TODO: refine later
+    }
+
+    @Override
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableList();
+    }
+
+
+    public int studentHashCode() {
+        return students.hashCode();
     }
 
     //// tutorial-level operations
