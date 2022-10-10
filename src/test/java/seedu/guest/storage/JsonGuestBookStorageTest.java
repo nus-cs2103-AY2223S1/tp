@@ -62,49 +62,49 @@ public class JsonGuestBookStorageTest {
 
     @Test
     public void readAndSaveGuestBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempGuestBook.json");
         GuestBook original = getTypicalAddressBook();
-        JsonGuestBookStorage jsonAddressBookStorage = new JsonGuestBookStorage(filePath);
+        JsonGuestBookStorage jsonGuestBookStorage = new JsonGuestBookStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveGuestBook(original, filePath);
-        ReadOnlyGuestBook readBack = jsonAddressBookStorage.readGuestBook(filePath).get();
+        jsonGuestBookStorage.saveGuestBook(original, filePath);
+        ReadOnlyGuestBook readBack = jsonGuestBookStorage.readGuestBook(filePath).get();
         assertEquals(original, new GuestBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addGuest(HOON);
         original.removeGuest(ALICE);
-        jsonAddressBookStorage.saveGuestBook(original, filePath);
-        readBack = jsonAddressBookStorage.readGuestBook(filePath).get();
+        jsonGuestBookStorage.saveGuestBook(original, filePath);
+        readBack = jsonGuestBookStorage.readGuestBook(filePath).get();
         assertEquals(original, new GuestBook(readBack));
 
         // Save and read without specifying file path
         original.addGuest(IDA);
-        jsonAddressBookStorage.saveGuestBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readGuestBook().get(); // file path not specified
+        jsonGuestBookStorage.saveGuestBook(original); // file path not specified
+        readBack = jsonGuestBookStorage.readGuestBook().get(); // file path not specified
         assertEquals(original, new GuestBook(readBack));
 
     }
 
     @Test
     public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveGuestBook(null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyGuestBook addressBook, String filePath) {
+    private void saveGuestBook(ReadOnlyGuestBook guestBook, String filePath) {
         try {
             new JsonGuestBookStorage(Paths.get(filePath))
-                    .saveGuestBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveGuestBook(guestBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new GuestBook(), null));
+    public void saveGuestBook_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveGuestBook(new GuestBook(), null));
     }
 }
