@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -93,7 +94,8 @@ public interface Model {
     /**
      * Get a particular people with that name
      */
-    ObservableList<Person> getPersonWithName(Name name);
+    ObservableList<Person>
+    getPersonWithName(Name name);
 
     //=========== Group Related Functions =============================================================
 
@@ -128,4 +130,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredGroupList(Predicate<Group> predicate);
+
+    /**
+     * Get a particular group with that name
+     */
+    ObservableList<Group>
+    getGroupWithName(GroupName name);
 }

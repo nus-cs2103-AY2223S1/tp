@@ -70,8 +70,7 @@ public class AssignTaskCommand extends Command {
 
         Person editedPerson = new Person(
                 personToAssignTask.getName(), personToAssignTask.getPhone(), personToAssignTask.getEmail(),
-                personToAssignTask.getAddress(), personToAssignTask.getTags(), assignments,
-                personToAssignTask.getPersonGroup());
+                personToAssignTask.getAddress(), personToAssignTask.getTags(), assignments);
 
         if (!personToAssignTask.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

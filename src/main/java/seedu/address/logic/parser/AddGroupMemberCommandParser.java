@@ -24,8 +24,8 @@ public class AddGroupMemberCommandParser implements Parser<AddGroupMemberCommand
             String name;
 
             try {
-                personGroup = argMultimap.getPreamble();
-                name = argMultimap.getValue(PREFIX_GROUP).get();
+                personGroup = argMultimap.getValue(PREFIX_GROUP).get();
+                name = argMultimap.getValue(PREFIX_NAME).get();
 
             } catch (NoSuchElementException e) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupMemberCommand.MESSAGE_USAGE), e);

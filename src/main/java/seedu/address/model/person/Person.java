@@ -22,20 +22,19 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
 
-    private final Set<PersonGroup> personGroups = new HashSet<>();
+    //private final Set<PersonGroup> personGroups = new HashSet<>();
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  HashMap<String, ArrayList<Assignment>> assignments, Set<PersonGroup> personGroups) {
-        requireAllNonNull(name, phone, email, address, tags, personGroups);
+                  HashMap<String, ArrayList<Assignment>> assignments) {
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.assignments.putAll(assignments);
-        this.personGroups.addAll(personGroups);
     }
 
     public Name getName() {
@@ -66,9 +65,9 @@ public class Person {
         return this.assignments;
     }
 
-    public Set<PersonGroup> getPersonGroup() {
-        return Collections.unmodifiableSet(personGroups);
-    }
+//    public Set<PersonGroup> getPersonGroup() {
+//        return Collections.unmodifiableSet(personGroups);
+//    }
 
     /**
      * Returns true if both persons have the same name.
@@ -103,14 +102,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getAssignments().equals(getAssignments())
-                && otherPerson.getPersonGroup().equals(getPersonGroup());
+                && otherPerson.getAssignments().equals(getAssignments());
+                //&& otherPerson.getPersonGroup().equals(getPersonGroup());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, assignments, personGroups);
+        return Objects.hash(name, phone, email, address, tags, assignments);
     }
 
     @Override
@@ -140,11 +139,11 @@ public class Person {
 
         }
 
-        Set<PersonGroup> personGroupsList = getPersonGroup();
-        if (!personGroupsList.isEmpty()) {
-            builder.append("; Group: ");
-            personGroupsList.forEach(builder::append);
-            }
+//        Set<PersonGroup> personGroupsList = getPersonGroup();
+//        if (!personGroupsList.isEmpty()) {
+//            builder.append("; Group: ");
+//            personGroupsList.forEach(builder::append);
+//            }
 
         return builder.toString();
     }
