@@ -24,6 +24,8 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.Ui;
+import seedu.address.ui.UiManager;
 
 public class AddCommandTest {
 
@@ -36,8 +38,9 @@ public class AddCommandTest {
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
+        Ui stubUi = new UiManager(null);
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub, stubUi);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
@@ -48,8 +51,10 @@ public class AddCommandTest {
         Person validPerson = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        Ui stubUi = new UiManager(null);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, ()
+                -> addCommand.execute(modelStub, stubUi));
     }
 
     @Test

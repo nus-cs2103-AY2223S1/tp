@@ -73,6 +73,8 @@ public class AddressBookParser {
                 return new ListProjectCommand();
             case ListIssueCommand.COMMAND_FLAG:
                 return new ListIssueCommand();
+            case "":
+                return new ListCommand();
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
