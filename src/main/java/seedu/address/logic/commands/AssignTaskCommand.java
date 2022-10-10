@@ -11,6 +11,8 @@ import java.util.HashMap;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -29,6 +31,8 @@ public class AssignTaskCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
+    public static final String MESSAGE_INVALID_PERSON_NOT_IN_GROUP = "This person is not in the specifed group.";
+    public static final String MESSAGE_INVALID_GROUP = "This group is not in the address book.";
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "ASSIGNTASK";
 
     private final Name name;
@@ -56,6 +60,19 @@ public class AssignTaskCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
+
+        ObservableList<Group> groupList = model.getGroupWithName(new GroupName(this.group));
+        Group groupToCheck;
+        try {
+            groupToCheck = groupList.get(0);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(MESSAGE_INVALID_GROUP);
+        }
+
+        if (!groupToCheck.contains(personToAssignTask)) {
+            throw new CommandException(MESSAGE_INVALID_PERSON_NOT_IN_GROUP);
+        }
+
         HashMap<String, ArrayList<Assignment>> assignments = personToAssignTask.getAssignments();
 
         ArrayList<Assignment> listOfAssignment;

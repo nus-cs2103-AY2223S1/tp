@@ -350,3 +350,32 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#assignments {
+    -fx-hgap: 9;
+    -fx-vgap: 8;
+}
+
+#assignments .label {
+    -fx-text-fill: black;
+    -fx-background-color: #98FB98;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
+    -fx-font-size: 12;
+}
+
+#personGroup {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#personGroup .label {
+    -fx-text-fill: white;
+    -fx-background-color: #E56E94;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 5;
+    -fx-font-size: 12;
+}
+
