@@ -25,9 +25,9 @@ public class MarkTaskCommand extends TaskCommand{
             + "Example: " + COMMAND_WORD + " "
             + "Mark task functionality";
 
-    public static final String MESSAGE_ARGUMENTS = "Task Index: %1$d, Person Index: %2$d";
+    public static final String MESSAGE_ARGUMENTS = "Task Index: %1$d";
 
-    public static final String MESSAGE_SUCCESS = "Task is marked as complete";
+    public static final String MESSAGE_SUCCESS = "Task %1$d is marked as complete";
 
     private final Index task_index;
     private final Index person_index;
@@ -46,8 +46,8 @@ public class MarkTaskCommand extends TaskCommand{
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        throw new CommandException(String.format(MESSAGE_ARGUMENTS, task_index.getOneBased(), person_index.getOneBased()));
-       // return new CommandResult(MESSAGE_SUCCESS);
+        throw new CommandException(String.format(MESSAGE_SUCCESS, task_index.getOneBased(), person_index.getOneBased()));
+        //return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
