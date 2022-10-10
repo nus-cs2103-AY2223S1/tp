@@ -28,7 +28,18 @@ public class TaskList {
         internalTaskList.add(task);
     }
 
-    // TODO: add edit method
+    /**
+     * Edits a task in the {@code TaskList}.
+     *
+     * @param index of the task to be edited.
+     * @param task that is updated.
+     * @return The updated {@code TaskList}.
+     */
+    public TaskList edit(int index, Task task) {
+        ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
+        updatedTasks.set(index, task);
+        return new TaskList(updatedTasks);
+    }
 
     /**
      * Removes the task from the list.

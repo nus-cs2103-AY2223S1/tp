@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -90,19 +89,8 @@ public class EditTaskCommand extends Command {
         Email email = patientToEdit.getEmail();
         Address address = patientToEdit.getAddress();
         Set<Tag> tags = patientToEdit.getTags();
-        ArrayList<Task> tasks = patientToEdit.getTasks().getTasks();
 
-        ArrayList<Task> updatedTasks = new ArrayList<>();
-
-        for (int i = 0; i < tasks.size(); i++) {
-            if (i == indexOfTask.getZeroBased()) {
-                updatedTasks.add(updatedTask);
-            } else {
-                updatedTasks.add(tasks.get(i));
-            }
-        }
-
-        TaskList updatedTaskList = new TaskList(updatedTasks);
+        TaskList updatedTaskList = patientToEdit.getTasks().edit(indexOfTask.getZeroBased(), updatedTask);
 
         return new Person(name, phone, email, address, updatedTaskList, tags);
     }
