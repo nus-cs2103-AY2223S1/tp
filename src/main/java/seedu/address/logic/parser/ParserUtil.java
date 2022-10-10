@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.person.Cap.CAP_SEPARATOR;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -12,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.job.Id;
 import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Major;
@@ -26,6 +28,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String CAP_PARSING_REGEX = "^[0-9]\\.?\\d{0,2}\\/[0-9]\\.?\\d{0,2}$";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -113,6 +116,29 @@ public class ParserUtil {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(trimmedGender);
+    }
+
+    /**
+     * Parses a {@code String cap} into a {@code Cap}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code cap} is invalid.
+     */
+    public static Cap parseCap(String cap) throws ParseException {
+        try {
+            requireNonNull(cap);
+            String trimmedCap = cap.trim();
+            String[] capValues = trimmedCap.split(CAP_SEPARATOR);
+            double capValue;
+            double maximumCapValue;
+            capValue = Double.parseDouble(capValues[0]);
+            maximumCapValue = Double.parseDouble(capValues[1]);
+            if (!Cap.isValidCap(capValue, maximumCapValue)) {
+                throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
+            }
+            return new Cap(capValue, maximumCapValue);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**

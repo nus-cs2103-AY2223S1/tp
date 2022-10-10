@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_VALUE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
@@ -12,6 +14,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -39,6 +43,7 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withGender("Female")
+            .withCap(3.90, 5.0)
             .withUniversity("Singapore University")
             .withMajor("Computer Science")
             .withId("171932")
@@ -51,6 +56,7 @@ public class TypicalPersons {
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withGender("Male")
+            .withCap(4.0, 5.0)
             .withUniversity("NUS")
             .withMajor("Computer Engineering")
             .withId("J021932")
@@ -62,6 +68,7 @@ public class TypicalPersons {
             .withEmail("heinz@example.com")
             .withAddress("wall street")
             .withGender("Male")
+            .withCap(3.99, 4.0)
             .withUniversity("SUTD")
             .withMajor("Chemical Engineering")
             .withId("171932")
@@ -73,6 +80,7 @@ public class TypicalPersons {
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
             .withGender("Male")
+            .withCap(2.50, 4.0)
             .withUniversity("SMU")
             .withMajor("Civil Engineering")
             .withId("171932")
@@ -85,6 +93,7 @@ public class TypicalPersons {
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
             .withGender("Female")
+            .withCap(3.70, 5.0)
             .withUniversity("Lasalle")
             .withMajor("Electrical Engineering")
             .withId("171932")
@@ -96,6 +105,7 @@ public class TypicalPersons {
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
             .withGender("Female")
+            .withCap(3.97, 5.0)
             .withUniversity("Nanyang Polytechnic")
             .withMajor("Animal Sciences")
             .withId("J021932")
@@ -107,6 +117,7 @@ public class TypicalPersons {
             .withEmail("anna@example.com")
             .withAddress("4th street")
             .withGender("Male")
+            .withCap(4.79, 5.0)
             .withUniversity("Temasek Polytechnic")
             .withMajor("Accounting")
             .withId("J021932")
@@ -120,6 +131,7 @@ public class TypicalPersons {
             .withEmail("stefan@example.com")
             .withAddress("little india")
             .withGender("Male")
+            .withCap(2.46, 4.0)
             .withUniversity("UI")
             .withMajor("Food and Nutrition")
             .withId("J021932")
@@ -132,6 +144,7 @@ public class TypicalPersons {
             .withEmail("hans@example.com")
             .withAddress("chicago ave")
             .withGender("Female")
+            .withCap(4.39, 5.0)
             .withUniversity("SUTD")
             .withMajor("Food and Nutrition")
             .withId("171932")
@@ -145,6 +158,7 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_AMY)
             .withAddress(VALID_ADDRESS_AMY)
             .withGender(VALID_GENDER_AMY)
+            .withCap(VALID_CAP_VALUE_AMY, VALID_MAXIMUM_CAP_VALUE_AMY)
             .withUniversity(VALID_UNIVERSITY_AMY)
             .withMajor(VALID_MAJOR_AMY)
             .withId(VALID_JOB_ID_AMY)
@@ -157,6 +171,7 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB)
             .withGender(VALID_GENDER_BOB)
+            .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
             .withUniversity(VALID_UNIVERSITY_BOB)
             .withMajor(VALID_MAJOR_BOB)
             .withTags(VALID_TAG_KIV, VALID_TAG_REJECTED)

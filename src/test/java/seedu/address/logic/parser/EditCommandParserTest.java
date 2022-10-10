@@ -3,11 +3,14 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.CAP_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.CAP_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CAP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_JOB_ID_DESC;
@@ -29,6 +32,9 @@ import static seedu.address.logic.commands.CommandTestUtil.UNIVERSITY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.UNIVERSITY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_VALUE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
@@ -37,6 +43,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -59,6 +67,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.job.Id;
 import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -110,6 +119,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_GENDER_DESC, Gender.MESSAGE_CONSTRAINTS); // invalid gender
+        assertParseFailure(parser, "1" + INVALID_CAP_DESC, Cap.MESSAGE_CONSTRAINTS); // invalid CAP
         assertParseFailure(parser, "1" + INVALID_UNIVERSITY_DESC, University.MESSAGE_CONSTRAINTS); // invalid university
         assertParseFailure(parser, "1" + INVALID_JOB_ID_DESC, Id.MESSAGE_CONSTRAINTS); // invalid job ID
         assertParseFailure(parser, "1" + INVALID_JOB_TITLE_DESC, Title.MESSAGE_CONSTRAINTS); // invalid job title
@@ -135,6 +145,7 @@ public class EditCommandParserTest {
                 + VALID_ADDRESS_AMY
                 + VALID_PHONE_AMY
                 + VALID_GENDER_AMY
+                + VALID_CAP_AMY
                 + VALID_UNIVERSITY_AMY
                 + VALID_JOB_ID_AMY
                 + VALID_JOB_TITLE_AMY,
@@ -150,6 +161,7 @@ public class EditCommandParserTest {
                 + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY
                 + GENDER_DESC_BOB
+                + CAP_DESC_BOB
                 + UNIVERSITY_DESC_BOB
                 + NAME_DESC_AMY
                 + JOB_ID_DESC_AMY
@@ -162,6 +174,7 @@ public class EditCommandParserTest {
                 .withEmail(VALID_EMAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY)
                 .withGender(VALID_GENDER_BOB)
+                .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withId(VALID_JOB_ID_AMY)
                 .withTitle(VALID_JOB_TITLE_AMY)
@@ -217,6 +230,13 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // CAP
+        userInput = targetIndex.getOneBased() + CAP_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder()
+                .withCap(VALID_CAP_VALUE_AMY, VALID_MAXIMUM_CAP_VALUE_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // university
         userInput = targetIndex.getOneBased() + UNIVERSITY_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withUniversity(VALID_UNIVERSITY_AMY).build();
@@ -250,6 +270,7 @@ public class EditCommandParserTest {
                 + ADDRESS_DESC_AMY
                 + EMAIL_DESC_AMY
                 + GENDER_DESC_AMY
+                + CAP_DESC_AMY
                 + UNIVERSITY_DESC_AMY
                 + JOB_ID_DESC_AMY
                 + JOB_TITLE_DESC_AMY
@@ -258,6 +279,7 @@ public class EditCommandParserTest {
                 + ADDRESS_DESC_BOB
                 + EMAIL_DESC_BOB
                 + GENDER_DESC_BOB
+                + CAP_DESC_BOB
                 + UNIVERSITY_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
@@ -268,6 +290,7 @@ public class EditCommandParserTest {
                 .withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
+                .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withId(VALID_JOB_ID_BOB)
                 .withTitle(VALID_JOB_TITLE_BOB)
@@ -293,6 +316,7 @@ public class EditCommandParserTest {
                 + INVALID_PHONE_DESC
                 + ADDRESS_DESC_BOB
                 + GENDER_DESC_BOB
+                + CAP_DESC_BOB
                 + UNIVERSITY_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
@@ -300,6 +324,7 @@ public class EditCommandParserTest {
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
+                .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withId(VALID_JOB_ID_BOB)
                 .withTitle(VALID_JOB_TITLE_BOB)

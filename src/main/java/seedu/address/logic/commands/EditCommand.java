@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CAP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_ID;
@@ -27,6 +28,7 @@ import seedu.address.model.Model;
 import seedu.address.model.job.Id;
 import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Major;
@@ -52,6 +54,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GENDER + "GENDER] "
+            + "[" + PREFIX_CAP + "CAP] "
             + "[" + PREFIX_UNIVERSITY + "UNIVERSITY] "
             + "[" + PREFIX_MAJOR + "MAJOR] "
             + "[" + PREFIX_JOB_ID + "ID] "
@@ -113,6 +116,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
+        Cap updatedCap = editPersonDescriptor.getCap().orElse(personToEdit.getCap());
         University updatedUniversity = editPersonDescriptor.getUniversity().orElse(personToEdit.getUniversity());
         Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
         Id updatedJobId = editPersonDescriptor.getJobId().orElse(personToEdit.getJob().getId());
@@ -122,6 +126,7 @@ public class EditCommand extends Command {
         return new Person(updatedName, updatedPhone, updatedEmail,
                 updatedAddress,
                 updatedGender,
+                updatedCap,
                 updatedUniversity,
                 updatedMajor,
                 updatedJobId,
@@ -157,6 +162,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Gender gender;
+        private Cap cap;
         private University university;
         private Major major;
         private Id id;
@@ -175,6 +181,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setGender(toCopy.gender);
+            setCap(toCopy.cap);
             setUniversity(toCopy.university);
             setMajor(toCopy.major);
             setId(toCopy.id);
@@ -189,7 +196,7 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email,
                     address,
                     gender,
-                    university,
+                    cap,university,
                     major,
                     id,
                     title,
@@ -234,6 +241,14 @@ public class EditCommand extends Command {
 
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
+        }
+
+        public void setCap(Cap cap) {
+            this.cap = cap;
+        }
+
+        public Optional<Cap> getCap() {
+            return Optional.ofNullable(cap);
         }
 
         public void setUniversity(University university) {
@@ -305,6 +320,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getGender().equals(e.getGender())
+                    && getCap().equals(e.getCap())
                     && getUniversity().equals(e.getUniversity())
                     && getMajor().equals(e.getMajor())
                     && getJobId().equals(e.getJobId())

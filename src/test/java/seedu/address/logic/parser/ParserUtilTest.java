@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.model.person.Cap.CAP_SEPARATOR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -17,6 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.job.Id;
 import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Major;
@@ -31,17 +33,27 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GENDER = "4Male";
+    private static final double INVALID_CAP_VALUE = 6;
+    private static final double MAXIMUM_CAP_VALUE = 5.0;
+    private static final String INVALID_CAP_VALUE_2 = "a";
+    private static final String INVALID_MAXIMUM_CAP_VALUE = "b";
+    private static final String INVALID_CAP_1 = INVALID_CAP_VALUE + CAP_SEPARATOR + MAXIMUM_CAP_VALUE;
+    private static final String INVALID_CAP_2 = INVALID_CAP_VALUE_2 + CAP_SEPARATOR + INVALID_MAXIMUM_CAP_VALUE;
+    private static final String INVALID_CAP_3 = "@#!";
     private static final String INVALID_UNIVERSITY = "n()S";
     private static final String INVALID_MAJOR = "C0MPUT3R $C13NC3";
     private static final String INVALID_ID = "J9021-1";
     private static final String INVALID_TITLE = "Intern | Software Engineer";
     private static final String INVALID_TAG = "#friend";
 
+
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_GENDER = "Male";
+    private static final double VALID_CAP_VALUE = 3.3;
+    private static final String VALID_CAP = VALID_CAP_VALUE + CAP_SEPARATOR + MAXIMUM_CAP_VALUE;
     private static final String VALID_UNIVERSITY = "ite";
     private static final String VALID_MAJOR = "Computer Science";
     private static final String VALID_ID = "J90211";
@@ -184,6 +196,34 @@ public class ParserUtilTest {
         String genderWithWhitespace = WHITESPACE + VALID_GENDER + WHITESPACE;
         Gender expectedGender = new Gender(VALID_GENDER);
         assertEquals(expectedGender, ParserUtil.parseGender(genderWithWhitespace));
+    }
+
+    @Test
+    public void parseCap_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCap((String) null));
+    }
+
+    @Test
+    public void parseCap_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_2));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_3));
+    }
+
+    @Test
+    public void parseCap_validValueWithoutWhitespace_returnsCap() throws Exception {
+        Cap expectedCap = new Cap(VALID_CAP_VALUE, MAXIMUM_CAP_VALUE);
+        assertEquals(expectedCap, ParserUtil.parseCap(VALID_CAP));
+    }
+
+    @Test
+    public void parseCap_validValueWithWhitespace_returnsTrimmedCap() throws Exception {
+        String capWithWhitespace = WHITESPACE + VALID_CAP + WHITESPACE; // " 3.3/5.0 "
+        String anotherCapWithWhitespace = WHITESPACE + VALID_CAP_VALUE // " 3.3 / 5.0 "
+                + WHITESPACE + CAP_SEPARATOR + WHITESPACE + MAXIMUM_CAP_VALUE;
+        Cap expectedCap = new Cap(VALID_CAP_VALUE, MAXIMUM_CAP_VALUE);
+        assertEquals(expectedCap, ParserUtil.parseCap(capWithWhitespace));
+        assertEquals(expectedCap, ParserUtil.parseCap(anotherCapWithWhitespace));
     }
 
     @Test

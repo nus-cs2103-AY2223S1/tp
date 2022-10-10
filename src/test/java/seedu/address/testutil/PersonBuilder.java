@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.job.Id;
 import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Major;
@@ -26,6 +27,8 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GENDER = "Female";
+    public static final double DEFAULT_CAP_VALUE = 4.99;
+    public static final double DEFAULT_CAP_MAXIMUM_VALUE = 5.0;
     public static final String DEFAULT_UNIVERSITY = "NUS";
     public static final String DEFAULT_MAJOR = "Computer Science";
     public static final String DEFAULT_JOB_ID = "17839";
@@ -36,6 +39,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Gender gender;
+    private Cap cap;
     private University university;
     private Major major;
     private Id id;
@@ -51,6 +55,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         gender = new Gender(DEFAULT_GENDER);
+        cap = new Cap(DEFAULT_CAP_VALUE, DEFAULT_CAP_MAXIMUM_VALUE);
         university = new University(DEFAULT_UNIVERSITY);
         major = new Major(DEFAULT_MAJOR);
         id = new Id(DEFAULT_JOB_ID);
@@ -67,6 +72,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         gender = personToCopy.getGender();
+        cap = personToCopy.getCap();
         university = personToCopy.getUniversity();
         major = personToCopy.getMajor();
         id = personToCopy.getJob().getId();
@@ -123,6 +129,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Cap} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCap(double capValue, double maximumValue) {
+        this.cap = new Cap(capValue, maximumValue);
+        return this;
+    }
+
+    /**
      * Sets the {@code University} of the {@code Person} that we are building.
      */
     public PersonBuilder withUniversity(String university) {
@@ -161,7 +175,7 @@ public class PersonBuilder {
         return new Person(name, phone, email,
                 address,
                 gender,
-                university,
+                cap,university,
                 major,
                 id,
                 title,
