@@ -31,10 +31,10 @@ public class StudentCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "JohnD@example.com "
-            + PREFIX_GENDER + "Male "
+            + PREFIX_GENDER + "M "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney"
-            + PREFIX_LOCATION + "UTown residences";
+            + PREFIX_LOCATION + "UTown Residences";
 
     public static final String MESSAGE_SUCCESS = "New Student added: %1$s";
 
