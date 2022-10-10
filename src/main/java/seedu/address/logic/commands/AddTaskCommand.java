@@ -15,11 +15,10 @@ public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list.\n"
             + "Parameters: "
-            + PREFIX_DEADLINE + "{deadline}"
-            + PREFIX_MODULE_LONG + "{module}"
-            + "\n"
+            + PREFIX_DEADLINE + "{deadline}" + " "
+            + PREFIX_MODULE_LONG + "{module}" + "\n"
             + "Example: " + COMMAND_WORD + " "
             + "Lab2" + " "
             + PREFIX_DEADLINE + "2022-02-02 23:59" + " "
