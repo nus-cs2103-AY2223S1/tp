@@ -2,8 +2,8 @@ package taskbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import taskbook.model.AddressBook;
 import taskbook.model.Model;
+import taskbook.model.TaskBook;
 
 /**
  * Clears the task book.
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setTaskBook(new TaskBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

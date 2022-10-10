@@ -22,25 +22,25 @@ import taskbook.testutil.Assert;
 import taskbook.testutil.PersonBuilder;
 import taskbook.testutil.TypicalPersons;
 
-public class AddressBookTest {
+public class TaskBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final TaskBook taskBook = new TaskBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), taskBook.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        Assert.assertThrows(NullPointerException.class, () -> taskBook.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = TypicalPersons.getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlytaskBook_replacesData() {
+        TaskBook newData = TypicalPersons.getTypicaltaskBook();
+        taskBook.resetData(newData);
+        assertEquals(newData, taskBook);
     }
 
     @Test
@@ -50,49 +50,49 @@ public class AddressBookTest {
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(TypicalPersons.ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        TaskBookStub newData = new TaskBookStub(newPersons);
 
-        Assert.assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        Assert.assertThrows(DuplicatePersonException.class, () -> taskBook.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        Assert.assertThrows(NullPointerException.class, () -> taskBook.hasPerson(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(TypicalPersons.ALICE));
+    public void hasPerson_personNotIntaskBook_returnsFalse() {
+        assertFalse(taskBook.hasPerson(TypicalPersons.ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(TypicalPersons.ALICE);
-        assertTrue(addressBook.hasPerson(TypicalPersons.ALICE));
+    public void hasPerson_personIntaskBook_returnsTrue() {
+        taskBook.addPerson(TypicalPersons.ALICE);
+        assertTrue(taskBook.hasPerson(TypicalPersons.ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(TypicalPersons.ALICE);
+    public void hasPerson_personWithSameIdentityFieldsIntaskBook_returnsTrue() {
+        taskBook.addPerson(TypicalPersons.ALICE);
         Person editedAlice = new PersonBuilder(TypicalPersons.ALICE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(taskBook.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        Assert.assertThrows(UnsupportedOperationException.class, () -> taskBook.getPersonList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyTaskBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class TaskBookStub implements ReadOnlyTaskBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        TaskBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
             this.tasks.setAll(tasks);
         }

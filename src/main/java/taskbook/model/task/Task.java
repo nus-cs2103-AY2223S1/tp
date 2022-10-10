@@ -7,7 +7,7 @@ import taskbook.model.person.Person;
 import taskbook.model.task.enums.Assignment;
 
 /**
- * Represents a Task in the address book.
+ * Represents a Task in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
@@ -42,6 +42,14 @@ public class Task {
 
     public boolean isDone() {
         return isDone;
+    }
+
+    /**
+     * Returns the string representation of the completion status of the task.
+     * @return [X] if the task is done. Otherwise, return [ ].
+     */
+    public String getStatus() {
+        return isDone() ? "[X]" : "[ ]";
     }
 
     /**

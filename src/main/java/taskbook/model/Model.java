@@ -37,30 +37,30 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' task book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' task book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTaskBookFilePath(Path taskBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces task book data with the data in {@code taskBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTaskBook(ReadOnlyTaskBook taskBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TaskBook */
+    ReadOnlyTaskBook getTaskBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the task book.
      */
     boolean hasPerson(Person person);
 
     /**
-     * Returns the person with the same name as {@code name} if they exist in the address book.
+     * Returns the person with the same name as {@code name} if they exist in the task book.
      */
     Person findPerson(Name name);
 
@@ -78,20 +78,20 @@ public interface Model {
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the task book.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the task book.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the task book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the task book.
      */
     void setPerson(Person target, Person editedPerson);
 

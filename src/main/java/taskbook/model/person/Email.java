@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import taskbook.commons.util.AppUtil;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents a Person's email in the task book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
