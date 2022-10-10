@@ -1,6 +1,17 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFDEPARTMENT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFDEPARTMENT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFINSURANCE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFINSURANCE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFNAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFNAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFTITLE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFTITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,11 +60,11 @@ public class TypicalStaff {
             .withStaffContact("8482131").withStaffTitle("2016-05-21").build();
 
     // Manually added - Staff's details found in {@code CommandTestUtil}
-    public static final Staff AMY = new StaffBuilder().withStaffName(VALID_NAME_AMY)
+    public static final Staff AMY = new StaffBuilder().withStaffName(VALID_STAFFNAME_AMY)
             .withStaffContact(VALID_STAFFCONTACT_AMY).withStaffTitle(VALID_STAFFTITLE_AMY)
             .withStaffDepartment(VALID_STAFFDEPARTMENT_AMY).withStaffInsurance(VALID_STAFFINSURANCE_AMY)
             .withTags(VALID_TAG_FRIEND).build();
-    public static final Staff BOB = new StaffBuilder().withStaffName(VALID_NAME_BOB)
+    public static final Staff BOB = new StaffBuilder().withStaffName(VALID_STAFFNAME_BOB)
             .withStaffContact(VALID_STAFFCONTACT_BOB).withStaffTitle(VALID_STAFFTITLE_BOB)
             .withStaffDepartment(VALID_STAFFDEPARTMENT_BOB).withStaffInsurance(VALID_STAFFINSURANCE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
@@ -61,7 +72,8 @@ public class TypicalStaff {
 
     public static final String KEYWORD_MATCHING_HUNGRY = "Hungry"; // A keyword that matches HUNGRY
 
-    private TypicalStaff() {} // prevents instantiation
+    private TypicalStaff() {
+    } // prevents instantiation
 
 
     /**
@@ -76,7 +88,6 @@ public class TypicalStaff {
         return proj;
     }
     */
-
     public static List<Staff> getTypicalStaff() {
         return new ArrayList<>(Arrays.asList(NEVER, GONNA, GIVE, YOU, UP, SOMEBODY, SHREK));
     }
