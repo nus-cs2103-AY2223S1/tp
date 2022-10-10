@@ -32,13 +32,6 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="340"
-            prefWidth="340" VBox.vgrow="ALWAYS">
-        <padding>
-          <Insets top="10" right="10" bottom="10" left="10" />
-        </padding>
-        <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-      </VBox>
     </VBox>
   </GridPane>
 </HBox>

@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.task.Task;
+import seedu.address.model.module.task.Task;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -43,10 +43,6 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
-    // Independent UI parts
-    private TaskListPanel taskListPanel;
-    @FXML
-    private StackPane taskListPanelPlaceholder;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -62,9 +58,6 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        ObservableList<Task> taskList = person.getTasks();
-        taskListPanel = new TaskListPanel(taskList);
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
     }
 
     @Override
