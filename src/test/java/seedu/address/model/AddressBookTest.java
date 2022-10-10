@@ -60,7 +60,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateListings_throwsDuplicateListingException() {
         // Two Listings with the same identity fields
-        Listing editedHouse = new ListingBuilder(BOB.getAddress(), BOB.getName(), 1).build();
+        Listing editedHouse = new ListingBuilder().build();
         List<Person> newPersons = Arrays.asList(ALICE);
         List<Listing> newListings = Arrays.asList(editedHouse, editedHouse);
         AddressBookStub newData = new AddressBookStub(newPersons, newListings);

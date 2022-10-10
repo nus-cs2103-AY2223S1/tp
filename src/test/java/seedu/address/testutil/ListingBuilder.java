@@ -2,31 +2,31 @@ package seedu.address.testutil;
 
 import seedu.address.model.listing.Listing;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 /**
  * A utility class to help with building Listing objects.
  */
 public class ListingBuilder {
 
+    public static final String DEFAULT_ID = "House";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final Person DEFAULT_PERSON = TypicalPersons.BOB;
     public static final int DEFAULT_ASKING_PRICE = 1;
 
+    private String id;
     private Address address;
-    private Name name;
+    private Person owner;
     private int askingPrice;
 
     /**
      * Creates a {@code ListingBuilder} with the default details.
-     * @param address address of listing
-     * @param name name of owner
-     * @param i asking price
      */
-    public ListingBuilder(Address address, Name name, int i) {
+    public ListingBuilder() {
+        this.id = DEFAULT_ID;
         this.address = new Address(DEFAULT_ADDRESS);
-        this.name = new Name(DEFAULT_NAME);
-        askingPrice = DEFAULT_ASKING_PRICE;
+        this.owner = DEFAULT_PERSON;
+        this.askingPrice = DEFAULT_ASKING_PRICE;
     }
 
     /**
@@ -34,15 +34,23 @@ public class ListingBuilder {
      */
     public ListingBuilder(Listing listingToCopy) {
         address = listingToCopy.getAddress();
-        name = listingToCopy.getName();
+        owner = listingToCopy.getOwner();
         askingPrice = listingToCopy.getAskingPrice();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code id} of the {@code Listing} that we are building.
      */
-    public ListingBuilder withName(String name) {
-        this.name = new Name(name);
+    public ListingBuilder withId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Sets the {@code owner} of the {@code Listing} that we are building.
+     */
+    public ListingBuilder withOwner(Person owner) {
+        this.owner = owner;
         return this;
     }
 
@@ -63,7 +71,7 @@ public class ListingBuilder {
     }
 
     public Listing build() {
-        return new Listing(address, name, askingPrice);
+        return new Listing(id, address, owner, askingPrice);
     }
 
 }

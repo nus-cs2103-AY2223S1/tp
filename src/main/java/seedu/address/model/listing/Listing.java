@@ -36,9 +36,6 @@ public class Listing {
         currentOffers = new ArrayList<>();
     }
 
-    public Listing(Address address, Name name, int askingPrice) {
-    }
-
     /**
      * Gets the id of this listing.
      * @return id of listing
@@ -53,6 +50,14 @@ public class Listing {
      */
     public Name getName() {
         return this.owner.getName();
+    }
+
+    /**
+     * Gets the owner.
+     * @return owner
+     */
+    public Person getOwner() {
+        return this.owner;
     }
 
     /**
