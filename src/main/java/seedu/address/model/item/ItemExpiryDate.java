@@ -13,7 +13,7 @@ import seedu.address.model.item.validators.ItemExpiryDateValidator;
  */
 public class ItemExpiryDate {
 
-    private static final String DATE_OUTPUT_PATTERN_REGEX = "yyyy-MM-dd";
+    private static final String DATE_OUTPUT_PATTERN_REGEX = "uuuu-MM-dd";
 
     private final LocalDate itemDate;
 

@@ -60,9 +60,9 @@ public class ItemQuantityValidator {
      */
     public static boolean isQuantityTooPrecise(String itemQuantityString) {
         if (!itemQuantityString.contains(DECIMAL_POINT)) {
-            return true;
+            return false;
         }
-        int numberOfDecimalPoints = itemQuantityString.length() - itemQuantityString.indexOf(DECIMAL_POINT);
+        int numberOfDecimalPoints = itemQuantityString.length() - itemQuantityString.indexOf(DECIMAL_POINT) - 1;
         return numberOfDecimalPoints > MAX_DECIMAL_PLACE;
     }
 

@@ -14,17 +14,17 @@ import seedu.address.model.validator.DateValidator;
 public class ItemExpiryDateValidator {
 
     // Validation for parsing
-    private static final String DATE_INPUT_PATTERN_REGEX = "yyyy-MM-dd";
+    private static final String DATE_INPUT_PATTERN_REGEX = "uuuu-MM-dd";
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN_REGEX);
     private static final String MESSAGE_FOR_UNABLE_TO_PARSE =
             String.format("Dates must follow the format %s.", DATE_INPUT_PATTERN_REGEX);
 
     // Validation for year
-    private static final int MIN_YEAR = 1000;
+    private static final int MIN_YEAR = 1900;
     private static final String MESSAGE_FOR_YEAR_TOO_SMALL =
             String.format("Year should be larger than %d.", MIN_YEAR);
 
-    private static final int MAX_YEAR = 2100;
+    private static final int MAX_YEAR = 2300;
     private static final String MESSAGE_FOR_YEAR_TOO_LARGE =
             String.format("Year should be less than %d.", MAX_YEAR);
 

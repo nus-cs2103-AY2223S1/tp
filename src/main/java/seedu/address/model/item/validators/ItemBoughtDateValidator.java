@@ -14,7 +14,10 @@ import seedu.address.model.validator.DateValidator;
 public class ItemBoughtDateValidator {
 
     // Validation for parsing
-    private static final String DATE_INPUT_PATTERN_REGEX = "dd-MM-yyyy";
+    /**
+     * Java 8 uses 'uuuu' for year, not 'yyyy'. In Java 8, ‘yyyy’ means “year of era” (BC or AD).
+     */
+    private static final String DATE_INPUT_PATTERN_REGEX = "uuuu-MM-dd";
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN_REGEX);
     private static final String MESSAGE_FOR_UNABLE_TO_PARSE =
             String.format("Dates must follow the format %s.", DATE_INPUT_PATTERN_REGEX);

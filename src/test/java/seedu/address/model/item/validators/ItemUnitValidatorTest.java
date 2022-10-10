@@ -47,8 +47,8 @@ public class ItemUnitValidatorTest {
         assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("a"));
         assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("kg"));
         assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("kilogram"));
-        assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("kilogram/kg"));
         assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("KG"));
         assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("100"));
+        assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("1234567891234567892")); // 20 characters
     }
 }

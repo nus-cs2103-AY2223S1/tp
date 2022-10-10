@@ -14,6 +14,8 @@ public class ItemQuantityValidatorTest {
         assertTrue(ItemQuantityValidator.isQuantityMoreThanMaxQuantity(100001));
 
         assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0"));
+        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("10"));
+        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("100"));
         assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0.0"));
         assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0.00"));
         assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0.000"));
@@ -45,9 +47,10 @@ public class ItemQuantityValidatorTest {
         assertTrue(ItemQuantityValidator.isParsableQuantity("0.0001"));
         assertTrue(ItemQuantityValidator.isParsableQuantity("0.00001"));
         assertTrue(ItemQuantityValidator.isParsableQuantity("0.000000000000001")); // 15dp
+        assertTrue(ItemQuantityValidator.isParsableQuantity("0.0000000000000001")); // 16dp
+        // Parsable, but causes integer overflow
+        assertTrue(ItemQuantityValidator.isParsableQuantity("0.99999999999999999")); // 17dp
 
-
-        assertFalse(ItemQuantityValidator.isParsableQuantity("0.0000000000000001")); // 16dp
         assertFalse(ItemQuantityValidator.isParsableQuantity(""));
         assertFalse(ItemQuantityValidator.isParsableQuantity(" "));
         assertFalse(ItemQuantityValidator.isParsableQuantity("a"));
