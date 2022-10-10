@@ -12,7 +12,11 @@ import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ass
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.showPersonAtIndex;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.rc4hdb.testutil.TypicalPersons.AMY;
+import static seedu.rc4hdb.testutil.TypicalPersons.BOB;
 import static seedu.rc4hdb.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +27,8 @@ import seedu.rc4hdb.model.AddressBook;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.model.person.AttributesMatchKeywordsPredicate;
+import seedu.rc4hdb.model.person.NameContainsKeywordsPredicate;
 import seedu.rc4hdb.model.person.Person;
 import seedu.rc4hdb.testutil.EditPersonDescriptorBuilder;
 import seedu.rc4hdb.testutil.PersonBuilder;
@@ -150,7 +156,7 @@ public class EditCommandTest {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
+        EditCommand.EditPersonDescriptor copyDescriptor = new EditCommand.EditPersonDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

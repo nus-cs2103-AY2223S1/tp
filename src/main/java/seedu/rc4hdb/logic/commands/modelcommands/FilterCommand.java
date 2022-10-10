@@ -67,6 +67,25 @@ public class FilterCommand extends ModelCommand {
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FilterCommand)) {
+            return false;
+        }
+
+        // state check
+        FilterCommand f = (FilterCommand) other;
+        return filterPersonDescriptor.equals(f.filterPersonDescriptor);
+    }
+
+
     /**
      * Stores the details to filter the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
