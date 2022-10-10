@@ -26,7 +26,5 @@ public class DeleteUserByNameCommandParser implements Parser<DeleteUserByNameCom
         String name = argumentMultimap.getPreamble();
         return new DeleteUserByNameCommand(new FullNamePredicate(name));
 
-
-
     }
 }
