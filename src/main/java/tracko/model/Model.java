@@ -72,8 +72,19 @@ public interface Model {
      * Returns the order list.
      */
     ObservableList<Order> getOrderList();
+
     /**
      * Adds the given item.
      */
     void addItem(Item item);
+
+    /**
+     * Deletes the given item.
+     */
+    void deleteItem(Item item);
+
+    /**
+     * Returns the item list.
+     */
+    ObservableList<Item> getInventoryList();
 }
