@@ -80,7 +80,7 @@ public interface Model {
     /** Returns the current team */
     Team getTeam();
 
-    /** Sets the current team to an existing team*/
+    /** Sets the current team to an existing team */
     void setTeam(Team teamToSet);
 
     /** Adds a new team */
