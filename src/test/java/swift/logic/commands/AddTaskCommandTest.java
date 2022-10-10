@@ -22,58 +22,58 @@ import swift.model.ReadOnlyAddressBook;
 import swift.model.ReadOnlyUserPrefs;
 import swift.model.person.Person;
 import swift.model.task.Task;
-import swift.testutil.PersonBuilder;
+import swift.testutil.TaskBuilder;
 
-public class AddCommandTest {
+public class AddTaskCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddContactCommand(null));
+    public void constructor_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new AddContactCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddTaskCommand(validTask).execute(modelStub);
 
-        assertEquals(String.format(AddContactCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddContactCommand addCommand = new AddContactCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateTask_throwsCommandException() {
+        Task validTask = new TaskBuilder().build();
+        AddTaskCommand addCommand = new AddTaskCommand(validTask);
+        ModelStub modelStub = new ModelStubWithTask(validTask);
 
         assertThrows(CommandException.class,
-                AddContactCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+                AddTaskCommand.MESSAGE_DUPLICATE_TASK, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddContactCommand addAliceCommand = new AddContactCommand(alice);
-        AddContactCommand addBobCommand = new AddContactCommand(bob);
+        Task buyMilk = new TaskBuilder().withTaskName("Buy Milk").build();
+        Task cs2103t = new TaskBuilder().withTaskName("CS2103T").build();
+        AddTaskCommand addBuyMilkCommand = new AddTaskCommand(buyMilk);
+        AddTaskCommand addCs2103tCommand = new AddTaskCommand(cs2103t);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addBuyMilkCommand.equals(addBuyMilkCommand));
 
         // same values -> returns true
-        AddContactCommand addAliceCommandCopy = new AddContactCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddTaskCommand addBuyMilkCommandCopy = new AddTaskCommand(buyMilk);
+        assertTrue(addBuyMilkCommand.equals(addBuyMilkCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addBuyMilkCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addBuyMilkCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different task -> returns false
+        assertFalse(addBuyMilkCommand.equals(addCs2103tCommand));
     }
 
     /**
@@ -171,40 +171,41 @@ public class AddCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+    /**
+     * A Model stub that contains a single task.
+     */
+    private class ModelStubWithTask extends ModelStub {
+        private final Task task;
+
+        ModelStubWithTask(Task task) {
+            requireNonNull(task);
+            this.task = task;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasTask(Task task) {
+            requireNonNull(task);
+            return this.task.equals(task);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the task being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTaskAdded extends ModelStub {
+        final ArrayList<Task> tasksAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasTask(Task task) {
+            requireNonNull(task);
+            return tasksAdded.stream().anyMatch(task::equals);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTask(Task task) {
+            requireNonNull(task);
+            tasksAdded.add(task);
         }
 
         @Override
