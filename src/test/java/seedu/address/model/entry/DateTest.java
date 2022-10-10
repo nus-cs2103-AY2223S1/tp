@@ -1,2 +1,4 @@
-package seedu.address.model.entry;public class DateTest {
+package seedu.address.model.entry;
+
+public class DateTest {
 }
