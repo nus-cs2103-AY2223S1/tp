@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Financial Advisor Planner" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/contact_book_32.png" />
   </icons>
   <scene>
     <Scene>
@@ -23,7 +23,7 @@
       </stylesheets>
 
       <VBox style="-fx-background-color: #05071F;">
-        <MenuBar fx:id="menuBar" style="-fx-background-color: #02030A;" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" style="-fx-background-color: #0e1011;" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
