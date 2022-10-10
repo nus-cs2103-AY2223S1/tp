@@ -1,11 +1,11 @@
 package foodwhere.ui;
 
-import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import foodwhere.model.stall.Stall;
+import foodwhere.model.review.Review;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -25,7 +25,7 @@ public class ReviewCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Stall review;
+    public final Review review;
 
     @FXML
     private HBox cardPane;
@@ -34,22 +34,28 @@ public class ReviewCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label address;
+    private Label content;
     @FXML
-    private FlowPane details;
+    private Label details;
 
     /**
-     * Creates a {@code ReviewCode} with the given {@code Stall} and index to display.
+     * Creates a {@code ReviewCode} with the given {@code Review} and index to display.
      */
-    public ReviewCard(Stall stall, int displayedIndex) {
+    public ReviewCard(Review review, int displayedIndex) {
         super(FXML);
-        this.review = stall;
+        this.review = review;
         id.setText(displayedIndex + ". ");
-        name.setText(stall.getName().fullName);
-        address.setText(stall.getAddress().value);
-        stall.getDetails().stream()
-                .sorted(Comparator.comparing(detail -> detail.detail))
-                .forEach(detail -> details.getChildren().add(new Label(detail.detail)));
+        name.setText(review.getName().fullName);
+        content.setText(review.getContent().value);
+
+        if (!review.getDetails().isEmpty()) {
+            String assigneesNames = review.getDetails()
+                    .stream()
+                    .flatMap(rev -> Stream.of(rev.detail))
+                    .collect(Collectors.joining(", "));
+
+            details.setText(assigneesNames);
+        }
     }
 
     @Override

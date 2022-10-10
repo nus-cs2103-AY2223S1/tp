@@ -131,6 +131,23 @@ public class ModelManager implements Model {
         filteredStalls.setPredicate(predicate);
     }
 
+    //=========== Filtered Review List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Review} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Review> getFilteredReviewList() {
+        return filteredReviews;
+    }
+
+    @Override
+    public void updateFilteredReviewList(Predicate<Review> predicate) {
+        requireNonNull(predicate);
+        filteredReviews.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
