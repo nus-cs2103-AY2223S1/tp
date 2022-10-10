@@ -4,43 +4,43 @@
     "name" : "Alice Pauline",
     "weight" : "10",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "weight" : "20",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "weight" : "30",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "weight" : "40",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "weight" : "50",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "weight" : "60",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "weight" : "70",
     "sets" : "1",
-    "rep" : "1",
+    "reps" : "1",
     "tagged" : [ ]
   } ]
 }
