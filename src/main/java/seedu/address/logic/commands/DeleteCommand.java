@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -53,7 +54,8 @@ public class DeleteCommand extends Command {
             model.updateFilteredPersonList(predicate);
             List<Person> filteredList = model.getFilteredPersonList();
             if (filteredList.size() > 1) {
-                throw new CommandException(String.format(Messages.MESSAGE_INVALID_AMBIGUOUS_NAME, predicate.getFirst()));
+                throw new CommandException(String.format(Messages.MESSAGE_INVALID_AMBIGUOUS_NAME,
+                        predicate.getFirst()));
             } else if (filteredList.size() <= 0) {
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
                 throw new CommandException(String.format(Messages.MESSAGE_INVALID_NAME, predicate.getFirst()));
