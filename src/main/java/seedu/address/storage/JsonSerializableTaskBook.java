@@ -9,12 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.TaskBook;
-import seedu.address.model.comment.Comment;
-import seedu.address.model.student.Student;
+import seedu.address.model.task.Task;
 
 /**
  * An Immutable TaskBook that is serializable to JSON format.
@@ -38,7 +35,7 @@ class JsonSerializableTaskBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableTaskBook(ReadOnlyTaskBook source) {
-        tasks.addAll(source.getCommentList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
@@ -49,8 +46,8 @@ class JsonSerializableTaskBook {
     public TaskBook toModelType() throws IllegalValueException {
         TaskBook taskBook = new TaskBook();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
-            Comment comment = jsonAdaptedTask.toModelType();
-            taskBook.addComment(comment);
+            Task task = jsonAdaptedTask.toModelType();
+            taskBook.addTask(task);
         }
         return taskBook;
     }

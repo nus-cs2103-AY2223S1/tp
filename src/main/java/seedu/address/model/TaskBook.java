@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.comment.Comment;
-import seedu.address.model.comment.CommentList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +14,7 @@ import seedu.address.model.comment.CommentList;
  */
 public class TaskBook implements ReadOnlyTaskBook {
 
-    private final CommentList comments;
+    private final TaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class TaskBook implements ReadOnlyTaskBook {
      *   among constructors.
      */
     {
-        comments = new CommentList();
+        tasks = new TaskList();
     }
 
     public TaskBook() {}
@@ -43,8 +43,8 @@ public class TaskBook implements ReadOnlyTaskBook {
      * Replaces the contents of the student list with {@code students}.
      * {@code students} must not contain duplicate students.
      */
-    public void setComments(List<Comment> comments) {
-        this.comments.setComments(comments);
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
     }
 
     /**
@@ -53,7 +53,7 @@ public class TaskBook implements ReadOnlyTaskBook {
     public void resetData(ReadOnlyTaskBook newData) {
         requireNonNull(newData);
 
-        setComments(newData.getCommentList());
+        setTasks(newData.getTaskList());
     }
 
     //// student-level operations
@@ -62,8 +62,8 @@ public class TaskBook implements ReadOnlyTaskBook {
      * Adds a student to the address book.
      * The student must not already exist in the address book.
      */
-    public void addComment(Comment c) {
-        comments.add(c);
+    public void addTask(Task t) {
+        tasks.add(t);
     }
 
     /**
@@ -90,24 +90,24 @@ public class TaskBook implements ReadOnlyTaskBook {
 
     @Override
     public String toString() {
-        return comments.asUnmodifiableObservableList().size() + " comments";
+        return tasks.asUnmodifiableObservableList().size() + " tasks";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Comment> getCommentList() {
-        return comments.asUnmodifiableObservableList();
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskBook // instanceof handles nulls
-                && comments.equals(((TaskBook) other).comments));
+                && tasks.equals(((TaskBook) other).tasks));
     }
 
     @Override
     public int hashCode() {
-        return comments.hashCode();
+        return tasks.hashCode();
     }
 }

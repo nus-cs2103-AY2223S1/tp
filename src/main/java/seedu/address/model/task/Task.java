@@ -1,24 +1,24 @@
-package seedu.address.model.comment;
+package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-public class Comment {
-    public final CommentTitle title;
-    public final CommentDescription description;
+public class Task {
+    public final TaskTitle title;
+    public final TaskDescription description;
 
-    public Comment(CommentTitle title, CommentDescription description) {
+    public Task(TaskTitle title, TaskDescription description) {
         requireAllNonNull(title, description);
         this.title = title;
         this.description = description;
     }
 
-    public CommentTitle getTitle() {
+    public TaskTitle getTitle() {
         return title;
     }
 
-    public CommentDescription getDescription() {
+    public TaskDescription getDescription() {
         return description;
     }
 
@@ -32,11 +32,11 @@ public class Comment {
             return true;
         }
 
-        if (!(other instanceof Comment)) {
+        if (!(other instanceof Task)) {
             return false;
         }
 
-        Comment otherStudent = (Comment) other;
+        Task otherStudent = (Task) other;
         return otherStudent.getTitle().equals(getTitle())
                 && otherStudent.getDescription().equals(getDescription());
     }

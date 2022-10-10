@@ -1,9 +1,9 @@
-package seedu.address.model.comment;
+package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-public class CommentTitle {
+public class TaskTitle {
     public static final String MESSAGE_CONSTRAINTS =
             "Comment titles should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -15,7 +15,7 @@ public class CommentTitle {
 
     public final String title;
 
-    public CommentTitle(String title) {
+    public TaskTitle(String title) {
         requireNonNull(title);
         checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
         this.title = title;
@@ -36,8 +36,8 @@ public class CommentTitle {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CommentTitle // instanceof handles nulls
-                && title.equals(((CommentTitle) other).title)); // state check
+                || (other instanceof TaskTitle // instanceof handles nulls
+                && title.equals(((TaskTitle) other).title)); // state check
     }
 
     @Override

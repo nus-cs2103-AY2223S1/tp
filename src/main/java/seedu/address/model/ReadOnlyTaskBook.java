@@ -1,9 +1,9 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.comment.Comment;
+import seedu.address.model.task.Task;
 
 public interface ReadOnlyTaskBook {
 
-    ObservableList<Comment> getCommentList();
+    ObservableList<Task> getTaskList();
 }

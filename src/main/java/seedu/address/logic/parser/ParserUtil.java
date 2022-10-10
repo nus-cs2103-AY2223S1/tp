@@ -9,8 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.comment.CommentDescription;
-import seedu.address.model.comment.CommentTitle;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskTitle;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -124,21 +124,21 @@ public class ParserUtil {
         return tagSet;
     }
 
-    public static CommentTitle parseTitle(String title) throws ParseException {
+    public static TaskTitle parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
-        if (!CommentTitle.isValidTitle(trimmedTitle)) {
-            throw new ParseException(CommentTitle.MESSAGE_CONSTRAINTS);
+        if (!TaskTitle.isValidTitle(trimmedTitle)) {
+            throw new ParseException(TaskTitle.MESSAGE_CONSTRAINTS);
         }
-        return new CommentTitle(trimmedTitle);
+        return new TaskTitle(trimmedTitle);
     }
 
-    public static CommentDescription parseDescription(String description) throws ParseException {
+    public static TaskDescription parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        if (!CommentDescription.isValidDescription(trimmedDescription)) {
-            throw new ParseException(CommentDescription.MESSAGE_CONSTRAINTS);
+        if (!TaskDescription.isValidDescription(trimmedDescription)) {
+            throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
         }
-        return new CommentDescription(trimmedDescription);
+        return new TaskDescription(trimmedDescription);
     }
 }

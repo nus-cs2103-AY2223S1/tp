@@ -3,9 +3,9 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.comment.Comment;
-import seedu.address.model.comment.CommentDescription;
-import seedu.address.model.comment.CommentTitle;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskTitle;
 
 public class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
@@ -19,28 +19,28 @@ public class JsonAdaptedTask {
         this.description = description;
     }
 
-    public JsonAdaptedTask(Comment source) {
+    public JsonAdaptedTask(Task source) {
         title = source.getTitle().title;
         description = source.getDescription().description;
     }
 
-    public Comment toModelType() throws IllegalValueException {
+    public Task toModelType() throws IllegalValueException {
         if (title == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CommentTitle.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskTitle.class.getSimpleName()));
         }
-        if (!CommentTitle.isValidTitle(title)) {
-            throw new IllegalValueException(CommentTitle.MESSAGE_CONSTRAINTS);
+        if (!TaskTitle.isValidTitle(title)) {
+            throw new IllegalValueException(TaskTitle.MESSAGE_CONSTRAINTS);
         }
-        final CommentTitle modelTitle = new CommentTitle(title);
+        final TaskTitle modelTitle = new TaskTitle(title);
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CommentDescription.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskDescription.class.getSimpleName()));
         }
-        if (!CommentDescription.isValidDescription(description)) {
-            throw new IllegalValueException(CommentDescription.MESSAGE_CONSTRAINTS);
+        if (!TaskDescription.isValidDescription(description)) {
+            throw new IllegalValueException(TaskDescription.MESSAGE_CONSTRAINTS);
         }
-        final CommentDescription modelDescription = new CommentDescription(description);
+        final TaskDescription modelDescription = new TaskDescription(description);
 
-        return new Comment(modelTitle, modelDescription);
+        return new Task(modelTitle, modelDescription);
     }
 }

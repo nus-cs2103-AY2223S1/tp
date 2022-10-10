@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.comment.Comment;
+import seedu.address.model.task.Task;
 import seedu.address.model.student.Student;
 
 /**
@@ -127,9 +127,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addComment(Comment comment) {
-        requireNonNull(comment);
-        taskBook.addComment(comment);
+    public void addTask(Task task) {
+        requireNonNull(task);
+        taskBook.addTask(task);
     }
 
     //=========== Filtered Student List Accessors =============================================================

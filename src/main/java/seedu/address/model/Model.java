@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.comment.Comment;
+import seedu.address.model.task.Task;
 import seedu.address.model.student.Student;
 
 /**
@@ -91,5 +91,5 @@ public interface Model {
 
     ReadOnlyTaskBook getTaskBook();
 
-    void addComment(Comment comment);
+    void addTask(Task task);
 }

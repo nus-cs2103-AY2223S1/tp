@@ -8,9 +8,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.TaskBook;
-import seedu.address.model.comment.Comment;
-import seedu.address.model.comment.CommentDescription;
-import seedu.address.model.comment.CommentTitle;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskTitle;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -45,10 +45,10 @@ public class SampleDataUtil {
         };
     }
 
-    public static Comment[] getSampleTasks() {
-        return new Comment[] {
-                new Comment(new CommentTitle("First comment"), new CommentDescription("First description")),
-                new Comment(new CommentTitle("Second comment"), new CommentDescription("Second description"))
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+                new Task(new TaskTitle("First task"), new TaskDescription("First description")),
+                new Task(new TaskTitle("Second task"), new TaskDescription("Second description"))
         };
     }
 
@@ -62,8 +62,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyTaskBook getSampleTaskBook() {
         TaskBook sampleTb = new TaskBook();
-        for (Comment sampleTask : getSampleTasks()) {
-            sampleTb.addComment(sampleTask);
+        for (Task sampleTask : getSampleTasks()) {
+            sampleTb.addTask(sampleTask);
         }
         return sampleTb;
     }
