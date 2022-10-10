@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -41,6 +42,7 @@ public class MarkTaskCommand extends Command {
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
         taskToMark.markAsDone();
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
     }
 

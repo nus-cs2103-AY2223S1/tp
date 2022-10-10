@@ -42,9 +42,9 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         if (task.isDone()) {
-            done.setText("DONE");
+            done.setText("[X]");
         } else {
-            done.setText("NOT DONE");
+            done.setText("[ ]");
         }
         taskDesc.setText(task.getDesc().taskDesc);
         taskDeadline.setText(task.getDeadline().toString());
