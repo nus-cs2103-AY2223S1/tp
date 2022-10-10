@@ -33,6 +33,16 @@ public class ActivityTest {
                 .withDescription(VALID_DESCRIPTION_BOXING).withTags(VALID_TAG_ENTERTAINMENT).build();
         assertFalse(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
 
+        // same name, description different -> returns false
+        editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A)
+                .withDescription(VALID_DESCRIPTION_BOXING).build();
+        assertFalse(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
+
+        // same name, tags different -> returns false
+        editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A)
+                .withTags(VALID_TAG_ENTERTAINMENT).build();
+        assertFalse(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
+
         // different name, all other attributes same -> returns false
         editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withName(VALID_NAME_BOXING).build();
         assertFalse(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
