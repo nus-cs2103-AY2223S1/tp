@@ -51,8 +51,9 @@ public class ParserUtil {
         String trimmedIndex = oneBasedIndex.trim();
         String[] indexes = trimmedIndex.split(" ");
 
-        if (indexes.length != 2 || (
-                !StringUtil.isNonZeroUnsignedInteger(indexes[0]) && !StringUtil.isNonZeroUnsignedInteger(indexes[1]))) {
+        if (indexes.length != 2 
+                || !StringUtil.isNonZeroUnsignedInteger(indexes[0])
+                || !StringUtil.isNonZeroUnsignedInteger(indexes[1])) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
 
