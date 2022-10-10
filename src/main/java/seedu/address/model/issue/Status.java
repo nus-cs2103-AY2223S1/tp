@@ -1,9 +1,17 @@
 package seedu.address.model.issue;
 
+import static java.lang.Boolean.parseBoolean;
+
 /**
  * Represents the various completion statuses of an issue.
  */
 public class Status {
+
+    public static final String MESSAGE_CONSTRAINTS = "STATUS NOT IMPLEMENTED";
+
+    public static boolean isValidStatus(String status) {
+        return parseBoolean(status);
+    }
 
     /**
      * Represents and empty Issue status.

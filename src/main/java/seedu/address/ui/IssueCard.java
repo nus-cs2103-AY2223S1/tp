@@ -46,7 +46,7 @@ public class IssueCard extends UiPart<Region> {
         description.setText(issue.getDescription().toString());
         priority.setText(issue.getPriority().toString());
         deadline.setText(issue.getDeadline().toString());
-        project.setText(issue.getProject().toString());
+        // project.setText(issue.getProject().toString());
     }
 
     @Override

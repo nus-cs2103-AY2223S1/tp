@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
@@ -21,19 +22,23 @@ import seedu.address.model.project.Project;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    private static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
+    private static final String MESSAGE_DUPLICATE_ISSUE = "Issues list contains duplicate issue(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
+    private final List<JsonAdaptedIssue> issues = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("projects") List<JsonAdaptedProject> projects) {
+                                       @JsonProperty("projects") List<JsonAdaptedProject> projects,
+                                       @JsonProperty("issues") List<JsonAdaptedIssue> issues) {
         this.persons.addAll(persons);
-        // TODO: Implement project path
-        // this.projects.addAll(projects);
+        this.projects.addAll(projects);
+        this.issues.addAll(issues);
     }
 
     /**
@@ -44,6 +49,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
+        issues.addAll(source.getIssueList().stream().map(JsonAdaptedIssue::new).collect(Collectors.toList()));
     }
 
     /**
@@ -64,10 +70,19 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedProject jsonAdaptedProject : projects) {
             Project project = jsonAdaptedProject.toModelType();
             if (addressBook.hasProject(project)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
                 // TODO: Create duplicate project message
             }
             addressBook.addProject(project);
+        }
+
+        for (JsonAdaptedIssue jsonAdaptedIssue : issues) {
+            Issue issue = jsonAdaptedIssue.toModelType();
+            if (addressBook.hasIssue(issue)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ISSUE);
+                // TODO: Create duplicate project message
+            }
+            addressBook.addIssue(issue);
         }
         return addressBook;
     }

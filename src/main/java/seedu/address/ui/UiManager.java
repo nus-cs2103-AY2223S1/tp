@@ -85,4 +85,9 @@ public class UiManager implements Ui {
         System.exit(1);
     }
 
+    @Override
+    public void showProjects() {
+        mainWindow.swapProjectListDisplay();
+    }
+
 }

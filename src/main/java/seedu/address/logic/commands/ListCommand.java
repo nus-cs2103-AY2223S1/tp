@@ -2,8 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import seedu.address.model.Model;
+import seedu.address.ui.Ui;
 
 /**
  * Lists all persons in the address book to the user.
@@ -16,9 +18,10 @@ public class ListCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, Ui ui) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        ui.showProjects();
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         // TODO: Use one filtered list that takes in entities, then switch views based on that filtered list.
         return new CommandResult(MESSAGE_SUCCESS);
     }
