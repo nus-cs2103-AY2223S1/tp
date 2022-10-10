@@ -32,6 +32,10 @@ public class Patient extends Person {
         return "P";
     }
 
+    public String getCategoryIndicator() {
+        return "patient";
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

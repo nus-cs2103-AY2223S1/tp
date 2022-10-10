@@ -70,6 +70,9 @@ public class Person {
     public String getCategory() {
         return null;
     }
+    public String getCategoryIndicator() {
+        return "person";
+    }
 
     /**
      * Returns an immutable tag set, which throws

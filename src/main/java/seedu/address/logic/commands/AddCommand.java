@@ -58,21 +58,14 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        boolean isPatient = toAdd.getCategory().equals("P");
 
         if (model.hasPerson(toAdd)) {
-            if (isPatient) {
-                throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, PATIENT_INDICATOR));
-            }
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, PERSON_INDICATOR));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON,toAdd.getCategoryIndicator()));
         }
 
         model.addPerson(toAdd);
 
-        if (isPatient) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, PATIENT_INDICATOR, toAdd));
-        }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, PERSON_INDICATOR, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getCategoryIndicator(), toAdd));
     }
 
     @Override

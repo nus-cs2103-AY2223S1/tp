@@ -74,9 +74,7 @@ public class EditCommand extends Command {
         requireNonNull(editPersonDescriptor);
 
         this.targetUid = targetUid;
-        System.out.println(targetUid);
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-        System.out.println(editPersonDescriptor.toString());
     }
 
     @Override
@@ -90,20 +88,17 @@ public class EditCommand extends Command {
         }
         Person confirmedPersonToEdit = personToEdit.get();
         Person editedPerson = createEditedPerson(confirmedPersonToEdit, editPersonDescriptor);
+
         if (!confirmedPersonToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            if (confirmedPersonToEdit instanceof Patient) {
-                throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, PATIENT_INDICATOR));
-            }
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, PERSON_INDICATOR));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON,
+                    confirmedPersonToEdit.getCategoryIndicator()));
         }
 
         model.setPerson(confirmedPersonToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        if (confirmedPersonToEdit instanceof Patient) {
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, PATIENT_INDICATOR, editedPerson));
-        }
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, PERSON_INDICATOR, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS,
+                confirmedPersonToEdit.getCategoryIndicator(), editedPerson));
 
     }
 
