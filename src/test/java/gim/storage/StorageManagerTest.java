@@ -1,6 +1,6 @@
 package gim.storage;
 
-import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import gim.commons.core.GuiSettings;
-import gim.model.AddressBook;
-import gim.model.ReadOnlyAddressBook;
+import gim.model.ExerciseTracker;
+import gim.model.ReadOnlyExerciseTracker;
 import gim.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonExerciseTrackerStorage exerciseTrackerStorage = new JsonExerciseTrackerStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(exerciseTrackerStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void exerciseTrackerReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonExerciseTrackerStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonExerciseTrackerStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ExerciseTracker original = getTypicalExerciseTracker();
+        storageManager.saveExerciseTracker(original);
+        ReadOnlyExerciseTracker retrieved = storageManager.readExerciseTracker().get();
+        assertEquals(original, new ExerciseTracker(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getExerciseTrackerFilePath() {
+        assertNotNull(storageManager.getExerciseTrackerFilePath());
     }
 
 }

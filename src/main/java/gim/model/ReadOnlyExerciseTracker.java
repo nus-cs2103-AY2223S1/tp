@@ -4,9 +4,9 @@ import gim.model.exercise.Exercise;
 import javafx.collections.ObservableList;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an exercise tracker
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyExerciseTracker {
 
     /**
      * Returns an unmodifiable view of the exercises list.

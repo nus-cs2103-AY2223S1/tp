@@ -13,15 +13,15 @@ import gim.commons.util.ConfigUtil;
 import gim.commons.util.StringUtil;
 import gim.logic.Logic;
 import gim.logic.LogicManager;
-import gim.model.AddressBook;
+import gim.model.ExerciseTracker;
 import gim.model.Model;
 import gim.model.ModelManager;
-import gim.model.ReadOnlyAddressBook;
+import gim.model.ReadOnlyExerciseTracker;
 import gim.model.ReadOnlyUserPrefs;
 import gim.model.UserPrefs;
 import gim.model.util.SampleDataUtil;
-import gim.storage.AddressBookStorage;
-import gim.storage.JsonAddressBookStorage;
+import gim.storage.ExerciseTrackerStorage;
+import gim.storage.JsonExerciseTrackerStorage;
 import gim.storage.JsonUserPrefsStorage;
 import gim.storage.Storage;
 import gim.storage.StorageManager;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing ExerciseTracker ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ExerciseTrackerStorage exerciseTrackerStorage = new JsonExerciseTrackerStorage(
+                userPrefs.getExerciseTrackerFilePath());
+        storage = new StorageManager(exerciseTrackerStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +70,26 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s exercise tracker and {@code userPrefs}. <br>
+     * The data from the sample exercise tracker will be used instead if {@code storage}'s exercise tracker is not
+     * found, or an empty exercise tracker will be used instead if errors occur when reading {@code storage}'s
+     * exercise tracker.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyExerciseTracker> exerciseTrackerOptional;
+        ReadOnlyExerciseTracker initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            exerciseTrackerOptional = storage.readExerciseTracker();
+            if (!exerciseTrackerOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ExerciseTracker");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = exerciseTrackerOptional.orElseGet(SampleDataUtil::getSampleExerciseTracker);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty ExerciseTracker");
+            initialData = new ExerciseTracker();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty ExerciseTracker");
+            initialData = new ExerciseTracker();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +153,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty ExerciseTracker");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +169,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting ExerciseTracker " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Exercise Tracker ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

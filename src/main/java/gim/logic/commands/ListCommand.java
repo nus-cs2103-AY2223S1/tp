@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import gim.model.Model;
 
 /**
- * Lists all exercises in the address book to the user.
+ * Lists all exercises in the exercise tracker to the user.
  */
 public class ListCommand extends Command {
 

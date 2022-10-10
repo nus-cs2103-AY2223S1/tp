@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Exercise values as in TypicalExercises#getTypicalAddressBook()",
+  "_comment": "ExerciseTracker save file which contains the same Exercise values as in TypicalExercises#getTypicalExerciseTracker()",
   "exercises" : [ {
     "name" : "Alice Pauline",
     "weight" : "10",

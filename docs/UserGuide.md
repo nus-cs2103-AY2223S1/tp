@@ -22,7 +22,7 @@ Gim is a **desktop app for managing gym exercises, optimized for use via a Comma
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `gim.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `gim.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Gim.
 
