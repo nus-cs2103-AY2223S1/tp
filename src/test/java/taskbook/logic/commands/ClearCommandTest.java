@@ -20,8 +20,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptytaskBook_success() {
-        Model model = new ModelManager(TypicalPersons.getTypicaltaskBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(TypicalPersons.getTypicaltaskBook(), new UserPrefs());
+        Model model = new ModelManager(TypicalPersons.getTypicalTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(TypicalPersons.getTypicalTaskBook(), new UserPrefs());
         expectedModel.setTaskBook(new TaskBook());
 
         CommandTestUtil.assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

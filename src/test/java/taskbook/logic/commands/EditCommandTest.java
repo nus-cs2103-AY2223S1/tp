@@ -22,7 +22,7 @@ import taskbook.testutil.TypicalPersons;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(TypicalPersons.getTypicaltaskBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalPersons.getTypicalTaskBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
