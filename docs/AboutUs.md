@@ -24,8 +24,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/RezwanArefin01)]
 [[portfolio](team/rezwanarefin01.md)]
 
-* Role: Team Lead. 
-* Responsibilities: Code Quality, Git Expert, Logic IC. 
+* Role: Team Lead.
+* Responsibilities: Code Quality, Git Expert, Logic IC.
 
 ### Edbert Geraldy Cangdinata
 
@@ -34,7 +34,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/berted)]
 [[portfolio](team/berted.md)]
 
-* Role: Developer. 
+* Role: Developer.
 * Responsibilities: Documentation, Scheduling, Storage IC.
 
 ### Xu Yi
@@ -54,5 +54,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/njxue)]
 [[portfolio](team/njxue.md)]
 
-* Role: Developer. 
+* Role: Developer.
 * Responsibilities: Integration, Documentation, Testing and Model.
