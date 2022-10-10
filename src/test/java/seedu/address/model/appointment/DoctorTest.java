@@ -42,10 +42,21 @@ public class DoctorTest {
         Doctor d1 = new Doctor("A");
         Doctor d2 = new Doctor("B");
         Doctor d3 = new Doctor("A");
+        assertTrue(d1.equals(d1));
         assertTrue(d1.equals(d3));
         assertTrue(d3.equals(d1));
         assertFalse(d2.equals(d1));
         assertFalse(d3.equals(null));
         assertFalse(d3.equals("A"));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Doctor d1 = new Doctor("A");
+        Doctor d2 = new Doctor("B");
+        Doctor d3 = new Doctor("A");
+        assertTrue(d1.hashCode() == d1.hashCode());
+        assertFalse(d1.hashCode() == d2.hashCode());
+        assertTrue(d1.hashCode() == d3.hashCode());
     }
 }

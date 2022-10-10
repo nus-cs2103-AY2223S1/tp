@@ -54,9 +54,12 @@ public class SlotTest {
         Slot slot2 = new Slot("2022-11-13 00:00");
         Slot slot3 = new Slot("2022-11-13 00:01");
         Slot slot4 = new Slot("2022-11-12 24:00");
+        assertTrue(slot1.equals(slot1));
         assertTrue(slot1.equals(slot2));
         assertTrue(slot1.equals(slot4));
         assertFalse(slot2.equals(slot3));
+        assertFalse(slot2.equals("12345"));
+        assertFalse(slot2.equals(null));
     }
 
     @Test
@@ -72,5 +75,16 @@ public class SlotTest {
         assertFalse(Slot.isValidDateTime("2021-12-10 01:0"));
         assertFalse(Slot.isValidDateTime("2021-1-10 01:00"));
         assertFalse(Slot.isValidDateTime("0000-12-10 00:00"));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Slot slot1 = new Slot("2022-11-13 00:00");
+        Slot slot2 = new Slot("2022-11-13 00:00");
+        Slot slot3 = new Slot("2022-11-13 00:01");
+        Slot slot4 = new Slot("2022-11-12 24:00");
+        assertTrue(slot1.hashCode() == slot1.hashCode());
+        assertFalse(slot1.hashCode() == slot3.hashCode());
+        assertTrue(slot1.hashCode() == slot4.hashCode());
     }
 }

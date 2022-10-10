@@ -38,10 +38,21 @@ public class MedicalTestTest {
         MedicalTest t1 = new MedicalTest("A");
         MedicalTest t2 = new MedicalTest("B");
         MedicalTest t3 = new MedicalTest("A");
+        assertTrue(t1.equals(t1));
         assertTrue(t1.equals(t3));
         assertTrue(t3.equals(t1));
         assertFalse(t2.equals(t1));
         assertFalse(t3.equals(null));
         assertFalse(t3.equals("A"));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        MedicalTest t1 = new MedicalTest("A");
+        MedicalTest t2 = new MedicalTest("B");
+        MedicalTest t3 = new MedicalTest("A");
+        assertTrue(t1.hashCode() == t1.hashCode());
+        assertFalse(t1.hashCode() == t2.hashCode());
+        assertTrue(t1.hashCode() == t3.hashCode());
     }
 }
