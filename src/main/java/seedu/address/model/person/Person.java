@@ -154,7 +154,7 @@ public class Person {
                 .append("; Gender: ")
                 .append(getGender())
                 .append("; Birthdate: ")
-                .append(getRace())
+                .append(getBirthdate())
                 .append("; Race: ")
                 .append(getRace())
                 .append("; Religion: ")
