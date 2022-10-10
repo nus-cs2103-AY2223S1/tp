@@ -16,9 +16,9 @@ import seedu.address.logic.commands.DeletePatientCommand;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class DeleteCommandParserTest {
+public class DeletePatientCommandParserTest {
 
-    private DeletePatientCommandParser parser = new DeletePatientCommandParser();
+    private final DeletePatientCommandParser parser = new DeletePatientCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
@@ -27,6 +27,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePatientCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePatientCommand.MESSAGE_USAGE));
     }
 }
