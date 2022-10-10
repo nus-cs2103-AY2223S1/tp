@@ -47,6 +47,9 @@ public class ArgumentMultimap {
      */
     public Optional<String> getValue(Prefix prefix) {
         List<String> values = getAllValues(prefix);
+        if values.size() > 1 {
+            throw new ParseException(...);  // exception details here
+        }
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }
 
