@@ -98,6 +98,36 @@ public class UniquePersonList implements Iterable<Task> {
     }
 
     /**
+     * Marks the equivalent task as done.
+     * The task must exist in the list.
+     */
+    public void markTaskAsDone(Task target) {
+        requireNonNull(target);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        internalList.get(index).markAsDone();
+    }
+
+    /**
+     * Marks the equivalent task as not done.
+     * The task must exist in the list.
+     */
+    public void markTaskAsNotDone(Task target) {
+        requireNonNull(target);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        internalList.get(index).markAsNotDone();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {
