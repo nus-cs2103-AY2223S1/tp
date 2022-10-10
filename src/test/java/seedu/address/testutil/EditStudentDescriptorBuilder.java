@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -52,7 +53,7 @@ public class EditStudentDescriptorBuilder {
      * Sets the {@code Phone} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        descriptor.setPhone(Optional.ofNullable(new Phone(phone)));
         return this;
     }
 
@@ -60,7 +61,7 @@ public class EditStudentDescriptorBuilder {
      * Sets the {@code Email} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        descriptor.setEmail(Optional.ofNullable(new Email(email)));
         return this;
     }
 
@@ -68,7 +69,7 @@ public class EditStudentDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setAddress(Optional.ofNullable(new Address(address)));
         return this;
     }
 

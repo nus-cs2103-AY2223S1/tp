@@ -94,9 +94,15 @@ public class EditCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
-        Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
-        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        Optional<Phone> updatedPhone = editStudentDescriptor.getPhone() != null
+                                            ? editStudentDescriptor.getPhone()
+                                            : studentToEdit.getPhone();
+        Optional<Email> updatedEmail = editStudentDescriptor.getEmail() != null
+                                            ? editStudentDescriptor.getEmail()
+                                            : studentToEdit.getEmail();
+        Optional<Address> updatedAddress = editStudentDescriptor.getAddress() != null
+                                            ? editStudentDescriptor.getAddress()
+                                            : studentToEdit.getAddress();
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
@@ -126,9 +132,9 @@ public class EditCommand extends Command {
      */
     public static class EditStudentDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private Optional<Phone> phone;
+        private Optional<Email> email;
+        private Optional<Address> address;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -160,28 +166,28 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
+        public void setPhone(Optional<Phone> phone) {
             this.phone = phone;
         }
 
         public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+            return this.phone;
         }
 
-        public void setEmail(Email email) {
+        public void setEmail(Optional<Email> email) {
             this.email = email;
         }
 
         public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+            return this.email;
         }
 
-        public void setAddress(Address address) {
+        public void setAddress(Optional<Address> address) {
             this.address = address;
         }
 
         public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+            return this.address;
         }
 
         /**
@@ -216,11 +222,7 @@ public class EditCommand extends Command {
             // state check
             EditStudentDescriptor e = (EditStudentDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+            return getName().equals(e.getName()); // just NUSNETID will do (Do after merging)
         }
     }
 }

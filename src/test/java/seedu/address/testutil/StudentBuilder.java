@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.student.Address;
@@ -22,9 +23,9 @@ public class StudentBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
+    private Optional<Phone> phone;
+    private Optional<Email> email;
+    private Optional<Address> address;
     private Set<Tag> tags;
 
     /**
@@ -32,9 +33,9 @@ public class StudentBuilder {
      */
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        phone = Optional.ofNullable(new Phone(DEFAULT_PHONE));
+        email = Optional.ofNullable(new Email(DEFAULT_EMAIL));
+        address = Optional.ofNullable(new Address(DEFAULT_ADDRESS));
         tags = new HashSet<>();
     }
 
@@ -69,7 +70,7 @@ public class StudentBuilder {
      * Sets the {@code Address} of the {@code Student} that we are building.
      */
     public StudentBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.address = Optional.ofNullable(new Address(address));
         return this;
     }
 
@@ -77,7 +78,7 @@ public class StudentBuilder {
      * Sets the {@code Phone} of the {@code Student} that we are building.
      */
     public StudentBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phone = Optional.ofNullable(new Phone(phone));
         return this;
     }
 
@@ -85,7 +86,7 @@ public class StudentBuilder {
      * Sets the {@code Email} of the {@code Student} that we are building.
      */
     public StudentBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.email = Optional.ofNullable(new Email(email));
         return this;
     }
 

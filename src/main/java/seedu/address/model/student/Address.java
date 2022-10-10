@@ -1,6 +1,5 @@
 package seedu.address.model.student;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -25,8 +24,9 @@ public class Address {
      * @param address A valid address.
      */
     public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        if (!address.equals("NA")) {
+            checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        }
         value = address;
     }
 
@@ -34,12 +34,12 @@ public class Address {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) || test.equals("NA");
     }
 
     @Override
     public String toString() {
-        return value;
+        return value == null ? "NA" : value;
     }
 
     @Override

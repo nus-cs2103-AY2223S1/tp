@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -17,18 +18,18 @@ public class Student {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Optional<Phone> phone;
+    private final Optional<Email> email;
 
     // Data fields
-    private final Address address;
+    private final Optional<Address> address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Student(Name name, Optional<Phone> phone, Optional<Email> email, Optional<Address> address, Set<Tag> tags) {
+        requireAllNonNull(name);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -40,15 +41,15 @@ public class Student {
         return name;
     }
 
-    public Phone getPhone() {
+    public Optional<Phone> getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
+    public Optional<Email> getEmail() {
         return email;
     }
 
-    public Address getAddress() {
+    public Optional<Address> getAddress() {
         return address;
     }
 
@@ -106,11 +107,11 @@ public class Student {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Phone: ")
-                .append(getPhone())
+                .append(getPhone().get())
                 .append("; Email: ")
-                .append(getEmail())
+                .append(getEmail().get())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress().get());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
