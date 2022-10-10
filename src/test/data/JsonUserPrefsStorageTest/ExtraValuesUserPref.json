@@ -9,5 +9,6 @@
       "z": 99
     }
   },
-  "propertyDirectoryFilePath": "addressbook.json"
+  "propertyDirectoryFilePath": "propertyDirectory.json",
+  "clientDirectoryFilePath": "clientDirectory.json"
 }
