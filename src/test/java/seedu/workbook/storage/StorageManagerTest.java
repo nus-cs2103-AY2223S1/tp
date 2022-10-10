@@ -2,7 +2,7 @@ package seedu.workbook.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.workbook.testutil.TypicalPersons.getTypicalWorkBook;
+import static seedu.workbook.testutil.TypicalInternships.getTypicalWorkBook;
 
 import java.nio.file.Path;
 

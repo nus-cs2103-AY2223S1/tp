@@ -1,7 +1,7 @@
 package seedu.workbook.logic.commands;
 
 import static seedu.workbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.workbook.testutil.TypicalPersons.getTypicalWorkBook;
+import static seedu.workbook.testutil.TypicalInternships.getTypicalWorkBook;
 
 import org.junit.jupiter.api.Test;
 

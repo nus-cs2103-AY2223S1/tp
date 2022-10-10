@@ -8,7 +8,7 @@ import seedu.workbook.logic.commands.CommandResult;
 import seedu.workbook.logic.commands.exceptions.CommandException;
 import seedu.workbook.logic.parser.exceptions.ParseException;
 import seedu.workbook.model.ReadOnlyWorkBook;
-import seedu.workbook.model.person.Person;
+import seedu.workbook.model.internship.Internship;
 
 /**
  * API of the Logic component
@@ -30,8 +30,8 @@ public interface Logic {
      */
     ReadOnlyWorkBook getWorkBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of internships */
+    ObservableList<Internship> getFilteredInternshipList();
 
     /**
      * Returns the user prefs' work book file path.

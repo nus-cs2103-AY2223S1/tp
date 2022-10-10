@@ -3,12 +3,12 @@ package seedu.workbook.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.workbook.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.workbook.commons.core.Messages.MESSAGE_INTERNSHIPS_LISTED_OVERVIEW;
 import static seedu.workbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.workbook.testutil.TypicalPersons.CARL;
-import static seedu.workbook.testutil.TypicalPersons.ELLE;
-import static seedu.workbook.testutil.TypicalPersons.FIONA;
-import static seedu.workbook.testutil.TypicalPersons.getTypicalWorkBook;
+import static seedu.workbook.testutil.TypicalInternships.CARL;
+import static seedu.workbook.testutil.TypicalInternships.ELLE;
+import static seedu.workbook.testutil.TypicalInternships.FIONA;
+import static seedu.workbook.testutil.TypicalInternships.getTypicalWorkBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.workbook.model.Model;
 import seedu.workbook.model.ModelManager;
 import seedu.workbook.model.UserPrefs;
-import seedu.workbook.model.person.NameContainsKeywordsPredicate;
+import seedu.workbook.model.internship.CompanyContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -29,10 +29,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        CompanyContainsKeywordsPredicate firstPredicate =
+                new CompanyContainsKeywordsPredicate(Collections.singletonList("first"));
+        CompanyContainsKeywordsPredicate secondPredicate =
+                new CompanyContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -50,34 +50,34 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different internship -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+    public void execute_zeroKeywords_noInternshipFound() {
+        String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 0);
+        CompanyContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredInternshipList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+    public void execute_multipleKeywords_multipleInternshipsFound() {
+        String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 3);
+        CompanyContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredInternshipList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code CompanyContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private CompanyContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new CompanyContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

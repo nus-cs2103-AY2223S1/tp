@@ -3,7 +3,7 @@ package seedu.workbook.logic.parser;
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.workbook.logic.commands.AddCommand;
 import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.person.Address;
-import seedu.workbook.model.person.Email;
-import seedu.workbook.model.person.Name;
-import seedu.workbook.model.person.Person;
-import seedu.workbook.model.person.Phone;
+import seedu.workbook.model.internship.Address;
+import seedu.workbook.model.internship.Email;
+import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.tag.Tag;
 
 /**
@@ -31,22 +31,22 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Internship internship = new Internship(company, phone, email, address, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(internship);
     }
 
     /**

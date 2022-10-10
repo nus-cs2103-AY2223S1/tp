@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.workbook.model.person.Person;
-import seedu.workbook.model.person.UniquePersonList;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.model.internship.UniqueInternshipList;
 
 /**
  * Wraps all data at the WorkBook level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameInternship comparison)
  */
 public class WorkBook implements ReadOnlyWorkBook {
 
-    private final UniquePersonList persons;
+    private final UniqueInternshipList internships;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class WorkBook implements ReadOnlyWorkBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        internships = new UniqueInternshipList();
     }
 
     public WorkBook() {}
 
     /**
-     * Creates an WorkBook using the Persons in the {@code toBeCopied}
+     * Creates an WorkBook using the Internships in the {@code toBeCopied}
      */
     public WorkBook(ReadOnlyWorkBook toBeCopied) {
         this();
@@ -40,11 +40,11 @@ public class WorkBook implements ReadOnlyWorkBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the internship list with {@code internships}.
+     * {@code internships} must not contain duplicate internships.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setInternships(List<Internship> internships) {
+        this.internships.setInternships(internships);
     }
 
     /**
@@ -53,68 +53,68 @@ public class WorkBook implements ReadOnlyWorkBook {
     public void resetData(ReadOnlyWorkBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setInternships(newData.getInternshipList());
     }
 
-    //// person-level operations
+    //// internship-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the work book.
+     * Returns true if a internship with the same identity as {@code internship} exists in the work book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasInternship(Internship internship) {
+        requireNonNull(internship);
+        return internships.contains(internship);
     }
 
     /**
-     * Adds a person to the work book.
-     * The person must not already exist in the work book.
+     * Adds a internship to the work book.
+     * The internship must not already exist in the work book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addInternship(Internship i) {
+        internships.add(i);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given internship {@code target} in the list with {@code editedInternship}.
      * {@code target} must exist in the work book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the work book.
+     * The internship identity of {@code editedInternship} must not be the same as another existing internship in the work book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setInternship(Internship target, Internship editedInternship) {
+        requireNonNull(editedInternship);
 
-        persons.setPerson(target, editedPerson);
+        internships.setInternship(target, editedInternship);
     }
 
     /**
      * Removes {@code key} from this {@code WorkBook}.
      * {@code key} must exist in the work book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeInternship(Internship key) {
+        internships.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return internships.asUnmodifiableObservableList().size() + " internship applications";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Internship> getInternshipList() {
+        return internships.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof WorkBook // instanceof handles nulls
-                && persons.equals(((WorkBook) other).persons));
+                && internships.equals(((WorkBook) other).internships));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return internships.hashCode();
     }
 }

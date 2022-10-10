@@ -4,28 +4,28 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.workbook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.workbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.workbook.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.workbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.workbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.workbook.testutil.TypicalPersons.getTypicalWorkBook;
+import static seedu.workbook.logic.commands.CommandTestUtil.showInternshipAtIndex;
+import static seedu.workbook.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
+import static seedu.workbook.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
+import static seedu.workbook.testutil.TypicalInternships.getTypicalWorkBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.workbook.commons.core.Messages;
 import seedu.workbook.commons.core.index.Index;
-import seedu.workbook.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.workbook.model.Model;
 import seedu.workbook.model.ModelManager;
 import seedu.workbook.model.UserPrefs;
 import seedu.workbook.model.WorkBook;
-import seedu.workbook.model.person.Person;
-import seedu.workbook.testutil.EditPersonDescriptorBuilder;
-import seedu.workbook.testutil.PersonBuilder;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.testutil.EditInternshipDescriptorBuilder;
+import seedu.workbook.testutil.InternshipBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -36,45 +36,45 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        Internship editedInternship = new InternshipBuilder().build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(editedInternship).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new WorkBook(model.getWorkBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastInternship = Index.fromOneBased(model.getFilteredInternshipList().size());
+        Internship lastInternship = model.getFilteredInternshipList().get(indexLastInternship.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        InternshipBuilder internshipInList = new InternshipBuilder(lastInternship);
+        Internship editedInternship = internshipInList.withCompany(VALID_COMPANY_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCommand editCommand = new EditCommand(indexLastInternship, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new WorkBook(model.getWorkBook()), new UserPrefs());
-        expectedModel.setPerson(lastPerson, editedPerson);
+        expectedModel.setInternship(lastInternship, editedInternship);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
-        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP, new EditInternshipDescriptor());
+        Internship editedInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new WorkBook(model.getWorkBook()), new UserPrefs());
 
@@ -83,49 +83,49 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+        Internship internshipInFilteredList = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        Internship editedInternship = new InternshipBuilder(internshipInFilteredList).withCompany(VALID_COMPANY_BOB).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
+                new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new WorkBook(model.getWorkBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+    public void execute_duplicateInternshipUnfilteredList_failure() {
+        Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(firstInternship).build();
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_INTERNSHIP, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_duplicateInternshipFilteredList_failure() {
+        showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
-        // edit person in filtered list into a duplicate in work book
-        Person personInList = model.getWorkBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder(personInList).build());
+        // edit internship in filtered list into a duplicate in work book
+        Internship internshipInList = model.getWorkBook().getInternshipList().get(INDEX_SECOND_INTERNSHIP.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
+                new EditInternshipDescriptorBuilder(internshipInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+    public void execute_invalidInternshipIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     /**
@@ -133,25 +133,25 @@ public class EditCommandTest {
      * but smaller than size of work book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+    public void execute_invalidInternshipIndexFilteredList_failure() {
+        showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
+        Index outOfBoundIndex = INDEX_SECOND_INTERNSHIP;
         // ensures that outOfBoundIndex is still in bounds of work book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getWorkBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getWorkBook().getInternshipList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditInternshipDescriptor copyDescriptor = new EditInternshipDescriptor(DESC_AMY);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_INTERNSHIP, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -164,10 +164,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_INTERNSHIP, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_BOB)));
     }
 
 }

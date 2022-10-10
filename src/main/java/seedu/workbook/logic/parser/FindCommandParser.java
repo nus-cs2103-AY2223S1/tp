@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.workbook.logic.commands.FindCommand;
 import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.person.NameContainsKeywordsPredicate;
+import seedu.workbook.model.internship.CompanyContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(new CompanyContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

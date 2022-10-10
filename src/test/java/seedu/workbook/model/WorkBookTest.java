@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.testutil.Assert.assertThrows;
-import static seedu.workbook.testutil.TypicalPersons.ALICE;
-import static seedu.workbook.testutil.TypicalPersons.getTypicalWorkBook;
+import static seedu.workbook.testutil.TypicalInternships.ALICE;
+import static seedu.workbook.testutil.TypicalInternships.getTypicalWorkBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.workbook.model.person.Person;
-import seedu.workbook.model.person.exceptions.DuplicatePersonException;
-import seedu.workbook.testutil.PersonBuilder;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.model.internship.exceptions.DuplicateInternshipException;
+import seedu.workbook.testutil.InternshipBuilder;
 
 public class WorkBookTest {
 
@@ -28,7 +28,7 @@ public class WorkBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), workBook.getPersonList());
+        assertEquals(Collections.emptyList(), workBook.getInternshipList());
     }
 
     @Test
@@ -44,58 +44,58 @@ public class WorkBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateInternships_throwsDuplicateInternshipException() {
+        // Two internships with the same identity fields
+        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        WorkBookStub newData = new WorkBookStub(newPersons);
+        List<Internship> newInternships = Arrays.asList(ALICE, editedAlice);
+        WorkBookStub newData = new WorkBookStub(newInternships);
 
-        assertThrows(DuplicatePersonException.class, () -> workBook.resetData(newData));
+        assertThrows(DuplicateInternshipException.class, () -> workBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> workBook.hasPerson(null));
+    public void hasInternship_nullInternship_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> workBook.hasInternship(null));
     }
 
     @Test
-    public void hasPerson_personNotInWorkBook_returnsFalse() {
-        assertFalse(workBook.hasPerson(ALICE));
+    public void hasInternship_internshipNotInWorkBook_returnsFalse() {
+        assertFalse(workBook.hasInternship(ALICE));
     }
 
     @Test
-    public void hasPerson_personInWorkBook_returnsTrue() {
-        workBook.addPerson(ALICE);
-        assertTrue(workBook.hasPerson(ALICE));
+    public void hasInternship_internshipInWorkBook_returnsTrue() {
+        workBook.addInternship(ALICE);
+        assertTrue(workBook.hasInternship(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInWorkBook_returnsTrue() {
-        workBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasInternship_internshipWithSameIdentityFieldsInWorkBook_returnsTrue() {
+        workBook.addInternship(ALICE);
+        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(workBook.hasPerson(editedAlice));
+        assertTrue(workBook.hasInternship(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> workBook.getPersonList().remove(0));
+    public void getInternshipList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> workBook.getInternshipList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyWorkBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyWorkBook whose internships list can violate interface constraints.
      */
     private static class WorkBookStub implements ReadOnlyWorkBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Internship> internships = FXCollections.observableArrayList();
 
-        WorkBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        WorkBookStub(Collection<Internship> internships) {
+            this.internships.setAll(internships);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Internship> getInternshipList() {
+            return internships;
         }
     }
 

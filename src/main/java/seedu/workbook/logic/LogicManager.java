@@ -14,7 +14,7 @@ import seedu.workbook.logic.parser.WorkBookParser;
 import seedu.workbook.logic.parser.exceptions.ParseException;
 import seedu.workbook.model.Model;
 import seedu.workbook.model.ReadOnlyWorkBook;
-import seedu.workbook.model.person.Person;
+import seedu.workbook.model.internship.Internship;
 import seedu.workbook.storage.Storage;
 
 /**
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Internship> getFilteredInternshipList() {
+        return model.getFilteredInternshipList();
     }
 
     @Override

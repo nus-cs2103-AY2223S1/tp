@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.workbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.workbook.testutil.Assert.assertThrows;
-import static seedu.workbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.workbook.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,13 +21,13 @@ import seedu.workbook.logic.commands.ExitCommand;
 import seedu.workbook.logic.commands.FindCommand;
 import seedu.workbook.logic.commands.HelpCommand;
 import seedu.workbook.logic.commands.ListCommand;
-import seedu.workbook.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.person.NameContainsKeywordsPredicate;
-import seedu.workbook.model.person.Person;
-import seedu.workbook.testutil.EditPersonDescriptorBuilder;
-import seedu.workbook.testutil.PersonBuilder;
-import seedu.workbook.testutil.PersonUtil;
+import seedu.workbook.model.internship.CompanyContainsKeywordsPredicate;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.testutil.EditInternshipDescriptorBuilder;
+import seedu.workbook.testutil.InternshipBuilder;
+import seedu.workbook.testutil.InternshipUtil;
 
 public class WorkBookParserTest {
 
@@ -35,9 +35,9 @@ public class WorkBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Internship internship = new InternshipBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(InternshipUtil.getAddCommand(internship));
+        assertEquals(new AddCommand(internship), command);
     }
 
     @Test
@@ -49,17 +49,17 @@ public class WorkBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_INTERNSHIP), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Internship internship = new InternshipBuilder().build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(internship).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_INTERNSHIP.getOneBased() + " " + InternshipUtil.getEditInternshipDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_INTERNSHIP, descriptor), command);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class WorkBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new CompanyContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

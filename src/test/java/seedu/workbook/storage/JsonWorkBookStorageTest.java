@@ -3,10 +3,10 @@ package seedu.workbook.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.workbook.testutil.Assert.assertThrows;
-import static seedu.workbook.testutil.TypicalPersons.ALICE;
-import static seedu.workbook.testutil.TypicalPersons.HOON;
-import static seedu.workbook.testutil.TypicalPersons.IDA;
-import static seedu.workbook.testutil.TypicalPersons.getTypicalWorkBook;
+import static seedu.workbook.testutil.TypicalInternships.ALICE;
+import static seedu.workbook.testutil.TypicalInternships.HOON;
+import static seedu.workbook.testutil.TypicalInternships.IDA;
+import static seedu.workbook.testutil.TypicalInternships.getTypicalWorkBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,13 +51,13 @@ public class JsonWorkBookStorageTest {
     }
 
     @Test
-    public void readWorkBook_invalidPersonWorkBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readWorkBook("invalidPersonWorkBook.json"));
+    public void readWorkBook_invalidInternshipWorkBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readWorkBook("invalidInternshipWorkBook.json"));
     }
 
     @Test
     public void readWorkBook_invalidWorkBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readWorkBook("invalidAndValidPersonWorkBook.json"));
+        assertThrows(DataConversionException.class, () -> readWorkBook("invalidAndValidInternshipWorkBook.json"));
     }
 
     @Test
@@ -72,14 +72,14 @@ public class JsonWorkBookStorageTest {
         assertEquals(original, new WorkBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addInternship(HOON);
+        original.removeInternship(ALICE);
         jsonWorkBookStorage.saveWorkBook(original, filePath);
         readBack = jsonWorkBookStorage.readWorkBook(filePath).get();
         assertEquals(original, new WorkBook(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addInternship(IDA);
         jsonWorkBookStorage.saveWorkBook(original); // file path not specified
         readBack = jsonWorkBookStorage.readWorkBook().get(); // file path not specified
         assertEquals(original, new WorkBook(readBack));

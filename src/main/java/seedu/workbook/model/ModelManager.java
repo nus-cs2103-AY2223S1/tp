@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.workbook.commons.core.GuiSettings;
 import seedu.workbook.commons.core.LogsCenter;
-import seedu.workbook.model.person.Person;
+import seedu.workbook.model.internship.Internship;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final WorkBook workBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Internship> filteredInternships;
 
     /**
      * Initializes a ModelManager with the given workBook and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.workBook = new WorkBook(workBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.workBook.getPersonList());
+        filteredInternships = new FilteredList<>(this.workBook.getInternshipList());
     }
 
     public ModelManager() {
@@ -88,44 +88,44 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return workBook.hasPerson(person);
+    public boolean hasInternship(Internship internship) {
+        requireNonNull(internship);
+        return workBook.hasInternship(internship);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        workBook.removePerson(target);
+    public void deleteInternship(Internship target) {
+        workBook.removeInternship(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        workBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addInternship(Internship internship) {
+        workBook.addInternship(internship);
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setInternship(Internship target, Internship editedInternship) {
+        requireAllNonNull(target, editedInternship);
 
-        workBook.setPerson(target, editedPerson);
+        workBook.setInternship(target, editedInternship);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Internship List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Internship} backed by the internal list of
      * {@code versionedWorkBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Internship> getFilteredInternshipList() {
+        return filteredInternships;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredInternshipList(Predicate<Internship> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredInternships.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return workBook.equals(other.workBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredInternships.equals(other.filteredInternships);
     }
 
 }

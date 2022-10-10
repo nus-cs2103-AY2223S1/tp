@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.workbook.commons.core.index.Index;
 import seedu.workbook.commons.util.StringUtil;
 import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.person.Address;
-import seedu.workbook.model.person.Email;
-import seedu.workbook.model.person.Name;
-import seedu.workbook.model.person.Phone;
+import seedu.workbook.model.internship.Address;
+import seedu.workbook.model.internship.Email;
+import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.tag.Tag;
 
 /**
@@ -36,18 +36,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String company} into a {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code company} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        String trimmedCompany = company.trim();
+        if (!Company.isValidCompany(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Company(trimmedCompany);
     }
 
     /**
@@ -116,8 +116,8 @@ public class ParserUtil {
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+        for (String tagCompany : tags) {
+            tagSet.add(parseTag(tagCompany));
         }
         return tagSet;
     }

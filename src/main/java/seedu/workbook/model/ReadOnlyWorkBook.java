@@ -1,7 +1,7 @@
 package seedu.workbook.model;
 
 import javafx.collections.ObservableList;
-import seedu.workbook.model.person.Person;
+import seedu.workbook.model.internship.Internship;
 
 /**
  * Unmodifiable view of an work book
@@ -9,9 +9,9 @@ import seedu.workbook.model.person.Person;
 public interface ReadOnlyWorkBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the internships list.
+     * This list will not contain any duplicate internships.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<Internship> getInternshipList();
 
 }

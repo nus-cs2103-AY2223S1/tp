@@ -3,10 +3,10 @@ package seedu.workbook.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.workbook.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.workbook.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import static seedu.workbook.testutil.Assert.assertThrows;
-import static seedu.workbook.testutil.TypicalPersons.ALICE;
-import static seedu.workbook.testutil.TypicalPersons.BENSON;
+import static seedu.workbook.testutil.TypicalInternships.ALICE;
+import static seedu.workbook.testutil.TypicalInternships.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.workbook.commons.core.GuiSettings;
-import seedu.workbook.model.person.NameContainsKeywordsPredicate;
+import seedu.workbook.model.internship.CompanyContainsKeywordsPredicate;
 import seedu.workbook.testutil.WorkBookBuilder;
 
 public class ModelManagerTest {
@@ -73,29 +73,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasInternship_nullInternship_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasInternship(null));
     }
 
     @Test
-    public void hasPerson_personNotInWorkBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasInternship_internshipNotInWorkBook_returnsFalse() {
+        assertFalse(modelManager.hasInternship(ALICE));
     }
 
     @Test
-    public void hasPerson_personInWorkBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasInternship_internshipInWorkBook_returnsTrue() {
+        modelManager.addInternship(ALICE);
+        assertTrue(modelManager.hasInternship(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredInternshipList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredInternshipList().remove(0));
     }
 
     @Test
     public void equals() {
-        WorkBook workBook = new WorkBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        WorkBook workBook = new WorkBookBuilder().withInternship(ALICE).withInternship(BENSON).build();
         WorkBook differentWorkBook = new WorkBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,12 +117,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentWorkBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = ALICE.getCompany().name.split("\\s+");
+        modelManager.updateFilteredInternshipList(new CompanyContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(workBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

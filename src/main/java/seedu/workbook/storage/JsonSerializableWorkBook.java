@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.workbook.commons.exceptions.IllegalValueException;
 import seedu.workbook.model.WorkBook;
+import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.ReadOnlyWorkBook;
-import seedu.workbook.model.person.Person;
 
 /**
  * An Immutable WorkBook that is serializable to JSON format.
@@ -19,16 +19,16 @@ import seedu.workbook.model.person.Person;
 @JsonRootName(value = "workbook")
 class JsonSerializableWorkBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "Internship list contains duplicate internship(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedInternship> internships = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableWorkBook} with the given persons.
+     * Constructs a {@code JsonSerializableWorkBook} with the given internships.
      */
     @JsonCreator
-    public JsonSerializableWorkBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableWorkBook(@JsonProperty("internships") List<JsonAdaptedInternship> internships) {
+        this.internships.addAll(internships);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableWorkBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableWorkBook}.
      */
     public JsonSerializableWorkBook(ReadOnlyWorkBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        internships.addAll(source.getInternshipList().stream().map(JsonAdaptedInternship::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableWorkBook {
      */
     public WorkBook toModelType() throws IllegalValueException {
         WorkBook workBook = new WorkBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (workBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedInternship jsonAdaptedInternship : internships) {
+            Internship internship = jsonAdaptedInternship.toModelType();
+            if (workBook.hasInternship(internship)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_INTERNSHIP);
             }
-            workBook.addPerson(person);
+            workBook.addInternship(internship);
         }
         return workBook;
     }
