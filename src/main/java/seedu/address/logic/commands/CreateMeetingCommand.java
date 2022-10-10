@@ -103,8 +103,8 @@ public class CreateMeetingCommand extends Command {
             return new CommandResult(e.toString());
 
         } catch (IndexOutOfBoundsException e) {
-            return new CommandResult("Make sure you have entered " +
-                "the correct amount of information correctly separated!");
+            return new CommandResult("Make sure you have entered "
+                + "the correct amount of information correctly separated!");
 
         } catch (PersonNotFoundException e) {
             return new CommandResult("Oops! The person you are meeting with doesn't exist"
