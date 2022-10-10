@@ -308,7 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. TAB shows an error message.
 
       Use case resumes at step 2.
-  
+
 **Use case: Add a person**
 
 **MSS**
@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given student details are invalid.
   * 1a1. TAB shows an error message.
-  
+
   Use case resumes at step 1.
 
 **Use case: Edit a person’s details**
