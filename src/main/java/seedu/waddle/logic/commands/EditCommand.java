@@ -50,7 +50,7 @@ public class EditCommand extends Command {
     private final EditItineraryDescriptor editItineraryDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                   of the person in the filtered person list to edit
      * @param editItineraryDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditItineraryDescriptor editItineraryDescriptor) {
@@ -59,6 +59,24 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editItineraryDescriptor = new EditItineraryDescriptor(editItineraryDescriptor);
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private static Itinerary createEditedItinerary(Itinerary itineraryToEdit,
+            EditItineraryDescriptor editItineraryDescriptor) {
+        assert itineraryToEdit != null;
+
+        Name updatedName = editItineraryDescriptor.getName().orElse(itineraryToEdit.getName());
+        Country updatedCountry = editItineraryDescriptor.getCountry().orElse(itineraryToEdit.getCountry());
+        Date updatedStartDate = editItineraryDescriptor.getStartDate().orElse(itineraryToEdit.getStartDate());
+        Date updatedEndDate = editItineraryDescriptor.getEndDate().orElse(itineraryToEdit.getEndDate());
+        People updatedPeople = editItineraryDescriptor.getPeople().orElse(itineraryToEdit.getPeople());
+
+
+        return new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedEndDate, updatedPeople);
     }
 
     @Override
@@ -80,23 +98,6 @@ public class EditCommand extends Command {
         model.setItinerary(itineraryToEdit, editedItinerary);
         model.updateFilteredItineraryList(PREDICATE_SHOW_ALL_ITINERARIES);
         return new CommandResult(String.format(MESSAGE_EDIT_ITINERARY_SUCCESS, editedItinerary));
-    }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    private static Itinerary createEditedItinerary(Itinerary itineraryToEdit, EditItineraryDescriptor editItineraryDescriptor) {
-        assert itineraryToEdit != null;
-
-        Name updatedName = editItineraryDescriptor.getName().orElse(itineraryToEdit.getName());
-        Country updatedCountry = editItineraryDescriptor.getCountry().orElse(itineraryToEdit.getCountry());
-        Date updatedStartDate = editItineraryDescriptor.getStartDate().orElse(itineraryToEdit.getStartDate());
-        Date updatedEndDate = editItineraryDescriptor.getEndDate().orElse(itineraryToEdit.getEndDate());
-        People updatedPeople = editItineraryDescriptor.getPeople().orElse(itineraryToEdit.getPeople());
-
-
-        return new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedEndDate, updatedPeople);
     }
 
     @Override
@@ -128,7 +129,8 @@ public class EditCommand extends Command {
         private Date endDate;
         private People people;
 
-        public EditItineraryDescriptor() {}
+        public EditItineraryDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -149,46 +151,45 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, country, startDate, endDate, people);
         }
 
-        public void setName(Name name) {
-            this.name = name;
-        }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setCountry(Country country) {
-            this.country = country;
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<Country> getCountry() {
             return Optional.ofNullable(country);
         }
 
-        public void setStartDate(Date startDate) {
-            this.startDate = startDate;
+        public void setCountry(Country country) {
+            this.country = country;
         }
 
         public Optional<Date> getStartDate() {
             return Optional.ofNullable(startDate);
         }
 
-        public void setEndDate(Date endDate) {
-            this.endDate = endDate;
+        public void setStartDate(Date startDate) {
+            this.startDate = startDate;
         }
 
         public Optional<Date> getEndDate() {
             return Optional.ofNullable(endDate);
         }
 
-        public void setPeople(People people) {
-            this.people = people;
+        public void setEndDate(Date endDate) {
+            this.endDate = endDate;
         }
 
         public Optional<People> getPeople() {
             return Optional.ofNullable(people);
         }
 
+        public void setPeople(People people) {
+            this.people = people;
+        }
 
         @Override
         public boolean equals(Object other) {

@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.waddle.commons.exceptions.DataConversionException;
-import seedu.waddle.model.ReadOnlyWaddle;
 import seedu.waddle.model.ReadOnlyUserPrefs;
+import seedu.waddle.model.ReadOnlyWaddle;
 import seedu.waddle.model.UserPrefs;
 
 /**
