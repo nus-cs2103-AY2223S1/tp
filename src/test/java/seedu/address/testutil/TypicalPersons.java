@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.TrackAScholar;
 import seedu.address.model.person.Applicant;
 
 /**
@@ -71,12 +71,12 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code TrackAScholar} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static TrackAScholar getTypicalAddressBook() {
+        TrackAScholar ab = new TrackAScholar();
         for (Applicant applicant : getTypicalPersons()) {
-            ab.addPerson(applicant);
+            ab.addApplicant(applicant);
         }
         return ab;
     }

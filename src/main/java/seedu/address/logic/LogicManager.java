@@ -13,7 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TrackAScholarParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTrackAScholar;
 import seedu.address.model.person.Applicant;
 import seedu.address.storage.Storage;
 
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getTrackAScholar());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTrackAScholar getAddressBook() {
+        return model.getTrackAScholar();
     }
 
     @Override
     public ObservableList<Applicant> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+        return model.getFilteredApplicantList();
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getTrackAScholarFilePath();
     }
 
     @Override

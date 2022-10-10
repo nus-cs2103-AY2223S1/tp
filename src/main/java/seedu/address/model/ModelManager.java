@@ -14,30 +14,30 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Applicant;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the TrackAScholar tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TrackAScholar trackAScholar;
     private final UserPrefs userPrefs;
     private final FilteredList<Applicant> filteredApplicants;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given trackAScholar and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTrackAScholar trackAScholar, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(trackAScholar, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + trackAScholar + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.trackAScholar = new TrackAScholar(trackAScholar);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredApplicants = new FilteredList<>(this.addressBook.getPersonList());
+        filteredApplicants = new FilteredList<>(this.trackAScholar.getApplicantList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TrackAScholar(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,50 +65,50 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTrackAScholarFilePath() {
+        return userPrefs.getTrackAScholarFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTrackAScholarFilePath(Path trackAScholarFilePath) {
+        requireNonNull(trackAScholarFilePath);
+        userPrefs.setTrackAScholarFilePath(trackAScholarFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TrackAScholar ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setTrackAScholar(ReadOnlyTrackAScholar trackAScholar) {
+        this.trackAScholar.resetData(trackAScholar);
     }
 
     @Override
-    public boolean hasPerson(Applicant applicant) {
+    public ReadOnlyTrackAScholar getTrackAScholar() {
+        return trackAScholar;
+    }
+
+    @Override
+    public boolean hasApplicant(Applicant applicant) {
         requireNonNull(applicant);
-        return addressBook.hasPerson(applicant);
+        return trackAScholar.hasApplicant(applicant);
     }
 
     @Override
-    public void deletePerson(Applicant target) {
-        addressBook.removePerson(target);
+    public void deleteApplicant(Applicant target) {
+        trackAScholar.removeApplicant(target);
     }
 
     @Override
-    public void addPerson(Applicant applicant) {
-        addressBook.addPerson(applicant);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addApplicant(Applicant applicant) {
+        trackAScholar.addApplicant(applicant);
+        updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
     }
 
     @Override
-    public void setPerson(Applicant target, Applicant editedApplicant) {
+    public void setApplicant(Applicant target, Applicant editedApplicant) {
         requireAllNonNull(target, editedApplicant);
 
-        addressBook.setPerson(target, editedApplicant);
+        trackAScholar.setApplicant(target, editedApplicant);
     }
 
     //=========== Filtered Applicant List Accessors =============================================================
@@ -118,12 +118,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Applicant> getFilteredPersonList() {
+    public ObservableList<Applicant> getFilteredApplicantList() {
         return filteredApplicants;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Applicant> predicate) {
+    public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
         requireNonNull(predicate);
         filteredApplicants.setPredicate(predicate);
     }
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return trackAScholar.equals(other.trackAScholar)
                 && userPrefs.equals(other.userPrefs)
                 && filteredApplicants.equals(other.filteredApplicants);
     }

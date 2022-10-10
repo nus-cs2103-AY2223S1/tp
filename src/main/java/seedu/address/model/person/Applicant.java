@@ -71,7 +71,7 @@ public class Applicant {
      * Returns true if both applicants have the same name.
      * This defines a weaker notion of equality between two applicants.
      */
-    public boolean isSamePerson(Applicant otherApplicant) {
+    public boolean isSameApplicant(Applicant otherApplicant) {
         if (otherApplicant == this) {
             return true;
         }

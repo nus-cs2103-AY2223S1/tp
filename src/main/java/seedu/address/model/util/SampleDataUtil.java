@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.TrackAScholar;
+import seedu.address.model.ReadOnlyTrackAScholar;
 import seedu.address.model.person.*;
 import seedu.address.model.person.Applicant;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code TrackAScholar} with sample data.
  */
 public class SampleDataUtil {
     public static Applicant[] getSamplePersons() {
@@ -37,12 +37,12 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyTrackAScholar getSampleTrackAScholar() {
+        TrackAScholar sampleTrackAScholar = new TrackAScholar();
         for (Applicant sampleApplicant : getSamplePersons()) {
-            sampleAb.addPerson(sampleApplicant);
+            sampleTrackAScholar.addApplicant(sampleApplicant);
         }
-        return sampleAb;
+        return sampleTrackAScholar;
     }
 
     /**

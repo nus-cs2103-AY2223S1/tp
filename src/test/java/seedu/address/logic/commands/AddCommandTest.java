@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ReadOnlyTrackAScholar;
+import seedu.address.model.TrackAScholar;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Applicant;
 import seedu.address.testutil.PersonBuilder;
@@ -99,52 +99,52 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTrackAScholarFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTrackAScholarFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Applicant applicant) {
+        public void addApplicant(Applicant applicant) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setTrackAScholar(ReadOnlyTrackAScholar newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTrackAScholar getTrackAScholar() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Applicant applicant) {
+        public boolean hasApplicant(Applicant applicant) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Applicant target) {
+        public void deleteApplicant(Applicant target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Applicant target, Applicant editedApplicant) {
+        public void setApplicant(Applicant target, Applicant editedApplicant) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Applicant> getFilteredPersonList() {
+        public ObservableList<Applicant> getFilteredApplicantList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Applicant> predicate) {
+        public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -161,9 +161,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Applicant applicant) {
+        public boolean hasApplicant(Applicant applicant) {
             requireNonNull(applicant);
-            return this.applicant.isSamePerson(applicant);
+            return this.applicant.isSameApplicant(applicant);
         }
     }
 
@@ -174,20 +174,20 @@ public class AddCommandTest {
         final ArrayList<Applicant> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Applicant applicant) {
+        public boolean hasApplicant(Applicant applicant) {
             requireNonNull(applicant);
-            return personsAdded.stream().anyMatch(applicant::isSamePerson);
+            return personsAdded.stream().anyMatch(applicant::isSameApplicant);
         }
 
         @Override
-        public void addPerson(Applicant applicant) {
+        public void addApplicant(Applicant applicant) {
             requireNonNull(applicant);
             personsAdded.add(applicant);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTrackAScholar getTrackAScholar() {
+            return new TrackAScholar();
         }
     }
 

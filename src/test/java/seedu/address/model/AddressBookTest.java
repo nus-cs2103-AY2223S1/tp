@@ -24,23 +24,23 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final TrackAScholar trackAScholar = new TrackAScholar();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), trackAScholar.getApplicantList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> trackAScholar.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        TrackAScholar newData = getTypicalAddressBook();
+        trackAScholar.resetData(newData);
+        assertEquals(newData, trackAScholar);
     }
 
     @Test
@@ -49,52 +49,52 @@ public class AddressBookTest {
         Applicant editedAlice = new PersonBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Applicant> newApplicants = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newApplicants);
+        TrackAScholarStub newData = new TrackAScholarStub(newApplicants);
 
-        assertThrows(DuplicateApplicantException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateApplicantException.class, () -> trackAScholar.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> trackAScholar.hasApplicant(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(trackAScholar.hasApplicant(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        trackAScholar.addApplicant(ALICE);
+        assertTrue(trackAScholar.hasApplicant(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        trackAScholar.addApplicant(ALICE);
         Applicant editedAlice = new PersonBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(trackAScholar.hasApplicant(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> trackAScholar.getApplicantList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose applicants list can violate interface constraints.
+     * A stub ReadOnlyTrackAScholar whose applicants list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class TrackAScholarStub implements ReadOnlyTrackAScholar {
         private final ObservableList<Applicant> applicants = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Applicant> applicants) {
+        TrackAScholarStub(Collection<Applicant> applicants) {
             this.applicants.setAll(applicants);
         }
 
         @Override
-        public ObservableList<Applicant> getPersonList() {
+        public ObservableList<Applicant> getApplicantList() {
             return applicants;
         }
     }

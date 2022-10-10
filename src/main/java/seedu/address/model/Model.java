@@ -12,7 +12,7 @@ import seedu.address.model.person.Applicant;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Applicant> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Applicant> PREDICATE_SHOW_ALL_APPLICANTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +35,54 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' TrackAScholar file path.
      */
-    Path getAddressBookFilePath();
+    Path getTrackAScholarFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' TrackAScholar file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTrackAScholarFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces TrackAScholar data with the data in {@code TrackAScholar}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTrackAScholar(ReadOnlyTrackAScholar addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TrackAScholar */
+    ReadOnlyTrackAScholar getTrackAScholar();
 
     /**
-     * Returns true if a applicant with the same identity as {@code applicant} exists in the address book.
+     * Returns true if an applicant with the same identity as {@code applicant} exists in TrackAScholar.
      */
-    boolean hasPerson(Applicant applicant);
+    boolean hasApplicant(Applicant applicant);
 
     /**
      * Deletes the given applicant.
-     * The applicant must exist in the address book.
+     * The applicant must exist in TrackAScholar.
      */
-    void deletePerson(Applicant target);
+    void deleteApplicant(Applicant target);
 
     /**
      * Adds the given applicant.
-     * {@code applicant} must not already exist in the address book.
+     * {@code applicant} must not already exist in TrackAScholar.
      */
-    void addPerson(Applicant applicant);
+    void addApplicant(Applicant applicant);
 
     /**
      * Replaces the given applicant {@code target} with {@code editedApplicant}.
-     * {@code target} must exist in the address book.
-     * The applicant identity of {@code editedApplicant} must not be the same as another existing applicant in the address book.
+     * {@code target} must exist in TrackAScholar.
+     * The applicant identity of {@code editedApplicant} must not be
+     * the same as another existing applicant in TrackAScholar.
      */
-    void setPerson(Applicant target, Applicant editedApplicant);
+    void setApplicant(Applicant target, Applicant editedApplicant);
 
     /** Returns an unmodifiable view of the filtered applicant list */
-    ObservableList<Applicant> getFilteredPersonList();
+    ObservableList<Applicant> getFilteredApplicantList();
 
     /**
      * Updates the filter of the filtered applicant list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Applicant> predicate);
+    void updateFilteredApplicantList(Predicate<Applicant> predicate);
 }

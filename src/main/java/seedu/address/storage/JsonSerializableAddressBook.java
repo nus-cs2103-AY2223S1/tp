@@ -9,12 +9,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTrackAScholar;
+import seedu.address.model.TrackAScholar;
 import seedu.address.model.person.Applicant;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable TrackAScholar that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
@@ -32,29 +32,29 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTrackAScholar} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    public JsonSerializableAddressBook(ReadOnlyTrackAScholar source) {
+        persons.addAll(source.getApplicantList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code TrackAScholar} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public TrackAScholar toModelType() throws IllegalValueException {
+        TrackAScholar trackAScholar = new TrackAScholar();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Applicant applicant = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(applicant)) {
+            if (trackAScholar.hasApplicant(applicant)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(applicant);
+            trackAScholar.addApplicant(applicant);
         }
-        return addressBook;
+        return trackAScholar;
     }
 
 }

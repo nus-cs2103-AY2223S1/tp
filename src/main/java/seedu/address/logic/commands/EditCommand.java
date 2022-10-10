@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -67,7 +67,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Applicant> lastShownList = model.getFilteredPersonList();
+        List<Applicant> lastShownList = model.getFilteredApplicantList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -76,12 +76,12 @@ public class EditCommand extends Command {
         Applicant applicantToEdit = lastShownList.get(index.getZeroBased());
         Applicant editedApplicant = createEditedPerson(applicantToEdit, editPersonDescriptor);
 
-        if (!applicantToEdit.isSamePerson(editedApplicant) && model.hasPerson(editedApplicant)) {
+        if (!applicantToEdit.isSameApplicant(editedApplicant) && model.hasApplicant(editedApplicant)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(applicantToEdit, editedApplicant);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setApplicant(applicantToEdit, editedApplicant);
+        model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedApplicant));
     }
 
