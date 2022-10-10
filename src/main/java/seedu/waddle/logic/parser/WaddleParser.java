@@ -6,6 +6,8 @@ import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.waddle.logic.StageManager;
+import seedu.waddle.logic.Stages;
 import seedu.waddle.logic.commands.AddCommand;
 import seedu.waddle.logic.commands.ClearCommand;
 import seedu.waddle.logic.commands.Command;
@@ -15,6 +17,7 @@ import seedu.waddle.logic.commands.ExitCommand;
 import seedu.waddle.logic.commands.FindCommand;
 import seedu.waddle.logic.commands.HelpCommand;
 import seedu.waddle.logic.commands.ListCommand;
+import seedu.waddle.logic.commands.PlanCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 
 /**
@@ -35,6 +38,7 @@ public class WaddleParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
+        Stages currStage = StageManager.getInstance().getStage();
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -61,6 +65,9 @@ public class WaddleParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case PlanCommand.COMMAND_WORD:
+            return new PlanCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
