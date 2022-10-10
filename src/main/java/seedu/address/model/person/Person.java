@@ -147,11 +147,6 @@ public class Person implements DisplayItem {
     }
 
     @Override
-    public String getFullPathName() {
-        return toString();
-    }
-
-    @Override
     public void setParent(DisplayItem o) throws ItemCannotBeParentException {
         if (!(o instanceof AbstractContainerItem) || parents.contains(o)) {
             throw new ItemCannotBeParentException(o);

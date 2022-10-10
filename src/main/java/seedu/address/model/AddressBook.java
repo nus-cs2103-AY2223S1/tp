@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.group.Group;
-import seedu.address.model.item.DisplayItemList;
+import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -17,7 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final DisplayItemList<Group> teams;
+    private final UniqueGroupList teams;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -31,7 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        teams = new DisplayItemList<Group>();
+        teams = new UniqueGroupList();
     }
 
     public AddressBook() {
@@ -156,7 +156,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && persons.equals(((AddressBook) other).persons));
+                        && persons.equals(((AddressBook) other).persons)
+                        && teams.equals(((AddressBook) other).teams));
     }
 
     @Override

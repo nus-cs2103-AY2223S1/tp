@@ -4,6 +4,9 @@ import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
 
+/**
+ * Represents a Group in the address book.
+ */
 public class Group extends AbstractContainerItem {
 
     private final String groupName;

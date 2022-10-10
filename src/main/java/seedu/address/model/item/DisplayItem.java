@@ -5,13 +5,21 @@ package seedu.address.model.item;
  * team or an entry
  */
 public interface DisplayItem {
+    /**
+     * Returns the entry type of the displayable item to determine which fxml layout
+     * card will be used to display this item.
+     */
     EntryType getEntryType();
 
+    /**
+     * Defines a stronger notions of equality between display items.
+     */
     boolean stronglyEqual(DisplayItem o);
 
+    /**
+     * Defines a weaker notion of equality between display items.
+     */
     boolean weaklyEqual(DisplayItem o);
-
-    String getFullPathName();
 
     void setParent(DisplayItem o);
 }
