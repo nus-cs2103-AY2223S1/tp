@@ -30,8 +30,8 @@ public class MarkCommandParser implements Parser<MarkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), ive);
         }
 
-        String remark = argMultimap.getValue(PREFIX_STATUS).orElse("");
+        String status = argMultimap.getValue(PREFIX_STATUS);
 
-        return new MarkCommand(studentID, remark);
+        return new MarkCommand(studentID, status);
     }
 }

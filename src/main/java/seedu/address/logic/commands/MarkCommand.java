@@ -40,7 +40,6 @@ public class MarkCommand extends Command {
      */
     public MarkCommand(StudentID studentID, Status status) {
         requireAllNonNull(studentID, status);
-
         this.studentID = studentID;
         this.status = status;
     }

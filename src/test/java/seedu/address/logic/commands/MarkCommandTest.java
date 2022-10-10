@@ -8,25 +8,30 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.MarkCommand.MESSAGE_ARGUMENTS;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import seedu.address.model.person.StudentID;
 
 import org.junit.jupiter.api.Test;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
  */
 public class MarkCommandTest {
-    final MarkCommand.Status status = "IP";
+    final StudentID studentID = new StudentID("A0123456G");
+
+    /** Code to be revisited later :(
+    final Status status = "IP";
 
     assertCommandFailure(new RemarkCommand(INDEX_FIRST_PERSON, remark), model,
                 String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), remark));
-}
+    */
 
     @Test
     public void equals() {
-        final RemarkCommand standardCommand = new RemarkCommand(INDEX_FIRST_PERSON, VALID_REMARK_AMY);
+        final MarkCommand standardCommand = new MarkCommand(studentID, VALID_STATUS_AMY);
 
         // same values -> returns true
-        RemarkCommand commandWithSameValues = new RemarkCommand(INDEX_FIRST_PERSON, VALID_REMARK_AMY);
+        MarkCommand commandWithSameValues = new MarkCommand(studentID, VALID_STATUS_AMY);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -38,10 +43,11 @@ public class MarkCommandTest {
         // different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
 
-        // different index -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_SECOND_PERSON, VALID_REMARK_AMY)));
+        // different studentID -> returns false
+        final StudentID diffStudentID = new StudentID("A1234567F");
+        assertFalse(standardCommand.equals(new MarkCommand(diffStudentID, VALID_STATUS_AMY)));
 
-        // different remark -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_PERSON, VALID_REMARK_BOB)));
+        // different status -> returns false
+        assertFalse(standardCommand.equals(new MarkCommand(studentID, VALID_STATUS_BOB)));
     }
 }
