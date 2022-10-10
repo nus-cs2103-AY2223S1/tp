@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -78,5 +79,27 @@ public class TaskTest {
         assertNotEquals(sampleA, sampleE);
         // trailing space in name -> returns false
         assertNotEquals(sampleA, sampleF);
+    }
+
+    @Test
+    public void setStatusWithBooleanParameter() {
+        sampleA.setStatus(true);
+        sampleB.setStatus(false);
+        assertTrue(sampleA.getStatus().getIsComplete());
+        assertFalse(sampleB.getStatus().getIsComplete());
+    }
+
+    @Test
+    public void setStatusWithValidStringParameter() {
+        sampleA.setStatus("\u2713");
+        sampleB.setStatus("\u2716");
+        assertTrue(sampleA.getStatus().getIsComplete());
+        assertFalse(sampleB.getStatus().getIsComplete());
+    }
+
+    @Test
+    public void setStatusWithInvalidStringParameter_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> sampleA.setStatus(""));
+        assertThrows(IllegalArgumentException.class, () -> sampleA.setStatus("a"));
     }
 }

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -28,14 +27,15 @@ public class UnmarkTaskCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToUnmark = model.getFilteredTaskList().get(0).setStatus(true);
+        Task taskToUnmark = model.getFilteredTaskList().get(0);
+        taskToUnmark.setStatus(true);
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
-        Task unmarkedTask = new Task(
-                taskToUnmark.getName(), taskToUnmark.getModule(), taskToUnmark.getDeadline()).setStatus(false);
+        Task unmarkedTask = new Task(taskToUnmark.getName(), taskToUnmark.getModule(), taskToUnmark.getDeadline());
+        unmarkedTask.setStatus(false);
         expectedModel.setTask(taskToUnmark, unmarkedTask);
 
         assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
@@ -50,43 +50,16 @@ public class UnmarkTaskCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
-        showTaskAtIndex(model, Index.fromZeroBased(0));
-
-        Task taskToUnmark = model.getFilteredTaskList().get(0).setStatus(true);
-        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
-
-        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark);
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
-        Task unmarkedTask = new Task(
-                taskToUnmark.getName(), taskToUnmark.getModule(), taskToUnmark.getDeadline()).setStatus(false);
-        expectedModel.setTask(taskToUnmark, unmarkedTask);
-
-        assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showTaskAtIndex(model, Index.fromZeroBased(0));
-
-        Index outOfBoundIndex = Index.fromZeroBased(1);
-
-        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(outOfBoundIndex);
-
-        assertCommandFailure(unmarkTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-    }
-
-    @Test
     public void excecute_unmarMarkedTask_success() {
-        Task taskToMark = model.getFilteredTaskList().get(0).setStatus(true);
+        Task taskToMark = model.getFilteredTaskList().get(0);
+        taskToMark.setStatus(true);
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, taskToMark);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
-        Task unmarkedTask = new Task(
-                taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline()).setStatus(false);
+        Task unmarkedTask = new Task(taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline());
+        unmarkedTask.setStatus(false);
         expectedModel.setTask(taskToMark, unmarkedTask);
 
         assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);

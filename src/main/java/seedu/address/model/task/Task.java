@@ -38,14 +38,12 @@ public class Task {
 
     public Status getStatus() { return status; }
 
-    public Task setStatus(boolean isComplete) {
+    public void setStatus(boolean isComplete) {
         this.status = new Status(isComplete);
-        return this;
     }
 
-    public Task setStatus(String status) {
+    public void setStatus(String status) {
         this.status = new Status(status);
-        return this;
     }
 
     /**
