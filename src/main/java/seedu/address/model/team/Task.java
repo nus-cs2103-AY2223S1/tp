@@ -2,8 +2,11 @@ package seedu.address.model.team;
 
 import seedu.address.model.person.Person;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -28,9 +31,14 @@ public class Task {
     private String name;
 
     /**
-     * Team member assigned to be in charge of this task.
+     * Team member(s) assigned to be in charge of this task.
      */
     private List<Person> assignees;
+
+    /**
+     * Deadline of the task.
+     */
+    private LocalDate deadline;
 
     /**
      * Constructs a {@code Task}.
@@ -42,6 +50,7 @@ public class Task {
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         assignees = new ArrayList<>();
+        deadline = null;
     }
 
     /**
@@ -55,7 +64,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return name + getAssignees();
+        return name + getAssignees() + getDeadline();
     }
 
     public String getName() {
@@ -75,6 +84,15 @@ public class Task {
             return assigneeNames.toString();
         }
     }
+
+    public String getDeadline() {
+        if (deadline == null) {
+            return "";
+        } else {
+            return "(By: " + deadline + ")";
+        }
+    }
+
     /**
      * Returns true if two tasks have the same name.
      *
@@ -101,5 +119,9 @@ public class Task {
 
     public boolean checkAssignee(Person assignee) {
         return this.assignees.contains(assignee);
+    }
+
+    public void setDeadline(LocalDate date) {
+        this.deadline = date;
     }
 }
