@@ -3,7 +3,6 @@ package jarvis.logic.commands;
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.logic.parser.MasteryCheckCommandParser;
 import jarvis.model.MasteryCheckStatus;
 import jarvis.model.Model;
 import jarvis.model.Student;

@@ -50,6 +50,14 @@ public class MasteryCheckStatus {
         }
     }
 
+    public boolean didPassMc(int mcNum) {
+        if (mcNum == 1) {
+            return mc1.didPass();
+        } else {
+            return mc2.didPass();
+        }
+    }
+
     /**
      * Represents a student's result for a specific mastery check.
      */
@@ -64,6 +72,10 @@ public class MasteryCheckStatus {
 
         public int getMcNumber() {
             return mcNumber;
+        }
+
+        public boolean didPass() {
+            return isPass;
         }
 
         public String toString() {
