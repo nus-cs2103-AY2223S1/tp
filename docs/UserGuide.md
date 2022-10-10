@@ -650,39 +650,39 @@ bye
 <tbody>
   <tr>
     <td>Create a new item</td>
-    <td>new n/ITEM_NAME [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>Valid Examples:<br>new n/Potato qty/70 type/kg bgt/22-02-11 exp/22-03/11</td>
+    <td><b>new n/ITEM_NAME [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]</b><br><br><u>Valid Example:</u><br>new n/Potato qty/70 type/kg bgt/22-02-11 exp/22-03/11</td>
   </tr>
   <tr>
     <td>List all items</td>
-    <td>list<br>Valid Examples:<br>list</td>
+    <td><b>list</b><br><br><u>Valid Example:</u><br>list</td>
   </tr>
   <tr>
     <td>Search for an item</td>
-    <td>find n/ITEM_NAME<br>Valid Examples:<br>find n/Potato</td>
+    <td><b>find n/ITEM_NAME</b><br><br><u>Valid Example:</u><br>find n/Potato</td>
   </tr>
   <tr>
     <td>Sort an item by name, quantity, type, bought date or expiry date.</td>
-    <td>sort [n/] [qty/] [type/] [bgt/] [exp/]<br>Valid Examples:<br>sort n/<br>sort qty/<br>sort qty/ bgt/<br>Invalid Examples:<br>sort</td>
+    <td><b>sort [n/] [qty/] [type/] [bgt/] [exp/]</b><br><br><u>Valid Example:</u><br>sort n/<br>sort qty/<br>sort qty/ bgt/<br><br><u>Invalid Example:</u><br>sort</td>
   </tr>
   <tr>
     <td>View information about an item</td>
-    <td>view id/INDEX<br>Valid Examples:<br>view id/1</td>
+    <td><b>view id/INDEX</b><br><br><u>Valid Examples:</u><br>view id/1</td>
   </tr>
   <tr>
     <td>Increase the quantity of an item</td>
-    <td>inc id/INDEX_LIST [qty/QUANTITY]<br>Valid Examples:<br>inc id/1 qty/100<br>inc id/1,2,3 qty/100</td>
+    <td><b>inc id/INDEX_LIST [qty/QUANTITY]</b><br><br><u>Valid Examples:</u><br>inc id/1 qty/100<br>inc id/1,2,3 qty/100</td>
   </tr>
   <tr>
     <td>Decrease the quantity of an item</td>
-    <td>dec id/INDEX_LIST [qty/QUANTITY]<br>Valid Examples:<br>dec id/1 qty/100<br>dec id/1,2,3 qty/100</td>
+    <td><b>dec id/INDEX_LIST [qty/QUANTITY]</b><br><br><u>Valid Examples:</u><br>dec id/1 qty/100<br>dec id/1,2,3 qty/100</td>
   </tr>
   <tr>
     <td>Update the information of an item</td>
-    <td>set id/INDEX_LIST [n/ITEM_NAME] [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>IMPORTANT:<br>Do not update multiple items to have the same name<br>Valid Examples:<br>set id/1 n/Potatoes qty/60 type/kg<br>set id/1,2,3 qty/60</td>
+    <td><b>set id/INDEX_LIST [n/ITEM_NAME] [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]</b><br><br>❗ IMPORTANT:<br>Do not update multiple items to have the same name<br><br><u>Valid Examples:</u><br>set id/1 n/Potatoes qty/60 type/kg<br>set id/1,2,3 qty/60</td>
   </tr>
   <tr>
     <td>Delete an item</td>
-    <td>del id/INDEX_LIST<br>Valid Examples:<br>del id/1<br>del id/1,2,3</td>
+    <td><b>del id/INDEX_LIST</b><br><br><u>Valid Examples:</u><br>del id/1<br>del id/1,2,3</td>
   </tr>
 </tbody>
 </table>
@@ -698,40 +698,28 @@ bye
 </thead>
 <tbody>
   <tr>
-    <td>Create a new item</td>
-    <td>new n/ITEM_NAME [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>Valid Examples:<br>new n/Potato qty/70 type/kg bgt/22-02-11 exp/22-03/11</td>
+    <td>Create a new tag</td>
+    <td><b>newtag n/TAG_NAME</b><br><br><u>Valid Examples:</u><br>newtag n/Food<br>newtag n/Condiments<br><br><u>Invalid Examples:</u><br>newtag Food<br>newtag Condiments</td>
   </tr>
   <tr>
-    <td>List all items</td>
-    <td>list<br>Valid Examples:<br>list</td>
+    <td>List all tags available<br></td>
+    <td><b>listtag</b><br><br><u>Valid Example:</u><br>listtag<br><br><br><u>Invalid Example:</u><br>listtags</td>
   </tr>
   <tr>
-    <td>Search for an item</td>
-    <td>find n/ITEM_NAME<br>Valid Examples:<br>find n/Potato</td>
+    <td>Tag items with a specific tag<br></td>
+    <td><b>tag n/TAG_NAME id/INDEX_LIST</b><br><br><u>Valid Examples:</u><br>tag n/Condiments id/1<br>tag n/Condiments id/1,2,4,8<br><br><u>Invalid Example:</u><br>tag Condiments 1</td>
   </tr>
   <tr>
-    <td>Sort an item by name, quantity, type, bought date or expiry date.</td>
-    <td>sort [n/] [qty/] [type/] [bgt/] [exp/]<br>Valid Examples:<br>sort n/<br>sort qty/<br>sort qty/ bgt/<br>Invalid Examples:<br>sort</td>
+    <td>Untag items with a specific tag</td>
+    <td><b>untag n/TAG_NAME id/INDEX_LIST</b><br><br><u>Valid Examples:</u><br>untag n/Condiments id/1<br>untag n/Condiments id/1,2,4,8<br><br><u>Invalid Example:</u><br>untag Condiments 1,2</td>
   </tr>
   <tr>
-    <td>View information about an item</td>
-    <td>view id/INDEX<br>Valid Examples:<br>view id/1</td>
+    <td>Rename a tag</td>
+    <td><b>renametag n/TAG_NAME n/TAG_NAME</b><br><br><u>Valid Example:</u><br>renametag n/Condiments n/Condiment<br><br><u>Invalid Example:</u><br>renametag Condiments Condiment</u><br></td>
   </tr>
   <tr>
-    <td>Increase the quantity of an item</td>
-    <td>inc id/INDEX_LIST [qty/QUANTITY]<br>Valid Examples:<br>inc id/1 qty/100<br>inc id/1,2,3 qty/100</td>
-  </tr>
-  <tr>
-    <td>Decrease the quantity of an item</td>
-    <td>dec id/INDEX_LIST [qty/QUANTITY]<br>Valid Examples:<br>dec id/1 qty/100<br>dec id/1,2,3 qty/100</td>
-  </tr>
-  <tr>
-    <td>Update the information of an item</td>
-    <td>set id/INDEX_LIST [n/ITEM_NAME] [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]<br>IMPORTANT:<br>Do not update multiple items to have the same name<br>Valid Examples:<br>set id/1 n/Potatoes qty/60 type/kg<br>set id/1,2,3 qty/60</td>
-  </tr>
-  <tr>
-    <td>Delete an item</td>
-    <td>del id/INDEX_LIST<br>Valid Examples:<br>del id/1<br>del id/1,2,3</td>
+    <td>Delete a tag</td>
+    <td><b>delete n/TAG_NAME</b><br><br><u>Valid Examples:</u><br>deletetag n/Food<br><br><br><u>Invalid Examples:</u><br>deletetag n/<br>deletetag Food<br>deletetag Condiments</td>
   </tr>
 </tbody>
 </table>
@@ -748,15 +736,15 @@ bye
 <tbody>
   <tr>
     <td>Shows a help dialog with a list of available commands</td>
-    <td>help<br>Valid Examples:<br>help</td>
+    <td><b>help</b><br><br><u>Valid Example:</u><br>help</td>
   </tr>
   <tr>
     <td>Reset the application</td>
-    <td>reset<br>Valid Example:<br>reset</td>
+    <td><b>reset</b><br><u><br>Valid Example:</u><br>reset</td>
   </tr>
   <tr>
     <td>Exit the application</td>
-    <td>exit<br>Valid Examples:<br>exit</td>
+    <td><b>exit</b><br><u><br>Valid Examples:</u><br>exit</td>
   </tr>
 </tbody>
 </table>
