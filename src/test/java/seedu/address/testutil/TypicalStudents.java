@@ -27,7 +27,7 @@ public class TypicalStudents {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends")
-            .withAttendance("She likes aarvarks")
+            .withAttendance("She likes aardvarks.")
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
