@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.moduleclass.UniqueModuleClassList;
 import seedu.taassist.model.student.Student;
-import seedu.taassist.model.student.UniqueStudentList;
+import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
  * Wraps all data at the address-book level
@@ -18,7 +18,7 @@ import seedu.taassist.model.student.UniqueStudentList;
  */
 public class TaAssist implements ReadOnlyTaAssist {
 
-    private final UniqueStudentList students;
+    private final UniqueList<Student> students;
     private final UniqueModuleClassList moduleClasses;
 
     /*
@@ -29,7 +29,7 @@ public class TaAssist implements ReadOnlyTaAssist {
      *   among constructors.
      */
     {
-        students = new UniqueStudentList();
+        students = new UniqueList<Student>();
         moduleClasses = new UniqueModuleClassList();
     }
 
@@ -50,7 +50,7 @@ public class TaAssist implements ReadOnlyTaAssist {
      * {@code students} must not contain duplicate students.
      */
     public void setStudents(List<Student> students) {
-        this.students.setStudents(students);
+        this.students.setElements(students);
     }
 
     /**
@@ -98,7 +98,7 @@ public class TaAssist implements ReadOnlyTaAssist {
      */
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-        students.setStudent(target, editedStudent);
+        students.setElement(target, editedStudent);
     }
 
     /**

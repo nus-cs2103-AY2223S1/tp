@@ -8,12 +8,13 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.uniquelist.Identity;
 
 /**
  * Represents a Student in TA-Assist.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Student {
+public class Student implements Identity<Student> {
 
     // Identity fields
     private final Name name;
@@ -64,7 +65,8 @@ public class Student {
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
      */
-    public boolean isSameStudent(Student otherStudent) {
+    @Override
+    public boolean isSame(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }

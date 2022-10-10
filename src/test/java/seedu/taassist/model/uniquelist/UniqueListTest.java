@@ -54,23 +54,23 @@ class UniqueListTest {
 
     @Test
     public void setItem_nullTargetItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueList.set(null, DUMMY1));
+        assertThrows(NullPointerException.class, () -> uniqueList.setElement(null, DUMMY1));
     }
 
     @Test
     public void setItem_nullEditedItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueList.set(DUMMY1, null));
+        assertThrows(NullPointerException.class, () -> uniqueList.setElement(DUMMY1, null));
     }
 
     @Test
     public void setItem_targetItemNotInList_throwsElementNotFoundException() {
-        assertThrows(ElementNotFoundException.class, () -> uniqueList.set(DUMMY1, DUMMY1));
+        assertThrows(ElementNotFoundException.class, () -> uniqueList.setElement(DUMMY1, DUMMY1));
     }
 
     @Test
     public void setItem_editedItemIsSameItem_success() {
         uniqueList.add(DUMMY1);
-        uniqueList.set(DUMMY1, DUMMY1);
+        uniqueList.setElement(DUMMY1, DUMMY1);
         UniqueList<Item> expectedUniqueList = new UniqueList<>();
         expectedUniqueList.add(DUMMY1);
         assertEquals(expectedUniqueList, uniqueList);
@@ -80,7 +80,7 @@ class UniqueListTest {
     public void setItem_editedItemExists_throwsDuplicateItemException() {
         uniqueList.add(DUMMY1);
         uniqueList.add(DUMMY2);
-        assertThrows(DuplicateElementException.class, () -> uniqueList.set(DUMMY1, DUMMY2));
+        assertThrows(DuplicateElementException.class, () -> uniqueList.setElement(DUMMY1, DUMMY2));
     }
 
 

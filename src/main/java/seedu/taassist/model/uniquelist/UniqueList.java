@@ -47,7 +47,7 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
      * {@code target} must exist in the list.
      * The identity of {@code editedElement} must not be the same as another existing element in the list.
      */
-    public void set(T target, T editedElement) {
+    public void setElement(T target, T editedElement) {
         requireAllNonNull(target, editedElement);
 
         int index = internalList.indexOf(target);
