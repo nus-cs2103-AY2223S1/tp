@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
@@ -21,13 +22,16 @@ import seedu.address.testutil.StudentBuilder;
 
 
 public class AttendanceCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     private static final String ATTENDANCE_STUB = "1";
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
     @Test
     public void execute_addAttendanceUnfilteredList_success() {
         Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedStudent = new StudentBuilder(firstStudent).withAttendance(ATTENDANCE_STUB).build();
+        Student editedStudent = new StudentBuilder(firstStudent)
+                .withAttendance(ATTENDANCE_STUB)
+                .build();
 
         AttendanceCommand remarkCommand = new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(editedStudent.getAttendance().value));
 

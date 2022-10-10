@@ -13,6 +13,9 @@ import seedu.address.model.Model;
 import seedu.address.model.attendance.Attendance;
 import seedu.address.model.student.Student;
 
+/**
+ * Edits attendance in the address book.
+ */
 public class AttendanceCommand extends Command {
 
     public static final String COMMAND_WORD = "attendance";
@@ -53,7 +56,7 @@ public class AttendanceCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = new Student(
                 studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
-                studentToEdit.getStudentId(), studentToEdit.getTags(),attendance);
+                studentToEdit.getStudentId(), studentToEdit.getTags(), attendance);
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
