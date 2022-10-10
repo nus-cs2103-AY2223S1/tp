@@ -12,7 +12,7 @@ import seedu.condonery.model.property.Property;
 /**
  * Adds a property to Condonery.
  */
-public class AddProperty extends Command {
+public class AddPropertyCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -35,7 +35,7 @@ public class AddProperty extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Property}
      */
-    public AddProperty(Property property) {
+    public AddPropertyCommand(Property property) {
         requireNonNull(property);
         toAdd = property;
     }
@@ -55,7 +55,7 @@ public class AddProperty extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddProperty // instanceof handles nulls
-                && toAdd.equals(((AddProperty) other).toAdd));
+                || (other instanceof AddPropertyCommand // instanceof handles nulls
+                && toAdd.equals(((AddPropertyCommand) other).toAdd));
     }
 }

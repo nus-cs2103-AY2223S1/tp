@@ -6,7 +6,7 @@ import static seedu.condonery.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.condonery.logic.commands.AddProperty;
+import seedu.condonery.logic.commands.AddPropertyCommand;
 import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.DeleteCommand;
@@ -47,7 +47,7 @@ public class CondoneryParser {
 
         switch (commandWord) {
 
-        case AddProperty.COMMAND_WORD:
+        case AddPropertyCommand.COMMAND_WORD:
             return new AddCommandParser(directoryArgument).parse(arguments);
 
         case EditCommand.COMMAND_WORD:

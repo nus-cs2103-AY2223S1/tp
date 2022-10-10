@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.condonery.logic.commands.Command;
-import seedu.condonery.logic.commands.AddProperty;
+import seedu.condonery.logic.commands.AddPropertyCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.property.Address;
 import seedu.condonery.model.property.Name;
@@ -41,7 +41,7 @@ public class AddCommandParser implements Parser<Command> {
         if (directoryArgument.equals("-p")) {
             if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS)
                     || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProperty.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPropertyCommand.MESSAGE_USAGE));
             }
 
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -50,7 +50,7 @@ public class AddCommandParser implements Parser<Command> {
 
             Property property = new Property(name, address, tagList);
 
-            return new AddProperty(property);
+            return new AddPropertyCommand(property);
         } else { // TODO: Add client
         }
 
@@ -61,7 +61,7 @@ public class AddCommandParser implements Parser<Command> {
 
         Property property = new Property(name, address, tagList);
 
-        return new AddProperty(property);
+        return new AddPropertyCommand(property);
     }
 
     /**
