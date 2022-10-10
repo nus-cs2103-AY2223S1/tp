@@ -11,12 +11,12 @@ import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new {@code RemarkCommand} object
+ * Parses input arguments and creates a new {@code AssignTaskCommand} object
  */
 public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
-     * and returns a {@code RemarkCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code AssignTaskCommand}
+     * and returns a {@code AssignTaskCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AssignTaskCommand parse(String args) throws ParseException {
