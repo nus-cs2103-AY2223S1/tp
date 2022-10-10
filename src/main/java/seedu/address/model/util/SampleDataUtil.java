@@ -20,7 +20,7 @@ import seedu.address.model.task.TaskList;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static final TaskList EMPTY_TASK_LIST = new TaskList(new ArrayList<Task>());
+    public static final TaskList EMPTY_TASK_LIST = new TaskList();
 
     public static Person[] getSamplePersons() {
         return new Person[] {
