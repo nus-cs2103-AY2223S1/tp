@@ -54,7 +54,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_GENDER)) {
             gender = new Gender(NA);
         } else {
-            gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
+            gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get(), Boolean.FALSE);
         }
 
         Person person = new Person(name, phone, email, address, tagList, gender);
