@@ -17,8 +17,9 @@ Given below are my contributions to the project.
   * Added user stories
 
 * **Enhancements to existing features**:
-  * Refactored code to improve maintainability and readability [\#85](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/85)
+  * Refactored code in Model and ModelManager to fit project name [\#85](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/85)
   * Updated `list` command for FRIDAY to view all students' details [\#86](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/86)
+  * Refactored code in Storage to fit project name
 
 * **Documentation**:
   * User Guide:
