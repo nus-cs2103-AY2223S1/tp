@@ -22,7 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    public static final String DEFAULT_GENDER = "female";
+    public static final String DEFAULT_GENDER = "NA";
 
     private Name name;
     private Phone phone;
@@ -40,7 +40,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        gender = new seedu.address.model.person.Gender(DEFAULT_GENDER);
+        gender = new Gender(DEFAULT_GENDER);
         tags = new HashSet<>();
     }
 
