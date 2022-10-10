@@ -8,5 +8,6 @@ import seedu.address.model.Model;
 import seedu.address.ui.Ui;
 
 public abstract class ProjectCommand extends Command {
+    public static final String COMMAND_WORD = "project";
 
 }
