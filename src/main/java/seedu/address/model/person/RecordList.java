@@ -57,6 +57,13 @@ public class RecordList {
         return this.recordList.size();
     }
 
+    /**
+     * Clears the record list.
+     */
+    public void clearRecords() {
+        this.recordList.clear();
+    }
+
     // TODO IMPLEMENT THIS
     @Override
     public String toString() {

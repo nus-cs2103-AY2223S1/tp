@@ -111,6 +111,13 @@ public class Person {
     }
 
     /**
+     * Clears the contents of the record list.
+     */
+    public void clearRecords() {
+        records.clearRecords();
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */

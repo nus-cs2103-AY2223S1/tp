@@ -175,6 +175,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public void clearRecords() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void setFilteredRecordList(Person person) {
             throw new AssertionError("This method should not be called.");
         }
