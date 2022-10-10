@@ -2,13 +2,13 @@ package seedu.address.model.team;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
@@ -28,6 +28,7 @@ public class Team {
 
 
 
+
     /**
      * Every field must be present and not null.
      */
@@ -36,7 +37,6 @@ public class Team {
         this.name = name;
         this.tasks = new TaskList();
         this.members = new UniquePersonList();
-
     }
 
     /**
@@ -77,7 +77,12 @@ public class Team {
      * Returns list of members in the team
      * @return members
      */
-    public ObservableList<Person> getMembers() {
+
+    public UniquePersonList getMembers() {
+        return members;
+    }
+
+    public ObservableList<Person> getMemberList() {
         return members.asUnmodifiableObservableList();
     }
 
