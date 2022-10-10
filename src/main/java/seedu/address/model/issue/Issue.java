@@ -1,5 +1,7 @@
 package seedu.address.model.issue;
 
+import seedu.address.model.project.Project;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
@@ -14,17 +16,20 @@ public class Issue {
     private Deadline deadline;
     private Priority priority;
     private Status status;
+    private Project project;
 
     /**
      * Description field must be present and not null, but all other fields are optional.
      */
-    public Issue(Description description, Deadline deadline, Priority priority, Status status) {
-        requireAllNonNull(description, deadline, priority, status);
+    public Issue(Description description, Deadline deadline, Priority priority, Status status, Project project) {
+        requireAllNonNull(description, deadline, priority, status, project);
         this.description = description;
         this.deadline = deadline;
         this.priority = priority;
         this.status = status;
+        this.project = project;
     }
+
 
     public Id getId() {
         return this.id;
@@ -42,15 +47,46 @@ public class Issue {
         return this.priority;
     }
 
-    public Object getProject() {
-        return null;
+    public Project getProject() {
+        return this.project;
     }
 
-    public boolean isSameIssue(Issue issue) {
-        return true;
+    /**
+     * Returns true if both issues have the same description.
+     * This defines a weaker notion of equality between two issues.
+     */
+    public boolean isSameIssue(Issue otherIssue) {
+        if (otherIssue == this) {
+            return true;
+        }
+
+        return otherIssue != null
+                && otherIssue.getDescription().equals(getDescription());
     }
 
     public Status getStatus() {
         return this.status;
+    }
+
+    /**
+     * Returns true if both projects have the same identity and data fields.
+     * This defines a stronger notion of equality between two projects.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Issue)) {
+            return false;
+        }
+
+        Issue otherIssue = (Issue) other;
+        return otherIssue.getDescription().equals(getDescription())
+                && otherIssue.getProject().equals(getProject())
+                && otherIssue.getDeadline().equals(getDeadline())
+                && otherIssue.getStatus().equals(getStatus())
+                && otherIssue.getPriority().equals(getPriority());
     }
 }
