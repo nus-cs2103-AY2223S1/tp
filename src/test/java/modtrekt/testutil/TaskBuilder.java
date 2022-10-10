@@ -12,6 +12,7 @@ public class TaskBuilder {
     public static final String DEFAULT_DESC = "Complete Assignment";
 
     private Description description;
+    private boolean isArchived;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -35,9 +36,15 @@ public class TaskBuilder {
         return this;
     }
 
-
-    public Task build() {
-        return new Task(description);
+    /**
+     * Sets the {@code isArchived} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withIsArchived(boolean isArchived) {
+        this.isArchived = isArchived;
+        return this;
     }
 
+    public Task build() {
+        return new Task(description, isArchived);
+    }
 }
