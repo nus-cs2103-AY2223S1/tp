@@ -17,7 +17,7 @@ public class ItemUnitValidator {
             "Item unit should only contain alphanumeric characters and spaces, and it should not be blank";
 
     // Validation for unit length
-    private static final int MAX_LENGTH = 10;
+    private static final int MAX_LENGTH = 20;
     private static final String MESSAGE_FOR_UNIT_TOO_LONG =
             String.format("Item unit should not exceed %d characters", MAX_LENGTH);
     private static final String MESSAGE_FOR_UNIT_IS_BLANK = "Item unit should not be left empty.";
