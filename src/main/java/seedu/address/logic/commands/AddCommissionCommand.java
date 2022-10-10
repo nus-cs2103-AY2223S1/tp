@@ -20,7 +20,7 @@ import seedu.address.model.customer.Customer;
 public class AddCommissionCommand extends Command {
     public static final String COMMAND_WORD = "addcom";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a commission to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a commission to ArtBuddy. "
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_FEE + "FEE "

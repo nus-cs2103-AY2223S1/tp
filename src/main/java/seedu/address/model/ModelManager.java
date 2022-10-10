@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Customer> filteredCustomers;
     private final ObservableObject<FilteredList<Commission>> observableFilteredCommissions = new ObservableObject<>();
     private final ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
+    private final ObservableObject<Commission> selectedCommission = new ObservableObject<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,6 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
 
         filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
+
         setSelectedCustomerCommissions(null);
 
         // selectedCustomerCommissions is tied to the selectedCustomer,
@@ -51,12 +53,18 @@ public class ModelManager implements Model {
             }
         });
 
+
         // Temporarily set selected customer to the first customer.
         // TODO: Should be fixed by implementer of the opencus command.
         if (filteredCustomers.size() > 0) {
             selectCustomer(filteredCustomers.get(0));
         }
 
+        // Temporarily sets selected commission to the first commission
+        // TODO: Should be fixed by implementer of the opencom command
+        if (observableFilteredCommissions.getValue() != null && observableFilteredCommissions.getValue().size() > 0) {
+            selectCommission(observableFilteredCommissions.getValue().get(0));
+        }
     }
 
     public ModelManager() {
@@ -158,8 +166,8 @@ public class ModelManager implements Model {
         filteredCustomers.setPredicate(predicate);
         if (filteredCustomers.size() == 0) {
             selectCustomer(null);
-        } else if (hasSelectedCustomer()
-                && filteredCustomers.stream().noneMatch(selectedCustomer.getValue()::isSameCustomer)) {
+        } else if (hasSelectedCustomer() && filteredCustomers.stream()
+                .noneMatch(selectedCustomer.getValue()::isSameCustomer)) {
             selectCustomer(filteredCustomers.get(0));
         }
     }
@@ -184,7 +192,6 @@ public class ModelManager implements Model {
 
     //=========== Selected Customer =============================================================
 
-
     @Override
     public void selectCustomer(Customer customer) {
         if (customer != null) {
@@ -203,6 +210,28 @@ public class ModelManager implements Model {
     @Override
     public boolean hasSelectedCustomer() {
         return getSelectedCustomer().getValue() != null;
+    }
+
+    //=========== Selected Commission =============================================================
+
+    @Override
+    public void selectCommission(Commission commission) {
+        if (commission != null) {
+            selectedCommission.setValue(commission);
+        }
+    }
+
+    @Override
+    public ObservableObject<Commission> getSelectedCommission() {
+        return selectedCommission;
+    }
+
+    /**
+     * Returns whether there is a selected commission.
+     */
+    @Override
+    public boolean hasSelectedCommission() {
+        return getSelectedCommission().getValue() != null;
     }
 
     @Override

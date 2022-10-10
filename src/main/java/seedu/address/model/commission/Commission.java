@@ -9,7 +9,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.iteration.Iteration;
+import seedu.address.model.iteration.UniqueIterationList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,7 +28,8 @@ public class Commission {
     private final CompletionStatus completionStatus;
     private Customer customer;
 
-    // Data fields
+    // Data field
+    private final UniqueIterationList iterations;
     private final Set<Tag> tags;
 
     // Optional fields
@@ -35,6 +39,7 @@ public class Commission {
      * Constructs a Commission.
      * @param builder Instance of CommissionBuilder.
      */
+
     public Commission(CommissionBuilder builder) {
         title = builder.title;
         fee = builder.fee;
@@ -42,6 +47,7 @@ public class Commission {
         completionStatus = builder.status;
         tags = builder.tags;
         description = builder.description;
+        iterations = builder.iterations;
     }
 
     public Title getTitle() {
@@ -76,6 +82,14 @@ public class Commission {
         return customer;
     }
 
+    public UniqueIterationList getIterations() {
+        return iterations;
+    }
+
+    public ObservableList<Iteration> getIterationList() {
+        return iterations.asUnmodifiableObservableList();
+    }
+
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -91,6 +105,45 @@ public class Commission {
 
         return otherCommission != null
                 && otherCommission.getTitle().equals(getTitle());
+    }
+
+    /**
+     * Adds an iteration to the commission.
+     *
+     * @param iteration The iteration to be added to the commission.
+     */
+    public void addIteration(Iteration iteration) {
+        requireNonNull(iteration);
+        iterations.add(iteration);
+    }
+
+    /**
+     * Checks whether an iteration with the same identity as {@code iteration}
+     * exists in the commission's iteration list.
+     */
+    public boolean hasIteration(Iteration iteration) {
+        requireNonNull(iteration);
+        return iterations.contains(iteration);
+    }
+
+    /**
+     * Replaces the given iteration {@code target} in the list with {@code editedIteration}.
+     * {@code target} must exist in the address book.
+     * The iteration identity of {@code editedIteration} must not be the same as another
+     * existing iteration in the commission's iteration list.
+     */
+    public void setIteration(Iteration target, Iteration editedIteration) {
+        requireAllNonNull(target, editedIteration);
+        iterations.setIteration(target, editedIteration);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Commission}.
+     * {@code key} must exist in the commission's iteration list.
+     */
+    public void removeIteration(Iteration key) {
+        requireNonNull(key);
+        iterations.remove(key);
     }
 
     /**
@@ -119,7 +172,7 @@ public class Commission {
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, fee, deadline, tags);
+        return Objects.hash(title, fee, deadline, tags, iterations);
     }
 
     @Override
@@ -156,6 +209,7 @@ public class Commission {
         private Deadline deadline;
         private CompletionStatus status;
         private Set<Tag> tags = new HashSet<>();
+        private UniqueIterationList iterations = new UniqueIterationList();
 
         // optional parameters
         private Description description;
@@ -178,6 +232,24 @@ public class Commission {
         public CommissionBuilder setDescription(Description description) {
             requireNonNull(description);
             this.description = description;
+            return this;
+        }
+
+        /**
+         * Sets iterations and returns itself.
+         */
+        public CommissionBuilder setIterations(UniqueIterationList uniqueIterationList) {
+            requireNonNull(uniqueIterationList);
+            this.iterations = uniqueIterationList;
+            return this;
+        }
+
+        /**
+         * Sets iterations and returns itself.
+         */
+        public CommissionBuilder addIteration(Iteration iteration) {
+            requireNonNull(iteration);
+            iterations.add(iteration);
             return this;
         }
 

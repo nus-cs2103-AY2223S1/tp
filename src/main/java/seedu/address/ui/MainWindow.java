@@ -38,8 +38,13 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     private CustomerDetailsPane customerDetailsPane;
+    private CommissionDetailsPane commissionDetailsPane;
+
     @FXML
     private StackPane customerDetailsPanePlaceholder;
+
+    @FXML
+    private StackPane commissionDetailsPanePlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -137,8 +142,12 @@ public class MainWindow extends UiPart<Stage> {
         customerDetailsPane = new CustomerDetailsPane(logic.getSelectedCustomer());
         customerDetailsPanePlaceholder.getChildren().add(customerDetailsPane.getRoot());
 
-        commissionListPanel = new CommissionListPanel(logic.getObservableFilteredCommissionList());
+        commissionListPanel = new CommissionListPanel(logic.getObservableFilteredCommissionList(),
+                logic::selectCommission);
         commissionListPanelPlaceholder.getChildren().add(commissionListPanel.getRoot());
+
+        commissionDetailsPane = new CommissionDetailsPane(logic.getSelectedCommission());
+        commissionDetailsPanePlaceholder.getChildren().add(commissionDetailsPane.getRoot());
     }
 
     /**

@@ -52,13 +52,17 @@ public class CommissionCard extends UiPart<Region> {
         this.commission = commission;
         id.setText(displayedIndex + ". ");
         title.setText(commission.getTitle().title);
-        description.setText(commission.getDescription().orElseGet(() -> Description.NO_DESCRIPTION).description);
+        description.setText(commission.getDescription().orElse(Description.NO_DESCRIPTION).description);
         deadline.setText(commission.getDeadline().deadline.toString());
         fee.setText("$" + String.format("%.2f", commission.getFee().fee));
         completionStatus.setText("completed: " + commission.getCompletionStatus().isCompleted);
         commission.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.setStyle(tagLabel.getStyle() + " -fx-background-color: #F26417;");
+                    tags.getChildren().add(tagLabel);
+                });
     }
 
     @Override

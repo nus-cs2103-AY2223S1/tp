@@ -19,7 +19,7 @@
 <fx:root minHeight="600" minWidth="800.0" onCloseRequest="#handleExit" title="ArtBuddy" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/address_book_32.png"/>
+        <Image url="@/images/art.png"/>
     </icons>
     <scene>
         <Scene>
@@ -130,7 +130,24 @@
                                                             </VBox>
                                                         </children>
                                                     </AnchorPane>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0"/>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                        <children>
+                                                            <VBox fx:id="commissionDetailsPane" minWidth="340"
+                                                                  prefWidth="340"
+                                                                  AnchorPane.bottomAnchor="0.0"
+                                                                  AnchorPane.leftAnchor="0.0"
+                                                                  AnchorPane.rightAnchor="0.0"
+                                                                  AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
+                                                                <padding>
+                                                                    <Insets bottom="10" left="10" right="10" top="10"/>
+                                                                </padding>
+                                                                <children>
+                                                                    <StackPane fx:id="commissionDetailsPanePlaceholder"
+                                                                               VBox.vgrow="ALWAYS"/>
+                                                                </children>
+                                                            </VBox>
+                                                        </children>
+                                                    </AnchorPane>
                                                 </items>
                                             </SplitPane>
                                         </children>
