@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.MODULE_COMMAND_IDENTIFIER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -19,14 +20,15 @@ public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     //TODO update
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + MODULE_COMMAND_IDENTIFIER + " "
+            + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_LECTURE + "LECTURE "
             + PREFIX_TUTORIAL + "TUTORIAL "
             + PREFIX_ZOOM + "ZOOM "
             + "[" + PREFIX_ASSIGNMENT + "ASSIGNMENT]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " " + MODULE_COMMAND_IDENTIFIER + " "
             + PREFIX_MODULE + "CS2100 "
             + PREFIX_LECTURE + "Monday, 10am "
             + PREFIX_TUTORIAL + "Thursday, 12pm "
