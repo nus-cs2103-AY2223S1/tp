@@ -51,6 +51,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setEvents(List<Event> events) {
+        this.events.setEvents(events);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -58,6 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setEvents(newData.getEventList());
     }
 
     //// person-level operations
@@ -102,7 +107,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addEvent(Event e) {
         this.events.add(e);
     }
-
+    
     public void removeEvent(Event e) {
         this.events.remove(e);
     }
@@ -118,6 +123,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return events.asUnmodifiableObservableList();
     }
 
     @Override
