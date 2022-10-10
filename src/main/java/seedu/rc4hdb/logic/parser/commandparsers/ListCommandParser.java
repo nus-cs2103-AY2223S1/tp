@@ -18,7 +18,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     public static final char INCLUDE_SPECIFIER = 'i';
     public static final char EXCLUDE_SPECIFIER = 'e';
 
-    public static final String ERROR_MESSAGE = "Please include a specifier [/i] or [/e]"
+    public static final String NO_SPECIFIER_MESSAGE = "Please include a specifier [/i] or [/e]"
             + " followed by the fields to include or exclude";
 
     @Override
@@ -28,7 +28,7 @@ public class ListCommandParser implements Parser<ListCommand> {
             return new ListCommand();
         }
         if (hasInvalidSpecifier(args)) {
-            throw new ParseException(ERROR_MESSAGE);
+            throw new ParseException(NO_SPECIFIER_MESSAGE);
         }
 
         // Process global list of fields into lowercase list first
