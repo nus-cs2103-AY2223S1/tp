@@ -39,7 +39,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return value == null ? "NA" : value;
+        return value;
     }
 
     @Override
