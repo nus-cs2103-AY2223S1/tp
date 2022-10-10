@@ -166,7 +166,14 @@ public class Itineraries extends EventList {
     }
 
     public Event getEvent(Event event) {
-        return event;
+        Object[] temp = events.toArray();
+        int size = temp.length;
+        for (int i = 0; i< size; i++) {
+            if (temp[i].equals(event)) {
+                return (Event) temp[i];
+            }
+        }
+        return null;
     }
 
     public Event getEvent(int i) {
