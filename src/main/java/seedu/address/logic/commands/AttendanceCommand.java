@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class AttendanceCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing attendance will not be modified.\n"
             + "Parameters: INDEX (must be a positive integer)"
-            + "a/ [ATTENDANCE]\n"
+            + "[" + PREFIX_ATTENDANCE + "ATTENDANCE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "a/ 2022-08-08.";
 
