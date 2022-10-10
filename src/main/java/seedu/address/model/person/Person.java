@@ -82,18 +82,6 @@ public class Person {
 
     //======= Record List ========================================
 
-    public void deleteRecord(Record record) {
-        records.delete(record);
-    }
-
-    /**
-     * Replaces the contents of the record list with {@code records}.
-     * {@code records} must not contain duplicate persons.
-     */
-    public void setRecords(RecordList records) {
-        this.records.setRecordList(records);
-    }
-
     /**
      * Returns true if a record with the same identity as {@code record} exists in the record list.
      */
@@ -110,12 +98,26 @@ public class Person {
         records.add(r);
     }
 
+    public void deleteRecord(Record record) {
+        records.delete(record);
+    }
+
+    /**
+     * Replaces the contents of the record list with {@code records}.
+     * {@code records} must not contain duplicate persons.
+     */
+    public void setRecords(RecordList records) {
+        this.records.setRecordList(records);
+    }
+
     /**
      * Clears the contents of the record list.
      */
     public void clearRecords() {
         records.clearRecords();
     }
+
+    //======================================================================================
 
     /**
      * Returns true if both persons have the same identity and data fields.

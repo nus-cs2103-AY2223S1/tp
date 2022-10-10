@@ -1,121 +1,102 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 import seedu.address.model.tag.Tag;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
- * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents a default Person in the address book.
+ * Used to represent a placeholder in model, that is interchanged with an actual Person object when ListRecordCommand
+ * is executed.
  */
-public class Person {
+public class PlaceholderPerson extends Person{
 
-    // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
-
-    // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
-    private final RecordList records;
+    // Default Field Statements
+    private static final String DEFAULT_NAME = "Amy Bee";
+    private static final String DEFAULT_PHONE = "85355255";
+    private static final String DEFAULT_EMAIL = "amy@gmail.com";
+    private static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, RecordList records) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.records = records;
+    public PlaceholderPerson(Name name, Phone phone, Email email, Address address, Set<Tag> tags, RecordList records) {
+        super(new Name(DEFAULT_NAME),
+                new Phone(DEFAULT_PHONE),
+                new Email(DEFAULT_EMAIL),
+                new Address(DEFAULT_ADDRESS),
+                new HashSet<Tag>(),
+                new RecordList());
     }
 
+    @Override
     public Name getName() {
-        return name;
+        throw new AssertionError("This method should not be called.");
     }
 
+    @Override
     public Phone getPhone() {
-        return phone;
+        throw new AssertionError("This method should not be called.");
     }
 
+    @Override
     public Email getEmail() {
-        return email;
+        throw new AssertionError("This method should not be called.");
     }
 
+    @Override
     public Address getAddress() {
-        return address;
+        throw new AssertionError("This method should not be called.");
     }
 
+    @Override
     public RecordList getRecordList() {
-        return records;
+        throw new AssertionError("This method should not be called.");
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
+    @Override
     public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+        throw new AssertionError("This method should not be called.");
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if this is the same instance of PlaceholderPerson
      */
-    public boolean isSamePerson(Person otherPerson) {
+    public boolean isSamePerson(PlaceholderPerson otherPerson) {
         if (otherPerson == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return false;
     }
 
     //======= Record List ========================================
 
-    public void deleteRecord(Record record) {
-        records.delete(record);
-    }
+    @Override
+    public boolean hasRecord(Record record) { throw new AssertionError("This method should not be called."); }
 
-    /**
-     * Replaces the contents of the record list with {@code records}.
-     * {@code records} must not contain duplicate persons.
-     */
-    public void setRecords(RecordList records) {
-        this.records.setRecordList(records);
-    }
-
-    /**
-     * Returns true if a record with the same identity as {@code record} exists in the record list.
-     */
-    public boolean hasRecord(Record record) {
-        requireNonNull(record);
-        return records.contains(record);
-    }
-
-    /**
-     * Adds a record to the record list.
-     * The record must not already exist in the record list.
-     */
+    @Override
     public void addRecord(Record r) {
-        records.add(r);
+        throw new AssertionError("This method should not be called.");
     }
 
-    /**
-     * Clears the contents of the record list.
-     */
-    public void clearRecords() {
-        records.clearRecords();
+    @Override
+    public void deleteRecord(Record record) {
+        throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void setRecords(RecordList records) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void clearRecords() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    //======================================================================================
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -127,11 +108,11 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof PlaceholderPerson)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
+        PlaceholderPerson otherPerson = (PlaceholderPerson) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
@@ -142,28 +123,12 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return super.hashCode();
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
-                .append("; Record Count: ")
-                .append(getRecordList());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
+        return super.toString();
     }
 
 }
