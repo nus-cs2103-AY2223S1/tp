@@ -15,7 +15,9 @@ import seedu.address.model.module.schedule.Schedule;
  * Adds a schedule to a module
  */
 public class AddScheduleCommand extends Command {
-    public static final String COMMAND_WORD = "addschedule";
+
+    public static final String COMMAND_WORD = "sadd";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
@@ -53,6 +55,6 @@ public class AddScheduleCommand extends Command {
             throw new CommandException(MESSAGE_CONFLICT_SCHEDULE);
         }
         model.addSchedule(scheduleToAdd);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, scheduleToAdd));
     }
 }

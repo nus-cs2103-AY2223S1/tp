@@ -125,7 +125,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public Module getModuleByModuleCode(String moduleCode) {
         for (Module module: modules) {
-            if (module.getCode().toString().equals(moduleCode)) {
+            if (module.getCode().toString().toLowerCase().equals(moduleCode)) {
                 return module;
             }
         }
