@@ -84,25 +84,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getStudentAddressBookFilePath() {
-        return userPrefs.getStudentAddressBookFilePath();
-    }
-
-    @Override
-    public Path getTuitionClassAddressBookFilePath() {
-        return userPrefs.getTuitionClassAddressBookFilePath();
-    }
-
-    @Override
     public void setTutorAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setTutorAddressBookFilePath(addressBookFilePath);
     }
 
     @Override
+    public Path getStudentAddressBookFilePath() {
+        return userPrefs.getStudentAddressBookFilePath();
+    }
+
+    @Override
     public void setStudentAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setStudentAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getTuitionClassAddressBookFilePath() {
+        return userPrefs.getTuitionClassAddressBookFilePath();
     }
 
     @Override
@@ -251,6 +251,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredStudents.equals(other.filteredStudents)
+                && filteredTutors.equals(other.filteredTutors)
+                && filteredTuitionClass.equals(other.filteredTuitionClass);
     }
 }
