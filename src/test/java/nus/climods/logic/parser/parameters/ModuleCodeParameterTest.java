@@ -86,7 +86,19 @@ public class ModuleCodeParameterTest {
     }
 
     @Test
-    public void parseModuleCode_invalidInputEmptyString_throwsParseException() {
+    public void parseModuleCode_invalidInputEmptyStringDefaultMessage_throwsParseException() {
+        String argsString = "  ";
+        ModuleCodeParameter mcp = createModuleCodeParameter(argsString);
+
+        try {
+            String mc = mcp.getArgValue();
+        } catch (ParseException e) {
+            assertEquals(ModuleCodeParameter.INVALID_INPUT_MESSAGE, e.getMessage());
+        }
+    }
+
+    @Test
+    public void parseModuleCode_invalidInputEmptyStringCustomMessage_throwsParseException() {
         String argsString = "  ";
         ModuleCodeParameter mcp = createModuleCodeParameter(argsString);
 

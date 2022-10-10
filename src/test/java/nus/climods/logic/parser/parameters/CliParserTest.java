@@ -17,7 +17,7 @@ import nus.climods.logic.parser.ParserUtil;
 /**
  * Includes test for RelaxedParser, and DefaultParser as well to verify expected behaviour
  */
-public class RelaxedParserTest {
+public class CliParserTest {
     private static final String LAB_SHORT = "l";
     private static final String LAB_LONG = "lab";
     private static final String TUT_SHORT = "t";

@@ -13,15 +13,15 @@ import nus.climods.logic.parser.exceptions.ParseException;
  * @param <T> The expected type from the parameter
  */
 public class PositionalParameter<T> {
-    private static final String MESSAGE_EMPTY_INPUT = "Not enough arguments to process parameter";
-    protected String emptyInputMessage = MESSAGE_EMPTY_INPUT;
-    // ParseException message to show when invalid argument provided
+    private static final String MESSAGE_INVALID_INPUT = "Not enough arguments to process parameter";
+    protected String invalidInputMessage = MESSAGE_INVALID_INPUT;
+    /** ParseException message to show when invalid argument provided **/
     protected String parseExceptionMessage;
-    // Index of the parameter in delimiter-separated list of arguments
+    /** Index of the parameter in delimiter-separated list of arguments **/
     protected final int index;
     protected final List<String> arguments;
 
-    // Returns non-empty Optional if valid T, else empty Optional
+    /** Returns non-empty Optional if valid T, else empty Optional **/
     protected Function<String, Optional<T>> conversionFunction;
     protected Optional<T> optionalArg;
 
@@ -37,7 +37,7 @@ public class PositionalParameter<T> {
                                String parseExceptionMessage) {
         this(index, ParserUtil.convertArgumentStringToList(argumentsString), conversionFunction, parseExceptionMessage);
     }
-    protected PositionalParameter(int index, List<String> arguments, Function<String, Optional<T>> conversionFunction,
+    public PositionalParameter(int index, List<String> arguments, Function<String, Optional<T>> conversionFunction,
                                String parseExceptionMessage) {
         assert index >= 0;
         Objects.requireNonNull(arguments);
@@ -50,7 +50,7 @@ public class PositionalParameter<T> {
     }
 
     protected void setEmptyInputMessage(String message) {
-        emptyInputMessage = message;
+        this.invalidInputMessage = message;
     }
     /**
      * Returns argument value parsed according to index and conversion function
@@ -59,7 +59,7 @@ public class PositionalParameter<T> {
      */
     public T getArgValue() throws ParseException {
         if (index >= arguments.size()) {
-            throw new ParseException(emptyInputMessage);
+            throw new ParseException(invalidInputMessage);
         }
         optionalArg = conversionFunction.apply(arguments.get(index));
 
