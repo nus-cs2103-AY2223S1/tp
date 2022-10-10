@@ -2,6 +2,7 @@ package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_STAGE;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,8 +17,10 @@ import seedu.waddle.logic.commands.EditCommand;
 import seedu.waddle.logic.commands.ExitCommand;
 import seedu.waddle.logic.commands.FindCommand;
 import seedu.waddle.logic.commands.HelpCommand;
+import seedu.waddle.logic.commands.HomeCommand;
 import seedu.waddle.logic.commands.ListCommand;
 import seedu.waddle.logic.commands.PlanCommand;
+import seedu.waddle.logic.commands.StageCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 
 /**
@@ -38,7 +41,6 @@ public class WaddleParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        Stages currStage = StageManager.getInstance().getStage();
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -46,6 +48,30 @@ public class WaddleParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
+        Stages currStage = StageManager.getInstance().getCurrentStage();
+
+        switch (currStage) {
+        case HOME:
+            return parseHomeCommand(commandWord, arguments);
+        case WISH:
+            return parseWishCommand(commandWord, arguments);
+        case SCHEDULE:
+            return parseScheduleCommand(commandWord, arguments);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_STAGE);
+        }
+    }
+
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param commandWord The command word.
+     * @param arguments The arguments.
+     * @return The command.
+     * @throws ParseException ParseException.
+     */
+    public Command parseHomeCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -69,6 +95,9 @@ public class WaddleParser {
         case PlanCommand.COMMAND_WORD:
             return new PlanCommandParser().parse(arguments);
 
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -80,4 +109,65 @@ public class WaddleParser {
         }
     }
 
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param commandWord The command word.
+     * @param arguments The arguments.
+     * @return The command.
+     * @throws ParseException ParseException.
+     */
+    public Command parseWishCommand(String commandWord, String arguments) throws ParseException {
+        switch (commandWord) {
+
+        //TODO: ADD, DEL, EDIT, FIND, SORT, CLEAR (activities)
+
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
+
+        case StageCommand.COMMAND_WORD:
+            return new StageCommandParser().parse(arguments);
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        //TODO: help commands must change here
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param commandWord The command word.
+     * @param arguments The arguments.
+     * @return The command.
+     * @throws ParseException ParseException.
+     */
+    public Command parseScheduleCommand(String commandWord, String arguments) throws ParseException {
+        switch (commandWord) {
+
+        //TODO: need to discuss what commands should be available here
+
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
+
+        case StageCommand.COMMAND_WORD:
+            return new StageCommandParser().parse(arguments);
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        //TODO: help commands must change here
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
 }

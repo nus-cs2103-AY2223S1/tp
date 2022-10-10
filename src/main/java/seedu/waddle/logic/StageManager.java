@@ -1,12 +1,21 @@
 package seedu.waddle.logic;
 
-import javafx.stage.Stage;
+import static java.util.Objects.requireNonNull;
 
+import seedu.waddle.model.itinerary.Itinerary;
+
+/**
+ * This class keeps track of the stage the user is in.
+ */
 public class StageManager {
     private static StageManager instance;
-    private Stages stage;
+    // default stage is home
+    private Stages currentStage = Stages.HOME;
+    // stores the currently selected Itinerary
+    private Itinerary selectedItinerary;
 
-    private StageManager(){}
+    private StageManager() {
+    }
 
     public static StageManager getInstance() {
         if (StageManager.instance == null) {
@@ -16,12 +25,32 @@ public class StageManager {
         return StageManager.instance;
     }
 
-    public void setStage(Stages stage) {
-        this.stage = stage;
+    public Stages getCurrentStage() {
+        return this.currentStage;
     }
 
-    public Stages getStage() {
-        return this.stage;
+    public boolean isCurrentStage(Stages stage) {
+        return this.currentStage == stage;
     }
 
+    public void setHomeStage() {
+        this.currentStage = Stages.HOME;
+        this.selectedItinerary = null;
+    }
+
+    public void setWishStage(Itinerary selectedItinerary) throws NullPointerException {
+        requireNonNull(selectedItinerary);
+        this.currentStage = Stages.WISH;
+        this.selectedItinerary = selectedItinerary;
+    }
+
+    public void setScheduleStage(Itinerary selectedItinerary) throws NullPointerException {
+        requireNonNull(selectedItinerary);
+        this.currentStage = Stages.SCHEDULE;
+        this.selectedItinerary = selectedItinerary;
+    }
+
+    public void switchStage(Stages selectedStage) {
+        this.currentStage = selectedStage;
+    }
 }

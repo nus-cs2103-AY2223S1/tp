@@ -46,7 +46,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ Waddle methods ==============================
 
     @Override
     public Path getWaddleFilePath() {
