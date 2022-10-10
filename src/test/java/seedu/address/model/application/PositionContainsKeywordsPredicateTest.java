@@ -1,14 +1,15 @@
 package seedu.address.model.application;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.ApplicationBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.ApplicationBuilder;
 
 public class PositionContainsKeywordsPredicateTest {
 
@@ -17,14 +18,17 @@ public class PositionContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        PositionContainsKeywordsPredicate firstPredicate = new PositionContainsKeywordsPredicate(firstPredicateKeywordList);
-        PositionContainsKeywordsPredicate secondPredicate = new PositionContainsKeywordsPredicate(secondPredicateKeywordList);
+        PositionContainsKeywordsPredicate firstPredicate =
+                new PositionContainsKeywordsPredicate(firstPredicateKeywordList);
+        PositionContainsKeywordsPredicate secondPredicate =
+                new PositionContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PositionContainsKeywordsPredicate firstPredicateCopy = new PositionContainsKeywordsPredicate(firstPredicateKeywordList);
+        PositionContainsKeywordsPredicate firstPredicateCopy =
+                new PositionContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -38,9 +42,10 @@ public class PositionContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_PositionContainsKeywords_returnsTrue() {
+    public void test_positionContainsKeywords_returnsTrue() {
         // One keyword
-        PositionContainsKeywordsPredicate predicate = new PositionContainsKeywordsPredicate(Collections.singletonList("Software"));
+        PositionContainsKeywordsPredicate predicate =
+                new PositionContainsKeywordsPredicate(Collections.singletonList("Software"));
         assertTrue(predicate.test(new ApplicationBuilder().withPosition("Software engineer").build()));
 
         // Multiple keywords
@@ -57,7 +62,7 @@ public class PositionContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_PositionDoesNotContainKeywords_returnsFalse() {
+    public void test_positionDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         PositionContainsKeywordsPredicate predicate = new PositionContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ApplicationBuilder().withPosition("Software engineer").build()));
@@ -67,7 +72,8 @@ public class PositionContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ApplicationBuilder().withPosition("Software engineer").build()));
 
         // Keywords match contact, company, email and date, but does not match position
-        predicate = new PositionContainsKeywordsPredicate(Arrays.asList("87654321", "jane.street@email.com", "jane", "street", "2020-12-31"));
+        predicate = new PositionContainsKeywordsPredicate(Arrays.asList("87654321", "jane.street@email.com", "jane",
+                "street", "2020-12-31"));
         assertFalse(predicate.test(new ApplicationBuilder().withCompany("Jane Street").withContact("87654321")
                 .withEmail("jane.street@email.com").withPosition("software engineer").withDate("2020-12-31").build()));
     }

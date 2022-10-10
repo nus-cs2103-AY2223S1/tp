@@ -1,22 +1,23 @@
 package seedu.address.model.application;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.application.exceptions.DuplicateApplicationException;
-import seedu.address.model.application.exceptions.ApplicationNotFoundException;
-import seedu.address.testutil.ApplicationBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_CONTACT_FACEBOOK;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_EMAIL_GOOGLE;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalApplications.BYTEDANCE;
+import static seedu.address.testutil.TypicalApplications.GOOGLE;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_EMAIL_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_CONTACT_FACEBOOK;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalApplications.BYTEDANCE;
-import static seedu.address.testutil.TypicalApplications.GOOGLE;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.application.exceptions.ApplicationNotFoundException;
+import seedu.address.model.application.exceptions.DuplicateApplicationException;
+import seedu.address.testutil.ApplicationBuilder;
 
 public class UniqueApplicationListTest {
 
@@ -28,22 +29,22 @@ public class UniqueApplicationListTest {
     }
 
     @Test
-    public void contains_ApplicationNotInList_returnsFalse() {
+    public void contains_applicationNotInList_returnsFalse() {
         assertFalse(uniqueApplicationList.contains(BYTEDANCE));
     }
 
     @Test
-    public void contains_ApplicationInList_returnsTrue() {
+    public void contains_applicationInList_returnsTrue() {
         uniqueApplicationList.add(BYTEDANCE);
         assertTrue(uniqueApplicationList.contains(BYTEDANCE));
     }
 
     @Test
-    public void contains_ApplicationWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_applicationWithSameIdentityFieldsInList_returnsTrue() {
         uniqueApplicationList.add(BYTEDANCE);
-        Application editedBYTEDANCE = new ApplicationBuilder(BYTEDANCE).withEmail(VALID_EMAIL_GOOGLE).withContact(VALID_CONTACT_FACEBOOK)
-                .build();
-        assertTrue(uniqueApplicationList.contains(editedBYTEDANCE));
+        Application editedBytedance = new ApplicationBuilder(BYTEDANCE).withEmail(VALID_EMAIL_GOOGLE)
+                .withContact(VALID_CONTACT_FACEBOOK).build();
+        assertTrue(uniqueApplicationList.contains(editedBytedance));
     }
 
     @Test
@@ -64,12 +65,14 @@ public class UniqueApplicationListTest {
 
     @Test
     public void setApplication_nullEditedApplication_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueApplicationList.setApplication(BYTEDANCE, null));
+        assertThrows(NullPointerException.class, ()
+                -> uniqueApplicationList.setApplication(BYTEDANCE, null));
     }
 
     @Test
     public void setApplication_targetApplicationNotInList_throwsApplicationNotFoundException() {
-        assertThrows(ApplicationNotFoundException.class, () -> uniqueApplicationList.setApplication(BYTEDANCE, BYTEDANCE));
+        assertThrows(ApplicationNotFoundException.class, ()
+                -> uniqueApplicationList.setApplication(BYTEDANCE, BYTEDANCE));
     }
 
     @Test
@@ -84,8 +87,8 @@ public class UniqueApplicationListTest {
     @Test
     public void setApplication_editedApplicationHasSameIdentity_success() {
         uniqueApplicationList.add(BYTEDANCE);
-        Application editedBytedance = new ApplicationBuilder(BYTEDANCE).withEmail(VALID_EMAIL_GOOGLE).withContact(VALID_CONTACT_FACEBOOK)
-                .build();
+        Application editedBytedance = new ApplicationBuilder(BYTEDANCE).withEmail(VALID_EMAIL_GOOGLE)
+                .withContact(VALID_CONTACT_FACEBOOK).build();
         uniqueApplicationList.setApplication(BYTEDANCE, editedBytedance);
         UniqueApplicationList expectedUniqueApplicationList = new UniqueApplicationList();
         expectedUniqueApplicationList.add(editedBytedance);
@@ -105,7 +108,8 @@ public class UniqueApplicationListTest {
     public void setApplication_editedApplicationHasNonUniqueIdentity_throwsDuplicateApplicationException() {
         uniqueApplicationList.add(BYTEDANCE);
         uniqueApplicationList.add(GOOGLE);
-        assertThrows(DuplicateApplicationException.class, () -> uniqueApplicationList.setApplication(BYTEDANCE, GOOGLE));
+        assertThrows(DuplicateApplicationException.class, ()
+                -> uniqueApplicationList.setApplication(BYTEDANCE, GOOGLE));
     }
 
     @Test
@@ -114,7 +118,7 @@ public class UniqueApplicationListTest {
     }
 
     @Test
-    public void remove_ApplicationDoesNotExist_throwsApplicationNotFoundException() {
+    public void remove_applicationDoesNotExist_throwsApplicationNotFoundException() {
         assertThrows(ApplicationNotFoundException.class, () -> uniqueApplicationList.remove(BYTEDANCE));
     }
 
@@ -128,7 +132,8 @@ public class UniqueApplicationListTest {
 
     @Test
     public void setApplications_nullUniqueApplicationList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueApplicationList.setApplications((UniqueApplicationList) null));
+        assertThrows(NullPointerException.class, ()
+                -> uniqueApplicationList.setApplications((UniqueApplicationList) null));
     }
 
     @Test
@@ -148,8 +153,8 @@ public class UniqueApplicationListTest {
     @Test
     public void setApplications_list_replacesOwnListWithProvidedList() {
         uniqueApplicationList.add(BYTEDANCE);
-        List<Application> ApplicationList = Collections.singletonList(GOOGLE);
-        uniqueApplicationList.setApplications(ApplicationList);
+        List<Application> applicationList = Collections.singletonList(GOOGLE);
+        uniqueApplicationList.setApplications(applicationList);
         UniqueApplicationList expectedUniqueApplicationList = new UniqueApplicationList();
         expectedUniqueApplicationList.add(GOOGLE);
         assertEquals(expectedUniqueApplicationList, uniqueApplicationList);
@@ -158,7 +163,8 @@ public class UniqueApplicationListTest {
     @Test
     public void setApplications_listWithDuplicateApplications_throwsDuplicateApplicationException() {
         List<Application> listWithDuplicateApplications = Arrays.asList(BYTEDANCE, BYTEDANCE);
-        assertThrows(DuplicateApplicationException.class, () -> uniqueApplicationList.setApplications(listWithDuplicateApplications));
+        assertThrows(DuplicateApplicationException.class, ()
+                -> uniqueApplicationList.setApplications(listWithDuplicateApplications));
     }
 
     @Test
