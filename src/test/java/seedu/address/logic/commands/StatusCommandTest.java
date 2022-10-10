@@ -1,9 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -24,10 +22,6 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Status;
 import seedu.address.testutil.InternshipBuilder;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for StatusCommand.
  */
@@ -41,17 +35,22 @@ class StatusCommandTest {
     @Test
     void execute_updateStatusUnfilteredList_success() {
 
-        Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        Internship editedInternship = new InternshipBuilder(firstInternship).withStatus(STATUS_STUB).build();
+        Internship firstInternship = model.getFilteredInternshipList()
+                .get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        Internship editedInternship = new InternshipBuilder(firstInternship)
+                .withStatus(STATUS_STUB).build();
 
-        StatusCommand StatusCommand = new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status(editedInternship.getStatus().value));
+        StatusCommand statusCommand = new StatusCommand(INDEX_FIRST_INTERNSHIP,
+                new Status(editedInternship.getStatus().value));
 
-        String expectedMessage = String.format(StatusCommand.MESSAGE_UPDATE_STATUS_SUCCESS, editedInternship);
+        String expectedMessage = String.format(statusCommand.MESSAGE_UPDATE_STATUS_SUCCESS,
+                editedInternship);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new UserPrefs());
         expectedModel.setInternship(firstInternship, editedInternship);
 
-        assertCommandSuccess(StatusCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(statusCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -59,25 +58,26 @@ class StatusCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        Internship editedInternship = new InternshipBuilder(model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased()))
+        Internship editedInternship = new InternshipBuilder(model.getFilteredInternshipList()
+                .get(INDEX_FIRST_INTERNSHIP.getZeroBased()))
                 .withStatus(STATUS_STUB).build();
 
-        StatusCommand StatusCommand = new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status(editedInternship.getStatus().value));
+        StatusCommand statusCommand = new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status(editedInternship.getStatus().value));
 
-        String expectedMessage = String.format(StatusCommand.MESSAGE_UPDATE_STATUS_SUCCESS, editedInternship);
+        String expectedMessage = String.format(statusCommand.MESSAGE_UPDATE_STATUS_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setInternship(firstInternship, editedInternship);
 
-        assertCommandSuccess(StatusCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(statusCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidInternshipIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
-        StatusCommand StatusCommand = new StatusCommand(outOfBoundIndex, new Status(VALID_STATUS_BOB));
+        StatusCommand statusCommand = new StatusCommand(outOfBoundIndex, new Status(VALID_STATUS_BOB));
 
-        assertCommandFailure(StatusCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(statusCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     /**
@@ -91,9 +91,9 @@ class StatusCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getInternshipList().size());
 
-        StatusCommand StatusCommand = new StatusCommand(outOfBoundIndex, new Status(VALID_STATUS_BOB));
+        StatusCommand statusCommand = new StatusCommand(outOfBoundIndex, new Status(VALID_STATUS_BOB));
 
-        assertCommandFailure(StatusCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(statusCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
 
