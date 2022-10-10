@@ -87,6 +87,22 @@ Examples:
 
 ![addstu](images/userguide/addstu.png)
 
+### Adding a module: `madd`
+
+Adds a module to the address book.
+
+Format: `madd n/MODULE NAME c/MODULE CODE d/MODULE DESCRIPTION [t/TAG]…​ `
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags or modules(including 0)
+</div>
+
+Examples:
+* `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/Module Coordinator`
+
+[//]: ![addstu](images/userguide/madd.png)
+[//]: # "Add updated image of madd when UI is integrated"
+
 ### Listing all students : `list`
 
 Shows a list of all the students in the module with their contact information in the application.
