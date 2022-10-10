@@ -33,7 +33,7 @@ public class UiManager implements Ui {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage, String launchMessage) {
         logger.info("Starting UI...");
 
         //Set the application icon.
@@ -43,11 +43,16 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
+            mainWindow.displayMessage(launchMessage);
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        this.start(primaryStage, "");
     }
 
     private Image getImage(String imagePath) {
