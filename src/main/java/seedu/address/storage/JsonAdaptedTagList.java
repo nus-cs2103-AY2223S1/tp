@@ -8,6 +8,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Tag}.
@@ -28,7 +29,7 @@ class JsonAdaptedTagList {
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedTagList(UniqueTagList source) {
-        this.tags = source.toStream.map(JsonAdaptedTag::new);
+        this.tags = source.toStream().map(JsonAdaptedTag::new).collect(Collectors.toList());
     }
 
     @JsonValue
@@ -43,10 +44,9 @@ class JsonAdaptedTagList {
      */
     public UniqueTagList toModelType() throws IllegalValueException {
         UniqueTagList list = new UniqueTagList();
-        for (JsonAdaptedTag tag: tags) {
+        for (JsonAdaptedTag tag : tags) {
             list.add(tag.toModelType());
         }
         return list;
     }
-
 }

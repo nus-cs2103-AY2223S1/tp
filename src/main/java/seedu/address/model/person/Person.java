@@ -7,7 +7,7 @@ import java.util.Objects;
 import javafx.collections.ObservableMap;
 import seedu.address.model.tag.TagType;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.model.tag.UniqueTagTypeMap;
+
 
 /**
  * Represents a Person in the address book.
@@ -117,10 +117,11 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        UniqueTagTypeMap tags = getTags();
-        if (!tags.asUnmodifiableObservableMap().isEmpty()) {
+        ObservableMap<TagType, UniqueTagList> tags = getTags();
+        if (!tags.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            tags.forEach((tagType, tagList) -> builder.append("/n/t" + tagType.toString()
+                    + ":/n/t/t" + tagList.toString()));
         }
         return builder.toString();
     }

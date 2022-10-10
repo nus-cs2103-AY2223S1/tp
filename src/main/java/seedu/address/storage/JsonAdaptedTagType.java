@@ -49,5 +49,4 @@ class JsonAdaptedTagType {
         }
         return new TagType(tagType, prefix);
     }
-
 }

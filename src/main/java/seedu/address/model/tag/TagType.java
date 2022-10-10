@@ -20,7 +20,6 @@ public class TagType {
 
     public final String tagType;
     public final Prefix p;
-
     /**
      * Constructs a {@code TagType}.
      *

@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.TagType;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.model.tag.UniqueTagTypeMap;
+import seedu.address.model.person.UniqueTagTypeMap;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -54,7 +54,6 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.putAll(new JsonAdaptedTagTypeMap(source.getTags()).getTagTypeMap());
-
     }
 
     /**
