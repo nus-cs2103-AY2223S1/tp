@@ -192,6 +192,7 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case PERSON_LIST:
             personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            break;
         default:
             break;
         }
