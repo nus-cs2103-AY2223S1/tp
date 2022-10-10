@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String income;
+    private final String meetingDate;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -39,12 +41,18 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("income") String income,
+                             @JsonProperty("meetingDate") String meetingDate,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.income = income;
+        if (meetingDate != null) {
+            this.meetingDate = meetingDate;
+        } else {
+            this.meetingDate = "";
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -59,6 +67,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         income = source.getIncome().value;
+        meetingDate = source.getMeetingDate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -115,8 +124,19 @@ class JsonAdaptedPerson {
         }
         final Income modelIncome = new Income(income);
 
+        if (meetingDate != null && !MeetingDate.isValidMeetingDate(meetingDate)) {
+            throw new IllegalValueException(MeetingDate.MESSAGE_CONSTRAINTS);
+        }
+        final MeetingDate modelMeetingDate;
+
+        if (meetingDate != null) {
+            modelMeetingDate = new MeetingDate(meetingDate);
+        } else {
+            modelMeetingDate = new MeetingDate(null);
+        }
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate, modelTags);
     }
 
 }
