@@ -12,7 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NOKPhone;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
@@ -61,7 +61,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        nokPhone = source.getNOKPhone().value;
+        nokPhone = source.getNokPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         classDateTime = source.getAClass().classDateTime;
@@ -94,12 +94,13 @@ class JsonAdaptedPerson {
         final Phone modelPhone = new Phone(phone);
 
         if (nokPhone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NOKPhone.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, NokPhone.class.getSimpleName()));
         }
-        if (!NOKPhone.isValidNOKPhone(nokPhone)) {
-            throw new IllegalValueException(NOKPhone.MESSAGE_CONSTRAINTS);
+        if (!NokPhone.isValidNokPhone(nokPhone)) {
+            throw new IllegalValueException(NokPhone.MESSAGE_CONSTRAINTS);
         }
-        final NOKPhone modelNOKPhone = new NOKPhone(nokPhone);
+        final NokPhone modelNokPhone = new NokPhone(nokPhone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -154,7 +155,7 @@ class JsonAdaptedPerson {
             modelAdditionalNotes = new AdditionalNotes("");
         }
 
-        return new Person(modelName, modelPhone, modelNOKPhone, modelEmail, modelAddress, modelClassDateTime,
+        return new Person(modelName, modelPhone, modelNokPhone, modelEmail, modelAddress, modelClassDateTime,
                 modelMoneyOwed, modelMoneyPaid, modelAdditionalNotes);
     }
 

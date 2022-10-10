@@ -17,8 +17,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.NOKPhone;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -71,18 +71,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String nokPhone} into a {@code NOKPhone}.
+     * Parses a {@code String nokPhone} into a {@code NokPhone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code NOKPhone} is invalid.
+     * @throws ParseException if the given {@code NokPhone} is invalid.
      */
-    public static NOKPhone parseNOKPhone(String nokPhone) throws ParseException {
+    public static NokPhone parseNokPhone(String nokPhone) throws ParseException {
         requireNonNull(nokPhone);
-        String trimmedNOKPhone = nokPhone.trim();
-        if (!NOKPhone.isValidNOKPhone(trimmedNOKPhone)) {
-            throw new ParseException(NOKPhone.MESSAGE_CONSTRAINTS);
+        String trimmedNokPhone = nokPhone.trim();
+        if (!NokPhone.isValidNokPhone(trimmedNokPhone)) {
+            throw new ParseException(NokPhone.MESSAGE_CONSTRAINTS);
         }
-        return new NOKPhone(trimmedNOKPhone);
+        return new NokPhone(trimmedNokPhone);
     }
 
     /**

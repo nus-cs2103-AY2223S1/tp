@@ -5,9 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's next of kin's phone number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidNOKPhone(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidNokPhone(String)}
  */
-public class NOKPhone {
+public class NokPhone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -16,20 +16,27 @@ public class NOKPhone {
     public final String value;
 
     /**
-     * Constructs a {@code NOKPhone}.
+     * Constructs a {@code NokPhone}.
      *
      * @param nokPhone A valid next of kin phone number.
      */
-    public NOKPhone(String nokPhone) {
+    public NokPhone(String nokPhone) {
         requireNonNull(nokPhone);
-        checkArgument(isValidNOKPhone(nokPhone), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidNokPhone(nokPhone), MESSAGE_CONSTRAINTS);
         value = nokPhone;
+    }
+
+    /**
+     * Constructs an {@code NokPhone} with default value 000.
+     */
+    public NokPhone() {
+        value = "000";
     }
 
     /**
      * Returns true if a given string is a valid next of kin phone number.
      */
-    public static boolean isValidNOKPhone(String test) {
+    public static boolean isValidNokPhone(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -41,8 +48,8 @@ public class NOKPhone {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NOKPhone // instanceof handles nulls
-                && value.equals(((NOKPhone) other).value)); // state check
+                || (other instanceof NokPhone // instanceof handles nulls
+                && value.equals(((NokPhone) other).value)); // state check
     }
 
     @Override

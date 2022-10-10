@@ -14,7 +14,7 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final NOKPhone nokPhone;
+    private final NokPhone nokPhone;
     private final Email email;
 
     // Data fields
@@ -28,11 +28,11 @@ public class Person {
      * Constructs a {@code Person} class when first initialized with add command.
      * // Todo: Note that this is a temporary design and subject to update in future iteration
      */
-    public Person(Name name, Phone phone, NOKPhone nokPhone, Email email, Address address) {
-        requireAllNonNull(name, phone, nokPhone, email, address);
+    public Person(Name name, Phone phone, Email email, Address address) {
+        requireAllNonNull(name, phone, email, address);
         this.name = name;
         this.phone = phone;
-        this.nokPhone = nokPhone;
+        this.nokPhone = new NokPhone();
         this.email = email;
         this.address = address;
         this.aClass = new Class();
@@ -45,7 +45,7 @@ public class Person {
      * Overloaded constructor.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, NOKPhone nokPhone, Email email, Address address, Class aClass,
+    public Person(Name name, Phone phone, NokPhone nokPhone, Email email, Address address, Class aClass,
                   MoneyOwed moneyOwed, MoneyPaid moneyPaid, AdditionalNotes additionalNotes) {
         requireAllNonNull(name, phone, nokPhone, email, address, additionalNotes, aClass);
         this.name = name;
@@ -67,7 +67,7 @@ public class Person {
         return phone;
     }
 
-    public NOKPhone getNOKPhone() {
+    public NokPhone getNokPhone() {
         return nokPhone;
     }
 
@@ -129,7 +129,7 @@ public class Person {
 
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getNOKPhone().equals(getNOKPhone())
+                && otherPerson.getNokPhone().equals(getNokPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getAClass().toString().equals(getAClass().toString())
@@ -151,7 +151,7 @@ public class Person {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Next of Kin Phone: ")
-                .append(getNOKPhone())
+                .append(getNokPhone())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")

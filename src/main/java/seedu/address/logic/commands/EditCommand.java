@@ -27,7 +27,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NOKPhone;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
@@ -104,7 +104,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        NOKPhone updatedNOKPhone = editPersonDescriptor.getNOKPhone().orElse(personToEdit.getNOKPhone());
+        NokPhone updatedNokPhone = editPersonDescriptor.getNokPhone().orElse(personToEdit.getNokPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
@@ -113,8 +113,8 @@ public class EditCommand extends Command {
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
 
-        return new Person(updatedName, updatedPhone, updatedNOKPhone, updatedEmail, updatedAddress, updatedClassDateTime,
-                updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
+        return new Person(updatedName, updatedPhone, updatedNokPhone, updatedEmail, updatedAddress,
+                updatedClassDateTime, updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;
-        private NOKPhone nokPhone;
+        private NokPhone nokPhone;
         private Email email;
         private Address address;
         private Class aClass;
@@ -159,7 +159,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setNOKPhone(toCopy.nokPhone);
+            setNokPhone(toCopy.nokPhone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setClass(toCopy.aClass);
@@ -192,11 +192,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setNOKPhone(NOKPhone nokPhone) {
+        public void setNokPhone(NokPhone nokPhone) {
             this.nokPhone = nokPhone;
         }
 
-        public Optional<NOKPhone> getNOKPhone() {
+        public Optional<NokPhone> getNokPhone() {
             return Optional.ofNullable(nokPhone);
         }
 
@@ -271,7 +271,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getNOKPhone().equals(e.getNOKPhone())
+                    && getNokPhone().equals(e.getNokPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getAClass().toString().equals(e.getAClass().toString())

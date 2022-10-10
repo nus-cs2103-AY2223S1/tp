@@ -14,7 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NOKPhone;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
@@ -29,7 +29,7 @@ public class JsonAdaptedPersonTest {
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_NOK_PHONE = BENSON.getNOKPhone().toString();
+    private static final String VALID_NOK_PHONE = BENSON.getNokPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final Integer VALID_MONEY_OWED = BENSON.getMoneyOwed().value;
@@ -77,18 +77,18 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidNOKPhone_throwsIllegalValueException() {
+    public void toModelType_invalidNokPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_NOK_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_CLASS_DATE_TIME, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONAL_NOTES);
-        String expectedMessage = NOKPhone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = NokPhone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
-    public void toModelType_nullNOKPhone_throwsIllegalValueException() {
+    public void toModelType_nullNokPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_EMAIL,
                 VALID_ADDRESS, VALID_CLASS_DATE_TIME, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_ADDITIONAL_NOTES);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, NOKPhone.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, NokPhone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

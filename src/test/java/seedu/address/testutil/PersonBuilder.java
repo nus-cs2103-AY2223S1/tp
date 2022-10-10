@@ -9,7 +9,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NOKPhone;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
@@ -29,7 +29,7 @@ public class PersonBuilder {
 
     private Name name;
     private Phone phone;
-    private NOKPhone nokPhone;
+    private NokPhone nokPhone;
     private Email email;
     private Address address;
     private MoneyOwed moneyOwed;
@@ -43,7 +43,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        nokPhone = new NOKPhone(DEFAULT_NOK_PHONE);
+        nokPhone = new NokPhone(DEFAULT_NOK_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         aClass = new Class();
@@ -58,7 +58,7 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
-        nokPhone = personToCopy.getNOKPhone();
+        nokPhone = personToCopy.getNokPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         aClass = personToCopy.getAClass();
@@ -92,10 +92,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code NOKPhone} of the {@code Person} that we are building.
+     * Sets the {@code NokPhone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withNOKPhone(String nokPhone) {
-        this.nokPhone = new NOKPhone(nokPhone);
+    public PersonBuilder withNokPhone(String nokPhone) {
+        this.nokPhone = new NokPhone(nokPhone);
         return this;
     }
 

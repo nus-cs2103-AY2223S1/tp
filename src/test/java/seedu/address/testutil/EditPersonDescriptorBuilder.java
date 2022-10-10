@@ -10,9 +10,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.NOKPhone;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -42,7 +42,7 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
-        descriptor.setNOKPhone(person.getNOKPhone());
+        descriptor.setNokPhone(person.getNokPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setClass(person.getAClass());
@@ -68,10 +68,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code NOKPhone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code NokPhone} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withNOKPhone(String nokPhone) {
-        descriptor.setNOKPhone(new NOKPhone(nokPhone));
+    public EditPersonDescriptorBuilder withNokPhone(String nokPhone) {
+        descriptor.setNokPhone(new NokPhone(nokPhone));
         return this;
     }
 
