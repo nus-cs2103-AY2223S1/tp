@@ -1,0 +1,22 @@
+{
+  "_comment": "ApplicationBook save file which contains the same Application values as in TypicalApplications#getTypicalApplicationBook()",
+  "applications" : [ {
+    "company": "Shopee",
+    "contact": "94201239",
+    "email": "shopee@example.com",
+    "position": "Frontend Engineer",
+    "date": "2022-12-31"
+  }, {
+    "company": "ByteDance",
+    "contact": "83920382",
+    "email": "bytedance@example.com",
+    "position": "Backend Engineer",
+    "date": "2022-08-01"
+  }, {
+    "company": "Jane Street",
+    "contact": "91420834",
+    "email": "janestreet@example.com",
+    "position": "Software Engineer",
+    "date": "2022-01-01"
+  }]
+}
