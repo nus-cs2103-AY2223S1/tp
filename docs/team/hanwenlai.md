@@ -22,7 +22,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `list patients` and `list records` features.
 * **Community**:
-  * Contribution to team-based tasks: to be added soon 
+  * Contribution to team-based tasks: to be added soon
   * Review/mentoring contributions: to be added soon
 * **Tools**: to be added soon
 * **Contributions beyond the project team** :to be added soon

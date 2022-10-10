@@ -12,18 +12,21 @@ import seedu.address.model.person.Record;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * {@code Predicate} that always evaluate to true
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Record> PREDICATE_SHOW_ALL_RECORDS = unused -> true;
 
     /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -46,12 +49,14 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
+     * Returns the AddressBook
+     */
+    ReadOnlyAddressBook getAddressBook();
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -77,20 +82,44 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns true if a record with the same identity as {@code record} exists in the record list.
+     */
+    boolean hasRecord(Record record);
+
+    /**
+     * Adds the given record.
+     * {@code person} must not already exist in the record list.
+     */
+    void addRecord(Record record);
+
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Returns an unmodifiable view of the filtered record list */
+    /**
+     * Returns an unmodifiable view of the filtered record list
+     */
     ObservableList<Record> getFilteredRecordList();
 
     /**
+     * Sets the filtered record list to the record list of the given {@code person}.
+     *
+     * @param person The person whose record list is to be displayed.
+     */
+    void setFilteredRecordList(Person person);
+
+    /**
      * Updates the filter of the filtered record list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecordList(Predicate<Record> predicate);
@@ -99,4 +128,10 @@ public interface Model {
      * Clears the record list.
      */
     void clearRecords();
+
+    /**
+     * Deletes the given record.
+     * {@code record} must exist in the filtered record list.
+     */
+    void deleteRecord(Record record);
 }

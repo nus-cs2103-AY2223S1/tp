@@ -14,7 +14,7 @@ Given below are my contributions to the project.
     * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**: To be added
-   
+
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `clear` and `help`
