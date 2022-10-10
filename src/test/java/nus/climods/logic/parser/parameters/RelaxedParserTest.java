@@ -165,7 +165,7 @@ public class RelaxedParserTest {
             defaultParse(argsString);
             fail();
         } catch (org.apache.commons.cli.ParseException e) {
-            assertEquals(e.getMessage(), "Unrecognized option: -gibberish");
+            assertEquals("Unrecognized option: -gibberish", (e.getMessage()));
         }
     }
 
@@ -176,7 +176,7 @@ public class RelaxedParserTest {
             defaultParse(argsString);
             fail();
         } catch (org.apache.commons.cli.ParseException e) {
-            assertEquals(e.getMessage(), "Unrecognized option: -gibberish");
+            assertEquals("Unrecognized option: -gibberish", e.getMessage());
         }
     }
 
@@ -187,7 +187,7 @@ public class RelaxedParserTest {
             defaultParse(argsString);
             fail();
         } catch (org.apache.commons.cli.ParseException e) {
-            assertEquals(e.getMessage(), "Unrecognized option: -gibberish");
+            assertEquals("Unrecognized option: -gibberish", e.getMessage());
         }
     }
 }

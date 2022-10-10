@@ -16,7 +16,8 @@ import nus.climods.logic.parser.exceptions.ParseException;
  */
 public class ModuleCodeParameterTest {
     private static List<String> validCodes = List.of("CS2103", "CS2106", "CS2102");
-    private static final String INVALID_CODE_MESSAGE = "Invalid code";
+    private static final String INVALID_CODE_MESSAGE = "Invalid code: %s";
+    private static final String EMPTY_INPUT_MESSAGE = "Empty module code is not valid";
     private static Optional<ModuleCode> convertModuleCode(String code) {
         if (!validCodes.contains(code)) {
             return Optional.empty();
@@ -36,7 +37,7 @@ public class ModuleCodeParameterTest {
 
         try {
             ModuleCode mc = mcp.getArgValue();
-            assertEquals(mc.getModuleCode(), "CS2102");
+            assertEquals("CS2102", mc.getModuleCode());
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -50,7 +51,7 @@ public class ModuleCodeParameterTest {
 
         try {
             ModuleCode mc = mcp.getArgValue();
-            assertEquals(mc.getModuleCode(), "CS2103");
+            assertEquals("CS2103", mc.getModuleCode());
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -63,7 +64,7 @@ public class ModuleCodeParameterTest {
 
         try {
             ModuleCode mc = mcp.getArgValue();
-            assertEquals(mc.getModuleCode(), "CS2106");
+            assertEquals("CS2106", mc.getModuleCode());
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -77,7 +78,7 @@ public class ModuleCodeParameterTest {
         try {
             ModuleCode mc = mcp.getArgValue();
         } catch (ParseException e) {
-            assertEquals(e.getMessage(), INVALID_CODE_MESSAGE);
+            assertEquals(String.format(INVALID_CODE_MESSAGE, argsString), e.getMessage());
         }
     }
 
@@ -87,9 +88,10 @@ public class ModuleCodeParameterTest {
         ModuleCodeParameter mcp = createModuleCodeParameter(argsString);
 
         try {
+            mcp.setEmptyInputMessage(EMPTY_INPUT_MESSAGE);
             ModuleCode mc = mcp.getArgValue();
         } catch (ParseException e) {
-            assertEquals(e.getMessage(), INVALID_CODE_MESSAGE);
+            assertEquals(EMPTY_INPUT_MESSAGE, e.getMessage());
         }
     }
 }
