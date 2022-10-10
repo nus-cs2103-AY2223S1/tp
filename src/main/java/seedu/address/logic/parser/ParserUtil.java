@@ -3,10 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -27,9 +29,12 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_INVALID_OPTIONS = "Command options is invalid";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -176,5 +181,71 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses the value of {@code String option} from {@code String arguments}.
+     */
+    private static Optional<String> parseOption(String arguments, String option) {
+        requireNonNull(arguments);
+        requireNonNull(option);
+        String[] options = arguments.trim().split("\\s+");
+        for (int i = 0; i < options.length; i++) {
+            if (options[i].contains("/")) {
+                break;
+            }
+            if (i > 0 && options[i - 1].equals(option)) {
+                return Optional.of(options[i]);
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Parses the values of {@code Prefix... options} from {@code String arguments}
+     * and return them in a {@code ArgumentMultimap}.
+     */
+    public static ArgumentMultimap parseOptions(String arguments, Prefix... options) {
+        requireNonNull(arguments);
+        requireNonNull(options);
+        ArgumentMultimap optionValues = new ArgumentMultimap();
+        for (int i = 0; i < options.length; i++) {
+            Optional<String> value = parseOption(arguments, options[i].toString());
+            if (value.isPresent()) {
+                optionValues.put(options[i], value.get());
+            }
+        }
+        return optionValues;
+    }
+
+    /**
+     * Erases the options and value of {@code String option} from {@code String arguments}
+     * and return the resulting {@code String}.
+     */
+    private static String eraseOption(String arguments, String option) {
+        requireNonNull(arguments);
+        requireNonNull(option);
+        String[] options = arguments.trim().split("\\s+");
+        for (int i = 0; i + 1 < options.length; i++) {
+            if (options[i].equals(option)) {
+                options[i] = "";
+                options[i + 1] = "";
+                break;
+            }
+        }
+        return Arrays.stream(options).reduce((x, y) -> x + " " + y).get().trim();
+    }
+
+    /**
+     * Erases the options and values of {@code Prefix... options} from {@code String arguments}
+     * and return the resulting {@code String}.
+     */
+    public static String eraseOptions(String arguments, Prefix... options) {
+        requireNonNull(arguments);
+        requireNonNull(options);
+        for (int i = 0; i < options.length; i++) {
+            arguments = eraseOption(arguments, options[i].toString());
+        }
+        return arguments;
     }
 }

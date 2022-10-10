@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -22,10 +22,7 @@ import seedu.address.model.task.TaskList;
 /**
  * Edits the details of an existing Task for a patient.
  */
-public class EditTaskCommand extends Command {
-
-    public static final String COMMAND_WORD = "editTask";
-
+public class EditTaskCommand extends EditGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the specified task associated with a patient "
             + "by the index number used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -59,14 +56,14 @@ public class EditTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person patientToEdit = lastShownList.get(patientIndex.getZeroBased());
-        Person editedPatient = createEditedPatient(patientToEdit, taskIndex, updatedTask);
+        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        Patient editedPatient = createEditedPatient(patientToEdit, taskIndex, updatedTask);
 
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
@@ -81,7 +78,7 @@ public class EditTaskCommand extends Command {
      * @param updatedTask the new task details to be edited with.
      * @return a person with the updated task details.
      */
-    private static Person createEditedPatient(Person patientToEdit, Index indexOfTask, Task updatedTask) {
+    private static Patient createEditedPatient(Patient patientToEdit, Index indexOfTask, Task updatedTask) {
         assert patientToEdit != null;
 
         Name name = patientToEdit.getName();
@@ -92,7 +89,7 @@ public class EditTaskCommand extends Command {
 
         TaskList updatedTaskList = patientToEdit.getTasks().edit(indexOfTask.getZeroBased(), updatedTask);
 
-        return new Person(name, phone, email, address, updatedTaskList, tags);
+        return new Patient(name, phone, email, address, updatedTaskList, tags);
     }
 
     @Override

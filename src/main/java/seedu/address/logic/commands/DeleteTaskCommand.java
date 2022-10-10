@@ -8,17 +8,14 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
 /**
  * Deletes a task from a person identified using its displayed index from the person list.
  */
-public class DeleteTaskCommand extends Command {
-
-    public static final String COMMAND_WORD = "deleteTask";
-
+public class DeleteTaskCommand extends DeleteGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number in the task list of the person "
             + "identified by the index number used in the displayed person list.\n"
@@ -33,8 +30,9 @@ public class DeleteTaskCommand extends Command {
 
     /**
      * Creates an DeleteTaskCommand to delete a {@code Task} from the specified person.
+     *
      * @param patientIndex index of the person in the filtered person list to delete the task
-     * @param taskIndex index of the task in the person's task list
+     * @param taskIndex    index of the task in the person's task list
      */
     public DeleteTaskCommand(Index patientIndex, Index taskIndex) {
         requireAllNonNull(patientIndex, taskIndex);
@@ -45,13 +43,13 @@ public class DeleteTaskCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(patientIndex.getZeroBased());
+        Patient personToEdit = lastShownList.get(patientIndex.getZeroBased());
         TaskList updatedTaskList = personToEdit.getTasks();
 
         if (taskIndex.getZeroBased() >= updatedTaskList.size()) {
@@ -61,7 +59,7 @@ public class DeleteTaskCommand extends Command {
         // TODO: update according to new implementation on TaskList#delete
         Task deletedTask = updatedTaskList.delete(taskIndex.getZeroBased());
 
-        Person editedPerson = new Person(
+        Patient editedPerson = new Patient(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), updatedTaskList, personToEdit.getTags());
 
