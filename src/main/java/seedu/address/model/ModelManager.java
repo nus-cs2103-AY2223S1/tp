@@ -144,8 +144,13 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Entry> getFilteredEntryList() {
+    public ObservableList<Entry> getFilteredExpenditureList() {
         return filteredExpenditure;
+    }
+
+    @Override
+    public ObservableList<Entry> getFilteredIncomeList() {
+        return filteredIncome;
     }
 
     public void updateFilteredEntryList(Predicate<Entry> predicate) {

@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.exceptions.DuplicateEntryException;
 import seedu.address.model.entry.exceptions.EntryNotFoundException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A list of entries that enforces uniqueness between its elements and does not allow nulls.
@@ -19,7 +18,7 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
  * entries uses Entry#isSameEntry(Entry) for equality so as to ensure that the entry being added or updated is
  * unique in terms of identity in the UniqueEntryList. However, the removal of an entry uses Entry#equals(Object) so
  * as to ensure that the entry with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Entry#isSameEntry(Entry)
@@ -28,7 +27,7 @@ public class UniqueEntryList implements Iterable<Entry> {
 
     private final ObservableList<Entry> internalList = FXCollections.observableArrayList();
     private final ObservableList<Entry> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent entry as the given argument.
@@ -70,6 +69,11 @@ public class UniqueEntryList implements Iterable<Entry> {
         internalList.set(index, editedEntry);
     }
 
+    public void setEntries(UniqueEntryList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
     /**
      * Removes the equivalent entry from the list.
      * The entry must exist in the list.
@@ -79,11 +83,6 @@ public class UniqueEntryList implements Iterable<Entry> {
         if (!internalList.remove(toRemove)) {
             throw new EntryNotFoundException();
         }
-    }
-
-    public void setEntries(UniqueEntryList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
     }
 
     /**
@@ -114,8 +113,8 @@ public class UniqueEntryList implements Iterable<Entry> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueEntryList // instanceof handles nulls
-                        && internalList.equals(((UniqueEntryList) other).internalList));
+            || (other instanceof UniqueEntryList // instanceof handles nulls
+            && internalList.equals(((UniqueEntryList) other).internalList));
     }
 
     @Override
