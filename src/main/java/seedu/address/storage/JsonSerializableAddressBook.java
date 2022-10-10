@@ -80,9 +80,6 @@ class JsonSerializableAddressBook {
             addressBook.addTeam(team);
             addressBook.setTeam(team);
         }
-
-
-
         return addressBook;
     }
 
