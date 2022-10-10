@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import seedu.address.logic.commands.project.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
+
 public class ProjectCommandParser implements Parser<ProjectCommand> {
     /**
      * Parse any commands that have to do with Projects
@@ -23,9 +25,9 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
                 return parseDeleteProjectComand(arguments);
             case ListProjectCommand.COMMAND_FLAG:
                 return parseListProjectCommand(arguments);
+            default:
+                throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
-
-        return null;
     }
 
     //TODO: implement

@@ -28,6 +28,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.Ui;
+import seedu.address.ui.UiManager;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -46,8 +48,9 @@ public class EditClientCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        Ui stubUi = new UiManager(null);
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
 
     @Test
@@ -67,8 +70,9 @@ public class EditClientCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
+        Ui stubUi = new UiManager(null);
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
 
     @Test
@@ -79,8 +83,9 @@ public class EditClientCommandTest {
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Ui stubUi = new UiManager(null);
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
 
     @Test
@@ -97,16 +102,19 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel);
+        Ui stubUi = new UiManager(null);
+        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditClientCommand editClientCommand = new EditClientCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_PERSON);
+        EditClientCommand editClientCommand = new EditClientCommand(INDEX_SECOND_PERSON, descriptor);
+        Ui stubUi = new UiManager(null);
+
+        assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_PERSON, stubUi);
     }
 
     @Test
@@ -117,17 +125,20 @@ public class EditClientCommandTest {
         Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
+        Ui stubUi = new UiManager(null);
 
-        assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_PERSON, stubUi);
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditClientCommand editClientCommand = new EditClientCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        EditClientCommand editClientCommand = new EditClientCommand(outOfBoundIndex, descriptor);
+        Ui stubUi = new UiManager(null);
+
+        assertCommandFailure(editClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, stubUi);
     }
 
     /**
@@ -144,7 +155,8 @@ public class EditClientCommandTest {
         EditClientCommand editClientCommand = new EditClientCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        Ui stubUi = new UiManager(null);
+        assertCommandFailure(editClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, stubUi);
     }
 
     @Test

@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -39,9 +40,9 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                 return parseDeleteClientCommand(arguments);
             case ListClientCommand.COMMAND_FLAG:
                 return parseListClientCommand(arguments);
+            default:
+                throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
-
-        return null;
     }
 
     // TODO: revise syntax

@@ -43,10 +43,10 @@ public class IssueCard extends UiPart<Region> {
         super(FXML);
         this.issue = issue;
         id.setText(displayedIndex + ". ");
-        description.setText(issue.getDescription().toString());
+        description.setText(issue.getDescription().toString() + issue.getId().uiRepresentation());
         priority.setText(issue.getPriority().toString());
         deadline.setText(issue.getDeadline().toString());
-        // project.setText(issue.getProject().toString());
+        project.setText(issue.getProject().toString());
     }
 
     @Override

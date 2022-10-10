@@ -18,6 +18,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.ui.Ui;
+import seedu.address.ui.UiManager;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -37,15 +39,17 @@ public class DeleteClientCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
-        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
+        Ui stubUi = new UiManager(null);
+        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
+        Ui stubUi = new UiManager(null);
 
-        assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, stubUi);
     }
 
     @Test
@@ -60,8 +64,9 @@ public class DeleteClientCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
+        Ui stubUi = new UiManager(null);
 
-        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
 
     @Test
@@ -73,8 +78,9 @@ public class DeleteClientCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
+        Ui stubUi = new UiManager(null);
 
-        assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, stubUi);
     }
 
     @Test

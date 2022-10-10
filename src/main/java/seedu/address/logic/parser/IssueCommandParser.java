@@ -7,6 +7,8 @@ import seedu.address.logic.commands.client.TagClientCommand;
 import seedu.address.logic.commands.issue.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
+
 public class IssueCommandParser implements Parser<IssueCommand> {
     /**
      * Method to parse any commands that have to do with issues (start with 'issue')
@@ -27,9 +29,9 @@ public class IssueCommandParser implements Parser<IssueCommand> {
                 return parseDeleteIssueCommand(arguments);
             case ListIssueCommand.COMMAND_FLAG:
                 return parseListIssueCommand(arguments);
+            default:
+                throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
-
-        return null;
     }
 
     //TODO: implement

@@ -26,6 +26,8 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.Ui;
+import seedu.address.ui.UiManager;
 
 public class AddClientCommandTest {
 
@@ -38,9 +40,9 @@ public class AddClientCommandTest {
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
+        Ui stubUi = new UiManager(null);
 
-        // TODO: null placeholder value for UI, need to review.
-        CommandResult commandResult = new AddClientCommand(validPerson).execute(modelStub, null);
+        CommandResult commandResult = new AddClientCommand(validPerson).execute(modelStub, stubUi);
 
         assertEquals(String.format(AddClientCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
@@ -51,9 +53,10 @@ public class AddClientCommandTest {
         Person validPerson = new PersonBuilder().build();
         AddClientCommand addClientCommand = new AddClientCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        Ui stubUi = new UiManager(null);
 
-        // TODO: null placeholder value for UI, need to review.
-        assertThrows(CommandException.class, AddClientCommand.MESSAGE_DUPLICATE_PERSON, () -> addClientCommand.execute(modelStub, null));
+        assertThrows(CommandException.class, AddClientCommand.MESSAGE_DUPLICATE_PERSON, ()
+                -> addClientCommand.execute(modelStub, stubUi));
     }
 
     @Test

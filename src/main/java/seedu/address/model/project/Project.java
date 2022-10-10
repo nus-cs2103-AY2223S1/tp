@@ -2,10 +2,10 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.model.issue.Issue;
-import seedu.address.model.person.client.Client;
+import seedu.address.model.person.Client;
 
 /**
  * Represents a Project.
@@ -16,21 +16,27 @@ public class Project {
     private Name name;
     private Repository repository;
     private Deadline deadline;
-    private ArrayList<Client> clientList;
-    private ArrayList<Issue> issueList;
+    private Client client;
+    private ProjectId projectId;
+    private List<Issue> issueList;
 
     /**
      * Name field must be present and not null and other fields may be optional.
      */
-    public Project(Name name, Repository repository, Deadline deadline) {
-        requireAllNonNull(name, repository, deadline);
+    public Project(Name name, Repository repository, Deadline deadline,
+                   Client client, List<Issue> issueList, ProjectId projectId) {
+        requireAllNonNull(name, repository, deadline, client);
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;
-        this.clientList = new ArrayList<>();
-        this.issueList = new ArrayList<>();
+        this.client = client;
+        this.issueList = issueList;
+        this.projectId = projectId;
     }
 
+    public ProjectId getId() {
+        return projectId;
+    }
     public Name getProjectName() {
         return name;
     }
@@ -43,11 +49,11 @@ public class Project {
         return deadline;
     }
 
-    public ArrayList<Client> getClientList() {
-        return clientList;
+    public Client getClient() {
+        return client;
     }
 
-    public ArrayList<Issue> getIssueList() {
+    public List<Issue> getIssueList() {
         return issueList;
     }
 
@@ -69,7 +75,7 @@ public class Project {
         return otherProject.getProjectName().equals(getProjectName())
                 && otherProject.getRepository().equals(getRepository())
                 && otherProject.getDeadline().equals(getDeadline())
-                && otherProject.getClientList().equals(getClientList())
+                && otherProject.getClient().equals(getClient())
                 && otherProject.getIssueList().equals(getIssueList());
     }
 
@@ -84,5 +90,10 @@ public class Project {
 
         return otherProject != null
                 && otherProject.getProjectName().equals(getProjectName());
+    }
+
+    @Override
+    public String toString() {
+        return this.getProjectName().toString();
     }
 }
