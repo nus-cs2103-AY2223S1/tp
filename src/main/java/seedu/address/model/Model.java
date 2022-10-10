@@ -104,7 +104,7 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the filtered listing list */
-    ObservableList<Listing> getFilteredLisitngList();
+    ObservableList<Listing> getFilteredListingList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

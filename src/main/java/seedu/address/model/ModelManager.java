@@ -150,7 +150,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Listing> getFilteredLisitngList() {
+    public ObservableList<Listing> getFilteredListingList() {
         return filteredLists;
     }
 
