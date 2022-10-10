@@ -9,9 +9,9 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 public class TaskCommand extends Command {
-    public static final String COMMAND_WORD = "comment";
+    public static final String COMMAND_WORD = "task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a comment. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task. "
             + "Parameters: "
             + PREFIX_TASK_TITLE + "TITLE "
             + PREFIX_TASK_DESCRIPTION + "DESCRIPTION... \n"
@@ -19,7 +19,7 @@ public class TaskCommand extends Command {
             + PREFIX_TASK_TITLE + "Test Title "
             + PREFIX_TASK_DESCRIPTION + "Very descriptive description ";
 
-    public static final String MESSAGE_SUCCESS = "New comment added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
 
     private final Task toAdd;
 
