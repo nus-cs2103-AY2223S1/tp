@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import modtrekt.commons.core.GuiSettings;
 import modtrekt.commons.core.LogsCenter;
+import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
 import modtrekt.model.task.Task;
 
@@ -106,11 +107,13 @@ public class ModelManager implements Model {
     @Override
     public void deleteTask(Task target) {
         taskBook.removeTask(target);
+        updateModuleRemoveTask(target);
     }
 
     @Override
     public void addTask(Task t) {
         taskBook.addTask(t);
+        updateModuleAddTask(t);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -119,6 +122,20 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask);
 
         taskBook.setTask(target, editedTask);
+    }
+
+    @Override
+    public void updateModuleRemoveTask(Task t) {
+        Module toUpdate = parseModuleFromCode(t.getModule());
+        toUpdate.removeTask(t);
+        setModule(toUpdate, toUpdate);
+    }
+
+    @Override
+    public void updateModuleAddTask(Task t) {
+        Module toUpdate = parseModuleFromCode(t.getModule());
+        toUpdate.addTask(t);
+        setModule(toUpdate, toUpdate);
     }
 
     //=========== ModuleList ================================================================================
@@ -140,6 +157,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModuleWithModCode(ModCode code) {
+        requireNonNull(code);
+        return moduleList.hasModuleWithModCode(code);
+    }
+
+    @Override
     public void deleteModule(Module target) {
         moduleList.removeModule(target);
     }
@@ -151,10 +174,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Module parseModuleFromCode(ModCode code) {
+        requireNonNull(code);
+        return moduleList.getModuleFromCode(code);
+    }
+
+    @Override
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
 
         moduleList.setModule(target, editedModule);
+    }
+
+    @Override
+    public void deleteTasksOfModule(Module target) {
+        requireAllNonNull(target);
+        taskBook.removeTasksWithModCode(target.getCode());
     }
 
     //=========== Filtered Task List Accessors =============================================================

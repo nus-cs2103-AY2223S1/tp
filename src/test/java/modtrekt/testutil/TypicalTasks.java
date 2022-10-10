@@ -13,13 +13,20 @@ import modtrekt.model.task.Task;
  */
 public class TypicalTasks {
 
-    public static final Task TASK_1 = new TaskBuilder().withDescription("Do Math Quiz").build();
-    public static final Task TASK_2 = new TaskBuilder().withDescription("Submit assignment").build();
-    public static final Task TASK_3 = new TaskBuilder().withDescription("Submit academic declaration").build();
-    public static final Task TASK_4 = new TaskBuilder().withDescription("Rewrite resume").build();
-    public static final Task TASK_5 = new TaskBuilder().withDescription("Lookup SWE internships").build();
-    public static final Task TASK_6 = new TaskBuilder().withDescription("Submit course survey").build();
-    public static final Task TASK_7 = new TaskBuilder().withDescription("Buy Groceries").build();
+    public static final Task TASK_1 = new TaskBuilder().withDescription("Do Math Quiz")
+            .withModCode("CS2103T").build();
+    public static final Task TASK_2 = new TaskBuilder().withDescription("Submit assignment")
+            .withModCode("CS2103T").build();
+    public static final Task TASK_3 = new TaskBuilder().withDescription("Submit academic declaration")
+            .withModCode("CS2103T").build();
+    public static final Task TASK_4 = new TaskBuilder().withDescription("Rewrite resume")
+            .withModCode("CS2103T").build();
+    public static final Task TASK_5 = new TaskBuilder().withDescription("Lookup SWE internships")
+            .withModCode("CS2103T").build();
+    public static final Task TASK_6 = new TaskBuilder().withDescription("Submit course survey")
+            .withModCode("CS2103T").build();
+    public static final Task TASK_7 = new TaskBuilder().withDescription("Buy Groceries")
+            .withModCode("CS2103T").build();
 
     // Manually added
     public static final Task TASK_8 = new TaskBuilder().withDescription("Clean room").build();

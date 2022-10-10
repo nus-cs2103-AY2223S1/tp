@@ -2,6 +2,8 @@ package modtrekt.model.task;
 
 import java.time.LocalDate;
 
+import modtrekt.model.module.ModCode;
+
 /**
  * Represents a deadline in the task list.
  * Similar to task, but accepts a due date.
@@ -15,8 +17,8 @@ public class Deadline extends Task {
      * @param description description of task
      * @param dueDate date object representing due date
      */
-    public Deadline(Description description, LocalDate dueDate) {
-        super(description);
+    public Deadline(Description description, ModCode module, LocalDate dueDate) {
+        super(description, module);
         this.dueDate = dueDate;
     }
 

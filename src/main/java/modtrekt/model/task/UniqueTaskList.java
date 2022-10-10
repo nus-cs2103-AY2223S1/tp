@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import modtrekt.model.module.ModCode;
 import modtrekt.model.task.exceptions.TaskNotFoundException;
 
 /**
@@ -53,6 +54,15 @@ public class UniqueTaskList implements Iterable<Task> {
         if (!internalList.remove(toRemove)) {
             throw new TaskNotFoundException();
         }
+    }
+
+    /**
+     * Removes the equivalent task from the list.
+     * The task must exist in the list.
+     */
+    public void removeTasksWithModCode(ModCode code) {
+        requireNonNull(code);
+        internalList.removeIf(t -> t.getModule().equals(code));
     }
 
     public void setTasks(UniqueTaskList replacement) {

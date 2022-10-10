@@ -1,5 +1,9 @@
 package modtrekt.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,6 +12,7 @@ import modtrekt.model.module.ModCode;
 import modtrekt.model.module.ModCredit;
 import modtrekt.model.module.ModName;
 import modtrekt.model.module.Module;
+import modtrekt.model.task.Task;
 
 /**
  * Jackson-friendly version of {@link Module}.
@@ -19,16 +24,21 @@ class JsonAdaptedModule {
     private final String name;
     private final String code;
     private final String credit;
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
      */
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("name") String name, @JsonProperty("code") String code,
-                             @JsonProperty("credit") String credit) {
+                             @JsonProperty("credit") String credit,
+                             @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.name = name;
         this.credit = credit;
         this.code = code;
+        if (tasks != null) {
+            this.tasks.addAll(tasks);
+        }
     }
 
     /**
@@ -38,6 +48,9 @@ class JsonAdaptedModule {
         name = source.getName().fullName;
         code = source.getCode().value;
         credit = source.getCredits().value;
+        tasks.addAll(source.getTasksList().stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -46,6 +59,11 @@ class JsonAdaptedModule {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Module toModelType() throws IllegalValueException {
+        final List<Task> moduleTasks = new ArrayList<>();
+
+        for (JsonAdaptedTask task : this.tasks) {
+            moduleTasks.add(task.toModelType());
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ModName.class.getSimpleName()));
@@ -72,7 +90,9 @@ class JsonAdaptedModule {
         }
         final ModCode modelCode = new ModCode(code);
 
-        return new Module(modelCode, modelName, modelCredit);
+        Module created = new Module(modelCode, modelName, modelCredit);
+        created.addTasks(moduleTasks);
+        return created;
     }
 
 }

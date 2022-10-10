@@ -1,5 +1,7 @@
 package modtrekt.model.task;
 
+import modtrekt.model.module.ModCode;
+
 /**
  * Represents a basic task in the task list.
  * Ensures that necessary details are valid, present and non-null.
@@ -9,17 +11,24 @@ public class Task {
     /** String representing description of task */
     public final Description description;
 
+    public final ModCode module;
+
     /**
      * Constructor for an instance of Task.
      *
      * @param description description of task
      */
-    public Task(Description description) {
+    public Task(Description description, ModCode module) {
         this.description = description;
+        this.module = module;
     }
 
     public Description getDescription() {
         return this.description;
+    }
+
+    public ModCode getModule() {
+        return this.module;
     }
 
     /**
@@ -31,7 +40,8 @@ public class Task {
         }
 
         return o != null
-                && o.getDescription().equals(this.getDescription());
+                && o.getDescription().equals(this.getDescription())
+                && o.getModule().equals(this.getModule());
 
     }
 
@@ -41,12 +51,16 @@ public class Task {
             return true;
         }
 
-        return other != null && (other instanceof Task)
-                && ((Task) other).getDescription().equals(this.getDescription());
+        return other instanceof Task && isSameTask((Task) other);
     }
 
     @Override
     public String toString() {
-        return this.description.toString();
+        final StringBuilder result = new StringBuilder();
+        result.append(getDescription())
+                .append("; Module: ")
+                .append(this.module.toString());
+
+        return result.toString();
     }
 }
