@@ -39,6 +39,26 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code Phone } contains the {@code numbers}.
+     *   Full Phone number match is not required.
+     *   <br>examples:<pre>
+     *       containsNumbers("91839344", "91839344") == true
+     *       containsNumbers("3829", "82") == true
+     *       containsNumbers("123", "1") == false //only 1 digit in numbers
+     *       containsNumbers("123", "4") == false
+     *       </pre>
+     * @param Phone cannot be null
+     * @param numbers cannot be null, cannot be empty, must be at least 2 digits long.
+     */
+    public static boolean containsNumbers(String Phone, String numbers) {
+        requireNonNull(Phone);
+        requireNonNull(numbers);
+
+        checkArgument(numbers.length() >= 2, "numbers to check must be at least 2 digits");
+        return Phone.contains(numbers);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

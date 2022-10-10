@@ -41,10 +41,23 @@ public class SampleDataUtil {
         };
     }
 
+    public static Tag[] getSampleTags() {
+        return new Tag[] {
+            new Tag("friends"),
+            new Tag("colleagues"),
+            new Tag("neighbours"),
+            new Tag("family"),
+            new Tag("classmates")
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Tag sampleTag : getSampleTags()) {
+            sampleAb.addTag(sampleTag);
         }
         return sampleAb;
     }

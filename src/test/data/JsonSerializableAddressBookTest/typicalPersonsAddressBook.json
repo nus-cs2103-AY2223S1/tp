@@ -12,7 +12,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ],
+    "tagged" : [ "owesMoney" ],
     "loan": "0.0"
   }, {
     "name" : "Carl Kurz",
@@ -49,5 +49,6 @@
     "address" : "4th street",
     "tagged" : [ ],
     "loan": "0.0"
-  } ]
+  } ],
+  "tags": [ "friends", "owesMoney" ]
 }
