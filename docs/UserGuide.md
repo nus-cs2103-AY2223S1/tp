@@ -24,7 +24,7 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
    5. Grades
    6. Remarks
 3. View all students
-4. View individual student details
+4. Find individual student details
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -70,14 +70,14 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 The Telegram handle, consultation date, and Mastery Check date are optional.
 </div>
 
-### View individual student details: `view`
+### View individual student details: `find`
 
 View a particular student's details.
 
-Format: `view s/STUDENT_NUMBER`
+Format: `find n/STUDENT_NAME`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Use student number to view student due to name similarity.
+Use student name as user is looking for details and doesn't have them.
 
 ### Deleting a student: `delete`
 
@@ -116,8 +116,8 @@ Format: `list`
 
 | Action                       | Format                                                                                                        |
 |------------------------------|---------------------------------------------------------------------------------------------------------------|
-| **Add a student**            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE]`                                                           |
-| **Delete a student**         | `delete i/INDEX`                                                                                               |
+| **Add a student**            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE]`                                 |
+| **Delete a student**         | `delete i/INDEX`                                                                                              |
 | **Edit a student's details** | `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]` |
 | **View all students**        | `list`                                                                                                        |
-| **View a student's details** | `view s/STUDENT_NUMBER`                                                                                       |
+| **Find a student's details** | `find s/STUDENT_NAME`                                                                                         |
