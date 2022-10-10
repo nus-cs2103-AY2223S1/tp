@@ -9,8 +9,7 @@ import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.MoneyPaid;
+import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -114,24 +113,24 @@ class JsonAdaptedPerson {
             modelClassDateTime = new Class();
         }
 
-        final MoneyOwed modelMoneyOwed;
+        final Money modelMoneyOwed;
         if (moneyOwed != null) {
-            if (!MoneyOwed.isValidMoneyOwed(moneyOwed)) {
-                throw new IllegalValueException(MoneyOwed.MESSAGE_CONSTRAINTS);
+            if (!Money.isValidMoney(moneyOwed)) {
+                throw new IllegalValueException(Money.MESSAGE_CONSTRAINTS);
             }
-            modelMoneyOwed = new MoneyOwed(moneyOwed);
+            modelMoneyOwed = new Money(moneyOwed);
         } else {
-            modelMoneyOwed = new MoneyOwed(0);
+            modelMoneyOwed = new Money(0);
         }
 
-        final MoneyPaid modelMoneyPaid;
+        final Money modelMoneyPaid;
         if (moneyPaid != null) {
-            if (!MoneyPaid.isValidMoneyPaid(moneyPaid)) {
-                throw new IllegalValueException(MoneyPaid.MESSAGE_CONSTRAINTS);
+            if (!Money.isValidMoney(moneyPaid)) {
+                throw new IllegalValueException(Money.MESSAGE_CONSTRAINTS);
             }
-            modelMoneyPaid = new MoneyPaid(moneyPaid);
+            modelMoneyPaid = new Money(moneyPaid);
         } else {
-            modelMoneyPaid = new MoneyPaid(0);
+            modelMoneyPaid = new Money(0);
         }
 
         final AdditionalNotes modelAdditionalNotes;

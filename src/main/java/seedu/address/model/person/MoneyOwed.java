@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's Money Owed in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidMoneyOwed(Integer)}
  */
-public class MoneyOwed {
+public class MoneyOwed extends Money{
     public static final String MESSAGE_CONSTRAINTS = "MoneyOwed can take any positive integer values,"
             + " and its default value is 0";
 

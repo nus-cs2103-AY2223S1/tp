@@ -6,8 +6,7 @@ import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.MoneyPaid;
+import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -29,8 +28,8 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private MoneyOwed moneyOwed;
-    private MoneyPaid moneyPaid;
+    private Money moneyOwed;
+    private Money moneyPaid;
     private AdditionalNotes additionalNotes;
     private Class aClass;
 
@@ -43,8 +42,8 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         aClass = new Class();
-        moneyOwed = new MoneyOwed(DEFAULT_MONEY_OWED);
-        moneyPaid = new MoneyPaid(DEFAULT_MONEY_PAID);
+        moneyOwed = new Money(DEFAULT_MONEY_OWED);
+        moneyPaid = new Money(DEFAULT_MONEY_PAID);
         additionalNotes = new AdditionalNotes(DEFAULT_ADDITIONAL_NOTES);
     }
 
@@ -106,7 +105,7 @@ public class PersonBuilder {
      * Sets the {@code MoneyOwed} of the {@code Person} that we are building.
      */
     public PersonBuilder withMoneyOwed(Integer moneyOwed) {
-        this.moneyOwed = new MoneyOwed(moneyOwed);
+        this.moneyOwed = new Money(moneyOwed);
         return this;
     }
 
@@ -114,7 +113,7 @@ public class PersonBuilder {
      * Sets the {@code MoneyPaid} of the {@code Person} that we are building.
      */
     public PersonBuilder withMoneyPaid(Integer moneyPaid) {
-        this.moneyPaid = new MoneyPaid(moneyPaid);
+        this.moneyPaid = new Money(moneyPaid);
         return this;
     }
 

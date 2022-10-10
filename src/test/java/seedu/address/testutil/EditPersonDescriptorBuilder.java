@@ -7,8 +7,7 @@ import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.MoneyPaid;
+import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -85,7 +84,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code moneyOwed} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withMoneyOwed(Integer moneyOwed) {
-        descriptor.setMoneyOwed(new MoneyOwed(moneyOwed));
+        descriptor.setMoneyOwed(new Money(moneyOwed));
         return this;
     }
 
@@ -101,7 +100,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code moneyPaid} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withMoneyPaid(Integer moneyPaid) {
-        descriptor.setMoneyPaid(new MoneyPaid(moneyPaid));
+        descriptor.setMoneyPaid(new Money(moneyPaid));
         return this;
     }
 
