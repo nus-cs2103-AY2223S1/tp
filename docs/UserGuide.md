@@ -51,8 +51,7 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
   e.g `n/NAME [d/DETAILS]` can be used as `n/John Doe d/Opens 9am - 11pm` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[d/DETAILS]…​` can be used as ` ` (i.e. 0 times), `d/Opens 9am - 11pm`, `d/Opens 9am -
-  11pm d/pet friendly` etc.
+  e.g. `[d/DETAILS]…​` can be used as ` ` (i.e. 0 times), `d/opendaily`, `d/petfriendly` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME d/DETAILS`, `d/DETAILS n/NAME` is also acceptable.
@@ -67,9 +66,9 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
-![help message](images/help.png)
+![help message](images/helpmessage.png)
 
 Format: `help`
 
@@ -81,7 +80,7 @@ Adds a stall.
 Format: `sadd n/NAME a/ADDRESS [d/DETAILS]...`
 
 Examples:
-* `sadd n/John Doe Eatery a/Blk 123 Bedok South d/+658123131 d/Opens 9am - 11pm`
+* `sadd n/John Doe Eatery a/Blk 123 Bedok South d/VeryNice`
 
 ![sadd](images/sadd.png)
 
@@ -89,9 +88,9 @@ Examples:
 
 Adds a review.
 
-Format: `radd s/STALL_INDEX d/DATE c/CONTENT`
+Format: `radd s/STALL_INDEX date/DATE c/CONTENT [d/DETAILS]`
 Examples:
-* `radd n/3 d/2022-09-20 c/The food was good, the chicken rice was fresh.`
+* `radd s/3 date/2022-09-20 c/The food was good, the chicken rice was fresh.`
 
 ### Listing all stalls: slist
 Shows a list of all stalls in the book.
@@ -157,13 +156,13 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Exit** | `exit`
-**Help** | `help`
-**rAdd** | `radd s/STALL_INDEX d/DATE c/CONTENT`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!`
-**rDel** | `rdel INDEX`
-**rList** | `rlist`
-**sAdd** | `sadd n/NAME a/ADDRESS [d/DETAILS]…`<br> e.g., `sadd n/John Doe a/Blk 123 Bedok South d/+658123131 d/Opens 9am - 11pm`
-**sDel** | `sdel INDEX`
-**sList** | `slist`
+| Action    | Format, Examples                                                                                     |
+|-----------|------------------------------------------------------------------------------------------------------|
+| **Exit**  | `exit`                                                                                               |
+| **Help**  | `help`                                                                                               |
+| **rAdd**  | `radd s/STALL_INDEX date/DATE c/CONTENT [d/DETAILS]`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
+| **rDel**  | `rdel INDEX`                                                                                         |
+| **rList** | `rlist`                                                                                              |
+| **sAdd**  | `sadd n/NAME a/ADDRESS [d/DETAILS]…`<br> e.g., `sadd n/John Doe a/Blk 123 Bedok South d/veryNice`    |
+| **sDel**  | `sdel INDEX`                                                                                         |
+| **sList** | `slist`                                                                                              |
