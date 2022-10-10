@@ -20,7 +20,7 @@ public class PersonTableView extends UiPart<Region> {
 
     private static final String FXML = "PersonTableView.fxml";
 
-    private final TableColumn<Person, String> indexCol = new TableColumn<>("INDEX");
+    private final TableColumn<Person, String> indexCol = new TableColumn<>();
     private final TableColumn<Person, Name> nameCol = new TableColumn<>("n/NAME");
     private final TableColumn<Person, Phone> phoneCol = new TableColumn<>("p/PHONE");
     private final TableColumn<Person, Email> emailCol = new TableColumn<>("e/EMAIL");
@@ -44,8 +44,8 @@ public class PersonTableView extends UiPart<Region> {
         super(FXML);
         personTableView.setItems(personList);
         setTableColumns();
+        setColumnWidth();
         populateTable();
-        personTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
     /**
@@ -110,6 +110,15 @@ public class PersonTableView extends UiPart<Region> {
                 }
             }
         });
+    }
+
+    /**
+     * Stylizes the {@code PersonTableView} to maximise column width.
+     */
+    private void setColumnWidth() {
+        personTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        indexCol.setResizable(false);
+        indexCol.setPrefWidth(70);
     }
 
 }
