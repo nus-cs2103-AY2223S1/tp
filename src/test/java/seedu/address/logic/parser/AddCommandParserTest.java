@@ -23,8 +23,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACT_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
-import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalApplications.FACEBOOK;
 import static seedu.address.testutil.TypicalApplications.GOOGLE;
 

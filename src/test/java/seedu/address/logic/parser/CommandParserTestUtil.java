@@ -8,7 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Contains helper methods for testing command parsers.
  */
-public class ApplicationCommandParserTestUtil {
+public class CommandParserTestUtil {
 
     /**
      * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
