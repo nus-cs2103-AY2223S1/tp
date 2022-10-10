@@ -6,7 +6,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Marks a task identified by its displayed index in the GUI as completed.
+ * Adds a task to the taskList with specified details
  */
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addTask";
@@ -14,7 +14,7 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add a task to a taskList\n"
             + "Parameters: Task\n"
-            + "Example: " + COMMAND_WORD + " d/<Purchase milk> D/<deadline> t/<tag>";
+            + "Example: " + COMMAND_WORD + " d/Purchase milk D/2022-10-18 t/Food";
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Task added complete: %1$s";
 
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
