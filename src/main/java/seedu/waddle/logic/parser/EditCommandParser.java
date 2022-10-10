@@ -10,7 +10,6 @@ import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.commands.EditCommand;
-import seedu.waddle.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 
 /**
@@ -37,28 +36,28 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditCommand.EditItineraryDescriptor editItineraryDescriptor = new EditCommand.EditItineraryDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editItineraryDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_COUNTRY).isPresent()) {
-            editPersonDescriptor.setCountry(ParserUtil.parseCountry(argMultimap.getValue(PREFIX_COUNTRY).get()));
+            editItineraryDescriptor.setCountry(ParserUtil.parseCountry(argMultimap.getValue(PREFIX_COUNTRY).get()));
         }
         if (argMultimap.getValue(PREFIX_START_DATE).isPresent()) {
-            editPersonDescriptor.setStartDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get()));
+            editItineraryDescriptor.setStartDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_END_DATE).isPresent()) {
-            editPersonDescriptor.setEndDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get()));
+            editItineraryDescriptor.setEndDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_PEOPLE).isPresent()) {
-            editPersonDescriptor.setPeople(ParserUtil.parsePeople(argMultimap.getValue(PREFIX_PEOPLE).get()));
+            editItineraryDescriptor.setPeople(ParserUtil.parsePeople(argMultimap.getValue(PREFIX_PEOPLE).get()));
         }
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editItineraryDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editItineraryDescriptor);
     }
 
 }

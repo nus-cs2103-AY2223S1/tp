@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.waddle.model.itinerary.exceptions.DuplicatePersonException;
-import seedu.waddle.model.itinerary.exceptions.PersonNotFoundException;
+import seedu.waddle.model.itinerary.exceptions.DuplicateItineraryException;
+import seedu.waddle.model.itinerary.exceptions.ItineraryNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -20,9 +20,9 @@ import seedu.waddle.model.itinerary.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Itinerary#isSamePerson(Itinerary)
+ * @see Itinerary#isSameItinerary(Itinerary)
  */
-public class UniquePersonList implements Iterable<Itinerary> {
+public class UniqueItineraryList implements Iterable<Itinerary> {
 
     private final ObservableList<Itinerary> internalList = FXCollections.observableArrayList();
     private final ObservableList<Itinerary> internalUnmodifiableList =
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Itinerary> {
      */
     public boolean contains(Itinerary toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameItinerary);
     }
 
     /**
@@ -43,7 +43,7 @@ public class UniquePersonList implements Iterable<Itinerary> {
     public void add(Itinerary toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateItineraryException();
         }
         internalList.add(toAdd);
     }
@@ -53,16 +53,16 @@ public class UniquePersonList implements Iterable<Itinerary> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Itinerary target, Itinerary editedItinerary) {
+    public void setItinerary(Itinerary target, Itinerary editedItinerary) {
         requireAllNonNull(target, editedItinerary);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ItineraryNotFoundException();
         }
 
-        if (!target.isSamePerson(editedItinerary) && contains(editedItinerary)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameItinerary(editedItinerary) && contains(editedItinerary)) {
+            throw new DuplicateItineraryException();
         }
 
         internalList.set(index, editedItinerary);
@@ -75,11 +75,11 @@ public class UniquePersonList implements Iterable<Itinerary> {
     public void remove(Itinerary toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ItineraryNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setItineraries(UniqueItineraryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,10 +88,10 @@ public class UniquePersonList implements Iterable<Itinerary> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Itinerary> itineraries) {
+    public void setItineraries(List<Itinerary> itineraries) {
         requireAllNonNull(itineraries);
-        if (!personsAreUnique(itineraries)) {
-            throw new DuplicatePersonException();
+        if (!itinerariesAreUnique(itineraries)) {
+            throw new DuplicateItineraryException();
         }
 
         internalList.setAll(itineraries);
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Itinerary> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueItineraryList // instanceof handles nulls
+                        && internalList.equals(((UniqueItineraryList) other).internalList));
     }
 
     @Override
@@ -124,10 +124,10 @@ public class UniquePersonList implements Iterable<Itinerary> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Itinerary> itineraries) {
+    private boolean itinerariesAreUnique(List<Itinerary> itineraries) {
         for (int i = 0; i < itineraries.size() - 1; i++) {
             for (int j = i + 1; j < itineraries.size(); j++) {
-                if (itineraries.get(i).isSamePerson(itineraries.get(j))) {
+                if (itineraries.get(i).isSameItinerary(itineraries.get(j))) {
                     return false;
                 }
             }

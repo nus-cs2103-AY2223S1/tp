@@ -10,10 +10,10 @@ import seedu.waddle.commons.core.LogsCenter;
 import seedu.waddle.logic.commands.Command;
 import seedu.waddle.logic.commands.CommandResult;
 import seedu.waddle.logic.commands.exceptions.CommandException;
-import seedu.waddle.logic.parser.AddressBookParser;
+import seedu.waddle.logic.parser.WaddleParser;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.Model;
-import seedu.waddle.model.ReadOnlyAddressBook;
+import seedu.waddle.model.ReadOnlyWaddle;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.storage.Storage;
 
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final WaddleParser waddleParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        waddleParser = new WaddleParser();
     }
 
     @Override
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = waddleParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveWaddle(model.getWaddle());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyWaddle getWaddle() {
+        return model.getWaddle();
     }
 
     @Override
-    public ObservableList<Itinerary> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Itinerary> getFilteredItineraryList() {
+        return model.getFilteredItineraryList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getWaddleFilePath() {
+        return model.getWaddleFilePath();
     }
 
     @Override

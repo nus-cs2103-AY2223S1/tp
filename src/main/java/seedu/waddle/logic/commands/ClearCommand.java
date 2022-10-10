@@ -2,8 +2,8 @@ package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.waddle.model.AddressBook;
 import seedu.waddle.model.Model;
+import seedu.waddle.model.Waddle;
 
 /**
  * Clears the address book.
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setWaddle(new Waddle());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

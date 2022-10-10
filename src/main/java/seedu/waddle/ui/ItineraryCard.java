@@ -9,9 +9,9 @@ import seedu.waddle.model.itinerary.Itinerary;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class ItineraryCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ItineraryListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,7 +42,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Itinerary itinerary, int displayedIndex) {
+    public ItineraryCard(Itinerary itinerary, int displayedIndex) {
         super(FXML);
         this.itinerary = itinerary;
         id.setText(displayedIndex + ". ");
@@ -61,12 +61,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ItineraryCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        ItineraryCard card = (ItineraryCard) other;
         return id.getText().equals(card.id.getText())
                 && itinerary.equals(card.itinerary);
     }

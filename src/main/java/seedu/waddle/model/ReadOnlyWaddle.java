@@ -6,12 +6,12 @@ import seedu.waddle.model.itinerary.Itinerary;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyWaddle {
 
     /**
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
      */
-    ObservableList<Itinerary> getPersonList();
+    ObservableList<Itinerary> getItineraryList();
 
 }

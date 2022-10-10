@@ -7,7 +7,7 @@ import seedu.waddle.commons.core.GuiSettings;
 import seedu.waddle.logic.commands.CommandResult;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.logic.parser.exceptions.ParseException;
-import seedu.waddle.model.ReadOnlyAddressBook;
+import seedu.waddle.model.ReadOnlyWaddle;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
@@ -26,17 +26,17 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.waddle.model.Model#getAddressBook()
+     * @see seedu.waddle.model.Model#getWaddle()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyWaddle getWaddle();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Itinerary> getFilteredPersonList();
+    ObservableList<Itinerary> getFilteredItineraryList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getWaddleFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

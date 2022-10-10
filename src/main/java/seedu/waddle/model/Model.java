@@ -12,7 +12,7 @@ import seedu.waddle.model.itinerary.Itinerary;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Itinerary> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Itinerary> PREDICATE_SHOW_ALL_ITINERARIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,51 +37,51 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getWaddleFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setWaddleFilePath(Path addressBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setWaddle(ReadOnlyWaddle waddle);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyWaddle getWaddle();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasPerson(Itinerary itinerary);
+    boolean hasItinerary(Itinerary itinerary);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Itinerary target);
+    void deleteItinerary(Itinerary target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Itinerary itinerary);
+    void addItinerary(Itinerary itinerary);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setPerson(Itinerary target, Itinerary editedItinerary);
+    void setItinerary(Itinerary target, Itinerary editedItinerary);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Itinerary> getFilteredPersonList();
+    ObservableList<Itinerary> getFilteredItineraryList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Itinerary> predicate);
+    void updateFilteredItineraryList(Predicate<Itinerary> predicate);
 }

@@ -48,13 +48,15 @@ public class Itinerary {
         return endDate;
     }
 
-    public People getPeople() { return people; }
+    public People getPeople() {
+        return people;
+    }
 
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Itinerary otherItinerary) {
+    public boolean isSameItinerary(Itinerary otherItinerary) {
         if (otherItinerary == this) {
             return true;
         }

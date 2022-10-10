@@ -18,11 +18,11 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the itinerary identified by the index number used in the displayed itinerary list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_ITINERARY_SUCCESS = "Deleted itinerary: %1$s";
 
     private final Index targetIndex;
 
@@ -33,15 +33,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Itinerary> lastShownList = model.getFilteredPersonList();
+        List<Itinerary> lastShownList = model.getFilteredItineraryList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX);
         }
 
         Itinerary itineraryToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(itineraryToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, itineraryToDelete));
+        model.deleteItinerary(itineraryToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_ITINERARY_SUCCESS, itineraryToDelete));
     }
 
     @Override
