@@ -128,8 +128,8 @@ public class JsonAdaptedPersonTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        VALID_ADDRESS, VALID_TAGS, VALID_ASSIGNMENT, VALID_PERSONGROUPS);
-        assertThrows(NullPointerException.class, person::toModelType);
+                        VALID_ADDRESS, invalidTags, VALID_ASSIGNMENT, VALID_PERSONGROUPS);
+        assertThrows(IllegalValueException.class, person::toModelType);
     }
 
 }
