@@ -103,7 +103,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         HashMap<String, ArrayList<Assignment>> updateAssignments = personToEdit.getAssignments();
-        ArrayList<PersonGroup> updatePersonGroup = personToEdit.getPersonGroup();
+        Set<PersonGroup> updatePersonGroup = personToEdit.getPersonGroup();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
                 updateAssignments, updatePersonGroup);

@@ -4,20 +4,21 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
-import seedu.address.model.person.Assignment;
+import seedu.address.model.group.GroupName;
+import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonGroup;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Adds a person to a group in the address book.
  */
 public class AddGroupMemberCommand extends Command {
 
@@ -27,7 +28,10 @@ public class AddGroupMemberCommand extends Command {
             + " Parameters: NAME " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
             + "Example: " + COMMAND_WORD + " g/Group Alpha n/Alice Chee";
 
-    public static final String MESSAGE_DUPLICATE_GROUP = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_GROUP = "This person already exists in this group.";
+    public static final String MESSAGE_NONEXISTENT_GROUP = "This group does not exist.";
+
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
     public static final String MESSAGE_ASSIGN_GROUP_SUCCESS = "Added member";
 
@@ -35,7 +39,7 @@ public class AddGroupMemberCommand extends Command {
     private final PersonGroup personGroup;
 
     /**
-     * @param name of the person in the filtered person list to edit the remark
+     * @param name of the person in the filtered person list to add to group
      * @param group of the person to be added to
      */
     public AddGroupMemberCommand(String group, String name) {
@@ -55,15 +59,26 @@ public class AddGroupMemberCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
 
-        ArrayList<PersonGroup> personGroup1 = personToGroup.getPersonGroup();
+        UniqueGroupList toCheck = new UniqueGroupList();
+
+        if (!toCheck.contains(new Group(new GroupName(personGroup.toString()), new HashSet<>()))) {
+            throw new CommandException(MESSAGE_NONEXISTENT_GROUP);
+        }
+
+        Set<PersonGroup> personGroups = personToGroup.getPersonGroup();
+
+        if (personGroups.contains(personGroup)) {
+            throw new CommandException(MESSAGE_DUPLICATE_GROUP);
+        }
+        personGroups.add(personGroup);
 
         Person editedPerson = new Person(
                 personToGroup.getName(), personToGroup.getPhone(), personToGroup.getEmail(),
                 personToGroup.getAddress(), personToGroup.getTags(), personToGroup.getAssignments(),
-                personGroup);
+                personGroups);
 
         if (!personToGroup.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_GROUP);
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
         model.setPerson(personToGroup, editedPerson);

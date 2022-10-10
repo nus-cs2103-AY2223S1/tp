@@ -33,7 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
-    private final String personGroup;
+    private final List<JsonAdaptedPersonGroup> personGroup = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,7 +43,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("assignments") HashMap<String, ArrayList<Assignment>> assignments,
-                             @JsonProperty("group") String personGroup) {
+                             @JsonProperty("group") List<JsonAdaptedPersonGroup> personGroup) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,7 +52,9 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.assignments.putAll(assignments);
-        this.personGroup = personGroup;
+        if (personGroup.isEmpty()) {
+            this.personGroup.addAll(personGroup);
+        }
     }
 
     /**
@@ -67,7 +69,9 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         assignments.putAll(source.getAssignments());
-        personGroup = source.getPersonGroup().toString();
+        personGroup.addAll(source.getPersonGroup().stream()
+                .map(JsonAdaptedPersonGroup::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -79,6 +83,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<PersonGroup> personGroupList = new ArrayList<>();
+        for (JsonAdaptedPersonGroup grp : personGroup) {
+            personGroupList.add(grp.toModelType());
         }
 
         if (name == null) {
@@ -117,7 +126,7 @@ class JsonAdaptedPerson {
 
         final HashMap<String, ArrayList<Assignment>> modelAssignment = new HashMap<>(assignments);
 
-        final PersonGroup modelPersonGroup = new PersonGroup(personGroup);
+        final Set<PersonGroup> modelPersonGroup = new HashSet<>(personGroupList);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAssignment, modelPersonGroup);
     }

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -48,7 +49,7 @@ public class AddUserCommandParser implements Parser<AddUserCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
-        PersonGroup personGroup = new PersonGroup();
+        Set<PersonGroup> personGroup = new HashSet<>();
 
         Person person = new Person(name, phone, email, address, tagList, assignments, personGroup);
 

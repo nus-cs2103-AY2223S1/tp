@@ -7,30 +7,30 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.PersonGroup;
 
 /**
- * Jackson-friendly version of {}.
+ * Jackson-friendly version of {@link PersonGroup}.
  */
 class JsonAdaptedPersonGroup {
 
-    private final String personGroup;
+    private final String personGroupname;
 
     /**
      * Constructs a {@code JsonAdaptedPersonGroup} with the given {@code personGroup}.
      */
     @JsonCreator
     public JsonAdaptedPersonGroup(String personGroup) {
-        this.personGroup = JsonAdaptedPersonGroup.this.personGroup;
+        this.personGroupname = personGroup;
     }
 
     /**
      * Converts a given {@code PersonGroup} into this class for Jackson use.
      */
     public JsonAdaptedPersonGroup(PersonGroup source) {
-        personGroup = source.getGroup();
+        personGroupname = source.getGroup();
     }
 
     @JsonValue
-    public String getAssignmentName() {
-        return personGroup;
+    public String getPersonGroup() {
+        return personGroupname;
     }
 
     /**
@@ -39,10 +39,10 @@ class JsonAdaptedPersonGroup {
      * @throws IllegalValueException if there were any data constraints violated in the adapted personGroup
      */
     public PersonGroup toModelType() throws IllegalValueException {
-        if (!PersonGroup.isValidGroup(personGroup)) {
+        if (!PersonGroup.isValidGroup(personGroupname)) {
             throw new IllegalValueException(PersonGroup.MESSAGE_CONSTRAINTS);
         }
-        return new PersonGroup(personGroup);
+        return new PersonGroup(personGroupname);
     }
 
 }

@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.model.person.testutil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private HashMap<String, ArrayList<Assignment>> assignments;
-    private PersonGroup personGroup;
+    private Set<PersonGroup> personGroup;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -45,7 +45,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         assignments = new HashMap<>();
-        personGroup = new PersonGroup();
+        personGroup = new HashSet<>();
     }
 
     /**
@@ -58,7 +58,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         assignments = new HashMap<>(personToCopy.getAssignments());
-        personGroup = personToCopy.getPersonGroup();
+        personGroup = new HashSet<>(personToCopy.getPersonGroup());
     }
 
     /**
@@ -119,7 +119,7 @@ public class PersonBuilder {
      * Sets the {@code PersonGroup} of the {@code Person} that we are building.
      */
     public PersonBuilder withGroup(String group) {
-        this.personGroup = new PersonGroup(group);
+        this.personGroup = SampleDataUtil.getPersonGroupSet(group);
         return this;
     }
 
