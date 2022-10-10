@@ -12,7 +12,7 @@ import seedu.address.model.person.LocationContainsKeywordsPredicate;
  */
 public class FindLocationCommand extends Command {
 
-    public static final String COMMAND_WORD = "findLocation";
+    public static final String COMMAND_WORD = "findlocation";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose address contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
