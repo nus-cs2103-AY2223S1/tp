@@ -55,27 +55,7 @@ public class ParserUtil {
         return convertArgumentStringToList(arguments).toArray(new String[] {});
     }
 
-    /**
-     * Parses a {@code String} and returns Optional of a {@code ModuleCode} if supplied string represents a module code
-     * in full list. Returns empty Optional otherwise
-     * @param listModuleCode String representing input from user for a list module code
-     * @return Optional of ModuleCode if supplied string valid or empty optional otherwise
-     */
-    public static Optional<ModuleCode> parseListModuleCode(String listModuleCode) {
-        // TODO: check if ModuleCode is in full list of module codes
-        return Optional.of(new ModuleCode(listModuleCode));
-    }
 
-    /**
-     * Parses a {@code String} and returns Optional of a {@code ModuleCode} if supplied string represents a module code
-     * in user's list. Returns empty Optional otherwise
-     * @param listModuleCode String representing input from user for a user module code
-     * @return Optional of ModuleCode if supplied string valid or empty optional otherwise
-     */
-    public static Optional<ModuleCode> parseUserModuleCode(String listModuleCode) {
-        // TODO: check if ModuleCode is in user's list of module codes
-        return Optional.of(new ModuleCode(listModuleCode));
-    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
