@@ -1,12 +1,14 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * The API of the Model component.
@@ -99,4 +101,26 @@ public interface Model {
      * {@code task} must not already exist in the task panel.
      */
     void addTask(Task task);
+
+    /**
+     * Deletes the given task. The task must exist in the task list.
+     * @param deletedTask The task to delete
+     */
+    void deleteTask(Task deletedTask);
+
+    /**
+     * Returns a list of the current tasks.
+     *
+     * @return the list of tasks
+     */
+    List<Task> getTasks();
+
+    UniqueTaskList getTaskList();
+
+    /**
+     * Retrieve task at index.
+     * @param index Index of task that is displayed.
+     * @return Task that is inputted.
+     */
+    Task getTaskAtIndex(int index) throws IndexOutOfBoundsException;
 }
