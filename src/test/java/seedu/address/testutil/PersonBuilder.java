@@ -69,7 +69,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -78,7 +78,7 @@ public class PersonBuilder {
      * Parses the {@code homeworkList} into a {@code List<Homework>} and set it to the {@code Person}
      * that we are building.
      */
-    public PersonBuilder withHomework(String ... homeworkList) {
+    public PersonBuilder withHomework(String... homeworkList) {
         this.homeworkList = new HomeworkList(SampleDataUtil.getHomeworkList(homeworkList));
         return this;
     }
@@ -87,15 +87,16 @@ public class PersonBuilder {
      * Parses the {@code AttendanceList} into a {@code List<Attendance} and set it to the {@code Person}
      * that we are building.
      */
-    public PersonBuilder withAttendance(String ... attendanceList) {
+    public PersonBuilder withAttendance(String... attendanceList) {
         this.attendanceList.attendanceList.addAll(SampleDataUtil.getAttendanceList(attendanceList));
         return this;
     }
-    
-    /** Parses the {@code homeworkList} into a {@code List<Homework>} and set it to the {@code Person}
+
+    /**
+     * Parses the {@code homeworkList} into a {@code List<Homework>} and set it to the {@code Person}
      * that we are building.
      */
-    public PersonBuilder withGradeProgress(String ... gradeProgress) {
+    public PersonBuilder withGradeProgress(String... gradeProgress) {
         this.gradeProgressList = new GradeProgressList(SampleDataUtil.getGradeProgressList(gradeProgress));
         return this;
     }
