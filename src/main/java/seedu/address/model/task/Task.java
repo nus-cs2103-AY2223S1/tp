@@ -46,6 +46,7 @@ public class Task {
      * Marks the task as done.
      */
     public void markAsDone() {
+        System.out.println("marked");
         isDone = true;
     }
 

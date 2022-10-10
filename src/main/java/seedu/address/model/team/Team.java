@@ -19,8 +19,8 @@ public class Team {
 
     // Identity fields
     private final Name name;
-    private ArrayList<Person> members;
     private TaskList tasks = new TaskList();
+    private ArrayList<Person> members;
 
 
 
@@ -30,7 +30,7 @@ public class Team {
     public Team(Name name) {
         requireAllNonNull(name);
         this.name = name;
-        this.tasks = new TaskList();
+        tasks = new TaskList();
         members = new ArrayList<>();
     }
 
@@ -38,10 +38,12 @@ public class Team {
      * Create a team with certain preset {@code task}.
      * @param name A valid team name.
      * @param tasks A list with tasks.
+     * @param members A list of team members.
      */
-    public Team(Name name, List<Task> tasks) {
+    public Team(Name name, List<Task> tasks, List<Person> members) {
         this.name = name;
-        this.tasks.addAll(tasks);
+        tasks.addAll(tasks);
+        members.addAll(members);
     }
 
     public Name getName() {

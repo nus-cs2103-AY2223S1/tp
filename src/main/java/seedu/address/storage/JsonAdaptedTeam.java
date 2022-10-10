@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
@@ -23,15 +24,20 @@ public class JsonAdaptedTeam {
 
     private final String teamName;
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedPerson> members = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedTeam} with the given team details.
      */
     @JsonCreator
-    public JsonAdaptedTeam(@JsonProperty("name") String teamName, @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+    public JsonAdaptedTeam(@JsonProperty("name") String teamName, @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+        @JsonProperty("members") List<JsonAdaptedPerson> members) {
         this.teamName = teamName;
         if (tasks != null) {
             this.tasks.addAll(tasks);
+        }
+        if (members != null) {
+            this.members.addAll(members);
         }
     }
 
@@ -43,6 +49,10 @@ public class JsonAdaptedTeam {
         List<Task> taskList = source.getTasks().getTaskList();
         tasks.addAll(taskList.stream()
                 .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
+        List<Person> memberList = source.getMembers();
+        members.addAll(memberList.stream()
+                .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
 
     }
@@ -62,10 +72,16 @@ public class JsonAdaptedTeam {
 
         final List<Task> modelTasks = new ArrayList<>();
 
+        final List<Person> modelMembers = new ArrayList<>();
+
         for (JsonAdaptedTask task : tasks) {
             modelTasks.add(task.toModelType());
         }
 
-        return new Team(modelName, modelTasks);
+        for (JsonAdaptedPerson member : members) {
+            modelMembers.add(member.toModelType());
+        }
+
+        return new Team(modelName, modelTasks, modelMembers);
     }
 }
