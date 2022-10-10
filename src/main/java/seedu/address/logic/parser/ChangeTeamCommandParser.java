@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ParserUtil.containsWhitespace;
 
 import seedu.address.logic.commands.ChangeTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -20,13 +20,15 @@ public class ChangeTeamCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ChangeTeamCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-
-        if (containsWhitespace(trimmedArgs)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ChangeTeamCommand.MESSAGE_USAGE));
+        try {
+            requireNonNull(args);
+            String trimmedArgs = args.trim();
+            Path path = ParserUtil.parsePath(trimmedArgs);
+            return new ChangeTeamCommand(path);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            ChangeTeamCommand.MESSAGE_USAGE), pe);
         }
-
-        Path path = new Path(trimmedArgs);
-        return new ChangeTeamCommand(path);
     }
 }

@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -15,6 +14,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.team.Path;
+import seedu.address.model.team.Team;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -124,22 +125,35 @@ public class ParserUtil {
     }
 
     /**
-     * Checks if the given argument string contains any whitespace.
+     * Parses {@code String path} into a {@code Path}.
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @param args refer to the subsequent arguments after the initial command word.
-     * @return true if the string contains a whitespace, false otherwise.
+     * @param path to the currently nested team.
+     * @return a Path object that specifies a potential path to a nested team.
+     * @throws ParseException if the given {@Code Path} is not valid.
      */
-    public static boolean containsWhitespace(String args) {
-        return Pattern.matches("\\s", args);
+    public static Path parsePath(String path) throws ParseException {
+        requireNonNull(path);
+        String trimmedPath = path.trim();
+        if (!Path.isValidPath(trimmedPath)) {
+            throw new ParseException(Path.MESSAGE_CONSTRAINTS);
+        }
+        return new Path(trimmedPath);
     }
 
     /**
-     * Checks if the given argument string contains any backslash.
+     * Parses {@code String team} into a {@code Team}.
      *
-     * @param args refer to the subsequent arguments after the initial command word.
-     * @return true if the string contains a backslash, false otherwise.
+     * @param team name of team that is currently being accessed.
+     * @return a Team object that refers to a specified team.
+     * @throws ParseException if the given {@Code Team} is not valid.
      */
-    public static boolean containsBackslash(String args) {
-        return Pattern.matches("\\\\", args);
+    public static Team parseTeam(String team) throws ParseException {
+        requireNonNull(team);
+        if (!Team.isValidTeamName(team)) {
+            throw new ParseException(Team.MESSAGE_CONSTRAINTS);
+        }
+        Name teamName = parseName(team);
+        return new Team(teamName);
     }
 }

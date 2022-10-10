@@ -1,12 +1,10 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ParserUtil.containsBackslash;
-import static seedu.address.logic.parser.ParserUtil.containsWhitespace;
 
 import seedu.address.logic.commands.AddTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Name;
 import seedu.address.model.team.Team;
 
 
@@ -23,14 +21,16 @@ public class AddTeamCommandParser implements Parser<AddTeamCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTeamCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-
-        if (containsWhitespace(trimmedArgs) || containsBackslash(trimmedArgs)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTeamCommand.MESSAGE_USAGE));
+        try {
+            requireNonNull(args);
+            String trimmedArgs = args.trim();
+            Team newTeam = ParserUtil.parseTeam(trimmedArgs);
+            return new AddTeamCommand(newTeam);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT,
+                            AddTeamCommand.MESSAGE_USAGE), pe);
         }
-
-        Name teamName = ParserUtil.parseName(args);
-        Team newTeam = new Team(teamName);
-        return new AddTeamCommand(newTeam);
     }
 }
