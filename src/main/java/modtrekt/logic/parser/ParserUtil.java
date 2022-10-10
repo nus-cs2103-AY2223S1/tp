@@ -10,6 +10,10 @@ import modtrekt.model.module.ModCredit;
 import modtrekt.model.module.ModName;
 import modtrekt.model.task.Description;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -43,6 +47,22 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code localDate}
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseDueDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+            return LocalDate.parse(trimmedDate, formatter);
+        } catch (DateTimeParseException exception) {
+            throw new ParseException("Invalid date, date must be in YYYY-MM-DD format");
+        }
     }
 
     /**
