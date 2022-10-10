@@ -39,7 +39,7 @@ public class Reward {
 
     @Override
     public String toString() {
-        return value;
+        return String.valueOf(Integer.parseInt(value));
     }
 
     @Override
