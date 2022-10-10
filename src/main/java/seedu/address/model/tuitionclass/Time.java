@@ -35,4 +35,17 @@ public class Time {
     public String getEndTime() {
         return endTime.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof Time) {
+                Time casted = (Time) other;
+                return startTime.equals(casted.startTime) && endTime.equals(casted.endTime);
+            }
+        }
+        return false;
+    }
 }
