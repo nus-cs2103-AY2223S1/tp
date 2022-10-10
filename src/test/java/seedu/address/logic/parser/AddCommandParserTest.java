@@ -173,6 +173,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB
                 + GENDER_DESC_BOB
+                + CAP_DESC_BOB
                 + UNIVERSITY_DESC_BOB
                 + MAJOR_DESC_AMY
                 + MAJOR_DESC_BOB
@@ -415,6 +416,7 @@ public class AddCommandParserTest {
                 + INVALID_CAP_DESC
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV
@@ -436,6 +438,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB
                 + GENDER_DESC_BOB
+                + CAP_DESC_BOB
                 + UNIVERSITY_DESC_BOB
                 + INVALID_MAJOR_DESC
                 + JOB_ID_DESC_BOB

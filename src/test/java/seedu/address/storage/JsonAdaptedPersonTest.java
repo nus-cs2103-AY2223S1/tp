@@ -61,7 +61,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
-                VALID_CAP,VALID_UNIVERSITY,
+                VALID_CAP,
+                VALID_UNIVERSITY,
                 VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
@@ -72,13 +73,12 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(null, VALID_PHONE, VALID_EMAIL,
-                        VALID_ADDRESS,
-                        VALID_GENDER,
-                        VALID_CAP,
-                        VALID_UNIVERSITY,
-                        VALID_MAJOR,
+        JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
                 VALID_TAGS);
@@ -91,7 +91,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, INVALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
-                VALID_CAP,VALID_UNIVERSITY,
+                VALID_CAP,
+                VALID_UNIVERSITY,
                 VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
@@ -102,13 +103,12 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL,
-                        VALID_ADDRESS,
-                        VALID_GENDER,
-                        VALID_CAP,
-                        VALID_UNIVERSITY,
-                        VALID_MAJOR,
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
                 VALID_TAGS);
@@ -121,7 +121,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
-                VALID_CAP,VALID_UNIVERSITY,
+                VALID_CAP,
+                VALID_UNIVERSITY,
                 VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
@@ -132,13 +133,12 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null,
-                        VALID_ADDRESS,
-                        VALID_GENDER,
-                        VALID_CAP,
-                        VALID_UNIVERSITY,
-                        VALID_MAJOR,
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
                 VALID_TAGS);
@@ -151,7 +151,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 INVALID_ADDRESS,
                 VALID_GENDER,
-                VALID_CAP,VALID_UNIVERSITY,
+                VALID_CAP,
+                VALID_UNIVERSITY,
                 VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
@@ -162,13 +163,12 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        null,
-                        VALID_GENDER,
-                        VALID_CAP,
-                        VALID_UNIVERSITY,
-                        VALID_MAJOR,
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                null,
+                VALID_GENDER,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
                 VALID_TAGS);
@@ -181,7 +181,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 INVALID_GENDER,
-                VALID_CAP,VALID_UNIVERSITY,
+                VALID_CAP,
+                VALID_UNIVERSITY,
                 VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
@@ -195,7 +196,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 null,
-                VALID_CAP,VALID_UNIVERSITY,
+                VALID_CAP,
+                VALID_UNIVERSITY,
                 VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
@@ -206,30 +208,30 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidCap_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        VALID_ADDRESS,
-                        VALID_GENDER,
-                        INVALID_CAP,
-                        VALID_UNIVERSITY,
-                        VALID_ID,
-                        VALID_TITLE,
-                        VALID_TAGS);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                INVALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
+                VALID_ID,
+                VALID_TITLE,
+                VALID_TAGS);
         String expectedMessage = Cap.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullCap_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        VALID_ADDRESS,
-                        VALID_GENDER,
-                        null,
-                        VALID_UNIVERSITY,
-                        VALID_ID,
-                        VALID_TITLE,
-                        VALID_TAGS);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                null,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
+                VALID_ID,
+                VALID_TITLE,
+                VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Cap.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -239,7 +241,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
-                VALID_CAP,INVALID_UNIVERSITY,
+                VALID_CAP,
+                INVALID_UNIVERSITY,
                 VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
@@ -253,7 +256,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
-                VALID_CAP,null,
+                VALID_CAP,
+                null,
                 VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
@@ -267,6 +271,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_CAP,
                 VALID_UNIVERSITY,
                 INVALID_MAJOR,
                 VALID_ID,
@@ -281,6 +286,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_CAP,
                 VALID_UNIVERSITY,
                 null,
                 VALID_ID,
@@ -295,7 +301,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
-                VALID_CAP,VALID_UNIVERSITY,
+                VALID_CAP,
+                VALID_UNIVERSITY,
                 VALID_MAJOR,
                 INVALID_ID,
                 VALID_TITLE,
@@ -306,13 +313,12 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_nullId_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        VALID_ADDRESS,
-                        VALID_GENDER,
-                        VALID_CAP,
-                        VALID_UNIVERSITY,
-                        VALID_MAJOR,
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
                 null,
                 VALID_TITLE,
                 VALID_TAGS);
@@ -325,7 +331,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
-                VALID_CAP,VALID_UNIVERSITY,
+                VALID_CAP,
+                VALID_UNIVERSITY,
                 VALID_MAJOR,
                 VALID_ID,
                 INVALID_TITLE,
@@ -336,13 +343,12 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_nullTitle_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        VALID_ADDRESS,
-                        VALID_GENDER,
-                        VALID_CAP,
-                        VALID_UNIVERSITY,
-                        VALID_MAJOR,
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_GENDER,
+                VALID_CAP,
+                VALID_UNIVERSITY,
+                VALID_MAJOR,
                 VALID_ID,
                 null,
                 VALID_TAGS);
@@ -357,7 +363,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
-                VALID_CAP,VALID_UNIVERSITY,
+                VALID_CAP,
+                VALID_UNIVERSITY,
                 VALID_MAJOR,
                 VALID_ID,
                 VALID_TITLE,
