@@ -111,7 +111,7 @@ public interface Model {
 
 
     /**
-     * Updates the filter of the filtered stall list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered review list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredReviewList(Predicate<Review> predicate);

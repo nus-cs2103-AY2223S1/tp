@@ -140,6 +140,11 @@ public class SAddCommandTest {
         }
 
         @Override
+        public void deleteReview(Review target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setStall(Stall target, Stall editedStall) {
             throw new AssertionError("This method should not be called.");
         }

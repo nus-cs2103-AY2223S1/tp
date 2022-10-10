@@ -16,9 +16,10 @@ import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.commands.ExitCommand;
 import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.commands.HelpCommand;
-import foodwhere.logic.commands.ListCommand;
+import foodwhere.logic.commands.RListCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.SDeleteCommand;
+import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
@@ -82,9 +83,15 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    public void parseCommand_slist() throws Exception {
+        assertTrue(parser.parseCommand(SListCommand.COMMAND_WORD) instanceof SListCommand);
+        assertTrue(parser.parseCommand(SListCommand.COMMAND_WORD + " 3") instanceof SListCommand);
+    }
+
+    @Test
+    public void parseCommand_rlist() throws Exception {
+        assertTrue(parser.parseCommand(RListCommand.COMMAND_WORD) instanceof RListCommand);
+        assertTrue(parser.parseCommand(RListCommand.COMMAND_WORD + " 3") instanceof RListCommand);
     }
 
     @Test

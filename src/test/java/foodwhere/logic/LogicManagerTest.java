@@ -15,8 +15,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.CommandResult;
-import foodwhere.logic.commands.ListCommand;
 import foodwhere.logic.commands.SAddCommand;
+import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.Model;
@@ -61,8 +61,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = SListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, SListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
