@@ -103,7 +103,7 @@ Name is the only compulsory input. Parameters not provided will be stay unchange
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit name:John Doe number:91234567 address:21 Lower Kent Ridge Rd` Edits the phone number and address of the `John Doe` to be `91234567` and `21 Lower Kent Ridge Rd` respectively.
+*  `update name:John Doe number:91234567 address:21 Lower Kent Ridge Rd` Updates the phone number and address of the `John Doe` to be `91234567` and `21 Lower Kent Ridge Rd` respectively.
 
 :white_check_mark: **Tip:**
 Input shortcut: `u` can be used in place of `update`.
@@ -113,7 +113,7 @@ Format: `u name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find NAME…`
+Format: `find n/NAME…`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -137,7 +137,7 @@ Format: `f NAME…`
 
 Finds persons whose stored number matches the given number.
 
-Format: `find NUMBER`
+Format: `find p/NUMBER`
 
 * Only full numbers will be matched e.g. `7654` will not match `80765432`
 * All persons matching the number will be returned. e.g. All contacts in the same household will be returned if they share a home number.
@@ -151,6 +151,26 @@ Examples:
 :white_check_mark: **Tip:**
 Input shortcut: `f` can be used in place of `find`.
 Format: `f NUMBER`
+
+### Locating persons by address: `find`
+
+Format: `find a/ADDRESS`
+
+* The search is case-insensitive. e.g `serangoon` will match `Serangoon`
+* The order of the keywords does not matter. e.g. `Kio Mo Ang` will match `Ang Mo Kio`
+* Only the address is searched. e.g. `find Kent` won’t return contacts with the name 'Kent'
+* Words can be matched only if the whole address is included. e.g. `Tamp` won’t match `Tampines`
+* Persons with address matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Buona Clementi` will return `Buona Vista Drive`, `6 Clementi Ave`
+* Address can contain numbers. Find results will return all persons with that address keyword. 
+  e.g. '30' will return 'Blk 30 Geylang Street 29', 'Blk 30 Lorong 3 Serangoon Gardens'
+
+Examples:
+* `find Bedok` returns the person(s) with 'Bedok' stored as their address
+
+:white_check_mark: **Tip:**
+Input shortcut: `f` can be used in place of `find`.
+Format: `f a/ADDRESS…`
 
 ### Deleting a person : `delete`
 
