@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import modtrekt.commons.util.StringUtil;
 import modtrekt.model.task.Task;
 
 /**
@@ -22,20 +23,14 @@ public class TaskCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on ModuleList level 4</a>
      */
 
-    public final Task person;
+    public final Task task;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label description;
     @FXML
     private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
     @FXML
     private FlowPane tags;
 
@@ -44,10 +39,11 @@ public class TaskCard extends UiPart<Region> {
      */
     public TaskCard(Task t, int displayedIndex) {
         super(FXML);
-        this.person = t;
+        this.task = t;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getDescription().toString());
-        phone.setText("Module Code: " + person.getModule().toString());
+        description.setText(task.getDescription().toString());
+        Label moduleBadge = new Label(t.getModule().toString());
+        this.tags.getChildren().add(moduleBadge);
     }
 
     @Override
@@ -65,6 +61,6 @@ public class TaskCard extends UiPart<Region> {
         // state check
         TaskCard card = (TaskCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && task.equals(card.task);
     }
 }
