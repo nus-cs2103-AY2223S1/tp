@@ -1,5 +1,7 @@
 package seedu.rc4hdb.ui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
@@ -8,27 +10,35 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 
+import seedu.rc4hdb.model.person.Fields;
 import seedu.rc4hdb.model.person.Person;
 
 public class PersonTableView extends UiPart<Region> {
     private static final String FXML = "PersonTableView.fxml";
 
+    // Initialise list with global field list since all fields should be shown at first
+    private final ObservableList<String> observableFields = FXCollections.observableArrayList(Fields.fields);
+
     @FXML
     private TableView<Person> tableView;
 
-    private final TableColumn<Person, Object> indexColumn = new TableColumn<>("Index");
-    private final TableColumn<Person, Object> nameColumn = new TableColumn<>("Name");
-    private final TableColumn<Person, Object> phoneColumn = new TableColumn<>("Phone");
-    private final TableColumn<Person, Object> addressColumn = new TableColumn<>("Address");
-    private final TableColumn<Person, Object> emailColumn = new TableColumn<>("Email");
-    private final TableColumn<Person, Object> tagsColumn = new TableColumn<>("Tags");
+    private final TableColumn<Person, Object> indexColumn = new TableColumn<>(Fields.INDEX_IDENTIFIER);
+    private final TableColumn<Person, Object> nameColumn = new TableColumn<>(Fields.NAME_FIELD);
+    private final TableColumn<Person, Object> phoneColumn = new TableColumn<>(Fields.PHONE_FIELD);
+    private final TableColumn<Person, Object> addressColumn = new TableColumn<>(Fields.ADDRESS_FIELD);
+    private final TableColumn<Person, Object> emailColumn = new TableColumn<>(Fields.EMAIL_FIELD);
+    private final TableColumn<Person, Object> tagsColumn = new TableColumn<>(Fields.TAG_FIELD);
 
-    public PersonTableView(ObservableList<Person> personList) {
+    public PersonTableView(ObservableList<Person> personList, ObservableList<String> observableFields) {
         super(FXML);
         this.tableView.setItems(personList);
         this.tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.addColumns();
         this.populateRows();
+
+        // Listen to changes in the observable list and hide the columns accordingly
+        this.observableFields.addListener(getListChangeListener());
+        this.observableFields.setAll(observableFields);
     }
 
     private void addColumns() {
@@ -39,7 +49,6 @@ public class PersonTableView extends UiPart<Region> {
         this.tableView.getColumns().add(emailColumn);
         this.tableView.getColumns().add(tagsColumn);
     }
-
 
     private void populateRows() {
         this.indexColumn.setCellFactory(this::populateIndexColumn);
@@ -66,5 +75,22 @@ public class PersonTableView extends UiPart<Region> {
                 }
             }
         };
+    }
+
+    private ListChangeListener<String> getListChangeListener() {
+        return c -> {
+            // Reset column visibilities
+            tableView.getColumns().forEach(column -> column.setVisible(true));
+
+            // Filter all columns (except index column) to obtain required columns
+            // Recall that column headers is in title-case, i.e. first letter is capitalised
+            tableView.getColumns().stream()
+                    .filter(column -> this.observableFields.contains(column.getText().toLowerCase()))
+                    .forEach(column -> column.setVisible(false));
+        };
+    }
+
+    public void setObservableFields(ObservableList<String> list) {
+        this.observableFields.setAll(list);
     }
 }
