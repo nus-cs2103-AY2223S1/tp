@@ -3,7 +3,6 @@ package bookface.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import bookface.commons.util.CollectionUtil;
 import bookface.model.book.Book;
