@@ -13,7 +13,7 @@ import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.guest.logic.commands.EditCommand.EditGuestDescriptor;
-import seedu.guest.testutil.EditPersonDescriptorBuilder;
+import seedu.guest.testutil.EditGuestDescriptorBuilder;
 
 public class EditGuestDescriptorTest {
 
@@ -36,23 +36,23 @@ public class EditGuestDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditGuestDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditGuestDescriptor editedAmy = new EditGuestDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        editedAmy = new EditGuestDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        editedAmy = new EditGuestDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different date range -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDateRange(VALID_DATE_RANGE_BOB).build();
+        editedAmy = new EditGuestDescriptorBuilder(DESC_AMY).withDateRange(VALID_DATE_RANGE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different number of guests -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB).build();
+        editedAmy = new EditGuestDescriptorBuilder(DESC_AMY).withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

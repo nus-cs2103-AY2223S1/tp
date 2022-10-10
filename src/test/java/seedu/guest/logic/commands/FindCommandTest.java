@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.commons.core.Messages.MESSAGE_GUESTS_LISTED_OVERVIEW;
 import static seedu.guest.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.guest.testutil.TypicalPersons.CARL;
-import static seedu.guest.testutil.TypicalPersons.ELLE;
-import static seedu.guest.testutil.TypicalPersons.FIONA;
-import static seedu.guest.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.guest.testutil.TypicalGuests.CARL;
+import static seedu.guest.testutil.TypicalGuests.ELLE;
+import static seedu.guest.testutil.TypicalGuests.FIONA;
+import static seedu.guest.testutil.TypicalGuests.getTypicalGuestBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.guest.model.guest.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalGuestBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalGuestBook(), new UserPrefs());
 
     @Test
     public void equals() {

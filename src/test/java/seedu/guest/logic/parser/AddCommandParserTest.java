@@ -25,8 +25,8 @@ import static seedu.guest.logic.commands.CommandTestUtil.VALID_NUMBER_OF_GUESTS_
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.guest.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.guest.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.guest.testutil.TypicalPersons.AMY;
-import static seedu.guest.testutil.TypicalPersons.BOB;
+import static seedu.guest.testutil.TypicalGuests.AMY;
+import static seedu.guest.testutil.TypicalGuests.BOB;
 
 import org.junit.jupiter.api.Test;
 

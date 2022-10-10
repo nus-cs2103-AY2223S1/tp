@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.model.Model.PREDICATE_SHOW_ALL_GUESTS;
 import static seedu.guest.testutil.Assert.assertThrows;
-import static seedu.guest.testutil.TypicalPersons.ALICE;
-import static seedu.guest.testutil.TypicalPersons.BENSON;
+import static seedu.guest.testutil.TypicalGuests.ALICE;
+import static seedu.guest.testutil.TypicalGuests.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.guest.commons.core.GuiSettings;
 import seedu.guest.model.guest.NameContainsKeywordsPredicate;
-import seedu.guest.testutil.AddressBookBuilder;
+import seedu.guest.testutil.GuestBookBuilder;
 
 public class ModelManagerTest {
 
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        GuestBook guestBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        GuestBook guestBook = new GuestBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         GuestBook differentGuestBook = new GuestBook();
         UserPrefs userPrefs = new UserPrefs();
 
