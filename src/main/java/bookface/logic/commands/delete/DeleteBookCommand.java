@@ -17,9 +17,9 @@ import bookface.model.book.Book;
 public class DeleteBookCommand extends DeleteCommand {
     public static final String COMMAND_WORD = "book";
     public static final String MESSAGE_USAGE = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD
-    + ": Deletes the book identified by the index number used in the displayed book list.\n"
-    + "Parameters: INDEX (must be a positive integer)\n"
-    + "Example: " + DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
+        + ": Deletes the book identified by the index number used in the displayed book list.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_BOOK_SUCCESS = "Deleted book: %1$s";
     private final Index targetIndex;

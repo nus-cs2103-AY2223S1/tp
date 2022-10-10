@@ -5,10 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
-import bookface.model.person.Person;
-import bookface.model.book.exceptions.DuplicateBookException;
-import bookface.model.book.exceptions.BookNotFoundException;
 import bookface.commons.util.CollectionUtil;
+import bookface.model.book.exceptions.BookNotFoundException;
+import bookface.model.book.exceptions.DuplicateBookException;
+import bookface.model.person.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -30,9 +30,7 @@ public class BookList implements Iterable<Book> {
 
     /**
      * Adds a book to the BookList.
-     *
-     * @param book element whose presence in this collection is to be ensured
-     * @return true if book is added successfully, false otherwise
+     * The book must not already exist in the list.
      */
     public void add(Book book) {
         requireNonNull(book);
@@ -44,9 +42,7 @@ public class BookList implements Iterable<Book> {
 
     /**
      * Removes the book specified from BookList.
-     *
-     * @param book the book to be removed.
-     * @return the removed book
+     * The book must exist in the list.
      */
     public void delete(Book book) {
         requireNonNull(book);
