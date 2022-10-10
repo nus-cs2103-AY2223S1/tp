@@ -124,14 +124,14 @@ public class ModelManager implements Model {
         taskBook.setTask(target, editedTask);
     }
 
-
+    @Override
     public void updateModuleRemoveTask(Task t) {
         Module toUpdate = parseModuleFromCode(t.getModule());
         toUpdate.removeTask(t);
         setModule(toUpdate, toUpdate);
     }
 
-
+    @Override
     public void updateModuleAddTask(Task t) {
         Module toUpdate = parseModuleFromCode(t.getModule());
         toUpdate.addTask(t);
@@ -186,6 +186,11 @@ public class ModelManager implements Model {
         moduleList.setModule(target, editedModule);
     }
 
+    @Override
+    public void deleteTasksOfModule(Module target) {
+        requireAllNonNull(target);
+        taskBook.removeTasksWithModCode(target.getCode());
+    }
 
     //=========== Filtered Task List Accessors =============================================================
 

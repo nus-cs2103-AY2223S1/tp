@@ -66,18 +66,33 @@ public interface Model {
      * The task must exist in the address book.
      */
     void deleteTask(Task target);
+
+    /** Check if given module exists within module list */
     boolean hasModule(Module module);
+
+    /** Check if given module exists within module list based on module code */
     boolean hasModuleWithModCode(ModCode code);
 
+
+    /** Updates module list after task removal */
     public void updateModuleRemoveTask(Task t);
+
+    /** Updates module list after adding task */
     public void updateModuleAddTask(Task t);
+
+    /** Updates task list after module removal */
+    public void deleteTasksOfModule(Module target);
 
     /**
      * Adds the given task.
      * {@code task} must not already exist in the task book.
      */
     void addTask(Task t);
+
+    /** Deletes the given module, must exist within the module list */
     void deleteModule(Module target);
+
+    /** Parses module within module list from a given module code */
     Module parseModuleFromCode(ModCode code);
 
     /**
@@ -95,6 +110,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Adds the given module.
+     * {@code module} must not already exist in the task book.
+     */
     void addModule(Module module);
 
     /**

@@ -142,8 +142,23 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteTasksOfModule(Module target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateModuleAddTask(Task t) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateModuleRemoveTask(Task t) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Module parseModuleFromCode(ModCode code) {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
