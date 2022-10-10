@@ -64,10 +64,11 @@ public class AddCommand extends Command {
 
         Set<Tag> toAddTagSet = new HashSet<>();
         ObservableList<Tag> addressBookTagList = model.getTagList();
+        Set<Tag> referenceTagSet = toAdd.getTags();
         Set<Tag> tagSet = new HashSet<>(toAdd.getTags());
 
         for (Tag currentTag : addressBookTagList) {
-            for (Tag toAddTag : tagSet) {
+            for (Tag toAddTag : referenceTagSet) {
                 if (currentTag.isSameTag(toAddTag)) {
                     toAddTagSet.add(currentTag);
                     tagSet.remove(toAddTag);

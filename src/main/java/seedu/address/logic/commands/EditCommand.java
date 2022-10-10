@@ -94,9 +94,10 @@ public class EditCommand extends Command {
 
         Set<Tag> toAddTagSet = new HashSet<>();
         ObservableList<Tag> addressBookTagList = model.getTagList();
+        Set<Tag> editedPersonReferenceTagSet = editedPerson.getTags();
         Set<Tag> editedPersonTagSet = new HashSet<>(editedPerson.getTags());
 
-        for (Tag toAddTag : editedPersonTagSet) {
+        for (Tag toAddTag : editedPersonReferenceTagSet) {
             for (Tag currentTag : addressBookTagList) {
                 if (currentTag.isSameTag(toAddTag)) {
                     toAddTagSet.add(currentTag);
