@@ -66,6 +66,19 @@ public class Class {
     }
 
     /**
+     * Returns a formatted time.
+     *
+     * @return String.
+     */
+    public String toTimeString() {
+        if (date == null) {
+            // Tutor yet to edit in a class date.
+            return "";
+        }
+        return convertToTimeString(startTime, endTime);
+    }
+
+    /**
      * Returns a formatted date.
      *
      * @param date LocalDate object.
