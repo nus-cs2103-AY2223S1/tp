@@ -13,13 +13,14 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueCustomerList
+Class UniqueCommissionList
 Class Customer
 Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
-
+Class Commission
 }
 
 Class HiddenOutside #FFFFFF
@@ -34,17 +35,22 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueCustomerList
-UniqueCustomerList --> "~* all\n" Customer
+AddressBook *---> "1" UniqueCustomerList
+UniqueCustomerList --> "~*" Customer: all
 Customer *--> Name
 Customer *--> Phone
 Customer *--> Email
 Customer *--> "0..1" Address
 Customer *--> "*" Tag
+Customer *--> UniqueCommissionList
+
+UniqueCommissionList --> "~*" Commission : all
+ModelManager --> "~*" Commission : filtered
+AddressBook *--> "1" UniqueCommissionList: full list
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Customer
+ModelManager -> "~*" Customer: filtered
 @enduml
