@@ -21,7 +21,7 @@ public class InternshipUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code internship}'s details.
      */
     public static String getInternshipDetails(Internship internship) {
         StringBuilder sb = new StringBuilder();

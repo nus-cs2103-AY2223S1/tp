@@ -54,6 +54,7 @@ public class InternshipBuilder {
 
     /**
      * Sets the {@code PersonId} of the {@code Person} that we are building.
+     * This refers to the contact person linked to the internship.
      */
     public InternshipBuilder withPersonId(Integer id) {
         this.personId = new PersonId(id);
@@ -78,7 +79,7 @@ public class InternshipBuilder {
 
 
     /**
-     * Sets the {@code InternshipId} of the {@code Person} that we are building.
+     * Sets the {@code InternshipId} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withInternshipId(Integer id) {
         this.internshipId = new InternshipId(id);
@@ -98,7 +99,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withInterviewDate(String date) {
         this.interviewDate = new InterviewDate(date);

@@ -17,7 +17,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.internship.Internship;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Internship} objects to be used in tests.
  */
 public class TypicalInternships {
 
@@ -70,8 +70,6 @@ public class TypicalInternships {
             .withStatus("REJECTED")
             .withInterviewDate("2021-05-25 08:10")
             .build();
-
-    // Manually added
     public static final Internship HOON = new InternshipBuilder()
             .withInternshipId(7)
             .withName("Hoon Logistics Pte Ltd")
@@ -79,7 +77,6 @@ public class TypicalInternships {
             .withStatus("REJECTED")
             .withInterviewDate("2021-12-04 14:22")
             .build();
-
     public static final Internship IDA = new InternshipBuilder()
             .withInternshipId(8)
             .withName("Ida Ideas Pte Ltd")
@@ -88,7 +85,7 @@ public class TypicalInternships {
             .withInterviewDate("2022-03-05 14:48")
             .build();
 
-    // Manually added - Person's details found in {@code PersonCommandTestUtil}
+    // Manually added - Internship's details found in {@code InternshipCommandTestUtil}
     public static final Internship ABC = new InternshipBuilder()
             .withName(VALID_NAME_ABC).withRole(VALID_ROLE_ABC)
             .withStatus(VALID_STATUS_ABC)
@@ -105,7 +102,7 @@ public class TypicalInternships {
     private TypicalInternships() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical internships.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
