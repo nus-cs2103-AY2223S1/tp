@@ -56,5 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/minheina)]
 [[portfolio](team/minheina.md)]
 
-* Role: Team Lead 
+* Role: Team Lead
 * Responsibilities: Component Logic

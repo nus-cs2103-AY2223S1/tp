@@ -8,6 +8,7 @@ import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.Model;
 import foodwhere.model.ReadOnlyAddressBook;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 import javafx.collections.ObservableList;
 
@@ -33,6 +34,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of stalls */
     ObservableList<Stall> getFilteredStallList();
+
+    /** Returns an unmodifiable view of the filtered list of reviews */
+    ObservableList<Review> getFilteredReviewList();
 
     /**
      * Returns the user prefs' address book file path.
