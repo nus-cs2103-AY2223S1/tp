@@ -54,10 +54,6 @@ public class Person {
         return address;
     }
 
-    public String getDetailsAsString() {
-        return String.format("%s %s %s %s %s", name, phone, email, address, tags);
-    }
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -110,6 +106,11 @@ public class Person {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags, status);
+    }
+
+    public String getDetailsAsString() {
+        return String.format("%s %s %s %s %s %s", name, phone, email, address, status,
+                tags);
     }
 
     @Override
