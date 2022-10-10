@@ -4,7 +4,10 @@
     "phone": "9482424",
     "email": "invalid@email!3e",
     "address": "4th street",
+    "gender": "Male",
     "cap": "3.9/4.0",
-    "university": "NUS"
+    "university": "NUS",
+    "id": "178426",
+    "title": "Software Engineer Intern"
   } ]
 }

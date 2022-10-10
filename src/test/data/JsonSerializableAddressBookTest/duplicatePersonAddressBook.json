@@ -4,15 +4,21 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "gender": "Female",
     "cap": "3.8/4.0",
     "university": "NUS",
+    "id": "178426",
+    "title": "Software Engineer Intern",
     "tagged": [ "interview", "rejected" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
+    "gender": "Female",
     "cap": "3.9/4.0",
-    "university": "NTU"
+    "university": "NTU",
+    "id": "178426",
+    "title": "Software Engineer Intern"
   } ]
 }

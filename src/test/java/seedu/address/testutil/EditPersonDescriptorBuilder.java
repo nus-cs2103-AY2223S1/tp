@@ -5,9 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.job.Id;
+import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -38,8 +41,11 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setGender(person.getGender());
         descriptor.setCap(person.getCap());
         descriptor.setUniversity(person.getUniversity());
+        descriptor.setId(person.getJob().getId());
+        descriptor.setTitle(person.getJob().getTitle());
         descriptor.setTags(person.getTags());
     }
 
@@ -76,6 +82,14 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Gender} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGender(String gender) {
+        descriptor.setGender(new Gender(gender));
+        return this;
+    }
+
+    /**
      * Sets the {@code Cap} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withCap(double capValue, double maximumCapValue) {
@@ -88,6 +102,22 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withUniversity(String university) {
         descriptor.setUniversity(new University(university));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Id} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withId(String id) {
+        descriptor.setId(new Id(id));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Title} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withTitle(String title) {
+        descriptor.setTitle(new Title(title));
         return this;
     }
 

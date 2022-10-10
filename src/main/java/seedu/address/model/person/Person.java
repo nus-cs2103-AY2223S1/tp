@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.job.Id;
+import seedu.address.model.job.Job;
+import seedu.address.model.job.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,22 +25,37 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Gender gender;
     private final Cap cap;
     private final University university;
+    private final Job job;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Cap cap,
-                  University university, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, cap, university, tags);
+    public Person(Name name, Phone phone, Email email,
+                  Address address,
+                  Gender gender,
+                  Cap cap,
+                  University university,
+                  Id id,
+                  Title title,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email,
+            address,
+            gender,
+            cap,
+            university,
+            tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.gender = gender;
         this.cap = cap;
         this.university = university;
+        this.job = new Job(id, title);
         this.tags.addAll(tags);
     }
 
@@ -57,12 +75,20 @@ public class Person {
         return address;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
     public Cap getCap() {
         return cap;
     }
 
     public University getUniversity() {
         return university;
+    }
+
+    public Job getJob() {
+        return job;
     }
 
     /**
@@ -105,15 +131,22 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getGender().equals(getGender())
                 && otherPerson.getCap().equals(getCap())
                 && otherPerson.getUniversity().equals(getUniversity())
+                && otherPerson.getJob().equals(getJob())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, cap, university, tags);
+        return Objects.hash(name, phone, email, address,
+                gender,
+                cap,
+                university,
+                job,
+                tags);
     }
 
     @Override
@@ -126,11 +159,14 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Gender: ")
+                .append(getGender())
                 .append("; CAP: ")
                 .append(getCap())
-                .append(getAddress())
                 .append("; University: ")
-                .append(getUniversity());
+                .append(getUniversity())
+                .append("; Job ID: ")
+                .append(getJob());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

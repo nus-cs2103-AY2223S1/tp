@@ -4,14 +4,20 @@
     "phone": "9482424",
     "email": "hans@example.com",
     "address": "4th street",
+    "gender": "Male",
     "cap": "4.0/5.0",
-    "university": "NUS"
+    "university": "NUS",
+    "id": "178426",
+    "title": "Software Engineer Intern"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "address": "4th street",
+    "gender": "Female",
     "cap": "3.9/4.0",
-    "university": "NTU"
+    "university": "NTU",
+    "id": "178426",
+    "title": "Software Engineer Intern"
   } ]
 }
