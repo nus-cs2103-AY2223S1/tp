@@ -15,6 +15,12 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to false */
+    Predicate<Task> PREDICATE_HIDE_ALL_TASKS = unused -> false;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -99,4 +105,13 @@ public interface Model {
      * {@code task} must not already exist in the task panel.
      */
     void addTask(Task task);
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
 }

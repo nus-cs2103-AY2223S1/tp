@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
+import seedu.address.logic.commands.task.ListTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
@@ -23,6 +24,13 @@ public class TaskPanelParserTest {
         Task task = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parse(TaskUtil.getAddTaskCommand(task));
         assertEquals(new AddTaskCommand(task), command);
+    }
+
+    @Test
+    public void parseCommand_listTasks() throws Exception {
+        Task task = new TaskBuilder().build();
+        ListTasksCommand command = (ListTasksCommand) parser.parse(TaskUtil.getListTasksCommand());
+        assertEquals(new ListTasksCommand(), command);
     }
 
     @Test
