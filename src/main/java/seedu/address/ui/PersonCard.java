@@ -56,7 +56,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText("\uD83D\uDCDE\t" + person.getPhone().value);
         address.setText("\uD83C\uDFE0\t" + person.getAddress().value);
         email.setText("\uD83D\uDCE7\t" + person.getEmail().value);
-//        replace birthday and insurance once implemented.
+        //        replace birthday and insurance once implemented.
         insurance.setText("\uD83D\uDCC4\t" + "something something");
         birthday.setText("\uD83C\uDF82\t" + "nothing nothing");
         person.getTags().stream()
