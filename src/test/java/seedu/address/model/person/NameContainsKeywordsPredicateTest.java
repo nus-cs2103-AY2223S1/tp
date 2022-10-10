@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalStudents.STUDENT1;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
+import static seedu.address.testutil.TypicalTutors.TUTOR1;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,6 +12,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.NameContainsKeywordsPredicate;
 import seedu.address.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {
@@ -58,6 +62,25 @@ public class NameContainsKeywordsPredicateTest {
     }
 
     @Test
+    public void test_studentNameContainsKeywords_returnsTrue() {
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        assertTrue(predicate.test(STUDENT1));
+    }
+
+    @Test
+    public void test_tutorNameContainsKeywords_returnsTrue() {
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        assertTrue(predicate.test(TUTOR1));
+    }
+
+    @Test
+    public void test_tuitionClassNameContainsKeywords_returnsTrue() {
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
+                Collections.singletonList("P2MATH"));
+        assertTrue(predicate.test(TUITIONCLASS1));
+    }
+
+    @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
@@ -71,5 +94,23 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
+    }
+
+    @Test
+    public void test_studentNameDoesNotContainKeywords_returnsFalse() {
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("123"));
+        assertFalse(predicate.test(STUDENT1));
+    }
+
+    @Test
+    public void test_tutorNameDoesNotContainKeywords_returnsFalse() {
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("123"));
+        assertFalse(predicate.test(TUTOR1));
+    }
+
+    @Test
+    public void test_tuitionClassNameNameDoesNotContainKeywords_returnsFalse() {
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("123"));
+        assertFalse(predicate.test(TUITIONCLASS1));
     }
 }
