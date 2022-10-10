@@ -88,16 +88,7 @@ Examples:
 *  `edit 1 n/Bob Tan` Edits the name of the 1st contact to be `Bob Tan`.
 *  `edit 2 g/https://github.com/bobtan p/91234567 t/team1` Edits the github repo link, phone number and tag of the 2nd person to be `https://github.com/bobtan`, `91234567` and `team1` respectively.
 
-### Sorting by tags: `sort`
-
-Displays all classmates (arranged in alphabetical order) with a specified tag.
-
-Format: `sort TAG`
-
-Examples:
-* `sort team4`
-
-### Finding a classmate: `find`
+### Finding a batchmate: `find`
 
 Finds classmates whose names contain any of the given keywords.
 
@@ -110,6 +101,15 @@ Format: `find KEYWORD`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Tan`, `David Chua`<br>
+
+### Finding a batchmate by their tags: `findTag`
+
+Lists batchmates that matches all the given tags.
+
+Format: `findTag TAG`
+
+Examples:
+* `findTag team4`
 
 ### Deleting a classmate : `delete`
 
@@ -143,13 +143,13 @@ Data in Mass Linkers is saved in the hard disk automatically after executing any
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**   | `help`                                                                                                                                                                |
-| **Add**    | `add n/NAME g/GITHUB_REPO_LINK [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]` <br> Example: `add n/John Doe g/https://github.com/johndoe t/team1 p/98765432 e/johnd@example.com` |
-| **List**   | `list`                                                                                                                                                                |
-| **Edit**   | `edit INDEX [n/NAME] [g/GITHUB_REPO_LINK] [p/PHONE] [e/EMAIL] [t/TAG]`<br> Example: `edit 2 g/https://github.com/bobtan p/91234567 t/team1`                           |
-| **Sort**   | `sort TAG` <br> Example: `sort team4`                                                                                                                                 |
-| **Find**   | `find KEYWORD`<br> Example: `find alex David`                                                                                                                         |
-| **Delete** | `delete INDEX`<br> Example: `delete 2`                                                                                                                                |
-| **Exit**   | `exit`                                                                                                                                                                |
+| Action           | Format, Examples                                                                                                                                                      |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**         | `help`                                                                                                                                                                |
+| **Add**          | `add n/NAME g/GITHUB_REPO_LINK [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]` <br> Example: `add n/John Doe g/https://github.com/johndoe t/team1 p/98765432 e/johnd@example.com` |
+| **List**         | `list`                                                                                                                                                                |
+| **Edit**         | `edit INDEX [n/NAME] [g/GITHUB_REPO_LINK] [p/PHONE] [e/EMAIL] [t/TAG]`<br> Example: `edit 2 g/https://github.com/bobtan p/91234567 t/team1`                           ||
+| **Find**         | `find KEYWORD`<br> Example: `find alex David`                                                                                                                         |
+| **Find By Tags** | `findTag TAG` <br> Example: `findTag team4`                                                                                                                           |
+| **Delete**       | `delete INDEX`<br> Example: `delete 2`                                                                                                                                |
+| **Exit**         | `exit`                                                                                                                                                                |
