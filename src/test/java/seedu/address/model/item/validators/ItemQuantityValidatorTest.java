@@ -14,6 +14,8 @@ public class ItemQuantityValidatorTest {
         assertTrue(ItemQuantityValidator.isQuantityMoreThanMaxQuantity(100001));
 
         assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0"));
+        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("10"));
+        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("100"));
         assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0.0"));
         assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0.00"));
         assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0.000"));
