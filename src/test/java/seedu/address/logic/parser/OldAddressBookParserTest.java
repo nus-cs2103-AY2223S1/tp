@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.OldEditCommand;
 import seedu.address.logic.commands.OldAddCommand;
 import seedu.address.logic.commands.OldClearCommand;
 import seedu.address.logic.commands.OldDeleteCommand;
+import seedu.address.logic.commands.OldEditCommand;
 import seedu.address.logic.commands.OldEditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.OldExitCommand;
 import seedu.address.logic.commands.OldFindCommand;
@@ -90,8 +90,8 @@ public class OldAddressBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, OldHelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                OldHelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test

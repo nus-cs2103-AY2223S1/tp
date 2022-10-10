@@ -23,13 +23,13 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ApplicationBookStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
 import seedu.address.storage.JsonApplicationBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.UiManager;
 import seedu.address.ui.Ui;
+import seedu.address.ui.UiManager;
 
 /**
  * Runs the application.

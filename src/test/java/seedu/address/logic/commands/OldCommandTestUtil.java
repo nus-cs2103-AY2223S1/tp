@@ -74,8 +74,8 @@ public class OldCommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(OldCommand command, OldModel actualModel, CommandResult expectedCommandResult,
-                                            OldModel expectedModel) {
+    public static void assertCommandSuccess(OldCommand command, OldModel actualModel,
+                                            CommandResult expectedCommandResult, OldModel expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);

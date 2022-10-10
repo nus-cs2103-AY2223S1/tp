@@ -28,8 +28,8 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.OldStorage;
 import seedu.address.storage.OldStorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.Ui;
 import seedu.address.ui.OldUiManager;
+import seedu.address.ui.Ui;
 
 /**
  * Runs the application.

@@ -47,7 +47,8 @@ public class OldAddCommandTest {
         OldAddCommand addCommand = new OldAddCommand(validPerson);
         OldModelStub modelStub = new OldModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, OldAddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                OldAddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
