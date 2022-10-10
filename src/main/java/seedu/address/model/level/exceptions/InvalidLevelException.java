@@ -1,4 +1,4 @@
-package seedu.address.model.tuitionclass.exceptions;
+package seedu.address.model.level.exceptions;
 
 /**
  * Signals that the operation takes in an invalid string input for Level.

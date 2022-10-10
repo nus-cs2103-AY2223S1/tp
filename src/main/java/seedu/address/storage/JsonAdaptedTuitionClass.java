@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.level.Level;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.Day;
-import seedu.address.model.tuitionclass.Level;
 import seedu.address.model.tuitionclass.Name;
 import seedu.address.model.tuitionclass.Subject;
 import seedu.address.model.tuitionclass.Time;
