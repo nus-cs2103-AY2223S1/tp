@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.task.TaskList;
 
 public class JsonAdaptedModuleTest {
     private static final List<JsonAdaptedTask> VALID_LIST_OF_TASKS = getTypicalTasks().stream()
@@ -60,7 +61,7 @@ public class JsonAdaptedModuleTest {
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_MODULE_CODE,
                 VALID_MODULE_TITLE, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ModuleTitle.class.getSimpleName());
+                TaskList.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
     }
 

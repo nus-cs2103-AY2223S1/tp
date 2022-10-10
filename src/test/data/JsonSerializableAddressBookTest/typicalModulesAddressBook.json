@@ -3,12 +3,15 @@
   "persons" : [ ],
   "modules" : [ {
     "moduleCode": "CS2103T",
-    "moduleTitle": "Software Engineering"
+    "moduleTitle": "Software Engineering",
+    "tasks" : [ "Submit quiz" ]
   }, {
     "moduleCode": "CS2106",
-    "moduleTitle": "Introduction to Operating Systems"
+    "moduleTitle": "Introduction to Operating Systems",
+    "tasks" : [ ]
   }, {
     "moduleCode": "MA2001",
-    "moduleTitle": "Linear Algebra I"
+    "moduleTitle": "Linear Algebra I",
+    "tasks" : [ ]
   }]
 }

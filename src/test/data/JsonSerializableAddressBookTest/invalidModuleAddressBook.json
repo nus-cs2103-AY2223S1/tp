@@ -2,6 +2,7 @@
   "persons": [ ],
   "modules": [ {
     "moduleCode": "(CS2103T)",
-    "moduleTitle": "Software Engineering"
+    "moduleTitle": "Software Engineering",
+    "tasks" : [ "Submit quiz" ]
   } ]
 }

@@ -41,7 +41,7 @@ public class ModuleBuilder {
     public ModuleBuilder(Module moduleToCopy) {
         moduleCode = moduleToCopy.getModuleCode();
         moduleTitle = moduleToCopy.getModuleTitle();
-        tasks.addAll(moduleToCopy.getTasks());
+        tasks = new ArrayList<>(moduleToCopy.getTasks());
         links = moduleToCopy.getLinks();
     }
 

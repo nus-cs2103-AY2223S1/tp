@@ -21,12 +21,12 @@ public class TypicalModules {
     public static final List<Task> VALID_TASKS = getTypicalTasks();
 
     public static final Module CS2103T = new ModuleBuilder().withModuleCode("CS2103T")
-            .withModuleTitle("Software Engineering").withTasks(VALID_TASKS).build();
+            .withModuleTitle("Software Engineering").build();
 
     public static final Module CS2106 = new ModuleBuilder().withModuleCode(VALID_CS_MODULE_CODE)
             .withModuleTitle(VALID_CS_MODULE_TITLE).build();
     public static final Module MA2001 = new ModuleBuilder().withModuleCode(VALID_MA_MODULE_CODE)
-            .withModuleTitle(VALID_MA_MODULE_TITLE).withTasks(VALID_TASKS).build();
+            .withModuleTitle(VALID_MA_MODULE_TITLE).build();
 
     private TypicalModules() {} // prevents instantiation
 

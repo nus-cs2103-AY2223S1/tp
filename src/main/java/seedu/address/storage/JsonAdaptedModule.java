@@ -15,6 +15,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
+import seedu.address.model.module.task.TaskList;
 
 /**
  * Jackson-friendly version of {@link Module}.
@@ -25,7 +26,7 @@ class JsonAdaptedModule {
 
     private final String moduleCode;
     private final String moduleTitle;
-    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedTask> moduleTasks;
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
@@ -36,7 +37,7 @@ class JsonAdaptedModule {
                              @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
-        this.tasks.addAll(tasks);
+        this.moduleTasks = tasks;
     }
 
     /**
@@ -45,9 +46,9 @@ class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         moduleCode = source.getModuleCode().value;
         moduleTitle = source.getModuleTitle().value;
-        tasks.addAll(source.getTasks().stream()
+        moduleTasks = source.getTasks().stream()
                 .map(JsonAdaptedTask::new)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
     /**
@@ -56,10 +57,6 @@ class JsonAdaptedModule {
      * @throws IllegalValueException if there were any data constraints violated in the adapted module.
      */
     public Module toModelType() throws IllegalValueException {
-        final List<Task> personTasks = new ArrayList<>();
-        for (JsonAdaptedTask task : tasks) {
-            personTasks.add(task.toModelType());
-        }
         if (moduleCode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ModuleCode.class.getSimpleName()));
@@ -74,7 +71,15 @@ class JsonAdaptedModule {
                     ModuleTitle.class.getSimpleName()));
         }
         final ModuleTitle modelModuleTitle = new ModuleTitle(moduleTitle);
-        final List<Task> modelTasks = new ArrayList<>(personTasks);
+
+        if (moduleTasks == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskList.class.getSimpleName()));
+        }
+        final List<Task> modelTasks = new ArrayList<>();
+        for (JsonAdaptedTask task : moduleTasks) {
+            modelTasks.add(task.toModelType());
+        }
         final Set<Link> links = new HashSet<>();
 
         return new Module(modelModuleCode, modelModuleTitle, modelTasks, links);
