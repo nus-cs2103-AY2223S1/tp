@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.StudentId;
+import seedu.address.model.person.TelegramHandle;
 
 /**
  * A utility class to help with building Student objects.
@@ -9,11 +11,11 @@ import seedu.address.model.person.Student;
 public class StudentBuilder extends PersonBuilder {
 
     public static final String DEFAULT_ID = "A0123123X";
-    public static final String DEFAULT_TELEGRAM_HANDLE = "amyb123";
+    public static final String DEFAULT_TELEGRAM_HANDLE = "@amyb123";
     public static final String DEFAULT_STUDENT_INFO = "abc";
 
-    private String id;
-    private String telegramHandle;
+    private StudentId id;
+    private TelegramHandle telegramHandle;
     private String studentInfo;
 
     /**
@@ -21,8 +23,8 @@ public class StudentBuilder extends PersonBuilder {
      */
     public StudentBuilder() {
         super();
-        id = DEFAULT_ID;
-        telegramHandle = DEFAULT_TELEGRAM_HANDLE;
+        id = new StudentId(DEFAULT_ID);
+        telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
         studentInfo = DEFAULT_STUDENT_INFO;
     }
 
@@ -32,8 +34,8 @@ public class StudentBuilder extends PersonBuilder {
      */
     public StudentBuilder(Person person) {
         super(person);
-        id = DEFAULT_ID;
-        telegramHandle = DEFAULT_TELEGRAM_HANDLE;
+        id = new StudentId(DEFAULT_ID);
+        telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
         studentInfo = DEFAULT_STUDENT_INFO;
     }
 
@@ -52,7 +54,7 @@ public class StudentBuilder extends PersonBuilder {
      * Sets the {@code id} of the {@code Student} that we are building.
      */
     public StudentBuilder withId(String id) {
-        this.id = id;
+        this.id = new StudentId(id);
         return this;
     }
 
@@ -60,7 +62,7 @@ public class StudentBuilder extends PersonBuilder {
      * Sets the {@code telegramHandle} of the {@code Student} that we are building.
      */
     public StudentBuilder withTelegramHandle(String telegramHandle) {
-        this.telegramHandle = telegramHandle;
+        this.telegramHandle = new TelegramHandle(telegramHandle);
         return this;
     }
 

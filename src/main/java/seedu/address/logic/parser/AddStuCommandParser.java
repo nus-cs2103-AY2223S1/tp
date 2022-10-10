@@ -20,6 +20,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.StudentId;
+import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,8 +50,8 @@ public class AddStuCommandParser implements Parser<AddStuCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        String id = ParserUtil.parseID(argMultimap.getValue(PREFIX_ID).get());
-        String handle = ParserUtil.parseTelegramHandle(argMultimap.getValue(PREFIX_HANDLE).get());
+        StudentId id = ParserUtil.parseID(argMultimap.getValue(PREFIX_ID).get());
+        TelegramHandle handle = ParserUtil.parseTelegramHandle(argMultimap.getValue(PREFIX_HANDLE).get());
         String studentInfo = ParserUtil.parseStudentInfo(argMultimap.getValue(PREFIX_STUDENT_INFO).get());
 
         Student student = new Student(name, phone, email, address, tagList, id, handle, studentInfo);

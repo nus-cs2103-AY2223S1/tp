@@ -36,8 +36,8 @@ public class StudentUtil {
         student.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
-        sb.append(PREFIX_ID + student.getId() + " ");
-        sb.append(PREFIX_HANDLE + student.getTelegramHandle() + " ");
+        sb.append(PREFIX_ID + student.getId().value + " ");
+        sb.append(PREFIX_HANDLE + student.getTelegramHandle().telegramHandle + " ");
         sb.append(PREFIX_STUDENT_INFO + student.getStudentInfo() + " ");
         return sb.toString();
     }

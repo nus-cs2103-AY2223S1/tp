@@ -9,8 +9,8 @@ import seedu.address.model.tag.Tag;
  */
 public class Student extends Person {
 
-    private String id;
-    private String telegramHandle;
+    private StudentId id;
+    private TelegramHandle telegramHandle;
     private String studentInfo;
     /**
      * Every field must be present and not null.
@@ -21,19 +21,19 @@ public class Student extends Person {
      * @param address
      * @param tags
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, String id,
-                   String telegramHandle, String studentInfo) {
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, StudentId id,
+                   TelegramHandle telegramHandle, String studentInfo) {
         super(name, phone, email, address, tags);
         this.id = id;
         this.telegramHandle = telegramHandle;
         this.studentInfo = studentInfo;
     }
 
-    public String getId() {
+    public StudentId getId() {
         return id;
     }
 
-    public String getTelegramHandle() {
+    public TelegramHandle getTelegramHandle() {
         return telegramHandle;
     }
 

@@ -23,6 +23,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
+import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -136,13 +138,16 @@ public class ParserUtil {
      * Parses id.
      *
      * @param id
-     * @return id.
+     * @return StudentID.
      * @throws ParseException If null.
      */
-    public static String parseID(String id) throws ParseException {
+    public static StudentId parseID(String id) throws ParseException {
         requireNonNull(id);
         String trimmedID = id.trim();
-        return id;
+        if (!StudentId.isValidStudentID(trimmedID)) {
+            throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
+        }
+        return new StudentId(id);
     }
 
     /**
@@ -152,10 +157,13 @@ public class ParserUtil {
      * @return handle.
      * @throws ParseException If null.
      */
-    public static String parseTelegramHandle(String handle) throws ParseException {
+    public static TelegramHandle parseTelegramHandle(String handle) throws ParseException {
         requireNonNull(handle);
-        String trimmedID = handle.trim();
-        return handle;
+        String trimmedHandle = handle.trim();
+        if (!TelegramHandle.isValidTelegramHandle(handle)) {
+            throw new ParseException(TelegramHandle.MESSAGE_CONSTRAINTS);
+        }
+        return new TelegramHandle(handle);
     }
 
     /**

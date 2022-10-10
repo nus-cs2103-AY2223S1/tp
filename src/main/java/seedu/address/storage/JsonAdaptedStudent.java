@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.StudentId;
+import seedu.address.model.person.TelegramHandle;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -46,8 +48,8 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
      */
     public JsonAdaptedStudent(Person source) {
         super(source);
-        id = ((Student) source).getId();
-        handle = ((Student) source).getTelegramHandle();
+        id = ((Student) source).getId().value;
+        handle = ((Student) source).getTelegramHandle().telegramHandle;
         info = ((Student) source).getStudentInfo();
     }
 
@@ -55,15 +57,28 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
     public Student toModelType() throws IllegalValueException {
         Person person = super.toModelType();
         if (id == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "ID"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StudentId.class.getSimpleName()));
         }
+        if (!StudentId.isValidStudentID(id)) {
+            throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
+        }
+        final StudentId modelStudentId = new StudentId(id);
+
         if (handle == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Telegram Handle"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TelegramHandle.class.getSimpleName()));
         }
+        if (!TelegramHandle.isValidTelegramHandle(handle)) {
+            throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
+        }
+        final TelegramHandle modelTelegramHandle = new TelegramHandle(handle);
+
         if (info == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "info"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "INFO"));
         }
+
         return new Student(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
-                person.getTags(), id, handle, info);
+                person.getTags(), modelStudentId, modelTelegramHandle, info);
     }
 }
