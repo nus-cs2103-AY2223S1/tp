@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +18,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.company.Company;
+import seedu.address.model.poc.Poc;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,8 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private CompanyListPanel companyListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private PocNameDisplay pocNameDisplay;
-    private PocNumberDisplay pocNumberDisplay;
+    private PocListPanel pocListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -53,10 +56,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane pocNamePlaceholder;
-
-    @FXML
-    private StackPane pocNumberPlaceholder;
+    private StackPane pocListPanelPlaceholder;
 
     @FXML
     private StackPane companyTransactionPanelPlaceholder;
@@ -127,15 +127,8 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        pocNameDisplay = new PocNameDisplay();
-        pocNamePlaceholder.getChildren().add(pocNameDisplay.getRoot());
-
-        pocNumberDisplay = new PocNumberDisplay();
-        pocNumberPlaceholder.getChildren().add(pocNumberDisplay.getRoot());
-
-        // To be removed after updating of POC number and placeholder is implemented!
-        pocNameDisplay.setPocName("Tom");
-        pocNumberDisplay.setPocNumber("93972398");
+        pocListPanel = new PocListPanel();
+        pocListPanelPlaceholder.getChildren().add(pocListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getJeeqTrackerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -184,8 +177,17 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public CompanyListPanel getCompanyListPanel() {
-        return companyListPanel;
+    private void updatePocList() {
+        ObservableList<Company> companies = logic.getFilteredCompanyList();
+
+        if (companies.size() == 0) {
+            pocListPanel.setPocList(FXCollections.observableArrayList());
+            return;
+        }
+
+        Company firstCompany = companies.get(0);
+        ObservableList<Poc> pocs = firstCompany.getPocs().asUnmodifiableObservableList();
+        pocListPanel.setPocList(pocs);
     }
 
     /**
@@ -206,6 +208,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            updatePocList();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
