@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+//import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 import javax.print.DocFlavor;
 
@@ -133,23 +133,23 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Entry> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEntryList());
+        List<Entry> expectedFilteredList = new ArrayList<>(actualModel.getFilteredExpenditureList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredEntryList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredExpenditureList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredEntryList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredExpenditureList().size());
 
-        Entry entry = model.getFilteredEntryList().get(targetIndex.getZeroBased());
+        Entry entry = model.getFilteredExpenditureList().get(targetIndex.getZeroBased());
         final String[] splitName = entry.toString().split("\\s+");
         model.updateFilteredEntryList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-        assertEquals(1, model.getFilteredEntryList().size());
+        assertEquals(1, model.getFilteredExpenditureList().size());
     }
 
 }

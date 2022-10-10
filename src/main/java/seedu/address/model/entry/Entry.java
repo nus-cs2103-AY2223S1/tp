@@ -12,7 +12,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Entry {
     // Identity fields
     private final Description description;
-
+//    private final EntryType type;
     // Data fields
     private final Date date;
     private final Amount amount;
