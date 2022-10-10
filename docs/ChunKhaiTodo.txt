@@ -1,7 +1,7 @@
 add m/MODULE_CODE l/LECTURE_VENUE_AND_TIMING t/TUTORIAL_VENUE_AND_TIMING a/ASSIGNMENT_NAME_AND_DEADLINE z/ZOOM_LINK [t/TAG]
 add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​'
 add c n/John Doe p/98765432 e/johnd@example.com a/311
-add m m/CS2100 l/Lecture1 t/Tutorial1 z/https://nus-sg.zoom.us/j/82167158590
+add m m/CS2100 l/Lecture1 t/Tutorial1 z/https://nus-sg.zoom.us
 
 concerns:
 - tags for module?

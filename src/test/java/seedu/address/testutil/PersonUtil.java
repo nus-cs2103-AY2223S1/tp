@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.COMMAND_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.CONTACT_COMMAND_IDENTIFIER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -23,7 +23,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + COMMAND_CONTACT + " " + getPersonDetails(person);
+        return AddCommand.COMMAND_WORD + " " + CONTACT_COMMAND_IDENTIFIER + " " + getPersonDetails(person);
     }
 
     /**
