@@ -13,20 +13,20 @@ import jarvis.model.Task;
 /**
  * Deletes a task identified using it's displayed index from the task book.
  */
-public class DeleteTaskCommand extends Command {
+public class MarkTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletetask";
+    public static final String COMMAND_WORD = "marktask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task identified by the index number used in the displayed task list.\n"
+            + ": Marks the task identified by the index number used in the displayed task list as completed.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task: %1$s";
+    public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked task as done: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteTaskCommand(Index targetIndex) {
+    public MarkTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -39,16 +39,16 @@ public class DeleteTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteTask(taskToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+        Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
+        taskToMark.markAsDone();
+        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteTaskCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteTaskCommand) other).targetIndex));
+                || (other instanceof MarkTaskCommand // instanceof handles nulls
+                && targetIndex.equals(((MarkTaskCommand) other).targetIndex));
         // state check
     }
 }
