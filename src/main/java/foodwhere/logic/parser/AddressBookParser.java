@@ -14,6 +14,7 @@ import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.ListCommand;
 import foodwhere.logic.commands.RAddCommand;
+import foodwhere.logic.commands.RDeleteCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.SDeleteCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
@@ -56,6 +57,9 @@ public class AddressBookParser {
 
         case SDeleteCommand.COMMAND_WORD:
             return new SDeleteCommandParser().parse(arguments);
+
+        case RDeleteCommand.COMMAND_WORD:
+            return new RDeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

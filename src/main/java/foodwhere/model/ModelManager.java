@@ -114,6 +114,11 @@ public class ModelManager implements Model {
         addressBook.setStall(target, editedStall);
     }
 
+
+    @Override
+    public void deleteReview(Review target) {
+        addressBook.removeReview(target);
+    }
     //=========== Filtered Stall List Accessors =============================================================
 
     /**
