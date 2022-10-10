@@ -158,6 +158,11 @@ public class AddCommandTest {
         public void updateFilteredRecordList(Predicate<Record> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void clearRecords() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
