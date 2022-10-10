@@ -105,7 +105,7 @@ public interface Model {
     void updateFilteredItemList(Predicate<Item> predicate);
 
     /**
-     * Returns the number of items in the filtered item list
+     * Returns the number of items in the filtered item list.
      */
     int getFilteredItemListSize();
 
@@ -118,4 +118,5 @@ public interface Model {
      * Returns the item list.
      */
     ObservableList<Item> getInventoryList();
+
 }
