@@ -59,26 +59,50 @@ public interface Model {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasEntry(Entry entry);
+    boolean hasExpenditure(Entry entry);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deleteEntry(Entry target);
+    void deleteExpenditure(Entry target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addEntry(Entry entry);
+    void addExpenditure(Entry entry);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setEntry(Entry target, Entry editedEntry);
+    void setExpenditure(Entry target, Entry editedEntry);
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    boolean hasIncome(Entry entry);
+
+    /**
+     * Deletes the given person.
+     * The person must exist in the address book.
+     */
+    void deleteIncome(Entry target);
+
+    /**
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
+     */
+    void addIncome(Entry entry);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    void setIncome(Entry target, Entry editedEntry);
 
     /**
      * Returns an unmodifiable view of the filtered person list

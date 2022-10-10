@@ -1,18 +1,19 @@
 package seedu.address.model.entry;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Set;
 
-public class Expenditure extends Entry {
+import seedu.address.model.tag.Tag;
+
+/**
+ * Represents an income entry.
+ */
+public class Income extends Entry {
     /**
      * Every field must be present and not null.
      */
-    public Expenditure(Description description, Date date, Amount amount, Set<Tag> tags) {
+    public Income(Description description, Date date, Amount amount, Set<Tag> tags) {
         super(description, date, amount, tags);
     }
-
-
 
     @Override
     public String toString() {

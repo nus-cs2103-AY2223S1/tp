@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
+import seedu.address.model.entry.EntryType;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -61,6 +62,15 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    public static EntryType parseEntryType(String entryType) throws ParseException {
+        requireNonNull(entryType);
+        String trimmedEntryType = entryType.trim();
+        if (!EntryType.isValidEntryType(trimmedEntryType)) {
+            throw new ParseException(EntryType.MESSAGE_CONSTRAINTS);
+        }
+        return new EntryType(trimmedEntryType);
     }
 
     public static Amount parseAmount(String amount) throws ParseException {

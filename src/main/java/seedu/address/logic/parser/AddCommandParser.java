@@ -15,7 +15,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
-import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.Expenditure;
+import seedu.address.model.entry.Income;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -60,9 +62,17 @@ public class AddCommandParser implements Parser<AddCommand> {
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Entry entry = new Entry(description, date, amount, tagList);
 
-        return new AddCommand(entry);
+        EntryType entryType = ParserUtil.parseEntryType(argMultimap.getValue(PREFIX_TYPE).get());
+        switch (entryType.getEntryType()) {
+        case EXPENDITURE:
+            Expenditure expenditure = new Expenditure(description, date, amount, tagList);
+            return new AddCommand(expenditure, entryType);
+        case INCOME:
+            Income income = new Income(description, date, amount, tagList);
+            return new AddCommand(income, entryType);
+        }
+        throw new ParseException(EntryType.MESSAGE_CONSTRAINTS);
     }
 
     /**

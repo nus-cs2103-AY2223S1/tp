@@ -6,10 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be of the format dd-mm-yyyy and it should only contain numbers";
-
-    public static final String VALIDATION_REGEX =
-            "^([0-2][0-9]||3[0-1])-(0[1-9]||[1-9]||1[0-2])-([0-9][0-9])?[0-9][0-9]$";
-
+    public static final String VALIDATION_REGEX = "^([0-2][0-9]||3[0-1])-(0[1-9]||[1-9]||1[0-2])-([0-9][0-9])?[0-9][0-9]$";
+    ;;
     public final String date;
 
     /**

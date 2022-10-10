@@ -21,7 +21,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Entry> filteredEntries;
+    private final FilteredList<Entry> filteredExpenditure;
+    private final FilteredList<Entry> filteredIncome;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +34,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEntries = new FilteredList<>(this.addressBook.getEntryList());
+        filteredExpenditure = new FilteredList<>(this.addressBook.getExpenditureList());
+        filteredIncome = new FilteredList<>(this.addressBook.getIncomeList());
     }
 
     public ModelManager() {
@@ -88,27 +90,51 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasEntry(Entry entry) {
+    public boolean hasExpenditure(Entry entry) {
         requireNonNull(entry);
-        return addressBook.hasEntry(entry);
+        return addressBook.hasExpenditure(entry);
     }
 
     @Override
-    public void deleteEntry(Entry target) {
-        addressBook.removeEntry(target);
+    public void deleteExpenditure(Entry target) {
+        addressBook.removeExpenditure(target);
     }
 
     @Override
-    public void addEntry(Entry entry) {
-        addressBook.addEntry(entry);
+    public void addExpenditure(Entry entry) {
+        addressBook.addExpenditure(entry);
         updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 
     @Override
-    public void setEntry(Entry target, Entry editedEntry) {
+    public void setExpenditure(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
 
-        addressBook.setEntries(target, editedEntry);
+        addressBook.setExpenditure(target, editedEntry);
+    }
+
+    @Override
+    public boolean hasIncome(Entry entry) {
+        requireNonNull(entry);
+        return addressBook.hasIncome(entry);
+    }
+
+    @Override
+    public void deleteIncome(Entry target) {
+        addressBook.removeIncome(target);
+    }
+
+    @Override
+    public void addIncome(Entry entry) {
+        addressBook.addIncome(entry);
+        updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
+    }
+
+    @Override
+    public void setIncome(Entry target, Entry editedEntry) {
+        requireAllNonNull(target, editedEntry);
+
+        addressBook.setIncome(target, editedEntry);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -119,12 +145,12 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Entry> getFilteredEntryList() {
-        return filteredEntries;
+        return filteredExpenditure;
     }
 
     public void updateFilteredEntryList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
-        filteredEntries.setPredicate(predicate);
+        filteredExpenditure.setPredicate(predicate);
     }
 
     @Override
@@ -142,8 +168,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-            && userPrefs.equals(other.userPrefs)
-            && filteredEntries.equals(other.filteredEntries);
+                && userPrefs.equals(other.userPrefs)
+                && filteredExpenditure.equals(other.filteredExpenditure);
     }
 
 }

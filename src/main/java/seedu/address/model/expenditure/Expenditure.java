@@ -1,13 +1,13 @@
 package seedu.address.model.expenditure;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.tag.Tag;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Expenditure {
     // Identity fields
@@ -21,7 +21,7 @@ public class Expenditure {
     /**
      * Every field must be present and not null.
      */
-    public Expenditure(Description description, Date date, Amount amount, Set<Tag> tags) {
+    public Expenditure( Description description, Date date, Amount amount, Set<Tag> tags) {
         requireAllNonNull(date, amount, description, tags);
         this.date = date;
         this.amount = amount;
@@ -61,7 +61,7 @@ public class Expenditure {
         }
 
         return otherExpense != null
-            && otherExpense.getDescription().equals(getDescription());
+                && otherExpense.getDescription().equals(getDescription());
     }
 
     /**
@@ -80,9 +80,9 @@ public class Expenditure {
 
         Expenditure otherExpense = (Expenditure) other;
         return otherExpense.getDescription().equals(getDescription())
-            && otherExpense.getDate().equals(getDate())
-            && otherExpense.getAmount().equals(getAmount())
-            && otherExpense.getTags().equals(getTags());
+                && otherExpense.getDate().equals(getDate())
+                && otherExpense.getAmount().equals(getAmount())
+                && otherExpense.getTags().equals(getTags());
     }
 
     @Override
@@ -95,10 +95,10 @@ public class Expenditure {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
-            .append("; Date: ")
-            .append(getDate())
-            .append("; Amount: ")
-            .append(getAmount());
+                .append("; Date: ")
+                .append(getDate())
+                .append("; Amount: ")
+                .append(getAmount());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

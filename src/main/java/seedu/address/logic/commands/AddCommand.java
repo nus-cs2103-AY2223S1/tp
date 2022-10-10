@@ -1,11 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryType;
 
 /**
  * Adds an income/expenditure entry to the application.
@@ -31,24 +36,33 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This entry already exists in the address book";
 
     final Entry toAdd;
+    final EntryType entryType;
 
     /**
      * Creates an AddEntryCommand to add the specified {@code Expenditure}
      */
-    public AddCommand(Entry entry) {
+    public AddCommand(Entry entry, EntryType entryType) {
         requireNonNull(entry);
         toAdd = entry;
+        this.entryType = entryType;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasEntry(toAdd)) {
+        if (model.hasExpenditure(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addEntry(toAdd);
+        switch (entryType.getEntryType()) {
+        case EXPENDITURE:
+            model.addExpenditure(toAdd);
+            break;
+        case INCOME:
+            model.addIncome(toAdd);
+            break;
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

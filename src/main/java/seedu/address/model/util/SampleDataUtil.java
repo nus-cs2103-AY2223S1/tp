@@ -30,7 +30,7 @@ public class SampleDataUtil {
     public static ReadOnlyPennyWise getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Entry sampleEntry : getSampleEntries()) {
-            sampleAb.addEntry(sampleEntry);
+            sampleAb.addExpenditure(sampleEntry);
         }
         return sampleAb;
     }
