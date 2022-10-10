@@ -7,7 +7,11 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "gender": "Female",
     "graduationDate": "05-2024",
+    "cap": "3.9/5.0",
     "university": "Singapore University",
+    "major": "Computer Science",
+    "id" : "171932",
+    "title" : "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ "interview", "rejected" ]
   }, {
     "name" : "Benson Meier",
@@ -15,8 +19,12 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "gender": "Male",
-    "graduationDate": "05-2024",
+    "graduationDate": "01-2025",
+    "cap": "4.0/5.0",
     "university": "NUS",
+    "major": "Computer Engineering",
+    "id" : "J021932",
+    "title" : "Intern, Software Engineer (May'23 - Aug'23)",
     "tagged" : [ "KIV" ]
   }, {
     "name" : "Carl Kurz",
@@ -24,8 +32,12 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "gender": "Male",
-    "graduationDate": "05-2024",
+    "graduationDate": "09-2026",
+    "cap": "3.99/4.0",
     "university": "SUTD",
+    "major": "Chemical Engineering",
+    "id" : "171932",
+    "title" : "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -33,8 +45,12 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "gender": "Male",
-    "graduationDate": "05-2024",
+    "graduationDate": "05-2023",
+    "cap": "2.5/4.0",
     "university": "SMU",
+    "major": "Civil Engineering",
+    "id" : "171932",
+    "title" : "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -42,8 +58,12 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "gender": "Female",
-    "graduationDate": "05-2024",
+    "graduationDate": "05-2025",
+    "cap": "3.7/5.0",
     "university": "Lasalle",
+    "major": "Electrical Engineering",
+    "id": "171932",
+    "title": "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -52,7 +72,11 @@
     "address" : "little tokyo",
     "gender": "Female",
     "graduationDate": "05-2024",
+    "cap": "3.97/5.0",
     "university": "Nanyang Polytechnic",
+    "major": "Animal Sciences",
+    "id": "J021932",
+    "title": "Intern, Software Engineer (May'23 - Aug'23)",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -60,8 +84,12 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "gender": "Male",
-    "graduationDate": "05-2024",
+    "graduationDate": "05-2026",
+    "cap": "4.79/5.0",
     "university": "Temasek Polytechnic",
+    "major": "Accounting",
+    "id" : "J021932",
+    "title" : "Intern, Software Engineer (May'23 - Aug'23)",
     "tagged" : [ ]
   } ]
 }

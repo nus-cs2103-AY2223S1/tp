@@ -6,7 +6,11 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "gender": "Female",
     "graduationDate": "05-2024",
+    "cap": "3.8/4.0",
     "university": "NUS",
+    "major": "Computer Science",
+    "id": "178426",
+    "title": "Software Engineer Intern",
     "tagged": [ "interview", "rejected" ]
   }, {
     "name": "Alice Pauline",
@@ -15,6 +19,10 @@
     "address": "4th street",
     "gender": "Female",
     "graduationDate": "05-2024",
-    "university": "NTU"
+    "cap": "3.9/4.0",
+    "university": "NTU",
+    "major": "Computer Engineering",
+    "id": "178426",
+    "title": "Software Engineer Intern"
   } ]
 }

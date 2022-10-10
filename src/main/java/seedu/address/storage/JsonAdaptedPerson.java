@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.logic.parser.ParserUtil.parseCap;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,10 +12,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.job.Id;
+import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.GraduationDate;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -33,28 +39,41 @@ class JsonAdaptedPerson {
     private final String address;
     private final String gender;
     private final String graduationDate;
+    private final String cap;
     private final String university;
+    private final String major;
+    private final String id;
+    private final String title;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name,
-                             @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email,
-                             @JsonProperty("address") String address,
-                             @JsonProperty("gender") String gender,
-                             @JsonProperty("graduationDate") String graduationDate,
-                             @JsonProperty("university") String university,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPerson(
+            @JsonProperty("name") String name,
+            @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email,
+            @JsonProperty("address") String address,
+            @JsonProperty("gender") String gender,
+            @JsonProperty("graduationDate") String graduationDate,
+            @JsonProperty("cap") String cap,
+            @JsonProperty("university") String university,
+            @JsonProperty("major") String major,
+                             @JsonProperty("id") String id,
+            @JsonProperty("title") String title,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.gender = gender;
+        this.cap = cap;
         this.graduationDate = graduationDate;
         this.university = university;
+        this.major = major;
+        this.id = id;
+        this.title = title;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -69,8 +88,12 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         gender = source.getGender().value;
+        cap = source.getCap().toString();
         graduationDate = source.getGraduationDate().value;
         university = source.getUniversity().value;
+        major = source.getMajor().value;
+        id = source.getJob().getId().value;
+        title = source.getJob().getTitle().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -136,18 +159,55 @@ class JsonAdaptedPerson {
         }
         final GraduationDate modelGraduationDate = new GraduationDate(graduationDate);
 
+        if (cap == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Cap.class.getSimpleName()));
+        }
+        // isValidCap is already handled inside the parseCap() method
+        final Cap modelCap = parseCap(cap);
+
         if (university == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, University.class.getSimpleName()));
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, University.class.getSimpleName()));
         }
         if (!University.isValidUniversity(university)) {
             throw new IllegalValueException(University.MESSAGE_CONSTRAINTS);
         }
         final University modelUniversity = new University(university);
 
+        if (major == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Major.class.getSimpleName()));
+        }
+        if (!Major.isValidMajor(major)) {
+            throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
+        }
+        final Major modelMajor = new Major(major);
+
+        if (id == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
+        }
+        if (!Id.isValidId(id)) {
+            throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
+        }
+        final Id modelId = new Id(id);
+
+        if (title == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
+        }
+        if (!Title.isValidTitle(title)) {
+            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
+        }
+        final Title modelTitle = new Title(title);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGender,
-                modelGraduationDate, modelUniversity, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelGender,
+                modelGraduationDate,
+                modelCap,
+                modelUniversity,
+                modelMajor,
+                modelId,
+                modelTitle,
+                modelTags);
     }
 
 }

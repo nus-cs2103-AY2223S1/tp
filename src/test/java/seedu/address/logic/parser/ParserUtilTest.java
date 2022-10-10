@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.model.person.Cap.CAP_SEPARATOR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -14,10 +15,14 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.job.Id;
+import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.GraduationDate;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.University;
@@ -31,7 +36,18 @@ public class ParserUtilTest {
     private static final String INVALID_GENDER = "4Male";
     private static final String INVALID_GRADUATION_DATE = "asdf-12";
     private static final String INVALID_TAG = "#friend";
+    private static final double INVALID_CAP_VALUE = 6;
+    private static final double MAXIMUM_CAP_VALUE = 5.0;
+    private static final String INVALID_CAP_VALUE_2 = "a";
+    private static final String INVALID_MAXIMUM_CAP_VALUE = "b";
+    private static final String INVALID_CAP_1 = INVALID_CAP_VALUE + CAP_SEPARATOR + MAXIMUM_CAP_VALUE;
+    private static final String INVALID_CAP_2 = INVALID_CAP_VALUE_2 + CAP_SEPARATOR + INVALID_MAXIMUM_CAP_VALUE;
+    private static final String INVALID_CAP_3 = "@#!";
     private static final String INVALID_UNIVERSITY = "n()S";
+    private static final String INVALID_MAJOR = "C0MPUT3R $C13NC3";
+    private static final String INVALID_ID = "J9021-1";
+    private static final String INVALID_TITLE = "Intern | Software Engineer";
+
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -39,7 +55,12 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_GENDER = "Male";
     private static final String VALID_GRADUATION_DATE = "05-2024";
+    private static final double VALID_CAP_VALUE = 3.3;
+    private static final String VALID_CAP = VALID_CAP_VALUE + CAP_SEPARATOR + MAXIMUM_CAP_VALUE;
     private static final String VALID_UNIVERSITY = "ite";
+    private static final String VALID_MAJOR = "Computer Science";
+    private static final String VALID_ID = "J90211";
+    private static final String VALID_TITLE = "Intern - Software Engineer";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -204,6 +225,34 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseCap_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCap((String) null));
+    }
+
+    @Test
+    public void parseCap_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_2));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_3));
+    }
+
+    @Test
+    public void parseCap_validValueWithoutWhitespace_returnsCap() throws Exception {
+        Cap expectedCap = new Cap(VALID_CAP_VALUE, MAXIMUM_CAP_VALUE);
+        assertEquals(expectedCap, ParserUtil.parseCap(VALID_CAP));
+    }
+
+    @Test
+    public void parseCap_validValueWithWhitespace_returnsTrimmedCap() throws Exception {
+        String capWithWhitespace = WHITESPACE + VALID_CAP + WHITESPACE; // " 3.3/5.0 "
+        String anotherCapWithWhitespace = WHITESPACE + VALID_CAP_VALUE // " 3.3 / 5.0 "
+                + WHITESPACE + CAP_SEPARATOR + WHITESPACE + MAXIMUM_CAP_VALUE;
+        Cap expectedCap = new Cap(VALID_CAP_VALUE, MAXIMUM_CAP_VALUE);
+        assertEquals(expectedCap, ParserUtil.parseCap(capWithWhitespace));
+        assertEquals(expectedCap, ParserUtil.parseCap(anotherCapWithWhitespace));
+    }
+
+    @Test
     public void parseUniversity_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseUniversity((String) null));
     }
@@ -224,6 +273,75 @@ public class ParserUtilTest {
         String universityWithWhitespace = WHITESPACE + VALID_UNIVERSITY + WHITESPACE;
         University expectedUniversity = new University(VALID_UNIVERSITY);
         assertEquals(expectedUniversity, ParserUtil.parseUniversity(universityWithWhitespace));
+    }
+
+    @Test
+    public void parseMajor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMajor((String) null));
+    }
+
+    @Test
+    public void parseMajor_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMajor(INVALID_MAJOR));
+    }
+
+    @Test
+    public void parseMajor_validValueWithoutWhitespace_returnsMajor() throws Exception {
+        Major expectedMajor = new Major(VALID_MAJOR);
+        assertEquals(expectedMajor, ParserUtil.parseMajor(VALID_MAJOR));
+    }
+
+    @Test
+    public void parseMajor_validValueWithWhitespace_returnsTrimmedMajor() throws Exception {
+        String majorWithWhitespace = WHITESPACE + VALID_MAJOR + WHITESPACE;
+        Major expectedMajor = new Major(VALID_MAJOR);
+        assertEquals(expectedMajor, ParserUtil.parseMajor(majorWithWhitespace));
+    }
+
+    @Test
+    public void parseId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseId((String) null));
+    }
+
+    @Test
+    public void parseId_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseId(INVALID_ID));
+    }
+
+    @Test
+    public void parseId_validValueWithoutWhitespace_returnsId() throws Exception {
+        Id expectedId = new Id(VALID_ID);
+        assertEquals(expectedId, ParserUtil.parseId(VALID_ID));
+    }
+
+    @Test
+    public void parseId_validValueWithWhitespace_returnsTrimmedId() throws Exception {
+        String idWithWhitespace = WHITESPACE + VALID_ID + WHITESPACE;
+        Id expectedId = new Id(VALID_ID);
+        assertEquals(expectedId, ParserUtil.parseId(idWithWhitespace));
+    }
+
+    @Test
+    public void parseTitle_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTitle((String) null));
+    }
+
+    @Test
+    public void parseTitle_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
+    }
+
+    @Test
+    public void parseTitle_validValueWithoutWhitespace_returnsTitle() throws Exception {
+        Title expectedTitle = new Title(VALID_TITLE);
+        assertEquals(expectedTitle, ParserUtil.parseTitle(VALID_TITLE));
+    }
+
+    @Test
+    public void parseTitle_validValueWithWhitespace_returnsTrimmedTitle() throws Exception {
+        String titleWithWhitespace = WHITESPACE + VALID_TITLE + WHITESPACE;
+        Title expectedTitle = new Title(VALID_TITLE);
+        assertEquals(expectedTitle, ParserUtil.parseTitle(titleWithWhitespace));
     }
 
     @Test
