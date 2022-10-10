@@ -50,7 +50,7 @@ public class EditClientCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditClientCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private ClientCommandParser parser = new ClientCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
