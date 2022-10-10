@@ -123,8 +123,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean doesFilteredItemListContainOneItem() {
-        return filteredItems.size() == 1;
+    public int getFilteredItemListSize() {
+        return filteredItems.size();
     }
 
     @Override

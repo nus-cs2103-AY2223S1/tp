@@ -1,16 +1,17 @@
 package tracko.logic.commands.item;
 
-import javafx.collections.transformation.FilteredList;
+import static java.util.Objects.requireNonNull;
+
 import tracko.commons.core.Messages;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
-import tracko.logic.commands.order.FindOrderCommand;
 import tracko.model.Model;
-import tracko.model.items.Item;
 import tracko.model.items.ItemContainsKeywordsPredicate;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Finds items in the inventory list with a list of keywords.
+ * This command is not case-sensitive, and is a single-level command.
+ */
 public class FindItemCommand extends Command {
     public static final String COMMAND_WORD = "findi";
 
@@ -30,13 +31,8 @@ public class FindItemCommand extends Command {
         requireNonNull(model);
         model.updateFilteredItemList(predicate);
 
-        if (model.doesFilteredItemListContainOneItem()) {
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_ONE_ITEM_FOUND, model.getFilteredItemList().size()));
-        }
-
         return new CommandResult(
-                String.format(Messages.MESSAGE_ITEMS_FOUND_OVERVIEW, model.getFilteredItemList().size()));
+                String.format(Messages.MESSAGE_ITEMS_FOUND_OVERVIEW, model.getFilteredItemListSize()));
     }
 
     @Override

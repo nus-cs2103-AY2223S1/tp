@@ -4,7 +4,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import tracko.commons.core.GuiSettings;
 import tracko.model.items.Item;
 import tracko.model.order.Order;
@@ -91,5 +90,6 @@ public interface Model {
      */
     void updateFilteredItemList(Predicate<Item> predicate);
 
-    boolean doesFilteredItemListContainOneItem();
+    int getFilteredItemListSize();
+
 }

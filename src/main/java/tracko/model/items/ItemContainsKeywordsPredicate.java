@@ -1,10 +1,9 @@
 package tracko.model.items;
 
-import tracko.commons.util.StringUtil;
-import tracko.model.order.NameContainsKeywordsPredicate;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import tracko.commons.util.StringUtil;
 
 public class ItemContainsKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;

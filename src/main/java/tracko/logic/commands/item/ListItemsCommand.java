@@ -17,8 +17,8 @@ public class ListItemsCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-         requireNonNull(model);
-         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-         return new CommandResult(MESSAGE_SUCCESS);
+        requireNonNull(model);
+        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

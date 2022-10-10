@@ -22,9 +22,8 @@ import tracko.model.items.ItemName;
 import tracko.model.items.Quantity;
 
 /**
- * Parse inout arguments and creates a new/update AddItemCommand Object
+ * Parse input arguments and creates a new/update AddItemCommand Object
  */
-
 public class AddItemCommandParser implements Parser<AddItemCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddItemCommand
