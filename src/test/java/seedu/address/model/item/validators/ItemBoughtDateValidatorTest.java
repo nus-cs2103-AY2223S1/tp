@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ItemBoughtDateValidatorTest {
@@ -16,7 +15,7 @@ public class ItemBoughtDateValidatorTest {
      */
     @Test
     public void isValidFormat() {
-        Assertions.assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-01"));
 
         // Delimiters
         assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000/01/01")); // Wrong delimiter 1
