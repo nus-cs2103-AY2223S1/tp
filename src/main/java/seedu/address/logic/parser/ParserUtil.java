@@ -41,7 +41,7 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>}
      */
-    public static Set<Index> parseIndexes (Collection<String> oneBasedIndexes) throws ParseException {
+    public static Set<Index> parseIndexes(Collection<String> oneBasedIndexes) throws ParseException {
         requireNonNull(oneBasedIndexes);
         final Set<Index> indexSet = new LinkedHashSet<>();
         for (String oneBasedIndex : oneBasedIndexes) {
