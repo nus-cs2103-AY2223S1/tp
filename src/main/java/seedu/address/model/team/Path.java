@@ -44,16 +44,36 @@ public class Path {
      * @return true if the given path is valid, false otherwise.
      */
     public static boolean isValidPath(String path) {
-        return !containsWhitespace(path); //TODO Eric: characters in other languages?
+        return !containsWhitespace(path) && !hasLeadingOrTrailingBackslash(path);
+        //TODO Eric: characters in other languages?
     }
 
     /**
-     * Checks if the given argument string contains any whitespace.
+     * Checks if the given path contains any whitespace.
      *
-     * @param path refer to the subsequent arguments after the initial command word.
-     * @return true if the string contains a whitespace, false otherwise.
+     * @param path refers to the subsequent arguments after the initial command word.
+     * @return true if the path contains a whitespace, false otherwise.
      */
     private static boolean containsWhitespace(String path) {
         return Pattern.matches("\\s", path);
     }
+
+    /**
+     * Checks if the given path has a leading or trailing backslash.
+     *
+     * @param path refers to the subsequent arguments after the initial command word.
+     * @return true if the path contains a leading or trailing backslash,
+     * false otherwise.
+     */
+    private static boolean hasLeadingOrTrailingBackslash(String path) {
+        int pathStrLength = path.length();
+        return path.charAt(0) == '\\' || path.charAt(pathStrLength - 1) == '\\';
+    }
+
+//    @Override
+//    public boolean equals(Object other) {
+//        return other == this
+//                || (other instanceof Path
+//                && )
+//    }
 }
