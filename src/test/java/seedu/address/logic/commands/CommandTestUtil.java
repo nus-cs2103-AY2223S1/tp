@@ -20,6 +20,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -37,6 +39,12 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_MODULE_CODE_CYBERSEC = "CS2107";
+    public static final String VALID_MODULE_CODE_SWE = "CS2103T";
+    public static final String VALID_MODULE_DESCRIPTION_CYBERSEC = "Cryptography basics";
+    public static final String VALID_MODULE_DESCRIPTION_SWE = "Module teaches about software engineering";
+    public static final String VALID_MODULE_NAME_CYBERSEC = "Introduction to Cybersecurity";
+    public static final String VALID_MODULE_NAME_SWE = "Introduction to Software Engineering";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_ID_AMY = "A0123456W";
@@ -48,6 +56,8 @@ public class CommandTestUtil {
     public static final String VALID_STUDENT_ID = "A0123123X";
     public static final String VALID_STUDENT_TELEGRAM = "amyb123";
     public static final String VALID_STUDENT_INFO = "abc";
+    public static final String VALID_TAG_IMPORTANT = "important";
+    public static final String VALID_TAG_MODULE_COORDINATOR = "ModuleCoordinator";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -138,6 +148,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the module at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     * @param model
+     * @param targetIndex
+     */
+    public static void showModuleWithModuleCode(Model model, Index targetIndex) {
+        Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        final String[] splitName = module.getName().fullName.split("\\s+");
+        model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredModuleList().size());
     }
 
 }
