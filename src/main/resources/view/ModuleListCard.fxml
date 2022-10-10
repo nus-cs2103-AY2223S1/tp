@@ -28,7 +28,24 @@
       </HBox>
       <Label fx:id="moduleTitle" text="\$moduleTitle"
              styleClass="cell_small_label" />
-<!--  TODO: Add Ui components for tasks and links.-->
+      <HBox>
+        <VBox styleClass="pane-with-border" minWidth="170"
+              prefWidth="170" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+          </padding>
+          <Label styleClass="underlined-text">Tasks</Label>
+          <!--  TODO: Add Ui components for individual tasks.-->
+        </VBox>
+        <VBox styleClass="pane-with-border" minWidth="170"
+              prefWidth="170" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+          </padding>
+          <Label styleClass="underlined-text">Links</Label>
+          <!--  TODO: Add Ui components for individual links.-->
+        </VBox>
+      </HBox>
     </VBox>
   </GridPane>
 </HBox>
