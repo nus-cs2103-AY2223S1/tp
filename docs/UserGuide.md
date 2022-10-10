@@ -168,19 +168,25 @@ Examples:
 
 Finds candidates whose personal information and tags contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] 
+[MORE_TAGGED_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * The personal information and tags will be searched.  
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Partial words will be matched e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Search can be further refined by specifying the type of tag to search for.  
+  e.g. `find n/John p/867` will return `John Doe` with **Phone** number `8675309`
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find Java` returns list of candidates with Java skills 
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `John Doe`
+* `find n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
+* `find s/application pending` returns list of candidates with status `application pending`
 
 ### Deleting a person : `delete`
 
@@ -315,7 +321,7 @@ If your changes to the data file makes its format invalid, CLInkedIn will discar
 | **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                             |
 | **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                     |
 | **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                              |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                       |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                           |
 | **List**          | `list`                                                                                                                                                                                                                                                               |
 | **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                               |
