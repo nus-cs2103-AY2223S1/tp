@@ -18,9 +18,9 @@ import seedu.address.model.module.Module;
 public class AddModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + MODULE_COMMAND_IDENTIFIER + " "
-            + ": Adds a person to the address book. "
+            + ": Adds a module to the module list. "
             + "Parameters: "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_LECTURE + "LECTURE "
