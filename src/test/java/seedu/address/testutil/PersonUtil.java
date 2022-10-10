@@ -13,10 +13,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ProfCommand;
 import seedu.address.logic.commands.StudentCommand;
 import seedu.address.logic.commands.TaCommand;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Professor;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.TeachingAssistant;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -97,5 +94,19 @@ public class PersonUtil {
             }
         }
         return sb.toString();
+    }
+
+    public static String getFindCommandDetails(PersonMatchesPredicate predicate) {
+        String commandDetails = "";
+        if (predicate.hasNamesListPredicate()) {
+            commandDetails += PREFIX_NAME + " " + String.join(" ",
+                    predicate.getNamesList() + " ");
+        }
+
+        if (predicate.hasModuleListPredicate()) {
+            commandDetails += PREFIX_MODULE_CODE + " " + String.join(" ", predicate.getModuleList());
+        }
+
+        return commandDetails;
     }
 }
