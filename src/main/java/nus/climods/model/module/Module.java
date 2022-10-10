@@ -12,7 +12,6 @@ import nus.climods.model.tag.Tag;
 public class Module {
     // Identity fields
     private final ModuleCode code;
-    private final Tutorial tutorial;
 
     //Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -20,19 +19,14 @@ public class Module {
     /**
      * Every field must be present and not null.
      */
-    public Module(ModuleCode code, Tutorial tutorial, Set<Tag> tags) {
-        requireAllNonNull(code, tutorial, tags);
+    public Module(ModuleCode code, Set<Tag> tags) {
+        requireAllNonNull(code, tags);
         this.code = code;
-        this.tutorial = tutorial;
         this.tags.addAll(tags);
     }
 
     public ModuleCode getCode() {
         return this.code;
-    }
-
-    public Tutorial getTutorial() {
-        return this.tutorial;
     }
 
     /**
@@ -70,22 +64,19 @@ public class Module {
 
         Module otherModule = (Module) other;
         return otherModule.getCode().equals(getCode())
-                && otherModule.getTutorial().equals(getTutorial())
                 && otherModule.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(code, tutorial, tags);
+        return Objects.hash(code, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getCode())
-                .append("; Tutorial: ")
-                .append(getTutorial());
+        builder.append(getCode());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

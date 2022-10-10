@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
 import nus.climods.model.person.Person;
+import nus.climods.model.module.Module;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,6 +24,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Module> filteredModules;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +38,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredModules = new FilteredList<Module>(this.addressBook.getModuleList());
+
     }
 
     public ModelManager() {
@@ -148,4 +153,49 @@ public class ModelManager implements Model {
             && filteredPersons.equals(other.filteredPersons);
     }
 
+// -----------------------for Module --------------------------------------------------------------------------
+    //TODO
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     */
+    @Override
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return addressBook.hasModule(module);
+    }
+
+    /**
+     * Deletes the given module. The module must exist in the address book.
+     */
+    @Override
+    public void deleteModule(Module target) {
+        addressBook.removeModule(target);
+    }
+
+    @Override
+    public void addModule(Module person) {
+        addressBook.addModule(person);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    @Override
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+
+        addressBook.setModule(target, editedModule);
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
+    }
+
+    @Override
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        filteredModules.setPredicate(predicate);
+    }
+
+
+// -----------------------for Person --------------------------------------------------------------------------
 }

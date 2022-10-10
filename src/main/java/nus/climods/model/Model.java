@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.model.person.Person;
+import nus.climods.model.module.Module;
 
 /**
  * The API of the Model component.
@@ -16,6 +17,7 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -57,6 +59,43 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
+// -----------------------for Module --------------------------------------------------------------------------
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     */
+    boolean hasModule(Module module);
+
+    /**
+     * Deletes the given module. The module must exist in the address book.
+     */
+    void deleteModule(Module target);
+
+    /**
+     * Adds the given module. {@code module} must not already exist in the address book.
+     */
+    void addModule(Module module);
+
+    /**
+     * Replaces the given module {@code target} with {@code editedModule}. {@code target} must exist in the address
+     * book. The module identity of {@code editedModule} must not be the same as another existing module in the address
+     * book.
+     */
+    void setModule(Module target, Module editedModule);
+
+    /**
+     * Returns an unmodifiable view of the filtered module list
+     */
+    ObservableList<Module> getFilteredModuleList();
+
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredModuleList(Predicate<Module> predicate);
+
+
+// -----------------------for Person --------------------------------------------------------------------------
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
