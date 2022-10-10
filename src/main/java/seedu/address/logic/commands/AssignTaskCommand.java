@@ -11,7 +11,7 @@ import java.util.HashMap;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Assignment;
+import seedu.address.model.person.assignment.Assignment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
