@@ -30,7 +30,8 @@ public class RemoveTagCommandTest {
 
     @Test
     public void contructor_nullSet_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new RemoveTagCommand(Index.fromZeroBased(0), null));
+        assertThrows(NullPointerException.class, ()
+                -> new RemoveTagCommand(Index.fromZeroBased(0), null));
     }
 
     @Test
@@ -53,7 +54,8 @@ public class RemoveTagCommandTest {
         modelStub.addPerson(ALICE);
         Set<Tag> tagsToRemove = new HashSet<>();
         tagsToRemove.add(VALID_TAG_FRIENDS);
-        CommandResult commandResult = new RemoveTagCommand(Index.fromZeroBased(0), tagsToRemove).execute(modelStub);
+        CommandResult commandResult =
+                new RemoveTagCommand(Index.fromZeroBased(0), tagsToRemove).execute(modelStub);
         assertEquals(String.format(MESSAGE_SUCCESS, Tag.toString(tagsToRemove)), commandResult.getFeedbackToUser());
     }
 
@@ -76,7 +78,8 @@ public class RemoveTagCommandTest {
         Set<Tag> tagsToRemove = new HashSet<>();
         tagsToRemove.add(new Tag("FakeTag"));
         CommandResult commandResult = new TagCommand(Index.fromZeroBased(0), tagsToRemove).execute(modelStub);
-        assertEquals(String.format(MESSAGE_TAGS_NOT_FOUND, Tag.toString(tagsToRemove)), commandResult.getFeedbackToUser());
+        assertEquals(String.format(MESSAGE_TAGS_NOT_FOUND, Tag.toString(tagsToRemove)),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -85,8 +88,10 @@ public class RemoveTagCommandTest {
         modelStub.addPerson(ALICE);
         Set<Tag> tagsToRemove = new HashSet<>();
         tagsToRemove.add(VALID_TAG_OWES_MONEY);
-        CommandResult commandResult = new RemoveTagCommand(Index.fromZeroBased(0), tagsToRemove).execute(modelStub);
-        assertEquals(String.format(MESSAGE_TAGS_NOT_BELONG_TO_USER, Tag.toString(tagsToRemove)), commandResult.getFeedbackToUser());
+        CommandResult commandResult =
+                new RemoveTagCommand(Index.fromZeroBased(0), tagsToRemove).execute(modelStub);
+        assertEquals(String.format(MESSAGE_TAGS_NOT_BELONG_TO_USER, Tag.toString(tagsToRemove)),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
