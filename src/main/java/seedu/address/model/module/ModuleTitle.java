@@ -1,5 +1,7 @@
 package seedu.address.model.module;
 
+import java.util.Locale;
+
 /**
  * Represents a {@code Module}'s title (optional field) in Plannit.
  * Guarantees: immutable
@@ -15,6 +17,13 @@ public class ModuleTitle {
      */
     public ModuleTitle(String moduleTitle) {
         value = moduleTitle;
+    }
+
+    /**
+     * Returns the module title as a {@code String} in upper case.
+     */
+    public String getModuleTitleAsUpperCaseString() {
+        return value.toUpperCase();
     }
 
     @Override

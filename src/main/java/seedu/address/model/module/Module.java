@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
@@ -59,8 +60,22 @@ public class Module {
         return moduleCode;
     }
 
+    /**
+     * Returns the module code as a {@code String} in upper case.
+     */
+    public String getModuleCodeAsUpperCaseString() {
+        return moduleCode.getModuleCodeAsUpperCaseString();
+    }
+
     public ModuleTitle getModuleTitle() {
         return moduleTitle;
+    }
+
+    /**
+     * Returns the module title as a {@code String} in upper case.
+     */
+    public String getModuleTitleAsUpperCaseString() {
+        return moduleTitle.getModuleTitleAsUpperCaseString();
     }
 
     /**

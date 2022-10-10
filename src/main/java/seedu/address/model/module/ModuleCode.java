@@ -3,6 +3,8 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Locale;
+
 /**
  * Represents a Module's module code in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
@@ -35,6 +37,13 @@ public class ModuleCode {
      */
     public static boolean isValidModuleCode(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the module code as a {@code String} in upper case.
+     */
+    public String getModuleCodeAsUpperCaseString() {
+        return value.toUpperCase();
     }
 
 
