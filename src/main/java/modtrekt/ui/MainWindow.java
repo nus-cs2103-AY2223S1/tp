@@ -17,6 +17,7 @@ import modtrekt.logic.commands.CommandResult;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.ui.modules.ModuleListPanel;
+import modtrekt.ui.tasks.TaskListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ProfileSidePanel profileSidePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -48,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane taskListPanelPlaceholder;
+
+    @FXML
+    private StackPane profileSidePanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -124,6 +129,9 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        profileSidePanel = new ProfileSidePanel();
+        profileSidePanelPlaceholder.getChildren().add(profileSidePanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
