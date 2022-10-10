@@ -7,13 +7,15 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyPennyWise;
+import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -47,21 +49,26 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            logger.info("TRYING TO LOGGGG ===========");
+            logger.info(model.getAddressBook().toString());
+            logger.info(storage.readAddressBook().toString());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        } catch (DataConversionException e) {
+            throw new RuntimeException(e);
         }
 
         return commandResult;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyPennyWise getAddressBook() {
         return model.getAddressBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Entry> getFilteredEntryList() {
+        return model.getFilteredEntryList();
     }
 
     @Override
