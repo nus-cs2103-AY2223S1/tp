@@ -59,9 +59,10 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("123@u.nus.edu")); // numeric local part
         assertTrue(Email.isValidEmail("a1+be.d@u.nus.edu")); // mixture of alphanumeric and special characters
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@u.nus.edu")); // long local part
-        assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
-        assertTrue(Email.isValidEmail("e1234567@nus.edu.sg")); // NUS staff email domain
+        assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // NUS student email domain
+        assertTrue(Email.isValidEmail("2103T@nus.edu.sg")); // NUS staff email domain
         assertTrue(Email.isValidEmail("e1234567@u.duke.nus.edu")); // Duke NUS email domain
         assertTrue(Email.isValidEmail("e1234567@u.yale-nus.edu.sg")); // Yale-NUS email domain
+        assertTrue(Email.isValidEmail("randomUser@comp.nus.edu.sg")); // SOC email domain
     }
 }
