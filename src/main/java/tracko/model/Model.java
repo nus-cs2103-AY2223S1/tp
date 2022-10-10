@@ -67,7 +67,7 @@ public interface Model {
      */
     void deleteOrder(Order order);
     
-        /**
+    /**
      * Adds the given item.
      */
     void addItem(Item item);
