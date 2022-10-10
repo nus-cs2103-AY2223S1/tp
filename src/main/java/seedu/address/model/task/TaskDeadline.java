@@ -1,7 +1,9 @@
 package seedu.address.model.task;
 import java.time.LocalDate;
 
-
+/**
+ * Represents the deadline of a task
+ */
 public class TaskDeadline {
     private LocalDate deadline;
 

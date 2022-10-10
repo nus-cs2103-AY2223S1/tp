@@ -9,6 +9,9 @@ import static java.util.Objects.requireNonNull;
 public class Priority {
     private final PriorityEnum priority;
 
+    /**
+     * Constructor for priority class
+     */
     public Priority(PriorityEnum priority) {
         requireNonNull(priority);
         this.priority = priority;
