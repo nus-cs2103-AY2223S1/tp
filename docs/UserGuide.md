@@ -49,11 +49,11 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainPoc t/owesMoney` : Creates a point-of-contact named `James` linked to the company at index 2.
 
-   * **`delete`**`delete 1` : Deletes the company at the first index together with all their contacts in the current list.
+   * **`delete`**`delete 1` : Deletes the company at the first index together with all their contacts and transactions in the current list.
 
-   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (point-of-contact, Transactions).
+   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (point-of-contact, transactions).
 
-  * **`clear`** : Deletes all companies and points of contact.
+  * **`clear`** : Deletes all companies with all their contacts and transactions.
 
   * **`exit`** : Exits the app.
 
@@ -98,7 +98,7 @@ Format: `add n/NAME a/ADDRESS [t/TAG]...`
 * Use `create` command to add POC to the company.
 
 Examples:
-* `add n/MacDonalds a/West Coast Park `
+* `add n/MacDonalds a/West Coast Park`
 * `add n/KFC a/Yishun Street 81 t/FriedChicken`
 
 ### Clearing all entries : `clear`
