@@ -13,11 +13,13 @@ import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.module.ModuleListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -65,6 +67,9 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case DeleteModuleCommand.COMMAND_WORD:
+            return new DeleteModuleCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -73,6 +78,9 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ModuleListCommand.COMMAND_WORD:
+            return new ModuleListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -31,7 +31,7 @@ public class ModuleBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code ModuleBuilder} with the default details.
      */
     public ModuleBuilder() {
         ModuleName moduleName = new ModuleName(DEFAULT_MODULE_NAME);
@@ -83,8 +83,12 @@ public class ModuleBuilder {
         return this;
     }
 
+    /**
+     * Builds a module for testing.
+     *
+     * @return a Module that we are building
+     */
     public Module build() {
         return new Module(moduleName, moduleCode, moduleDescription, tags, students);
     }
-
 }
