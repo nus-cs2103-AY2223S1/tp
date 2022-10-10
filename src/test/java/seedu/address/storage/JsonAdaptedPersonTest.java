@@ -30,7 +30,9 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final HashMap<String, ArrayList<Assignment>> VALID_ASSIGNMENT = BENSON.getAssignments();
-    private static final ArrayList<PersonGroup> VALID_PERSONGROUPS = BENSON.getPersonGroups();
+    private static final List<JsonAdaptedPersonGroup> VALID_PERSONGROUPS = BENSON.getPersonGroups().stream()
+            .map(JsonAdaptedPersonGroup::new)
+            .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {

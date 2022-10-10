@@ -33,7 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private HashMap<String, ArrayList<Assignment>> assignments;
-    private Set<PersonGroup> personGroup;
+    private ArrayList<PersonGroup> personGroup;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -45,7 +45,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         assignments = new HashMap<>();
-        personGroup = new HashSet<>();
+        personGroup = new ArrayList<>();
     }
 
     /**
@@ -58,6 +58,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         assignments = new HashMap<>(personToCopy.getAssignments());
+        personGroup = new ArrayList<>(personToCopy.getPersonGroups());
     }
 
     /**
@@ -114,8 +115,16 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withGroups(String groups) {
+        ArrayList<PersonGroup> personGroupArrayList = new ArrayList<>();
+        personGroupArrayList.add(new PersonGroup(groups));
+        this.personGroup.addAll(personGroupArrayList);
+        return this;
+
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, assignments);
+        return new Person(name, phone, email, address, tags, assignments, personGroup);
     }
 
 }

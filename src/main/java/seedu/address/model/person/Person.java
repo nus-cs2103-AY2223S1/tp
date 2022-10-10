@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,7 +33,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                   HashMap<String, ArrayList<Assignment>> assignments,
-                  ArrayList<PersonGroup> personGroups) {
+                  List<PersonGroup> personGroups) {
         requireAllNonNull(name, phone, email, address, tags, personGroups);
         this.name = name;
         this.phone = phone;
@@ -149,7 +150,7 @@ public class Person {
         if (!personGroupsList.isEmpty()) {
             builder.append("; Group: ");
             personGroupsList.forEach(builder::append);
-            }
+        }
 
         return builder.toString();
     }
