@@ -20,7 +20,7 @@ public class UniqueModuleClassListTest {
     private final UniqueModuleClassList uniqueModuleClassList = new UniqueModuleClassList();
 
     @Test
-    public void contans_nullModuleClass_throwsNullPointerException() {
+    public void contains_nullModuleClass_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueModuleClassList.contains(null));
     }
 
