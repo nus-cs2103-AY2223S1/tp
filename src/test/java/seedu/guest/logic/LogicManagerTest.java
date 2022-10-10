@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.guest.commons.core.GuiSettings;
 import seedu.guest.logic.commands.AddCommand;
 import seedu.guest.logic.commands.CommandResult;
 import seedu.guest.logic.commands.ListCommand;
@@ -88,6 +89,28 @@ public class LogicManagerTest {
         expectedModel.addGuest(expectedGuest);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void getGuestBook_success() {
+        assertEquals(logic.getGuestBook(), model.getGuestBook());
+    }
+
+    @Test
+    public void getGuestBookFilePath_success() {
+        assertEquals(logic.getGuestBookFilePath(), model.getGuestBookFilePath());
+    }
+
+    @Test
+    public void getGuiSettings_success() {
+        assertEquals(logic.getGuiSettings(), model.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings_success() {
+        GuiSettings temp = new GuiSettings();
+        logic.setGuiSettings(temp);
+        assertEquals(logic.getGuiSettings(), temp);
     }
 
     @Test
