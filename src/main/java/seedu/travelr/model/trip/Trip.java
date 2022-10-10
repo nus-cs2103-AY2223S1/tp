@@ -89,7 +89,6 @@ public class Trip {
         }
 
         Trip otherTrip = (Trip) other;
-        //Sorry, but can we get this to just compare the Title
         return otherTrip.getTitle().equals(getTitle());
         //        && otherTrip.getDescription().equals(getDescription())
         //        && otherTrip.getEvents().equals(getEvents());

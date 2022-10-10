@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.travelr.model.trip.exceptions.DuplicateTripException;
-import seedu.travelr.model.trip.exceptions.TripNotFoundException;
+import seedu.travelr.model.event.exceptions.DuplicateEventException;
+import seedu.travelr.model.event.exceptions.EventNotFoundException;
 
 /**
  * Represent a UniqueEventList.
@@ -35,7 +35,7 @@ public class UniqueEventList implements Iterable<Event> {
     public void add(Event toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateTripException();
+            throw new DuplicateEventException();
         }
         internalList.add(toAdd);
     }
@@ -50,11 +50,11 @@ public class UniqueEventList implements Iterable<Event> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new TripNotFoundException();
+            throw new EventNotFoundException();
         }
 
         if (!target.isSameTrip(editedTrip) && contains(editedTrip)) {
-            throw new DuplicateTripException();
+            throw new DuplicateEventException();
         }
 
         internalList.set(index, editedTrip);
@@ -67,7 +67,7 @@ public class UniqueEventList implements Iterable<Event> {
     public void remove(Event toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new TripNotFoundException();
+            throw new EventNotFoundException();
         }
     }
 
@@ -83,7 +83,7 @@ public class UniqueEventList implements Iterable<Event> {
     public void setEvents(List<Event> events) {
         requireAllNonNull(events);
         if (!eventsAreUnique(events)) {
-            throw new DuplicateTripException();
+            throw new DuplicateEventException();
         }
 
         internalList.setAll(events);
