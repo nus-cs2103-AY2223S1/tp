@@ -38,7 +38,7 @@ public class ReminderCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         name.setText(person.getName().fullName);
-        birthday.setText(person.getAddress().value);
+        birthday.setText(person.getBirthday().value);
     }
 
     @Override

@@ -1,5 +1,5 @@
 #copyButton, #reminderMessage {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 #copyButton {
@@ -15,7 +15,7 @@
 }
 
 #reminderMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#ffffff, 20%);
 }
 
 .reminder-header {

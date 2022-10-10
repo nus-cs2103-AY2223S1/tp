@@ -13,7 +13,7 @@
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@DarkTheme.css" />
+                <URL value="@LightTheme2.css" />
                 <URL value="@ReminderWindow.css" />
             </stylesheets>
 
