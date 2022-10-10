@@ -25,8 +25,9 @@
           </minWidth>
         </Label>
         <Label fx:id="moduleCode" text="\$first" styleClass="cell_big_label" />
-        <Label fx:id="moduleTitle" text="\$first" styleClass="cell_big_label" />
       </HBox>
+      <Label fx:id="moduleTitle" text="\$moduleTitle"
+             styleClass="cell_small_label" />
 <!--  TODO: Add Ui components for tasks and links.-->
     </VBox>
   </GridPane>
