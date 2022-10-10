@@ -114,6 +114,23 @@ public class ModelManager implements Model {
         addressBook.setStall(target, editedStall);
     }
 
+    @Override
+    public boolean hasReview(Review review) {
+        requireNonNull(review);
+        return addressBook.hasReview(review);
+    }
+
+    @Override
+    public void deleteReview(Review target) {
+        addressBook.removeReview(target);
+    }
+
+    @Override
+    public void addReview(Review review) {
+        addressBook.addReview(review);
+        updateFilteredReviewList(PREDICATE_SHOW_ALL_REVIEWS);
+    }
+
     //=========== Filtered Stall List Accessors =============================================================
 
     /**

@@ -15,6 +15,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Stall> PREDICATE_SHOW_ALL_STALLS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Review> PREDICATE_SHOW_ALL_REVIEWS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -76,6 +79,23 @@ public interface Model {
      * The stall identity of {@code editedStall} must not be the same as another existing stall in the address book.
      */
     void setStall(Stall target, Stall editedStall);
+
+    /**
+     * Returns true if a review with the same identity as {@code review} exists in the address book.
+     */
+    boolean hasReview(Review review);
+
+    /**
+     * Deletes the given review.
+     * The review must exist in the address book.
+     */
+    void deleteReview(Review target);
+
+    /**
+     * Adds the given review.
+     * {@code review} must not already exist in the address book.
+     */
+    void addReview(Review review);
 
     /** Returns an unmodifiable view of the filtered stall list */
     ObservableList<Stall> getFilteredStallList();

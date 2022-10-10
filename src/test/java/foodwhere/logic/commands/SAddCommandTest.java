@@ -115,6 +115,11 @@ public class SAddCommandTest {
         }
 
         @Override
+        public void addReview(Review review) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -136,6 +141,16 @@ public class SAddCommandTest {
 
         @Override
         public void setStall(Stall target, Stall editedStall) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasReview(Review review) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteReview(Review target) {
             throw new AssertionError("This method should not be called.");
         }
 
