@@ -64,15 +64,10 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType(List<Tag> addressBookTagList) throws IllegalValueException {
+    public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            for (Tag realTag : addressBookTagList) {
-                if (realTag.isSameTag(tag.toModelType())) {
-                    // Add the unique tag object reference in AddressBook's uniqueTagList to this Person's tags
-                    personTags.add(realTag);
-                }
-            }
+            personTags.add(tag.toModelType());
         }
 
         if (name == null) {
