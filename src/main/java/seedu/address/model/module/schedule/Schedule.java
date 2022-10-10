@@ -42,7 +42,7 @@ public class Schedule {
 
     @Override
     public String toString() {
-        return module + "\n" + classType + "\n" + startTime + " - " + endTime + "\n" + venue;
+        return module.toUpperCase() + "\n" + classType + "\n" + startTime + "-" + endTime + "\n" + venue;
     }
 
     public Weekdays getWeekday() {
@@ -62,7 +62,7 @@ public class Schedule {
     }
 
     public String getPeriod() {
-        return startTime + " - " + endTime;
+        return startTime + "-" + endTime;
     }
 
     public ClassType getClassType() {
@@ -91,6 +91,9 @@ public class Schedule {
     public boolean isConflict(Schedule newSchedule) {
         if (newSchedule.startTime.compareTo(this.endTime) > 0
                 || newSchedule.endTime.compareTo(this.startTime) < 0) {
+            return false;
+        }
+        if (!newSchedule.weekday.equals(this.weekday)) {
             return false;
         }
         return true;
