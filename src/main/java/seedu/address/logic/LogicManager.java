@@ -18,6 +18,7 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.storage.Storage;
+import seedu.address.ui.Ui;
 
 /**
  * The main LogicManager of the app.
@@ -28,12 +29,15 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
+
+    private Ui ui;
     private final AddressBookParser addressBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
     public LogicManager(Model model, Storage storage) {
+        this.ui = null;
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
@@ -45,7 +49,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, ui);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -89,5 +93,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void setUi(Ui ui) {
+        this.ui = ui;
     }
 }
