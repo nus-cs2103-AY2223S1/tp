@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private UiPart<Region> taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -43,9 +43,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane listPanelPlaceholder;
@@ -116,7 +113,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredStudentList());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
@@ -173,8 +170,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
     }
 
     /**
@@ -196,21 +193,16 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isShowStudents()) {
-                if (taskListPanel.isShowing()) {
-                    listPanelPlaceholder.getChildren().remove(0);
-                    listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-                    taskListPanel.changeShowingStatus();
-                    personListPanel.changeShowingStatus();
-                }
-            }
+            if ((commandResult.isShowStudents() && taskListPanel.isShowing())
+                    || (commandResult.isShowTasks() && !taskListPanel.isShowing())) {
+                listPanelPlaceholder.getChildren().remove(0);
+                taskListPanel.changeShowingStatus();
+                studentListPanel.changeShowingStatus();
 
-            if (commandResult.isShowTasks()) {
-                if (!taskListPanel.isShowing()) {
-                    listPanelPlaceholder.getChildren().remove(0);
+                if (commandResult.isShowStudents()) {
+                    listPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+                } else {
                     listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-                    taskListPanel.changeShowingStatus();
-                    personListPanel.changeShowingStatus();
                 }
             }
 

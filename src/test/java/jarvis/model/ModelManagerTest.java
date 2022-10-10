@@ -1,6 +1,6 @@
 package jarvis.model;
 
-import static jarvis.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalStudents.ALICE;
 import static jarvis.testutil.TypicalStudents.BENSON;
@@ -121,7 +121,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(studentBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
