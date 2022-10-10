@@ -83,8 +83,17 @@ public class ModelManager implements Model {
     }
 
     //=========== TaskList ===================================================================================
+    @Override
+    public void addTask(Task task) {
+        taskList.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
 
     @Override
+    public boolean hasTask(Task task) {
+        return taskList.hasTask(task);
+    }
+
     public void setTask(Task task, Index targetIndex) {
         taskList.setTask(task, targetIndex);
     }

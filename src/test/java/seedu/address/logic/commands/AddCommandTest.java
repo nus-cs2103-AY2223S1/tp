@@ -169,8 +169,16 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredTaskList(Predicate<Task> predicate) {
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
         }
     }
 
