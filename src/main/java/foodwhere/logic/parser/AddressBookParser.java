@@ -12,9 +12,10 @@ import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.commands.ExitCommand;
 import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.commands.HelpCommand;
-import foodwhere.logic.commands.ListCommand;
+import foodwhere.logic.commands.RListCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.SDeleteCommand;
+import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 
 /**
@@ -47,26 +48,29 @@ public class AddressBookParser {
         case SAddCommand.COMMAND_WORD:
             return new SAddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
         case SDeleteCommand.COMMAND_WORD:
             return new SDeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case RListCommand.COMMAND_WORD:
+            return new RListCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case SListCommand.COMMAND_WORD:
+            return new SListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
