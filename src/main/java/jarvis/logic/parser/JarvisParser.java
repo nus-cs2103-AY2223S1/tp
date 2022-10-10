@@ -17,8 +17,8 @@ import jarvis.logic.commands.ExitCommand;
 import jarvis.logic.commands.FindStudentCommand;
 import jarvis.logic.commands.HelpCommand;
 import jarvis.logic.commands.ListStudentCommand;
-import jarvis.logic.commands.MasteryCheckCommand;
 import jarvis.logic.commands.MarkTaskCommand;
+import jarvis.logic.commands.MasteryCheckCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 
 /**
