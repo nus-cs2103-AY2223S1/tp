@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.testutil.Assert.assertThrows;
-import static seedu.guest.testutil.TypicalPersons.ALICE;
-import static seedu.guest.testutil.TypicalPersons.BOB;
+import static seedu.guest.testutil.TypicalGuests.ALICE;
+import static seedu.guest.testutil.TypicalGuests.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;

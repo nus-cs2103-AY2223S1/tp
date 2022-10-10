@@ -9,7 +9,7 @@ import static seedu.guest.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.NUMBER_OF_GUESTS_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.guest.testutil.Assert.assertThrows;
-import static seedu.guest.testutil.TypicalPersons.AMY;
+import static seedu.guest.testutil.TypicalGuests.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;

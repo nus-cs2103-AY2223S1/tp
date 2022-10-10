@@ -3,7 +3,7 @@ package seedu.guest.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.guest.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.guest.testutil.Assert.assertThrows;
-import static seedu.guest.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.guest.testutil.TypicalIndexes.INDEX_FIRST_GUEST;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,10 +43,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_GUEST, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_GUEST, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
