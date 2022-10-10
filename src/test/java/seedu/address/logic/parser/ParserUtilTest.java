@@ -27,14 +27,17 @@ import seedu.address.model.person.University;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final double MAXIMUM_CAP_VALUE = 5.0;
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GENDER = "4Male";
     private static final double INVALID_CAP_VALUE = 6;
-    private static final String INVALID_CAP = INVALID_CAP_VALUE + CAP_SEPARATOR + MAXIMUM_CAP_VALUE;
+    private static final double MAXIMUM_CAP_VALUE = 5.0;
+    private static final String INVALID_CAP_VALUE_2 = "a";
+    private static final String INVALID_MAXIMUM_CAP_VALUE = "b";
+    private static final String INVALID_CAP_1 = INVALID_CAP_VALUE + CAP_SEPARATOR + MAXIMUM_CAP_VALUE;
+    private static final String INVALID_CAP_2 = INVALID_CAP_VALUE_2 + CAP_SEPARATOR + INVALID_MAXIMUM_CAP_VALUE;
     private static final String INVALID_UNIVERSITY = "n()S";
     private static final String INVALID_ID = "J9021-1";
     private static final String INVALID_TITLE = "Intern | Software Engineer";
@@ -198,7 +201,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseCap_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_2));
     }
 
     @Test

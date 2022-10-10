@@ -123,15 +123,21 @@ public class ParserUtil {
      * @throws ParseException if the given {@code cap} is invalid.
      */
     public static Cap parseCap(String cap) throws ParseException {
-        requireNonNull(cap);
-        String trimmedCap = cap.trim();
-        String[] capValues = trimmedCap.split(CAP_SEPARATOR);
-        double capValue = Double.parseDouble(capValues[0]);
-        double maximumCapValue = Double.parseDouble(capValues[1]);
-        if (!Cap.isValidCap(capValue, maximumCapValue)) {
+        try {
+            requireNonNull(cap);
+            String trimmedCap = cap.trim();
+            String[] capValues = trimmedCap.split(CAP_SEPARATOR);
+            double capValue;
+            double maximumCapValue;
+            capValue = Double.parseDouble(capValues[0]);
+            maximumCapValue = Double.parseDouble(capValues[1]);
+            if (!Cap.isValidCap(capValue, maximumCapValue)) {
+                throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
+            }
+            return new Cap(capValue, maximumCapValue);
+        } catch (NumberFormatException e) {
             throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
         }
-        return new Cap(capValue, maximumCapValue);
     }
 
     /**
