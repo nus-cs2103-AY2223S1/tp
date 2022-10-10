@@ -64,6 +64,11 @@ class JsonAdaptedPerson {
         loan = String.valueOf(source.getLoan().getAmount());
     }
 
+    public Person toModelType() throws IllegalValueException {
+        return toModelType(new ArrayList<>());
+    }
+
+
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *

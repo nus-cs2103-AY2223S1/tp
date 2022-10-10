@@ -109,12 +109,10 @@ public class EditCommand extends Command {
             }
         }
 
-        for (Tag tag : editedPersonTagSet) {
-            toAddTagSet.add(tag);
-        }
+        toAddTagSet.addAll(editedPersonTagSet);
 
         Person newEditedPerson = new Person(editedPerson.getName(), editedPerson.getPhone(),
-                editedPerson.getEmail(), editedPerson.getAddress(), toAddTagSet);
+                editedPerson.getEmail(), editedPerson.getAddress(), toAddTagSet, editedPerson.getLoan());
 
         for (Tag tag : toAddTagSet) {
             tag.addPerson(newEditedPerson);

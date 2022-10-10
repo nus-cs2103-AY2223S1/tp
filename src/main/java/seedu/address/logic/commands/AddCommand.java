@@ -77,12 +77,10 @@ public class AddCommand extends Command {
             }
         }
 
-        for (Tag tag : tagSet) {
-            toAddTagSet.add(tag);
-        }
+        toAddTagSet.addAll(tagSet);
 
         Person newToAddPerson = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(),
-                toAdd.getAddress(), toAddTagSet);
+                toAdd.getAddress(), toAddTagSet, toAdd.getLoan());
 
         // Add person reference to tags and add tags to address book's unique tag list.
         for (Tag tag : toAddTagSet) {
