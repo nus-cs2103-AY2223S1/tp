@@ -1,12 +1,13 @@
 package seedu.taassist.model.session;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import seedu.taassist.model.moduleclass.ModuleClass;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalSessions.ASSIGNMENT_1;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.taassist.model.moduleclass.ModuleClass;
 
 public class SessionTest {
 

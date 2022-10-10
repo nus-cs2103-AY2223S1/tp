@@ -1,17 +1,18 @@
 package seedu.taassist.model.moduleclass;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import seedu.taassist.model.session.Session;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
 import static seedu.taassist.testutil.TypicalSessions.ASSIGNMENT_1;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
+import seedu.taassist.model.session.Session;
 
 public class ModuleClassTest {
 
