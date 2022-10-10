@@ -15,6 +15,5 @@ public class PersonListTab extends Tab {
      */
     public PersonListTab(ObservableList<Person> personList) {
         super(TAB_NAME, new PersonListPanel(personList).getRoot());
-        getStyleClass().add("background");
     }
 }

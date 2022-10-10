@@ -29,6 +29,11 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
+.tab {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    background-color: #383838; /* Used in the default.html file */
+}
+
 .tab-label {
     -fx-text-fill: white;
     -fx-font-size: 13pt;
