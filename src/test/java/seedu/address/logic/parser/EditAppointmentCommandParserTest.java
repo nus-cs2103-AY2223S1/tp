@@ -143,25 +143,19 @@ public class EditAppointmentCommandParserTest {
         EditAppointmentCommand expectedCommand = new EditAppointmentCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
-        userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        descriptor = new EditAppointmentDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        expectedCommand = new EditAppointmentCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // email
+        // doctor
         userInput = targetIndex.getOneBased() + DOCTOR_DESC_7;
         descriptor = new EditAppointmentDescriptorBuilder().withDoctor(VALID_DOCTOR_CAITIE).build();
         expectedCommand = new EditAppointmentCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
+        // medical test
         userInput = targetIndex.getOneBased() + MEDICAL_TEST_DESC_7;
         descriptor = new EditAppointmentDescriptorBuilder().withMedicalTest(VALID_MEDICAL_TEST_7).build();
         expectedCommand = new EditAppointmentCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
+        // slot
         userInput = targetIndex.getOneBased() + SLOT_DESC_7;
         descriptor = new EditAppointmentDescriptorBuilder().withSlot(VALID_SLOT_7).build();
         expectedCommand = new EditAppointmentCommand(targetIndex, descriptor);

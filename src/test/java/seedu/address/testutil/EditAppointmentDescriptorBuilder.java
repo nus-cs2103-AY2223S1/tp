@@ -8,7 +8,7 @@ import seedu.address.model.appointment.Slot;
 import seedu.address.model.person.Name;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditAppointmentDescriptor objects.
  */
 public class EditAppointmentDescriptorBuilder {
 
@@ -23,7 +23,7 @@ public class EditAppointmentDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditAppointmentDescriptor} with fields containing {@code appointment}'s details
      */
     public EditAppointmentDescriptorBuilder(Appointment appointment) {
         descriptor = new EditAppointmentCommand.EditAppointmentDescriptor();
@@ -34,7 +34,7 @@ public class EditAppointmentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditAppointmentDescriptor} that we are building.
      */
     public EditAppointmentDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
