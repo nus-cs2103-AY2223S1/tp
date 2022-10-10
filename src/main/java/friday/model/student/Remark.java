@@ -28,7 +28,7 @@ public class Remark {
 
     @Override
     public String toString() {
-        return value;
+        return String.format("Remark(s): %s", value);
     }
 
     @Override

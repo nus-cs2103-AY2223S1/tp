@@ -54,7 +54,7 @@ public class PersonCard extends UiPart<Region> {
         telegramHandle.setText(student.getTelegramHandle().toString());
         masteryCheck.setText(student.getMasteryCheck().toString());
         consultation.setText(student.getConsultation().toString());
-        remark.setText(student.getRemark().value);
+        remark.setText(student.getRemark().toString());
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
