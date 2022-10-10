@@ -1,5 +1,6 @@
 package seedu.taassist.testutil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ import seedu.taassist.model.session.Session;
  */
 public class ModuleClassBuilder {
     public static final String DEFAULT_NAME = "IS1103";
+    public static final List<Session> DEFAULT_SESSIONS = new ArrayList<>();
 
     private String name;
     private List<Session> sessions;
@@ -21,6 +23,7 @@ public class ModuleClassBuilder {
      */
     public ModuleClassBuilder() {
         name = DEFAULT_NAME;
+        sessions = DEFAULT_SESSIONS;
     }
 
     /**

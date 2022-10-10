@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
@@ -22,6 +24,7 @@ import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.UserPrefs;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.testutil.ModuleClassBuilder;
 
 public class AddcCommandTest {
 
@@ -49,7 +52,7 @@ public class AddcCommandTest {
     public void execute_duplicateModuleClass_throwsCommandException() throws Exception {
         ModuleClass validModuleClass = CS1101S;
         AddcCommand addcCommand = new AddcCommand(validModuleClass);
-        ModelStub modelStub = new ModelStubWithModuleClass(validModuleClass);
+        ModelStubWithModuleClass modelStub = new ModelStubWithModuleClass(validModuleClass);
 
         assertThrows(CommandException.class, AddcCommand.MESSAGE_DUPLICATE_MODULE_CLASS, () ->
                 addcCommand.execute(modelStub));
@@ -79,26 +82,30 @@ public class AddcCommandTest {
 
     //==================================== Integration Tests =========================================================
 
-    /*
     @Test
     public void execute_newModuleClass_success() {
-        ModuleClass validModuleClass = CS1101S;
+        // module class should not be in any of the classes in TypicalStudents
+        ModuleClass validNewModuleClass = new ModuleClassBuilder().build();
 
         Model expectedModel = new ModelManager(model.getTaAssist(), new UserPrefs());
-        expectedModel.addModuleClass(validModuleClass);
+        expectedModel.addModuleClass(validNewModuleClass);
 
-        assertCommandSuccess(new AddcCommand(validModuleClass), model,
-                String.format(AddcCommand.MESSAGE_SUCCESS, validModuleClass), expectedModel);
+        assertCommandSuccess(new AddcCommand(validNewModuleClass), model,
+                String.format(AddcCommand.MESSAGE_SUCCESS, validNewModuleClass), expectedModel);
     }
 
-     */
+    @Test
+    public void execute_duplicateModuleClassIntegration_throwsCommandException() {
+        ModuleClass moduleClassInList = model.getTaAssist().getModuleClassList().get(0);
+        assertCommandFailure(new AddcCommand(moduleClassInList), model, AddcCommand.MESSAGE_DUPLICATE_MODULE_CLASS);
+    }
 
     //==================================== Model Stubs ===============================================================
 
     private class ModelStubWithModuleClass extends ModelStub {
         private final ModuleClass moduleClass;
 
-        ModelStubWithModuleClass(ModuleClass moduleClass) {
+        public ModelStubWithModuleClass(ModuleClass moduleClass) {
             requireNonNull(moduleClass);
             this.moduleClass = moduleClass;
         }
@@ -113,12 +120,12 @@ public class AddcCommandTest {
      * A Model stub that always accepts the module class being added.
      */
     private class ModelStubAcceptingModuleClasses extends ModelStub {
-        final ArrayList<ModuleClass> moduleClassesAdded = new ArrayList<>();
+        private final ArrayList<ModuleClass> moduleClassesAdded = new ArrayList<>();
 
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
             requireNonNull(moduleClass);
-            return moduleClassesAdded.stream().anyMatch(moduleClass::equals);
+            return false;
         }
 
         @Override
