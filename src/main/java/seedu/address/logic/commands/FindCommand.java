@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 
 /**
@@ -56,11 +57,16 @@ public class FindCommand extends Command {
         if (!isNull(predicate)) {
             model.updateFilteredPersonList(predicate);
         } else {
-            if (findPersonDescriptor.isPhoneEmpty) {
-                this.targetIndex = Index.fromZeroBased(model.findEmail(findPersonDescriptor.getEmail()));
-            } else {
-                this.targetIndex = Index.fromZeroBased(model.findNum(findPersonDescriptor.getPhone()));
+            try {
+                if (findPersonDescriptor.isPhoneEmpty) {
+                    this.targetIndex = Index.fromZeroBased(model.findEmail(findPersonDescriptor.getEmail()));
+                } else {
+                    this.targetIndex = Index.fromZeroBased(model.findNum(findPersonDescriptor.getPhone()));
+                }
+            } catch (PersonNotFoundException e) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
             }
+
             List<Person> lastShownList = model.getFilteredPersonList();
 
             if (targetIndex.getZeroBased() >= lastShownList.size()) {

@@ -28,6 +28,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Reward;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -87,9 +88,15 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
-        this.index = !isNull(this.phoneIdentifier)
-                ? Index.fromZeroBased(model.findNum(phoneIdentifier))
-                : Index.fromZeroBased(model.findEmail(emailIdentifier));
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        try {
+            this.index = !isNull(this.phoneIdentifier)
+                    ? Index.fromZeroBased(model.findNum(phoneIdentifier))
+                    : Index.fromZeroBased(model.findEmail(emailIdentifier));
+        } catch (PersonNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

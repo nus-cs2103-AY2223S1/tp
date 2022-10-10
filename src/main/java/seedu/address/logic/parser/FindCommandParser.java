@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AllInfoContainsKeywordsPredicate;
@@ -43,12 +44,16 @@ public class FindCommandParser implements Parser<FindCommand> {
                 return new FindCommand(new AllInfoContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
             } else if (isBothFilled || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            } else if (arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
+            } else if (arePrefixesPresent(argMultimap, PREFIX_PHONE)
+                    && argMultimap.getAllValues(PREFIX_PHONE).size() == 1) {
                 Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
                 findPersonDescriptor.setPhone(phone);
-            } else if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+            } else if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)
+                    && argMultimap.getAllValues(PREFIX_EMAIL).size() == 1) {
                 Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
                 findPersonDescriptor.setEmail(email);
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
             }
 
             if (!findPersonDescriptor.isAnyFilled()) {
