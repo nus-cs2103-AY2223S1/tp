@@ -82,6 +82,10 @@ public class StudentTest {
         editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different class group -> returns false
+        editedAlice = new StudentBuilder(ALICE).withClassGroup(VALID_CLASS_GROUP_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different address -> returns false
         editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
