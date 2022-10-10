@@ -3,16 +3,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 <?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.ListView?>
 <HBox id="detailsPane" fx:id="detailsPane"
       xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" styleClass="edge-to-edge">
     <AnchorPane minHeight="0.0" minWidth="0.0" HBox.hgrow="ALWAYS">
@@ -21,7 +19,7 @@
                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                 AnchorPane.topAnchor="0.0">
         <content>
-            <VBox alignment="TOP_LEFT" style="-fx-background-color: transparent;">
+            <VBox alignment="TOP_LEFT">
                 <padding>
                     <Insets bottom="5" left="15" right="5" top="5" />
                 </padding>
@@ -44,8 +42,7 @@
                 <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
                 <Label fx:id="completionStatus" styleClass="cell_small_label" text="\$completionStatus" />
                 <Label fx:id="customerName" styleClass="cell_small_label" text="\$customerName" />
-                <VBox fx:id="iterationListPlaceholder">
-                </VBox>
+                <ListView fx:id="iterationListView" VBox.vgrow="ALWAYS" />
             </VBox>
         </content>
     </ScrollPane>

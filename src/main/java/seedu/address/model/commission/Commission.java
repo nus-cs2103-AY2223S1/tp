@@ -172,7 +172,7 @@ public class Commission {
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, fee, deadline, tags);
+        return Objects.hash(title, fee, deadline, tags, iterations);
     }
 
     @Override

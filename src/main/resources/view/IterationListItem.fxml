@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <VBox id="iterationListItem" fx:id="iterationListItem"
-      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="id" styleClass="cell_big_label"/>
-    <Label fx:id="date" styleClass="cell_big_label"/>
-    <Label fx:id="description" styleClass="cell_big_label"/>
-    <Label fx:id="feedback" styleClass="cell_big_label"/>
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      minWidth="320" minHeight="90">
+    <Label fx:id="id" styleClass="cell_big_label" text="\$id"/>
+    <Label fx:id="date" styleClass="cell_big_label" text="\$date"/>
+    <Label fx:id="description" styleClass="cell_big_label" text="\$description"/>
+    <Label fx:id="feedback" styleClass="cell_big_label" text="\$feedback"/>
 </VBox>

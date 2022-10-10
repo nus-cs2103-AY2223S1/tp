@@ -4,13 +4,15 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.commission.Description;
+import seedu.address.model.iteration.Iteration;
 
 /**
  * An UI component that displays information about a {@code Commission}.
@@ -38,7 +40,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private VBox iterationListPlaceholder;
+    private ListView<Iteration> iterationListView;
 
     /**
      * Creates a {@code CommissionDetailsPane} with the given {@code Commission} and index to display.
@@ -48,8 +50,10 @@ public class CommissionDetailsPane extends UiPart<Region> {
         this.commission = commission.getValue();
         updateUI(this.commission);
         commission.addListener((observable, oldValue, newValue) -> {
-            this.updateUI(newValue);
+            updateUI(newValue);
         });
+        iterationListView.setItems(commission.getValue().getIterationList());
+        iterationListView.setCellFactory(listView -> new IterationListViewCell());
     }
 
     private void updateUI(Commission commission) {
@@ -61,7 +65,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
             completionStatus.setText("");
             customerName.setText("");
             tags.getChildren().clear();
-            iterationListPlaceholder.getChildren().clear();
         } else {
             title.setText(commission.getTitle().title);
             description.setText(commission.getDescription().orElseGet(() -> Description.NO_DESCRIPTION).description);
@@ -73,11 +76,25 @@ public class CommissionDetailsPane extends UiPart<Region> {
             commission.getTags().stream()
                     .sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-            commission.getIterationList().stream()
-                    .sorted(Comparator.comparing(iteration -> iteration.getDate().date))
-                    .forEach(iteration -> iterationListPlaceholder.getChildren().add(
-                            new IterationListItem(iteration).getRoot()
-                    ));
+            iterationListView.setItems(commission.getIterationList());
+            iterationListView.setCellFactory(listView -> new IterationListViewCell());
+        }
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Iteration} using a {@code IterationListItem}.
+     */
+    class IterationListViewCell extends ListCell<Iteration> {
+        @Override
+        protected void updateItem(Iteration iteration, boolean empty) {
+            super.updateItem(iteration, empty);
+
+            if (empty || iteration == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new IterationListItem(iteration).getRoot());
+            }
         }
     }
 

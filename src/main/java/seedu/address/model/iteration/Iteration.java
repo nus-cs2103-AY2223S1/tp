@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- * Represents an Iteration in the address book.
+ * Represents an Iteration in the ArtBuddy.
  * Guarantees: date and description are present and not null, field values are validated, immutable.
  */
 public class Iteration {
@@ -47,7 +47,7 @@ public class Iteration {
 
     /**
      * Returns true if both iterations have the same image.
-     * This defines a weaker notion of equality between two commissions.
+     * This defines a weaker notion of equality between two iterations.
      */
     public boolean isSameIteration(Iteration otherIteration) {
         if (otherIteration == this) {
