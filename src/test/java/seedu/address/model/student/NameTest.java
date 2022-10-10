@@ -39,7 +39,7 @@ public class NameTest {
     }
 
     @Test
-    void test_nameContainsKeyword_returnsTrue() {
+    void contains_nameContainsKeyword_returnsTrue() {
         // Blank keyword
         assertTrue(new Name("Alice Tay").contains(""));
 
@@ -51,7 +51,7 @@ public class NameTest {
     }
 
     @Test
-    void test_nameContainsKeyword_returnsFalse() {
+    void contains_nameContainsKeyword_returnsFalse() {
         // Keyword with non-alphanumeric characters
         assertFalse(new Name("Alice Tay").contains("**&&^%#"));
 

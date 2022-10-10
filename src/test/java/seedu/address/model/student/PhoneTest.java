@@ -39,7 +39,7 @@ public class PhoneTest {
     }
 
     @Test
-    void test_phoneContainsKeyword_returnsTrue() {
+    void contains_phoneContainsKeyword_returnsTrue() {
         // Blank keyword
         assertTrue(new Phone("12345678").contains(""));
 
@@ -51,7 +51,7 @@ public class PhoneTest {
     }
 
     @Test
-    void test_phoneContainsKeyword_returnsFalse() {
+    void contains_phoneContainsKeyword_returnsFalse() {
         // Keyword with alphabets
         assertFalse(new Phone("12345678").contains("aaaaa"));
 

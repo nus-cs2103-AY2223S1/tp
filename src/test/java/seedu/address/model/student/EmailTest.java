@@ -66,7 +66,7 @@ public class EmailTest {
     }
 
     @Test
-    void test_emailContainsKeyword_returnsTrue() {
+    void contains_emailContainsKeyword_returnsTrue() {
         // Blank keyword
         assertTrue(new Email("alice@example.com").contains(""));
 
@@ -78,7 +78,7 @@ public class EmailTest {
     }
 
     @Test
-    void test_emailContainsKeyword_returnsFalse() {
+    void contains_emailContainsKeyword_returnsFalse() {
         // Mixed-case keyword
         assertFalse(new Email("alice@example.com").contains("aliCE@exAmpLe.com"));
     }

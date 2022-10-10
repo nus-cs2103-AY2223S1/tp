@@ -166,6 +166,25 @@ public class StudentTest {
     }
 
     @Test
+    public void contains_classGroupContainsKeywords_returnsTrue() {
+        // Exact keyword
+        assertTrue(new StudentBuilder().withClassGroup("cs2030 lab 31").build().contains("cs2030"));
+
+        // Only partial matching keyword
+        assertTrue(new StudentBuilder().withClassGroup("cs2030 lab 31").build().contains("2030"));
+    }
+
+    @Test
+    public void contains_classGroupDoesNotContainKeywords_returnsFalse() {
+        // Non-matching keyword
+        assertFalse(new StudentBuilder().withClassGroup("cs2030 lab 31").build().contains("cs2103t"));
+
+
+        // Mixed-case keyword
+        assertFalse(new StudentBuilder().withClassGroup("cs2030 lab 31").build().contains("CS2030"));
+    }
+
+    @Test
     public void contains_studentIdContainsKeywords_returnsTrue() {
         // Exact keyword
         assertTrue(new StudentBuilder().withStudentId("e0123456").build().contains("e0123456"));

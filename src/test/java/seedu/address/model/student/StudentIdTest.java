@@ -35,7 +35,7 @@ public class StudentIdTest {
     }
 
     @Test
-    void test_studentIdContainsKeyword_returnsTrue() {
+    void contains_studentIdContainsKeyword_returnsTrue() {
         // Blank keyword
         assertTrue(new StudentId("e0123456").contains(""));
 
@@ -47,7 +47,7 @@ public class StudentIdTest {
     }
 
     @Test
-    void test_studentIdContainsKeyword_returnsFalse() {
+    void contains_studentIdContainsKeyword_returnsFalse() {
         // Keyword with only alphabets
         assertFalse(new StudentId("e0123456").contains("aaaaa"));
 

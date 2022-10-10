@@ -108,6 +108,37 @@ public class StudentContainsKeywordsPredicateTest {
     }
 
     @Test
+    public void test_classGroupContainsKeywords_returnsTrue() {
+        // Exact keyword
+        StudentContainsKeywordsPredicate predicate =
+                new StudentContainsKeywordsPredicate(Collections.singletonList("cs2030"));
+        assertTrue(predicate.test(new StudentBuilder().withClassGroup("cs2030 lab 31").build()));
+
+        // Multiple keywords with only one match keyword
+        predicate = new StudentContainsKeywordsPredicate(Arrays.asList("cs2030", "aaa", "bb"));
+        assertTrue(predicate.test(new StudentBuilder().withClassGroup("cs2030 lab 31").build()));
+
+        // Mixed-case keywords
+        predicate = new StudentContainsKeywordsPredicate(Arrays.asList("CS2030", "lAb", "31"));
+        assertTrue(predicate.test(new StudentBuilder().withClassGroup("cs2030 lab 31").build()));
+
+        // Only partial matching keyword
+        predicate = new StudentContainsKeywordsPredicate(Arrays.asList("2030", "ab"));
+        assertTrue(predicate.test(new StudentBuilder().withClassGroup("cs2030 lab 31").build()));
+    }
+
+    @Test
+    public void test_classGroupDoesNotContainKeywords_returnsFalse() {
+        // Zero keywords
+        StudentContainsKeywordsPredicate predicate = new StudentContainsKeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new StudentBuilder().withClassGroup("cs2030 lab 31").build()));
+
+        // Non-matching keyword
+        predicate = new StudentContainsKeywordsPredicate(Arrays.asList("cs2103t"));
+        assertFalse(predicate.test(new StudentBuilder().withClassGroup("cs2030 lab 31").build()));
+    }
+
+    @Test
     public void test_phoneContainsKeywords_returnsTrue() {
         // One keyword
         StudentContainsKeywordsPredicate predicate =
