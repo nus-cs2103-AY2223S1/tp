@@ -28,35 +28,19 @@ public class Client {
 
     /**
      * Constructs a client with inputs given by the user.
-     * @param name String representing name of the client
-     * @param phone String representing phone number of the client
-     * @param email String representing email address of the client
+     * @param name Name representing name of the client
+     * @param phone Phone representing phone number of the client
+     * @param email Email representing email address of the client
      * @param type Type representing the type of the client
      */
-    public Client(String name, String phone, String email, Type type) {
+    public Client(ClientName name, ClientPhone phone, ClientEmail email, Type type) {
         //to be added
         requireNonNull(name);
-        this.name = new ClientName(name);
-        this.phone = new ClientPhone(phone);
-        this.email = new ClientEmail(email);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
         this.projects = new ClientProjectList();
         this.type = type;
-    }
-
-    /**
-     * Constructs a client with inputs given by the user.
-     * @param name String representing name of the client
-     * @param phone String representing phone number of the client
-     * @param email String representing email address of the client
-     */
-    public Client(String name, String phone, String email) {
-        //to be added
-        requireNonNull(name);
-        this.name = new ClientName(name);
-        this.phone = new ClientPhone(phone);
-        this.email = new ClientEmail(email);
-        this.projects = new ClientProjectList();
-        this.type = Type.UNSPECIFIED;
     }
 
     /**
