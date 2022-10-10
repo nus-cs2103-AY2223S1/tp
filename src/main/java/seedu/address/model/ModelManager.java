@@ -234,6 +234,4 @@ public class ModelManager implements Model {
                 && filteredDeliverers.equals(other.filteredDeliverers);
     }
 
-
-
 }
