@@ -36,6 +36,9 @@ public class Listing {
         currentOffers = new ArrayList<>();
     }
 
+    public Listing(Address address, Name name, int askingPrice) {
+    }
+
     /**
      * Gets the id of this listing.
      * @return id of listing
