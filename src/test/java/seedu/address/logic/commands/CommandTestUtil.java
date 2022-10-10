@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -43,6 +45,10 @@ public class CommandTestUtil {
     public static final String VALID_UNIVERSITY_BOB = "NTU";
     public static final String VALID_MAJOR_AMY = "Computer Science";
     public static final String VALID_MAJOR_BOB = "Computer Engineering";
+    public static final String VALID_JOB_ID_AMY = "167839";
+    public static final String VALID_JOB_ID_BOB = "J9204342";
+    public static final String VALID_JOB_TITLE_AMY = "Software Engineer Intern";
+    public static final String VALID_JOB_TITLE_BOB = "Backend Engineer Intern (May'23 - July'23)";
     public static final String VALID_TAG_KIV = "KIV";
     public static final String VALID_TAG_REJECTED = "rejected";
 
@@ -60,6 +66,10 @@ public class CommandTestUtil {
     public static final String UNIVERSITY_DESC_BOB = " " + PREFIX_UNIVERSITY + VALID_UNIVERSITY_BOB;
     public static final String MAJOR_DESC_AMY = " " + PREFIX_MAJOR + VALID_MAJOR_AMY;
     public static final String MAJOR_DESC_BOB = " " + PREFIX_MAJOR + VALID_MAJOR_BOB;
+    public static final String JOB_ID_DESC_AMY = " " + PREFIX_JOB_ID + VALID_JOB_ID_AMY;
+    public static final String JOB_ID_DESC_BOB = " " + PREFIX_JOB_ID + VALID_JOB_ID_BOB;
+    public static final String JOB_TITLE_DESC_AMY = " " + PREFIX_JOB_TITLE + VALID_JOB_TITLE_AMY;
+    public static final String JOB_TITLE_DESC_BOB = " " + PREFIX_JOB_TITLE + VALID_JOB_TITLE_BOB;
     public static final String TAG_DESC_REJECTED = " " + PREFIX_TAG + VALID_TAG_REJECTED;
     public static final String TAG_DESC_KIV = " " + PREFIX_TAG + VALID_TAG_KIV;
 
@@ -72,6 +82,9 @@ public class CommandTestUtil {
     // universities
     public static final String INVALID_MAJOR_DESC = " " + PREFIX_MAJOR + "C0MPUT3R $C13NC3"; // '0, 3, $, 1'
     // not allowed for majors
+    public static final String INVALID_JOB_ID_DESC = " " + PREFIX_JOB_ID + "J9021-1"; // '-' not allowed in job IDs
+    public static final String INVALID_JOB_TITLE_DESC = " " + PREFIX_JOB_TITLE
+            + "Intern | Software Engineer"; // '|' not allowed in job titles
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "offered*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -86,13 +99,19 @@ public class CommandTestUtil {
                 .withAddress(VALID_ADDRESS_AMY)
                 .withUniversity(VALID_UNIVERSITY_AMY)
                 .withMajor(VALID_MAJOR_AMY)
-                .withGender(VALID_GENDER_AMY).withTags(VALID_TAG_REJECTED).build();
+                .withGender(VALID_GENDER_AMY)
+                .withId(VALID_JOB_ID_AMY)
+                .withTitle(VALID_JOB_TITLE_AMY)
+                .withTags(VALID_TAG_REJECTED).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withMajor(VALID_MAJOR_BOB)
-                .withGender(VALID_GENDER_BOB).withTags(VALID_TAG_KIV, VALID_TAG_REJECTED).build();
+                .withGender(VALID_GENDER_BOB)
+                .withId(VALID_JOB_ID_BOB)
+                .withTitle(VALID_JOB_TITLE_BOB)
+                .withTags(VALID_TAG_KIV, VALID_TAG_REJECTED).build();
     }
 
     /**

@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.job.Id;
+import seedu.address.model.job.Job;
+import seedu.address.model.job.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +28,7 @@ public class Person {
     private final Gender gender;
     private final University university;
     private final Major major;
+    private final Job job;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -35,6 +39,8 @@ public class Person {
                   Gender gender,
                   University university,
                   Major major,
+                  Id id,
+                  Title title,
                   Set<Tag> tags) {
         requireAllNonNull(name, phone, email,
             address,
@@ -49,6 +55,7 @@ public class Person {
         this.gender = gender;
         this.university = university;
         this.major = major;
+        this.job = new Job(id, title);
         this.tags.addAll(tags);
     }
 
@@ -78,6 +85,10 @@ public class Person {
 
     public Major getMajor() {
         return major;
+    }
+
+    public Job getJob() {
+        return job;
     }
 
     /**
@@ -123,13 +134,19 @@ public class Person {
                 && otherPerson.getGender().equals(getGender())
                 && otherPerson.getUniversity().equals(getUniversity())
                 && otherPerson.getMajor().equals(getMajor())
+                && otherPerson.getJob().equals(getJob())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, gender, university, major, tags);
+        return Objects.hash(name, phone, email, address,
+                gender,
+                university,
+                major,
+                job,
+                tags);
     }
 
     @Override
@@ -147,7 +164,9 @@ public class Person {
                 .append("; University: ")
                 .append(getUniversity())
                 .append("; Major: ")
-                .append(getMajor());
+                .append(getMajor())
+                .append("; Job ID: ")
+                .append(getJob());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

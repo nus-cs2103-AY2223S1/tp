@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -36,11 +38,13 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-            .withAddress(VALID_ADDRESS_BOB)
-            .withGender(VALID_GENDER_BOB)
-            .withUniversity(VALID_UNIVERSITY_BOB)
-            .withMajor(VALID_MAJOR_BOB)
-            .withTags(VALID_TAG_KIV).build();
+                .withAddress(VALID_ADDRESS_BOB)
+                .withGender(VALID_GENDER_BOB)
+                .withUniversity(VALID_UNIVERSITY_BOB)
+                .withMajor(VALID_MAJOR_BOB)
+                .withId(VALID_JOB_ID_BOB)
+                .withTitle(VALID_JOB_TITLE_BOB)
+                .withTags(VALID_TAG_KIV).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -101,6 +105,14 @@ public class PersonTest {
 
         // different major -> returns false
         editedAlice = new PersonBuilder(ALICE).withMajor(VALID_MAJOR_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different id -> returns false
+        editedAlice = new PersonBuilder(ALICE).withId(VALID_JOB_ID_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different title -> returns false
+        editedAlice = new PersonBuilder(ALICE).withTitle(VALID_JOB_TITLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

@@ -8,6 +8,8 @@
     "gender": "Female",
     "university": "Singapore University",
     "major": "Computer Science",
+    "id" : "171932",
+    "title" : "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ "interview", "rejected" ]
   }, {
     "name" : "Benson Meier",
@@ -17,6 +19,8 @@
     "gender": "Male",
     "university": "NUS",
     "major": "Computer Engineering",
+    "id" : "J021932",
+    "title" : "Intern, Software Engineer (May'23 - Aug'23)",
     "tagged" : [ "KIV" ]
   }, {
     "name" : "Carl Kurz",
@@ -26,6 +30,8 @@
     "gender": "Male",
     "university": "SUTD",
     "major": "Chemical Engineering",
+    "id" : "171932",
+    "title" : "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -35,6 +41,8 @@
     "gender": "Male",
     "university": "SMU",
     "major": "Civil Engineering",
+    "id" : "171932",
+    "title" : "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -44,6 +52,8 @@
     "gender": "Female",
     "university": "Lasalle",
     "major": "Electrical Engineering",
+    "id": "171932",
+    "title": "[Campus Recruitment] Intern, Software Engineer",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -53,6 +63,8 @@
     "gender": "Female",
     "university": "Nanyang Polytechnic",
     "major": "Animal Sciences",
+    "id": "J021932",
+    "title": "Intern, Software Engineer (May'23 - Aug'23)",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -62,6 +74,8 @@
     "gender": "Male",
     "university": "Temasek Polytechnic",
     "major": "Accounting",
+    "id" : "J021932",
+    "title" : "Intern, Software Engineer (May'23 - Aug'23)",
     "tagged" : [ ]
   } ]
 }

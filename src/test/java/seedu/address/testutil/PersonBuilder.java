@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.job.Id;
+import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -26,6 +28,8 @@ public class PersonBuilder {
     public static final String DEFAULT_GENDER = "Female";
     public static final String DEFAULT_UNIVERSITY = "NUS";
     public static final String DEFAULT_MAJOR = "Computer Science";
+    public static final String DEFAULT_JOB_ID = "17839";
+    public static final String DEFAULT_JOB_TITLE = "Intern, Software Engineer";
 
     private Name name;
     private Phone phone;
@@ -34,6 +38,8 @@ public class PersonBuilder {
     private Gender gender;
     private University university;
     private Major major;
+    private Id id;
+    private Title title;
     private Set<Tag> tags;
 
     /**
@@ -47,6 +53,8 @@ public class PersonBuilder {
         gender = new Gender(DEFAULT_GENDER);
         university = new University(DEFAULT_UNIVERSITY);
         major = new Major(DEFAULT_MAJOR);
+        id = new Id(DEFAULT_JOB_ID);
+        title = new Title(DEFAULT_JOB_TITLE);
         tags = new HashSet<>();
     }
 
@@ -61,6 +69,8 @@ public class PersonBuilder {
         gender = personToCopy.getGender();
         university = personToCopy.getUniversity();
         major = personToCopy.getMajor();
+        id = personToCopy.getJob().getId();
+        title = personToCopy.getJob().getTitle();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -129,15 +139,33 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Id} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withId(String id) {
+        this.id = new Id(id);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Title} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTitle(String title) {
+        this.title = new Title(title);
+        return this;
+    }
+
+    /**
      * Builds the {@code Person} that we are building.
      */
     public Person build() {
         return new Person(name, phone, email,
-            address,
-            gender,
-            university,
-            major,
-            tags);
+                address,
+                gender,
+                university,
+                major,
+                id,
+                title,
+                tags);
     }
 
 }
