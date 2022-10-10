@@ -40,10 +40,7 @@ public class ApplicationStatus {
      * Returns true only if a given string is a valid status.
      */
     public static boolean isValidApplicationStatus(String test) {
-        if (test.equals(PENDING) || test.equals(ACCEPTED) || test.equals(REJECTED)) {
-            return true;
-        }
-        return false;
+        return test.equalsIgnoreCase(PENDING) || test.equalsIgnoreCase(ACCEPTED) || test.equalsIgnoreCase(REJECTED);
     }
 
     @Override
