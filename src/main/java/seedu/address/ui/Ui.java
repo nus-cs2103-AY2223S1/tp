@@ -7,7 +7,10 @@ import javafx.stage.Stage;
  */
 public interface Ui {
 
-    /** Starts the UI (and the App).  */
+    /** Starts the UI (and the App) without a launch message. */
     void start(Stage primaryStage);
+
+    /** Starts the UI (and the App).  */
+    void start(Stage primaryStage, String launchMessage);
 
 }
