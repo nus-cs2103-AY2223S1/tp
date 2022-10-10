@@ -173,11 +173,7 @@ public class ModelManager implements Model {
     // - to be used each time listR is called to replace the recordList being displayed
     // - delete current implementation, replace with commented out code
     // eg. setFilteredRecords(Person person)
-    private void setFilteredRecords() {
-        // FilteredList takes in an ObservableList stored inside recordList, using the person retrieved from listR
-        filteredRecords = new FilteredList<>(new RecordList().getRecordList());
-    }
-
+    @Override
     public void setFilteredRecordList(Person person) {
         filteredRecords = new FilteredList<>(person.getRecordList().asUnmodifiableObservableList());
     }
