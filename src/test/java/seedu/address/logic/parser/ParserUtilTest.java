@@ -38,6 +38,7 @@ public class ParserUtilTest {
     private static final String INVALID_MAXIMUM_CAP_VALUE = "b";
     private static final String INVALID_CAP_1 = INVALID_CAP_VALUE + CAP_SEPARATOR + MAXIMUM_CAP_VALUE;
     private static final String INVALID_CAP_2 = INVALID_CAP_VALUE_2 + CAP_SEPARATOR + INVALID_MAXIMUM_CAP_VALUE;
+    private static final String INVALID_CAP_3 = "@#!";
     private static final String INVALID_UNIVERSITY = "n()S";
     private static final String INVALID_ID = "J9021-1";
     private static final String INVALID_TITLE = "Intern | Software Engineer";
@@ -203,6 +204,7 @@ public class ParserUtilTest {
     public void parseCap_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_1));
         assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_2));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCap(INVALID_CAP_3));
     }
 
     @Test
