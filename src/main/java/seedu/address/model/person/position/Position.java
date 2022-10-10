@@ -16,8 +16,11 @@ public abstract class Position {
             "Positions can only be one of the following: Student, TA, Professor (non case-sensitive).";
 
     public final String value;
-
+    /**
+     * Constructor for Position
+     */
     public Position(String value) {
+
         this.value = value;
     }
 
@@ -55,4 +58,7 @@ public abstract class Position {
     public abstract boolean equals(Object other);
 
     public abstract int hashcode();
+
+    public abstract String getDetails();
+    public abstract void setDetails(String details);
 }

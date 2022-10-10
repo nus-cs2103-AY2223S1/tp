@@ -81,4 +81,12 @@ public class Student extends Position {
     public int hashcode() {
         return 0;
     }
+
+    @Override
+    public String getDetails() {
+        return "";
+    }
+
+    @Override
+    public void setDetails(String grades){}
 }
