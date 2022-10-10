@@ -1,5 +1,10 @@
 package seedu.address.model.team;
 
+import seedu.address.model.person.Person;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -23,6 +28,11 @@ public class Task {
     private String name;
 
     /**
+     * Team member assigned to be in charge of this task.
+     */
+    private List<Person> assignees;
+
+    /**
      * Constructs a {@code Task}.
      *
      * @param name A valid task name.
@@ -31,6 +41,7 @@ public class Task {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
+        assignees = new ArrayList<>();
     }
 
     /**
@@ -40,16 +51,30 @@ public class Task {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isValidIndex(int test) { return test < assignees.size(); }
 
     @Override
     public String toString() {
-        return name;
+        return name + getAssignees();
     }
 
     public String getName() {
         return name;
     }
 
+    public String getAssignees() {
+        if (assignees.isEmpty()) {
+            return "(Not assigned to any member yet)";
+        } else {
+            StringBuilder assigneeNames = new StringBuilder(" (Assigned to: ");
+            assigneeNames.append(assignees.get(0).getName());
+            for (int i = 1; i < assignees.size(); i++) {
+                assigneeNames.append(", ").append(assignees.get(i).getName());
+            }
+            assigneeNames.append(")");
+            return assigneeNames.toString();
+        }
+    }
     /**
      * Returns true if two tasks have the same name.
      *
@@ -68,5 +93,13 @@ public class Task {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    public void assignTo(Person assignee) {
+        assignees.add(assignee);
+    }
+
+    public boolean checkAssignee(Person assignee) {
+        return this.assignees.contains(assignee);
     }
 }

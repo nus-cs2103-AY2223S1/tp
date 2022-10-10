@@ -81,6 +81,11 @@ public class Team {
         return taskList.contains(task);
     }
 
+    public void assignTask(int task, int person) {
+        Person assignee = this.getTeamMembers().get(person);
+        this.getTaskList().get(task).assignTo(assignee);
+    }
+
     /**
      * Returns true if a given string is a valid tag name.
      */
