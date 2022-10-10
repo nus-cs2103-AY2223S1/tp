@@ -10,12 +10,19 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+import java.util.logging.Filter;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -102,6 +109,16 @@ public class ModelManagerTest {
     public void setStudentListInfoConcise_setFalse() {
         modelManager.setStudentListInfoConcise(false);
         assertFalse(modelManager.isStudentListInfoConcise());
+    }
+
+    @Test
+    public void getFilteredStudents_noStudentsInList() {
+        List<Person> li = new ArrayList<>();
+        ObservableList<Person> emptyList = FXCollections.observableList(li);
+        FilteredStudents filteredStudentsTest = new FilteredStudents(new FilteredList<>(emptyList));
+        FilteredStudents filteredStudents = modelManager.getFilteredStudents();
+
+        assertEquals(filteredStudents, filteredStudentsTest);
     }
 
     @Test
