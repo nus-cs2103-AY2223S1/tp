@@ -1,4 +1,4 @@
-package seedu.address.model.tuitionclass;
+package seedu.address.model.level;
 
 import seedu.address.model.tuitionclass.exceptions.InvalidLevelException;
 
