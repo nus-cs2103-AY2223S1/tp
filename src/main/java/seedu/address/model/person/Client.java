@@ -22,18 +22,25 @@ public class Client {
     //Represents a Collection of projects that the client is responsible for
     private List<Project> projects;
 
+    private ClientId clientId;
+
     /**
      * Constructs a client with inputs given by the user.
      * @param name String representing name of the client
      * @param phone String representing phone number of the client
      * @param email String representing email address of the client
      */
-    public Client(Name name, Phone phone, Email email, List<Project> projects) {
-        requireAllNonNull(name, phone, email, projects);
+    public Client(Name name, Phone phone, Email email, List<Project> projects, ClientId clientId) {
+        requireAllNonNull(name, phone, email, projects, clientId);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.projects = projects;
+        this.clientId = clientId;
+    }
+
+    public ClientId getId() {
+        return this.clientId;
     }
 
     /**
@@ -96,6 +103,7 @@ public class Client {
 
         Client otherClient = (Client) other;
         return otherClient.getName().equals(getName())
+                && otherClient.getId().equals(getId())
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getProjects().equals(getProjects());

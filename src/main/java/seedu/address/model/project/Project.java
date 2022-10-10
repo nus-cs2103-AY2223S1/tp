@@ -17,20 +17,26 @@ public class Project {
     private Repository repository;
     private Deadline deadline;
     private Client client;
+    private ProjectId projectId;
     private List<Issue> issueList;
 
     /**
      * Name field must be present and not null and other fields may be optional.
      */
-    public Project(Name name, Repository repository, Deadline deadline, Client client, List<Issue> issueList) {
+    public Project(Name name, Repository repository, Deadline deadline,
+                   Client client, List<Issue> issueList, ProjectId projectId) {
         requireAllNonNull(name, repository, deadline, client);
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;
         this.client = client;
         this.issueList = issueList;
+        this.projectId = projectId;
     }
 
+    public ProjectId getId() {
+        return projectId;
+    }
     public Name getProjectName() {
         return name;
     }

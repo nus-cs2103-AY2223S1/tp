@@ -8,10 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Client;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.project.Project;
 
 /**
@@ -24,6 +21,7 @@ class JsonAdaptedClient {
     private final String name;
     private final String phone;
     private final String email;
+    private final String clientId;
 
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
 
@@ -33,10 +31,12 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
+                             @JsonProperty("clientId") String clientId,
                              @JsonProperty("projects") List<JsonAdaptedProject> projects) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.clientId = clientId;
         if (projects != null) {
             this.projects.addAll(projects);
         }
@@ -49,6 +49,7 @@ class JsonAdaptedClient {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        clientId = source.getId().toString();
         projects.addAll(source.getProjects().stream()
                 .map(JsonAdaptedProject::new)
                 .collect(Collectors.toList()));
@@ -89,7 +90,15 @@ class JsonAdaptedClient {
         }
         final Email modelEmail = new Email(email);
 
-        return new Client(modelName, modelPhone, modelEmail, clientProjects);
+        if (clientId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientId.class.getSimpleName()));
+        }
+        if (!ClientId.isValidClientId(clientId)) {
+            throw new IllegalValueException(ClientId.MESSAGE_CONSTRAINTS);
+        }
+        final ClientId modelClientId = new ClientId(Integer.parseInt(clientId));
+
+        return new Client(modelName, modelPhone, modelEmail, clientProjects, modelClientId);
     }
 
 }

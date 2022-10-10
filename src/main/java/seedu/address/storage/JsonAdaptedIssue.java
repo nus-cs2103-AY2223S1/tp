@@ -4,11 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.issue.Description;
-import seedu.address.model.issue.Deadline;
-import seedu.address.model.issue.Priority;
-import seedu.address.model.issue.Issue;
-import seedu.address.model.issue.Status;
+import seedu.address.model.issue.*;
 import seedu.address.model.project.Project;
 
 /**
@@ -22,6 +18,7 @@ class JsonAdaptedIssue {
     private final String priority;
     private final String deadline;
     private final String status;
+    private final String issueId;
     private final JsonAdaptedProject project;
 
     /**
@@ -32,12 +29,14 @@ class JsonAdaptedIssue {
                             @JsonProperty("priority") String priority,
                              @JsonProperty("deadline") String deadline,
                             @JsonProperty("status") String status,
+                            @JsonProperty("issueId") String issueId,
                             @JsonProperty("project") JsonAdaptedProject project) {
         this.description = description;
         this.priority = priority;
         this.deadline = deadline;
         this.status = status;
         this.project = project;
+        this.issueId = issueId;
     }
 
     /**
@@ -48,6 +47,7 @@ class JsonAdaptedIssue {
         priority = source.getPriority().toString();
         deadline = source.getDeadline().toString();
         status = source.getStatus().toString();
+        issueId = source.getId().toString();
         project = new JsonAdaptedProject(source.getProject());
     }
 
@@ -96,7 +96,15 @@ class JsonAdaptedIssue {
 
         final Project modelProject = project.toModelType();
 
-        return new Issue(modelDescription, modelDeadline, modelPriority, modelStatus, modelProject);
+        if (issueId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, IssueId.class.getSimpleName()));
+        }
+        if (!IssueId.isValidIssueId(issueId)) {
+            throw new IllegalValueException(IssueId.MESSAGE_CONSTRAINTS);
+        }
+        final IssueId modelIssueId = new IssueId(Integer.parseInt(issueId));
+
+        return new Issue(modelDescription, modelDeadline, modelPriority, modelStatus, modelProject, modelIssueId);
     }
 
 }

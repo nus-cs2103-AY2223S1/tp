@@ -11,7 +11,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Issue {
 
     // Components of an issue
-    private Id id;
+    private IssueId issueId;
     private Description description;
     private Deadline deadline;
     private Priority priority;
@@ -21,18 +21,20 @@ public class Issue {
     /**
      * Description field must be present and not null, but all other fields are optional.
      */
-    public Issue(Description description, Deadline deadline, Priority priority, Status status, Project project) {
-        requireAllNonNull(description, deadline, priority, status, project);
+    public Issue(Description description, Deadline deadline, Priority priority,
+                 Status status, Project project, IssueId issueId) {
+        requireAllNonNull(description, deadline, priority, status, project, issueId);
         this.description = description;
         this.deadline = deadline;
         this.priority = priority;
         this.status = status;
         this.project = project;
+        this.issueId = issueId;
     }
 
 
-    public Id getId() {
-        return this.id;
+    public IssueId getId() {
+        return this.issueId;
     }
 
     public Description getDescription() {
@@ -87,6 +89,7 @@ public class Issue {
                 && otherIssue.getProject().equals(getProject())
                 && otherIssue.getDeadline().equals(getDeadline())
                 && otherIssue.getStatus().equals(getStatus())
-                && otherIssue.getPriority().equals(getPriority());
+                && otherIssue.getPriority().equals(getPriority())
+                && otherIssue.getId().equals(getId());
     }
 }

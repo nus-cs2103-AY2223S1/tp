@@ -6,11 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.person.Client;
-import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Name;
-import seedu.address.model.project.Project;
-import seedu.address.model.project.Repository;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.project.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +22,7 @@ class JsonAdaptedProject {
     private final String name;
     private final String repository;
     private final String deadline;
+    private final String projectId;
     private final JsonAdaptedClient client;
     private final List<JsonAdaptedIssue> issues = new ArrayList<>();
 
@@ -36,11 +33,13 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(@JsonProperty("name") String name, @JsonProperty("repository") String repository,
                               @JsonProperty("deadline") String deadline,
                               @JsonProperty("client") JsonAdaptedClient client,
-                              @JsonProperty("issues") List<JsonAdaptedIssue> issues) {
+                              @JsonProperty("issues") List<JsonAdaptedIssue> issues,
+                              @JsonProperty("projectId") String projectId) {
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;
         this.client = client;
+        this.projectId = projectId;
         if (issues != null) {
             this.issues.addAll(issues);
         }
@@ -54,6 +53,7 @@ class JsonAdaptedProject {
         repository = source.getRepository().toString();
         deadline = source.getDeadline().toString();
         client = new JsonAdaptedClient(source.getClient());
+        projectId = source.getId().toString();
         issues.addAll(source.getIssueList().stream()
                 .map(JsonAdaptedIssue::new)
                 .collect(Collectors.toList()));
@@ -101,7 +101,15 @@ class JsonAdaptedProject {
             modelIssues.add(issue.toModelType());
         }
 
-        return new Project(modelName, modelRepository, modelDeadline, modelClient, modelIssues);
+        if (projectId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectId.class.getSimpleName()));
+        }
+        if (!ProjectId.isValidProjectId(projectId)) {
+            throw new IllegalValueException(ProjectId.MESSAGE_CONSTRAINTS);
+        }
+        final ProjectId modelProjectId = new ProjectId(Integer.parseInt(projectId));
+
+        return new Project(modelName, modelRepository, modelDeadline, modelClient, modelIssues, modelProjectId);
     }
 
 }
