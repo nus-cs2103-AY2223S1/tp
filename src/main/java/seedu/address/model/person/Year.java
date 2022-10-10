@@ -12,8 +12,7 @@ public class Year {
     public static final String MESSAGE_CONSTRAINTS = "Year should only contain 1 numeric character between 1 and 6, and it should not be blank";
 
     /*
-     * The first character of the year must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Years 1-4 for Undergraduate, year 5 for Masters and year 6 for PhD.
      */
     public static final String VALIDATION_REGEX = "^[1-6]$";
 

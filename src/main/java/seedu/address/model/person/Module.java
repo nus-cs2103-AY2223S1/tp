@@ -12,8 +12,7 @@ public class Module {
     public static final String MESSAGE_CONSTRAINTS = "Module should only contain alphanumeric characters with no spaces, and it should not be blank";
 
     /*
-     * The first character of the module must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Covers all module code variants in NUS.
      */
     public static final String VALIDATION_REGEX = "[A-Z]{2}[A-Z]?\\d{4}[A-Z]?";
 
@@ -26,7 +25,7 @@ public class Module {
      */
     public Module(String module) {
         requireNonNull(module);
-        module = module.toUpperCase();
+        module = module.toUpperCase(); // easier regex checking and storing
         checkArgument(isValidModule(module), MESSAGE_CONSTRAINTS);
         value = module;
     }
