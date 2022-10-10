@@ -2,6 +2,10 @@ package modtrekt.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import modtrekt.commons.core.index.Index;
 import modtrekt.commons.util.StringUtil;
 import modtrekt.logic.parser.exceptions.ParseException;
@@ -9,10 +13,6 @@ import modtrekt.model.module.ModCode;
 import modtrekt.model.module.ModCredit;
 import modtrekt.model.module.ModName;
 import modtrekt.model.task.Description;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

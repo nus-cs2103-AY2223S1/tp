@@ -1,11 +1,11 @@
 package modtrekt.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.CliSyntax;
 import modtrekt.model.Model;
 import modtrekt.model.task.Task;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Adds a deadline.

@@ -1,7 +1,6 @@
 package modtrekt.model.task;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a deadline in the task list.
