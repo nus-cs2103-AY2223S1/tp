@@ -15,10 +15,7 @@ import seedu.address.model.task.TaskList;
 /**
  * Deletes a task from a person identified using its displayed index from the person list.
  */
-public class DeleteTaskCommand extends Command {
-
-    public static final String COMMAND_WORD = "deleteTask";
-
+public class DeleteTaskCommand extends DeleteGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number in the task list of the person "
             + "identified by the index number used in the displayed person list.\n"
@@ -33,8 +30,9 @@ public class DeleteTaskCommand extends Command {
 
     /**
      * Creates an DeleteTaskCommand to delete a {@code Task} from the specified person.
+     *
      * @param patientIndex index of the person in the filtered person list to delete the task
-     * @param taskIndex index of the task in the person's task list
+     * @param taskIndex    index of the task in the person's task list
      */
     public DeleteTaskCommand(Index patientIndex, Index taskIndex) {
         requireAllNonNull(patientIndex, taskIndex);
