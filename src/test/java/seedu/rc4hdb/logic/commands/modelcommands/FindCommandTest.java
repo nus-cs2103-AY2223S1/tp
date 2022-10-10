@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
-import static seedu.rc4hdb.testutil.TypicalPersons.CARL;
-import static seedu.rc4hdb.testutil.TypicalPersons.ELLE;
-import static seedu.rc4hdb.testutil.TypicalPersons.FIONA;
-import static seedu.rc4hdb.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.rc4hdb.testutil.TypicalResidents.CARL;
+import static seedu.rc4hdb.testutil.TypicalResidents.ELLE;
+import static seedu.rc4hdb.testutil.TypicalResidents.FIONA;
+import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalResidentBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalResidentBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -50,12 +50,12 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different resident -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noResidentFound() {
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
@@ -65,7 +65,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleResidentsFound() {
         String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
