@@ -3,22 +3,21 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
-import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.AddGenericCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates either a new EditPatientCommand object or
- * a new EditTaskCommand object based on option values.
+ * Parses input arguments and creates either a new AddPatientCommand object or
+ * a new AddTaskCommand object based on option values.
  */
-public class AddGenericCommandParser implements Parser<Command> {
-
+public class AddGenericCommandParser implements Parser<AddGenericCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the EditPatientCommand
-     * and returns an EditPatientCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddGenericCommand
+     * and returns an AddGenericCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parse(String args) throws ParseException {
+    public AddGenericCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
         ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIX_OPTION_PATIENT_INDEX);
