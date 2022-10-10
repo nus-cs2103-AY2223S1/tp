@@ -4,6 +4,8 @@ import static foodwhere.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import foodwhere.model.commons.Detail;
+
 public class DetailTest {
 
     @Test

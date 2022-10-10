@@ -1,4 +1,4 @@
-package foodwhere.model.detail;
+package foodwhere.model.commons;
 
 import static foodwhere.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;

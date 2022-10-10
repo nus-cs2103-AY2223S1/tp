@@ -9,9 +9,9 @@ import java.util.Set;
 import foodwhere.commons.core.index.Index;
 import foodwhere.commons.util.StringUtil;
 import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.detail.Detail;
+import foodwhere.model.commons.Detail;
+import foodwhere.model.commons.Name;
 import foodwhere.model.stall.Address;
-import foodwhere.model.stall.Name;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
