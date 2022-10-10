@@ -29,4 +29,9 @@ public interface ReadOnlyAddressBook {
     ObservableList<Issue> getIssueList();
 
 
+    String getProjectCount();
+
+    String getIssueCount();
+
+    String getClientCount();
 }
