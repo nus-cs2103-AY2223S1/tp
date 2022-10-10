@@ -14,6 +14,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ViewAllCommand;
+import seedu.address.logic.commands.ViewClassCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -61,6 +62,9 @@ public class StudentRecordParser {
 
         case ViewAllCommand.COMMAND_WORD:
             return new ViewAllCommand();
+
+        case ViewClassCommand.COMMAND_WORD:
+            return new ViewClassCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
