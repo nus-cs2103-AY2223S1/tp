@@ -102,6 +102,7 @@ public class JsonGuestBookStorageTest {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
+    //hi
 
     @Test
     public void saveGuestBook_nullFilePath_throwsNullPointerException() {
