@@ -21,6 +21,7 @@ import seedu.address.logic.commands.CreateCommand;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.TransactionLog;
 import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.PocBuilder;
 import seedu.address.testutil.TypicalCompanies;
@@ -31,15 +32,19 @@ public class CompanyTest {
     @Test
     public void constructor_nullName_throwsNullPointerException() {
         UniquePocList pocs = new UniquePocList();
+        TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
-        assertThrows(NullPointerException.class, () -> new Company(null, new Address(VALID_ADDRESS_BOB), tags, pocs));
+        assertThrows(NullPointerException.class, () ->
+                new Company(null, new Address(VALID_ADDRESS_BOB), tags, pocs, transactions));
     }
 
     @Test
     public void constructor_nullAddress_throwsNullPointerException() {
         UniquePocList pocs = new UniquePocList();
+        TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
-        assertThrows(NullPointerException.class, () -> new Company(new Name(VALID_NAME_BOB), null, tags, pocs));
+        assertThrows(NullPointerException.class, () ->
+                new Company(new Name(VALID_NAME_BOB), null, tags, pocs, transactions));
     }
 
     @Test

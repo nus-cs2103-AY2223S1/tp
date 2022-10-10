@@ -14,6 +14,7 @@ import seedu.address.model.ReadOnlyCompany;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.TransactionLog;
 
 /**
  * Represents a Company in the address book.
@@ -28,12 +29,13 @@ public class Company implements ReadOnlyCompany {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final UniquePocList pocs;
+    private final TransactionLog transactions;
 
     /**
      * Every field must be present and not null.
      */
     public Company(Name name, Address address, Set<Tag> tags) {
-        this(name, address, tags, new UniquePocList());
+        this(name, address, tags, new UniquePocList(), new TransactionLog());
     }
 
     /**
@@ -43,12 +45,13 @@ public class Company implements ReadOnlyCompany {
      * @param tags tags of company.
      * @param pocs list of unique pocs.
      */
-    public Company(Name name, Address address, Set<Tag> tags, UniquePocList pocs) {
+    public Company(Name name, Address address, Set<Tag> tags, UniquePocList pocs, TransactionLog transactions) {
         requireAllNonNull(name, address, tags, pocs);
         this.name = name;
         this.address = address;
         this.tags.addAll(tags);
         this.pocs = pocs;
+        this.transactions = transactions;
     }
 
     public Name getName() {
@@ -69,6 +72,10 @@ public class Company implements ReadOnlyCompany {
 
     public UniquePocList getPocs() {
         return pocs;
+    }
+
+    public TransactionLog getTransactions() {
+        return transactions;
     }
 
     /**
