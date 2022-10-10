@@ -73,10 +73,10 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append("; Title: ")
-                .append(getDeadline())
+        builder.append("Title: ")
+                .append(getTitle())
                 .append("; Deadline: ")
+                .append(getDeadline())
                 .append(", Status: ")
                 .append(getStatus());
 
