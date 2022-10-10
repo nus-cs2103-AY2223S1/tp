@@ -1,12 +1,20 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.task.Task;
 
 /**
  * Jackson-friendly version of {@link Module}.
@@ -17,15 +25,18 @@ class JsonAdaptedModule {
 
     private final String moduleCode;
     private final String moduleTitle;
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
      */
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("moduleCode") String moduleCode,
-                             @JsonProperty("moduleTitle") String moduleTitle) {
+                             @JsonProperty("moduleTitle") String moduleTitle,
+                             @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
+        this.tasks.addAll(tasks);
     }
 
     /**
@@ -34,6 +45,9 @@ class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         moduleCode = source.getModuleCode().value;
         moduleTitle = source.getModuleTitle().value;
+        tasks.addAll(source.getTasks().stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -42,6 +56,10 @@ class JsonAdaptedModule {
      * @throws IllegalValueException if there were any data constraints violated in the adapted module.
      */
     public Module toModelType() throws IllegalValueException {
+        final List<Task> personTasks = new ArrayList<>();
+        for (JsonAdaptedTask task : tasks) {
+            personTasks.add(task.toModelType());
+        }
         if (moduleCode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ModuleCode.class.getSimpleName()));
@@ -56,8 +74,10 @@ class JsonAdaptedModule {
                     ModuleTitle.class.getSimpleName()));
         }
         final ModuleTitle modelModuleTitle = new ModuleTitle(moduleTitle);
+        final List<Task> modelTasks = new ArrayList<>(personTasks);
+        final Set<Link> links = new HashSet<>();
 
-        return new Module(modelModuleCode, modelModuleTitle);
+        return new Module(modelModuleCode, modelModuleTitle, modelTasks, links);
     }
 
 }
