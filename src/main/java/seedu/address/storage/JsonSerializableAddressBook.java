@@ -71,7 +71,6 @@ class JsonSerializableAddressBook {
             Project project = jsonAdaptedProject.toModelType();
             if (addressBook.hasProject(project)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
-                // TODO: Create duplicate project message
             }
             addressBook.addProject(project);
         }
@@ -80,7 +79,6 @@ class JsonSerializableAddressBook {
             Issue issue = jsonAdaptedIssue.toModelType();
             if (addressBook.hasIssue(issue)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ISSUE);
-                // TODO: Create duplicate project message
             }
             addressBook.addIssue(issue);
         }

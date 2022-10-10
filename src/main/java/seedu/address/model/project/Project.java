@@ -80,4 +80,9 @@ public class Project {
         return otherProject != null
                 && otherProject.getProjectName().equals(getProjectName());
     }
+
+    @Override
+    public String toString() {
+        return this.getProjectName().toString();
+    }
 }
