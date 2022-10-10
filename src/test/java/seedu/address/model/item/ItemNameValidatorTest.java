@@ -29,27 +29,27 @@ public class ItemNameValidatorTest {
     @Test
     public void test_nameHasValidSymbols() {
         // Invalid names - Spaces
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters(""));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters(" "));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("       "));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("    a"));
+        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters(""));
+        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters(" "));
+        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("       "));
+        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("    a"));
 
         // Invalid names - Wrong Symbols
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("\\"));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("\\/"));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("|"));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("á"));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("你"));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("あ"));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("，")); // Chinese comma
+        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("\\"));
+        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("\\/"));
+        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("|"));
+        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("á"));
+        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("你"));
+        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("あ"));
+        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("，")); // Chinese comma
 
 
         // Valid names
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("a"));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("peter jack"));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("12345"));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("peter the jack 2nd"));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("CAPITAL LETTERS"));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("Peter Jack the Second 2nd"));
+        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("a"));
+        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("peter jack"));
+        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("12345"));
+        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("peter the jack 2nd"));
+        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("CAPITAL LETTERS"));
+        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("Peter Jack the Second 2nd"));
     }
 }
