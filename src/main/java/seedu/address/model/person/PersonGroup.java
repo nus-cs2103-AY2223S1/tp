@@ -1,10 +1,9 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
-
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.ArrayList;
 
 /**
  * Represents a Person's group in the address book.
@@ -22,7 +21,6 @@ public class PersonGroup extends ArrayList<PersonGroup> {
 
     private String value;
 
-    private PersonGroup personGroup;
     /**
      * Empty constructor to prevent error reading from jsonFile.
      */
@@ -36,14 +34,7 @@ public class PersonGroup extends ArrayList<PersonGroup> {
     public PersonGroup(String group) {
         requireNonNull(group);
         checkArgument(isValidGroup(group), MESSAGE_CONSTRAINTS);
-        value = group;
-    }
-
-    public PersonGroup(String group, String indicator) {
-        requireNonNull(group);
-        checkArgument(isValidGroup(group), MESSAGE_CONSTRAINTS);
-        value = group;
-        personGroup = new PersonGroup(group);
+        this.value = group;
     }
 
     /**
@@ -72,12 +63,11 @@ public class PersonGroup extends ArrayList<PersonGroup> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PersonGroup // instanceof handles nulls
-                && value.equals(((PersonGroup)other).value)); // state check
+                && value.equals(((PersonGroup) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
         return value.hashCode();
     }
-
 }

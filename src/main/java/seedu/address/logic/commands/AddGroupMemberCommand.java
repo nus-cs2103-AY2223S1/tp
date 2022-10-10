@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -13,11 +14,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupName;
-import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonGroup;
-import seedu.address.model.tag.Tag;
 
 /**
  * Adds a person to a group in the address book.
@@ -47,7 +46,7 @@ public class AddGroupMemberCommand extends Command {
     public AddGroupMemberCommand(String group, String name) {
         requireAllNonNull(name, group);
         this.name = new Name(name);
-        this.personGroup = new PersonGroup(group, "yes");
+        this.personGroup = new PersonGroup(group);
     }
 
     @Override
