@@ -4,11 +4,13 @@
     "phone": "94351253",
     "lessonPlan" : "Algorithms",
     "homework": [ "science worksheet" ],
+    "gradeProgress" : ["Math: A"],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "lessonPlan" : "Algorithms",
+    "gradeProgress" : ["Math: A"],
     "homework": [ "science worksheet" ]
   } ]
 }

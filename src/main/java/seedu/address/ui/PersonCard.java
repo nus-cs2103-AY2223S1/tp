@@ -39,6 +39,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label homework;
     @FXML
+    private Label gradeProgress;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -52,6 +54,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         lessonPlan.setText(person.getLessonPlan().value);
         homework.setText(person.getHomeworkList().shortDescription());
+        gradeProgress.setText(person.getGradeProgressList().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
