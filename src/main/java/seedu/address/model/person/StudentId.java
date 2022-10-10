@@ -5,9 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tutor's ID in Tuthub.
- * Guarantees: immutable; is valid as declared in {@link #isValidID(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
-public class StudentID {
+public class StudentId {
 
     public static final String MESSAGE_CONSTRAINTS = "Student IDs should start with A, followed by "
             + "7 numbers, and end with any capital letter";
@@ -23,18 +23,18 @@ public class StudentID {
     /**
      * Constructs a {@code StudentID}.
      *
-     * @param studentID A valid Student ID.
+     * @param studentId A valid Student ID.
      */
-    public StudentID(String studentID) {
-        requireNonNull(studentID);
-        checkArgument(isValidID(studentID), MESSAGE_CONSTRAINTS);
-        value = studentID;
+    public StudentId(String studentId) {
+        requireNonNull(studentId);
+        checkArgument(isValidId(studentId), MESSAGE_CONSTRAINTS);
+        value = studentId;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidID(String test) {
+    public static boolean isValidId(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -46,8 +46,8 @@ public class StudentID {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof StudentID // instanceof handles nulls
-                && value.equals(((StudentID) other).value)); // state check
+                || (other instanceof StudentId // instanceof handles nulls
+                && value.equals(((StudentId) other).value)); // state check
     }
 
     @Override
