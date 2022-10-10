@@ -30,9 +30,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
-    // TODO
+    // TODO: LOL I'm lazy help
     @Override
     public FindCommand parse(String flag, String arguments) throws ParseException {
-        return null;
+        return parse(arguments);
     }
 }
