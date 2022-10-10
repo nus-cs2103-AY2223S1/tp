@@ -33,7 +33,7 @@ import seedu.address.ui.Ui;
  */
 public class EditClientCommand extends ClientCommand {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_FLAG = "-e";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "

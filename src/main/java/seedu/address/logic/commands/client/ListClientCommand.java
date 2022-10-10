@@ -11,10 +11,9 @@ import seedu.address.ui.Ui;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListClientCommand extends Command {
+public class ListClientCommand extends ClientCommand {
 
-    public static final String COMMAND_WORD = "list";
-    public static final String COMMAND_FLAG = "-c";
+    public static final String COMMAND_FLAG = "-l";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 

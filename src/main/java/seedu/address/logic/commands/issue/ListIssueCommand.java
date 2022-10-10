@@ -1,9 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.issue;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.ui.Ui;
 
@@ -12,8 +14,7 @@ import seedu.address.ui.Ui;
  */
 public class ListIssueCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
-    public static final String COMMAND_FLAG = "-i";
+    public static final String COMMAND_FLAG = "-l";
 
     public static final String MESSAGE_SUCCESS = "Listed all issues";
 

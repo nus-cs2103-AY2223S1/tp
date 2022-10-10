@@ -18,7 +18,7 @@ import seedu.address.ui.Ui;
  */
 public class AddClientCommand extends ClientCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_FLAG = "-a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the address book. "
             + "Parameters: "
