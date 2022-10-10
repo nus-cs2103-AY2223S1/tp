@@ -3,7 +3,7 @@ package seedu.address.model.role;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.Address;
+import seedu.address.model.address.Address;
 
 /**
  * Represents a Price Range for a property that a buyer can accept.
