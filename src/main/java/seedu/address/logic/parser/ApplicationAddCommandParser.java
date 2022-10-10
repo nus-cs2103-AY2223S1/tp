@@ -24,8 +24,8 @@ import seedu.address.model.application.Position;
 public class ApplicationAddCommandParser implements ApplicationParser<ApplicationAddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the OldAddCommand
+     * and returns an OldAddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ApplicationAddCommand parse(String args) throws ParseException {
