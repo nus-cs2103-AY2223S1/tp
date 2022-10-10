@@ -106,8 +106,8 @@ Deletes an existing student record from the class list, using the student’s na
 Format: `delete n/[name of student]` or `delete id/[id of student]`
 
 Examples:
-* `delete Jonathan Tan` deletes student record with student's name as 'Jonathan Tan'.
-* `delete 123A` deletes student record with students' ID as '123A'.
+* `delete n/Jonathan Tan` deletes student record with student's name as 'Jonathan Tan'.
+* `delete id/123A` deletes student record with students' ID as '123A'.
 
 ### Clearing all student records : `clear`
 
@@ -147,7 +147,7 @@ Class-ify will discard all data and start with an empty data file at the next ru
 |      View all student information     | `view all`                                                                                                              | _view all_                                                                       |
 |  View individual student information  | `view n/[name]` or `view id/[id]`                                                                                       | _view n/Jonathan Tan_                                                            |
 | Update individual student information | `update [index] n/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                     | _update 1 a/Kent Ridge View_                                                     |
-|       Delete individual student       | `delete n/[name]` or `delete id/[id]`                                                                                   | _delete n/Jonathan Tan_                                                          |
+|       Delete individual student       | `delete n/[name]` or `delete id/[id]`                                                                                   | _delete n/Jonathan Tan *or* delete id/123A_                                      |
 |                  Exit                 | `exit`                                                                                                                  | _exit_                                                                           |
 
                                                                                                                               
