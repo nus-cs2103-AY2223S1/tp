@@ -30,6 +30,6 @@ public class FindUserArgumentsParser implements ArgumentsParsable<FindUserComman
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
         return new FindUserCommand(new ObjectContainsKeywordsPredicate<>(Arrays.asList(nameKeywords),
-                person -> keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword)));
+                person -> keyword -> StringUtil.containsPartialWordIgnoreCase(person.getName().fullName, keyword)));
     }
 }

@@ -30,7 +30,7 @@ public class FindBookCommand extends FindCommand {
         requireNonNull(model);
         model.updateFilteredBookList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_BOOKS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_BOOKS_LISTED_OVERVIEW, model.getFilteredBookList().size()));
     }
 
     @Override

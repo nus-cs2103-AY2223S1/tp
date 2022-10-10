@@ -28,7 +28,7 @@ public class FindBookArgumentsParser implements ArgumentsParsable<FindBookComman
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
         return new FindBookCommand(new ObjectContainsKeywordsPredicate<>(Arrays.asList(nameKeywords),
-                book -> keyword -> StringUtil.containsWordIgnoreCase(book.getTitle().toString(), keyword)
-                        || StringUtil.containsWordIgnoreCase(book.getAuthor().toString(), keyword)));
+                book -> keyword -> StringUtil.containsPartialWordIgnoreCase(book.getTitle().toString(), keyword)
+                        || StringUtil.containsPartialWordIgnoreCase(book.getAuthor().toString(), keyword)));
     }
 }
