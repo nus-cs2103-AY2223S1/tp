@@ -352,10 +352,10 @@ Extensions:
       Use case resumes from step 8.
 
 * a. At any time, User chooses to cancel the process.
-    * a1. HackAssist requests to confirm the cancellation. 
+    * a1. HackAssist requests to confirm the cancellation.
     * a2. User confirms the cancellation.
       Use case ends.
-      
+
  **Use case: Edit deadline of task**
 
 **MSS**
@@ -381,7 +381,7 @@ Extensions:
     * 7a2. User enters new data
     Steps 7a1-7a2 are repeated until the data entered are correct.
     Use case resumes from step 8.
-      
+
 * 7b. HackAssist detects that the deadline is already past
     * 7b1. Hackassist shows an error message that the deadline has already past
     * 7b2. User enters new data
