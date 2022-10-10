@@ -43,5 +43,11 @@
     "address" : "4th street",
     "classes" : [ ]
   } ],
-  "moduleClasses" : [ "friends", "owesMoney" ]
+  "moduleClasses" : [ {
+    "name" : "friends",
+    "sessions" : [ ]
+  }, {
+    "name" : "owesMoney",
+    "sessions" : [ ]
+  } ]
 }

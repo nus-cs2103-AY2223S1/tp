@@ -12,5 +12,11 @@
     "address": "4th street",
     "classes": [ "family" ]
   } ],
-  "moduleClasses" : [ "friends", "family" ]
+  "moduleClasses" : [ {
+    "name" : "friends",
+    "sessions" : [ ]
+  }, {
+    "name" : "family",
+    "sessions" : [ ]
+  } ]
 }

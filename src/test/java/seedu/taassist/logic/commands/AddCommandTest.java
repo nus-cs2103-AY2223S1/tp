@@ -176,6 +176,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void setModuleClass(ModuleClass target, ModuleClass editedModuleClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public ObservableList<ModuleClass> getModuleClassList() {
             throw new AssertionError("This method should not be called.");
         }
