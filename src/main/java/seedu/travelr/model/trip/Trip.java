@@ -29,16 +29,20 @@ public class Trip {
         requireAllNonNull(title, description, events);
         this.title = title;
         this.description = description;
-        this.events.addEvents(events);
+        this.events.setInternalList(events);
         //System.out.println(events);
     }
 
     public void addEvent(Event event) {
-        events.addEvent(event);
+        events.add(event);
+    }
+
+    public Event getEvent(Event event) {
+        return events.getEvent(event);
     }
 
     public void removeEvent(Event event) {
-        events.removeEvent(event);
+        events.remove(event);
     }
 
     public boolean contains(Event event) {

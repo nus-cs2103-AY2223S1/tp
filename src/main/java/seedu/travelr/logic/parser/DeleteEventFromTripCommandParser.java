@@ -40,21 +40,7 @@ public class DeleteEventFromTripCommandParser {
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Title trip = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TRIP).get());
 
-        Trip toDeleteFrom = AddressBook.trips.getTrip(new Trip(trip, new Description("random"), new HashSet<>()));
-
-        if (!AddressBook.trips.contains(new Trip(trip, new Description("random"), new HashSet<>()))) {
-            throw new ParseException("Please enter a valid List");
-        }
-
-
-        if (!toDeleteFrom.contains(new Event((title)))) {
-            throw new ParseException("Please enter a valid Event");
-        }
-
-        Event event = AddressBook.bucketList.getEvent(new Event(title));
-
-
-        return new DeleteEventFromTripCommand(event, toDeleteFrom);
+        return new DeleteEventFromTripCommand(title, trip);
     }
 
     /**

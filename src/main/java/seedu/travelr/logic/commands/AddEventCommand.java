@@ -39,7 +39,6 @@ public class AddEventCommand extends Command {
      */
     public AddEventCommand(Event event) {
         requireNonNull(event);
-        AddressBook.bucketList.addEvent(event);
         toAdd = event;
     }
 

@@ -39,18 +39,7 @@ public class AddEventToTripCommandParser {
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Title trip = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TRIP).get());
 
-        if (!AddressBook.bucketList.contains(new Event(title))) {
-            throw new ParseException("Please enter a valid event");
-        }
-
-        if (!AddressBook.trips.contains(new Trip(trip, new Description("random"), new HashSet<>()))) {
-            throw new ParseException("Please enter a valid Trip");
-        }
-
-        Event event = AddressBook.bucketList.getEvent(new Event(title));
-        Trip toAddInto = AddressBook.trips.getTrip(new Trip(trip, new Description("random"), new HashSet<>()));
-
-        return new AddEventToTripCommand(event, toAddInto);
+        return new AddEventToTripCommand(title, trip);
     }
 
     /**

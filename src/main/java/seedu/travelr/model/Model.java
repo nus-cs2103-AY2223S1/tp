@@ -83,6 +83,10 @@ public interface Model {
      */
     void deleteEvent(Event target);
 
+    Event getEvent(Event event);
+
+    Trip getTrip(Trip trip);
+
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.

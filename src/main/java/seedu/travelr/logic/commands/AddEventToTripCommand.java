@@ -5,10 +5,15 @@ import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
 
 import seedu.travelr.logic.commands.exceptions.CommandException;
+import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.Description;
+import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
+
+import java.util.HashSet;
 
 
 /**
@@ -30,32 +35,44 @@ public class AddEventToTripCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Event added to trip: %1$s";
     public static final String MESSAGE_DUPLICATE_TRIP = "This event already exists in the specified trip";
 
-    private final Event toAdd;
-    private final Trip toAddInto;
+    private final Title eventToAdd;
+    private final Title tripToAddInto;
 
     /**
      * Creates an AddCommand to add the specified {@code Trip}
      */
-    public AddEventToTripCommand(Event event, Trip trip) {
+    public AddEventToTripCommand(Title event, Title trip) {
         requireNonNull(event);
         requireNonNull(trip);
-        toAdd = event;
-        toAddInto = trip;
+        eventToAdd = event;
+        tripToAddInto = trip;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        AddressBook.bucketList.removeEvent(toAdd);
-        toAddInto.addEvent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        if (!model.hasEvent(new Event(eventToAdd))) {
+            throw new CommandException("Please enter a valid event");
+        }
+
+        if (!model.hasTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()))) {
+            throw new CommandException("Please enter a valid Trip");
+        }
+
+        Event event = model.getEvent(new Event(eventToAdd));
+        Trip toAddInto = model.getTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()));
+
+        model.deleteEvent(event);
+        toAddInto.addEvent(event);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, event));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddEventToTripCommand // instanceof handles nulls
-                && toAdd.equals(((AddEventToTripCommand) other).toAdd));
+                && eventToAdd.equals(((AddEventToTripCommand) other).eventToAdd)
+                && tripToAddInto.equals(((AddEventToTripCommand) other).tripToAddInto));
     }
 }
