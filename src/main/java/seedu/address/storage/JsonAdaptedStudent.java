@@ -66,7 +66,7 @@ class JsonAdaptedStudent {
         email = source.getEmail().value;
         address = source.getAddress().value;
         school = source.getSchool().school;
-        level = source.getLevel().toString();
+        level = source.getLevel().name();
         nextOfKin = source.getNextOfKin().nextOfKin;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
