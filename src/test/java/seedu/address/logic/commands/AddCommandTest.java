@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -21,6 +22,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -78,6 +82,7 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        public LIST_TYPE type;
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -145,6 +150,52 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Student> getFilteredStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Tutor> getFilteredTutorList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTutorList(Predicate<Tutor> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<TuitionClass> getFilteredTuitionClassList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTuitionClassList(Predicate<TuitionClass> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateCurrentListType (LIST_TYPE type) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public LIST_TYPE getCurrentListType() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public FilteredList<?> getCurrentList()
+        {
             throw new AssertionError("This method should not be called.");
         }
     }

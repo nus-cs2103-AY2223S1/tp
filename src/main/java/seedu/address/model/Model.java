@@ -130,5 +130,4 @@ public interface Model {
 
     /** Returns the current list **/
     FilteredList<?> getCurrentList();
-
 }

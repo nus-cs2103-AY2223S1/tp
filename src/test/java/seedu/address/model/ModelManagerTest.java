@@ -94,6 +94,27 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredTutorList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTutorList().remove(0));
+    }
+
+    @Test
+    public void getFilteredTuitionClassList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTuitionClassList().remove(0));
+    }
+
+    @Test
+    public void getCurrentListType_getListType_() {
+        modelManager.updateCurrentListType(Model.LIST_TYPE.STUDENT_LIST);
+        assertEquals(Model.LIST_TYPE.STUDENT_LIST, modelManager.getCurrentListType());
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
