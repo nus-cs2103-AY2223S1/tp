@@ -4,8 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
-import javafx.collections.ObservableList;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
@@ -20,13 +20,8 @@ public class Team {
 
     // Identity fields
     private final Name name;
-
-    private UniquePersonList members    = new UniquePersonList();;
+    private UniquePersonList members = new UniquePersonList();
     private UniqueTaskList tasks = new UniqueTaskList();
-
-
-
-
 
     /**
      * Every field must be present and not null.
@@ -34,7 +29,7 @@ public class Team {
     public Team(Name name) {
         requireAllNonNull(name);
         this.name = name;
-        this.tasks = new TaskList();
+        this.tasks = new UniqueTaskList();
         this.members = new UniquePersonList();
     }
 
