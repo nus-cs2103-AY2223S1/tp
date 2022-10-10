@@ -12,6 +12,7 @@ import java.util.stream.StreamSupport;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.exceptions.DuplicateTagTypeException;
 import seedu.address.model.person.exceptions.TagTypeNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -36,11 +37,27 @@ import seedu.address.model.tag.exceptions.TagNotFoundException;
  * @see TagType#equals(Object)
  */
 public class UniqueTagTypeMap implements Iterable<TagType> {
-    private static final ArrayList<TagType> TAG_TYPES = new ArrayList<>();
+    public static final ObservableMap<Prefix, TagType> TAG_TYPES = FXCollections.observableMap(new HashMap<>());
 
     private final ObservableMap<TagType, UniqueTagList> internalMap = FXCollections.observableMap(new HashMap<>());
     private final ObservableMap<TagType, UniqueTagList> internalUnmodifiableMap = FXCollections
             .unmodifiableObservableMap(internalMap);
+
+    /**
+     * Adds a new tag type to the existing TAG_TYPES.
+     */
+    public static void createTagTypes(Prefix prefix, TagType  tagType) {
+        TAG_TYPES.put(prefix, tagType);
+    }
+
+    public static void removeExistingTagType(TagType tagType) {
+        TAG_TYPES.remove(tagType);
+    }
+
+    public static void setExistingTagType(Prefix toRemovePrefix, Prefix prefix, TagType tagType) {
+        TAG_TYPES.remove(toRemovePrefix);
+        createTagTypes(prefix, tagType);
+    }
 
     /**
      * Returns true if the list contains an equivalent tag type as the given argument.

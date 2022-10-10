@@ -17,6 +17,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniqueTagTypeMap;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagType;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -43,7 +45,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         //        UniqueTagTypeMap tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         UniqueTagTypeMap tagList = new UniqueTagTypeMap(); // to be changed
-
         Person person = new Person(name, phone, email, address, tagList);
 
         return new AddCommand(person);

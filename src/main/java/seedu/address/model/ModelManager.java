@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueTagTypeMap;
+import seedu.address.model.tag.TagType;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -140,6 +143,23 @@ public class ModelManager implements Model {
     @Override
     public int getFilteredNumberOfPersons() {
         return filteredPersons.size();
+    }
+
+    @Override
+    public void deleteTagTypeForAllPerson(TagType toDelete) {
+        List<Person> personList =  addressBook.getPersonList();
+        personList.stream().map(x -> x.getTags().remove(toDelete));
+        addressBook.setPersons(personList);
+    }
+
+    public void editTagTypeForAllPerson(TagType toEdit, TagType editTo) {
+        List<Person> personList =  addressBook.getPersonList();
+        for (Person p: personList) {
+            UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
+            tagTypeMap.setTagTypeMap(p.getTags());
+            tagTypeMap.setTagType(toEdit, editTo);
+
+        }
     }
 
     @Override
