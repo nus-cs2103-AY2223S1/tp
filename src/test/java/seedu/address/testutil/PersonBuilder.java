@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -27,6 +28,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<Attendance> attendances;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -37,6 +39,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        attendances = new HashSet<>();
     }
 
     /**
@@ -48,6 +51,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        attendances = new HashSet<>(personToCopy.getAttendances());
     }
 
     /**
@@ -63,6 +67,29 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code classNames} which the user has attended into a
+     * {@code Set<Attendance>} and adds it to the {@code Person} that we are building.
+     */
+    public PersonBuilder addAttended(String ... classNames) {
+        this.attendances.addAll(SampleDataUtil.getAttendedSet(classNames));
+        return this;
+    }
+
+    /**
+     * Parses the {@code classNames} which the user has attended into a
+     * {@code Set<Attendance>} and adds it to the {@code Person} that we are building.
+     */
+    public PersonBuilder addNotAttended(String ... classNames) {
+        this.attendances.addAll(SampleDataUtil.getNotAttendedSet(classNames));
+        return this;
+    }
+
+    public PersonBuilder setAttended(Set<Attendance> attendances) {
+        this.attendances = attendances;
         return this;
     }
 
@@ -101,6 +128,7 @@ public class PersonBuilder {
         personData.setEmail(this.email);
         personData.setAddress(this.address);
         personData.setTags(this.tags);
+        personData.setAttendances(this.attendances);
         return new Person(personData);
     }
 
