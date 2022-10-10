@@ -1,8 +1,8 @@
 package swift.logic.parser;
 
 import org.junit.jupiter.api.Test;
-import swift.logic.commands.FindCommand;
-import swift.model.person.PersonNameContainsKeywordsPredicate;
+import swift.logic.commands.FindTaskCommand;
+import swift.model.task.TaskNameContainsKeywordsPredicate;
 
 import java.util.Arrays;
 
@@ -12,22 +12,22 @@ import static swift.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class FindTaskCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private FindTaskCommandParser parser = new FindTaskCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new PersonNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        FindTaskCommand expectedFindTaskCommand =
+                new FindTaskCommand(new TaskNameContainsKeywordsPredicate(Arrays.asList("discuss", "meeting")));
+        assertParseSuccess(parser, "discuss meeting", expectedFindTaskCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n discuss \n \t meeting  \t", expectedFindTaskCommand);
     }
 
 }
