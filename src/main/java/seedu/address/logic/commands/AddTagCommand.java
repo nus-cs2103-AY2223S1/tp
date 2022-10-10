@@ -78,7 +78,7 @@ public class AddTagCommand extends Command {
         assert personToEdit != null;
         UniqueTagTypeMap updatedTags = new UniqueTagTypeMap();
         updatedTags.setTagTypeMap(personToEdit.getTags());
-        updatedTags.mergeTagTypeList(editPersonDescriptor.getTags().get());
+        updatedTags.mergeTagTypeMap(editPersonDescriptor.getTags().get());
 
         return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), updatedTags);

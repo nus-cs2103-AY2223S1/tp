@@ -42,7 +42,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             CliSyntax.PREFIX_DEGREETAG, new TagType("Degree", CliSyntax.PREFIX_DEGREETAG),
             CliSyntax.PREFIX_JOBTYPETAG, new TagType("Job Type", CliSyntax.PREFIX_JOBTYPETAG)
     );
-    private static final ObservableMap<Prefix, TagType> prefixMap = FXCollections.observableMap(new HashMap<>());
+    private static final ObservableMap<Prefix, TagType> prefixMap = FXCollections.observableMap(initialTagTypeMap);
 
     private final ObservableMap<TagType, UniqueTagList> internalMap = FXCollections.observableMap(new HashMap<>());
     private final ObservableMap<TagType, UniqueTagList> internalUnmodifiableMap = FXCollections
