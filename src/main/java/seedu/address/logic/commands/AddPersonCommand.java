@@ -29,9 +29,6 @@ public class AddPersonCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_REMARK + "REMARK "
-            + PREFIX_MEDICAL_TEST + "MEDICAL TEST "
-            + PREFIX_DOCTOR + "DOCTOR "
-            + PREFIX_SLOT + "SLOT "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -39,9 +36,6 @@ public class AddPersonCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_REMARK + "Likes to swim. "
-            + PREFIX_MEDICAL_TEST + "Blood Test "
-            + PREFIX_DOCTOR + "Dr. Tan "
-            + PREFIX_SLOT + "2021-03-01 10:00 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
