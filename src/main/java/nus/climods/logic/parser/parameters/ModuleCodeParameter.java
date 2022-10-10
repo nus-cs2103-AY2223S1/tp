@@ -1,10 +1,5 @@
 package nus.climods.logic.parser.parameters;
 
-import java.util.Optional;
-import java.util.function.Function;
-
-import nus.climods.commons.core.module.ModuleCode;
-import nus.climods.logic.parser.Parser;
 import nus.climods.logic.parser.ParserUtil;
 
 /**
