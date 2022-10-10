@@ -36,6 +36,7 @@ public class Person {
         this.email = email;
         this.scholarship = scholarship;
         this.applicationStatus = applicationStatus;
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -99,14 +100,13 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getScholarship().equals(getScholarship())
                 && otherPerson.getApplicationStatus().equals(getApplicationStatus())
-                && otherPerson.getScholarship().equals(getScholarship())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, scholarship, tags);
+        return Objects.hash(name, phone, email, scholarship, applicationStatus, tags);
     }
 
     @Override
