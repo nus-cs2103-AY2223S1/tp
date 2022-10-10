@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
@@ -13,9 +12,10 @@ import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Status;
 
-import seedu.address.model.internship.Status;
-
-
+/**
+ * Updates the status of an Internship with upper and lowercase "p", "r" and "o" after 
+ * the s/ prefix.
+ */
 public class StatusCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, status: %2$s";
@@ -44,7 +44,6 @@ public class StatusCommand extends Command {
     private final Status status;
 
     /**
-     *
      * @param index of the internship in the internship list to update the status of
      * @param status of the internship application
      */
@@ -63,19 +62,21 @@ public class StatusCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
 
-        Internship internshipToEdit = lastShownList.get(index.getZeroBased());
-        Internship editedInternship = new Internship(internshipToEdit.getName(), internshipToEdit.getPosition(), internshipToEdit.getPhone(),
-                internshipToEdit.getEmail(), status, internshipToEdit.getAddress(),  internshipToEdit.getTags());
+        Internship internshipToedit = lastShownList.get(index.getZeroBased());
+        Internship editedInternship = new Internship(internshipToedit.getName(), 
+                internshipToedit.getPosition(), internshipToedit.getPhone(), 
+                internshipToedit.getEmail(), status, internshipToedit.getAddress(), 
+                internshipToedit.getTags());
 
-        model.setInternship(internshipToEdit, editedInternship);
+        model.setInternship(internshipToedit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         return new CommandResult(generateSuccessMessage(editedInternship));
     }
 
-    private String generateSuccessMessage(Internship InternshipToEdit) {
+    private String generateSuccessMessage(Internship internshipToedit) {
         String message = !status.value.isEmpty() ? MESSAGE_UPDATE_STATUS_SUCCESS : MESSAGE_DELETE_STATUS_SUCCESS;
-        return String.format(message, InternshipToEdit);
+        return String.format(message, internshipToedit);
     }
 
     @Override

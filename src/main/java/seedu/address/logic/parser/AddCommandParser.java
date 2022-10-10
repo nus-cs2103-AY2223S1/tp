@@ -13,7 +13,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.StatusCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.Address;
 import seedu.address.model.internship.Email;
@@ -53,8 +52,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
 
-        /*checks if the status command word is set within the constraints for add, commented out due to possible conflicts with ADD command
-        //format has not been finalised as well
+        /*checks if the status command word is set within the constraints for add,
+        commented out due to possible conflicts with ADD command
+        format has not been finalised as well
         String value;
         if (status.equals("r") || status.equals("R")) {
             value = "REJECTED";

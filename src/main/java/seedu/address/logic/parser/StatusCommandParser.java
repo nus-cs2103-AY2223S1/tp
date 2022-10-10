@@ -43,8 +43,8 @@ public class StatusCommandParser implements Parser<StatusCommand> {
         }
 
         //checks if the status command word is within the constraints set
-        if (!status.equals("p") && !status.equals("P") && !status.equals("o") &&
-                !status.equals("O") && !status.equals("r") && !status.equals("R")) {
+        if (!status.equals("p") && !status.equals("P") && !status.equals("o")
+                && !status.equals("O") && !status.equals("r") && !status.equals("R")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StatusCommand.STATUS_COMMAND_CONSTRAINTS));
         }
