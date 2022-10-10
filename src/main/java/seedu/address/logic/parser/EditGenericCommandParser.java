@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION_TASK_INDEX;
 
+import java.util.Optional;
+
 import seedu.address.logic.commands.EditGenericCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -24,17 +26,15 @@ public class EditGenericCommandParser implements Parser<EditGenericCommand> {
         ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TASK_INDEX);
         args = ParserUtil.eraseOptions(args, PREFIX_OPTION_PATIENT_INDEX, PREFIX_OPTION_TASK_INDEX);
 
-        if (options.getValue(PREFIX_OPTION_PATIENT_INDEX).isPresent()
-                && !options.getValue(PREFIX_OPTION_TASK_INDEX).isPresent()) {
-            String patientIndex = options.getValue(PREFIX_OPTION_PATIENT_INDEX).get();
-            return new EditPatientCommandParser().parse(patientIndex + " " + args);
+        Optional<String> patientIndex = options.getValue(PREFIX_OPTION_PATIENT_INDEX);
+        Optional<String> taskIndex = options.getValue(PREFIX_OPTION_TASK_INDEX);
+
+        if (patientIndex.isPresent() && !taskIndex.isPresent()) {
+            return new EditPatientCommandParser().parse(patientIndex.get() + " " + args);
         }
 
-        if (options.getValue(PREFIX_OPTION_PATIENT_INDEX).isPresent()
-                && options.getValue(PREFIX_OPTION_TASK_INDEX).isPresent()) {
-            String patientIndex = options.getValue(PREFIX_OPTION_PATIENT_INDEX).get();
-            String taskIndex = options.getValue(PREFIX_OPTION_TASK_INDEX).get();
-            return new EditTaskCommandParser().parse(patientIndex + " " + taskIndex + " " + args);
+        if (patientIndex.isPresent() && taskIndex.isPresent()) {
+            return new EditTaskCommandParser().parse(patientIndex.get() + " " + taskIndex.get() + " " + args);
         }
 
         throw new ParseException(ParserUtil.MESSAGE_INVALID_OPTIONS);
