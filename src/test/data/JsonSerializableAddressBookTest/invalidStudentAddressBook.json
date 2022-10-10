@@ -1,0 +1,10 @@
+{
+  "students" : [ {
+    "name" : "james mcavoy",
+    "phone" : "9128",
+    "email" : "so&*)",
+    "address" : "friend's couch",
+    "level" : "masters",
+    "tagged" : []
+  } ]
+}

@@ -1,6 +1,12 @@
 package seedu.address.testutil;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.
@@ -26,4 +32,14 @@ public class TypicalStudents {
             .build();
 
     private TypicalStudents() {} // prevents instantiation
+
+    public static AddressBook getTypicalStudentsAddressBook() {
+        AddressBook ab = new AddressBook();
+
+        List<Student> studentList = new ArrayList<>(Arrays.asList(TypicalStudents.STUDENT1, TypicalStudents.STUDENT2));
+        for (Student s : studentList) {
+            ab.addPerson(s);
+        }
+        return ab;
+    }
 }
