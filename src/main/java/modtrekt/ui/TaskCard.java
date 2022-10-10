@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import modtrekt.model.task.Deadline;
 import modtrekt.model.task.Task;
 
 /**
@@ -47,6 +48,10 @@ public class TaskCard extends UiPart<Region> {
         this.person = t;
         id.setText(displayedIndex + ". ");
         name.setText(person.toString());
+        email.setText("");
+        if (t instanceof Deadline) {
+            email.setText("Due by: " + ((Deadline) t).getDueDate().toString());
+        }
     }
 
     @Override
