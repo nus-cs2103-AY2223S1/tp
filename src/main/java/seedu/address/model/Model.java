@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -89,7 +88,7 @@ public interface Model {
      */
     void removeTag(Tag tag);
 
-    /**\
+    /**
      * Returns an unmodifiable view of the address book's unique tag list.
      */
     ObservableList<Tag> getTagList();

@@ -42,11 +42,11 @@ public class SampleDataUtil {
 
     public static Tag[] getSampleTags() {
         return new Tag[] {
-                new Tag("friends"),
-                new Tag("colleagues"),
-                new Tag("neighbours"),
-                new Tag("family"),
-                new Tag("classmates")
+            new Tag("friends"),
+            new Tag("colleagues"),
+            new Tag("neighbours"),
+            new Tag("family"),
+            new Tag("classmates")
         };
     }
 
