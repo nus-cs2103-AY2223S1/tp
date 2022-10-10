@@ -9,7 +9,7 @@ import seedu.address.model.module.ModuleCodeMatchesKeywordPredicate;
 /**
  * Parses input arguments and creates a new GoToCommand object
  */
-public class GoToCommandParser {
+public class GoToCommandParser implements Parser<GoToCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the GoToCommand
      * and returns a GoToCommand object for execution.
