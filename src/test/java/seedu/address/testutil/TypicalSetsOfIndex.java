@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import seedu.address.commons.core.index.Index;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import seedu.address.commons.core.index.Index;
 
 /**
  * A utility class containing a list of {@code Set<Index>} objects to be used in tests.
