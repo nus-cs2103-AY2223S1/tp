@@ -10,7 +10,7 @@ import gim.commons.core.index.Index;
 import gim.commons.util.StringUtil;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.exercise.Name;
-import gim.model.exercise.Rep;
+import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
@@ -66,18 +66,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String rep} into an {@code Rep}.
+     * Parses a {@code String reps} into an {@code Reps}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code rep} is invalid.
+     * @throws ParseException if the given {@code reps} is invalid.
      */
-    public static Rep parseRep(String rep) throws ParseException {
-        requireNonNull(rep);
-        String trimmedRep = rep.trim();
-        if (!Rep.isValidRep(trimmedRep)) {
-            throw new ParseException(Rep.MESSAGE_CONSTRAINTS);
+    public static Reps parseRep(String reps) throws ParseException {
+        requireNonNull(reps);
+        String trimmedRep = reps.trim();
+        if (!Reps.isValidReps(trimmedRep)) {
+            throw new ParseException(Reps.MESSAGE_CONSTRAINTS);
         }
-        return new Rep(trimmedRep);
+        return new Reps(trimmedRep);
     }
 
     /**

@@ -1,7 +1,7 @@
 package gim.model.exercise;
 
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
-import static gim.logic.commands.CommandTestUtil.VALID_REP_BENCH_PRESS;
+import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
@@ -35,7 +35,7 @@ public class ExerciseTest {
 
         // same name, all other attributes different -> returns true
         Exercise editedAlice = new ExerciseBuilder(ALICE).withWeight(VALID_WEIGHT_BENCH_PRESS)
-                .withSets(VALID_SETS_BENCH_PRESS).withRep(VALID_REP_BENCH_PRESS).withTags(VALID_TAG_HUSBAND).build();
+                .withSets(VALID_SETS_BENCH_PRESS).withReps(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameExercise(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -84,7 +84,7 @@ public class ExerciseTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new ExerciseBuilder(ALICE).withRep(VALID_REP_BENCH_PRESS).build();
+        editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

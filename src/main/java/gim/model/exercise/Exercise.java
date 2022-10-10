@@ -21,18 +21,18 @@ public class Exercise {
     private final Sets sets;
 
     // Data fields
-    private final Rep rep;
+    private final Reps reps;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Exercise(Name name, Weight weight, Sets sets, Rep rep, Set<Tag> tags) {
-        requireAllNonNull(name, weight, sets, rep, tags);
+    public Exercise(Name name, Weight weight, Sets sets, Reps reps, Set<Tag> tags) {
+        requireAllNonNull(name, weight, sets, reps, tags);
         this.name = name;
         this.weight = weight;
         this.sets = sets;
-        this.rep = rep;
+        this.reps = reps;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +48,8 @@ public class Exercise {
         return sets;
     }
 
-    public Rep getRep() {
-        return rep;
+    public Reps getReps() {
+        return reps;
     }
 
     /**
@@ -91,14 +91,14 @@ public class Exercise {
         return otherExercise.getName().equals(getName())
                 && otherExercise.getWeight().equals(getWeight())
                 && otherExercise.getSets().equals(getSets())
-                && otherExercise.getRep().equals(getRep())
+                && otherExercise.getReps().equals(getReps())
                 && otherExercise.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, weight, sets, rep, tags);
+        return Objects.hash(name, weight, sets, reps, tags);
     }
 
     @Override
@@ -109,8 +109,8 @@ public class Exercise {
                 .append(getWeight())
                 .append("; Sets: ")
                 .append(getSets())
-                .append("; Rep: ")
-                .append(getRep());
+                .append("; Reps: ")
+                .append(getReps());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -3,12 +3,12 @@
     "name": "Alice Pauline",
     "weight": "10",
     "sets": "1",
-    "rep": "1",
+    "reps": "1",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "weight": "20",
     "sets": "2",
-    "rep": "2"
+    "reps": "2"
   } ]
 }

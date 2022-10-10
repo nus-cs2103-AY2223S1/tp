@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.exercise.Name;
-import gim.model.exercise.Rep;
+import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
 import gim.model.tag.Tag;
@@ -116,15 +116,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseRep_validValueWithoutWhitespace_returnsRep() throws Exception {
-        Rep expectedRep = new Rep(VALID_REP);
-        assertEquals(expectedRep, ParserUtil.parseRep(VALID_REP));
+        Reps expectedReps = new Reps(VALID_REP);
+        assertEquals(expectedReps, ParserUtil.parseRep(VALID_REP));
     }
 
     @Test
     public void parseRep_validValueWithWhitespace_returnsTrimmedRep() throws Exception {
         String repWithWhitespace = WHITESPACE + VALID_REP + WHITESPACE;
-        Rep expectedRep = new Rep(VALID_REP);
-        assertEquals(expectedRep, ParserUtil.parseRep(repWithWhitespace));
+        Reps expectedReps = new Reps(VALID_REP);
+        assertEquals(expectedReps, ParserUtil.parseRep(repWithWhitespace));
     }
 
     @Test
