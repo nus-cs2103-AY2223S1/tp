@@ -39,7 +39,6 @@ public class ApplicationBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-
         case ApplicationAddCommand.COMMAND_WORD:
             return new ApplicationAddCommandParser().parse(arguments);
 
