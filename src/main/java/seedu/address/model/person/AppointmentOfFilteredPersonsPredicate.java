@@ -20,9 +20,15 @@ public class AppointmentOfFilteredPersonsPredicate implements Predicate<Appointm
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AppointmentOfFilteredPersonsPredicate // instanceof handles nulls
-                && filteredPersons.equals((
-                        (AppointmentOfFilteredPersonsPredicate) other).filteredPersons)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AppointmentOfFilteredPersonsPredicate)) {
+            return false;
+        }
+
+        AppointmentOfFilteredPersonsPredicate otherPredicate = (AppointmentOfFilteredPersonsPredicate) other;
+        return filteredPersons.equals(otherPredicate.filteredPersons);
     }
 }
