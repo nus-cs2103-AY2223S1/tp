@@ -17,17 +17,19 @@ public class WorkBook implements ReadOnlyWorkBook {
     private final UniqueInternshipList internships;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is a non-static initialization block,
+     * sometimes used to avoid duplication between constructors.
+     * See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Note that non-static init blocks are not recommended to use.
+     * There are other ways to avoid duplication among constructors.
      */
     {
         internships = new UniqueInternshipList();
     }
 
-    public WorkBook() {}
+    public WorkBook() {
+    }
 
     /**
      * Creates an WorkBook using the Internships in the {@code toBeCopied}
@@ -59,7 +61,8 @@ public class WorkBook implements ReadOnlyWorkBook {
     //// internship-level operations
 
     /**
-     * Returns true if a internship with the same identity as {@code internship} exists in the work book.
+     * Returns true if a internship with the same identity as {@code internship}
+     * exists in the work book.
      */
     public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
@@ -75,9 +78,11 @@ public class WorkBook implements ReadOnlyWorkBook {
     }
 
     /**
-     * Replaces the given internship {@code target} in the list with {@code editedInternship}.
+     * Replaces the given internship {@code target} in the list with
+     * {@code editedInternship}.
      * {@code target} must exist in the work book.
-     * The internship identity of {@code editedInternship} must not be the same as another existing internship in the work book.
+     * The internship identity of {@code editedInternship} must not be the same as
+     * another existing internship in the work book.
      */
     public void setInternship(Internship target, Internship editedInternship) {
         requireNonNull(editedInternship);
@@ -110,7 +115,7 @@ public class WorkBook implements ReadOnlyWorkBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof WorkBook // instanceof handles nulls
-                && internships.equals(((WorkBook) other).internships));
+                        && internships.equals(((WorkBook) other).internships));
     }
 
     @Override

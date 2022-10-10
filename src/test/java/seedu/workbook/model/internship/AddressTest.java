@@ -6,8 +6,6 @@ import static seedu.workbook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.workbook.model.internship.Address;
-
 public class AddressTest {
 
     @Test

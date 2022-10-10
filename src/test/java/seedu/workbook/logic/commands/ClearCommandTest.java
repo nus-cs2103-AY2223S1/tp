@@ -5,10 +5,10 @@ import static seedu.workbook.testutil.TypicalInternships.getTypicalWorkBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.workbook.model.WorkBook;
 import seedu.workbook.model.Model;
 import seedu.workbook.model.ModelManager;
 import seedu.workbook.model.UserPrefs;
+import seedu.workbook.model.WorkBook;
 
 public class ClearCommandTest {
 

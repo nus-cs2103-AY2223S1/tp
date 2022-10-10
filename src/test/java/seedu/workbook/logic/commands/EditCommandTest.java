@@ -28,7 +28,8 @@ import seedu.workbook.testutil.EditInternshipDescriptorBuilder;
 import seedu.workbook.testutil.InternshipBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * EditCommand.
  */
 public class EditCommandTest {
 
@@ -85,8 +86,10 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
-        Internship internshipInFilteredList = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        Internship editedInternship = new InternshipBuilder(internshipInFilteredList).withCompany(VALID_COMPANY_BOB).build();
+        Internship internshipInFilteredList = model.getFilteredInternshipList()
+                .get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        Internship editedInternship = new InternshipBuilder(internshipInFilteredList).withCompany(VALID_COMPANY_BOB)
+                .build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
                 new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_BOB).build());
 
@@ -112,7 +115,8 @@ public class EditCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
         // edit internship in filtered list into a duplicate in work book
-        Internship internshipInList = model.getWorkBook().getInternshipList().get(INDEX_SECOND_INTERNSHIP.getZeroBased());
+        Internship internshipInList = model.getWorkBook().getInternshipList()
+                .get(INDEX_SECOND_INTERNSHIP.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
                 new EditInternshipDescriptorBuilder(internshipInList).build());
 
@@ -122,7 +126,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidInternshipIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_BOB).build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_BOB)
+                .build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);

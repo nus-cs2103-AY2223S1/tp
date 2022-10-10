@@ -16,11 +16,11 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.workbook.commons.core.GuiSettings;
 import seedu.workbook.logic.commands.exceptions.CommandException;
+import seedu.workbook.model.Model;
+import seedu.workbook.model.ReadOnlyUserPrefs;
+import seedu.workbook.model.ReadOnlyWorkBook;
 import seedu.workbook.model.WorkBook;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.Model;
-import seedu.workbook.model.ReadOnlyWorkBook;
-import seedu.workbook.model.ReadOnlyUserPrefs;
 import seedu.workbook.testutil.InternshipBuilder;
 
 public class AddCommandTest {
@@ -47,7 +47,12 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validInternship);
         ModelStub modelStub = new ModelStubWithInternship(validInternship);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_INTERNSHIP, () -> addCommand.execute(modelStub));
+        // CHECKSTYLE.OFF: SeparatorWrap
+        assertThrows(
+            CommandException.class, AddCommand.MESSAGE_DUPLICATE_INTERNSHIP,
+            () -> addCommand.execute(modelStub)
+        );
+        // CHECKSTYLE.ON: SeparatorWrap
     }
 
     @Test

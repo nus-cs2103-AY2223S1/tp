@@ -3,10 +3,10 @@ package seedu.workbook.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.workbook.testutil.Assert.assertThrows;
 
@@ -16,10 +16,10 @@ import java.util.List;
 
 import seedu.workbook.commons.core.index.Index;
 import seedu.workbook.logic.commands.exceptions.CommandException;
+import seedu.workbook.model.Model;
 import seedu.workbook.model.WorkBook;
 import seedu.workbook.model.internship.CompanyContainsKeywordsPredicate;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.Model;
 import seedu.workbook.testutil.EditInternshipDescriptorBuilder;
 
 /**
@@ -53,12 +53,14 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    // CHECKSTYLE.OFF: LineLength
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "James&"; // '&' not allowed in company name
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "James&"; // '&' not allowed in roles
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    // CHECKSTYLE.ON: LineLength
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -75,12 +77,12 @@ public class CommandTestUtil {
             .withAddress(VALID_ADDRESS_AMY)
             .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditInternshipDescriptorBuilder()
-        .withCompany(VALID_COMPANY_BOB)
-        .withRole(VALID_ROLE_BOB)
-        .withPhone(VALID_PHONE_BOB)
-        .withEmail(VALID_EMAIL_BOB)
-        .withAddress(VALID_ADDRESS_BOB)
-        .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withCompany(VALID_COMPANY_BOB)
+            .withRole(VALID_ROLE_BOB)
+            .withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

@@ -2,10 +2,10 @@ package seedu.workbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.workbook.logic.commands.exceptions.CommandException;
@@ -65,6 +65,6 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                        && toAdd.equals(((AddCommand) other).toAdd));
     }
 }

@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.workbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.workbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
-import static seedu.workbook.logic.commands.CommandTestUtil.ROLE_DESC_AMY;
+import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.workbook.logic.commands.CommandTestUtil.ROLE_DESC_AMY;
 import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalInternships.AMY;
 
@@ -28,8 +28,8 @@ import seedu.workbook.model.ModelManager;
 import seedu.workbook.model.ReadOnlyWorkBook;
 import seedu.workbook.model.UserPrefs;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.storage.JsonWorkBookStorage;
 import seedu.workbook.storage.JsonUserPrefsStorage;
+import seedu.workbook.storage.JsonWorkBookStorage;
 import seedu.workbook.storage.StorageManager;
 import seedu.workbook.testutil.InternshipBuilder;
 

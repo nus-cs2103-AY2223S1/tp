@@ -12,11 +12,18 @@ import seedu.workbook.model.internship.exceptions.DuplicateInternshipException;
 import seedu.workbook.model.internship.exceptions.InternshipNotFoundException;
 
 /**
- * A list of internships that enforces uniqueness between its elements and does not allow nulls.
- * A internship is considered unique by comparing using {@code Internship#isSameInternship(Internship)}. As such, adding and updating of
- * internships uses Internship#isSameInternship(Internship) for equality so as to ensure that the internship being added or updated is
- * unique in terms of identity in the UniqueInternshipList. However, the removal of a internship uses Internship#equals(Object) so
- * as to ensure that the internship with exactly the same fields will be removed.
+ * A list of internships that enforces uniqueness between its elements and does
+ * not allow nulls.
+ * A internship is considered unique by comparing using
+ * {@code Internship#isSameInternship(Internship)}.
+ *
+ * As such, adding and updating of internships uses
+ * Internship#isSameInternship(Internship) for equality so as to ensure that the
+ * internship being added or updated is unique in terms of identity in the
+ * UniqueInternshipList.
+ *
+ * However, the removal of a internship uses Internship#equals(Object) so as to
+ * ensure that the internship with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -25,11 +32,12 @@ import seedu.workbook.model.internship.exceptions.InternshipNotFoundException;
 public class UniqueInternshipList implements Iterable<Internship> {
 
     private final ObservableList<Internship> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Internship> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Internship> internalUnmodifiableList = FXCollections
+            .unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent internship as the given argument.
+     * Returns true if the list contains an equivalent internship as the given
+     * argument.
      */
     public boolean contains(Internship toCheck) {
         requireNonNull(toCheck);
@@ -49,9 +57,11 @@ public class UniqueInternshipList implements Iterable<Internship> {
     }
 
     /**
-     * Replaces the Internship {@code target} in the list with {@code editedInternship}.
+     * Replaces the Internship {@code target} in the list with
+     * {@code editedInternship}.
      * {@code target} must exist in the list.
-     * The Internship identity of {@code editedInternship} must not be the same as another existing Internship in the list.
+     * The Internship identity of {@code editedInternship} must not be the same as
+     * another existing Internship in the list.
      */
     public void setInternship(Internship target, Internship editedInternship) {
         requireAllNonNull(target, editedInternship);

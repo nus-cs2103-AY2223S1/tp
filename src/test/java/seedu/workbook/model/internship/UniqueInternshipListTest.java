@@ -15,8 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.UniqueInternshipList;
 import seedu.workbook.model.internship.exceptions.DuplicateInternshipException;
 import seedu.workbook.model.internship.exceptions.InternshipNotFoundException;
 import seedu.workbook.testutil.InternshipBuilder;
@@ -129,10 +127,15 @@ public class UniqueInternshipListTest {
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
+    // CHECKSTYLE.OFF: SeparatorWrap
     @Test
     public void setInternships_nullUniqueInternshipList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternships((UniqueInternshipList) null));
+        assertThrows(
+            NullPointerException.class,
+            () -> uniqueInternshipList.setInternships((UniqueInternshipList) null)
+        );
     }
+    // CHECKSTYLE.ON: SeparatorWrap
 
     @Test
     public void setInternships_uniqueInternshipList_replacesOwnListWithProvidedUniqueInternshipList() {
@@ -158,15 +161,24 @@ public class UniqueInternshipListTest {
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
+    // CHECKSTYLE.OFF: SeparatorWrap
     @Test
     public void setInternships_listWithDuplicateInternships_throwsDuplicateInternshipException() {
         List<Internship> listWithDuplicateInternships = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.setInternships(listWithDuplicateInternships));
+        assertThrows(
+            DuplicateInternshipException.class,
+            () -> uniqueInternshipList.setInternships(listWithDuplicateInternships)
+        );
     }
+    // CHECKSTYLE.ON: SeparatorWrap
 
+    // CHECKSTYLE.OFF: SeparatorWrap
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueInternshipList.asUnmodifiableObservableList().remove(0));
+        assertThrows(
+            UnsupportedOperationException.class,
+            () -> uniqueInternshipList.asUnmodifiableObservableList().remove(0)
+        );
     }
+    // CHECKSTYLE.ON: SeparatorWrap
 }

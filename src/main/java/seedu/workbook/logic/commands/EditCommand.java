@@ -2,10 +2,10 @@ package seedu.workbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.workbook.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
@@ -21,8 +21,8 @@ import seedu.workbook.commons.util.CollectionUtil;
 import seedu.workbook.logic.commands.exceptions.CommandException;
 import seedu.workbook.model.Model;
 import seedu.workbook.model.internship.Address;
-import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
@@ -90,10 +90,11 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Internship} with the details of {@code internshipToEdit}
-     * edited with {@code editInternshipDescriptor}.
+     * Creates and returns a {@code Internship} with the details of
+     * {@code internshipToEdit} edited with {@code editInternshipDescriptor}.
      */
-    private static Internship createEditedInternship(Internship internshipToEdit, EditInternshipDescriptor editInternshipDescriptor) {
+    private static Internship createEditedInternship(Internship internshipToEdit,
+            EditInternshipDescriptor editInternshipDescriptor) {
         assert internshipToEdit != null;
 
         Company updatedCompany = editInternshipDescriptor.getCompany().orElse(internshipToEdit.getCompany());
@@ -125,8 +126,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the internship with. Each non-empty field value will replace the
-     * corresponding field value of the internship.
+     * Stores the details to edit the internship with. Each non-empty field value
+     * will replace the corresponding field value of the internship.
      */
     public static class EditInternshipDescriptor {
         private Company company;
@@ -136,7 +137,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditInternshipDescriptor() {}
+        public EditInternshipDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -207,8 +209,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {

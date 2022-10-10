@@ -5,11 +5,14 @@ import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Internship's company in WorkBook.
- * Guarantees: immutable; is valid as declared in {@link #isValidCompany(String)}
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidCompany(String)}
  */
 public class Company {
 
+    // CHECKSTYLE.OFF: LineLength
     public static final String MESSAGE_CONSTRAINTS = "Company names should only contain alphanumeric characters and spaces, and it should not be blank";
+    // CHECKSTYLE.ON: LineLength
 
     /*
      * The first character of the Company must not be a whitespace,

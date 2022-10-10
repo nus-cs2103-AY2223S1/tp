@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.workbook.commons.exceptions.IllegalValueException;
 import seedu.workbook.model.internship.Address;
-import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
@@ -36,7 +36,8 @@ class JsonAdaptedInternship {
      * Constructs a {@code JsonAdaptedInternship} with the given Internship details.
      */
     @JsonCreator
-    public JsonAdaptedInternship(@JsonProperty("company") String company, @JsonProperty("role") String role, @JsonProperty("phone") String phone,
+    public JsonAdaptedInternship(@JsonProperty("company") String company, @JsonProperty("role") String role,
+            @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
@@ -64,9 +65,11 @@ class JsonAdaptedInternship {
     }
 
     /**
-     * Converts this Jackson-friendly adapted Internship object into the model's {@code Internship} object.
+     * Converts this Jackson-friendly adapted Internship object into the model's
+     * {@code Internship} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted Internship.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted Internship.
      */
     public Internship toModelType() throws IllegalValueException {
         final List<Tag> internshipTags = new ArrayList<>();

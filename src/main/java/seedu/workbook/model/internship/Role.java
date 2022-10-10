@@ -9,7 +9,9 @@ import static seedu.workbook.commons.util.AppUtil.checkArgument;
  */
 public class Role {
 
+    // CHECKSTYLE.OFF: LineLength
     public static final String MESSAGE_CONSTRAINTS = "Role titles should only contain alphanumeric characters and spaces, and it should not be blank";
+    // CHECKSTYLE.ON: LineLength
 
     /*
      * The first character of the Role must not be a whitespace,
@@ -27,7 +29,7 @@ public class Role {
     public Role(String role) {
         requireNonNull(role);
         checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
-         value = role;
+        value = role;
     }
 
     /**

@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.workbook.commons.core.GuiSettings;
-import seedu.workbook.model.WorkBook;
 import seedu.workbook.model.ReadOnlyWorkBook;
 import seedu.workbook.model.UserPrefs;
+import seedu.workbook.model.WorkBook;
 
 public class StorageManagerTest {
 

@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.workbook.commons.exceptions.IllegalValueException;
+import seedu.workbook.model.ReadOnlyWorkBook;
 import seedu.workbook.model.WorkBook;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.ReadOnlyWorkBook;
 
 /**
  * An Immutable WorkBook that is serializable to JSON format.
@@ -34,10 +34,12 @@ class JsonSerializableWorkBook {
     /**
      * Converts a given {@code ReadOnlyWorkBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableWorkBook}.
+     * @param source future changes to this will not affect the created
+     *               {@code JsonSerializableWorkBook}.
      */
     public JsonSerializableWorkBook(ReadOnlyWorkBook source) {
-        internships.addAll(source.getInternshipList().stream().map(JsonAdaptedInternship::new).collect(Collectors.toList()));
+        internships.addAll(
+                source.getInternshipList().stream().map(JsonAdaptedInternship::new).collect(Collectors.toList()));
     }
 
     /**

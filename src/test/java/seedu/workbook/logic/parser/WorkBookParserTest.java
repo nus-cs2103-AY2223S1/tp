@@ -17,11 +17,11 @@ import seedu.workbook.logic.commands.AddCommand;
 import seedu.workbook.logic.commands.ClearCommand;
 import seedu.workbook.logic.commands.DeleteCommand;
 import seedu.workbook.logic.commands.EditCommand;
+import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.workbook.logic.commands.ExitCommand;
 import seedu.workbook.logic.commands.FindCommand;
 import seedu.workbook.logic.commands.HelpCommand;
 import seedu.workbook.logic.commands.ListCommand;
-import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.workbook.logic.parser.exceptions.ParseException;
 import seedu.workbook.model.internship.CompanyContainsKeywordsPredicate;
 import seedu.workbook.model.internship.Internship;
@@ -58,7 +58,8 @@ public class WorkBookParserTest {
         Internship internship = new InternshipBuilder().build();
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(internship).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_INTERNSHIP.getOneBased() + " " + InternshipUtil.getEditInternshipDescriptorDetails(descriptor));
+                + INDEX_FIRST_INTERNSHIP.getOneBased() + " "
+                + InternshipUtil.getEditInternshipDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_INTERNSHIP, descriptor), command);
     }
 
@@ -88,11 +89,13 @@ public class WorkBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
 
+    // CHECKSTYLE.OFF: SeparatorWrap
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE),
+                () -> parser.parseCommand(""));
     }
+    // CHECKSTYLE.ON: SeparatorWrap
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {

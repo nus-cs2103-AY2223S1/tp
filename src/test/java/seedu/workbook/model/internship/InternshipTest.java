@@ -3,8 +3,8 @@ package seedu.workbook.model.internship;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
+import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.testutil.Assert.assertThrows;
@@ -13,7 +13,6 @@ import static seedu.workbook.testutil.TypicalInternships.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.workbook.model.internship.Internship;
 import seedu.workbook.testutil.InternshipBuilder;
 
 public class InternshipTest {

@@ -53,7 +53,8 @@ public interface Model {
     ReadOnlyWorkBook getWorkBook();
 
     /**
-     * Returns true if an Internship with the same identity as {@code internship} exists in WorkBook.
+     * Returns true if an Internship with the same identity as {@code internship}
+     * exists in WorkBook.
      */
     boolean hasInternship(Internship internship);
 
@@ -72,7 +73,8 @@ public interface Model {
     /**
      * Replaces the given internship {@code target} with {@code editedInternship}.
      * {@code target} must exist in WorkBook.
-     * The Internship identity of {@code editedInternship} must not be the same as another existing internship in WorkBook.
+     * The Internship identity of {@code editedInternship} must not be the same as
+     * another existing internship in WorkBook.
      */
     void setInternship(Internship target, Internship editedInternship);
 
@@ -80,7 +82,9 @@ public interface Model {
     ObservableList<Internship> getFilteredInternshipList();
 
     /**
-     * Updates the filter of the filtered internship list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered internship list to filter by the given
+     * {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInternshipList(Predicate<Internship> predicate);
