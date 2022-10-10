@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -30,6 +31,8 @@ public class SampleDataUtil {
         personData.setEmail(new Email("alexyeoh@example.com"));
         personData.setAddress(new Address("Blk 30 Geylang Street 29, #06-40"));
         personData.setTags(getTagSet("friends"));
+        personData.setAttendances(getAttendedSet("T01", "T02"));
+        personData.addAttendances(getNotAttendedSet("T03"));
         personDatas.add(personData);
 
         personData = new PersonData();;
@@ -72,7 +75,9 @@ public class SampleDataUtil {
         personData.setTags(getTagSet("colleagues"));
         personDatas.add(personData);
 
-        return (Person[]) personDatas.stream().map(x -> new Person(x)).toArray();
+        return personDatas.stream()
+                .map(x -> new Person(x))
+                .toArray(Person[]::new);
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
@@ -92,4 +97,21 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns an Attendance set of attended classes containing the list of strings given.
+     */
+    public static Set<Attendance> getAttendedSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(className -> new Attendance(className, Boolean.TRUE))
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns an Attendance set of classes not attended containing the list of strings given.
+     */
+    public static Set<Attendance> getNotAttendedSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(className -> new Attendance(className, Boolean.FALSE))
+                .collect(Collectors.toSet());
+    }
 }
