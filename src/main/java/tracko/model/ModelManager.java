@@ -108,7 +108,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteItem(Item item) { trackO.deleteItem(item); }
+    public void deleteItem(Item item) {
+        trackO.deleteItem(item);
+    }
 
     @Override
     public ObservableList<Item> getInventoryList() {
