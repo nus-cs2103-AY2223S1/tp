@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import tracko.commons.core.GuiSettings;
 import tracko.commons.core.LogsCenter;
+import tracko.model.items.Item;
 import tracko.model.order.Order;
 
 /**
@@ -96,6 +97,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteOrder(Order order) {
+        trackO.deleteOrder(order);
+    }
+
+    @Override
     public ObservableList<Order> getOrderList() {
         return trackO.getOrderList();
     }
@@ -115,6 +121,11 @@ public class ModelManager implements Model {
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
+    }
+
+    @Override
+    public void addItem(Item item) {
+        trackO.addItem(item);
     }
 
     @Override

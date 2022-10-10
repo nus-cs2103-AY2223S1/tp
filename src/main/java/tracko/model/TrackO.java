@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import tracko.model.items.InventoryList;
+import tracko.model.items.Item;
 import tracko.model.order.Order;
 import tracko.model.order.OrderList;
 
@@ -15,9 +17,11 @@ import tracko.model.order.OrderList;
 public class TrackO implements ReadOnlyTrackO {
 
     private final OrderList orders;
+    private final InventoryList items;
 
     {
         orders = new OrderList();
+        items = new InventoryList();
     }
 
     public TrackO() {}
@@ -32,6 +36,10 @@ public class TrackO implements ReadOnlyTrackO {
 
     public void setOrders(List<Order> orders) {
         this.orders.setOrders(orders);
+    }
+
+    public void setItems(List<Item> items) {
+        this.items.setItems(items);
     }
 
     /**
@@ -50,9 +58,29 @@ public class TrackO implements ReadOnlyTrackO {
         orders.add(order);
     }
 
+    /**
+     * Deletes an order to be tracked.
+     * @param order The order to be deleted
+     */
+    public void deleteOrder(Order order) {
+        orders.delete(order);
+    }
+    /**
+     * Adds an item to be tracked.
+     * @param item The item to be added
+     */
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
     @Override
     public ObservableList<Order> getOrderList() {
         return orders.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Item> getInventoryList() {
+        return items.asUnmodifiableObservableList();
     }
 
     @Override

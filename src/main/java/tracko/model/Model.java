@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
+import tracko.model.items.Item;
 import tracko.model.order.Order;
 
 /**
@@ -60,6 +61,16 @@ public interface Model {
      * Adds the given order.
      */
     void addOrder(Order order);
+
+    /**
+     * Deletes the given order.
+     */
+    void deleteOrder(Order order);
+    
+        /**
+     * Adds the given item.
+     */
+    void addItem(Item item);
 
     /**
      * Returns the order list.
