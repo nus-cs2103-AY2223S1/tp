@@ -15,13 +15,13 @@ public class StudentIdTest {
 
     @Test
     public void constructor_invalidStudentId_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new StudentId(invalidAddress));
+        String invalidStudentId = "";
+        assertThrows(IllegalArgumentException.class, () -> new StudentId(invalidStudentId));
     }
 
     @Test
     public void isValidStudentId() {
-        // null address
+        // null studentId
         assertThrows(NullPointerException.class, () -> StudentId.isValidStudentId(null));
 
         // invalid studentIds
