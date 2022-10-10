@@ -88,6 +88,18 @@ public class Team {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if both teams have the same name.
+     */
+    public boolean isSameTeam(Team otherTeam) {
+        if (otherTeam == this) {
+            return true;
+        } else {
+            return otherTeam != null
+                    && otherTeam.getTeamName().equals(this.getTeamName());
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -99,9 +111,7 @@ public class Team {
         }
 
         Team otherTeam = (Team) other;
-        return otherTeam.getTeamName().equals(getTeamName())
-                && otherTeam.getTeamMembers().equals(getTeamMembers())
-                && otherTeam.getTaskList().equals(getTaskList());
+        return otherTeam.getTeamName().equals(getTeamName());
     }
 
     @Override

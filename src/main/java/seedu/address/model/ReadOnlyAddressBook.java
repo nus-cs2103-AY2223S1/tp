@@ -20,4 +20,11 @@ public interface ReadOnlyAddressBook {
      * The team will not contain any duplicate members.
      */
     Team getTeam();
+
+    /**
+     * Returns the list of all existing teams.
+     * The list will not contain any duplicate teams.
+     */
+
+    ObservableList<Team> getTeamList();
 }

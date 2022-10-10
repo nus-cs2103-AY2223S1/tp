@@ -80,6 +80,18 @@ public interface Model {
     /** Returns the current team */
     Team getTeam();
 
+    /** Sets the current team to an existing team */
+    void setTeam(Team teamToSet);
+
+    /** Adds a new team */
+    void addTeam(Team teamToAdd);
+
+    /** Deletes an existing team */
+    void deleteTeam(Team teamToDelete);
+
+    /** Returns the list of teams */
+    ObservableList<Team> getTeamList();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
