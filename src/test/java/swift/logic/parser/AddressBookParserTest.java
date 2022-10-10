@@ -23,6 +23,7 @@ import swift.logic.commands.ExitCommand;
 import swift.logic.commands.FindContactCommand;
 import swift.logic.commands.HelpCommand;
 import swift.logic.commands.ListContactCommand;
+import swift.logic.commands.ListTaskCommand;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.person.Person;
 import swift.model.person.PersonNameContainsKeywordsPredicate;
@@ -97,6 +98,12 @@ public class AddressBookParserTest {
         Task task = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(TaskUtil.getAddTaskCommand(task));
         assertEquals(new AddTaskCommand(task), command);
+    }
+
+    @Test
+    public void parseCommand_list_task() throws Exception {
+        assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD) instanceof ListTaskCommand);
+        assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD + " 3") instanceof ListTaskCommand);
     }
 
     @Test
