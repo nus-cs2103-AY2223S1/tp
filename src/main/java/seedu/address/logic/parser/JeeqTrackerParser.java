@@ -6,7 +6,22 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+<<<<<<< HEAD
 import seedu.address.logic.commands.*;
+=======
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CreateCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UserGuideCommand;
+import seedu.address.logic.commands.ViewCommand;
+>>>>>>> master
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.Transaction;
 
@@ -63,6 +78,9 @@ public class JeeqTrackerParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommandParser().parse(arguments);
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         case CreateCommand.COMMAND_WORD:
             return new CreateCommandParser().parse(arguments);

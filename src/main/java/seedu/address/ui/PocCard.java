@@ -7,14 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.company.Company;
+import seedu.address.model.poc.Poc;
 
 /**
- * A UI component that displays information of a {@code Company}.
+ * A UI component that displays information of a {@code Poc}.
  */
-public class CompanyCard extends UiPart<Region> {
+public class PocCard extends UiPart<Region> {
 
-    private static final String FXML = "CompanyListCard.fxml";
+    private static final String FXML = "PocListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,32 +24,32 @@ public class CompanyCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on JeeqTracker level 4</a>
      */
 
-    public final Company company;
+    public final Poc poc;
 
     @FXML
-    private HBox cardPane;
+    private HBox pocCardPane;
     @FXML
     private Label name;
     @FXML
     private Label id;
     @FXML
-    private Label address;
+    private Label email;
     @FXML
-    private Label pocs;
+    private Label phone;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code CompanyCode} with the given {@code Company} and index to display.
+     * Creates a {@code PocCode} with the given {@code Poc} and index to display
      */
-    public CompanyCard(Company company, int displayedIndex) {
+    public PocCard(Poc poc, int displayedIndex) {
         super(FXML);
-        this.company = company;
+        this.poc = poc;
         id.setText(displayedIndex + ". ");
-        name.setText(company.getName().fullName);
-        address.setText(company.getAddress().value);
-        pocs.setText(company.getPocs().toString());
-        company.getTags().stream()
+        name.setText(poc.getName().toString());
+        email.setText(poc.getEmail().toString());
+        phone.setText(poc.getPhone().toString());
+        poc.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -61,14 +61,14 @@ public class CompanyCard extends UiPart<Region> {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof CompanyCard)) {
+        // instanceof handles null
+        if (!(other instanceof PocCard)) {
             return false;
         }
 
         // state check
-        CompanyCard card = (CompanyCard) other;
+        PocCard card = (PocCard) other;
         return id.getText().equals(card.id.getText())
-                && company.equals(card.company);
+                && poc.equals(card.poc);
     }
 }
