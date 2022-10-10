@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
@@ -11,7 +12,9 @@ import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_GROUP_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_GROUP_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -32,7 +35,8 @@ class ClassGroupCommandTest {
         Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(firstStudent).withClassGroup(CLASS_GROUP_STUB).build();
 
-        ClassGroupCommand classGroupCommand = new ClassGroupCommand(INDEX_FIRST_STUDENT, new ClassGroup(editedStudent.getClassGroup().value));
+        ClassGroupCommand classGroupCommand =
+                new ClassGroupCommand(INDEX_FIRST_STUDENT, new ClassGroup(editedStudent.getClassGroup().value));
 
         String expectedMessage = String.format(ClassGroupCommand.MESSAGE_ADD_CLASS_GROUP_SUCCESS, editedStudent);
 
@@ -81,7 +85,8 @@ class ClassGroupCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        ClassGroupCommand classGroupCommand = new ClassGroupCommand(outOfBoundIndex, new ClassGroup(VALID_CLASS_GROUP_BOB));
+        ClassGroupCommand classGroupCommand =
+                new ClassGroupCommand(outOfBoundIndex, new ClassGroup(VALID_CLASS_GROUP_BOB));
 
         assertCommandFailure(classGroupCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
@@ -97,7 +102,8 @@ class ClassGroupCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
 
-        ClassGroupCommand classGroupCommand = new ClassGroupCommand(outOfBoundIndex, new ClassGroup(VALID_CLASS_GROUP_BOB));
+        ClassGroupCommand classGroupCommand =
+                new ClassGroupCommand(outOfBoundIndex, new ClassGroup(VALID_CLASS_GROUP_BOB));
         assertCommandFailure(classGroupCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
