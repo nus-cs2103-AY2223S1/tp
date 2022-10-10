@@ -14,6 +14,7 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
+    private final NOKPhone nokPhone;
     private final Email email;
 
     // Data fields
@@ -27,10 +28,11 @@ public class Person {
      * Constructs a {@code Person} class when first initialized with add command.
      * // Todo: Note that this is a temporary design and subject to update in future iteration
      */
-    public Person(Name name, Phone phone, Email email, Address address) {
-        requireAllNonNull(name, phone, email, address);
+    public Person(Name name, Phone phone, NOKPhone nokPhone, Email email, Address address) {
+        requireAllNonNull(name, phone, nokPhone, email, address);
         this.name = name;
         this.phone = phone;
+        this.nokPhone = nokPhone;
         this.email = email;
         this.address = address;
         this.aClass = new Class();
@@ -43,11 +45,12 @@ public class Person {
      * Overloaded constructor.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Class aClass,
+    public Person(Name name, Phone phone, NOKPhone nokPhone, Email email, Address address, Class aClass,
                   MoneyOwed moneyOwed, MoneyPaid moneyPaid, AdditionalNotes additionalNotes) {
-        requireAllNonNull(name, phone, email, address, additionalNotes, aClass);
+        requireAllNonNull(name, phone, nokPhone, email, address, additionalNotes, aClass);
         this.name = name;
         this.phone = phone;
+        this.nokPhone = nokPhone;
         this.email = email;
         this.address = address;
         this.aClass = aClass;
@@ -62,6 +65,10 @@ public class Person {
 
     public Phone getPhone() {
         return phone;
+    }
+
+    public NOKPhone getNOKPhone() {
+        return nokPhone;
     }
 
     public Email getEmail() {
@@ -122,6 +129,7 @@ public class Person {
 
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getNOKPhone().equals(getNOKPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getAClass().toString().equals(getAClass().toString())
@@ -133,7 +141,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, aClass, moneyOwed, moneyPaid, additionalNotes);
+        return Objects.hash(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, additionalNotes);
     }
 
     @Override
@@ -142,6 +150,8 @@ public class Person {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
+                .append("; Next of Kin Phone: ")
+                .append(getNOKPhone())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
