@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTasks.TASK_1;
+import static seedu.address.testutil.TypicalTasks.TASK_1_DUPLICATED;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,16 +30,14 @@ public class TaskTest {
         assertFalse(Task.isValidName(" "));
         assertFalse(Task.isValidName(" task"));
     }
+
     @Test
     public void equals() {
-        Task task1 = new Task("task");
-        Task task2 = new Task("task");
-        assertTrue(task1.equals(task2));
+        assertTrue(TASK_1.equals(TASK_1_DUPLICATED));
     }
 
     @Test
     public void valid_toString_equalNames() {
-        Task task1 = new Task("task");
-        assertEquals("task", task1.toString());
+        assertEquals("task", TASK_1.toString());
     }
 }
