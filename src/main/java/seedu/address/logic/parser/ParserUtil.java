@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -35,6 +36,18 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>}
+     */
+    public static Set<Index> parseIndexes (Collection<String> oneBasedIndexes) throws ParseException {
+        requireNonNull(oneBasedIndexes);
+        final Set<Index> indexSet = new LinkedHashSet<>();
+        for (String oneBasedIndex : oneBasedIndexes) {
+            indexSet.add(parseIndex(oneBasedIndex));
+        }
+        return indexSet;
     }
 
     /**
