@@ -13,7 +13,7 @@ import org.junit.jupiter.api.io.TempDir;
 import javafx.fxml.FXML;
 import seedu.address.OldMainApp;
 
-public class OldUiPartTest {
+public class UiPartTest {
 
     private static final String MISSING_FILE_PATH = "UiPartTest/missingFile.fxml";
     private static final String INVALID_FILE_PATH = "UiPartTest/invalidFile.fxml";
