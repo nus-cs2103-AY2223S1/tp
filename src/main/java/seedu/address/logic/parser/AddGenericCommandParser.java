@@ -24,7 +24,7 @@ public class AddGenericCommandParser implements Parser<AddGenericCommand> {
         args = ParserUtil.eraseOptions(args, PREFIX_OPTION_PATIENT_INDEX);
 
         if (!options.getValue(PREFIX_OPTION_PATIENT_INDEX).isPresent()) {
-            return new AddCommandParser().parse(args);
+            return new AddPatientCommandParser().parse(args);
         }
 
         if (options.getValue(PREFIX_OPTION_PATIENT_INDEX).isPresent()) {
