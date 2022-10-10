@@ -63,6 +63,7 @@ public interface Model {
      * The stall must exist in the address book.
      */
     void deleteStall(Stall target);
+    void deleteReview(Review target);
 
     /**
      * Adds the given stall.
@@ -90,7 +91,7 @@ public interface Model {
     void updateFilteredStallList(Predicate<Stall> predicate);
 
     /**
-     * Updates the filter of the filtered stall list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered review list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredReviewList(Predicate<Review> predicate);
