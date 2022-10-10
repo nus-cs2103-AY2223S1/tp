@@ -62,7 +62,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code TaskBook} with all the typical persons.
      */
-    public static TaskBook getTypicaltaskBook() {
+    public static TaskBook getTypicalTaskBook() {
         TaskBook ab = new TaskBook();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);

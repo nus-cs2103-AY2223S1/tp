@@ -38,7 +38,7 @@ public class TaskBookTest {
 
     @Test
     public void resetData_withValidReadOnlytaskBook_replacesData() {
-        TaskBook newData = TypicalPersons.getTypicaltaskBook();
+        TaskBook newData = TypicalPersons.getTypicalTaskBook();
         taskBook.resetData(newData);
         assertEquals(newData, taskBook);
     }

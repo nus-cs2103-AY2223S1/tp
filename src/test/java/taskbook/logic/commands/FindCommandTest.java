@@ -20,8 +20,8 @@ import taskbook.testutil.TypicalPersons;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(TypicalPersons.getTypicaltaskBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalPersons.getTypicaltaskBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalPersons.getTypicalTaskBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalPersons.getTypicalTaskBook(), new UserPrefs());
 
     @Test
     public void equals() {

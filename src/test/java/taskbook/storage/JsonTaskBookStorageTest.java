@@ -62,7 +62,7 @@ public class JsonTaskBookStorageTest {
     @Test
     public void readAndSavetaskBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        TaskBook original = TypicalPersons.getTypicaltaskBook();
+        TaskBook original = TypicalPersons.getTypicalTaskBook();
         JsonTaskBookStorage jsontaskBookStorage = new JsonTaskBookStorage(filePath);
 
         // Save in new file and read back
