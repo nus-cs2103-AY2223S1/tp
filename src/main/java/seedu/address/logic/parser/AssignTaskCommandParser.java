@@ -23,7 +23,10 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
      */
     public AssignTaskCommand parse(String args) throws ParseException {
         try {
-            String indexes[] = args.split(" ", 3);
+            String[] indexes = args.split(" ", 3);
+            if (indexes.length < 3) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
+            }
             int task = Integer.parseInt(indexes[1]) - 1;
             int member = Integer.parseInt(indexes[2]) - 1;
             return new AssignTaskCommand(task, member);
