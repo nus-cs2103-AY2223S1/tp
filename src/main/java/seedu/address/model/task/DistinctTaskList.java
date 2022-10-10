@@ -7,7 +7,11 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
+import seedu.address.model.module.Module;
 
 /**
  * This class represents a list which contains Tasks objects which are distinct from
@@ -29,6 +33,14 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
+     * Returns true if the list contains a task with an equivalent module as the given argument.
+     */
+    public boolean containsModule(Module toCheck) {
+        requireNonNull(toCheck);
+        return taskList.stream().map(Task::getModule).anyMatch(toCheck::isSameModuleCode);
+    }
+
+    /**
      * Adds the task to the taskList.
      * The task must not already exist in the list.
      *
@@ -41,6 +53,17 @@ public class DistinctTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         taskList.add(taskAdded);
+    }
+
+    /**
+     * Removes the equivalent task from the tasklist.
+     * The task must exist in the list.
+     */
+    public void remove(Task toRemove) {
+        requireNonNull(toRemove);
+        if (!taskList.remove(toRemove)) {
+            throw new TaskNotFoundException();
+        }
     }
 
     @Override

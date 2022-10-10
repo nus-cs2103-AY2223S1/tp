@@ -104,6 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         persons.remove(key);
     }
+
     public void addModule(Module mod) {
         modules.addModule(mod);
     }
@@ -118,6 +119,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return tasks.contains(task);
     }
 
+    public boolean hasTaskwithModule(Module module) {
+        return tasks.containsModule(module);
+    }
+
     /**
      * Adds a task to the task list.
      * The task must not already exist in the task list.
@@ -128,6 +133,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void setTasks(List<Task> tasks) {
         this.tasks.setTasks(tasks);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTask(Task key) {
+        tasks.remove(key);
     }
 
     //// util methods
@@ -154,6 +167,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(module);
         return modules.containsModule(module);
     }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     * {@code key} must not be tied to any tasks in the address book.
+     */
+    public void removeModule(Module key) {
+        modules.remove(key);
+    }
+
     @Override
     public ObservableList<Module> getModuleList() {
         return modules.getUnmodifiableModuleList();
