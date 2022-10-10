@@ -21,7 +21,7 @@ public class ApplicationListPanel extends UiPart<Region> {
     private ListView<Application> applicationListView;
 
     /**
-     * Creates a {@code ApplicationListPanel} with the given {@code ObservableList}.
+     * Creates an {@code ApplicationListPanel} with the given {@code ObservableList}.
      */
     public ApplicationListPanel(ObservableList<Application> applicationList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class ApplicationListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Application} using a {@code ApplicationCard}.
+     * Custom {@code ListCell} that displays the graphics of an {@code Application} using an {@code ApplicationCard}.
      */
     class ApplicationListViewCell extends ListCell<Application> {
         @Override
