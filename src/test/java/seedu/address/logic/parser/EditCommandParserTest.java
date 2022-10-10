@@ -33,19 +33,18 @@ import static seedu.address.logic.commands.CommandTestUtil.UNIVERSITY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_VALUE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -291,7 +290,7 @@ public class EditCommandParserTest {
                 .withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
-                .withCap(VALID_CAP_VALUE_BOB)
+                .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withId(VALID_JOB_ID_BOB)
                 .withTitle(VALID_JOB_TITLE_BOB)
@@ -325,7 +324,7 @@ public class EditCommandParserTest {
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
-                .withCap(VALID_CAP_BOB)
+                .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withId(VALID_JOB_ID_BOB)
                 .withTitle(VALID_JOB_TITLE_BOB)

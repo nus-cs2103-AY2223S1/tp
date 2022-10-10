@@ -229,7 +229,7 @@ public class JsonAdaptedPersonTest {
                         VALID_ID,
                         VALID_TITLE,
                         VALID_TAGS);
-        String expectedMessage = Cap.MESSAGE_CONSTRAINTS;
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Cap.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
