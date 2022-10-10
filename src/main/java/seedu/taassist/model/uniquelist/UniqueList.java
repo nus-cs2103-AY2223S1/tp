@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
  * As such, adding and updating of elements uses {@code Identity<T>#isSame(T)} for equality so as to ensure that the
  * element being added or updated is unique in terms of identity in the UniqueList. However, the removal of an element
  * uses {@code Identity<T>#equals(Object)} so as to ensure that the element with exactly the same fields are removed.
+ * Supports a minimal set of list operations.
  */
 public class UniqueList<T extends Identity<T>> implements Iterable<T> {
 
@@ -73,6 +74,9 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with {@code replacement}.
+     */
     public void setElements(UniqueList<T> replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -89,6 +93,17 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
         }
 
         internalList.setAll(elements);
+    }
+
+    /**
+     * Finds and returns an element that has the same identity as {@code toFind}.
+     */
+    public T findElement(T toFind) {
+        requireNonNull(toFind);
+        return internalList.stream()
+                .filter(toFind::isSame)
+                .findFirst()
+                .orElseThrow(ElementNotFoundException::new);
     }
 
     /**

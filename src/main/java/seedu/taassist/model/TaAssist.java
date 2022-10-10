@@ -4,11 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
-import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.UniqueModuleClassList;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 
@@ -19,7 +17,7 @@ import seedu.taassist.model.uniquelist.UniqueList;
 public class TaAssist implements ReadOnlyTaAssist {
 
     private final UniqueList<Student> students;
-    private final UniqueModuleClassList moduleClasses;
+    private final UniqueList<ModuleClass> moduleClasses;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,7 +28,7 @@ public class TaAssist implements ReadOnlyTaAssist {
      */
     {
         students = new UniqueList<Student>();
-        moduleClasses = new UniqueModuleClassList();
+        moduleClasses = new UniqueList<ModuleClass>();
     }
 
     public TaAssist() {}
@@ -58,7 +56,7 @@ public class TaAssist implements ReadOnlyTaAssist {
      * {@code moduleClasses} must not contain duplicate classes.
      */
     public void setModuleClasses(List<ModuleClass> moduleClasses) {
-        this.moduleClasses.setModuleClasses(moduleClasses);
+        this.moduleClasses.setElements(moduleClasses);
     }
 
     /**
@@ -136,15 +134,15 @@ public class TaAssist implements ReadOnlyTaAssist {
      */
     public void setModuleClass(ModuleClass target, ModuleClass editedModuleClass) {
         requireAllNonNull(target, editedModuleClass);
-        moduleClasses.setModuleClass(target, editedModuleClass);
+        moduleClasses.setElement(target, editedModuleClass);
     }
 
     /**
      * Finds and returns a module class with equivalent identity to {@code target}.
      */
-    public Optional<ModuleClass> findModuleClass(ModuleClass target) {
+    public ModuleClass findModuleClass(ModuleClass target) {
         requireNonNull(target);
-        return moduleClasses.findModuleClass(target);
+        return moduleClasses.findElement(target);
     }
 
     /**

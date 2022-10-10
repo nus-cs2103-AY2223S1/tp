@@ -10,12 +10,13 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.taassist.model.session.Session;
+import seedu.taassist.model.uniquelist.Identity;
 
 /**
  * Represents a Class in TA-Assist.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModuleClassName(String)}
  */
-public class ModuleClass {
+public class ModuleClass implements Identity<ModuleClass> {
 
     public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -91,7 +92,8 @@ public class ModuleClass {
      * @param otherModule the module class to be compared to.
      * @return true if both modules have the same name.
      */
-    public boolean isSameModuleClass(ModuleClass otherModule) {
+    @Override
+    public boolean isSame(ModuleClass otherModule) {
         return otherModule == this
             || (otherModule != null && otherModule.className.equals(this.className));
     }
