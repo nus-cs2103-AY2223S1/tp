@@ -118,6 +118,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removeTag(Tag tag) {
+        addressBook.removeTag(tag);
+    }
+
+    @Override
     public ObservableList<Tag> getTagList() {
         return addressBook.getTagList();
     }

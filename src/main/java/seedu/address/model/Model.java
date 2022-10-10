@@ -83,6 +83,12 @@ public interface Model {
      */
     void addTag(Tag tag);
 
+    /**
+     * Deletes the given tag.
+     * The person tag exist in the address book.
+     */
+    void removeTag(Tag tag);
+
     /**\
      * Returns an unmodifiable view of the address book's unique tag list.
      */

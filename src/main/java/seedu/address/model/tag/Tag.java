@@ -58,6 +58,13 @@ public class Tag {
     }
 
     /**
+     * Returns true if this tag's person list is empty.
+     */
+    public boolean isPersonListEmpty() {
+        return personList.isEmpty();
+    }
+
+    /**
      * Returns true if both tags have the same name.
      * This defines a weaker notion of equality between two tags.
      */

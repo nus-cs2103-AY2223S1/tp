@@ -60,18 +60,23 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        // Tag linking
+
         Set<Tag> toAddTagSet = new HashSet<>();
         ObservableList<Tag> addressBookTagList = model.getTagList();
-        Set<Tag> tagSet = toAdd.getTags();
+        Set<Tag> tagSet = new HashSet<>(toAdd.getTags());
 
         for (Tag currentTag : addressBookTagList) {
             for (Tag toAddTag : tagSet) {
                 if (currentTag.isSameTag(toAddTag)) {
                     toAddTagSet.add(currentTag);
-                } else {
-                    toAddTagSet.add(toAddTag);
+                    tagSet.remove(toAddTag);
                 }
             }
+        }
+
+        for (Tag tag : tagSet) {
+            toAddTagSet.add(tag);
         }
         
         Person newToAddPerson = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(),
@@ -83,8 +88,10 @@ public class AddCommand extends Command {
             model.addTag(tag);
         }
 
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        // Tag linking finished
+
+        model.addPerson(newToAddPerson);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newToAddPerson));
     }
 
     @Override
