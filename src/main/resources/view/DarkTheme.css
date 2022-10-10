@@ -65,7 +65,6 @@
     -fx-text-weight: bold;
     -fx-alignment: center;
     -fx-opacity: 1;
-    -fx-wordwrap: true;
 }
 
 .table-view .table-cell {
