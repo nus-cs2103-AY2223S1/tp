@@ -9,6 +9,9 @@ import java.util.Set;
 import tracko.commons.core.index.Index;
 import tracko.commons.util.StringUtil;
 import tracko.logic.parser.exceptions.ParseException;
+import tracko.model.items.Description;
+import tracko.model.items.ItemName;
+import tracko.model.items.Quantity;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
 import tracko.model.order.Name;
@@ -120,5 +123,48 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String itemName} into a {@code ItemName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code itemName} is invalid.
+     */
+    public static ItemName parseItemName(String itemName) throws ParseException {
+        requireNonNull(itemName);
+        String trimmedName = itemName.trim();
+        if (!ItemName.isValidItemName(trimmedName)) {
+            throw new ParseException(ItemName.MESSAGE_CONSTRAINTS);
+        }
+        return new ItemName(trimmedName);
+    }
+
+    /**
+     * Parses {@code String quantity} into an {@code Quantity} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified quantity is invalid (not non-zero unsigned integer).
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        String trimmedQuantity = quantity.trim();
+        if (!StringUtil.isNonNegativeUnsignedInteger(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(Integer.parseInt(trimmedQuantity));
+    }
+
+    /**
+     * Parses a {@code String description} into an {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
     }
 }

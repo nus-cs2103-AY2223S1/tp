@@ -331,7 +331,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 - 1a. The order the user wishes to delete does not exist.
-  
+
   - 1a1. System informs the user of the non-existent order.
 
      Use case ends.
@@ -387,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1a. User inputs incomplete details of the item.
   - 1a1. System informs user of the incomplete details.
- 
+
     Use case resumes at 1.
 
 **Use case: UC06 - Delete an inventory item**

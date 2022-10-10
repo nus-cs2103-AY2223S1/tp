@@ -7,7 +7,12 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+<<<<<<< HEAD
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_ORDERS_FOUND_OVERVIEW = "%1$d order(s) found!";
+=======
+    public static final String MESSAGE_INVALID_ORDER_DISPLAYED_INDEX = "The order index provided is invalid";
+    public static final String MESSAGE_ITEMS_FOUND_OVERVIEW = "%1$d item(s) found!";
+>>>>>>> af1e44bca331f7fcc74d9755d3806a6290af4700
 
 }

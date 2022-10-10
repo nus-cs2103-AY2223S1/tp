@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import tracko.commons.exceptions.IllegalValueException;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.TrackO;
+import tracko.model.items.Item;
 import tracko.model.order.Order;
 
 
@@ -20,16 +21,16 @@ import tracko.model.order.Order;
 @JsonRootName(value = "tracko")
 public class JsonSerializableTrackO {
 
-    // TODO: add items here
-
+    private final List<JsonAdaptedItem> items = new ArrayList<>();
     private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableTrackO} with the given orders.
+     * Constructs a {@code JsonSerializableTrackO} with the given orders and items.
      */
     @JsonCreator
-    public JsonSerializableTrackO(@JsonProperty("orders") List<JsonAdaptedOrder> orders) {
-        // TODO: add items here (before orders)
+    public JsonSerializableTrackO(@JsonProperty("items") List<JsonAdaptedItem> items,
+                                  @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
+        this.items.addAll(items);
         this.orders.addAll(orders);
     }
 
@@ -39,7 +40,8 @@ public class JsonSerializableTrackO {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableTrackO(ReadOnlyTrackO source) {
-        // TODO: add items here (before orders)
+
+        items.addAll(source.getInventoryList().stream().map(JsonAdaptedItem::new).collect(Collectors.toList()));
         orders.addAll(source.getOrderList().stream().map(JsonAdaptedOrder::new).collect(Collectors.toList()));
     }
 
@@ -51,6 +53,10 @@ public class JsonSerializableTrackO {
     public TrackO toModelType() throws IllegalValueException {
         // TODO: add items here (before orders)
         TrackO trackO = new TrackO();
+        for (JsonAdaptedItem jsonAdaptedItem : items) {
+            Item item = jsonAdaptedItem.toModelType();
+            trackO.addItem(item);
+        }
         for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
             Order order = jsonAdaptedOrder.toModelType();
             trackO.addOrder(order);

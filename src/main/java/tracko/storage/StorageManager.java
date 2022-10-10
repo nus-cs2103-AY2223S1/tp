@@ -49,30 +49,30 @@ public class StorageManager implements Storage {
     // ============== TrackO methods =========================================
 
     @Override
-    public Path getOrdersFilePath() {
-        return trackOStorage.getOrdersFilePath();
+    public Path getTrackOFilePath() {
+        return trackOStorage.getTrackOFilePath();
     }
 
     @Override
     public Optional<ReadOnlyTrackO> readTrackO() throws DataConversionException, IOException {
-        return readTrackO(trackOStorage.getOrdersFilePath());
+        return readTrackO(trackOStorage.getTrackOFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTrackO> readTrackO(Path ordersFilePath) throws DataConversionException, IOException {
-        logger.fine("[TrackO] Attempting to read data from file: " + ordersFilePath);
-        return trackOStorage.readTrackO(ordersFilePath);
+    public Optional<ReadOnlyTrackO> readTrackO(Path trackOFilePath) throws DataConversionException, IOException {
+        logger.fine("[TrackO] Attempting to read data from file: " + trackOFilePath);
+        return trackOStorage.readTrackO(trackOFilePath);
     }
 
     @Override
     public void saveTrackO(ReadOnlyTrackO trackO) throws IOException {
-        saveTrackO(trackO, trackOStorage.getOrdersFilePath());
+        saveTrackO(trackO, trackOStorage.getTrackOFilePath());
     }
 
     @Override
-    public void saveTrackO(ReadOnlyTrackO trackO, Path ordersFilePath) throws IOException {
-        logger.fine("[TrackO] Attempting to write to data file: " + ordersFilePath);
-        trackOStorage.saveTrackO(trackO, ordersFilePath);
+    public void saveTrackO(ReadOnlyTrackO trackO, Path trackOFilePath) throws IOException {
+        logger.fine("[TrackO] Attempting to write to data file: " + trackOFilePath);
+        trackOStorage.saveTrackO(trackO, trackOFilePath);
     }
 
 }
