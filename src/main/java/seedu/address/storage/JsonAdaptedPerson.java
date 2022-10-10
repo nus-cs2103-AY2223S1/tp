@@ -102,12 +102,15 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Telegram.class.getSimpleName()));
         }
-        if (handle != null && !Telegram.isValidTelegram(handle)) {
+        if (!Telegram.isValidTelegram(handle)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         }
         final Telegram modelHandle = new Telegram(handle);
 
-        if (username != null && !GitHub.isValidGitHub(username)) {
+        if (username == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, GitHub.class.getSimpleName()));
+        }
+        if (!GitHub.isValidGitHub(username)) {
             throw new IllegalValueException(GitHub.MESSAGE_CONSTRAINTS);
         }
         final GitHub modelGitHub = new GitHub(username);
