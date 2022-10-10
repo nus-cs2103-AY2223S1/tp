@@ -59,18 +59,6 @@ public class RDeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        CommandTestUtil.showStallAtIndex(model, TypicalIndexes.INDEX_FIRST_STALL);
-        Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_REVIEW;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getReviewList().size());
-
-        RDeleteCommand RDeleteCommand = new RDeleteCommand(outOfBoundIndex);
-
-        CommandTestUtil.assertCommandFailure(RDeleteCommand, model, Messages.MESSAGE_INVALID_REVIEW_DISPLAYED_INDEX);
-    }
-
-    @Test
     public void equals() {
         RDeleteCommand deleteFirstCommand = new RDeleteCommand(TypicalIndexes.INDEX_FIRST_REVIEW);
         RDeleteCommand deleteSecondCommand = new RDeleteCommand(TypicalIndexes.INDEX_SECOND_REVIEW);

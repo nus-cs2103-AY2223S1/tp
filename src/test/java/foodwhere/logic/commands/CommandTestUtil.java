@@ -13,7 +13,6 @@ import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
-import foodwhere.model.review.Review;
 import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
 import foodwhere.testutil.EditStallDescriptorBuilder;
