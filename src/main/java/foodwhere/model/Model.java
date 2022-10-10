@@ -66,7 +66,6 @@ public interface Model {
      * The stall must exist in the address book.
      */
     void deleteStall(Stall target);
-    void deleteReview(Review target);
 
     /**
      * Adds the given stall.
@@ -80,6 +79,23 @@ public interface Model {
      * The stall identity of {@code editedStall} must not be the same as another existing stall in the address book.
      */
     void setStall(Stall target, Stall editedStall);
+
+    /**
+     * Returns true if a review with the same identity as {@code review} exists in the address book.
+     */
+    boolean hasReview(Review review);
+
+    /**
+     * Deletes the given review.
+     * The review must exist in the address book.
+     */
+    void deleteReview(Review target);
+
+    /**
+     * Adds the given review.
+     * {@code review} must not already exist in the address book.
+     */
+    void addReview(Review review);
 
     /** Returns an unmodifiable view of the filtered stall list */
     ObservableList<Stall> getFilteredStallList();
