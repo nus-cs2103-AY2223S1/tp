@@ -13,7 +13,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private ViewCommandParser parser = new ViewCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
