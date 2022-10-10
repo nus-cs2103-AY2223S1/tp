@@ -3,8 +3,12 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's Money in the Address Book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidMoney(Integer)}
+ */
 public class Money {
-    public static final String MESSAGE_CONSTRAINTS = "MoneyOwed/MoneyPaid can take any positive integer values,"
+    public static final String MESSAGE_CONSTRAINTS = "Money can take any positive integer values,"
             + " and its default value is 0";
 
     public final Integer value;
