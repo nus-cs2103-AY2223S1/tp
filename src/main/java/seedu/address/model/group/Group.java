@@ -38,8 +38,9 @@ public class Group {
 
     public boolean contains(Person toCheck) {
         for (Person p : members) {
-            if (p.isSamePerson(toCheck));
-            return true;
+            if (p.isSamePerson(toCheck)) {
+                return true;
+            }
         }
         return false;
     }
