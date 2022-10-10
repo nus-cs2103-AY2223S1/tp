@@ -37,6 +37,20 @@ public class UniqueScheduleList implements Iterable<Person> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
+
+    /**
+     * Adds a person to the list.
+     * The person must not already exist in the list.
+     */
+    public void add(Person toAdd) {
+        requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicatePersonException();
+        }
+        internalList.add(toAdd);
+        updateInternalListRef();
+    }
+
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
@@ -65,6 +79,7 @@ public class UniqueScheduleList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+        updateInternalListRef();
     }
 
     public void setPersons(UniqueScheduleList replacement) {

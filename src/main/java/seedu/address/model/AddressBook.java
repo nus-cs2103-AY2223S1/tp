@@ -84,6 +84,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+        schedule.add(p);
     }
 
     /**
@@ -104,6 +105,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        schedule.remove(key);
     }
 
     //// util methods
