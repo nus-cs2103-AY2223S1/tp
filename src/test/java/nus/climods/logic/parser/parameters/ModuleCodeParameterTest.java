@@ -18,15 +18,9 @@ public class ModuleCodeParameterTest {
     private static List<String> validCodes = List.of("CS2103", "CS2106", "CS2102");
     private static final String INVALID_CODE_MESSAGE = "Invalid code: %s";
     private static final String EMPTY_INPUT_MESSAGE = "Empty module code is not valid";
-    private static Optional<ModuleCode> convertModuleCode(String code) {
-        if (!validCodes.contains(code)) {
-            return Optional.empty();
-        }
-        return Optional.of(new ModuleCode(code));
-    }
 
     private ModuleCodeParameter createModuleCodeParameter(String argsString) {
-        return new ModuleCodeParameter(argsString, ModuleCodeParameterTest::convertModuleCode,
+        return new ModuleCodeParameter(argsString,
                 INVALID_CODE_MESSAGE);
     }
 
@@ -36,8 +30,8 @@ public class ModuleCodeParameterTest {
         ModuleCodeParameter mcp = createModuleCodeParameter(argsString);
 
         try {
-            ModuleCode mc = mcp.getArgValue();
-            assertEquals("CS2102", mc.getModuleCode());
+            String mc = mcp.getArgValue();
+            assertEquals("CS2102", mc);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -50,8 +44,21 @@ public class ModuleCodeParameterTest {
 
 
         try {
-            ModuleCode mc = mcp.getArgValue();
-            assertEquals("CS2103", mc.getModuleCode());
+            String mc = mcp.getArgValue();
+            assertEquals("CS2103", mc);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void parseModuleCode_validInputLowerCasereturnsModuleCode() {
+        String argsString = "cs2103";
+        ModuleCodeParameter mcp = createModuleCodeParameter(argsString);
+
+        try {
+            String mc = mcp.getArgValue();
+            assertEquals(argsString, mc);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -63,8 +70,8 @@ public class ModuleCodeParameterTest {
         ModuleCodeParameter mcp = createModuleCodeParameter(argsString);
 
         try {
-            ModuleCode mc = mcp.getArgValue();
-            assertEquals("CS2106", mc.getModuleCode());
+            String mc = mcp.getArgValue();
+            assertEquals("CS2106", mc);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -76,7 +83,7 @@ public class ModuleCodeParameterTest {
         ModuleCodeParameter mcp = createModuleCodeParameter(argsString);
 
         try {
-            ModuleCode mc = mcp.getArgValue();
+            String mc = mcp.getArgValue();
         } catch (ParseException e) {
             assertEquals(String.format(INVALID_CODE_MESSAGE, argsString), e.getMessage());
         }
@@ -89,7 +96,7 @@ public class ModuleCodeParameterTest {
 
         try {
             mcp.setEmptyInputMessage(EMPTY_INPUT_MESSAGE);
-            ModuleCode mc = mcp.getArgValue();
+            String mc = mcp.getArgValue();
         } catch (ParseException e) {
             assertEquals(EMPTY_INPUT_MESSAGE, e.getMessage());
         }

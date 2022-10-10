@@ -4,16 +4,17 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import nus.climods.commons.core.module.ModuleCode;
+import nus.climods.logic.parser.Parser;
+import nus.climods.logic.parser.ParserUtil;
 
 /**
  * Represents a positional ModuleCode parameter
  */
-public class ModuleCodeParameter extends PositionalParameter<ModuleCode> {
+public class ModuleCodeParameter extends PositionalParameter<String> {
     private static final int MODULE_CODE_INDEX = 0;
 
-    public ModuleCodeParameter(String argumentsString, Function<String, Optional<ModuleCode>> conversionFunction,
-                               String parseExceptionMessage) {
-        super(MODULE_CODE_INDEX, argumentsString, conversionFunction, parseExceptionMessage);
+    public ModuleCodeParameter(String argumentsString, String parseExceptionMessage) {
+        super(MODULE_CODE_INDEX, argumentsString, ParserUtil::parseModuleCode, parseExceptionMessage);
     }
 
 }

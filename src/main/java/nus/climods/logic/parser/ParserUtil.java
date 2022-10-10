@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import nus.climods.commons.core.index.Index;
-import nus.climods.commons.core.module.ModuleCode;
 import nus.climods.commons.util.StringUtil;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.person.Address;
@@ -24,6 +24,8 @@ import nus.climods.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    // Validates user entered module codes at parsing stage.
+    public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("[A-Z]{0,3}\\d{4}");
 
     /**
      * Returns List of whitespace-delimited arguments given arguments string supplied by the user
@@ -53,6 +55,20 @@ public class ParserUtil {
      */
     public static String[] convertArgumentStringToArray(String arguments) {
         return convertArgumentStringToList(arguments).toArray(new String[] {});
+    }
+
+    /**
+     * Parses module code according to user input
+     * @param input Input string from user representing a module code
+     * @return Empty Optional if input string does not pass initial validation check, else Optional
+     *      of the entered String
+     */
+    public static Optional<String> parseModuleCode(String input) {
+        if (!MODULE_CODE_PATTERN.matcher(input.trim()).find()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(input);
     }
 
 
