@@ -16,7 +16,6 @@ public class SortByPriority implements Comparator<Task> {
      * equal to, or greater than the second
      */
     public int compare(Task task1, Task task2) {
-//        return task1.getPriority().compareTo(task2.getPriority());
-        return 0;
+        return task1.getPriority().getPriority().compareTo(task2.getPriority().getPriority());
     }
 }
