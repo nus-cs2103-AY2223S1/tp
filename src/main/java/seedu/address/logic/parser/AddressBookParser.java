@@ -21,7 +21,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses user input.
+ * Parses user's input.
  */
 public class AddressBookParser {
 
