@@ -45,6 +45,17 @@ public class ParserUtil {
     }
 
     /**
+     * Returns String array of whitespace-delimited arguments given arguments string supplied by the user.
+     * This function makes it more convenient to work with commons.cli which accepts a String array of arguments to
+     * parse
+     * @param arguments String supplied by user as arguments after preamble
+     * @return String array of arguments provided
+     */
+    public static String[] convertArgumentStringToArray(String arguments) {
+        return convertArgumentStringToList(arguments).toArray(new String[] {}));
+    }
+
+    /**
      * Parses a {@code String} and returns Optional of a {@code ModuleCode} if supplied string represents a module code
      * in full list. Returns empty Optional otherwise
      * @param listModuleCode String representing input from user for a list module code

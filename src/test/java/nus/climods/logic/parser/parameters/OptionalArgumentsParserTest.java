@@ -3,6 +3,7 @@ package nus.climods.logic.parser.parameters.optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,7 @@ public class OptionalArgumentsParserTest {
         String argsString = "--lab --tut -gibberish";
         try {
             OptionalArgumentsParser oap = new OptionalArgumentsParser(argsString, lab, tutorial);
+            fail();
         } catch (ParseException e) {
             assertEquals(e.getMessage(), "Unrecognized option: -gibberish");
         }
@@ -107,6 +109,23 @@ public class OptionalArgumentsParserTest {
             assertFalse(oap.hasOption(tutorial));
             assertFalse(oap.hasOption(TUT_SHORT));
             assertFalse(oap.hasOption(TUT_LONG));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void parseMultipleArgumentsRelaxed_unrecognisedOption_noIssue() {
+        String argsString = "--lab  --tut -gibberish";
+        try {
+            OptionalArgumentsParser oap = new OptionalArgumentsParser(argsString, true, lab, tutorial);
+            assertTrue(oap.hasOption(lab));
+            assertTrue(oap.hasOption(LAB_SHORT));
+            assertTrue(oap.hasOption(LAB_LONG));
+
+            assertTrue(oap.hasOption(tutorial));
+            assertTrue(oap.hasOption(TUT_SHORT));
+            assertTrue(oap.hasOption(TUT_LONG));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
