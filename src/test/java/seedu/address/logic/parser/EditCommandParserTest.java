@@ -286,8 +286,9 @@ public class EditCommandParserTest {
                 + ADDRESS_DESC_AMY
                 + EMAIL_DESC_AMY
                 + GENDER_DESC_AMY
-                + CAP_DESC_AMY
                 + UNIVERSITY_DESC_AMY
+                + MAJOR_DESC_AMY
+                + CAP_DESC_AMY
                 + JOB_ID_DESC_AMY
                 + JOB_TITLE_DESC_AMY
                 + TAG_DESC_REJECTED
@@ -295,8 +296,9 @@ public class EditCommandParserTest {
                 + ADDRESS_DESC_BOB
                 + EMAIL_DESC_BOB
                 + GENDER_DESC_BOB
-                + CAP_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
+                + CAP_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV;
@@ -332,16 +334,18 @@ public class EditCommandParserTest {
                 + INVALID_PHONE_DESC
                 + ADDRESS_DESC_BOB
                 + GENDER_DESC_BOB
-                + CAP_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
+                + CAP_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + PHONE_DESC_BOB;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
-                .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
+                .withMajor(VALID_MAJOR_BOB)
+                .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withId(VALID_JOB_ID_BOB)
                 .withTitle(VALID_JOB_TITLE_BOB)
                 .build();
