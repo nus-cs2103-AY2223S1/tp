@@ -48,6 +48,10 @@ public class Person {
         return name;
     }
 
+    public String getNameString() {
+        return name.toString();
+    }
+
     public Phone getPhone() {
         return phone;
     }
