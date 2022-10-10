@@ -2,7 +2,6 @@ package nus.climods.logic.parser.parameters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 import org.junit.jupiter.api.Test;
 
 import nus.climods.logic.parser.exceptions.ParseException;
@@ -12,7 +11,6 @@ import nus.climods.logic.parser.exceptions.ParseException;
  * Tests for ModuleCodeParameter class
  */
 public class ModuleCodeParameterTest {
-    private static final String INVALID_CODE_MESSAGE = "Invalid code: %s";
     private static final String EMPTY_INPUT_MESSAGE = "Empty module code is not valid";
 
     private ModuleCodeParameter createModuleCodeParameter(String argsString) {

@@ -29,7 +29,7 @@ public class PositionalParameter<T> {
      * Creates a PositionalParameter given argumentsString
      *
      * @param index Expected index for the parameter (>= 0)
-     * @param argumentsString A list of argument strings representing all arguments, without command name
+     * @param argumentsString A string of all arguments, without command name
      * @param conversionFunction A function to convert the argument string into an Optional of type T
      * @param parseExceptionMessage ParseException message to show upon unsuccessful parse
      */
@@ -37,6 +37,14 @@ public class PositionalParameter<T> {
                                String parseExceptionMessage) {
         this(index, ParserUtil.convertArgumentStringToList(argumentsString), conversionFunction, parseExceptionMessage);
     }
+
+    /**
+     * Creates a PositionalParameter given List of String arguments
+     * @param index Expected index for the parameter (>= 0)
+     * @param arguments A list of argument strings representing all arguments, without command name
+     * @param conversionFunction A function to convert the argument string into an Optional of type T
+     * @param parseExceptionMessage ParseException message to show upon unsuccessful parse
+     */
     public PositionalParameter(int index, List<String> arguments, Function<String, Optional<T>> conversionFunction,
                                String parseExceptionMessage) {
         assert index >= 0;
