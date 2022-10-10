@@ -27,7 +27,9 @@ public class Student {
         return studentName;
     }
 
-    public MasteryCheckStatus getMcStatus() { return mcStatus; }
+    public MasteryCheckStatus getMcStatus() {
+        return mcStatus;
+    }
 
     /**
      * Updates the student's mastery check status with the given mastery check result.

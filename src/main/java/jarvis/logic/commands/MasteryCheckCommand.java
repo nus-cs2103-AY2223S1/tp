@@ -1,5 +1,12 @@
 package jarvis.logic.commands;
 
+import static jarvis.logic.parser.CliSyntax.PREFIX_MC_NUM;
+import static jarvis.logic.parser.CliSyntax.PREFIX_MC_RES;
+import static jarvis.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
@@ -7,12 +14,9 @@ import jarvis.model.MasteryCheckStatus;
 import jarvis.model.Model;
 import jarvis.model.Student;
 
-import java.util.List;
-
-import static jarvis.logic.parser.CliSyntax.*;
-import static jarvis.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Records the mastery check result of an existing student in the student book.
+ */
 public class MasteryCheckCommand extends Command {
 
     public static final String COMMAND_WORD = "mc";
@@ -25,6 +29,10 @@ public class MasteryCheckCommand extends Command {
     private final Index index;
     private final MasteryCheckStatus.MasteryCheckResult mcResult;
 
+    /**
+     * @param index of the student in the filtered list
+     * @param mcResult result of the student's mastery check
+     */
     public MasteryCheckCommand(Index index, MasteryCheckStatus.MasteryCheckResult mcResult) {
         this.index = index;
         this.mcResult = mcResult;

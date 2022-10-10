@@ -1,15 +1,19 @@
 package jarvis.logic.parser;
 
+import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static jarvis.logic.parser.CliSyntax.PREFIX_MC_NUM;
+import static jarvis.logic.parser.CliSyntax.PREFIX_MC_RES;
+
+import java.util.stream.Stream;
+
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.MasteryCheckCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 import jarvis.model.MasteryCheckStatus;
 
-import java.util.stream.Stream;
-
-import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jarvis.logic.parser.CliSyntax.*;
-
+/**
+ * Parses input arguments and creates a new MasteryCheckCommand object
+ */
 public class MasteryCheckCommandParser implements Parser<MasteryCheckCommand> {
 
     /**

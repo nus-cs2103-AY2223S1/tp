@@ -2,7 +2,6 @@ package jarvis.model;
 
 /**
  * Represents a student's consolidated results for their mastery checks 1 and 2.
- *
  */
 public class MasteryCheckStatus {
     public static final String MESSAGE_INVALID_MCNUM = "Mastery check number has to be 1 or 2.";
@@ -50,6 +49,10 @@ public class MasteryCheckStatus {
         }
     }
 
+    /**
+     * @param mcNum The mastery check number
+     * @return True if the result for the given mastery check is a pass
+     */
     public boolean didPassMc(int mcNum) {
         if (mcNum == 1) {
             return mc1.didPass();
@@ -58,6 +61,7 @@ public class MasteryCheckStatus {
         }
     }
 
+    @Override
     public String toString() {
         String passed = "✓";
         String failed = "X";
@@ -73,6 +77,12 @@ public class MasteryCheckStatus {
         private final int mcNumber;
         private final boolean isPass;
 
+        /**
+         * Constructs a {@code MasteryCheckResult}
+         *
+         * @param mcNumber Mastery check number
+         * @param isPass True if the result is a pass
+         */
         public MasteryCheckResult(int mcNumber, boolean isPass) {
             this.mcNumber = mcNumber;
             this.isPass = isPass;
@@ -86,6 +96,7 @@ public class MasteryCheckStatus {
             return isPass;
         }
 
+        @Override
         public String toString() {
             String result = isPass ? "PASSED" : "FAILED";
 
