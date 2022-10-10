@@ -22,6 +22,7 @@ public class ModelManager implements Model {
 
     private final TrackO trackO;
     private final UserPrefs userPrefs;
+    private final FilteredList<Order> filteredOrders;
     private final FilteredList<Item> filteredItems;
 
     /**
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.trackO = new TrackO(trackO);
+        this.filteredOrders = new FilteredList<>(this.trackO.getOrderList());
         this.filteredItems = new FilteredList<>(this.trackO.getInventoryList());
     }
 
@@ -104,6 +106,23 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Order> getOrderList() {
         return trackO.getOrderList();
+    }
+
+    //=========== Filtered Order List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * {@code TrackO}
+     */
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredOrders;
+    }
+
+    @Override
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredOrders.setPredicate(predicate);
     }
 
     @Override

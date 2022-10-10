@@ -169,6 +169,16 @@ public class AddOrderCommandTest {
         public ReadOnlyTrackO getTrackO() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Order> getFilteredOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     // /**

@@ -31,11 +31,13 @@ public interface Logic {
     /** Returns an unmodifiable view of the list of orders */
     ObservableList<Order> getOrderList();
 
+    /** Returns an unmodifiable view of the list of orders */
+    ObservableList<Order> getFilteredOrderList();
+
     /**
      * Returns the user pref's order list file path.
      */
     Path getOrdersFilePath();
-
 
 
     /**

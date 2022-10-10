@@ -7,7 +7,7 @@ import java.util.Arrays;
 import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.parser.Parser;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.order.NameContainsKeywordsPredicate;
+import tracko.model.order.OrderContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -28,7 +28,7 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindOrderCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindOrderCommand(new OrderContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

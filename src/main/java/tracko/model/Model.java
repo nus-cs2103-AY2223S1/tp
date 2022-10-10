@@ -7,14 +7,13 @@ import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
 import tracko.model.items.Item;
 import tracko.model.order.Order;
-import tracko.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
@@ -77,6 +76,17 @@ public interface Model {
     ObservableList<Order> getOrderList();
 
     /**
+     * Returns an unmodifiable view of the filtered order list
+     */
+    ObservableList<Order> getFilteredOrderList();
+
+    /**
+     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredOrderList(Predicate<Order> predicate);
+
+    /**
      * Adds the given item.
      */
     void addItem(Item item);
@@ -95,7 +105,7 @@ public interface Model {
     void updateFilteredItemList(Predicate<Item> predicate);
 
     /**
-     * Returns the number of items in the filtered item list
+     * Returns the number of items in the filtered item list.
      */
     int getFilteredItemListSize();
 
@@ -108,4 +118,5 @@ public interface Model {
      * Returns the item list.
      */
     ObservableList<Item> getInventoryList();
+
 }
