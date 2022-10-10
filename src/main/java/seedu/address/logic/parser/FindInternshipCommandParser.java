@@ -16,6 +16,7 @@ public class FindInternshipCommandParser implements Parser<FindInternshipCommand
     /**
      * Parses the given {@code String} of arguments in the context of the FindInternshipCommand
      * and returns a FindInternshipCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindInternshipCommand parse(String args) throws ParseException {
