@@ -10,8 +10,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Team;
-import seedu.address.model.team.UniqueTeamList;
-
 
 /**
  * Adds a person to the address book.
@@ -34,7 +32,6 @@ public class AssignMemberCommand extends Command {
 
     private final Name toAssign;
     private final seedu.address.model.team.Name teamName;
-    private final UniqueTeamList teams = new UniqueTeamList();
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
