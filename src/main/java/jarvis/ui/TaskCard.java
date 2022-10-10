@@ -11,7 +11,7 @@ import javafx.scene.layout.Region;
  */
 public class TaskCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskListCard.fxml";
+    private static final String FXML = "TaskCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -26,19 +26,26 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
+    private Label done;
+    @FXML
     private Label taskDesc;
     @FXML
     private Label taskDeadline;
-    @FXML
-    private Label id;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code TaskCard} with the given {@code Task} and index to display.
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
+        if (task.isDone()) {
+            done.setText("[X]");
+        } else {
+            done.setText("[ ]");
+        }
         taskDesc.setText(task.getDesc().taskDesc);
         taskDeadline.setText(task.getDeadline().toString());
     }
