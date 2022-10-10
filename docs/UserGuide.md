@@ -62,8 +62,8 @@ Adds an order to the list of tracked orders.
 
 Format: `addo i/ITEM_NAME q/ORDER_QUANTITY cn/CUSTOMER_NAME ca/CUSTOMER_ADDRESS ce/CUSTOMER_EMAIL cc/CUSTOMER_CONTACT`
 
-* Adds an order to be tracked in the application
-* The added orders will track the time that it was created
+* Adds an order to be tracked in the application.
+* The added orders will track the time that it was created.
 
 Examples:
 * `addo i/Fountain Pen q/3 cn/John Doe ca/48 Westwood Terrace ce/johndoe@example.com cc/91234567`
