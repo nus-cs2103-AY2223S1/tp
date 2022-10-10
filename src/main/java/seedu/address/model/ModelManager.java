@@ -225,5 +225,6 @@ public class ModelManager implements Model {
     public void updateContextContainer(AbstractContainerItem container) {
         currentContext = Optional.ofNullable(container);
         updateFilteredPersonList(List.of());
+        updateFilteredTeamList(List.of());
     }
 }
