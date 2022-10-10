@@ -60,14 +60,15 @@ public class Tag {
      * @returns "tag1, tag2, tag3"
      */
     public static String toString(Collection<Tag> tags) {
+        requireNonNull(tags);
         if (tags.isEmpty()) {
             return "";
         }
 
         String result = tags.stream().reduce(
                 "", (tagString, tag) -> tagString + ", " + tag.tagName, (x, y) -> x + y);
-        // Remove unneeded preceding comma
-        result = result.substring(1);
+        // Remove unneeded preceding comma and space
+        result = result.substring(2);
         return result;
     }
 }

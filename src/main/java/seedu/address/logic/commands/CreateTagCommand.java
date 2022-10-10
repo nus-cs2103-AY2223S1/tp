@@ -70,7 +70,7 @@ public class CreateTagCommand extends TagCommandGroup {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TagCommand)) {
+        if (!(other instanceof CreateTagCommand)) {
             return false;
         }
 
