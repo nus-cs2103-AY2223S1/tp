@@ -29,6 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String handle;
+    private final String username;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,12 +37,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("handle") String handle,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        @JsonProperty("email") String email, @JsonProperty("handle") String handle,
+        @JsonProperty("username") String username, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.handle = handle;
+        this.username = username;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -55,6 +57,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         handle = source.getTelegram().handle;
+        username = source.getGitHub().username;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -104,8 +107,10 @@ class JsonAdaptedPerson {
         }
         final Telegram modelHandle = new Telegram(handle);
 
-        // TO IMPLEMENT
-        final GitHub modelGitHub = new GitHub("placeholder");
+        if (username != null && !GitHub.isValidGitHub(username)) {
+            throw new IllegalValueException(GitHub.MESSAGE_CONSTRAINTS);
+        }
+        final GitHub modelGitHub = new GitHub(username);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelHandle, modelGitHub, modelTags);

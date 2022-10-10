@@ -37,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_GITHUB, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TELEGRAM, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_GITHUB, PREFIX_TAG) || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_EMAIL, PREFIX_GITHUB) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
