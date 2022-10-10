@@ -114,10 +114,11 @@ Examples:
 Finds projects whose names contain any of the given keyword(s).
 
 Format: `find KEYWORD/[KEYWORD2/KEYWORD3/…]`
+* Only project names could be searched
 * The keyword is case-insensitive, e.g. `Neural NetWORK` will match `neural network`
+* The keyword could contain space, e.g. `practical guide of machine learning` is allowed
 * Partial keywords will also be matched, e.g. `Ne` will match `neural network` and `Genetic Algorithm`
 * Leading and trailing spaces are ignored, e.g. ` neural network  ` will match `neural network`
-* Only project names could be searched
 * Projects matching at least one keyword will be returned (i.e. `OR` search), e.g. `find neural network/tree` will match both `neural network` and `decision tree`
 
 Examples:
