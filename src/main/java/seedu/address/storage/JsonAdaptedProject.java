@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.issue.Issue;
@@ -20,6 +22,7 @@ import seedu.address.model.project.Repository;
 /**
  * Jackson-friendly version of {@link Project}.
  */
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "projectId")
 class JsonAdaptedProject {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing!";
@@ -29,7 +32,9 @@ class JsonAdaptedProject {
     private final String deadline;
     private final String projectId;
 
+
     private final JsonAdaptedClient client;
+
 
     private final List<JsonAdaptedIssue> issues = new ArrayList<>();
 

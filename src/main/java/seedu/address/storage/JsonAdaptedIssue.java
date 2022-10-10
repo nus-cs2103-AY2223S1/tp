@@ -1,7 +1,9 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.issue.Deadline;
@@ -15,6 +17,7 @@ import seedu.address.model.project.Project;
 /**
  * Jackson-friendly version of {@link Issue}.
  */
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "issueId")
 class JsonAdaptedIssue {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Issue's %s field is missing!";
