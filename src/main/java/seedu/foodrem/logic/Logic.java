@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import seedu.foodrem.commons.core.GuiSettings;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
-import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.model.item.Item;
 
@@ -19,15 +18,15 @@ public interface Logic {
      *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
-     * @throws CommandException If an error occurs during command execution.
-     * @throws ParseException   If an error occurs during parsing.
+     * @throws CommandException         If an error occurs during command execution.
+     * @throws IllegalArgumentException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText) throws CommandException, IllegalArgumentException;
 
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.foodrem.model.Model#getAddressBook()
+     * @see seedu.foodrem.model.Model#getFoodRem()
      */
     ReadOnlyFoodRem getAddressBook();
 

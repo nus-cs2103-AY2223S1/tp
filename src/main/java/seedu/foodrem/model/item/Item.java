@@ -63,20 +63,20 @@ public class Item {
         return expiryDate;
     }
 
-    public String getNametoListView() {
+    public String getNameToListView() {
         return name.toListView();
     }
 
-    public String getQuantityAndUnittoListView() {
+    public String getQuantityAndUnitToListView() {
         String unitString = unit.isBlank() ? "" : " " + unit.toListView();
         return quantity.toString() + unitString;
     }
 
-    public String getBoughtDatetoListView() {
+    public String getBoughtDateToListView() {
         return boughtDate.toListView();
     }
 
-    public String getExpiryDatetoListView() {
+    public String getExpiryDateToListView() {
         return expiryDate.toListView();
     }
 

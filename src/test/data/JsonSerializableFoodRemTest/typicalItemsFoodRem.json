@@ -1,0 +1,19 @@
+{
+  "_comment": "FoodRem save file which contains the same item values as in TypicalItems#getTypicalFoodRem()",
+  "items": [
+    {
+      "name": "Potatoes",
+      "quantity": "10.0",
+      "unit": "kg",
+      "boughtDate": "11-11-2022",
+      "expiryDate": "11-11-2022"
+    },
+    {
+      "name": "Cucumbers",
+      "quantity": "2000.0",
+      "unit": "grams",
+      "boughtDate": "12-12-2022",
+      "expiryDate": "12-12-2022"
+    }
+  ]
+}

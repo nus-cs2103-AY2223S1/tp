@@ -12,7 +12,7 @@ import seedu.foodrem.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends FoodRemStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getFoodRemFilePath();
 
     @Override
-    Optional<ReadOnlyFoodRem> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyFoodRem> readFoodRem() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyFoodRem addressBook) throws IOException;
+    void saveFoodRem(ReadOnlyFoodRem addressBook) throws IOException;
 
 }

@@ -6,7 +6,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
-import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -44,7 +43,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | IllegalArgumentException e) {
             setStyleToIndicateCommandFailure();
         }
     }
@@ -79,7 +78,7 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see seedu.foodrem.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws CommandException, IllegalArgumentException;
     }
 
 }

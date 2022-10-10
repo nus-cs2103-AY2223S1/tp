@@ -1,17 +1,15 @@
-package seedu.foodrem.model.validator;
+package seedu.foodrem.model.util;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Optional;
 
 /**
  * Validates if a date is parsable according to the dateFormatter provided.
  * Provided an isValidDateString that returns a boolean value indicating
  * if it is parsable.
  */
-public class DateValidator {
-    private static final DateTimeFormatter DEFAULT_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+public class DateParser {
     private final DateTimeFormatter dateTimeFormatter;
 
     /**
@@ -19,17 +17,17 @@ public class DateValidator {
      *
      * @param dateFormatter the format in which we will validate dateStrings according to.
      */
-    public DateValidator(DateTimeFormatter dateFormatter) {
-        // TODO: Use assertion this is not null
-        dateTimeFormatter = Optional.of(dateFormatter).orElse(DEFAULT_DATE_TIME_FORMATTER);
+    public DateParser(DateTimeFormatter dateFormatter) {
+        assert dateFormatter != null;
+        dateTimeFormatter = dateFormatter;
     }
 
     /**
-     * Returns true if a provided dateString can be parsed according to {@link DateValidator#dateTimeFormatter}.
+     * Returns true if a provided dateString can be parsed according to {@link DateParser#dateTimeFormatter}.
      * Returns false otherwise.
      *
      * @param dateString a string to be checked if it is parsable according to the
-     *                   {@link DateValidator#dateTimeFormatter}.
+     *                   {@link DateParser#dateTimeFormatter}.
      * @return true if the dateString is parsable, false otherwise.
      */
     public boolean isParsableDateString(String dateString) {

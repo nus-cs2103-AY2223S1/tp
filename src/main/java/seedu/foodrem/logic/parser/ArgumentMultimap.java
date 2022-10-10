@@ -15,7 +15,9 @@ import java.util.Optional;
  */
 public class ArgumentMultimap {
 
-    /** Prefixes mapped to their respective arguments**/
+    /**
+     * Prefixes mapped to their respective arguments
+     **/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
     /**
@@ -37,6 +39,21 @@ public class ArgumentMultimap {
     public Optional<String> getValue(Prefix prefix) {
         List<String> values = getAllValues(prefix);
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
+    }
+
+    /**
+     * Returns true if there is a value of {@code prefix}.
+     */
+    public boolean isValuePresent(Prefix prefix) {
+        return getValue(prefix).isPresent();
+    }
+
+    /**
+     * Returns the value of a prefix that is present
+     */
+    public String getPresentValue(Prefix prefix) {
+        assert isValuePresent(prefix);
+        return getValue(prefix).get();
     }
 
     /**

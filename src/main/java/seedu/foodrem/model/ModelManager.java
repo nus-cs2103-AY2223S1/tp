@@ -19,21 +19,21 @@ import seedu.foodrem.model.item.Item;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final FoodRem addressBook;
+    private final FoodRem foodRem;
     private final UserPrefs userPrefs;
     private final FilteredList<Item> filteredItems;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given foodRem and userPrefs.
      */
-    public ModelManager(ReadOnlyFoodRem addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyFoodRem foodRem, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(foodRem, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with RoodRem: " + foodRem + " and user prefs " + userPrefs);
 
-        this.addressBook = new FoodRem(addressBook);
+        this.foodRem = new FoodRem(foodRem);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredItems = new FilteredList<>(this.addressBook.getItemList());
+        filteredItems = new FilteredList<>(this.foodRem.getItemList());
     }
 
     public ModelManager() {
@@ -65,42 +65,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getFoodRemFilePath() {
+        return userPrefs.getFoodRemFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setFoodRemFilePath(Path foodRemFilePath) {
+        requireNonNull(foodRemFilePath);
+        userPrefs.setFoodRemFilePath(foodRemFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public ReadOnlyFoodRem getAddressBook() {
-        return addressBook;
+    public ReadOnlyFoodRem getFoodRem() {
+        return foodRem;
     }
 
     @Override
-    public void setAddressBook(ReadOnlyFoodRem addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setFoodRem(ReadOnlyFoodRem foodRem) {
+        this.foodRem.resetData(foodRem);
     }
 
     @Override
     public boolean hasItem(Item item) {
         requireNonNull(item);
-        return addressBook.hasItem(item);
+        return foodRem.hasItem(item);
     }
 
     @Override
     public void deleteItem(Item target) {
-        addressBook.removeItem(target);
+        foodRem.removeItem(target);
     }
 
     @Override
     public void addItem(Item item) {
-        addressBook.addItem(item);
+        foodRem.addItem(item);
         updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
 
-        addressBook.setItem(target, editedItem);
+        foodRem.setItem(target, editedItem);
     }
 
     //=========== Filtered Item List Accessors =============================================================
@@ -142,9 +142,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-            && userPrefs.equals(other.userPrefs)
-            && filteredItems.equals(other.filteredItems);
+        return foodRem.equals(other.foodRem)
+                && userPrefs.equals(other.userPrefs)
+                && filteredItems.equals(other.filteredItems);
     }
 
 }

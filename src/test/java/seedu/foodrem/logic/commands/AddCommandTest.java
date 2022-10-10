@@ -31,14 +31,14 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
         Item validItem = new ItemBuilder().build();
 
         CommandResult commandResult = new AddCommand(validItem).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
-        assertEquals(List.of(validItem), modelStub.personsAdded);
+        assertEquals(List.of(validItem), modelStub.itemsAdded);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different item -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -99,32 +99,32 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getFoodRemFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setFoodRemFilePath(Path foodRemFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addItem(Item person) {
+        public void addItem(Item item) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyFoodRem getAddressBook() {
+        public ReadOnlyFoodRem getFoodRem() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyFoodRem newData) {
+        public void setFoodRem(ReadOnlyFoodRem newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasItem(Item person) {
+        public boolean hasItem(Item item) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -150,43 +150,43 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single item.
      */
     private static class ModelStubWithItem extends ModelStub {
-        private final Item person;
+        private final Item item;
 
-        ModelStubWithItem(Item person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithItem(Item item) {
+            requireNonNull(item);
+            this.item = item;
         }
 
         @Override
-        public boolean hasItem(Item person) {
-            requireNonNull(person);
-            return this.person.isSameItem(person);
+        public boolean hasItem(Item item) {
+            requireNonNull(item);
+            return this.item.isSameItem(item);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the item being added.
      */
     private static class ModelStubAcceptingItemAdded extends ModelStub {
-        final ArrayList<Item> personsAdded = new ArrayList<>();
+        final ArrayList<Item> itemsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasItem(Item person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSameItem);
+        public boolean hasItem(Item item) {
+            requireNonNull(item);
+            return itemsAdded.stream().anyMatch(item::isSameItem);
         }
 
         @Override
-        public void addItem(Item person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addItem(Item item) {
+            requireNonNull(item);
+            itemsAdded.add(item);
         }
 
         @Override
-        public ReadOnlyFoodRem getAddressBook() {
+        public ReadOnlyFoodRem getFoodRem() {
             return new FoodRem();
         }
     }

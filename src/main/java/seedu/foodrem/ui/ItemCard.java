@@ -45,10 +45,10 @@ public class ItemCard extends UiPart<Region> {
         super(FXML);
         this.item = item;
         id.setText(displayedIndex + ". ");
-        name.setText(item.getNametoListView());
-        quantityAndUnit.setText(item.getQuantityAndUnittoListView());
-        bought.setText(item.getBoughtDatetoListView());
-        expiry.setText(item.getExpiryDatetoListView());
+        name.setText(item.getNameToListView());
+        quantityAndUnit.setText(item.getQuantityAndUnitToListView());
+        bought.setText(item.getBoughtDateToListView());
+        expiry.setText(item.getExpiryDateToListView());
     }
 
     @Override

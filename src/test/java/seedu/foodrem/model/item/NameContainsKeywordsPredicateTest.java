@@ -35,7 +35,7 @@ public class NameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different items -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -71,9 +71,9 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords match phone, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new ItemBuilder()
-            .withItemName("Potatoes")
-            .withItemQuantity("12345")
-            .withItemBoughtDate("2022-11-11")
-            .withItemExpiryDate("2022-12-12").build()));
+                .withItemName("Potatoes")
+                .withItemQuantity("12345")
+                .withItemBoughtDate("11-11-2022")
+                .withItemExpiryDate("12-12-2022").build()));
     }
 }

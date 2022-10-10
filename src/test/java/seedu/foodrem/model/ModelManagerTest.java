@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.commons.core.GuiSettings;
 import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
-import seedu.foodrem.testutil.AddressBookBuilder;
+import seedu.foodrem.testutil.FoodRemBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new FoodRem(), new FoodRem(modelManager.getAddressBook()));
+        assertEquals(new FoodRem(), new FoodRem(modelManager.getFoodRem()));
     }
 
     @Test
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setFoodRemFilePath(Paths.get("food/rem/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setFoodRemFilePath(Paths.get("new/food/rem/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,47 +61,47 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setFoodRemFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setFoodRemFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+    public void setFoodRemFilePath_validPath_setsFoodRemFilePath() {
+        Path path = Paths.get("food/rem/file/path");
+        modelManager.setFoodRemFilePath(path);
+        assertEquals(path, modelManager.getFoodRemFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasItem_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasItem(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasItem_itemNotInFoodRem_returnsFalse() {
         assertFalse(modelManager.hasItem(POTATOES));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasItem_itemInFoodRem_returnsTrue() {
         modelManager.addItem(POTATOES);
         assertTrue(modelManager.hasItem(POTATOES));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredItemList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredItemList().remove(0));
     }
 
     @Test
     public void equals() {
-        FoodRem addressBook = new AddressBookBuilder().withItem(POTATOES).withItem(CUCUMBERS).build();
-        FoodRem differentAddressBook = new FoodRem();
+        FoodRem foodRem = new FoodRemBuilder().withItem(POTATOES).withItem(CUCUMBERS).build();
+        FoodRem differentFoodRem = new FoodRem();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(foodRem, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(foodRem, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +113,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different foodRem -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentFoodRem, userPrefs)));
 
         // different filteredList -> returns false
         String keywords = String.valueOf(POTATOES.getName());
         modelManager.updateFilteredItemList(new NameContainsKeywordsPredicate(List.of(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(foodRem, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setFoodRemFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(foodRem, differentUserPrefs)));
     }
 }

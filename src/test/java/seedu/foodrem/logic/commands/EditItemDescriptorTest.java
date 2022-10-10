@@ -37,27 +37,27 @@ public class EditItemDescriptorTest {
 
         // different name -> returns false
         EditItemDescriptor editedPotato = new EditItemDescriptorBuilder(DESC_POTATOES)
-            .withItemName(VALID_ITEM_NAME_CUCUMBERS).build();
+                .withItemName(VALID_ITEM_NAME_CUCUMBERS).build();
         assertFalse(DESC_POTATOES.equals(editedPotato));
 
-        // different phone -> returns false
+        // different quantity -> returns false
         editedPotato = new EditItemDescriptorBuilder(DESC_POTATOES)
-            .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS).build();
+                .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS).build();
         assertFalse(DESC_POTATOES.equals(editedPotato));
 
-        // different email -> returns false
+        // different unit -> returns false
         editedPotato = new EditItemDescriptorBuilder(DESC_POTATOES)
-            .withItemUnit(VALID_ITEM_UNIT_CUCUMBERS).build();
+                .withItemUnit(VALID_ITEM_UNIT_CUCUMBERS).build();
         assertFalse(DESC_POTATOES.equals(editedPotato));
 
-        // different address -> returns false
+        // different bought date -> returns false
         editedPotato = new EditItemDescriptorBuilder(DESC_POTATOES)
-            .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_CUCUMBERS).build();
+                .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_CUCUMBERS).build();
         assertFalse(DESC_POTATOES.equals(editedPotato));
 
-        // different tags -> returns false
+        // different expiry date -> returns false
         editedPotato = new EditItemDescriptorBuilder(DESC_POTATOES)
-            .withItemExpiryDate(VALID_ITEM_EXPIRY_DATE_CUCUMBERS).build();
+                .withItemExpiryDate(VALID_ITEM_EXPIRY_DATE_CUCUMBERS).build();
         assertFalse(DESC_POTATOES.equals(editedPotato));
     }
 }

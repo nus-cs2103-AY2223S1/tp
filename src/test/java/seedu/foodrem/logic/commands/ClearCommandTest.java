@@ -1,7 +1,7 @@
 package seedu.foodrem.logic.commands;
 
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.foodrem.testutil.TypicalItems.getTypicalAddressBook;
+import static seedu.foodrem.testutil.TypicalItems.getTypicalFoodRem;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,9 +22,9 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new FoodRem());
+        Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalFoodRem(), new UserPrefs());
+        expectedModel.setFoodRem(new FoodRem());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

@@ -15,7 +15,6 @@ import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.logic.Logic;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
-import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -29,12 +28,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Stage primaryStage;
     private final Logic logic;
-
+    private final HelpWindow helpWindow;
     // Independent Ui parts residing in this Ui container
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
-    private final HelpWindow helpWindow;
-
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -158,13 +155,13 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-            (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
 
-    public ItemListPanel getPersonListPanel() {
+    public ItemListPanel getItemListPanel() {
         return itemListPanel;
     }
 
@@ -173,7 +170,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.foodrem.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, IllegalArgumentException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -188,7 +185,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | IllegalArgumentException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

@@ -4,8 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
-import seedu.foodrem.model.item.itemvalidator.ItemBoughtDateValidator;
+import seedu.foodrem.model.item.itemvalidator.ItemExpiryDateValidator;
 
 /**
  * Represents an item date in an {@link Item}.
@@ -13,16 +14,17 @@ import seedu.foodrem.model.item.itemvalidator.ItemBoughtDateValidator;
  */
 public class ItemExpiryDate {
 
-    private static final String DATE_OUTPUT_PATTERN_REGEX = "dd-MM-yyyy";
+    public static final String EXPIRY_DATE_PATTERN_REGEX = "dd-MM-yyyy";
+    public static final DateTimeFormatter EXPIRY_DATE_FORMATTER = DateTimeFormatter
+            .ofPattern(EXPIRY_DATE_PATTERN_REGEX);
     private static final String EXPIRY_DATE_NOT_SET_PLACEHOLDER = "Not Set";
-
     private final LocalDate expiryDate;
 
     /**
      * Constructs an expiryDate.
      *
      * @param dateString a string that represents the expiryDate of the
-     *                   format {@link ItemExpiryDate#DATE_OUTPUT_PATTERN_REGEX}
+     *                   format {@link ItemExpiryDate#EXPIRY_DATE_FORMATTER}
      */
     public ItemExpiryDate(String dateString) {
         requireNonNull(dateString);
@@ -30,8 +32,8 @@ public class ItemExpiryDate {
             expiryDate = null;
             return;
         }
-        ItemBoughtDateValidator.validate(dateString);
-        expiryDate = LocalDate.parse(dateString);
+        ItemExpiryDateValidator.validate(dateString);
+        expiryDate = LocalDate.parse(dateString, EXPIRY_DATE_FORMATTER);
     }
 
     /**
@@ -70,17 +72,14 @@ public class ItemExpiryDate {
      */
     @Override
     public String toString() {
-        return expiryDate == null ? "" : expiryDate.toString();
+        return expiryDate == null ? "" : expiryDate.format(EXPIRY_DATE_FORMATTER);
     }
 
     /**
      * {@inheritDoc}
      */
     public String toListView() {
-        String date = EXPIRY_DATE_NOT_SET_PLACEHOLDER;
-        if (expiryDate != null) {
-            date = expiryDate.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_PATTERN_REGEX));
-        }
+        String date = Objects.toString(expiryDate, EXPIRY_DATE_NOT_SET_PLACEHOLDER);
         return String.format("(Expiry Date: %s)", date);
     }
 }

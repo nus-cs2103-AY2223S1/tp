@@ -8,27 +8,27 @@ import seedu.foodrem.model.item.Item;
  * Example usage: <br>
  * {@code AddressBook ab = new AddressBookBuilder().withItem("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class FoodRemBuilder {
 
-    private final FoodRem addressBook;
+    private final FoodRem foodRem;
 
-    public AddressBookBuilder() {
-        addressBook = new FoodRem();
+    public FoodRemBuilder() {
+        foodRem = new FoodRem();
     }
 
-    public AddressBookBuilder(FoodRem addressBook) {
-        this.addressBook = addressBook;
+    public FoodRemBuilder(FoodRem foodRem) {
+        this.foodRem = foodRem;
     }
 
     /**
      * Adds a new {@code Item} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withItem(Item item) {
-        addressBook.addItem(item);
+    public FoodRemBuilder withItem(Item item) {
+        foodRem.addItem(item);
         return this;
     }
 
     public FoodRem build() {
-        return addressBook;
+        return foodRem;
     }
 }

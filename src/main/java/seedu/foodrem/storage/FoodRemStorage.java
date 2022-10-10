@@ -11,12 +11,12 @@ import seedu.foodrem.model.ReadOnlyFoodRem;
 /**
  * Represents a storage for {@link FoodRem}.
  */
-public interface AddressBookStorage {
+public interface FoodRemStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getFoodRemFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyFoodRem}.
@@ -25,12 +25,12 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyFoodRem> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyFoodRem> readFoodRem() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getFoodRemFilePath()
      */
-    Optional<ReadOnlyFoodRem> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyFoodRem> readFoodRem(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyFoodRem} to the storage.
@@ -38,11 +38,11 @@ public interface AddressBookStorage {
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyFoodRem addressBook) throws IOException;
+    void saveFoodRem(ReadOnlyFoodRem addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyFoodRem)
+     * @see #saveFoodRem(ReadOnlyFoodRem)
      */
-    void saveAddressBook(ReadOnlyFoodRem addressBook, Path filePath) throws IOException;
+    void saveFoodRem(ReadOnlyFoodRem addressBook, Path filePath) throws IOException;
 
 }

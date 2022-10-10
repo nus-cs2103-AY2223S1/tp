@@ -7,7 +7,7 @@ import static seedu.foodrem.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS;
 import static seedu.foodrem.testutil.TypicalItems.POTATOES;
-import static seedu.foodrem.testutil.TypicalItems.getTypicalAddressBook;
+import static seedu.foodrem.testutil.TypicalItems.getTypicalFoodRem;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,15 +23,15 @@ import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
     @Test
     public void equals() {
         NameContainsKeywordsPredicate firstPredicate =
-            new NameContainsKeywordsPredicate(Collections.singletonList("first"));
+                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
         NameContainsKeywordsPredicate secondPredicate =
-            new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -49,12 +49,12 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different item -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noItemsFound() {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);

@@ -39,22 +39,22 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getFoodRemFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFoodRemFilePath(Path addressBookFilePath);
 
     /**
      * Returns the AddressBook
      */
-    ReadOnlyFoodRem getAddressBook();
+    ReadOnlyFoodRem getFoodRem();
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyFoodRem addressBook);
+    void setFoodRem(ReadOnlyFoodRem addressBook);
 
     /**
      * Returns true if an item with the same identity as {@code Item} exists in FoodRem.

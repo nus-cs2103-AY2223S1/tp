@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.commons.exceptions.DataConversionException;
-import seedu.foodrem.commons.exceptions.IllegalValueException;
 import seedu.foodrem.commons.util.FileUtil;
 import seedu.foodrem.commons.util.JsonUtil;
 import seedu.foodrem.model.ReadOnlyFoodRem;
@@ -17,64 +16,64 @@ import seedu.foodrem.model.ReadOnlyFoodRem;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonFoodRemStorage implements FoodRemStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonFoodRemStorage.class);
 
     private final Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonFoodRemStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getFoodRemFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyFoodRem> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyFoodRem> readFoodRem() throws DataConversionException {
+        return readFoodRem(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readFoodRem()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyFoodRem> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyFoodRem> readFoodRem(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-            filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableFoodRem> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableFoodRem.class);
         if (jsonAddressBook.isEmpty()) {
             return Optional.empty();
         }
 
         try {
             return Optional.of(jsonAddressBook.get().toModelType());
-        } catch (IllegalValueException ive) {
+        } catch (IllegalArgumentException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyFoodRem addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveFoodRem(ReadOnlyFoodRem addressBook) throws IOException {
+        saveFoodRem(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyFoodRem)}.
+     * Similar to {@link #saveFoodRem(ReadOnlyFoodRem)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyFoodRem addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveFoodRem(ReadOnlyFoodRem foodRem, Path filePath) throws IOException {
+        requireNonNull(foodRem);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableFoodRem(foodRem), filePath);
     }
 
 }

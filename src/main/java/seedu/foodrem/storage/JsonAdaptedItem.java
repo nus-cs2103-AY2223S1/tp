@@ -3,7 +3,6 @@ package seedu.foodrem.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.foodrem.commons.exceptions.IllegalValueException;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
 import seedu.foodrem.model.item.ItemExpiryDate;
@@ -26,7 +25,7 @@ class JsonAdaptedItem {
     // private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedItem} with the given person details.
+     * Constructs a {@code JsonAdaptedItem} with the given item details.
      */
     @JsonCreator
     public JsonAdaptedItem(@JsonProperty("name") String name,
@@ -45,75 +44,55 @@ class JsonAdaptedItem {
      * Converts a given {@code Item} into this class for Jackson use.
      */
     public JsonAdaptedItem(Item source) {
-        name = String.valueOf(source.getName());
-        quantity = String.valueOf(source.getQuantity());
-        unit = String.valueOf(source.getUnit());
-        boughtDate = String.valueOf(source.getBoughtDate());
-        expiryDate = String.valueOf(source.getExpiryDate());
+        name = source.getNameToListView();
+        quantity = source.getQuantity().toString();
+        unit = source.getUnit().toString();
+        boughtDate = source.getBoughtDate().toString();
+        expiryDate = source.getExpiryDate().toString();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Item} object.
+     * Converts this Jackson-friendly adapted item object into the model's {@code Item} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalArgumentException if there were any data constraints violated in the adapted item.
      */
-    public Item toModelType() throws IllegalValueException {
-        //final List<Tag> personTags = new ArrayList<>();
-        //for (JsonAdaptedTag tag : tagged) {
-        //    personTags.add(tag.toModelType());
-        //}
+    public Item toModelType() throws IllegalArgumentException {
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ItemName.class.getSimpleName()));
+            throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ItemName.class.getSimpleName()));
         }
-        // TODO: Change Validation
-        //if (!Name.isValidName(name)) {
-        //    throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        //}
         final ItemName modelItemName = new ItemName(name);
 
         if (quantity == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ItemQuantity.class.getSimpleName()));
+            throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ItemQuantity.class.getSimpleName()));
         }
-        // TODO: Change Validation
-        //if (!Phone.isValidPhone(quantity)) {
-        //    throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        //}
         final ItemQuantity modelItemQuantity = new ItemQuantity(quantity);
 
         if (unit == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ItemUnit.class.getSimpleName()));
+            throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ItemUnit.class.getSimpleName()));
         }
-        // TODO: Change Validation
-        //if (!Email.isValidEmail(unit)) {
-        //    throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        //}
         final ItemUnit modelItemUnit = new ItemUnit(unit);
 
         if (boughtDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ItemBoughtDate.class.getSimpleName()));
+            throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ItemBoughtDate.class.getSimpleName()));
         }
-        // TODO: Change Validation
-        //if (!Address.isValidAddress(boughtDate)) {
-        //    throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        //}
         final ItemBoughtDate modelItemBoughtDate = new ItemBoughtDate(boughtDate);
 
         if (expiryDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ItemExpiryDate.class.getSimpleName()));
+            throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ItemExpiryDate.class.getSimpleName()));
         }
-        // TODO: Change Validation
-        //if (!Address.isValidAddress(expiryDate)) {
-        //    throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        //}
         final ItemExpiryDate modelItemExpiryDate = new ItemExpiryDate(expiryDate);
 
-        //final Set<Tag> modelTags = new HashSet<>(personTags);
+        //final List<Tag> itemTags = new ArrayList<>();
+        //for (JsonAdaptedTag tag : tagged) {
+        //    itemTags.add(tag.toModelType());
+        //}
+        //final Set<Tag> modelTags = new HashSet<>(itemTags);
         return new Item(modelItemName, modelItemQuantity, modelItemUnit, modelItemBoughtDate, modelItemExpiryDate);
     }
 
