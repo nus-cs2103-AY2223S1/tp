@@ -11,7 +11,7 @@ import java.util.List;
 public enum GenderType {
     MALE("Male"),
     FEMALE("Female"),
-    NA("N/A"); //NA is the default gender option
+    NA("NA"); //NA is the default gender option
 
     private static final List<String> MALE_GENDERS = new ArrayList<>(Arrays.asList("m", "male", "M", "Male"));
     private static final List<String> FEMALE_GENDERS = new ArrayList<>(Arrays.asList("F", "Female", "f", "female"));
