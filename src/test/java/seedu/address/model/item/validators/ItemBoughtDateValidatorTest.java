@@ -16,37 +16,43 @@ public class ItemBoughtDateValidatorTest {
      */
     @Test
     public void isValidFormat() {
-        Assertions.assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-01-2000"));
+        Assertions.assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-01"));
 
         // Delimiters
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01/01/2000")); // Wrong delimiter 1
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01.01.2000")); // Wrong delimiter 2
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01012000")); // Missing delimiter 1
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-012000")); // Missing delimiter 2
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("0101-2000")); // Missing delimiter 3
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000/01/01")); // Wrong delimiter 1
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000.01.01")); // Wrong delimiter 2
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("20000101")); // Missing delimiter 1
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("200001-01")); // Missing delimiter 2
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-0101")); // Missing delimiter 3
 
         // Whitespace
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01 01 2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime(" 01-01-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-2000 "));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime(" 01-01-2000 "));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000 01 01"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime(" 2000-01-01"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-01 "));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime(" 2000-01-01 "));
 
         // Wrong Datetime Format
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("1-01-2000")); // Wrong Day
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-1-2000")); // Wrong Month
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-200")); // Wrong Year
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-0"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("-01-2000")); // Missing Day
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01--2000")); // Missing Month
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-")); // Missing Year
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-1")); // Wrong Day
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-1-01")); // Wrong Month
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("200-01-01")); // Wrong Year
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-01-01"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("0-01-01"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-")); // Missing Day
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000--01")); // Missing Month
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("-01-01")); // Missing Year
 
         // Wrong characters
         assertFalse(ItemBoughtDateValidator.isParsableItemDatetime(""));
         assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("a"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-a"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-á"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-01-你"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("a-01-01"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-a-01"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-a"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("á-01-01"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-á-01"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-á"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("你-01-01"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-你-01"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-你"));
     }
 
 
@@ -56,76 +62,78 @@ public class ItemBoughtDateValidatorTest {
     @Test
     public void isDateWithinValidBounds() {
         // Year Format: dd-MM-YYYY
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         // Test Year
-        assertFalse(ItemBoughtDateValidator.isYearLessThanMinYear(LocalDate.parse("01-01-1900", formatter)));
-        assertFalse(ItemBoughtDateValidator.isYearMoreThanMaxYear(LocalDate.parse("01-01-2300", formatter)));
-        assertTrue(ItemBoughtDateValidator.isYearLessThanMinYear(LocalDate.parse("01-01-1899", formatter)));
-        assertTrue(ItemBoughtDateValidator.isYearMoreThanMaxYear(LocalDate.parse("01-01-2301", formatter)));
+        assertFalse(ItemBoughtDateValidator.isYearLessThanMinYear(LocalDate.parse("1900-01-01", formatter)));
+        assertFalse(ItemBoughtDateValidator.isYearMoreThanMaxYear(LocalDate.parse("2300-01-01", formatter)));
+        assertTrue(ItemBoughtDateValidator.isYearLessThanMinYear(LocalDate.parse("1899-01-01", formatter)));
+        assertTrue(ItemBoughtDateValidator.isYearMoreThanMaxYear(LocalDate.parse("2301-01-01", formatter)));
 
         // Test Month
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-01-2000")); // Lower Bound
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-12-2000")); // Upper Bound
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-06-2000")); // Middle
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-00-2000")); // Below Lower Bound
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("01-13-2000")); // Above Upper Bound
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-01")); // Lower Bound
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-12-01")); // Upper Bound
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-06-01")); // Middle
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-00-01")); // Below Lower Bound
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-13-01")); // Above Upper Bound
 
         // Test Days - Lower Bound
         // Positive Cases
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-01-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-02-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-03-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-04-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-05-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-06-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-07-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-08-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-09-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-10-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-11-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("01-12-2000"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-02-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-03-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-04-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-05-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-06-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-07-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-08-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-09-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-10-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-11-01"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-12-01"));
 
         // Negative Cases
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-01-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-02-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-03-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-04-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-05-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-06-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-07-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-08-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-09-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-10-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-11-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-12-2000"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-02-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-03-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-04-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-05-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-06-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-07-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-08-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-09-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-10-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-11-00"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-12-00"));
 
         // Test Days - Upper Bound
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("31-01-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("28-02-2001")); // February Non-Leap Year
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("29-02-2004")); // February Leap Year
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("31-03-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("30-04-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("31-05-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("30-06-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("31-07-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("31-08-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("30-09-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("31-10-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("30-11-2000"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("31-12-2000"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-31"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2001-02-28")); // February Non-Leap Year
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2004-02-29")); // February Leap Year
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-03-31"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-04-30"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-05-31"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-06-30"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-07-31"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-08-31"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-09-30"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-10-31"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-11-30"));
+        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-12-31"));
 
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("32-01-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("29-02-2001")); // February Non-Leap Year
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("32-03-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("31-04-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("32-05-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("31-06-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("32-07-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("32-08-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("31-09-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("32-10-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("31-11-2000"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("32-12-2000"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-32"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2001-02-29")); // February Non-Leap Year
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2004-02-30")); // February Leap Year
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-03-32"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-04-31"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-05-32"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-06-31"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-07-32"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-08-32"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-09-31"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-10-32"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-11-31"));
+        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-12-32"));
+
     }
 }
