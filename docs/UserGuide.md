@@ -91,15 +91,15 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 Adds an empty company to the list without any POC (Point-Of-Contact) and transactions.
 
-Format: `add n/NAME a/ADDRESS [t/TAG]`
+Format: `add n/NAME a/ADDRESS [t/TAG]...`
 
 * Tags are optional.
 * Multiple tags can be tagged to the company.
 * Use `create` command to add POC to the company.
 
 Examples:
-* `add n/MacDonalds a/West Coast Park`
-* `add n/KFC a/Yishun Street 81`
+* `add n/MacDonalds a/West Coast Park `
+* `add n/KFC a/Yishun Street 81 t/FriedChicken`
 
 ### Clearing all entries : `clear`
 
@@ -118,13 +118,16 @@ Example:
 
 Creates a new person (point-of-contact) for a specific company.
 
-Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]`
+Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]...`
 
 * Tags are optional.
 * Multiple tags can be tagged to the point-of-contact.
+* The index refers to the index number shown in the displayed company list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `create 1 n/James p/82692192 e/JamesSho@example.com` adds James as a point-of-contact for the company at index 1.
+* `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a point-of-contact for the company at index 1.
+* `create 5 n/John p/95692192 e/John123@ColdStorage.com t/Manager t/MainPoc` tags can also be added.
 
 ### Deleting a company : `delete`
 
