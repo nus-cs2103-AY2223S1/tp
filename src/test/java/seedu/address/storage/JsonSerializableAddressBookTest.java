@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.TrackAScholar;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalApplicants;
 
 public class JsonSerializableAddressBookTest {
 
@@ -25,7 +25,7 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableTrackAScholar dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableTrackAScholar.class).get();
         TrackAScholar trackAScholarFromFile = dataFromFile.toModelType();
-        TrackAScholar typicalPersonsTrackAScholar = TypicalPersons.getTypicalAddressBook();
+        TrackAScholar typicalPersonsTrackAScholar = TypicalApplicants.getTypicalTrackAScholar();
         assertEquals(trackAScholarFromFile, typicalPersonsTrackAScholar);
     }
 

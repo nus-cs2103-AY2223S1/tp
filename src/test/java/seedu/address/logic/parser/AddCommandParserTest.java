@@ -30,8 +30,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalApplicants.AMY;
+import static seedu.address.testutil.TypicalApplicants.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,14 +43,14 @@ import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Phone;
 import seedu.address.model.applicant.Scholarship;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ApplicantBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Applicant expectedApplicant = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Applicant expectedApplicant = new ApplicantBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -83,7 +83,7 @@ public class AddCommandParserTest {
         //        new AddCommand(expectedApplicant));
 
         // multiple tags - all accepted
-        Applicant expectedApplicantMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Applicant expectedApplicantMultipleTags = new ApplicantBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
                 + TAG_DESC_HUSBAND + APPLICATION_STATUS_DESC_BOB + TAG_DESC_FRIEND,
@@ -93,7 +93,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Applicant expectedApplicant = new PersonBuilder(AMY).withTags().build();
+        Applicant expectedApplicant = new ApplicantBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + SCHOLARSHIP_DESC_AMY
                 + APPLICATION_STATUS_DESC_AMY, new AddCommand(expectedApplicant));
     }

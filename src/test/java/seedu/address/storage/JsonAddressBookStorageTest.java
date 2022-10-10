@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalApplicants.ALICE;
+import static seedu.address.testutil.TypicalApplicants.HOON;
+import static seedu.address.testutil.TypicalApplicants.IDA;
+import static seedu.address.testutil.TypicalApplicants.getTypicalTrackAScholar;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -63,7 +63,7 @@ public class JsonAddressBookStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        TrackAScholar original = getTypicalAddressBook();
+        TrackAScholar original = getTypicalTrackAScholar();
         JsonTrackAScholarStorage jsonAddressBookStorage = new JsonTrackAScholarStorage(filePath);
 
         // Save in new file and read back

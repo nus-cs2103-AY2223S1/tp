@@ -6,12 +6,12 @@ import seedu.address.model.TrackAScholar;
 import seedu.address.model.Model;
 
 /**
- * Clears the scholarship book.
+ * Clears all applicants from TrackAScholar.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Scholarship book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "TrackAScholar has been cleared!";
 
 
     @Override

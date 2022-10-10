@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalApplicants.getTypicalTrackAScholar;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +14,8 @@ import seedu.address.model.applicant.ApplicationStatusPredicate;
 
 
 public class FilterCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());
 
     @Test
     public void equals() {

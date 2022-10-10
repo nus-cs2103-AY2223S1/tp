@@ -4,26 +4,26 @@ import seedu.address.model.TrackAScholar;
 import seedu.address.model.applicant.Applicant;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building TrackAScholar objects.
  * Example usage: <br>
- *     {@code TrackAScholar ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code TrackAScholar ab = new TrackAScholarBuilder().withApplicant("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class TrackAScholarBuilder {
 
     private TrackAScholar trackAScholar;
 
-    public AddressBookBuilder() {
+    public TrackAScholarBuilder() {
         trackAScholar = new TrackAScholar();
     }
 
-    public AddressBookBuilder(TrackAScholar trackAScholar) {
+    public TrackAScholarBuilder(TrackAScholar trackAScholar) {
         this.trackAScholar = trackAScholar;
     }
 
     /**
      * Adds a new {@code Applicant} to the {@code TrackAScholar} that we are building.
      */
-    public AddressBookBuilder withPerson(Applicant applicant) {
+    public TrackAScholarBuilder withApplicant(Applicant applicant) {
         trackAScholar.addApplicant(applicant);
         return this;
     }

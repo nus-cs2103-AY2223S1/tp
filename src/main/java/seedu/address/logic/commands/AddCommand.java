@@ -13,13 +13,13 @@ import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
 
 /**
- * Adds a applicant to the address book.
+ * Adds a applicant to TrackAScholar.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a applicant to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a applicant to TrackAScholar. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -37,7 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney ";
 
     public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This applicant already exists in the scholarship book";
+    public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in TrackAScholar";
 
     private final Applicant toAdd;
 
@@ -54,7 +54,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasApplicant(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_APPLICANT);
         }
 
         model.addApplicant(toAdd);
