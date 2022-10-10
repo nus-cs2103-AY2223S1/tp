@@ -79,6 +79,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             for (Tutor t : tutorList) {
                 addressBook.addPerson(t);
             }
+        } else {
             isNew--;
         }
         if (jsonStudentAddressBook.isPresent()) {
@@ -86,6 +87,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             for (Student s : studentList) {
                 addressBook.addPerson(s);
             }
+        } else {
             isNew--;
         }
         if (jsonTuitionClassAddressBook.isPresent()) {
@@ -93,6 +95,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             for (TuitionClass tc : tuitionClassList) {
                 addressBook.addTuitionClass(tc);
             }
+        } else {
             isNew--;
         }
 
