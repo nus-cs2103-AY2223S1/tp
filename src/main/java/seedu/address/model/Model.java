@@ -89,6 +89,11 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns an unmodifiable view of the filtered meeting list
+     */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -113,5 +118,14 @@ public interface Model {
      * @param newMeeting the new meeting to add to address book
      */
     void addMeeting(Meeting newMeeting);
+
+    /**
+     * Updates the filter of the filtered meeting list to filter by implementation.
+     *
+     * @throws NullPointerException if {@param predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    void deleteMeeting(Meeting target);
 
 }

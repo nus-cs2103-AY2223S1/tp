@@ -159,6 +159,30 @@ public class AddCommandTest {
         public void addMeeting(Meeting newMeeting) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteMeeting(Meeting newMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Updates the filter of the filtered meeting list to filter by implementation.
+         *
+         * @param predicate
+         * @throws NullPointerException if {@param meetingList} is null.
+         */
+        @Override
+        public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns an unmodifiable view of the filtered meetings list
+         */
+        @Override
+        public ObservableList<Meeting> getFilteredMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
