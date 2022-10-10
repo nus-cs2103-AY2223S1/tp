@@ -33,13 +33,13 @@ public class DeleteRecordCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Record> lastShownList = model.getFilteredRecordList();
+        List<Record> lastShownRecordList = model.getFilteredRecordList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownRecordList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Record recordToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Record recordToDelete = lastShownRecordList.get(targetIndex.getZeroBased());
         model.deleteRecord(recordToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, recordToDelete),
                 false, false, true);

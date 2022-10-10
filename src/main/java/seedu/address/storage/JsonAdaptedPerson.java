@@ -62,7 +62,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        recordList.addAll(source.getRecordList().getRecordList().stream()
+        recordList.addAll(source.getRecordList().asUnmodifiableObservableList().stream()
                 .map(JsonAdaptedRecord::new)
                 .collect(Collectors.toList()));
 

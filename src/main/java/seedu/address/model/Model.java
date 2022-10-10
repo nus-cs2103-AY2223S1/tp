@@ -14,6 +14,7 @@ import seedu.address.model.person.Record;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Record> PREDICATE_SHOW_ALL_RECORDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -77,6 +78,17 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Returns true if a record with the same identity as {@code record} exists in the record list.
+     */
+    boolean hasRecord(Record record);
+
+    /**
+     * Adds the given record.
+     * {@code person} must not already exist in the record list.
+     */
+    void addRecord(Record record);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -100,4 +112,11 @@ public interface Model {
      * {@code record} must exist in the filtered record list.
      */
     void deleteRecord(Record record);
+
+    /**
+     * Sets the filtered record list to the record list of the given {@code person}.
+     *
+     * @param person The person whose record list is to be displayed.
+     */
+    void setFilteredRecordList(Person person);
 }

@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -15,17 +17,35 @@ public class RecordList {
             FXCollections.unmodifiableObservableList(recordList);
 
     /**
+     * Adds a record to the RecordList.
+     *
+     * @param toAdd Record to add.
+     */
+    public void add(Record toAdd) {
+        requireNonNull(toAdd);
+        recordList.add(toAdd);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent record as the given argument.
+     */
+    public boolean contains(Record toCheck) {
+        requireNonNull(toCheck);
+        return recordList.stream().anyMatch(toCheck::equals);
+    }
+
+    /**
      * Getter for list of records.
      *
      * @return List of records.
      */
-    public ObservableList<Record> getRecordList() {
-        if (recordList.size() == 0) {
-            recordList.add(new Record("10-08-2022 1200", "cold"));
-            recordList.add(new Record("01-09-2022 1200", "flu"));
-            recordList.add(new Record("05-10-2022 1200", "fever"));
-        }
+    public ObservableList<Record> asUnmodifiableObservableList() {
         return internalUnmodifiableRecordList;
+    }
+
+    public void setRecordList(RecordList replacement) {
+        requireNonNull(replacement);
+        recordList.setAll(replacement.recordList);
     }
 
     /**
@@ -37,6 +57,7 @@ public class RecordList {
         return this.recordList.size();
     }
 
+    // TODO IMPLEMENT THIS
     @Override
     public String toString() {
         return "Number of Records: " + recordList.size();
@@ -47,15 +68,6 @@ public class RecordList {
         return other == this // short circuit if same object
                 || (other instanceof RecordList // instanceof handles nulls
                 && recordList.equals(((RecordList) other).recordList)); // state check
-    }
-
-    /**
-     * Add a record to the RecordList
-     *
-     * @param record record
-     */
-    public void add(Record record) {
-        recordList.add(record);
     }
 
     public void delete(Record record) {

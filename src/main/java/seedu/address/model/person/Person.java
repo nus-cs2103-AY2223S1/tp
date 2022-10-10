@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -86,9 +87,35 @@ public class Person {
     }
 
     /**
+     * Replaces the contents of the record list with {@code records}.
+     * {@code records} must not contain duplicate persons.
+     */
+    public void setRecords(RecordList records) {
+        this.records.setRecordList(records);
+    }
+
+    /**
+     * Returns true if a record with the same identity as {@code record} exists in the record list.
+     */
+    public boolean hasRecord(Record record) {
+        requireNonNull(record);
+        return records.contains(record);
+    }
+
+    /**
+     * Adds a record to the record list.
+     * The record must not already exist in the record list.
+     */
+    public void addRecord(Record r) {
+        records.add(r);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
+
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
