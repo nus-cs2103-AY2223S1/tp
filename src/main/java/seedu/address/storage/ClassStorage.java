@@ -45,6 +45,10 @@ public class ClassStorage {
 
     public static boolean hasConflict(LocalTime start, LocalTime end, LocalTime startOfCurrClass,
                                       LocalTime endOfCurrClass) {
+        if (start == null || end == null || startOfCurrClass == null || endOfCurrClass == null) {
+            return false;
+        }
+
         return start.equals(startOfCurrClass) || end.equals(endOfCurrClass) ||
                 start.isAfter(startOfCurrClass) && start.isBefore(endOfCurrClass) ||
                 start.isBefore(startOfCurrClass) && end.isAfter(startOfCurrClass);
