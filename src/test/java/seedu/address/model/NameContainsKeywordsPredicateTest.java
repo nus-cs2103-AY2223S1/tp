@@ -1,7 +1,8 @@
-package seedu.address.model.person;
+package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.STUDENT1;
 import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
 import static seedu.address.testutil.TypicalTutors.TUTOR1;
@@ -12,7 +13,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.NameContainsKeywordsPredicate;
 import seedu.address.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {
@@ -40,6 +40,13 @@ public class NameContainsKeywordsPredicateTest {
 
         // different person -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+    }
+
+    @Test
+    public void test_invalidType_throwsClassCastException() {
+        List<String> firstPredicateKeywordList = Collections.singletonList("first");
+        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        assertThrows(ClassCastException.class, () -> firstPredicate.test("Invalid type"));
     }
 
     @Test

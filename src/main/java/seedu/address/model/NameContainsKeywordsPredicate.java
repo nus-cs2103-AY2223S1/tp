@@ -25,12 +25,12 @@ public class NameContainsKeywordsPredicate<T> implements Predicate<T> {
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
         }
 
-        assert (t instanceof TuitionClass);
-        @SuppressWarnings("unchecked")
-        TuitionClass tuitionClass = (TuitionClass) t;
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tuitionClass.getName().name, keyword));
-
+        if (t instanceof TuitionClass) {
+            TuitionClass tuitionClass = (TuitionClass) t;
+            return keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tuitionClass.getName().name, keyword));
+        }
+        throw new ClassCastException();
     }
 
     @Override

@@ -49,11 +49,12 @@ public class FindCommand extends Command {
 
         }
 
-        assert (model.getCurrentListType() == Model.ListType.TUITIONCLASS_LIST);
-        model.updateFilteredTuitionClassList(predicate);
-        return new CommandResult(String.format(Messages.MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW,
-                model.getFilteredTuitionClassList().size()));
-
+        if (model.getCurrentListType() == Model.ListType.TUITIONCLASS_LIST) {
+            model.updateFilteredTuitionClassList(predicate);
+            return new CommandResult(String.format(Messages.MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW,
+                    model.getFilteredTuitionClassList().size()));
+        }
+        throw new ClassCastException();
     }
 
     @Override
