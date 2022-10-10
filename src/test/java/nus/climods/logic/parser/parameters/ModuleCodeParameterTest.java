@@ -16,8 +16,7 @@ public class ModuleCodeParameterTest {
     private static final String EMPTY_INPUT_MESSAGE = "Empty module code is not valid";
 
     private ModuleCodeParameter createModuleCodeParameter(String argsString) {
-        return new ModuleCodeParameter(argsString,
-                INVALID_CODE_MESSAGE);
+        return new ModuleCodeParameter(argsString);
     }
 
     @Test
@@ -81,7 +80,7 @@ public class ModuleCodeParameterTest {
         try {
             String mc = mcp.getArgValue();
         } catch (ParseException e) {
-            assertEquals(String.format(INVALID_CODE_MESSAGE, argsString), e.getMessage());
+            assertEquals(String.format(ModuleCodeParameter.PARSE_EXCEPTION_MESSAGE, argsString), e.getMessage());
         }
     }
 
