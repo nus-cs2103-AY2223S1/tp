@@ -15,7 +15,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ProfCommand;
-import seedu.address.logic.commands.SortLexicographicalCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.StudentCommand;
 import seedu.address.logic.commands.TaCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -77,8 +77,8 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case SortLexicographicalCommand.COMMAND_WORD:
-            return new SortLexicographicalCommand();
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

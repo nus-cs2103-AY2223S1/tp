@@ -114,7 +114,14 @@ public abstract class Person {
      * @param person target Person of comparison.
      * @return int.
      */
-    public int compareNameLexicographically(Person person) {
+    public int compareName(Person person) {
         return this.name.toString().compareTo(person.name.toString());
+    }
+
+    public int compareModuleCode(Person person) {
+        if (person instanceof Student) {
+            return compareName(person);
+        }
+        return -1;
     }
 }
