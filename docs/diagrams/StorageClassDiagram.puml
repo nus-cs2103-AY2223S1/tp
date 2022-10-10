@@ -21,7 +21,6 @@ Class JsonSerializableTaAssist
 Class JsonAdaptedStudent
 Class JsonAdaptedModuleClass
 }
-
 }
 
 Class HiddenOutside #FFFFFF
@@ -39,6 +38,5 @@ JsonTaAssistStorage .up.|> TaAssistStorage
 JsonTaAssistStorage ..> JsonSerializableTaAssist
 JsonSerializableTaAssist--> "*" JsonAdaptedStudent
 JsonSerializableTaAssist--> "*" JsonAdaptedModuleClass
-JsonAdaptedStudent --> "*" JsonAdaptedModuleClass
 
 @enduml
