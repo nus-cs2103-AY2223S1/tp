@@ -27,8 +27,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
      */
     @Override
     public ClientCommand parse(String flag, String arguments) throws ParseException {
-        // Strip needed for current parser (Conrad's one has a space in front)
-        // TODO: remove
+        // Strip is just there for good measure.
         switch (flag.strip()) {
             // TODO: Clarify add vs tag - I put this here first so that flags -t = -a
             case AddClientCommand.COMMAND_FLAG:
@@ -38,10 +37,10 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                 return parseEditClientCommand(arguments);
             case DeleteClientCommand.COMMAND_FLAG:
                 return parseDeleteClientCommand(arguments);
+            case ListClientCommand.COMMAND_FLAG:
+                return parseListClientCommand(arguments);
         }
 
-        System.out.println(flag);
-        System.out.println(arguments);
         return null;
     }
 
@@ -136,6 +135,10 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
     }
 
+    // TODO: implement
+    private ListClientCommand parseListClientCommand(String args) throws ParseException {
+        return null;
+    }
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.

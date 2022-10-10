@@ -12,7 +12,7 @@ import seedu.address.ui.Ui;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListIssueCommand extends Command {
+public class ListIssueCommand extends IssueCommand {
 
     public static final String COMMAND_FLAG = "-l";
 

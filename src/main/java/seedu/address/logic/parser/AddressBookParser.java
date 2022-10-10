@@ -25,16 +25,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class AddressBookParser {
 
-    public static void main(String[] args) {
-        try {
-            new AddressBookParser().parseCommand("client -a n/name p/98765432 e/email@example.com a/address t/tag");
-            new AddressBookParser().parseCommand("client -e 2 n/name p/98765432 e/email@example.com a/address t/tag");
-            new AddressBookParser().parseCommand("client -d 1 n/Amy");
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
     /**
      * Used for initial separation of command word and args.
      */
@@ -62,10 +52,10 @@ public class AddressBookParser {
             return new ClientCommandParser().parse(flag, arguments);
 
         case IssueCommand.COMMAND_WORD:
-            return new IssueCommandParser.parse(flag, arguments);
+            return new IssueCommandParser().parse(flag, arguments);
 
         case ProjectCommand.COMMAND_WORD:
-            return new ProjectCommandParser.parse(flag, arguments);
+            return new ProjectCommandParser().parse(flag, arguments);
 
         // TODO: Refactor commands below if necessary
         case ClearCommand.COMMAND_WORD:
