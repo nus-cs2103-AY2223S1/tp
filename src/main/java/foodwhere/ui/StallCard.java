@@ -1,11 +1,11 @@
 package foodwhere.ui;
 
-import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import foodwhere.model.stall.Stall;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -36,7 +36,7 @@ public class StallCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private FlowPane details;
+    private Label details;
 
     /**
      * Creates a {@code StallCode} with the given {@code Stall} and index to display.
@@ -47,9 +47,15 @@ public class StallCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(stall.getName().fullName);
         address.setText(stall.getAddress().value);
-        stall.getDetails().stream()
-                .sorted(Comparator.comparing(detail -> detail.detail))
-                .forEach(detail -> details.getChildren().add(new Label(detail.detail)));
+
+        if (!stall.getDetails().isEmpty()) {
+            String assigneesNames = stall.getDetails()
+                    .stream()
+                    .flatMap(rev -> Stream.of(rev.detail))
+                    .collect(Collectors.joining(", "));
+
+            details.setText(assigneesNames);
+        }
     }
 
     @Override

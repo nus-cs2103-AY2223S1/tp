@@ -117,7 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         stallListPanel = new StallListPanel(logic.getFilteredStallList());
         stallListPanelPlaceholder.getChildren().add(stallListPanel.getRoot());
 
-        reviewListPanel = new ReviewListPanel(logic.getFilteredStallList());
+        reviewListPanel = new ReviewListPanel(logic.getFilteredReviewList());
         reviewListPanelPlaceholder.getChildren().add(reviewListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
