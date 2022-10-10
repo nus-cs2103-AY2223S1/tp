@@ -21,7 +21,7 @@ public class MarkCommand extends Command {
             + "Parameters: STUDENT_ID (should be in format  \"A\" + (7 digits) + (1 letter), e.g. A0123456G"
             + "s/ STATUS\n"
             + "Example: " + COMMAND_WORD + " A0123456G "
-            + "r/ DONE";
+            + PREFIX_STATUS +  "DONE";
 
     public static final String MESSAGE_ARGUMENTS = "studentID: %1$s, Status: %2$s";
 
