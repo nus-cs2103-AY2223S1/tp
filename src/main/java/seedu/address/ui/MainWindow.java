@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private BuyerListPanel buyerListPanel;
     private SupplierListPanel supplierListPanel;
     private DelivererListPanel delivererListPanel;
+    private MainListPanel mainListPanel;
 
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -119,8 +120,9 @@ public class MainWindow extends UiPart<Stage> {
         buyerListPanel = new BuyerListPanel(logic.getFilteredBuyerList());
         supplierListPanel = new SupplierListPanel(logic.getFilteredSupplierList());
         delivererListPanel = new DelivererListPanel(logic.getFilteredDelivererList());
+        mainListPanel = new MainListPanel(logic.getFilteredMainList());
         personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(buyerListPanel.getRoot());
+        personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -175,6 +177,10 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
     }
+    public void showAll() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
+    }
 
     public void showBuyer() {
         personListPanelPlaceholder.getChildren().clear();
@@ -189,6 +195,12 @@ public class MainWindow extends UiPart<Stage> {
     public void showDeliverer() {
         personListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(delivererListPanel.getRoot());
+    }
+
+    public void showPet() {
+    }
+
+    public void showOrder() {
     }
 
     /**
@@ -217,4 +229,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }

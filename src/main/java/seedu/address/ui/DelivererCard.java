@@ -40,6 +40,8 @@ public class DelivererCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label orders;
 
     /**
      * Creates a {@code DelivererCode} with the given {@code Deliverer} and index to display.

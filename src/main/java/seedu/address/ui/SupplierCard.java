@@ -40,6 +40,8 @@ public class SupplierCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label pets;
 
     /**
      * Creates a {@code SupplierCard} with the given {@code Supplier} and index to display.
