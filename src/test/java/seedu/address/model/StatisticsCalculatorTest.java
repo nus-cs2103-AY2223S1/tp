@@ -51,6 +51,7 @@ public class StatisticsCalculatorTest {
         List<Person> newPersons = Arrays.asList(AVA, BEN);
         StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
+
         assertEquals("$80", newCalculator.getAmountOwed());
     }
 
@@ -65,6 +66,7 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void calculates_amountOwedOverflow() {
+        // Edits Ava to have the maximum possible amount of money owed by a single person.
         Person editedAva = new PersonBuilder(AVA).withMoneyOwed(Integer.MAX_VALUE).build();
         Person editedBen = new PersonBuilder(BEN).withMoneyOwed(1).build();
         List<Person> newPersons = Arrays.asList(editedAva, editedBen);
@@ -77,6 +79,7 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void calculates_amountPaidOverflow() {
+        // Edits Ava to have the maximum possible amount of money paid by a single person.
         Person editedAva = new PersonBuilder(AVA).withMoneyPaid(Integer.MAX_VALUE).build();
         Person editedBen = new PersonBuilder(BEN).withMoneyPaid(1).build();
         List<Person> newPersons = Arrays.asList(editedAva, editedBen);

@@ -15,7 +15,7 @@ public class StatisticsCalculator {
     private final ReadOnlyAddressBook addressBook;
 
     /**
-     * Creates a new StatisticsCalculator.
+     * Constructs an {@code StatisticsCalculator}.
      *
      * @param addressBook AddressBook used to calculate the statistics.
      */
@@ -24,7 +24,9 @@ public class StatisticsCalculator {
     }
 
     /**
-     * Returns the number of people in AddressBook.
+     * Calculates the number of people in AddressBook.
+     *
+     * @return the number of people stored in AddressBook.
      */
     public int getSize() {
         return addressBook.getPersonList().size();
@@ -32,6 +34,8 @@ public class StatisticsCalculator {
 
     /**
      * Sums up the total money owed by the people in AddressBook.
+     *
+     * @return the total amount of money owed.
      */
     public String getAmountOwed() {
         ObservableList<Person> personList = addressBook.getPersonList();
@@ -48,6 +52,8 @@ public class StatisticsCalculator {
 
     /**
      * Sums up the total money paid by the people in AddressBook.
+     *
+     * @return the total amount of money paid.
      */
     public String getAmountPaid() {
         ObservableList<Person> personList = addressBook.getPersonList();

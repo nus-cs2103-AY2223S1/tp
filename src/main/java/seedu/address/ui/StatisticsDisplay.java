@@ -5,7 +5,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 
 /**
- * A ui for the Statistics Display that is displayed at the top right of the application.
+ * A UI for the statistics display that is displayed at the top right of the application.
  */
 public class StatisticsDisplay extends UiPart<Region> {
 
