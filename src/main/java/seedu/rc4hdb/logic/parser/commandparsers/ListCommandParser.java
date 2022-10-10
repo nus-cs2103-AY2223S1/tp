@@ -70,7 +70,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     }
 
     private String[] getSpecifiedFields(String args) {
-        String fieldsString = args.substring(args.indexOf("/") + 2).trim();
+        String fieldsString = args.toLowerCase().substring(args.indexOf("/") + 2).trim();
         return fieldsString.split(" ");
     }
 
