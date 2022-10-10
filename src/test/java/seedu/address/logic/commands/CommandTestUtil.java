@@ -79,7 +79,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_DOCTOR_DESC = " " + PREFIX_DOCTOR + "John!";
     public static final String INVALID_MEDICAL_TEST_DESC = " " + PREFIX_MEDICAL_TEST;
-    public static final String INVALID_SLOT = " " + PREFIX_SLOT + "2023-1-1 9:00";
+    public static final String INVALID_SLOT_DESC = " " + PREFIX_SLOT + "2023-1-1 9:00";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
