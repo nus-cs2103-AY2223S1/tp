@@ -18,11 +18,6 @@ import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 public class ClientCommandParser implements Parser<ClientCommand> {
-    public static final String ADD_COMMAND_FLAG = "-a";
-    public static final String EDIT_COMMAND_FLAG = "-e";
-    public static final String DELETE_COMMAND_FLAG = "-d";
-    public static final String TAG_COMMAND_FLAG = "-t";
-
     /**
      * Method to parse any commands that have to do with client (start with 'client)
      * @param flag the flag used in the command
@@ -36,14 +31,15 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         // TODO: remove
         switch (flag.strip()) {
             // TODO: Clarify add vs tag - I put this here first so that flags -t = -a
-            case ADD_COMMAND_FLAG:
-            case TAG_COMMAND_FLAG:
+            case AddClientCommand.COMMAND_FLAG:
+            case TagClientCommand.COMMAND_FLAG:
                 return parseAddClientCommand(arguments);
-            case EDIT_COMMAND_FLAG:
+            case EditClientCommand.COMMAND_FLAG:
                 return parseEditClientCommand(arguments);
-            case DELETE_COMMAND_FLAG:
+            case DeleteClientCommand.COMMAND_FLAG:
                 return parseDeleteClientCommand(arguments);
         }
+
         System.out.println(flag);
         System.out.println(arguments);
         return null;
