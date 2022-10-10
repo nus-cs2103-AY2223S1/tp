@@ -7,18 +7,25 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Task's status in the task list.
  */
 public class Status {
-    private static final String completedSymbol = "\u2713";
-    private static final String incompleteSymbol = "\u2716";
 
     public static final String MESSAGE_CONSTRAINTS = "Status should only be either U+2713 or U+2716.";
 
+    private static final String completedSymbol = "\u2713";
+    private static final String incompleteSymbol = "\u2716";
+
     public final String status;
 
+    /**
+     * Constructs a new Status with a boolean parameter. Every field must be present and not null.
+     */
     public Status(boolean isComplete) {
         requireNonNull(isComplete);
         this.status = isComplete ? completedSymbol : incompleteSymbol;
     }
 
+    /**
+     * Constructs a new Status with a String parameter. Every field must be present and not null.
+     */
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);

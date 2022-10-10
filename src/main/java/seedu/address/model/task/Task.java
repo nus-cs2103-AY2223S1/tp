@@ -36,7 +36,9 @@ public class Task {
         return deadline;
     }
 
-    public Status getStatus() { return status; }
+    public Status getStatus() {
+        return status;
+    }
 
     public void setStatus(boolean isComplete) {
         this.status = new Status(isComplete);
