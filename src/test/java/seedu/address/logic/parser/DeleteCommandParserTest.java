@@ -25,5 +25,4 @@ public class DeleteCommandParserTest {
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
     }
-    
 }
