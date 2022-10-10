@@ -11,12 +11,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.client.ClientCommand;
-import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.commands.issue.IssueCommand;
-import seedu.address.logic.commands.issue.ListIssueCommand;
-import seedu.address.logic.commands.project.ListProjectCommand;
 import seedu.address.logic.commands.project.ProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
