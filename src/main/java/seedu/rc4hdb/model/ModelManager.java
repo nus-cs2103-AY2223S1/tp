@@ -4,14 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.model.person.Person;
+import seedu.rc4hdb.model.person.Fields;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ObservableList<String> observableFieldList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,6 +37,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        // Initialise list with global field list since all fields should be shown at first
+        this.observableFieldList = FXCollections.observableArrayList(Fields.fields);
     }
 
     public ModelManager() {
@@ -146,4 +153,15 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    //=========== Observable Field List Accessors =============================================================
+
+    @Override
+    public ObservableList<String> getObservableFields() {
+        return this.observableFieldList;
+    }
+
+    @Override
+    public void setObservableFields(List<String> modifiableFields) {
+        this.observableFieldList.setAll(modifiableFields);
+    }
 }

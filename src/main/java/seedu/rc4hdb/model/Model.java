@@ -1,6 +1,7 @@
 package seedu.rc4hdb.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -84,4 +85,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    ObservableList<String> getObservableFields();
+
+    void setObservableFields(List<String> modifiableList);
 }
