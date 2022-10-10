@@ -62,7 +62,7 @@ public class UniquePersonList extends DisplayItemList<Person> {
         }
 
         if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
-            throw new PersonNotFoundException();
+            throw new DuplicatePersonException();
         }
 
         internalList.set(index, editedPerson);
