@@ -1,5 +1,34 @@
 package tracko.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static tracko.commons.core.Messages.MESSAGE_ITEMS_FOUND_OVERVIEW;
+import static tracko.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import tracko.commons.core.GuiSettings;
+// import tracko.logic.commands.exceptions.CommandException;
+import tracko.logic.commands.item.FindItemCommand;
+import tracko.logic.commands.order.AddOrderCommand;
+import tracko.model.Model;
+import tracko.model.ReadOnlyTrackO;
+import tracko.model.ReadOnlyUserPrefs;
+import tracko.model.TrackO;
+import tracko.model.items.Item;
+import tracko.model.items.ItemContainsKeywordsPredicate;
+import tracko.model.order.Order;
+// import tracko.model.person.Person;
+import tracko.testutil.OrderBuilder;
+
 public class FindItemCommandTest {
 
 //    private Model model = new ModelManager(getTrackOWithTypicalOrders(), new UserPrefs());
@@ -34,9 +63,9 @@ public class FindItemCommandTest {
 //
 //    @Test
 //    public void execute_zeroKeywords_noPersonFound() {
-//        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-//        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-//        FindOrderCommand command = new FindOrderCommand(predicate);
+//        String expectedMessage = String.format(MESSAGE_ITEMS_FOUND_OVERVIEW, 0);
+//        ItemContainsKeywordsPredicate predicate = preparePredicate(" ");
+//        FindItemCommand command = new FindItemCommand(predicate);
 //        expectedModel.updateFilteredPersonList(predicate);
 //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
 //        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -44,8 +73,8 @@ public class FindItemCommandTest {
 //
 //    @Test
 //    public void execute_multipleKeywords_multiplePersonsFound() {
-//        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-//        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+//        String expectedMessage = String.format(MESSAGE_ITEMS_FOUND_OVERVIEW, 3);
+//        ItemContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
 //        FindOrderCommand command = new FindOrderCommand(predicate);
 //        expectedModel.updateFilteredPersonList(predicate);
 //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
