@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
-import seedu.address.model.person.Applicant;
+import seedu.address.model.applicant.*;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -68,9 +68,9 @@ class JsonAdaptedTrackAScholar {
      * @throws IllegalValueException if there were any data constraints violated in the adapted applicant.
      */
     public Applicant toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> applicantTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            applicantTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -115,7 +115,7 @@ class JsonAdaptedTrackAScholar {
         }
         final ApplicationStatus modelApplicationStatus = new ApplicationStatus(applicationStatus);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(applicantTags);
         return new Applicant(modelName, modelPhone, modelEmail, modelScholarship, modelApplicationStatus, modelTags);
 
     }

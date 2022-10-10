@@ -23,7 +23,7 @@ import seedu.address.model.TrackAScholar;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Applicant;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 

@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.TrackAScholar;
-import seedu.address.model.person.Applicant;
+import seedu.address.model.applicant.Applicant;
 
 /**
  * A utility class containing a list of {@code Applicant} objects to be used in tests.

@@ -14,7 +14,7 @@ import seedu.address.logic.parser.TrackAScholarParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTrackAScholar;
-import seedu.address.model.person.Applicant;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.storage.Storage;
 
 /**

@@ -20,7 +20,7 @@ import seedu.address.model.ReadOnlyTrackAScholar;
 import seedu.address.model.TrackAScholar;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Applicant;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {

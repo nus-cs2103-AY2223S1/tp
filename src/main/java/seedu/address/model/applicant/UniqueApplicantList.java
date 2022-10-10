@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.applicant;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateApplicantException;
-import seedu.address.model.person.exceptions.ApplicantNotFoundException;
+import seedu.address.model.applicant.exceptions.DuplicateApplicantException;
+import seedu.address.model.applicant.exceptions.ApplicantNotFoundException;
 
 /**
  * A list of applicants that enforces uniqueness between its elements and does not allow nulls.

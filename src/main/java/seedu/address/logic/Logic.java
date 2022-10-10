@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTrackAScholar;
-import seedu.address.model.person.Applicant;
+import seedu.address.model.applicant.Applicant;
 
 /**
  * API of the Logic component
