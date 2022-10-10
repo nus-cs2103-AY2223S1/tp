@@ -30,10 +30,7 @@ import seedu.address.model.task.TaskList;
 /**
  * Edits the details of an existing patient in the address book.
  */
-public class EditPatientCommand extends Command {
-
-    public static final String COMMAND_WORD = "editPatient";
-
+public class EditPatientCommand extends EditGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
             + "by the index number used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"

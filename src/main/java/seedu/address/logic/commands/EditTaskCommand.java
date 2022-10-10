@@ -22,10 +22,7 @@ import seedu.address.model.task.TaskList;
 /**
  * Edits the details of an existing Task for a patient.
  */
-public class EditTaskCommand extends Command {
-
-    public static final String COMMAND_WORD = "editTask";
-
+public class EditTaskCommand extends EditGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the specified task associated with a patient "
             + "by the index number used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"

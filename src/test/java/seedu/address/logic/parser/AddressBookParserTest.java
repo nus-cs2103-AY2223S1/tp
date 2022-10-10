@@ -57,7 +57,7 @@ public class AddressBookParserTest {
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(person).build();
-        EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
+        EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " -p "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPatientDescriptorDetails(descriptor));
         assertEquals(new EditPatientCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
