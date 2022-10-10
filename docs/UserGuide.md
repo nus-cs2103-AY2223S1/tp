@@ -80,7 +80,7 @@ Examples:
 
 View all the members currently in the team, in the form of a list.
 
-Format: `list members`
+Format: `list_members`
 
 ### Add task to team : `add_task`
 
