@@ -12,14 +12,14 @@ import seedu.address.model.student.Student;
 public class FilteredStudents {
     private final FilteredList<Student> filteredStudents;
     // Only the student's name and ID should be displayed if true; all information should be shown otherwise
-    private boolean conciseInfo;
+    private boolean hasConciseInfo;
 
     /**
      * Constructs a {@code FilteredStudent} with the given {@code filteredStudents}.
      */
     public FilteredStudents(FilteredList<Student> filteredStudents) {
         this.filteredStudents = filteredStudents;
-        this.conciseInfo = true;
+        this.hasConciseInfo = true;
     }
 
     public ObservableList<Student> getFilteredStudentList() {
@@ -34,14 +34,14 @@ public class FilteredStudents {
      * Returns true only if the student's name and ID should be displayed.
      */
     public boolean hasConciseInfo() {
-        return this.conciseInfo;
+        return this.hasConciseInfo;
     }
 
     /**
      * Sets the filtered student list to only concise information - the student's name and ID, or all information.
      */
     public void setConciseInfo(boolean b) {
-        this.conciseInfo = b;
+        this.hasConciseInfo = b;
     }
 
     @Override
@@ -59,6 +59,6 @@ public class FilteredStudents {
         // state check
         FilteredStudents other = (FilteredStudents) obj;
         return this.filteredStudents.equals(other.filteredStudents)
-                && this.conciseInfo == other.conciseInfo;
+                && this.hasConciseInfo == other.hasConciseInfo;
     }
 }
