@@ -3,7 +3,7 @@ package seedu.guest.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.guest.storage.JsonAdaptedGuest.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.guest.testutil.Assert.assertThrows;
-import static seedu.guest.testutil.TypicalPersons.BENSON;
+import static seedu.guest.testutil.TypicalGuests.BENSON;
 
 import org.junit.jupiter.api.Test;
 

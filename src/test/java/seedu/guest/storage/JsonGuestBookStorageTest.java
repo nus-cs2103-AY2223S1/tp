@@ -3,10 +3,10 @@ package seedu.guest.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.guest.testutil.Assert.assertThrows;
-import static seedu.guest.testutil.TypicalPersons.ALICE;
-import static seedu.guest.testutil.TypicalPersons.HOON;
-import static seedu.guest.testutil.TypicalPersons.IDA;
-import static seedu.guest.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.guest.testutil.TypicalGuests.ALICE;
+import static seedu.guest.testutil.TypicalGuests.HOON;
+import static seedu.guest.testutil.TypicalGuests.IDA;
+import static seedu.guest.testutil.TypicalGuests.getTypicalGuestBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -63,7 +63,7 @@ public class JsonGuestBookStorageTest {
     @Test
     public void readAndSaveGuestBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempGuestBook.json");
-        GuestBook original = getTypicalAddressBook();
+        GuestBook original = getTypicalGuestBook();
         JsonGuestBookStorage jsonGuestBookStorage = new JsonGuestBookStorage(filePath);
 
         // Save in new file and read back

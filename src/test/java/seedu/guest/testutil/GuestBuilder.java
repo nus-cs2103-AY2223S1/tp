@@ -8,7 +8,7 @@ import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Guest objects.
  */
 public class GuestBuilder {
 
@@ -25,7 +25,7 @@ public class GuestBuilder {
     private NumberOfGuests numberOfGuests;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code GuestBuilder} with the default details.
      */
     public GuestBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -36,7 +36,7 @@ public class GuestBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the GuestBuilder with the data of {@code guestToCopy}.
      */
     public GuestBuilder(Guest guestToCopy) {
         name = guestToCopy.getName();
@@ -47,7 +47,7 @@ public class GuestBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Guest} that we are building.
      */
     public GuestBuilder withName(String name) {
         this.name = new Name(name);
@@ -55,7 +55,7 @@ public class GuestBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Guest} that we are building.
      */
     public GuestBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -63,7 +63,7 @@ public class GuestBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Guest} that we are building.
      */
     public GuestBuilder withEmail(String email) {
         this.email = new Email(email);
@@ -71,7 +71,7 @@ public class GuestBuilder {
     }
 
     /**
-     * Sets the {@code DateRange} of the {@code Person} that we are building.
+     * Sets the {@code DateRange} of the {@code Guest} that we are building.
      */
     public GuestBuilder withDateRange(String dateRange) {
         this.dateRange = new DateRange(dateRange);
@@ -79,7 +79,7 @@ public class GuestBuilder {
     }
 
     /**
-     * Sets the {@code NumberOfGuests} of the {@code Person} that we are building.
+     * Sets the {@code NumberOfGuests} of the {@code Guest} that we are building.
      */
     public GuestBuilder withNumberOfGuests(String numberOfGuests) {
         this.numberOfGuests = new NumberOfGuests(numberOfGuests);
