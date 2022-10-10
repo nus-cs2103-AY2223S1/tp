@@ -18,3 +18,7 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.underlined-text {
+    -fx-underline: true;
+}
