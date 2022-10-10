@@ -5,9 +5,9 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code pinned} is true or false to see if a contact is pinned.
  */
-public class pinnedPersonPredicate implements Predicate<Person> {
+public class PinnedPersonPredicate implements Predicate<Person> {
 
-    public pinnedPersonPredicate() {
+    public PinnedPersonPredicate() {
 
     }
 

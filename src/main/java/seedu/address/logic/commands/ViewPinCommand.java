@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.pinnedPersonPredicate;
+import seedu.address.model.person.PinnedPersonPredicate;
 
 
 /**
@@ -20,9 +20,9 @@ public class ViewPinCommand extends Command {
             + "Parameters: INDEX...\n"
             + "Example: " + COMMAND_WORD + "Alice";
 
-    private final pinnedPersonPredicate predicate;
+    private final PinnedPersonPredicate predicate;
 
-    public ViewPinCommand(pinnedPersonPredicate p) {
+    public ViewPinCommand(PinnedPersonPredicate p) {
         this.predicate = p;
     }
 
