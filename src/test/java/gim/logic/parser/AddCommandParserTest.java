@@ -2,7 +2,7 @@ package gim.logic.parser;
 
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static gim.logic.commands.CommandTestUtil.INVALID_REP_DESC;
+import static gim.logic.commands.CommandTestUtil.INVALID_REPS_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_SETS_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_WEIGHT_DESC;
@@ -139,7 +139,7 @@ public class AddCommandParserTest {
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
-                + INVALID_REP_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Reps.MESSAGE_CONSTRAINTS);
+                + INVALID_REPS_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Reps.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
@@ -147,7 +147,7 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
-                + INVALID_REP_DESC, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_REPS_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS

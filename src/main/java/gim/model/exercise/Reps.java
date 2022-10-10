@@ -22,12 +22,12 @@ public class Reps {
     /**
      * Constructs an {@code Reps}.
      *
-     * @param rep A valid Reps.
+     * @param reps A valid Reps.
      */
-    public Reps(String rep) {
-        requireNonNull(rep);
-        checkArgument(isValidReps(rep), MESSAGE_CONSTRAINTS);
-        value = rep;
+    public Reps(String reps) {
+        requireNonNull(reps);
+        checkArgument(isValidReps(reps), MESSAGE_CONSTRAINTS);
+        value = reps;
     }
 
     /**

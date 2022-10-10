@@ -50,7 +50,7 @@ public class ExerciseUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getWeight().ifPresent(weight -> sb.append(PREFIX_WEIGHT).append(weight.value).append(" "));
         descriptor.getSets().ifPresent(sets -> sb.append(PREFIX_SETS).append(sets.value).append(" "));
-        descriptor.getReps().ifPresent(rep -> sb.append(PREFIX_REPS).append(rep.value).append(" "));
+        descriptor.getReps().ifPresent(reps -> sb.append(PREFIX_REPS).append(reps.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
