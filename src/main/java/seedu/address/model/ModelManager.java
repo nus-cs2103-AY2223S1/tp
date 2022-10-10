@@ -23,6 +23,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final Person personWithRecords; // Person whose records are being displayed (if any)
     private final FilteredList<Person> filteredPersons;
     private FilteredList<Record> filteredRecords;
 
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.personWithRecords = null;
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredRecords = new FilteredList<>(FXCollections.observableArrayList()); // empty FilteredList
     }
@@ -113,6 +115,18 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    //=========== Record List ================================================================================
+
+    @Override
+    public void addRecord(Record record) {
+        personWithRecords.addRecord(record);
+    }
+
+    @Override
+    public boolean hasRecord(Record record) {
+        return personWithRecords.hasRecord(record);
     }
 
     //=========== Filtered Person List Accessors =============================================================

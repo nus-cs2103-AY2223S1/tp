@@ -27,12 +27,25 @@ public class RecordList {
     }
 
     /**
+     * Returns true if the list contains an equivalent record as the given argument.
+     */
+    public boolean contains(Record toCheck) {
+        requireNonNull(toCheck);
+        return recordList.stream().anyMatch(toCheck::equals);
+    }
+
+    /**
      * Getter for list of records.
      *
      * @return List of records.
      */
     public ObservableList<Record> asUnmodifiableObservableList() {
         return internalUnmodifiableRecordList;
+    }
+
+    public void setRecordList(RecordList replacement) {
+        requireNonNull(replacement);
+        recordList.setAll(replacement.recordList);
     }
 
     /**
@@ -44,6 +57,7 @@ public class RecordList {
         return this.recordList.size();
     }
 
+    // TODO IMPLEMENT THIS
     @Override
     public String toString() {
         return "Number of Records: " + recordList.size();

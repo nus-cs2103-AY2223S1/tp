@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -13,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Record;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +122,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String recordDate} and {@code String recordData} into a {@code Record}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given inputs is invalid.
+     */
+    public static Record parseRecord(String recordDate, String recordData) throws ParseException {
+        requireAllNonNull(recordDate, recordData);
+        String trimmedDate = recordDate.trim();
+        String trimmedData = recordData.trim();
+        if (!Record.isValidDate(trimmedDate)) {
+            throw new ParseException(Record.MESSAGE_CONSTRAINTS);
+        }
+        return new Record(trimmedDate, trimmedData);
     }
 }
