@@ -20,17 +20,17 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a income/expenditure entry to PennyWise. "
-            + "Parameters: "
-            + PREFIX_TYPE + "TYPE "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_AMOUNT + "AMOUNT "
-            + PREFIX_DATE + "DATE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TYPE + "e "
-            + PREFIX_DESCRIPTION + "Lunch "
-            + PREFIX_AMOUNT + "7.20 "
-            + PREFIX_DATE + "4-10-2022 ";
+        + "Parameters: "
+        + PREFIX_TYPE + "TYPE "
+        + PREFIX_DESCRIPTION + "DESCRIPTION "
+        + PREFIX_AMOUNT + "AMOUNT "
+        + PREFIX_DATE + "DATE "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_TYPE + "e "
+        + PREFIX_DESCRIPTION + "Lunch "
+        + PREFIX_AMOUNT + "7.20 "
+        + PREFIX_DATE + "4-10-2022 ";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This entry already exists in the address book";
@@ -69,7 +69,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+            || (other instanceof AddCommand // instanceof handles nulls
+            && toAdd.equals(((AddCommand) other).toAdd));
     }
 }

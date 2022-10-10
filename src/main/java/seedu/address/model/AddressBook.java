@@ -30,7 +30,8 @@ public class AddressBook implements ReadOnlyPennyWise {
         income = new UniqueEntryList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}

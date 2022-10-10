@@ -11,7 +11,9 @@ import seedu.address.model.entry.Entry;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Entry> PREDICATE_SHOW_ALL_ENTRIES = unused -> true;
 
     /**
@@ -49,7 +51,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyPennyWise addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyPennyWise getAddressBook();
 
     /**
@@ -100,11 +104,19 @@ public interface Model {
      */
     void setIncome(Entry target, Entry editedEntry);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Entry> getFilteredEntryList();
+    /**
+     * Returns an unmodifiable view of the filtered expenditure list
+     */
+    ObservableList<Entry> getFilteredExpenditureList();
+
+    /**
+     * Returns an unmodifiable view of the filtered income list
+     */
+    ObservableList<Entry> getFilteredIncomeList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEntryList(Predicate<Entry> predicate);
