@@ -17,31 +17,32 @@ import seedu.address.model.applicant.Applicant;
  * An Immutable TrackAScholar that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableTrackAScholar {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate applicant(s).";
+    public static final String MESSAGE_DUPLICATE_APPLICANT = "Persons list contains duplicate applicant(s).";
 
     private final List<JsonAdaptedTrackAScholar> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableTrackAScholar} with the given applicants.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedTrackAScholar> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableTrackAScholar(@JsonProperty("persons") List<JsonAdaptedTrackAScholar> applicants) {
+        this.persons.addAll(applicants);
     }
 
     /**
      * Converts a given {@code ReadOnlyTrackAScholar} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableTrackAScholar}.
      */
-    public JsonSerializableAddressBook(ReadOnlyTrackAScholar source) {
-        persons.addAll(source.getApplicantList().stream().map(JsonAdaptedTrackAScholar::new).collect(Collectors.toList()));
+    public JsonSerializableTrackAScholar(ReadOnlyTrackAScholar source) {
+        persons.addAll(source.getApplicantList().stream()
+                .map(JsonAdaptedTrackAScholar::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code TrackAScholar} object.
+     * Converts this TrackAScholar into the model's {@code TrackAScholar} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -50,7 +51,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedTrackAScholar jsonAdaptedTrackAScholar : persons) {
             Applicant applicant = jsonAdaptedTrackAScholar.toModelType();
             if (trackAScholar.hasApplicant(applicant)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_APPLICANT);
             }
             trackAScholar.addApplicant(applicant);
         }

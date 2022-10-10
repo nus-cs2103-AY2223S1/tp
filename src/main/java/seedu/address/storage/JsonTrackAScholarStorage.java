@@ -45,14 +45,14 @@ public class JsonTrackAScholarStorage implements TrackAScholarStorage {
     public Optional<ReadOnlyTrackAScholar> readTrackAScholar(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        Optional<JsonSerializableTrackAScholar> jsonTrackAScholar = JsonUtil.readJsonFile(
+                filePath, JsonSerializableTrackAScholar.class);
+        if (!jsonTrackAScholar.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonTrackAScholar.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -74,7 +74,7 @@ public class JsonTrackAScholarStorage implements TrackAScholarStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(trackAScholar), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTrackAScholar(trackAScholar), filePath);
     }
 
 }
