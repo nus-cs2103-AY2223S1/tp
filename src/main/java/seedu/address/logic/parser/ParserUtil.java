@@ -156,35 +156,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String moneyOwed} into an {@code MoneyOwed}.
+     * Parses a {@code String money} into an {@code Money}.
      *
-     * @throws ParseException if the given {@code moneyOwed} is invalid.
+     * @throws ParseException if the given {@code money} is invalid.
      */
-    public static Money parseMoneyOwed(String moneyOwed) throws ParseException {
-        requireNonNull(moneyOwed);
+    public static Money parseMoney(String money) throws ParseException {
+        requireNonNull(money);
         Integer value;
         try {
-            value = Integer.valueOf(moneyOwed);
-        } catch (NumberFormatException ex) {
-            throw new ParseException(Money.MESSAGE_CONSTRAINTS);
-        }
-
-        if (!Money.isValidMoney(value)) {
-            throw new ParseException(Money.MESSAGE_CONSTRAINTS);
-        }
-        return new Money(value);
-    }
-
-    /**
-     * Parses a {@code String moneyPaid} into an {@code MoneyPaid}.
-     *
-     * @throws ParseException if the given {@code moneyPaid} is invalid.
-     */
-    public static Money parseMoneyPaid(String moneyPaid) throws ParseException {
-        requireNonNull(moneyPaid);
-        Integer value;
-        try {
-            value = Integer.valueOf(moneyPaid);
+            value = Integer.valueOf(money);
         } catch (NumberFormatException ex) {
             throw new ParseException(Money.MESSAGE_CONSTRAINTS);
         }
