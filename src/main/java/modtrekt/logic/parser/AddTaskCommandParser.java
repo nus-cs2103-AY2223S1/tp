@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.module.ModCode;
-import modtrekt.model.module.ModName;
 import modtrekt.model.task.Description;
 import modtrekt.model.task.Task;
 

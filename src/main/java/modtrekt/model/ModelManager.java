@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import modtrekt.commons.core.GuiSettings;
 import modtrekt.commons.core.LogsCenter;
+import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
 import modtrekt.model.task.Task;
 
@@ -111,6 +112,9 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task t) {
         taskBook.addTask(t);
+        Module toUpdate = parseModuleFromCode(t.getModule());
+        toUpdate.addTask(t);
+        setModule(toUpdate, toUpdate);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -140,6 +144,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModuleWithModCode(ModCode code) {
+        requireNonNull(code);
+        return moduleList.hasModuleWithModCode(code);
+    }
+
+    @Override
     public void deleteModule(Module target) {
         moduleList.removeModule(target);
     }
@@ -148,6 +158,12 @@ public class ModelManager implements Model {
     public void addModule(Module module) {
         moduleList.addModule(module);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    @Override
+    public Module parseModuleFromCode(ModCode code) {
+        requireNonNull(code);
+        return moduleList.getModuleFromCode(code);
     }
 
     @Override

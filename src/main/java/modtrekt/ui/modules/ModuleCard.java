@@ -37,7 +37,7 @@ public class ModuleCard extends UiPart<Region> {
         this.code.setText(module.getCode().value);
         this.credits.setText(module.getCredits().value);
         // Add the task count badge, pluralizing `task` if necessary.
-        Label taskBadge = new Label(StringUtil.pluralize(1, "task"));
+        Label taskBadge = new Label(StringUtil.pluralize(module.getTaskCount(), "task"));
         this.badges.getChildren().add(taskBadge);
     }
 

@@ -43,6 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             // Add task
             Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_TASK).get());
             ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
+
             Task t = new Task(description, code);
             return new AddTaskCommand(t);
         } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MOD_NAME, CliSyntax.PREFIX_MOD_CODE,

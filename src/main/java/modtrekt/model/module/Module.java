@@ -1,6 +1,10 @@
 package modtrekt.model.module;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import modtrekt.model.task.Task;
 
 /**
  * Represents a module in the module list.
@@ -10,6 +14,7 @@ public class Module {
     public final ModCode code;
     public final ModName name;
     public final ModCredit credits;
+    private ArrayList<Task> tasksList;
 
     /**
      * Creates a Module with the given code, name, credits and tasks.
@@ -22,6 +27,7 @@ public class Module {
         this.code = code;
         this.name = name;
         this.credits = credits;
+        this.tasksList = new ArrayList<>();
     }
 
     public ModName getName() {
@@ -36,6 +42,23 @@ public class Module {
         return credits;
     }
 
+    public ArrayList<Task> getTasksList() {
+        return this.tasksList;
+    }
+    public int getTaskCount() {
+        return this.tasksList.size();
+    }
+
+
+    public void addTask(Task t) {
+        this.tasksList.add(t);
+    }
+
+    public void addTasks(List<Task> t) {
+        this.tasksList.addAll(t);
+    }
+
+
     /**
      * Returns true if both modules have the same name.
      * This defines a weaker notion of equality between two modules.
@@ -47,6 +70,19 @@ public class Module {
 
         return otherModule != null
                 && otherModule.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both modules have the same name.
+     * This defines a weaker notion of equality between two modules.
+     */
+    public boolean isSameCodeModule(Module otherModule) {
+        if (otherModule == this) {
+            return true;
+        }
+
+        return otherModule != null
+                && otherModule.getCode().equals(getCode());
     }
 
     /**

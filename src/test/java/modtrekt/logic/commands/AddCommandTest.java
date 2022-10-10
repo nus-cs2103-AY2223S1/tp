@@ -21,6 +21,7 @@ import modtrekt.model.ModuleList;
 import modtrekt.model.ReadOnlyModuleList;
 import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyUserPrefs;
+import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
 import modtrekt.model.task.Task;
 import modtrekt.testutil.ModuleBuilder;
@@ -131,8 +132,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModuleWithModCode(ModCode code) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteModule(Module target) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Module parseModuleFromCode(ModCode code) {
+            return null;
         }
 
         @Override

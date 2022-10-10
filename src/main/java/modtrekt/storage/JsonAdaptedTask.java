@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import modtrekt.commons.exceptions.IllegalValueException;
 import modtrekt.model.module.ModCode;
-import modtrekt.model.person.Person;
 import modtrekt.model.task.Description;
 import modtrekt.model.task.Task;
 
@@ -34,9 +33,9 @@ public class JsonAdaptedTask {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-//    public JsonAdaptedTask(Person source) {
-//        description = source.getName().description;
-//    }
+    //    public JsonAdaptedTask(Person source) {
+    //        description = source.getName().description;
+    //    }
 
     public JsonAdaptedTask(Task task) {
         this.description = task.getDescription().toString();

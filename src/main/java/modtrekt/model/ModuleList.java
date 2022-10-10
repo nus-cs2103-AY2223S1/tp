@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
 import modtrekt.model.module.UniqueModuleList;
 
@@ -64,6 +65,22 @@ public class ModuleList implements ReadOnlyModuleList {
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return modules.contains(module);
+    }
+
+    /**
+     * Returns true if a module with the same code as {@code code} exists in the module list.
+     */
+    public boolean hasModuleWithModCode(ModCode code) {
+        requireNonNull(code);
+        return modules.containsCode(code);
+    }
+
+    /**
+     * Returns a module with the same code as {@code code} from the module list.
+     */
+    public Module getModuleFromCode(ModCode code) {
+        requireNonNull(code);
+        return modules.getModuleFromCode(code);
     }
 
     /**

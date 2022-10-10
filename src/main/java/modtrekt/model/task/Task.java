@@ -1,7 +1,6 @@
 package modtrekt.model.task;
 
 import modtrekt.model.module.ModCode;
-import modtrekt.model.module.ModName;
 
 /**
  * Represents a basic task in the task list.

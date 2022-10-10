@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import modtrekt.commons.core.GuiSettings;
+import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
 import modtrekt.model.task.Task;
 
@@ -66,6 +67,7 @@ public interface Model {
      */
     void deleteTask(Task target);
     boolean hasModule(Module module);
+    boolean hasModuleWithModCode(ModCode code);
 
     /**
      * Adds the given task.
@@ -73,6 +75,7 @@ public interface Model {
      */
     void addTask(Task t);
     void deleteModule(Module target);
+    Module parseModuleFromCode(ModCode code);
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
