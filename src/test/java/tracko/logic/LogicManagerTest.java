@@ -156,7 +156,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveTrackO(ReadOnlyTrackO trackO, Path filePath) throws IOException {
+        public void saveTrackO(ReadOnlyTrackO trackO, Path trackOFilePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

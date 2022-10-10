@@ -62,7 +62,7 @@ public class StorageManagerTest {
 
     @Test
     public void getOrdersFilePath() {
-        assertNotNull(storageManager.getOrdersFilePath());
+        assertNotNull(storageManager.getTrackOFilePath());
     }
 
 }

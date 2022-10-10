@@ -6,12 +6,13 @@ import java.util.Optional;
 
 import tracko.commons.exceptions.DataConversionException;
 import tracko.model.ReadOnlyTrackO;
+import tracko.model.TrackO;
 
 /**
  * Represents a storage for {@link TrackO}
  */
 public interface TrackOStorage {
-    Path getOrdersFilePath();
+    Path getTrackOFilePath();
 
     /**
      * Returns TrackO data as a {@link ReadOnlyTrackO}
@@ -21,7 +22,7 @@ public interface TrackOStorage {
      */
     Optional<ReadOnlyTrackO> readTrackO() throws DataConversionException, IOException;
 
-    Optional<ReadOnlyTrackO> readTrackO(Path ordersFilePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyTrackO> readTrackO(Path trackOFilePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyTrackO} to the storage.
@@ -30,5 +31,5 @@ public interface TrackOStorage {
      */
     void saveTrackO(ReadOnlyTrackO trackO) throws IOException;
 
-    void saveTrackO(ReadOnlyTrackO trackO, Path ordersFilePath) throws IOException;
+    void saveTrackO(ReadOnlyTrackO trackO, Path trackOFilePath) throws IOException;
 }
