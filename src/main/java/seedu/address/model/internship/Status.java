@@ -30,6 +30,7 @@ public class Status {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
         value = status;
+
     }
 
     /**
