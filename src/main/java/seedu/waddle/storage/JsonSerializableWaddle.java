@@ -37,8 +37,8 @@ class JsonSerializableWaddle {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableWaddle(ReadOnlyWaddle source) {
-        itineraries.addAll(source.getItineraryList().stream()
-                .map(JsonAdaptedItinerary::new).collect(Collectors.toList()));
+        itineraries.addAll(source.getItineraryList().stream().map(JsonAdaptedItinerary::new)
+                .collect(Collectors.toList()));
     }
 
     /**
