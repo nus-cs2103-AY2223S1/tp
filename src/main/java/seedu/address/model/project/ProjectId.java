@@ -20,6 +20,11 @@ public class ProjectId {
         this.projectId = id;
     }
 
+    /**
+     * Checks whether the project ID string is valid.
+     * @param projectId
+     * @return Boolean value representing the validity of the project ID string.
+     */
     public static boolean isValidProjectId(String projectId) {
         try {
             Integer.parseInt(projectId);

@@ -8,7 +8,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.ClientId;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.project.Project;
 
 /**
@@ -91,7 +95,8 @@ class JsonAdaptedClient {
         final Email modelEmail = new Email(email);
 
         if (clientId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientId.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClientId.class.getSimpleName()));
         }
         if (!ClientId.isValidClientId(clientId)) {
             throw new IllegalValueException(ClientId.MESSAGE_CONSTRAINTS);

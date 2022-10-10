@@ -20,6 +20,11 @@ public class ClientId {
         this.clientId = id;
     }
 
+    /**
+     * Checks whether the client ID string is valid.
+     * @param clientId
+     * @return Boolean value representing the validity of the string.
+     */
     public static boolean isValidClientId(String clientId) {
         try {
             Integer.parseInt(clientId);

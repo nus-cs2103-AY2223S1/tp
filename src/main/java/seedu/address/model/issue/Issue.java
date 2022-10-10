@@ -1,8 +1,8 @@
 package seedu.address.model.issue;
 
-import seedu.address.model.project.Project;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import seedu.address.model.project.Project;
 
 /**
  * Represents an Issue.

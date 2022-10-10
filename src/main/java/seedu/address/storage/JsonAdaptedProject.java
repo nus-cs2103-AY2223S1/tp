@@ -1,16 +1,21 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.person.Client;
-import seedu.address.model.project.*;
+import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Name;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
+import seedu.address.model.project.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -102,7 +107,8 @@ class JsonAdaptedProject {
         }
 
         if (projectId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectId.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ProjectId.class.getSimpleName()));
         }
         if (!ProjectId.isValidProjectId(projectId)) {
             throw new IllegalValueException(ProjectId.MESSAGE_CONSTRAINTS);

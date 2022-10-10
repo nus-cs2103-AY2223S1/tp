@@ -20,6 +20,11 @@ public class IssueId {
         this.issueId = id;
     }
 
+    /**
+     * Checks if the issue ID string is valid.
+     * @param issueId
+     * @return Boolean value denoting whether the id string is valid.
+     */
     public static boolean isValidIssueId(String issueId) {
         try {
             Integer.parseInt(issueId);

@@ -9,6 +9,17 @@ public class Status {
 
     public static final String MESSAGE_CONSTRAINTS = "STATUS NOT IMPLEMENTED";
 
+    private boolean completed;
+
+    /**
+     * Constructs an issue completion Status.
+     *
+     * @param completionStatus true/false to indicate if issue is completed.
+     */
+    public Status(boolean completionStatus) {
+        this.completed = completionStatus;
+    }
+
     public static boolean isValidStatus(String status) {
         return parseBoolean(status);
     }
@@ -22,17 +33,6 @@ public class Status {
         private EmptyStatus() {
             super(false);
         }
-    }
-
-    private boolean completed;
-
-    /**
-     * Constructs an issue completion Status.
-     *
-     * @param completionStatus true/false to indicate if issue is completed.
-     */
-    public Status(boolean completionStatus) {
-        this.completed = completionStatus;
     }
 
     public boolean getStatus() {
