@@ -100,11 +100,11 @@ public class ModelManager implements Model {
         return trackO.getOrderList();
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Order List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code TrackO}
      */
     @Override
     public ObservableList<Order> getFilteredOrderList() {

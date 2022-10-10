@@ -9,7 +9,7 @@ import tracko.model.Model;
 import tracko.model.order.OrderContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all orders whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindOrderCommand extends Command {
@@ -31,10 +31,6 @@ public class FindOrderCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredOrderList(predicate);
-
-        if (model.getFilteredOrderList().size() == 1) {
-            return new CommandResult(Messages.MESSAGE_ONE_ORDER_FOUND);
-        }
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_ORDERS_FOUND_OVERVIEW, model.getFilteredOrderList().size()));
