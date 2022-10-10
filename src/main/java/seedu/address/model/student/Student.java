@@ -11,7 +11,7 @@ import seedu.address.model.attendance.Attendance;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Student in the address book.
+ * Represents a Student in the studentId book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -22,7 +22,7 @@ public class Student {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final StudentId studentId;
     private final Set<Tag> tags = new HashSet<>();
 
     private final Attendance attendance;
@@ -30,12 +30,12 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Attendance attendance) {
-        requireAllNonNull(name, phone, email, address, tags, attendance);
+    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<Tag> tags, Attendance attendance) {
+        requireAllNonNull(name, phone, email, studentId, tags, attendance);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.studentId = studentId;
         this.tags.addAll(tags);
         this.attendance = attendance;
     }
@@ -56,8 +56,8 @@ public class Student {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public StudentId getStudentId() {
+        return studentId;
     }
 
     /**
@@ -82,6 +82,15 @@ public class Student {
     }
 
     /**
+     * Returns true is both students have the same studentId
+     * @param otherStudent
+     * @return Whether this and provided student have the same studentId
+     */
+    public boolean hasSameId(Student otherStudent) {
+        return otherStudent.studentId.equals(studentId);
+    }
+
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */
@@ -99,14 +108,14 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getStudentId().equals(getStudentId())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, studentId, tags);
     }
 
     @Override
@@ -117,8 +126,8 @@ public class Student {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
+                .append("; StudentId: ")
+                .append(getStudentId())
                 .append("; Attendance: ")
                 .append(getAttendance());
 
