@@ -56,10 +56,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
             }
 
-            if (!findPersonDescriptor.isAnyFilled()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
-
+            //Checks the assumption that either the Phone_Number or Email should be filled
+            assert(findPersonDescriptor.isAnyFilled());
             return new FindCommand(findPersonDescriptor);
 
         } catch (ParseException pe) {

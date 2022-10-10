@@ -50,8 +50,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        Integer integerReward = Integer.parseInt(person.getReward().value);
-        reward.setText(integerReward.toString());
+        reward.setText(person.getReward().removeTrailingZeroes());
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
