@@ -2,12 +2,12 @@ package swift.logic.commands;
 
 import swift.commons.core.Messages;
 import swift.model.Model;
-import swift.model.person.NameContainsKeywordsPredicate;
+import swift.model.task.TaskNameContainsKeywordsPredicate;
 
 import static java.util.Objects.requireNonNull;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all tasks in address book whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindTaskCommand extends Command {
@@ -19,16 +19,16 @@ public class FindTaskCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " discuss about UI";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final TaskNameContainsKeywordsPredicate predicate;
 
-    public FindTaskCommand(NameContainsKeywordsPredicate predicate) {
+    public FindTaskCommand(TaskNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredTaskList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }

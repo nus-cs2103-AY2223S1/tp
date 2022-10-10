@@ -24,6 +24,10 @@ public class Task {
         this.contactIndex = contactIndex;
     }
 
+    public TaskName getTaskName() {
+        return taskName;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this

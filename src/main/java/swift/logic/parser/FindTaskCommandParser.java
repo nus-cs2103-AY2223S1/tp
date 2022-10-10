@@ -2,7 +2,7 @@ package swift.logic.parser;
 
 import swift.logic.commands.FindTaskCommand;
 import swift.logic.parser.exceptions.ParseException;
-import swift.model.person.NameContainsKeywordsPredicate;
+import swift.model.task.TaskNameContainsKeywordsPredicate;
 
 import java.util.Arrays;
 
@@ -27,7 +27,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindTaskCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindTaskCommand(new TaskNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
