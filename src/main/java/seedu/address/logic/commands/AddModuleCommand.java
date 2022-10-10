@@ -32,7 +32,7 @@ public class AddModuleCommand extends Command {
             + PREFIX_LECTURE + "Monday, 10am "
             + PREFIX_TUTORIAL + "Thursday, 12pm "
             + PREFIX_ZOOM + "https://nus-sg.zoom.us/j/82167158590 "
-            + PREFIX_ASSIGNMENT + "Tutorial 1 "
+            + PREFIX_ASSIGNMENT + "Tutorial1 "
             + PREFIX_ASSIGNMENT + "Lab1";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
