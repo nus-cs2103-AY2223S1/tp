@@ -69,12 +69,12 @@ public interface Model {
      * Deletes the given order.
      */
     void deleteOrder(Order order);
-    
+
     /**
      * Adds the given item.
      */
     void addItem(Item item);
-    
+
     /**
      * Returns an unmodifiable view of the filtered person list.
      */
@@ -89,7 +89,7 @@ public interface Model {
     void updateFilteredItemList(Predicate<Item> predicate);
 
     /**
-     * Returns the number of items in the filtered item list
+     * Returns the number of items in the filtered item list.
      */
     int getFilteredItemListSize();
 
