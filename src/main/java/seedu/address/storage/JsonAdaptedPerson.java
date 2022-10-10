@@ -16,8 +16,8 @@ import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.PersonGroup;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -129,7 +129,8 @@ class JsonAdaptedPerson {
 
         final List<PersonGroup> modelPersonGroup = new ArrayList<>(personGroupsList);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAssignment, modelPersonGroup);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                modelAssignment, modelPersonGroup);
     }
 
 }
