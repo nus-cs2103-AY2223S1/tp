@@ -12,6 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NOKPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
@@ -24,6 +25,7 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String phone;
+    private final String nokPhone;
     private final String email;
     private final String address;
     private final String classDateTime;
@@ -36,13 +38,15 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("nokPhone") String nokPhone, @JsonProperty("email") String email,
+                             @JsonProperty("address") String address,
                              @JsonProperty("classDateTime") String classDateTime,
                              @JsonProperty("moneyOwed") Integer moneyOwed,
                              @JsonProperty("moneyPaid") Integer moneyPaid,
                              @JsonProperty("additionalNotes") String additionalNotes) {
         this.name = name;
         this.phone = phone;
+        this.nokPhone = nokPhone;
         this.email = email;
         this.address = address;
         this.classDateTime = classDateTime;
@@ -57,6 +61,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
+        nokPhone = source.getNOKPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         classDateTime = source.getAClass().classDateTime;
@@ -87,6 +92,14 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
+
+        if (nokPhone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NOKPhone.class.getSimpleName()));
+        }
+        if (!NOKPhone.isValidNOKPhone(nokPhone)) {
+            throw new IllegalValueException(NOKPhone.MESSAGE_CONSTRAINTS);
+        }
+        final NOKPhone modelNOKPhone = new NOKPhone(nokPhone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -141,7 +154,7 @@ class JsonAdaptedPerson {
             modelAdditionalNotes = new AdditionalNotes("");
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClassDateTime,
+        return new Person(modelName, modelPhone, modelNOKPhone, modelEmail, modelAddress, modelClassDateTime,
                 modelMoneyOwed, modelMoneyPaid, modelAdditionalNotes);
     }
 
