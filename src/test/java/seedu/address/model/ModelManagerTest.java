@@ -94,6 +94,17 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void isStudentListInfoConcise_initial_returnsTrue() {
+        assertTrue(modelManager.isStudentListInfoConcise());
+    }
+
+    @Test
+    public void setStudentListInfoConcise_setFalse() {
+        modelManager.setStudentListInfoConcise(false);
+        assertFalse(modelManager.isStudentListInfoConcise());
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
