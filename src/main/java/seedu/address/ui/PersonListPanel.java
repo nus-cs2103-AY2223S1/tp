@@ -9,7 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Panel containing the list of persons.
@@ -19,21 +19,21 @@ public class PersonListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Patient> personListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, Supplier<Boolean> taskListFlagSupplier) {
+    public PersonListPanel(ObservableList<Patient> personList, Supplier<Boolean> taskListFlagSupplier) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell(taskListFlagSupplier));
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Patient} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class PersonListViewCell extends ListCell<Patient> {
         private final Supplier<Boolean> taskListFlagSupplier;
 
         PersonListViewCell(Supplier<Boolean> taskListFlagSupplier) {
@@ -42,7 +42,7 @@ public class PersonListPanel extends UiPart<Region> {
         }
 
         @Override
-        protected void updateItem(Person person, boolean empty) {
+        protected void updateItem(Patient person, boolean empty) {
             super.updateItem(person, empty);
 
             if (empty || person == null) {
