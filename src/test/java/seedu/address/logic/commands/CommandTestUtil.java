@@ -31,6 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_HOMEWORK_AMY = "English editing worksheet";
     public static final String VALID_HOMEWORK_BOB = "Chemistry worksheet 14";
+    public static final String VALID_ATTENDANCE_AMY = "2022-07-07";
+    public static final String VALID_ATTENDANCE_BOB = "2022-08-08";
     public static final String VALID_GRADE_PROGRESS_AMY = "Math: A";
     public static final String VALID_GRADE_PROGRESS_BOB = "Math: B";
     public static final String VALID_LESSON_PLAN_AMY = "Amy's course basics";
