@@ -27,6 +27,17 @@ public class StudentBuilder extends PersonBuilder {
     }
 
     /**
+     * Creates a {@code StudentBuilder} from the person's details.
+     * @param person The person to copy.
+     */
+    public StudentBuilder(Person person) {
+        super(person);
+        id = DEFAULT_ID;
+        telegramHandle = DEFAULT_TELEGRAM_HANDLE;
+        studentInfo = DEFAULT_STUDENT_INFO;
+    }
+
+    /**
      * Initializes the StudentBuilder with the data of {@code studentToCopy}.
      */
     public StudentBuilder(Student studentToCopy) {
@@ -34,6 +45,8 @@ public class StudentBuilder extends PersonBuilder {
         telegramHandle = studentToCopy.getTelegramHandle();
         studentInfo = studentToCopy.getStudentInfo();
     }
+
+
 
     /**
      * Sets the {@code id} of the {@code Student} that we are building.
@@ -54,7 +67,7 @@ public class StudentBuilder extends PersonBuilder {
     /**
      * Sets the {@code studentInfo} of the {@code Student} that we are building.
      */
-    public StudentBuilder studentInfo(String studentInfo) {
+    public StudentBuilder withStudentInfo(String studentInfo) {
         this.studentInfo = studentInfo;
         return this;
     }

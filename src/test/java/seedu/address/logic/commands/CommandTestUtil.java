@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HANDLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -36,6 +39,15 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ID_AMY = "A0123456W";
+    public static final String VALID_ID_BOB = "A0123654W";
+    public static final String VALID_TELEGRAM_AMY = "@amylovescode";
+    public static final String VALID_TELEGRAM_BOB = "@bobhatescode";
+    public static final String VALID_INFO_AMY = "CS1101S";
+    public static final String VALID_INFO_BOB = "CS2030S";
+    public static final String VALID_STUDENT_ID = "A0123123X";
+    public static final String VALID_STUDENT_TELEGRAM = "amyb123";
+    public static final String VALID_STUDENT_INFO = "abc";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -47,6 +59,9 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String STUDENT_DESC_ID = " " + PREFIX_ID + VALID_STUDENT_ID;
+    public static final String STUDENT_DESC_TELEGRAM = " " + PREFIX_HANDLE + VALID_STUDENT_TELEGRAM;
+    public static final String STUDENT_DESC_STUDENT_INFO = " " + PREFIX_STUDENT_INFO + VALID_STUDENT_INFO;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
