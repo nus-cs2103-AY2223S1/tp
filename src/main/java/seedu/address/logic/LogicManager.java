@@ -98,13 +98,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void updateCurrentListType(Model.LIST_TYPE type)
+    public void updateCurrentListType(Model.ListType type)
     {
         model.updateCurrentListType(type);
     }
 
     @Override
-    public Model.LIST_TYPE getCurrentListType()
+    public Model.ListType getCurrentListType()
     {
         return model.getCurrentListType();
     }

@@ -16,8 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model.LIST_TYPE;
-import seedu.address.model.tuitionclass.TuitionClass;
+import seedu.address.model.Model;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -83,6 +82,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -178,22 +178,22 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleList() {
-        LIST_TYPE type = logic.getCurrentListType();
+        Model.ListType type = logic.getCurrentListType();
         personListPanelPlaceholder.getChildren().clear();
         switch (type) {
         case STUDENT_LIST:
-        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-        break;
+            personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            break;
         case TUTOR_LIST:
-        personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
-        break;
+            personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+            break;
         case TUITIONCLASS_LIST:
-        personListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
-        break;
+            personListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+            break;
         case PERSON_LIST:
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         default:
-        break;
+            break;
         }
     }
 

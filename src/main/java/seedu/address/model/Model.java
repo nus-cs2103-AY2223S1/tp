@@ -22,7 +22,7 @@ public interface Model {
     Predicate<TuitionClass> PREDICATE_SHOW_ALL_TUITIONCLASS = unused -> true;
 
     /** the type of the current list **/
-    enum LIST_TYPE { STUDENT_LIST, TUTOR_LIST, TUITIONCLASS_LIST, PERSON_LIST };
+    enum ListType { STUDENT_LIST, TUTOR_LIST, TUITIONCLASS_LIST, PERSON_LIST };
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -123,10 +123,10 @@ public interface Model {
     void updateFilteredTuitionClassList(Predicate<TuitionClass> predicate);
 
     /** Updates the type of the current list **/
-    void updateCurrentListType(LIST_TYPE type);
+    void updateCurrentListType(ListType type);
 
     /** Returns the type of the current list **/
-    LIST_TYPE getCurrentListType();
+    ListType getCurrentListType();
 
     /** Returns the current list **/
     FilteredList<?> getCurrentList();

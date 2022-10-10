@@ -110,8 +110,8 @@ public class ModelManagerTest {
 
     @Test
     public void getCurrentListType_getListType_() {
-        modelManager.updateCurrentListType(Model.LIST_TYPE.STUDENT_LIST);
-        assertEquals(Model.LIST_TYPE.STUDENT_LIST, modelManager.getCurrentListType());
+        modelManager.updateCurrentListType(Model.ListType.STUDENT_LIST);
+        assertEquals(Model.ListType.STUDENT_LIST, modelManager.getCurrentListType());
     }
 
     @Test

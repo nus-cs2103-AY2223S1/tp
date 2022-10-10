@@ -63,8 +63,8 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /** Updates the type of the current list **/
-    void updateCurrentListType(Model.LIST_TYPE type);
+    void updateCurrentListType(Model.ListType type);
 
     /** Returns the type of the current list **/
-    Model.LIST_TYPE getCurrentListType();
+    Model.ListType getCurrentListType();
 }

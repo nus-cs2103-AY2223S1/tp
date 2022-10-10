@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.LIST_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTOR;
 
 import seedu.address.model.Model;
@@ -19,7 +18,7 @@ public class ListTutorCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateCurrentListType(LIST_TYPE.TUTOR_LIST);
+        model.updateCurrentListType(Model.ListType.TUTOR_LIST);
         model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTOR);
         return new CommandResult(MESSAGE_SUCCESS, true);
     }

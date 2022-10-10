@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     private final FilteredList<Tutor> filteredTutors;
     private final FilteredList<TuitionClass> filteredTuitionClass;
     /** the type of the current list **/
-    private LIST_TYPE type;
+    private ListType type;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -187,13 +187,13 @@ public class ModelManager implements Model {
     //=========== List Type Accessors =============================================================
 
     @Override
-    public void updateCurrentListType(LIST_TYPE type)
+    public void updateCurrentListType(ListType type)
     {
         this.type = type;
     }
 
     @Override
-    public LIST_TYPE getCurrentListType()
+    public ListType getCurrentListType()
     {
         return this.type;
     }
@@ -203,13 +203,13 @@ public class ModelManager implements Model {
     {
         switch(this.type) {
         case STUDENT_LIST:
-        return filteredStudents;
+            return filteredStudents;
         case TUTOR_LIST:
-        return filteredTutors;
+            return filteredTutors;
         case TUITIONCLASS_LIST:
-        return filteredTuitionClass;
+            return filteredTuitionClass;
         default:
-        return filteredStudents;
+            return filteredStudents;
         }
     }
 

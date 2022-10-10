@@ -61,8 +61,8 @@ public class PersonCard extends UiPart<Region> {
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      * Adds a FXML field which child class can call to initiate with a different FXML
      */
-    public PersonCard(Person person, int displayedIndex, String FXML) {
-        super(FXML);
+    public PersonCard(Person person, int displayedIndex, String fxml) {
+        super(fxml);
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
