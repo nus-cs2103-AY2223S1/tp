@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -33,6 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_CLASS_GROUP_AMY = "CS2030 Lab 31";
+    public static final String VALID_CLASS_GROUP_BOB = "CS2040S Tutorial 13";
     public static final String VALID_STUDENTID_AMY = "e0111111";
     public static final String VALID_STUDENTID_BOB = "e0222222";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -44,6 +47,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String CLASS_GROUP_DESC_AMY = " " + PREFIX_CLASS_GROUP + VALID_CLASS_GROUP_AMY;
+    public static final String CLASS_GROUP_DESC_BOB = " " + PREFIX_CLASS_GROUP + VALID_CLASS_GROUP_BOB;
     public static final String STUDENTID_DESC_AMY = " " + PREFIX_ID + VALID_STUDENTID_AMY;
     public static final String STUDENTID_DESC_BOB = " " + PREFIX_ID + VALID_STUDENTID_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -63,11 +68,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withStudentId(VALID_STUDENTID_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withClassGroup(VALID_CLASS_GROUP_AMY)
+                .withStudentId(VALID_STUDENTID_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withStudentId(VALID_STUDENTID_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withClassGroup(VALID_CLASS_GROUP_BOB)
+                .withStudentId(VALID_STUDENTID_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

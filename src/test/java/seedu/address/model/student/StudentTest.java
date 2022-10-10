@@ -2,6 +2,7 @@ package seedu.address.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_GROUP_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -33,7 +34,8 @@ public class StudentTest {
 
         // same name, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withStudentId(VALID_STUDENTID_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withClassGroup(VALID_CLASS_GROUP_BOB).withStudentId(VALID_STUDENTID_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -80,7 +82,11 @@ public class StudentTest {
         editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
+        // different class group -> returns false
+        editedAlice = new StudentBuilder(ALICE).withClassGroup(VALID_CLASS_GROUP_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different student id -> returns false
         editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

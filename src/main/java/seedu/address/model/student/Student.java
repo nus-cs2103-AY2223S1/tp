@@ -21,17 +21,19 @@ public class Student {
     private final Email email;
 
     // Data fields
+    private final ClassGroup classGroup;
     private final StudentId studentId;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, studentId, tags);
+    public Student(Name name, Phone phone, Email email, ClassGroup classGroup, StudentId studentId, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, classGroup, studentId, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.classGroup = classGroup;
         this.studentId = studentId;
         this.tags.addAll(tags);
     }
@@ -46,6 +48,10 @@ public class Student {
 
     public Email getEmail() {
         return email;
+    }
+
+    public ClassGroup getClassGroup() {
+        return classGroup;
     }
 
     public StudentId getStudentId() {
@@ -99,6 +105,7 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
+                && otherStudent.getClassGroup().equals(getClassGroup())
                 && otherStudent.getStudentId().equals(getStudentId())
                 && otherStudent.getTags().equals(getTags());
     }
@@ -106,7 +113,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, studentId, tags);
+        return Objects.hash(name, phone, email, classGroup, studentId, tags);
     }
 
     @Override
@@ -117,6 +124,8 @@ public class Student {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Class Group: ")
+                .append(getClassGroup())
                 .append("; StudentId: ")
                 .append(getStudentId());
 
