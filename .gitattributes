@@ -1,4 +1,4 @@
 # Set line ending to lf
-text eol=lf
+text eol=auto
 
 *.pdf binary
