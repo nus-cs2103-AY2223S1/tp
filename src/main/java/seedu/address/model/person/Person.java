@@ -155,4 +155,8 @@ public class Person implements DisplayItem {
         parents.add((AbstractContainerItem) o);
     }
 
+    @Override
+    public boolean isPartOfContext(DisplayItem o) {
+        return parents.contains(o);
+    }
 }

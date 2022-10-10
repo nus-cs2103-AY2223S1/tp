@@ -55,6 +55,14 @@ public class Group extends AbstractContainerItem {
     }
 
     @Override
+    public boolean isPartOfContext(DisplayItem o) {
+        if (parent != null) {
+            return parent.equals(o);
+        }
+        return o == null;
+    }
+
+    @Override
     public String toString() {
         return groupName;
     }

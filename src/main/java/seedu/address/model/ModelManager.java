@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.group.Group;
+import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +26,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Group> filteredTeams;
+    private Optional<AbstractContainerItem> currentContext = Optional.empty();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +40,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTeams = new FilteredList<>(this.addressBook.getTeamsList());
     }
 
     public ModelManager() {
@@ -129,6 +136,17 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
+        updateFilteredPersonList(List.of(predicate));
+    }
+
+    @Override
+    public void updateFilteredPersonList(List<Predicate<Person>> predicates) {
+        requireNonNull(predicates);
+        Predicate<Person> predicate = p -> {
+            return currentContext.map(cxt -> p.isPartOfContext(cxt)).orElse(true)
+                    && predicates.stream().map(pred -> pred.test(p)).allMatch(res -> res == true);
+        };
+
         filteredPersons.setPredicate(predicate);
     }
 
@@ -148,6 +166,13 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTeams.equals(other.filteredTeams);
+    }
+
+    @Override
+    public void updateContextContainer(AbstractContainerItem container) {
+        currentContext = Optional.ofNullable(container);
+        updateFilteredPersonList(List.of());
     }
 }

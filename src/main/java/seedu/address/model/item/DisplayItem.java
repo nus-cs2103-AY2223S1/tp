@@ -21,5 +21,13 @@ public interface DisplayItem {
      */
     boolean weaklyEqual(DisplayItem o);
 
+    /**
+     * Make the current item to belong under {@code DisplayItem o}
+     */
     void setParent(DisplayItem o);
+
+    /**
+     * Returns true if {@code DisplayItem o} is a parent of this item
+     */
+    boolean isPartOfContext(DisplayItem o);
 }
