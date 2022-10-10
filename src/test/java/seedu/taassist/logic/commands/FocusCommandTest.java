@@ -49,7 +49,7 @@ class FocusCommandTest {
 
         @Override
         public ObservableList<ModuleClass> getModuleClassList() {
-            return FXCollections.observableArrayList(new ModuleClass("CS1101S"), new ModuleClass("CS2103T"));
+            return FXCollections.observableArrayList();
         }
     }
 
