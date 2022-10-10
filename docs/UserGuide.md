@@ -109,14 +109,14 @@ Examples:
 
 Adds an item to the list of tracked inventory.
 
-Format: `addi n/ITEM_NAME [t/TAG]…​`
+Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An inventory item can have any number of tags (including 0)
 </div>
 
 Examples:
-* `addi n/Keychain`
+* `addi n/Keychain q/20 d/Silicone keychain with a metal buckle`
 * `addi n/Chair t/Furniture`
 
 ### Deleting an inventory item : `deletei`
@@ -185,7 +185,7 @@ Format: `exit`
 | **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                    |
 | **List All Orders**          | `listo`                                                                                                                                                                                                                   |
 | **Find Order(s)**            | `findo KEYWORD [MORE_KEYWORDS]`                                                                                                                                                                                           |
-| **Add An Inventory Item**    | `addi n/NAME [t/TAG]…​` <br> e.g., `addi n/Chair t/Furniture`                                                                                                                                                             |
+| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture`                                                                                                        |
 | **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                     |
 | **Tag An Inventory Item**    | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`                                                                                                                                                          |
 | **List All Inventory Items** | `listi`                                                                                                                                                                                                                   |
