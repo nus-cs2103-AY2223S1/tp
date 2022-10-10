@@ -1,6 +1,12 @@
 package seedu.travelr.model.list;
 
-import java.util.*;
+import static java.util.Objects.requireNonNull;
+import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,8 +15,6 @@ import seedu.travelr.model.event.exceptions.DuplicateEventException;
 import seedu.travelr.model.event.exceptions.EventNotFoundException;
 import seedu.travelr.model.trip.Title;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the Itineraries class.
@@ -28,6 +32,16 @@ public class Itineraries extends EventList {
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameTrip);
+    }
+
+    /**
+     * Returns whether an Event with the specified title exist in the events
+     * @param title the title to be searched
+     * @return true if the events contains an event with the specified title
+     */
+    public boolean contains(String title) {
+        Event temp = new Event(new Title(title));
+        return events.contains(temp);
     }
 
     /**
@@ -155,6 +169,12 @@ public class Itineraries extends EventList {
         return event;
     }
 
+    public Event getEvent(int i) {
+        Object temp = events.toArray()[i - 1];
+        Event event = (Event) temp;
+        return event;
+    }
+
     public Set<Event> getList() {
         return events;
     }
@@ -173,17 +193,6 @@ public class Itineraries extends EventList {
 
     public void removeEvent(Event event) {
         events.remove(event);
-    }
-
-    public Event getEvent(int i) {
-        Object temp = events.toArray()[i - 1];
-        Event event = (Event) temp;
-        return event;
-    }
-
-    public boolean contains(String title) {
-        Event temp = new Event(new Title(title));
-        return events.contains(temp);
     }
 
 }

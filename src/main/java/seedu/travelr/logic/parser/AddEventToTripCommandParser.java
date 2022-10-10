@@ -4,16 +4,11 @@ import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
 
-import java.util.HashSet;
 import java.util.stream.Stream;
 
 import seedu.travelr.logic.commands.AddEventToTripCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
-import seedu.travelr.model.AddressBook;
-import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Title;
-import seedu.travelr.model.trip.Trip;
 
 /**
  * Represents the AddEventToTripCommandParser.

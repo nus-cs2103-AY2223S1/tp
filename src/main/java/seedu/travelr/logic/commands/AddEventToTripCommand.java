@@ -4,17 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
 
+import java.util.HashSet;
+
 import seedu.travelr.logic.commands.exceptions.CommandException;
-import seedu.travelr.logic.parser.exceptions.ParseException;
-import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
-
-import java.util.HashSet;
-
 
 /**
  * Represents the AddEventToTripCommand. Extends the Command class.

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.HashSet;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,8 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.commons.core.LogsCenter;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -134,12 +131,6 @@ public class ModelManager implements Model {
 
     public Trip getTrip(Trip trip) {
         return addressBook.getTrip(trip);
-    }
-
-    public void addEventToTrip(Title eventTitle, Title tripTitle) {
-        Event event = addressBook.getEvent(new Event(eventTitle));
-        Trip toAddInto = addressBook.getTrip(new Trip(tripTitle, new Description("random"), new HashSet<>()));
-
     }
 
     @Override

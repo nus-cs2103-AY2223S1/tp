@@ -6,7 +6,6 @@ import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.travelr.logic.commands.exceptions.CommandException;
-import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.event.Event;
 

@@ -1,5 +1,8 @@
 package seedu.travelr.model.list;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -12,9 +15,6 @@ import seedu.travelr.model.event.exceptions.DuplicateEventException;
 import seedu.travelr.model.event.exceptions.EventNotFoundException;
 import seedu.travelr.model.trip.Title;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
-
 /**
  * Represents the BucketList class.
  */
@@ -26,7 +26,19 @@ public class BucketList extends EventList {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an Event with the given title.
+     *
+     * @param title the title to be searched
+     */
+    public boolean contains(String title) {
+        Event temp = new Event(new Title(title));
+        return events.contains(temp);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent Event as the given argument.
+     *
+     * @param toCheck the event desired
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
@@ -178,11 +190,6 @@ public class BucketList extends EventList {
 
     public Event getEvent(Event event) {
         return event;
-    }
-
-    public boolean contains(String title) {
-        Event temp = new Event(new Title(title));
-        return events.contains(temp);
     }
 
     public Set<Event> getList() {
