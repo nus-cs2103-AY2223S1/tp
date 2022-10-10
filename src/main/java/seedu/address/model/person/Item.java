@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's item in the person list.
+ * Represents a Supplier's item in the person list.
  * Guarantees: immutable; is valid as declared in {@link #isValidItem(String)}
  */
 public class Item {
