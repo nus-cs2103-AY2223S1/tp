@@ -12,19 +12,19 @@ import friday.model.ReadOnlyUserPrefs;
 import friday.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Friday data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private FridayStorage fridayStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code FridayStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(FridayStorage fridayStorage, UserPrefsStorage userPrefsStorage) {
+        this.fridayStorage = fridayStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,33 +46,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ Friday methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getFridayFilePath() {
+        return fridayStorage.getFridayFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyFriday> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyFriday> readFriday() throws DataConversionException, IOException {
+        return readFriday(fridayStorage.getFridayFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyFriday> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFriday> readFriday(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return fridayStorage.readFriday(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyFriday addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveFriday(ReadOnlyFriday friday) throws IOException {
+        saveFriday(friday, fridayStorage.getFridayFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyFriday addressBook, Path filePath) throws IOException {
+    public void saveFriday(ReadOnlyFriday friday, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        fridayStorage.saveFriday(friday, filePath);
     }
 
 }
