@@ -58,7 +58,10 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        // delete 9?? I dont even know what to do with this
+        // TODO: review
+        // String deleteCommand = "delete 9";
+         String deleteCommand = "client -d 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 

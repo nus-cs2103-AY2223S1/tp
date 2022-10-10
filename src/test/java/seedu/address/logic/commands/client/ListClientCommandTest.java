@@ -32,8 +32,8 @@ public class ListClientCommandTest {
     public void execute_listIsNotFiltered_showsSameList() {
         Ui stubUi = new UiManager(null);
         assertCommandSuccess(new ListClientCommand(), model, ListClientCommand.MESSAGE_SUCCESS, expectedModel, stubUi);
-
     }
+
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
