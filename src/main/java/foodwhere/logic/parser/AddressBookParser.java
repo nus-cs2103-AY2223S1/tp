@@ -64,7 +64,7 @@ public class AddressBookParser {
 
         case RListCommand.COMMAND_WORD:
             return new RListCommand();
-            
+
         case SListCommand.COMMAND_WORD:
             return new SListCommand();
 
@@ -76,9 +76,6 @@ public class AddressBookParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
