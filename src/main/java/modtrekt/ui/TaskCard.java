@@ -22,7 +22,7 @@ public class TaskCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on ModuleList level 4</a>
      */
 
-    public final Task person;
+    public final Task task;
 
     @FXML
     private HBox cardPane;
@@ -31,22 +31,21 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
     private FlowPane tags;
 
     /**
      * Creates a {@code ModuleCode} with the given {@code Module} and index to display.
      */
-    public TaskCard(Task t, int displayedIndex) {
+    public TaskCard(Task task, int displayedIndex) {
         super(FXML);
-        this.person = t;
+        this.task = task;
         id.setText(displayedIndex + ". ");
-        name.setText(person.toString());
+        name.setText(this.task.toString());
+        if (task.isArchived()) {
+            // Add the `archived` badge if the task is archived.
+            Label archivedBadge = new Label("ARCHIVED");
+            this.tags.getChildren().add(archivedBadge);
+        }
     }
 
     @Override
@@ -64,6 +63,6 @@ public class TaskCard extends UiPart<Region> {
         // state check
         TaskCard card = (TaskCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && task.equals(card.task);
     }
 }
