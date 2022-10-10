@@ -20,7 +20,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.getAddressBook().getPersonList().size() == 0) {
+        if (model.getAddressBookSize() == 0) {
             throw new CommandException(MESSAGE_EMPTY_LIST);
         }
         model.setAddressBook(new AddressBook());

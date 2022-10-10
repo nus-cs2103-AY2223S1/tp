@@ -37,6 +37,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
+    /**
+     * Returns number of contacts in AddressBook
+     */
+    public int size() {
+        return this.size();
+    }
+
     //// list overwrite operations
 
     /**
