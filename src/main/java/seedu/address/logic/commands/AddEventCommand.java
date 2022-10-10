@@ -1,15 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
 
 /**
  * Adds an Event to the application.
@@ -37,6 +37,10 @@ public class AddEventCommand extends Command {
 
     private final Event toAdd;
 
+    /**
+     * Constructor for AddEventCommand
+     * @param event to be wrapped by AddEventCommand object
+     */
     public AddEventCommand(Event event) {
         requireNonNull(event);
         toAdd = event;
@@ -44,7 +48,9 @@ public class AddEventCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        //TODO: Add logical checks for duplicates of Event before adding
         model.addEvent(toAdd);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }
