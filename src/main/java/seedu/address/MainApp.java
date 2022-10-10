@@ -61,19 +61,19 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s TrackAScholar and {@code userPrefs}. <br>
+     * The data from the sample TrackAScholar will be used instead if {@code storage}'s TrackAScholar is not found,
+     * or an empty TrackAScholar will be used instead if errors occur when reading {@code storage}'s TrackAScholar.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyTrackAScholar> addressBookOptional;
+        Optional<ReadOnlyTrackAScholar> trackAScholarOptional;
         ReadOnlyTrackAScholar initialData;
         try {
-            addressBookOptional = storage.readTrackAScholar();
-            if (!addressBookOptional.isPresent()) {
+            trackAScholarOptional = storage.readTrackAScholar();
+            if (!trackAScholarOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample TrackAScholar");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTrackAScholar);
+            initialData = trackAScholarOptional.orElseGet(SampleDataUtil::getSampleTrackAScholar);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TrackAScholar");
             initialData = new TrackAScholar();
@@ -165,7 +165,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping TrackAScholar ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

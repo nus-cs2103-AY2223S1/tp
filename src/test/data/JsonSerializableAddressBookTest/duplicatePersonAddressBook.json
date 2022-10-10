@@ -3,14 +3,14 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "scholarship": "123, Jurong West Ave 6, #08-111",
+    "scholarship": "Arts",
     "applicationStatus": "pending",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "scholarship": "4th street",
+    "scholarship": "Sports",
     "applicationStatus": "pending"
   } ]
 }
