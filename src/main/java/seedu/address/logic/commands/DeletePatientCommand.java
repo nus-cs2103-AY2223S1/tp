@@ -13,10 +13,7 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a patient identified using it's displayed index from the Patient list.
  */
-public class DeletePatientCommand extends Command {
-
-    public static final String COMMAND_WORD = "deletePatient";
-
+public class DeletePatientCommand extends DeleteGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"

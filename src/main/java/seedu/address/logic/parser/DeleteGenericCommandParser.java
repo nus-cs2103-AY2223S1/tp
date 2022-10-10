@@ -27,7 +27,7 @@ public class DeleteGenericCommandParser implements Parser<DeleteGenericCommand> 
         if (options.getValue(PREFIX_OPTION_PATIENT_INDEX).isPresent()
                 && !options.getValue(PREFIX_OPTION_TASK_INDEX).isPresent()) {
             String patientIndex = options.getValue(PREFIX_OPTION_PATIENT_INDEX).get();
-            return new DeleteCommandParser().parse(patientIndex + " " + args);
+            return new DeletePatientCommandParser().parse(patientIndex + " " + args);
         }
 
         if (options.getValue(PREFIX_OPTION_PATIENT_INDEX).isPresent()
