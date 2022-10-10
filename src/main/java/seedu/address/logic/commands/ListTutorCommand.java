@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class ListTutorCommand extends Command {
 
-    public static final String COMMAND_WORD = "listT";
+    public static final String COMMAND_WORD = "list_t";
 
     public static final String MESSAGE_SUCCESS = "Listed all tutors";
 
