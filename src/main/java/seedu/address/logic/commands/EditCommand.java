@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.company.Address;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.Name;
+import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -88,9 +89,9 @@ public class EditCommand extends Command {
         Name updatedName = editCompanyDescriptor.getName().orElse(companyToEdit.getName());
         Address updatedAddress = editCompanyDescriptor.getAddress().orElse(companyToEdit.getAddress());
         Set<Tag> updatedTags = editCompanyDescriptor.getTags().orElse(companyToEdit.getTags());
+        UniquePocList pocs = editCompanyDescriptor.getUniquePocList().orElse(companyToEdit.getPocs());
 
-        return new Company(updatedName, updatedAddress, updatedTags);
-
+        return new Company(updatedName, updatedAddress, updatedTags, pocs);
     }
 
     @Override
@@ -119,6 +120,7 @@ public class EditCommand extends Command {
         private Name name;
         private Address address;
         private Set<Tag> tags;
+        private UniquePocList pocs;
 
         public EditCompanyDescriptor() {}
 
@@ -130,6 +132,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setUniquePocList(toCopy.pocs);
         }
 
         /**
@@ -153,6 +156,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setUniquePocList(UniquePocList pocs) {
+            this.pocs = pocs;
+        }
+
+        public Optional<UniquePocList> getUniquePocList() {
+            return Optional.ofNullable(pocs);
         }
 
         /**
