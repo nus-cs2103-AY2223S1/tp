@@ -77,7 +77,7 @@ public class RemoveTagCommand extends TagCommandGroup {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TagCommand)) {
+        if (!(other instanceof RemoveTagCommand)) {
             return false;
         }
 
