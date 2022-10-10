@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc} 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -289,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: UC01 - Add An Applicant** 
+**Use case: UC01 - Add An Applicant**
 
 **Guarantees:**
 * A new applicant will only be added if there does not exist an applicant with the same name.
@@ -316,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1a1 TrackAScholar displays an error message that applicant already exist. <br>
     Use case resumes at step 1.
-    
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC02 - Delete an applicant**
@@ -348,9 +348,9 @@ be able to view the applicant from the list.
   * 1c1. TrackAScholar request confirmation to delete the applicant.
   * 1c2. User agrees by typing YES to confirm deletion. <br>
       Use case ends.
-      
+
 --------------------------------------------------------------------------------------------------------------------
-      
+
 **Use case: UC03 - Edit personal details of an applicant**
 
 **Guarantees:**
@@ -425,7 +425,7 @@ be able to view the applicant from the list.
     * 1b2. User enters new applicant status.
     * Steps 1b1-1b2 are repeated until the applicant status entered matches a valid existing applicant status.
     * Use case resumes from step 2.
-    
+
 
 *{More to be added}*
 
@@ -502,4 +502,4 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
-3. 
+
