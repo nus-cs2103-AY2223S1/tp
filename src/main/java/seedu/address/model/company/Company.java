@@ -1,5 +1,6 @@
 package seedu.address.model.company;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -14,6 +15,8 @@ import seedu.address.model.ReadOnlyCompany;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Transaction;
+import seedu.address.model.transaction.TransactionLog;
 
 /**
  * Represents a Company in the address book.
@@ -28,12 +31,13 @@ public class Company implements ReadOnlyCompany {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final UniquePocList pocs;
+    private final TransactionLog transactions;
 
     /**
      * Every field must be present and not null.
      */
     public Company(Name name, Address address, Set<Tag> tags) {
-        this(name, address, tags, new UniquePocList());
+        this(name, address, tags, new UniquePocList(), new TransactionLog());
     }
 
     /**
@@ -43,17 +47,20 @@ public class Company implements ReadOnlyCompany {
      * @param tags tags of company.
      * @param pocs list of unique pocs.
      */
-    public Company(Name name, Address address, Set<Tag> tags, UniquePocList pocs) {
+    public Company(Name name, Address address, Set<Tag> tags, UniquePocList pocs, TransactionLog transactions) {
         requireAllNonNull(name, address, tags, pocs);
         this.name = name;
         this.address = address;
         this.tags.addAll(tags);
         this.pocs = pocs;
+        this.transactions = transactions;
     }
 
     public Name getName() {
         return name;
     }
+
+
 
     public Address getAddress() {
         return address;
@@ -69,6 +76,10 @@ public class Company implements ReadOnlyCompany {
 
     public UniquePocList getPocs() {
         return pocs;
+    }
+
+    public TransactionLog getTransactions() {
+        return transactions;
     }
 
     /**
@@ -87,6 +98,14 @@ public class Company implements ReadOnlyCompany {
     public boolean hasPoc(Poc poc) {
         requireNonNull(poc);
         return pocs.contains(poc);
+    }
+
+    /**
+     * Adds a transaction to the transaction log in the company.
+     * @param transaction to be added to the list.
+     */
+    public void addTransaction(Transaction transaction) {
+        this.transactions.addTransaction(transaction);
     }
 
     /**
@@ -151,6 +170,14 @@ public class Company implements ReadOnlyCompany {
             prefix = ", ";
             builder.append(poc.getName());
         }
+
+        TransactionLog transactions = getTransactions();
+        if (!isNull(transactions) && !transactions.isEmpty()) {
+            System.out.println(transactions.calculateNetTransacted());
+            builder.append("; Total transactions: $").append(transactions.calculateNetTransacted());
+        }
+
+
         return builder.toString();
     }
 
