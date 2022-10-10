@@ -1,8 +1,7 @@
 package modtrekt.logic.parser;
 
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import java.util.stream.Stream;
+import static modtrekt.logic.parser.ParserUtil.arePrefixesPresent;
 
 import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.Command;
@@ -14,14 +13,6 @@ import modtrekt.logic.parser.exceptions.ParseException;
  * Parses input arguments for remove command and returns a Command object
  */
 public class RemoveCommandParser implements Parser<RemoveTaskCommand> {
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 
     /**
      * Parses the given {@code String} of arguments in the context of RemoveCommand.
