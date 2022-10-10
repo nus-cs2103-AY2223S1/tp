@@ -49,11 +49,7 @@ public class InternshipCard extends UiPart<Region> {
         companyName.setText(internship.getCompanyName().fullName);
         role.setText(internship.getInternshipRole().roleName);
         status.getChildren().add(new Label(internship.getInternshipStatus().toString()));
-        if (internship.getContactPersonId() == null) {
-            contactPerson.setText("No contact person.");
-        } else {
-            contactPerson.setText(internship.getContactPersonId().id.toString());
-        }
+        contactPerson.setText("No contact person."); // dummy value
     }
 
     public PersonId getContactPersonId() {
@@ -64,7 +60,7 @@ public class InternshipCard extends UiPart<Region> {
         if (contactPersonName == null) {
             contactPerson.setText(NO_CONTACT_PERSON);
         } else {
-            contactPerson.setText(contactPersonName);
+            contactPerson.setText("Contact Person: " + contactPersonName);
         }
     }
 
