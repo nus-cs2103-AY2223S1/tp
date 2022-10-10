@@ -103,14 +103,13 @@ public class PersonUtil {
     public static String getFindCommandDetails(PersonMatchesPredicate predicate) {
         String commandDetails = "";
         if (predicate.hasNamesListPredicate()) {
-            commandDetails += PREFIX_NAME + " " + String.join(" ",
-                    predicate.getNamesList() + " ");
+            commandDetails += PREFIX_NAME + String.join(" ", predicate.getNamesList()) + " ";
+
         }
 
         if (predicate.hasModuleListPredicate()) {
-            commandDetails += PREFIX_MODULE_CODE + " " + String.join(" ", predicate.getModuleList());
+            commandDetails += PREFIX_MODULE_CODE + String.join(" ", predicate.getModuleList());
         }
-
         return commandDetails;
     }
 }
