@@ -2,7 +2,12 @@ package seedu.address.model.staff;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFDEPARTMENT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFINSURANCE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFNAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFTITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStaff.AMY;
 import static seedu.address.testutil.TypicalStaff.BOB;
@@ -43,7 +48,7 @@ public class StaffTest {
         assertFalse(BOB.isSameStaff(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
+        String nameWithTrailingSpaces = VALID_STAFFNAME_BOB + " ";
         editedBob = new StaffBuilder(BOB).withStaffName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameStaff(editedBob));
     }
@@ -67,11 +72,11 @@ public class StaffTest {
         assertFalse(AMY.equals(BOB));
 
         // different name -> returns false
-        Staff editedAmy = new StaffBuilder(AMY).withStaffName(VALID_NAME_BOB).build();
+        Staff editedAmy = new StaffBuilder(AMY).withStaffName(VALID_STAFFNAME_BOB).build();
         assertFalse(AMY.equals(editedAmy));
 
         // different contact -> returns false
-        editedAmy = new StaffBuilder(AMY).withStaffContact(VALID_BUDGET_BOB).build();
+        editedAmy = new StaffBuilder(AMY).withStaffContact(VALID_STAFFCONTACT_BOB).build();
         assertFalse(AMY.equals(editedAmy));
 
         // different title -> returns false
