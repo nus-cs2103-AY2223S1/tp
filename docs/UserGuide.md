@@ -136,6 +136,13 @@ Examples:
 * `list` followed by `deletetask 1 p/2` delete the 1st task from the 2nd person in the address book.
 
 
+### Listing all tasks : `task list`
+
+Shows a list of all tasks stored in the application.
+
+Format: `task list`
+
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
