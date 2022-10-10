@@ -1,4 +1,4 @@
-package bookface.model.person;
+package bookface.model;
 
 import java.util.List;
 import java.util.function.Function;

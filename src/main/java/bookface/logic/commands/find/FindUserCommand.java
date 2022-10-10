@@ -6,7 +6,7 @@ import bookface.commons.core.Messages;
 import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.Model;
-import bookface.model.person.ObjectContainsKeywordsPredicate;
+import bookface.model.ObjectContainsKeywordsPredicate;
 import bookface.model.person.Person;
 
 /**

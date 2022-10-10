@@ -7,7 +7,7 @@ import bookface.commons.util.StringUtil;
 import bookface.logic.commands.find.FindUserCommand;
 import bookface.logic.parser.ArgumentsParsable;
 import bookface.logic.parser.exceptions.ParseException;
-import bookface.model.person.ObjectContainsKeywordsPredicate;
+import bookface.model.ObjectContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates the relevant new FindCommand object for the relevant entity to be added

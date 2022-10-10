@@ -6,8 +6,8 @@ import bookface.commons.core.Messages;
 import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.Model;
+import bookface.model.ObjectContainsKeywordsPredicate;
 import bookface.model.book.Book;
-import bookface.model.person.ObjectContainsKeywordsPredicate;
 
 /**
  * Command to delete a book from the booklist using it's displayed index from the book list
