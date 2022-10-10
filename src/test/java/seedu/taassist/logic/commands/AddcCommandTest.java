@@ -102,6 +102,9 @@ public class AddcCommandTest {
 
     //==================================== Model Stubs ===============================================================
 
+    /**
+     * A Model stub that contains one module class.
+     */
     private class ModelStubWithModuleClass extends ModelStub {
         private final ModuleClass moduleClass;
 
@@ -116,6 +119,7 @@ public class AddcCommandTest {
             return this.moduleClass.equals(moduleClass);
         }
     }
+
     /**
      * A Model stub that always accepts the module class being added.
      */
