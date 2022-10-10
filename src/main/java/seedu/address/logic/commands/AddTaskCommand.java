@@ -3,24 +3,20 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.task.Task;
-import seedu.address.model.person.task.TaskList;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.link.Link;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.task.Task;
+import seedu.address.model.module.task.TaskList;
 
 /**
  * Adds a task to an existing module in Plannit.
@@ -43,70 +39,70 @@ public class AddTaskCommand extends Command {
             "New task added to: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK =
             "This task already exists in this module.";
+    public static final String MESSAGE_MODULE_CODE_DOES_NOT_EXIST =
+            "The given module code does not exist!";
 
-    private final Index index;
-    private final AddTaskToPersonDescriptor addTaskToPersonDescriptor;
+    private final AddTaskToModuleDescriptor addTaskToModuleDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to add task to
-     * @param addTaskToPersonDescriptor contains details of Task to be added to
-     *                                  the person
+     * @param addTaskToModuleDescriptor contains details of Task to be added to
+     *                                  the module
      */
-    public AddTaskCommand(Index index, AddTaskToPersonDescriptor addTaskToPersonDescriptor) {
-        requireNonNull(index);
-        requireNonNull(addTaskToPersonDescriptor);
-
-        this.index = index;
-        this.addTaskToPersonDescriptor = new AddTaskToPersonDescriptor(addTaskToPersonDescriptor);
+    public AddTaskCommand(AddTaskToModuleDescriptor addTaskToModuleDescriptor) {
+        requireNonNull(addTaskToModuleDescriptor);
+        this.addTaskToModuleDescriptor = new AddTaskToModuleDescriptor(addTaskToModuleDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        List<Module> lastShownList = model.getFilteredModuleList();
+        Module moduleToAddTaskTo = null;
+        // Search for module with matching module code.
+        for (Module module : lastShownList) {
+            if (module.getModuleCode().equals(addTaskToModuleDescriptor.moduleCode)) {
+                moduleToAddTaskTo = module;
+            }
         }
-        Person personToAddTaskTo = lastShownList.get(index.getZeroBased());
-        Person personWithNewTask = createPersonWithNewTask(personToAddTaskTo, addTaskToPersonDescriptor);
+        if (moduleToAddTaskTo == null) {
+            throw new CommandException(MESSAGE_MODULE_CODE_DOES_NOT_EXIST);
+        }
+        Module moduleWithNewTask = createModuleWithNewTask(moduleToAddTaskTo, addTaskToModuleDescriptor);
 
-        Boolean taskWasAdded = !personToAddTaskTo.isSamePerson(personWithNewTask);
-        Boolean isDuplicateTask = personWithNewTask.hasDuplicateTasks();
+        Boolean taskWasAdded = !moduleToAddTaskTo.isSameModule(moduleWithNewTask);
+        Boolean isDuplicateTask = moduleWithNewTask.hasDuplicateTasks();
         if (taskWasAdded && isDuplicateTask) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        model.setPerson(personToAddTaskTo, personWithNewTask);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setModule(moduleToAddTaskTo, moduleWithNewTask);
+        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(
-                String.format(MESSAGE_ADD_TASK_SUCCESS, personWithNewTask));
+                String.format(MESSAGE_ADD_TASK_SUCCESS, moduleWithNewTask));
     }
 
     /**
-     * Creates and returns a {@code Person} with the new task added.
-     * @param personToAddTaskTo Person to add the new task to
-     * @param addTaskToPersonDescriptor contains details of Task to be added
-     *                                  to the person
+     * Creates and returns a {@code Module} with the new task added.
+     * @param moduleToAddTaskTo Module to add the new task to
+     * @param addTaskToModuleDescriptor contains details of Task to be added
+     *                                  to the module
      */
-    private static Person createPersonWithNewTask(Person personToAddTaskTo,
-                                                  AddTaskToPersonDescriptor addTaskToPersonDescriptor) {
-        assert personToAddTaskTo != null;
+    private static Module createModuleWithNewTask(Module moduleToAddTaskTo,
+                                                  AddTaskToModuleDescriptor addTaskToModuleDescriptor) {
+        assert moduleToAddTaskTo != null;
 
-        Name personName = personToAddTaskTo.getName();
-        Phone personPhone = personToAddTaskTo.getPhone();
-        Email personEmail = personToAddTaskTo.getEmail();
-        Address personAddress = personToAddTaskTo.getAddress();
-        Set<Tag> personTags = personToAddTaskTo.getTags();
-        ObservableList<Task> personTasks = personToAddTaskTo.getTasks();
-        TaskList updatedTasks = new TaskList(personTasks);
-        Task taskToAdd = addTaskToPersonDescriptor.getTask();
+        ModuleCode moduleCode = moduleToAddTaskTo.getModuleCode();
+        ModuleTitle moduleTitle = moduleToAddTaskTo.getModuleTitle();
+        Set<Link> moduleLinks = moduleToAddTaskTo.getLinks();
+        ObservableList<Task> moduleTasks = moduleToAddTaskTo.getTasks();
+        TaskList updatedTasks = new TaskList(moduleTasks);
+        Task taskToAdd = addTaskToModuleDescriptor.getTask();
         // Add new task to the list.
         updatedTasks.add(taskToAdd);
         List<Task> updatedTasksAsList =
                 updatedTasks.asUnmodifiableObservableList();
-        return new Person(personName, personPhone, personEmail,
-                personAddress, personTags, updatedTasksAsList);
+        return new Module(moduleCode, moduleTitle, updatedTasksAsList,
+                moduleLinks);
     }
 
     @Override
@@ -123,24 +119,33 @@ public class AddTaskCommand extends Command {
 
         // state check
         AddTaskCommand e = (AddTaskCommand) other;
-        return index.equals(e.index)
-                && addTaskToPersonDescriptor.equals(e.addTaskToPersonDescriptor);
+        return addTaskToModuleDescriptor.equals(e.addTaskToModuleDescriptor);
     }
 
     /**
-     * Stores the details of task to be added to the person.
+     * Stores the details of task to be added to the module.
      */
-    public static class AddTaskToPersonDescriptor {
+    public static class AddTaskToModuleDescriptor {
+        private ModuleCode moduleCode;
         private Task newTask;
-
-        public AddTaskToPersonDescriptor() {}
+        public AddTaskToModuleDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code newTask} is used internally.
          */
-        public AddTaskToPersonDescriptor(AddTaskToPersonDescriptor toCopy) {
+        public AddTaskToModuleDescriptor(AddTaskToModuleDescriptor toCopy) {
+            setModuleCodeOfModuleToAddTaskTo(toCopy.moduleCode);
             setNewTask(toCopy.newTask);
+        }
+
+        /**
+         * Sets {@code indexOfTaskToDelete} to this object's {@code
+         * indexOfTaskToDelete}.
+         * A defensive copy of {@code indexOfTaskToDelete} is used internally.
+         */
+        public void setModuleCodeOfModuleToAddTaskTo(ModuleCode moduleCodeOfModuleToAddTaskTo) {
+            this.moduleCode = moduleCodeOfModuleToAddTaskTo;
         }
 
         /**
@@ -167,12 +172,12 @@ public class AddTaskCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof AddTaskToPersonDescriptor)) {
+            if (!(other instanceof AddTaskToModuleDescriptor)) {
                 return false;
             }
 
             // state check
-            AddTaskToPersonDescriptor e = (AddTaskToPersonDescriptor) other;
+            AddTaskToModuleDescriptor e = (AddTaskToModuleDescriptor) other;
 
             return getTask().equals(e.getTask());
         }

@@ -3,24 +3,21 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.task.Task;
-import seedu.address.model.person.task.TaskList;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.link.Link;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.task.Task;
+import seedu.address.model.module.task.TaskList;
 
 /**
  * Deletes a task from an existing module in Plannit.
@@ -43,74 +40,72 @@ public class DeleteTaskCommand extends Command {
             "Deleted task from: %1$s";
     public static final String MESSAGE_TASK_NUMBER_DOES_NOT_EXIST =
             "Task number given does not exist.";
+    public static final String MESSAGE_MODULE_CODE_DOES_NOT_EXIST =
+            "The given module code does not exist!";
 
-    private final Index index;
-    private final DeleteTaskFromPersonDescriptor deleteTaskFromPersonDescriptor;
+    private final DeleteTaskFromModuleDescriptor deleteTaskFromModuleDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param deleteTaskFromPersonDescriptor details of task to be deleted
+     * @param deleteTaskFromModuleDescriptor details of task to be deleted
      */
-    public DeleteTaskCommand(Index index,
-                             DeleteTaskFromPersonDescriptor deleteTaskFromPersonDescriptor) {
-        requireNonNull(index);
-        requireNonNull(deleteTaskFromPersonDescriptor);
+    public DeleteTaskCommand(DeleteTaskFromModuleDescriptor deleteTaskFromModuleDescriptor) {
+        requireNonNull(deleteTaskFromModuleDescriptor);
 
-        this.index = index;
-        this.deleteTaskFromPersonDescriptor =
-                new DeleteTaskFromPersonDescriptor(deleteTaskFromPersonDescriptor);
+        this.deleteTaskFromModuleDescriptor =
+                new DeleteTaskFromModuleDescriptor(deleteTaskFromModuleDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        List<Module> lastShownList = model.getFilteredModuleList();
+        Module moduleToDeleteTaskFrom = null;
+        // Search for module with matching module code.
+        for (Module module : lastShownList) {
+            if (module.getModuleCode().equals(deleteTaskFromModuleDescriptor.moduleCodeOfModuleWithTaskToDelete)) {
+                moduleToDeleteTaskFrom = module;
+            }
         }
-
-        Person personToDeleteTaskFrom = lastShownList.get(index.getZeroBased());
-        int indexOfTaskToDelete = deleteTaskFromPersonDescriptor
+        if (moduleToDeleteTaskFrom == null) {
+            throw new CommandException(MESSAGE_MODULE_CODE_DOES_NOT_EXIST);
+        }
+        int indexOfTaskToDelete = deleteTaskFromModuleDescriptor
                 .getTaskIndexToDelete().getZeroBased();
-        int numberOfTasksInTaskList = personToDeleteTaskFrom.getTasks().size();
+        int numberOfTasksInTaskList = moduleToDeleteTaskFrom.getTasks().size();
         if (indexOfTaskToDelete >= numberOfTasksInTaskList) {
             throw new CommandException(MESSAGE_TASK_NUMBER_DOES_NOT_EXIST);
         }
-        Person personWithTaskDeleted = createPersonWithDeletedTask(
-                personToDeleteTaskFrom, deleteTaskFromPersonDescriptor);
+        Module moduleWithTaskDeleted = createModuleWithDeletedTask(
+                moduleToDeleteTaskFrom, deleteTaskFromModuleDescriptor);
 
-        model.setPerson(personToDeleteTaskFrom, personWithTaskDeleted);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setModule(moduleToDeleteTaskFrom, moduleWithTaskDeleted);
+        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
-                personWithTaskDeleted));
+                moduleWithTaskDeleted));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of
-     * {@code personToDeleteTaskFrom} and the task indicated in
-     * {@code deleteTaskToPersonDescriptor} deleted.
+     * Creates and returns a {@code Module} with the details of
+     * {@code moduleToDeleteTaskFrom} and the task indicated in
+     * {@code deleteTaskToModuleDescriptor} deleted.
      */
-    private static Person createPersonWithDeletedTask(
-            Person personToDeleteTaskFrom,
-            DeleteTaskFromPersonDescriptor deleteTaskToPersonDescriptor) {
-        assert personToDeleteTaskFrom != null;
+    private static Module createModuleWithDeletedTask(
+            Module moduleToDeleteTaskFrom,
+            DeleteTaskFromModuleDescriptor deleteTaskToModuleDescriptor) {
+        assert moduleToDeleteTaskFrom != null;
 
-        Name personName = personToDeleteTaskFrom.getName();
-        Phone personPhone = personToDeleteTaskFrom.getPhone();
-        Email personEmail = personToDeleteTaskFrom.getEmail();
-        Address personAddress = personToDeleteTaskFrom.getAddress();
-        Set<Tag> personTags = personToDeleteTaskFrom.getTags();
-        ObservableList<Task> personTasks = personToDeleteTaskFrom.getTasks();
-        TaskList updatedTasks = new TaskList(personTasks);
+        ModuleCode moduleCode = moduleToDeleteTaskFrom.getModuleCode();
+        ModuleTitle moduleTitle = moduleToDeleteTaskFrom.getModuleTitle();
+        Set<Link> moduleLinks = moduleToDeleteTaskFrom.getLinks();
+        ObservableList<Task> moduleTasks = moduleToDeleteTaskFrom.getTasks();
+        TaskList updatedTasks = new TaskList(moduleTasks);
         // Delete new task to the list.
         Index indexOfTaskToDelete =
-                deleteTaskToPersonDescriptor.getTaskIndexToDelete();
+                deleteTaskToModuleDescriptor.getTaskIndexToDelete();
         updatedTasks.remove(indexOfTaskToDelete);
         List<Task> updatedTasksAsList =
                 updatedTasks.asUnmodifiableObservableList();
-        return new Person(personName, personPhone, personEmail,
-                personAddress, personTags, updatedTasksAsList);
+        return new Module(moduleCode, moduleTitle, updatedTasksAsList, moduleLinks);
     }
 
     @Override
@@ -127,35 +122,45 @@ public class DeleteTaskCommand extends Command {
 
         // state check
         DeleteTaskCommand e = (DeleteTaskCommand) other;
-        return index.equals(e.index)
-                && deleteTaskFromPersonDescriptor.equals(e.deleteTaskFromPersonDescriptor);
+        return deleteTaskFromModuleDescriptor.equals(e.deleteTaskFromModuleDescriptor);
     }
 
     /**
      * Stores the task number of the {@code Task} to be deleted.
      */
-    public static class DeleteTaskFromPersonDescriptor {
+    public static class DeleteTaskFromModuleDescriptor {
+        private ModuleCode moduleCodeOfModuleWithTaskToDelete;
         private Index indexOfTaskToDelete;
 
-        public DeleteTaskFromPersonDescriptor() {}
+        public DeleteTaskFromModuleDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code indexOfTaskToDelete} is used internally.
          */
-        public DeleteTaskFromPersonDescriptor(DeleteTaskFromPersonDescriptor toCopy) {
+        public DeleteTaskFromModuleDescriptor(DeleteTaskFromModuleDescriptor toCopy) {
+            setModuleCodeOfModuleWithTaskToDelete(toCopy.moduleCodeOfModuleWithTaskToDelete);
             setIndexOfTaskToDelete(toCopy.indexOfTaskToDelete);
         }
 
         /**
-         * Sets {@code indexOfTaskToDelete} to this object's {@code
+         * Sets {@code moduleCodeOfModuleWithTaskToDelete} to the given object's
+         * {@code moduleCodeOfModuleWithTaskToDelete}.
+         * A defensive copy of {@code moduleCodeOfModuleWithTaskToDelete} is
+         * used internally.
+         */
+        public void setModuleCodeOfModuleWithTaskToDelete(ModuleCode moduleCodeOfModuleWithTaskToDelete) {
+            this.moduleCodeOfModuleWithTaskToDelete = moduleCodeOfModuleWithTaskToDelete;
+        }
+
+        /**
+         * Sets {@code indexOfTaskToDelete} to the given object's {@code
          * indexOfTaskToDelete}.
          * A defensive copy of {@code indexOfTaskToDelete} is used internally.
          */
         public void setIndexOfTaskToDelete(Index indexOfTaskToDelete) {
             this.indexOfTaskToDelete = indexOfTaskToDelete;
         }
-
 
         /**
          * Returns the {@code Index} of the task to be deleted.
@@ -172,12 +177,12 @@ public class DeleteTaskCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof DeleteTaskFromPersonDescriptor)) {
+            if (!(other instanceof DeleteTaskFromModuleDescriptor)) {
                 return false;
             }
 
             // state check
-            DeleteTaskFromPersonDescriptor e = (DeleteTaskFromPersonDescriptor) other;
+            DeleteTaskFromModuleDescriptor e = (DeleteTaskFromModuleDescriptor) other;
 
             return getTaskIndexToDelete().equals(e.getTaskIndexToDelete());
         }
