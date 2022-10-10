@@ -15,6 +15,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -33,7 +34,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private TaskListPanel taskListPanel;
+    private UiPart<Region> taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane taskListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -117,8 +118,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredStudentList());
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -130,6 +130,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**
@@ -193,6 +194,24 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowStudents()) {
+                if (taskListPanel.isShowing()) {
+                    listPanelPlaceholder.getChildren().remove(0);
+                    listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+                    taskListPanel.changeShowingStatus();
+                    personListPanel.changeShowingStatus();
+                }
+            }
+
+            if (commandResult.isShowTasks()) {
+                if (!taskListPanel.isShowing()) {
+                    listPanelPlaceholder.getChildren().remove(0);
+                    listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+                    taskListPanel.changeShowingStatus();
+                    personListPanel.changeShowingStatus();
+                }
             }
 
             return commandResult;
