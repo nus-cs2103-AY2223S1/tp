@@ -9,8 +9,8 @@ import java.util.function.Predicate;
 import static java.util.Objects.requireNonNull;
 
 public class ContainsKeywordsPredicate implements Predicate<Person> {
-    KeywordList keywords;
-    FindableCategory category;
+    private final KeywordList keywords;
+    private final FindableCategory category;
 
     public ContainsKeywordsPredicate(KeywordList keywords, FindableCategory category) {
         requireNonNull(category);
@@ -44,6 +44,14 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ContainsKeywordsPredicate // instanceof handles nulls
+                && category.equals(((ContainsKeywordsPredicate) other).category)) // state check
+                && keywords.equals(((ContainsKeywordsPredicate) other).keywords);
+    }
+
     private boolean testName(Name name) {
         return keywords.isAnyKeywordFound(name.toString());
     }
@@ -63,7 +71,7 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
     private boolean testTags(Set<Tag> tags) {
         boolean result = false;
 
-        for(Tag t : tags) {
+        for (Tag t : tags) {
             result = result || keywords.isAnyKeywordFound(t.getTagName());
         }
 

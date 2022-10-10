@@ -1,14 +1,15 @@
 package seedu.address.commons.core.keyword;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 
 public class KeywordList {
-    ArrayList<Keyword> keywords;
+    Set<Keyword> keywords;
 
     public KeywordList() {
-        keywords = new ArrayList<Keyword>();
+        keywords = new HashSet<Keyword>();
     }
 
     public void addKeyword(Keyword keyword) {
@@ -19,8 +20,8 @@ public class KeywordList {
     public boolean isAnyKeywordFound(String string) {
         boolean result = false;
 
-        for(int i = 0; i < keywords.size(); ++i) {
-            result = result || keywords.get(i).isKeywordFound(string);
+        for(Keyword k: keywords) {
+            result = result || k.isKeywordFound(string);
         }
 
         return result;
@@ -28,5 +29,12 @@ public class KeywordList {
 
     public boolean isEmpty() {
         return keywords.size() == 0;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof KeywordList // instanceof handles nulls
+                && keywords.equals(((KeywordList) other).keywords));
     }
 }
