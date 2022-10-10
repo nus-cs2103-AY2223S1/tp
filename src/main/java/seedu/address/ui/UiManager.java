@@ -90,4 +90,14 @@ public class UiManager implements Ui {
         mainWindow.swapProjectListDisplay();
     }
 
+    @Override
+    public void showIssues() {
+        mainWindow.swapIssueListDisplay();
+    }
+
+    @Override
+    public void showClients() {
+        mainWindow.swapClientListDisplay();
+    }
+
 }

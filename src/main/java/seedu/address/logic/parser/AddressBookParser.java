@@ -6,15 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -62,7 +54,17 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            // TODO: Refactor to accommodate polymorphism of entity command classes
+            switch (flag) {
+            case ListClientCommand.COMMAND_FLAG:
+                return new ListClientCommand();
+            case ListProjectCommand.COMMAND_FLAG:
+                return new ListProjectCommand();
+            case ListIssueCommand.COMMAND_FLAG:
+                return new ListIssueCommand();
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

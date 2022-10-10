@@ -11,4 +11,8 @@ public interface Ui {
     void start(Stage primaryStage);
 
     void showProjects();
+
+    void showIssues();
+
+    void showClients();
 }

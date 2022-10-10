@@ -141,7 +141,7 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
     }
 
-    void swapPersonListDisplay() {
+    void swapClientListDisplay() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
