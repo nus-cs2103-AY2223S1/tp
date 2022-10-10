@@ -58,4 +58,11 @@ public interface Logic {
     ObservableObject<Customer> getSelectedCustomer();
 
     void selectCustomer(Customer customer);
+
+    /**
+     * Returns the currently selected commission.
+     */
+    ObservableObject<Commission> getSelectedCommission();
+
+    void selectCommission(Commission commission);
 }

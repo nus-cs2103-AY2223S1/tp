@@ -11,6 +11,23 @@
       "fee" : 0.5,
       "deadline" : "2022-04-04",
       "tagged" : [ "test2", "test" ],
+      "iterations" : [ {
+        "date" : "2022-10-10",
+        "description" : "abc",
+        "feedback" : "def"
+      }, {
+        "date" : "2022-10-10",
+        "description" : "Changed the colour scheme.",
+        "feedback" : "Updated colour scheme is much better."
+      }, {
+        "date" : "2022-10-10",
+        "description" : "Changing the colour scheme.",
+        "feedback" : "Updated colour scheme is much bette"
+      }, {
+        "date" : "2022-01-01",
+        "description" : "ab",
+        "feedback" : "aa"
+      } ],
       "isCompleted" : true
     }, {
       "title" : "Berserk",
@@ -25,6 +42,15 @@
       "fee" : 0.5,
       "deadline" : "2022-04-04",
       "tagged" : [ "test2", "test" ],
+      "iterations" : [ {
+        "date" : "2022-10-09",
+        "description" : "test",
+        "feedback" : "feedback test"
+      }, {
+        "date" : "2022-11-01",
+        "description" : "abc",
+        "feedback" : "aaa"
+      } ],
       "isCompleted" : true
     }, {
       "title" : "Reg",
@@ -46,6 +72,7 @@
       "fee" : 0.5,
       "deadline" : "2022-04-04",
       "tagged" : [ "test2", "test" ],
+      "iterations" : [ ],
       "isCompleted" : true
     } ]
   }, {
@@ -67,6 +94,7 @@
       "fee" : 0.5,
       "deadline" : "2022-04-04",
       "tagged" : [ "test2", "test" ],
+      "iterations" : [ ],
       "isCompleted" : true
     }, {
       "title" : "Chainsaw man",
@@ -95,6 +123,7 @@
       "fee" : 0.5,
       "deadline" : "2022-04-04",
       "tagged" : [ "test2", "test" ],
+      "iterations" : [ ],
       "isCompleted" : true
     } ]
   } ]

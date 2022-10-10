@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Customer> filteredCustomers;
     private final FilteredList<Commission> filteredCommissions;
     private final ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
+    private final ObservableObject<Commission> selectedCommission = new ObservableObject<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -48,6 +49,11 @@ public class ModelManager implements Model {
             updateFilteredCommissionListToSelectedCustomer();
         }
 
+        // Temporarily sets selected commission to the first commission
+        // TODO: Should be fixed by implementer of the opencomm command
+        if (filteredCommissions.size() > 0) {
+            selectCommission(filteredCommissions.get(0));
+        }
     }
 
     public ModelManager() {
@@ -200,10 +206,10 @@ public class ModelManager implements Model {
 
     //=========== Selected Customer =============================================================
 
-
     @Override
     public void selectCustomer(Customer customer) {
-        this.selectedCustomer.setValue(customer);
+        selectedCommission.setValue(null); // resets the selected commission
+        selectedCustomer.setValue(customer);
         updateFilteredCommissionListToSelectedCustomer();
     }
 
@@ -222,6 +228,26 @@ public class ModelManager implements Model {
 
     public ObservableList<Commission> getCommissionList() {
         return addressBook.getCommissionList();
+    }
+
+    //=========== Selected Commission =============================================================
+
+    @Override
+    public void selectCommission(Commission commission) {
+        selectedCommission.setValue(commission);
+    }
+
+    @Override
+    public ObservableObject<Commission> getSelectedCommission() {
+        return selectedCommission;
+    }
+
+    /**
+     * Returns whether there is a selected commission.
+     */
+    @Override
+    public boolean hasSelectedCommission() {
+        return getSelectedCommission().getValue() != null;
     }
 
     @Override

@@ -96,4 +96,14 @@ public class LogicManager implements Logic {
     public void selectCustomer(Customer customer) {
         model.selectCustomer(customer);
     }
+
+    @Override
+    public ObservableObject<Commission> getSelectedCommission() {
+        return model.getSelectedCommission();
+    }
+
+    @Override
+    public void selectCommission(Commission commission) {
+        model.selectCommission(commission);
+    }
 }

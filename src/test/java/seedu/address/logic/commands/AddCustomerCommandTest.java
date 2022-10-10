@@ -193,6 +193,21 @@ public class AddCustomerCommandTest {
         public ObservableObject<Customer> getSelectedCustomer() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasSelectedCommission() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableObject<Commission> getSelectedCommission() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void selectCommission(Commission commission) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

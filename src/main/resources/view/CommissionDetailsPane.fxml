@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.ListView?>
+<HBox id="detailsPane" fx:id="detailsPane"
+      xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" styleClass="edge-to-edge">
+    <AnchorPane minHeight="0.0" minWidth="0.0" HBox.hgrow="ALWAYS">
+    <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge"
+                AnchorPane.bottomAnchor="0.0"
+                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="0.0">
+        <content>
+            <VBox alignment="TOP_LEFT">
+                <padding>
+                    <Insets bottom="5" left="15" right="5" top="5" />
+                </padding>
+                <HBox alignment="CENTER_LEFT" spacing="5">
+                    <Label fx:id="id" styleClass="cell_big_label" textFill="#D8D8D8">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
+                    <Label id="title" fx:id="title" styleClass="cell_big_label" text="\$first">
+                        <font>
+                            <Font size="24.0" />
+                        </font>
+                    </Label>
+                </HBox>
+                <FlowPane fx:id="tags" />
+                <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+                <Label fx:id="fee" styleClass="cell_small_label" text="\$fee" />
+                <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
+                <Label fx:id="completionStatus" styleClass="cell_small_label" text="\$completionStatus" />
+                <Label fx:id="customerName" styleClass="cell_small_label" text="\$customerName" />
+                <ListView fx:id="iterationListView" VBox.vgrow="ALWAYS" />
+            </VBox>
+        </content>
+    </ScrollPane>
+    </AnchorPane>
+</HBox>

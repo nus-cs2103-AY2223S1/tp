@@ -319,6 +319,14 @@
     -fx-background-color: transparent;
 }
 
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -356,6 +364,13 @@
     -fx-background-radius: 12px;
     -fx-text-fill: #E8E8E8;
     -fx-padding: 36 24 24 36;
+}
+
+#commissionDetailsPane {
+    -fx-background-color: #15181F;
+    -fx-background-radius: 12px;
+    -fx-text-fill: #E8E8E8;
+    -fx-padding: 8;
 }
 
 #filterField, #customerListPanel, #customerWebpage {

@@ -21,6 +21,9 @@ import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
+import seedu.address.model.iteration.Date;
+import seedu.address.model.iteration.Feedback;
+import seedu.address.model.iteration.IterationDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -206,5 +209,41 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        try {
+            LocalDate parsedLocalDate = LocalDate.parse(trimmedDate);
+            return new Date(parsedLocalDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_ITERATION_DATE);
+        }
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static IterationDescription parseIterationDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        return new IterationDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String feedback} into a {@code Feedback}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Feedback parseFeedback(String feedback) throws ParseException {
+        requireNonNull(feedback);
+        String trimmedFeedback = feedback.trim();
+        return new Feedback(trimmedFeedback);
     }
 }
