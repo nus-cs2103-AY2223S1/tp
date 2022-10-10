@@ -22,6 +22,7 @@ You can reach us at our emails:
 [[portfolio](team/peiyee88.md)]
 
 * Role: Developer
+* Responsibilities: Scheduling, Testing, Model 
 
 ### Kartikeya
 
@@ -31,7 +32,8 @@ You can reach us at our emails:
 [[portfolio](team/kxrt.md)]
 
 
-* Role: Developer
+* Role: Developer, Team Lead
+* Responsibilities: Integration, Git, UI 
 
 ### Zhehao
 
@@ -41,7 +43,7 @@ You can reach us at our emails:
 [[portfolio](team/charles1026.md)]
 
 * Role: Developer
-* Responsibilities: Sandbagging
+* Responsibilities: Deadlines, Sandbagging, Storage
 
 ### Ryan Tan
 
@@ -51,7 +53,7 @@ You can reach us at our emails:
 [[portfolio](team/ryan-tan00.md)]
 
 * Role: Developer
-* Responsibilities: Sandbagging BUT harder
+* Responsibilities: Documentation, Commons 
 
 ### Huang Yuchen
 
@@ -60,4 +62,5 @@ You can reach us at our emails:
 [[github](http://github.com/nehcuy)]
 [[portfolio](team/nehcuy.md)]
 
-* Role: Developer
+* Role: Developer, Co-Team Lead
+* Responsibilities: Code Quality, Logic
