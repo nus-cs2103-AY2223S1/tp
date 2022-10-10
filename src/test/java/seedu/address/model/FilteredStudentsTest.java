@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 class FilteredStudentsTest {
-    private List<Person> li = new ArrayList<>();
-    private ObservableList<Person> emptyList = FXCollections.observableList(li);
+    private List<Student> li = new ArrayList<>();
+    private ObservableList<Student> emptyList = FXCollections.observableList(li);
     private FilteredStudents filteredStudents = new FilteredStudents(new FilteredList<>(emptyList));
 
     @Test

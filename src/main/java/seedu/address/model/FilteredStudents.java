@@ -4,29 +4,29 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Represents the students and type of information to be displayed on the GUI.
  */
 public class FilteredStudents {
-    private final FilteredList<Person> filteredStudents;
+    private final FilteredList<Student> filteredStudents;
     // Only the student's name and ID should be displayed if true; all information should be shown otherwise
     private boolean conciseInfo;
 
     /**
      * Constructs a {@code FilteredStudent} with the given {@code filteredStudents}.
      */
-    public FilteredStudents(FilteredList<Person> filteredStudents) {
+    public FilteredStudents(FilteredList<Student> filteredStudents) {
         this.filteredStudents = filteredStudents;
         this.conciseInfo = true;
     }
 
-    public ObservableList<Person> getFilteredStudentList() {
+    public ObservableList<Student> getFilteredStudentList() {
         return this.filteredStudents;
     }
 
-    public void updateFilteredStudentList(Predicate<Person> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         filteredStudents.setPredicate(predicate);
     }
 
