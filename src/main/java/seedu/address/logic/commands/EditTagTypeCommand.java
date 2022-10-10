@@ -1,8 +1,15 @@
 package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.tag.TagType;
+
+import java.util.Iterator;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Edits a tag type.
@@ -18,27 +25,40 @@ public class EditTagTypeCommand extends Command {
             + "Grade-GPA grdt-gpat ";
 
     public static final String MESSAGE_EDIT_TAG_TYPE_SUCCESS = "Edited tag type: %1$s";
-    private final TagType toEdit;
-    private final TagType editTo;
+    private final TagType toEditTagType;
+    private final TagType editToTagType;
+    private final Prefix toEditPrefix;
+    private final Prefix editToPrefix;
 
     /**
      * Creates an EditTagTypeCommand to edit the specified {@code TagType}
      */
-    public EditTagTypeCommand(TagType toEdit, TagType editTo) {
-        this.toEdit = toEdit;
-        this.editTo = editTo;
+    public EditTagTypeCommand( Prefix toEditPrefix, TagType toEditTagType, Prefix editToPrefix, TagType editToTagType) {
+        requireNonNull(toEditPrefix);
+        requireNonNull(toEditTagType);
+        requireNonNull(editToPrefix);
+        requireNonNull(editToTagType);
+        this.toEditPrefix = toEditPrefix;
+        this.toEditTagType = toEditTagType;
+        this.editToPrefix = editToPrefix;
+        this.editToTagType = editToTagType;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        requireNonNull(model);
+        UniqueTagTypeMap.setExistingTagType(toEditPrefix, editToPrefix, editToTagType);
+        model.editTagTypeForAllPerson(toEditTagType, editToTagType);
+        return new CommandResult(String.format(MESSAGE_EDIT_TAG_TYPE_SUCCESS, editToTagType));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EditTagTypeCommand // instanceof handles nulls
-                && toEdit.equals(((EditTagTypeCommand) other).toEdit)
-                && editTo.equals(((EditTagTypeCommand) other).editTo));
+                && toEditPrefix.equals(((EditTagTypeCommand) other).toEditPrefix)
+                && toEditTagType.equals(((EditTagTypeCommand) other).toEditTagType)
+                && editToPrefix.equals(((EditTagTypeCommand) other).editToPrefix)
+                && editToTagType.equals(((EditTagTypeCommand) other).editToTagType));
     }
 }

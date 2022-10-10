@@ -43,6 +43,22 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             .unmodifiableObservableMap(internalMap);
 
     /**
+     * Adds a new tag type to the existing TAG_TYPES.
+     */
+    public static void createTagTypes(Prefix prefix, TagType  tagType) {
+        prefixMap.put(prefix, tagType);
+    }
+
+    public static void removeExistingTagType(TagType tagType) {
+        prefixMap.remove(tagType);
+    }
+
+    public static void setExistingTagType(Prefix toRemovePrefix, Prefix prefix, TagType tagType) {
+        prefixMap.remove(toRemovePrefix);
+        createTagTypes(prefix, tagType);
+    }
+
+    /**
      * Returns true if the list contains an equivalent tag type as the given argument.
      */
     public boolean contains(TagType toCheck) {
