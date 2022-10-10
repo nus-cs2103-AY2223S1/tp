@@ -9,11 +9,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class GraduationDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Graduation Date should be of the format month-year"
-        + " and adhere to the following constraints:\n"
-        + "1. year should contain only numbers, and is exactly 4 digit long\n"
-        + "2. month should contain only numbers, is exactly 2 digit long, and is a valid month number\n"
-        + "year and month values are separated by '-'";
+    public static final String MESSAGE_CONSTRAINTS = "Graduation Date should be of the format month-year (MM-yyyy)"
+            + " and adhere to the following constraints:\n"
+            + "1. month should contain only numbers, is exactly 2 digit long, and is a valid month number\n"
+            + "2. year should contain only numbers, and is exactly 4 digit long\n"
+            + "3. month and year values are separated by '-'";
     public static final String VALIDATION_REGEX_MONTH_YEAR = "^((1[0-2]|0[1-9])-(\\d{4}))$";
     //public static final String MONTH_YEAR_PATTERN = "MM-yyyy";
     //public static final String DISPLAY_DATE_FORMAT = "MMM yyyy";
@@ -35,7 +35,7 @@ public class GraduationDate {
      * Returns if a given string is a valid graduation date.
      */
     public static boolean isValidGraduationDate(String test) {
-        return isPatternYearMonth(test);
+        return isPatternMonthYear(test);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class GraduationDate {
         return value.hashCode();
     }
 
-    private static boolean isPatternYearMonth(String test) {
+    private static boolean isPatternMonthYear(String test) {
         return test.matches(VALIDATION_REGEX_MONTH_YEAR);
     }
 }
