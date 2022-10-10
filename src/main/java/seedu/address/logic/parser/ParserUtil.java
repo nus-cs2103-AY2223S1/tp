@@ -119,11 +119,10 @@ public class ParserUtil {
     public static TaskList parseTasks(Collection<String> taskDescriptions) throws ParseException {
         requireNonNull(taskDescriptions);
         final ArrayList<Task> tasks = new ArrayList<>();
-        final TaskList taskList = new TaskList(tasks);
         for (String taskDescription : taskDescriptions) {
-            taskList.add(parseTask(taskDescription));
+            tasks.add(parseTask(taskDescription));
         }
-        return taskList;
+        return new TaskList(tasks);
     }
 
     /**
