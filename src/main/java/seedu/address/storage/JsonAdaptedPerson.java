@@ -29,7 +29,7 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final Long id;
+    private final Long uid;
     private final String name;
     private final String category;
     private final String gender;
@@ -43,13 +43,13 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("id") Long id, @JsonProperty("name") String name, 
+    public JsonAdaptedPerson(@JsonProperty("uid") Long uid, @JsonProperty("name") String name,
             @JsonProperty("category") String category,
             @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("dateTimes") List<JsonAdaptedDateTime> dateTime,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.id = id;
+        this.uid = uid;
         this.name = name;
         this.category = category;
         this.gender = gender;
@@ -79,7 +79,7 @@ class JsonAdaptedPerson {
                     .collect(Collectors.toList()));
         }
 
-        id = source.getId().id;
+        uid = source.getUid().uid;
         name = source.getName().fullName;
         gender = source.getGender().gender;
         phone = source.getPhone().value;
@@ -109,10 +109,11 @@ class JsonAdaptedPerson {
             patientHomeVisitDatesTimes.add(dateTime.toModelType());
         }
 
-        if (id == null) {
+        if (uid == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
-        final Uid modelUid = new Uid(id);
+
+        final Uid modelUid = new Uid(uid);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -164,11 +165,8 @@ class JsonAdaptedPerson {
             }
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
                     modelAddress, modelTags, modelDatesTimes);
-
         }
-        
         return new Person(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
-
     }
 
 

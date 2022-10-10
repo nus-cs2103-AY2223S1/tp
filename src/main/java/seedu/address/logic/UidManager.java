@@ -37,7 +37,7 @@ public class UidManager {
             return this.deletedUids.poll();
         }
         if (this.records.peek() != null) {
-            return new Uid(this.records.peek().getId() + 1L);
+            return new Uid(this.records.peek().getUid() + 1L);
         }
         return new Uid(1L);
     }

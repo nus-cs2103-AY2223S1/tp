@@ -39,9 +39,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = 
-                        ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_DATE_AND_TIME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_CATEGORY, PREFIX_NAME,
+                PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_DATE_AND_TIME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_UID, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER,
                 PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
@@ -49,14 +48,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         String category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
-
-                //ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG);
-        //if (!arePrefixesPresent(argMultimap, PREFIX_UID, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
-            //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
-        
         Uid id = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());

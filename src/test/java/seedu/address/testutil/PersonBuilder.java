@@ -24,7 +24,7 @@ public class PersonBuilder {
 
 
     public static final String DEFAULT_CATEGORY = "P";
-    public static final String DEFAULT_ID = "100";
+    public static final String DEFAULT_UID = "100";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_PHONE = "85355255";
@@ -32,7 +32,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_DATE_AND_TIME = "2022-06-14T13:00";
 
-    private Uid id;
+    private Uid uid;
     private Name name;
     private String category;
     private Gender gender;
@@ -47,7 +47,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         category = DEFAULT_CATEGORY;
-        id = new Uid(DEFAULT_ID);
+        uid = new Uid(DEFAULT_UID);
         name = new Name(DEFAULT_NAME);
         gender = new Gender(DEFAULT_GENDER);
         phone = new Phone(DEFAULT_PHONE);
@@ -63,7 +63,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         category = personToCopy.getCategory();
-        id = personToCopy.getId();
+        uid = personToCopy.getUid();
         name = personToCopy.getName();
         gender = personToCopy.getGender();
         phone = personToCopy.getPhone();
@@ -78,8 +78,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Id} of the {@code Person} that we are building.
      */
-    public PersonBuilder withId(String id) {
-        this.id = new Uid(id);
+    public PersonBuilder withUid(String id) {
+        this.uid = new Uid(id);
         return this;
     }
 
@@ -155,9 +155,9 @@ public class PersonBuilder {
     public Person build() {
 
         if (this.category.equals("P")) {
-            return new Patient(id, name, gender, phone, email, address, tags, dateTimeList);
+            return new Patient(uid, name, gender, phone, email, address, tags, dateTimeList);
         }
-        return new Person(id, name, gender, phone, email, address, tags);
+        return new Person(uid, name, gender, phone, email, address, tags);
     }
 
 }

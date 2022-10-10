@@ -36,8 +36,8 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
+        descriptor.setUid(person.getUid());
         descriptor.setCategory(person.getCategory());
-        descriptor.setId(person.getId());
         descriptor.setName(person.getName());
         descriptor.setGender(person.getGender());
         descriptor.setPhone(person.getPhone());

@@ -1,7 +1,7 @@
 {
   "persons": [ {
     "category": "P",
-    "id": "1",
+    "uid": "1",
     "name": "Alice Pauline",
     "gender": "M",
     "phone": "94351253",
@@ -11,7 +11,7 @@
     "tagged": [ "friends" ]
   }, {
     "category": "P",
-    "id": "1",
+    "uid": "1",
     "name": "Alice Pauline",
     "gender" : "M",
     "phone": "94351253",

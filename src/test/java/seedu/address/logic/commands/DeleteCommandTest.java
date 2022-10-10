@@ -32,7 +32,7 @@ public class DeleteCommandTest {
     public void execute_validUidUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getId());
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getUid());
 
         String expectedMessage = "";
         if (personToDelete instanceof Patient) {
@@ -60,7 +60,7 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getId());
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getUid());
 
         String expectedMessage = "";
         if (personToDelete instanceof Patient) {
@@ -85,7 +85,7 @@ public class DeleteCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         Person onlyPerson = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(new Uid(onlyPerson.getId().id + 1L));
+        DeleteCommand deleteCommand = new DeleteCommand(new Uid(onlyPerson.getUid().uid + 1L));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
     }

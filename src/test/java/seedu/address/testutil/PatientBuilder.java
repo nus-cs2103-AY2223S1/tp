@@ -13,6 +13,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,6 +22,7 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PatientBuilder {
 
+    public static final String DEFAULT_UID = "100";
     public static final String DEFAULT_CATEGORY = "P";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_GENDER = "F";
@@ -28,6 +30,7 @@ public class PatientBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    private Uid uid;
     private String category;
     private Name name;
     private Gender gender;
@@ -41,6 +44,7 @@ public class PatientBuilder {
      * Creates a {@code PatientBuilder} with the default details.
      */
     public PatientBuilder() {
+        uid = new Uid(DEFAULT_UID);
         category = DEFAULT_CATEGORY;
         name = new Name(DEFAULT_NAME);
         gender = new Gender(DEFAULT_GENDER);
@@ -56,6 +60,7 @@ public class PatientBuilder {
      */
     public PatientBuilder(Person patientToCopy) {
         category = "P";
+        uid = patientToCopy.getUid();
         name = patientToCopy.getName();
         gender = patientToCopy.getGender();
         phone = patientToCopy.getPhone();
@@ -63,6 +68,14 @@ public class PatientBuilder {
         address = patientToCopy.getAddress();
         dateTimes = new ArrayList<>(((Patient) patientToCopy).getDatesTimes());
         tags = new HashSet<>(patientToCopy.getTags());
+    }
+
+    /**
+     * Sets the {@code Uid} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withUid(String uid) {
+        this.uid = new Uid(uid);
+        return this;
     }
 
     /**
@@ -126,7 +139,7 @@ public class PatientBuilder {
      * Build a patient.
      */
     public Person build() {
-        Person testPatient = new Patient(name, gender, phone, email, address, tags, dateTimes);
+        Person testPatient = new Patient(uid, name, gender, phone, email, address, tags, dateTimes);
         return testPatient;
     }
 

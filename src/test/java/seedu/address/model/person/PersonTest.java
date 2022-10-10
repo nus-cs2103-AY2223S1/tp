@@ -42,7 +42,7 @@ public class PersonTest {
 
         // different name, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE)
-                .withId(VALID_UID_BOB).build();
+                .withUid(VALID_UID_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // id same, name differs in case, all other attributes same -> returns true

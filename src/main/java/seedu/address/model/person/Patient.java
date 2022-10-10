@@ -21,9 +21,9 @@ public class Patient extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Gender gender, Phone phone, Email email, Address address,
+    public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
                    Set<Tag> tags, List<DateTime> dateTime) {
-        super(name, gender, phone, email, address, tags);
+        super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateTime);
         this.dateTimes.addAll(dateTime);
     }

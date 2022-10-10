@@ -1,7 +1,7 @@
 {
   "persons": [ {
     "category": "cT",
-    "id": "1",
+    "uid": "1",
     "name": "Hans Muster",
     "gender": "F",
     "phone": "9482424",

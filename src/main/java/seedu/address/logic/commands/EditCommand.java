@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -19,7 +20,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -54,7 +54,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Date and Time are only applicable to patient.\n"
             + "[" + PREFIX_DATE_AND_TIME + "DATE_AND_TIME] \n"
-            + "Example: " + COMMAND_WORD + PREFIX_UID +  " 1 "
+            + "Example: " + COMMAND_WORD + PREFIX_UID + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -62,44 +62,36 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This %1$s already exists in the address book.";
 
-    private final Index index;
+    private final Uid targetUid;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
+     * @param targetUid               of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(Uid targetUid, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(targetUid);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.targetUid = targetUid;
+        System.out.println(targetUid);
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        System.out.println(editPersonDescriptor.toString());
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid() == targetUid).findFirst();
 
-        //if (index.getZeroBased() >= lastShownList.size()) {
-        //    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        //}
-
-        //Person personToEdit = lastShownList.get(index.getZeroBased());
-        //Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-        
-        Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getId() == targetUid).findFirst();
         if (!personToEdit.isPresent()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
         }
-        
         Person confirmedPersonToEdit = personToEdit.get();
         Person editedPerson = createEditedPerson(confirmedPersonToEdit, editPersonDescriptor);
-       
-       
         if (!confirmedPersonToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            if (personToEdit instanceof Patient) {
+            if (confirmedPersonToEdit instanceof Patient) {
                 throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, PATIENT_INDICATOR));
             }
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, PERSON_INDICATOR));
@@ -107,7 +99,8 @@ public class EditCommand extends Command {
 
         model.setPerson(confirmedPersonToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        if (personToEdit instanceof Patient) {
+
+        if (confirmedPersonToEdit instanceof Patient) {
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, PATIENT_INDICATOR, editedPerson));
         }
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, PERSON_INDICATOR, editedPerson));
@@ -122,22 +115,22 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         String updatedCategory = editPersonDescriptor.getCategory().orElse(personToEdit.getCategory());
-        Uid id = personToEdit.getId();
+        Uid uid = editPersonDescriptor.getUid().orElse(personToEdit.getUid());
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        
+
         if (personToEdit instanceof Patient && updatedCategory.equals("P")) {
             List<DateTime> updatedDateTime = editPersonDescriptor.getDatesTimes()
                     .orElse(((Patient) personToEdit).getDatesTimes());
-            return new Patient(id, updatedName, updatedGender, updatedPhone, updatedEmail,
+            return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
                         updatedAddress, updatedTags, updatedDateTime);
         }
 
-        return new Person(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -154,7 +147,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return targetUid.equals(e.targetUid)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
@@ -164,8 +157,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        
-        private Uid id;
+        private Uid uid;
         private String category;
         private Name name;
         private Gender gender;
@@ -184,7 +176,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setCategory(toCopy.category);
-            setId(toCopy.id);
+            setUid(toCopy.uid);
             setName(toCopy.name);
             setGender(toCopy.gender);
             setPhone(toCopy.phone);
@@ -213,17 +205,17 @@ public class EditCommand extends Command {
         }
 
         /**
-         * @param id the id to set
+         * @param uid the id to set
          */
-        public void setId(Uid id) {
-            this.id = id;
+        public void setUid(Uid uid) {
+            this.uid = uid;
         }
 
         /**
          * @return the id
          */
-        public Optional<Uid> getId() {
-            return Optional.ofNullable(id);
+        public Optional<Uid> getUid() {
+            return Optional.ofNullable(uid);
         }
 
         public void setName(Name name) {
@@ -313,7 +305,7 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getId().equals(e.getId())
+            return getUid().equals(e.getUid())
                     && getName().equals(e.getName())
                     && getCategory().equals(e.getCategory())
                     && getGender().equals(e.getGender())

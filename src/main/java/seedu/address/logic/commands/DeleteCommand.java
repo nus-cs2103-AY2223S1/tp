@@ -42,16 +42,18 @@ public class DeleteCommand extends Command {
         // throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         // }
 
-        Optional<Person> personToDelete = lastShownList.stream().filter(p -> p.getId() == targetUid).findFirst();
+        Optional<Person> personToDelete = lastShownList.stream().filter(p -> p.getUid() == targetUid).findFirst();
         if (!personToDelete.isPresent()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
         }
         Person confirmedPersonToDelete = personToDelete.get();
         model.deletePerson(confirmedPersonToDelete);
-        if (personToDelete instanceof Patient) {
-            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, PATIENT_INDICATOR, confirmedPersonToDelete));
+        if (confirmedPersonToDelete instanceof Patient) {
+            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+                    PATIENT_INDICATOR, confirmedPersonToDelete));
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, PERSON_INDICATOR, confirmedPersonToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+                PERSON_INDICATOR, confirmedPersonToDelete));
     }
 
     @Override

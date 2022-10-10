@@ -1,9 +1,9 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
-    "id": "1",
-    "name" : "Alice Pauline",
     "category" : "P",
+    "uid": "1",
+    "name" : "Alice Pauline",
     "gender" : "M",
     "phone" : "94351253",
     "email" : "alice@example.com",
@@ -11,9 +11,9 @@
     "dateTimes" : [ "2022-11-11T12:00" ],
     "tagged" : [ "friends" ]
   }, {
-    "id": "2",
-    "name" : "Benson Meier",
     "category" : "P",
+    "uid": "2",
+    "name" : "Benson Meier",
     "gender" : "M",
     "phone" : "98765432",
     "email" : "johnd@example.com",
@@ -21,9 +21,9 @@
     "dateTimes" : [ "2022-10-23T10:00" ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "id": "3",
-    "name" : "Carl Kurz",
     "category" : "P",
+    "uid": "3",
+    "name" : "Carl Kurz",
     "gender" : "M",
     "phone" : "95352563",
     "email" : "heinz@example.com",
@@ -31,9 +31,9 @@
     "dateTimes" : [ "2022-11-10T15:00", "2022-12-10T14:00" ],
     "tagged" : [ ]
   }, {
-    "id": "4",
-    "name" : "Daniel Meier",
     "category" : "P",
+    "uid": "4",
+    "name" : "Daniel Meier",
     "gender" : "M",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
@@ -41,9 +41,9 @@
     "dateTimes" : [ "2022-11-10T15:00", "2022-09-10T14:00" ],
     "tagged" : [ "friends" ]
   }, {
-    "id": "5",
-    "name" : "Elle Meyer",
     "category" : "P",
+    "uid": "5",
+    "name" : "Elle Meyer",
     "gender" : "F",
     "phone" : "9482224",
     "email" : "werner@example.com",
@@ -51,9 +51,9 @@
     "dateTimes" : [ "2022-11-15T12:00" ],
     "tagged" : [ ]
   }, {
-    "id": "6",
-    "name" : "Fiona Kunz",
     "category" : "P",
+    "uid": "6",
+    "name" : "Fiona Kunz",
     "gender" : "F",
     "phone" : "9482427",
     "email" : "lydia@example.com",
@@ -61,9 +61,9 @@
     "dateTimes" : [ "2022-10-15T12:00" ],
     "tagged" : [ ]
   }, {
-    "id": "7",
-    "name" : "George Best",
     "category" : "P",
+    "uid": "7",
+    "name" : "George Best",
     "gender" : "M",
     "phone" : "9482442",
     "email" : "anna@example.com",

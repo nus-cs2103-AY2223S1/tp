@@ -35,6 +35,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane category;
     @FXML
+    private Label uid;
+    @FXML
     private Label dateTimes;
     @FXML
     private Label id;
@@ -62,7 +64,7 @@ public class PersonCard extends UiPart<Region> {
         } else {
             dateTimes.setText(NOT_APPLICABLE);
         }
-
+        uid.setText("[" + person.getUid().toString() + "]");
         name.setText(person.getName().fullName);
         gender.setText(person.getGender().gender);
         phone.setText(person.getPhone().value);

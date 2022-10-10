@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UID_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,8 +26,8 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -58,11 +57,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+        descriptor.setPhone(new Phone("20039109"));
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " " + PREFIX_UID
+                + VALID_UID_AMY + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+
+        assertEquals(new EditCommand(new Uid(VALID_UID_AMY), descriptor), command);
     }
 
     @Test

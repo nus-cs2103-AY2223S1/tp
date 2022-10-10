@@ -18,11 +18,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.DateTime;
+import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,21 +38,19 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER,
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_TIME, PREFIX_TAG);
 
-        Index index;
+        Uid uid;
 
-        try {
-            uID = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get())
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        if (argMultimap.getValue(PREFIX_UID).isPresent()) {
+            uid = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get());
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
             editPersonDescriptor.setCategory(ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
         }
@@ -81,7 +79,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(uid, editPersonDescriptor);
     }
 
     /**
