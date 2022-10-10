@@ -2,13 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 
@@ -46,6 +40,9 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_CODE = CS2103T.getModuleCode().toString();
     public static final String VALID_MODULE_TITLE = CS2103T.getModuleTitle().toString();
 
+    public static final String VALID_LINK = "https://nus-cs2103-ay2223s1.github.io/website/";
+    public static final String VALID_LINK_2 = "https://nusmods.com/timetable/sem-1";
+
     // Module code cannot have brackets
     public static final String INVALID_MODULE_CODE = "(CS2103T)";
 
@@ -63,6 +60,8 @@ public class CommandTestUtil {
     public static final String MODULE_CODE_DESC_MA2001 = " " + PREFIX_MODULE_CODE + VALID_MA_MODULE_CODE;
     public static final String MODULE_TITLE_DESC_CS2106 = " " + PREFIX_MODULE_TITLE + VALID_CS_MODULE_TITLE;
     public static final String MODULE_TITLE_DESC_MA2001 = " " + PREFIX_MODULE_TITLE + VALID_MA_MODULE_TITLE;
+
+    public static final String MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK + VALID_LINK;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

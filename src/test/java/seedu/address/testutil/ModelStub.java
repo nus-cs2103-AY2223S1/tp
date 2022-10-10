@@ -75,6 +75,7 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         throw new AssertionError("This method should not be called.");
@@ -97,6 +98,11 @@ public class ModelStub implements Model {
 
     @Override
     public void addModule(Module module) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setModule(Module target, Module editedModule) {
         throw new AssertionError("This method should not be called.");
     }
 

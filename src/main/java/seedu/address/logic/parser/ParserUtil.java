@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.link.Link;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.person.Address;
@@ -148,6 +149,33 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String link} into a {@code Link}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code link} is invalid.
+     */
+    public static Link parseLink(String link) throws ParseException {
+        requireNonNull(link);
+        String trimmedLink = link.trim();
+        if (!Link.isValidLinkName(trimmedLink)) {
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+        }
+        return new Link(trimmedLink);
+    }
+
+    /**
+     * Parses {@code Collection<String> links} into a {@code Set<Link>}.
+     */
+    public static Set<Link> parseLinks(Collection<String> links) throws ParseException {
+        requireNonNull(links);
+        final Set<Link> linkSet = new HashSet<>();
+        for (String linkURL : links) {
+            linkSet.add(parseLink(linkURL));
+        }
+        return linkSet;
     }
 
     //@@author cheeheng-reused

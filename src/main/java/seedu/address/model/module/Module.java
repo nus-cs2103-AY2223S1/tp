@@ -86,6 +86,13 @@ public class Module {
     }
 
     /**
+     * Returns a copied links set
+     */
+    public Set<Link> copyLinks() {
+        return new HashSet<Link>(links);
+    }
+
+    /**
      * Returns an immutable task set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */

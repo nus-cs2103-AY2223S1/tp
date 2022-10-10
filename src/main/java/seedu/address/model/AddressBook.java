@@ -140,6 +140,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: refine later
     }
 
+    public void setModule(Module target, Module editedModule) {
+        requireNonNull(editedModule);
+
+        modules.setModule(target, editedModule);
+    }
+
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();

@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.link.Link;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_LINK = "googlecom";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +35,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_LINK_1 = "https://nus-cs2103-ay2223s1.github.io/website/";
+    private static final String VALID_LINK_2 = "https://nusmods.com";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +196,51 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseLink_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLink(null));
+    }
+
+    @Test
+    public void parseLink_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLink(INVALID_LINK));
+    }
+
+    @Test
+    public void parseLink_validValueWithoutWhitespace_returnsLink() throws Exception {
+        Link expectedLink = new Link(VALID_LINK_1);
+        assertEquals(expectedLink, ParserUtil.parseLink(VALID_LINK_1));
+    }
+
+    @Test
+    public void parseLink_validValueWithWhitespace_returnsTrimmedLink() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_LINK_1 + WHITESPACE;
+        Link expectedLink = new Link(VALID_LINK_1);
+        assertEquals(expectedLink, ParserUtil.parseLink(tagWithWhitespace));
+    }
+
+    @Test
+    public void parseLinks_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLinks(null));
+    }
+
+    @Test
+    public void parseLinks_collectionWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLinks(Arrays.asList(VALID_LINK_1, INVALID_LINK)));
+    }
+
+    @Test
+    public void parseLinks_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseLinks(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseLink_collectionWithValidLinks_returnsLinkSet() throws Exception {
+        Set<Link> actualLinkSet = ParserUtil.parseLinks(Arrays.asList(VALID_LINK_1, VALID_LINK_2));
+        Set<Link> expectedLinkSet = new HashSet<Link>(Arrays.asList(new Link(VALID_LINK_1), new Link(VALID_LINK_2)));
+
+        assertEquals(expectedLinkSet, actualLinkSet);
     }
 }

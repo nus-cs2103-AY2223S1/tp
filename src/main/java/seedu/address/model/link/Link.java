@@ -9,9 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Link {
 
-    public static final String MESSAGE_CONSTRAINTS = "links should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "links should have at least one top level domain (e.g. <.com>)";
 
+    //obtained from https://uibakery.io/regex-library/url-regex-java
+    //Currently requires "https" at the front of link
+    public static final String VALIDATION_REGEX = "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\."
+            + "[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$"; //Todo: Improve on URL validation
     public final String linkName;
 
     /**
@@ -30,6 +33,7 @@ public class Link {
      */
     public static boolean isValidLinkName(String test) {
         return test.matches(VALIDATION_REGEX);
+        //return !(test.contains(" ") || test.contains(".."));
     }
 
     @Override
