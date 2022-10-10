@@ -140,7 +140,7 @@ Examples:
     Charlie and `CLIENT_EMAIL` charlie@gmail.com.
 *  `client -t 2 n/Dave p/91111111 e/dave@gmail.com` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Dave, `CLIENT_CONTACT_NUMBER` 91111111 and `CLIENT_EMAIL` dave@gmail.com
 
-### Editing a client : `client -d`
+### Editing a client : `client -e`
 
 Edits the client for a specific project.
 
