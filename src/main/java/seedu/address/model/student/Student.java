@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Student in the address book.
+ * Represents a Student in the studentId book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -22,19 +22,19 @@ public class Student {
 
     // Data fields
     private final ClassGroup classGroup;
-    private final Address address;
+    private final StudentId studentId;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, ClassGroup classGroup, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Student(Name name, Phone phone, Email email, ClassGroup classGroup, StudentId studentId, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, classGroup, studentId, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.classGroup = classGroup;
-        this.address = address;
+        this.studentId = studentId;
         this.tags.addAll(tags);
     }
 
@@ -54,8 +54,8 @@ public class Student {
         return classGroup;
     }
 
-    public Address getAddress() {
-        return address;
+    public StudentId getStudentId() {
+        return studentId;
     }
 
     /**
@@ -80,6 +80,14 @@ public class Student {
     }
 
     /**
+     * Returns true is both students have the same studentId
+     * @param otherStudent
+     * @return Whether this and provided student have the same studentId
+     */
+    public boolean hasSameId(Student otherStudent) {
+        return otherStudent.studentId.equals(studentId);
+    }
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */
@@ -98,14 +106,14 @@ public class Student {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getClassGroup().equals(getClassGroup())
-                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getStudentId().equals(getStudentId())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, classGroup, address, tags);
+        return Objects.hash(name, phone, email, classGroup, studentId, tags);
     }
 
     @Override
@@ -118,8 +126,8 @@ public class Student {
                 .append(getEmail())
                 .append("; Class Group: ")
                 .append(getClassGroup())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; StudentId: ")
+                .append(getStudentId());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
