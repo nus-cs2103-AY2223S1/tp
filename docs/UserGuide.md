@@ -16,17 +16,17 @@ TrackO is a **desktop app built for small business owners to help them manage or
 
 1. Download the latest `TrackO.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your TrackO.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`listo`** and pressing Enter will show a lit of existing orders.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`listo`** and pressing Enter will show a list of existing orders.<br>
    Some example commands you can try:
 
     * **`listo`** : Lists all orders.
 
-    * **`addi`**`n/Keychain` : Adds an inventory item named `Keychain` to the inventory list.
+    * **`addi`**`n/Keychain q/200 d/This is a metal keychain` : Adds an inventory item named `Keychain`, which has quantity `200` and description `This is a metal keychain` to the inventory list.
 
     * **`deleteo`**`3` : Deletes the 3rd order shown in the current list.
 
@@ -51,8 +51,8 @@ TrackO is a **desktop app built for small business owners to help them manage or
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+* Extraneous parameters for commands that do not take in parameters (such as `listi`, `listo` and `exit`) will be ignored.<br>
+  e.g. if the command specifies `listi 123`, it will be interpreted as `list`.
 
 </div>
 
@@ -63,7 +63,7 @@ Adds an order to the list of tracked orders.
 Format: `addo i/ITEM_NAME q/ORDER_QUANTITY cn/CUSTOMER_NAME ca/CUSTOMER_ADDRESS ce/CUSTOMER_EMAIL cc/CUSTOMER_CONTACT`
 
 * Adds an order to be tracked in the application
-* Added orders will track the time that it was created
+* The added orders will track the time that it was created
 
 Examples:
 * `addo i/Fountain Pen q/3 cn/John Doe ca/48 Westwood Terrace ce/johndoe@example.com cc/91234567`
@@ -84,17 +84,17 @@ Examples:
 
 ### Listing all orders : `listo`
 
-Shows a list of all orders in the store has.
+Lists all the orders a store has.
 
 Format: `listo`
 
 ### Locating orders by keyword: `findo`
 
-Find order with item names containing any of the given keywords.
+Finds order with item names containing any of the given keywords.
 
 Format: `findo KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `keychain` will match `Keychain`
+* The search is case-insensitive. e.g. `keychain` will match `Keychain`
 * The order of the keywords does not matter. e.g. `apple keychain` will match `Keychain Apple`
 * Only the name is searched.
 * Only full words will be matched e.g. `keychains` will not match `keychain`
@@ -117,7 +117,7 @@ An inventory item can have any number of tags (including 0)
 
 Examples:
 * `addi n/Keychain q/20 d/Silicone keychain with a metal buckle`
-* `addi n/Chair t/Furniture`
+* `addi n/Chair q/10 d/This is a wooden dining chair t/Furniture`
 
 ### Deleting an inventory item : `deletei`
 
@@ -134,21 +134,21 @@ Examples:
 
 ### List all inventory items: `listi`
 
-Shows all the existing items in the store’s inventory.
+Lists all the existing items in the store’s inventory.
 
 Format: `listi`
 
 ### Find an inventory item: `findi`
+
 Finds an inventory item whose name fits any of the given keywords.
 
 Format: `findi KEYWORD [MORE_KEYWORDS]`
 
-- The search is case-insensitive.
-- `keychain` will match `Keychain`
-- The order of the keywords does not matter. <br> e.g. `pants long` will match `long pants`
+- The search is case-insensitive. e.g. `keychain` will match `Keychain`
+- The order of the keywords does not matter. e.g. `pants long` will match `long pants`
 - Only the name of the item is searched.
-- Only full words will be matched. <br> e.g. `key` will not match `Keychain`
-- Items matching at least one keyword will be returned (i.e. OR search). <br>
+- Only full words will be matched. e.g. `key` will not match `Keychain`
+- Items matching at least one keyword will be returned (i.e. OR search).
   e.g. `shirt` will return `dress shirt`, `collared shirt`
 
 Examples:
@@ -168,8 +168,8 @@ Format: `tagi INDEX [t/TAG]…​`
 
 Examples:
 * `tagi 1 t/Perishable t/Premium` adds the tags `Perishable` and `Premium` to
-  the item at index 1
-* `tagi 3 t/` removes the tags of the item at index 3
+  the item at index 1.
+* `tagi 3 t/` removes the tags of the item at index 3.
 
 ### Exiting the program : `exit`
 
