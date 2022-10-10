@@ -113,15 +113,15 @@ public class Student {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
 
-        if (!telegramHandle.isDummyTelegramHandle()) {
+        if (!telegramHandle.isEmpty()) {
             builder.append("; Telegram handle: ")
                     .append(getTelegramHandle());
         }
-        if (!consultation.isDummyConsultation()) {
+        if (!consultation.isEmpty()) {
             builder.append("; ")
                     .append(getConsultation());
         }
-        if (!masteryCheck.isDummyMasteryCheck()) {
+        if (!masteryCheck.isEmpty()) {
             builder.append("; ")
                     .append(getMasteryCheck());
         }

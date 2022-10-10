@@ -4,6 +4,8 @@ import static friday.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 public class MasteryCheckTest {
@@ -33,5 +35,14 @@ public class MasteryCheckTest {
         // valid dates
         assertTrue(MasteryCheck.isValidMasteryCheck("2019-06-07"));
         assertTrue(MasteryCheck.isValidMasteryCheck("2020-02-28"));
+    }
+
+    @Test
+    public void isEmpty() {
+        // not the empty instance
+        assertFalse(new MasteryCheck(LocalDate.of(2001, 01, 01)).isEmpty());
+
+        // the empty instance
+        assertTrue(MasteryCheck.EMPTY_MASTERYCHECK.isEmpty());
     }
 }

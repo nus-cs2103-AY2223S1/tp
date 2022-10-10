@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import friday.commons.exceptions.IllegalValueException;
+import friday.model.student.Consultation;
+import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
 import friday.model.student.TelegramHandle;
 import friday.testutil.TypicalStudents;
@@ -22,7 +24,7 @@ public class JsonAdaptedStudentTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = TypicalStudents.BENSON.getName().toString();
-    private static final String VALID_TELEGRAMHANDLE = TypicalStudents.BENSON.getTelegramHandle().toString();
+    private static final String VALID_TELEGRAMHANDLE = TypicalStudents.BENSON.getTelegramHandle().value;
     private static final LocalDate VALID_CONSULTATION =
             LocalDate.parse(TypicalStudents.BENSON.getConsultation().getValue().toString());
     private static final LocalDate VALID_MASTERYCHECK =
@@ -84,8 +86,6 @@ public class JsonAdaptedStudentTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
-    /*
-    Commenting these 2 out for now as consultation and mastery check can be null?
 
     @Test
     public void toModelType_nullConsultation_throwsIllegalValueException() {
@@ -104,5 +104,4 @@ public class JsonAdaptedStudentTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, MasteryCheck.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-     */
 }

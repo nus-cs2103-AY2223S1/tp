@@ -2,7 +2,6 @@ package friday.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
@@ -48,12 +47,12 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .PREFIX_TELEGRAMHANDLE).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_CONSULTATION).isPresent()) {
-            editPersonDescriptor.setConsultation(ParserUtil.parseConsultation(LocalDate.parse(argMultimap
-                    .getValue(CliSyntax.PREFIX_CONSULTATION).get())));
+            editPersonDescriptor.setConsultation(ParserUtil.parseConsultation(
+                    argMultimap.getValue(CliSyntax.PREFIX_CONSULTATION).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_MASTERYCHECK).isPresent()) {
             editPersonDescriptor.setMasteryCheck(ParserUtil.parseMasteryCheck(
-                    LocalDate.parse(argMultimap.getValue(CliSyntax.PREFIX_MASTERYCHECK).get())));
+                    argMultimap.getValue(CliSyntax.PREFIX_MASTERYCHECK).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

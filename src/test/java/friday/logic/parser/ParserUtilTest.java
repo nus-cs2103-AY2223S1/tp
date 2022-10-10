@@ -99,13 +99,13 @@ public class ParserUtilTest {
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         MasteryCheck expectedMasteryCheck = new MasteryCheck(VALID_MASTERYCHECK);
-        assertEquals(expectedMasteryCheck, ParserUtil.parseMasteryCheck(VALID_MASTERYCHECK));
+        assertEquals(expectedMasteryCheck, ParserUtil.parseMasteryCheck(VALID_MASTERYCHECK.toString()));
     }
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
         Consultation expectedConsultation = new Consultation(VALID_CONSULTATION);
-        assertEquals(expectedConsultation, ParserUtil.parseConsultation(VALID_CONSULTATION));
+        assertEquals(expectedConsultation, ParserUtil.parseConsultation(VALID_CONSULTATION.toString()));
     }
 
     @Test

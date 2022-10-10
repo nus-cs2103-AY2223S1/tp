@@ -7,7 +7,6 @@ import static friday.logic.parser.CliSyntax.PREFIX_NAME;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
 import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 
-import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -29,6 +28,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
@@ -42,12 +42,31 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        TelegramHandle telegramHandle = ParserUtil.parseTelegramHandle(argMultimap
-                .getValue(PREFIX_TELEGRAMHANDLE).orElse(""));
-        Consultation consultation = ParserUtil.parseConsultation(LocalDate.parse(argMultimap
-                .getValue(PREFIX_CONSULTATION).orElse("2001-01-01")));
-        MasteryCheck masteryCheck = ParserUtil.parseMasteryCheck(LocalDate.parse(argMultimap
-                .getValue(PREFIX_MASTERYCHECK).orElse("2001-01-01")));
+
+        TelegramHandle telegramHandle;
+        Consultation consultation;
+        MasteryCheck masteryCheck;
+
+        if (argMultimap.getValue(PREFIX_TELEGRAMHANDLE).isPresent()) {
+            telegramHandle = ParserUtil.parseTelegramHandle(argMultimap
+                    .getValue(PREFIX_TELEGRAMHANDLE).get());
+        } else {
+            telegramHandle = TelegramHandle.EMPTY_TELEGRAMHANDLE;
+        }
+
+        if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
+            consultation = ParserUtil.parseConsultation(argMultimap.getValue(PREFIX_CONSULTATION).get());
+        } else {
+            consultation = Consultation.EMPTY_CONSULTATION;
+        }
+
+
+        if (argMultimap.getValue(PREFIX_MASTERYCHECK).isPresent()) {
+            masteryCheck = ParserUtil.parseMasteryCheck(argMultimap.getValue(PREFIX_MASTERYCHECK).get());
+        } else {
+            masteryCheck = MasteryCheck.EMPTY_MASTERYCHECK;
+        }
+
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

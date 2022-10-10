@@ -11,9 +11,12 @@ public class TelegramHandle {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "TelegramHandle should only contain letters a-z, numbers 0-9, and underscores, and it should be at least "
+            "Telegram handle should only contain letters a-z, numbers 0-9, and underscores; it should also be at least "
                     + "5 characters long";
     public static final String VALIDATION_REGEX = "[a-z0-9_]{5,}";
+
+    public static final TelegramHandle EMPTY_TELEGRAMHANDLE = new TelegramHandle();
+
     public final String value;
 
     /**
@@ -28,22 +31,39 @@ public class TelegramHandle {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Constructs a {@code TelegramHandle} for the empty instance.
      */
-    public static boolean isValidTelegramHandle(String test) {
-        return test.equals("") || test.matches(VALIDATION_REGEX);
+    private TelegramHandle() {
+        value = "";
     }
 
     /**
-     * Returns true if the given Telegram handle is a dummy value.
+     * Returns true if the given string is a valid Telegram handle.
      */
-    public boolean isDummyTelegramHandle() {
-        return value.equals("");
+    public static boolean isValidTelegramHandle(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if the given string is a valid Telegram handle or empty.
+     *
+     * Only to be used when converting JSON to Student in JsonAdaptedPerson.
+     */
+    public static boolean isValidOrEmpty(String test) {
+        return test.matches(VALIDATION_REGEX) || test.equals("");
+    }
+
+    /**
+     * Returns true if the given Telegram handle is the empty value.
+     */
+    public boolean isEmpty() {
+        return this == EMPTY_TELEGRAMHANDLE;
     }
 
     @Override
     public String toString() {
-        return "@" + value;
+        String str = this.isEmpty() ? "" : value;
+        return "@" + str;
     }
 
     @Override

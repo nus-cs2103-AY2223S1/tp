@@ -25,11 +25,19 @@ public class TelegramHandleTest {
         assertThrows(NullPointerException.class, () -> TelegramHandle.isValidTelegramHandle(null));
 
         // invalid Telegram handles
+        assertFalse(TelegramHandle.isValidTelegramHandle("")); // empty handle is not allowed
         assertFalse(TelegramHandle.isValidTelegramHandle("john+doe")); // symbols are not allowed
         assertFalse(TelegramHandle.isValidTelegramHandle("JohnDoe")); // capital letters are not allowed
 
         // valid Telegram handles
         assertTrue(TelegramHandle.isValidTelegramHandle("john123")); // letters and numbers
         assertTrue(TelegramHandle.isValidTelegramHandle("john_doe")); // with an underscore
+    }
+
+    @Test
+    public void isEmpty() {
+        assertFalse(new TelegramHandle("empty").isEmpty()); // not the empty instance
+
+        assertTrue(TelegramHandle.EMPTY_TELEGRAMHANDLE.isEmpty()); // the empty instance
     }
 }
