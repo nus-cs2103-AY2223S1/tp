@@ -208,7 +208,7 @@ Examples:
 
 ### Hide Contact Details: `customise hide`
 
-Hide certain information of all contacts shown.
+Hide certain information of all contacts displayed.
 
 Format: `customise hide [p/] [e/] [a/] [t/]`
 
@@ -217,10 +217,11 @@ Format: `customise hide [p/] [e/] [a/] [t/]`
 
 Example:
 * `customise hide e/` The application no longer shows emails in the contact list.
+* `customise hide p/ t/` The application no longer shows phone numbers and tags in the contact list.
 
 ### Show Contact Details: `customise show`
 
-Show certain information of all contacts shown.
+Show certain information of all contacts displayed.
 
 Format: `customise show [p/] [e/] [a/] [t/]`
 
@@ -229,6 +230,7 @@ Format: `customise show [p/] [e/] [a/] [t/]`
 
 Example:
 * `customise show a/` The application now shows addresses in the contact list.
+* `customise show p/ t/` The application now shows phone numbers and tags in the contact list.
 
 ### Customise Order of Details: `customise order`
 
@@ -236,11 +238,12 @@ Customise order of information shown in all contacts shown.
 
 Format: `customise order [p/] [e/] [a/] [t/]`
 
-*Attributes not given will be ordered last in default order. (tag > phone > address > email)
+* Attributes not given will be ordered last in default order. (tag > phone > email > address)
 
 Example:
 
 * `customise order a/ e/ p/` The application now shows address first, followed by email, phone, then tags.
+* `customise order a/` The application now shows address first the rest of the attributes will follow the default order, therefore address will be followed by tags, phone and then email.
 
 ### Clearing all entries : `clear`
 
