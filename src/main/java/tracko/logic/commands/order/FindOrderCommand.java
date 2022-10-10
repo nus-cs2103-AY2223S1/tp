@@ -16,7 +16,7 @@ public class FindOrderCommand extends Command {
 
     public static final String COMMAND_WORD = "findo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all orders whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all orders that contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " keychain";
@@ -31,8 +31,13 @@ public class FindOrderCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredOrderList(predicate);
+
+        if (model.getFilteredOrderList().size() == 1) {
+            return new CommandResult(Messages.MESSAGE_ONE_ORDER_FOUND);
+        }
+
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
+                String.format(Messages.MESSAGE_ORDERS_FOUND_OVERVIEW, model.getFilteredOrderList().size()));
     }
 
     @Override

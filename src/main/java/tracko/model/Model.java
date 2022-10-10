@@ -6,14 +6,13 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
 import tracko.model.order.Order;
-import tracko.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
