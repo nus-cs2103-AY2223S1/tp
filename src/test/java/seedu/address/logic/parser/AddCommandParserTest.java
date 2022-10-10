@@ -418,6 +418,7 @@ public class AddCommandParserTest {
                 + INVALID_ADDRESS_DESC
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
