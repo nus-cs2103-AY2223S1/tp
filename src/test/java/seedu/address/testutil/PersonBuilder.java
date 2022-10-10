@@ -20,11 +20,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_PROJECTNAME = "CS2103 SE";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private String projectName;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +37,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        projectName = DEFAULT_PROJECTNAME;
         tags = new HashSet<>();
     }
 
@@ -46,6 +49,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        projectName = personToCopy.getProjectName();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -89,8 +93,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Project} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withProjectName(String projectName) {
+        this.projectName = projectName;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, projectName, tags);
     }
 
 }
