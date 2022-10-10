@@ -89,10 +89,10 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredStudentList(predicate);
-        model.updateCurrentListType(Model.ListType.STUDENT_LIST);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
+        expectedStudentModel.updateFilteredStudentList(predicate);
+        studentModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
+        assertCommandSuccess(command, studentModel, expectedMessage, expectedStudentModel);
+        assertEquals(Collections.emptyList(), studentModel.getFilteredStudentList());
     }
 
     @Test
@@ -100,10 +100,10 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredTutorList(predicate);
-        model.updateCurrentListType(Model.ListType.TUTOR_LIST);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredTutorList());
+        expectedTutorModel.updateFilteredTutorList(predicate);
+        tutorModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
+        assertCommandSuccess(command, tutorModel, expectedMessage, expectedTutorModel);
+        assertEquals(Collections.emptyList(), tutorModel.getFilteredTutorList());
     }
 
     @Test
@@ -111,10 +111,10 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredTuitionClassList(predicate);
-        model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredTuitionClassList());
+        expectedTuitionClassModel.updateFilteredTuitionClassList(predicate);
+        tuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        assertCommandSuccess(command, tuitionClassModel, expectedMessage, expectedTuitionClassModel);
+        assertEquals(Collections.emptyList(), tuitionClassModel.getFilteredTuitionClassList());
     }
 
     @Test
