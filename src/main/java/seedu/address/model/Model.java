@@ -4,8 +4,12 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * The API of the Model component.
@@ -13,6 +17,12 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_STUDENT = unused -> true;
+    Predicate<Tutor> PREDICATE_SHOW_ALL_TUTOR = unused -> true;
+    Predicate<TuitionClass> PREDICATE_SHOW_ALL_TUITIONCLASS = unused -> true;
+
+    /** the type of the current list **/
+    enum ListType { STUDENT_LIST, TUTOR_LIST, TUITIONCLASS_LIST, PERSON_LIST };
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -104,4 +114,40 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Student> getFilteredStudentList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Tutor> getFilteredTutorList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTutorList(Predicate<Tutor> predicate);
+
+    /** Returns an unmodifiable view of the filtered class list */
+    ObservableList<TuitionClass> getFilteredTuitionClassList();
+
+    /**
+     * Updates the filter of the filtered class list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTuitionClassList(Predicate<TuitionClass> predicate);
+
+    /** Updates the type of the current list **/
+    void updateCurrentListType(ListType type);
+
+    /** Returns the type of the current list **/
+    ListType getCurrentListType();
+
+    /** Returns the current list **/
+    FilteredList<?> getCurrentList();
 }

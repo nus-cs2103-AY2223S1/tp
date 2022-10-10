@@ -22,6 +22,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListStudentCommand;
+import seedu.address.logic.commands.ListTuitionClassCommand;
+import seedu.address.logic.commands.ListTutorCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -89,9 +92,27 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_listStudent() throws Exception {
+        assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD) instanceof ListStudentCommand);
+        assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD + " 3") instanceof ListStudentCommand);
+    }
+
+    @Test
+    public void parseCommand_listTutor() throws Exception {
+        assertTrue(parser.parseCommand(ListTutorCommand.COMMAND_WORD) instanceof ListTutorCommand);
+        assertTrue(parser.parseCommand(ListTutorCommand.COMMAND_WORD + " 3") instanceof ListTutorCommand);
+    }
+
+    @Test
+    public void parseCommand_listTuitionClass() throws Exception {
+        assertTrue(parser.parseCommand(ListTuitionClassCommand.COMMAND_WORD) instanceof ListTuitionClassCommand);
+        assertTrue(parser.parseCommand(ListTuitionClassCommand.COMMAND_WORD + " 3") instanceof ListTuitionClassCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test
