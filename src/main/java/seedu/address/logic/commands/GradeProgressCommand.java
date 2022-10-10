@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -10,41 +10,40 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Homework;
-import seedu.address.model.person.HomeworkList;
+import seedu.address.model.person.GradeProgress;
+import seedu.address.model.person.GradeProgressList;
 import seedu.address.model.person.Person;
 
 /**
  * Adds homework to an existing person in the address book.
  */
-public class HomeworkCommand extends Command {
+public class GradeProgressCommand extends Command {
 
-    public static final String COMMAND_WORD = "homework";
+    public static final String COMMAND_WORD = "gradeProgress";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds homework to the person identified "
+            + ": Adds grade progress to the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing homework will not be modified.\n"
+            + "Existing grade progress will not be modified.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_HOMEWORK + "HOMEWORK]...\n"
+            + "[" + PREFIX_GRADEPROGRESS + " GRADEPROGRESS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_HOMEWORK + "Science worksheet";
+            + PREFIX_GRADEPROGRESS + " MATH:A";
 
-    public static final String MESSAGE_ADD_HOMEWORK_SUCCESS = "Added homework to Person: %1$s";
-    public static final String MESSAGE_DELETE_HOMEWORK_SUCCESS = "Removed homework from Person: %1$s";
+    public static final String MESSAGE_ADD_GRADEPROGRESS_SUCCESS = "Added grade progress to Person: %1$s";
+    public static final String MESSAGE_DELETE_GRADEPROGRESS_SUCCESS = "Removed grade progress from Person: %1$s";
 
     private final Index index;
-    private final Homework homework;
+    private final GradeProgress gradeProgress;
 
     /**
      * @param index of the person in the filtered person list to edit the homework
-     * @param homework of the person to add
+     * @param gradeProgress of the person to add
      */
-    public HomeworkCommand(Index index, Homework homework) {
-        requireAllNonNull(index, homework);
-
+    public GradeProgressCommand(Index index, GradeProgress gradeProgress) {
+        requireAllNonNull(index, gradeProgress);
         this.index = index;
-        this.homework = homework;
+        this.gradeProgress = gradeProgress;
     }
 
     @Override
@@ -57,12 +56,13 @@ public class HomeworkCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        HomeworkList homeworkList = personToEdit.getHomeworkList();
-        homeworkList.addHomework(homework);
+        GradeProgressList gradeProgressList = personToEdit.getGradeProgressList();
+        gradeProgressList.addGradeProgress(gradeProgress);
 
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getLessonPlan(),
-                homeworkList, personToEdit.getAttendanceList(), personToEdit.getGradeProgressList(), personToEdit.getTags());
+                personToEdit.getHomeworkList(), gradeProgressList, personToEdit.getTags());
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
@@ -71,11 +71,13 @@ public class HomeworkCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the homework is added to or removed from
+     * the gradeProgress is added to or removed from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !homework.value.isEmpty() ? MESSAGE_ADD_HOMEWORK_SUCCESS : MESSAGE_DELETE_HOMEWORK_SUCCESS;
+        String message = !gradeProgress.value.isEmpty()
+                ? MESSAGE_ADD_GRADEPROGRESS_SUCCESS
+                : MESSAGE_DELETE_GRADEPROGRESS_SUCCESS;
         return String.format(message, personToEdit);
     }
 
@@ -87,13 +89,14 @@ public class HomeworkCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof HomeworkCommand)) {
+        if (!(other instanceof GradeProgressCommand)) {
             return false;
         }
 
         // state check
-        HomeworkCommand e = (HomeworkCommand) other;
+        GradeProgressCommand e = (GradeProgressCommand) other;
         return index.equals(e.index)
-                && homework.equals(e.homework);
+                && gradeProgress.equals(e.gradeProgress);
     }
 }
+

@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.GradeProgressList;
 import seedu.address.model.person.HomeworkList;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
@@ -46,8 +47,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         AttendanceList attendanceList =
                 new AttendanceList(); // add command does not allow adding attendance straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        GradeProgressList gradeProgressList =
+                new GradeProgressList(); // add command does not allow adding Grade Progress at the start
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, lessonPlan, homeworkList, attendanceList, tagList);
+        Person person = new Person(name, phone, lessonPlan, homeworkList, attendanceList, gradeProgressList, tagList);
 
         return new AddCommand(person);
     }

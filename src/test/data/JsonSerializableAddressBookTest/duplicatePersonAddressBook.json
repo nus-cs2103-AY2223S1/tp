@@ -5,6 +5,7 @@
     "lessonPlan" : "Algorithms",
     "homework": [ "science worksheet" ],
     "attendance": ["2022-08-07"],
+    "gradeProgress" : ["Math: A"],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -13,5 +14,7 @@
     "homework": [ "science worksheet" ],
     "attendance": [ "2022-08-07" ],
     "tagged": [ "friends" ]
+    "gradeProgress" : ["Math: A"],
+    "homework": [ "science worksheet" ]
   } ]
 }

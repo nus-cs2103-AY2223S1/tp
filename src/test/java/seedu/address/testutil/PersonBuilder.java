@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.GradeProgressList;
 import seedu.address.model.person.HomeworkList;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
@@ -27,6 +28,7 @@ public class PersonBuilder {
     private LessonPlan lessonPlan;
     private HomeworkList homeworkList;
     private AttendanceList attendanceList;
+    private GradeProgressList gradeProgressList;
     private Set<Tag> tags;
 
     /**
@@ -38,6 +40,7 @@ public class PersonBuilder {
         lessonPlan = new LessonPlan(DEFAULT_LESSON_PLAN);
         homeworkList = new HomeworkList();
         attendanceList = new AttendanceList();
+        gradeProgressList = new GradeProgressList();
         tags = new HashSet<>();
     }
 
@@ -50,6 +53,8 @@ public class PersonBuilder {
         lessonPlan = personToCopy.getLessonPlan();
         homeworkList = new HomeworkList(new ArrayList<>(personToCopy.getHomeworkList().homeworkList));
         attendanceList = new AttendanceList(new ArrayList<>(personToCopy.getAttendanceList().attendanceList));
+        gradeProgressList = new GradeProgressList(new ArrayList<>(personToCopy.getGradeProgressList()
+                .gradeProgressList));
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -84,6 +89,13 @@ public class PersonBuilder {
      */
     public PersonBuilder withAttendance(String ... attendanceList) {
         this.attendanceList.attendanceList.addAll(SampleDataUtil.getAttendanceList(attendanceList));
+    }
+    
+    /** Parses the {@code homeworkList} into a {@code List<Homework>} and set it to the {@code Person}
+     * that we are building.
+     */
+    public PersonBuilder withGradeProgress(String ... gradeProgress) {
+        this.gradeProgressList = new GradeProgressList(SampleDataUtil.getGradeProgressList(gradeProgress));
         return this;
     }
 
@@ -104,7 +116,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, lessonPlan, homeworkList, attendanceList, tags);
+        return new Person(name, phone, lessonPlan, homeworkList, attendanceList, gradeProgressList, tags);
     }
 
 }
