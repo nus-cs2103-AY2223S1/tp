@@ -41,7 +41,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns number of contacts in AddressBook
      */
     public int size() {
-        return this.size();
+        return getPersonList().size();
     }
 
     //// list overwrite operations
