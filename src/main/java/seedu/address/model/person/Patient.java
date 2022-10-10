@@ -2,70 +2,39 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskList;
 
 
 /**
- * Represents a Person in the address book.
+ * Represents a Patient in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
-
-    // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
-
+public class Patient extends Person {
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final TaskList tasks;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+    public Patient(Name name, Phone phone, Email email, Address address, TaskList tasks, Set<Tag> tags) {
+        super(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, tasks, tags);
+        this.tasks = tasks;
     }
 
-    public Name getName() {
-        return name;
-    }
-
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public TaskList getTasks() {
+        return tasks;
     }
 
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
+    public boolean isSamePerson(Patient otherPerson) {
         if (otherPerson == this) {
             return true;
         }
@@ -84,22 +53,23 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Patient)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
+        Patient otherPerson = (Patient) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTasks().equals(getTasks())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(super.hashCode(), tasks);
     }
 
     @Override
@@ -113,6 +83,12 @@ public class Person {
                 .append("\nAddress: ")
                 .append(getAddress());
 
+        TaskList tasks = getTasks();
+        if (!tasks.isEmpty()) {
+            builder.append("\nTasks:\n")
+                    .append(tasks);
+        }
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("\nTags: ");
@@ -120,4 +96,5 @@ public class Person {
         }
         return builder.toString();
     }
+
 }
