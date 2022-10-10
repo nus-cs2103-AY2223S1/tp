@@ -112,6 +112,10 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
         }
 
+        if (!Attendance.isValidMark(attendance)) {
+            throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+
         final Attendance modelAttendance = new Attendance(attendance);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);

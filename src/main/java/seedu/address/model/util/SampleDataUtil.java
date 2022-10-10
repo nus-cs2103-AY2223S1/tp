@@ -19,7 +19,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
 
-    public static final Attendance EMPTY_ATTENDANCE = new Attendance("");
+    public static final Attendance EMPTY_ATTENDANCE = new Attendance();
     public static Student[] getSampleStudents() {
 
         return new Student[] {

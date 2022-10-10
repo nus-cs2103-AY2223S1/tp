@@ -31,8 +31,6 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AttendanceCommand.MESSAGE_USAGE), ive);
         }
 
-        String attendance = argMultimap.getValue(PREFIX_ATTENDANCE).orElse("");
-
-        return new AttendanceCommand(index, new Attendance(attendance));
+        return new AttendanceCommand(index, ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get()));
     }
 }
