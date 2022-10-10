@@ -142,7 +142,8 @@ public class EditPersonCommand extends Command {
         private InternshipId internshipId;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
