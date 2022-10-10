@@ -57,7 +57,7 @@ public class ArgumentMultimap {
      * Checks if the {@code prefix} only occurs once in the user input.
      *
      * @param prefix the prefix to check against
-     * @return true if the {@code prefix} only occurs once, otherwise false
+     * @return true if the {@code prefix} only occurs once, otherwise return false
      */
     public boolean isUniquePrefix(Prefix prefix) {
         List<String> values = getAllValues(prefix);
