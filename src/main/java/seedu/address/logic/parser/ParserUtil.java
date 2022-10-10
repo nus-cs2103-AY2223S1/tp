@@ -6,15 +6,9 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-import javafx.util.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
@@ -24,6 +18,7 @@ import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.storage.ClassStorage;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -31,7 +26,6 @@ import seedu.address.model.person.Phone;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static HashMap<LocalDate, List<Pair>> classStorage = new HashMap<LocalDate, List<Pair>>();
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -131,37 +125,8 @@ public class ParserUtil {
         if (endTime.isBefore(startTime) || endTime.equals(startTime)) {
             throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
         }
-        saveClass(date, startTime, endTime);
+        ClassStorage.saveClass(date, startTime, endTime);
         return new Class(date, startTime, endTime, classDatetime);
-    }
-
-    /**
-     * Saves added classes into storage if there is no conflict between the timings of the classes.
-     *
-     * @param date LocalDate object.
-     * @param start LocalTime object.
-     * @param end LocalTime object.
-     * @throws CommandException if there is a conflict between the timings of the classes.
-     */
-    public static void saveClass(LocalDate date, LocalTime start, LocalTime end) throws ParseException {
-        if (!classStorage.containsKey(date)) {
-            List<Pair> ls = new ArrayList<>();
-            ls.add(new Pair(start, end));
-            classStorage.put(date, ls);
-        } else {
-            List<Pair> listOfTimings = classStorage.get(date);
-            for(int i = 0; i < listOfTimings.size(); i++) {
-                Pair currClass = listOfTimings.get(i);
-                LocalTime startOfCurrClass = (LocalTime) currClass.getKey();
-                LocalTime endOfCurrClass = (LocalTime) currClass.getValue();
-                if (start.equals(startOfCurrClass) || end.equals(endOfCurrClass) ||
-                        start.isAfter(startOfCurrClass) && start.isBefore(endOfCurrClass) ||
-                        start.isBefore(startOfCurrClass) && end.isAfter(startOfCurrClass)) {
-                    throw new ParseException(EditCommand.MESSAGE_CLASS_CONFLICT);
-                }
-            }
-            listOfTimings.add(new Pair(start, end));
-        }
     }
 
     /**

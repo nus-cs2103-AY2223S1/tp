@@ -13,6 +13,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import javafx.util.Pair;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -28,6 +31,8 @@ import seedu.address.model.person.MoneyPaid;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.storage.ClassStorage;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -82,6 +87,12 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (!personToEdit.getAClass().classDateTime.equals("")) {
+            LocalDate date = personToEdit.getAClass().date;
+            LocalTime start = personToEdit.getAClass().startTime;
+            LocalTime end = personToEdit.getAClass().endTime;
+            ClassStorage.classes.get(date).remove(new Pair(start, end));
+        }
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
