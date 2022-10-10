@@ -8,13 +8,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ApplicationModel;
+import seedu.address.model.Model;
 import seedu.address.model.application.Application;
 
 /**
  * Adds an application to CinternS.
  */
-public class ApplicationAddCommand extends ApplicationCommand {
+public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -40,13 +40,13 @@ public class ApplicationAddCommand extends ApplicationCommand {
     /**
      * Creates an AddCommand to add the specified {@code Application}
      */
-    public ApplicationAddCommand(Application application) {
+    public AddCommand(Application application) {
         requireNonNull(application);
         toAdd = application;
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasApplication(toAdd)) {
@@ -60,7 +60,7 @@ public class ApplicationAddCommand extends ApplicationCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ApplicationAddCommand // instanceof handles nulls
-                && toAdd.equals(((ApplicationAddCommand) other).toAdd));
+                || (other instanceof AddCommand // instanceof handles nulls
+                && toAdd.equals(((AddCommand) other).toAdd));
     }
 }

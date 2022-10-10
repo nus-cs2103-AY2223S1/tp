@@ -15,18 +15,18 @@ import seedu.address.model.ApplicationBook;
 import seedu.address.model.ReadOnlyApplicationBook;
 import seedu.address.model.UserPrefs;
 
-public class ApplicationStorageManagerTest {
+public class StorageManagerTest {
 
     @TempDir
     public Path testFolder;
 
-    private ApplicationStorageManager applicationStorageManager;
+    private StorageManager applicationStorageManager;
 
     @BeforeEach
     public void setUp() {
         JsonApplicationBookStorage applicationBookStorage = new JsonApplicationBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        applicationStorageManager = new ApplicationStorageManager(applicationBookStorage, userPrefsStorage);
+        applicationStorageManager = new StorageManager(applicationBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

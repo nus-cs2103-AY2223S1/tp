@@ -6,13 +6,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.ApplicationModel;
+import seedu.address.model.Model;
 import seedu.address.model.application.Application;
 
 /**
  * A utility class for test cases.
  */
-public class ApplicationTestUtil {
+public class TestUtil {
 
     /**
      * Folder used for temp files created during testing. Ignored by Git.
@@ -35,21 +35,21 @@ public class ApplicationTestUtil {
     /**
      * Returns the middle index of the application in the {@code model}'s application list.
      */
-    public static Index getMidIndex(ApplicationModel model) {
+    public static Index getMidIndex(Model model) {
         return Index.fromOneBased(model.getFilteredApplicationList().size() / 2);
     }
 
     /**
      * Returns the last index of the application in the {@code model}'s application list.
      */
-    public static Index getLastIndex(ApplicationModel model) {
+    public static Index getLastIndex(Model model) {
         return Index.fromOneBased(model.getFilteredApplicationList().size());
     }
 
     /**
      * Returns the application in the {@code model}'s application list at {@code index}.
      */
-    public static Application getApplication(ApplicationModel model, Index index) {
+    public static Application getApplication(Model model, Index index) {
         return model.getFilteredApplicationList().get(index.getZeroBased());
     }
 }

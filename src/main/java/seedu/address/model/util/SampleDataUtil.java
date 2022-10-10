@@ -12,7 +12,7 @@ import seedu.address.model.application.Position;
 /**
  * Contains utility methods for populating {@code ApplicationBook} with sample data.
  */
-public class SampleDataUtilApplicationBook {
+public class SampleDataUtil {
     public static Application[] getSampleApplications() {
         return new Application[] {
             new Application(new Company("Google"), new Contact("68882888"), new Email("internships@google.com.sg"),

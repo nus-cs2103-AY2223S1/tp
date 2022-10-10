@@ -7,13 +7,13 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ApplicationModel;
+import seedu.address.model.Model;
 import seedu.address.model.application.Application;
 
 /**
  * Deletes an application identified using its displayed index on the CinternS interface.
  */
-public class ApplicationDeleteCommand extends ApplicationCommand {
+public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -26,12 +26,12 @@ public class ApplicationDeleteCommand extends ApplicationCommand {
 
     private final Index targetIndex;
 
-    public ApplicationDeleteCommand(Index targetIndex) {
+    public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Application> lastShownList = model.getFilteredApplicationList();
 
@@ -47,7 +47,7 @@ public class ApplicationDeleteCommand extends ApplicationCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ApplicationDeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((ApplicationDeleteCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
 }

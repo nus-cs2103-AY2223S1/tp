@@ -13,7 +13,7 @@ import seedu.address.model.application.Application;
 /**
  * Panel containing the list of applications.
  */
-public class ApplicationListPanel extends ApplicationUiPart<Region> {
+public class ApplicationListPanel extends UiPart<Region> {
     private static final String FXML = "ApplicationListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ApplicationListPanel.class);
 

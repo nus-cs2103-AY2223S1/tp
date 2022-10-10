@@ -1,28 +1,28 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.COMPANY_DESC_FACEBOOK;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.COMPANY_DESC_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.CONTACT_DESC_FACEBOOK;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.CONTACT_DESC_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.DATE_DESC_FACEBOOK;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.DATE_DESC_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.EMAIL_DESC_FACEBOOK;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.EMAIL_DESC_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.INVALID_COMPANY_DESC;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.INVALID_CONTACT_DESC;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.INVALID_DATE_DESC;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.INVALID_POSITION_DESC;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.POSITION_DESC_FACEBOOK;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.POSITION_DESC_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_CONTACT_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DATE_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_EMAIL_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_POSITION_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.POSITION_DESC_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.POSITION_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACT_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
 import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalApplications.FACEBOOK;
@@ -30,7 +30,7 @@ import static seedu.address.testutil.TypicalApplications.GOOGLE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ApplicationAddCommand;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.application.Application;
 import seedu.address.model.application.Company;
 import seedu.address.model.application.Contact;
@@ -39,8 +39,8 @@ import seedu.address.model.application.Email;
 import seedu.address.model.application.Position;
 import seedu.address.testutil.ApplicationBuilder;
 
-public class ApplicationAddCommandParserTest {
-    private ApplicationAddCommandParser parser = new ApplicationAddCommandParser();
+public class AddCommandParserTest {
+    private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -48,27 +48,27 @@ public class ApplicationAddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
-                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new ApplicationAddCommand(expectedApplication));
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
 
         // multiple companies - last company accepted
         assertParseSuccess(parser, COMPANY_DESC_FACEBOOK + COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
-                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new ApplicationAddCommand(expectedApplication));
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
 
         // multiple contacts - last contact accepted
         assertParseSuccess(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_FACEBOOK + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
-                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new ApplicationAddCommand(expectedApplication));
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
 
         // multiple dates - last date accepted
         assertParseSuccess(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_FACEBOOK + DATE_DESC_GOOGLE
-                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new ApplicationAddCommand(expectedApplication));
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + EMAIL_DESC_FACEBOOK + DATE_DESC_GOOGLE
-                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new ApplicationAddCommand(expectedApplication));
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
 
         // multiple positions - last position accepted
         assertParseSuccess(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + EMAIL_DESC_GOOGLE + DATE_DESC_GOOGLE
-                + POSITION_DESC_FACEBOOK + POSITION_DESC_GOOGLE, new ApplicationAddCommand(expectedApplication));
+                + POSITION_DESC_FACEBOOK + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
     }
 
     @Test
@@ -76,12 +76,12 @@ public class ApplicationAddCommandParserTest {
         // zero tags - used for later
         Application expectedApplication = new ApplicationBuilder(FACEBOOK).build();
         assertParseSuccess(parser, COMPANY_DESC_FACEBOOK + CONTACT_DESC_FACEBOOK + DATE_DESC_FACEBOOK
-                + EMAIL_DESC_FACEBOOK + POSITION_DESC_FACEBOOK, new ApplicationAddCommand(expectedApplication));
+                + EMAIL_DESC_FACEBOOK + POSITION_DESC_FACEBOOK, new AddCommand(expectedApplication));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ApplicationAddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing company prefix
         assertParseFailure(parser, VALID_COMPANY_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE + EMAIL_DESC_GOOGLE
@@ -137,6 +137,6 @@ public class ApplicationAddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
                 + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ApplicationAddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

@@ -7,29 +7,29 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import seedu.address.ApplicationMainApp;
+import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.ApplicationLogic;
+import seedu.address.logic.Logic;
 
 /**
  * The manager of the UI component.
  */
-public class ApplicationUiManager implements Ui {
+public class UiManager implements Ui {
 
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
-    private static final Logger logger = LogsCenter.getLogger(ApplicationUiManager.class);
+    private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/internship.png";
 
-    private ApplicationLogic applicationLogic;
-    private ApplicationMainWindow applicationMainWindow;
+    private Logic logic;
+    private MainWindow applicationMainWindow;
 
     /**
-     * Creates a {@code ApplicationUiManager} with the given {@code ApplicationLogic}.
+     * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public ApplicationUiManager(ApplicationLogic applicationLogic) {
-        this.applicationLogic = applicationLogic;
+    public UiManager(Logic logic) {
+        this.logic = logic;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ApplicationUiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            applicationMainWindow = new ApplicationMainWindow(primaryStage, applicationLogic);
+            applicationMainWindow = new MainWindow(primaryStage, logic);
             applicationMainWindow.show(); //This should be called before creating other UI parts
             applicationMainWindow.fillInnerParts();
 
@@ -51,7 +51,7 @@ public class ApplicationUiManager implements Ui {
     }
 
     private Image getImage(String imagePath) {
-        return new Image(ApplicationMainApp.class.getResourceAsStream(imagePath));
+        return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
 
     void showAlertDialogAndWait(AlertType type, String title, String headerText, String contentText) {

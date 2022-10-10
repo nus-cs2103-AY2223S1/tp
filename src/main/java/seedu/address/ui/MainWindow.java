@@ -12,7 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.ApplicationLogic;
+import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -21,19 +21,19 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class ApplicationMainWindow extends ApplicationUiPart<Stage> {
+public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "ApplicationMainWindow.fxml";
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-    private ApplicationLogic applicationLogic;
+    private Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private ApplicationListPanel applicationListPanel;
     private ResultDisplay resultDisplay;
-    private ApplicationHelpWindow applicationHelpWindow;
+    private HelpWindow applicationHelpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -51,21 +51,21 @@ public class ApplicationMainWindow extends ApplicationUiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     /**
-     * Creates a {@code ApplicationMainWindow} with the given {@code Stage} and {@code ApplicationLogic}.
+     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public ApplicationMainWindow(Stage primaryStage, ApplicationLogic applicationLogic) {
+    public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
-        this.applicationLogic = applicationLogic;
+        this.logic = logic;
 
         // Configure the UI
-        setWindowDefaultSize(applicationLogic.getGuiSettings());
+        setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
 
-        applicationHelpWindow = new ApplicationHelpWindow();
+        applicationHelpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -110,13 +110,13 @@ public class ApplicationMainWindow extends ApplicationUiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        applicationListPanel = new ApplicationListPanel(applicationLogic.getFilteredApplicationList());
+        applicationListPanel = new ApplicationListPanel(logic.getFilteredApplicationList());
         applicationListPanelPlaceholder.getChildren().add(applicationListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(applicationLogic.getApplicationBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getApplicationBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -158,7 +158,7 @@ public class ApplicationMainWindow extends ApplicationUiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
-        applicationLogic.setGuiSettings(guiSettings);
+        logic.setGuiSettings(guiSettings);
         applicationHelpWindow.hide();
         primaryStage.hide();
     }
@@ -170,11 +170,11 @@ public class ApplicationMainWindow extends ApplicationUiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see ApplicationLogic#execute(String)
+     * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = applicationLogic.execute(commandText);
+            CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

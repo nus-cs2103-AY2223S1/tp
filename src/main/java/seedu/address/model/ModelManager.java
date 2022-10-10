@@ -16,8 +16,8 @@ import seedu.address.model.application.Application;
 /**
  * Represents the in-memory model of the application book data.
  */
-public class ApplicationModelManager implements ApplicationModel {
-    private static final Logger logger = LogsCenter.getLogger(ApplicationModelManager.class);
+public class ModelManager implements Model {
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ApplicationBook applicationBook;
     private final UserPrefs userPrefs;
@@ -26,7 +26,7 @@ public class ApplicationModelManager implements ApplicationModel {
     /**
      * Initializes a ModelManager with the given applicationBook and userPrefs.
      */
-    public ApplicationModelManager(ReadOnlyApplicationBook applicationBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyApplicationBook applicationBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(applicationBook, userPrefs);
 
         logger.fine("Initializing with application book: " + applicationBook + " and user prefs " + userPrefs);
@@ -36,7 +36,7 @@ public class ApplicationModelManager implements ApplicationModel {
         filteredApplications = new FilteredList<>(this.applicationBook.getApplicationList());
     }
 
-    public ApplicationModelManager() {
+    public ModelManager() {
         this(new ApplicationBook(), new UserPrefs());
     }
 
@@ -136,12 +136,12 @@ public class ApplicationModelManager implements ApplicationModel {
         }
 
         // instanceof handles nulls
-        if (!(obj instanceof ApplicationModelManager)) {
+        if (!(obj instanceof ModelManager)) {
             return false;
         }
 
         // state check
-        ApplicationModelManager other = (ApplicationModelManager) obj;
+        ModelManager other = (ModelManager) obj;
         return applicationBook.equals(other.applicationBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredApplications.equals(other.filteredApplications);

@@ -10,7 +10,7 @@ import seedu.address.model.application.Application;
 /**
  * The API of the Model component.
  */
-public interface ApplicationModel {
+public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Application> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
 

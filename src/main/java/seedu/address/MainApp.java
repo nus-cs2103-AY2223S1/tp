@@ -13,37 +13,37 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.ApplicationLogic;
-import seedu.address.logic.ApplicationLogicManager;
+import seedu.address.logic.Logic;
+import seedu.address.logic.LogicManager;
 import seedu.address.model.ApplicationBook;
-import seedu.address.model.ApplicationModel;
-import seedu.address.model.ApplicationModelManager;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyApplicationBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtilApplicationBook;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ApplicationBookStorage;
-import seedu.address.storage.ApplicationStorage;
-import seedu.address.storage.ApplicationStorageManager;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
 import seedu.address.storage.JsonApplicationBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.ApplicationUiManager;
+import seedu.address.ui.UiManager;
 import seedu.address.ui.Ui;
 
 /**
  * Runs the application.
  */
-public class ApplicationMainApp extends Application {
+public class MainApp extends Application {
 
     public static final Version VERSION = new Version(0, 2, 0, true);
 
-    private static final Logger logger = LogsCenter.getLogger(ApplicationMainApp.class);
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     protected Ui ui;
-    protected ApplicationLogic applicationLogic;
-    protected ApplicationStorage applicationStorage;
-    protected ApplicationModel applicationModel;
+    protected Logic logic;
+    protected Storage storage;
+    protected Model model;
     protected Config config;
 
     @Override
@@ -58,34 +58,34 @@ public class ApplicationMainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ApplicationBookStorage applicationBookStorage =
                 new JsonApplicationBookStorage(userPrefs.getApplicationBookFilePath());
-        applicationStorage = new ApplicationStorageManager(applicationBookStorage, userPrefsStorage);
+        storage = new StorageManager(applicationBookStorage, userPrefsStorage);
 
         initLogging(config);
 
-        applicationModel = initModelManager(applicationStorage, userPrefs);
+        model = initModelManager(storage, userPrefs);
 
-        applicationLogic = new ApplicationLogicManager(applicationModel, applicationStorage);
+        logic = new LogicManager(model, storage);
 
-        ui = new ApplicationUiManager(applicationLogic);
+        ui = new UiManager(logic);
     }
 
     /**
-     * Returns a {@code ApplicationModelManager} with the data from
-     * {@code applicationStorage}'s application book and {@code userPrefs}. <br>
+     * Returns a {@code ModelManager} with the data from
+     * {@code storage}'s application book and {@code userPrefs}. <br>
      * The data from the sample application book will be used instead
-     * if {@code applicationStorage}'s application book is not found,
+     * if {@code storage}'s application book is not found,
      * or an empty application book will be used instead if errors occur when
-     * reading {@code applicationStorage}'s application book.
+     * reading {@code storage}'s application book.
      */
-    private ApplicationModel initModelManager(ApplicationStorage applicationStorage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyApplicationBook> applicationBookOptional;
         ReadOnlyApplicationBook initialData;
         try {
-            applicationBookOptional = applicationStorage.readApplicationBook();
+            applicationBookOptional = storage.readApplicationBook();
             if (!applicationBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ApplicationBook");
             }
-            initialData = applicationBookOptional.orElseGet(SampleDataUtilApplicationBook::getSampleApplicationBook);
+            initialData = applicationBookOptional.orElseGet(SampleDataUtil::getSampleApplicationBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ApplicationBook");
             initialData = new ApplicationBook();
@@ -94,7 +94,7 @@ public class ApplicationMainApp extends Application {
             initialData = new ApplicationBook();
         }
 
-        return new ApplicationModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -171,7 +171,7 @@ public class ApplicationMainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting ApplicationBook " + ApplicationMainApp.VERSION);
+        logger.info("Starting ApplicationBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
@@ -179,7 +179,7 @@ public class ApplicationMainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Application Book ] =============================");
         try {
-            applicationStorage.saveUserPrefs(applicationModel.getUserPrefs());
+            storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

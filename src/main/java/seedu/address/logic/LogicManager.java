@@ -7,34 +7,34 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.ApplicationCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ApplicationBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ApplicationModel;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyApplicationBook;
 import seedu.address.model.application.Application;
-import seedu.address.storage.ApplicationStorage;
+import seedu.address.storage.Storage;
 
 /**
- * The main ApplicationLogicManager of the app.
+ * The main LogicManager of the app.
  */
-public class ApplicationLogicManager implements ApplicationLogic {
+public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    private final Logger logger = LogsCenter.getLogger(ApplicationLogicManager.class);
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final ApplicationModel applicationModel;
-    private final ApplicationStorage applicationStorage;
+    private final Model model;
+    private final Storage storage;
     private final ApplicationBookParser applicationBookParser;
 
     /**
-     * Constructs a {@code ApplicationLogicManager} with the given
-     * {@code ApplicationModel} and {@code ApplicationStorage}.
+     * Constructs a {@code LogicManager} with the given
+     * {@code Model} and {@code Storage}.
      */
-    public ApplicationLogicManager(ApplicationModel applicationModel, ApplicationStorage applicationStorage) {
-        this.applicationModel = applicationModel;
-        this.applicationStorage = applicationStorage;
+    public LogicManager(Model model, Storage storage) {
+        this.model = model;
+        this.storage = storage;
         applicationBookParser = new ApplicationBookParser();
     }
 
@@ -43,11 +43,11 @@ public class ApplicationLogicManager implements ApplicationLogic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        ApplicationCommand command = applicationBookParser.parseCommand(commandText);
-        commandResult = command.execute(applicationModel);
+        Command command = applicationBookParser.parseCommand(commandText);
+        commandResult = command.execute(model);
 
         try {
-            applicationStorage.saveApplicationBook(applicationModel.getApplicationBook());
+            storage.saveApplicationBook(model.getApplicationBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -57,26 +57,26 @@ public class ApplicationLogicManager implements ApplicationLogic {
 
     @Override
     public ReadOnlyApplicationBook getApplicationBook() {
-        return applicationModel.getApplicationBook();
+        return model.getApplicationBook();
     }
 
     @Override
     public ObservableList<Application> getFilteredApplicationList() {
-        return applicationModel.getFilteredApplicationList();
+        return model.getFilteredApplicationList();
     }
 
     @Override
     public Path getApplicationBookFilePath() {
-        return applicationModel.getApplicationBookFilePath();
+        return model.getApplicationBookFilePath();
     }
 
     @Override
     public GuiSettings getGuiSettings() {
-        return applicationModel.getGuiSettings();
+        return model.getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        applicationModel.setGuiSettings(guiSettings);
+        model.setGuiSettings(guiSettings);
     }
 }

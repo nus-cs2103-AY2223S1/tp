@@ -16,7 +16,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationBook;
-import seedu.address.model.ApplicationModel;
+import seedu.address.model.Model;
 import seedu.address.model.application.Application;
 import seedu.address.model.application.CompanyContainsKeywordsPredicate;
 import seedu.address.model.application.PositionContainsKeywordsPredicate;
@@ -24,7 +24,7 @@ import seedu.address.model.application.PositionContainsKeywordsPredicate;
 /**
  * Contains helper methods for testing commands.
  */
-public class ApplicationCommandTestUtil {
+public class CommandTestUtil {
 
     public static final String VALID_COMPANY_GOOGLE = "Google";
     public static final String VALID_COMPANY_FACEBOOK = "Facebook";
@@ -62,8 +62,8 @@ public class ApplicationCommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(ApplicationCommand command, ApplicationModel actualModel,
-            CommandResult expectedCommandResult, ApplicationModel expectedModel) {
+    public static void assertCommandSuccess(Command command, Model actualModel,
+                                            CommandResult expectedCommandResult, Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -74,11 +74,11 @@ public class ApplicationCommandTestUtil {
     }
 
     /**
-     * Wrapper to {@link #assertCommandSuccess(ApplicationCommand, ApplicationModel, CommandResult, ApplicationModel)}
+     * Wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(ApplicationCommand command, ApplicationModel actualModel,
-            String expectedMessage, ApplicationModel expectedModel) {
+    public static void assertCommandSuccess(Command command, Model actualModel,
+                                            String expectedMessage, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -89,8 +89,8 @@ public class ApplicationCommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the application book, filtered application list and selected application in {@code actualModel} are unchanged
      */
-    public static void assertCommandFailure(ApplicationCommand command, ApplicationModel actualModel,
-            String expectedMessage) {
+    public static void assertCommandFailure(Command command, Model actualModel,
+                                            String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         ApplicationBook expectedApplicationBook = new ApplicationBook(actualModel.getApplicationBook());
@@ -104,7 +104,7 @@ public class ApplicationCommandTestUtil {
      * Updates {@code model}'s filtered list to show only the application at the given {@code targetIndex} in the
      * {@code model}'s application book.
      */
-    public static void showApplicationAtIndex(ApplicationModel model, Index targetIndex) {
+    public static void showApplicationAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredApplicationList().size());
 
         Application application = model.getFilteredApplicationList().get(targetIndex.getZeroBased());

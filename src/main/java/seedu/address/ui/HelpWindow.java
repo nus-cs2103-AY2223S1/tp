@@ -13,14 +13,14 @@ import seedu.address.commons.core.LogsCenter;
 /**
  * Controller for a help page
  */
-public class ApplicationHelpWindow extends ApplicationUiPart<Stage> {
+public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL =
             "https://github.com/AY2223S1-CS2103-F14-3/tp/blob/master/docs/UserGuide.md";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
-    private static final Logger logger = LogsCenter.getLogger(ApplicationHelpWindow.class);
-    private static final String FXML = "ApplicationHelpWindow.fxml";
+    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+    private static final String FXML = "HelpWindow.fxml";
 
     @FXML
     private Button copyButton;
@@ -29,19 +29,19 @@ public class ApplicationHelpWindow extends ApplicationUiPart<Stage> {
     private Label helpMessage;
 
     /**
-     * Creates a new ApplicationHelpWindow.
+     * Creates a new HelpWindow.
      *
-     * @param root Stage to use as the root of the ApplicationHelpWindow.
+     * @param root Stage to use as the root of the HelpWindow.
      */
-    public ApplicationHelpWindow(Stage root) {
+    public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
     }
 
     /**
-     * Creates a new ApplicationHelpWindow.
+     * Creates a new HelpWindow.
      */
-    public ApplicationHelpWindow() {
+    public HelpWindow() {
         this(new Stage());
     }
 

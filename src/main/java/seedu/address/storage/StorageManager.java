@@ -14,17 +14,17 @@ import seedu.address.model.UserPrefs;
 /**
  * Manages storage of ApplicationBook data in local storage.
  */
-public class ApplicationStorageManager implements ApplicationStorage {
+public class StorageManager implements Storage {
 
-    private static final Logger logger = LogsCenter.getLogger(ApplicationStorageManager.class);
+    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private ApplicationBookStorage applicationBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code ApplicationStorageManager} with the given {@code ApplicationBookStorage}
+     * Creates a {@code StorageManager} with the given {@code ApplicationBookStorage}
      * and {@code UserPrefStorage}.
      */
-    public ApplicationStorageManager(ApplicationBookStorage applicationBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(ApplicationBookStorage applicationBookStorage, UserPrefsStorage userPrefsStorage) {
         this.applicationBookStorage = applicationBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }

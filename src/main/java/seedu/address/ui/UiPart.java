@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
-import seedu.address.ApplicationMainApp;
+import seedu.address.MainApp;
 
 /**
  * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc.
  * It contains a scene graph with a root node of type {@code T}.
  */
-public abstract class ApplicationUiPart<T> {
+public abstract class UiPart<T> {
 
     /** Resource folder where FXML files are stored. */
     public static final String FXML_FILE_FOLDER = "/view/";
@@ -20,39 +20,39 @@ public abstract class ApplicationUiPart<T> {
     private final FXMLLoader fxmlLoader = new FXMLLoader();
 
     /**
-     * Constructs a ApplicationUiPart with the specified FXML file URL.
+     * Constructs a UiPart with the specified FXML file URL.
      * The FXML file must not specify the {@code fx:controller} attribute.
      */
-    public ApplicationUiPart(URL fxmlFileUrl) {
+    public UiPart(URL fxmlFileUrl) {
         loadFxmlFile(fxmlFileUrl, null);
     }
 
     /**
-     * Constructs a ApplicationUiPart using the specified FXML file within {@link #FXML_FILE_FOLDER}.
-     * @see #ApplicationUiPart(URL)
+     * Constructs a UiPart using the specified FXML file within {@link #FXML_FILE_FOLDER}.
+     * @see #UiPart(URL)
      */
-    public ApplicationUiPart(String fxmlFileName) {
+    public UiPart(String fxmlFileName) {
         this(getFxmlFileUrl(fxmlFileName));
     }
 
     /**
-     * Constructs a ApplicationUiPart with the specified FXML file URL and root object.
+     * Constructs a UiPart with the specified FXML file URL and root object.
      * The FXML file must not specify the {@code fx:controller} attribute.
      */
-    public ApplicationUiPart(URL fxmlFileUrl, T root) {
+    public UiPart(URL fxmlFileUrl, T root) {
         loadFxmlFile(fxmlFileUrl, root);
     }
 
     /**
-     * Constructs a ApplicationUiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
-     * @see #ApplicationUiPart(URL, T)
+     * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
+     * @see #UiPart(URL, T)
      */
-    public ApplicationUiPart(String fxmlFileName, T root) {
+    public UiPart(String fxmlFileName, T root) {
         this(getFxmlFileUrl(fxmlFileName), root);
     }
 
     /**
-     * Returns the root object of the scene graph of this ApplicationUiPart.
+     * Returns the root object of the scene graph of this UiPart.
      */
     public T getRoot() {
         return fxmlLoader.getRoot();
@@ -81,7 +81,7 @@ public abstract class ApplicationUiPart<T> {
     private static URL getFxmlFileUrl(String fxmlFileName) {
         requireNonNull(fxmlFileName);
         String fxmlFileNameWithFolder = FXML_FILE_FOLDER + fxmlFileName;
-        URL fxmlFileUrl = ApplicationMainApp.class.getResource(fxmlFileNameWithFolder);
+        URL fxmlFileUrl = MainApp.class.getResource(fxmlFileNameWithFolder);
         return requireNonNull(fxmlFileUrl);
     }
 
