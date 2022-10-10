@@ -24,13 +24,12 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Description("Assignment 1")),
-            new Task(new Description("Attend lecture")),
-            new Task(new Description("Pay school fees")),
-            new Task(new Description("Attend exam")),
-            new Task(new Description("Study for exam")),
-            new Task(new Description("Buy groceries"))
-
+            new Task(new Description("Assignment 1"), false),
+            new Task(new Description("Attend lecture"), false),
+            new Task(new Description("Pay school fees"), true),
+            new Task(new Description("Attend exam"), false),
+            new Task(new Description("Study for exam"), true),
+            new Task(new Description("Buy groceries"), true)
         };
     }
 
