@@ -125,7 +125,6 @@ public class ParserUtil {
         if (endTime.isBefore(startTime) || endTime.equals(startTime)) {
             throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
         }
-        ClassStorage.saveClass(date, startTime, endTime);
         return new Class(date, startTime, endTime, classDatetime);
     }
 
