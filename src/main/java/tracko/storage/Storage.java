@@ -23,7 +23,7 @@ public interface Storage extends TrackOStorage, UserPrefsStorage {
     // TrackO methods =================================================================================
 
     @Override
-    Path getOrdersFilePath();
+    Path getTrackOFilePath();
 
     @Override
     Optional<ReadOnlyTrackO> readTrackO() throws DataConversionException, IOException;

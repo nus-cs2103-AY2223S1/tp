@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
 import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 //import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
-import static tracko.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
-import static tracko.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
+import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
+import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 
 import org.junit.jupiter.api.Test;
@@ -29,8 +29,8 @@ public class DeleteOrderCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Order orderToDelete = model.getOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
-        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_ORDER);
+        Order orderToDelete = model.getOrderList().get(INDEX_FIRST.getZeroBased());
+        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
@@ -81,14 +81,14 @@ public class DeleteOrderCommandTest {
 
     @Test
     public void equals() {
-        DeleteOrderCommand deleteFirstCommand = new DeleteOrderCommand(INDEX_FIRST_ORDER);
-        DeleteOrderCommand deleteSecondCommand = new DeleteOrderCommand(INDEX_SECOND_ORDER);
+        DeleteOrderCommand deleteFirstCommand = new DeleteOrderCommand(INDEX_FIRST);
+        DeleteOrderCommand deleteSecondCommand = new DeleteOrderCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteOrderCommand deleteFirstCommandCopy = new DeleteOrderCommand(INDEX_FIRST_ORDER);
+        DeleteOrderCommand deleteFirstCommandCopy = new DeleteOrderCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

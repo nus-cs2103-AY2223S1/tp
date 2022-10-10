@@ -71,6 +71,16 @@ public interface Model {
      * Adds the given item.
      */
     void addItem(Item item);
+    
+    /**
+     * Deletes the given item.
+     */
+    void deleteItem(Item item);
+
+    /**
+     * Returns the item list.
+     */
+    ObservableList<Item> getInventoryList();
 
     /**
      * Returns the order list.
@@ -80,6 +90,7 @@ public interface Model {
     /**
      * Returns an unmodifiable view of the filtered order list
      */
+
     ObservableList<Order> getFilteredOrderList();
 
     /**

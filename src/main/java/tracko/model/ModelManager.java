@@ -129,6 +129,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteItem(Item item) {
+        trackO.deleteItem(item);
+    }
+
+    @Override
+    public ObservableList<Item> getInventoryList() {
+        return trackO.getInventoryList();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
