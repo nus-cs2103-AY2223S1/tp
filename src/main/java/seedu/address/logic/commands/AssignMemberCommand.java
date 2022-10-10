@@ -34,7 +34,6 @@ public class AssignMemberCommand extends Command {
 
     private final Name toAssign;
     private final seedu.address.model.team.Name teamName;
-    private final UniqueTeamList teams = new UniqueTeamList();
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
