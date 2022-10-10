@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Student in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -22,34 +22,18 @@ public class Student {
     private final TutorialGroup tutorialGroup;
 
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Student(Name name, Phone phone, Email email, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.tags.addAll(tags);
         this.tutorialGroup = new TutorialGroup();
-    }
-
-    /**
-     * Overload the constructor.
-     */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, TutorialGroup tutorialGroup) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.tutorialGroup = tutorialGroup;
-        tutorialGroup.addStudentToTutorialGroup(this);
     }
 
     /**
@@ -63,7 +47,6 @@ public class Student {
         this.tags.addAll(tags);
         this.tutorialGroup = tutorialGroup;
         tutorialGroup.addStudentToTutorialGroup(this);
-        this.address = null;
     }
 
     public Name getName() {
@@ -78,11 +61,9 @@ public class Student {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public TutorialGroup getTutorialGroup() {
+        return tutorialGroup;
     }
-
-    public TutorialGroup getTutorialGroup() { return tutorialGroup; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -123,14 +104,13 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, tags);
     }
 
     @Override
@@ -140,9 +120,7 @@ public class Student {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(getEmail());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
