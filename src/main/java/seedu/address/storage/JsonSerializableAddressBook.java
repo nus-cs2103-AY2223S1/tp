@@ -49,7 +49,7 @@ class JsonSerializableAddressBook {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedProfile jsonAdaptedProfile : profiles) {
             Profile profile = jsonAdaptedProfile.toModelType();
-            if (addressBook.hasProfile(profile)) {
+            if (addressBook.hasName(profile)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PROFILE);
             }
             addressBook.addProfile(profile);

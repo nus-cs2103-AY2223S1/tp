@@ -55,18 +55,18 @@ public class AddressBookTest {
 
     @Test
     public void hasProfile_nullProfile_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasProfile(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasName(null));
     }
 
     @Test
     public void hasProfile_profileNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasProfile(ALICE));
+        assertFalse(addressBook.hasName(ALICE));
     }
 
     @Test
     public void hasProfile_profileInAddressBook_returnsTrue() {
         addressBook.addProfile(ALICE);
-        assertTrue(addressBook.hasProfile(ALICE));
+        assertTrue(addressBook.hasName(ALICE));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class AddressBookTest {
         addressBook.addProfile(ALICE);
         Profile editedAlice = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasProfile(editedAlice));
+        assertTrue(addressBook.hasName(editedAlice));
     }
 
     @Test

@@ -43,7 +43,7 @@ public class AddProfileCommandIntegrationTest {
         assertCommandFailure(
                 new AddProfileCommand(profileInList),
                 model,
-                AddProfileCommand.MESSAGE_DUPLICATE_PROFILE
+                AddProfileCommand.MESSAGE_DUPLICATE_NAME
         );
     }
 

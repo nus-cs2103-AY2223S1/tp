@@ -34,7 +34,8 @@ public class AddProfileCommand extends ProfileCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New profile added: \n%1$s";
-    public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_NAME = "This name already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in the address book";
 
     private final Profile toAdd;
 
@@ -50,8 +51,12 @@ public class AddProfileCommand extends ProfileCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasProfile(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROFILE);
+        if (model.hasName(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_NAME);
+        }
+
+        if (model.hasEmail(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
         }
 
         model.addProfile(toAdd);

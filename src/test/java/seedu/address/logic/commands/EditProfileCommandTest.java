@@ -106,7 +106,7 @@ public class EditProfileCommandTest {
         EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(firstProfile).build();
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_SECOND_PROFILE, descriptor);
 
-        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_PROFILE);
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_NAME);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class EditProfileCommandTest {
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
                 new EditProfileDescriptorBuilder(profileInList).build());
 
-        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_PROFILE);
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_NAME);
     }
 
     @Test

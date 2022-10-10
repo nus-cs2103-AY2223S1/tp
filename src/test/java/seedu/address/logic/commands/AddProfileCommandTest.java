@@ -49,7 +49,7 @@ public class AddProfileCommandTest {
         ModelStub modelStub = new ModelStubWithProfile(validProfile);
 
         assertThrows(CommandException.class,
-                AddProfileCommand.MESSAGE_DUPLICATE_PROFILE, () -> addProfileCommand.execute(modelStub)
+                AddProfileCommand.MESSAGE_DUPLICATE_NAME, () -> addProfileCommand.execute(modelStub)
         );
     }
 
@@ -127,7 +127,12 @@ public class AddProfileCommandTest {
         }
 
         @Override
-        public boolean hasProfile(Profile profile) {
+        public boolean hasName(Profile profile) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEmail(Profile profile) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -164,9 +169,15 @@ public class AddProfileCommandTest {
         }
 
         @Override
-        public boolean hasProfile(Profile profile) {
+        public boolean hasName(Profile profile) {
             requireNonNull(profile);
-            return this.profile.isSameProfile(profile);
+            return this.profile.isSameName(profile);
+        }
+
+        @Override
+        public boolean hasEmail(Profile profile) {
+            requireNonNull(profile);
+            return this.profile.isSameEmail(profile);
         }
     }
 
@@ -177,9 +188,15 @@ public class AddProfileCommandTest {
         final ArrayList<Profile> profilesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasProfile(Profile profile) {
+        public boolean hasName(Profile profile) {
             requireNonNull(profile);
-            return profilesAdded.stream().anyMatch(profile::isSameProfile);
+            return profilesAdded.stream().anyMatch(profile::isSameName);
+        }
+
+        @Override
+        public boolean hasEmail(Profile profile) {
+            requireNonNull(profile);
+            return profilesAdded.stream().anyMatch(profile::isSameEmail);
         }
 
         @Override

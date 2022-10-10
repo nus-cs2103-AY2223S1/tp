@@ -24,18 +24,18 @@ public class UniqueProfileListTest {
 
     @Test
     public void contains_nullProfile_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProfileList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueProfileList.containsName(null));
     }
 
     @Test
     public void contains_profileNotInList_returnsFalse() {
-        assertFalse(uniqueProfileList.contains(ALICE));
+        assertFalse(uniqueProfileList.containsName(ALICE));
     }
 
     @Test
     public void contains_profileInList_returnsTrue() {
         uniqueProfileList.add(ALICE);
-        assertTrue(uniqueProfileList.contains(ALICE));
+        assertTrue(uniqueProfileList.containsName(ALICE));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class UniqueProfileListTest {
         uniqueProfileList.add(ALICE);
         Profile editedAlice = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniqueProfileList.contains(editedAlice));
+        assertTrue(uniqueProfileList.containsName(editedAlice));
     }
 
     @Test

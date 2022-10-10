@@ -53,9 +53,14 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a profile with the same identity as {@code profile} exists in the address book.
+     * Returns true if a profile with the same email as {@code profile} exists in the address book.
      */
-    boolean hasProfile(Profile profile);
+    boolean hasEmail(Profile profile);
+
+    /**
+     * Returns true if a profile with the same name as {@code profile} exists in the address book.
+     */
+    boolean hasName(Profile profile);
 
     /**
      * Deletes the given profile.

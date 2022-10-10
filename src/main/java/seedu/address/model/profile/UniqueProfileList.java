@@ -13,14 +13,15 @@ import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 
 /**
  * A list of profiles that enforces uniqueness between its elements and does not allow nulls.
- * A profile is unique by comparing using {@code Profile#isSameProfile(Profile)}. As such, adding and updating of
- * profiles uses Profile#isSameProfile(Profile) for equality so as to ensure that the profile being added or updated is
- * unique in terms of identity in the UniqueProfileList. However, removal of a profile uses Profile#equals(Object) so
- * as to ensure that the profile with exactly the same fields will be removed.
+ * A profile is unique by comparing using {@code Profile#isSameName(Profile)} and {@code Profile#isSameEmail(Profile)}.
+ * As such, adding and updating of profiles uses Profile#isSameName(Profile) and Profile#isSameEmail(Profile) for
+ * equality so as to ensure that the profile being added or updated is unique in terms of identity in the
+ * UniqueProfileList. However, removal of a profile uses Profile#equals(Object) so as to ensure that the profile
+ * with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Profile#isSameProfile(Profile)
+ * @see Profile#isSameName(Profile)
  */
 public class UniqueProfileList implements Iterable<Profile> {
 
@@ -29,11 +30,19 @@ public class UniqueProfileList implements Iterable<Profile> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent profile as the given argument.
+     * Returns true if the list contains a profile with an equivalent email as the given argument.
      */
-    public boolean contains(Profile toCheck) {
+    public boolean containsEmail(Profile toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameProfile);
+        return internalList.stream().anyMatch(toCheck::isSameEmail);
+    }
+
+    /**
+     * Returns true if the list contains a profile with an equivalent name as the given argument.
+     */
+    public boolean containsName(Profile toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameName);
     }
 
     /**
@@ -42,7 +51,7 @@ public class UniqueProfileList implements Iterable<Profile> {
      */
     public void add(Profile toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (containsName(toAdd)) {
             throw new DuplicateProfileException();
         }
         internalList.add(toAdd);
@@ -61,7 +70,7 @@ public class UniqueProfileList implements Iterable<Profile> {
             throw new ProfileNotFoundException();
         }
 
-        if (!target.isSameProfile(editedProfile) && contains(editedProfile)) {
+        if (!target.isSameName(editedProfile) && containsName(editedProfile)) {
             throw new DuplicateProfileException();
         }
 
@@ -127,7 +136,10 @@ public class UniqueProfileList implements Iterable<Profile> {
     private boolean profilesAreUnique(List<Profile> profiles) {
         for (int i = 0; i < profiles.size() - 1; i++) {
             for (int j = i + 1; j < profiles.size(); j++) {
-                if (profiles.get(i).isSameProfile(profiles.get(j))) {
+                if (profiles.get(i).isSameName(profiles.get(j))) {
+                    return false;
+                }
+                if (profiles.get(i).isSameEmail(profiles.get(j))) {
                     return false;
                 }
             }

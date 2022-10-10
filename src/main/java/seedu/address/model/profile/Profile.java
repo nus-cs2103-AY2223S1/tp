@@ -58,13 +58,26 @@ public class Profile {
      * Returns true if both profiles have the same name.
      * This defines a weaker notion of equality between two profiles.
      */
-    public boolean isSameProfile(Profile otherProfile) {
+    public boolean isSameName(Profile otherProfile) {
         if (otherProfile == this) {
             return true;
         }
 
         return otherProfile != null
                 && otherProfile.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both profiles have the same email.
+     * This defines a weaker notion of equality between two profiles.
+     */
+    public boolean isSameEmail(Profile otherProfile) {
+        if (otherProfile == this) {
+            return true;
+        }
+
+        return otherProfile != null
+                && otherProfile.getEmail().equals(getEmail());
     }
 
     /**

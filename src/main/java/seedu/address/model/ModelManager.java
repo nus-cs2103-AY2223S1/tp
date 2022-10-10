@@ -88,9 +88,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasProfile(Profile profile) {
+    public boolean hasName(Profile profile) {
         requireNonNull(profile);
-        return addressBook.hasProfile(profile);
+        return addressBook.hasName(profile);
+    }
+
+    @Override
+    public boolean hasEmail(Profile profile) {
+        requireNonNull(profile);
+        return addressBook.hasEmail(profile);
     }
 
     @Override

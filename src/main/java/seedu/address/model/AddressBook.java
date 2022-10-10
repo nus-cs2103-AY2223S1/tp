@@ -59,11 +59,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// profile-level operations
 
     /**
-     * Returns true if a profile with the same identity as {@code profile} exists in the address book.
+     * Returns true if a profile with the same name as {@code profile} exists in the address book.
      */
-    public boolean hasProfile(Profile profile) {
+    public boolean hasName(Profile profile) {
         requireNonNull(profile);
-        return profiles.contains(profile);
+        return profiles.containsName(profile);
+    }
+
+    /**
+     * Returns true if a profile with the same name as {@code profile} exists in the address book.
+     */
+    public boolean hasEmail(Profile profile) {
+        requireNonNull(profile);
+        return profiles.containsEmail(profile);
     }
 
     /**

@@ -23,30 +23,52 @@ public class ProfileTest {
     }
 
     @Test
-    public void isSameProfile() {
+    public void isSameName() {
         // same object -> returns true
-        assertTrue(ALICE.isSameProfile(ALICE));
+        assertTrue(ALICE.isSameName(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSameProfile(null));
+        assertFalse(ALICE.isSameName(null));
 
         // same name, all other attributes different -> returns true
         Profile editedAlice = new ProfileBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameProfile(editedAlice));
+        assertTrue(ALICE.isSameName(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new ProfileBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameProfile(editedAlice));
+        assertFalse(ALICE.isSameName(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case -> returns true
         Profile editedBob = new ProfileBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameProfile(editedBob));
+        assertTrue(BOB.isSameName(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new ProfileBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameProfile(editedBob));
+        assertFalse(BOB.isSameName(editedBob));
+    }
+
+    @Test
+    public void isSameEmail() {
+        // same object -> returns true
+        assertTrue(ALICE.isSameEmail(ALICE));
+
+        // null -> returns false
+        assertFalse(ALICE.isSameEmail(null));
+
+        // same email, all other attributes different -> returns true
+        Profile editedAlice = new ProfileBuilder(ALICE).withPhone(VALID_PHONE_BOB).withName(VALID_NAME_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(ALICE.isSameEmail(editedAlice));
+
+        // different email, all other attributes same -> returns false
+        editedAlice = new ProfileBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.isSameEmail(editedAlice));
+
+        // email differs in case -> returns true
+        Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_BOB.toLowerCase()).build();
+        assertTrue(BOB.isSameEmail(editedBob));
     }
 
     @Test
