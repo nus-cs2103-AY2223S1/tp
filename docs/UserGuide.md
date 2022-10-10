@@ -34,7 +34,7 @@ FindMyIntern helps students who are applying for internships keep track of their
 
    * **`add software engineer internship at Apple`** : Adds an internship application titled “software engineer internship at Apple”.
 
-   * **`mark 3 interviewed`** : Marks the 3rd application shown in the current list as interviewed.
+   * **`mark 3 s/interviewed`** : Marks the 3rd application shown in the current list as interviewed.
 
    * **`list`** : Lists all internship applications.
 
@@ -52,6 +52,14 @@ FindMyIntern helps students who are applying for internships keep track of their
 
 ## Features
 
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ### Adding an internship application: `add`
 ###### (coming soon)
 
@@ -63,11 +71,10 @@ Examples:
 * `add software engineer internship at Apple`
 
 ### Marking an internship application status: `mark` 
-###### (coming soon)
 
 Marks an internship application status as rejected, interviewing, accepted or applied.
 
-Format: `mark [INDEX] [STATUS]`
+Format: `mark [INDEX] [s/STATUS]`
 
 * Updates the application at the specified INDEX. The index refers to the index number shown in the displayed 
 application list. The index **must be a positive integer** 1, 2, 3 ...
@@ -76,18 +83,16 @@ application list. The index **must be a positive integer** 1, 2, 3 ...
 The status **must be “rejected”, “interviewed”, “accepted” or “applied”**.
 
 Examples:
-* `mark 3 interviewed` - Marks the 3rd application status to be `interviewed`
-* `mark 2 accepted` - Marks the 2nd application status to be `accepted`
+* `mark 3 s/interviewed` - Marks the 3rd application status to be `interviewed`
+* `mark 2 s/accepted` - Marks the 2nd application status to be `accepted`
 
 ### Listing all internship applications: `list`
-###### (coming soon)
 
 Shows a list of all internship applications.
 
 Format: `list`
 
 ### Deleting an internship application: `delete`
-###### (coming soon)
 
 Deletes an internship application.
 
@@ -101,7 +106,6 @@ Examples:
 *  `delete 4` - Deletes the 4th application in the list.
 
 ### Filtering for internship applications of a specified status: `filter`
-###### (coming soon)
 
 Format: `filter [STATUS]`
 
@@ -112,7 +116,6 @@ Examples:
 * `filter rejected` - Shows a list of applications marked as `rejected`
 
 ### Finding for an internship application: `find`
-###### (coming soon)
 
 Finds internship applications which contain any of the given keywords.
 
@@ -127,14 +130,12 @@ Examples:
 * `find apple` returns the application containing `Apple`
 
 ### Exiting the program: `exit`
-###### (coming soon)
 
 Exits the program.
 
 Format: `exit`
 
 ### Saving the data
-###### (coming soon)
 
 FindMyIntern data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -152,8 +153,9 @@ FindMyIntern data is saved in the hard disk automatically after any command that
 
 Action | Format, Examples
 --------|------------------
+**Help** | `help`
 **Add** | `add [TITLE]` <br> e.g., `add software engineer internship at Apple`
-**Mark** | `mark [INDEX] [STATUS]` <br> e.g., `mark 3 interviewed`
+**Mark** | `mark [INDEX] [s/STATUS]` <br> e.g., `mark 3 s/interviewed`
 **List** | `list`
 **Delete** | `delete [INDEX]` <br> e.g., `delete 4`
 **Filter** | `filter [STATUS]` <br> e.g., `filter accepted`
