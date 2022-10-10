@@ -11,7 +11,7 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_SUCCESS = "Address book has been sorted by name!";
+    public static final String MESSAGE_SUCCESS = "Address book has been sorted by name in alphabetical order!";
 
     @Override
     public CommandResult execute(Model model) {
