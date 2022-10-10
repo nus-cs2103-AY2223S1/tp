@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Koh Rui Jie's Project Portfolio Page
+title: Silas Tay's Project Portfolio Page
 ---
 
 # Project: ConnectNUS

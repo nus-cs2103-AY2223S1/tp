@@ -16,44 +16,40 @@ import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.user.EmptyUser;
+import seedu.address.model.person.user.ExistingUser;
+import seedu.address.model.person.user.User;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link User}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedUser {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "User's %s field is missing!";
+    private final EmptyUser emptyUser = new EmptyUser();
 
     private final String name;
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedCurrentModule> currModules = new ArrayList<>();
     private final List<JsonAdaptedPreviousModule> prevModules = new ArrayList<>();
     private final List<JsonAdaptedPlannedModule> planModules = new ArrayList<>();
 
-
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedUser} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("currModules") List<JsonAdaptedCurrentModule> currModules,
-            @JsonProperty("prevModules") List<JsonAdaptedPreviousModule> prevModules,
-            @JsonProperty("planModules") List<JsonAdaptedPlannedModule> planModules) {
+    public JsonAdaptedUser(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("currModules") List<JsonAdaptedCurrentModule> currModules,
+                             @JsonProperty("prevModules") List<JsonAdaptedPreviousModule> prevModules,
+                             @JsonProperty("planModules") List<JsonAdaptedPlannedModule> planModules) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
         if (currModules != null) {
             this.currModules.addAll(currModules);
         }
@@ -66,52 +62,42 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Converts a given {@code User} into this class for Jackson use.
      */
-    @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+    public JsonAdaptedUser(User source) {
+        if (source.equals(emptyUser)) {
+            name = "";
+            phone = "empty";
+            email = "";
+            address = "";
+        } else {
+            assert source instanceof ExistingUser : "User cannot be any other type";
+            ExistingUser user = (ExistingUser) source;
+            name = user.getName().fullName;
+            phone = user.getPhone().value;
+            email = user.getEmail().value;
+            address = user.getAddress().value;
+            currModules.addAll(user.getCurrModules().stream()
+                    .map(JsonAdaptedCurrentModule::new)
+                    .collect(Collectors.toList()));
+            prevModules.addAll(user.getPrevModules().stream()
+                    .map(JsonAdaptedPreviousModule::new)
+                    .collect(Collectors.toList()));
+            planModules.addAll(user.getPlanModules().stream()
+                    .map(JsonAdaptedPlannedModule::new)
+                    .collect(Collectors.toList()));
         }
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
-     */
-    public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
-        currModules.addAll(source.getCurrModules().stream()
-                .map(JsonAdaptedCurrentModule::new)
-                .collect(Collectors.toList()));
-        prevModules.addAll(source.getPrevModules().stream()
-                .map(JsonAdaptedPreviousModule::new)
-                .collect(Collectors.toList()));
-        planModules.addAll(source.getPlanModules().stream()
-                .map(JsonAdaptedPlannedModule::new)
-                .collect(Collectors.toList()));
-    }
-
-    /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's {@code User} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+    public User toModelType() throws IllegalValueException {
+
+        if (phone.equals("empty")) {
+            return new EmptyUser();
         }
 
         final List<CurrentModule> personCurrModules = new ArrayList<>();
@@ -161,16 +147,14 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-
         final Set<CurrentModule> modelCurrModules = new HashSet<>(personCurrModules);
 
         final Set<PreviousModule> modelPrevModules = new HashSet<>(personPrevModules);
 
         final Set<PlannedModule> modelPlanModules = new HashSet<>(personPlanModules);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress,
-                modelTags, modelCurrModules, modelPrevModules, modelPlanModules);
+        return new ExistingUser(modelName, modelPhone, modelEmail, modelAddress,
+                modelCurrModules, modelPrevModules, modelPlanModules);
     }
 
 }

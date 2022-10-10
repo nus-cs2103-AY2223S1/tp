@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.user.User;
 
 /**
  * The API of the Model component.
@@ -51,6 +52,26 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+
+    /**
+     * Returns true if a user already exists in the address book.
+     */
+    boolean hasUser();
+
+    /**
+     * Adds the user to the address book.
+     */
+    void addUser(User user);
+
+    /**
+     * Returns the current user of the address book or EmptyUser is there is no user.
+     */
+    User getUser();
+
+    /**
+     * Deletes the current user from the address book and replaces it with an EmptyUser.
+     */
+    void deleteUser();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

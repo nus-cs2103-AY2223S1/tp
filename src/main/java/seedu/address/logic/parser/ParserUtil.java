@@ -9,6 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -120,5 +124,86 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String mod} into a {@code CurrentModule}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code mod} is invalid.
+     */
+    public static CurrentModule parseCurrentModule(String mod) throws ParseException {
+        requireNonNull(mod);
+        String trimmedMod = mod.trim();
+        if (!Module.isValidModuleName(trimmedMod)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        }
+        return new CurrentModule(trimmedMod);
+    }
+
+    /**
+     * Parses {@code Collection<String> mods} into a {@code Set<CurrentModule>}.
+     */
+    public static Set<CurrentModule> parseCurrentModules(Collection<String> mods) throws ParseException {
+        requireNonNull(mods);
+        final Set<CurrentModule> modSet = new HashSet<>();
+        for (String modCode : mods) {
+            modSet.add(parseCurrentModule(modCode));
+        }
+        return modSet;
+    }
+
+    /**
+     * Parses a {@code String mod} into a {@code PreviousModule}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code mod} is invalid.
+     */
+    public static PreviousModule parsePreviousModule(String mod) throws ParseException {
+        requireNonNull(mod);
+        String trimmedMod = mod.trim();
+        if (!Module.isValidModuleName(trimmedMod)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        }
+        return new PreviousModule(trimmedMod);
+    }
+
+    /**
+     * Parses {@code Collection<String> mods} into a {@code Set<PreviousModule>}.
+     */
+    public static Set<PreviousModule> parsePreviousModules(Collection<String> mods) throws ParseException {
+        requireNonNull(mods);
+        final Set<PreviousModule> modSet = new HashSet<>();
+        for (String modCode : mods) {
+            modSet.add(parsePreviousModule(modCode));
+        }
+        return modSet;
+    }
+
+    /**
+     * Parses a {@code String mod} into a {@code PlannedModule}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code mod} is invalid.
+     */
+    public static PlannedModule parsePlannedModule(String mod) throws ParseException {
+        requireNonNull(mod);
+        String trimmedMod = mod.trim();
+        if (!Module.isValidModuleName(trimmedMod)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        }
+        return new PlannedModule(trimmedMod);
+    }
+
+    /**
+     * Parses {@code Collection<String> mods} into a {@code Set<PlannedModule>}.
+     */
+    public static Set<PlannedModule> parsePlannedModules(Collection<String> mods) throws ParseException {
+        requireNonNull(mods);
+        final Set<PlannedModule> modSet = new HashSet<>();
+        for (String modCode : mods) {
+            modSet.add(parsePlannedModule(modCode));
+        }
+        return modSet;
     }
 }
