@@ -27,6 +27,6 @@ public interface ApplicationStorage extends ApplicationBookStorage, UserPrefsSto
     Optional<ReadOnlyApplicationBook> readApplicationBook() throws DataConversionException, IOException;
 
     @Override
-    void saveApplicationBook(ReadOnlyApplicationBook addressBook) throws IOException;
+    void saveApplicationBook(ReadOnlyApplicationBook applicationBook) throws IOException;
 
 }
