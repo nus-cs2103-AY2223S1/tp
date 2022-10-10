@@ -1,10 +1,10 @@
 package swift.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import swift.commons.core.Messages;
 import swift.model.Model;
 import swift.model.task.TaskNameContainsKeywordsPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all tasks in address book whose name contains any of the argument keywords.

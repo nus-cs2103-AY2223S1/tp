@@ -18,8 +18,8 @@ import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
 import swift.model.AddressBook;
 import swift.model.Model;
-import swift.model.person.PersonNameContainsKeywordsPredicate;
 import swift.model.person.Person;
+import swift.model.person.PersonNameContainsKeywordsPredicate;
 import swift.model.task.Task;
 import swift.testutil.EditPersonDescriptorBuilder;
 

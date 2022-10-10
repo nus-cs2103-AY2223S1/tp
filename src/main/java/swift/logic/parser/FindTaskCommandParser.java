@@ -1,12 +1,12 @@
 package swift.logic.parser;
 
-import swift.logic.commands.FindTaskCommand;
-import swift.logic.parser.exceptions.ParseException;
-import swift.model.task.TaskNameContainsKeywordsPredicate;
+import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import swift.logic.commands.FindTaskCommand;
+import swift.logic.parser.exceptions.ParseException;
+import swift.model.task.TaskNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindTaskCommand object

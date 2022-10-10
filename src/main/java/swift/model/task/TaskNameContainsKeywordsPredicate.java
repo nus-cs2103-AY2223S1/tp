@@ -1,9 +1,9 @@
 package swift.model.task;
 
-import swift.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import swift.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Task}'s {@code Name} matches any of the keywords given.

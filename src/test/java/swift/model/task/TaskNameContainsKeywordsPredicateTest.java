@@ -1,15 +1,15 @@
 package swift.model.task;
 
-import org.junit.jupiter.api.Test;
-import swift.testutil.PersonBuilder;
-import swift.testutil.TaskBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import swift.testutil.TaskBuilder;
 
 public class TaskNameContainsKeywordsPredicateTest {
 
@@ -44,7 +44,8 @@ public class TaskNameContainsKeywordsPredicateTest {
     @Test
     public void test_taskNameContainsKeywords_returnsTrue() {
         // One keyword
-        TaskNameContainsKeywordsPredicate predicate = new TaskNameContainsKeywordsPredicate(Collections.singletonList("discuss"));
+        TaskNameContainsKeywordsPredicate predicate =
+                new TaskNameContainsKeywordsPredicate(Collections.singletonList("discuss"));
         assertTrue(predicate.test(new TaskBuilder().withTaskName("discuss meeting").build()));
 
         // Multiple keywords

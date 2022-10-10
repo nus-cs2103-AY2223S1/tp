@@ -1,14 +1,5 @@
 package swift.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import swift.model.Model;
-import swift.model.ModelManager;
-import swift.model.UserPrefs;
-import swift.model.task.TaskNameContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,6 +8,16 @@ import static swift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static swift.testutil.TypicalTasks.BUY_MILK;
 import static swift.testutil.TypicalTasks.CS2103T;
 import static swift.testutil.TypicalTasks.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import swift.model.Model;
+import swift.model.ModelManager;
+import swift.model.UserPrefs;
+import swift.model.task.TaskNameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindTaskCommand}.
