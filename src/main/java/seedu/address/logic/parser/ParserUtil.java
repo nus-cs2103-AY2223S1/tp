@@ -3,9 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -24,6 +27,8 @@ import seedu.address.model.task.TaskList;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static final String MESSAGE_INVALID_OPTIONS = "Command options is invalid";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -151,5 +156,56 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    private static Optional<String> parseOption(String arguments, String option) {
+        requireNonNull(arguments);
+        requireNonNull(option);
+        String[] options = arguments.trim().split("\\s+");
+        for (int i = 0; i < options.length; i++) {
+            if (options[i].contains("/")) {
+                break;
+            }
+            if (i > 0 && options[i - 1].equals(option)) {
+                return Optional.of(options[i]);
+            }
+        }
+        return Optional.empty();
+    }
+
+    public static ArgumentMultimap parseOptions(String arguments, Prefix... options) {
+        requireNonNull(arguments);
+        requireNonNull(options);
+        ArgumentMultimap optionValues = new ArgumentMultimap();
+        for (int i = 0; i < options.length; i++) {
+            Optional<String> value = parseOption(arguments, options[i].toString());
+            if (value.isPresent()) {
+                optionValues.put(options[i], value.get());
+            }
+        }
+        return optionValues;
+    }
+
+    private static String eraseOption(String arguments, String option) {
+        requireNonNull(arguments);
+        requireNonNull(option);
+        String[] options = arguments.trim().split("\\s+");
+        for (int i = 0; i + 1 < options.length; i++) {
+            if (options[i].equals(option)) {
+                options[i] = "";
+                options[i + 1] = "";
+                break;
+            }
+        }
+        return Arrays.stream(options).reduce((x, y) -> x + " " + y).get().trim();
+    }
+
+    public static String eraseOptions(String arguments, Prefix... options) {
+        requireNonNull(arguments);
+        requireNonNull(options);
+        for (int i = 0; i < options.length; i++) {
+            arguments = eraseOption(arguments, options[i].toString());
+        }
+        return arguments;
     }
 }

@@ -16,7 +16,7 @@ import seedu.address.model.task.TaskList;
 /**
  * Add a task to an existing person in the patient list.
  */
-public class AddTaskCommand extends Command {
+public class AddTaskCommand extends AddGenericCommand {
     public static final String COMMAND_WORD = "addTask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
