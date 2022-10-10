@@ -22,11 +22,6 @@ import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
 import seedu.address.model.entry.Entry;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -80,11 +75,11 @@ public class EditCommand extends Command {
         Entry entryToEdit = lastShownList.get(index.getZeroBased());
         Entry editedEntry = createdEditedEntry(entryToEdit, editEntryDescriptor);
 
-        if (!entryToEdit.isSameEntry(editedEntry) && model.hasEntry(editedEntry)) {
+        if (!entryToEdit.isSameEntry(editedEntry) && model.hasExpenditure(editedEntry)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setEntry(entryToEdit, editedEntry);
+        model.setExpenditure(entryToEdit, editedEntry);
         model.updateFilteredEntryList(Model.PREDICATE_SHOW_ALL_ENTRIES);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedEntry));
     }
