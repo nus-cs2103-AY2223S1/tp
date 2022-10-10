@@ -2,11 +2,12 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
-
+import seedu.address.commons.core.keyword.Keyword;
+import seedu.address.commons.core.keyword.KeywordList;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.ContainsKeywordsPredicate;
+import seedu.address.model.person.FindableCategory;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -20,14 +21,38 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+        //Default category is company name
+        String lastCategoryString = null;
+        FindableCategory category = FindableCategory.COMPANY_NAME;
+        KeywordList keywords = new KeywordList();
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] splittedArgs = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        for(int i = 0; i < splittedArgs.length; ++i){
+            if (splittedArgs[i].startsWith(String.valueOf(CliSyntax.PREFIX_CATEGORY))) {
+                String categoryString = splittedArgs[i]
+                        .split(String.valueOf(CliSyntax.PREFIX_CATEGORY), 2)[1];
+                lastCategoryString = categoryString;
+                continue;
+            }
+
+            keywords.addKeyword(new Keyword(splittedArgs[i]));
+        }
+
+        //at least one keyword must be specified
+        if (keywords.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        if (lastCategoryString != null) {
+            category = FindableCategoryParser.parse(lastCategoryString);
+        }
+        return new FindCommand(new ContainsKeywordsPredicate(keywords, category));
     }
-
 }

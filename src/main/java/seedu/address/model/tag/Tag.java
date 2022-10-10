@@ -51,4 +51,12 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    /**
+     * Get tag name without being formatted.
+     *
+     * @return tag name.
+     */
+    public String getTagName() {
+        return tagName;
+    }
 }
