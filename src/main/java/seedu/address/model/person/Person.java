@@ -34,6 +34,8 @@ public class Person {
     private final LocalDateTime timeStamp;
     private final Set<Tag> tags = new HashSet<>();
 
+    // indicate pinned client
+    private Boolean pin = false;
 
     /**
      * Every field must be present and not null.
@@ -46,6 +48,19 @@ public class Person {
         this.address = address;
         this.timeStamp = LocalDateTime.now();
         this.tags.addAll(tags);
+    }
+    /**
+     * Constructor for person with pin.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean pin) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.timeStamp = LocalDateTime.now();
+        this.tags.addAll(tags);
+        this.pin = pin;
     }
 
     public Name getName() {
@@ -74,6 +89,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setPin(boolean b) {
+        this.pin = b;
+    }
+
+    public boolean getPin() {
+        return this.pin;
     }
 
     /**
