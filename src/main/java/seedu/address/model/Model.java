@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Person;
 
@@ -103,4 +104,16 @@ public interface Model {
      * Updates the current scope to a new container
      */
     void updateContextContainer(AbstractContainerItem container);
+
+    boolean hasTeam(Group grp);
+
+    void deleteTeam(Group grp);
+
+    void addTeam(Group grp);
+
+    void updateFilteredTeamList(Predicate<Group> predicate);
+
+    void updateFilteredTeamList(List<Predicate<Group>> predicates);
+
+    ObservableList<Group> getFilteredTeamList();
 }

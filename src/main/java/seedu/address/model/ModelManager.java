@@ -96,6 +96,8 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    //// person level methods and accessors
+
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -118,6 +120,25 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    //// group level methods and accessors
+
+    @Override
+    public boolean hasTeam(Group grp) {
+        requireNonNull(grp);
+        return addressBook.hasGroup(grp);
+    }
+
+    @Override
+    public void deleteTeam(Group grp) {
+        addressBook.removeTeam(grp);
+    }
+
+    @Override
+    public void addTeam(Group grp) {
+        addressBook.addGroup(grp);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     // =========== Filtered Person List Accessors
@@ -148,6 +169,36 @@ public class ModelManager implements Model {
         };
 
         filteredPersons.setPredicate(predicate);
+    }
+
+    // =========== Filtered Teams List Accessors
+    // =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Group> getFilteredTeamList() {
+        return filteredTeams;
+    }
+
+    @Override
+    public void updateFilteredTeamList(Predicate<Group> predicate) {
+        requireNonNull(predicate);
+        updateFilteredTeamList(List.of(predicate));
+    }
+
+    @Override
+    public void updateFilteredTeamList(List<Predicate<Group>> predicates) {
+        requireNonNull(predicates);
+        Predicate<Group> predicate = g -> {
+            return currentContext.map(cxt -> g.isPartOfContext(cxt)).orElse(true)
+                    && predicates.stream().map(pred -> pred.test(g)).allMatch(res -> res == true);
+        };
+
+        filteredTeams.setPredicate(predicate);
     }
 
     @Override
