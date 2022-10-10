@@ -6,10 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.testutil.Assert.assertThrows;
 
-import org.junit.jupiter.api.Test;
-import seedu.guest.commons.core.GuiSettings;
-
 import java.nio.file.Paths;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.guest.commons.core.GuiSettings;
 
 public class UserPrefsTest {
 
