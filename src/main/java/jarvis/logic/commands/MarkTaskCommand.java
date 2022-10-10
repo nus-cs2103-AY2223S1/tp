@@ -12,14 +12,14 @@ import jarvis.model.Model;
 import jarvis.model.Task;
 
 /**
- * Deletes a task identified using it's displayed index from the task book.
+ * Marks a task as done. The task is identified using its displayed index from the task book.
  */
 public class MarkTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "marktask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the task identified by the index number used in the displayed task list as completed.\n"
+            + ": Marks a task as done. The task is identified by the index number used in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
