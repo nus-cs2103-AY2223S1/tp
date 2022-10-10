@@ -33,7 +33,7 @@ public class AddStudCommand extends Command {
             + PREFIX_PARENT_NAME + "Bob Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "Peanut Allergy";
+            + PREFIX_TAG + "Allergy";
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the record";
 

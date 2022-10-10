@@ -20,8 +20,8 @@ import seedu.address.model.StudentRecord;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyStudentRecord;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.student.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
 
 public class AddStudCommandTest {
 
@@ -33,17 +33,17 @@ public class AddStudCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Student validPerson = new StudentBuilder().build();
 
         CommandResult commandResult = new AddStudCommand(validPerson).execute(modelStub);
 
         assertEquals(String.format(AddStudCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validPerson), modelStub.studentsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
+        Student validPerson = new StudentBuilder().build();
         AddStudCommand addStudCommand = new AddStudCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
@@ -52,8 +52,8 @@ public class AddStudCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Student alice = new StudentBuilder().withStudentName("Alice").build();
+        Student bob = new StudentBuilder().withStudentName("Bob").build();
         AddStudCommand addAliceCommand = new AddStudCommand(alice);
         AddStudCommand addBobCommand = new AddStudCommand(bob);
 
@@ -108,8 +108,7 @@ public class AddStudCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void addPerson(Person person) {
+        public void addStudent(Student person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +123,27 @@ public class AddStudCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasStudent(Student person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setStudent(Student target, Student editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredStudentList() {
+        public ObservableList<Student> getFilteredStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -153,17 +152,16 @@ public class AddStudCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+        private final Student student;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPerson(Student student) {
+            requireNonNull(student);
+            this.student = student;
         }
 
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasStudent(Student student) {
+            requireNonNull(student);
+            return this.student.isSameStudent(student);
         }
     }
 
@@ -171,18 +169,17 @@ public class AddStudCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Student> studentsAdded = new ArrayList<>();
 
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasStudent(Student student) {
+            requireNonNull(student);
+            return studentsAdded.stream().anyMatch(student::isSameStudent);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addStudent(Student student) {
+            requireNonNull(student);
+            studentsAdded.add(student);
         }
 
         @Override

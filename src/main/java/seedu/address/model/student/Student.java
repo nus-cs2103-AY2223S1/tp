@@ -31,7 +31,7 @@ public class Student {
      * Every field must be present and not null.
      */
     public Student(Name studentName, Id id, Name parentName, Phone phone, Address address, Set<Tag> tags) {
-        requireAllNonNull(studentName, id, parentName, phone, address);
+        requireAllNonNull(studentName, id, parentName, phone, address, tags);
         this.studentName = studentName;
         this.id = id;
         this.parentName = parentName;
@@ -100,13 +100,14 @@ public class Student {
                 && otherStudent.getId().equals(getId())
                 && otherStudent.getParentName().equals(getParentName())
                 && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getAddress().equals(getAddress());
+                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(studentName, id, parentName, phone, address);
+        return Objects.hash(studentName, id, parentName, phone, address, tags);
     }
 
     @Override
