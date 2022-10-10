@@ -6,7 +6,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.FormatStyle;
+import java.time.format.ResolverStyle;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -69,13 +72,14 @@ public class DateTimeProcessor {
         String dueTime = tempStringArray.length < 2 ? "" : tempStringArray[1];
 
         if (!isDateValid(dueDate)) {
-            throw new ParseException("Meeting date is not in yyyy-MM-dd format", 0);
+            throw new ParseException("Meeting date is not in dd-MM-yyyy format", 0);
         }
 
-        LocalDate inputDue = LocalDate.parse(dueDate);
-        String year = String.valueOf(inputDue.getYear());
-        String month = String.valueOf(inputDue.getMonth());
-        String date = String.valueOf(inputDue.getDayOfMonth());
+        DateTimeFormatter newFormatter = DateTimeFormatter
+            .ofLocalizedDate(FormatStyle.FULL).withLocale(Locale.UK).withResolverStyle(ResolverStyle.SMART);
+
+        LocalDate inputDue = LocalDate.parse(dueDate, this.dateFormatter);
+        String dayAndDate = inputDue.format(newFormatter);
 
         //time pattern of input date in 24 hour format -- HH for 24h, hh for 12h
         DateFormat inputTimeFormat = new SimpleDateFormat("HHmm");
@@ -85,15 +89,15 @@ public class DateTimeProcessor {
         DateFormat outputTimeFormat = new SimpleDateFormat("hh:mm aa"); // aa for AM/ PM
 
         if (Objects.equals(dueTime, "")) {
-            return month + " " + date + " " + year;
+            return dayAndDate;
 
         } else if (!isTimeValid(dueTime)) {
-            throw new ParseException("Meeting date is not in HHmm format", 0);
+            throw new ParseException("Meeting Time is not in HHmm format", 0);
         }
 
         Date inputTime = inputTimeFormat.parse(dueTime);
         String outputTime = outputTimeFormat.format(inputTime);
-        return month + " " + date + " " + year + " " + outputTime;
+        return dayAndDate + " " + outputTime;
     }
 
     // for debugging
