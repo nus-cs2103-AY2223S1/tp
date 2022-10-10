@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.model.tag.exceptions.DuplicateTagTypeException;
 import seedu.address.model.tag.exceptions.TagTypeNotFoundException;
 
@@ -18,7 +18,7 @@ import seedu.address.model.tag.exceptions.TagTypeNotFoundException;
  * {@code TagType#equals(Object)}. As such, adding and updating of
  * tag types uses TagType#equals(Object) for equality so as to ensure that
  * the tag type being added or updated is
- * unique in terms of identity in the UniqueTagTypeList. The removal of
+ * unique in terms of identity in the UniqueTagTypeMap. The removal of
  * a tag type also uses TagType#equals(Object) so
  * as to ensure that the tag type with exactly the same fields will be removed.
  *
@@ -26,10 +26,10 @@ import seedu.address.model.tag.exceptions.TagTypeNotFoundException;
  *
  * @see TagType#equals(Object)
  */
-public class UniqueTagTypeList implements Iterable<TagType> {
-    private final ObservableList<TagType> internalList = FXCollections.observableArrayList();
-    private final ObservableList<TagType> internalUnmodifiableList = FXCollections
-            .unmodifiableObservableList(internalList);
+public class UniqueTagTypeMap implements Iterable<TagType> {
+    private final ObservableMap<TagType, UniqueTagList> internalList = FXCollections.observableMap();
+    private final ObservableMap<TagType, UniqueTagList> internalUnmodifiableList = FXCollections
+            .unmodifiableObservableMap(internalList);
 
     /**
      * Returns true if the list contains an equivalent tag type as the given argument.
@@ -83,7 +83,7 @@ public class UniqueTagTypeList implements Iterable<TagType> {
         }
     }
 
-    public void setTagTypes(UniqueTagTypeList replacement) {
+    public void setTagTypes(UniqueTagTypeMap replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -112,20 +112,20 @@ public class UniqueTagTypeList implements Iterable<TagType> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<TagType> asUnmodifiableObservableList() {
+    public ObservableMap<TagType, UniqueTagList> asUnmodifiableObservableMap() {
         return internalUnmodifiableList;
     }
 
     @Override
     public Iterator<TagType> iterator() {
-        return internalList.iterator();
+        return internalList.keySet().iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueTagList // instanceof handles nulls
-                && internalList.equals(((UniqueTagTypeList) other).internalList));
+                && internalList.equals(((UniqueTagTypeMap) other).internalList));
     }
 
     @Override
