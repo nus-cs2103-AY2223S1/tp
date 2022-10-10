@@ -1,20 +1,18 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindTaskCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.task.TaskContainsKeywordsPredicate;
-import seedu.address.model.task.Module;
-import seedu.address.model.task.TaskContainsModulesPredicate;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import seedu.address.logic.commands.FindTaskCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.Module;
+import seedu.address.model.task.TaskContainsKeywordsPredicate;
+import seedu.address.model.task.TaskContainsModulesPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

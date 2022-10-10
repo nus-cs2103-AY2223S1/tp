@@ -1,13 +1,13 @@
 package seedu.address.model.task;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 public class TaskContainsKeywordsPredicateTest {
 
@@ -39,7 +39,8 @@ public class TaskContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate(Collections.singletonList("Science"));
+        TaskContainsKeywordsPredicate predicate = new
+                TaskContainsKeywordsPredicate(Collections.singletonList("Science"));
         assertTrue(predicate.test(new Task(new TaskName("Science Math homework"), new Module("MA1521"),
                 new Deadline("2022-05-05 15:04"))));
 
