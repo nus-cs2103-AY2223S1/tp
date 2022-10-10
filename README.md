@@ -4,7 +4,7 @@
 ![Ui](docs/images/Ui.png)
 
 FoodWhere (FW) is a desktop app for managing food reviews, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). FW can get your tasks done faster than traditional GUI apps if you can type fast.<br>
-  
+
 **Example usages:**
   * add food stalls
   * add reviews for food stalls
