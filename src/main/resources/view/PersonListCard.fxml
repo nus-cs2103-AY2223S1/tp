@@ -35,6 +35,7 @@
       <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
       <Label fx:id="cap" styleClass="cell_small_label" text="\$cap" />
       <Label fx:id="university" styleClass="cell_small_label" text="\$university" />
+      <Label fx:id="major" styleClass="cell_small_label" text="\$major" />
     </VBox>
   </GridPane>
 </HBox>

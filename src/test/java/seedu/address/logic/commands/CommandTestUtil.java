@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -44,6 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_BOB = "Male";
     public static final String VALID_UNIVERSITY_AMY = "NUS";
     public static final String VALID_UNIVERSITY_BOB = "NTU";
+    public static final String VALID_MAJOR_AMY = "Computer Science";
+    public static final String VALID_MAJOR_BOB = "Computer Engineering";
     public static final String VALID_JOB_ID_AMY = "167839";
     public static final String VALID_JOB_ID_BOB = "J9204342";
     public static final String VALID_JOB_TITLE_AMY = "Software Engineer Intern";
@@ -69,6 +72,8 @@ public class CommandTestUtil {
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
     public static final String UNIVERSITY_DESC_AMY = " " + PREFIX_UNIVERSITY + VALID_UNIVERSITY_AMY;
     public static final String UNIVERSITY_DESC_BOB = " " + PREFIX_UNIVERSITY + VALID_UNIVERSITY_BOB;
+    public static final String MAJOR_DESC_AMY = " " + PREFIX_MAJOR + VALID_MAJOR_AMY;
+    public static final String MAJOR_DESC_BOB = " " + PREFIX_MAJOR + VALID_MAJOR_BOB;
     public static final String JOB_ID_DESC_AMY = " " + PREFIX_JOB_ID + VALID_JOB_ID_AMY;
     public static final String JOB_ID_DESC_BOB = " " + PREFIX_JOB_ID + VALID_JOB_ID_BOB;
     public static final String JOB_TITLE_DESC_AMY = " " + PREFIX_JOB_TITLE + VALID_JOB_TITLE_AMY;
@@ -85,6 +90,8 @@ public class CommandTestUtil {
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "4Male"; // '4' not allowed in gender
     public static final String INVALID_UNIVERSITY_DESC = " " + PREFIX_UNIVERSITY + "St@r"; // '@' not allowed for
     // universities
+    public static final String INVALID_MAJOR_DESC = " " + PREFIX_MAJOR + "C0MPUT3R $C13NC3"; // '0, 3, $, 1'
+    // not allowed for majors
     public static final String INVALID_JOB_ID_DESC = " " + PREFIX_JOB_ID + "J9021-1"; // '-' not allowed in job IDs
     public static final String INVALID_JOB_TITLE_DESC = " " + PREFIX_JOB_TITLE
             + "Intern | Software Engineer"; // '|' not allowed in job titles
@@ -104,6 +111,7 @@ public class CommandTestUtil {
                 .withAddress(VALID_ADDRESS_AMY)
                 .withCap(VALID_CAP_VALUE_AMY, VALID_MAXIMUM_CAP_VALUE_AMY)
                 .withUniversity(VALID_UNIVERSITY_AMY)
+                .withMajor(VALID_MAJOR_AMY)
                 .withGender(VALID_GENDER_AMY)
                 .withId(VALID_JOB_ID_AMY)
                 .withTitle(VALID_JOB_TITLE_AMY)
@@ -113,6 +121,7 @@ public class CommandTestUtil {
                 .withAddress(VALID_ADDRESS_BOB)
                 .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
+                .withMajor(VALID_MAJOR_BOB)
                 .withGender(VALID_GENDER_BOB)
                 .withId(VALID_JOB_ID_BOB)
                 .withTitle(VALID_JOB_TITLE_BOB)

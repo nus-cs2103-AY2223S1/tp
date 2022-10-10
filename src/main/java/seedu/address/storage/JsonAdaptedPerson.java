@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -38,6 +39,7 @@ class JsonAdaptedPerson {
     private final String gender;
     private final String cap;
     private final String university;
+    private final String major;
     private final String id;
     private final String title;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -54,7 +56,8 @@ class JsonAdaptedPerson {
             @JsonProperty("gender") String gender,
             @JsonProperty("cap") String cap,
             @JsonProperty("university") String university,
-            @JsonProperty("id") String id,
+            @JsonProperty("major") String major,
+                             @JsonProperty("id") String id,
             @JsonProperty("title") String title,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -64,6 +67,7 @@ class JsonAdaptedPerson {
         this.gender = gender;
         this.cap = cap;
         this.university = university;
+        this.major = major;
         this.id = id;
         this.title = title;
         if (tagged != null) {
@@ -82,6 +86,7 @@ class JsonAdaptedPerson {
         gender = source.getGender().value;
         cap = source.getCap().toString();
         university = source.getUniversity().value;
+        major = source.getMajor().value;
         id = source.getJob().getId().value;
         title = source.getJob().getTitle().value;
         tagged.addAll(source.getTags().stream()
@@ -155,6 +160,14 @@ class JsonAdaptedPerson {
         }
         final University modelUniversity = new University(university);
 
+        if (major == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Major.class.getSimpleName()));
+        }
+        if (!Major.isValidMajor(major)) {
+            throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
+        }
+        final Major modelMajor = new Major(major);
+
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
@@ -176,6 +189,7 @@ class JsonAdaptedPerson {
                 modelGender,
                 modelCap,
                 modelUniversity,
+                modelMajor,
                 modelId,
                 modelTitle,
                 modelTags);

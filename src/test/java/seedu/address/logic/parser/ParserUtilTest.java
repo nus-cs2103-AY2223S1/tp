@@ -21,6 +21,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.University;
@@ -40,6 +41,7 @@ public class ParserUtilTest {
     private static final String INVALID_CAP_2 = INVALID_CAP_VALUE_2 + CAP_SEPARATOR + INVALID_MAXIMUM_CAP_VALUE;
     private static final String INVALID_CAP_3 = "@#!";
     private static final String INVALID_UNIVERSITY = "n()S";
+    private static final String INVALID_MAJOR = "C0MPUT3R $C13NC3";
     private static final String INVALID_ID = "J9021-1";
     private static final String INVALID_TITLE = "Intern | Software Engineer";
     private static final String INVALID_TAG = "#friend";
@@ -53,6 +55,7 @@ public class ParserUtilTest {
     private static final double VALID_CAP_VALUE = 3.3;
     private static final String VALID_CAP = VALID_CAP_VALUE + CAP_SEPARATOR + MAXIMUM_CAP_VALUE;
     private static final String VALID_UNIVERSITY = "ite";
+    private static final String VALID_MAJOR = "Computer Science";
     private static final String VALID_ID = "J90211";
     private static final String VALID_TITLE = "Intern - Software Engineer";
     private static final String VALID_TAG_1 = "friend";
@@ -244,6 +247,29 @@ public class ParserUtilTest {
         String universityWithWhitespace = WHITESPACE + VALID_UNIVERSITY + WHITESPACE;
         University expectedUniversity = new University(VALID_UNIVERSITY);
         assertEquals(expectedUniversity, ParserUtil.parseUniversity(universityWithWhitespace));
+    }
+
+    @Test
+    public void parseMajor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMajor((String) null));
+    }
+
+    @Test
+    public void parseMajor_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMajor(INVALID_MAJOR));
+    }
+
+    @Test
+    public void parseMajor_validValueWithoutWhitespace_returnsMajor() throws Exception {
+        Major expectedMajor = new Major(VALID_MAJOR);
+        assertEquals(expectedMajor, ParserUtil.parseMajor(VALID_MAJOR));
+    }
+
+    @Test
+    public void parseMajor_validValueWithWhitespace_returnsTrimmedMajor() throws Exception {
+        String majorWithWhitespace = WHITESPACE + VALID_MAJOR + WHITESPACE;
+        Major expectedMajor = new Major(VALID_MAJOR);
+        assertEquals(expectedMajor, ParserUtil.parseMajor(majorWithWhitespace));
     }
 
     @Test

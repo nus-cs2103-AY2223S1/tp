@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -32,6 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_CAP + "CAP "
             + PREFIX_GENDER + "GENDER "
             + PREFIX_UNIVERSITY + "UNIVERSITY "
+            + PREFIX_MAJOR + "MAJOR "
             + PREFIX_JOB_ID + "ID "
             + PREFIX_JOB_TITLE + "TITLE "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -43,6 +45,7 @@ public class AddCommand extends Command {
             + PREFIX_CAP + "3.50/4.00 "
             + PREFIX_GENDER + "male "
             + PREFIX_UNIVERSITY + "Nanyang Polytechnic "
+            + PREFIX_MAJOR + "Computer Science "
             + PREFIX_JOB_ID + "173296 "
             + PREFIX_JOB_TITLE + "Software Engineer Intern "
             + PREFIX_TAG + "rejected "

@@ -12,6 +12,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -32,6 +33,7 @@ public class SampleDataUtil {
                     new Gender("Male"),
                     new Cap(3.5, 4.0),
                     new University("National University of Singapore"),
+                    new Major("Computer Science"),
                     new Id("169277"),
                     new Title("IT Software Engineer (6 months internship)"),
                     getTagSet("offered")),
@@ -43,6 +45,7 @@ public class SampleDataUtil {
                     new Gender("Female"),
                     new Cap(5.0, 5.0),
                     new University("Nanyang Technological University"),
+                    new Major("Computer Engineering"),
                     new Id("169277"),
                     new Title("IT Software Engineer (6 months internship)"),
                     getTagSet()),
@@ -54,6 +57,7 @@ public class SampleDataUtil {
                     new Gender("Female"),
                     new Cap(3, 5),
                     new University("Oxford University"),
+                    new Major("Business Analytics"),
                     new Id("165997"),
                     new Title("[Campus Recruitment] Backend Engineer Intern (Dec'23 - May'23)"),
                     getTagSet("assessment", "rejected")),
@@ -65,6 +69,7 @@ public class SampleDataUtil {
                     new Gender("Male"),
                     new Cap(4.97, 5),
                     new University("Singapore Management University"),
+                    new Major("Chemical Engineering"),
                     new Id("169277"),
                     new Title("IT Software Engineer (6 months internship)"),
                     getTagSet("KIV")),
@@ -76,6 +81,7 @@ public class SampleDataUtil {
                     new Gender("Male"),
                     new Cap(3.58, 4.0),
                     new University("Singapore University of Technology and Design"),
+                    new Major("Civil Engineering"),
                     new Id("183698"),
                     new Title("Data Scientist Intern"),
                     getTagSet("final interview", "rejected")),
@@ -87,6 +93,7 @@ public class SampleDataUtil {
                     new Gender("Male"),
                     new Cap(4.55, 5.0),
                     new University("Temasek Polytechnic"),
+                    new Major("Electrical Engineering"),
                     new Id("174059"),
                     new Title("Software Engineering Intern Internship, May - August 2023"),
                     getTagSet("offer rejected"))

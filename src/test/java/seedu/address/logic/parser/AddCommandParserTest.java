@@ -15,6 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_JOB_ID_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_JOB_TITLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MAJOR_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -23,6 +24,8 @@ import static seedu.address.logic.commands.CommandTestUtil.JOB_ID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.JOB_ID_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.JOB_TITLE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.JOB_TITLE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.MAJOR_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.MAJOR_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -39,6 +42,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_KIV;
@@ -58,6 +62,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -78,6 +83,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
@@ -88,6 +94,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
@@ -98,6 +105,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
@@ -108,6 +116,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
@@ -119,6 +128,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
@@ -130,6 +140,7 @@ public class AddCommandParserTest {
                 + GENDER_DESC_AMY
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
@@ -141,6 +152,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
@@ -152,6 +164,19 @@ public class AddCommandParserTest {
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_AMY
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
+                + JOB_ID_DESC_BOB
+                + JOB_TITLE_DESC_BOB
+                + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
+
+        // multiple majors - last major accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB
+                + GENDER_DESC_BOB
+                + CAP_DESC_BOB
+                + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_AMY
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_REJECTED, new AddCommand(expectedPerson));
@@ -162,6 +187,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_AMY
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
@@ -173,6 +199,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_AMY
                 + JOB_TITLE_DESC_BOB
@@ -186,6 +213,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV
@@ -201,6 +229,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_AMY
                 + GENDER_DESC_AMY
                 + UNIVERSITY_DESC_AMY
+                + MAJOR_DESC_AMY
                 + JOB_ID_DESC_AMY
                 + JOB_TITLE_DESC_AMY, new AddCommand(expectedPerson));
     }
@@ -215,6 +244,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB, expectedMessage);
 
@@ -224,6 +254,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB, expectedMessage);
 
@@ -233,6 +264,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB, expectedMessage);
 
@@ -251,6 +283,7 @@ public class AddCommandParserTest {
                 + VALID_CAP_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB, expectedMessage);
 
@@ -260,6 +293,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + VALID_GENDER_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB, expectedMessage);
 
@@ -269,6 +303,16 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + VALID_UNIVERSITY_BOB
+                + MAJOR_DESC_BOB
+                + JOB_ID_DESC_BOB
+                + JOB_TITLE_DESC_BOB, expectedMessage);
+
+        // missing major prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB
+                + GENDER_DESC_BOB
+                + UNIVERSITY_DESC_BOB
+                + VALID_MAJOR_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB, expectedMessage);
 
@@ -278,6 +322,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + VALID_JOB_ID_BOB
                 + JOB_TITLE_DESC_BOB, expectedMessage);
 
@@ -287,6 +332,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + VALID_JOB_TITLE_BOB, expectedMessage);
 
@@ -297,6 +343,7 @@ public class AddCommandParserTest {
                 + VALID_CAP_BOB
                 + VALID_GENDER_BOB
                 + VALID_UNIVERSITY_BOB
+                + VALID_MAJOR_BOB
                 + VALID_JOB_ID_BOB
                 + VALID_JOB_TITLE_BOB, expectedMessage);
     }
@@ -309,6 +356,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV
@@ -320,6 +368,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV
@@ -331,6 +380,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV
@@ -342,6 +392,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV
@@ -353,6 +404,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + INVALID_GENDER_DESC
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV
@@ -364,6 +416,7 @@ public class AddCommandParserTest {
                 + INVALID_CAP_DESC
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV
@@ -375,10 +428,23 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + INVALID_UNIVERSITY_DESC
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV
                 + TAG_DESC_REJECTED, University.MESSAGE_CONSTRAINTS);
+
+        // invalid major
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB
+                + GENDER_DESC_BOB
+                + CAP_DESC_BOB
+                + UNIVERSITY_DESC_BOB
+                + INVALID_MAJOR_DESC
+                + JOB_ID_DESC_BOB
+                + JOB_TITLE_DESC_BOB
+                + TAG_DESC_KIV
+                + TAG_DESC_REJECTED, Major.MESSAGE_CONSTRAINTS);
 
         // invalid job ID
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -386,6 +452,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + INVALID_JOB_ID_DESC
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV
@@ -397,6 +464,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + INVALID_JOB_TITLE_DESC
                 + TAG_DESC_KIV
@@ -408,6 +476,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + INVALID_TAG_DESC
@@ -419,6 +488,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
@@ -428,6 +498,7 @@ public class AddCommandParserTest {
                 + CAP_DESC_BOB
                 + GENDER_DESC_BOB
                 + UNIVERSITY_DESC_BOB
+                + MAJOR_DESC_BOB
                 + JOB_ID_DESC_BOB
                 + JOB_TITLE_DESC_BOB
                 + TAG_DESC_KIV

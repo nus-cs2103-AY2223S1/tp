@@ -9,6 +9,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -29,6 +30,7 @@ public class PersonBuilder {
     public static final double DEFAULT_CAP_VALUE = 4.99;
     public static final double DEFAULT_CAP_MAXIMUM_VALUE = 5.0;
     public static final String DEFAULT_UNIVERSITY = "NUS";
+    public static final String DEFAULT_MAJOR = "Computer Science";
     public static final String DEFAULT_JOB_ID = "17839";
     public static final String DEFAULT_JOB_TITLE = "Intern, Software Engineer";
 
@@ -39,6 +41,7 @@ public class PersonBuilder {
     private Gender gender;
     private Cap cap;
     private University university;
+    private Major major;
     private Id id;
     private Title title;
     private Set<Tag> tags;
@@ -54,6 +57,7 @@ public class PersonBuilder {
         gender = new Gender(DEFAULT_GENDER);
         cap = new Cap(DEFAULT_CAP_VALUE, DEFAULT_CAP_MAXIMUM_VALUE);
         university = new University(DEFAULT_UNIVERSITY);
+        major = new Major(DEFAULT_MAJOR);
         id = new Id(DEFAULT_JOB_ID);
         title = new Title(DEFAULT_JOB_TITLE);
         tags = new HashSet<>();
@@ -70,6 +74,7 @@ public class PersonBuilder {
         gender = personToCopy.getGender();
         cap = personToCopy.getCap();
         university = personToCopy.getUniversity();
+        major = personToCopy.getMajor();
         id = personToCopy.getJob().getId();
         title = personToCopy.getJob().getTitle();
         tags = new HashSet<>(personToCopy.getTags());
@@ -140,6 +145,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Major} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMajor(String major) {
+        this.major = new Major(major);
+        return this;
+    }
+
+    /**
      * Sets the {@code Id} of the {@code Person} that we are building.
      */
     public PersonBuilder withId(String id) {
@@ -160,13 +173,14 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, phone, email,
-            address,
-            gender,
-            cap,
-            university,
-            id,
-            title,
-            tags);
+                address,
+                gender,
+                cap,
+                university,
+                major,
+                id,
+                title,
+                tags);
     }
 
 }

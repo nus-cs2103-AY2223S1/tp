@@ -12,6 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -43,6 +45,7 @@ public class TypicalPersons {
             .withGender("Female")
             .withCap(3.90, 5.0)
             .withUniversity("Singapore University")
+            .withMajor("Computer Science")
             .withId("171932")
             .withTitle("[Campus Recruitment] Intern, Software Engineer")
             .withTags("interview", "rejected")
@@ -55,6 +58,7 @@ public class TypicalPersons {
             .withGender("Male")
             .withCap(4.0, 5.0)
             .withUniversity("NUS")
+            .withMajor("Computer Engineering")
             .withId("J021932")
             .withTitle("Intern, Software Engineer (May'23 - Aug'23)")
             .withTags("KIV")
@@ -66,6 +70,7 @@ public class TypicalPersons {
             .withGender("Male")
             .withCap(3.99, 4.0)
             .withUniversity("SUTD")
+            .withMajor("Chemical Engineering")
             .withId("171932")
             .withTitle("[Campus Recruitment] Intern, Software Engineer")
             .build();
@@ -77,6 +82,7 @@ public class TypicalPersons {
             .withGender("Male")
             .withCap(2.50, 4.0)
             .withUniversity("SMU")
+            .withMajor("Civil Engineering")
             .withId("171932")
             .withTitle("[Campus Recruitment] Intern, Software Engineer")
             .withTags("friends")
@@ -89,6 +95,7 @@ public class TypicalPersons {
             .withGender("Female")
             .withCap(3.70, 5.0)
             .withUniversity("Lasalle")
+            .withMajor("Electrical Engineering")
             .withId("171932")
             .withTitle("[Campus Recruitment] Intern, Software Engineer")
             .build();
@@ -100,6 +107,7 @@ public class TypicalPersons {
             .withGender("Female")
             .withCap(3.97, 5.0)
             .withUniversity("Nanyang Polytechnic")
+            .withMajor("Animal Sciences")
             .withId("J021932")
             .withTitle("Intern, Software Engineer (May'23 - Aug'23)")
             .build();
@@ -111,6 +119,7 @@ public class TypicalPersons {
             .withGender("Male")
             .withCap(4.79, 5.0)
             .withUniversity("Temasek Polytechnic")
+            .withMajor("Accounting")
             .withId("J021932")
             .withTitle("Intern, Software Engineer (May'23 - Aug'23)")
             .build();
@@ -124,9 +133,11 @@ public class TypicalPersons {
             .withGender("Male")
             .withCap(2.46, 4.0)
             .withUniversity("UI")
+            .withMajor("Food and Nutrition")
             .withId("J021932")
             .withTitle("Intern, Software Engineer (May'23 - Aug'23)")
             .build();
+
     public static final Person IDA = new PersonBuilder()
             .withName("Ida Mueller")
             .withPhone("8482131")
@@ -135,6 +146,7 @@ public class TypicalPersons {
             .withGender("Female")
             .withCap(4.39, 5.0)
             .withUniversity("SUTD")
+            .withMajor("Food and Nutrition")
             .withId("171932")
             .withTitle("[Campus Recruitment] Intern, Software Engineer")
             .build();
@@ -148,6 +160,7 @@ public class TypicalPersons {
             .withGender(VALID_GENDER_AMY)
             .withCap(VALID_CAP_VALUE_AMY, VALID_MAXIMUM_CAP_VALUE_AMY)
             .withUniversity(VALID_UNIVERSITY_AMY)
+            .withMajor(VALID_MAJOR_AMY)
             .withId(VALID_JOB_ID_AMY)
             .withTitle(VALID_JOB_TITLE_AMY)
             .withTags(VALID_TAG_REJECTED)
@@ -160,6 +173,7 @@ public class TypicalPersons {
             .withGender(VALID_GENDER_BOB)
             .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
             .withUniversity(VALID_UNIVERSITY_BOB)
+            .withMajor(VALID_MAJOR_BOB)
             .withTags(VALID_TAG_KIV, VALID_TAG_REJECTED)
             .withId(VALID_JOB_ID_BOB)
             .withTitle(VALID_JOB_TITLE_BOB)

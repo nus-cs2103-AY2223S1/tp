@@ -7,6 +7,7 @@
     "gender": "Female",
     "cap": "3.8/4.0",
     "university": "NUS",
+    "major": "Computer Science",
     "id": "178426",
     "title": "Software Engineer Intern",
     "tagged": [ "interview", "rejected" ]
@@ -18,6 +19,7 @@
     "gender": "Female",
     "cap": "3.9/4.0",
     "university": "NTU",
+    "major": "Computer Engineering",
     "id": "178426",
     "title": "Software Engineer Intern"
   } ]

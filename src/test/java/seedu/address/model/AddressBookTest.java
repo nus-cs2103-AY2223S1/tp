@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAXIMUM_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_KIV;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIVERSITY_BOB;
@@ -57,6 +58,7 @@ public class AddressBookTest {
                 .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withGender(VALID_GENDER_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
+                .withMajor(VALID_MAJOR_BOB)
                 .withId(VALID_JOB_ID_BOB)
                 .withTitle(VALID_JOB_TITLE_BOB)
                 .withTags(VALID_TAG_KIV)
@@ -91,6 +93,7 @@ public class AddressBookTest {
                 .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withGender(VALID_GENDER_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
+                .withMajor(VALID_MAJOR_BOB)
                 .withId(VALID_JOB_ID_BOB)
                 .withTitle(VALID_JOB_TITLE_BOB)
                 .withTags(VALID_TAG_KIV)

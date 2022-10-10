@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -30,6 +31,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -54,6 +56,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_CAP + "CAP] "
             + "[" + PREFIX_UNIVERSITY + "UNIVERSITY] "
+            + "[" + PREFIX_MAJOR + "MAJOR] "
             + "[" + PREFIX_JOB_ID + "ID] "
             + "[" + PREFIX_JOB_TITLE + "TITLE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -115,6 +118,7 @@ public class EditCommand extends Command {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Cap updatedCap = editPersonDescriptor.getCap().orElse(personToEdit.getCap());
         University updatedUniversity = editPersonDescriptor.getUniversity().orElse(personToEdit.getUniversity());
+        Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
         Id updatedJobId = editPersonDescriptor.getJobId().orElse(personToEdit.getJob().getId());
         Title updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJob().getTitle());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
@@ -124,6 +128,7 @@ public class EditCommand extends Command {
                 updatedGender,
                 updatedCap,
                 updatedUniversity,
+                updatedMajor,
                 updatedJobId,
                 updatedJobTitle,
                 updatedTags);
@@ -159,6 +164,7 @@ public class EditCommand extends Command {
         private Gender gender;
         private Cap cap;
         private University university;
+        private Major major;
         private Id id;
         private Title title;
         private Set<Tag> tags;
@@ -177,6 +183,7 @@ public class EditCommand extends Command {
             setGender(toCopy.gender);
             setCap(toCopy.cap);
             setUniversity(toCopy.university);
+            setMajor(toCopy.major);
             setId(toCopy.id);
             setTitle(toCopy.title);
             setTags(toCopy.tags);
@@ -187,13 +194,14 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email,
-                address,
-                gender,
-                cap,
-                university,
-                id,
-                title,
-                tags);
+                    address,
+                    gender,
+                    cap,
+                    university,
+                    major,
+                    id,
+                    title,
+                    tags);
         }
 
         public void setName(Name name) {
@@ -252,6 +260,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(university);
         }
 
+        public void setMajor(Major major) {
+            this.major = major;
+        }
+
+        public Optional<Major> getMajor() {
+            return Optional.ofNullable(major);
+        }
+
         public void setId(Id id) {
             this.id = id;
         }
@@ -307,6 +323,7 @@ public class EditCommand extends Command {
                     && getGender().equals(e.getGender())
                     && getCap().equals(e.getCap())
                     && getUniversity().equals(e.getUniversity())
+                    && getMajor().equals(e.getMajor())
                     && getJobId().equals(e.getJobId())
                     && getJobTitle().equals(e.getJobTitle())
                     && getTags().equals(e.getTags());

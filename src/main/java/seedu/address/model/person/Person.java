@@ -28,6 +28,7 @@ public class Person {
     private final Gender gender;
     private final Cap cap;
     private final University university;
+    private final Major major;
     private final Job job;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -39,6 +40,7 @@ public class Person {
                   Gender gender,
                   Cap cap,
                   University university,
+                  Major major,
                   Id id,
                   Title title,
                   Set<Tag> tags) {
@@ -47,6 +49,7 @@ public class Person {
             gender,
             cap,
             university,
+            major,
             tags);
         this.name = name;
         this.phone = phone;
@@ -55,6 +58,7 @@ public class Person {
         this.gender = gender;
         this.cap = cap;
         this.university = university;
+        this.major = major;
         this.job = new Job(id, title);
         this.tags.addAll(tags);
     }
@@ -85,6 +89,10 @@ public class Person {
 
     public University getUniversity() {
         return university;
+    }
+
+    public Major getMajor() {
+        return major;
     }
 
     public Job getJob() {
@@ -134,6 +142,7 @@ public class Person {
                 && otherPerson.getGender().equals(getGender())
                 && otherPerson.getCap().equals(getCap())
                 && otherPerson.getUniversity().equals(getUniversity())
+                && otherPerson.getMajor().equals(getMajor())
                 && otherPerson.getJob().equals(getJob())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -145,6 +154,7 @@ public class Person {
                 gender,
                 cap,
                 university,
+                major,
                 job,
                 tags);
     }
@@ -165,6 +175,8 @@ public class Person {
                 .append(getCap())
                 .append("; University: ")
                 .append(getUniversity())
+                .append("; Major: ")
+                .append(getMajor())
                 .append("; Job ID: ")
                 .append(getJob());
 

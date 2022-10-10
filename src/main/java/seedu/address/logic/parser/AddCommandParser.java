@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,6 +24,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -40,20 +42,22 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_GENDER,
-                        PREFIX_CAP,
-                        PREFIX_UNIVERSITY,
-                        PREFIX_JOB_ID,
-                        PREFIX_JOB_TITLE,
-                        PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_ADDRESS,
+                PREFIX_CAP,
+                PREFIX_GENDER,
+                PREFIX_UNIVERSITY,
+                PREFIX_MAJOR,
+                PREFIX_JOB_ID,
+                PREFIX_JOB_TITLE,
+                PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_ADDRESS,
                 PREFIX_GENDER,
                 PREFIX_CAP,
                 PREFIX_UNIVERSITY,
-                PREFIX_EMAIL,
+                PREFIX_MAJOR,
                 PREFIX_JOB_ID,
                 PREFIX_JOB_TITLE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -67,6 +71,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Cap cap = ParserUtil.parseCap(argMultimap.getValue(PREFIX_CAP).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         University university = ParserUtil.parseUniversity(argMultimap.getValue(PREFIX_UNIVERSITY).get());
+        Major major = ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get());
         Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_JOB_ID).get());
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_JOB_TITLE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
@@ -75,6 +80,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 gender,
                 cap,
                 university,
+                major,
                 id,
                 title,
                 tagList);
