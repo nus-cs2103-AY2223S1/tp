@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Stack;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +36,11 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private HelpPanel helpPanel;
+    private DetailHelpPanel detailHelpPanel;
+
+    private MainPanel currentMainPanel;
+    private Stack<MainPanel> mainPanelHistory = new Stack<>();
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane mainPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -66,6 +73,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        helpPanel = new HelpPanel();
+        detailHelpPanel = new DetailHelpPanel();
     }
 
     public Stage getPrimaryStage() {
@@ -110,8 +120,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this::switchPersonDetailPanel);
+
+        currentMainPanel = personListPanel;
+        mainPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -136,14 +148,35 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Switch between different main panels
+     *
+     * @param panel to be switched
+     * @param recordHistory flag to indicate whether this action need
+     *                      to be stored
+     */
+    private void switchMainPanel(MainPanel panel, boolean recordHistory) {
+        if (currentMainPanel == panel) {
+            return;
+        }
+
+        if (recordHistory) {
+            mainPanelHistory.push(currentMainPanel);
+        }
+
+        currentMainPanel = panel;
+        mainPanelPlaceholder.getChildren().clear();
+        mainPanelPlaceholder.getChildren().add(panel.getRoot());
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
+        if (currentMainPanel.getPanelName() == MainPanelName.List) {
+            switchMainPanel(helpPanel, true);
+        } else if (currentMainPanel.getPanelName() == MainPanelName.Detail) {
+            switchMainPanel(detailHelpPanel, true);
         }
     }
 
@@ -161,6 +194,12 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    private void handleBack() {
+        if (!mainPanelHistory.empty()) {
+            switchMainPanel(mainPanelHistory.pop(), false);
+        }
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -186,11 +225,20 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isBack()) {
+                handleBack();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void switchPersonDetailPanel(Person person) {
+        Person selectedPerson = personListPanel.getSelectedPerson();
+        switchMainPanel(new DetailPanel(selectedPerson), true);
     }
 }
