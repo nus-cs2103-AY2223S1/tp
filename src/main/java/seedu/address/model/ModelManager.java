@@ -131,7 +131,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTaskWithModule(Module module) {
         requireNonNull(module);
-        return addressBook.hasTaskwithModule(module);
+        return addressBook.hasTaskWithModule(module);
     }
 
 

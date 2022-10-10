@@ -119,7 +119,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return tasks.contains(task);
     }
 
-    public boolean hasTaskwithModule(Module module) {
+    public boolean hasTaskWithModule(Module module) {
         return tasks.containsModule(module);
     }
 
