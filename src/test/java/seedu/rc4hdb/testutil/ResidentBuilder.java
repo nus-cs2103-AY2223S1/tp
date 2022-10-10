@@ -4,7 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.resident.fields.*;
+import seedu.rc4hdb.model.resident.fields.Email;
+import seedu.rc4hdb.model.resident.fields.Gender;
+import seedu.rc4hdb.model.resident.fields.House;
+import seedu.rc4hdb.model.resident.fields.MatricNumber;
+import seedu.rc4hdb.model.resident.fields.Name;
+import seedu.rc4hdb.model.resident.fields.Phone;
+import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.tag.Tag;
 import seedu.rc4hdb.model.util.SampleDataUtil;
 

@@ -2,7 +2,14 @@ package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.rc4hdb.logic.parser.CliSyntax.*;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_HOUSE;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ROOM;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -61,10 +68,12 @@ public class ModelCommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ROOM_DESC = " " + PREFIX_ROOM + "-1-00"; // negative integers not allowed in rooms
+    public static final String INVALID_ROOM_DESC =
+            " " + PREFIX_ROOM + "-1-00"; // negative integers not allowed in rooms
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "A"; //'A' not allowed in gender
     public static final String INVALID_HOUSE_DESC = " " + PREFIX_HOUSE + "2"; //'2' not allowed in house
-    public static final String INVALID_MATRIC_NUMBER_DESC = " " + PREFIX_MATRIC_NUMBER + "a0000000u"; //'a' not allowed in matric numbers
+    public static final String INVALID_MATRIC_NUMBER_DESC =
+            " " + PREFIX_MATRIC_NUMBER + "a0000000u"; //'a' not allowed in matric numbers
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -114,7 +123,7 @@ public class ModelCommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered resident list and selected resident in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(ModelCommand command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -127,8 +136,8 @@ public class ModelCommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredResidentList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the resident at the given {@code targetIndex} in the
+     * {@code model}'s resident book.
      */
     public static void showResidentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredResidentList().size());

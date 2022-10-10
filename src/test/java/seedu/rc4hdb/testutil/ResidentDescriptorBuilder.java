@@ -102,7 +102,7 @@ public class ResidentDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code ResidentDescriptor}
      * that we are building.
      */
     public ResidentDescriptorBuilder withTags(String... tags) {
