@@ -215,7 +215,8 @@ public class ParserUtil {
      */
     public static String parseModule(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
-        Pattern pattern = Pattern.compile("[a-z]{2,3}[0-9]{4}");
+        moduleCode = moduleCode.toLowerCase();
+        Pattern pattern = Pattern.compile("[a-z]{2,3}[0-9]{4}[a-z]?");
         Matcher matcher = pattern.matcher(moduleCode);
         if (!matcher.find()) {
             throw new ParseException(Module.MESSAGE_MODULE_CODE_CONSTRAINT);
