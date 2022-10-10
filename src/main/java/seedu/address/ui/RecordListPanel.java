@@ -26,13 +26,13 @@ public class RecordListPanel extends UiPart<Region> {
     public RecordListPanel(ObservableList<Record> recordList) {
         super(FXML);
         recordListView.setItems(recordList);
-        recordListView.setCellFactory(listView -> new recordListViewCell());
+        recordListView.setCellFactory(listView -> new RecordListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Record} using a {@code RecordCard}.
      */
-    class recordListViewCell extends ListCell<Record> {
+    class RecordListViewCell extends ListCell<Record> {
         @Override
         protected void updateItem(Record record, boolean empty) {
             super.updateItem(record, empty);

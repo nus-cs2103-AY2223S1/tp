@@ -94,4 +94,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecordList(Predicate<Record> predicate);
+
+    /**
+     * Clears the record list.
+     */
+    void clearRecords();
 }

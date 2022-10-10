@@ -37,6 +37,13 @@ public class RecordList {
         return this.recordList.size();
     }
 
+    /**
+     * Clears the record list.
+     */
+    public void clearRecords() {
+        this.recordList.clear();
+    }
+
     @Override
     public String toString() {
         return "Number of Records: " + recordList.size();
