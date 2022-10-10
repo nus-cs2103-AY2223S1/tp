@@ -154,7 +154,7 @@ public class AddOrderCommandTest {
         public int getFilteredItemListSize() {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public ObservableList<Item> getInventoryList() {
             throw new AssertionError("This method should not be called.");
