@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value propositions**: 
+**Value propositions**:
 * manage clients faster than a typical mouse/GUI driven app
 * Real-Estate agents with many clients may struggle to juggle their viewings and manage meetings.
 * Track properties to their owners as well as potential buyers
