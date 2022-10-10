@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Year {
 
-    public static final String MESSAGE_CONSTRAINTS = "Year should only contain 1 numeric character between 1 and 6, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Year should only contain 1 numeric character"
+        + " between 1 and 6, and it should not be blank";
 
     /*
      * Years 1-4 for Undergraduate, year 5 for Masters and year 6 for PhD.

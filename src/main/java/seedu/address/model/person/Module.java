@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Module {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module should only contain alphanumeric characters with no spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Module should only contain alphanumeric"
+        + " characters with no spaces, and it should not be blank";
 
     /*
      * Covers all module code variants in NUS.

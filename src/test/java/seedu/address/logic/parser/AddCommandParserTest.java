@@ -74,7 +74,7 @@ public class AddCommandParserTest {
                 + MODULE_DESC_BOB + YEAR_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple modules - last module accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB  + EMAIL_DESC_BOB + MODULE_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_AMY
                 + MODULE_DESC_BOB + YEAR_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple years - last year accepted
