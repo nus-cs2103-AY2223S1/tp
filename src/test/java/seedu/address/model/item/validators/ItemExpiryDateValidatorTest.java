@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ItemExpiryDateValidatorTest {
@@ -16,7 +15,7 @@ public class ItemExpiryDateValidatorTest {
      */
     @Test
     public void isValidFormat() {
-        Assertions.assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-01"));
+        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-01"));
 
         // Delimiters
         assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000/01/01")); // Wrong delimiter 1
@@ -62,7 +61,7 @@ public class ItemExpiryDateValidatorTest {
     @Test
     public void isDateWithinValidBounds() {
         // Year Format: dd-MM-YYYY
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
 
         // Test Year
         assertFalse(ItemExpiryDateValidator.isYearLessThanMinYear(LocalDate.parse("1900-01-01", formatter)));

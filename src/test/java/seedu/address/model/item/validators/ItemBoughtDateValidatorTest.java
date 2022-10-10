@@ -60,8 +60,7 @@ public class ItemBoughtDateValidatorTest {
      */
     @Test
     public void isDateWithinValidBounds() {
-        // Year Format: dd-MM-YYYY
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
 
         // Test Year
         assertFalse(ItemBoughtDateValidator.isYearLessThanMinYear(LocalDate.parse("1900-01-01", formatter)));
