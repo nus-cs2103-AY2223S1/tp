@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.TagAddCommand.MESSAGE_NO_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -28,6 +29,9 @@ class TagAddCommandParserTest {
         // no index specified
         assertParseFailure(parser, TAG_DESC_FRIEND , MESSAGE_INVALID_FORMAT);
 
+        // no field specified
+        assertParseFailure(parser, "1", MESSAGE_NO_TAG);
+
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
@@ -45,6 +49,9 @@ class TagAddCommandParserTest {
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+
+        // missing tag
+        assertParseFailure(parser, "1", MESSAGE_NO_TAG);
     }
 
     @Test
