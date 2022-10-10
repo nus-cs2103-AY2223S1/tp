@@ -13,7 +13,14 @@ public class TaskList {
     private ArrayList<Task> internalTaskList;
 
     /**
-     * Constructs a {@code TaskList}.
+     * Constructs an empty {@code TaskList}.
+     */
+    public TaskList() {
+        internalTaskList = new ArrayList<>();
+    }
+
+    /**
+     * Constructs a {@code TaskList} with a given list of tasks.
      */
     public TaskList(ArrayList<Task> tasks) {
         requireNonNull(tasks);
@@ -21,11 +28,14 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the list.
+     * Adds a task to the {@code TaskList},
+     * @param task The task to be added.
+     * @return The updated {@code TaskList} containing the added task.
      */
-    public void add(Task task) {
-        requireNonNull(task);
-        internalTaskList.add(task);
+    public TaskList add(Task task) {
+        ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
+        updatedTasks.add(task);
+        return new TaskList(updatedTasks);
     }
 
     /**
@@ -41,11 +51,20 @@ public class TaskList {
         return new TaskList(updatedTasks);
     }
 
+    // TODO: update delete method to return a new TaskList
     /**
      * Removes the task from the list.
      */
     public Task delete(int index) {
         return internalTaskList.remove(index);
+    }
+
+    /**
+     * Returns the task at the specified index.
+     * @return
+     */
+    public Task get(int index) {
+        return internalTaskList.get(index);
     }
 
     /**
