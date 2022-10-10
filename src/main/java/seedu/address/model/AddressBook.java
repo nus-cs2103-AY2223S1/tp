@@ -2,17 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.lang.invoke.CallSite;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.UniqueListingList;
-import seedu.address.model.listing.exceptions.ListingNotFoundException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -149,11 +146,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given listing {@code target} in the list with {@code editedListing}.
      * {@code target} must exist in the address book.
-     * The listing identity of {@code editedListing} must not be the same as another existing listing in the address book.
+     * The listing identity of {@code editedListing} must not be the same
+     * as another existing listing in the address book.
      */
     public void setListing(Listing target, Listing editedListing) {
         requireNonNull(editedListing);
-
         listings.setListing(target, editedListing);
     }
 

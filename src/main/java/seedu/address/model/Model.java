@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -125,7 +124,8 @@ public interface Model {
     /**
      * Replaces the given listing {@code target} with {@code editedListing}.
      * {@code target} must exist in the address book.
-     * The listing identity of {@code editedListing} must not be the same as another existing listing in the address book.
+     * The listing identity of {@code editedListing} must not be the same
+     * as another existing listing in the address book.
      */
     void setListing(Listing listing, Listing editedListing);
 

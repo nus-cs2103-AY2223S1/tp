@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASKING_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LISTINGS;
 
 import java.util.Optional;
@@ -26,7 +29,7 @@ public class EditListingCommand extends Command {
             + "by the id used in the displayed listing list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + "[" +  PREFIX_ID + "ID]"
+            + "[" + PREFIX_ID + "ID]"
             + "[" + PREFIX_ADDRESS + "ADDRESS]"
             + "[" + PREFIX_NAME + "NAME]"
             + "[" + PREFIX_ASKING_PRICE + "ASKING PRICE] \n"
