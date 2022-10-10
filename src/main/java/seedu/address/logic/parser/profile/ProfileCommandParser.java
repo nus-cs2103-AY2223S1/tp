@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.profile.AddProfileCommand;
+import seedu.address.logic.commands.profile.DeleteProfileCommand;
 import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.commands.profile.ViewProfilesCommand;
@@ -49,6 +50,8 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
         switch (profileOption) {
         case AddProfileCommand.COMMAND_OPTION:
             return new AddProfileCommandParser().parse(args);
+        case DeleteProfileCommand.COMMAND_OPTION:
+            return new DeleteProfileCommandParser().parse(args);
         case EditProfileCommand.COMMAND_OPTION:
             return new EditProfileCommandParser().parse(args);
         case ViewProfilesCommand.COMMAND_OPTION:

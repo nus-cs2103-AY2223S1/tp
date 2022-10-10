@@ -15,6 +15,7 @@ public abstract class ProfileCommand extends Command {
 
     public static final String VALID_FLAGS = "Please use one of the following valid flags: "
             + PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION + ", "
+            + PREFIX_OPTION + DeleteProfileCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + EditProfileCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + ViewProfilesCommand.COMMAND_OPTION + ".";
 
