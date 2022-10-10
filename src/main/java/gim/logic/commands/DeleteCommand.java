@@ -11,7 +11,7 @@ import gim.model.Model;
 import gim.model.exercise.Exercise;
 
 /**
- * Deletes an exercise identified using it's displayed index from the address book.
+ * Deletes an exercise identified using it's displayed index from the exercise tracker.
  */
 public class DeleteCommand extends Command {
 

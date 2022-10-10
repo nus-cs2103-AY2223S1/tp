@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import gim.model.AddressBook;
+import gim.model.ExerciseTracker;
 import gim.model.exercise.Exercise;
 
 
@@ -63,10 +63,10 @@ public class TypicalExercises {
     private TypicalExercises() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical exercises.
+     * Returns an {@code ExerciseTracker} with all the typical exercises.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static ExerciseTracker getTypicalExerciseTracker() {
+        ExerciseTracker ab = new ExerciseTracker();
         for (Exercise exercise : getTypicalExercises()) {
             ab.addExercise(exercise);
         }

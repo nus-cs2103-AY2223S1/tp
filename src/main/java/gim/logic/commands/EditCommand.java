@@ -29,7 +29,7 @@ import gim.model.tag.Tag;
 
 
 /**
- * Edits the details of an existing exercise in the address book.
+ * Edits the details of an existing exercise in the exercise tracker.
  */
 public class EditCommand extends Command {
 
@@ -50,7 +50,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_EXERCISE_SUCCESS = "Edited Exercise: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the exercise tracker.";
 
     private final Index index;
     private final EditExerciseDescriptor editExerciseDescriptor;

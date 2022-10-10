@@ -2,7 +2,7 @@ package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static gim.testutil.TypicalExercises.getTypicalAddressBook;
+import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalExerciseTracker(), new UserPrefs());
     }
 
     @Test
     public void execute_newExercise_success() {
         Exercise validExercise = new ExerciseBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getExerciseTracker(), new UserPrefs());
         expectedModel.addExercise(validExercise);
 
         assertCommandSuccess(new AddCommand(validExercise), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateExercise_throwsCommandException() {
-        Exercise exerciseInList = model.getAddressBook().getExerciseList().get(0);
+        Exercise exerciseInList = model.getExerciseTracker().getExerciseList().get(0);
         assertCommandFailure(new AddCommand(exerciseInList), model, AddCommand.MESSAGE_DUPLICATE_EXERCISE);
     }
 

@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameExercise comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ExerciseTracker implements ReadOnlyExerciseTracker {
 
     private final UniqueExerciseList exercises;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         exercises = new UniqueExerciseList();
     }
 
-    public AddressBook() {}
+    public ExerciseTracker() {}
 
     /**
-     * Creates an AddressBook using the Exercises in the {@code toBeCopied}
+     * Creates an ExerciseTracker using the Exercises in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ExerciseTracker(ReadOnlyExerciseTracker toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ExerciseTracker} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyExerciseTracker newData) {
         requireNonNull(newData);
 
         setExercises(newData.getExerciseList());
@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// exercise-level operations
 
     /**
-     * Returns true if an exercise with the same identity as {@code exercise} exists in the address book.
+     * Returns true if an exercise with the same identity as {@code exercise} exists in the exercise tracker.
      */
     public boolean hasExercise(Exercise exercise) {
         requireNonNull(exercise);
@@ -67,8 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds an exercise to the address book.
-     * The exercise must not already exist in the address book.
+     * Adds an exercise to the exercise tracker.
+     * The exercise must not already exist in the exercise tracker.
      */
     public void addExercise(Exercise p) {
         exercises.add(p);
@@ -76,9 +76,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given exercise {@code target} in the list with {@code editedExercise}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the exercise tracker.
      * The exercise identity of {@code editedExercise} must not be the same as another existing exercise
-     * in the address book.
+     * in the exercise tracker.
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireNonNull(editedExercise);
@@ -87,8 +87,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ExerciseTracker}.
+     * {@code key} must exist in the exercise tracker.
      */
     public void removeExercise(Exercise key) {
         exercises.remove(key);
@@ -110,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && exercises.equals(((AddressBook) other).exercises));
+                || (other instanceof ExerciseTracker // instanceof handles nulls
+                && exercises.equals(((ExerciseTracker) other).exercises));
     }
 
     @Override

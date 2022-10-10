@@ -9,10 +9,10 @@ import gim.commons.core.LogsCenter;
 import gim.logic.commands.Command;
 import gim.logic.commands.CommandResult;
 import gim.logic.commands.exceptions.CommandException;
-import gim.logic.parser.AddressBookParser;
+import gim.logic.parser.ExerciseTrackerParser;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.Model;
-import gim.model.ReadOnlyAddressBook;
+import gim.model.ReadOnlyExerciseTracker;
 import gim.model.exercise.Exercise;
 import gim.storage.Storage;
 import javafx.collections.ObservableList;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final ExerciseTrackerParser exerciseTrackerParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        exerciseTrackerParser = new ExerciseTrackerParser();
     }
 
     @Override
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = exerciseTrackerParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveExerciseTracker(model.getExerciseTracker());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyExerciseTracker getExerciseTracker() {
+        return model.getExerciseTracker();
     }
 
     @Override
@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getExerciseTrackerFilePath() {
+        return model.getExerciseTrackerFilePath();
     }
 
     @Override
