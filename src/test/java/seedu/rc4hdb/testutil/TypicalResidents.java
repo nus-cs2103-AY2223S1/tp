@@ -26,7 +26,7 @@ import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Resident} objects to be used in tests.
  */
 public class TypicalResidents {
 
@@ -134,7 +134,7 @@ public class TypicalResidents {
     private TypicalResidents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code ResidentBook} with all the typical residents.
      */
     public static ResidentBook getTypicalResidentBook() {
         ResidentBook rb = new ResidentBook();

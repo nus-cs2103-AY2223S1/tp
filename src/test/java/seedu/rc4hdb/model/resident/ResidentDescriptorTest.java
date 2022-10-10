@@ -56,15 +56,15 @@ public class ResidentDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different gender -> returns false
-        editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withRoom(VALID_GENDER_BOB).build();
+        editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withGender(VALID_GENDER_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different house -> returns false
-        editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withRoom(VALID_HOUSE_BOB).build();
+        editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withHouse(VALID_HOUSE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different matric number -> returns false
-        editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withRoom(VALID_MATRIC_NUMBER_BOB).build();
+        editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withMatricNumber(VALID_MATRIC_NUMBER_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
