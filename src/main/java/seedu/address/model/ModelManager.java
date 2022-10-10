@@ -14,7 +14,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Record;
-import seedu.address.model.person.RecordList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -28,9 +27,6 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private FilteredList<Record> filteredRecords;
 
-    // empty list for filteredRecords to wrap around when modelManager first initialised
-    private ObservableList<Record> internalList = FXCollections.observableArrayList();
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -43,12 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.personWithRecords = null;
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-
-        //stub, replace with commented out code once recordList is functional
-        setFilteredRecords();
-
-        // Initialises GUI with empty filteredRecords list
-        // filteredRecords = new FilteredList<>(internalList);
+        filteredRecords = new FilteredList<>(FXCollections.observableArrayList()); // empty FilteredList
     }
 
     public ModelManager() {
@@ -126,6 +117,18 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== Record List ================================================================================
+
+    @Override
+    public void addRecord(Record record) {
+        personWithRecords.addRecord(record);
+    }
+
+    @Override
+    public boolean hasRecord(Record record) {
+        return personWithRecords.hasRecord(record);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -172,6 +175,10 @@ public class ModelManager implements Model {
     private void setFilteredRecords() {
         // FilteredList takes in an ObservableList stored inside recordList, using the person retrieved from listR
         filteredRecords = new FilteredList<>(new RecordList().getRecordList());
+    }
+    
+    public void setFilteredRecordList(Person person) {
+        filteredRecords = new FilteredList<>(person.getRecordList().asUnmodifiableObservableList());
     }
 
     @Override
