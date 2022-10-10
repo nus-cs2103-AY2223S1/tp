@@ -1,7 +1,7 @@
 add m/MODULE_CODE l/LECTURE_VENUE_AND_TIMING t/TUTORIAL_VENUE_AND_TIMING a/ASSIGNMENT_NAME_AND_DEADLINE z/ZOOM_LINK [t/TAG]
 add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​'
-add c n/John Doe p/98765432 e/johnd@example.com a/311
-add m m/CS2100 l/Lecture1 t/Tutorial1 z/https://nus-sg.zoom.us
+add c n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney
+add m m/CS2100 l/Lecture1 t/Tutorial1 z/https://nus-sg.zoom.us a/Lab1
 
 concerns:
 - update teammates on new parser
@@ -20,6 +20,10 @@ concerns:
     - UPDATE: done, but the message can be improved
 - update checkstyle for name, not just class in intellij
 - edit, do we do list m, then just edit OR list m, edit m (simpler but redundant? and requires users to go into list m just to edit)
+- tag shows up weird
+- assignmentDetail or assignmentDetails?
+- c or p for contacts/persons
+
 
 //new class to implement
 - AddModuleCommand

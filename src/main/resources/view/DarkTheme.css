@@ -344,7 +344,21 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #d4709a;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#assignmentDetails {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#assignmentDetails .label {
+    -fx-text-fill: white;
+    -fx-background-color: #7370d4;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
