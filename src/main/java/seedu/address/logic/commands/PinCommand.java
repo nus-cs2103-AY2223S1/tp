@@ -1,24 +1,28 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Pin command, used to pin.
+ */
 public class PinCommand extends Command {
 
     public static final String COMMAND_WORD = "pin";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "usage";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": pins client to a list which can be viewed separately";
 
-    public static final String MESSAGE_PIN_PERSON_SUCCESS = "Pinned Person: %1$s";
+    public static final String MESSAGE_PIN_PERSON_SUCCESS = "Pinned Client: %1$s";
 
-    public static final String MESSAGE_UNPIN_PERSON_SUCCESS = "Unpinned Person: %1$s";
+    public static final String MESSAGE_UNPIN_PERSON_SUCCESS = "Unpinned Client: %1$s";
     private final Index targetIndex;
 
     public PinCommand(Index targetIndex) {
