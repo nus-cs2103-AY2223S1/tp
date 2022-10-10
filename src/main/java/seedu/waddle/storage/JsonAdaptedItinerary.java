@@ -13,7 +13,7 @@ import seedu.waddle.model.itinerary.People;
 /**
  * Jackson-friendly version of {@link Itinerary}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedItinerary {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Itinerary's %s field is missing!";
 
@@ -27,9 +27,9 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given itinerary details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("country") String country,
-                             @JsonProperty("startDate") String startDate, @JsonProperty("endDate") String endDate,
-                             @JsonProperty("people") String people) {
+    public JsonAdaptedItinerary(@JsonProperty("name") String name, @JsonProperty("country") String country,
+                                @JsonProperty("startDate") String startDate, @JsonProperty("endDate") String endDate,
+                                @JsonProperty("people") String people) {
         this.name = name;
         this.country = country;
         this.startDate = startDate;
@@ -40,7 +40,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Itinerary source) {
+    public JsonAdaptedItinerary(Itinerary source) {
         name = source.getName().fullName;
         country = source.getCountry().country;
         startDate = source.getStartDate().date;

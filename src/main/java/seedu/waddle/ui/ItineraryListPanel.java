@@ -13,26 +13,26 @@ import seedu.waddle.model.itinerary.Itinerary;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class ItineraryListPanel extends UiPart<Region> {
+    private static final String FXML = "ItineraryListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(ItineraryListPanel.class);
 
     @FXML
-    private ListView<Itinerary> personListView;
+    private ListView<Itinerary> itineraryListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Itinerary> itineraryList) {
+    public ItineraryListPanel(ObservableList<Itinerary> itineraryList) {
         super(FXML);
-        personListView.setItems(itineraryList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        itineraryListView.setItems(itineraryList);
+        itineraryListView.setCellFactory(listView -> new ItineraryListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Itinerary> {
+    class ItineraryListViewCell extends ListCell<Itinerary> {
         @Override
         protected void updateItem(Itinerary itinerary, boolean empty) {
             super.updateItem(itinerary, empty);
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(itinerary, getIndex() + 1).getRoot());
+                setGraphic(new ItineraryCard(itinerary, getIndex() + 1).getRoot());
             }
         }
     }

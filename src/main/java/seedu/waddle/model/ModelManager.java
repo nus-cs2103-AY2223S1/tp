@@ -19,25 +19,25 @@ import seedu.waddle.model.itinerary.Itinerary;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Waddle waddle;
     private final UserPrefs userPrefs;
     private final FilteredList<Itinerary> filteredItineraries;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyWaddle waddle, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(waddle, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + waddle + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.waddle = new Waddle(waddle);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredItineraries = new FilteredList<>(this.addressBook.getPersonList());
+        filteredItineraries = new FilteredList<>(this.waddle.getItineraryList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Waddle(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,50 +65,50 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getWaddleFilePath() {
+        return userPrefs.getWaddleFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setWaddleFilePath(Path waddleFilePath) {
+        requireNonNull(waddleFilePath);
+        userPrefs.setWaddleFilePath(waddleFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setWaddle(ReadOnlyWaddle waddle) {
+        this.waddle.resetData(waddle);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyWaddle getWaddle() {
+        return waddle;
     }
 
     @Override
-    public boolean hasPerson(Itinerary itinerary) {
+    public boolean hasItinerary(Itinerary itinerary) {
         requireNonNull(itinerary);
-        return addressBook.hasPerson(itinerary);
+        return waddle.hasItinerary(itinerary);
     }
 
     @Override
-    public void deletePerson(Itinerary target) {
-        addressBook.removePerson(target);
+    public void deleteItinerary(Itinerary target) {
+        waddle.removeItinerary(target);
     }
 
     @Override
-    public void addPerson(Itinerary itinerary) {
-        addressBook.addPerson(itinerary);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addItinerary(Itinerary itinerary) {
+        waddle.addItinerary(itinerary);
+        updateFilteredItineraryList(PREDICATE_SHOW_ALL_ITINERARIES);
     }
 
     @Override
-    public void setPerson(Itinerary target, Itinerary editedItinerary) {
+    public void setItinerary(Itinerary target, Itinerary editedItinerary) {
         requireAllNonNull(target, editedItinerary);
 
-        addressBook.setPerson(target, editedItinerary);
+        waddle.setItinerary(target, editedItinerary);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -118,12 +118,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Itinerary> getFilteredPersonList() {
+    public ObservableList<Itinerary> getFilteredItineraryList() {
         return filteredItineraries;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Itinerary> predicate) {
+    public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
         requireNonNull(predicate);
         filteredItineraries.setPredicate(predicate);
     }
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return waddle.equals(other.waddle)
                 && userPrefs.equals(other.userPrefs)
                 && filteredItineraries.equals(other.filteredItineraries);
     }

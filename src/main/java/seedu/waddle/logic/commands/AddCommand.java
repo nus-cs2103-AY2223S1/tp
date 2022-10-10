@@ -12,13 +12,13 @@ import seedu.waddle.model.Model;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Adds a person to the address book.
+ * Adds an itinerary to waddle.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Itinerary to waddle. "
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
@@ -33,12 +33,12 @@ public class AddCommand extends Command {
             + PREFIX_PEOPLE + "4 ";
 
     public static final String MESSAGE_SUCCESS = "New itinerary added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This itinerary already exists";
+    public static final String MESSAGE_DUPLICATE_ITINERARY = "This itinerary already exists";
 
     private final Itinerary toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Itinerary}
      */
     public AddCommand(Itinerary itinerary) {
         requireNonNull(itinerary);
@@ -49,11 +49,11 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasItinerary(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ITINERARY);
         }
 
-        model.addPerson(toAdd);
+        model.addItinerary(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

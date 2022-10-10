@@ -15,15 +15,15 @@ import seedu.waddle.commons.util.ConfigUtil;
 import seedu.waddle.commons.util.StringUtil;
 import seedu.waddle.logic.Logic;
 import seedu.waddle.logic.LogicManager;
-import seedu.waddle.model.AddressBook;
+import seedu.waddle.model.Waddle;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.ModelManager;
-import seedu.waddle.model.ReadOnlyAddressBook;
+import seedu.waddle.model.ReadOnlyWaddle;
 import seedu.waddle.model.ReadOnlyUserPrefs;
 import seedu.waddle.model.UserPrefs;
 import seedu.waddle.model.util.SampleDataUtil;
-import seedu.waddle.storage.AddressBookStorage;
-import seedu.waddle.storage.JsonAddressBookStorage;
+import seedu.waddle.storage.WaddleStorage;
+import seedu.waddle.storage.JsonWaddleStorage;
 import seedu.waddle.storage.JsonUserPrefsStorage;
 import seedu.waddle.storage.Storage;
 import seedu.waddle.storage.StorageManager;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Waddle ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        WaddleStorage waddleStorage = new JsonWaddleStorage(userPrefs.getWaddleFilePath());
+        storage = new StorageManager(waddleStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +69,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s waddle and {@code userPrefs}. <br>
+     * The data from the sample waddle will be used instead if {@code storage}'s waddle is not found,
+     * or an empty waddle will be used instead if errors occur when reading {@code storage}'s waddle.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyWaddle> waddleOptional;
+        ReadOnlyWaddle initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            waddleOptional = storage.readWaddle();
+            if (!waddleOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Waddle");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = waddleOptional.orElseGet(SampleDataUtil::getSampleWaddle);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty Waddle");
+            initialData = new Waddle();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty Waddle");
+            initialData = new Waddle();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Waddle");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +167,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Waddle " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Waddle ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
