@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -62,7 +61,8 @@ class StatusCommandTest {
                 .get(INDEX_FIRST_INTERNSHIP.getZeroBased()))
                 .withStatus(STATUS_STUB).build();
 
-        StatusCommand statusCommand = new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status(editedInternship.getStatus().value));
+        StatusCommand statusCommand = new StatusCommand(INDEX_FIRST_INTERNSHIP,
+                new Status(editedInternship.getStatus().value));
 
         String expectedMessage = String.format(statusCommand.MESSAGE_UPDATE_STATUS_SUCCESS, editedInternship);
 
