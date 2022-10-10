@@ -14,8 +14,10 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.client.ClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
+import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.commands.project.ListProjectCommand;
+import seedu.address.logic.commands.project.ProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -59,24 +61,18 @@ public class AddressBookParser {
         case ClientCommand.COMMAND_WORD:
             return new ClientCommandParser().parse(flag, arguments);
 
+        case IssueCommand.COMMAND_WORD:
+            return new IssueCommandParser.parse(flag, arguments);
+
+        case ProjectCommand.COMMAND_WORD:
+            return new ProjectCommandParser.parse(flag, arguments);
+
+        // TODO: Refactor commands below if necessary
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            // TODO: Refactor to accommodate polymorphism of entity command classes
-            switch (flag) {
-            case ListClientCommand.COMMAND_FLAG:
-                return new ListClientCommand();
-            case ListProjectCommand.COMMAND_FLAG:
-                return new ListProjectCommand();
-            case ListIssueCommand.COMMAND_FLAG:
-                return new ListIssueCommand();
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-            }
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
