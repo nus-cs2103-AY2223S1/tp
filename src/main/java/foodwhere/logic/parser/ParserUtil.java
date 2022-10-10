@@ -11,7 +11,10 @@ import foodwhere.commons.util.StringUtil;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.review.Content;
+import foodwhere.model.review.Date;
 import foodwhere.model.stall.Address;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -88,5 +91,35 @@ public class ParserUtil {
             detailSet.add(parseDetail(detail));
         }
         return detailSet;
+    }
+
+    /**
+     * Parses a {@code String date} into an {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String content} into an {@code Content}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code content} is invalid.
+     */
+    public static Content parseContent(String content) throws ParseException {
+        requireNonNull(content);
+        String trimmedContent = content.trim();
+        if (!Content.isValidContent(trimmedContent)) {
+            throw new ParseException(Content.MESSAGE_CONSTRAINTS);
+        }
+        return new Content(trimmedContent);
     }
 }

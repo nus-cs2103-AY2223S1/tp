@@ -12,6 +12,7 @@ import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.commands.ExitCommand;
 import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.commands.HelpCommand;
+import foodwhere.logic.commands.RAddCommand;
 import foodwhere.logic.commands.RListCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.SDeleteCommand;
@@ -44,6 +45,9 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
+        case RAddCommand.COMMAND_WORD:
+            return new RAddCommandParser().parse(arguments);
 
         case SAddCommand.COMMAND_WORD:
             return new SAddCommandParser().parse(arguments);
