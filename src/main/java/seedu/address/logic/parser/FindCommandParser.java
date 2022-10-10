@@ -39,7 +39,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                 PREFIX_REASON, PREFIX_DATE_START, PREFIX_DATE_END);
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        /*
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
@@ -47,6 +48,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         String reason = argMultimap.getValue(PREFIX_EMAIL).orElse("");
         // LocalDateTime startDate =
         // LocalDateTime endDate =
+         */
 
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
