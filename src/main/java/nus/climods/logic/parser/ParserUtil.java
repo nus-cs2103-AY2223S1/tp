@@ -52,7 +52,7 @@ public class ParserUtil {
      * @return String array of arguments provided
      */
     public static String[] convertArgumentStringToArray(String arguments) {
-        return convertArgumentStringToList(arguments).toArray(new String[] {}));
+        return convertArgumentStringToList(arguments).toArray(new String[] {});
     }
 
     /**
