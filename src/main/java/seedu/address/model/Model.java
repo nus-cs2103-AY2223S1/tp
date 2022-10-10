@@ -17,9 +17,12 @@ import seedu.address.model.tuitionclass.TuitionClass;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_STUDENT = unused -> true;
+    Predicate<Tutor> PREDICATE_SHOW_ALL_TUTOR = unused -> true;
+    Predicate<TuitionClass> PREDICATE_SHOW_ALL_TUITIONCLASS = unused -> true;
 
     /** the type of the current list **/
-    enum LIST_TYPE { STUDENT_LIST, TUTOR_LIST, TUITIONCLASS_LIST };
+    enum LIST_TYPE { STUDENT_LIST, TUTOR_LIST, TUITIONCLASS_LIST, PERSON_LIST };
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

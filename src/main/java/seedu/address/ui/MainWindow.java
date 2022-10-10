@@ -17,6 +17,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model.LIST_TYPE;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,8 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private StudentListPanel studentListPanel;
-    private StudentListPanel tutorListPanel;
-    private StudentListPanel tuitionClassListPanel;
+    private TutorListPanel tutorListPanel;
+    private TuitionClassListPanel tuitionClassListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -118,7 +119,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
+        tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
+        //personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -176,6 +179,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleList() {
         LIST_TYPE type = logic.getCurrentListType();
+        personListPanelPlaceholder.getChildren().clear();
         switch (type) {
         case STUDENT_LIST:
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
@@ -186,6 +190,8 @@ public class MainWindow extends UiPart<Stage> {
         case TUITIONCLASS_LIST:
         personListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
         break;
+        case PERSON_LIST:
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         default:
         break;
         }

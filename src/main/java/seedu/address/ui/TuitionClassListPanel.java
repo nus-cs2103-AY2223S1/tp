@@ -13,9 +13,9 @@ import seedu.address.model.tuitionclass.TuitionClass;
 /**
  * Panel containing the list of tuitionClasss.
  */
-public class TuitionClassClassListPanel extends UiPart<Region> {
+public class TuitionClassListPanel extends UiPart<Region> {
     private static final String FXML = "TuitionClassListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TuitionClassClassListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(TuitionClassListPanel.class);
 
     @FXML
     private ListView<TuitionClass> tuitionClassListView;
@@ -23,7 +23,7 @@ public class TuitionClassClassListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TuitionClassListPanel} with the given {@code ObservableList}.
      */
-    public TuitionClassClassListPanel(ObservableList<TuitionClass> tuitionClassList) {
+    public TuitionClassListPanel(ObservableList<TuitionClass> tuitionClassList) {
         super(FXML);
         tuitionClassListView.setItems(tuitionClassList);
         tuitionClassListView.setCellFactory(listView -> new TuitionClassListViewCell());
