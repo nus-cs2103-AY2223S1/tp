@@ -191,7 +191,7 @@ public class BucketList extends EventList {
     public Event getEvent(Event event) {
         Object[] temp = events.toArray();
         int size = temp.length;
-        for (int i = 0; i< size; i++) {
+        for (int i = 0; i < size; i++) {
             if (temp[i].equals(event)) {
                 return (Event) temp[i];
             }
