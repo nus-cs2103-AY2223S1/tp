@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -120,5 +121,25 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Checks if the given argument string contains any whitespace.
+     *
+     * @param args refer to the subsequent arguments after the initial command word.
+     * @return true if the string contains a whitespace, false otherwise.
+     */
+    public static boolean containsWhitespace(String args) {
+        return Pattern.matches("\\s", args);
+    }
+
+    /**
+     * Checks if the given argument string contains any backslash.
+     *
+     * @param args refer to the subsequent arguments after the initial command word.
+     * @return true if the string contains a backslash, false otherwise.
+     */
+    public static boolean containsBackslash(String args) {
+        return Pattern.matches("\\\\", args);
     }
 }
