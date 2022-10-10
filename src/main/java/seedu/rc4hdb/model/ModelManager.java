@@ -13,8 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
-import seedu.rc4hdb.model.person.Person;
 import seedu.rc4hdb.model.person.Fields;
+import seedu.rc4hdb.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -39,7 +39,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
         // Initialise list with global field list since all fields should be shown at first
-        this.observableFieldList = FXCollections.observableArrayList(Fields.fields);
+        this.observableFieldList = FXCollections.observableArrayList(Fields.FIELDS);
     }
 
     public ModelManager() {

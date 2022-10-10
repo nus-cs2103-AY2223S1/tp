@@ -11,9 +11,15 @@ import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.person.Fields;
 
+/**
+ * Parses input arguments and creates a new ListCommand object
+ */
 public class ListCommandParser implements Parser<ListCommand> {
-    private final char INCLUDE_SPECIFIER = 'i';
-    private final char EXCLUDE_SPECIFIER = 'e';
+    public static final char INCLUDE_SPECIFIER = 'i';
+    public static final char EXCLUDE_SPECIFIER = 'e';
+
+    public static final String ERROR_MESSAGE = "Please include a specifier [/i] or [/e]"
+            + " followed by the fields to include or exclude";
 
     @Override
     public ListCommand parse(String args) throws ParseException {
@@ -22,12 +28,11 @@ public class ListCommandParser implements Parser<ListCommand> {
             return new ListCommand();
         }
         if (hasInvalidSpecifier(args)) {
-            throw new ParseException("Please include a specifier [/i] or [/e]"
-                    + " followed by the fields to include or exclude");
+            throw new ParseException(ERROR_MESSAGE);
         }
 
         // Process global list of fields into lowercase list first
-        List<String> allFields = Fields.fields.stream().map(String::toLowerCase).collect(Collectors.toList());
+        List<String> allFields = Fields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
 
         // Create one list for each specifier
         List<String> fieldsToInclude = new ArrayList<>(allFields);

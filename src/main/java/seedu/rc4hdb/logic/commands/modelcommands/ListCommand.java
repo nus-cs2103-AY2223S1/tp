@@ -1,9 +1,9 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
 
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.model.Model;
@@ -22,11 +22,18 @@ public class ListCommand extends ModelCommand {
 
     private final List<String> fieldList;
 
+    /**
+     * Constructor for a ListCommand instance.
+     */
     public ListCommand() {
         // Set the required list of fields to the global field list
-        this.fieldList = Fields.fields;
+        this.fieldList = Fields.FIELDS;
     }
 
+    /**
+     * Constructor for a ListCommand instance.
+     * @param fieldList The fields to be hidden when listing the data
+     */
     public ListCommand(List<String> fieldList) {
         requireNonNull(fieldList);
         this.fieldList = fieldList;
@@ -39,7 +46,7 @@ public class ListCommand extends ModelCommand {
         model.setObservableFields(fieldList);
 
         // Determine which ListCommand constructor was invoked
-        if (fieldList == Fields.fields) {
+        if (fieldList == Fields.FIELDS) {
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
             return new CommandResult(SHOW_ONLY_SPECIFIED);

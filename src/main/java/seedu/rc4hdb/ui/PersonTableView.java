@@ -9,15 +9,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-
 import seedu.rc4hdb.model.person.Fields;
 import seedu.rc4hdb.model.person.Person;
 
+/**
+ * Table containing the list of persons.
+ */
 public class PersonTableView extends UiPart<Region> {
     private static final String FXML = "PersonTableView.fxml";
 
     // Initialise list with global field list since all fields should be shown at first
-    private final ObservableList<String> observableFields = FXCollections.observableArrayList(Fields.fields);
+    private final ObservableList<String> observableFields = FXCollections.observableArrayList(Fields.FIELDS);
 
     @FXML
     private TableView<Person> tableView;
@@ -29,6 +31,11 @@ public class PersonTableView extends UiPart<Region> {
     private final TableColumn<Person, Object> emailColumn = new TableColumn<>(Fields.EMAIL_FIELD);
     private final TableColumn<Person, Object> tagsColumn = new TableColumn<>(Fields.TAG_FIELD);
 
+    /**
+     * Constructor for a PersonTableView instance.
+     * @param personList The list of persons to display
+     * @param observableFields The list of fields to hide
+     */
     public PersonTableView(ObservableList<Person> personList, ObservableList<String> observableFields) {
         super(FXML);
         this.tableView.setItems(personList);

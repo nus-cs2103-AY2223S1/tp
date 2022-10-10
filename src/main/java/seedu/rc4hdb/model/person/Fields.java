@@ -13,6 +13,6 @@ public class Fields {
     public static final String EMAIL_FIELD = "Email";
     public static final String TAG_FIELD = "Tag";
 
-    public static final List<String> fields = List.of(INDEX_IDENTIFIER, ADDRESS_FIELD, NAME_FIELD,
+    public static final List<String> FIELDS = List.of(INDEX_IDENTIFIER, ADDRESS_FIELD, NAME_FIELD,
             PHONE_FIELD, EMAIL_FIELD, TAG_FIELD);
 }

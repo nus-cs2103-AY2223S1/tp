@@ -1,7 +1,6 @@
 package seedu.rc4hdb.logic;
 
 import java.nio.file.Path;
-import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;

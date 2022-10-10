@@ -107,5 +107,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<String> getObservableFields() { return model.getObservableFields(); }
+    public ObservableList<String> getObservableFields() {
+        return model.getObservableFields();
+    }
 }
