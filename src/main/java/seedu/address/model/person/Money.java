@@ -4,30 +4,30 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's Money Paid in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidMoneyPaid(Integer)}
+ * Represents a Person's Money in the Address Book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidMoney(Integer)}
  */
-public class MoneyPaid {
-    public static final String MESSAGE_CONSTRAINTS = "MoneyPaid can take any positive integer values,"
+public class Money {
+    public static final String MESSAGE_CONSTRAINTS = "Money can take any positive integer values,"
             + " and its default value is 0";
 
     public final Integer value;
 
     /**
-     * Constructs an {@code MoneyPaid}.
+     * Constructs an {@code Money}.
      *
      * @param amount A valid amount
      */
-    public MoneyPaid(Integer amount) {
+    public Money(Integer amount) {
         requireNonNull(amount);
-        checkArgument(isValidMoneyPaid(amount), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidMoney(amount), MESSAGE_CONSTRAINTS);
         value = amount;
     }
 
     /**
-     * Constructs an {@code MoneyPaid} with default value 0.
+     * Constructs an {@code Money} with default value 0.
      */
-    public MoneyPaid() {
+    public Money() {
         value = 0;
     }
 
@@ -36,7 +36,7 @@ public class MoneyPaid {
      * @param amount the value to be validated
      * @return true if a given integer is non-negative
      */
-    public static boolean isValidMoneyPaid(Integer amount) {
+    public static boolean isValidMoney(Integer amount) {
         return amount >= 0;
     }
 
@@ -48,8 +48,8 @@ public class MoneyPaid {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MoneyPaid // instanceof handles nulls
-                && value.equals(((MoneyPaid) other).value)); // state check
+                || (other instanceof Money // instanceof handles nulls
+                && value.equals(((Money) other).value)); // state check
     }
 
     @Override
