@@ -25,7 +25,7 @@ import seedu.rc4hdb.model.person.Phone;
 import seedu.rc4hdb.model.tag.Tag;
 
 /**
- * Filters and lists all persons in address book whose attributes are equal to any of the argument keywords.
+ * Filters and lists all residents in address book whose attributes are equal to any of the argument keywords.
  * Keyword matching is case sensitive.
  */
 public class FilterCommand extends ModelCommand {
@@ -42,14 +42,12 @@ public class FilterCommand extends ModelCommand {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_FILTER_PERSON_SUCCESS = "filtered Person: %1$s";
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final FilterPersonDescriptor filterPersonDescriptor;
 
     /**
-     * @param filterPersonDescriptor details to filter the person with
+     * @param filterPersonDescriptor description to filter the resident with
      */
     public FilterCommand(FilterCommand.FilterPersonDescriptor filterPersonDescriptor) {
         requireNonNull(filterPersonDescriptor);
