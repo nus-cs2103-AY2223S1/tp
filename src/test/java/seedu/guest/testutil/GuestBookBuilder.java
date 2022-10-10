@@ -6,7 +6,7 @@ import seedu.guest.model.guest.Guest;
 /**
  * A utility class to help with building Guestbook objects.
  * Example usage: <br>
- *     {@code GuestBook ab = new GuestBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code GuestBook ab = new GuestBookBuilder().withGuest("John", "Doe").build();}
  */
 public class GuestBookBuilder {
 
@@ -23,7 +23,7 @@ public class GuestBookBuilder {
     /**
      * Adds a new {@code Guest} to the {@code GuestBook} that we are building.
      */
-    public GuestBookBuilder withPerson(Guest guest) {
+    public GuestBookBuilder withGuest(Guest guest) {
         guestBook.addGuest(guest);
         return this;
     }

@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        GuestBook guestBook = new GuestBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        GuestBook guestBook = new GuestBookBuilder().withGuest(ALICE).withGuest(BENSON).build();
         GuestBook differentGuestBook = new GuestBook();
         UserPrefs userPrefs = new UserPrefs();
 
