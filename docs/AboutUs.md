@@ -41,7 +41,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Scheduling and tracking, code quality, Main reviewer for Hong Sheng
 * In-charge of features: sort
 
-
 ### Colin Toh 
 <img src="images/cowlinn.png" width="200px">
 

@@ -3,6 +3,7 @@ package longtimenosee.model.client;
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import longtimenosee.model.client.exceptions.ClientNotFoundException;
 import longtimenosee.model.client.exceptions.DuplicateClientException;
+import longtimenosee.model.person.Person;
 
 
 /**
@@ -97,6 +99,14 @@ public class UniqueClientList implements Iterable<Client> {
         }
 
         internalList.setAll(clients);
+    }
+
+    /**
+     * Sorts the clients in this list using the comparator
+     * @param comparator comparator used in sorting
+     */
+    public void sort(Comparator<Person> comparator) {
+        FXCollections.sort(internalList, comparator);
     }
 
     /**

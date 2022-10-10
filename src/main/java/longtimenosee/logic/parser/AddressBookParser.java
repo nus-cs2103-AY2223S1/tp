@@ -11,14 +11,17 @@ import longtimenosee.logic.commands.AddCommand;
 import longtimenosee.logic.commands.AddPolicyCommand;
 import longtimenosee.logic.commands.ClearCommand;
 import longtimenosee.logic.commands.Command;
+import longtimenosee.logic.commands.DeleteClientCommand;
 import longtimenosee.logic.commands.DeleteCommand;
 import longtimenosee.logic.commands.EditCommand;
 import longtimenosee.logic.commands.ExitCommand;
 import longtimenosee.logic.commands.FindCommand;
 import longtimenosee.logic.commands.HelpCommand;
 import longtimenosee.logic.commands.ListCommand;
+import longtimenosee.logic.commands.PinCommand;
 import longtimenosee.logic.commands.PolicyCommand;
 import longtimenosee.logic.commands.SortCommand;
+import longtimenosee.logic.commands.ViewPinCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
 
 /**
@@ -72,12 +75,19 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case ViewPinCommand.COMMAND_WORD: //for pinning, creates PinCommandParser object
+            return new ViewPinCommandParser().parse(arguments);
+
+        case PinCommand.COMMAND_WORD:
+            return new PinCommandParser().parse(arguments);
         case SortCommand.COMMAND_WORD:
             return new SortCommand(arguments.trim());
 
         case AddClientCommand.COMMAND_WORD:
             return new AddClientCommandParser().parse(arguments);
 
+        case DeleteClientCommand.COMMAND_WORD:
+            return new DeleteClientCommandParser().parse(arguments);
         case AddPolicyCommand.COMMAND_WORD:
             return new AddPolicyCommandParser().parse(arguments);
 

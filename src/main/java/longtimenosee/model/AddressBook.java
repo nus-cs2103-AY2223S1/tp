@@ -127,7 +127,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param comparator comparator used to sort the address book
      */
     public void sort(Comparator<Person> comparator) {
-        persons.sort(comparator);
+        clients.sort(comparator);
     }
 
     //// util methods
