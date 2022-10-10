@@ -24,13 +24,15 @@ public class Person {
     private final LessonPlan lessonPlan;
     private final HomeworkList homeworkList;
     private final AttendanceList attendanceList;
+    private final GradeProgressList gradeProgressList;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, LessonPlan lessonPlan,
-                  HomeworkList homeworkList, AttendanceList attendanceList, Set<Tag> tags) {
+                  HomeworkList homeworkList, AttendanceList attendanceList,
+                  GradeProgressList gradeProgressList, Set<Tag> tags) {
         requireAllNonNull(name, phone, tags);
         this.fullView = false;
         this.name = name;
@@ -38,6 +40,7 @@ public class Person {
         this.lessonPlan = lessonPlan;
         this.homeworkList = homeworkList;
         this.attendanceList = attendanceList;
+        this.gradeProgressList = gradeProgressList;
         this.tags.addAll(tags);
     }
 
@@ -56,9 +59,11 @@ public class Person {
     public HomeworkList getHomeworkList() {
         return homeworkList;
     }
-
     public AttendanceList getAttendanceList() {
         return attendanceList;
+    }
+    public GradeProgressList getGradeProgressList() {
+        return gradeProgressList;
     }
 
     /**
@@ -87,6 +92,13 @@ public class Person {
      */
     public void clearHomeworkList() {
         homeworkList.clearList();
+    }
+
+    /**
+     * Clears the person's Grade progress list.
+     */
+    public void clearGradeProgressList() {
+        gradeProgressList.clearList();
     }
 
     /**
@@ -129,13 +141,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getLessonPlan().equals(getLessonPlan())
                 && otherPerson.getHomeworkList().equals(getHomeworkList())
+                && otherPerson.getGradeProgressList().equals(getGradeProgressList())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, lessonPlan, homeworkList, tags);
+        return Objects.hash(name, phone, lessonPlan, homeworkList, gradeProgressList, tags);
     }
 
     @Override
@@ -149,7 +162,9 @@ public class Person {
                 .append("; Homework: ")
                 .append(getHomeworkList())
                 .append("; Attendance: ")
-                .append(getAttendanceList());
+                .append(getAttendanceList())
+                .append("; Grade Progress: ")
+                .append(getGradeProgressList());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.GradeProgressList;
 import seedu.address.model.person.HomeworkList;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String lessonPlan;
     private final List<JsonAdaptedHomework> homeworkList = new ArrayList<>();
     private final List<JsonAdaptedAttendance> attendanceList = new ArrayList<>();
+    private final List<JsonAdaptedGradeProgress> gradeProgressList = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,10 +42,14 @@ class JsonAdaptedPerson {
             @JsonProperty("lessonPlan") String lessonPlan,
             @JsonProperty("homework") List<JsonAdaptedHomework> homeworkList,
             @JsonProperty("attendance") List<JsonAdaptedAttendance> attendanceList,
+            @JsonProperty("gradeProgress") List<JsonAdaptedGradeProgress> gradeProgressList,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.lessonPlan = lessonPlan;
+        if (gradeProgressList != null) {
+            this.gradeProgressList.addAll(gradeProgressList);
+        }
         if (homeworkList != null) {
             this.homeworkList.addAll(homeworkList);
         }
@@ -68,6 +74,9 @@ class JsonAdaptedPerson {
         attendanceList.addAll(source.getAttendanceList().attendanceList.stream()
                         .map(JsonAdaptedAttendance::new)
                         .collect(Collectors.toList()));
+        gradeProgressList.addAll(source.getGradeProgressList().gradeProgressList.stream()
+                .map(JsonAdaptedGradeProgress::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -115,8 +124,14 @@ class JsonAdaptedPerson {
             modelAttendanceList.addAttendance(attendance.toModelType());
         }
 
+        final GradeProgressList modelGradeProgressList = new GradeProgressList();
+        for (JsonAdaptedGradeProgress gradeProgress : gradeProgressList) {
+            modelGradeProgressList.addGradeProgress(gradeProgress.toModelType());
+        }
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelLessonPlan, modelHomeworkList, modelAttendanceList, modelTags);
+        return new Person(modelName, modelPhone, modelLessonPlan, modelHomeworkList,
+                modelAttendanceList, modelGradeProgressList, modelTags);
     }
 
 }
