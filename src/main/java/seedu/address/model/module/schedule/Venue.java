@@ -6,7 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * Represents a venue in NUS
  */
 public class Venue {
-    private final String name;
+    private String name;
 
     /**
      * Every field must be present and not null
@@ -15,6 +15,10 @@ public class Venue {
     public Venue(String venueName) {
         requireAllNonNull(venueName);
         this.name = venueName;
+    }
+
+    public Venue() {
+        super();
     }
 
     @Override
