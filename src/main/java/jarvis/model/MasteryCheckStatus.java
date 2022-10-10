@@ -58,6 +58,14 @@ public class MasteryCheckStatus {
         }
     }
 
+    public String toString() {
+        String passed = "✓";
+        String failed = "X";
+        String passMc1 = didPassMc(1) ? passed : failed;
+        String passMc2 = didPassMc(2) ? passed : failed;
+        return "Mastery Check 1: " + passMc1 + "\n" + "Mastery Check 2: " + passMc2;
+    }
+
     /**
      * Represents a student's result for a specific mastery check.
      */
@@ -79,9 +87,9 @@ public class MasteryCheckStatus {
         }
 
         public String toString() {
-            String result = isPass ? "PASSED" : "FAILED/UNGRADED";
+            String result = isPass ? "PASSED" : "FAILED";
 
-            return "Mastery Check " + mcNumber + ": " + result;
+            return "MC " + mcNumber + ": " + result;
         }
     }
 }

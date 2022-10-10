@@ -10,6 +10,7 @@ import jarvis.model.Student;
 import java.util.List;
 
 import static jarvis.logic.parser.CliSyntax.*;
+import static jarvis.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
 public class MasteryCheckCommand extends Command {
@@ -40,6 +41,8 @@ public class MasteryCheckCommand extends Command {
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         studentToEdit.updateMcStatus(mcResult);
+        model.setStudent(studentToEdit, studentToEdit);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format("Updated " + mcResult + " for " + studentToEdit));
     }
 }

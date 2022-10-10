@@ -1,7 +1,9 @@
 package jarvis.ui;
 
 
+import jarvis.model.MasteryCheckStatus;
 import jarvis.model.Student;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -30,6 +32,8 @@ public class PersonCard extends UiPart<Region> {
     private Label studentName;
     @FXML
     private Label id;
+    @FXML
+    private Label mcResult;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -39,6 +43,7 @@ public class PersonCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         studentName.setText(student.getName().fullName);
+        mcResult.setText(student.getMcStatus().toString());
     }
 
     @Override
