@@ -13,6 +13,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
+
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
@@ -26,8 +27,10 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
+
     public void execute_newStudent_success() {
         Student validStudent = new StudentBuilder().build();
+
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addStudent(validStudent);

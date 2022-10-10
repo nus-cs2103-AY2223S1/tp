@@ -85,4 +85,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Returns whether the StudentId from the given {@code student} belongs to an existing student in
+     * the address book.
+     */
+    boolean hasStudentWithMatchingId(Student student);
 }
