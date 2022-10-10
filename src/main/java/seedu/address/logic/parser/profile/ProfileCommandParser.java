@@ -9,6 +9,7 @@ import seedu.address.logic.commands.profile.AddProfileCommand;
 import seedu.address.logic.commands.profile.DeleteProfileCommand;
 import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
+import seedu.address.logic.commands.profile.ViewProfilesCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -29,7 +30,8 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
             Matcher matcher = Pattern.compile("(\\s+-\\S*)").matcher(args);
             long numFlags = matcher.results().count();
             if (numFlags == 0) {
-                throw new ParseException(String.format(MESSAGE_FLAG_NOT_SPECIFIED, ProfileCommand.PROFILE_FORMAT));
+                throw new ParseException(String.format(
+                        MESSAGE_FLAG_NOT_SPECIFIED, ProfileCommand.PROFILE_FORMAT + ProfileCommand.VALID_FLAGS));
             } else if (numFlags == 1) {
                 throw new ParseException(ProfileCommand.OPTION_WRONG_ORDER);
             } else {
@@ -52,8 +54,10 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
             return new DeleteProfileCommandParser().parse(args);
         case EditProfileCommand.COMMAND_OPTION:
             return new EditProfileCommandParser().parse(args);
+        case ViewProfilesCommand.COMMAND_OPTION:
+            return new ViewProfilesCommandParser().parse(args);
         default:
-            throw new ParseException(ProfileCommand.OPTION_UNKNOWN);
+            throw new ParseException(ProfileCommand.OPTION_UNKNOWN + ProfileCommand.VALID_FLAGS);
         }
     }
 
