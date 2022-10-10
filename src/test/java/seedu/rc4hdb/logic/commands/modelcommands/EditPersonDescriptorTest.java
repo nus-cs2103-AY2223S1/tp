@@ -2,17 +2,11 @@ package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.DESC_BOB;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_NAME_BOB;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.*;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.logic.commands.modelcommands.EditCommand.EditResidentDescriptor;
+import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
@@ -20,7 +14,7 @@ public class EditPersonDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditResidentDescriptor descriptorWithSameValues = new EditResidentDescriptor(DESC_AMY);
+        ResidentDescriptor descriptorWithSameValues = new ResidentDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,7 +30,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditResidentDescriptor editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        ResidentDescriptor editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
@@ -47,8 +41,20 @@ public class EditPersonDescriptorTest {
         editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different address -> returns false
-        editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withRoom(VALID_ADDRESS_BOB).build();
+        // different room -> returns false
+        editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withRoom(VALID_ROOM_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different gender -> returns false
+        editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withRoom(VALID_GENDER_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different house -> returns false
+        editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withRoom(VALID_HOUSE_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different matric number -> returns false
+        editedAmy = new ResidentDescriptorBuilder(DESC_AMY).withRoom(VALID_MATRIC_NUMBER_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
