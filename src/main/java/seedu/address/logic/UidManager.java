@@ -34,7 +34,7 @@ public class UidManager {
     public Uid produceUid() {
         Uid newUid = new Uid(1L);
         if (this.records.peek() != null) {
-            newUid = new Uid(this.records.peek().getId() + 1L);
+            newUid = new Uid(this.records.peek().getUid() + 1L);
         }
         this.addUid(newUid);
         return newUid;
