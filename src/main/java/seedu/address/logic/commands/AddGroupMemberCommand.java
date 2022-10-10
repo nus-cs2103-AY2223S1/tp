@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,7 +38,7 @@ public class AddGroupMemberCommand extends Command {
     public static final String MESSAGE_ASSIGN_GROUP_SUCCESS = "%1$s was added to group: %2$s";
 
     private final Name name;
-    private final String personGroup;
+    private final PersonGroup personGroup;
 
     /**
      * @param name of the person in the filtered person list to add to group
@@ -46,7 +47,7 @@ public class AddGroupMemberCommand extends Command {
     public AddGroupMemberCommand(String group, String name) {
         requireAllNonNull(name, group);
         this.name = new Name(name);
-        this.personGroup = group;
+        this.personGroup = new PersonGroup(group, "yes");
     }
 
     @Override
@@ -62,7 +63,7 @@ public class AddGroupMemberCommand extends Command {
         }
 
         // check if group exist
-        ObservableList<Group> groupList = model.getGroupWithName(new GroupName(this.personGroup));
+        ObservableList<Group> groupList = model.getGroupWithName(new GroupName(this.personGroup.getGroupName()));
         Group groupToAddPerson;
         try {
             groupToAddPerson = groupList.get(0);
@@ -71,18 +72,17 @@ public class AddGroupMemberCommand extends Command {
         }
 
         if (groupToAddPerson.contains(personToGroup)) {
-            //bug here?
             throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_GROUP);
         }
 
-        // create a new set of tags
-        Set<Tag> withGroup = new HashSet<>();
-        withGroup.addAll(personToGroup.getTags());
-        withGroup.add(new Tag(personGroup));
+        //change field
+        ArrayList<PersonGroup> personGroupArrayList = personToGroup.getPersonGroups();
+        personGroupArrayList.add(this.personGroup);
 
         Person editedPerson = new Person(
                 personToGroup.getName(), personToGroup.getPhone(), personToGroup.getEmail(),
-                personToGroup.getAddress(), withGroup, personToGroup.getAssignments());
+                personToGroup.getAddress(), personToGroup.getTags(), personToGroup.getAssignments(),
+                personGroupArrayList);
 
         //add person to the group
         Set<Person> groupMembers = new HashSet<>();

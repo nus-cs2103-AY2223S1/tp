@@ -33,7 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
-    //private final List<JsonAdaptedPersonGroup> personGroup = new ArrayList<>();
+    private final ArrayList<PersonGroup> personGroup = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -42,7 +42,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("assignments") HashMap<String, ArrayList<Assignment>> assignments) {
+                             @JsonProperty("assignments") HashMap<String, ArrayList<Assignment>> assignments,
+                             @JsonProperty("personGroups") ArrayList<PersonGroup> personGroupList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,6 +52,7 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.assignments.putAll(assignments);
+        this.personGroup.addAll(personGroupList);
     }
 
     /**
@@ -65,9 +67,8 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         assignments.putAll(source.getAssignments());
-//        personGroup.addAll(source.getPersonGroup().stream()
-//                .map(JsonAdaptedPersonGroup::new)
-//                .collect(Collectors.toList()));
+        personGroup.addAll(source.getPersonGroups());
+
     }
 
     /**
@@ -117,7 +118,9 @@ class JsonAdaptedPerson {
 
         final HashMap<String, ArrayList<Assignment>> modelAssignment = new HashMap<>(assignments);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAssignment);
+        final ArrayList<PersonGroup> modelPersonGroup = new ArrayList<>(personGroup);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAssignment, modelPersonGroup);
     }
 
 }

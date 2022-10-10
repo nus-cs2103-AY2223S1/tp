@@ -22,6 +22,7 @@ public class PersonGroup extends ArrayList<PersonGroup> {
 
     private String value;
 
+    private PersonGroup personGroup;
     /**
      * Empty constructor to prevent error reading from jsonFile.
      */
@@ -38,8 +39,15 @@ public class PersonGroup extends ArrayList<PersonGroup> {
         value = group;
     }
 
+    public PersonGroup(String group, String indicator) {
+        requireNonNull(group);
+        checkArgument(isValidGroup(group), MESSAGE_CONSTRAINTS);
+        value = group;
+        personGroup = new PersonGroup(group);
+    }
+
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid group.
      */
     public static boolean isValidGroup(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -48,12 +56,12 @@ public class PersonGroup extends ArrayList<PersonGroup> {
     /**
      * Get name of Group
      */
-    public String getGroup() {
+    public String getGroupName() {
         return value;
     }
 
     public boolean isEmpty() {
-        return isNull(value);
+        return value == null;
     }
     @Override
     public String toString() {

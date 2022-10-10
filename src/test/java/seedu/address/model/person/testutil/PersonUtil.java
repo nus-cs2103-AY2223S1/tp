@@ -44,6 +44,9 @@ public class PersonUtil {
                         + PREFIX_GROUP + key + " "
                         + PREFIX_TASK + value + " ")
         );
+        person.getPersonGroups().stream().forEach(
+                s -> sb.append(PREFIX_GROUP + s.getGroupName() + " ")
+        );
         return sb.toString();
     }
 

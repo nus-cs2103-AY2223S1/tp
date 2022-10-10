@@ -2,7 +2,12 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
@@ -21,20 +26,21 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
-
-    //private final Set<PersonGroup> personGroups = new HashSet<>();
+    private final ArrayList<PersonGroup> personGroups = new ArrayList<>();
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  HashMap<String, ArrayList<Assignment>> assignments) {
-        requireAllNonNull(name, phone, email, address, tags);
+                  HashMap<String, ArrayList<Assignment>> assignments,
+                  ArrayList<PersonGroup> personGroups) {
+        requireAllNonNull(name, phone, email, address, tags, personGroups);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.assignments.putAll(assignments);
+        this.personGroups.addAll(personGroups);
     }
 
     public Name getName() {
@@ -65,9 +71,9 @@ public class Person {
         return this.assignments;
     }
 
-//    public Set<PersonGroup> getPersonGroup() {
-//        return Collections.unmodifiableSet(personGroups);
-//    }
+    public ArrayList<PersonGroup> getPersonGroups() {
+        return this.personGroups;
+    }
 
     /**
      * Returns true if both persons have the same name.
@@ -102,14 +108,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getAssignments().equals(getAssignments());
-                //&& otherPerson.getPersonGroup().equals(getPersonGroup());
+                && otherPerson.getAssignments().equals(getAssignments())
+                && otherPerson.getPersonGroups().equals(getPersonGroups());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, assignments);
+        return Objects.hash(name, phone, email, address, tags, assignments, personGroups);
     }
 
     @Override
@@ -139,11 +145,11 @@ public class Person {
 
         }
 
-//        Set<PersonGroup> personGroupsList = getPersonGroup();
-//        if (!personGroupsList.isEmpty()) {
-//            builder.append("; Group: ");
-//            personGroupsList.forEach(builder::append);
-//            }
+        ArrayList<PersonGroup> personGroupsList = getPersonGroups();
+        if (!personGroupsList.isEmpty()) {
+            builder.append("; Group: ");
+            personGroupsList.forEach(builder::append);
+            }
 
         return builder.toString();
     }

@@ -25,7 +25,7 @@ class JsonAdaptedPersonGroup {
      * Converts a given {@code PersonGroup} into this class for Jackson use.
      */
     public JsonAdaptedPersonGroup(PersonGroup source) {
-        personGroupname = source.getGroup();
+        personGroupname = source.getGroupName();
     }
 
     @JsonValue

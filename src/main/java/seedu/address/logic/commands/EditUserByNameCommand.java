@@ -100,7 +100,7 @@ public class EditUserByNameCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                personToEdit.getAssignments());
+                personToEdit.getAssignments(), personToEdit.getPersonGroups());
     }
 
     @Override

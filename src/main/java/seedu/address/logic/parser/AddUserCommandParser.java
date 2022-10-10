@@ -49,8 +49,9 @@ public class AddUserCommandParser implements Parser<AddUserCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
+        ArrayList<PersonGroup> personGroupArrayList = new ArrayList<>();
 
-        Person person = new Person(name, phone, email, address, tagList, assignments);
+        Person person = new Person(name, phone, email, address, tagList, assignments, personGroupArrayList);
 
         return new AddUserCommand(person);
     }
