@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Uid;
 
@@ -30,9 +31,15 @@ public class DeleteCommandTest {
     @Test
     public void execute_validUidUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getId());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getUid());
+
+        String expectedMessage = "";
+        if (personToDelete instanceof Patient) {
+            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "patient", personToDelete);
+        } else {
+            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "person", personToDelete);
+        }
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -53,9 +60,14 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getId());
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getUid());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = "";
+        if (personToDelete instanceof Patient) {
+            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "patient", personToDelete);
+        } else {
+            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "person", personToDelete);
+        }
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -73,7 +85,7 @@ public class DeleteCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         Person onlyPerson = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(new Uid(onlyPerson.getId().id + 1L));
+        DeleteCommand deleteCommand = new DeleteCommand(new Uid(onlyPerson.getUid().uid + 1L));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
     }

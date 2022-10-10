@@ -13,18 +13,18 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Uid;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a patient/nurse identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the unique id number in the displayed person list.\n"
+            + ": Deletes the patient/nurse identified by the unique id number used in the displayed person list.\n"
             + "Parameters: UID (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_UID + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted %1$s: %2$s";
 
     private final Uid targetUid;
 
@@ -37,17 +37,14 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        // if (targetIndex.getZeroBased() >= lastShownList.size()) {
-        // throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        // }
-
-        Optional<Person> personToDelete = lastShownList.stream().filter(p -> p.getId() == targetUid).findFirst();
+        Optional<Person> personToDelete = lastShownList.stream().filter(p -> p.getUid().equals(targetUid)).findFirst();
         if (!personToDelete.isPresent()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
         }
         Person confirmedPersonToDelete = personToDelete.get();
         model.deletePerson(confirmedPersonToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, confirmedPersonToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+                confirmedPersonToDelete.getCategoryIndicator(), confirmedPersonToDelete));
     }
 
     @Override
