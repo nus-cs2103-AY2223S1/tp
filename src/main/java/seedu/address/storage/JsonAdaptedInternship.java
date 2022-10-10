@@ -64,6 +64,7 @@ class JsonAdaptedInternship {
      * @throws IllegalValueException if there were any data constraints violated in the adapted internship.
      */
     public Internship toModelType() throws IllegalValueException {
+        // InternshipId
         if (internshipId == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, InternshipId.class.getSimpleName()));
@@ -73,6 +74,7 @@ class JsonAdaptedInternship {
         }
         final InternshipId modelInternshipId = new InternshipId(internshipId);
 
+        // CompanyName
         if (companyName == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, CompanyName.class.getSimpleName()));
@@ -82,47 +84,50 @@ class JsonAdaptedInternship {
         }
         final CompanyName modelCompanyName = new CompanyName(companyName);
 
+        // InternshipRole
         if (internshipRole == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, InternshipRole.class.getSimpleName()));
         }
-        if (InternshipRole.isValidName(internshipRole)) {
-            final InternshipRole modelInternshipRole = new InternshipRole(internshipRole);
-
-            if (internshipStatus == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT, InternshipStatus.class.getSimpleName()));
-            }
-            if (!InternshipStatus.isValidStatus(internshipStatus)) {
-                throw new IllegalValueException(InternshipStatus.MESSAGE_CONSTRAINTS);
-            }
-            final InternshipStatus modelInternshipStatus =
-                    new InternshipStatus(InternshipStatus.State.valueOf(internshipStatus));
-
-            final PersonId modelContactPersonId;
-            if (contactPersonId == null || !InternshipId.isValidId(contactPersonId)) {
-                modelContactPersonId = null;
-            } else {
-                modelContactPersonId = new PersonId(contactPersonId);
-            }
-
-            InterviewDate modelInterviewDate;
-            if (interviewDate == null || !InterviewDate.isValidDatetimeStr(interviewDate)) {
-                modelInterviewDate = null;
-            } else {
-                modelInterviewDate = new InterviewDate(interviewDate);
-            }
-
-            return new Internship(
-                    modelInternshipId,
-                    modelCompanyName,
-                    modelInternshipRole,
-                    modelInternshipStatus,
-                    modelContactPersonId,
-                    modelInterviewDate);
-        } else {
+        if (!InternshipRole.isValidName(internshipRole)) {
             throw new IllegalValueException(InternshipRole.MESSAGE_CONSTRAINTS);
         }
+        final InternshipRole modelInternshipRole = new InternshipRole(internshipRole);
+
+        // InternshipStatus
+        if (internshipStatus == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, InternshipStatus.class.getSimpleName()));
+        }
+        if (!InternshipStatus.isValidStatus(internshipStatus)) {
+            throw new IllegalValueException(InternshipStatus.MESSAGE_CONSTRAINTS);
+        }
+        final InternshipStatus modelInternshipStatus =
+                new InternshipStatus(InternshipStatus.State.valueOf(internshipStatus));
+
+        // ContactPersonId
+        final PersonId modelContactPersonId;
+        if (contactPersonId == null || !InternshipId.isValidId(contactPersonId)) {
+            modelContactPersonId = null;
+        } else {
+            modelContactPersonId = new PersonId(contactPersonId);
+        }
+
+        // InterviewDate
+        InterviewDate modelInterviewDate;
+        if (interviewDate == null || !InterviewDate.isValidDatetimeStr(interviewDate)) {
+            modelInterviewDate = null;
+        } else {
+            modelInterviewDate = new InterviewDate(interviewDate);
+        }
+
+        return new Internship(
+                modelInternshipId,
+                modelCompanyName,
+                modelInternshipRole,
+                modelInternshipStatus,
+                modelContactPersonId,
+                modelInterviewDate);
     }
 
 }

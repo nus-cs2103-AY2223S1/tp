@@ -37,7 +37,7 @@ public class AddInternshipCommandParser implements Parser<AddInternshipCommand> 
                         PREFIX_PERSON_ID,
                         PREFIX_INTERVIEW_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY_NAME, PREFIX_INTERNSHIP_ROLE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY_NAME, PREFIX_INTERNSHIP_ROLE, PREFIX_INTERNSHIP_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInternshipCommand.MESSAGE_USAGE));
         }
@@ -49,7 +49,8 @@ public class AddInternshipCommandParser implements Parser<AddInternshipCommand> 
         InternshipStatus internshipStatus =
                 ParserUtil.parseInternshipStatus(argMultimap.getValue(PREFIX_INTERNSHIP_STATUS).get());
         PersonId contactPersonId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_PERSON_ID).orElse(null));
-        InterviewDate interviewDate = ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_INTERVIEW_DATE).get());
+        InterviewDate interviewDate =
+                ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_INTERVIEW_DATE).orElse(null));
 
         return new AddInternshipCommand(companyName, internshipRole, internshipStatus, contactPersonId, interviewDate);
     }

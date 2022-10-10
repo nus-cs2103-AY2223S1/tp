@@ -38,6 +38,8 @@ public class InternshipCard extends UiPart<Region> {
     private FlowPane status;
     @FXML
     private Label contactPerson;
+    @FXML
+    private Label interviewDate;
 
     /**
      * Creates a {@code InternshipCode} with the given {@code Internship} and index to display.
@@ -61,6 +63,11 @@ public class InternshipCard extends UiPart<Region> {
             contactPerson.setText(NO_CONTACT_PERSON);
         } else {
             contactPerson.setText("Contact Person: " + contactPersonName);
+        }
+        if (internship.getInterviewDate() == null) {
+            interviewDate.setText("No interviews scheduled.");
+        } else {
+            interviewDate.setText("Interview on: " + internship.getInterviewDate().toString());
         }
     }
 
