@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.question.Question;
+import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -15,6 +16,7 @@ import seedu.address.model.tutorial.Tutorial;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
     Predicate<Question> PREDICATE_SHOW_ALL_QUESTIONS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
@@ -94,6 +96,16 @@ public interface Model {
 
 
     /////////////////////////
+
+    /** Returns an unmodifiable view of the filtered question list */
+    ObservableList<Student> getFilteredStudentList();
+
+    /**
+     * Updates the filter of the filtered question list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredStudentList(Predicate<Question> predicate);
+
 
     /**
      * Returns true if a question with the same identity as {@code question} exists in the address book.
