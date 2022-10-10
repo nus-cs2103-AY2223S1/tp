@@ -22,7 +22,7 @@ public class TaskUtil {
      */
     public static String getTaskDetails(Task t) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_TASK + t.getDescription().description + " c/" + t.getModule().toString());
+        sb.append(PREFIX_TASK + t.getDescription().description + " -c " + t.getModule().toString());
         return sb.toString();
     }
 }
