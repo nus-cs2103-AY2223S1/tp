@@ -13,6 +13,8 @@ import nus.climods.logic.parser.exceptions.ParseException;
  * @param <T> The expected type from the parameter
  */
 public class PositionalParameter<T> {
+    private static final String MESSAGE_EMPTY_INPUT = "Not enough arguments to process parameter";
+    protected String emptyInputMessage = MESSAGE_EMPTY_INPUT;
     // ParseException message to show when invalid argument provided
     protected String parseExceptionMessage;
     // Index of the parameter in delimiter-separated list of arguments
@@ -47,6 +49,9 @@ public class PositionalParameter<T> {
         this.parseExceptionMessage = parseExceptionMessage;
     }
 
+    protected void setEmptyInputMessage(String message) {
+        emptyInputMessage = message;
+    }
     /**
      * Returns argument value parsed according to index and conversion function
      * @return Return argument value
@@ -54,12 +59,12 @@ public class PositionalParameter<T> {
      */
     public T getArgValue() throws ParseException {
         if (index >= arguments.size()) {
-            throw new ParseException(parseExceptionMessage);
+            throw new ParseException(emptyInputMessage);
         }
         optionalArg = conversionFunction.apply(arguments.get(index));
 
         if (optionalArg.isEmpty()) {
-            throw new ParseException(parseExceptionMessage);
+            throw new ParseException(String.format(parseExceptionMessage, arguments.get(index)));
         }
         return optionalArg.get();
     }
