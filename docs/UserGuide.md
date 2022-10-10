@@ -28,7 +28,7 @@ contains some sample data.<br>
    [image coming soon]
 
 5. Type the command in the command box and press Enter to execute it. e.g. 
-   `add module`. For more commands, you may refer to the [command summary](#11-command-summary)
+   `add-module`. For more commands, you may refer to the [command summary](#11-command-summary)
 
 6. Refer to the [Features](#2-features) for details of each command.
 
@@ -36,8 +36,8 @@ contains some sample data.<br>
 
 | Action                                  | Format                                                | Short Description                                                           |
 |-----------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------|
-| [`add module`](#211-add-module)         | `add    module   m/MODULE_CODE [t/MODULE_TITLE]`      | Add module with a module code and optional module title                     |
-| [`delete module`](#212-delete-module)   | `delete module   m/MODULE_CODE`                       | Delete module by module code                                                |
+| [`add-module`](#211-add-module)         | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`      | Add module with a module code and optional module title                     |
+| [`delete-module`](#212-delete-module)   | `delete-module   m/MODULE_CODE`                       | Delete module by module code                                                |
 | [`add task`](#221-add-task)             | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`    | Add task with specified module code and task description                    |
 | [`delete task`](#222-delete-task)       | `delete task     m/MODULE_CODE n/TASK_NUMBER`         | Delete task corresponding to specified task number of specified module code |
 | [`add link`](#231-add-link)             | `add    link     m/MODULE_CODE l/LINK_URL`            | Add link to a specified module code by its URL                              |
@@ -81,18 +81,23 @@ This command will require one flag, and one flag is optional:
 * `m/`: To be followed by the module code of the module to be added into Plannit.
 * `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
 
-Format: `add module m/MODULE_CODE [t/MODULE_TITLE]`
-* You may optionally add a module title.
+Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
+* You may optionally add a module title. If provided module title is empty, then Plannit 
+  interprets it as that there is no module title. 
 * You cannot add a duplicate module code.
 
 Examples:
 ```
-add module m/CS2103T
+add-module m/CS2103T
 ```
-In the above example, we are adding a module `CS2103T` without a title.
+OR
+```
+add-module m/CS2103T t/
+```
+In either of the above examples, we are adding a module `CS2103T` without a title.
 
 ```
-add module m/CS2103T t/Software Engineering
+add-module m/CS2103T t/Software Engineering
 ```
 In the above example, we are adding a module `CS2103T` which has the title `Software Engineering`.
 
@@ -102,13 +107,13 @@ You can delete the module with the indicated module code from Plannit.
 This command will require one flag:
 * `m/`: To be followed by the module code of the module to be deleted from Plannit.
 
-Format: `delete module m/MODULE_CODE`
+Format: `delete-module m/MODULE_CODE`
 * You cannot delete a non-existent module code.
 
 Example:
 
 ```
-delete module m/CS2103T
+delete-module m/CS2103T
 ```
 In the above example, we are deleting module CS2103T from Plannit.
 
