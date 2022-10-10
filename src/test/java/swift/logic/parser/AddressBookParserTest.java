@@ -20,7 +20,7 @@ import swift.logic.commands.DeleteCommand;
 import swift.logic.commands.EditCommand;
 import swift.logic.commands.EditCommand.EditPersonDescriptor;
 import swift.logic.commands.ExitCommand;
-import swift.logic.commands.FindCommand;
+import swift.logic.commands.FindContactCommand;
 import swift.logic.commands.HelpCommand;
 import swift.logic.commands.ListContactCommand;
 import swift.logic.parser.exceptions.ParseException;
@@ -75,9 +75,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindContactCommand command = (FindContactCommand) parser.parseCommand(
+                FindContactCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindContactCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
