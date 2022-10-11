@@ -25,7 +25,7 @@ import seedu.rc4hdb.model.person.Phone;
 import seedu.rc4hdb.model.tag.Tag;
 
 /**
- * Filters and lists all residents in address book whose attributes are equal to any of the argument keywords.
+ * Filters and lists all residents in resident book whose attributes are equal to any of the argument keywords.
  * Keyword matching is case sensitive.
  */
 public class FilterCommand extends ModelCommand {
