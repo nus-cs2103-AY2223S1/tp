@@ -52,6 +52,7 @@ class JsonSerializableTaskBook {
      */
     public TaskBook toModelType() throws IllegalValueException {
         TaskBook taskBook = new TaskBook();
+        // Persons must be loaded before tasks.
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (taskBook.hasPerson(person)) {
@@ -60,7 +61,7 @@ class JsonSerializableTaskBook {
             taskBook.addPerson(person);
         }
         for (JsonAdaptedTask jsonAdaptedTask: tasks) {
-            Task task = jsonAdaptedTask.toModelType();
+            Task task = jsonAdaptedTask.toModelType(taskBook);
             if (taskBook.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
