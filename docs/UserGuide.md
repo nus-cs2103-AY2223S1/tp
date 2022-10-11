@@ -138,7 +138,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
-### Filtering Scholarship Applicants by application status: `filter`
+### Filtering scholarship applicants by application status: `filter`
 
 Filters scholarship applications based on the given keywords.
 
