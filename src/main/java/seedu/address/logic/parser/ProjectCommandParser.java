@@ -94,6 +94,6 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
 
     //TODO: implement
     private ListProjectCommand parseListProjectCommand(String arguments) {
-        return null;
+        return new ListProjectCommand();
     }
 }
