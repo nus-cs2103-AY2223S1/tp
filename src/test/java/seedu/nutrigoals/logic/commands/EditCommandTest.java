@@ -2,8 +2,8 @@ package seedu.nutrigoals.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.DESC_BREAKFAST;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.DESC_LUNCH;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -147,10 +147,10 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_MEAL, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_MEAL, DESC_BREAKFAST);
 
         // same values -> returns true
-        EditFoodDescriptor copyDescriptor = new EditFoodDescriptor(DESC_AMY);
+        EditFoodDescriptor copyDescriptor = new EditFoodDescriptor(DESC_BREAKFAST);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_MEAL, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -164,10 +164,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_MEAL, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_MEAL, DESC_BREAKFAST)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_MEAL, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_MEAL, DESC_LUNCH)));
     }
 
 }

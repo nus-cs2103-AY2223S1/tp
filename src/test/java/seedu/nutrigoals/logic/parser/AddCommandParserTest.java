@@ -43,12 +43,12 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
                 + TAG_DESC_LUNCH, new AddCommand(expectedFood));
 
-        // multiple tags - all accepted
+        // multiple tags - last tag accepted if it is valid
         Food expectedFoodMultipleTags = new FoodBuilder(APPLE)
-                .withCalorie(VALID_APPLE_CALORIE).withTag(VALID_TAG_BREAKFAST)
+                .withCalorie(VALID_APPLE_CALORIE).withTag(VALID_TAG_BREAKFAST, VALID_TAG_LUNCH)
                 .build();
         assertParseSuccess(parser, NAME_DESC_APPLE + CALORIE_DESC_APPLE
-                + TAG_DESC_BREAKFAST, new AddCommand(expectedFoodMultipleTags));
+                + TAG_DESC_BREAKFAST + TAG_DESC_LUNCH, new AddCommand(expectedFoodMultipleTags));
     }
 
     @Test
@@ -57,6 +57,21 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_APPLE_NAME,
+                expectedMessage);
+
+        // missing calorie field
+        assertParseFailure(parser, NAME_DESC_BREAD + TAG_DESC_BREAKFAST, expectedMessage);
+
+        // missing calorie prefix
+        assertParseFailure(parser, NAME_DESC_BREAD + VALID_APPLE_CALORIE + TAG_DESC_BREAKFAST,
+                expectedMessage);
+
+        // missing tag
+        assertParseFailure(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD + VALID_BREAD_CALORIE,
+                expectedMessage);
+
+        // missing tag prefix
+        assertParseFailure(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD + VALID_TAG_BREAKFAST,
                 expectedMessage);
     }
 

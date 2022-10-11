@@ -34,7 +34,7 @@ public class TypicalFoods {
     public static final Food SUSHI = new FoodBuilder().withName("Sushi")
             .withTag("dinner").build();
     public static final Food PANCAKE = new FoodBuilder().withName("Pancake")
-            .withTag("dinner").build();
+            .withTag("lunch").build();
 
     public static final Food BOB = new FoodBuilder().withName(VALID_NAME_BOB)
             .withTag(VALID_TAG_HUSBAND)

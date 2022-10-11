@@ -51,10 +51,11 @@ public class FoodBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Food} that we are building.
+     * Parses the {@code tag} into a {@code Tag} and set it to the {@code Food} that we are building.
      */
-    public FoodBuilder withTag(String tags) {
-        this.tag = SampleDataUtil.getTag(tags);
+    public FoodBuilder withTag(String... tags) {
+        String t = tags[tags.length - 1];
+        this.tag = SampleDataUtil.getTag(t);
         return this;
     }
 
