@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.getTypicalMyInsuRec;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +21,8 @@ public class ViewMeetingCommandTest {
     private Model model;
     private Model expectedModel;
 
+    private ViewMeetingCommand vmc = new ViewMeetingCommand(Index.fromOneBased(1));
+
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalMyInsuRec(), new UserPrefs());
@@ -26,8 +31,7 @@ public class ViewMeetingCommandTest {
 
     @Test
     public void execute_modelIsNull_throwsNullPointerException() {
-        ViewMeetingCommand vmc = new ViewMeetingCommand(Index.fromOneBased(1));
-        Assertions.assertThrows(NullPointerException.class, () -> vmc.execute(null));
+        assertThrows(NullPointerException.class, () -> vmc.execute(null));
     }
 
     @Test
@@ -38,7 +42,30 @@ public class ViewMeetingCommandTest {
 
     @Test
     public void execute_indexTooBig_throwsCommandException() {
-        ViewMeetingCommand vmc = new ViewMeetingCommand(Index.fromOneBased(1));
-        Assertions.assertThrows(CommandException.class, () -> vmc.execute(model));
+        int numberOfExistingMeetings = model.getFilteredMeetingList().size();
+        // trying to access meeting index that does not exist:
+        vmc = new ViewMeetingCommand(Index.fromOneBased(numberOfExistingMeetings + 1));
+        assertThrows(CommandException.class, () -> vmc.execute(model));
+    }
+
+    @Test
+    public void execute_allFieldsValid_returnsViewMeetingCommand() {
+        assertDoesNotThrow(() -> vmc.execute(model));
+    }
+
+    @Test
+    public void equals_twoEquivalentMeetings_returnsTrue() {
+        // same meeting object
+        assertTrue(vmc.equals(vmc));
+
+        ViewMeetingCommand equivalentVmc = new ViewMeetingCommand(Index.fromOneBased(1));
+
+        assertTrue(vmc.equals(equivalentVmc));
+    }
+
+    @Test
+    public void equals_twoNonEquivalentMeetings_returnsFalse() {
+        ViewMeetingCommand nonEquivalentMeeting = new ViewMeetingCommand(Index.fromOneBased(2));
+        assertFalse(vmc.equals(nonEquivalentMeeting));
     }
 }
