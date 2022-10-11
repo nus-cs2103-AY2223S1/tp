@@ -29,15 +29,19 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
-
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private TeamListPanel teamListPanel;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private TaskListPanel taskListPanel;
     private HelpWindow helpWindow;
+    private TeamDetailsCard teamDetailsCard;
+
+    @FXML
+    private StackPane teamListPanelPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -56,6 +60,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane taskListPanelPlaceholder;
+
+    @FXML
+    private StackPane teamDetailsCardPlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -117,6 +124,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        teamListPanel = new TeamListPanel(logic.getTeamList());
+        teamListPanelPlaceholder.getChildren().add(teamListPanel.getRoot());
+
+        teamDetailsCard = new TeamDetailsCard(logic.getCurrentTeam());
+        teamDetailsCardPlaceHolder.getChildren().add(teamDetailsCard.getRoot());
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
