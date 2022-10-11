@@ -1,7 +1,7 @@
 package seedu.taassist.model.session;
 
 /**
- * Represents a student's session data.
+ * Represents a student's data for a session.
  */
 public class StudentSessionData {
 
