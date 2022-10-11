@@ -197,7 +197,7 @@ public class EditCommand extends Command {
          * Sets {@code oldTagTypeMap} to this object's {@code oldTagTypeMap}.
          * A defensive copy of {@code oldTagTypeMap} is used internally.
          */
-        public void setOldTagTypeMap(UniqueTagTypeMap tags) {
+        public void setOldTagTypeMap(UniqueTagTypeMap oldTagTypeMap) {
             this.oldTagTypeMap = oldTagTypeMap;
         }
 
@@ -205,7 +205,7 @@ public class EditCommand extends Command {
          * Sets {@code newTagTypeMap} to this object's {@code newTagTypeMap}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setNewTagTypeMap(UniqueTagTypeMap tags) {
+        public void setNewTagTypeMap(UniqueTagTypeMap newTagTypeMap) {
             this.newTagTypeMap = newTagTypeMap;
         }
 
