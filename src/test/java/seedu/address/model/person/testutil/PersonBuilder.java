@@ -105,13 +105,15 @@ public class PersonBuilder {
      * Parses the {@code Assignments} into a {@code HashMap<String, ArrayList<Assignment>>}
      * and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withAssignments(String group, String assignment) {
-        ArrayList<Assignment> assignmentList = new ArrayList<>();
-        if (assignments.containsKey(group)) {
-            assignmentList = assignments.get(group);
+    public PersonBuilder withAssignments(String[] group, String[][] assignment) {
+        this.assignments = new HashMap<>();
+        for (int i = 0; i < group.length; i++) {
+            ArrayList<Assignment> assignmentList = new ArrayList<>();
+            for (int j = 0; j < assignment[i].length; j++) {
+                assignmentList.add(new Assignment(assignment[i][j]));
+            }
+            this.assignments.put(group[i], assignmentList);
         }
-        assignmentList.add(new Assignment(assignment));
-        this.assignments.put(group, assignmentList);
         return this;
     }
 
