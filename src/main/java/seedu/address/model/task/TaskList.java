@@ -80,7 +80,7 @@ public class TaskList implements Iterable<Task> {
             throw new TaskNotFoundException();
         }
 
-        if (!toEdit.isSameTask(editedTask) && contains(editedTask)) {
+        if (toEdit.isSameTask(editedTask) && contains(editedTask)) {
             throw new DuplicateTaskException();
         }
 
@@ -181,7 +181,7 @@ public class TaskList implements Iterable<Task> {
      * @param toFilter Status to filter the task list by
      */
     public void filter(boolean toFilter) {
-        requireNonNull(toFilter);
+
         Predicate<Task> filterer = i -> (i.isDone() == toFilter);
         internalList.filtered(filterer);
     }

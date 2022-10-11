@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.task.exceptions.LevelOutOfRangeException;
 
 
 public class TaskCategoryTest {
@@ -16,7 +17,8 @@ public class TaskCategoryTest {
 
     @Test
     public void constructor_levelTooHigh() {
-        
+        assertThrows(LevelOutOfRangeException.class, () -> new TaskCategory(10,null));
+        assertThrows(LevelOutOfRangeException.class, () -> new TaskCategory(-10,null));
     }
 
 }

@@ -1,6 +1,6 @@
 package seedu.address.model.task;
 
-enum TaskCategoryType {
+public enum TaskCategoryType {
         DATABASE,
         BACKEND,
         FRONTEND,
