@@ -69,7 +69,7 @@ public class AddTaskCommand extends Command {
         }
         Module moduleWithNewTask = createModuleWithNewTask(moduleToAddTaskTo, addTaskToModuleDescriptor);
 
-        Boolean taskWasAdded = !moduleToAddTaskTo.isSameModule(moduleWithNewTask);
+        Boolean taskWasAdded = !moduleToAddTaskTo.equals(moduleWithNewTask);
         Boolean isDuplicateTask = moduleWithNewTask.hasDuplicateTasks();
         if (taskWasAdded && isDuplicateTask) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
