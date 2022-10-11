@@ -11,7 +11,7 @@ import seedu.waddle.commons.core.LogsCenter;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of Iineraries.
  */
 public class ItineraryListPanel extends UiPart<Region> {
     private static final String FXML = "ItineraryListPanel.fxml";
@@ -21,7 +21,7 @@ public class ItineraryListPanel extends UiPart<Region> {
     private ListView<Itinerary> itineraryListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ItineraryListPanel} with the given {@code ObservableList}.
      */
     public ItineraryListPanel(ObservableList<Itinerary> itineraryList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class ItineraryListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Itinerary} using a {@code ItineraryCard}.
      */
     class ItineraryListViewCell extends ListCell<Itinerary> {
         @Override
