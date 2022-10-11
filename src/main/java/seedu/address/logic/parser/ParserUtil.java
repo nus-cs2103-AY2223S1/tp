@@ -116,7 +116,7 @@ public class ParserUtil {
         requireNonNull(title);
         String trimmedTitle = title.trim();
         if (!Title.isValidTitle(trimmedTitle)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);
     }
