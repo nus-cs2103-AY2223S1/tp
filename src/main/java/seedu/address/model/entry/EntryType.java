@@ -18,6 +18,9 @@ public class EntryType {
             + "' for income";
     public static final String VALIDATION_REGEX = "^\\s*([ei])\\s*$";
 
+    /**
+     * Types that can be used
+     */
     public enum Type {
         EXPENDITURE() {
             @Override
@@ -32,6 +35,9 @@ public class EntryType {
             }
         };
 
+        /**
+         * Factory method that creates a returns a {@code Type} with the input of {@code entryType}
+         */
         public static Type of(String entryType) {
             boolean isExpenditureEntry = entryType.equals(ENTRY_TYPE_EXPENDITURE);
             boolean isIncomeEntry = entryType.equals(ENTRY_TYPE_INCOME);
