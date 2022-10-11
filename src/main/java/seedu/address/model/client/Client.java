@@ -9,9 +9,10 @@ import seedu.address.model.Name;
 import seedu.address.model.project.Project;
 
 /**
- * Stub class for Client.
+ * Represents a Client associated with a project. This is modelled after the AB3 Person.
  */
 public class Client {
+
     //Represents the Client's name
     private Name name;
 
@@ -60,6 +61,34 @@ public class Client {
 
     public void setClientId(ClientId id) {
         this.clientId = id;
+    }
+
+    /**
+     * Checks if this Client is empty.
+     * @return true if the Client is empty.
+     */
+    public boolean isEmpty() {
+        return false;
+    }
+
+    /**
+     * Represents an Empty Client.
+     */
+    public static class EmptyClient extends Client {
+        public static final Client EMPTY_CLIENT = new EmptyClient();
+        public EmptyClient() {
+            super(Name.EmptyName.EMPTY_NAME);
+        }
+
+        /**
+         * Checks if this Client is empty.
+         * @return true if the Client is empty.
+         */
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+
     }
 
     /**

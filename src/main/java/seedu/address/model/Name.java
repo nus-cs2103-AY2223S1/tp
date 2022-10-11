@@ -36,9 +36,9 @@ public class Name {
     /**
      * Represents an Empty Name.
      */
-    private static class EmptyClientName extends Name {
-        private static final Name EMPTY_NAME = new EmptyClientName();
-        private EmptyClientName() {
+    public static class EmptyName extends Name {
+        public static final Name EMPTY_NAME = new EmptyName();
+        public EmptyName() {
             super("");
         }
 
