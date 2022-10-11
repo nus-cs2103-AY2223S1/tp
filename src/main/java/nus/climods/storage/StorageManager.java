@@ -60,12 +60,13 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyModuleList> readModuleList() throws DataConversionException {
+    public Optional<ReadOnlyModuleList> readModuleList(String academicYear) throws DataConversionException {
         return Optional.empty();
     }
 
     @Override
-    public Optional<ReadOnlyModuleList> readModuleList(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyModuleList> readModuleList(String academicYear, Path filePath)
+            throws DataConversionException {
         return Optional.empty();
     }
 

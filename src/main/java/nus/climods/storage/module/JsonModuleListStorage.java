@@ -34,12 +34,13 @@ public class JsonModuleListStorage implements ModuleListStorage {
     }
 
     @Override
-    public Optional<ReadOnlyModuleList> readModuleList() throws DataConversionException {
-        return readModuleList(filePath);
+    public Optional<ReadOnlyModuleList> readModuleList(String academicYear) throws DataConversionException {
+        return readModuleList(academicYear, filePath);
     }
 
     @Override
-    public Optional<ReadOnlyModuleList> readModuleList(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyModuleList> readModuleList(String academicYear, Path filePath)
+            throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableModuleList> jsonModuleList = JsonUtil.readJsonFile(

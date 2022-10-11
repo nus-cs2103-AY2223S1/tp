@@ -25,9 +25,9 @@ public interface ModuleListStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyModuleList> readModuleList() throws DataConversionException;
+    Optional<ReadOnlyModuleList> readModuleList(String academicYear) throws DataConversionException;
 
-    Optional<ReadOnlyModuleList> readModuleList(Path filePath) throws DataConversionException;
+    Optional<ReadOnlyModuleList> readModuleList(String academicYear, Path filePath) throws DataConversionException;
 
     void saveModuleList(List<Module> modules) throws IOException;
 

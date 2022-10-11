@@ -32,10 +32,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
     }
 
-    public ModelManager() {
-        this(new ModuleList(), new UserPrefs());
-    }
-
     //=========== UserPrefs ==================================================================================
 
     @Override

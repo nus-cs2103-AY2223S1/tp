@@ -77,19 +77,20 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyModuleList> moduleListOptional;
-        ReadOnlyModuleList initiaModuleList;
+        ReadOnlyModuleList initialModuleList;
+        String academicYear = userPrefs.getAcademicYear();
         try {
-            moduleListOptional = storage.readModuleList();
+            moduleListOptional = storage.readModuleList(academicYear);
             if (moduleListOptional.isEmpty()) {
                 logger.info("Data file not found!");
             }
-            initiaModuleList = moduleListOptional.orElseGet(ModuleList::new);
+            initialModuleList = moduleListOptional.orElseGet(() -> new ModuleList(academicYear));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format!");
-            initiaModuleList = new ModuleList();
+            initialModuleList = new ModuleList(academicYear);
         }
 
-        return new ModelManager(initiaModuleList, userPrefs);
+        return new ModelManager(initialModuleList, userPrefs);
     }
 
     private void initLogging(Config config) {

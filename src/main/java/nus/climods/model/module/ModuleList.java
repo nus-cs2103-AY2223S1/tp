@@ -24,11 +24,13 @@ public class ModuleList implements ReadOnlyModuleList {
 
     /**
      * Constructor for ModuleList class.
+     *
+     * @param academicYear academic year of modules
      */
-    public ModuleList() {
+    public ModuleList(String academicYear) {
         try {
             internalList.setAll(
-                modulesApi.acadYearModuleInfoJsonGet("2022-2023").stream().map(Module::new)
+                modulesApi.acadYearModuleInfoJsonGet(academicYear).stream().map(Module::new)
                     .collect(Collectors.toList()));
         } catch (ApiException e) {
             e.printStackTrace();
