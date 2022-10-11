@@ -33,7 +33,7 @@ public enum TaskCategoryType {
      *
      * @param categoryName string to test
      * @return Empty if {@code categoryName} is not a valid task category type,
-     *  else the corresponding {@code TaskCategoryType}
+     *     else the corresponding {@code TaskCategoryType}
      */
     public static Optional<TaskCategoryType> getFromString(String categoryName) {
         return Arrays.stream(TaskCategoryType.values())

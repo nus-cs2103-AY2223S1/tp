@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -17,13 +17,13 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.TaskName;
-import seedu.address.model.task.TaskCategory;
-import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
-import seedu.address.model.task.TaskCategoryType;
 import seedu.address.model.task.PriorityEnum;
+import seedu.address.model.task.TaskCategory;
+import seedu.address.model.task.TaskCategoryType;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
