@@ -44,12 +44,12 @@ public class TaskContainsModulesPredicateTest {
         TaskContainsModulesPredicate predicate =
                 new TaskContainsModulesPredicate(Collections.singletonList(new Module("Mod1")));
         assertTrue(predicate.test(new Task(new TaskName("Science Math homework"), new Module("Mod1"),
-                new Deadline("2022-05-05 15:04"))));
+                new Deadline("2022-05-05 15:04"), new Status(false))));
 
         // Mixed-case keywords
         predicate = new TaskContainsModulesPredicate(Collections.singletonList(new Module("mOd2")));
         assertTrue(predicate.test(new Task(new TaskName("Science Math homework"), new Module("MOD2"),
-                new Deadline("2022-05-05 15:04"))));
+                new Deadline("2022-05-05 15:04"), new Status(false))));
     }
 
     @Test
@@ -57,11 +57,11 @@ public class TaskContainsModulesPredicateTest {
         // Zero keywords
         TaskContainsModulesPredicate predicate = new TaskContainsModulesPredicate(Collections.emptyList());
         assertFalse(predicate.test(new Task(new TaskName("Science Math homework"), new Module("Mod1"),
-                new Deadline("2022-05-05 15:04"))));
+                new Deadline("2022-05-05 15:04"), new Status(false))));
 
         // Non-matching keyword
         predicate = new TaskContainsModulesPredicate(Collections.singletonList(new Module("BZ1101")));
         assertFalse(predicate.test(new Task(new TaskName("Science Math homework"), new Module("Mod1"),
-                new Deadline("2022-05-05 15:04"))));
+                new Deadline("2022-05-05 15:04"), new Status(false))));
     }
 }
