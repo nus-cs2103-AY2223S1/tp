@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.model.person.testutil.Assert.assertThrows;
+import static seedu.address.model.person.testutil.TypicalPersons.ALICE;
+import static seedu.address.model.person.testutil.TypicalPersons.BENSON;
+import static seedu.address.model.person.testutil.TypicalPersons.BOB;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,7 +19,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.person.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 

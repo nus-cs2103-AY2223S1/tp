@@ -37,6 +37,21 @@ public class Group {
     }
 
     /**
+     * Check if person is already in the group.
+     *
+     * @param toCheck person to check if in group
+     * @return true if person is in group, false otherwise
+     */
+    public boolean contains(Person toCheck) {
+        for (Person p : members) {
+            if (p.isSamePerson(toCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns true if both groups have the same name.
      * This defines a weaker notion of equality between two groups.
      */
