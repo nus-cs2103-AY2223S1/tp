@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.profile.Profile;
 
 /**
@@ -55,17 +54,6 @@ public class TypicalProfiles {
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalProfiles() {} // prevents instantiation
-
-    /**
-     * Returns an {@code AddressBook} with all the typical profiles.
-     */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Profile profile : getTypicalProfiles()) {
-            ab.addProfile(profile);
-        }
-        return ab;
-    }
 
     public static List<Profile> getTypicalProfiles() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));

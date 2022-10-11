@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProfileAtIndex;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROFILE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROFILE;
-import static seedu.address.testutil.TypicalProfiles.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
