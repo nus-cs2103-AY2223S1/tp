@@ -18,4 +18,29 @@ public class Item {
         requireNonNull(description);
         this.description = description;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    /*
+    public String getPriority() {
+        return priority;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+    */
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription())
+                .append("; Priority: ")
+                // .append(getPriority())
+                .append("; Category: ");
+                // . append(getCategory());
+        return builder.toString();
+    }
 }
