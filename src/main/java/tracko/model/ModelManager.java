@@ -132,7 +132,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Item> getFilteredItemList() {
-        return trackO.getInventoryList();
+        return filteredItems;
     }
 
     @Override

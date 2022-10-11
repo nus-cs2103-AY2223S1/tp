@@ -8,6 +8,7 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.ReadOnlyTrackO;
+import tracko.model.items.Item;
 import tracko.model.order.Order;
 
 /**
@@ -33,6 +34,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the list of orders */
     ObservableList<Order> getFilteredOrderList();
+
+    /** Returns an unmodifiable view of the list of orders */
+    ObservableList<Item> getFilteredItemList();
 
     /**
      * Returns the user pref's order list file path.

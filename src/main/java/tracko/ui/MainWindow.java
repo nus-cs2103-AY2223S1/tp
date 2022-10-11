@@ -114,7 +114,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
         //TODO: Edit when getInventoryList() is implemented in Logic
-        itemListPanel = new ItemListPanel(logic.getTrackO().getInventoryList());
+        itemListPanel = new ItemListPanel(logic.getFilteredItemList());
         displayBox = new DisplayBox(orderListPanel, itemListPanel);
         listsPanelPlaceholder.getChildren().add(displayBox.getRoot());
 
