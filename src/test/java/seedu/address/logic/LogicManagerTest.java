@@ -75,25 +75,25 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-     @Test
-     public void execute_storageThrowsIoException_throwsCommandException() {
-         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-         JsonAddressBookStorage addressBookStorage =
-                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-         JsonUserPrefsStorage userPrefsStorage =
-                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-         logic = new LogicManager(model, storage);
-         // Execute add command
-         String addCommand = AddCommand.COMMAND_WORD + TYPE_EXPENDITURE + DESC_LUNCH + AMT_LUNCH + DATE_LUNCH;
-         Entry expectedExpenditure = new ExpenditureBuilder(LUNCH).build();
-         // Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-         ModelManager expectedModel = new ModelManager();
-         expectedModel.addExpenditure(expectedExpenditure);
-         // expectedModel.addPerson(expectedPerson);
-         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-     }
+    @Test
+    public void execute_storageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
+        // Execute add command
+        String addCommand = AddCommand.COMMAND_WORD + TYPE_EXPENDITURE + DESC_LUNCH + AMT_LUNCH + DATE_LUNCH;
+        Entry expectedExpenditure = new ExpenditureBuilder(LUNCH).build();
+        // Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addExpenditure(expectedExpenditure);
+        // expectedModel.addPerson(expectedPerson);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
