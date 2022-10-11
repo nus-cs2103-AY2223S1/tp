@@ -29,7 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String position;
-    private String details;
+    private final String details;
     private final String address;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -133,13 +133,7 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
 
         if (details == null) {
-            if (position.equalsIgnoreCase("TA")) {
-                details = "unavailable";
-            } else if (position.equalsIgnoreCase("Student")) {
-                details = "attendance - 0/0, grade - 0/0";
-            } else {
-                details = "";
-            }
+            throw new IllegalValueException(Position.DETAILS_MESSAGE_CONSTRAINTS);
         }
         modelPosition.setDetails(details);
 

@@ -14,11 +14,12 @@ public class Professor extends Position {
         COORDINATOR,
         LECTURER,
         TUTOR,
-        ADVISOR;
+        ADVISOR,
+        UNASSIGNED;
     }
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Role can only be Coordinator, Lecturer, Tutor, and/or Advisor (non case-sensitive)";
+            "Role can only be Unassigned, Coordinator, Lecturer, Tutor, and/or Advisor (non case-sensitive)";
 
     private String roles;
 
@@ -27,7 +28,7 @@ public class Professor extends Position {
      */
     public Professor() {
         super("Professor");
-        roles = "";
+        roles = "Unassigned";
 
     }
     @Override
