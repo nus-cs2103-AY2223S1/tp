@@ -178,6 +178,16 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Student List Accessors =============================================================
+
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+
     //=========== Filtered Module List Accessors =============================================================
 
     /**

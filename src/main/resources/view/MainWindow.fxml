@@ -34,7 +34,7 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
           <Menu mnemonicParsing="false" text="Module">
-            <MenuItem fx:id="tabModule" mnemonicParsing="false" onAction="#handleShowTabModule" text="Module" />
+            <MenuItem fx:id="tabModule" mnemonicParsing="false" onAction="#handleShowTabModules" text="Module" />
           </Menu>
           <Menu mnemonicParsing="false" text="Students">
             <MenuItem fx:id="tabStudents" mnemonicParsing="false" onAction="#handleShowTabStudents" text="Students" />
@@ -80,6 +80,17 @@
                 </VBox>
               </content>
             </Tab>
+
+          <Tab text="Module">
+            <content>
+              <VBox fx:id="moduleInfo" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="moduleInfoPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
+            </content>
+          </Tab>
 
             <Tab text="Schedules">
               <content>

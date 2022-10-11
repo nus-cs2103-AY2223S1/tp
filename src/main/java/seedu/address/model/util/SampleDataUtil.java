@@ -51,7 +51,7 @@ public class SampleDataUtil {
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"),
-                    new StudentId("A01232347K"), new TelegramHandle("@new_user"),
+                    new StudentId("A0123234K"), new TelegramHandle("@new_user"),
                     getModuleCodeSet("CS1101S"))
         };
     }

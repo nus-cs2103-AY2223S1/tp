@@ -28,6 +28,7 @@ public class ModuleListCommandTest {
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ModuleListCommand(), model,
                 new CommandResult(ModuleListCommand.MESSAGE_SUCCESS, false, false,
-                        true, false, false), expectedModel);
+                        true, false,
+                        false, false), expectedModel);
     }
 }
