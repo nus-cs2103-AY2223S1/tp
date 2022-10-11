@@ -18,7 +18,9 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.PersonModel;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PropertyModel;
 import seedu.address.model.ReadOnlyPersonModel;
+import seedu.address.model.ReadOnlyPropertyModel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
@@ -74,23 +76,25 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPersonModel> addressBookOptional;
-        ReadOnlyPersonModel initialData;
+        Optional<ReadOnlyPersonModel> personModelOptional;
+        ReadOnlyPersonModel personModel;
+        ReadOnlyPropertyModel emptyPropertyModel = new PropertyModel(); // TODO: read property model from storage
+
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            personModelOptional = storage.readAddressBook();
+            if (!personModelOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PersonModel");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            personModel = personModelOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PersonModel");
-            initialData = new PersonModel();
+            personModel = new PersonModel();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty PersonModel");
-            initialData = new PersonModel();
+            personModel = new PersonModel();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(personModel, emptyPropertyModel, userPrefs);
     }
 
     private void initLogging(Config config) {
