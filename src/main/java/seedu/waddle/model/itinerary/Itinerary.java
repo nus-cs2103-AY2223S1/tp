@@ -83,6 +83,14 @@ public class Itinerary {
         this.itemList.add(item);
     }
 
+    public Item removeItem(int index) {
+        return this.itemList.remove(index);
+    }
+
+    public int getItemSize() {
+        return this.itemList.getSize();
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
