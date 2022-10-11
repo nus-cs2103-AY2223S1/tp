@@ -106,12 +106,12 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public Path getOrdersFilePath() {
+        public Path getTrackOFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setOrdersFilePath(Path ordersFilePath) {
+        public void setTrackOFilePath(Path trackOFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

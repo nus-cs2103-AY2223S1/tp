@@ -45,12 +45,12 @@ public interface Model {
     /**
      * Returns the user pref's orders file path.
      */
-    Path getOrdersFilePath();
+    Path getTrackOFilePath();
 
     /**
      * Sets the user pref's orders file path.
      */
-    void setOrdersFilePath(Path ordersFilePath);
+    void setTrackOFilePath(Path trackOFilePath);
 
     /**
      * Replaces application data with the data in {@code trackO}

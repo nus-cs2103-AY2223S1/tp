@@ -83,14 +83,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Order> getFilteredOrderList() {
-        return model.getFilteredOrderList();
+    public Path getTrackOFilePath() {
+        return model.getTrackOFilePath();
     }
 
-
     @Override
-    public Path getOrdersFilePath() {
-        return model.getOrdersFilePath();
+    public ObservableList<Order> getFilteredOrderList() {
+        return model.getFilteredOrderList();
     }
 
     @Override

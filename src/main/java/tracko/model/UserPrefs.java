@@ -15,7 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path ordersFilePath = Paths.get("data", "trackO.json");
+    private Path trackOFilePath = Paths.get("data", "trackO.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -57,13 +57,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
-    public Path getOrdersFilePath() {
-        return ordersFilePath;
+    public Path getTrackOFilePath() {
+        return trackOFilePath;
     }
 
-    public void setOrdersFilePath(Path ordersFilePath) {
-        requireNonNull(ordersFilePath);
-        this.ordersFilePath = ordersFilePath;
+    public void setTrackOFilePath(Path trackOFilePath) {
+        requireNonNull(trackOFilePath);
+        this.trackOFilePath = trackOFilePath;
     }
 
     @Override
@@ -78,13 +78,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && ordersFilePath.equals(o.ordersFilePath)
+                && trackOFilePath.equals(o.trackOFilePath)
                 && addressBookFilePath.equals(o.addressBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, ordersFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, trackOFilePath);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
-        sb.append("\nLocal order data file location : " + ordersFilePath);
+        sb.append("\nLocal order data file location : " + trackOFilePath);
         return sb.toString();
     }
 

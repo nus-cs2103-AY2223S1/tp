@@ -61,15 +61,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setOrdersFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setOrdersFilePath(null));
+    public void setTrackOFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setTrackOFilePath(null));
     }
 
     @Test
-    public void setOrdersFilePath_validPath_setsAddressBookFilePath() {
+    public void setTrackOFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("tracko/orders/file/path");
-        modelManager.setOrdersFilePath(path);
-        assertEquals(path, modelManager.getOrdersFilePath());
+        modelManager.setTrackOFilePath(path);
+        assertEquals(path, modelManager.getTrackOFilePath());
     }
 
     // @Test
