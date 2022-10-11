@@ -33,6 +33,14 @@ public class TypicalTasks {
             new Deadline("2022-02-02 23:59")
     );
 
+    // This one is not in typicalTasks so that it can be added without issues
+
+    public static final Task LAB_3 = new Task(
+            new TaskName("Lab 3"),
+            new Module("CS2030S"),
+            new Deadline("2022-03-15 23:59")
+    );
+
     private TypicalTasks() {} // prevents instantiation
 
     public static List<Task> getTypicalTasks() {
