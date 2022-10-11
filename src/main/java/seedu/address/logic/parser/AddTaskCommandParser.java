@@ -34,25 +34,11 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(
-                        args,
-                        PREFIX_NAME,
-                        PREFIX_DESCRIPTION,
-                        PREFIX_PRIORITY,
-                        PREFIX_CATEGORY,
-                        PREFIX_DEADLINE,
-                        PREFIX_PERSON
-                );
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_CATEGORY,
+                        PREFIX_DEADLINE, PREFIX_PERSON);
 
-        if (!arePrefixesPresent(
-                argMultimap,
-                PREFIX_NAME,
-                PREFIX_DESCRIPTION,
-                PREFIX_PRIORITY,
-                PREFIX_CATEGORY,
-                PREFIX_DEADLINE,
-                PREFIX_PERSON
-        ) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_CATEGORY,
+                PREFIX_DEADLINE, PREFIX_PERSON) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 

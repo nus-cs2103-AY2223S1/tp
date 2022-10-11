@@ -113,6 +113,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTask(Task task) {
         tasks.add(task);
+        System.out.println(tasks);
     }
 
     /**
@@ -124,6 +125,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedTask);
 
         tasks.edit(target, editedTask);
+        System.out.println(tasks);
     }
 
     /**
@@ -132,6 +134,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeTask(Task key) {
         tasks.delete(key);
+        System.out.println(tasks);
     }
 
     //// util methods

@@ -103,8 +103,8 @@ public class EditTaskCommand extends Command {
         Person updatedPerson = editTaskDescriptor.getPerson().orElse(taskToEdit.getPerson());
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
 
-        return new Task(updatedName, updatedDescription, updatedPriority, updatedCategory,
-                updatedDeadline, updatedPerson, updatedIsDone);
+        return new Task(updatedName, updatedDescription, updatedPriority, updatedCategory, updatedDeadline,
+                updatedPerson, updatedIsDone);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class EditTaskCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditTaskCommand)) {
             return false;
         }
 
@@ -218,7 +218,7 @@ public class EditTaskCommand extends Command {
         }
 
         public Optional<Boolean> getIsDone() {
-            return ofNullable(isDone);
+            return Optional.of(isDone);
         }
 
         @Override
@@ -229,7 +229,7 @@ public class EditTaskCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
+            if (!(other instanceof EditTaskCommand.EditTaskDescriptor)) {
                 return false;
             }
 
