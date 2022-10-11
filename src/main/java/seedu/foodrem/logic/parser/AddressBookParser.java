@@ -15,6 +15,7 @@ import seedu.foodrem.logic.commands.ExitCommand;
 import seedu.foodrem.logic.commands.FindCommand;
 import seedu.foodrem.logic.commands.HelpCommand;
 import seedu.foodrem.logic.commands.ListCommand;
+import seedu.foodrem.logic.commands.SortCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**
@@ -61,6 +62,9 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
