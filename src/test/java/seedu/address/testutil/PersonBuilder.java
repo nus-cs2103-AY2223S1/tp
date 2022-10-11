@@ -25,7 +25,6 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
     public static final String DEFAULT_CATEGORY = "P";
-
     public static final String DEFAULT_UID = "100";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_GENDER = "F";

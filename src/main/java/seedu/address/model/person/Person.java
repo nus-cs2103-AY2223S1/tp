@@ -111,6 +111,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+
         return otherPerson.getUid().equals(getUid())
                 && otherPerson.getName().equals(getName())
                 && otherPerson.getGender().equals(getGender())

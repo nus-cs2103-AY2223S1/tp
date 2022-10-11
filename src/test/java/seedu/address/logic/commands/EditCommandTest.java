@@ -60,7 +60,6 @@ public class EditCommandTest {
                 .withGender(VALID_GENDER_BOB).withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(lastPerson.getUid(), descriptor);
 
-
         String expectedMessage = "";
         if (editedPerson instanceof Patient) {
             expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "patient", editedPerson);

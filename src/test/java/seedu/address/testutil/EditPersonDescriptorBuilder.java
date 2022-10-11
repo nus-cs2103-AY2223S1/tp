@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.category.Category.PATIENT_SYMBOL;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,12 +15,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
-import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-
-import javax.xml.catalog.Catalog;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -48,7 +47,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
-        if (person.getCategory().categoryName.equals("P")) {
+        if (person.getCategory().categoryName.equals(PATIENT_SYMBOL)) {
             descriptor.setDatesTimes(((Patient) person).getDatesTimes());
         }
     }

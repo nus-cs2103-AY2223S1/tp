@@ -32,6 +32,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_DATETIME = "2022.1.11 4.00PM";
     private static final String INVALID_TAG = "#friend";
 
+
     private static final String VALID_CATEGORY = BENSON.getCategory().toString();
     private static final Long VALID_UID = BENSON.getUid().getUid();
     private static final String VALID_NAME = BENSON.getName().toString();

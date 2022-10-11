@@ -140,6 +140,7 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing uid prefix
+
         assertParseFailure(parser, VALID_UID_BOB + CATEGORY_DESC_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB, expectedMessage);
         // missing category prefix

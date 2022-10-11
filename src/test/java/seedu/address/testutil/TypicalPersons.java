@@ -39,7 +39,6 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withDatesTimes("2022-11-11T12:00")
             .withTags("friends").build();
-
     public static final Person BENSON = new PersonBuilder()
             .withUid("2").withCategory("P")
             .withName("Benson Meier").withGender("M")
