@@ -1,17 +1,17 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_A;
+import static seedu.address.testutil.TypicalModules.CS2103T;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteTaskCommand.DeleteTaskFromModuleDescriptor;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.task.Task;
 
 /**
- * A utility class to help with building {@code AddTaskToModuleDescriptor} objects.
+ * A utility class to help with building {@code DeleteTaskFromModuleDescriptor} objects.
  */
 public class DeleteTaskFromModuleDescriptorBuilder {
-    public static final Task VALID_TASK = new Task(VALID_TASK_A);
+    public static final Module DEFAULT_MODULE = CS2103T;
     public static final Index TASK_INDEX_ONE = Index.fromOneBased(1);
 
     private DeleteTaskFromModuleDescriptor descriptor;
