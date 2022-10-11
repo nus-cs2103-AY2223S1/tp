@@ -17,6 +17,8 @@ public class Itinerary {
     private final Date endDate;
     private final People people;
 
+    private ItemList itemList;
+
     /**
      * Every field must be present and not null.
      */
@@ -30,6 +32,7 @@ public class Itinerary {
         this.startDate = startDate;
         this.endDate = endDate;
         this.people = people;
+        this.itemList = new ItemList();
     }
 
     public Name getName() {
