@@ -15,15 +15,13 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
 
-
 public class SortCommandTest {
     private Model model;
     private Model expectedModel;
 
     @BeforeEach
     public void setModel() {
-        Model model = new ModelManager();
-        expectedModel = new ModelManager();
+        this.model = new ModelManager();
         Person[] persons = {ELLE, AMY, BOB};
         for (Person p: persons) {
             model.addPerson(p);
@@ -54,6 +52,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_sortByName_success() {
+        this.expectedModel = new ModelManager();
         Person[] persons = {AMY, BOB, ELLE};
         for (Person p: persons) {
             expectedModel.addPerson(p);
