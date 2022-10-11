@@ -81,10 +81,10 @@
                                                             </VBox>
                                                         </children>
                                                     </AnchorPane>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                    <AnchorPane minHeight="0.0" minWidth="360.0">
                                                         <children>
                                                             <VBox fx:id="customerDetailsPane" minWidth="340"
-                                                                  prefWidth="340"
+                                                                  styleClass="detailsPane" prefWidth="340"
                                                                   AnchorPane.bottomAnchor="0.0"
                                                                   AnchorPane.leftAnchor="0.0"
                                                                   AnchorPane.rightAnchor="0.0"
@@ -116,7 +116,7 @@
                                                     <AnchorPane minHeight="0.0" minWidth="360.0">
                                                         <children>
                                                             <VBox fx:id="commissionList" minHeight="380.0"
-                                                                  minWidth="340.0" prefWidth="340"
+                                                                  minWidth="360.0" prefWidth="360"
                                                                   styleClass="card-pane"
                                                                   AnchorPane.bottomAnchor="0.0"
                                                                   AnchorPane.leftAnchor="0.0"
@@ -130,10 +130,10 @@
                                                             </VBox>
                                                         </children>
                                                     </AnchorPane>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                    <AnchorPane minHeight="0.0" minWidth="360.0">
                                                         <children>
-                                                            <VBox fx:id="commissionDetailsPane" minWidth="340"
-                                                                  prefWidth="340"
+                                                            <VBox fx:id="commissionDetailsPane" minWidth="360"
+                                                                  prefWidth="360" styleClass="detailsPane"
                                                                   AnchorPane.bottomAnchor="0.0"
                                                                   AnchorPane.leftAnchor="0.0"
                                                                   AnchorPane.rightAnchor="0.0"

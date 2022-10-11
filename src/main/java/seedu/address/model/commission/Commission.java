@@ -36,6 +36,32 @@ public class Commission {
     private final Description description;
 
     /**
+     * Represents a more defined CompletionStatus of the commission,
+     * taking into account the number of iterations in the commission
+     * on top of its CompletionStatus.
+     */
+    public enum CompletionStatusString {
+        COMPLETED {
+            @Override
+            public String toString() {
+                return "Completed";
+            }
+        },
+        IN_PROGRESS {
+            @Override
+            public String toString() {
+                return "In Progress";
+            }
+        },
+        NOT_STARTED {
+            @Override
+            public String toString() {
+                return "Not Started";
+            }
+        }
+    }
+
+    /**
      * Constructs a Commission.
      * @param builder Instance of CommissionBuilder.
      */
@@ -68,6 +94,28 @@ public class Commission {
 
     public CompletionStatus getCompletionStatus() {
         return completionStatus;
+    }
+
+    /**
+     * Returns a String representation of the Commission's completion status,
+     * based on whether it has been marked as completed, as determined by its
+     * {@code CompletionStatus}, as well as the number of Iterations in its
+     * {@code UniqueIterationList}.
+     *
+     * @return {@code COMPLETED}, if the commission's CompletionStatus is completed. Else,
+     *         returns {@code IN_PROGRESS} if there are iterations in the Commission, and
+     *         {@code NOT_STARTED} otherwise.
+     */
+    public CompletionStatusString getCompletionStatusString() {
+        if (completionStatus.isCompleted) {
+            return CompletionStatusString.COMPLETED;
+        }
+
+        if (iterations.size() > 0) {
+            return CompletionStatusString.IN_PROGRESS;
+        }
+
+        return CompletionStatusString.NOT_STARTED;
     }
 
     /**

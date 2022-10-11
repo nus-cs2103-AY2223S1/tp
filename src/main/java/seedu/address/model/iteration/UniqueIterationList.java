@@ -100,6 +100,13 @@ public class UniqueIterationList implements Iterable<Iteration> {
     }
 
     /**
+     * Returns the number of iterations in the UniqueIterationList.
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Iteration> asUnmodifiableObservableList() {

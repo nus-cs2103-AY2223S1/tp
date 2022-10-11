@@ -7,44 +7,120 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.AnchorPane?>
-
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Circle?>
+
 <HBox id="detailsPane" fx:id="detailsPane"
-      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="edge-to-edge">
-    <AnchorPane minHeight="0.0" minWidth="0.0" HBox.hgrow="ALWAYS">
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" styleClass="edge-to-edge">
+    <AnchorPane minHeight="0.0" minWidth="340.0" HBox.hgrow="ALWAYS">
     <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge"
                 AnchorPane.bottomAnchor="0.0"
                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                 AnchorPane.topAnchor="0.0">
-        <content>
-            <VBox alignment="TOP_LEFT">
+            <VBox>
                 <padding>
-                    <Insets bottom="5" left="15" right="5" top="5" />
+                    <Insets bottom="5" left="5" right="5" top="5" />
                 </padding>
                 <HBox alignment="CENTER_LEFT" spacing="5">
-                    <Label fx:id="id" styleClass="cell_big_label" textFill="#D8D8D8">
-                        <minWidth>
+                    <Label fx:id="id" styleClass="cell_big_label" textFill="#D8D8D8" wrapText="true">
+                        <minHeight>
                             <!-- Ensures that the label text is never truncated -->
                             <Region fx:constant="USE_PREF_SIZE" />
-                        </minWidth>
+                        </minHeight>
                     </Label>
-                    <Label id="title" fx:id="title" styleClass="cell_big_label" text="\$first">
-                        <font>
-                            <Font size="24.0" />
-                        </font>
+                    <Label id="title" fx:id="title" styleClass="cell_title_label" text="\$first" wrapText="true">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minHeight>
                     </Label>
+                    <VBox.margin>
+                        <Insets bottom="8.0" />
+                    </VBox.margin>
                 </HBox>
-                <FlowPane fx:id="tags" />
-                <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-                <Label fx:id="fee" styleClass="cell_small_label" text="\$fee" />
-                <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
-                <Label fx:id="completionStatus" styleClass="cell_small_label" text="\$completionStatus" />
-                <Label fx:id="customerName" styleClass="cell_small_label" text="\$customerName" />
-                <ListView fx:id="iterationListView" VBox.vgrow="ALWAYS" />
+                <FlowPane fx:id="tags">
+                    <VBox.margin>
+                        <Insets bottom="8.0" />
+                    </VBox.margin>
+                </FlowPane>
+                <HBox alignment="CENTER_LEFT">
+                    <Circle fx:id="completionStatusCircle" radius="4">
+                        <HBox.margin>
+                            <Insets right="8"/>
+                        </HBox.margin>
+                    </Circle>
+                    <Label fx:id="completionStatus" styleClass="cell_small_label" text="\$completionStatus" />
+                    <VBox.margin>
+                        <Insets bottom="8.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox>
+                    <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minHeight>
+                    </Label>
+                    <VBox.margin>
+                        <Insets bottom="8" />
+                    </VBox.margin>
+                </HBox>
+                <HBox>
+                    <ImageView fx:id="feeIcon" fitWidth="14" fitHeight="16">
+                        <HBox.margin>
+                            <Insets right="8"/>
+                        </HBox.margin>
+                    </ImageView>
+                    <Label fx:id="fee" styleClass="cell_small_label" text="\$fee" wrapText="true">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minHeight>
+                    </Label>
+                    <VBox.margin>
+                        <Insets bottom="4.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox>
+                    <ImageView fx:id="deadlineIcon" fitWidth="14" fitHeight="14">
+                        <HBox.margin>
+                            <Insets right="8"/>
+                        </HBox.margin>
+                    </ImageView>
+                    <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
+                    <VBox.margin>
+                        <Insets bottom="4.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox>
+                    <ImageView fx:id="customerIcon" fitWidth="12.5" fitHeight="16">
+                        <HBox.margin>
+                            <Insets right="8"/>
+                        </HBox.margin>
+                    </ImageView>
+                    <Label fx:id="customerName" styleClass="cell_small_label" text="\$customerName" wrapText="true">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minHeight>
+                    </Label>
+                    <VBox.margin>
+                        <Insets bottom="8.0" />
+                    </VBox.margin>
+                </HBox>
+                <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS">
+                    <placeholder>
+                        <HBox>
+                            <Label styleClass="noSuchData" text="No iterations found"
+                                   VBox.vgrow="ALWAYS" minHeight="80" minWidth="300" textAlignment="CENTER"
+                                   alignment="CENTER" style="-fx-text-fill: #6F747E;">
+                            </Label>
+                        </HBox>
+                    </placeholder>
+                </ListView>
             </VBox>
-        </content>
     </ScrollPane>
     </AnchorPane>
 </HBox>
