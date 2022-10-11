@@ -9,7 +9,7 @@ Sherlock is a desktop database application used for finding information for law 
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
   * `to be added soon`
 
 * **Code contributed**:

@@ -109,7 +109,7 @@ Edits an existing person in Watson.
 Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br>
 `edit index/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `ID` or `INDEX`. The ID refers to the unique Identification number assigned to the person. 
+* Edits the person at the specified `ID` or `INDEX`. The ID refers to the unique Identification number assigned to the person.
 The index refers to the index of the person after using the find/list feature.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
