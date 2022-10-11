@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 
 import javafx.scene.input.KeyEvent;
-import seedu.address.storage.CommandHistoryStorage;
+import seedu.address.ui.history.CommandHistory;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -23,7 +23,7 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
 
-    private CommandHistoryStorage commandHistoryStorage = new CommandHistoryStorage();
+    private CommandHistory commandHistoryStorage = new CommandHistory();
 
     @FXML
     private TextField commandTextField;
@@ -58,7 +58,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Handles the any button pressed event.
+     * Handles the Enter button, Up button and Down button pressed events.
      */
     @FXML
     private void handleButtonPressed(KeyEvent event) {

@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.ui.history;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,43 +8,11 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CommandHistoryStorage {
+public class CommandHistory {
     private ArrayList<String> previousCommands = new ArrayList<>();
     private int pointer = previousCommands.size();
-    private Path filePath;
 
-    public CommandHistoryStorage(Path filePath) {
-        this.filePath = filePath;
-
-        File file = new File(filePath.toString());
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                System.out.println("File cannot be created");
-            }
-        }
-
-        try {
-            init();
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        }
-    }
-
-    public CommandHistoryStorage() {}
-
-    public void init() throws FileNotFoundException {
-
-        Scanner s = new Scanner(new File(this.filePath.toString()));
-
-        while (s.hasNext()) {
-            String currLine = s.nextLine();
-            previousCommands.add(currLine);
-        }
-    }
-
-    public void writeCommandHistory() {
+    /* public void writeCommandHistory() {
         try {
             FileWriter writer = new FileWriter(this.filePath.toString());
             for (int i = 0; i < previousCommands.size(); i++) {
@@ -55,7 +23,7 @@ public class CommandHistoryStorage {
         } catch (IOException e) {
             System.out.println(e);
         }
-    }
+    } */
 
 
     public void add(String userInput) {
