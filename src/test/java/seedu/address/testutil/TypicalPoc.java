@@ -10,7 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import seedu.address.model.poc.Poc;
-import seedu.address.model.poc.UniquePocList;
 
 /**
  * A utility class containing a list of {@code Poc} objects to be used in tests.
@@ -47,9 +46,6 @@ public class TypicalPoc {
     public static final Poc BOB = new PocBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
-
-    public static final UniquePocList EMPTY_POC_LIST = new UniquePocList();
-
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
