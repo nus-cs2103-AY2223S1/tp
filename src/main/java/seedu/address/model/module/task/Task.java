@@ -29,6 +29,9 @@ public class Task {
      * Returns true if a given {@code String} is a valid task description.
      */
     public static boolean isValidTaskDescription(String test) {
+        if (test == null) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
