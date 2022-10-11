@@ -98,8 +98,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean conflictSchedule(Schedule newSchedule) {
         requireNonNull(newSchedule);
-        Module targetModule = getModuleByModuleCode(newSchedule.getModule());
-        return targetModule.conflictAnySchedule(newSchedule);
+        for (Module module: modules) {
+            if (module.conflictAnySchedule(newSchedule)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
