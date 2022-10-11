@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Helper functions for handling strings.
@@ -36,6 +38,29 @@ public class StringUtil {
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code keywords}.
+     *   Ignores case, but full keywords match is required.
+     *   <br>examples:<pre>
+     *       containsWordIgnoreCase("ABc def", "abc") == true
+     *       containsWordIgnoreCase("ABc def", "abc DEF") == true
+     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       </pre>
+     * @param sentence cannot be null
+     * @param keywords cannot be null, cannot be empty, can be multiple words
+     */
+    public static boolean containsKeywordsIgnoreCase(String sentence, String keywords) {
+        requireNonNull(sentence);
+        requireNonNull(keywords);
+
+        List<String> preppedKeywords = Arrays.asList(keywords.trim().split("\\s+"));
+        checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
+
+        List<String> wordsInPreppedSentence = Arrays.asList(sentence.split("\\s+"));
+
+        return !Collections.disjoint(wordsInPreppedSentence, preppedKeywords);
     }
 
     /**
