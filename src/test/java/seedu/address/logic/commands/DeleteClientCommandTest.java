@@ -20,7 +20,7 @@ import seedu.address.model.client.Client;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteClientCommand}.
  */
 public class DeleteClientCommandTest {
 
