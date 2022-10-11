@@ -11,6 +11,7 @@ import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.CollectionUtil;
 import jarvis.logic.commands.exceptions.CommandException;
+import jarvis.model.MasteryCheckStatus;
 import jarvis.model.Model;
 import jarvis.model.Student;
 import jarvis.model.StudentName;
@@ -20,10 +21,10 @@ import jarvis.model.StudentName;
  */
 public class EditStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editstudent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+            + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME]\n"
@@ -32,7 +33,7 @@ public class EditStudentCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -62,7 +63,7 @@ public class EditStudentCommand extends Command {
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.setStudent(studentToEdit, editedStudent);
@@ -78,7 +79,8 @@ public class EditStudentCommand extends Command {
         assert studentToEdit != null;
 
         StudentName updatedStudentName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
-        return new Student(updatedStudentName);
+        MasteryCheckStatus mcStatus = studentToEdit.getMcStatus();
+        return new Student(updatedStudentName, mcStatus);
     }
 
     @Override

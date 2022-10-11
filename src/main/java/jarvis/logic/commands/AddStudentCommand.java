@@ -20,34 +20,34 @@ public class AddStudentCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in JARVIS";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in JARVIS";
 
-    private final Student toAdd;
+    private final Student studentToAdd;
 
     /**
      * Creates an AddStudentCommand to add the specified {@code Student}
      */
     public AddStudentCommand(Student student) {
         requireNonNull(student);
-        toAdd = student;
+        studentToAdd = student;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasStudent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasStudent(studentToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.addStudent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addStudent(studentToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddStudentCommand // instanceof handles nulls
-                && toAdd.equals(((AddStudentCommand) other).toAdd));
+                && studentToAdd.equals(((AddStudentCommand) other).studentToAdd));
     }
 }
