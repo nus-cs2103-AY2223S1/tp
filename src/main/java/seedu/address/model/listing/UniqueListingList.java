@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.client.exceptions.ClientNotFoundException;
+import seedu.address.model.client.exceptions.DuplicateClientException;
 
 /**
  * A list of listings that enforces uniqueness between its elements and does not allow nulls.
@@ -43,7 +43,7 @@ public class UniqueListingList implements Iterable<Listing> {
     public void add(Listing toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +58,11 @@ public class UniqueListingList implements Iterable<Listing> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ClientNotFoundException();
         }
 
         if (!target.isSameListing(editedListing) && contains(editedListing)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
 
         internalList.set(index, editedListing);
@@ -75,7 +75,7 @@ public class UniqueListingList implements Iterable<Listing> {
     public void remove(Listing toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ClientNotFoundException();
         }
     }
 
@@ -91,7 +91,7 @@ public class UniqueListingList implements Iterable<Listing> {
     public void setListings(List<Listing> listings) {
         requireAllNonNull(listings);
         if (!listingsAreUnique(listings)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateClientException();
         }
 
         internalList.setAll(listings);

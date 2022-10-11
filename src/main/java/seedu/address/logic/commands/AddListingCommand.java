@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.listing.Listing;
 
 /**
- * Adds a person to the address book.
+ * Adds a client to the address book.
  */
 public class AddListingCommand extends Command {
 
@@ -33,7 +33,7 @@ public class AddListingCommand extends Command {
     private final Listing toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Client}
      */
     public AddListingCommand(Listing listing) {
         requireNonNull(listing);

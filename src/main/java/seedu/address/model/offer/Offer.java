@@ -1,7 +1,7 @@
 package seedu.address.model.offer;
 
 import seedu.address.model.listing.Listing;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
 
 /**
  * Offer Class represents a clients offer for a listing, containing an offer price.
@@ -11,7 +11,7 @@ public class Offer {
     /**
      * Client making the offer.
      */
-    private final Person person;
+    private final Client client;
     /**
      * Listing the offer is for.
      */
@@ -24,22 +24,22 @@ public class Offer {
     /**
      * Constructor for offer object.
      *
-     * @param client Person
+     * @param client Client
      * @param listing Listing
      * @param offerPrice int
      */
-    public Offer(Person client, Listing listing, int offerPrice) {
-        this.person = client;
+    public Offer(Client client, Listing listing, int offerPrice) {
+        this.client = client;
         this.listing = listing;
         this.offerPrice = offerPrice;
     }
 
     /**
      * Getter for client.
-     * @return Person
+     * @return Client
      */
-    public Person getClient() {
-        return person;
+    public Client getClient() {
+        return client;
     }
 
     /**
@@ -65,6 +65,6 @@ public class Offer {
     @Override
     public String toString() {
         return String.format("%s is offering $%s for %s",
-                this.person.getName(), this.offerPrice, this.listing.getAddress());
+                this.client.getName(), this.offerPrice, this.listing.getAddress());
     }
 }

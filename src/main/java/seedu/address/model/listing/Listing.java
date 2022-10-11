@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.offer.Offer;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Name;
 
 /**
  * Listing object contains a currently listed property, its owner, asking price, and offers and clients.
@@ -15,13 +15,13 @@ public class Listing {
     private final Address address;
     private final Name owner;
     private final int askingPrice;
-    private final List<Person> interestedClients;
+    private final List<Client> interestedClients;
     private final List<Offer> currentOffers;
 
     /**
      ** Constructor for Listing
      * @param address Address
-     * @param owner Person
+     * @param owner Client
      * @param askingPrice int
      */
     public Listing(Address address, Name owner, int askingPrice) {
@@ -42,7 +42,7 @@ public class Listing {
 
     /**
      * Getter for owner.
-     * @return Person
+     * @return Client
      */
     public Name getOwner() {
         return owner;
@@ -58,9 +58,9 @@ public class Listing {
 
     /**
      * Getter for a list of interested clients.
-     * @return List(Person)
+     * @return List(Client)
      */
-    public List<Person> getInterestedClients() {
+    public List<Client> getInterestedClients() {
         return interestedClients;
     }
 
@@ -100,7 +100,7 @@ public class Listing {
                 .append("; Asking Price: ")
                 .append(getAskingPrice());
 
-        List<Person> interstedClients = getInterestedClients();
+        List<Client> interstedClients = getInterestedClients();
         if (!interstedClients.isEmpty()) {
             builder.append("; Interested Clients: ");
             interstedClients.forEach(builder::append);

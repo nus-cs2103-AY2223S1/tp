@@ -3,7 +3,7 @@ package seedu.address.model.meeting;
 import java.time.LocalDateTime;
 
 import seedu.address.model.listing.Listing;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
 
 /**
  * Meeting class is a meeting a client has at a listing on a specific dateTime.
@@ -17,7 +17,7 @@ public class Meeting {
     /**
      * Client involved in the meeting.
      */
-    private final Person client;
+    private final Client client;
     /**
      * Listing involved in the meeting.
      */
@@ -25,11 +25,11 @@ public class Meeting {
 
     /**
      * Constructor for meeting.
-     * @param client Person
+     * @param client Client
      * @param listing Listing
      * @param dateTime dateTime
      */
-    public Meeting(Person client, Listing listing, LocalDateTime dateTime) {
+    public Meeting(Client client, Listing listing, LocalDateTime dateTime) {
         this.client = client;
         this.listing = listing;
         this.dateTime = dateTime;
@@ -37,9 +37,9 @@ public class Meeting {
 
     /**
      * Getter for client.
-     * @return Person
+     * @return Client
      */
-    public Person getClient() {
+    public Client getClient() {
         return client;
     }
 
