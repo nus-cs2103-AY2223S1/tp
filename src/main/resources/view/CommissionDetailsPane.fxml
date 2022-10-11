@@ -47,7 +47,16 @@
                         <Insets top="16" bottom="8" />
                     </VBox.margin>
                 </Label>
-                <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS" />
+                <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS">
+                    <placeholder>
+                        <HBox>
+                            <Label styleClass="noSuchData" text="No iterations found"
+                                   VBox.vgrow="ALWAYS" minHeight="80" minWidth="340" textAlignment="CENTER"
+                                   alignment="CENTER" style="-fx-text-fill: #6F747E;">
+                            </Label>
+                        </HBox>
+                    </placeholder>
+                </ListView>
             </VBox>
         </content>
     </ScrollPane>

@@ -326,6 +326,11 @@
     -fx-background-color: transparent;
 }
 
+.noSuchData {
+    -fx-background-color: #1E2128;
+    -fx-background-radius: 4px;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
