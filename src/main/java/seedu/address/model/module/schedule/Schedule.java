@@ -88,7 +88,7 @@ public class Schedule {
      * @param newSchedule new slot to add
      * @return conflict or not
      */
-    public boolean isConflict(Schedule newSchedule) {
+    public boolean isConflictWith(Schedule newSchedule) {
         if (newSchedule.startTime.compareTo(this.endTime) > 0
                 || newSchedule.endTime.compareTo(this.startTime) < 0) {
             return false;
@@ -115,7 +115,5 @@ public class Schedule {
                 && otherSchedule.endTime.equals(this.endTime)
                 && otherSchedule.classType.equals(this.classType);
     }
-
-
 
 }
