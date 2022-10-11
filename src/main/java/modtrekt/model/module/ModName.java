@@ -18,7 +18,7 @@ public class ModName {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    private final String fullName;
 
     /**
      * Constructs a {@code ModName}.
@@ -55,4 +55,7 @@ public class ModName {
         return fullName.hashCode();
     }
 
+    public String getFullName() {
+        return fullName;
+    }
 }
