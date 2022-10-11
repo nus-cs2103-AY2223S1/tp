@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyPennyWise;
 import seedu.address.model.entry.Amount;
-import seedu.address.model.entry.Description;
 import seedu.address.model.entry.Date;
+import seedu.address.model.entry.Description;
 import seedu.address.model.entry.Expenditure;
 import seedu.address.model.entry.Income;
 import seedu.address.model.tag.Tag;
@@ -44,7 +44,11 @@ public class SampleDataUtil {
 
     public static Income[] getSampleIncome() {
         return new Income[] {
-                new Income(new Description("Tutoring"), new Date("01-01-2022"), new Amount("100"), getTagSet("tutoring"))
+           new Income(
+                   new Description("Tutoring"),
+                   new Date("01-01-2022"),
+                   new Amount("100"),
+                   getTagSet("tutoring"))
         };
     }
 
