@@ -14,8 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.resident.fields.ResidentFields;
-
 
 /**
  * Represents the in-memory model of the resident book data.

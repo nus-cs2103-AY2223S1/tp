@@ -1,5 +1,7 @@
 package seedu.rc4hdb.ui;
 
+import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -9,10 +11,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.resident.fields.*;
-import seedu.rc4hdb.model.tag.Tag;
+import seedu.rc4hdb.model.resident.fields.Field;
+import seedu.rc4hdb.model.resident.fields.ResidentFields;
 
 /**
  * Panel containing the list of persons.

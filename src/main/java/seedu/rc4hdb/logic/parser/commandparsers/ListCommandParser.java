@@ -40,7 +40,7 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         String[] specifiedFields = getSpecifiedFields(args);
 
-        populateFieldLists(specifiedFields, fieldsToIncludeFromHiding, fieldsToExcludeFromShowing);
+        populateFieldLists(specifiedFields, fieldsToIncludeFromHiding, fieldsToExcludeFromShowing, allFields);
 
         if (getListSpecifier(args) == INCLUDE_SPECIFIER) {
             return new ListCommand(fieldsToIncludeFromHiding);
@@ -77,11 +77,13 @@ public class ListCommandParser implements Parser<ListCommand> {
         return fieldsString.split(" ");
     }
 
-    private void populateFieldLists(String[] specifiedFields,
-                                    List<String> fieldsToInclude, List<String> fieldsToExclude) {
+    private void populateFieldLists(String[] specifiedFields, List<String> fieldsToInclude,
+                                    List<String> fieldsToExclude, List<String> allFields) {
         for (String field : specifiedFields) {
             fieldsToInclude.remove(field);
-            fieldsToExclude.add(field);
+            if (allFields.contains(field)) {
+                fieldsToExclude.add(field);
+            }
         }
     }
 }

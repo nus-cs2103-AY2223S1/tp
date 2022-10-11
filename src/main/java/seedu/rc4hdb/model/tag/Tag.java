@@ -2,6 +2,7 @@ package seedu.rc4hdb.model.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
+
 import seedu.rc4hdb.model.resident.fields.Field;
 
 /**
