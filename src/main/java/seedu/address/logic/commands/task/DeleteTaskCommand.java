@@ -27,7 +27,7 @@ public class DeleteTaskCommand extends TaskCommand {
     private final Index targetIndex;
 
     /**
-     * Creates an DeleteCommand to remove the specified {@code Task}
+     * Creates an DeleteTaskCommand to remove the specified {@code Task}
      */
     public DeleteTaskCommand(Index targetIndex) {
         requireNonNull(targetIndex);
