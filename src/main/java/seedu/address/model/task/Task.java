@@ -1,7 +1,6 @@
 package seedu.address.model.task;
 
 import seedu.address.model.group.Group;
-import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
@@ -12,26 +11,48 @@ public class Task implements DisplayItem {
 
     private final String title;
     private final String status;
-    private final LocalDateTime completed_time;
+    private final LocalDateTime completedTime;
 
     private Group parent;
 
+    /**
+     * Create a new task with no completed_time
+     *
+     * @param title The title of the task.
+     * @param status The status of the task.
+     */
     public Task(String title, String status) {
         this(title, status, null);
     }
 
-    public Task(String title, String status, LocalDateTime completed_time) {
+    /**
+     * Create a new task with a completed_time.
+     *
+     * @param title The title of the task.
+     * @param status The status of the task.
+     * @param completedTime The completed_time of the task.
+     */
+    public Task(String title, String status, LocalDateTime completedTime) {
         this.title = title;
         this.status = status;
-        this.completed_time = completed_time;
+        this.completedTime = completedTime;
     }
 
+    /**
+     * Returns the parent {@code Group} of this Task.
+     *
+     * @return The parent Group.
+     */
     public Group getParentGroup() {
         return parent;
     }
 
+    /**
+     * Returns true if both tasks have the same name and group. This defines a weaker notion of equality between two
+     * tasks.
+     */
     public boolean isSameTask(Task t) {
-        return title.equals(t.title) && status.equals(t.status) && completed_time.equals(t.completed_time);
+        return title.equals(t.title) && status.equals(t.status) && completedTime.equals(t.completedTime);
     }
 
     /**
