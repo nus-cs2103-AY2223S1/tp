@@ -69,11 +69,10 @@ public class FindProfileCommandTest {
 
     @Test
     public void execute_singleKeyword_singleProfileFound() {
-        String expectedMessage = String.format(MESSAGE_PROFILE_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate predicate = preparePredicate("Elle");
         FindProfileCommand command = new FindProfileCommand(predicate);
         expectedModel.updateFilteredProfileList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, MESSAGE_PROFILE_LISTED_OVERVIEW, expectedModel);
         assertEquals(Arrays.asList(ELLE), model.getFilteredProfileList());
     }
 
