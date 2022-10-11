@@ -23,6 +23,11 @@ public class TaskList implements Iterable<Task> {
         internalList.add(toAdd);
     }
 
+    public void remove(Task toRemove) {
+        requireNonNull(toRemove);
+        internalList.remove(toRemove);
+    }
+
     public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);
 

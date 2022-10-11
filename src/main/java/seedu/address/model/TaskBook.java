@@ -66,25 +66,9 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.add(t);
     }
 
-    /**
-     * Replaces the given student {@code target} in the list with {@code editedStudent}.
-     * {@code target} must exist in the address book.
-     * The student identity of {@code editedStudent} must not be the same as another
-     * existing student in the address book.
-     */
-//    public void setStudent(Student target, Student editedStudent) {
-//        requireNonNull(editedStudent);
-//
-//        students.setStudent(target, editedStudent);
-//    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-//    public void removeStudent(Student key) {
-//        students.remove(key);
-//    }
+    public void deleteTask(Task t) {
+        tasks.remove(t);
+    }
 
     //// util methods
 

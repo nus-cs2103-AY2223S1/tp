@@ -92,4 +92,6 @@ public interface Model {
     ReadOnlyTaskBook getTaskBook();
 
     void addTask(Task task);
+
+    void deleteTask(Task target);
 }

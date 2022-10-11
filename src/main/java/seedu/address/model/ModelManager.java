@@ -132,6 +132,12 @@ public class ModelManager implements Model {
         taskBook.addTask(task);
     }
 
+    @Override
+    public void deleteTask(Task target) {
+        requireNonNull(target);
+        taskBook.deleteTask(target);
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**
