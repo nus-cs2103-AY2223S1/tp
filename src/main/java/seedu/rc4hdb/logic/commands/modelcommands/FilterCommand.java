@@ -40,10 +40,11 @@ public class FilterCommand extends ModelCommand {
 
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
 
+    /** description to filter the resident with */
     private final ResidentDescriptor filterPersonDescriptor;
 
     /**
-     * @param filterPersonDescriptor description to filter the resident with
+     * @param filterPersonDescriptor description object to filter the resident with
      */
     public FilterCommand(ResidentDescriptor filterPersonDescriptor) {
         requireNonNull(filterPersonDescriptor);
