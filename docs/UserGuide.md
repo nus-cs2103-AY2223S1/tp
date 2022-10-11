@@ -5,7 +5,7 @@ title: User Guide
 
 # User Guide
 
-Sherlock is a **desktop app for law enforcement officers to easily manage the particulars of citizens optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interfac (GUI). If you can type fast, Sherlock can retrieve information for potential suspects faster than traditional GUI apps.
+Watson is a **desktop app for teachers that helps with a multitude of tasks, such as handling student particulars, sorting students with many different features, and more. It adopts a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interfac (GUI). If you can type fast, Watson can retrieve and handle the data of students faster than other GUI-based applications.
 
 * Table of Contents
     * [Quick Start](#quick-start)
@@ -24,9 +24,9 @@ Sherlock is a **desktop app for law enforcement officers to easily manage the pa
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `sherlock.jar` from here (Hyperlink will be added in the future).
+1. Download the latest `watson.jar` from here (Hyperlink will be added in the future).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Sherlock.
+1. Copy the file to the folder you want to use as the _home folder_ for Watson.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -34,11 +34,11 @@ Sherlock is a **desktop app for law enforcement officers to easily manage the pa
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all persons in Sherlock.
+    * **`list`** : Lists all persons in Watson.
 
-    * **`add`**`id/12345678 n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a person named `John Doe` to Sherlock.
+    * **`add`**`id/12345678 n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a person named `John Doe` to Watson.
 
-    * **`delete`**`id/12345678` : Deletes the person with `ID number 12345678` from Sherlock.
+    * **`delete`**`id/12345678` : Deletes the person with `ID number 12345678` from Watson.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -81,11 +81,11 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to Sherlock.
+Adds a person to Watson.
 
 Format: `add id/ID_NUMBER n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-* Adds a person’s detail to Sherlock. The person must not exist in Sherlock.
+* Adds a person’s detail to Watson. The person must not exist in Watson.
 * Minimal details are required to add a person’s detail at the beginning. Any other information can be added through the `edit` feature.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -94,17 +94,17 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add id/1234 n/John Doe p/98765432 a/John street, block 123, #01-01`
-* `add id/1235 n/Betsy Crowe a/Newgate Prison p/12345678 t/criminal`
+* `add id/1235 n/Amy Lim a/Bugis Crescent p/12345678 t/Enjoys ice cream`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in Sherlock.
+Shows a list of all persons in Watson.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in Sherlock.
+Edits an existing person in Watson.
 
 Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br>
 `edit index/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
@@ -142,7 +142,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from Sherlock.
+Deletes the specified person from Watson.
 
 Format: `delete id/ID` <br> `delete index/INDEX`
 
@@ -158,7 +158,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the database.
 
 Format: `clear`
 
@@ -170,14 +170,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Watson's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Watson's data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Watson will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -189,7 +189,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Watson home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
