@@ -2,6 +2,13 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
+
+import seedu.address.model.Deadline;
+import seedu.address.model.Name;
+import seedu.address.model.client.Client;
+import seedu.address.model.issue.Issue;
+
 /**
  * Represents a Project.
  */
@@ -11,21 +18,27 @@ public class Project {
     private Name name;
     private Repository repository;
     private Deadline deadline;
-    private String client;
-    private String issue;
+    private Client client;
+    private ProjectId projectId;
+    private List<Issue> issueList;
 
     /**
      * Name field must be present and not null and other fields may be optional.
      */
-    public Project(Name name, Repository repository, Deadline deadline, String client, String issue) {
-        requireAllNonNull(name, repository, deadline, client, issue);
+    public Project(Name name, Repository repository, Deadline deadline,
+                   Client client, List<Issue> issueList, ProjectId projectId) {
+        requireAllNonNull(name, repository, deadline, client);
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;
         this.client = client;
-        this.issue = issue;
+        this.issueList = issueList;
+        this.projectId = projectId;
     }
 
+    public ProjectId getId() {
+        return projectId;
+    }
     public Name getProjectName() {
         return name;
     }
@@ -38,12 +51,12 @@ public class Project {
         return deadline;
     }
 
-    public String getClient() {
+    public Client getClient() {
         return client;
     }
 
-    public String getIssue() {
-        return issue;
+    public List<Issue> getIssueList() {
+        return issueList;
     }
 
     /**
@@ -65,7 +78,7 @@ public class Project {
                 && otherProject.getRepository().equals(getRepository())
                 && otherProject.getDeadline().equals(getDeadline())
                 && otherProject.getClient().equals(getClient())
-                && otherProject.getIssue().equals(getIssue());
+                && otherProject.getIssueList().equals(getIssueList());
     }
 
     /**
@@ -79,5 +92,10 @@ public class Project {
 
         return otherProject != null
                 && otherProject.getProjectName().equals(getProjectName());
+    }
+
+    @Override
+    public String toString() {
+        return this.getProjectName().toString();
     }
 }
