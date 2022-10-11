@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -76,12 +77,46 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the address book.
+     */
+    void deleteTask(Task task);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the address book.
+     */
+    void addTask(Task task);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the address book.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
+     */
+    void setTask(Task target, Task editedTask);
+
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
 }
