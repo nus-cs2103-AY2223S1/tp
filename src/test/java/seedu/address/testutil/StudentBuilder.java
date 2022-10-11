@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.student.Address;
+import seedu.address.model.student.Class;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -18,12 +19,14 @@ public class StudentBuilder {
 
     public static final String DEFAULT_STUDENT_NAME = "Amy Bee";
     public static final String DEFAULT_ID = "123Z";
+    public static final String DEFAULT_CLASS = "1A";
     public static final String DEFAULT_PARENT_NAME = "John Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name studentName;
     private Id id;
+    private Class className;
     private Name parentName;
     private Phone phone;
     private Address address;
@@ -35,6 +38,7 @@ public class StudentBuilder {
     public StudentBuilder() {
         studentName = new Name(DEFAULT_STUDENT_NAME);
         id = new Id(DEFAULT_ID);
+        className = new Class(DEFAULT_CLASS);
         parentName = new Name(DEFAULT_PARENT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
@@ -47,6 +51,7 @@ public class StudentBuilder {
     public StudentBuilder(Student studentToCopy) {
         studentName = studentToCopy.getStudentName();
         id = studentToCopy.getId();
+        className = studentToCopy.getClassName();
         parentName = studentToCopy.getParentName();
         phone = studentToCopy.getPhone();
         address = studentToCopy.getAddress();
@@ -101,8 +106,15 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the class {@code Class} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withClassName(String className) {
+        this.className = new Class(className);
+        return this;
+    }
     public Student build() {
-        return new Student(studentName, id, parentName, phone, address, tags);
+        return new Student(studentName, id, className, parentName, phone, address, tags);
     }
 
 }

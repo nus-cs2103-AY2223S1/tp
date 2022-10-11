@@ -8,6 +8,7 @@ public class CliSyntax {
     /* Prefix definitions */
     public static final Prefix PREFIX_STUDENT_NAME = new Prefix("nm/");
     public static final Prefix PREFIX_ID = new Prefix("id/");
+    public static final Prefix PREFIX_CLASS = new Prefix("class/");
     public static final Prefix PREFIX_PARENT_NAME = new Prefix("pn/");
     public static final Prefix PREFIX_PHONE = new Prefix("hp/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("ad/");
