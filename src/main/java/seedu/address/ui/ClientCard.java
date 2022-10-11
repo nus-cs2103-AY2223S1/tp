@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * An UI component that displays information of a {@code Client}.
@@ -58,8 +59,10 @@ public class ClientCard extends UiPart<Region> {
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
         if (client.getMeeting() != null) {
-            Label label = new Label("•  " + client.getMeeting().getMeetingDate().toString()
-                    + ", " + client.getMeeting().getMeetingTime().toString());
+            Meeting clientMeeting = client.getMeeting();
+            String meetingSummary = String.format("•  %s, %s - %s", clientMeeting.getMeetingDate(),
+                    clientMeeting.getMeetingTime(), clientMeeting.getDescription());
+            Label label = new Label(meetingSummary);
             label.getStyleClass().add("cell_small_label");
             meetingsBox.getChildren().add(label);
         } else {

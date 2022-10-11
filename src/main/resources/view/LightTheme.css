@@ -133,6 +133,12 @@
     -fx-text-fill: #010504;
 }
 
+.cell_meeting_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 15px;
+    -fx-text-fill: #010504;
+}
+
 .stack-pane {
      -fx-background-color: derive(#e6e6e6, 20%);
 }
