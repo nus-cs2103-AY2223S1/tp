@@ -11,33 +11,33 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.applicant.Applicant;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the TrackAScholar tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TrackAScholar trackAScholar;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Applicant> filteredApplicants;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given trackAScholar and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTrackAScholar trackAScholar, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(trackAScholar, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + trackAScholar + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.trackAScholar = new TrackAScholar(trackAScholar);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredApplicants = new FilteredList<>(this.trackAScholar.getApplicantList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TrackAScholar(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,67 +65,67 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTrackAScholarFilePath() {
+        return userPrefs.getTrackAScholarFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTrackAScholarFilePath(Path trackAScholarFilePath) {
+        requireNonNull(trackAScholarFilePath);
+        userPrefs.setTrackAScholarFilePath(trackAScholarFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TrackAScholar ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setTrackAScholar(ReadOnlyTrackAScholar trackAScholar) {
+        this.trackAScholar.resetData(trackAScholar);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyTrackAScholar getTrackAScholar() {
+        return trackAScholar;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasApplicant(Applicant applicant) {
+        requireNonNull(applicant);
+        return trackAScholar.hasApplicant(applicant);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteApplicant(Applicant target) {
+        trackAScholar.removeApplicant(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addApplicant(Applicant applicant) {
+        trackAScholar.addApplicant(applicant);
+        updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setApplicant(Applicant target, Applicant editedApplicant) {
+        requireAllNonNull(target, editedApplicant);
+
+        trackAScholar.setApplicant(target, editedApplicant);
+    }
+
+    //=========== Filtered Applicant List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Applicant} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Applicant> getFilteredApplicantList() {
+        return filteredApplicants;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredApplicants.setPredicate(predicate);
     }
 
     @Override
@@ -142,9 +142,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return trackAScholar.equals(other.trackAScholar)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredApplicants.equals(other.filteredApplicants);
     }
 
 }
