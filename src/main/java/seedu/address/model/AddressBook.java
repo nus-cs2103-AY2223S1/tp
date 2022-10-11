@@ -65,6 +65,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the consultation list with {@code consultations}.
+     * {@code tutorials} must not contain duplicate consultations.
+     */
+    public void setConsultations(List<Consultation> consultations) {
+        this.consultations.setConsultations(consultations);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -73,6 +81,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
 
         setTutorials(newData.getTutorialList());
+
+        setConsultations(newData.getConsultationList());
     }
 
     //// person-level operations
