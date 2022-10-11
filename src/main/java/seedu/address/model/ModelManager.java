@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -133,8 +134,8 @@ public class ModelManager implements Model {
     }
     //=========== Person List Accessors =============================================================
     @Override
-    public void sortContactLexicographical() {
-        addressBook.sortLexicographical();
+    public void sort(Order order, boolean hasName, boolean hasModuleCode) {
+        addressBook.sort(order, hasName, hasModuleCode);
     }
 
     @Override

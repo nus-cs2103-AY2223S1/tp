@@ -8,6 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.order.Order;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
@@ -39,6 +40,15 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code order} into an {@code Order} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws IllegalArgumentException if the specified order is invalid.
+     */
+    public static Order parseOrder(String order) throws IllegalArgumentException {
+        String trimmedOrder = order.trim();
+        return Order.lexicographicalOrder(trimmedOrder);
+    }
     /**
      * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>}
      */

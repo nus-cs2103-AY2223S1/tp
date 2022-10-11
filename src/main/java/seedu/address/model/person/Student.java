@@ -39,4 +39,11 @@ public class Student extends Person {
         }
         return builder.toString();
     }
+    @Override
+    public int compareModuleCode(Person person) {
+        if (person instanceof Student) {
+            return compareName(person);
+        }
+        return -1;
+    }
 }
