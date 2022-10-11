@@ -17,8 +17,9 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Uid id;
+    private final Uid uid;
     private final Name name;
+    private final Gender gender;
     private final Phone phone;
     private final Email email;
 
@@ -29,10 +30,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Uid id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(id, name, phone, email, address, tags);
-        this.id = id;
+
+    public Person(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(uid, name, phone, email, address, tags);
+        this.uid = uid;
         this.name = name;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -42,12 +45,15 @@ public class Person {
     /**
      * @return the id
      */
-    public Uid getId() {
-        return id;
+    public Uid getUid() {
+        return uid;
     }
 
     public Name getName() {
         return name;
+    }
+    public Gender getGender() {
+        return gender;
     }
 
     public Phone getPhone() {
@@ -60,6 +66,12 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+    public String getCategory() {
+        return null;
+    }
+    public String getCategoryIndicator() {
+        return "person";
     }
 
     /**
@@ -80,8 +92,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getId().equals(getId());
+        return otherPerson != null && otherPerson.getUid().equals(getUid());
     }
 
     /**
@@ -99,8 +110,10 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getId().equals(getId())
+
+        return otherPerson.getUid().equals(getUid())
                 && otherPerson.getName().equals(getName())
+                && otherPerson.getGender().equals(getGender())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
@@ -110,16 +123,19 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(uid, name, gender, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Id: ")
-                .append(getId())
+
+        builder.append("Uid: ")
+                .append(getUid())
                 .append("; Name: ")
                 .append(getName())
+                .append("; Gender: ")
+                .append(getGender())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")

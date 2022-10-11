@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,6 +16,7 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final String NOT_APPLICABLE = "NA";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -31,7 +33,15 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private FlowPane category;
+    @FXML
+    private Label uid;
+    @FXML
+    private Label dateTimes;
+    @FXML
     private Label id;
+    @FXML
+    private Label gender;
     @FXML
     private Label phone;
     @FXML
@@ -48,10 +58,19 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+
+        if (person instanceof Patient) {
+            dateTimes.setText(((Patient) person).getDatesTimesInString());
+        } else {
+            dateTimes.setText(NOT_APPLICABLE);
+        }
+        uid.setText("[" + person.getUid().toString() + "]");
         name.setText(person.getName().fullName);
+        gender.setText(person.getGender().gender);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        category.getChildren().add(new Label(person.getCategory()));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -16,7 +16,7 @@ public class Uid implements Comparable<Uid> {
      */
     public static final String VALIDATION_REGEX = "^[0-9]*$";
 
-    public final Long id;
+    public final Long uid;
 
     /**
      * Constructs a {@code Uid}.
@@ -25,7 +25,7 @@ public class Uid implements Comparable<Uid> {
      */
     public Uid(Long inputId) {
         requireNonNull(inputId);
-        id = inputId;
+        uid = inputId;
     }
 
     /**
@@ -35,14 +35,14 @@ public class Uid implements Comparable<Uid> {
      */
     public Uid(String stringId) {
         requireNonNull(stringId);
-        id = Long.parseLong(stringId);
+        uid = Long.parseLong(stringId);
     }
 
     /**
      * @return the id
      */
-    public Long getId() {
-        return id;
+    public Long getUid() {
+        return uid;
     }
 
     /**
@@ -54,23 +54,23 @@ public class Uid implements Comparable<Uid> {
 
     @Override
     public String toString() {
-        return id.toString();
+        return uid.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Uid // instanceof handles nulls
-                        && id.equals(((Uid) other).id)); // state check
+                        && uid.equals(((Uid) other).uid)); // state check
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return uid.hashCode();
     }
 
     @Override
     public int compareTo(Uid o) {
-        return id.compareTo(o.getId());
+        return uid.compareTo(o.getUid());
     }
 }

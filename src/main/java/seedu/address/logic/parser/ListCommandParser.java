@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Optional;
@@ -8,6 +10,7 @@ import java.util.Optional;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Gender;
 import seedu.address.model.tag.Tag;
 
 public class ListCommandParser implements Parser {
@@ -22,11 +25,14 @@ public class ListCommandParser implements Parser {
                 PREFIX_TAG);
 
         Optional<Address> address = argMultimap.getValue(PREFIX_ADDRESS).map(Address::new);
-        Optional<String> category = argMultimap.getValue(PREFIX_CATEGORY).orElse("");
-        Optional<Gender> gender = argMultimap.getValue(PREFIX_GENDER).orElse("");
+        Optional<String> category = Optional.of(argMultimap.getValue(PREFIX_CATEGORY).orElse(""));
+        Optional<Gender>[] gender = new Optional[1];
+        argMultimap.getValue(PREFIX_GENDER).ifPresentOrElse(
+                x -> gender[0] = Optional.of(new Gender(x)),
+                () -> gender[0] = Optional.empty());
         Optional<Tag> tag = argMultimap.getValue(PREFIX_TAG).map(Tag::new);
 
-        return new ListCommand(address, category, gender, tag);
+        return new ListCommand(address, category, gender[0], tag);
     }
 
 }
