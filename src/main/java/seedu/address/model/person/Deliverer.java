@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Set;
@@ -12,10 +10,9 @@ import seedu.address.model.tag.Tag;
 public class Deliverer extends Person {
 
     private final ArrayList<Order> orders;
-    public Deliverer(Name name, Phone phone, Email email, Address address,
+    public Deliverer(PersonCategory personCategory, Name name, Phone phone, Email email, Address address,
                      Set<Tag> tags, ArrayList<Order> orders) {
-        super(name, phone, email, address, tags);
-        //requireNonNull(orders);
+        super(personCategory, name, phone, email, address, tags);
         this.orders = orders;
     }
 

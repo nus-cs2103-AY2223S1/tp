@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +117,19 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code personCategory} into a {@code PersonCategory} and returns it. Leading and trailing whitespaces
+     * will be trimmed.
+     * @throws ParseException if the specified person category is invalid (not a buyer, deliverer, or supplier).
+     */
+    public static PersonCategory parsePersonCategory(String personCategory) throws ParseException {
+        requireNonNull(personCategory);
+        String trimmedPersonCategory = personCategory.trim();
+        if (!PersonCategory.isValidPersonCategory(trimmedPersonCategory)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return new PersonCategory(trimmedPersonCategory);
     }
 }
