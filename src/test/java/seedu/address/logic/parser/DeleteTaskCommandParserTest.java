@@ -3,7 +3,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2106_DELETE_TASK_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBER_DESC_NEGATIVE;
@@ -73,7 +72,7 @@ public class DeleteTaskCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid task prefix
-        assertParseFailure(parser, MODULE_CODE_DESC_MA2001 + ADDRESS_DESC_BOB,
+        assertParseFailure(parser, MODULE_CODE_DESC_MA2001 + "a/ task",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
         // invalid module code
         assertParseFailure(parser, MODULE_TASKLIST_DESC_NUMBER_ONE + INVALID_MODULE_CODE_DESC,

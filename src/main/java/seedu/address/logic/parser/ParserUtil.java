@@ -9,6 +9,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.task.Task;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -113,5 +114,34 @@ public class ParserUtil {
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-    //@@uathor
+
+
+    /**
+     * Parses a {@code String} task description into a {@code Task}.
+     * Leading and trailing whitespaces of description will be trimmed.
+     * @throws ParseException if the given description is invalid.
+     */
+    public static Task parseNewTaskDescription(String taskDescription)
+            throws ParseException {
+        requireNonNull(taskDescription);
+        String trimmedDescription = taskDescription.trim();
+        if (!Task.isValidTaskDescription(trimmedDescription)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+        return new Task(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String} task number into an {@code Index}.*
+     * @throws ParseException if the given number is invalid.
+     */
+    public static Index parseTaskNumberToDelete(String oneBasedTaskNumber)
+            throws ParseException {
+        requireNonNull(oneBasedTaskNumber);
+        String trimmedIndex = oneBasedTaskNumber.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
 }
