@@ -2,7 +2,8 @@ package seedu.foodrem.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.foodrem.testutil.TypicalItems.getTypicalFoodRem;
+import static seedu.foodrem.testutil.TypicalFoodRem.getFoodRemWithTypicalItems;
+import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 
 import java.nio.file.Path;
 
@@ -54,7 +55,7 @@ public class StorageManagerTest {
          * {@link JsonFoodRemStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonFoodRemStorageTest} class.
          */
-        FoodRem original = getTypicalFoodRem();
+        FoodRem original = getFoodRemWithTypicalItems();
         storageManager.saveFoodRem(original);
         ReadOnlyFoodRem retrieved = storageManager.readFoodRem().get();
         assertEquals(original, new FoodRem(retrieved));
