@@ -1,21 +1,20 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.StaffName;
 
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.ParserUtil.*;
-
-
+/**
+ * Parses input arguments and creates a new DeleteStaffCommand object
+ */
 public class DeleteStaffParser implements Parser<DeleteStaffCommand> {
 
     /**

@@ -132,6 +132,8 @@ public class MainWindow extends UiPart<Stage> {
 
     void updateStaffList() {
         if (logic.getTargetProjectStaffList() != null) {
+            System.out.println(logic.getTargetProjectStaffList());
+            System.out.println(logic.getTargetProjectStaffList().asUnmodifiableObservableList());
             staffListPanel = new StaffListPanel(logic.getTargetProjectStaffList().asUnmodifiableObservableList());
             staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
         }
@@ -199,6 +201,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+            System.out.println("this update runs");
             updateStaffList();
             return commandResult;
         } catch (CommandException | ParseException e) {

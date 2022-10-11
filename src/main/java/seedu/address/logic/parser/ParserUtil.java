@@ -12,7 +12,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Budget;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectName;
-
 import seedu.address.model.staff.StaffContact;
 import seedu.address.model.staff.StaffDepartment;
 import seedu.address.model.staff.StaffInsurance;

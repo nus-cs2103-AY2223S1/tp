@@ -79,7 +79,7 @@ public class AddStaffCommand extends Command {
 
         ProjectName projectName = lastShownList.get(index.getZeroBased()).getProjectName();
         if (!projectName.equals(addTo)) {
-            throw new CommandException(String.format(MESSAGE_PROJECT_DONT_EXIST,addTo.fullName));
+            throw new CommandException(String.format(MESSAGE_PROJECT_DONT_EXIST, addTo.fullName));
         }
 
         Project projectToAdd = lastShownList.get(index.getZeroBased());
