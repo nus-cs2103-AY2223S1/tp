@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Module;
 import seedu.address.model.person.Name;
@@ -26,6 +27,7 @@ public class PersonBuilder {
     public static final String DEFAULT_YEAR = "3";
     public static final String DEFAULT_STUDENTID = "A1234567X";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_COMMENT = "";
 
     private Name name;
     private Phone phone;
@@ -34,6 +36,7 @@ public class PersonBuilder {
     private Year year;
     private StudentId studentId;
     private Address address;
+    private Comment comment;
     private Set<Tag> tags;
 
     /**
@@ -47,6 +50,7 @@ public class PersonBuilder {
         year = new Year(DEFAULT_YEAR);
         studentId = new StudentId(DEFAULT_STUDENTID);
         address = new Address(DEFAULT_ADDRESS);
+        comment = new Comment(DEFAULT_COMMENT);
         tags = new HashSet<>();
     }
 
@@ -61,6 +65,7 @@ public class PersonBuilder {
         year = personToCopy.getYear();
         studentId = personToCopy.getStudentId();
         address = personToCopy.getAddress();
+        comment = personToCopy.getComment();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -103,6 +108,13 @@ public class PersonBuilder {
         this.email = new Email(email);
         return this;
     }
+    /**
+     * Sets the {@code Comment} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withComment(String comment) {
+        this.comment = new Comment(comment);
+        return this;
+    }
 
     /**
      * Sets the {@code Module} of the {@code Person} that we are building.
@@ -129,7 +141,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, module, year, studentId, address, tags);
+        return new Person(name, phone, email, module, year, studentId, address, comment, tags);
     }
 
 }
