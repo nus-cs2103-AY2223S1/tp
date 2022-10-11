@@ -10,6 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.group.Group;
 
+/**
+ * Panel containing the list of groups.
+ */
 public class GroupListPanel extends UiPart<Region> {
     private static final String FXML = "GroupListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(GroupListPanel.class);
@@ -17,6 +20,10 @@ public class GroupListPanel extends UiPart<Region> {
     @FXML
     private ListView<Group> groupListView;
 
+
+    /**
+     * Creates a {@code GroupListPanel} with the given {@code ObservableList}.
+     */
     public GroupListPanel(ObservableList<Group> groupList) {
         super(FXML);
         groupListView.setItems(groupList);

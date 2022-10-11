@@ -7,9 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
 import seedu.address.model.group.Group;
 
+/**
+ * An UI component that displays information of a {@code Group}.
+ */
 public class GroupCard extends UiPart<Region> {
 
     private static final String FXML = "GroupListCard.fxml";
@@ -23,6 +25,10 @@ public class GroupCard extends UiPart<Region> {
     @FXML
     private FlowPane members;
 
+
+    /**
+     * Creates a {@code GroupCode} with the given {@code Group} to display.
+     */
     public GroupCard(Group group) {
         super(FXML);
         this.group = group;
