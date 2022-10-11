@@ -5,7 +5,7 @@ title: "Tutorial: Adding a command"
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
+This command allows users of the TrackAScholar application to add optional remarks to people in their TrackAScholar and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
@@ -28,7 +28,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing applicant in the address book.
+ * Changes the remark of an existing applicant in TrackAScholar.
  */
 public class RemarkCommand extends Command {
 
@@ -43,7 +43,7 @@ public class RemarkCommand extends Command {
 
 ### Hook `RemarkCommand` into the application
 
-Now that we have our `RemarkCommand` ready to be executed, we need to update `AddressBookParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
+Now that we have our `RemarkCommand` ready to be executed, we need to update `TrackAScholarParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
 
 You can refer to the changes in this [diff](https://github.com/se-edu/addressbook-level3/commit/35eb7286f18a029d39cb7a29df8f172a001e4fd8#diff-399c284cb892c20b7c04a69116fcff6ccc0666c5230a1db8e4a9145def8fa4ee).
 
@@ -216,7 +216,7 @@ public RemarkCommand parse(String args) throws ParseException {
 
 <div markdown="span" class="alert alert-primary">
 
-:information_source: Don’t forget to update `AddressBookParser` to use our new `RemarkCommandParser`!
+:information_source: Don’t forget to update `TrackAScholarParser` to use our new `RemarkCommandParser`!
 
 </div>
 
@@ -225,11 +225,11 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of applicant data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the applicant’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a applicant.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of applicant data. We achieve that by working with the `Applicant` model. Each field in an Applicant is implemented as a separate class (e.g. a `Name` object represents the applicant’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to an applicant.
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `seedu.address.model.applicant`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
+Create a new `Remark` in `seedu.address.model.applicant`. Since a `Remark` is a field that is similar to `Scholarship`, we can reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-41bb13c581e280c686198251ad6cc337cd5e27032772f06ed9bf7f1440995ece). Note how `Remark` has no constrains and thus does not require input
 validation.
@@ -266,21 +266,21 @@ That’s it! Fire up the application again and you should see something like thi
 
 ![$remark shows up in each entry](../images/add-remark/$Remark.png)
 
-## Modify `Person` to support a `Remark` field
+## Modify `Applicant` to support a `Remark` field
 
-Since `PersonCard` displays data from a `Person`, we need to update `Person` to get our `Remark` displayed!
+Since `PersonCard` displays data from a `Applicant`, we need to update `Applicant` to get our `Remark` displayed!
 
-### Modify `Person`
+### Modify `Applicant`
 
-We change the constructor of `Person` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
+We change the constructor of `Applicant` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
 
-### Update other usages of `Person`
+### Update other usages of `Applicant`
 
-Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!
+Unfortunately, a change to `Applicant` will cause other commands to break, you will have to modify these commands to use the updated `Applicant`!
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
+:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Applicant` class to find these commands.
 
 </div>
 
@@ -289,13 +289,13 @@ Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998
 
 ## Updating Storage
 
-AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
+TrackAScholar stores data by serializing `JsonAdaptedApplicant` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedApplicant` to work with our new `Applicant`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+:exclamation: You must delete TrackAScholar’s storage file located at `/data/trackAScholar.json` before running it! Not doing so will cause TrackAScholar to default to an empty data file!
 
 </div>
 
@@ -304,14 +304,14 @@ to see what the changes entail.
 
 ## Finalizing the UI
 
-Now that we have finalized the `Person` class and its dependencies, we can now bind the `Remark` field to the UI.
+Now that we have finalized the `Applicant` class and its dependencies, we can now bind the `Remark` field to the UI.
 
 Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/commit/5b98fee11b6b3f5749b6b943c4f3bd3aa049b692)
 
 **`PersonCard.java`:**
 
 ``` java
-public PersonCard(Person applicant, int displayedIndex) {
+public PersonCard(Applicant applicant, int displayedIndex) {
     //...
     remark.setText(applicant.getRemark().value);
 }
@@ -325,31 +325,31 @@ After the previous step, we notice a peculiar regression — we went from di
 
 ### Update `RemarkCommand` and `RemarkCommandParser`
 
-In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Person`. Since all fields in a `Person` are immutable, we create a new instance of a `Person` with the values that we want and
-save it with `Model#setPerson()`.
+In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of an `Applicant`. Since all fields in an `Applicant` are immutable, we create a new instance of an `Applicant` with the values that we want and
+save it with `Model#setApplicant()`.
 
 **`RemarkCommand.java`:**
 
 ``` java
 //...
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Applicant: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Applicant: %1$s";
 //...
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Applicant> lastShownList = model.getFilteredApplicantList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_APPLICANT_DISPLAYED_INDEX);
         }
 
-        Person applicantToEdit = lastShownList.get(index.getZeroBased());
-        Person editedApplicant = new Person(
+        Applicant applicantToEdit = lastShownList.get(index.getZeroBased());
+        Applicant editedApplicant = new Applicant(
                 applicantToEdit.getName(), applicantToEdit.getPhone(), applicantToEdit.getEmail(),
-                applicantToEdit.getAddress(), remark, applicantToEdit.getTags());
+                applicantToEdit.getScholarship(), remark, applicantToEdit.getTags());
 
-        model.setPerson(applicantToEdit, editedApplicant);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setApplicant(applicantToEdit, editedApplicant);
+        model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
 
         return new CommandResult(generateSuccessMessage(editedApplicant));
     }
@@ -359,7 +359,7 @@ save it with `Model#setPerson()`.
      * the remark is added to or removed from
      * {@code applicantToEdit}.
      */
-    private String generateSuccessMessage(Person applicantToEdit) {
+    private String generateSuccessMessage(Applicant applicantToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(message, applicantToEdit);
     }
@@ -398,4 +398,4 @@ You should end up with a test that looks something like [this](https://github.co
 
 ## Conclusion
 
-This concludes the tutorial for adding a new `Command` to AddressBook.
+This concludes the tutorial for adding a new `Command` to TrackAScholar.

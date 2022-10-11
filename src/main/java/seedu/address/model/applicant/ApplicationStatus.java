@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Applicant's application status in TrackAScholar.
+ * Represents an Applicant's application status in TrackAScholar.
  * Guarantees: immutable; is valid as declared in {@link #isValidApplicationStatus(String)}
  */
 public class ApplicationStatus {

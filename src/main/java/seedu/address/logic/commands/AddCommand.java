@@ -13,13 +13,13 @@ import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
 
 /**
- * Adds a applicant to TrackAScholar.
+ * Adds an applicant to TrackAScholar.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a applicant to TrackAScholar. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an applicant to TrackAScholar. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
