@@ -11,10 +11,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
+import seedu.address.model.person.Clazz;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Personality;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Subject;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +34,11 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String clazz;
+    private final String personality;
+    private final String attendance;
+    private final String subject;
+    private final String grade;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +46,19 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("email") String email, @JsonProperty("address") String address, @JsonProperty("clazz") String clazz,
+            @JsonProperty("personality") String personality, @JsonProperty("attendance") String attendance,
+            @JsonProperty("subject") String subject, @JsonProperty("grade") String grade,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.clazz = clazz;
+        this.personality = personality;
+        this.attendance = attendance;
+        this.subject = subject;
+        this.grade = grade;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +72,11 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        clazz = source.getClazz().toString();
+        personality = source.getPersonality().toString();
+        attendance = source.getAttendance().toString();
+        subject = source.getSubject().toString();
+        grade = source.getGrade().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +125,40 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (clazz == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Clazz.class.getSimpleName()));
+        }
+        final Clazz modelClazz = new Clazz(clazz);
+
+        if (personality == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Personality.class.getSimpleName()));
+        }
+        if (!Personality.isValidPersonality(personality)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Personality modelPersonality = new Personality(personality);
+
+        if (attendance == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
+        }
+        final Attendance modelAttendance = new Attendance(attendance);
+
+        if (subject == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Subject.class.getSimpleName()));
+        }
+        if (!Subject.isValidSubject(subject)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Subject modelSubject = new Subject(subject);
+
+        if (grade == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Grade.class.getSimpleName()));
+        }
+        final Grade modelGrade = new Grade(grade);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClazz, modelPersonality, modelAttendance,
+                modelSubject, modelGrade, modelTags);
     }
 
 }
