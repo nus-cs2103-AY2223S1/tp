@@ -43,7 +43,7 @@ public class ViewClientCommand extends Command {
 
         Client clientToView = lastShownList.get(targetIndex.getZeroBased());
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, clientToView), false, false, true, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, clientToView), CommandSpecific.DETAILED_CLIENT);
     }
 
     @Override
