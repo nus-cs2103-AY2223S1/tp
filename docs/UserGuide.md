@@ -104,7 +104,7 @@ Clears all of a debtor's debts from PayMeLah according to his index number when 
 Format: `cleardebts <person index>`
 
 Example:
-* `cleardebt 3`
+* `cleardebts 3`
 
 ### Getting the statement
 
