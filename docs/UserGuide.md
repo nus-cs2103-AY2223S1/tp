@@ -160,13 +160,13 @@ Examples:
 
 ### List all users : `list users`
 
-Shows a list of all users in the address book.
+Shows a list of all users in BookFace.
 
 Format: `list users`
 
 ### List all books : `list books`
 
-Shows a list of all books in the address book.
+Shows a list of all books in BookFace.
 
 Format: `list books`
 

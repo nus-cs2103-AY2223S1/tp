@@ -57,7 +57,7 @@ public interface Model {
     ReadOnlyBookFace getBookFace();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in BookFace.
      */
     boolean hasPerson(Person person);
 
@@ -71,26 +71,26 @@ public interface Model {
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in BookFace.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in BookFace.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in BookFace.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in BookFace.
      */
     void setPerson(Person target, Person editedPerson);
 
     /**
      * Loans to given person {@code person} from {@code book}.
-     * {@code person} and {@code book} must exist in the address book.
+     * {@code person} and {@code book} must exist in BookFace.
      *
      */
     void loan(Person person, Book book);

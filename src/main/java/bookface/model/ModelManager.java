@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of BookFace data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -31,7 +31,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyBookFace bookFace, ReadOnlyUserPrefs userPrefs) {
         CollectionUtil.requireAllNonNull(bookFace, userPrefs);
 
-        logger.fine("Initializing with address book: " + bookFace + " and user prefs " + userPrefs);
+        logger.fine("Initializing with BookFace: " + bookFace + " and user prefs " + userPrefs);
 
         this.bookFace = new BookFace(bookFace);
         this.userPrefs = new UserPrefs(userPrefs);

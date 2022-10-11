@@ -28,7 +28,7 @@ package seedu.address.logic.commands;
 import model.bookface.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing person in BookFace.
  */
 public class RemarkCommand extends Command {
 
