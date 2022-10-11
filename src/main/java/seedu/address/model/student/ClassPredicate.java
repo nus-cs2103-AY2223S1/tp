@@ -1,31 +1,27 @@
 package seedu.address.model.student;
 
-import java.util.List;
 import java.util.function.Predicate;
-
-import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.
  */
 public class ClassPredicate implements Predicate<Student> {
-    private final List<String> keywords;
+    private Class className;
 
-    public ClassPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public ClassPredicate(Class className) {
+        this.className = className;
     }
 
     @Override
-    public boolean test(Student person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getClassName().className, keyword));
+    public boolean test(Student student) {
+        return student.getClassName().equals(this.className);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ClassPredicate // instanceof handles nulls
-                && keywords.equals(((ClassPredicate) other).keywords)); // state check
+                && className.equals(((ClassPredicate) other).className)); // state check
     }
 
 }
