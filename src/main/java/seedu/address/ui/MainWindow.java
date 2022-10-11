@@ -34,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private TutorialListPanel tutorialListPanel;
+
+    private ConsultationListPanel consultationListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -184,6 +186,20 @@ public class MainWindow extends UiPart<Stage> {
         modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         listHeader.setText("Student");
     }
+
+    /**
+     * Opens the tab of consultations.
+     */
+    @FXML
+    public void handleConsultation() {
+        modelListPanelPlaceholder.getChildren().clear();
+        modelListPanelPlaceholder.getChildren().add(consultationListPanel.getRoot());
+        listHeader.setText("Consultation");
+    }
+
+    /**
+     * Opens the tab of persons.
+     */
 
     void show() {
         primaryStage.show();
