@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.ModuleTakenPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.NusModule;
 
 /**
  * Parses input arguments and creates a new FindContactCommand object
@@ -49,9 +49,9 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
 
             String trimmedModules = argScanner.nextLine().trim();
             String[] modKeywords = trimmedModules.split("\\s+");
-            ArrayList<NusModule> mods = new ArrayList<>();
+            ArrayList<Module> mods = new ArrayList<>();
             for (String modName : modKeywords) {
-                mods.add(new NusModule(modName));
+                mods.add(new Module(modName));
             }
             return new FindContactCommand(new ModuleTakenPredicate(mods));
 

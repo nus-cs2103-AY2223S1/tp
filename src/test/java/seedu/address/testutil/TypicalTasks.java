@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.TaskList;
+import seedu.address.model.module.Module;
 import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Module;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
 

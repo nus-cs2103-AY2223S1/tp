@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,31 +24,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<NusModule> modulesTaken = new HashSet<>();
+    private final Set<Module> modules = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Module> modules) {
+        requireAllNonNull(name, phone, email, address, tags, modules);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.modules.addAll(modules);
         this.tags.addAll(tags);
-    }
-
-    /**
-     * Every field must be present and not null. This overloaded constructor allows modules to be passed.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<NusModule> modulesTaken) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.modulesTaken.addAll(modulesTaken);
     }
 
     public Name getName() {
@@ -74,8 +63,8 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Set<NusModule> getMods() {
-        return Collections.unmodifiableSet(modulesTaken);
+    public Set<Module> getModules() {
+        return Collections.unmodifiableSet(modules);
     }
 
     /**
@@ -110,13 +99,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getModules().equals(getModules())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, modules);
     }
 
     @Override
@@ -134,6 +124,11 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        Set<Module> modules = getModules();
+        if (!modules.isEmpty()) {
+            builder.append("; Tags: ");
+            modules.forEach(builder::append);
         }
         return builder.toString();
     }

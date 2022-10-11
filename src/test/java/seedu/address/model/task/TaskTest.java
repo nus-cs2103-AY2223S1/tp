@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.module.Module;
+
 public class TaskTest {
     private final Task sampleA = new Task(
             new TaskName("A"),

@@ -3,10 +3,10 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NusModule;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -27,7 +27,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private Set<NusModule> modulesTaken;
+    private Set<Module> modules;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -38,7 +38,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        modulesTaken = new HashSet<>();
+        modules = new HashSet<>();
     }
 
     /**
@@ -50,7 +50,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
-        modulesTaken = new HashSet<>(personToCopy.getMods());
+        modules = new HashSet<>(personToCopy.getModules());
     }
 
     /**
@@ -74,9 +74,10 @@ public class PersonBuilder {
      * and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withModules(String... moduleNames) {
-        this.modulesTaken = SampleDataUtil.getModuleSet(moduleNames);
+        this.modules = SampleDataUtil.getModuleSet(moduleNames);
         return this;
     }
+
 
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
@@ -103,7 +104,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, modulesTaken);
+        return new Person(name, phone, email, address, tags, modules);
     }
 
 }
