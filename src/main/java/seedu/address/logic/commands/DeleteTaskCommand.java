@@ -184,7 +184,8 @@ public class DeleteTaskCommand extends Command {
             // state check
             DeleteTaskFromModuleDescriptor e = (DeleteTaskFromModuleDescriptor) other;
 
-            return getTaskIndexToDelete().equals(e.getTaskIndexToDelete());
+            return moduleCodeOfModuleWithTaskToDelete.equals(e.moduleCodeOfModuleWithTaskToDelete)
+                    && getTaskIndexToDelete().equals(e.getTaskIndexToDelete());
         }
     }
 }
