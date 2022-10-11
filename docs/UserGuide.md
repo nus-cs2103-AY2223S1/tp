@@ -97,11 +97,21 @@ Examples:
 Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or
 the task is not found in the user’s team.
 
-Format: `assign task “TASK_NAME” “TEAM_MEMBER”`
+Format: `assign task “TASK_INDEX” “TEAM_MEMBER_INDEX”`
 
 Examples:
-* `assign task fry potato` assigns the task "fry" to "potato"
-* `assign task “bake with butter” “potato”` assigns the task "bake with butter" to "potato"
+* `assign task 1 1` assigns the first task on the task list to the first member on the member list
+* `assign task 2 1` assigns the second task on the task list to the first member on the member list
+
+### Set Deadline for task: `set deadline`
+
+Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If 
+deadline has been set for the task before, a new deadline will be set if command is run again.
+
+Format: `set deadline TASK_INDEX DEADLINE`
+
+Examples:
+* `set deadline 1 2023-12-25`sets the deadline for the first task on the task list to as 25 December 2023
 
 ### Delete task from team : `delete task`
 
