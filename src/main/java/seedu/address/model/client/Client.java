@@ -2,6 +2,7 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.Name;
@@ -39,6 +40,19 @@ public class Client {
         this.projects = projects;
         this.clientId = clientId;
     }
+
+    /**
+     * Constructs a client with inputs given by the user.
+     * @param name String representing name of the client
+     */
+    public Client(Name name) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
+        this.email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
+        this.projects = new ArrayList<>();
+    }
+
 
     public ClientId getClientId() {
         return this.clientId;
