@@ -81,7 +81,8 @@ public class DeleteTaskCommand extends Command {
 
         Person editedPerson = new Person(
                 personToDeleteTask.getName(), personToDeleteTask.getPhone(), personToDeleteTask.getEmail(),
-                personToDeleteTask.getAddress(), personToDeleteTask.getTags(), assignments);
+                personToDeleteTask.getAddress(), personToDeleteTask.getTags(),
+                assignments, personToDeleteTask.getPersonGroups());
 
         if (!personToDeleteTask.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
