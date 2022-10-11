@@ -40,15 +40,15 @@ public class Client {
         this.clientId = clientId;
     }
 
-    public ClientId getId() {
+    public ClientId getClientId() {
         return this.clientId;
     }
 
     /**
-     * Returns the client name as is represented in the ClientName object.
+     * Returns the client name as is represented in the Name object.
      * @return String representing client's name.
      */
-    public Name getName() {
+    public seedu.address.model.Name getClientName() {
         return this.name;
     }
 
@@ -56,7 +56,7 @@ public class Client {
      * Returns the client email as is represented in the ClientEmail object.
      * @return String representing client's email.
      */
-    public ClientEmail getEmail() {
+    public ClientEmail getClientEmail() {
         return this.email;
     }
 
@@ -64,13 +64,14 @@ public class Client {
      * Returns the client phone as is represented in the ClientPhone object.
      * @return String representing client's phone.
      */
-    public ClientPhone getPhone() {
+    public ClientPhone getClientPhone() {
         return this.phone;
     }
 
     public List<Project> getProjects() {
         return projects;
     }
+
 
     /**
      * Returns true if both clients have the same name.
@@ -82,10 +83,8 @@ public class Client {
         }
 
         return otherClient != null
-                && otherClient.getName().equals(getName());
+                && otherClient.getClientName().equals(getClientName());
     }
-
-
 
     /**
      * Checks if an object equals this.
@@ -96,17 +95,32 @@ public class Client {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        }
-
-        if (!(other instanceof Client)) {
+        } else if (other instanceof Client) {
+            Client otherClient = (Client) other;
+            boolean hasSameId = this.getClientId().equals(otherClient.getClientId());
+            boolean hasSameName = this.getClientName().equals(otherClient.getClientName());
+            boolean hasSameEmail = this.getClientEmail().equals(otherClient.getClientEmail());
+            boolean hasSamePhone = this.getClientPhone().equals(otherClient.getClientPhone());
+            return hasSameId && hasSameEmail && hasSamePhone && hasSameName;
+        } else {
             return false;
         }
-
-        Client otherClient = (Client) other;
-        return otherClient.getName().equals(getName())
-                && otherClient.getId().equals(getId())
-                && otherClient.getPhone().equals(getPhone())
-                && otherClient.getEmail().equals(getEmail())
-                && otherClient.getProjects().equals(getProjects());
     }
+
+
+    //    /**
+    //     * Returns a list containing the projects the client is associated with.
+    //     * @return String representing client's projects.
+    //     */
+    //    public String getClientProjectList() {
+    //        return this.projects.listAllProjects();
+    //    }
+    //
+    //    /**
+    //     * Returns the type of the client.
+    //     * @return String representing client type
+    //     */
+    //    public String getClientType() {
+    //        return this.type.toString();
+    //    }
 }

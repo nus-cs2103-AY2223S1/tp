@@ -9,9 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Name;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
-import seedu.address.model.Name;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.tag.Tag;
 
@@ -59,7 +59,7 @@ public class ParserUtil {
     public static ClientPhone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!ClientPhone.isValidPhone(trimmedPhone)) {
+        if (!ClientPhone.isValidClientPhone(trimmedPhone)) {
             throw new ParseException(ClientPhone.MESSAGE_CONSTRAINTS);
         }
         return new ClientPhone(trimmedPhone);

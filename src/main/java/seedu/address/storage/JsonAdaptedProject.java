@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.issue.Issue;
-import seedu.address.model.client.Client;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
+import seedu.address.model.client.Client;
+import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;

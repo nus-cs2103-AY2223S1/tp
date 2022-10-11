@@ -1,12 +1,10 @@
 package seedu.address.model.client;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's email in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class ClientEmail {
     private static final String SPECIAL_CHARACTERS = "+_.-";
@@ -22,6 +20,7 @@ public class ClientEmail {
             + "    - end with a domain label at least 2 characters long\n"
             + "    - have each domain label start and end with alphanumeric characters\n"
             + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
+
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
@@ -32,17 +31,17 @@ public class ClientEmail {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
-    public final String value;
+    private String email;
 
     /**
-     * Constructs an {@code ClientEmail}.
+     * Constructs a Client Email.
      *
      * @param email A valid email address.
      */
     public ClientEmail(String email) {
         requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
+        checkArgument(isValidClientEmail(email), MESSAGE_CONSTRAINTS);
+        this.email = email;
     }
 
     /**
@@ -53,6 +52,15 @@ public class ClientEmail {
         private EmptyEmail() {
             super("");
         }
+
+    }
+
+    /**
+     * Checks if this Client Email is empty.
+     * @return true if the Client Email is empty.
+     */
+    public boolean isEmpty() {
+        return false;
     }
 
     /**
@@ -63,20 +71,36 @@ public class ClientEmail {
     }
 
     @Override
-    public String toString() {
-        return value;
-    }
-
-    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ClientEmail // instanceof handles nulls
-                && value.equals(((ClientEmail) other).value)); // state check
+                && this.email.equals(((ClientEmail) other).email)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.email.hashCode();
+    }
+
+    public static boolean isValidClientEmail(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the email of the client.
+     * @return String representing email
+     */
+    public String getEmailRepresentation() {
+        return "Client Email: " + this.email;
+    }
+
+    /**
+     * Returns the String representation of the Client Email.
+     * @return String representing the Client Email
+     */
+    @Override
+    public String toString() {
+        return this.email;
     }
 
 }

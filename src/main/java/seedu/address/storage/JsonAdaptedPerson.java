@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Name;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
-import seedu.address.model.Name;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Person;
 import seedu.address.model.tag.Tag;
@@ -51,9 +51,9 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
+        name = source.getName().toString();
+        phone = source.getPhone().toString();
+        email = source.getEmail().toString();
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -80,15 +80,17 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientPhone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClientPhone.class.getSimpleName()));
         }
-        if (!ClientPhone.isValidPhone(phone)) {
+        if (!ClientPhone.isValidClientPhone(phone)) {
             throw new IllegalValueException(ClientPhone.MESSAGE_CONSTRAINTS);
         }
         final ClientPhone modelPhone = new ClientPhone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientEmail.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClientEmail.class.getSimpleName()));
         }
         if (!ClientEmail.isValidEmail(email)) {
             throw new IllegalValueException(ClientEmail.MESSAGE_CONSTRAINTS);

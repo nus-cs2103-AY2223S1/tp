@@ -6,17 +6,16 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class PhoneTest {
-
+public class ClientPhoneTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new ClientPhone(null));
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = "";
-        assertThrows(IllegalArgumentException.class, () -> new ClientPhone(invalidPhone));
+    public void constructor_invalidClientPhone_throwsIllegalArgumentException() {
+        String invalidClientPhone = "";
+        assertThrows(IllegalArgumentException.class, () -> new ClientPhone(invalidClientPhone));
     }
 
     @Test
@@ -33,8 +32,10 @@ public class PhoneTest {
         assertFalse(ClientPhone.isValidClientPhone("9312 1534")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(ClientPhone.isValidClientPhone("911")); // exactly 3 numbers
-        assertTrue(ClientPhone.isValidClientPhone("93121534"));
-        assertTrue(ClientPhone.isValidClientPhone("124293842033123")); // long phone numbers
+        assertTrue(ClientPhone.isValidClientPhone("12345678")); //8 numbers
+        assertTrue(ClientPhone.isValidClientPhone("123456789")); //9 numbers
+        assertTrue(ClientPhone.isValidClientPhone("1234567891")); //10 numbers
+        assertTrue(ClientPhone.isValidClientPhone("911")); // fewer than 8 numbers
+        assertTrue(ClientPhone.isValidClientPhone("124293842033123")); // more than 10 numbers
     }
 }
