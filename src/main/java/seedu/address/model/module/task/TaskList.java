@@ -81,7 +81,7 @@ public class TaskList implements Iterable<Task> {
      * Returns true if the task list contains a duplicate task.
      */
     public Boolean containsDuplicate() {
-        return tasksAreUnique(internalList);
+        return !tasksAreUnique(internalList);
     }
 
     @Override
