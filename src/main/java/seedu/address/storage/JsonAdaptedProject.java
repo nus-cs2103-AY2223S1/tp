@@ -26,6 +26,7 @@ class JsonAdaptedProject {
     private final String projectName;
     private final String budget;
     private final String deadline;
+    private final List<JsonAdaptedStaff> staffList = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -33,11 +34,14 @@ class JsonAdaptedProject {
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("projectName") String projectName, @JsonProperty("budget") String budget,
-            @JsonProperty("deadline") String deadline,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("deadline") String deadline, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("stafflist") List<JsonAdaptedStaff> staffList) {
         this.projectName = projectName;
         this.budget = budget;
         this.deadline = deadline;
+        if (staffList != null) {
+            this.staffList.addAll(staffList);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,6 +54,9 @@ class JsonAdaptedProject {
         projectName = source.getProjectName().fullName;
         budget = source.getBudget().value;
         deadline = source.getDeadline().deadline.toString();
+        staffList.addAll(source.getStaffList().asUnmodifiableObservableList().stream()
+                .map(JsonAdaptedStaff::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -92,9 +99,11 @@ class JsonAdaptedProject {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
         final Deadline modelDeadline = new Deadline(deadline);
-
         final Set<Tag> modelTags = new HashSet<>(projectTags);
-        return new Project(modelProjectName, modelBudget, modelDeadline, modelTags);
+        Project project = new Project(modelProjectName, modelBudget, modelDeadline, modelTags);
+        for (JsonAdaptedStaff staff : staffList) {
+            project.getStaffList().add(staff.toModelType());
+        }
+        return project;
     }
-
 }

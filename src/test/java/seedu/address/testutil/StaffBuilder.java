@@ -20,7 +20,7 @@ public class StaffBuilder {
     public static final String DEFAULT_STAFF_NAME = "Thomas Train";
     public static final String DEFAULT_STAFF_CONTACT = "91234567";
     public static final String DEFAULT_STAFF_TITLE = "Senior Software Engineer";
-    public static final String DEFAULT_STAFF_INSURANCE = "Insured";
+    public static final String DEFAULT_STAFF_INSURANCE = "true";
     public static final String DEFAULT_STAFF_DEPARTMENT = "IT Department";
 
     private StaffName staffName;

@@ -7,6 +7,8 @@ import seedu.address.model.project.Budget;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.staff.Staff;
+import seedu.address.model.staff.UniqueStaffList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,6 +24,7 @@ public class ProjectBuilder {
     private ProjectName projectName;
     private Budget budget;
     private Deadline deadline;
+    private UniqueStaffList staffList = new UniqueStaffList();
     private Set<Tag> tags;
 
     /**
@@ -32,6 +35,7 @@ public class ProjectBuilder {
         budget = new Budget(DEFAULT_BUDGET);
         deadline = new Deadline(DEFAULT_DEADLINE);
         tags = new HashSet<>();
+        staffList = new UniqueStaffList();
     }
 
     /**
@@ -42,6 +46,9 @@ public class ProjectBuilder {
         budget = projectToCopy.getBudget();
         deadline = projectToCopy.getDeadline();
         tags = new HashSet<>(projectToCopy.getTags());
+        for (Staff staff : projectToCopy.getStaffList()) {
+            this.staffList.add(staff);
+        }
     }
 
     /**
@@ -76,8 +83,30 @@ public class ProjectBuilder {
         return this;
     }
 
-    public Project build() {
-        return new Project(projectName, budget, deadline, tags);
+    /**
+     * Sets the {@code StaffList} of the {@code Project} that we are building.
+     */
+    public ProjectBuilder withStaffList(UniqueStaffList staffList) {
+        this.staffList = staffList;
+        return this;
     }
 
+    /**
+     * Adds a staff to the {@code StaffList} of the {@code Project} that we are building.
+     */
+    public ProjectBuilder withStaff(Staff staff) {
+        this.staffList.add(staff);
+        return this;
+    }
+
+    /**
+     * Builds a {@code Project} with the correct staff list field.
+     */
+    public Project build() {
+        Project project = new Project(projectName, budget, deadline, tags);
+        for (Staff staff : this.staffList) {
+            project.getStaffList().add(staff);
+        }
+        return project;
+    }
 }

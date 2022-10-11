@@ -32,10 +32,9 @@ public class CommandTestUtil {
     public static final String VALID_STAFFTITLE_AMY = "Senior Software Engineer";
     public static final String VALID_STAFFTITLE_BOB = "Software Engineer";
     public static final String VALID_STAFFDEPARTMENT_AMY = "IT Department";
-    public static final String VALID_STAFFDEPARTMENT_BOB = "IT Department";
-    public static final String VALID_STAFFINSURANCE_AMY = "insured";
-    public static final String VALID_STAFFINSURANCE_BOB = "not insured";
-
+    public static final String VALID_STAFFDEPARTMENT_BOB = "idk Department";
+    public static final String VALID_STAFFINSURANCE_AMY = "true";
+    public static final String VALID_STAFFINSURANCE_BOB = "false";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
