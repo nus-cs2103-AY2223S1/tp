@@ -56,10 +56,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setClass(ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()));
         }
         if (argMultimap.getValue(PREFIX_MONEY_OWED).isPresent()) {
-            editPersonDescriptor.setMoneyOwed(ParserUtil.parseMoneyOwed(argMultimap.getValue(PREFIX_MONEY_OWED).get()));
+            editPersonDescriptor.setMoneyOwed(ParserUtil.parseMoney(argMultimap.getValue(PREFIX_MONEY_OWED).get()));
         }
         if (argMultimap.getValue(PREFIX_MONEY_PAID).isPresent()) {
-            editPersonDescriptor.setMoneyPaid(ParserUtil.parseMoneyPaid(argMultimap.getValue(PREFIX_MONEY_PAID).get()));
+            editPersonDescriptor.setMoneyPaid(ParserUtil.parseMoney(argMultimap.getValue(PREFIX_MONEY_PAID).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDITIONAL_NOTES).isPresent()) {
             editPersonDescriptor.setAdditionalNotes(ParserUtil.parseAdditionalNotes(argMultimap
