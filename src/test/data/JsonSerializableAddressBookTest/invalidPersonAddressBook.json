@@ -2,6 +2,7 @@
   "persons": [ {
     "name": "Hans Muster",
     "phone": "9482424",
+    "nokPhone": "9593535",
     "email": "invalid@email!3e",
     "address": "4th street",
     "additionalNotes" : "Remind student to submit homework",
