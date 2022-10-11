@@ -8,6 +8,9 @@ import java.time.LocalDate;
  * Represents a Meeting's date in MyInsuRec.
  */
 public class MeetingDate {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Meeting dates should be in the format DDMMYYYY";
     private final LocalDate date;
 
     /**

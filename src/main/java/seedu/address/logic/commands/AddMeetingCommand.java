@@ -12,6 +12,14 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingTime;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+
 /**
  * Adds a meeting to MyInsuRec.
  */
@@ -19,6 +27,11 @@ public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "addMeeting";
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to MyInsuRec.\n"
+            + "Parameters: "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_DATE + "DATE "
+            + PREFIX_TIME + "TIME";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in MyInsuRec";
 
     private final MeetingDate meetingDate;

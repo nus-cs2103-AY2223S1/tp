@@ -8,6 +8,9 @@ import java.time.LocalTime;
  * Represents a Meeting's time in MyInsuRec.
  */
 public class MeetingTime {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Meeting times should be in the format HH:MM";
     private final LocalTime time;
 
     /**
