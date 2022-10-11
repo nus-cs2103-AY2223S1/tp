@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 
 /**
- * Tests that a {@code Module}'s {@code ModuleCode} exactly matches the keywords given.
+ * Tests that a {@code Module}'s {@code ModuleCode} matches exactly with the keywords given (case-insensitive).
  */
 public class ModuleCodeMatchesKeywordPredicate implements Predicate<Module> {
     private final String keyword;

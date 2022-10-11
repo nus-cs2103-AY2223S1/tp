@@ -3,7 +3,7 @@ package seedu.address.model.person;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} exactly matches the keywords given.
+ * Tests that a {@code Person}'s {@code Name} matches exactly the keywords given (case-insensitive).
  */
 public class NameMatchesKeywordPredicate implements Predicate<Person> {
     private final String keyword;

@@ -52,7 +52,7 @@ public class GoToCommandTest {
         // null -> returns false
         assertFalse(gotoFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different module -> returns false
         assertFalse(gotoFirstCommand.equals(gotoSecondCommand));
     }
 
