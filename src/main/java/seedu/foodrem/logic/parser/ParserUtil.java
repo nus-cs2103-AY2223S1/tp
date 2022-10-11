@@ -1,5 +1,7 @@
 package seedu.foodrem.logic.parser;
 
+import java.util.stream.Stream;
+
 import static java.util.Objects.requireNonNull;
 
 import seedu.foodrem.commons.core.index.Index;
@@ -38,7 +40,7 @@ public class ParserUtil {
      *
      * @throws IllegalArgumentException if the given {@code name} is invalid.
      */
-    public static ItemName parseName(String name) throws IllegalArgumentException {
+    public static ItemName parseItemName(String name) throws IllegalArgumentException {
         requireNonNull(name);
         String trimmedName = name.trim();
         return new ItemName(trimmedName);
@@ -90,5 +92,13 @@ public class ParserUtil {
         requireNonNull(expiryDate);
         String trimmedExpiryDate = expiryDate.trim();
         return new ItemExpiryDate(trimmedExpiryDate);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
