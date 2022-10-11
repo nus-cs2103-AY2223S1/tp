@@ -23,16 +23,21 @@ public class CommandResult {
     /** Student information should be shown to the user. */
     private final boolean showStudentList;
 
+    /** Schedule information should be shown to the user. */
+
+    private final boolean showScheduleList;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showModuleList, boolean showStudentList) {
+                         boolean showModuleList, boolean showStudentList, boolean showScheduleList) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showModuleList = showModuleList;
         this.showStudentList = showStudentList;
+        this.showScheduleList = showScheduleList;
     }
 
     /**
@@ -40,7 +45,9 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+
+        this(feedbackToUser, false, false,
+                false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -63,6 +70,10 @@ public class CommandResult {
         return showStudentList;
     }
 
+    public boolean isShowScheduleList() {
+        return showScheduleList;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -79,12 +90,14 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && showModuleList == otherCommandResult.showModuleList
-                && showStudentList == otherCommandResult.showStudentList;
+                && showStudentList == otherCommandResult.showStudentList
+                && showScheduleList == otherCommandResult.showScheduleList;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showModuleList, showStudentList);
+
+        return Objects.hash(feedbackToUser, showHelp, exit, showModuleList, showStudentList, showScheduleList);
     }
 
 }

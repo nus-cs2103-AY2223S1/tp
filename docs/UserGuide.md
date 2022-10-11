@@ -98,10 +98,10 @@ A person can have any number of tags or modules(including 0)
 </div>
 
 Examples:
-* `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/Module Coordinator`
+* `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/ModuleCoordinator`
+* `madd n/Introduction to Cybersecurity c/CS2107 d/Cryptography practices t/IMPT t/URGENT`
 
-[//]: ![addstu](images/userguide/madd.png)
-[//]: # "Add updated image of madd when UI is integrated"
+![madd](images/userguide/madd.png)
 
 ### Listing all students : `list`
 
@@ -176,6 +176,17 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the list of students.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Deleting a module: `mdel`
+
+Deletes a module stored in the address book.
+
+Format: `mdel c/MODULE CODE`
+
+Examples:
+* `mdel c/CS2103T`
+
+![mdel](images/userguide/mdel.png)
 
 ### Clearing all entries : `clear`
 

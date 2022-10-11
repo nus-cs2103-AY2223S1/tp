@@ -205,7 +205,8 @@ public class ParserUtil {
     public static ModuleCode parseModuleCode(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
         String trimmedModuleCode = moduleCode.trim();
-        return new ModuleCode(trimmedModuleCode);
+        String moduleCodeInUpperCase = trimmedModuleCode.toUpperCase();
+        return new ModuleCode(moduleCodeInUpperCase);
     }
 
     /**
