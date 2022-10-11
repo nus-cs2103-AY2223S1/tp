@@ -8,7 +8,10 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalSetsOfIndex.*;
+import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_ONE_INDEX;
+import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_SECOND_INDEX;
+import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_ONE_AND_SECOND_INDEX;
+
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -68,7 +71,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_MultipleValidWithOneInvalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_multipleValidWithOneInvalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(new LinkedHashSet<Index>(
                 Arrays.asList(outOfBoundIndex, INDEX_SECOND_PERSON, INDEX_FIRST_PERSON)));
