@@ -13,6 +13,6 @@ public class TagCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException {
-        throw new ParseException("tag should not be stand alone.");
+        throw new ParseException("tag should not be stand alone");
     }
 }
