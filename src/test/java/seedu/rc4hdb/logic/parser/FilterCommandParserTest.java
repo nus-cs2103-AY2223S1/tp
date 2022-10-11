@@ -24,8 +24,8 @@ import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VAL
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ROOM_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
+import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
