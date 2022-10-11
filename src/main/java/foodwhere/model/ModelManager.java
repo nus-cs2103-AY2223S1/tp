@@ -131,6 +131,13 @@ public class ModelManager implements Model {
         updateFilteredReviewList(PREDICATE_SHOW_ALL_REVIEWS);
     }
 
+    @Override
+    public void setReview(Review target, Review editedStall) {
+        requireAllNonNull(target, editedStall);
+
+        addressBook.setReview(target, editedStall);
+    }
+
     //=========== Filtered Stall List Accessors =============================================================
 
     /**

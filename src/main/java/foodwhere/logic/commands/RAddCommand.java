@@ -39,6 +39,7 @@ public class RAddCommand extends Command {
 
 
     public static final String MESSAGE_SUCCESS = "New review added: %1$s";
+    public static final String MESSAGE_DUPLICATE_REVIEW = "This review already exists in the address book";
 
     private final Index stallIndex;
     private final Date date;
@@ -68,6 +69,12 @@ public class RAddCommand extends Command {
         Name name = stall.getName();
 
         Review toAdd = new Review(name, date, content, detailList);
+
+        if (model.hasReview(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_REVIEW);
+        }
+
+        model.addReview(toAdd);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

@@ -97,6 +97,13 @@ public interface Model {
      */
     void addReview(Review review);
 
+    /**
+     * Replaces the given review {@code target} with {@code editedReview}.
+     * {@code target} must exist in the address book.
+     * The review identity of {@code editedReview} must not be the same as another existing review in the address book.
+     */
+    void setReview(Review target, Review editedReview);
+
     /** Returns an unmodifiable view of the filtered stall list */
     ObservableList<Stall> getFilteredStallList();
 
