@@ -97,15 +97,42 @@ public interface Model {
 
     /////////////////////////
 
-    /** Returns an unmodifiable view of the filtered question list */
+    //======= Students =================================================================================================
+
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in the SETA.
+     */
+    boolean hasStudent(Student student);
+
+    /**
+     * Deletes the given student.
+     * The student must exist in the SETA.
+     */
+    void deleteStudent(Student target);
+
+    /**
+     * Adds the given student.
+     * {@code student} must not already exist in the SETA.
+     */
+    void addStudent(Student student);
+
+    /**
+     * Replaces the given student {@code target} with {@code editedStudent}.
+     * {@code target} must exist in SETA.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in SETA.
+     */
+    void setStudent(Student target, Student editedStudent);
+
+    /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
     /**
-     * Updates the filter of the filtered question list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredStudentList(Predicate<Question> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
 
+    //======= Questions ================================================================================================
 
     /**
      * Returns true if a question with the same identity as {@code question} exists in the address book.
@@ -140,6 +167,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredQuestionList(Predicate<Question> predicate);
+
+    //======= Tutorials ================================================================================================
 
     /**
      * Returns true if a tutorial with the same identity as {@code tutorial} exists in SETA.
