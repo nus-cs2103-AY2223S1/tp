@@ -24,10 +24,22 @@ public class Person {
     // Data fields
     private final Telegram handle;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Mod> mods = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
+    public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags, Set<Mod> mods) {
+        requireAllNonNull(name, phone, email, handle, gitHub, tags, mods);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.handle = handle;
+        this.tags.addAll(tags);
+        this.gitHub = gitHub;
+        this.mods.addAll(mods);
+    }
+
     public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, handle, gitHub, tags);
         this.name = name;
@@ -67,6 +79,14 @@ public class Person {
     }
 
     /**
+     * Returns an immutable mods set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Mod> getMods() {
+        return Collections.unmodifiableSet(mods);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -98,13 +118,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getTelegram().equals(getTelegram())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getMods().equals(getMods());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, handle, gitHub, tags);
+        return Objects.hash(name, phone, email, handle, gitHub, tags, mods);
     }
 
     @Override
@@ -124,6 +145,10 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        if (!mods.isEmpty()) {
+            builder.append("; Mods: ");
+            mods.forEach(builder::append);
         }
         return builder.toString();
     }
