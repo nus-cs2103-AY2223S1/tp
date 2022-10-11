@@ -289,7 +289,7 @@ _Details coming soon ..._
 | **Customise**  | `customise hide [p/] [e/] [a/] [t/]` <br> `customise show [p/] [e/] [a/] [t/]` <br> `customise order [p/] [e/] [a/] [t/]` <br> e.g, `customise order a/ e/ p/` |
 | **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
 | **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                              |
-| **Search**     | `search [CONDITION] [n/NAME] [p/PHONE_NUMBER]…​`<br> e.g., `seach n/John Doe t/cs2103t`                                                                        |
+| **Search**     | `search [CONDITION] [n/NAME] [p/PHONE_NUMBER]…​`<br> e.g., `seach or n/John Doe t/cs2103t`                                                                      |
 | **List**       | `list`                                                                                                                                                         |
 | **Sort**       | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/!friend n/`                                                                                            |
 | **Help**       | `help`                                                                                                                                                         |
