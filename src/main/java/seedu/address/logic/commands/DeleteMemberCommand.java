@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a member identified using it's displayed index from the member list..
+ * Deletes a member identified using it's displayed index from the member list.
  */
 public class DeleteMemberCommand extends Command {
 
