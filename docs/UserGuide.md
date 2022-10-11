@@ -23,13 +23,13 @@ success story.
 ## Key Features
 
 1. Add, update and delete inventory items
-2. Search and sort food items by:
+1. Search and sort food items by:
    * Name
    * Quantity
    * Bought date
    * Expiry date
    * Tags
-3. Tag items to group them into categories
+1. Tag items to group them into categories
 
 ## Purpose, Scope and Audience
 
@@ -48,75 +48,43 @@ This guide is targeted at users using FoodRem who wants to find out more about t
 Readers do not have to be familiar with the command line to use this guide effectively.
 The only expectation we have of you is to carefully read through the different sections.
 
-<div style="page-break-after: always"></div> <! ---Testing line break-->
+<div style="page-break-after: always"></div> <!---Testing line break-->
 
-# Tables of Contents
+## Table of Contents
 
 1. [How to use the user guide](#how-to-use-the-user-guide)
-
-2. [Quick Start](#quick-start)
-
-3. [Items and Tags](#items-and-tags)
-
-4. [Navigating around the application](#navigating-around-the-application)
-
-5. [Flags](#flags)
-
-6. [Placeholders](#placeholders)
-
-7. [Features](#features)
-
+1. [Quick Start](#quick-start)
+1. [Items and Tags](#items-and-tags)
+1. [Navigating around the application](#navigating-around-the-application)
+1. [Flags](#flags)
+1. [Placeholders](#placeholders)
+1. [Features](#features)
    7.1. [Item Features](#item-features)
-
    &emsp; 7.1.1. [Create a new item](#create-a-new-item)
-
    &emsp; 7.1.2. [List all items](#list-all-items)
-
    &emsp; 7.1.3. [Search for an item](#search-for-an-item)
-
    &emsp; 7.1.4. [Sort all items by an attribute](#sort-all-items-by-an-attribute)
-
    &emsp; 7.1.5. [View the information of an item](#view-the-information-of-an-item)
-
    &emsp; 7.1.6. [Increase the quantity of an item](#increase-the-quantity-of-an-item)
-
    &emsp; 7.1.7. [Decrease the quantity of an item](#decrease-the-quantity-of-an-item)
-
    &emsp; 7.1.8. [Update the information of an item](#update-the-information-of-an-item)
-
    &emsp; 7.1.9. [Delete an item](#delete-an-item)
-
    7.2. [Tag Features](#tag-features)
-
    &emsp; 7.2.1. [Create a new tag](#create-a-new-tag)
-
    &emsp; 7.2.2. [List all tags](#list-all-tags)
-
    &emsp; 7.2.3. [Tag an item](#tag-an-item)
-
    &emsp; 7.2.4. [Untag an item](#untag-an-item)
-
    &emsp; 7.2.5. [Rename a tag](#rename-a-tag)
-
    &emsp; 7.2.6. [Delete a tag](#delete-an-item)
-
    7.3. [Receive help during usage](#receive-help-during-usage)
-
    7.4. [Reset the application](#reset-the-application)
-
    7.5. [Exit the application](#exit-the-application)
-
-8. [Command Summary](#command-summary)
-
-9. [Troubleshooting](#troubleshooting)
-
-10. [FAQ](#faq)
-
-11. [Future Extensions](#future-extensions)
-
-12. [Acknowledgements](#acknowledgements)
-
-13. [Glossary](#glossary)
+1. [Command Summary](#command-summary)
+1. [Troubleshooting](#troubleshooting)
+1. [FAQ](#faq)
+1. [Future Extensions](#future-extensions)
+1. [Acknowledgements](#acknowledgements)
+1. [Glossary](#glossary)
 
 ## How to use the User Guide
 
@@ -433,13 +401,13 @@ Example:
 
 Input
 
-```
+```text
 item new potato
 ```
 
 Output
 
-```
+```text
 Item  “potato” successfully created
 ```
 
@@ -455,13 +423,13 @@ Example:
 
 Input
 
-```
+```text
 list
 ```
 
 Output
 
-```
+```text
 Here are the items in your inventory:
 Onions
 Details about onions
@@ -488,13 +456,13 @@ Example:
 
 Input
 
-```
+```text
 find apple
 ```
 
 Output
 
-```
+```text
 Here are the results matching your search
 Green apple
 Rose apple
@@ -522,13 +490,13 @@ Example:
 
 Input
 
-```
+```text
 delete 1
 ```
 
 Output
 
-```
+```text
 (Item exists): Item “potato” successfully deleted!
 (Item does not exist): No item to be found at index 1. Use “list items” or “find NAME” to find the index of the item to be deleted.
 ```
@@ -551,13 +519,13 @@ Example:
 
 Input
 
-```
+```text
 list tags
 ```
 
 Output
 
-```
+```text
 Here are the tags that are available:
 Fruits
 Vegetables
@@ -584,13 +552,13 @@ Example:
 
 Input
 
-```
+```text
 help
 ```
 
 Output:
 
-```
+```text
 list:
     Lists all the items/tags that the user has created.
 
@@ -654,7 +622,7 @@ Example:
 
 Input
 
-```
+```text
 bye
 ```
 
@@ -793,14 +761,11 @@ Something goes here...
    **Glorified search and sort**
    a. Upgrade sort and search b. Sort food items by quantity c. Sort food items by name d. Sort food items by expiry
    date e. Sort food items by purchase date
-
-2. Food buffer a. Rainbow UI / Dashboard b. Optional : Minimum acceptable quantity c. Optional : Percentage of stock
+1. Food buffer a. Rainbow UI / Dashboard b. Optional : Minimum acceptable quantity c. Optional : Percentage of stock
    expiring
-
-3. Purchasing (Hard -> Will not see benefit immediately)
+1. Purchasing (Hard -> Will not see benefit immediately)
    a. History + Statistics b. Inventory need a price of items
-
-4. (Last priority) Order management a. Grouping of items b. Creation of menu with specific items c. Record menu items
+1. (Last priority) Order management a. Grouping of items b. Creation of menu with specific items c. Record menu items
    bought d. Statistics
 
 ## Acknowledgements
