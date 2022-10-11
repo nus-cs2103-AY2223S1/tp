@@ -1,13 +1,12 @@
 package seedu.foodrem.model.item;
 
-import seedu.foodrem.model.tag.Tag;
-
 import static seedu.foodrem.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.foodrem.model.tag.Tag;
 
 /**
  * Represents an Item in FoodREM.

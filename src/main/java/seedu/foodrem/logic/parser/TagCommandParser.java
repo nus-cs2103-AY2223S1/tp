@@ -1,15 +1,15 @@
 package seedu.foodrem.logic.parser;
 
-import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.logic.commands.tagcommands.TagCommand;
-import seedu.foodrem.logic.parser.exceptions.ParseException;
-
-import java.util.stream.Stream;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_TAG_NAME;
+
+import java.util.stream.Stream;
+
+import seedu.foodrem.commons.core.index.Index;
+import seedu.foodrem.logic.commands.tagcommands.TagCommand;
+import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new TagCommand object

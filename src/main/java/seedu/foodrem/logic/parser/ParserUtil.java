@@ -10,7 +10,6 @@ import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
-import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.model.tag.TagName;
 
 /**
