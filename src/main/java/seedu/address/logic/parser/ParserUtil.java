@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -46,7 +47,18 @@ public class ParserUtil {
     public static Order parseOrder(String order) throws IllegalArgumentException {
         String trimmedOrder = order.trim();
         return Order.lexicographicalOrder(trimmedOrder);
+        
+     * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>}
+     */
+    public static Set<Index> parseIndexes(Collection<String> oneBasedIndexes) throws ParseException {
+        requireNonNull(oneBasedIndexes);
+        final Set<Index> indexSet = new LinkedHashSet<>();
+        for (String oneBasedIndex : oneBasedIndexes) {
+            indexSet.add(parseIndex(oneBasedIndex));
+        }
+        return indexSet;
     }
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
