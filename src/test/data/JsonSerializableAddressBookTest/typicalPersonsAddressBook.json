@@ -42,5 +42,15 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "tagged" : [ ]
-  } ]
+  } ],
+  "jsonAdaptedUser" : {
+    "name" : "",
+    "phone" : "empty",
+    "email" : "",
+    "address" : "",
+    "currModules" : [ ],
+    "prevModules" : [ ],
+    "planModules" : [ ],
+    "emptyUser" : { }
+  }
 }
