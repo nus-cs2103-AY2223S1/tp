@@ -201,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            if (commandResult.isShowUserGuide()) {
                 handleHelp();
             }
 
@@ -209,7 +209,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            updatePocList();
+            if (commandResult.isView()) {
+                updatePocList();
+            } else {
+                pocListPanel.setPocList(FXCollections.observableArrayList());
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
