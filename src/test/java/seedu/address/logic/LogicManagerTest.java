@@ -86,7 +86,7 @@ public class LogicManagerTest {
         logic.setUi(new UiManager(logic));
 
         // Execute add command
-        String addCommand = AddClientCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddClientCommand.COMMAND_WORD + " " + AddClientCommand.COMMAND_FLAG + "" + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
