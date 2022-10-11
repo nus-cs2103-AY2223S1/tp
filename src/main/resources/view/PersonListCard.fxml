@@ -61,7 +61,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" spacing="5">
                <children>
-                  <Label fx:id="id1" styleClass="cell_big_label" text="Appointment" textFill="WHITE">
+                  <Label fx:id="id1" styleClass="cell_big_label" text="Appointment" textFill="WHITE" >
                      <minWidth>
                         <Region fx:constant="USE_PREF_SIZE" />
                      </minWidth>
