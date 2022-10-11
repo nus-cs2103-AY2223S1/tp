@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BUDGET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -32,6 +33,9 @@ public class ProjectUtil {
         sb.append(PREFIX_PROJECT_NAME + project.getProjectName().fullName + " ");
         sb.append(PREFIX_BUDGET + project.getBudget().value + " ");
         sb.append(PREFIX_DEADLINE + project.getDeadline().deadline.toString() + " ");
+        project.getStaffList().asUnmodifiableObservableList().stream().forEach(
+                s -> sb.append(PREFIX_STAFF_NAME + s.getStaffName().toString() + " ")
+        );
         project.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
