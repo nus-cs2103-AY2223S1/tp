@@ -9,20 +9,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.ListView?>
-
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.shape.Circle?>
+
 <HBox id="detailsPane" fx:id="detailsPane"
       xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" styleClass="edge-to-edge">
-    <AnchorPane minHeight="0.0" minWidth="0.0" HBox.hgrow="ALWAYS">
+    <AnchorPane minHeight="0.0" minWidth="340.0" HBox.hgrow="ALWAYS">
     <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge"
                 AnchorPane.bottomAnchor="0.0"
                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                 AnchorPane.topAnchor="0.0">
-        <content>
-            <VBox alignment="TOP_LEFT">
+            <VBox>
                 <padding>
-                    <Insets bottom="5" left="15" right="5" top="5" />
+                    <Insets bottom="5" left="5" right="5" top="5" />
                 </padding>
                 <HBox alignment="CENTER_LEFT" spacing="5">
                     <Label fx:id="id" styleClass="cell_big_label" textFill="#D8D8D8" wrapText="true">
@@ -108,12 +107,20 @@
                         </minHeight>
                     </Label>
                     <VBox.margin>
-                        <Insets bottom="4.0" />
+                        <Insets bottom="8.0" />
                     </VBox.margin>
                 </HBox>
-                <ListView fx:id="iterationListView" VBox.vgrow="ALWAYS" />
+                <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS">
+                    <placeholder>
+                        <HBox>
+                            <Label styleClass="noSuchData" text="No iterations found"
+                                   VBox.vgrow="ALWAYS" minHeight="80" minWidth="300" textAlignment="CENTER"
+                                   alignment="CENTER" style="-fx-text-fill: #6F747E;">
+                            </Label>
+                        </HBox>
+                    </placeholder>
+                </ListView>
             </VBox>
-        </content>
     </ScrollPane>
     </AnchorPane>
 </HBox>

@@ -70,7 +70,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
         commission.addListener((observable, oldValue, newValue) -> {
             updateUI(newValue);
         });
-        iterationListView.setItems(commission.getValue().getIterationList());
         iterationListView.setCellFactory(listView -> new IterationListViewCell());
     }
 
@@ -102,6 +101,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
         completionStatus.setText("");
         customerName.setText("");
         tags.getChildren().clear();
+        iterationListView.setItems(null);
     }
 
     private void setFieldIcons() {
@@ -119,7 +119,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
     }
 
     private void updateProgressComponents(Commission commission) {
-        System.out.println(commission);
         if (commission == null) {
             completionStatusCircle.setFill(null);
             completionStatus.setText("");
@@ -148,7 +147,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
 
     private void updateIterationList(Commission commission) {
         iterationListView.setItems(commission.getIterationList());
-        iterationListView.setCellFactory(listView -> new IterationListViewCell());
     }
 
     /**
@@ -163,7 +161,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new IterationListItem(iteration).getRoot());
+                setGraphic(new IterationListItem(iteration, getIndex() + 1).getRoot());
                 updateProgressComponents(commission);
             }
         }

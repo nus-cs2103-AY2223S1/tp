@@ -103,7 +103,7 @@ public class Commission {
      * {@code UniqueIterationList}.
      *
      * @return {@code COMPLETED}, if the commission's CompletionStatus is completed. Else,
-     *         returns {@code In_PROGRESS} if there are iterations in the Commission, and
+     *         returns {@code IN_PROGRESS} if there are iterations in the Commission, and
      *         {@code NOT_STARTED} otherwise.
      */
     public CompletionStatusString getCompletionStatusString() {
