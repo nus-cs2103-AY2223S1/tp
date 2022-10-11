@@ -121,11 +121,11 @@ Example:
 Find tasks whose names contain any of the given keywords, or find them by their tagged module.
 
 Format:
-`find /t {task}` `find /m {module}`
+`find n/ {task}` `find m/ {module}`
 
 Examples:
-* `find /t homework` returns `Science homework`, `Math homework`
-* `find /m CS1101S` returns `Problem set 4`, `Reading assignment 2`
+* `find n/ homework` returns `Science homework`, `Math homework`
+* `find m/ CS1101S` returns `Problem set 4`, `Reading assignment 2`
 
 #### Listing all tasks : `list`
 
@@ -172,11 +172,11 @@ Examples:
 Finds persons whose names contain any of the given keywords, or find persons who take a particular module.
 
 Format: 
-`findc /n {name}` `findc /m {module}`
+`findc n/ {name}` `findc m/ {module}`
 
 Examples:
-* `findc /n John` returns `john`, `John Doe`
-* `findc /m CS1231S` returns `Alex Yeoh`, `David Li`
+* `findc n/ John` returns `john`, `John Doe`
+* `findc m/ CS1231S` returns `Alex Yeoh`, `David Li`
 
 #### Clearing all entries : `clear`
 
