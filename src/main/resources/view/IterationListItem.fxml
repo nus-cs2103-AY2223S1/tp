@@ -8,6 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Region?>
 
+<?import javafx.scene.image.ImageView?>
 <VBox id="iterationListItem" fx:id="iterationListItem"
       xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" prefWidth="0">
     <BorderPane>

@@ -8,6 +8,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.iteration.Iteration;
 
+
 /**
  * A UI component that displays information of an {@code Iteration}.
  */
@@ -27,6 +28,8 @@ public class IterationListItem extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
+    private ImageView image;
+    @FXML
     private Label feedback;
     @FXML
     private ImageView artImage;
@@ -40,6 +43,7 @@ public class IterationListItem extends UiPart<Region> {
         id.setText(displayIndex + ". ");
         date.setText(iteration.getDate().date.toString());
         description.setText(iteration.getDescription().description);
+        image.setImage(new Image(iteration.getImagePath().path));
         feedback.setText(iteration.getFeedback().feedback);
         artImage.setImage(placeholder);
     }
