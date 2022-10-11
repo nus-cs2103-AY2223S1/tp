@@ -28,18 +28,14 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TASK_DESCRIPTION);
 
         List<Index> indices;
-
-        try {
-            indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditTaskCommand.MESSAGE_USAGE), pe);
-        }
-
         Task updatedTask;
 
         try {
+            indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
             updatedTask = ParserUtil.parseTask(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).orElseThrow());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditTaskCommand.MESSAGE_USAGE), pe);
         } catch (NoSuchElementException nse) {
             throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
         }
