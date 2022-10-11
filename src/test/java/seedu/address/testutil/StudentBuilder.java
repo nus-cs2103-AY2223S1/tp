@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -23,12 +24,16 @@ public class StudentBuilder {
     public static final String DEFAULT_CLASS_GROUP = "CS2030 Lab 22";
     public static final String DEFAULT_STUDENTID = "e0707070";
 
+    public static final String DEFAULT_ATTENDANCE = "0";
+
     private Name name;
     private Phone phone;
     private Email email;
     private ClassGroup classGroup;
     private StudentId studentId;
     private Set<Tag> tags;
+
+    private Attendance attendance;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -40,6 +45,7 @@ public class StudentBuilder {
         classGroup = new ClassGroup(DEFAULT_CLASS_GROUP);
         studentId = new StudentId(DEFAULT_STUDENTID);
         tags = new HashSet<>();
+        attendance = new Attendance(DEFAULT_ATTENDANCE);
     }
 
     /**
@@ -52,6 +58,7 @@ public class StudentBuilder {
         classGroup = studentToCopy.getClassGroup();
         studentId = studentToCopy.getStudentId();
         tags = new HashSet<>(studentToCopy.getTags());
+        attendance = studentToCopy.getAttendance();
     }
 
     /**
@@ -93,6 +100,13 @@ public class StudentBuilder {
         this.email = new Email(email);
         return this;
     }
+    /**
+     * Sets the {@code Attendance} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withAttendance(String attendance) {
+        this.attendance = new Attendance(attendance);
+        return this;
+    }
 
     /**
      * Sets the {@code ClassGroup} of the {@code Student} that we are building.
@@ -103,7 +117,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, classGroup, studentId, tags);
+        return new Student(name, phone, email, classGroup, studentId, tags, attendance);
     }
 
 }

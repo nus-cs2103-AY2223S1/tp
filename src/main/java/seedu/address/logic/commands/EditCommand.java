@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.Collections;
@@ -20,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -109,8 +111,10 @@ public class EditCommand extends Command {
         ClassGroup updatedClassGroup = editStudentDescriptor.getClassGroup().orElse(studentToEdit.getClassGroup());
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Attendance updatedAttendance = studentToEdit.getAttendance();
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedClassGroup, updatedStudentId, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail,
+                updatedClassGroup, updatedStudentId, updatedTags, updatedAttendance);
     }
 
     @Override
@@ -233,7 +237,7 @@ public class EditCommand extends Command {
             if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
-
+            // might get errors here
             // state check
             EditStudentDescriptor e = (EditStudentDescriptor) other;
 
