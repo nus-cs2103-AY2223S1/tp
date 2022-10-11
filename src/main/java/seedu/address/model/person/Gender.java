@@ -57,4 +57,9 @@ public class Gender {
     }
 
 
+    public boolean equalsIgnoreCase(Object other) {
+        return other == this
+                || (other instanceof Gender)
+                && gender.equalsIgnoreCase(((Gender) other).gender);
+    }
 }

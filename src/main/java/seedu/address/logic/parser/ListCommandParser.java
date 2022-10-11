@@ -30,8 +30,8 @@ public class ListCommandParser implements Parser {
         Optional<Gender>[] gender = new Optional[1];
         argMultimap.getValue(PREFIX_GENDER).ifPresentOrElse(
                 x -> {
-                    if (Gender.isValidGender(x)) {
-                        gender[0] = Optional.of(new Gender(x));
+                    if (Gender.isValidGender(x.toUpperCase())) {
+                        gender[0] = Optional.of(new Gender(x.toUpperCase()));
                     } else {
                         gender[0] = Optional.empty();
                     }

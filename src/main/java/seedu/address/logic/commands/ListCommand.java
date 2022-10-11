@@ -54,8 +54,8 @@ public class ListCommand extends Command {
         Predicate<Person> predicate = x -> {
             boolean addressMatch = x.getAddress().value.toLowerCase()
                     .contains(address.orElse(x.getAddress()).value.toLowerCase());
-            boolean categoryMatch = x.getCategory().equals(category.orElse(x.getCategory()));
-            boolean genderMatch = x.getGender().equals(gender.orElse(x.getGender()));
+            boolean categoryMatch = x.getCategory().equalsIgnoreCase(category.orElse(x.getCategory()));
+            boolean genderMatch = x.getGender().equalsIgnoreCase(gender.orElse(x.getGender()));
 
             Predicate<Tag> tagPredicate = y -> {
                 Tag tagToCompare = tag.orElse((Tag) x.getTags().toArray()[0]);
