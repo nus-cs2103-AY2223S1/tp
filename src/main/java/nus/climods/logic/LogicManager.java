@@ -85,7 +85,7 @@ public class LogicManager implements Logic {
         savedUserModuleList.add(test);
         savedUserModuleList.add(test);
 
-        return FXCollections.observableList(model.getFilteredUserModuleList());
+        return model.getFilteredUserModuleList();
     }
 
     @Override
