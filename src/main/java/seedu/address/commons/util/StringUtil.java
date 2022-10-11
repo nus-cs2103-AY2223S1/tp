@@ -57,10 +57,10 @@ public class StringUtil {
         requireNonNull(sentence);
         requireNonNull(keywords);
 
-        List<String> preppedKeywords = Arrays.asList(keywords.trim().split("\\s+"));
+        List<String> preppedKeywords = Arrays.asList(keywords.toUpperCase().trim().split("\\s+"));
         checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
 
-        List<String> wordsInPreppedSentence = Arrays.asList(sentence.split("\\s+"));
+        List<String> wordsInPreppedSentence = Arrays.asList(sentence.toUpperCase().split("\\s+"));
 
         return wordsInPreppedSentence.containsAll(preppedKeywords);
     }
