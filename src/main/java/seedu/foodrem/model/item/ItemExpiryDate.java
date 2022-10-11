@@ -42,9 +42,22 @@ public class ItemExpiryDate {
                 && itemDate.equals(((ItemExpiryDate) other).itemDate)); // state check
     }
 
+
     /**
-     * {@inheritDoc}
+     * Compares two item expiry dates. The method returns 0 if the bought date is equal to the other
+     * bought date.
+     * A value less than 0 is returned if the bought date is less than the other bought date (earlier) and
+     * a value greater than 0 if the bought date is greater than the other bought date (later).
+     *
+     * @param other The ItemExpiryDate to compare this ItemExpiryDate against.
      */
+    public int compareTo(ItemExpiryDate other) {
+        return itemDate.compareTo(other.itemDate);
+
+
+        /**
+         * {@inheritDoc}
+         */
     @Override
     public int hashCode() {
         return itemDate.hashCode();
