@@ -41,6 +41,9 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(person.getTags());
     }
 
+    /**
+     * Sets the {@code Occupation} of the {@code EditPersonDescriptor}.
+     */
     public EditPersonDescriptorBuilder withOccupation(String occupation) {
         descriptor.setOccupation(new Occupation(occupation));
         return this;
