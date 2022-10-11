@@ -6,6 +6,6 @@ package seedu.address.model.team.exceptions;
  */
 public class DuplicateTeamException extends RuntimeException {
     public DuplicateTeamException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate teams");
     }
 }
