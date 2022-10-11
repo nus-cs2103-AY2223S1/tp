@@ -142,6 +142,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTask(seedu.address.model.task.Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTask(seedu.address.model.task.Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTask(seedu.address.model.task.Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }

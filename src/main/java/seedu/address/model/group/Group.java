@@ -3,6 +3,8 @@ package seedu.address.model.group;
 import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Represents a Group in the address book.
@@ -11,6 +13,7 @@ public class Group extends AbstractContainerItem {
 
     private final String groupName;
     private final Group parent;
+    private final UniqueTaskList taskList;
 
     Group(String groupName) {
         this(groupName, null);
@@ -19,6 +22,33 @@ public class Group extends AbstractContainerItem {
     Group(String groupName, Group parent) {
         this.groupName = groupName;
         this.parent = parent;
+        taskList = new UniqueTaskList();
+    }
+
+    /**
+     * Checks if a task exists in this group
+     * @param task The task to check if exists
+     * @return true if it exists in this Group, false otherwise
+     */
+    public boolean hasTask(Task task) {
+        return taskList.contains(task);
+    }
+
+    /**
+     * Adds a task to this group. The task must not already exist in this group.
+     *
+     * @param task The task to add
+     */
+    public void addTask(Task task) {
+        taskList.add(task);
+    }
+
+    /**
+     * Removes a task from this group. The task must already exist in this group
+     * @param task The task to remove
+     */
+    public void removeTask(Task task) {
+        taskList.remove(task);
     }
 
     @Override
