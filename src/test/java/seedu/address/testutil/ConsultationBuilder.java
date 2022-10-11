@@ -1,7 +1,16 @@
 package seedu.address.testutil;
 
-import seedu.address.model.consultation.*;
+import seedu.address.model.consultation.Consultation;
+import seedu.address.model.consultation.ConsultationDescription;
+import seedu.address.model.consultation.ConsultationModule;
+import seedu.address.model.consultation.ConsultationName;
+import seedu.address.model.consultation.ConsultationTimeslot;
+import seedu.address.model.consultation.ConsultationVenue;
 
+/**
+ * Class to create an instance of consultation to test.
+ * @return
+ */
 public class ConsultationBuilder {
     public static final String DEFAULT_NAME = "JakeKim";
     public static final String DEFAULT_MODULE = "CS2103T";
@@ -10,39 +19,39 @@ public class ConsultationBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "Testing";
 
-    private ConsultationName ConsultationName;
-    private ConsultationModule ConsultationModule;
-    private ConsultationVenue ConsultationVenue;
-    private ConsultationTimeslot ConsultationTimeslot;
-    private ConsultationDescription ConsultationDescription;
+    private ConsultationName consultationName;
+    private ConsultationModule consultationModule;
+    private ConsultationVenue consultationVenue;
+    private ConsultationTimeslot consultationTimeslot;
+    private ConsultationDescription consultationDescription;
 
     /**
      * Creates a {@code ConsultationBuilder} with the default details.
      */
     public ConsultationBuilder() {
-        ConsultationName = new ConsultationName(DEFAULT_NAME);
-        ConsultationModule = new ConsultationModule(DEFAULT_MODULE);
-        ConsultationVenue = new ConsultationVenue(DEFAULT_VENUE);
-        ConsultationTimeslot = new ConsultationTimeslot(DEFAULT_TIMESLOT);
-        ConsultationDescription = new ConsultationDescription(DEFAULT_DESCRIPTION);
+        consultationName = new ConsultationName(DEFAULT_NAME);
+        consultationModule = new ConsultationModule(DEFAULT_MODULE);
+        consultationVenue = new ConsultationVenue(DEFAULT_VENUE);
+        consultationTimeslot = new ConsultationTimeslot(DEFAULT_TIMESLOT);
+        consultationDescription = new ConsultationDescription(DEFAULT_DESCRIPTION);
     }
 
     /**
      * Initializes the ConsultationBuilder with the data of {@code ConsultationToCopy}.
      */
-    public ConsultationBuilder(Consultation ConsultationToCopy) {
-        ConsultationName = ConsultationToCopy.getName();
-        ConsultationModule = ConsultationToCopy.getModule();
-        ConsultationVenue = ConsultationToCopy.getVenue();
-        ConsultationTimeslot = ConsultationToCopy.getTimeslot();
-        ConsultationDescription = ConsultationToCopy.getDescription();
+    public ConsultationBuilder(Consultation consultationToCopy) {
+        consultationName = consultationToCopy.getName();
+        consultationModule = consultationToCopy.getModule();
+        consultationVenue = consultationToCopy.getVenue();
+        consultationTimeslot = consultationToCopy.getTimeslot();
+        consultationDescription = consultationToCopy.getDescription();
     }
 
     /**
      * Sets the {@code ConsultationName} of the {@code Consultation} that we are building.
      */
     public ConsultationBuilder withName(String name) {
-        this.ConsultationName = new ConsultationName(name);
+        this.consultationName = new ConsultationName(name);
         return this;
     }
 
@@ -50,7 +59,7 @@ public class ConsultationBuilder {
      * Sets the {@code ConsultationModule} of the {@code Consultation} that we are building.
      */
     public ConsultationBuilder withModule(String module) {
-        this.ConsultationModule = new ConsultationModule(module);
+        this.consultationModule = new ConsultationModule(module);
         return this;
     }
 
@@ -58,7 +67,7 @@ public class ConsultationBuilder {
      * Sets the {@code ConsultationVenue} of the {@code Consultation} that we are building.
      */
     public ConsultationBuilder withVenue(String venue) {
-        this.ConsultationVenue = new ConsultationVenue(venue);
+        this.consultationVenue = new ConsultationVenue(venue);
         return this;
     }
 
@@ -66,7 +75,7 @@ public class ConsultationBuilder {
      * Sets the {@code ConsultationTimeslot} of the {@code Consultation} that we are building.
      */
     public ConsultationBuilder withTimeslot(String timeslot) {
-        this.ConsultationTimeslot = new ConsultationTimeslot(timeslot);
+        this.consultationTimeslot = new ConsultationTimeslot(timeslot);
         return this;
     }
 
@@ -74,12 +83,17 @@ public class ConsultationBuilder {
      * Sets the {@code ConsultationDescription} of the {@code Consultation} that we are building.
      */
     public ConsultationBuilder withDescription(String description) {
-        this.ConsultationDescription = new ConsultationDescription(description);
+        this.consultationDescription = new ConsultationDescription(description);
         return this;
     }
 
+    /**
+     * Construct an instance of consultation to test.
+     * @return
+     */
     public Consultation build() {
-        return new Consultation(ConsultationName, ConsultationModule, ConsultationVenue, ConsultationTimeslot, ConsultationDescription);
+        return new Consultation(consultationName, consultationModule, consultationVenue, consultationTimeslot,
+                consultationDescription);
     }
 
 }

@@ -1,7 +1,18 @@
 package seedu.address.logic.commands.consultation;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.tutorial.exceptions.CommandException;
@@ -9,20 +20,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.consultation.Consultation;
+import seedu.address.model.person.Person;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.ConsultationBuilder;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class AddConsultationCommandTest {
     @Test
@@ -31,8 +32,9 @@ public class AddConsultationCommandTest {
     }
 
     @Test
-    public void execute_ConsultationAcceptedByModel_addSuccessful() throws Exception {
-        AddConsultationCommandTest.ModelStubAcceptingConsultationAdded modelStub = new AddConsultationCommandTest.ModelStubAcceptingConsultationAdded();
+    public void executeConsultationAcceptedByModelAddSuccessful() throws Exception {
+        AddConsultationCommandTest.ModelStubAcceptingConsultationAdded modelStub =
+                new AddConsultationCommandTest.ModelStubAcceptingConsultationAdded();
         Consultation validConsultation = new ConsultationBuilder().build();
 
         CommandResult commandResult = new AddConsultationCommand(validConsultation).execute(modelStub);
@@ -40,14 +42,15 @@ public class AddConsultationCommandTest {
         assertEquals(String.format(
                         AddConsultationCommand.MESSAGE_SUCCESS, validConsultation),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validConsultation), modelStub.ConsultationsAdded);
+        assertEquals(Arrays.asList(validConsultation), modelStub.consultationsAdded);
     }
 
     @Test
     public void execute_duplicateConsultation_throwsCommandException() {
         Consultation validConsultation = new ConsultationBuilder().build();
         AddConsultationCommand addCommand = new AddConsultationCommand(validConsultation);
-        AddConsultationCommandTest.ModelStub modelStub = new AddConsultationCommandTest.ModelStubWithConsultation(validConsultation);
+        AddConsultationCommandTest.ModelStub modelStub =
+                new AddConsultationCommandTest.ModelStubWithConsultation(validConsultation);
 
         assertThrows(CommandException.class,
                 AddConsultationCommand.MESSAGE_DUPLICATE_CONSULTATION, () -> addCommand.execute(modelStub));
@@ -177,17 +180,17 @@ public class AddConsultationCommandTest {
         }
 
         @Override
-        public boolean hasConsultation(Consultation Consultation) {
+        public boolean hasConsultation(Consultation consultation) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasConsultationClashingWith(Consultation Consultation) {
+        public boolean hasConsultationClashingWith(Consultation consultation) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addConsultation(Consultation Consultation) {
+        public void addConsultation(Consultation consultation) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -206,17 +209,17 @@ public class AddConsultationCommandTest {
      * A Model stub that contains a single Consultation.
      */
     private class ModelStubWithConsultation extends AddConsultationCommandTest.ModelStub {
-        private final Consultation Consultation;
+        private final Consultation consultation;
 
-        ModelStubWithConsultation(Consultation Consultation) {
-            requireNonNull(Consultation);
-            this.Consultation = Consultation;
+        ModelStubWithConsultation(Consultation consultation) {
+            requireNonNull(consultation);
+            this.consultation = consultation;
         }
 
         @Override
-        public boolean hasConsultation(Consultation Consultation) {
-            requireNonNull(Consultation);
-            return this.Consultation.isSameConsultation(Consultation);
+        public boolean hasConsultation(Consultation consultation) {
+            requireNonNull(consultation);
+            return this.consultation.isSameConsultation(consultation);
         }
     }
 
@@ -224,24 +227,24 @@ public class AddConsultationCommandTest {
      * A Model stub that always accept the Consultation being added.
      */
     private class ModelStubAcceptingConsultationAdded extends AddConsultationCommandTest.ModelStub {
-        final ArrayList<Consultation> ConsultationsAdded = new ArrayList<>();
+        final ArrayList<Consultation> consultationsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasConsultation(Consultation Consultation) {
-            requireNonNull(Consultation);
-            return ConsultationsAdded.stream().anyMatch(Consultation::isSameConsultation);
+        public boolean hasConsultation(Consultation consultation) {
+            requireNonNull(consultation);
+            return consultationsAdded.stream().anyMatch(consultation::isSameConsultation);
         }
 
         @Override
-        public boolean hasConsultationClashingWith(Consultation Consultation) {
-            requireNonNull(Consultation);
-            return ConsultationsAdded.stream().anyMatch(Consultation::isClashConsultation);
+        public boolean hasConsultationClashingWith(Consultation consultation) {
+            requireNonNull(consultation);
+            return consultationsAdded.stream().anyMatch(consultation::isClashConsultation);
         }
 
         @Override
-        public void addConsultation(Consultation Consultation) {
-            requireNonNull(Consultation);
-            ConsultationsAdded.add(Consultation);
+        public void addConsultation(Consultation consultation) {
+            requireNonNull(consultation);
+            consultationsAdded.add(consultation);
         }
 
         @Override
