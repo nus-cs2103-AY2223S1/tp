@@ -1,7 +1,7 @@
 package eatwhere.foodguide.logic.commands;
 
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_CUISINE;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;

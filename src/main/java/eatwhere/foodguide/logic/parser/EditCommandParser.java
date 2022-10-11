@@ -1,7 +1,7 @@
 package eatwhere.foodguide.logic.parser;
 
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_CUISINE;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
@@ -31,7 +31,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_CUISINE, PREFIX_LOCATION, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
+                        PREFIX_CUISINE, PREFIX_LOCATION, PREFIX_TAG);
 
         Index index;
 
