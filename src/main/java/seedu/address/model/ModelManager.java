@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -136,7 +137,7 @@ public class ModelManager implements Model {
 
     @Override
     public Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
-                                    String meetingDateAndTime, String meetingLocation) {
+                                    String meetingDateAndTime, String meetingLocation) throws ParseException {
         return new Meeting(peopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
     }
 

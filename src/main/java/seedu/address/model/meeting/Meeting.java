@@ -25,9 +25,9 @@ public class Meeting {
     private String meetingDateAndTime;
     private String meetingLocation;
 
-    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.US)
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.UK)
         .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm", Locale.US)
+    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm", Locale.UK)
         .withResolverStyle(ResolverStyle.SMART);
     private final DateTimeProcessor validator = new DateTimeProcessor(dateFormatter, timeFormatter);
 
@@ -40,11 +40,10 @@ public class Meeting {
      * @param meetingLocation the location of the meeting
      */
     public Meeting(ArrayList<Person> peopleToMeet, String meetingTitle,
-                   String meetingDateAndTime, String meetingLocation) {
-        this.peopleToMeet = new UniquePersonList();
+        String meetingDateAndTime, String meetingLocation) throws ParseException {
         this.peopleToMeet.setPersons(peopleToMeet);
         this.meetingDescription = meetingTitle;
-        this.meetingDateAndTime = meetingDateAndTime;
+        this.meetingDateAndTime = validator.processDateTime(meetingDateAndTime);
         this.meetingLocation = meetingLocation;
     }
 
