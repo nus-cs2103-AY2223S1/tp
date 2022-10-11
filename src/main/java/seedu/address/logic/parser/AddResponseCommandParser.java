@@ -1,14 +1,16 @@
 package seedu.address.logic.parser;
 
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE_COUNT;
+
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddResponseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Response;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE_COUNT;
 
 /**
  * Parses input arguments and creates a new {@code AddResponseCommand} object
@@ -33,8 +35,8 @@ public class AddResponseCommandParser implements Parser<AddResponseCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddResponseCommand.MESSAGE_USAGE));
         }
 
-        String message_count = argMultimap.getValue(PREFIX_MESSAGE_COUNT).orElse("");
+        String messageCount = argMultimap.getValue(PREFIX_MESSAGE_COUNT).orElse("");
 
-        return new AddResponseCommand(index, new Response(message_count));
+        return new AddResponseCommand(index, new Response(messageCount));
     }
 }

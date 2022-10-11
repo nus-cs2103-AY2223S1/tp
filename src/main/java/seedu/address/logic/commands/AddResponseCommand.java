@@ -1,5 +1,10 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,11 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Response;
 import seedu.address.model.student.Student;
 
-import java.util.List;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
-
+/**
+ * Adds the response count to the student.
+ */
 public class AddResponseCommand extends Command {
 
     public static final String COMMAND_WORD = "addresponse";
@@ -25,6 +28,9 @@ public class AddResponseCommand extends Command {
     private final Index index;
     private final Response response;
 
+    /**
+     * Creates an AddResponseCommand to add the specified {@code Response}
+     */
     public AddResponseCommand(Index index, Response response) {
         requireAllNonNull(index, response);
 
