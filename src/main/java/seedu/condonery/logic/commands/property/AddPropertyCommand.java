@@ -1,10 +1,12 @@
-package seedu.condonery.logic.commands;
+package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.condonery.logic.commands.Command;
+import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.property.Property;
@@ -14,7 +16,7 @@ import seedu.condonery.model.property.Property;
  */
 public class AddPropertyCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add -p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to Condonery. "
             + "Parameters: "
