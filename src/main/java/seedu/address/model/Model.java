@@ -88,6 +88,11 @@ public interface Model {
     void setTask(Task task, Index targetIndex);
 
     /**
+     * Deletes the task at the specified {@code Index}.
+     */
+    void deleteTask(Index index);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */

@@ -94,8 +94,14 @@ public class ModelManager implements Model {
         return taskList.hasTask(task);
     }
 
+    @Override
     public void setTask(Task task, Index targetIndex) {
         taskList.setTask(task, targetIndex);
+    }
+
+    @Override
+    public void deleteTask(Index index) {
+        taskList.deleteTask(index);
     }
 
     @Override
