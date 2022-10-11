@@ -81,7 +81,7 @@ public class AddTaskCommandTest {
     /**
      * A default model stub that have all the methods failing.
      */
-    protected class ModelStub implements Model {
+    private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
