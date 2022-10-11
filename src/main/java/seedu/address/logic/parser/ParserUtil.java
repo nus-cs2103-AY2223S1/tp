@@ -38,6 +38,11 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code order} into an {@code Order} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws IllegalArgumentException if the specified order is invalid.
+     */
     public static Order parseOrder(String order) throws IllegalArgumentException {
         String trimmedOrder = order.trim();
         return Order.lexicographicalOrder(trimmedOrder);

@@ -118,6 +118,16 @@ public abstract class Person {
         return this.name.toString().compareTo(person.name.toString());
     }
 
+    /**
+     * Return 1 if this Person's moduleCode has higher precedence
+     * lexicographically over the target's moduleCode.
+     * 0 if their precedence is the same.
+     * -1 if this Person's moduleCode has lower precedence
+     * over the target's moduleCode. For Person objects without
+     * moduleCode field. They will be compared based on their name.
+     * @param person target Person of comparison.
+     * @return int.
+     */
     public int compareModuleCode(Person person) {
         if (person instanceof Student) {
             return compareName(person);

@@ -129,7 +129,9 @@ public class UniquePersonList implements Iterable<Person> {
             this.internalList.sort(nameComparator);
         }
     }
-
+    /**
+     * Sorts the ObservableList by moduleCode in specified order
+     */
     public void sortModuleCode(Order order) {
         Comparator<? super Person> moduleCodeComparator = (p1, p2) ->
                 p1.compareModuleCode(p2);

@@ -26,7 +26,6 @@ public class SortCommandParser implements Parser<SortCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE, PREFIX_NAME);
 
         Order order;
-        
         try {
             order = ParserUtil.parseOrder(argumentMultimap.getPreamble());
         } catch (IllegalArgumentException pe) {

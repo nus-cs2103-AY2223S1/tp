@@ -10,15 +10,15 @@ package seedu.address.commons.core.order;
  * that component can convert it back to a boolean if the order will not be passed to a different component again.
  */
 public class Order {
-    private boolean isIncreasing;
-    private static String DECREASING_ALPHABETICAL  = "Z-A";
-    private static String INCREASING_ALPHABETICAL = "A-Z";
-
-    public static String VALID_ORDER = "list: "
+    private static final String DECREASING_ALPHABETICAL = "Z-A";
+    private static final String INCREASING_ALPHABETICAL = "A-Z";
+    public static final String VALID_ORDER = "list: "
             + "\n"
             + "-" + DECREASING_ALPHABETICAL
-            +"\n"
+            + "\n"
             + "-" + INCREASING_ALPHABETICAL;
+    private boolean isIncreasing;
+
     /**
      * Order can only be created by calling {@link Order#lexicographicalOrder(String)}.
      */

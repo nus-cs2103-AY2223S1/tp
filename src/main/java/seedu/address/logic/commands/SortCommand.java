@@ -25,8 +25,8 @@ public class SortCommand extends Command {
     private final SortPersonListDescriptor sortPersonListDescriptor;
 
     /**
-     * @param order                    order in which list is sorted in
-     * @param sortPersonListDescriptor field specified to be sorted by
+     * @param order the list will be sorted by
+     * @param sortPersonListDescriptor the fields that the list will be sorted by
      */
     public SortCommand(Order order, SortPersonListDescriptor sortPersonListDescriptor) {
         requireNonNull(order);

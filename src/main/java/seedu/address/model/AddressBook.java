@@ -95,7 +95,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// util methods
-
+    /**
+     * Sorts {@code persons} according to the {@code order} specified.
+     * {@code hasName} and {@code hasModuleCode} determines the order it is being sort by.
+     */
     public void sort(Order order, boolean hasName, boolean hasModuleCode) {
         if (hasName) {
             persons.sortName(order);
