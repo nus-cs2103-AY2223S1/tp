@@ -5,46 +5,60 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyTaskManager" as ReadOnlyTaskManager
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class TaskManager
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
+Class UniqueTaskList
+Class UniqueStudentList
+Class UniqueTutorialGroupList
+Class Student
+Class Task
 Class Email
 Class Name
 Class Phone
+Class TutorialGroup
 Class Tag
+Class TaskName
+Class TaskDeadline
+Class TaskDescription
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+TaskManager .up.|> ReadOnlyTaskManager
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyTaskManager
+ModelManager -left-> "1" TaskManager
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+TaskManager *--> "1" UniqueStudentList
+TaskManager *--> "1" UniqueTaskList
+TaskManager *--> "1" UniqueTutorialGroupList
+UniqueStudentList --> "~* all" Student
+UniqueTaskList --> "~* all" Task
+UniqueTutorialGroupList --> "~* all" TutorialGroup
+Student *--> Name
+Student *--> Phone
+Student *--> Email
+Student *--> "*" Tag
+Student *--> TutorialGroup
+
+Task *--> TaskName
+Task *--> TaskDescription
+Task *--> TaskDeadline
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+TutorialGroup -[hidden]right-> TutorialGroup
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Student
+ModelManager -->"~* filtered" Task
 @enduml
