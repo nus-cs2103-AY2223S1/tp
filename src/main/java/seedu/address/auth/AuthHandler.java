@@ -20,7 +20,7 @@ public class AuthHandler {
      * @return True if the username and password are correct, false otherwise.
      */
     public static boolean checkCredentials(String username, String password) {
-        return username.equals(Credentials.DEBUG_USERNAME)
-               && password.equals(Credentials.DEBUG_PASSWORD);
+        return username.equals(Credentials.getDebugUsername())
+               && password.equals(Credentials.getDebugPassword());
     }
 }
