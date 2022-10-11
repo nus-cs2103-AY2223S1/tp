@@ -127,6 +127,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Task> getTaskList() {
+        return taskBook.getTaskList();
+    }
+
+    @Override
     public void addTask(Task task) {
         requireNonNull(task);
         taskBook.addTask(task);

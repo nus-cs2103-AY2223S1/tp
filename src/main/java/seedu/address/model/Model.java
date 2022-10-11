@@ -91,6 +91,8 @@ public interface Model {
 
     ReadOnlyTaskBook getTaskBook();
 
+    ObservableList<Task> getTaskList();
+
     void addTask(Task task);
 
     void deleteTask(Task target);
