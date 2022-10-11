@@ -37,6 +37,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_LINK_1 = "https://nus-cs2103-ay2223s1.github.io/website/";
     private static final String VALID_LINK_2 = "https://nusmods.com";
+    private static final String VALID_LINK_3 = "google.com";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -206,6 +207,12 @@ public class ParserUtilTest {
     @Test
     public void parseLink_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseLink(INVALID_LINK));
+    }
+
+    @Test
+    public void parseLink_validValueWithoutHTTPS_returnsLink() throws Exception {
+        Link expectedLink = new Link(VALID_LINK_3);
+        assertEquals(expectedLink, ParserUtil.parseLink(VALID_LINK_3));
     }
 
     @Test

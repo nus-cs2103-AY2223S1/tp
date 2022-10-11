@@ -37,10 +37,10 @@ public class AddLinkCommandTest {
     @Test
     public void equals() {
         final AddLinkCommand standardCommand = new AddLinkCommand(INDEX_FIRST_MODULE,
-                new HashSet<Link>(Arrays.asList(new Link(VALID_LINK))));
+                new HashSet<Link>(Arrays.asList(new Link(VALID_MODULE_LINK))));
 
         // same values -> returns true
-        Set<Link> copyLinks = new HashSet<Link>(Arrays.asList(new Link(VALID_LINK)));
+        Set<Link> copyLinks = new HashSet<Link>(Arrays.asList(new Link(VALID_MODULE_LINK)));
         AddLinkCommand commandWithSameValues = new AddLinkCommand(INDEX_FIRST_MODULE, copyLinks);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -58,6 +58,6 @@ public class AddLinkCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new AddLinkCommand(INDEX_FIRST_MODULE,
-                new HashSet<Link>(Arrays.asList(new Link(VALID_LINK_2))))));
+                new HashSet<Link>(Arrays.asList(new Link(VALID_MODULE_LINK_2))))));
     }
 }

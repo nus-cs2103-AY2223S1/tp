@@ -28,12 +28,14 @@ public class AddLinkCommandParserTest {
         assertParseFailure(parser, "a", MESSAGE_INVALID_INDEX);
     }
 
+    //Specific testing of link compatability performed at ParserUtilTest
+    //Integration testing of AddLinkCommandParser with ParserUtil
     @Test
     public void parse_links_success() {
         Index targetIndex = INDEX_SECOND_MODULE;
         String userInput = targetIndex.getOneBased() + MODULE_LINK_CS2103T;
 
-        Set<Link> expectedLinks = new HashSet<Link>(Arrays.asList(new Link(VALID_LINK)));
+        Set<Link> expectedLinks = new HashSet<Link>(Arrays.asList(new Link(VALID_MODULE_LINK)));
         AddLinkCommand expectedCommand = new AddLinkCommand(targetIndex, expectedLinks);
 
         assertParseSuccess(parser, userInput, expectedCommand);

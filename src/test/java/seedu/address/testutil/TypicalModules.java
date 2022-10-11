@@ -8,8 +8,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MA_MODULE_TITLE
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.HashSet;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 
 /**
@@ -19,6 +21,12 @@ public class TypicalModules {
 
     public static final Module CS2103T = new ModuleBuilder().withModuleCode("CS2103T")
             .withModuleTitle("Software Engineering").build();
+
+    public static final Module GE3238 = new ModuleBuilder().withModuleCode("GE3238")
+            .withModuleTitle("GIS Design and Practices")
+            .withLinks(new HashSet<Link>(Arrays.asList(
+                    new Link("qgis.org"), new Link("www.arcgis.com"))))
+            .build();
 
     public static final Module CS2106 = new ModuleBuilder().withModuleCode(VALID_CS_MODULE_CODE)
             .withModuleTitle(VALID_CS_MODULE_TITLE).build();

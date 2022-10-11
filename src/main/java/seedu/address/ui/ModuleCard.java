@@ -1,17 +1,25 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
+
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
 
 /**
  * A UI component that displays information of a {@code Module}.
  */
 public class ModuleCard extends UiPart<Region> {
 
+    private Desktop desktop = Desktop.getDesktop();
     private static final String FXML = "ModuleListCard.fxml";
 
     /**
@@ -48,7 +56,30 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         moduleCode.setText(module.getModuleCodeAsUpperCaseString());
         moduleTitle.setText(module.getModuleTitleAsUpperCaseString());
+        for (Link link : module.getLinks()) {
+            Hyperlink node = createHyperLinkNode(link.linkName);
+            links.getChildren().add(node);
+        }
         // ToDo: Add Ui components for tasks and links.
+    }
+
+    private Hyperlink createHyperLinkNode(String linkURL) {
+        Hyperlink node =  new Hyperlink(linkURL);
+        node.setStyle("-fx-text-fill: #FFCC66");
+        if (!linkURL.substring(0, 4).equals("http")) {
+            linkURL = "https://" + linkURL;
+        }
+        final String finalLinkURL = linkURL;
+        node.setOnAction(e -> {
+            try {
+                desktop.browse(URI.create(finalLinkURL));
+            } catch (IOException ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Error: Link cannot be launched by your desktop");
+                alert.showAndWait();
+            }
+        });
+        return node;
     }
 
     @Override

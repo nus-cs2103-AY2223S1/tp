@@ -55,6 +55,14 @@ public class Module {
         this(moduleCode, moduleTitle, new HashSet<>(), new HashSet<>());
     }
 
+    /**
+     * Adds a {@code Module} with module code and module title but without any
+     * associated tasks.
+     */
+    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle, Set<Link> links) {
+        this(moduleCode, moduleTitle, new HashSet<>(), links);
+    }
+
     public ModuleCode getModuleCode() {
         return moduleCode;
     }

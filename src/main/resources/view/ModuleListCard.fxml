@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -43,7 +44,7 @@
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
           <Label styleClass="underlined-text">Links</Label>
-          <!--  TODO: Add Ui components for individual links.-->
+          <FlowPane fx:id="links" />
         </VBox>
       </HBox>
     </VBox>
