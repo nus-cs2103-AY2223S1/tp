@@ -1,7 +1,6 @@
 package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.waddle.commons.core.Messages;
 import seedu.waddle.commons.core.index.Index;
