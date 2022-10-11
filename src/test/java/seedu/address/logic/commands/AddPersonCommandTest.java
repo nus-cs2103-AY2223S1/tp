@@ -178,7 +178,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public ObservableList<Appointment> getFilterAppointmentList() {
+        public ObservableList<Appointment> getFilteredAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
 
