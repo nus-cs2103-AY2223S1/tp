@@ -5,7 +5,6 @@ import static modtrekt.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.stream.Stream;
 
 import modtrekt.logic.commands.AddCommand;
 import modtrekt.logic.commands.AddDeadlineCommand;
