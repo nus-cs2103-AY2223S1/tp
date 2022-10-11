@@ -1,6 +1,7 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.commands.DeleteItemCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
