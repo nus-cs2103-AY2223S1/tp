@@ -1,40 +1,34 @@
 package seedu.address.ui.history;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Scanner;
 
+/**
+ * The history component that is responsible for storing past commands.
+ */
 public class CommandHistory {
     private ArrayList<String> previousCommands = new ArrayList<>();
     private int pointer = previousCommands.size();
 
-    /* public void writeCommandHistory() {
-        try {
-            FileWriter writer = new FileWriter(this.filePath.toString());
-            for (int i = 0; i < previousCommands.size(); i++) {
-                System.out.println(previousCommands.get(i));
-                writer.write(previousCommands.get(i));
-            }
-            writer.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    } */
-
-
+    /**
+     * Adds user input into the storage for command history.
+     * @param userInput The command that user entered.
+     */
     public void add(String userInput) {
         previousCommands.add(userInput);
         reset();
     }
 
+    /**
+     * Resets the pointer to point at last item.
+     */
     public void reset() {
         pointer = previousCommands.size();
     }
 
+    /**
+     * Moves pointer upwards if possible to return to previous command.
+     * @return The previous command.
+     */
     public String up() {
         pointer--;
         try {
@@ -45,6 +39,10 @@ public class CommandHistory {
         }
     }
 
+    /**
+     * Moves pointer downwards if possible to return to the next command.
+     * @return The next command.
+     */
     public String down() {
         pointer++;
         try {
