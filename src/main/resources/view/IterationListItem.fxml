@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Region?>
 
 <VBox id="iterationListItem" fx:id="iterationListItem"
       xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" prefWidth="0">
@@ -19,7 +20,13 @@
         </left>
         <center>
             <HBox alignment="CENTER_LEFT">
-                <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+                <Label fx:id="description" styleClass="cell_small_label" text="\$description"
+                       style="-fx-font-size: 13px;" wrapText="true">
+                    <minHeight>
+                        <!-- Ensures that the label text is never truncated (with the wrapText attribute)-->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minHeight>
+                </Label>
             </HBox>
         </center>
         <right>
@@ -36,7 +43,13 @@
                 <Insets right="16.0" />
             </HBox.margin>
         </ImageView>
-        <Label fx:id="feedback" style="-fx-text-align: CENTER;" styleClass="cell_small_label" text="\$feedback" />
+        <Label fx:id="feedback" style="-fx-text-align: CENTER;" styleClass="cell_small_label" text="\$feedback"
+               wrapText="true">
+            <minHeight>
+                <!-- Ensures that the label text is never truncated (with the wrapText attribute)-->
+                <Region fx:constant="USE_PREF_SIZE" />
+            </minHeight>
+        </Label>
     </HBox>
     <VBox.margin>
         <Insets bottom="4.0" />

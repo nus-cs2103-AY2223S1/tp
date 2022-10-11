@@ -42,6 +42,11 @@
                 <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
                 <Label fx:id="completionStatus" styleClass="cell_small_label" text="\$completionStatus" />
                 <Label fx:id="customerName" styleClass="cell_small_label" text="\$customerName" />
+                <Label styleClass="-fx-font-weight: bold; -fx-font-size: 24px" text="Iterations">
+                    <VBox.margin>
+                        <Insets top="16" bottom="8" />
+                    </VBox.margin>
+                </Label>
                 <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS" />
             </VBox>
         </content>
