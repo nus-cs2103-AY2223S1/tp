@@ -76,6 +76,13 @@ public class TaskList implements ReadOnlyTaskList {
         tasks.set(targetIndex.getZeroBased(), target);
     }
 
+    /**
+     * Deletes the task at the specified {@code Index}.
+     */
+    public void deleteTask(Index index) {
+        tasks.remove(index.getZeroBased());
+    }
+
     @Override
     public int hashCode() {
         return this.tasks.hashCode();
