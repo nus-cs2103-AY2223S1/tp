@@ -21,13 +21,8 @@ public class SortCommandParserTest {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 
-    // No Trailing or leading whitespaces
     @Test
-    public void parse_validArgs_returnsSortCommand() {
-        SortCommand expectedSortCommand =
-                new SortCommand(new SortByName(), "name");
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n name \n", expectedSortCommand);
+    public void parse_invalidArg_throwsParseException() {
+        assertParseFailure(parser, "na", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 }
