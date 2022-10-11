@@ -46,7 +46,7 @@ contains some sample data.<br>
 | [`delete-contact`](#242-delete-contact-coming-soon) | `delete-contact  n/NAME`                                       | Delete contact belonging to the specified name                                  |
 | [`edit-contact`](#243-edit-contact)                 | `edit-contact    INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])` | Edit contact belonging to the specified index currently displayed on the screen |
 | [`home`](#251-navigate-to-home)                     | `home`                                                         | Navigate to the home page                                                       |
-| [`goto`](#252-navigate-between-modules)             | `goto m/MODULE_CODE`                                           | Navigate to specified module page                                               |
+| [`goto`](#252-navigate-between-modules)             | `goto MODULE_CODE`                                             | Navigate to specified module page                                               |
 | [`exit`](#26-exiting-the-program)                   | `exit`                                                         | Exit the program                                                                |
 
 ## 2. Features
@@ -292,15 +292,12 @@ Format:  `home`
 You may navigate between modules to view information belonging to a particular
 module using the `goto` command.
 
-This command will require one flag:
-* `m/`: To be followed by the module code of the module you are navigating to.
-
-Format: `goto m/MODULE_CODE`
+Format: `goto MODULE_CODE`
 * You should provide a module code of an existing module in Plannit.
 
 Example:
 ```
-goto m/CS2109S
+goto CS2109S
 ```
 In the above example, we are navigating to the module with module code `CS2109S`.
 
