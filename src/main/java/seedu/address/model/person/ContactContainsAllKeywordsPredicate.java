@@ -39,19 +39,19 @@ public class ContactContainsAllKeywordsPredicate implements Predicate<Person> {
             switch (prefix) {
             case INDICATOR_NAME:
                 isNameContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                        .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getName().fullName, keyword));
                 break;
             case INDICATOR_ADDRESS:
                 isAddressContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword));
+                        .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getAddress().value, keyword));
                 break;
             case INDICATOR_EMAIL:
                 isEmailContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getEmail().value, keyword));
+                        .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getEmail().value, keyword));
                 break;
             case INDICATOR_PHONE:
                 isPhoneContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getPhone().value, keyword));
+                        .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getPhone().value, keyword));
                 break;
             case INDICATOR_TAG:
                 isTagContained = true; // Implementation postponed, waiting for tag feature
@@ -65,10 +65,26 @@ public class ContactContainsAllKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ContactContainsAllKeywordsPredicate // instanceof handles nulls
-                // state check
-                && searchedKeywords.equals(((ContactContainsAllKeywordsPredicate) other).searchedKeywords));
-    }
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof ContactContainsAllKeywordsPredicate)) {
+            return false;
+        }
+        ContactContainsAllKeywordsPredicate otherPred = (ContactContainsAllKeywordsPredicate) other;
 
+        if (prefixes.size() != otherPred.prefixes.size()
+                || searchedKeywords.size() != otherPred.searchedKeywords.size()) {
+            return false;
+        }
+        boolean result = true;
+        for (int i = 0; i < prefixes.size(); i++) {
+            result = prefixes.get(i).equals(otherPred.prefixes.get(i))
+                    && searchedKeywords.get(i).equals(otherPred.searchedKeywords.get(i));
+            if (!result) {
+                break;
+            }
+        }
+        return result;
+    }
 }

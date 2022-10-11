@@ -28,7 +28,11 @@ public class SearchCommand extends Command {
 
     private final Predicate<Person> predicate;
 
+    /**
+     * Creates a SearchCommand to search the address book.
+     */
     public SearchCommand(Predicate<Person> predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 

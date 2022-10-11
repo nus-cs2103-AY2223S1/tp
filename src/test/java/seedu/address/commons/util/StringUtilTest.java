@@ -76,6 +76,34 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase(null, "abc"));
     }
 
+
+    //---------------- Tests for containsKeywordsIgnoreCase --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for word: null, empty
+     * Invalid equivalence partitions for sentence: null
+     */
+
+    @Test
+    public void containsKeywordsIgnoreCase_singleWord_match() {
+        assertTrue(StringUtil.containsKeywordsIgnoreCase("John Doe Damian", "John"));
+    }
+
+    @Test
+    public void containsKeywordsIgnoreCase_singleWord_doNotMatch() {
+        assertFalse(StringUtil.containsKeywordsIgnoreCase("John Doe Damian", "Rachel"));
+    }
+
+    @Test
+    public void containsKeywordsIgnoreCase_multipleWordsDifferentCase_match() {
+        assertTrue(StringUtil.containsKeywordsIgnoreCase("John Doe Damian", "john doe"));
+    }
+
+    @Test
+    public void containsKeywordsIgnoreCase_multipleWords_doNotMatch() {
+        assertFalse(StringUtil.containsKeywordsIgnoreCase("John Doe Damian", "John DD"));
+    }
+
     /*
      * Valid equivalence partitions for word:
      *   - any word

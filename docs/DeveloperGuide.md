@@ -345,7 +345,7 @@ _{more aspects and alternatives to be added}_
 
 ### Tag adding feature
 
-### Implementation
+#### Implementation
 
 The tag adding mechanism is facilitated by `TagAddCommand` and `TagAddCommandParser`.
 Additionally, The mechanism utilises the following operations in `UniqueTagList` and `UniquePersonList`.
@@ -390,6 +390,27 @@ The following activity diagram summarizes what happens when a user executes a ta
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Customise Order Feature
+
+#### Implementation
+
+This feature is mainly implemented by the `CustomiseCommand` and `PersonCard` classes. The following methods are the main ones:
+
+* `CustomiseCommand#changeAttributeOrder(Model model)` - saves the new attribute order in the `preferences.json` file.
+* `PersonCard#setAttributes()` - reads the order from the `preferences.json` file and builds the `PersonCard` in the order specified.
+
+_{diagrams and more in depth explanation to be added}_
+
+#### Design consideration
+* **Alternative 1 (current choice):** Sets the order in 4 placeholder JavaFX `FlowPane`.
+  * Pros: Easy to implement.
+  * Cons: Unable to have different styling for different attributes.
+
+* **Alternative 2:** Have 24 different FXML files and choose the one with the required order.
+  * Pros: Easy to implement and can have different styling for different attributes.
+  * Cons: Hard to maintain and make changes.
+
+_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
