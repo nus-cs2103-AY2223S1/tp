@@ -177,15 +177,18 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void updatePocList() {
+    private void handlePocListUpdate(CommandResult commandResult) {
         ObservableList<Company> companies = logic.getFilteredCompanyList();
+
+        if (companies.size() != 1) {
+            // Empty poc list panel.
+            pocListPanel.setPocList(FXCollections.observableArrayList());
+            return;
+        }
+
         Company company = companies.get(0);
         ObservableList<Poc> pocs = company.getPocs().asUnmodifiableObservableList();
         pocListPanel.setPocList(pocs);
-    }
-
-    private void emptyPocList() {
-        pocListPanel.setPocList(FXCollections.observableArrayList());
     }
 
     /**
@@ -207,11 +210,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isView()) {
-                updatePocList();
-            } else {
-                emptyPocList();
-            }
+            handlePocListUpdate(commandResult);
 
             return commandResult;
         } catch (CommandException | ParseException e) {
