@@ -142,7 +142,16 @@ The `Model` component,
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
+
+### Autocomplete component
+**API** : [`Autocomplete.java`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/logic/autocomplete/Autocomplete.java)
+
+**TODO: Add AutocompleteClassDiagram**
+
+The `Autocomplete` component,
+* stores the unique names in SoConnect.
+* depends on some classes in the `Model` component (because the `Autocomplete` component gets a list of unique names from the objects that belong to the `Model`).
 
 ### Common classes
 
@@ -154,9 +163,62 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sorting feature
+
+#### Implementation
+
+The sorting mechanism is facilitated by `SortCommand` and `SortCommandParser`. 
+Additionally, the mechanism utilises the following operations in `UniquePersonList`:
+
+* `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the contact list by name in alphabetical order.
+* `UniquePersonList#sortByPhone(Boolean isReverse)` — Sorts the contact list by phone number in increasing order.
+* `UniquePersonList#sortByEmail(Boolean isReverse)` — Sorts the contact list by email in alphabetical order.
+* `UniquePersonList#sortByAddress(Boolean isReverse)` — Sorts the contact list by address in alphabetical order.
+* `UniquePersonList#sortByTag(Tag tag, Boolean isReverse)` — Sorts the contact list by a specified tag.
+
+These operations sort in reverse order when `isReverse` is true.
+
+These operations are exposed in the `Model` interface under the same method name.
+
+Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+
+Step 1. The user executes `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
+
+Step 2. The `sort` command sorts the currently displayed list by name first, calling `Model#sortByName(Boolean isReverse)` where `isReverse = false`.
+
+Step 3. The `sort` command sorts the currently displayed list by the `friend` tag next, calling `Model#sortByTag(Tag tag, Boolean isReverse)` where `isReverse = true`.
+
+The following sequence diagram shows how the sort operation works:
+
+(insert sequence diagram here)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Step 4. The user is shown the sorted list. The sorted list contains the same contacts as the previous displayed list. It has two sections, the first section contains contacts without the `friend` tag and the second section contains contacts with the `friend` tag. Each section is sorted by name in alphabetical order.
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+(insert activity diagram here)
+
+#### Design consideration
+
+**Aspect: How to implement multi-level sorting:**
+
+* **Alternative 1 (current choice):** Sort the list once for each parameter entered by the user.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of time needed to sort.
+
+* **Alternative 2:** Single complex sorting method that combines all the individual sorting for each parameter.
+    * Pros: Save time as only 1 sorting operation is carried out.
+    * Cons: Harder to modify when more parameters are added. Can result in more bugs due to complexity.
+
+_{more aspects and alternatives to be added}_
+
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### Proposed implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -233,6 +295,50 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+
+### Tag adding feature
+
+### Implementation
+
+The tag adding mechanism is facilitated by `TagAddCommand` and `TagAddCommandParser`.
+Additionally, The mechanism utilises the following operations in `UniqueTagList` and `UniquePersonList`.
+
+* `UniqueTagList#hasTag(Tag tag)` - Checks if the tagList has the tag.
+* `UniquePersonList#setPerson(Person target, Person editedPerson)` - Sets the same person with the new tag.
+* 
+
+These operations are exposed in the `Model` interface under the same method name.
+
+Given below is an example usage scenario and how the tag adding mechanism behaves at each step.
+
+Step 1. The user executes `tag add 1 t/friend` command to add the tag, `friend`, to the person indicated by the `INDEX`, 1.
+`TagAddCommandParser` calls  `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `1` and `t/friend`.
+
+Step 2. The `tag add` command collects the list of persons shown, containing them in `Model#getFilteredPersonList()`.
+
+Step 3. The `tag add` command checks if the index is valid, calling `Index#getZeroBased()`.
+
+Step 4. The `tag add` command receives the person indicated by the index, containing it in `List#get(int index)`.
+
+Step 5. The `tag add` command creates the same person with the new tag included, containing it in `TagAddCommand#createEditedPerson(Person personToEdit, Tag tag)`.
+
+Step 6. The `tag add` command replaces the old person with the new, updated person, calling `Model#setPerson(Person target, Person editedPerson)`.
+
+The following activity diagram summarizes what happens when a user executes a tag add command:
+
+(insert activity diagram here)
+
+#### Design consideration
+
+**Aspect: How to implement tag add:**
+
+* **Alternative 1 (current choice):** Creates a new `Person` with the tag included.
+    * Pros: Prevents direct access into the tags of a `Person`.
+    * Cons: Potential error occurs if some form of duplication is allowed.
+
+* **Alternative 2:** Directly add the tag into the `Person` .
+    * Pros: Easy to implement.
+    * Cons: Easy to access into the tags of a `Person`. Could cause accidental bugs.
 
 ### \[Proposed\] Data archiving
 
@@ -388,8 +494,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests for the name of the contact.
-2.  SoConnect gives the contact with the right name.
+1.  User requests for the contact.
+2.  SoConnect gives the contact.
 3.  User requests to add tag to the contact.
 4.  SoConnect adds the tag to the contact.
 
@@ -427,12 +533,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: sort by name**
+**Use case: Sort by name**
 
 **MSS**
 
-1.  User request sort by name
-2.  SoConnect sorts the list by name.
+1.  User enters command to sort the contact list by name.
+2.  SoConnect sorts the list by name and displays the new list.
 
     Use case ends.
 
