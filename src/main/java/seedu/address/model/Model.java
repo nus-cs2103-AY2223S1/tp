@@ -134,4 +134,9 @@ public interface Model {
      * {@code record} must exist in the filtered record list.
      */
     void deleteRecord(Record record);
+
+    void setRecordListDisplayed(boolean b);
+
+    void setPersonWithRecords(Person person);
+
 }

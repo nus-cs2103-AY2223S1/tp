@@ -16,6 +16,12 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    // Default Fields
+    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -98,6 +104,10 @@ public class Person {
         records.add(r);
     }
 
+    /**
+     * Deletes a record from the record list.
+     * The record must already exist in the record list.
+     */
     public void deleteRecord(Record record) {
         records.delete(record);
     }

@@ -67,6 +67,9 @@ public class ListRecordCommand extends Command {
         model.setFilteredRecordList(personToListRecords);
         model.updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
 
+        model.setPersonWithRecords(personToListRecords);
+        model.setRecordListDisplayed(true);
+
         String feedbackToUser = MESSAGE_SUCCESS + personToListRecords.getName() + "\n"
                 + String.format(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW,
                 model.getFilteredRecordList().size());
