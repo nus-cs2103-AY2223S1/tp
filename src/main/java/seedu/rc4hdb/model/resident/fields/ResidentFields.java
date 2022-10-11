@@ -3,7 +3,7 @@ package seedu.rc4hdb.model.resident.fields;
 import java.util.List;
 
 /**
- *
+ * Stores the identifiers for the resident fields.
  */
 public class ResidentFields {
     public static final String EMAIL = "Email";
