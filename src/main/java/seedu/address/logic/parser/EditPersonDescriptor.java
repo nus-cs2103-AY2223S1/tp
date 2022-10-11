@@ -126,22 +126,35 @@ public class EditPersonDescriptor {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with a new appointment from {@code editPersonDescriptor}.
+     * edited with appointments added from {@code editPersonDescriptor}.
      */
-    public static Person createEditedPersonWithNewAppointment(Person personToEdit,
-                                                              EditPersonDescriptor editPersonDescriptor) {
+    public static Person createEditedPersonByAddingAppointments(Person personToEdit,
+                                                                EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-//        Set<Appointment> updatedAppointments = personToEdit.getAppointments();
-//        editPersonDescriptor.appointments.forEach(updatedAppointments::add);
+        Set<Appointment> updatedAppointments = personToEdit.getAppointments();
+        editPersonDescriptor.appointments.forEach(updatedAppointments::add);
 
         Name name = personToEdit.getName();
         Phone phone = personToEdit.getPhone();
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
-        Set<Appointment> updatedAppointment =  editPersonDescriptor.getAppointments().get();
-        Person newPerson = new Person(name, phone, email, address, tags, updatedAppointment);
+        Person newPerson = new Person(name, phone, email, address, tags, updatedAppointments);
+        return newPerson;
+    }
+
+    public static Person createEditedPersonByOverwritingAppointments(Person personToEdit,
+                                                                   EditPersonDescriptor editPersonDescriptor) {
+        assert personToEdit != null;
+
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Set<Tag> tags = personToEdit.getTags();
+        Set<Appointment> newAppointmentsOnly =  editPersonDescriptor.getAppointments().get();
+        Person newPerson = new Person(name, phone, email, address, tags, newAppointmentsOnly);
 
         return newPerson;
     }

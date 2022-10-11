@@ -21,7 +21,7 @@ public class DeleteAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "da";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the appointment of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete all appointments of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) \n"

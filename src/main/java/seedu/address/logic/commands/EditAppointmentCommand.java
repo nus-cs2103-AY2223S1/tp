@@ -2,7 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonWithNewAppointment;
+import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByAddingAppointments;
+import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByOverwritingAppointments;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -21,10 +22,10 @@ public class EditAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "ea";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the appointment details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Overwrites all appointment details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DATE + "DATE] \n"
+            + "[" + PREFIX_DATE + "DATE]... \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "21-Jan-2023 12:30 PM ";
 
@@ -57,7 +58,7 @@ public class EditAppointmentCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPersonWithNewAppointment(personToEdit, editPersonDescriptor);
+        Person editedPerson = createEditedPersonByOverwritingAppointments(personToEdit, editPersonDescriptor);
 
         if (personToEdit.getAppointments().size() == 0){
             throw new CommandException(MESSAGE_NO_APPOINTMENT_TO_EDIT);
