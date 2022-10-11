@@ -89,7 +89,7 @@ public class AddStudCommandParserTest {
                         + VALID_ID_BOB + ADDRESS_DESC_BOB, expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser, STUDENT_NAME_DESC_BOB  + CLASS_DESC_BOB+ PHONE_DESC_BOB
+        assertParseFailure(parser, STUDENT_NAME_DESC_BOB + CLASS_DESC_BOB + PHONE_DESC_BOB
                         + ID_DESC_BOB + VALID_ADDRESS_BOB, expectedMessage);
 
         // missing class prefix

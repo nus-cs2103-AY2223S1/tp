@@ -8,7 +8,7 @@ import seedu.address.model.student.Class;
 import seedu.address.model.student.ClassPredicate;
 
 /**
- * Parses input arguments and creates a new ViewCommand object
+ * Parses input arguments and creates a new ViewClassCommand object
  */
 public class ViewClassCommandParser implements Parser<ViewClassCommand> {
 

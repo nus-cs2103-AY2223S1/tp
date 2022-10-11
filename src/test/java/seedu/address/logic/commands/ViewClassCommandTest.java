@@ -3,18 +3,16 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_IN_CLASS_;
+import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_IN_CLASS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalStudents.CARL;
 import static seedu.address.testutil.TypicalStudents.DANIEL;
 import static seedu.address.testutil.TypicalStudents.ELLE;
-import static seedu.address.testutil.TypicalStudents.FIONA;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentRecord;
-
-import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -58,7 +56,7 @@ public class ViewClassCommandTest {
 
     @Test
     public void execute_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_IN_CLASS_, 0);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_IN_CLASS, 0);
         ClassPredicate predicate = preparePredicate("XXX");
         ViewClassCommand command = new ViewClassCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
@@ -68,7 +66,7 @@ public class ViewClassCommandTest {
 
     @Test
     public void execute_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_IN_CLASS_, 2);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_IN_CLASS, 2);
         ClassPredicate predicate = preparePredicate("3A1");
         ViewClassCommand command = new ViewClassCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);

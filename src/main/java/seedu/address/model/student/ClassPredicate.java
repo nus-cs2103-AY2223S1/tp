@@ -3,7 +3,7 @@ package seedu.address.model.student;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Student}'s {@code Class} matches the class name given.
  */
 public class ClassPredicate implements Predicate<Student> {
     private Class className;

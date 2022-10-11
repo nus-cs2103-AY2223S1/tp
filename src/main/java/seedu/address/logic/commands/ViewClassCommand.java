@@ -28,7 +28,7 @@ public class ViewClassCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_IN_CLASS_, model.getFilteredStudentList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_IN_CLASS, model.getFilteredStudentList().size()));
     }
 
     @Override

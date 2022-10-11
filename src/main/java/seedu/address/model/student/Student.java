@@ -33,7 +33,8 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name studentName, Id id, Class className, Name parentName, Phone phone, Address address, Set<Tag> tags) {
+    public Student(Name studentName, Id id, Class className, Name parentName, Phone phone,
+                   Address address, Set<Tag> tags) {
         requireAllNonNull(studentName, id, className, parentName, phone, address, tags);
         this.studentName = studentName;
         this.id = id;

@@ -20,7 +20,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.StudentRecord;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
-import seedu.address.model.student.ClassPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
