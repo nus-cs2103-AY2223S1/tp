@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.stage.Stage?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.stage.*?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -19,13 +19,23 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <HBox fx:id="helpMessageContainer" alignment="CENTER">
         <children>
-          <Label fx:id="helpMessage" text="Label">
-            <HBox.margin>
-              <Insets right="5.0" />
-            </HBox.margin>
-          </Label>
+          <VBox>
+            <Label fx:id="helpMessageTitle" text="Label" textFill="WHITE">
+              <VBox.margin>
+                <Insets right="5.0" />
+              </VBox.margin>
+            </Label>
+            <Label fx:id="helpMessageBody" text="Label" textFill="WHITE">
+              <VBox.margin>
+                <Insets right="5.0" />
+              </VBox.margin>
+                     <font>
+                        <Font name="Space Mono" size="12.0" />
+                     </font>
+            </Label>
+          </VBox>
           <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
             <HBox.margin>
               <Insets left="5.0" />
