@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -20,10 +21,13 @@ import seedu.address.model.tag.Tag;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
+    public static final String MESSAGE_DUPLICATE_NOTE = "Notes list contains duplicate note(s).";
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedNote> notes = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons and tags.
@@ -42,7 +46,9 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        notes.addAll(source.getNoteBook().stream().map(JsonAdaptedNote::new).collect(Collectors.toList()));
         tags.addAll(source.getTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+
     }
 
     /**
@@ -70,6 +76,14 @@ class JsonSerializableAddressBook {
             addressBookPersonList.add(person);
         }
 
+        for (JsonAdaptedNote jsonAdaptedNote : notes) {
+            Note note = jsonAdaptedNote.toModelType();
+            if (addressBook.hasNote(note)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_NOTE);
+            }
+            addressBook.addNote(note);
+        }
+
         // Add person references into each tag
         for (Tag tag : addressBookTagList) {
             for (Person person : addressBookPersonList) {
@@ -78,6 +92,7 @@ class JsonSerializableAddressBook {
                 }
             }
         }
+
 
         return addressBook;
     }

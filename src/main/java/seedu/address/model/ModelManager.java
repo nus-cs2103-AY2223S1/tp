@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    // filteredList<Note> for find notes in future
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -95,8 +97,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasNote(Note note) {
+        requireNonNull(note);
+        return addressBook.hasNote(note);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+    }
+
+    @Override
+    public void deleteNote(Note target) {
+        addressBook.removeNote(target);
     }
 
     @Override
@@ -106,10 +119,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addNote(Note note) {
+        addressBook.addNote(note);
+    }
+
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setNote(Note target, Note editedNote) {
+        requireAllNonNull(target, editedNote);
+
+        addressBook.setNote(target, editedNote);
     }
 
     @Override

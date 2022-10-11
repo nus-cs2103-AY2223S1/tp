@@ -5,10 +5,13 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.note.Note;
+import seedu.address.model.note.NoteBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
+
 
 /**
  * Wraps all data at the address-book level
@@ -17,7 +20,9 @@ import seedu.address.model.tag.UniqueTagList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final NoteBook notebook;
     private final UniqueTagList tags;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        notebook = new NoteBook();
         tags = new UniqueTagList();
     }
 
@@ -51,6 +57,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setNotes(List<Note> notes) {
+        this.notebook.setNotes(notes);
+    }
+
     /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
@@ -65,9 +75,39 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
+        setNotes(newData.getNoteBook());
         setPersons(newData.getPersonList());
         setTags(newData.getTagList());
     }
+
+    //// note-level operations
+
+    /**
+     * Returns true if a note with the same identity as {@code note} exists in the address book.
+     *
+     * @param note The note the check with.
+     * @return True if address book has the specified note.
+     */
+    public boolean hasNote(Note note) {
+        requireNonNull(note);
+        return notebook.contains(note);
+    }
+
+    public void addNote(Note n) {
+        notebook.add(n);
+    }
+
+    public void setNote(Note target, Note editedNote) {
+        requireNonNull(editedNote);
+
+        notebook.setNote(target, editedNote);
+    }
+
+    public void removeNote(Note key) {
+        notebook.remove(key);
+    }
+
+
 
     //// person-level operations
 
@@ -130,6 +170,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ObservableList<Note> getNoteBook() {
+        return notebook.asUnmodifiableObservableList();
+    }
     @Override
     public ObservableList<Tag> getTagList() {
         return tags.asUnmodifiableObservableList();
