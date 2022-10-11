@@ -7,13 +7,18 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.item.AbstractContainerItem;
+import seedu.address.model.item.DisplayItem;
+import seedu.address.model.item.EntryType;
+import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
-public class Person {
+public class Person implements DisplayItem {
 
     // Identity fields
     private final Name name;
@@ -23,6 +28,8 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+
+    private Set<AbstractContainerItem> parents = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -53,7 +60,8 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -120,4 +128,35 @@ public class Person {
         return builder.toString();
     }
 
+    @Override
+    public EntryType getEntryType() {
+        return EntryType.USER;
+    }
+
+    @Override
+    public boolean stronglyEqual(DisplayItem o) {
+        return equals(o);
+    }
+
+    @Override
+    public boolean weaklyEqual(DisplayItem o) {
+        if (!(o instanceof Person)) {
+            return false;
+        }
+        return isSamePerson((Person) o);
+    }
+
+    @Override
+    public void setParent(DisplayItem o) throws ItemCannotBeParentException {
+        if (!(o instanceof AbstractContainerItem) || parents.contains(o)) {
+            throw new ItemCannotBeParentException(o);
+        }
+
+        parents.add((AbstractContainerItem) o);
+    }
+
+    @Override
+    public boolean isPartOfContext(DisplayItem o) {
+        return parents.contains(o);
+    }
 }
