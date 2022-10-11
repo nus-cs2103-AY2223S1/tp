@@ -15,13 +15,17 @@ import seedu.condonery.commons.util.ConfigUtil;
 import seedu.condonery.commons.util.StringUtil;
 import seedu.condonery.logic.Logic;
 import seedu.condonery.logic.LogicManager;
+import seedu.condonery.model.ClientDirectory;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
 import seedu.condonery.model.PropertyDirectory;
+import seedu.condonery.model.ReadOnlyClientDirectory;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.ReadOnlyUserPrefs;
 import seedu.condonery.model.UserPrefs;
 import seedu.condonery.model.util.SampleDataUtil;
+import seedu.condonery.storage.ClientDirectoryStorage;
+import seedu.condonery.storage.JsonClientDirectoryStorage;
 import seedu.condonery.storage.JsonPropertyDirectoryStorage;
 import seedu.condonery.storage.JsonUserPrefsStorage;
 import seedu.condonery.storage.PropertyDirectoryStorage;
@@ -36,7 +40,7 @@ import seedu.condonery.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final Version VERSION = new Version(1, 2, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -48,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing PropertyDirectory ]===========================");
+        logger.info("=============================[ Initializing Condonery ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,8 +61,10 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         PropertyDirectoryStorage propertyDirectoryStorage =
-            new JsonPropertyDirectoryStorage(userPrefs.getPropertyDirectoryFilePath());
-        storage = new StorageManager(propertyDirectoryStorage, userPrefsStorage);
+                new JsonPropertyDirectoryStorage(userPrefs.getPropertyDirectoryFilePath());
+        ClientDirectoryStorage clientDirectoryStorage =
+                new JsonClientDirectoryStorage(userPrefs.getClientDirectoryFilePath());
+        storage = new StorageManager(propertyDirectoryStorage, clientDirectoryStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -76,22 +82,41 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyPropertyDirectory> propertyDirectoryOptional;
-        ReadOnlyPropertyDirectory initialData;
+        ReadOnlyPropertyDirectory initialPropertyDirectoryData;
+
+        Optional<ReadOnlyClientDirectory> clientDirectoryOptional;
+        ReadOnlyClientDirectory initialClientDirectoryData;
+
         try {
             propertyDirectoryOptional = storage.readPropertyDirectory();
             if (!propertyDirectoryOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PropertyDirectory");
             }
-            initialData = propertyDirectoryOptional.orElseGet(SampleDataUtil::getSamplePropertyDirectory);
+            initialPropertyDirectoryData =
+                    propertyDirectoryOptional.orElseGet(SampleDataUtil::getSamplePropertyDirectory);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PropertyDirectory");
-            initialData = new PropertyDirectory();
+            initialPropertyDirectoryData = new PropertyDirectory();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty PropertyDirectory");
-            initialData = new PropertyDirectory();
+            initialPropertyDirectoryData = new PropertyDirectory();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            clientDirectoryOptional = storage.readClientDirectory();
+            if (!clientDirectoryOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample PropertyDirectory");
+            }
+            initialClientDirectoryData = clientDirectoryOptional.orElseGet(SampleDataUtil::getSampleClientDirectory);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty ClientDirectory");
+            initialClientDirectoryData = new ClientDirectory();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty ClientDirectory");
+            initialClientDirectoryData = new ClientDirectory();
+        }
+
+        return new ModelManager(initialPropertyDirectoryData, initialClientDirectoryData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -152,7 +177,7 @@ public class MainApp extends Application {
                 + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty PropertyDirectory");
+            logger.warning("Problem while reading from the file. Will be starting with an empty UserPrefs");
             initializedPrefs = new UserPrefs();
         }
 
@@ -168,7 +193,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting PropertyDirectory " + MainApp.VERSION);
+        logger.info("Starting Condonery " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

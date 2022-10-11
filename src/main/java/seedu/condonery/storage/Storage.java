@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.condonery.commons.exceptions.DataConversionException;
+import seedu.condonery.model.ReadOnlyClientDirectory;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.ReadOnlyUserPrefs;
 import seedu.condonery.model.UserPrefs;
@@ -12,7 +13,7 @@ import seedu.condonery.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends PropertyDirectoryStorage, UserPrefsStorage {
+public interface Storage extends PropertyDirectoryStorage, ClientDirectoryStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -28,5 +29,14 @@ public interface Storage extends PropertyDirectoryStorage, UserPrefsStorage {
 
     @Override
     void savePropertyDirectory(ReadOnlyPropertyDirectory propertyDirectory) throws IOException;
+
+    @Override
+    Path getClientDirectoryFilePath();
+
+    @Override
+    Optional<ReadOnlyClientDirectory> readClientDirectory() throws DataConversionException, IOException;
+
+    @Override
+    void saveClientDirectory(ReadOnlyClientDirectory clientDirectory) throws IOException;
 
 }

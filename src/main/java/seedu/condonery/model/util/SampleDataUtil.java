@@ -4,8 +4,11 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.condonery.model.ClientDirectory;
 import seedu.condonery.model.PropertyDirectory;
+import seedu.condonery.model.ReadOnlyClientDirectory;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.property.Address;
 import seedu.condonery.model.property.Name;
 import seedu.condonery.model.property.Property;
@@ -26,12 +29,26 @@ public class SampleDataUtil {
         };
     }
 
+    public static Client[] getSampleClients() {
+        // TODO: add sample client data
+        return new Client[] {
+        };
+    }
+
     public static ReadOnlyPropertyDirectory getSamplePropertyDirectory() {
         PropertyDirectory sampleAb = new PropertyDirectory();
         for (Property sampleProperty : getSampleProperties()) {
             sampleAb.addProperty(sampleProperty);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyClientDirectory getSampleClientDirectory() {
+        ClientDirectory sampleCd = new ClientDirectory();
+        for (Client sampleClient : getSampleClients()) {
+            sampleCd.addClient(sampleClient);
+        }
+        return sampleCd;
     }
 
     /**

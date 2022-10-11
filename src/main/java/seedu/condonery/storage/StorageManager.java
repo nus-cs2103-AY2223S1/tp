@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.condonery.commons.core.LogsCenter;
 import seedu.condonery.commons.exceptions.DataConversionException;
+import seedu.condonery.model.ReadOnlyClientDirectory;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.ReadOnlyUserPrefs;
 import seedu.condonery.model.UserPrefs;
@@ -17,13 +18,16 @@ import seedu.condonery.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+    private ClientDirectoryStorage clientDirectoryStorage;
     private PropertyDirectoryStorage propertyDirectoryStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code PropertyDirectoryStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(PropertyDirectoryStorage propertyDirectoryStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(PropertyDirectoryStorage propertyDirectoryStorage,
+                          ClientDirectoryStorage clientDirectoryStorage, UserPrefsStorage userPrefsStorage) {
+        this.clientDirectoryStorage = clientDirectoryStorage;
         this.propertyDirectoryStorage = propertyDirectoryStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -76,4 +80,33 @@ public class StorageManager implements Storage {
         propertyDirectoryStorage.savePropertyDirectory(propertyDirectory, filePath);
     }
 
+    // ================ ClientDirectory methods ==============================
+
+    @Override
+    public Path getClientDirectoryFilePath() {
+        return clientDirectoryStorage.getClientDirectoryFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyClientDirectory> readClientDirectory() throws DataConversionException, IOException {
+        return readClientDirectory(clientDirectoryStorage.getClientDirectoryFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyClientDirectory> readClientDirectory(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return clientDirectoryStorage.readClientDirectory(filePath);
+    }
+
+    @Override
+    public void saveClientDirectory(ReadOnlyClientDirectory clientDirectory) throws IOException {
+        saveClientDirectory(clientDirectory, clientDirectoryStorage.getClientDirectoryFilePath());
+    }
+
+    @Override
+    public void saveClientDirectory(ReadOnlyClientDirectory clientDirectory, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        clientDirectoryStorage.saveClientDirectory(clientDirectory, filePath);
+    }
 }
