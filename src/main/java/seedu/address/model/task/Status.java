@@ -8,19 +8,21 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Status {
 
-    public static final String MESSAGE_CONSTRAINTS = "Status should only be either U+2713 or U+2716.";
+    public static final String MESSAGE_CONSTRAINTS = "String should only be either \"true\" or \"false\".";
 
     private static final String completedSymbol = "\u2713";
     private static final String incompleteSymbol = "\u2716";
+    private static final String completedString = "true";
+    private static final String incompleteString = "false";
 
-    public final String status;
+    private boolean isComplete;
 
     /**
      * Constructs a new Status with a boolean parameter. Every field must be present and not null.
      */
     public Status(boolean isComplete) {
         requireNonNull(isComplete);
-        this.status = isComplete ? completedSymbol : incompleteSymbol;
+        this.isComplete = isComplete;
     }
 
     /**
@@ -29,34 +31,45 @@ public class Status {
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
-        this.status = status;
+        this.isComplete = status.equals(completedString);
     }
 
     /**
      * Returns true if a given string represents a status.
      */
     public static boolean isValidStatus(String test) {
-        return test.equals(completedSymbol) || test.equals(incompleteSymbol);
+        return test.equals(completedString) || test.equals(incompleteString);
     }
 
     public boolean getIsComplete() {
-        return status.equals(completedSymbol);
+        return isComplete;
+    }
+
+    public String toDisplayString() {
+        return isComplete ? completedSymbol : incompleteSymbol;
     }
 
     @Override
     public String toString() {
-        return status;
+        return isComplete ? completedString : incompleteString;
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Status // instanceof handles nulls
-                && status.equals(((Status) other).status)); // state check
+        if (other == this) { // short circuit if same object
+            return true;
+        } else if (other instanceof Status) { // instanceof handles nulls
+            Boolean thisBoolean = this.isComplete;
+            Boolean otherBoolean = ((Status) other).getIsComplete();
+            return thisBoolean.equals(otherBoolean); // state check
+        }
+        return false;
     }
 
     @Override
     public int hashCode() {
-        return status.hashCode();
+        Boolean b = isComplete;
+        return b.hashCode();
     }
+
 }

@@ -79,18 +79,20 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
                 && otherTask.getModule().equals(this.getModule())
-                && otherTask.getDeadline().equals(this.getDeadline());
+                && otherTask.getDeadline().equals(this.getDeadline())
+                && otherTask.getStatus().equals(this.getStatus());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.name, this.module, this.deadline);
+        return Objects.hash(this.name, this.module, this.deadline, this.status);
     }
 
     @Override
     public String toString() {
         return "Task: " + this.getName()
                 + "; Module: " + this.getModule()
-                + "; Deadline: " + this.getDeadline();
+                + "; Deadline: " + this.getDeadline()
+                + "; Status: " + this.getStatus();
     }
 }

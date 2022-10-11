@@ -18,12 +18,12 @@ public class UnmarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unarks the task identified by the index number used in the displayed person list as not complete.\n"
+            + ": Unmarks the task identified by the index number used in the displayed task list as not complete.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Task unmarked as not complete: %1$s";
-    public static final String MESSAGE_ALREADY_NOT_COMPLETED = "This task is already marked as not complete.";
+    public static final String MESSAGE_TASK_ALREADY_NOT_COMPLETED = "This task is already unmarked as not complete.";
 
     private final Index targetIndex;
 
@@ -43,7 +43,7 @@ public class UnmarkTaskCommand extends Command {
         Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
 
         if (!taskToUnmark.getStatus().getIsComplete()) {
-            throw new CommandException(MESSAGE_ALREADY_NOT_COMPLETED);
+            throw new CommandException(MESSAGE_TASK_ALREADY_NOT_COMPLETED);
         }
 
         Task unmarkedTask = new Task(taskToUnmark.getName(), taskToUnmark.getModule(), taskToUnmark.getDeadline());

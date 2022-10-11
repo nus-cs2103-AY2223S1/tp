@@ -31,12 +31,12 @@ public class UnmarkTaskCommandTest {
         taskToUnmark.setStatus(true);
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
 
-        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark);
-
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
         Task unmarkedTask = new Task(taskToUnmark.getName(), taskToUnmark.getModule(), taskToUnmark.getDeadline());
         unmarkedTask.setStatus(false);
         expectedModel.setTask(taskToUnmark, unmarkedTask);
+
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask);
 
         assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -50,17 +50,17 @@ public class UnmarkTaskCommandTest {
     }
 
     @Test
-    public void excecute_unmarMarkedTask_success() {
+    public void excecute_unmarkMarkedTask_success() {
         Task taskToMark = model.getFilteredTaskList().get(0);
         taskToMark.setStatus(true);
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
-
-        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, taskToMark);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
         Task unmarkedTask = new Task(taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline());
         unmarkedTask.setStatus(false);
         expectedModel.setTask(taskToMark, unmarkedTask);
+
+        String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask);
 
         assertCommandSuccess(unmarkTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -70,7 +70,7 @@ public class UnmarkTaskCommandTest {
         model.getFilteredTaskList().get(0).setStatus(false);
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
 
-        assertCommandFailure(unmarkTaskCommand, model, UnmarkTaskCommand.MESSAGE_ALREADY_NOT_COMPLETED);
+        assertCommandFailure(unmarkTaskCommand, model, UnmarkTaskCommand.MESSAGE_TASK_ALREADY_NOT_COMPLETED);
     }
 
     @Test
@@ -94,5 +94,4 @@ public class UnmarkTaskCommandTest {
         // different task -> returns false
         assertFalse(unmarkTaskFirstCommand.equals(unmarkTaskSecondCommand));
     }
-
 }

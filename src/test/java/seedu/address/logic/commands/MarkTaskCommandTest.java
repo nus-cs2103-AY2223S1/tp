@@ -31,12 +31,12 @@ public class MarkTaskCommandTest {
         taskToMark.setStatus(false);
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(Index.fromZeroBased(0));
 
-        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark);
-
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
         Task markedTask = new Task(taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline());
         markedTask.setStatus(true);
         expectedModel.setTask(taskToMark, markedTask);
+
+        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS, markedTask);
 
         assertCommandSuccess(markTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -55,12 +55,12 @@ public class MarkTaskCommandTest {
         taskToMark.setStatus(false);
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(Index.fromZeroBased(0));
 
-        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark);
-
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
         Task markedTask = new Task(taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline());
         markedTask.setStatus(true);
         expectedModel.setTask(taskToMark, markedTask);
+
+        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS, markedTask);
 
         assertCommandSuccess(markTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -70,7 +70,7 @@ public class MarkTaskCommandTest {
         model.getFilteredTaskList().get(0).setStatus(true);
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(Index.fromZeroBased(0));
 
-        assertCommandFailure(markTaskCommand, model, MarkTaskCommand.MESSAGE_ALREADY_COMPLETED);
+        assertCommandFailure(markTaskCommand, model, MarkTaskCommand.MESSAGE_TASK_ALREADY_COMPLETED);
     }
 
     @Test

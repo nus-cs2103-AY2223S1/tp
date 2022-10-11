@@ -18,12 +18,12 @@ public class MarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the task identified by the index number used in the displayed person list as completed.\n"
+            + ": Marks the task identified by the index number used in the displayed task list as completed.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Task marked as completed: %1$s";
-    public static final String MESSAGE_ALREADY_COMPLETED = "This task is already marked as completed.";
+    public static final String MESSAGE_TASK_ALREADY_COMPLETED = "This task is already marked as completed.";
 
     private final Index targetIndex;
 
@@ -43,7 +43,7 @@ public class MarkTaskCommand extends Command {
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
 
         if (taskToMark.getStatus().getIsComplete()) {
-            throw new CommandException(MESSAGE_ALREADY_COMPLETED);
+            throw new CommandException(MESSAGE_TASK_ALREADY_COMPLETED);
         }
 
         Task markedTask = new Task(taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline());
@@ -58,5 +58,4 @@ public class MarkTaskCommand extends Command {
                 || (other instanceof MarkTaskCommand // instanceof handles nulls
                 && targetIndex.equals(((MarkTaskCommand) other).targetIndex)); // state check
     }
-
 }

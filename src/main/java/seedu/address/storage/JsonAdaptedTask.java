@@ -47,7 +47,7 @@ public class JsonAdaptedTask {
         taskName = source.getName().fullName;
         module = source.getModule().module;
         deadline = source.getDeadline().deadline.format(DEADLINE_FORMATTER);
-        status = source.getStatus().status;
+        status = source.getStatus().toString();
     }
 
     /**

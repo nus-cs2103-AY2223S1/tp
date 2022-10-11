@@ -91,8 +91,8 @@ public class TaskTest {
 
     @Test
     public void setStatusWithValidStringParameter() {
-        sampleA.setStatus("\u2713");
-        sampleB.setStatus("\u2716");
+        sampleA.setStatus("true");
+        sampleB.setStatus("false");
         assertTrue(sampleA.getStatus().getIsComplete());
         assertFalse(sampleB.getStatus().getIsComplete());
     }

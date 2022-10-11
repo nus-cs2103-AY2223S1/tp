@@ -15,8 +15,8 @@ public class StatusTest {
 
     @Test
     public void constructor_invalidStatus_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Status(invalidAddress));
+        String invalidStatus = "";
+        assertThrows(IllegalArgumentException.class, () -> new Status(invalidStatus));
     }
 
     @Test
@@ -30,13 +30,13 @@ public class StatusTest {
         assertFalse(Status.isValidStatus("a")); // invalid string
 
         // valid addresses
-        assertTrue(Status.isValidStatus("\u2713"));
-        assertTrue(Status.isValidStatus("\u2716"));
+        assertTrue(Status.isValidStatus("true"));
+        assertTrue(Status.isValidStatus("false"));
     }
 
     @Test
     public void getIsComplete() {
-        assertFalse(new Status("\u2716").getIsComplete());
-        assertTrue(new Status("\u2713").getIsComplete());
+        assertFalse(new Status("false").getIsComplete());
+        assertTrue(new Status("true").getIsComplete());
     }
 }
