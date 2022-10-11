@@ -24,7 +24,7 @@ public class UnmarkTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked task as not done: %1$s";
+    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Marked task as not done: %1$s";
 
     private final Index targetIndex;
 
@@ -41,11 +41,11 @@ public class UnmarkTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        taskToMark.markAsNotDone();
-        model.setTask(taskToMark, taskToMark);
+        Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
+        taskToUnmark.markAsNotDone();
+        model.setTask(taskToUnmark, taskToUnmark);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
+        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark));
     }
 
     @Override
