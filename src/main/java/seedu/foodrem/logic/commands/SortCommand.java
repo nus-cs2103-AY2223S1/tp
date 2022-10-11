@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.model.Model;
-import seedu.foodrem.model.item.itemcomparators.ItemComparator;
+import seedu.foodrem.model.item.Item;
+import seedu.foodrem.model.util.ChainComparator;
 
 /**
  * Sorts a list of all items in FoodRem depending on the
@@ -25,9 +26,9 @@ public class SortCommand extends Command {
                     + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
                     + "Example: " + COMMAND_WORD + "name";
 
-    private final ItemComparator comparator;
+    private final ChainComparator<Item> comparator;
 
-    public SortCommand(ItemComparator comparator) {
+    public SortCommand(ChainComparator<Item> comparator) {
         this.comparator = comparator;
     }
 
