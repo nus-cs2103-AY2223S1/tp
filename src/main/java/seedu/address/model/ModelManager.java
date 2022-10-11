@@ -173,6 +173,10 @@ public class ModelManager implements Model {
         updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
     }
 
+    @Override
+    public void deleteTutorial(Tutorial target) {
+        addressBook.removeTutorial(target);
+    }
 
     //=========== Filtered Tutorial List Accessors =============================================================
 

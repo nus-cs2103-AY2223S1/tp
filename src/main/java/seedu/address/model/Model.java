@@ -105,6 +105,12 @@ public interface Model {
      */
     void addTutorial(Tutorial tutorial);
 
+    /**
+     * Deletes the given tutorial.
+     * The person must exist in the ModQuik.
+     */
+    void deleteTutorial(Tutorial target);
+
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();
 

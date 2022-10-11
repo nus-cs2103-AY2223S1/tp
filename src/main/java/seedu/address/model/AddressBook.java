@@ -138,6 +138,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorials.add(t);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTutorial(Tutorial key) {
+        tutorials.remove(key);
+    }
+    
     //// consultation-level operations
     /**
      * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuilk.

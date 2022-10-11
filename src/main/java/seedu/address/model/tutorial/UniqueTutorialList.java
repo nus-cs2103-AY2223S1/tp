@@ -9,7 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.tutorial.exceptions.DuplicateTutorialException;
-
+import seedu.address.model.tutorial.exceptions.TutorialNotFoundException;
 
 
 /**
@@ -56,6 +56,17 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
             throw new DuplicateTutorialException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Removes the equivalent tutorial from the list.
+     * The tutorial must exist in the list.
+     */
+    public void remove(Tutorial toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new TutorialNotFoundException();
+        }
     }
 
     /**
