@@ -238,6 +238,27 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Customise Order Feature
+
+#### Implementation
+
+This feature has 2 crucial methods for this feature are in the `CustomiseCommand` and `PersonCard` classes.
+
+* `CustomiseCommand#changeAttributeOrder(Model model)` - saves the new attribute order in the `preferences.json`
+* `PersonCard#setAttributes()` - reads the order from the `preferences.json` file and builds the person card in the order specified.
+
+_{diagrams and more in depth explanation to be added}_
+
+#### Design considerations:
+* **Alternative 1 (current choice):** Sets the order in 4 placeholder JavaFX flowpanes.
+  * Pros: Easy to implement.
+  * Cons: Unable to have different styling for different attributes.
+
+* **Alternative 2:** Have 24 different FXML files and choose the one with the required order.
+  * Pros: Easy to implement and can have different styling for different attributes.
+  * Cons: Hard to maintain and make changes.
+
+_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
