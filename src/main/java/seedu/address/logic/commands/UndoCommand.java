@@ -37,6 +37,13 @@ public class UndoCommand extends Command {
      *         model.getAddressBook());
      * of their execute functions.
      */
+    /**
+     * Checks if a command modifies the {@code AddressBook} and saves it if
+     * it did.
+     * @param lastCommand that possibly modifies the {@code AddressBook}.
+     * @param pastAddressBook {@code AddressBook} before the command.
+     * @param newAddressBook {@code AddressBook} after the command.
+     */
     public static void saveBeforeMod(Command lastCommand, ReadOnlyAddressBook
             pastAddressBook, ReadOnlyAddressBook newAddressBook) {
         if (pastAddressBook.equals(newAddressBook)) {
