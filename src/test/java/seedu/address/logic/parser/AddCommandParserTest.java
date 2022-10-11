@@ -86,24 +86,9 @@ public class AddCommandParserTest {
                         + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB,
                 expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB
-                        + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB
-                        + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB,
-                expectedMessage);
-
-        // missing address prefix
+        // missing telegram prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + VALID_TELEGRAM_BOB + GITHUB_DESC_BOB,
-                expectedMessage);
-
-        // missing gitHub prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + VALID_TELEGRAM_BOB + VALID_GITHUB_BOB,
                 expectedMessage);
 
         // all prefixes missing

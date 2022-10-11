@@ -58,7 +58,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
-            editPersonDescriptor.setTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_GITHUB).get()));
+            editPersonDescriptor.setGitHub(ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
