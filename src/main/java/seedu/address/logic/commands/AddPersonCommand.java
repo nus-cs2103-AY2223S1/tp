@@ -20,9 +20,9 @@ import seedu.address.model.person.Person;
  */
 public class AddPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "addperson";
+    public static final String COMMAND_WORD = "addpatient";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -45,8 +45,10 @@ public class AddPersonCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the address book";
+
+    public static final String MESSAGE_FAILURE = "New patient not added: %1$s";
 
     private final Person toAdd;
 

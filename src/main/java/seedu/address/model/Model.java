@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -61,6 +62,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    boolean hasPerson(Name name);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -80,7 +86,7 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Person> getFilteredPatientList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

@@ -2,7 +2,9 @@ package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.person.Email;
+import java.util.Objects;
+
+import seedu.address.model.person.Name;
 
 /**
  * Represents an Appointment of a patient in the HealthConnect
@@ -11,7 +13,7 @@ public class Appointment {
     /**
      * The FOREIGN KEY to identify a patient
      */
-    private final Email email;
+    private final Name name;
     private final MedicalTest medicalTest;
     private final Slot slot;
     private final Doctor doctor;
@@ -19,16 +21,16 @@ public class Appointment {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Email email, MedicalTest medicalTest, Slot slot, Doctor doctor) {
-        requireAllNonNull(email, medicalTest, slot, doctor);
-        this.email = email;
+    public Appointment(Name name, MedicalTest medicalTest, Slot slot, Doctor doctor) {
+        requireAllNonNull(name, medicalTest, slot, doctor);
+        this.name = name;
         this.medicalTest = medicalTest;
         this.slot = slot;
         this.doctor = doctor;
     }
 
-    public Email getEmail() {
-        return email;
+    public Name getName() {
+        return name;
     }
 
     public MedicalTest getMedicalTest() {
@@ -43,6 +45,10 @@ public class Appointment {
         return doctor;
     }
 
+    public boolean isSameAppointment(Appointment appointment) {
+        return equals(appointment);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this) {
@@ -53,8 +59,28 @@ public class Appointment {
             return slot.equals(other.getSlot())
                     && medicalTest.equals(other.getMedicalTest())
                     && doctor.equals(other.getDoctor())
-                    && email.equals(other.getEmail());
+                    && name.equals(other.getName());
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Name: ")
+                .append(getName())
+                .append("; Medical Test: ")
+                .append(getMedicalTest())
+                .append("; Slot: ")
+                .append(getSlot())
+                .append("; Doctor: ")
+                .append(getDoctor());
+
+        return builder.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, medicalTest, slot, doctor);
     }
 }
