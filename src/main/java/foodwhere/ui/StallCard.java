@@ -37,6 +37,8 @@ public class StallCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label details;
+    @FXML
+    private Label detailsLabel;
 
     /**
      * Creates a {@code StallCode} with the given {@code Stall} and index to display.
@@ -55,6 +57,9 @@ public class StallCard extends UiPart<Region> {
                     .collect(Collectors.joining(", "));
 
             details.setText(assigneesNames);
+            detailsLabel.setText("Details:");
+        } else {
+            detailsLabel.setText("");
         }
     }
 

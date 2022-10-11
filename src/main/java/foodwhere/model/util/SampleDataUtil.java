@@ -10,6 +10,8 @@ import foodwhere.model.AddressBook;
 import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.review.Content;
+import foodwhere.model.review.Date;
 import foodwhere.model.review.Review;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
@@ -20,18 +22,23 @@ import foodwhere.model.stall.Stall;
 public class SampleDataUtil {
     public static Stall[] getSampleStalls() {
         return new Stall[] {
-            new Stall(new Name("Alex Yeoh"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getDetailSet("friends")),
-            new Stall(new Name("Bernice Yu"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getDetailSet("colleagues", "friends")),
-            new Stall(new Name("Charlotte Oliveiro"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getDetailSet("neighbours")),
-            new Stall(new Name("David Li"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getDetailSet("family")),
-            new Stall(new Name("Irfan Ibrahim"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getDetailSet("classmates")),
-            new Stall(new Name("Roy Balakrishnan"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getDetailSet("colleagues"))
+            new Stall(new Name("Alex Chicken Rice"), new Address("Blk 30 Geylang Street 29, #06-40"),
+                    getDetailSet("chickenrice")),
+            new Stall(new Name("Char Char Kuey Tiao"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                    getDetailSet("charkwaytiao")),
+            new Stall(new Name("Yu Bak Chor Mee"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                    getDetailSet("bakchormee")),
+            new Stall(new Name("Irfan Muslim Food"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                    getDetailSet("family", "halal", "muslim"))
+        };
+    }
+
+    public static Review[] getSampleReviews() {
+        return new Review[] {
+            new Review(new Name("Alex Chicken Rice"), new Date("2022-09-20"),
+                    new Content("Very tasty. Worth the trip"), getDetailSet("travelworthy")),
+            new Review(new Name("Irfan Muslim Food"), new Date("2022-09-20"),
+                    new Content("Very affordable"), getDetailSet("halal"))
         };
     }
 
@@ -39,6 +46,10 @@ public class SampleDataUtil {
         AddressBook sampleAb = new AddressBook();
         for (Stall sampleStall : getSampleStalls()) {
             sampleAb.addStall(sampleStall);
+        }
+
+        for (Review sampleReview : getSampleReviews()) {
+            sampleAb.addReview(sampleReview);
         }
         return sampleAb;
     }
