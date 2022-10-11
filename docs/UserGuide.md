@@ -1,10 +1,7 @@
 ---
 layout: page
-title: User Guide
+title: FoodRem User Guide
 ---
-
-# FoodRem User Guide
-
 ## About
 
 We want you to spend less time keeping track of perishable goods in your daily operations.
