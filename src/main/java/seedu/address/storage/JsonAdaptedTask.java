@@ -46,7 +46,7 @@ class JsonAdaptedTask {
         }
         final Title modelTitle = new Title(title);
 
-        return new Task(modelTitle);
+        return new Task(modelTitle, false);
     }
 
 }

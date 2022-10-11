@@ -122,4 +122,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the address book.
+     * The task of {@code editedTask} must not be the same as another existing task in the address book.
+     */
+    void setTask(Task target, Task editedTask);
 }
