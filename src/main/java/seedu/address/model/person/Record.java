@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
 public class Record {
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
     public static final String MESSAGE_CONSTRAINTS = "Record date should be in the following format: "
-            + DATE_FORMAT.toString();
+            + "DD-MM-YYYY HHmm";
     /* Data Fields */
     public final String record;
     private final LocalDateTime recordDate;

@@ -25,30 +25,10 @@ public class ListRecordCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed records for this patient: ";
 
-    private static Person lastCalledPerson;
-
     private final Index targetIndex;
 
     public ListRecordCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
-    }
-
-    /**
-     * Checks if listR command is previously called.
-     *
-     * @return true if listR command is previously called, false otherwise.
-     */
-    public static boolean isCalled() {
-        return ListRecordCommand.lastCalledPerson != null;
-    }
-
-    /**
-     * Getter for the Person that is last called.
-     *
-     * @return The Person that is last called.
-     */
-    public static Person getLastCalledPerson() {
-        return ListRecordCommand.lastCalledPerson;
     }
 
     @Override
@@ -56,13 +36,20 @@ public class ListRecordCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
+        // Inverse condition: listR is an addressbook command
+        if (model.isRecordListDisplayed()) {
+            throw new CommandException(MESSAGE_ADDRESS_BOOK_COMMAND_PREREQUISITE);
+        }
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToListRecords = lastShownList.get(targetIndex.getZeroBased());
 
-        ListRecordCommand.lastCalledPerson = personToListRecords;
+        // Set Model record list displayed flag to true
+        model.setPersonWithRecords(personToListRecords);
+        model.setRecordListDisplayed(true);
 
         model.setFilteredRecordList(personToListRecords);
         model.updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);

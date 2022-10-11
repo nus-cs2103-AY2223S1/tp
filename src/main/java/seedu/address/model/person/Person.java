@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -15,6 +16,12 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+
+    // Default Fields
+    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     // Identity fields
     private final Name name;
@@ -82,18 +89,6 @@ public class Person {
 
     //======= Record List ========================================
 
-    public void deleteRecord(Record record) {
-        records.delete(record);
-    }
-
-    /**
-     * Replaces the contents of the record list with {@code records}.
-     * {@code records} must not contain duplicate persons.
-     */
-    public void setRecords(RecordList records) {
-        this.records.setRecordList(records);
-    }
-
     /**
      * Returns true if a record with the same identity as {@code record} exists in the record list.
      */
@@ -111,11 +106,36 @@ public class Person {
     }
 
     /**
+     * Deletes a record from the record list.
+     * The record must already exist in the record list.
+     */
+    public void deleteRecord(Record record) {
+        records.delete(record);
+    }
+
+    /**
+     * Replaces the contents of the record list with {@code records}.
+     * {@code records} must not contain duplicate persons.
+     */
+    public void setRecords(RecordList records) {
+        this.records.setRecordList(records);
+    }
+
+    /**
      * Clears the contents of the record list.
      */
     public void clearRecords() {
         records.clearRecords();
     }
+
+    /**
+     * Retrieve unmodifiable list of records
+     */
+    public ObservableList<Record> getUnmodifiableRecords() {
+        return records.asUnmodifiableObservableList();
+    }
+
+    //======================================================================================
 
     /**
      * Returns true if both persons have the same identity and data fields.

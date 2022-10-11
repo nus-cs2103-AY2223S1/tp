@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.RecordContainsKeywordsPredicate;
 
@@ -26,9 +27,15 @@ public class FindRecordCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.isRecordListDisplayed()) {
+            throw new CommandException(MESSAGE_RECORD_COMMAND_PREREQUISITE);
+        }
+
         model.updateFilteredRecordList(predicate);
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW, model.getFilteredRecordList().size()),
                 false, false, true);

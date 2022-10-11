@@ -39,6 +39,10 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        if (model.isRecordListDisplayed()) {
+            throw new CommandException(MESSAGE_ADDRESS_BOOK_COMMAND_PREREQUISITE);
+        }
+
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));

@@ -134,4 +134,20 @@ public interface Model {
      * {@code record} must exist in the filtered record list.
      */
     void deleteRecord(Record record);
+
+    /**
+     * Retrieve flag raised by record list being displayed.
+     */
+    boolean isRecordListDisplayed();
+
+    /**
+     * Flag to determine is record list is being displayed.
+     */
+    void setRecordListDisplayed(boolean b);
+
+    /**
+     * Set the person whose records are being displayed / processed.
+     */
+    void setPersonWithRecords(Person person);
+
 }

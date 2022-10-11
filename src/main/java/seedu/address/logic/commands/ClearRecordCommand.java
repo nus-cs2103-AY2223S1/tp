@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
@@ -17,10 +18,16 @@ public class ClearRecordCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Patient's Record List has been cleared!";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // todo: throw exception if listR has not been called.
+
+        if (!model.isRecordListDisplayed()) {
+            throw new CommandException(MESSAGE_RECORD_COMMAND_PREREQUISITE);
+        }
+
         model.clearRecords();
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        return new CommandResult(MESSAGE_SUCCESS,
+                false, false, true);
     }
 }
