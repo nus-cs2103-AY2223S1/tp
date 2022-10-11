@@ -94,8 +94,7 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
 
-        Task modelTask = new Task(modelTaskName, modelModule, modelDeadline);
-        modelTask.setStatus(status);
-        return modelTask;
+        Status modelStatus = new Status(status);
+        return new Task(modelTaskName, modelModule, modelDeadline, modelStatus);
     }
 }

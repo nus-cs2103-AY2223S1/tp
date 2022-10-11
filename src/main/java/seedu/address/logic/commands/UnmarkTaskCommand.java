@@ -8,6 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
 /**
@@ -46,8 +47,8 @@ public class UnmarkTaskCommand extends Command {
             throw new CommandException(MESSAGE_TASK_ALREADY_NOT_COMPLETED);
         }
 
-        Task unmarkedTask = new Task(taskToUnmark.getName(), taskToUnmark.getModule(), taskToUnmark.getDeadline());
-        unmarkedTask.setStatus(false);
+        Task unmarkedTask = new Task(
+                taskToUnmark.getName(), taskToUnmark.getModule(), taskToUnmark.getDeadline(), new Status(false));
         model.setTask(taskToUnmark, unmarkedTask);
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask));
     }

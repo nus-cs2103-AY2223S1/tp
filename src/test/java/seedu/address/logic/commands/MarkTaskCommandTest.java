@@ -14,6 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
 /**
@@ -32,8 +33,8 @@ public class MarkTaskCommandTest {
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(Index.fromZeroBased(0));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
-        Task markedTask = new Task(taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline());
-        markedTask.setStatus(true);
+        Task markedTask = new Task(
+                taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline(), new Status(true));
         expectedModel.setTask(taskToMark, markedTask);
 
         String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS, markedTask);
@@ -56,8 +57,8 @@ public class MarkTaskCommandTest {
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(Index.fromZeroBased(0));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
-        Task markedTask = new Task(taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline());
-        markedTask.setStatus(true);
+        Task markedTask = new Task(
+                taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline(), new Status(true));
         expectedModel.setTask(taskToMark, markedTask);
 
         String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS, markedTask);

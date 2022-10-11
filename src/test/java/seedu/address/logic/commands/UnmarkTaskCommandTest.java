@@ -14,6 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
 /**
@@ -32,8 +33,8 @@ public class UnmarkTaskCommandTest {
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
-        Task unmarkedTask = new Task(taskToUnmark.getName(), taskToUnmark.getModule(), taskToUnmark.getDeadline());
-        unmarkedTask.setStatus(false);
+        Task unmarkedTask = new Task(
+                taskToUnmark.getName(), taskToUnmark.getModule(), taskToUnmark.getDeadline(), new Status(false));
         expectedModel.setTask(taskToUnmark, unmarkedTask);
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask);
@@ -56,8 +57,8 @@ public class UnmarkTaskCommandTest {
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
-        Task unmarkedTask = new Task(taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline());
-        unmarkedTask.setStatus(false);
+        Task unmarkedTask = new Task(
+                taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline(), new Status(false));
         expectedModel.setTask(taskToMark, unmarkedTask);
 
         String expectedMessage = String.format(UnmarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask);

@@ -12,37 +12,43 @@ public class TaskTest {
     private final Task sampleA = new Task(
             new TaskName("A"),
             new Module("B"),
-            new Deadline("2006-01-15 15:04")
+            new Deadline("2006-01-15 15:04"),
+            new Status(false)
     );
 
     private final Task sampleB = new Task(
             new TaskName("A"),
             new Module("B"),
-            new Deadline("2006-01-15 15:04")
+            new Deadline("2006-01-15 15:04"),
+            new Status(false)
     );
 
     private final Task sampleC = new Task(
             new TaskName("A"),
             new Module("B"),
-            new Deadline("2010-04-15 08:30")
+            new Deadline("2010-04-15 08:30"),
+            new Status(false)
     );
 
     private final Task sampleD = new Task(
             new TaskName("Dugong"),
             new Module("B"),
-            new Deadline("2006-01-15 15:04")
+            new Deadline("2006-01-15 15:04"),
+            new Status(false)
     );
 
     private final Task sampleE = new Task(
             new TaskName("a"),
             new Module("B"),
-            new Deadline("2006-01-15 15:04")
+            new Deadline("2006-01-15 15:04"),
+            new Status(false)
     );
 
     private final Task sampleF = new Task(
             new TaskName("A "),
             new Module("B"),
-            new Deadline("2006-01-15 15:04")
+            new Deadline("2006-01-15 15:04"),
+            new Status(false)
     );
 
     @Test

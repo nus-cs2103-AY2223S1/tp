@@ -12,16 +12,17 @@ public class Task {
     private final TaskName name;
     private final Module module;
     private final Deadline deadline;
-    private Status status = new Status(false);
+    private Status status;
 
     /**
      * Constructs a new Task. Every field must be present and not null.
      */
-    public Task(TaskName name, Module module, Deadline deadline) {
+    public Task(TaskName name, Module module, Deadline deadline, Status status) {
         requireAllNonNull(name, module, deadline);
         this.name = name;
         this.module = module;
         this.deadline = deadline;
+        this.status = status;
     }
 
     public TaskName getName() {
