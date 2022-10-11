@@ -8,7 +8,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 /**
- * A utility class containing a list of {@code Module} and  {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Module} and {@code Person} objects to be used in tests.
  */
 public class TypicalAddressBook {
     /**
