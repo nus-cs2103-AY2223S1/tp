@@ -49,7 +49,7 @@ public class Buyer extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPersonCategory(),getName(), getPhone(), getEmail(), getAddress(), getTags(), orders);
+        return Objects.hash(getPersonCategory(), getName(), getPhone(), getEmail(), getAddress(), getTags(), orders);
     }
 
     @Override

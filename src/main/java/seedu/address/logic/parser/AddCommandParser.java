@@ -15,13 +15,13 @@ import seedu.address.model.person.*;
 public class AddCommandParser implements Parser<AddCommand> {
 
     private final AddBuyerCommandParser addBuyerCommandParser;
-    private final AddDelivererCommandParser addDelivererCommandParser;
-    private final AddSupplierCommandParser addSupplierCommandParser;
+    // private final AddDelivererCommandParser addDelivererCommandParser; //TODO Uncomment
+    // private final AddSupplierCommandParser addSupplierCommandParser;
 
     public AddCommandParser() {
         addBuyerCommandParser = new AddBuyerCommandParser();
-        addDelivererCommandParser = new AddDelivererCommandParser();
-        addSupplierCommandParser = new AddSupplierCommandParser();
+        //addDelivererCommandParser = new AddDelivererCommandParser(); //TODO Uncomment
+        //addSupplierCommandParser = new AddSupplierCommandParser();
     }
 
     /**
@@ -45,10 +45,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         switch (personCategory) {
         case BUYER:
             return addBuyerCommandParser.parse(args);
-        case DELIVERER:
-            return addDelivererCommandParser.parse(args);
-        case SUPPLIER:
-            return addSupplierCommandParser.parse(args);
+        //TODO Uncomment
+//        case DELIVERER:
+//            return addDelivererCommandParser.parse(args);
+//        case SUPPLIER:
+//            return addSupplierCommandParser.parse(args);
         default:
             throw new ParseException(PersonCategory.MESSAGE_CONSTRAINTS);
         }

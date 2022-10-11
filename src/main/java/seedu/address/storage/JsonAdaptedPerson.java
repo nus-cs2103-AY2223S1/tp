@@ -50,7 +50,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        personCategory = source.getPersonCategory().value;
+        personCategory = source.getPersonCategory().toString();
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -77,7 +77,7 @@ class JsonAdaptedPerson {
         if (!PersonCategory.isValidPersonCategory(personCategory)) {
             throw new IllegalValueException(PersonCategory.MESSAGE_CONSTRAINTS);
         }
-        final PersonCategory modelPersonCategory = new PersonCategory(personCategory);
+        final PersonCategory modelPersonCategory = PersonCategory.getFromString(personCategory);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
