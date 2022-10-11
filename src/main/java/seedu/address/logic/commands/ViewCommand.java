@@ -53,7 +53,7 @@ public class ViewCommand extends Command {
         NameEqualsKeywordPredicate predicate = new NameEqualsKeywordPredicate(companyName);
         model.updateFilteredCompanyList(predicate);
 
-        return new CommandResult(String.format(MESSAGE_VIEW_COMPANY_SUCCESS, companyName), false, false, true);
+        return new CommandResult(String.format(MESSAGE_VIEW_COMPANY_SUCCESS, companyName));
     }
 
     @Override

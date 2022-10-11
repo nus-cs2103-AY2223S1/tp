@@ -14,7 +14,7 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -29,13 +29,10 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false)));
-
-        // different isView value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
     }
 
     @Test
@@ -49,28 +46,16 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false).hashCode());
-
-        // different isView value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true));
-    }
-
-    @Test
-    public void isView() {
-        CommandResult firstCommandResult = new CommandResult("feedback");
-        CommandResult secondCommandResult = new CommandResult("feedback", false, false, true);
-
-        assertEquals(firstCommandResult.isView(), false);
-        assertEquals(secondCommandResult.isView(), true);
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
     }
 
     @Test
     public void isShowUserGuide() {
         CommandResult firstCommandResult = new CommandResult("feedback");
-        CommandResult secondCommandResult = new CommandResult("feedback", true, false, false);
+        CommandResult secondCommandResult = new CommandResult("feedback", true, false);
 
         assertEquals(firstCommandResult.isShowUserGuide(), false);
         assertEquals(secondCommandResult.isShowUserGuide(), true);
@@ -79,7 +64,7 @@ public class CommandResultTest {
     @Test
     public void isExit() {
         CommandResult firstCommandResult = new CommandResult("feedback");
-        CommandResult secondCommandResult = new CommandResult("feedback", false, true, false);
+        CommandResult secondCommandResult = new CommandResult("feedback", false, true);
 
         assertEquals(firstCommandResult.isExit(), false);
         assertEquals(secondCommandResult.isExit(), true);

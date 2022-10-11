@@ -17,17 +17,13 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** Points of contact and Transaction should be shown to the user on the right panel */
-    private final boolean isView;
-
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean isView) {
+    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showUserGuide = showUserGuide;
         this.exit = exit;
-        this.isView = isView;
     }
 
     /**
@@ -35,7 +31,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -48,10 +44,6 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
-    }
-
-    public boolean isView() {
-        return isView;
     }
 
     @Override
@@ -68,13 +60,12 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showUserGuide == otherCommandResult.showUserGuide
-                && exit == otherCommandResult.exit
-                && isView == otherCommandResult.isView;
+                && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showUserGuide, exit, isView);
+        return Objects.hash(feedbackToUser, showUserGuide, exit);
     }
 
 }

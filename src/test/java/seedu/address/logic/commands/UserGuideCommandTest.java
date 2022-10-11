@@ -14,7 +14,7 @@ public class UserGuideCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false);
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
         assertCommandSuccess(new UserGuideCommand(), model, expectedCommandResult, expectedModel);
     }
 }
