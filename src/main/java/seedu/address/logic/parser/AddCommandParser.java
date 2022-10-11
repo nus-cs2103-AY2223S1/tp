@@ -76,8 +76,10 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
     private Student extractFromMapForStudent(ArgumentMultimap argMultimap) throws ParseException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SCHOOL,
-                PREFIX_LEVEL, PREFIX_NEXTOFKIN)) {
+        if ((!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SCHOOL,
+                PREFIX_LEVEL, PREFIX_NEXTOFKIN))
+                || (areAnyPrefixesPresent(argMultimap, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
+                PREFIX_DAY, PREFIX_TIME))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         seedu.address.model.person.Name name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_NAME).get());
@@ -93,8 +95,10 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
     private Tutor extractFromMapForTutor(ArgumentMultimap argMultimap) throws ParseException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_QUALIFICATION, PREFIX_INSTITUTION)) {
+        if ((!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_QUALIFICATION, PREFIX_INSTITUTION))
+                || (areAnyPrefixesPresent(argMultimap, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_NEXTOFKIN, PREFIX_SUBJECT,
+                PREFIX_DAY, PREFIX_TIME))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         seedu.address.model.person.Name name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_NAME).get());
@@ -109,7 +113,9 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
     private TuitionClass extractFromMapForClass(ArgumentMultimap argMultimap) throws ParseException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SUBJECT, PREFIX_LEVEL, PREFIX_DAY, PREFIX_TIME)) {
+        if ((!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SUBJECT, PREFIX_LEVEL, PREFIX_DAY, PREFIX_TIME))
+                || (areAnyPrefixesPresent(argMultimap, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SCHOOL,
+                PREFIX_NEXTOFKIN, PREFIX_QUALIFICATION, PREFIX_INSTITUTION))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE)); //todo message usage
         }
         seedu.address.model.tuitionclass.Name name = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_NAME).get());
@@ -126,8 +132,12 @@ public class AddCommandParser implements Parser<AddCommand> {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean areAllPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
