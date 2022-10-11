@@ -91,7 +91,11 @@ public class ParserUtil {
         return new People(trimmedPeople);
     }
 
-    public static String parseDescription(String description) throws ParseException {
+    /**
+     * Parses a {@code String description}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseDescription(String description) {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         // TODO: implement Description class

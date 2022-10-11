@@ -1,15 +1,14 @@
 package seedu.waddle.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
 import seedu.waddle.logic.StageManager;
-import seedu.waddle.logic.Stages;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.Itinerary;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.waddle.logic.parser.CliSyntax.*;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
 
 /**
  * Adds an item to an itinerary.

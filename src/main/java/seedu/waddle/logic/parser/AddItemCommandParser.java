@@ -1,15 +1,18 @@
 package seedu.waddle.logic.parser;
 
+import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
+import java.util.stream.Stream;
+
 import seedu.waddle.logic.commands.AddCommand;
 import seedu.waddle.logic.commands.AddItemCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.item.Item;
 
-import java.util.stream.Stream;
-
-import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.waddle.logic.parser.CliSyntax.*;
-
+/**
+ * Parses input arguments and creates a new AddItemCommand object
+ */
 public class AddItemCommandParser implements Parser<AddItemCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddItemCommand
