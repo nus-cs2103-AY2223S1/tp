@@ -17,10 +17,9 @@ public class DisplayedPerson {
     /**
      * Constructor for DisplayedPerson
      * @param person person to be displayed.
-     * @param addressBook addressbook containing the person to display.
      */
-    public DisplayedPerson(Person person, AddressBook addressBook) {
-        requireAllNonNull(person, addressBook);
+    public DisplayedPerson(Person person) {
+        requireAllNonNull(person);
         this.person = person;
     }
 
