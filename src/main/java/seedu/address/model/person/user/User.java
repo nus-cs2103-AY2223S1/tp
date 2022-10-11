@@ -1,5 +1,7 @@
 package seedu.address.model.person.user;
 
+import java.util.Set;
+
 import seedu.address.model.module.CurrentModule;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
@@ -7,10 +9,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-
-import java.util.Collections;
-import java.util.Set;
 
 /**
  * Represents the User of the address book. User can never be null.

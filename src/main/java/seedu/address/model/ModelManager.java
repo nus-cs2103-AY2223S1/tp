@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.util.SampleDataUtil.*;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -12,8 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.*;
-import seedu.address.model.person.user.ExistingUser;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.user.User;
 
 /**
@@ -37,10 +35,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-//        addUser(new ExistingUser(new Name("Koh Rui Jie"), new Phone("80000000"), new Email("kohrj@example.com"),
-//                new Address("somewhere near bishan"),
-//                getCurrentModuleSet("CS2103t"),
-//                getPreviousModuleSet("CS1101s", "CS1231s"), getPlannedModuleSet("CS2109s")));
     }
 
     public ModelManager() {
