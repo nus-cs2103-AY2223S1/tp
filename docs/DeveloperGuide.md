@@ -259,7 +259,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 NUS CS Students who wish to keep track of their friends to work with
 
-**Value proposition**: 
+**Value proposition**:
 
 We help NUS CS Students to have a collection of fellow NUS CS Students to find people to collaborate with for CS work and projects
 
@@ -292,9 +292,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. CS Student chooses to see usage instructions. 
-2. ConnectNUS displays the usage instructions. 
-3. Use case ends. 
+1. CS Student chooses to see usage instructions.
+2. ConnectNUS displays the usage instructions.
+3. Use case ends.
 4. Use case ends.
 
 **System: ConnectNUS**
@@ -305,10 +305,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. CS Student chooses to save a new contact. 
-2. ConnectNUS requests for details of the contact to be saved. 
-3. CS Student enters the requested details. 
-4. ConnectNUS saves the contact and updates the data file. 
+1. CS Student chooses to save a new contact.
+2. ConnectNUS requests for details of the contact to be saved.
+3. CS Student enters the requested details.
+4. ConnectNUS saves the contact and updates the data file.
 5. Use case ends.
 
 **Extensions**
@@ -328,8 +328,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. CS Student requests to delete a specific index of contact. 
-2. ConnectNUS deletes the contact and updates data file. 
+1. CS Student requests to delete a specific index of contact.
+2. ConnectNUS deletes the contact and updates data file.
 3. Use case ends.
 
 **Extensions**
@@ -348,9 +348,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. CS Student requests to list all contact information. 
-2. ConnectNUS shows a list of contacts based on the order that the contacts are added. 
-3. Use case ends
+1. CS Student requests to list all contact information.
+2. ConnectNUS shows a list of contacts based on the order that the contacts are added.
+3. Use case ends.
 
 **Extensions**
 
@@ -365,8 +365,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. CS Student requests to list all modules. 
-2. ConnectNUS shows a list of modules the CS Student has taken. 
+1. CS Student requests to list all modules.
+2. ConnectNUS shows a list of modules the CS Student has taken.
 3. Use case ends.
 
 **Extensions**
@@ -382,8 +382,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. CS Student requests to list all modules of a specific index of contact. 
-2. ConnectNUS shows a list of modules the specified friend has taken. 
+1. CS Student requests to list all modules of a specific index of contact.
+2. ConnectNUS shows a list of modules the specified friend has taken.
 3. Use case ends.
 
 
@@ -395,7 +395,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1a1-1a2 are repeated until the data entered are correct.
       Use case resumes at step 2.
 
-* 2a. The list is empty. 
+* 2a. The list is empty.
       Use case ends.
 
 **System: ConnectNUS**
@@ -406,8 +406,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all previous modules of a specific index of contact 
-2. ConnectNUS shows a list of modules the specified friend has taken previously. 
+1. User requests to list all previous modules of a specific index of contact.
+2. ConnectNUS shows a list of modules the specified friend has taken previously.
 3. Use case ends.
 
 **Extensions**
@@ -429,8 +429,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. CS Student requests to list a friend’s module plan of a specific index of contact 
-2. ConnectNUS shows a list of modules the specified friend has taken previously. 
+1. CS Student requests to list a friend’s module plan of a specific index of contact.
+2. ConnectNUS shows a list of modules the specified friend has taken previously.
 3. Use case ends.
 
 **Extensions**
@@ -451,12 +451,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should be a result of evolving AB3 code base 
-5. Should be for a single user 
-6. Should not use any Database Management System 
-7. Should be platform independent and work on Windows, Linus and OS-X. 
-8. Should work without an installer and without approved third-party frameworks/libraries/services. 
-9. Should be able to package into a single JAR file. 
+4. Should be a result of evolving AB3 code base.
+5. Should be for a single user.
+6. Should not use any Database Management System.
+7. Should be platform independent and work on Windows, Linus and OS-X.
+8. Should work without an installer and without approved third-party frameworks/libraries/services.
+9. Should be able to package into a single JAR file.
 10. JAR file size should not exceed 100MB and Documents should not exceed 15 MB per file.
 
 *{More to be added}*

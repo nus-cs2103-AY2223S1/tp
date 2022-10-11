@@ -102,6 +102,16 @@ public class UserProfile extends UiPart<Region> {
                     .forEach(mod -> planModulesTags.getChildren().add(new Label(mod.moduleName)));
         } else {
             userLabel.setText("User details have not been added.");
+            name.setText("");
+            phone.setText("");
+            address.setText("");
+            email.setText("");
+            currModuleDescription.setText("");
+            prevModuleDescription.setText("");
+            planModuleDescription.setText("");
+            currModulesTags.getChildren().clear();
+            planModulesTags.getChildren().clear();
+            prevModulesTags.getChildren().clear();
         }
     }
 
