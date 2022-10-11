@@ -284,7 +284,7 @@ public class ParserUtil {
     public static ConsultationDescription parseConsultationDescription(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!ConsultationName.isValidName(trimmedName)) {
+        if (!ConsultationDescription.isValidDescription(trimmedName)) {
             throw new ParseException(ConsultationName.MESSAGE_CONSTRAINTS);
         }
         return new ConsultationDescription(trimmedName);

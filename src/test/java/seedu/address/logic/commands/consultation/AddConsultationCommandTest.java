@@ -32,7 +32,7 @@ public class AddConsultationCommandTest {
     }
 
     @Test
-    public void executeConsultationAcceptedByModelAddSuccessful() throws Exception {
+    public void execute_consultationAcceptedByModel_addSuccessful() throws Exception {
         AddConsultationCommandTest.ModelStubAcceptingConsultationAdded modelStub =
                 new AddConsultationCommandTest.ModelStubAcceptingConsultationAdded();
         Consultation validConsultation = new ConsultationBuilder().build();
