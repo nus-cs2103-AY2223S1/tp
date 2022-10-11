@@ -195,6 +195,8 @@ public class ModelManager implements Model {
         taskPanel.removeTask(deletedTask);
     }
 
-
-
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        taskPanel.setTask(target, editedTask);
+    }
 }

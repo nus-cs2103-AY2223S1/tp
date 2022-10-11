@@ -54,8 +54,8 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Title("Add task functionality.")),
-            new Task(new Title("Add task storage"))
+            new Task(new Title("Add task functionality."), false),
+            new Task(new Title("Add task storage"), false)
         };
     }
 
