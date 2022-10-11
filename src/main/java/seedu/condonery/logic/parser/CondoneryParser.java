@@ -11,13 +11,14 @@ import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.DeleteCommand;
 import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.ExitCommand;
-import seedu.condonery.logic.commands.FilterCommand;
+import seedu.condonery.logic.commands.property.FilterPropertyCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.ListCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.logic.parser.property.AddPropertyCommandParser;
+import seedu.condonery.logic.parser.property.FilterPropertyCommandParser;
 
 /**
  * Parses user input.
@@ -29,7 +30,6 @@ public class CondoneryParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern
             .compile("(?<commandWord>\\S+(\\s-[pc]{1})*)(?<arguments>.*)");
-
 
     /**
      * Parses user input into command for execution.
@@ -46,7 +46,7 @@ public class CondoneryParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        
+
         switch (commandWord) {
 
         case AddPropertyCommand.COMMAND_WORD:
@@ -73,8 +73,8 @@ public class CondoneryParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case FilterCommand.COMMAND_WORD:
-            return new FilterCommandParser().parse(arguments);
+        case FilterPropertyCommand.COMMAND_WORD:
+            return new FilterPropertyCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

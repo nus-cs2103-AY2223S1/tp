@@ -1,8 +1,10 @@
-package seedu.condonery.logic.commands;
+package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 
 import seedu.condonery.commons.core.Messages;
+import seedu.condonery.logic.commands.Command;
+import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.property.TagContainsKeywordsPredicate;
 
@@ -10,9 +12,9 @@ import seedu.condonery.model.property.TagContainsKeywordsPredicate;
  * Finds and lists all properties in Condonery whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FilterCommand extends Command {
+public class FilterPropertyCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter";
+    public static final String COMMAND_WORD = "filter -p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties whose tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -21,7 +23,7 @@ public class FilterCommand extends Command {
 
     private final TagContainsKeywordsPredicate predicate;
 
-    public FilterCommand(TagContainsKeywordsPredicate predicate) {
+    public FilterPropertyCommand(TagContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,7 +38,7 @@ public class FilterCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterCommand // instanceof handles nulls
-                && predicate.equals(((FilterCommand) other).predicate)); // state check
+                || (other instanceof FilterPropertyCommand // instanceof handles nulls
+                && predicate.equals(((FilterPropertyCommand) other).predicate)); // state check
     }
 }
