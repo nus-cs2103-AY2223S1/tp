@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUPNAME_IP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUPNAME_TP;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.model.person.testutil.Assert.assertThrows;
+import static seedu.address.model.person.testutil.TypicalPersons.DANIEL;
+import static seedu.address.model.person.testutil.TypicalPersons.ELLE;
+import static seedu.address.model.person.testutil.TypicalPersons.FIONA;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
-import seedu.address.testutil.GroupBuilder;
+import seedu.address.model.person.testutil.GroupBuilder;
 
 public class UniqueGroupListTest {
 
