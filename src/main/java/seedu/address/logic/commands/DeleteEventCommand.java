@@ -9,6 +9,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
+/**
+ * Deletes an Event from the AddressBook based on the index supplied
+ */
 public class DeleteEventCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteEvent";
