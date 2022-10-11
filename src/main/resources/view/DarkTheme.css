@@ -135,6 +135,7 @@
 
 .cell_title_label {
     -fx-font-size: 24px;
+    -fx-text-fill: #E8E8E8;
 }
 
 .stack-pane {
@@ -359,15 +360,6 @@
 #detailsPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
-}
-
-#detailsPane #detailsPaneName {
-    -fx-font-family: "Inter";
-    -fx-font-size: 22px;
-}
-
-#detailsPane .label {
-    -fx-text-fill: white;
 }
 
 #filterField, #customerListPanel, #customerWebpage {

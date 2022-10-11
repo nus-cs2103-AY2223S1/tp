@@ -34,12 +34,16 @@
                             <!-- Ensures that the label text is never truncated -->
                             <Region fx:constant="USE_PREF_SIZE" />
                         </minHeight>
-                        <HBox.margin>
-                            <Insets bottom="8" />
-                        </HBox.margin>
                     </Label>
+                    <VBox.margin>
+                        <Insets bottom="8.0" />
+                    </VBox.margin>
                 </HBox>
-                <FlowPane fx:id="tags" />
+                <FlowPane fx:id="tags">
+                    <VBox.margin>
+                        <Insets bottom="16.0" />
+                    </VBox.margin>
+                </FlowPane>
                 <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true">
                     <minHeight>
                         <!-- Ensures that the label text is never truncated -->
