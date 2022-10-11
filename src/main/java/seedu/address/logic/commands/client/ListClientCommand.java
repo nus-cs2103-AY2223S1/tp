@@ -14,7 +14,7 @@ public class ListClientCommand extends ClientCommand {
 
     public static final String COMMAND_FLAG = "-l";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all clients";
 
     /**
      * Executes list client command.

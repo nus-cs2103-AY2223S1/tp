@@ -53,6 +53,12 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    public static Client parseClient(String clientId) throws ParseException {
+        requireNonNull(clientId);
+        String trimmedClientId = clientId.trim();
+
+    }
+
     /**
      * Parses a {@code String repository} into a {@code Repository}.
      * Leading a trailing whitespaces will be trimmed.
