@@ -285,27 +285,11 @@ _Details coming soon ..._
 
 ## Command summary
 
-<<<<<<< HEAD
-| Action         | Format, Examples                                                                                                                                                                                          |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                     |
-| **Clear**      | `clear`                                                                                                                                                                                                   |
-| **Customise**  | `customise hide [t/] [p/] [e/] [a/]` <br> `customise show [t/] [p/] [e/] [a/]` <br> `customise order [t/] [p/] [e/] [a/]` <br> e.g, `customise hide a/ e/ p/` `customise show a/` `customise order a/ p/` |
-| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                       |
-| **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                               |
-| **Search**     | `search [n/NAME] [p/PHONE_NUMBER] ...`<br> e.g., `seach n/John Doe t/cs2103t`                                                                                                                             |
-| **List**       | `list`                                                                                                                                                                                                    |
-| **Sort**       | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/friend n/`                                                                                                                                        |
-| **Help**       | `help`                                                                                                                                                                                                    |
-| **Create Tag** | `tag create t/TAG` <br> e.g., `tag create t/friend`                                                                                                                                                       |
-| **Edit Tag**   | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`                                                                                                                                     |
-| **Add Tag**    | `tag add n/NAME t/TAG` <br> e.g., `tag add n/John Doe t/friend`                                                                                                                                           |
-=======
 | Action         | Format, Examples                                                                                                                                                      |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**      | `clear`                                                                                                                                                               |
-| **Customise**  | `customise hide [p/] [e/] [a/] [t/]` <br> `customise show [p/] [e/] [a/] [t/]` <br> `customise order [p/] [e/] [a/] [t/]` <br> e.g, `customise order a/ e/ p/`        |
+| **Customise**  | `customise hide [t/] [p/] [e/] [a/]` <br> `customise show [t/] [p/] [e/] [a/]` <br> `customise order [t/] [p/] [e/] [a/]` <br> e.g, `customise hide a/ e/ p/` `customise show a/` `customise order a/ p/`        |
 | **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Search**     | `search [n/NAME] [p/PHONE_NUMBER] ...`<br> e.g., `seach n/John Doe t/cs2103t`                                                                                         |
@@ -315,4 +299,4 @@ _Details coming soon ..._
 | **Create Tag** | `tag create t/TAG` <br> e.g., `tag create t/friend`                                                                                                                   |
 | **Edit Tag**   | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`                                                                                                 |
 | **Add Tag**    | `tag add n/NAME t/TAG` <br> e.g., `tag add n/John Doe t/friend`                                                                                                       |
->>>>>>> 9c20078b383ab4c3a4e26e93ba953c7ae24711ce
+
