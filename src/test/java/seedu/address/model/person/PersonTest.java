@@ -99,6 +99,9 @@ public class PersonTest {
 
         // different phone -> returns false
         assertFalse(billy.allEqualsExceptClass(billyWithDifferentPhone));
+
+        // compared with null -> returns false
+        assertFalse(billy.allEqualsExceptClass(null));
     }
 
 }
