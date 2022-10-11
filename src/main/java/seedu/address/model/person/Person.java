@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.address.Address;
@@ -15,7 +16,8 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: field values are validated, immutable.
+ * Only priceRange and desiredCharacteristics may be null.
  */
 public class Person {
 
@@ -26,21 +28,21 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final PriceRange priceRange;
-    private final DesiredCharacteristics desiredCharacteristics;
+    private final Optional<PriceRange> priceRange;
+    private final Optional<DesiredCharacteristics> desiredCharacteristics;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, PriceRange priceRange, DesiredCharacteristics desiredCharacteristics, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, priceRange, desiredCharacteristics, tags);
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.priceRange = priceRange;
-        this.desiredCharacteristics = desiredCharacteristics;
+        this.priceRange = Optional.ofNullable(priceRange);
+        this.desiredCharacteristics = Optional.ofNullable(desiredCharacteristics);
         this.tags.addAll(tags);
     }
 
@@ -60,11 +62,11 @@ public class Person {
         return address;
     }
 
-    public PriceRange getPriceRange() {
+    public Optional<PriceRange> getPriceRange() {
         return this.priceRange;
     }
 
-    public DesiredCharacteristics getDesiredCharacteristics() {
+    public Optional<DesiredCharacteristics> getDesiredCharacteristics() {
         return this.desiredCharacteristics;
     }
 
@@ -130,12 +132,12 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Budget: ")
-                .append(getPriceRange().toString())
-                .append("; Requirements: ")
-                .append(getDesiredCharacteristics().toString());
+                .append(getPriceRange().map(PriceRange::toString).orElse("Budget: Not Specified"))
+                .append("; Desired Characteristics: ")
+                .append(getDesiredCharacteristics().map(DesiredCharacteristics::toString).orElse("Desired Characteristics: Not Specified"));
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append(" Tags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();

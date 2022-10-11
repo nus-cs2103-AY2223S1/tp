@@ -43,6 +43,11 @@ public class PriceRange {
     public static boolean isValidPriceRange(String test) {
 
         boolean isValid = test.matches(VALIDATION_REGEX);
+        
+        // to prevent out of bounds error below
+        if (!isValid) {
+            return false;
+        }
 
         String[] rangeValues = test.split("-");
         double leftValue = Float.parseFloat(rangeValues[0].trim());

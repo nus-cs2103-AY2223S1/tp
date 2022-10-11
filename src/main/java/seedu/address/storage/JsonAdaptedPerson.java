@@ -64,8 +64,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        priceRange = source.getPriceRange().toString();
-        desiredCharacteristics = source.getDesiredCharacteristics().toString();
+        priceRange = source.getPriceRange().map(PriceRange::toString).orElse("");
+        desiredCharacteristics = source.getDesiredCharacteristics().map(DesiredCharacteristics::toString).orElse("");
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -114,18 +114,17 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        if (!PriceRange.isValidPriceRange(priceRange)) {
+        if (!priceRange.isEmpty() && !PriceRange.isValidPriceRange(priceRange)) {
             throw new IllegalValueException(PriceRange.MESSAGE_CONSTRAINTS);
         }
-        final PriceRange modelPriceRange = new PriceRange(priceRange);
+        final PriceRange modelPriceRange = priceRange.isEmpty() ? null : new PriceRange(priceRange);
 
-        if (!DesiredCharacteristics.isValidDesiredCharacteristics(desiredCharacteristics)) {
+        if (!desiredCharacteristics.isEmpty() && !DesiredCharacteristics.isValidDesiredCharacteristics(desiredCharacteristics)) {
             throw new IllegalValueException(DesiredCharacteristics.MESSAGE_CONSTRAINTS);
         }
-        final DesiredCharacteristics modelDesiredCharacteristics = new DesiredCharacteristics(desiredCharacteristics);
+        final DesiredCharacteristics modelDesiredCharacteristics = desiredCharacteristics.isEmpty() ? null : new DesiredCharacteristics(desiredCharacteristics);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelPriceRange, modelDesiredCharacteristics, modelTags);
     }
-
 }

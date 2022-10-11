@@ -20,6 +20,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
 import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.property.Price;
 import seedu.address.model.tag.Tag;
 
 
@@ -47,11 +48,18 @@ public class AddPersonCommandParser extends Parser<AddPersonCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        PriceRange priceRange = ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).orElse(""));
-        DesiredCharacteristics characteristics = ParserUtil
-                .parseCharacteristics(argMultimap
-                        .getValue(PREFIX_CHARACTERISTICS)
-                        .orElse(""));
+        
+        // if user does not specify a budget for the buyer, then there will be no PriceRange object 
+        PriceRange priceRange = null;
+        if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
+            priceRange = ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
+        }
+        
+        DesiredCharacteristics characteristics = null;
+        if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
+            characteristics = ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
+        }
+        
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, address, priceRange, characteristics, tagList);

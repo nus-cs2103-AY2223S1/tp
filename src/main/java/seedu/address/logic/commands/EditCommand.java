@@ -41,10 +41,10 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed buyer list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_NAME + " NAME] "
+            + "[" + PREFIX_PHONE + " PHONE] "
+            + "[" + PREFIX_EMAIL + " EMAIL] "
+            + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_PRICE_RANGE + " PRICE RANGE] "
             + "[" + PREFIX_CHARACTERISTICS + " DESIRED CHARACTERISTICS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -103,8 +103,8 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        PriceRange updatedPriceRange = editPersonDescriptor.getPriceRange().orElse(personToEdit.getPriceRange());
-        DesiredCharacteristics updatedDesiredCharacteristics = editPersonDescriptor.getDesiredCharacteristics().orElse(personToEdit.getDesiredCharacteristics());
+        PriceRange updatedPriceRange = editPersonDescriptor.getPriceRange().orElse(personToEdit.getPriceRange().orElse(null));
+        DesiredCharacteristics updatedDesiredCharacteristics = editPersonDescriptor.getDesiredCharacteristics().orElse(personToEdit.getDesiredCharacteristics().orElse(null));
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         Person newPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedPriceRange, updatedDesiredCharacteristics, updatedTags);

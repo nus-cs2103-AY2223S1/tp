@@ -163,9 +163,7 @@ public class ParserUtil {
      * Parses {@code String characteristics} into a {@code Characteristics}.
      */
     public static DesiredCharacteristics parseCharacteristics(String characteristics) throws ParseException {
-        if (characteristics.isEmpty()) {
-            return new DesiredCharacteristics("");
-        }
+        requireNonNull(characteristics);
         String trimmedCharacteristics = characteristics.trim();
         if (!DesiredCharacteristics.isValidDesiredCharacteristics(trimmedCharacteristics)) {
             throw new ParseException(DesiredCharacteristics.MESSAGE_CONSTRAINTS);
