@@ -154,9 +154,62 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sorting feature
+
+#### Implementation
+
+The sorting mechanism is facilitated by `SortCommand` and `SortCommandParser`. 
+Additionally, the mechanism utilises the following operations in `UniquePersonList`:
+
+* `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the contact list by name in alphabetical order.
+* `UniquePersonList#sortByPhone(Boolean isReverse)` — Sorts the contact list by phone number in increasing order.
+* `UniquePersonList#sortByEmail(Boolean isReverse)` — Sorts the contact list by email in alphabetical order.
+* `UniquePersonList#sortByAddress(Boolean isReverse)` — Sorts the contact list by address in alphabetical order.
+* `UniquePersonList#sortByTag(Tag tag, Boolean isReverse)` — Sorts the contact list by a specified tag.
+
+These operations sort in reverse order when `isReverse` is true.
+
+These operations are exposed in the `Model` interface under the same method name.
+
+Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+
+Step 1. The user executes `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
+
+Step 2. The `sort` command sorts the currently displayed list by name first, calling `Model#sortByName(Boolean isReverse)` where `isReverse = false`.
+
+Step 3. The `sort` command sorts the currently displayed list by the `friend` tag next, calling `Model#sortByTag(Tag tag, Boolean isReverse)` where `isReverse = true`.
+
+The following sequence diagram shows how the sort operation works:
+
+(insert sequence diagram here)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Step 4. The user is shown the sorted list. The sorted list contains the same contacts as the previous displayed list. It has two sections, the first section contains contacts without the `friend` tag and the second section contains contacts with the `friend` tag. Each section is sorted by name in alphabetical order.
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+(insert activity diagram here)
+
+#### Design consideration
+
+**Aspect: How to implement multi-level sorting:**
+
+* **Alternative 1 (current choice):** Sort the list once for each parameter entered by the user.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of time needed to sort.
+
+* **Alternative 2:** Single complex sorting method that combines all the individual sorting for each parameter.
+    * Pros: Save time as only 1 sorting operation is carried out.
+    * Cons: Harder to modify when more parameters are added. Can result in more bugs due to complexity.
+
+_{more aspects and alternatives to be added}_
+
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### Proposed implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -427,12 +480,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: sort by name**
+**Use case: Sort by name**
 
 **MSS**
 
-1.  User request sort by name
-2.  SoConnect sorts the list by name.
+1.  User enters command to sort the contact list by name.
+2.  SoConnect sorts the list by name and displays the new list.
 
     Use case ends.
 

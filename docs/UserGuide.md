@@ -97,20 +97,21 @@ Format: `list`
 
 ### Sort Contacts : `sort`
 
-Sort the list of contacts displayed by certain attribute(s).
+Sort the list of contacts displayed by certain parameter(s).
 
 Default sorting orders:
 * Alphabetical order for *names*, *emails*, *addresses*.
 * Increasing order for *phone numbers*.
-* Sorts contacts that have a specified *tag* before those without the *tag*.
+* Contacts that have a specified *tag* appear before those without the *tag*.
 
 Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
-* Add `!` in front of an attribute to sort in reverse order.
+* To sort in reverse order, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
+* To sort with multiple parameters, arrange the parameters in order of decreasing priority.
 
 Example:
-* `sort n/` sorts the currently displayed list of contacts by their names.
-* `sort !t/friend` sorts contacts of friends *below* all other contacts.
-* `sort t/friend n/` first sorts contacts of friends *above* all other contacts. Then it separately sorts the contacts of friends and contacts of non-friends by their names.
+* `sort n/` sorts by names. (E.g. `David` appears before `Mike`)
+* `sort t/!friend` sorts by the `friend` tag in reverse. (E.g. `Mike` appears before `David` who has the `friend` tag)
+* `sort t/friend n/` sorts by the `friend` tag first, followed by names. (E.g. `David` and `Fred` who have the `friend` tag appear before `Mike`, `David` appears before `Fred`)
 
 ### Editing a person : `edit`
 
@@ -256,14 +257,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SoConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+SoConnect data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, SoConnect will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -290,7 +291,7 @@ _Details coming soon ..._
 | **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Search**     | `search [n/NAME] [p/PHONE_NUMBER] ...`<br> e.g., `seach n/John Doe t/cs2103t`                                                                                         |
 | **List**       | `list`                                                                                                                                                                |
-| **Sort**       | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/friend n/`                                                                                                    |
+| **Sort**       | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/!friend n/`                                                                                                   |
 | **Help**       | `help`                                                                                                                                                                |
 | **Create Tag** | `tag create t/TAG` <br> e.g., `tag create t/friend`                                                                                                                   |
 | **Edit Tag**   | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`                                                                                                 |
