@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
-import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,23 +14,32 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.person.Address;
-import seedu.rc4hdb.model.person.Email;
-import seedu.rc4hdb.model.person.Name;
-import seedu.rc4hdb.model.person.Phone;
+import seedu.rc4hdb.model.resident.fields.Email;
+import seedu.rc4hdb.model.resident.fields.Gender;
+import seedu.rc4hdb.model.resident.fields.House;
+import seedu.rc4hdb.model.resident.fields.MatricNumber;
+import seedu.rc4hdb.model.resident.fields.Name;
+import seedu.rc4hdb.model.resident.fields.Phone;
+import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_ROOM = "0-0";
+    private static final String INVALID_GENDER = "NB";
+    private static final String INVALID_HOUSE = "Z";
+    private static final String INVALID_MATRIC_NUMBER = "B0000000U";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_PHONE = "91234567";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_ROOM = "03-05";
+    private static final String VALID_GENDER = "F";
+    private static final String VALID_HOUSE = "A";
+    private static final String VALID_MATRIC_NUMBER = "A0000000U";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -50,10 +59,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_RESIDENT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_RESIDENT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -103,29 +112,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
-    }
-
-    @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
     }
@@ -146,6 +132,98 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseRoom_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRoom((String) null));
+    }
+
+    @Test
+    public void parseRoom_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRoom(INVALID_ROOM));
+    }
+
+    @Test
+    public void parseRoom_validValueWithoutWhitespace_returnsRoom() throws Exception {
+        Room expectedRoom = new Room(VALID_ROOM);
+        assertEquals(expectedRoom, ParserUtil.parseRoom(VALID_ROOM));
+    }
+
+    @Test
+    public void parseRoom_validValueWithWhitespace_returnsTrimmedRoom() throws Exception {
+        String roomWithWhitespace = WHITESPACE + VALID_ROOM + WHITESPACE;
+        Room expectedRoom = new Room(VALID_ROOM);
+        assertEquals(expectedRoom, ParserUtil.parseRoom(roomWithWhitespace));
+    }
+
+    @Test
+    public void parseGender_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGender((String) null));
+    }
+
+    @Test
+    public void parseGender_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGender(INVALID_GENDER));
+    }
+
+    @Test
+    public void parseGender_validValueWithoutWhitespace_returnsGender() throws Exception {
+        Gender expectedGender = new Gender(VALID_GENDER);
+        assertEquals(expectedGender, ParserUtil.parseGender(VALID_GENDER));
+    }
+
+    @Test
+    public void parseGender_validValueWithWhitespace_returnsTrimmedGender() throws Exception {
+        String genderWithWhitespace = WHITESPACE + VALID_GENDER + WHITESPACE;
+        Gender expectedGender = new Gender(VALID_GENDER);
+        assertEquals(expectedGender, ParserUtil.parseGender(genderWithWhitespace));
+    }
+
+    @Test
+    public void parseHouse_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseHouse((String) null));
+    }
+
+    @Test
+    public void parseHouse_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHouse(INVALID_HOUSE));
+    }
+
+    @Test
+    public void parseHouse_validValueWithoutWhitespace_returnsHouse() throws Exception {
+        House expectedHouse = new House(VALID_HOUSE);
+        assertEquals(expectedHouse, ParserUtil.parseHouse(VALID_HOUSE));
+    }
+
+    @Test
+    public void parseHouse_validValueWithWhitespace_returnsTrimmedHouse() throws Exception {
+        String houseWithWhitespace = WHITESPACE + VALID_HOUSE + WHITESPACE;
+        House expectedHouse = new House(VALID_HOUSE);
+        assertEquals(expectedHouse, ParserUtil.parseHouse(houseWithWhitespace));
+    }
+
+    @Test
+    public void parseMatricNumber_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMatricNumber((String) null));
+    }
+
+    @Test
+    public void parseMatricNumber_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMatricNumber(INVALID_MATRIC_NUMBER));
+    }
+
+    @Test
+    public void parseMatricNumber_validValueWithoutWhitespace_returnsMatricNumber() throws Exception {
+        MatricNumber expectedMatricNumber = new MatricNumber(VALID_MATRIC_NUMBER);
+        assertEquals(expectedMatricNumber, ParserUtil.parseMatricNumber(VALID_MATRIC_NUMBER));
+    }
+
+    @Test
+    public void parseMatricNumber_validValueWithWhitespace_returnsTrimmedMatricNumber() throws Exception {
+        String matricNumberWithWhitespace = WHITESPACE + VALID_MATRIC_NUMBER + WHITESPACE;
+        MatricNumber expectedMatricNumber = new MatricNumber(VALID_MATRIC_NUMBER);
+        assertEquals(expectedMatricNumber, ParserUtil.parseMatricNumber(matricNumberWithWhitespace));
     }
 
     @Test
