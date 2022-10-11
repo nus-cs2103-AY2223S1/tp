@@ -85,7 +85,7 @@ Now let’s set the breakpoint. First, double-click the item to reach the corres
 
 ## Tracing the execution path
 
-Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
+Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/SCHOLARSHIP] [t/TAG]…​` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -120,14 +120,14 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
         CommandResult commandResult;
         //Parse user input from String to a Command
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = TrackAScholarBookParser.parseCommand(commandText);
         //Executes the Command and stores the result
         commandResult = command.execute(model);
 
         try {
             //We can deduce that the previous line of code modifies model in some way
             // since it's being stored here.
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTrackAScholar(model.getTrackAScholar());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -141,7 +141,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. _Step over_ the logging code since it is of no interest to us now.
    ![StepOver](../images/tracing/StepOver.png)
 
-1. _Step into_ the line where user input in parsed from a String to a Command, which should bring you to the `AddressBookParser#parseCommand()` method (partial code given below):
+1. _Step into_ the line where user input in parsed from a String to a Command, which should bring you to the `TrackAScholarParser#parseCommand()` method (partial code given below):
    ``` java
    public Command parseCommand(String userInput) throws ParseException {
        ...
@@ -171,7 +171,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Stepping through the method shows that it calls `ArgumentTokenizer#tokenize()` and `ParserUtil#parseIndex()` to obtain the arguments and index required.
 
-1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditPersonDescriptor`. Recall that we can verify the contents of `editPersonDesciptor` through the 'Variables' window.<br>
+1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditApplicantDescriptor`. Recall that we can verify the contents of `editApplicantDesciptor` through the 'Variables' window.<br>
    ![EditCommand](../images/tracing/EditCommand.png)
 
 1. As you just traced through some code involved in parsing a command, you can take a look at this class diagram to see where the various parsing-related classes you encountered fit into the design of the `Logic` component.
@@ -189,20 +189,20 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Person applicantToEdit = lastShownList.get(index.getZeroBased());
-       Person editedApplicant = createEditedPerson(applicantToEdit, editApplicantDescriptor);
-       if (!applicantToEdit.isSamePerson(editedApplicant) && model.hasPerson(editedApplicant)) {
-           throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+       Applicant applicantToEdit = lastShownList.get(index.getZeroBased());
+       Applicant editedApplicant = createEditedApplicant(applicantToEdit, editApplicantDescriptor);
+       if (!applicantToEdit.isSameApplicant(editedApplicant) && model.hasApplicant(editedApplicant)) {
+           throw new CommandException(MESSAGE_DUPLICATE_APPLICANT);
        }
-       model.setPerson(applicantToEdit, editedApplicant);
-       model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedApplicant));
+       model.setApplicant(applicantToEdit, editedApplicant);
+       model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+       return new CommandResult(String.format(MESSAGE_EDIT_APPLICANT_SUCCESS, editedApplicant));
    }
    ```
 
 1. As suspected, `command#execute()` does indeed make changes to the `model` object. Specifically,
-   * it uses the `setPerson()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the applicant data.
-   * it uses the `updateFilteredPersonList` method to ask the `Model` to populate the 'filtered list' with _all_ applicants.<br>
+   * it uses the `setApplicant()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the applicant data.
+   * it uses the `updateFilteredApplicantList` method to ask the `Model` to populate the 'filtered list' with _all_ applicants.<br>
      FYI, The 'filtered list' is the list of applicants resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the applicants so that the user can see the edited applicant along with all other applicants. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
      To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of applicants is being tracked.
      <img src="../images/ModelClassDiagram.png" width="450" /><br>
@@ -217,29 +217,29 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Similar to before, you can step over/into statements in the `LogicManager#execute()` method to examine how the control is transferred to the `Storage` component and what happens inside that component.
 
-   <div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip:** When trying to step into a statement such as `storage.saveAddressBook(model.getAddressBook())` which contains multiple method calls, Intellij will let you choose (by clicking) which one you want to step into.
+   <div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip:** When trying to step into a statement such as `storage.saveTrackAScholar(model.getTrackAScholar())` which contains multiple method calls, Intellij will let you choose (by clicking) which one you want to step into.
    </div>
 
-1.  As you step through the code inside the `Storage` component, you will eventually arrive at the `JsonAddressBook#saveAddressBook()` method which calls the `JsonSerializableAddressBook` constructor, to create an object that can be _serialized_ (i.e., stored in storage medium) in JSON format. That constructor is given below (with added line breaks for easier readability):
+1.  As you step through the code inside the `Storage` component, you will eventually arrive at the `JsonTrackAScholar#saveTrackAScholar()` method which calls the `JsonSerializableTrackAScholar` constructor, to create an object that can be _serialized_ (i.e., stored in storage medium) in JSON format. That constructor is given below (with added line breaks for easier readability):
 
-    **`JsonSerializableAddressBook` constructor:**
+    **`JsonSerializableTrackAScholar` constructor:**
     ``` java
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTrackAScholar} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created
-     * {@code JsonSerializableAddressBook}.
+     * {@code JsonSerializableTrackAScholar}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableTrackAScholar(ReadOnlyTrackAScholar source) {
         applicants.addAll(
-            source.getPersonList()
+            source.getApplicantList()
                   .stream()
-                  .map(JsonAdaptedPerson::new)
+                  .map(JsonAdaptedApplicant::new)
                   .collect(Collectors.toList()));
     }
     ```
 
-1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
+1. It appears that a `JsonAdaptedApplicant` is created for each `Applicant` and then added to the `JsonSerializableTrackAScholar`.
    This is because regular Java objects need to go through an _adaptation_ for them to be suitable to be saved in JSON format.
 
 1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>
@@ -292,10 +292,10 @@ Here are some quick questions you can try to answer based on your execution path
 
     2.  Allow `delete` to remove more than one index at a time
 
-    3.  Save the address book in the CSV format instead
+    3.  Save TrackAScholar data in the CSV format instead
 
     4.  Add a new command
 
-    5.  Add a new field to `Person`
+    5.  Add a new field to `Applicant`
 
-    6.  Add a new entity to the address book
+    6.  Add a new entity to TrackAScholar

@@ -19,16 +19,16 @@ import seedu.address.model.applicant.Applicant;
 @JsonRootName(value = "addressbook")
 class JsonSerializableTrackAScholar {
 
-    public static final String MESSAGE_DUPLICATE_APPLICANT = "Persons list contains duplicate applicant(s).";
+    public static final String MESSAGE_DUPLICATE_APPLICANT = "Appplicants list contains duplicate applicant(s).";
 
-    private final List<JsonAdaptedTrackAScholar> persons = new ArrayList<>();
+    private final List<JsonAdaptedApplicant> applicants = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableTrackAScholar} with the given applicants.
      */
     @JsonCreator
-    public JsonSerializableTrackAScholar(@JsonProperty("persons") List<JsonAdaptedTrackAScholar> applicants) {
-        this.persons.addAll(applicants);
+    public JsonSerializableTrackAScholar(@JsonProperty("applicants") List<JsonAdaptedApplicant> applicants) {
+        this.applicants.addAll(applicants);
     }
 
     /**
@@ -37,8 +37,8 @@ class JsonSerializableTrackAScholar {
      * @param source future changes to this will not affect the created {@code JsonSerializableTrackAScholar}.
      */
     public JsonSerializableTrackAScholar(ReadOnlyTrackAScholar source) {
-        persons.addAll(source.getApplicantList().stream()
-                .map(JsonAdaptedTrackAScholar::new).collect(Collectors.toList()));
+        applicants.addAll(source.getApplicantList().stream()
+                .map(JsonAdaptedApplicant::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,8 +48,8 @@ class JsonSerializableTrackAScholar {
      */
     public TrackAScholar toModelType() throws IllegalValueException {
         TrackAScholar trackAScholar = new TrackAScholar();
-        for (JsonAdaptedTrackAScholar jsonAdaptedTrackAScholar : persons) {
-            Applicant applicant = jsonAdaptedTrackAScholar.toModelType();
+        for (JsonAdaptedApplicant jsonAdaptedApplicant : applicants) {
+            Applicant applicant = jsonAdaptedApplicant.toModelType();
             if (trackAScholar.hasApplicant(applicant)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPLICANT);
             }

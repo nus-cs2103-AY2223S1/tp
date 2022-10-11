@@ -42,12 +42,12 @@ public interface Model {
     /**
      * Sets the user prefs' TrackAScholar file path.
      */
-    void setTrackAScholarFilePath(Path addressBookFilePath);
+    void setTrackAScholarFilePath(Path trackAScholarFilePath);
 
     /**
      * Replaces TrackAScholar data with the data in {@code TrackAScholar}.
      */
-    void setTrackAScholar(ReadOnlyTrackAScholar addressBook);
+    void setTrackAScholar(ReadOnlyTrackAScholar trackAScholarData);
 
     /** Returns the TrackAScholar */
     ReadOnlyTrackAScholar getTrackAScholar();

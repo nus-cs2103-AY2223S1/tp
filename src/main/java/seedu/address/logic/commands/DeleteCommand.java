@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
 
 /**
- * Deletes a applicant identified using it's displayed index from TrackAScholar.
+ * Deletes an applicant identified using it's displayed index from TrackAScholar.
  */
 public class DeleteCommand extends Command {
 
