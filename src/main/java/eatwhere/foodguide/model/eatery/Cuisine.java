@@ -8,7 +8,7 @@ import eatwhere.foodguide.commons.util.AppUtil;
  * Represents an Eatery's email in the food guide.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
-public class Email {
+public class Cuisine {
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
@@ -35,11 +35,11 @@ public class Email {
     public final String value;
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code Cuisine}.
      *
      * @param email A valid email address.
      */
-    public Email(String email) {
+    public Cuisine(String email) {
         requireNonNull(email);
         AppUtil.checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
@@ -60,8 +60,8 @@ public class Email {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                || (other instanceof Cuisine // instanceof handles nulls
+                && value.equals(((Cuisine) other).value)); // state check
     }
 
     @Override

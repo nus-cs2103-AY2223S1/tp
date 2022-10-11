@@ -9,7 +9,7 @@ import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.CommandTestUtil;
 import eatwhere.foodguide.logic.commands.EditCommand;
 import eatwhere.foodguide.logic.commands.EditCommand.EditEateryDescriptor;
-import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -64,7 +64,7 @@ public class EditCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser,
                 "1" + CommandTestUtil.INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         CommandParserTestUtil.assertParseFailure(parser,
-                "1" + CommandTestUtil.INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
+                "1" + CommandTestUtil.INVALID_EMAIL_DESC, Cuisine.MESSAGE_CONSTRAINTS); // invalid email
         CommandParserTestUtil.assertParseFailure(parser,
                 "1" + CommandTestUtil.INVALID_ADDRESS_DESC, Location.MESSAGE_CONSTRAINTS); // invalid address
         CommandParserTestUtil.assertParseFailure(parser,

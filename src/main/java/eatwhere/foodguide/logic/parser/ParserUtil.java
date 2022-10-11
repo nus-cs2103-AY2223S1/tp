@@ -9,7 +9,7 @@ import java.util.Set;
 import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.commons.util.StringUtil;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
-import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -81,18 +81,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String email} into an {@code Cuisine}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static Cuisine parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        if (!Cuisine.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Cuisine.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Cuisine(trimmedEmail);
     }
 
     /**

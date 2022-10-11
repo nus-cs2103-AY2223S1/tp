@@ -17,7 +17,7 @@ public class Eatery {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    private final Cuisine cuisine;
 
     // Data fields
     private final Location location;
@@ -26,11 +26,11 @@ public class Eatery {
     /**
      * Every field must be present and not null.
      */
-    public Eatery(Name name, Phone phone, Email email, Location location, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, phone, email, location, tags);
+    public Eatery(Name name, Phone phone, Cuisine cuisine, Location location, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(name, phone, cuisine, location, tags);
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.cuisine = cuisine;
         this.location = location;
         this.tags.addAll(tags);
     }
@@ -43,8 +43,8 @@ public class Eatery {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Cuisine getEmail() {
+        return cuisine;
     }
 
     public Location getLocation() {
@@ -98,7 +98,7 @@ public class Eatery {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, location, tags);
+        return Objects.hash(name, phone, cuisine, location, tags);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class Eatery {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("; Cuisine: ")
                 .append(getEmail())
                 .append("; Location: ")
                 .append(getLocation());

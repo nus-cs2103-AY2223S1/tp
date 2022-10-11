@@ -3,8 +3,8 @@ package eatwhere.foodguide.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -23,7 +23,7 @@ public class EateryBuilder {
 
     private Name name;
     private Phone phone;
-    private Email email;
+    private Cuisine cuisine;
     private Location location;
     private Set<Tag> tags;
 
@@ -33,7 +33,7 @@ public class EateryBuilder {
     public EateryBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        cuisine = new Cuisine(DEFAULT_EMAIL);
         location = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -44,7 +44,7 @@ public class EateryBuilder {
     public EateryBuilder(Eatery eateryToCopy) {
         name = eateryToCopy.getName();
         phone = eateryToCopy.getPhone();
-        email = eateryToCopy.getEmail();
+        cuisine = eateryToCopy.getEmail();
         location = eateryToCopy.getLocation();
         tags = new HashSet<>(eateryToCopy.getTags());
     }
@@ -82,15 +82,15 @@ public class EateryBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Eatery} that we are building.
+     * Sets the {@code Cuisine} of the {@code Eatery} that we are building.
      */
     public EateryBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.cuisine = new Cuisine(email);
         return this;
     }
 
     public Eatery build() {
-        return new Eatery(name, phone, email, location, tags);
+        return new Eatery(name, phone, cuisine, location, tags);
     }
 
 }

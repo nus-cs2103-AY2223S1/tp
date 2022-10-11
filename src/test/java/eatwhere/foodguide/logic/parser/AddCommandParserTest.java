@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.logic.commands.AddCommand;
 import eatwhere.foodguide.logic.commands.CommandTestUtil;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -134,7 +134,7 @@ public class AddCommandParserTest {
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
                         + CommandTestUtil.INVALID_EMAIL_DESC + CommandTestUtil.ADDRESS_DESC_BOB
                         + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
-                        Email.MESSAGE_CONSTRAINTS);
+                        Cuisine.MESSAGE_CONSTRAINTS);
 
         // invalid address
         CommandParserTestUtil.assertParseFailure(parser,

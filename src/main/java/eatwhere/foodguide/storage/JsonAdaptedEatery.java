@@ -8,10 +8,9 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -87,12 +86,12 @@ class JsonAdaptedEatery {
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Cuisine.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Cuisine.isValidEmail(email)) {
+            throw new IllegalValueException(Cuisine.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Cuisine modelCuisine = new Cuisine(email);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -104,7 +103,7 @@ class JsonAdaptedEatery {
         final Location modelLocation = new Location(address);
 
         final Set<Tag> modelTags = new HashSet<>(eateryTags);
-        return new Eatery(modelName, modelPhone, modelEmail, modelLocation, modelTags);
+        return new Eatery(modelName, modelPhone, modelCuisine, modelLocation, modelTags);
     }
 
 }
