@@ -33,8 +33,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM,
-                        PREFIX_GITHUB, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TELEGRAM,
+                        PREFIX_GITHUB, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TELEGRAM) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -42,19 +42,16 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Telegram handle = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
+        GitHub gitHub = null;
         Phone phone = null;
         Email email = null;
-        GitHub gitHub = null;
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        }
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
             gitHub = ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).get());
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
