@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.commission.Commission;
-import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.UniqueCustomerList;
 
@@ -17,7 +15,6 @@ import seedu.address.model.customer.UniqueCustomerList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueCustomerList customers;
-    private final UniqueCommissionList fullCommissionList;
 
 
     /*
@@ -29,7 +26,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         customers = new UniqueCustomerList();
-        fullCommissionList = new UniqueCommissionList();
     }
 
     public AddressBook() {
@@ -110,19 +106,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Customer> getCustomerList() {
         return customers.asUnmodifiableObservableList();
-    }
-
-    private void updateFullCommissionList() {
-        customers.forEach(customer -> customer.getCommissions().forEach(fullCommissionList::add));
-    }
-
-    /**
-     * Returns an unmodifiable view of all commissions across all customers.
-     * This list will not contain any duplicate commissions.
-     */
-    private ObservableList<Commission> getFullCommissionList() {
-        updateFullCommissionList();
-        return fullCommissionList.asUnmodifiableObservableList();
     }
 
     @Override

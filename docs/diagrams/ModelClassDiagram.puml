@@ -36,7 +36,7 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *---> "1" UniqueCustomerList
-UniqueCustomerList --> "~*" Customer: all
+UniqueCustomerList -down-> "~*" Customer: all
 Customer *--> Name
 Customer *--> Phone
 Customer *--> Email
@@ -44,11 +44,11 @@ Customer *--> "0..1" Address
 Customer *--> "*" Tag
 Customer *--> UniqueCommissionList
 
+ModelManager -> "~*" Commission : filtered
+ModelManager -> "0..1" Commission : selected
+ModelManager -----> "\n0..1" Customer : selected
+
 UniqueCommissionList --> "~*" Commission : all
-ModelManager --> "~*" Commission : filtered
-ModelManager --> "0..1" Commission : selected
-ModelManager --> "0..1" Customer : selected
-AddressBook *--> "1" UniqueCommissionList: full list
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
