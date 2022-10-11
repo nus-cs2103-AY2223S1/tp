@@ -8,6 +8,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleDescription;
 import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -28,6 +29,7 @@ public class ModuleBuilder {
     private ModuleCode moduleCode;
     private ModuleDescription moduleDescription;
     private ArrayList<Student> students = new ArrayList<>();
+    private ArrayList<Schedule> schedules = new ArrayList<>();
     private Set<Tag> tags;
 
     /**
