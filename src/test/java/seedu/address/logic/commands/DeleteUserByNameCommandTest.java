@@ -33,6 +33,4 @@ public class DeleteUserByNameCommandTest {
         assertCommandSuccess(deleteUserByNameCommand, model, expectedMessage, expectedModel);
     }
 
-
-
 }
