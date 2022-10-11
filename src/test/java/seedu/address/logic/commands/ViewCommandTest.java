@@ -60,13 +60,14 @@ public class ViewCommandTest {
         List<Company> companies = getTypicalCompanies();
         Company expectedCompany = companies.get(0);
         String expectedCompanyName = expectedCompany.getName().toString();
-
         String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_COMPANY_SUCCESS, expectedCompanyName);
 
         NameEqualsKeywordPredicate predicate = new NameEqualsKeywordPredicate(expectedCompanyName);
         expectedModel.updateFilteredCompanyList(predicate);
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, true);
+
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
         assertEquals(model.getFilteredCompanyList().size(), 1);
     }
 
