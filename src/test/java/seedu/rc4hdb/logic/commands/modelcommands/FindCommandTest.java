@@ -3,12 +3,12 @@ package seedu.rc4hdb.logic.commands.modelcommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.rc4hdb.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.rc4hdb.commons.core.Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
-import static seedu.rc4hdb.testutil.TypicalPersons.CARL;
-import static seedu.rc4hdb.testutil.TypicalPersons.ELLE;
-import static seedu.rc4hdb.testutil.TypicalPersons.FIONA;
-import static seedu.rc4hdb.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.rc4hdb.testutil.TypicalResidents.CARL;
+import static seedu.rc4hdb.testutil.TypicalResidents.ELLE;
+import static seedu.rc4hdb.testutil.TypicalResidents.FIONA;
+import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,14 +18,14 @@ import org.junit.jupiter.api.Test;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
-import seedu.rc4hdb.model.person.NameContainsKeywordsPredicate;
+import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalResidentBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalResidentBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -50,28 +50,28 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different resident -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noResidentFound() {
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredResidentList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+    public void execute_multipleKeywords_multipleResidentsFound() {
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredResidentList());
     }
 
     /**

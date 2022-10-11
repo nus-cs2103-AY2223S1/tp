@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.model.Model;
-import seedu.rc4hdb.model.person.Person;
+import seedu.rc4hdb.model.resident.Resident;
 
 /**
  * A utility class for test cases.
@@ -33,23 +33,23 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Returns the middle index of the resident in the {@code model}'s resident list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+        return Index.fromOneBased(model.getFilteredResidentList().size() / 2);
     }
 
     /**
-     * Returns the last index of the person in the {@code model}'s person list.
+     * Returns the last index of the resident in the {@code model}'s resident list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+        return Index.fromOneBased(model.getFilteredResidentList().size());
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the resident in the {@code model}'s resident list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Resident getResident(Model model, Index index) {
+        return model.getFilteredResidentList().get(index.getZeroBased());
     }
 }
