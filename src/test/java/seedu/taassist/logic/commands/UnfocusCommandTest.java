@@ -11,24 +11,24 @@ import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.ModelStub;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
-class BackCommandTest {
+class UnfocusCommandTest {
 
     @Test
-    void execute_notInFocusMode_throwsCommandException() throws CommandException {
-        BackCommand backCommand = new BackCommand();
+    void execute_notInFocusMode_throwsCommandException() {
+        UnfocusCommand unfocusCommand = new UnfocusCommand();
         ModelStubNotInFocusMode modelStub = new ModelStubNotInFocusMode();
-        String expectedMessage = String.format(Messages.MESSAGE_NOT_IN_FOCUS_MODE, BackCommand.COMMAND_WORD);
-        assertThrows(CommandException.class, expectedMessage, () -> backCommand.execute(modelStub));
+        String expectedMessage = String.format(Messages.MESSAGE_NOT_IN_FOCUS_MODE, UnfocusCommand.COMMAND_WORD);
+        assertThrows(CommandException.class, expectedMessage, () -> unfocusCommand.execute(modelStub));
     }
 
     @Test
     void execute_inFocusMode_success() throws CommandException {
-        BackCommand backCommand = new BackCommand();
+        UnfocusCommand unfocusCommand = new UnfocusCommand();
         ModelStubInFocusMode modelStub = new ModelStubInFocusMode();
 
-        CommandResult commandResult = backCommand.execute(modelStub);
+        CommandResult commandResult = unfocusCommand.execute(modelStub);
 
-        assertEquals(String.format(BackCommand.MESSAGE_SUCCESS, modelStub.getFocusedClass()),
+        assertEquals(String.format(UnfocusCommand.MESSAGE_SUCCESS, modelStub.getFocusedClass()),
                 commandResult.getFeedbackToUser());
         assertFalse(modelStub.isInFocusMode());
     }
