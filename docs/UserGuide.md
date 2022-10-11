@@ -201,14 +201,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME e/EMAIL [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG] …`
-**Clear** | `clear`
-**Delete** | `delete INDEX`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`
-**filter** | `filter KEYWORD`
-**List** | `list`
-**Help** | `help`
-**Exit** | `exit`
+| Action     | Format, Examples                                                 |
+|------------|------------------------------------------------------------------|
+| **Add**    | `add n/NAME e/EMAIL [p/PHONE_NUMBER] [sn/SCHOLARSHIP] [t/TAG] …` |
+| **Clear**  | `clear`                                                          |
+| **Delete** | `delete INDEX`                                                   |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`       |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`                                   |
+| **filter** | `filter KEYWORD`                                                 |
+| **List**   | `list`                                                           |
+| **Help**   | `help`                                                           |
+| **Exit**   | `exit`                                                           |
