@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonGuestBookStorage guestBookStorage = new JsonGuestBookStorage(getTempFilePath("ab"));
+        JsonGuestBookStorage guestBookStorage = new JsonGuestBookStorage(getTempFilePath("gb"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(guestBookStorage, userPrefsStorage);
     }
@@ -73,7 +73,7 @@ public class StorageManagerTest {
 
     @Test
     public void getGuestBookFilePath_success() {
-        JsonGuestBookStorage guestBookStorage = new JsonGuestBookStorage(getTempFilePath("ab"));
+        JsonGuestBookStorage guestBookStorage = new JsonGuestBookStorage(getTempFilePath("gb"));
         assertEquals(storageManager.getGuestBookFilePath(), guestBookStorage.getGuestBookFilePath());
     }
 }
