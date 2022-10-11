@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.NEXTOFKIN_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SCHOOL_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudents.AMY;
+import static seedu.address.testutil.TypicalStudents.AMY_STUDENT;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -31,11 +31,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.student.Student;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.StudentBuilder;
 
 public class LogicManagerTest {
@@ -93,7 +91,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + ENTITY_DESC_STUDENT + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + SCHOOL_DESC_AMY + LEVEL_DESC_AMY + NEXTOFKIN_DESC_AMY;
-        Person expectedPerson = new StudentBuilder(AMY).withTags().build();
+        Person expectedPerson = new StudentBuilder(AMY_STUDENT).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

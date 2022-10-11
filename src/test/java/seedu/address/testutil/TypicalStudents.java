@@ -46,11 +46,11 @@ public class TypicalStudents {
             .withNextOfKin("Aries Toh")
             .build();
 
-    public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+    public static final Student AMY_STUDENT = new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withSchool(VALID_SCHOOL_AMY)
             .withLevel(VALID_LEVEL_AMY).withNextOfKin(VALID_NEXTOFKIN_AMY).withTags(VALID_TAG_FRIEND).build();
 
-    public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    public static final Student BOB_STUDENT = new StudentBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSchool(VALID_SCHOOL_BOB)
             .withLevel(VALID_LEVEL_BOB).withNextOfKin(VALID_NEXTOFKIN_BOB).withTags(VALID_TAG_FRIEND).build();
 

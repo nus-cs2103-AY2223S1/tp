@@ -1,5 +1,12 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CLASS1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_CLASS1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LEVEL_CLASS1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CLASS1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_CLASS1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_CLASS1;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +36,11 @@ public class TypicalTuitionClasses {
                     .withTime("18:00", "20:00")
                     .withTags("easy")
                     .build();
+
+    public static final TuitionClass CHEMISTRY_CLASS = new TuitionClassBuilder().withName(VALID_NAME_CLASS1)
+            .withSubject(VALID_SUBJECT_CLASS1).withLevel(VALID_LEVEL_CLASS1).withDay(VALID_DAY_CLASS1)
+            .withTime(VALID_STARTTIME_CLASS1, VALID_ENDTIME_CLASS1).build();
+
 
     private TypicalTuitionClasses() {
     } // prevents instantiation
