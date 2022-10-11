@@ -21,6 +21,9 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
+    private final String lightTheme = getClass().getResource("/view/HelpWindowLight.css").toExternalForm();
+    private final String darkTheme = getClass().getResource("/view/HelpWindowDark.css").toExternalForm();
+
     @FXML
     private Button copyButton;
 
@@ -87,6 +90,32 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    /**
+     * Set theme of help window to the light theme.
+     */
+    public void setLightTheme() {
+        boolean hasLightTheme = getRoot().getScene().getStylesheets().contains(lightTheme);
+        boolean hasDarkTheme = getRoot().getScene().getStylesheets().contains(darkTheme);
+
+        if (!hasLightTheme && hasDarkTheme) {
+            getRoot().getScene().getStylesheets().remove(darkTheme);
+            getRoot().getScene().getStylesheets().add(lightTheme);
+        }
+    }
+
+    /**
+     * Set theme of help window to the dark theme.
+     */
+    public void setDarkTheme() {
+        boolean hasLightTheme = getRoot().getScene().getStylesheets().contains(lightTheme);
+        boolean hasDarkTheme = getRoot().getScene().getStylesheets().contains(darkTheme);
+
+        if (!hasDarkTheme && hasLightTheme) {
+            getRoot().getScene().getStylesheets().remove(lightTheme);
+            getRoot().getScene().getStylesheets().add(darkTheme);
+        }
     }
 
     /**

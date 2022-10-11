@@ -28,6 +28,10 @@
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
+          <Menu mnemonicParsing="false" text="Theme">
+            <MenuItem fx:id="lightThemeItem" mnemonicParsing="false" onAction="#handleLightTheme" text="Light Theme"/>
+            <MenuItem fx:id="darkThemeItem" mnemonicParsing="false" onAction="#handleDarkTheme" text="Dark Theme"/>
+          </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
