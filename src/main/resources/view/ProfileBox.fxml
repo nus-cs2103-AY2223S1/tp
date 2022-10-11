@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.HBox?>
-
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.VBox?>
-<HBox id = "box" fx:id="box" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
-    <ImageView fx:id="dp" fitHeight="200" fitWidth="200"/>
-    <VBox fx:id="profileInfoContainer" HBox.hgrow="ALWAYS" />
-</HBox>

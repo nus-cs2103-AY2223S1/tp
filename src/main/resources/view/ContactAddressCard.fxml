@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.image.ImageView?>
-<HBox id = "box" fx:id="box" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <ImageView fx:id="icon" fitWidth="50" fitHeight="50" />
-    <Label fx:id="address" />
-</HBox>

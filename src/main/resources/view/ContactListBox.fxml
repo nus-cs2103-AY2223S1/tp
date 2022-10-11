@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<HBox id = "box" fx:id="box" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <HBox fx:id="emailAddressContainer" HBox.hgrow="ALWAYS"/>
-    <HBox fx:id="twitterHandleContainer" HBox.hgrow="ALWAYS"/>
-    <HBox fx:id="telegramHandleContainer" HBox.hgrow="ALWAYS"/>
-</HBox>
