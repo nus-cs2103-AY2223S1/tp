@@ -5,19 +5,14 @@ import static seedu.address.logic.commands.AssignTaskCommand.MESSAGE_INVALID_GRO
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
-import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonGroup;
-import seedu.address.model.tag.Tag;
 
 /**
  * Deletes a group identified using a string name from the address book.
@@ -67,12 +62,12 @@ public class DeleteGroupCommand extends Command {
 
         //remove tags and assignments
         for (Person currentPerson : groupMembers) {
-            currentPerson.getAssignments().remove(groupToCheck.getName().toString());
-            List<PersonGroup> personGroup = currentPerson.getPersonGroups();
-            personGroup.remove(new PersonGroup(groupToCheck.getName().toString()));
             Person editedPerson = new Person(
                     currentPerson.getName(), currentPerson.getPhone(), currentPerson.getEmail(),
-                    currentPerson.getAddress(), currentPerson.getTags(), currentPerson.getAssignments(), currentPerson.getPersonGroups());
+                    currentPerson.getAddress(), currentPerson.getTags(), currentPerson.getAssignments(),
+                    currentPerson.getPersonGroups());
+            editedPerson.getPersonGroups().remove(new PersonGroup(groupToCheck.getName().toString()));
+            editedPerson.getAssignments().remove((groupToCheck.getName().toString()));
             model.setPerson(currentPerson, editedPerson);
         }
 
