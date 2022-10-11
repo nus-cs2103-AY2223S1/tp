@@ -18,8 +18,8 @@
 }
 
 .label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Bold";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
