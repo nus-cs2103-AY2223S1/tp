@@ -133,6 +133,10 @@
     -fx-text-fill: #D8D8D8;
 }
 
+.cell_title_label {
+    -fx-font-size: 24px;
+}
+
 .stack-pane {
      -fx-background-color: #252A32;
 }
@@ -264,6 +268,13 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
+.detailsPane {
+    -fx-background-color: #15181F;
+    -fx-background-radius: 12px;
+    -fx-text-fill: #E8E8E8;
+    -fx-padding: 36 24 24 36;
+}
+
 .dialog-pane {
     -fx-background-color: #1d1d1d;
 }
@@ -357,20 +368,6 @@
 
 #detailsPane .label {
     -fx-text-fill: white;
-}
-
-#customerDetailsPane {
-    -fx-background-color: #15181F;
-    -fx-background-radius: 12px;
-    -fx-text-fill: #E8E8E8;
-    -fx-padding: 36 24 24 36;
-}
-
-#commissionDetailsPane {
-    -fx-background-color: #15181F;
-    -fx-background-radius: 12px;
-    -fx-text-fill: #E8E8E8;
-    -fx-padding: 8;
 }
 
 #filterField, #customerListPanel, #customerWebpage {

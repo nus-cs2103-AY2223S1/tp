@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <HBox id="detailsPane" fx:id="detailsPane" prefHeight="271.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/11"
       xmlns:fx="http://javafx.com/fxml/1">
@@ -22,22 +21,38 @@
                 <Insets bottom="5" left="15" right="5" top="5"/>
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="id" styleClass="cell_big_label" textFill="#D8D8D8">
-                    <minWidth>
+                <Label fx:id="id" styleClass="cell_big_label" textFill="#D8D8D8" wrapText="true">
+                    <minHeight>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE"/>
-                    </minWidth>
+                    </minHeight>
                 </Label>
-                <Label id="detailsPaneName" fx:id="name" styleClass="cell_big_label" text="\$first">
-                    <font>
-                        <Font size="24.0"/>
-                    </font>
+                <Label id="detailsPaneName" fx:id="name" styleClass="cell_title_label" text="\$first" wrapText="true">
+                    <minHeight>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE"/>
+                    </minHeight>
                 </Label>
             </HBox>
             <FlowPane fx:id="tags"/>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
+                <minHeight>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE"/>
+                </minHeight>
+            </Label>
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address">
+                <minHeight>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE"/>
+                </minHeight>
+            </Label>
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email">
+                <minHeight>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE"/>
+                </minHeight>
+            </Label>
         </VBox>
         <rowConstraints>
             <RowConstraints/>
