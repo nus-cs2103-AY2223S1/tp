@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalStudents.getTypicalStudentRecord;
 import java.util.Arrays;
 import java.util.Collections;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -26,6 +27,11 @@ import seedu.address.model.student.NameContainsKeywordsPredicate;
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalStudentRecord(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalStudentRecord(), new UserPrefs());
+
+    @BeforeEach
+    public void setup() {
+        this.expectedModel.setStudentListInfoConcise(false);
+    }
 
     @Test
     public void equals() {

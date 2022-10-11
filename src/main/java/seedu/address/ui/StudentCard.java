@@ -33,6 +33,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label studentId;
+    @FXML
     private Label parentName;
     @FXML
     private Label phone;
@@ -44,10 +46,11 @@ public class StudentCard extends UiPart<Region> {
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
      */
-    public StudentCard(Student student, int displayedIndex) {
+    public StudentCard(Student student, int displayedIndex, boolean conciseInfo) {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
+        studentId.setText(student.getId().toString());
         studentName.setText(student.getStudentName().fullName);
         parentName.setText(student.getParentName().fullName);
         phone.setText(student.getPhone().value);
@@ -55,6 +58,39 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (conciseInfo) {
+            showConciseInfo();
+        } else {
+            showAllInfo();
+        }
+    }
+
+    /**
+     * Updates PersonCard to show all info
+     */
+    public void showAllInfo() {
+        parentName.setManaged(true);
+        parentName.setVisible(true);
+        phone.setManaged(true);
+        phone.setVisible(true);
+        address.setManaged(true);
+        address.setVisible(true);
+        tags.setManaged(true);
+        tags.setVisible(true);
+    }
+
+    /**
+     * Updates PersonCard to only show student's name and ID
+     */
+    public void showConciseInfo() {
+        parentName.setManaged(false);
+        parentName.setVisible(false);
+        phone.setManaged(false);
+        phone.setVisible(false);
+        address.setManaged(false);
+        address.setVisible(false);
+        tags.setManaged(false);
+        tags.setVisible(false);
     }
 
     @Override

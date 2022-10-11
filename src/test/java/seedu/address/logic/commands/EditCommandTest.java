@@ -41,7 +41,6 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedPerson);
-
         Model expectedModel = new ModelManager(new StudentRecord(model.getStudentRecord()), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedPerson);
 

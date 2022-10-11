@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -18,4 +20,18 @@ public class UserPrefsTest {
         assertThrows(NullPointerException.class, () -> userPrefs.setStudentRecordFilePath(null));
     }
 
+    @Test
+    public void equals() {
+        UserPrefs userPrefs = new UserPrefs();
+        UserPrefs otherUserPrefs = new UserPrefs();
+
+        // Same object
+        assertEquals(userPrefs, userPrefs);
+
+        // Not an instance of UserPrefs
+        assertNotEquals(userPrefs, new Object());
+
+        // Equality
+        assertEquals(userPrefs, otherUserPrefs);
+    }
 }

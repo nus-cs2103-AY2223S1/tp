@@ -77,6 +77,7 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
+
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
@@ -85,4 +86,17 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Sets the filtered student list to only concise information - the student's name and ID, or all information
+     */
+    void setStudentListInfoConcise(boolean b);
+
+    /**
+     * Returns true if the filtered student list should only show the student's name and ID
+     */
+    boolean isStudentListInfoConcise();
+
+    FilteredStudents getFilteredStudents();
+
 }

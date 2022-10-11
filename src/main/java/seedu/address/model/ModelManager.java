@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final StudentRecord studentRecord;
     private final UserPrefs userPrefs;
-    private final FilteredList<Student> filteredStudents;
+    private FilteredStudents filteredStudents;
 
     /**
      * Initializes a ModelManager with the given studentRecord and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.studentRecord = new StudentRecord(studentRecord);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.studentRecord.getStudentList());
+        this.filteredStudents = new FilteredStudents(new FilteredList<>(this.studentRecord.getStudentList()));
     }
 
     public ModelManager() {
@@ -119,13 +119,28 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
-        return filteredStudents;
+        return this.filteredStudents.getFilteredStudentList();
     }
 
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredStudents.setPredicate(predicate);
+        this.filteredStudents.updateFilteredStudentList(predicate);
+    }
+
+    @Override
+    public void setStudentListInfoConcise(boolean b) {
+        this.filteredStudents.setConciseInfo(b);
+    }
+
+    @Override
+    public boolean isStudentListInfoConcise() {
+        return this.filteredStudents.hasConciseInfo();
+    }
+
+    @Override
+    public FilteredStudents getFilteredStudents() {
+        return this.filteredStudents;
     }
 
     @Override
