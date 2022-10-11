@@ -7,6 +7,7 @@ import java.util.List;
 import modtrekt.commons.core.Messages;
 import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.exceptions.CommandException;
+import modtrekt.logic.parser.CliSyntax;
 import modtrekt.model.Model;
 import modtrekt.model.task.Task;
 
@@ -18,14 +19,12 @@ public class RemoveTaskCommand extends Command {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the task/module identified by the index number.\n"
+            + "Parameters: " + CliSyntax.PREFIX_MODULE + ": Modules, " + CliSyntax.PREFIX_TASK + ": Tasks\n"
+            + "INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " " + CliSyntax.PREFIX_TASK + " 1";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Removed Task: %1$s"
-            + ": Deletes the module identified by the index number used in the displayed module list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Removed Task: %1$s";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 
