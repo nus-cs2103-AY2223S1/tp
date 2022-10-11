@@ -11,6 +11,9 @@ import org.openapitools.client.api.ModulesApi;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * A list of modules.
+ */
 public class ModuleList implements ReadOnlyModuleList {
 
     private static final ModulesApi modulesApi = new ModulesApi();
@@ -19,6 +22,9 @@ public class ModuleList implements ReadOnlyModuleList {
     private final ObservableList<Module> internalUnmodifiableList =
         FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Constructor for ModuleList class.
+     */
     public ModuleList() {
         try {
             internalList.setAll(
@@ -29,6 +35,11 @@ public class ModuleList implements ReadOnlyModuleList {
         }
     }
 
+    /**
+     * Constructor for ModuleList class.
+     *
+     * @param modules list of modules
+     */
     public ModuleList(List<Module> modules) {
         requireNonNull(modules);
         internalList.setAll(modules);

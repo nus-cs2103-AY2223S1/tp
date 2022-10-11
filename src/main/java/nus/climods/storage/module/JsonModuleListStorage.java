@@ -15,6 +15,9 @@ import nus.climods.commons.util.JsonUtil;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 
+/**
+ * A class to access ModuleList data stored as a json file on the hard disk.
+ */
 public class JsonModuleListStorage implements ModuleListStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonModuleListStorage.class);

@@ -5,10 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import nus.climods.commons.core.index.Index;
-import nus.climods.model.Model;
-import nus.climods.model.person.Person;
-
 /**
  * A utility class for test cases.
  */

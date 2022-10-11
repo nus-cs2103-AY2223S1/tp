@@ -35,7 +35,7 @@ public interface ModuleSummaryListStorage {
      * @see #getModuleSummaryListFilePath()
      */
     Optional<ReadOnlyModuleSummaryList> readModuleSummaryList(Path filePath)
-        throws DataConversionException, IOException;
+            throws DataConversionException, IOException;
 
     void saveModuleSummaryList(List<ModuleCondensed> modules) throws IOException;
 

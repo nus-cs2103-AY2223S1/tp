@@ -63,7 +63,7 @@ public class ParserUtil {
      *
      * @param input Input string from user representing a module code
      * @return Empty Optional if input string does not pass initial validation check, else Optional of the entered
-     * String
+     *               String
      */
     public static Optional<String> parseModuleCode(String input) {
         if (!MODULE_CODE_PATTERN.matcher(input.trim()).find()) {

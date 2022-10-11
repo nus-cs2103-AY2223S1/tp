@@ -8,6 +8,9 @@ import java.util.regex.Pattern;
 import nus.climods.logic.commands.Command;
 import nus.climods.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses user input.
+ */
 public class CliModsParser {
 
     /**
@@ -30,9 +33,6 @@ public class CliModsParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
-
-        }
 
         return null;
     }

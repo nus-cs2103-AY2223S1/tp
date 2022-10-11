@@ -9,6 +9,9 @@ import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 
+/**
+ * Represents a storage for {@link nus.climods.model.module.ModuleList}.
+ */
 public interface ModuleListStorage {
 
     /**
