@@ -65,7 +65,7 @@ public class AddResponseCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = new Student(
                 studentToEdit.getName(), studentToEdit.getTelegram(), studentToEdit.getEmail(),
-                response, studentToEdit.getAttendance(), studentToEdit.getHelpTag());
+                response, studentToEdit.getAttendance());
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
