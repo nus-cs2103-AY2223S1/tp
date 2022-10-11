@@ -1,11 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.staff;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a staff title in HR Pro Max++.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStaffTitle(String)}
  */
 public class StaffTitle {
     public static final String MESSAGE_CONSTRAINTS =
@@ -26,17 +26,16 @@ public class StaffTitle {
      */
     public StaffTitle(String title) {
         requireNonNull(title);
-        checkArgument(isValidName(title), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStaffTitle(title), MESSAGE_CONSTRAINTS);
         staffTitle = title;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid staff title.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidStaffTitle(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {

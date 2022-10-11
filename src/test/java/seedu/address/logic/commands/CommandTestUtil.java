@@ -25,6 +25,18 @@ import seedu.address.testutil.EditProjectDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_STAFFNAME_AMY = "Amy Bee";
+    public static final String VALID_STAFFNAME_BOB = "Bob Choo";
+    public static final String VALID_STAFFCONTACT_AMY = "11111111";
+    public static final String VALID_STAFFCONTACT_BOB = "22222222";
+    public static final String VALID_STAFFTITLE_AMY = "Senior Software Engineer";
+    public static final String VALID_STAFFTITLE_BOB = "Software Engineer";
+    public static final String VALID_STAFFDEPARTMENT_AMY = "IT Department";
+    public static final String VALID_STAFFDEPARTMENT_BOB = "IT Department";
+    public static final String VALID_STAFFINSURANCE_AMY = "insured";
+    public static final String VALID_STAFFINSURANCE_BOB = "not insured";
+
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_BUDGET_AMY = "11111111";

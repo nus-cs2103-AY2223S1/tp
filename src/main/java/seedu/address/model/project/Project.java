@@ -7,7 +7,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.StaffList;
+import seedu.address.model.staff.Staff;
 import seedu.address.model.tag.Tag;
+
 /**
  * Represents a Project in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -20,6 +24,7 @@ public class Project {
     private final Budget budget;
     private final Deadline deadline;
     private final Set<Tag> tags = new HashSet<>();
+    private final StaffList staffList = new StaffList();
 
     /**
      * Every field must be present and not null.
@@ -42,6 +47,10 @@ public class Project {
 
     public Deadline getDeadline() {
         return deadline;
+    }
+
+    public StaffList getStaffList() {
+        return staffList;
     }
 
     /**
@@ -83,6 +92,7 @@ public class Project {
         return otherProject.getProjectName().equals(getProjectName())
                 && otherProject.getBudget().equals(getBudget())
                 && otherProject.getDeadline().equals(getDeadline())
+                && otherProject.getStaffList().equals(getStaffList())
                 && otherProject.getTags().equals(getTags());
     }
 
@@ -102,6 +112,13 @@ public class Project {
                 .append(getDeadline());
 
         Set<Tag> tags = getTags();
+        ObservableList<Staff> staffList = getStaffList().getStaffList();
+
+        if (!staffList.isEmpty()) {
+            builder.append("; Staffs: ");
+            staffList.forEach(builder::append);
+        }
+
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
