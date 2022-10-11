@@ -47,13 +47,13 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`list`** : Lists all companies.
 
-   * **`create`**`n/James coy/MacDonalds p/98765432 e/jamesho@example.com` : Creates a point-of-contact named `James` linked to the Company `MacDonalds`.
+   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainPoc t/owesMoney` : Creates a point-of-contact named `James` linked to the company at index 2.
 
-   * **`delete`**`coy/MacDonalds` : Deletes MacDonalds (Company) together with all their contacts in the current list.
+   * **`delete`**`delete 1` : Deletes the company at the first index together with all their contacts and transactions in the current list.
 
-   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (point-of-contact, Transactions).
+   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (point-of-contact, transactions).
 
-  * **`clear`** : Deletes all companies and points of contact.
+  * **`clear`** : Deletes all companies with all their contacts and transactions.
 
   * **`exit`** : Exits the app.
 
@@ -91,13 +91,15 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 Adds an empty company to the list without any POC (Point-Of-Contact) and transactions.
 
-Format: `add n/NAME a/ADDRESS`
+Format: `add n/NAME a/ADDRESS [t/TAG]...`
 
+* Tags are optional.
+* Multiple tags can be tagged to the company.
 * Use `create` command to add POC to the company.
 
 Examples:
 * `add n/MacDonalds a/West Coast Park`
-* `add n/KFC a/Yishun Street 81`
+* `add n/KFC a/Yishun Street 81 t/FriedChicken`
 
 ### Clearing all entries : `clear`
 
@@ -116,10 +118,16 @@ Example:
 
 Creates a new person (point-of-contact) for a specific company.
 
-Format: `create n/NAME coy/COMPANY_NAME p/NUMBER e/EMAIL`
+Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]...`
+
+* Tags are optional.
+* Multiple tags can be tagged to the point-of-contact.
+* The index refers to the index number shown in the displayed company list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `create n/James coy/MCDONALDS p/82692192 e/JamesSho@example.com` adds James as a point-of-contact for MCDONALDS.
+* `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a point-of-contact for the company at index 1.
+* `create 5 n/John p/95692192 e/John123@ColdStorage.com t/Manager t/MainPoc` tags can also be added.
 
 ### Deleting a company : `delete`
 
@@ -245,9 +253,9 @@ _Details coming soon ..._
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                           |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/COMPANY a/ADDRESS`<br> e.g., `add n/KFC a/Yishun Street 81`                                                                                                                                                                                                         |
+| **Add**         | `add n/COMPANY a/ADDRESS [t/TAG] `<br> e.g., `add n/KFC a/Yishun Street 81 t/FavouriteFood`                                                                                                                                                                                |
 | **Clear**       | `clear` followed by `confirm`                                                                                                                                                                                                                                              |
- | **Create**      | `create n/NAME coy/COMPANY_NAME p/NUMBER e/EMAIL`<br> e.g., `create n/James coy/MacDonalds p/82692192 e/James@example.com`                                                                                                                                                 |
+ | **Create**      | `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]`<br> e.g., `create 1 n/James p/82692192 e/JamesSho@example.com t/MainPoc`                                                                                                                                                    |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                        |
 | **Edit**        | Coming Soon                                                                                                                                                                                                                                                                |
 | **Exit**        | `exit`                                                                                                                                                                                                                                                                     |
