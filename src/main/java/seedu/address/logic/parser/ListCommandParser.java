@@ -8,14 +8,22 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Optional;
 
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Gender;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses user input for the list command.
+ */
 public class ListCommandParser implements Parser {
-    public ListCommand parse(String args) throws ParseException {
+
+    /**
+     * Parses user input for the list command.
+     * @param args user input, for filtering the list of displayed users
+     * @return Filtered list, or list of all users if no filters were specified.
+     */
+    public ListCommand parse(String args) {
         if (args.length() == 0) {
             return new ListCommand(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
         }

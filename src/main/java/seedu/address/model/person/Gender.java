@@ -57,6 +57,11 @@ public class Gender {
     }
 
 
+    /**
+     * Checks if the two gender objects are equal, ignoring case.
+     * @param other other object to be checked against
+     * @return true if both genders are the same, false otherwise
+     */
     public boolean equalsIgnoreCase(Object other) {
         return other == this
                 || (other instanceof Gender)

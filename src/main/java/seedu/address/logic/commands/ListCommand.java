@@ -14,11 +14,6 @@ import seedu.address.model.tag.Tag;
  */
 public class ListCommand extends Command {
 
-    private final Optional<Address> address;
-    private final Optional<String> category;
-    private final Optional<Gender> gender;
-    private final Optional<Tag> tag;
-
     public static final String MESSAGE_ARGUMENTS = "ADDRESS: %s, CATEGORY: %s, GENDER: %s, TAG: %s";
 
     public static final String COMMAND_WORD = "list";
@@ -35,6 +30,11 @@ public class ListCommand extends Command {
             + "<optional> t/ [TAG]\n"
             + "Example: " + COMMAND_WORD + "  "
             + "c/ nurse";
+
+    private final Optional<Address> address;
+    private final Optional<String> category;
+    private final Optional<Gender> gender;
+    private final Optional<Tag> tag;
 
     /**
      * @param a address to be filtered
