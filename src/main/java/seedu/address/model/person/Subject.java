@@ -1,20 +1,24 @@
 package seedu.address.model.person;
 
+import java.util.ArrayList;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Subject {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Subjects should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Subjects should only contain alphabets, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[a-zA-Z\\s]";
 
     public final String subjectName;
+
+    public ArrayList<String> allSubjectsTaken;
 
     public Grade grades;
 
@@ -26,6 +30,8 @@ public class Subject {
     public Subject(String subject) {
         requireNonNull(subject);
         checkArgument(isValidSubject(subject), MESSAGE_CONSTRAINTS);
+        allSubjectsTaken = new ArrayList<>();
+        allSubjectsTaken.add(subject);
         subjectName = subject;
     }
 
@@ -36,10 +42,15 @@ public class Subject {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public void add(String subject) {
+        if (!allSubjectsTaken.contains(subject)) {
+            allSubjectsTaken.add(subject);
+        }
+    }
 
     @Override
     public String toString() {
-        return subjectName;
+        return "Subject: " + allSubjectsTaken.toString();
     }
 
     @Override

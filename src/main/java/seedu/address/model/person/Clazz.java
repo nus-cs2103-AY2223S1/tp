@@ -10,12 +10,6 @@ public class Clazz {
     public static final String MESSAGE_CONSTRAINTS =
             "Class should only contain numbers and decimal, and it should not be blank";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
     public final String className;
 
     public ArrayList<Person> PersonsInClass;
@@ -27,16 +21,8 @@ public class Clazz {
      */
     public Clazz(String clazz) {
         requireNonNull(clazz);
-        checkArgument(isValidClazz(clazz), MESSAGE_CONSTRAINTS);
         PersonsInClass = new ArrayList<>();
         className = clazz;
-    }
-
-    /**
-     * Returns true if a given string is a valid name.
-     */
-    public static boolean isValidClazz(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     public void add(Person student) {
@@ -45,7 +31,7 @@ public class Clazz {
 
     @Override
     public String toString() {
-        return className;
+        return "Class: " + className;
     }
 
     @Override

@@ -9,7 +9,15 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
+import seedu.address.model.person.Clazz;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Grade;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Personality;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Subject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -101,9 +109,6 @@ public class ParserUtil {
     public static Clazz parseClazz(String clazz) throws ParseException {
         requireNonNull(clazz);
         String trimmedClazz = clazz.trim();
-        if (!Email.isValidEmail(trimmedClazz)) {
-            throw new ParseException(Clazz.MESSAGE_CONSTRAINTS);
-        }
         return new Clazz(trimmedClazz);
     }
 
@@ -128,13 +133,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code attendance} is invalid.
      */
-    public static Attendance parseAttendance(String attendance) throws ParseException {
-        requireNonNull(attendance);
-        String trimmedAttendance = attendance.trim();
+    public static Attendance parseAttendance(String attendanceCommand) throws ParseException {
+        requireNonNull(attendanceCommand);
+        String trimmedAttendance = attendanceCommand.trim();
         if (!Email.isValidEmail(trimmedAttendance)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        return new Attendance();
+        return new Attendance(attendanceCommand);
     }
 
     /**
@@ -158,13 +163,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code grade} is invalid.
      */
-    public static Grade parseGrade(String grade) throws ParseException {
-        requireNonNull(grade);
-        String trimmedGrade = grade.trim();
+    public static Grade parseGrade(String gradeCommand) throws ParseException {
+        requireNonNull(gradeCommand);
+        String trimmedGrade = gradeCommand.trim();
         if (!Email.isValidEmail(trimmedGrade)) {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
-        return new Grade();
+        return new Grade(gradeCommand);
     }
 
     /**

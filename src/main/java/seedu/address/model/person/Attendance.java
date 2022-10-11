@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static java.util.Objects.requireNonNull;
+
 public class Attendance {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -10,11 +12,15 @@ public class Attendance {
 
     public HashMap<String, Integer> personAttendance;
 
+    public String attendanceCommand;
+
     /**
      * Constructs a {@code Attendance}.
      */
-    public Attendance() {
+    public Attendance(String command) {
+        requireNonNull(command);
         personAttendance = new HashMap<>();
+        attendanceCommand = command;
     }
 
     public int[] totalAttendance(HashMap<String, Integer> personAttendance) {

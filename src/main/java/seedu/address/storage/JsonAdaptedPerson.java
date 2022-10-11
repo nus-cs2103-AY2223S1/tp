@@ -128,9 +128,6 @@ class JsonAdaptedPerson {
         if (clazz == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Clazz.class.getSimpleName()));
         }
-        if (!Clazz.isValidClazz(clazz)) {
-            throw new IllegalValueException(Clazz.MESSAGE_CONSTRAINTS);
-        }
         final Clazz modelClazz = new Clazz(clazz);
 
         if (personality == null) {
@@ -144,7 +141,7 @@ class JsonAdaptedPerson {
         if (attendance == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
         }
-        final Attendance modelAttendance = new Attendance();
+        final Attendance modelAttendance = new Attendance(attendance);
 
         if (subject == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Subject.class.getSimpleName()));
@@ -157,7 +154,7 @@ class JsonAdaptedPerson {
         if (grade == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Grade.class.getSimpleName()));
         }
-        final Grade modelGrade = new Grade();
+        final Grade modelGrade = new Grade(grade);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClazz, modelPersonality, modelAttendance,
