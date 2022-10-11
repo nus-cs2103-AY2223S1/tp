@@ -3,6 +3,8 @@ package seedu.address.model.meeting;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Name;
+import seedu.address.model.client.Phone;
 
 /**
  * Represents a Meeting in MyInsuRec.
@@ -31,6 +33,14 @@ public class Meeting {
 
     public Client getClient() {
         return client;
+    }
+
+    public Name getClientName() {
+        return client.getName();
+    }
+
+    public Phone getClientPhone() {
+        return client.getPhone();
     }
 
     public Description getDescription() {

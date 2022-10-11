@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Meeting> filteredMeetings;
+    private final FilteredList<Meeting> detailedMeetings;
 
     /**
      * Initializes a ModelManager with the given myInsuRec and userPrefs.
@@ -38,6 +39,9 @@ public class ModelManager implements Model {
 
         filteredClients = new FilteredList<>(this.myInsuRec.getClientList());
         filteredMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
+
+        detailedMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
+        this.setDetailedMeeting(null);
     }
 
     public ModelManager() {
@@ -154,7 +158,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
-     * {@code versionedMyInsuRec}
+     * {@code versionedMyInsuRec}.
      */
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
@@ -165,6 +169,22 @@ public class ModelManager implements Model {
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
+    }
+
+    //=========== Detailed Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} to be viewed in details backed by the internal
+     * list of {@code versionedMyInsuRec}. By default, no meetings are set to be viewed in detail.
+     */
+    @Override
+    public ObservableList<Meeting> getDetailedMeetingList() {
+        return detailedMeetings;
+    }
+
+    @Override
+    public void setDetailedMeeting(Meeting meeting) {
+        detailedMeetings.setPredicate(x -> x.equals(meeting));
     }
 
     @Override

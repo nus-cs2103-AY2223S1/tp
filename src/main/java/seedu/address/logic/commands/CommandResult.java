@@ -23,6 +23,24 @@ public class CommandResult {
     /** Denotes whether the command is meeting specific. */
     private final boolean isMeeting;
 
+    /** Denotes whether the command is detailed meeting specific. */
+    private final boolean isDetailedMeeting;
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean isClient, boolean isMeeting, boolean isDetailedMeeting) {
+        if (isClient && isMeeting) {
+            throw new IllegalArgumentException("A command should not be both client and meeting specific.");
+        }
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.isClient = isClient;
+        this.isMeeting = isMeeting;
+        this.isDetailedMeeting = isDetailedMeeting;
+    }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -36,6 +54,7 @@ public class CommandResult {
         this.exit = exit;
         this.isClient = isClient;
         this.isMeeting = isMeeting;
+        this.isDetailedMeeting = false;
     }
 
     /**
@@ -72,6 +91,10 @@ public class CommandResult {
 
     public boolean isMeetingSpecific() {
         return isMeeting;
+    }
+
+    public boolean isDetailedMeetingSpecific() {
+        return isDetailedMeeting;
     }
 
     @Override

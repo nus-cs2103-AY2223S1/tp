@@ -110,4 +110,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    /** Returns an unmodifiable view of the meeting list, used to view one meeting in details at a time. **/
+    ObservableList<Meeting> getDetailedMeetingList();
+
+    /**
+     * Updates the detailedMeetingList to show the given {@code Meeting} in details.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void setDetailedMeeting(Meeting meeting);
 }
