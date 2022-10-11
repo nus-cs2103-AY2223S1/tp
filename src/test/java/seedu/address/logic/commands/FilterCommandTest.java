@@ -36,8 +36,6 @@ public class FilterCommandTest {
                 new ApplicationStatusPredicate("pending");
         ApplicationStatusPredicate secondPredicate =
                 new ApplicationStatusPredicate("accepted");
-        ApplicationStatusPredicate thirdPredicate =
-                new ApplicationStatusPredicate("rejected");
 
         FilterCommand filterFirstCommand = new FilterCommand(firstPredicate);
         FilterCommand filterSecondCommand = new FilterCommand(secondPredicate);
