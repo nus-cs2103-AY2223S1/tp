@@ -9,6 +9,10 @@ import static java.util.Objects.requireNonNull;
 public class Comment {
     public final String value;
 
+    /**
+     * Constructs a new comment.
+     * @param comment String to be represented by the comment.
+     */
     public Comment(String comment) {
         requireNonNull(comment);
         value = comment;
