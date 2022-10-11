@@ -123,9 +123,9 @@ public class PennyWise implements ReadOnlyPennyWise {
     }
 
     /**
-     * Replaces the given income {@code target} in the list with {@code editedIncome}.
+     * Replaces the given income {@code target} in the list with {@code editedEntry}.
      * {@code target} must exist in the income list.
-     * The income identity of {@code editedIncome} must not be the same as another existing income in the income list.
+     * The income identity of {@code editedEntry} must not be the same as another existing income in the income list.
      */
     public void setIncome(Entry target, Entry editedEntry) {
         requireNonNull(editedEntry);

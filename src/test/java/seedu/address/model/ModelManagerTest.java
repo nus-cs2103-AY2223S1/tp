@@ -7,13 +7,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 //import static seedu.address.testutil.TypicalPersons.ALICE;
 //import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalEntry.*;
+import static seedu.address.testutil.TypicalEntry.DINNER;
+import static seedu.address.testutil.TypicalEntry.LUNCH;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
+//import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+//import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -120,9 +124,9 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentPennyWise, userPrefs)));
 
         // different filteredList -> returns false
-//        String[] keywords = LUNCH.getName().fullName.split("\\s+");
-//        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-//        assertFalse(modelManager.equals(new ModelManager(pennyWise, userPrefs)));
+        // String[] keywords = LUNCH.getName().fullName.split("\\s+");
+        // modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        // assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredEntryList(Model.PREDICATE_SHOW_ALL_ENTRIES);

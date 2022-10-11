@@ -71,6 +71,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         case INCOME:
             Income income = new Income(description, date, amount, tagList);
             return new AddCommand(income, entryType);
+        default:
+            //should never reach here
+            break;
         }
         throw new ParseException(EntryType.MESSAGE_CONSTRAINTS);
     }

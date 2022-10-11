@@ -3,9 +3,13 @@ package seedu.address.model.entry;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Entry's type in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidEntryType(String)}}
+ */
 public class EntryType {
-    private static final String ENTRY_TYPE_EXPENDITURE = "e";
-    private static final String ENTRY_TYPE_INCOME = "i";
+    public static final String ENTRY_TYPE_EXPENDITURE = "e";
+    public static final String ENTRY_TYPE_INCOME = "i";
 
     public static final String MESSAGE_CONSTRAINTS = "Entry type should only be either '"
             + ENTRY_TYPE_EXPENDITURE
@@ -14,6 +18,9 @@ public class EntryType {
             + "' for income";
     public static final String VALIDATION_REGEX = "^\\s*([ei])\\s*$";
 
+    /**
+     * Types that can be used
+     */
     public enum Type {
         EXPENDITURE() {
             @Override
@@ -28,6 +35,9 @@ public class EntryType {
             }
         };
 
+        /**
+         * Factory method that creates a returns a {@code Type} with the input of {@code entryType}
+         */
         public static Type of(String entryType) {
             boolean isExpenditureEntry = entryType.equals(ENTRY_TYPE_EXPENDITURE);
             boolean isIncomeEntry = entryType.equals(ENTRY_TYPE_INCOME);

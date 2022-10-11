@@ -21,6 +21,10 @@ public class AddressBookBuilder {
         this.pennyWise = pennyWise;
     }
 
+    // public AddressBookBuilder withPerson(Person person) {
+    //     addressBook.addPerson(person);
+    //     return this;
+    // }
     /**
      * Adds a new {@code Person} to the {@code PennyWise} that we are building.
      */
@@ -34,6 +38,9 @@ public class AddressBookBuilder {
         return this;
     }
 
+    /**
+     * Adds a new {@code Income} to the {@code AddressBook} that we are building.
+     */
     public AddressBookBuilder withIncome(Income income) {
         pennyWise.addIncome(income);
         return this;
