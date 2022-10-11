@@ -70,5 +70,17 @@ public class TeachingAssistant extends Person {
         }
         return builder.toString();
     }
+    @Override
+    public int compareModuleCode(Person person) {
+        if (person instanceof Professor) {
+            return this.moduleCode.toString()
+                    .compareTo(((Professor) person).getModuleCode().toString());
+        }
+        if (person instanceof TeachingAssistant) {
+            return this.moduleCode.toString()
+                    .compareTo(((TeachingAssistant) person).getModuleCode().toString());
+        }
+        return 1;
+    }
 
 }
