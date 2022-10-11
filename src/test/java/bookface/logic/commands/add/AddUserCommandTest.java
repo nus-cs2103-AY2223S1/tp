@@ -171,6 +171,10 @@ public class AddUserCommandTest {
         }
 
         @Override
+        public void deleteBook(Book book) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void loan(Person person, Book book) {
             throw new AssertionError("This method should not be called.");
         }
