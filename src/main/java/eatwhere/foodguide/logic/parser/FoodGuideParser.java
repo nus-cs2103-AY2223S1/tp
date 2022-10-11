@@ -13,6 +13,7 @@ import eatwhere.foodguide.logic.commands.ExitCommand;
 import eatwhere.foodguide.logic.commands.FindCommand;
 import eatwhere.foodguide.logic.commands.HelpCommand;
 import eatwhere.foodguide.logic.commands.ListCommand;
+import eatwhere.foodguide.logic.commands.UntagCommand;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 
 /**
@@ -47,6 +48,9 @@ public class FoodGuideParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case UntagCommand.COMMAND_WORD:
+            return new UntagCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
