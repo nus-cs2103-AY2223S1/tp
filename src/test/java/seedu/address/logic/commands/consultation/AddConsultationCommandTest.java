@@ -1,5 +1,4 @@
-package seedu.address.logic.commands.tutorial;
-
+package seedu.address.logic.commands.consultation;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -24,50 +23,51 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.testutil.TutorialBuilder;
+import seedu.address.testutil.ConsultationBuilder;
 
-public class AddTutorialCommandTest {
-
+public class AddConsultationCommandTest {
     @Test
-    public void constructor_nullTutorial_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTutorialCommand(null));
+    public void constructor_nullConsultation_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddConsultationCommand(null));
     }
 
     @Test
-    public void execute_tutorialAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingTutorialAdded modelStub = new ModelStubAcceptingTutorialAdded();
-        Tutorial validTutorial = new TutorialBuilder().build();
+    public void execute_consultationAcceptedByModel_addSuccessful() throws Exception {
+        AddConsultationCommandTest.ModelStubAcceptingConsultationAdded modelStub =
+                new AddConsultationCommandTest.ModelStubAcceptingConsultationAdded();
+        Consultation validConsultation = new ConsultationBuilder().build();
 
-        CommandResult commandResult = new AddTutorialCommand(validTutorial).execute(modelStub);
+        CommandResult commandResult = new AddConsultationCommand(validConsultation).execute(modelStub);
 
         assertEquals(String.format(
-                AddTutorialCommand.MESSAGE_SUCCESS, validTutorial),
+                        AddConsultationCommand.MESSAGE_SUCCESS, validConsultation),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTutorial), modelStub.tutorialsAdded);
+        assertEquals(Arrays.asList(validConsultation), modelStub.consultationsAdded);
     }
 
     @Test
-    public void execute_duplicateTutorial_throwsCommandException() {
-        Tutorial validTutorial = new TutorialBuilder().build();
-        AddTutorialCommand addCommand = new AddTutorialCommand(validTutorial);
-        ModelStub modelStub = new ModelStubWithTutorial(validTutorial);
+    public void execute_duplicateConsultation_throwsCommandException() {
+        Consultation validConsultation = new ConsultationBuilder().build();
+        AddConsultationCommand addCommand = new AddConsultationCommand(validConsultation);
+        AddConsultationCommandTest.ModelStub modelStub =
+                new AddConsultationCommandTest.ModelStubWithConsultation(validConsultation);
 
         assertThrows(CommandException.class,
-                AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL, () -> addCommand.execute(modelStub));
+                AddConsultationCommand.MESSAGE_DUPLICATE_CONSULTATION, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Tutorial w17 = new TutorialBuilder().withName("CS2103T W17").build();
-        Tutorial f01 = new TutorialBuilder().withName("CS2103T F01").build();
-        AddTutorialCommand addW17Command = new AddTutorialCommand(w17);
-        AddTutorialCommand addF01Command = new AddTutorialCommand(f01);
+        Consultation w17 = new ConsultationBuilder().withName("CS2103T W17").build();
+        Consultation f01 = new ConsultationBuilder().withName("CS2103T F01").build();
+        AddConsultationCommand addW17Command = new AddConsultationCommand(w17);
+        AddConsultationCommand addF01Command = new AddConsultationCommand(f01);
 
         // same object -> returns true
         assertTrue(addW17Command.equals(addW17Command));
 
         // same values -> returns true
-        AddTutorialCommand addAliceCommandCopy = new AddTutorialCommand(w17);
+        AddConsultationCommand addAliceCommandCopy = new AddConsultationCommand(w17);
         assertTrue(addW17Command.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -76,7 +76,7 @@ public class AddTutorialCommandTest {
         // null -> returns false
         assertFalse(addW17Command.equals(null));
 
-        // different tutorial -> returns false
+        // different Consultation -> returns false
         assertFalse(addW17Command.equals(addF01Command));
     }
 
@@ -151,7 +151,7 @@ public class AddTutorialCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
-            return;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -211,45 +211,45 @@ public class AddTutorialCommandTest {
     }
 
     /**
-     * A Model stub that contains a single tutorial.
+     * A Model stub that contains a single Consultation.
      */
-    private class ModelStubWithTutorial extends ModelStub {
-        private final Tutorial tutorial;
+    private class ModelStubWithConsultation extends AddConsultationCommandTest.ModelStub {
+        private final Consultation consultation;
 
-        ModelStubWithTutorial(Tutorial tutorial) {
-            requireNonNull(tutorial);
-            this.tutorial = tutorial;
+        ModelStubWithConsultation(Consultation consultation) {
+            requireNonNull(consultation);
+            this.consultation = consultation;
         }
 
         @Override
-        public boolean hasTutorial(Tutorial tutorial) {
-            requireNonNull(tutorial);
-            return this.tutorial.isSameTutorial(tutorial);
+        public boolean hasConsultation(Consultation consultation) {
+            requireNonNull(consultation);
+            return this.consultation.isSameConsultation(consultation);
         }
     }
 
     /**
-     * A Model stub that always accept the tutorial being added.
+     * A Model stub that always accept the Consultation being added.
      */
-    private class ModelStubAcceptingTutorialAdded extends ModelStub {
-        final ArrayList<Tutorial> tutorialsAdded = new ArrayList<>();
+    private class ModelStubAcceptingConsultationAdded extends AddConsultationCommandTest.ModelStub {
+        final ArrayList<Consultation> consultationsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasTutorial(Tutorial tutorial) {
-            requireNonNull(tutorial);
-            return tutorialsAdded.stream().anyMatch(tutorial::isSameTutorial);
+        public boolean hasConsultation(Consultation consultation) {
+            requireNonNull(consultation);
+            return consultationsAdded.stream().anyMatch(consultation::isSameConsultation);
         }
 
         @Override
-        public boolean hasTutorialClashingWith(Tutorial tutorial) {
-            requireNonNull(tutorial);
-            return tutorialsAdded.stream().anyMatch(tutorial::isClashTutorial);
+        public boolean hasConsultationClashingWith(Consultation consultation) {
+            requireNonNull(consultation);
+            return consultationsAdded.stream().anyMatch(consultation::isClashConsultation);
         }
 
         @Override
-        public void addTutorial(Tutorial tutorial) {
-            requireNonNull(tutorial);
-            tutorialsAdded.add(tutorial);
+        public void addConsultation(Consultation consultation) {
+            requireNonNull(consultation);
+            consultationsAdded.add(consultation);
         }
 
         @Override

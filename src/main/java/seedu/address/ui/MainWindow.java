@@ -34,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private TutorialListPanel tutorialListPanel;
+
+    private ConsultationListPanel consultationListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -48,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane tutorialListPanelPlaceholder;
+
+    @FXML
+    private StackPane consultationListPanelPlaceholder;
 
     @FXML
     private Label listHeader;
@@ -126,6 +131,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
+        consultationListPanel = new ConsultationListPanel(logic.getFilteredConsultationList());
 
         // show the person list by default.
         modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -184,6 +190,20 @@ public class MainWindow extends UiPart<Stage> {
         modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         listHeader.setText("Student");
     }
+
+    /**
+     * Opens the tab of consultations.
+     */
+    @FXML
+    public void handleConsultation() {
+        modelListPanelPlaceholder.getChildren().clear();
+        modelListPanelPlaceholder.getChildren().add(consultationListPanel.getRoot());
+        listHeader.setText("Consultation");
+    }
+
+    /**
+     * Opens the tab of persons.
+     */
 
     void show() {
         primaryStage.show();

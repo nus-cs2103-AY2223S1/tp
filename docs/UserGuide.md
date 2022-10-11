@@ -178,7 +178,7 @@ Format: `clear tut [m/MODULE]`
 
 Adds a consultation to the consultation database.
 
-Format: `add consult t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [r/DESCRIPTION]`
+Format: `add consult t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [d/DESCRIPTION]`
 
 ### Deleting a consultation : `delete consult`
 
@@ -261,7 +261,7 @@ Action | Format, Examples
 **Add Tutorial** | `add tut m/MODULE t/TIMESLOT v/VENUE n/NAME` <br> e.g., `add tut m/CS2103T t/1800-2000 v/COM1-0205 n/JohnFoo`
 **Delete Tutorial** | `delete tut INDEX` <br> e.g., `delete tut 3`
 **Clear Tutorial** | `clear tut [m/MODULE]` <br> e.g., `clear tut m/CS2105`
-**Add Consultations** | `add consult t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [r/DESCRIPTION]` <br> e.g., `add consult m/CS2103T t/1800-2000 v/COM1-0205 n/JakeKim`
+**Add Consultations** | `add consult t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [d/DESCRIPTION]` <br> e.g., `add consult t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/testing`
 **Delete Consultations** | `delete consult INDEX` <br> e.g., `delete consult 3`
 **Clear Consultations** | `clear consult` <br> e.g., `clear consult`
 **Add Reminders** | `add rem r/DESCRIPTION [d/DEADLINE]` <br> e.g., `add reminder r/mark assignment 1`
