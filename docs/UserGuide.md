@@ -11,10 +11,10 @@ We want you to spend less time keeping track of perishable goods in your daily o
 FoodRem is a command line application that enables you to efficiently record, update and categorise food items.
 It is a convenient administrative tool that can answer the following questions in a flash:
 
-- What food items are about to expire?
-- How much of each condiment do I have?
-- Which food items are newly purchases?
-- ...and many more!
+* What food items are about to expire?
+* How much of each condiment do I have?
+* Which food items are newly purchases?
+* ...and many more!
 
 With a few quick commands, you can have complete control of your perishable goods, so you can focus on what
 is important: serving your customers, improving menu recipes, and transforming your business into the next
@@ -24,11 +24,11 @@ success story.
 
 1. Add, update and delete inventory items
 2. Search and sort food items by:
-   - Name
-   - Quantity
-   - Bought date
-   - Expiry date
-   - Tags
+   * Name
+   * Quantity
+   * Bought date
+   * Expiry date
+   * Tags
 3. Tag items to group them into categories
 
 ## Purpose, Scope and Audience
@@ -130,16 +130,16 @@ It is **highly recommended** that you read through the User Guide in a **sequent
 
 [Items and Tags](#items-and-tags) :
 
-- What FoodRem is capable of storing
+* What FoodRem is capable of storing
 
 [Navigating around the application](#navigating-around-the-application):
 
-- Terminologies of different parts of the application
-- What you are expected to see.
+* Terminologies of different parts of the application
+* What you are expected to see.
 
 [Flags](#flags) and [Placeholders](#placeholders):
 
-- Important syntax you will come across while reading the user
+* Important syntax you will come across while reading the user
   guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
 
 If you are confident, you can immediately refer to the [Command Summary](#command-summary)
@@ -147,8 +147,8 @@ after completing the [Quick Start](#quick-start).
 
 Meaning of icons:
 
-- ℹ️ : additional info
-- ❗ : warning
+* ℹ️ : additional info
+* ❗ : warning
 
 If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq).
 There is also a [Glossary](#glossary) that contains definitions of what common words
@@ -187,7 +187,7 @@ an expiry date for the potatoes.
 
 Note:
 
-- The [Placeholder](#placeholders) section covers the restrictions for respective placeholders.
+* The [Placeholder](#placeholders) section covers the restrictions for respective placeholders.
   For example, the date format of BOUGHT_DATE, certain characters you cannot use and the limit and precision of numbers.
 
 The command you would like to enter into the command box would be:
@@ -196,13 +196,13 @@ The command you would like to enter into the command box would be:
 
 Alternatively these commands would do the same thing:
 
-- `new n/Potatoesqty/30unit/kgbgt/05-09-22` (Omitting space between tags)
-- `new qty/30 n/Potatoes bgt/05-09-22 unit/kg` (Reordering the flags)
+* `new n/Potatoesqty/30unit/kgbgt/05-09-22` (Omitting space between tags)
+* `new qty/30 n/Potatoes bgt/05-09-22 unit/kg` (Reordering the flags)
 
 These commands are invalid:
 
-- `newn/Potatoesqty/30unit/kgbgt/05-09-22` (Removing space between command identifier and flag)
-- `new qty/-48 n/PÖtátÖes bgt/05/09/22 unit/|kg|` (Restrictions of placeholders not followed)
+* `newn/Potatoesqty/30unit/kgbgt/05-09-22` (Removing space between command identifier and flag)
+* `new qty/-48 n/PÖtátÖes bgt/05/09/22 unit/|kg|` (Restrictions of placeholders not followed)
 
 Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and
 [Features](#features).
@@ -231,10 +231,10 @@ command, take note of the behaviour when certain tags are not included and restr
 
 Checklist before using a command:
 
-- [ ] I know the restrictions of the command
-- [ ] I know what flags are supplied to the command
-- [ ] I know the restrictions of each placeholder
-- [ ] I know the effects of not specifying each optional flag.
+* [ ] I know the restrictions of the command
+* [ ] I know what flags are supplied to the command
+* [ ] I know the restrictions of each placeholder
+* [ ] I know the effects of not specifying each optional flag.
 
 ## Items and Tags
 
@@ -243,11 +243,11 @@ Checklist before using a command:
 An item is a food item that you would like to include in FoodRem.
 The following are all the attributes store for each item:
 
-- Item name
-- Item quantity
-- Item unit (Unit of measurement e.g. `kg`, `packets`)
-- Item bought date
-- Item expiry date
+* Item name
+* Item quantity
+* Item unit (Unit of measurement e.g. `kg`, `packets`)
+* Item bought date
+* Item expiry date
 
 All items in FoodRem are unique. This means that no two items should have the same name.
 Uniqueness is not case-sensitive. "potato" and "POTATO" are treated as identical.
@@ -399,15 +399,15 @@ Before continuing, ensure you have read the section on [Flags](#flags) and [Plac
 
 What you should expect to find:
 
-- A description of the command
-- The expected behaviour for the command
-- A few valid and invalid examples of the command
-- Important points to note
+* A description of the command
+* The expected behaviour for the command
+* A few valid and invalid examples of the command
+* Important points to note
 
 **IMPORTANT:**
 
-- Square brackets indicate an optional parameter.
-- For each command, "Format" indicates the syntax of the command.
+* Square brackets indicate an optional parameter.
+* For each command, "Format" indicates the syntax of the command.
 
 ### Item Features
 
@@ -628,7 +628,7 @@ tag:
         Delete:      "tag delete food"
 
 bye:
-    Exits Foodrem program.
+    Exits FoodRem program.
 
     Usage:
         Exit:       "bye"
