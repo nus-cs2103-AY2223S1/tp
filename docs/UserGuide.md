@@ -159,6 +159,23 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the list of clients.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding an appointment : `addappt`
+
+Adds an appointment at the input date(s) and time(s) for an existing person in the list of clients.
+
+Format: `addappt INDEX d/DATE_TIME [d/MORE_DATE_TIMES]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+DATE_TIME has the format `d-MMM-yyyy hh:mm a` </div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** All input DATE_TIME(s) must be valid in order for the command to be executed. 
+</div>
+
+Examples:
+
+* `addappt 2 d/21-Jan-2023 10:00 AM`
+* `addappt 4 d/21-Jan-2023 10:00 AM d/14-Jan-2023 12:00 PM d/14-Jan-2023 12:00 PM`
+
 ### Sorting by alphabetical order : `sort alphabet`
 
 Sorts the contacts shown in the list of clients by alphabetical order.
@@ -211,6 +228,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​ ` <br> e.g., `e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
+**Addappt** | `addappt INDEX d/DATE_TIME [d/MORE_DATE_TIMES]…​ ` <br> e.g., `e.g., addappt 4 d/21-Jan-2023 10:00 AM d/14-Jan-2023 12:00 PM d/14-Jan-2023 12:00 PM`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [s/MONTHLY_SAVINGS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
