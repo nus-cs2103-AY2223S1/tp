@@ -49,7 +49,7 @@ public class StorageManagerTest {
 
     @Test
     public void foodRemReadSave() throws Exception {
-        /**
+        /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonFoodRemStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonFoodRemStorageTest} class.

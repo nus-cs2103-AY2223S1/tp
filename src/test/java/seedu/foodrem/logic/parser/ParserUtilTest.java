@@ -194,7 +194,8 @@ public class ParserUtilTest {
     //
     //@Test
     //public void parseTags_collectionWithInvalidTags_throwsIllegalArgumentException() {
-    //    assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    //    assertThrows(IllegalArgumentException.class,
+    //    () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
     //}
     //
     //@Test
