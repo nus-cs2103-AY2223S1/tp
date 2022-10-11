@@ -22,7 +22,7 @@ public class NextOfKin {
     /**
      * Constructs a {@code NextOfKin}.
      *
-     * @param nextOfKin A valid school name.
+     * @param nextOfKin A valid next of kin name.
      */
     public NextOfKin(String nextOfKin) {
         requireNonNull(nextOfKin);
