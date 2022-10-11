@@ -17,7 +17,7 @@ public class StatusContainsKeywordPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword);
+        return StringUtil.containsWordIgnoreCase(person.getApplicationStatus().applicationStatus, keyword);
     }
 
     @Override
