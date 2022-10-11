@@ -195,6 +195,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private void handleView(int index) {
+        personInfo.update(logic.getFilteredPersonList().get(index));
+        personInfoPanelPlaceholder.getChildren().removeAll();
+        personInfoPanelPlaceholder.getChildren().set(0, personInfo.getRoot());
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -216,6 +222,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isView()) {
+                handleView(commandResult.getViewIndex());
             }
 
             return commandResult;

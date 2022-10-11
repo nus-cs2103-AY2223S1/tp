@@ -36,8 +36,8 @@ public class ViewCommand extends Command {
         Person personToView;
         try {
             personToView = lastShownList.get(index.getZeroBased());
-
-            return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, personToView.getName()));
+            return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, personToView.getName()),
+                    true, index.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

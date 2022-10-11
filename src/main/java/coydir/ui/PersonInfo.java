@@ -52,7 +52,11 @@ public class PersonInfo extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
-    /*public void update(Person person) {
+    /**
+     * Update the person particulars in the {@code PersonInfo} panel.
+     * @param person
+     */
+    public void update(Person person) {
         this.person = person;
         name.setText(person.getName().fullName);
         employeeId.setText("Employee ID:  " + String.format("%6s", person.getEmployeeId().value).replace(' ', '0'));
@@ -63,5 +67,5 @@ public class PersonInfo extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }*/
+    }
 }
