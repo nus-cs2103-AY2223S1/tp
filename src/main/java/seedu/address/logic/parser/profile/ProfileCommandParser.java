@@ -52,12 +52,12 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
         switch (profileOption) {
         case AddProfileCommand.COMMAND_OPTION:
             return new AddProfileCommandParser().parse(args);
-        case FindProfileCommand.COMMAND_OPTION:
-            return new FindProfileCommandParser().parse(args);
         case DeleteProfileCommand.COMMAND_OPTION:
             return new DeleteProfileCommandParser().parse(args);
         case EditProfileCommand.COMMAND_OPTION:
             return new EditProfileCommandParser().parse(args);
+        case FindProfileCommand.COMMAND_OPTION:
+            return new FindProfileCommandParser().parse(args);
         case ViewProfilesCommand.COMMAND_OPTION:
             return new ViewProfilesCommandParser().parse(args);
         default:
