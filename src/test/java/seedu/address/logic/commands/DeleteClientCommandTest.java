@@ -6,8 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.address.testutil.TypicalClients.getTypicalMyInsuRec;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ELEMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ELEMENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ import seedu.address.model.client.Client;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteClientCommand}.
  */
 public class DeleteClientCommandTest {
 
@@ -28,31 +28,31 @@ public class DeleteClientCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Client clientToDelete = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
-        DeleteClientCommand deleteCommand = new DeleteClientCommand(INDEX_FIRST_CLIENT);
+        Client clientToDelete = model.getFilteredClientList().get(INDEX_FIRST_ELEMENT.getZeroBased());
+        DeleteClientCommand deleteClientCommand = new DeleteClientCommand(INDEX_FIRST_ELEMENT);
 
         String expectedMessage = String.format(DeleteClientCommand.MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getMyInsuRec(), new UserPrefs());
         expectedModel.deleteClient(clientToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
-        DeleteClientCommand deleteCommand = new DeleteClientCommand(outOfBoundIndex);
+        DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showClientAtIndex(model, INDEX_FIRST_CLIENT);
+        showClientAtIndex(model, INDEX_FIRST_ELEMENT);
 
-        Client clientToDelete = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
-        DeleteClientCommand deleteCommand = new DeleteClientCommand(INDEX_FIRST_CLIENT);
+        Client clientToDelete = model.getFilteredClientList().get(INDEX_FIRST_ELEMENT.getZeroBased());
+        DeleteClientCommand deleteClientCommand = new DeleteClientCommand(INDEX_FIRST_ELEMENT);
 
         String expectedMessage = String.format(DeleteClientCommand.MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete);
 
@@ -60,32 +60,32 @@ public class DeleteClientCommandTest {
         expectedModel.deleteClient(clientToDelete);
         showNoClient(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showClientAtIndex(model, INDEX_FIRST_CLIENT);
+        showClientAtIndex(model, INDEX_FIRST_ELEMENT);
 
-        Index outOfBoundIndex = INDEX_SECOND_CLIENT;
+        Index outOfBoundIndex = INDEX_SECOND_ELEMENT;
         // ensures that outOfBoundIndex is still in bounds of client list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMyInsuRec().getClientList().size());
 
-        DeleteClientCommand deleteCommand = new DeleteClientCommand(outOfBoundIndex);
+        DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteClientCommand deleteFirstCommand = new DeleteClientCommand(INDEX_FIRST_CLIENT);
-        DeleteClientCommand deleteSecondCommand = new DeleteClientCommand(INDEX_SECOND_CLIENT);
+        DeleteClientCommand deleteFirstCommand = new DeleteClientCommand(INDEX_FIRST_ELEMENT);
+        DeleteClientCommand deleteSecondCommand = new DeleteClientCommand(INDEX_SECOND_ELEMENT);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteClientCommand deleteFirstCommandCopy = new DeleteClientCommand(INDEX_FIRST_CLIENT);
+        DeleteClientCommand deleteFirstCommandCopy = new DeleteClientCommand(INDEX_FIRST_ELEMENT);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

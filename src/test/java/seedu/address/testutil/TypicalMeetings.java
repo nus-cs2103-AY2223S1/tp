@@ -29,10 +29,10 @@ public class TypicalMeetings {
     private TypicalMeetings() {} // prevents instantiation
 
     /**
-     * Returns an {@code MyInsuRec} with all the typical clients.
+     * Returns an {@code MyInsuRec} with all the typical clients with their repesctive meetings.
      */
     public static MyInsuRec getTypicalMyInsuRec() {
-        MyInsuRec cb = new MyInsuRec();
+        MyInsuRec cb = TypicalClients.getTypicalMyInsuRec();
         for (Meeting meeting : getTypicalMeetings()) {
             cb.addMeeting(meeting);
         }
