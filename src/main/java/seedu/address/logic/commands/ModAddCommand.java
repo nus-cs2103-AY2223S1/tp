@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 public class ModAddCommand extends ModCommand {
 
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_ADD_MOD_SUCCESS = "Successfully added the specified mods.";
+    public static final String MESSAGE_SUCCESS = "Successfully added the specified mods.";
     private final Index targetIndex;
     private final Set<Mod> mods;
 
@@ -55,6 +55,24 @@ public class ModAddCommand extends ModCommand {
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
         personToEdit.addMods(mods);
 
-        return new CommandResult(String.format(MESSAGE_ADD_MOD_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ModAddCommand)) {
+            return false;
+        }
+
+        // state check
+        ModAddCommand e = (ModAddCommand) other;
+        return targetIndex.equals(e.targetIndex)
+                && mods.equals(e.mods);
     }
 }

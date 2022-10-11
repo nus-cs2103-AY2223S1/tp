@@ -11,4 +11,6 @@ public abstract class ModCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Modifies the modules related to a person. "
             + "\n [add] [INDEX] [MODS ...]: Adds the entered mods to the person at the index";
     public static final String MESSAGE_MODS_EMPTY = "Mods cannot be empty!";
+    public static final String MESSAGE_INDEX_EMPTY = "Index cannot be empty!";
+    public static final String MESSAGE_INDEX_INVALID = "Index is not valid!";
 }

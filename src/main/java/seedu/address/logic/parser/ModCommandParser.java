@@ -57,13 +57,14 @@ public class ModCommandParser implements Parser<ModCommand> {
         case ModAddCommand.COMMAND_WORD:
             return parseAddCommand(arguments);
         default:
-            throw new ParseException(ModCommand.MESSAGE_USAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModCommand.MESSAGE_USAGE));
         }
     }
 
     private ModAddCommand parseAddCommand(String args) throws ParseException {
         Index index;
         args = args.trim();
+        String indexFromCommand = getIndexFromCommand(args);
         Set<String> modsFromCommand = getModsFromCommand(args);
         Optional<Set<Mod>> mods = parseMods(modsFromCommand);
         if (mods.isEmpty()) {
@@ -71,9 +72,9 @@ public class ModCommandParser implements Parser<ModCommand> {
         }
 
         try {
-            index = ParserUtil.parseIndex(getIndexFromCommand(args));
+            index = ParserUtil.parseIndex(indexFromCommand);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(ModCommand.MESSAGE_INDEX_INVALID, pe);
         }
         return new ModAddCommand(index, mods.get());
     }
@@ -106,7 +107,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         String index = splittedArgs[0];
         final Matcher matcher = INDEX_FORMAT.matcher(index.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE));
+            throw new ParseException(ModCommand.MESSAGE_INDEX_EMPTY);
         }
         return index;
     }
