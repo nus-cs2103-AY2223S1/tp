@@ -21,6 +21,7 @@ import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**
@@ -66,7 +67,7 @@ public class ResidentBookParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

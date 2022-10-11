@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.commons.core.GuiSettings;
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final ResidentBook residentBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Resident> filteredResidents;
+    private final ObservableList<String> observableFieldList;
 
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.
@@ -33,6 +36,7 @@ public class ModelManager implements Model {
         this.residentBook = new ResidentBook(residentBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
+        this.observableFieldList = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -145,4 +149,15 @@ public class ModelManager implements Model {
                 && filteredResidents.equals(other.filteredResidents);
     }
 
+    //=========== Observable Field List Accessors =============================================================
+
+    @Override
+    public ObservableList<String> getObservableFields() {
+        return this.observableFieldList;
+    }
+
+    @Override
+    public void setObservableFields(List<String> modifiableFields) {
+        this.observableFieldList.setAll(modifiableFields);
+    }
 }

@@ -9,6 +9,7 @@ import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -147,6 +148,16 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredResidentList(Predicate<Resident> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<String> getObservableFields() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setObservableFields(List<String> observableFields) {
             throw new AssertionError("This method should not be called.");
         }
     }
