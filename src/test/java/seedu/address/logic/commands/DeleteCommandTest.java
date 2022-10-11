@@ -8,8 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_ONE_INDEX;
-import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_SECOND_INDEX;
+import static seedu.address.testutil.TypicalSetsOfIndex.*;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -45,9 +44,34 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_multipleValidIndexUnfilteredList_success() {
+        Person personToDelete1 = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToDelete2 = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(SET_OF_ONE_AND_SECOND_INDEX);
+
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS + personToDelete2 + "\n"
+                + personToDelete1 + "\n";
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete2);
+        expectedModel.deletePerson(personToDelete1);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(new LinkedHashSet<Index>(Arrays.asList(outOfBoundIndex)));
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_MultipleValidWithOneInvalidIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        DeleteCommand deleteCommand = new DeleteCommand(new LinkedHashSet<Index>(
+                Arrays.asList(outOfBoundIndex, INDEX_SECOND_PERSON, INDEX_FIRST_PERSON)));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -80,6 +104,8 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
+
+
 
     @Test
     public void equals() {

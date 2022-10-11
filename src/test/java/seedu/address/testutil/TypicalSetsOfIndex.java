@@ -16,4 +16,6 @@ public class TypicalSetsOfIndex {
 
     public static final Set<Index> SET_OF_ONE_INDEX = new LinkedHashSet<>(Arrays.asList(INDEX_FIRST_PERSON));
     public static final Set<Index> SET_OF_SECOND_INDEX = new LinkedHashSet<>(Arrays.asList(INDEX_SECOND_PERSON));
+    public static final Set<Index> SET_OF_ONE_AND_SECOND_INDEX =
+            new LinkedHashSet<>(Arrays.asList(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON));
 }
