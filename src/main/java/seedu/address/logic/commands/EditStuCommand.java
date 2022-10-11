@@ -92,9 +92,8 @@ public class EditStuCommand extends Command {
         StuEmail updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Response response = studentToEdit.getResponse();
         Attendance attendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAttendance());
-        HelpTag helpTag = studentToEdit.getHelpTag();
 
-        return new Student(updatedName, updatedTelegram, updatedEmail, response, attendance, helpTag);
+        return new Student(updatedName, updatedTelegram, updatedEmail, response, attendance);
     }
 
     @Override

@@ -41,9 +41,8 @@ public class AddStuCommandParser {
         StuEmail email = ParserUtil.parseStuEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Response response = new Response("0");
         Attendance attendance = new Attendance("0");
-        HelpTag helpTag = new HelpTag("");
 
-        Student student = new Student(name, telegram, email, response, attendance, helpTag);
+        Student student = new Student(name, telegram, email, response, attendance);
 
         return new AddStuCommand(student);
     }
