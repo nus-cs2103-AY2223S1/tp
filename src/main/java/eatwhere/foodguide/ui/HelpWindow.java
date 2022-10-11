@@ -25,10 +25,12 @@ public class HelpWindow extends UiPart<Stage> {
             + "Usage: list\n\n"
             + "find - Search for eateries by name\n"
             + "Usage: find [-n name]\n\n"
+            + "tag - Add tag to eatery\n"
+            + "Usage: tag INDEX [-t TAG]...\n\n"
             + "add - Add an eatery to the database\n"
-            + "Usage: add -n NAME -l LOCATION -c CUISINE [-t TAG]\n\n"
+            + "Usage: add -n NAME -l LOCATION -c CUISINE [-t TAG]...\n\n"
             + "delete - Delete an eatery from the database\n"
-            + "Usage: delete STOREID\n\n";
+            + "Usage: delete INDEX\n\n";
 
     public static final String HELP_MESSAGE = HELP_URL + COMMAND_USAGE;
 
