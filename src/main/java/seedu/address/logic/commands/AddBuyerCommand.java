@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Person;
 
 import static java.util.Objects.requireNonNull;
@@ -14,7 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 /**
  * Adds a person to the address book.
  */
-public class AddBuyerCommand extends Command {
+public class AddBuyerCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "add";
 
@@ -36,14 +37,14 @@ public class AddBuyerCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Person toAdd;
+    private final Buyer toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddBuyerCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddBuyerCommand(Buyer buyer) {
+        requireNonNull(buyer);
+        toAdd = buyer;
     }
 
     @Override
