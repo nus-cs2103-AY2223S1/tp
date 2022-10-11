@@ -12,8 +12,6 @@ public class Expenditure extends Entry {
         super(description, date, amount, tags);
     }
 
-
-
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

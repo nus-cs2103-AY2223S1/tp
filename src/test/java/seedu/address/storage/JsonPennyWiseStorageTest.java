@@ -16,11 +16,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.PennyWise;
 import seedu.address.model.ReadOnlyPennyWise;
 
-public class JsonAddressBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+public class JsonPennyWiseStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonPennyWiseStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -31,7 +31,7 @@ public class JsonAddressBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlyPennyWise> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonPennyWiseStorage(Paths.get(filePath)).readPennyWise(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -63,27 +63,27 @@ public class JsonAddressBookStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        AddressBook original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        PennyWise original = getTypicalAddressBook();
+        JsonPennyWiseStorage jsonAddressBookStorage = new JsonPennyWiseStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyPennyWise readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
+        jsonAddressBookStorage.savePennyWise(original, filePath);
+        ReadOnlyPennyWise readBack = jsonAddressBookStorage.readPennyWise(filePath).get();
+        assertEquals(original, new PennyWise(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addExpenditure(GROCERIES);
 //        original.addPerson(HOON);
 //        original.removePerson(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
+        jsonAddressBookStorage.savePennyWise(original, filePath);
+        readBack = jsonAddressBookStorage.readPennyWise(filePath).get();
+        assertEquals(original, new PennyWise(readBack));
 
         // Save and read without specifying file path
         original.addExpenditure(SUPPER);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
-        assertEquals(original, new AddressBook(readBack));
+        jsonAddressBookStorage.savePennyWise(original); // file path not specified
+        readBack = jsonAddressBookStorage.readPennyWise().get(); // file path not specified
+        assertEquals(original, new PennyWise(readBack));
 
     }
 
@@ -97,8 +97,8 @@ public class JsonAddressBookStorageTest {
      */
     private void saveAddressBook(ReadOnlyPennyWise addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+            new JsonPennyWiseStorage(Paths.get(filePath))
+                    .savePennyWise(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
@@ -106,6 +106,6 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new AddressBook(), null));
+        assertThrows(NullPointerException.class, () -> saveAddressBook(new PennyWise(), null));
     }
 }

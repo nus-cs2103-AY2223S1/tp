@@ -6,13 +6,13 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.entry.Entry;
-import seedu.address.model.person.UniqueEntryList;
+import seedu.address.model.entry.UniqueEntryList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the application level
+ * Duplicates are not allowed (by .isSameEntry comparison)
  */
-public class AddressBook implements ReadOnlyPennyWise {
+public class PennyWise implements ReadOnlyPennyWise {
 
     private final UniqueEntryList expenditure;
 
@@ -30,13 +30,13 @@ public class AddressBook implements ReadOnlyPennyWise {
         income = new UniqueEntryList();
     }
 
-    public AddressBook() {
+    public PennyWise() {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an PennyWise using the Entries in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyPennyWise toBeCopied) {
+    public PennyWise(ReadOnlyPennyWise toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -44,23 +44,23 @@ public class AddressBook implements ReadOnlyPennyWise {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the expenditure list with {@code entries}.
+     * {@code entries} must not contain duplicate expenditures.
      */
     public void setExpenditure(List<Entry> entries) {
         this.expenditure.setEntries(entries);
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the income list with {@code entries}.
+     * {@code entries} must not contain duplicate incomes.
      */
     public void setIncome(List<Entry> entries) {
         this.income.setEntries(entries);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code PennyWise} with {@code newData}.
      */
     public void resetData(ReadOnlyPennyWise newData) {
         requireNonNull(newData);
@@ -72,7 +72,7 @@ public class AddressBook implements ReadOnlyPennyWise {
     //// entry-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an expenditure with the same identity as {@code entry} exists in the expenditure list.
      */
     public boolean hasExpenditure(Entry entry) {
         requireNonNull(entry);
@@ -80,17 +80,17 @@ public class AddressBook implements ReadOnlyPennyWise {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds an expenditure to the expenditure list.
+     * The expenditure must not already exist in the expenditure list.
      */
     public void addExpenditure(Entry e) {
         expenditure.add(e);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given expenditure {@code target} in the list with {@code editedEntry}.
+     * {@code target} must exist in the expenditure list.
+     * The expenditure identity of {@code editedEntry} must not be the same as another existing expenditure in the expenditure list.
      */
     public void setExpenditure(Entry target, Entry editedEntry) {
         requireNonNull(editedEntry);
@@ -99,15 +99,15 @@ public class AddressBook implements ReadOnlyPennyWise {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code PennyWise}.
+     * {@code key} must exist in the expenditure list.
      */
     public void removeExpenditure(Entry key) {
         expenditure.remove(key);
     }
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an income with the same identity as {@code entry} exists in the income list.
      */
     public boolean hasIncome(Entry entry) {
         requireNonNull(entry);
@@ -115,17 +115,17 @@ public class AddressBook implements ReadOnlyPennyWise {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds an income to the income list.
+     * The income must not already exist in the income list.
      */
     public void addIncome(Entry e) {
         income.add(e);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given income {@code target} in the list with {@code editedIncome}.
+     * {@code target} must exist in the income list.
+     * The income identity of {@code editedIncome} must not be the same as another existing income in the income list.
      */
     public void setIncome(Entry target, Entry editedEntry) {
         requireNonNull(editedEntry);
@@ -134,8 +134,8 @@ public class AddressBook implements ReadOnlyPennyWise {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code PennyWise}.
+     * {@code key} must exist in the income list.
      */
     public void removeIncome(Entry key) {
         income.remove(key);
@@ -162,9 +162,9 @@ public class AddressBook implements ReadOnlyPennyWise {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && expenditure.equals(((AddressBook) other).expenditure)
-                && income.equals(((AddressBook) other).income));
+                || (other instanceof PennyWise // instanceof handles nulls
+                && expenditure.equals(((PennyWise) other).expenditure)
+                && income.equals(((PennyWise) other).income));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.entry;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.exceptions.DuplicateEntryException;
 import seedu.address.model.entry.exceptions.EntryNotFoundException;
 

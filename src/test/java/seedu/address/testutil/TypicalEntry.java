@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.PennyWise;
 import seedu.address.model.entry.Expenditure;
 
 import java.util.ArrayList;
@@ -39,8 +39,8 @@ public class TypicalEntry {
             .build();
     // add typical income
 
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static PennyWise getTypicalAddressBook() {
+        PennyWise ab = new PennyWise();
 
         for (Expenditure expenditure : getTypicalExpenditure()) {
             ab.addExpenditure(expenditure);

@@ -7,39 +7,30 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntry.getTypicalAddressBook;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+public class PennyWiseTest {
 
-public class AddressBookTest {
-
-    private final AddressBook addressBook = new AddressBook();
+    private final PennyWise pennyWise = new PennyWise();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getExpenditureList());
-        assertEquals(Collections.emptyList(), addressBook.getIncomeList());
+        assertEquals(Collections.emptyList(), pennyWise.getExpenditureList());
+        assertEquals(Collections.emptyList(), pennyWise.getIncomeList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> pennyWise.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        PennyWise newData = getTypicalAddressBook();
+        pennyWise.resetData(newData);
+        assertEquals(newData, pennyWise);
     }
 
 //    @Test
@@ -50,36 +41,36 @@ public class AddressBookTest {
 //        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
 //        AddressBookStub newData = new AddressBookStub(newPersons);
 //
-//        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+//        assertThrows(DuplicatePersonException.class, () -> pennyWise.resetData(newData));
 //    }
 //
 //    @Test
 //    public void hasPerson_nullPerson_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+//        assertThrows(NullPointerException.class, () -> pennyWise.hasPerson(null));
 //    }
 //
 //    @Test
 //    public void hasPerson_personNotInAddressBook_returnsFalse() {
-//        assertFalse(addressBook.hasPerson(ALICE));
+//        assertFalse(pennyWise.hasPerson(ALICE));
 //    }
 //
 //    @Test
 //    public void hasPerson_personInAddressBook_returnsTrue() {
-//        addressBook.addPerson(ALICE);
-//        assertTrue(addressBook.hasPerson(ALICE));
+//        pennyWise.addPerson(ALICE);
+//        assertTrue(pennyWise.hasPerson(ALICE));
 //    }
 //
 //    @Test
 //    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-//        addressBook.addPerson(ALICE);
+//        pennyWise.addPerson(ALICE);
 //        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
 //                .build();
-//        assertTrue(addressBook.hasPerson(editedAlice));
+//        assertTrue(pennyWise.hasPerson(editedAlice));
 //    }
 //
 //    @Test
 //    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-//        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+//        assertThrows(UnsupportedOperationException.class, () -> pennyWise.getPersonList().remove(0));
 //    }
 //
 //    /**
