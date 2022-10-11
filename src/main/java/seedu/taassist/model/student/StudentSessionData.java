@@ -1,11 +1,11 @@
-package seedu.taassist.model.session;
+package seedu.taassist.model.student;
 
 /**
  * Represents a student's data for a session.
  */
 public class StudentSessionData {
 
-    private double grade;
+    private final double grade;
 
     public StudentSessionData(double grade) {
         this.grade = grade;
