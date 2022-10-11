@@ -36,5 +36,4 @@ public class ApplicationStatusTest {
         assertTrue(ApplicationStatus.isValidApplicationStatus("accepted"));
         assertTrue(ApplicationStatus.isValidApplicationStatus("rejected"));
     }
-    
 }
