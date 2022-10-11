@@ -258,10 +258,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:  
+**Target user profile**:
 Purchasing managers who are proficient with typing for small F&B businesses
 
-**Value proposition**:  
+**Value proposition**:
 This application will help small businesses to manage perishable goods within a single inventory
 (no support for multiple inventories).
 
