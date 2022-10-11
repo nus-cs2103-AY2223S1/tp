@@ -69,38 +69,4 @@ public class MasteryCheckStatus {
         String passMc2 = didPassMc(2) ? passed : failed;
         return "Mastery Check 1: " + passMc1 + "\n" + "Mastery Check 2: " + passMc2;
     }
-
-    /**
-     * Represents a student's result for a specific mastery check.
-     */
-    public static class MasteryCheckResult {
-        private final int mcNumber;
-        private final boolean isPass;
-
-        /**
-         * Constructs a {@code MasteryCheckResult}
-         *
-         * @param mcNumber Mastery check number
-         * @param isPass True if the result is a pass
-         */
-        public MasteryCheckResult(int mcNumber, boolean isPass) {
-            this.mcNumber = mcNumber;
-            this.isPass = isPass;
-        }
-
-        public int getMcNumber() {
-            return mcNumber;
-        }
-
-        public boolean didPass() {
-            return isPass;
-        }
-
-        @Override
-        public String toString() {
-            String result = isPass ? "PASSED" : "FAILED";
-
-            return "MC " + mcNumber + ": " + result;
-        }
-    }
 }

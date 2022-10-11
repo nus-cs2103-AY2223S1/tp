@@ -34,7 +34,7 @@ public class Student {
     /**
      * Updates the student's mastery check status with the given mastery check result.
      */
-    public void updateMcStatus(MasteryCheckStatus.MasteryCheckResult mcResult) {
+    public void updateMcStatus(MasteryCheckResult mcResult) {
         mcStatus.updateMcResult(mcResult);
     }
 

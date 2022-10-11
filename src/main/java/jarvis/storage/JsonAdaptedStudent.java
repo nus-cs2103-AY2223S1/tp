@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jarvis.commons.exceptions.IllegalValueException;
+import jarvis.model.MasteryCheckResult;
 import jarvis.model.MasteryCheckStatus;
 import jarvis.model.Student;
 import jarvis.model.StudentName;
@@ -56,10 +57,8 @@ public class JsonAdaptedStudent {
         }
 
         final StudentName modelStudentName = new StudentName(name);
-        MasteryCheckStatus.MasteryCheckResult resultMc1 = new MasteryCheckStatus.MasteryCheckResult(1,
-                passMc1);
-        MasteryCheckStatus.MasteryCheckResult resultMc2 = new MasteryCheckStatus.MasteryCheckResult(2,
-                passMc2);
+        MasteryCheckResult resultMc1 = new MasteryCheckResult(1, passMc1);
+        MasteryCheckResult resultMc2 = new MasteryCheckResult(2, passMc2);
         return new Student(modelStudentName, new MasteryCheckStatus(resultMc1, resultMc2));
     }
 
