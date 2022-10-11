@@ -118,7 +118,7 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
-        
+
         if (!getDob().isEmpty()) { //Need check if DateOfBirth is empty
             builder.append("; Date of Birth: ")
             .append(getDob());

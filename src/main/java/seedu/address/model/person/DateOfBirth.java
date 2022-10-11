@@ -60,8 +60,8 @@ public class DateOfBirth {
     }
 
     /**
-     * Returns 1 if the other object is a DateOfBirth that is later, 
-     * -1 if the other object is a DateOfBirth that is earlier, 
+     * Returns 1 if the other object is a DateOfBirth that is later,
+     * -1 if the other object is a DateOfBirth that is earlier,
      * and 0 if the other object is a DateOfBirth that is of the same date .
      * @param other The object to compare with
      * @return int
