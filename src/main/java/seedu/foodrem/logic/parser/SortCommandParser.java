@@ -5,7 +5,7 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_SORT_BY_BOUGHT_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_SORT_BY_EXPIRY_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_SORT_BY_NAME;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_SORT_BY_QTY;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_SORT_BY_TYPE;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_SORT_BY_UNIT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class SortCommandParser implements Parser<SortCommand> {
                 PREFIX_SORT_BY_QTY,
                 PREFIX_SORT_BY_BOUGHT_DATE,
                 PREFIX_SORT_BY_EXPIRY_DATE,
-                PREFIX_SORT_BY_TYPE);
+                PREFIX_SORT_BY_UNIT);
 
         if (argMultimap.getValue(PREFIX_SORT_BY_NAME).isPresent()) {
             comparators.add(new ItemNameComparator());
@@ -60,7 +60,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         if (argMultimap.getValue(PREFIX_SORT_BY_EXPIRY_DATE).isPresent()) {
             comparators.add(new ItemExpiryDateComparator());
         }
-        if (argMultimap.getValue(PREFIX_SORT_BY_TYPE).isPresent()) {
+        if (argMultimap.getValue(PREFIX_SORT_BY_UNIT).isPresent()) {
             comparators.add(new ItemUnitComparator());
         }
         if (comparators.isEmpty()) {

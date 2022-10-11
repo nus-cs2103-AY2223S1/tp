@@ -17,5 +17,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_SORT_BY_QTY = new Prefix("qty/");
     public static final Prefix PREFIX_SORT_BY_BOUGHT_DATE = new Prefix("bgt/");
     public static final Prefix PREFIX_SORT_BY_EXPIRY_DATE = new Prefix("exp/");
-    public static final Prefix PREFIX_SORT_BY_TYPE = new Prefix("type/");
+    public static final Prefix PREFIX_SORT_BY_UNIT = new Prefix("unit/");
 }

@@ -13,7 +13,7 @@ import seedu.foodrem.model.util.ChainComparator;
  * Sort Command, and supports the following sorting criteria:
  * - Name
  * - Quantity
- * - Type
+ * - Unit
  * - Bought Date
  * - Expiry Date
  */
