@@ -2,7 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.IssueCliSyntax.*;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECTID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
+
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.issue.AddIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
@@ -13,9 +19,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.*;
 import seedu.address.model.project.Project;
-
-import java.util.stream.Stream;
-
 
 /**
  * Parser to parse any commands related to issues
@@ -57,9 +60,23 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
 
         Description description = IssueParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Deadline deadline = IssueParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        Priority priority = IssueParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
-        Status status = IssueParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+
+        Deadline deadline = Deadline.EmptyDeadline.EMPTY_DEADLINE;
+        if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
+            deadline = IssueParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        }
+
+        Priority priority = Priority.NONE;
+        if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+            priority = IssueParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        }
+
+        Status status = Status.EmptyStatus.EMPTY_STATUS;
+        if (arePrefixesPresent(argMultimap, PREFIX_STATUS)) {
+            status = IssueParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+        }
+
+
         Project project = IssueParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECTID).get());
         IssueId issueId = new IssueId(UniqueIssueList.generateId());
 

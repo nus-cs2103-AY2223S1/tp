@@ -1,5 +1,7 @@
 package seedu.address.model.issue;
 
+
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -7,7 +9,24 @@ import static java.util.Objects.requireNonNull;
  */
 public class IssueId {
 
+    /**
+     * Represents an empty issue id.
+     */
+    public static class EmptyIssueId extends IssueId {
+        public static final IssueId EMPTY_ISSUEID = new EmptyIssueId();
+
+        private EmptyIssueId() {
+            super(0);
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+    }
+
     public static final String MESSAGE_CONSTRAINTS = "Issue ID must be a valid integer";
+
     private int issueId;
 
     /**
@@ -36,6 +55,10 @@ public class IssueId {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public boolean isEmpty() {
+        return false;
     }
 
     public String uiRepresentation() {

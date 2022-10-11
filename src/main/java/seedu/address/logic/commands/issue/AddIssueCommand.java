@@ -1,13 +1,17 @@
 package seedu.address.logic.commands.issue;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECTID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
 import seedu.address.ui.Ui;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.IssueCliSyntax.*;
 
 /**
  * Command to add issue
@@ -19,23 +23,27 @@ public class AddIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an issue to the address book. "
             + "Parameters: "
+            + PREFIX_PROJECTID + "PROJECT_ID "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_PRIORITY + "PRIORITY "
-            + PREFIX_STATUS + "STATUS "
-            + PREFIX_PROJECTID + "PROJECT_ID \n"
+            + PREFIX_PRIORITY + "PRIORITY(low, medium, high) "
+            + PREFIX_STATUS + "STATUS \n"
             + "Example: " + COMMAND_WORD + " "
+            + PREFIX_PROJECTID + "1 "
             + PREFIX_DESCRIPTION + "to create a person class which stores all relevant person data "
             + PREFIX_DEADLINE + "2022-12-10 "
             + PREFIX_PRIORITY + "low "
-            + PREFIX_STATUS + "false "
-            + PREFIX_PROJECTID + "1 ";
+            + PREFIX_STATUS + "false ";
+
 
     public static final String MESSAGE_SUCCESS = "New issue added: %1$s";
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in the address book";
 
     private final Issue toAdd;
 
+    /**
+     * Creates an AddCommand to add the specified {@code Issue}
+     */
     public AddIssueCommand(Issue issue) {
         requireNonNull(issue);
         toAdd = issue;

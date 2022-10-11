@@ -12,8 +12,11 @@ public class DeleteIssueCommand extends IssueCommand {
 
     public static final String COMMAND_FLAG = "-d";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Deletes the issue identified by the issue id. \n"
+            + "Parameters: INDEX (must be a positive integer) \n";
     // TODO: Better message
-    public static final String MESSAGE_SUCCESS = "Deleted Issue";
+    public static final String MESSAGE_SUCCESS = "Deleted Issue: %1$s";
 
     // TODO: implement
     @Override

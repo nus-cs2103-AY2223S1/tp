@@ -16,6 +16,12 @@ import seedu.address.model.project.UniqueProjectList;
  */
 public class IssueParserUtil {
 
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
@@ -25,6 +31,12 @@ public class IssueParserUtil {
         return new Description(trimmedDescription);
     }
 
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dealine} is invalid.
+     */
     public static Deadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
@@ -34,6 +46,12 @@ public class IssueParserUtil {
         return new Deadline(trimmedDeadline);
     }
 
+    /**
+     * Parses a {@code String priority} into a {@code Priority}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
     public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
         String trimmedPriority = priority.trim().toUpperCase();
@@ -43,6 +61,12 @@ public class IssueParserUtil {
         return Priority.valueOf(trimmedPriority);
     }
 
+    /**
+     * Parses a {@code String status} into a {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
@@ -52,6 +76,12 @@ public class IssueParserUtil {
         return new Status(Boolean.getBoolean(status));
     }
 
+    /**
+     * Parses a {@code String projectId} into a {@code Project}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code projectId} is invalid.
+     */
     public static Project parseProject(String projectId) throws ParseException {
         requireNonNull(projectId);
         String trimmedId = projectId.trim();

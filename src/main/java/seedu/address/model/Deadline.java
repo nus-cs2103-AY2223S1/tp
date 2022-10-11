@@ -14,11 +14,16 @@ public class Deadline {
     /**
      * Represents an empty deadline.
      */
-    private static class EmptyDeadline extends Deadline {
-        private static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
+    public static class EmptyDeadline extends Deadline {
+        public static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
 
         private EmptyDeadline() {
-            super("");
+            super("1970-01-01");
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return true;
         }
     }
 
@@ -54,6 +59,10 @@ public class Deadline {
 
     public String getFormattedDeadline() {
         return deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+    public boolean isEmpty() {
+        return false;
     }
 
     @Override

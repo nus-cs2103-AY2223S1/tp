@@ -7,6 +7,22 @@ import static java.lang.Boolean.parseBoolean;
  */
 public class Status {
 
+    /**
+     * Represents and empty Issue status.
+     */
+    public static class EmptyStatus extends Status {
+        public static final Status EMPTY_STATUS = new EmptyStatus();
+
+        private EmptyStatus() {
+            super(false);
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+    }
+
     public static final String MESSAGE_CONSTRAINTS = "STATUS NOT IMPLEMENTED";
 
     private boolean completed;
@@ -20,22 +36,14 @@ public class Status {
         this.completed = completionStatus;
     }
 
+    /**
+     * Returns true if a given string is a valid status.
+     */
     public static boolean isValidStatus(String status) {
         if (status.toUpperCase().equals("FALSE")) {
             return !parseBoolean(status);
         } else {
             return parseBoolean(status);
-        }
-    }
-
-    /**
-     * Represents and empty Issue status.
-     */
-    private static class EmptyStatus extends Status {
-        private static final Status EMPTY_STATUS = new EmptyStatus();
-
-        private EmptyStatus() {
-            super(false);
         }
     }
 
@@ -45,6 +53,10 @@ public class Status {
 
     public void setStatus(boolean completionStatus) {
         this.completed = completionStatus;
+    }
+
+    public boolean isEmpty() {
+        return false;
     }
 
     @Override

@@ -3,7 +3,6 @@ package seedu.address.model.issue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.Deadline;
-import seedu.address.model.Name;
 import seedu.address.model.project.Project;
 
 /**
@@ -32,6 +31,7 @@ public class Issue {
         this.status = status;
         this.project = project;
         this.issueId = issueId;
+        this.project.getIssueList().add(this);
     }
 
     public IssueId getIssueId() {
@@ -69,6 +69,12 @@ public class Issue {
 
     public Status getStatus() {
         return this.status;
+    }
+
+    @Override
+    public String toString() {
+        String returnString = "(#" + this.issueId + ") " + this.description;
+        return returnString;
     }
 
     /**

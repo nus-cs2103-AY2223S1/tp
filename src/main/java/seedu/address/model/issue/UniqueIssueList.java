@@ -78,6 +78,9 @@ public class UniqueIssueList implements Iterable<Issue> {
         return null;
     }
 
+    /**
+     * Generates an object id based on the current highest object id
+     */
     public static int generateId() {
         if (internalList.size() == 0) {
             return 1;

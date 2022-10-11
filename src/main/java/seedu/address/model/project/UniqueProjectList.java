@@ -93,16 +93,6 @@ public class UniqueProjectList implements Iterable<Project> {
         Client client = new Client(clientName, phone, email, projects, clientId);
         Project p = new Project(name, repository, deadline, client, issues, Id);
         return p;
-        /**
-        requireNonNull(projectId);
-        for (Project p: internalList) {
-            ProjectId temp = new ProjectId(projectId);
-            if (p.getId() == temp) {
-                return p;
-            }
-        }
-        return null;*
-         */
     }
 
 
