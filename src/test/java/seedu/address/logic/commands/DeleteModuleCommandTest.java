@@ -6,8 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
