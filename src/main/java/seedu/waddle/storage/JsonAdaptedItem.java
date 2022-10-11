@@ -2,10 +2,13 @@ package seedu.waddle.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.waddle.commons.exceptions.IllegalValueException;
 import seedu.waddle.model.item.Item;
-import seedu.waddle.model.itinerary.*;
 
+/**
+ * Jackson-friendly version of {@link Item}.
+ */
 public class JsonAdaptedItem {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";

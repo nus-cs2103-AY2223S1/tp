@@ -1,5 +1,8 @@
 package seedu.waddle.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,10 +13,6 @@ import seedu.waddle.model.itinerary.Date;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Itinerary}.
