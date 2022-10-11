@@ -3,7 +3,7 @@ package bookface.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import bookface.model.book.Title;
+import bookface.model.book.Book;
 import bookface.model.person.Email;
 import bookface.model.person.Name;
 import bookface.model.person.Person;
@@ -23,7 +23,7 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Set<Title> loanedBooks;
+    private final Set<Book> loanedBooks;
     private Set<Tag> tags;
 
     /**
@@ -45,7 +45,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         tags = new HashSet<>(personToCopy.getTags());
-        loanedBooks = new HashSet<>(personToCopy.getLoanedTitlesSet());
+        loanedBooks = new HashSet<>(personToCopy.getLoanedBooksSet());
     }
 
     /**
@@ -80,13 +80,14 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withLoanedBooks(String ... titles) {
-        this.loanedBooks = SampleDataUtil.getSetFromStringArray(Title::new, titles);
-        return this;
-    }
+    //todo fix
+    //    /**
+    //     * Sets the {@code Email} of the {@code Person} that we are building.
+    //     */
+    //    public PersonBuilder withLoanedBooks(String ... books) {
+    //        this.loanedBooks = SampleDataUtil.getSetFromStringArray(Book::new, books);
+    //        return this;
+    //    }
 
     public Person build() {
         return new Person(name, phone, email, loanedBooks, tags);

@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import bookface.commons.util.CollectionUtil;
-import bookface.model.book.Title;
+import bookface.model.book.Book;
 import bookface.model.tag.Tag;
 
 /**
@@ -19,7 +19,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
-    private final HashSet<Title> loanedBooks = new HashSet<>();
+    private final HashSet<Book> loanedBooks = new HashSet<>();
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -27,12 +27,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Title> loanedBook, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Set<Book> loanedBooks, Set<Tag> tags) {
         CollectionUtil.requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.loanedBooks.addAll(loanedBook);
+        this.loanedBooks.addAll(loanedBooks);
         this.tags.addAll(tags);
     }
 
@@ -49,16 +49,16 @@ public class Person {
     }
 
 
-    public Set<Title> getLoanedTitlesSet() {
+    public Set<Book> getLoanedBooksSet() {
         return loanedBooks;
     }
 
-    public String getLoanedTitlesDisplayString() {
+    public String getLoanedBooksDisplayString() {
         return loanedBooks.toString();
     }
 
-    public void addLoanedBookTitle(Title title) {
-        loanedBooks.add(title);
+    public void addLoanedBook(Book book) {
+        loanedBooks.add(book);
     }
 
     /**
@@ -85,8 +85,8 @@ public class Person {
     /**
      * Returns true if the person has already loaned the same book.
      */
-    public boolean hasSameLoanedBook(Person person, Title title) {
-        return person.getLoanedTitlesSet().contains(title);
+    public boolean hasSameLoanedBook(Person person, Book book) {
+        return person.getLoanedBooksSet().contains(book);
     }
 
     /**

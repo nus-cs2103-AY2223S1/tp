@@ -17,7 +17,6 @@ import bookface.logic.parser.ArgumentsParsable;
 import bookface.logic.parser.ParserUtil;
 import bookface.logic.parser.Prefix;
 import bookface.logic.parser.exceptions.ParseException;
-import bookface.model.book.Title;
 import bookface.model.person.Email;
 import bookface.model.person.Name;
 import bookface.model.person.Person;
@@ -46,7 +45,7 @@ public class AddUserArgumentsParser implements ArgumentsParsable<AddUserCommand>
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, new HashSet<Title>(), tagList);
+        Person person = new Person(name, phone, email, new HashSet<>(), tagList);
         return new AddUserCommand(person);
     }
 

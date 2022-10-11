@@ -1,5 +1,6 @@
 package bookface.storage;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,6 +19,7 @@ class JsonAdaptedBook {
 
     private final String title;
     private final String author;
+    @JsonBackReference
     private final Person loanee;
 
     /**
