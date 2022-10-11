@@ -20,7 +20,8 @@ public class ModuleListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true,
+                false, false, false);
     }
 }
 

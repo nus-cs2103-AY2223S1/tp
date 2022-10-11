@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.STUDENT_DESC_ID;
-import static seedu.address.logic.commands.CommandTestUtil.STUDENT_DESC_STUDENT_INFO;
 import static seedu.address.logic.commands.CommandTestUtil.STUDENT_DESC_TELEGRAM;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -77,7 +76,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addStuCommand = "addstu n/Amy Bee p/85355255 e/amy@gmail.com a/123, Jurong West Ave 6, #08-111 "
-                + STUDENT_DESC_ID + STUDENT_DESC_TELEGRAM + STUDENT_DESC_STUDENT_INFO;
+                + STUDENT_DESC_ID + STUDENT_DESC_TELEGRAM;
         Student expectedStudent = new StudentBuilder().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedStudent);

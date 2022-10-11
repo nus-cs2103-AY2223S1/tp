@@ -10,6 +10,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 
+/**
+ * Panel containing the module information.
+ */
 public class ModuleInfoPanel extends UiPart<Region> {
 
     private static final String FXML = "ModuleInfoPanel.fxml";
@@ -24,11 +27,11 @@ public class ModuleInfoPanel extends UiPart<Region> {
     public ModuleInfoPanel(ObservableList<Person> studentList) {
         super(FXML);
         moduleInfoView.setItems(studentList);
-        moduleInfoView.setCellFactory(listView -> new ModuleInfoPanel.ModuleInfoViewCell());
+        moduleInfoView.setCellFactory(listView -> new ModuleInfoViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Module} using a {@code ModuleCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
     class ModuleInfoViewCell extends ListCell<Person> {
         @Override
@@ -44,6 +47,7 @@ public class ModuleInfoPanel extends UiPart<Region> {
                 } else {
                     setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
                 }
+
             }
         }
     }

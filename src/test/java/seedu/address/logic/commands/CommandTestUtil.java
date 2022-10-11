@@ -54,8 +54,8 @@ public class CommandTestUtil {
     public static final String VALID_INFO_AMY = "CS1101S";
     public static final String VALID_INFO_BOB = "CS2030S";
     public static final String VALID_STUDENT_ID = "A0123123X";
-    public static final String VALID_STUDENT_TELEGRAM = "amyb123";
-    public static final String VALID_STUDENT_INFO = "abc";
+    public static final String VALID_STUDENT_TELEGRAM = "@amyb123";
+    public static final String VALID_STUDENT_INFO = "CS1101S";
     public static final String VALID_TAG_IMPORTANT = "important";
     public static final String VALID_TAG_MODULE_COORDINATOR = "ModuleCoordinator";
 

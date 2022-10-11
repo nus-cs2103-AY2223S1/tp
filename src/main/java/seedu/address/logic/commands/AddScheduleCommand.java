@@ -15,7 +15,9 @@ import seedu.address.model.module.schedule.Schedule;
  * Adds a schedule to a module
  */
 public class AddScheduleCommand extends Command {
+
     public static final String COMMAND_WORD = "sadd";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
@@ -28,7 +30,7 @@ public class AddScheduleCommand extends Command {
             + PREFIX_MODULE_OF_SCHEDULE + "CS2103T "
             + PREFIX_WEEKDAY + "Friday "
             + PREFIX_CLASS_TIME + "16:00-18:00 "
-            + PREFIX_CLASS_CATEGORY + "Lecture "
+            + PREFIX_CLASS_CATEGORY + "lec "
             + PREFIX_CLASS_VENUE + "I3-AUD ";
 
     public static final String MESSAGE_SUCCESS = "New schedule added: %1$s";

@@ -9,6 +9,9 @@ import seedu.address.logic.commands.module.ModuleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
 
+/**
+ * Parses input arguments and creates a new ModuleViewCommand object
+ */
 public class ModuleViewCommandParser implements Parser<ModuleViewCommand> {
 
     /**

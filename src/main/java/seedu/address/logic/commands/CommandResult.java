@@ -26,17 +26,23 @@ public class CommandResult {
     /** Module information should be shown to the user. */
     private final boolean showModule;
 
+    /** Schedule information should be shown to the user. */
+
+    private final boolean showScheduleList;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showModuleList, boolean showStudentList, boolean showModule) {
+                         boolean showModuleList, boolean showStudentList,
+                         boolean showModule, boolean showScheduleList) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showModuleList = showModuleList;
         this.showStudentList = showStudentList;
         this.showModule = showModule;
+        this.showScheduleList = showScheduleList;
     }
 
     /**
@@ -44,7 +50,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false, false);
+        this(feedbackToUser, false, false, false,
+                false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -67,7 +74,13 @@ public class CommandResult {
         return showStudentList;
     }
 
-    public boolean isShowModule() { return showModule; }
+    public boolean isShowModule() {
+        return showModule;
+    }
+
+    public boolean isShowScheduleList() {
+        return showScheduleList;
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -86,12 +99,14 @@ public class CommandResult {
                 && exit == otherCommandResult.exit
                 && showModuleList == otherCommandResult.showModuleList
                 && showStudentList == otherCommandResult.showStudentList
-                && showModule == otherCommandResult.showModule;
+                && showModule == otherCommandResult.showModule
+                && showScheduleList == otherCommandResult.showScheduleList;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showModuleList, showStudentList, showModule);
+        return Objects.hash(feedbackToUser, showHelp, exit, showModuleList,
+                showStudentList, showModule, showScheduleList);
     }
 
 }

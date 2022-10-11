@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
     "handle" : "@good_user",
-    "info" : "CS1101S",
+    "info" : ["CS1101S"],
     "id" : "A0123457W"
   }, {
     "name" : "Benson Meier",
@@ -16,7 +16,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
     "handle" : "@good_1234",
-    "info" : "CS1101S",
+    "info" : ["CS1101S"],
     "id" : "A0123627W"
   }, {
     "name" : "Carl Kurz",
@@ -25,7 +25,7 @@
     "address" : "wall street",
     "tagged" : [ ],
     "handle" : "@good_1234r",
-    "info" : "CS1101S",
+    "info" : ["CS1101S"],
     "id" : "A0523457W"
   }, {
     "name" : "Daniel Meier",
@@ -34,8 +34,8 @@
     "address" : "10th street",
     "tagged" : [ "friends" ],
     "handle" : "@1241_user",
-    "info" : "CS1101S",
-    "id" : "A0125357W"
+    "info" : ["CS1101S"],
+    "id" : "A0675357W"
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -43,8 +43,8 @@
     "address" : "michegan ave",
     "tagged" : [ ],
     "handle" : "@bad_user",
-    "info" : "CS1101S",
-    "id" : "A0897457W"
+    "info" : ["CS1101S"],
+    "id" : "A0895457W"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -52,8 +52,8 @@
     "address" : "little tokyo",
     "tagged" : [ ],
     "handle" : "@new_user",
-    "info" : "CS1101S",
-    "id" : "A01232347K"
+    "info" : ["CS1101S"],
+    "id" : "A0123747K"
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -61,8 +61,8 @@
     "address" : "4th street",
     "tagged" : [ ],
     "handle" : "@good_student",
-    "info" : "High Tier CS student",
-    "id" : "A0123456G"
+    "info" : ["CS1101S"],
+    "id" : "A0123456T"
   } ],
   "modules" : [ {
     "moduleName": "Introduction to Software Engineering",

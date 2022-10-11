@@ -27,6 +27,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final int STUDENTLIST = 0;
     private static final int MODULELIST = 1;
     private static final int MODULE = 2;
+    private static final int SCHEDULE = 3;
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -39,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ModuleListPanel moduleListPanel;
     private ModuleInfoPanel moduleInfoPanel;
+    private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -56,6 +58,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane moduleInfoPanelPlaceholder;
+
+    @FXML
+    private StackPane scheduleListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -132,6 +137,9 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
+        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -195,6 +203,15 @@ public class MainWindow extends UiPart<Stage> {
         moduleInfoPanelPlaceholder.getChildren().add(moduleInfoPanel.getRoot());
         tabPane.getSelectionModel().select(MODULE);
     }
+    /**
+     * Switch to schedules page.
+     */
+    @FXML
+    public void handleShowTabSchedule() {
+        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+        tabPane.getSelectionModel().select(SCHEDULE);
+    }
 
     void show() {
         primaryStage.show();
@@ -247,7 +264,12 @@ public class MainWindow extends UiPart<Stage> {
                 handleShowTabModule();
             }
 
+            if (commandResult.isShowScheduleList()) {
+                handleShowTabSchedule();
+            }
+
             return commandResult;
+
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());

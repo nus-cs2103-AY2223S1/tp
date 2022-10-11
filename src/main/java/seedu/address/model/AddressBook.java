@@ -98,8 +98,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean conflictSchedule(Schedule newSchedule) {
         requireNonNull(newSchedule);
-        Module targetModule = getModuleByModuleCode(newSchedule.getModule());
-        return targetModule.conflictAnySchedule(newSchedule);
+        for (Module module: modules) {
+            if (module.conflictAnySchedule(newSchedule)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -195,6 +199,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Module> getModuleList() {
         return modules.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Schedule> getScheduleList() {
+
+        ObservableList<Schedule> l = modules.getUnmodifiableObservableScheduleList();
+        int i = 0;
+        for (Schedule s : l) {
+            System.out.println(i);
+            i++;
+            System.out.println(s.toString());
+        }
+
+        return modules.getUnmodifiableObservableScheduleList();
     }
 
     @Override

@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.module.Module;
 
 /**
- * An UI component that displays information of a {@code Module}.
+ * A UI component that displays information of a {@code Module}.
  */
 public class ModuleCard extends UiPart<Region> {
 
@@ -40,7 +40,7 @@ public class ModuleCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code ModuleCode} with the given {@code Module} and index to display.
+     * Creates a {@code ModuleCard} with the given {@code Module} and index to display.
      */
     public ModuleCard(Module module, int displayedIndex) {
         super(FXML);

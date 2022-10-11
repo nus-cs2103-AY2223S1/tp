@@ -39,6 +39,9 @@
           <Menu mnemonicParsing="false" text="Students">
             <MenuItem fx:id="tabStudents" mnemonicParsing="false" onAction="#handleShowTabStudents" text="Students" />
           </Menu>
+          <Menu mnemonicParsing="false" text="Schedules">
+            <MenuItem fx:id="tabSchedule" mnemonicParsing="false" onAction="#handleShowTabSchedule" text="Schedules" />
+          </Menu>
         </MenuBar>
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
@@ -78,18 +81,30 @@
               </content>
             </Tab>
 
-        <Tab text="Module">
-          <content>
-            <VBox fx:id="moduleInfo" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-              <StackPane fx:id="moduleInfoPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-            </VBox>
-          </content>
-        </Tab>
-      </tabs>
-    </TabPane>
+          <Tab text="Module">
+            <content>
+              <VBox fx:id="moduleInfo" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="moduleInfoPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
+            </content>
+          </Tab>
+
+            <Tab text="Schedules">
+              <content>
+                <VBox fx:id="scheduleList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                  <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                  </padding>
+                  <StackPane fx:id="scheduleListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                </VBox>
+              </content>
+            </Tab>
+
+          </tabs>
+        </TabPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

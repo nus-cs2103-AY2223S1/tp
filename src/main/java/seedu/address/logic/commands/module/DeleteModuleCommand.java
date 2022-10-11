@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
@@ -7,6 +7,8 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -23,7 +25,7 @@ public class DeleteModuleCommand extends Command {
             + ": Deletes the module identified by the module name used in the list of modules.\n"
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE CODE "
-            + "Example: " + COMMAND_WORD + "CS2103T ";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS2103T ";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted module: %1$s";
 
@@ -43,7 +45,8 @@ public class DeleteModuleCommand extends Command {
         int positionInList = 0;
 
         for (Module m : moduleList) {
-            if (m.getCode().equals(targetModuleCode)) {
+            String targetCodeInUpperCase = targetModuleCode.toString().toUpperCase();
+            if (m.getCode().toString().equals(targetCodeInUpperCase)) {
                 isInModuleList = true;
                 positionInList = moduleList.indexOf(m);
                 break;

@@ -20,11 +20,12 @@ import seedu.address.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Module> filteredModules;
+
+    private final FilteredList<Schedule> filteredSchedule;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredModules = new FilteredList<>(this.addressBook.getModuleList());
+        filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
     }
 
     public ModelManager() {
@@ -140,6 +142,7 @@ public class ModelManager implements Model {
     public void addSchedule(Schedule schedule) {
         addressBook.addSchedule(schedule);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
     @Override
@@ -175,6 +178,16 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Student List Accessors =============================================================
+
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+
     //=========== Filtered Module List Accessors =============================================================
 
     /**
@@ -190,6 +203,22 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+    }
+
+    //=========== Filtered Schedule List Accessors =============================================================
+
+    @Override
+    public ObservableList<Schedule> getFilteredScheduleList() {
+        ObservableList<Schedule> tempary = new FilteredList<>(this.addressBook.getScheduleList());
+        return tempary;
+    }
+
+
+    @Override
+    public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
+        requireNonNull(predicate);
+        System.out.println("1");
+        filteredSchedule.setPredicate(predicate);
     }
 
     @Override
@@ -210,5 +239,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }
