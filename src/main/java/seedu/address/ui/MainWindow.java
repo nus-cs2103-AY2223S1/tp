@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -47,6 +48,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane tutorialListPanelPlaceholder;
+
+    @FXML
+    private Label listHeader;
+
+    @FXML
+    private StackPane modelListPanelPlaceholder;
+
+    @FXML
+    private StackPane reminderListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -115,10 +125,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
-        tutorialListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
+
+        // show the person list by default.
+        modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listHeader.setText("Student");
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -152,6 +163,26 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Opens the tab of tutorials.
+     */
+    @FXML
+    public void handleTutorial() {
+        modelListPanelPlaceholder.getChildren().clear();
+        modelListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
+        listHeader.setText("Tutorial");
+    }
+
+    /**
+     * Opens the tab of persons.
+     */
+    @FXML
+    public void handlePerson() {
+        modelListPanelPlaceholder.getChildren().clear();
+        modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listHeader.setText("Student");
     }
 
     void show() {
