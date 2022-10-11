@@ -20,7 +20,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains helper methods for testing commands.
@@ -85,13 +84,9 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
             Model expectedModel) {
         try {
-            System.out.println(actualModel.getFilteredPersonList());
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
-            System.out.println(expectedModel.getFilteredPersonList());
-            System.out.println(actualModel.getFilteredPersonList());
             assertEquals(expectedModel, actualModel);
-//            System.out.println(TypicalPersons.getTypicalAddressBook().getPersonList());
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }

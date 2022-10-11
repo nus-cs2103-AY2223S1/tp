@@ -42,9 +42,6 @@ public class DeleteTaskCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         model.setPerson(personToDeleteTask, editedPerson);
 
-//        System.out.println(expectedModel.getFilteredPersonList());
-//        System.out.println(model.getFilteredPersonList());
-
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }
 }
