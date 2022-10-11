@@ -18,17 +18,15 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
-        } else if (trimmedArgs.split("\\s+").length > 1) {
+        switch (trimmedArgs) {
+        case "pending":
+        case "accepted":
+        case "rejected":
+            return new FilterCommand(new ApplicationStatusPredicate(trimmedArgs));
+        default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
-
-
-
-        return new FilterCommand(new ApplicationStatusPredicate(trimmedArgs));
     }
 
 }
