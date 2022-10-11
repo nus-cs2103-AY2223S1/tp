@@ -204,7 +204,7 @@ public class AddTaskCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    protected class ModelStubAcceptingTaskAdded extends ModelStub {
+    private class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
 
         @Override
