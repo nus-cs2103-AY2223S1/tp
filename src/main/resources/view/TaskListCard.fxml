@@ -25,9 +25,18 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="description" text="\$first" styleClass="cell_big_label" />
             </HBox>
             <FlowPane fx:id="tags" />
+            <HBox spacing="5" alignment="CENTER_LEFT">
+<!--                <Label styleClass="cell_small_label" text="Due by:">-->
+<!--                    <minWidth>-->
+<!--                        &lt;!&ndash; Ensures that the label text is never truncated &ndash;&gt;-->
+<!--                        <Region fx:constant="USE_PREF_SIZE" />-->
+<!--                    </minWidth>-->
+<!--                </Label>-->
+                <Label fx:id="dueDate" text="\$first" styleClass="cell_small_label" />
+            </HBox>
 <!--            <Label fx:id="phone" styleClass="cell_small_label" text="\$module" />-->
         </VBox>
     </GridPane>

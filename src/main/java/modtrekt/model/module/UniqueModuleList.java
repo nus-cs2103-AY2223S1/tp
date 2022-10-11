@@ -17,7 +17,6 @@ import modtrekt.model.module.exceptions.ModuleNotFoundException;
  * persons uses Module#isSameModule(Module) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniqueModuleList. However, the removal of a person uses Module#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
- *
  * Supports a minimal set of list operations.
  *
  * @see Module#isSameModule(Module)
@@ -35,6 +34,30 @@ public class UniqueModuleList implements Iterable<Module> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameModule);
     }
+
+    /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public boolean containsCode(ModCode toCheck) {
+        requireNonNull(toCheck);
+        ObservableList<Module> checkList = internalList.filtered(x -> x.getCode().equals(toCheck));
+
+        return checkList.size() > 0;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public Module getModuleFromCode(ModCode toCheck) {
+        requireNonNull(toCheck);
+        ObservableList<Module> checkList = internalList.filtered(x -> x.getCode().equals(toCheck));
+
+        if (checkList.size() > 0) {
+            return checkList.get(0);
+        }
+        return null;
+    }
+
 
     /**
      * Adds a person to the list.

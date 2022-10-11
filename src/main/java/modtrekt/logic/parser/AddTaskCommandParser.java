@@ -1,11 +1,11 @@
 package modtrekt.logic.parser;
 
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import java.util.stream.Stream;
+import static modtrekt.logic.parser.ParserUtil.arePrefixesPresent;
 
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
+import modtrekt.model.module.ModCode;
 import modtrekt.model.task.Description;
 import modtrekt.model.task.Task;
 
@@ -13,14 +13,6 @@ import modtrekt.model.task.Task;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -31,16 +23,17 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     public AddTaskCommand parse(String args) throws ParseException {
         System.out.println(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_TASK);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_MOD_CODE);
 
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_TASK)
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_MOD_CODE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_TASK).get());
+        ModCode module = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
 
-        Task t = new Task(description);
+        Task t = new Task(description, module);
 
         return new AddTaskCommand(t);
     }

@@ -1,18 +1,25 @@
 {
   "_comment": "TaskBook save file which contains the same Task values as in TypicalTasks#getTypicalTaskBook()",
   "tasks" : [ {
-    "description" : "Do Math Quiz"
+    "description" : "Do Math Quiz",
+    "modCode" : "CS2103T"
   }, {
-    "description" : "Submit assignment"
+    "description" : "Submit assignment",
+    "modCode" : "CS2103T"
   }, {
-    "description" : "Submit academic declaration"
+    "description" : "Submit academic declaration",
+    "modCode" : "CS2103T"
   }, {
-    "description" : "Rewrite resume"
+    "description" : "Rewrite resume",
+    "modCode" : "CS2103T"
   }, {
-    "description" : "Lookup SWE internships"
+    "description" : "Lookup SWE internships",
+    "modCode" : "CS2103T"
   }, {
-    "description" : "Submit course survey"
+    "description" : "Submit course survey",
+    "modCode" : "CS2103T"
   }, {
-    "description" : "Buy Groceries"
+    "description" : "Buy Groceries",
+    "modCode" : "CS2103T"
   } ]
 }

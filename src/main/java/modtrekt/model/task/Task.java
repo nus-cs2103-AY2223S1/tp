@@ -1,5 +1,7 @@
 package modtrekt.model.task;
 
+import modtrekt.model.module.ModCode;
+
 /**
  * Represents a basic immutable task in the task list.
  * Ensures that necessary details are valid, present and non-null.
@@ -8,6 +10,7 @@ public class Task {
     /**
      * String representing description of task
      */
+    public final ModCode module;
     private final Description description;
     private boolean isArchived;
 
@@ -16,17 +19,30 @@ public class Task {
      *
      * @param description description of task
      */
-    public Task(Description description, boolean isArchived) {
+    public Task(Description description, ModCode module, boolean isArchived) {
         this.description = description;
+        this.module = module;
         this.isArchived = isArchived;
     }
 
-    public Task(Description description) {
-        this(description, false);
+    /**
+     * Constructor for an instance of Task, with a default unarchived state.
+     *
+     * @param description description of task
+     * @param module module code of task
+     */
+    public Task(Description description, ModCode module) {
+        this.description = description;
+        this.module = module;
+        this.isArchived = false;
     }
 
     public Description getDescription() {
         return this.description;
+    }
+
+    public ModCode getModule() {
+        return this.module;
     }
 
     public boolean isArchived() {
@@ -48,7 +64,11 @@ public class Task {
         if (this == o) {
             return true;
         }
-        return o != null && o.getDescription().equals(this.getDescription()) && o.isArchived() == this.isArchived();
+
+        return o != null
+                && o.getDescription().equals(this.getDescription())
+                && o.getModule().equals(this.getModule())
+                && o.isArchived() == this.isArchived();
     }
 
     @Override
@@ -56,11 +76,15 @@ public class Task {
         if (this == other) {
             return true;
         }
-        return (other instanceof Task) && this.isSameTask((Task) other);
+        return (other instanceof Task) && isSameTask((Task) other);
     }
 
     @Override
     public String toString() {
-        return this.description.toString();
+        return String.format("%s %s%s",
+                description,
+                module,
+                isArchived ? "(ARCHIVED)" : ""
+        );
     }
 }
