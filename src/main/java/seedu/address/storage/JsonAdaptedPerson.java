@@ -125,7 +125,8 @@ class JsonAdaptedPerson {
         final Year modelYear = new Year(year);
 
         if (studentId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StudentId.class.getSimpleName()));
         }
         if (!StudentId.isValidId(studentId)) {
             throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
@@ -141,7 +142,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelModule, modelYear, modelStudentId, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelModule, modelYear,
+                modelStudentId, modelAddress, modelTags);
     }
 
 }
