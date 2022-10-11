@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.Name;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -82,17 +82,17 @@ public class EditClientCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, "1" + INVALID_PHONE_DESC, ClientPhone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, "1" + INVALID_EMAIL_DESC, ClientEmail.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
-        assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, ClientPhone.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, ClientPhone.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error

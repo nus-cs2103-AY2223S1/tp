@@ -3,7 +3,11 @@ package seedu.address.logic.parser;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.client.*;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.Name;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.Person;
 import seedu.address.model.tag.Tag;
 
 import java.util.Collection;
@@ -47,32 +51,31 @@ public class ClientCommandParser implements Parser<ClientCommand> {
 
     // TODO: revise syntax
     /**
-     * Parse a string of arguments for an add client command
-     * From original AB3 code
+     * Parses the given {@code String} of arguments in the context of the AddCommand
+     * and returns an AddCommand object for execution.
      * @param args string of arguments
      * @return an AddClientCommand object
-     * @throws ParseException
+     * @throws ParseException if the user input does not conform the expected format
      */
     private AddClientCommand parseAddClientCommand(String args) throws ParseException {
-        // TODO: This does not support optional arguments
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+            ArgumentMultimap argMultimap =
+                    ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE));
+            if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+                    || !argMultimap.getPreamble().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE));
+            }
+
+            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            ClientPhone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+            ClientEmail email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+            Person person = new Person(name, phone, email, address, tagList);
+
+            return new AddClientCommand(person);
         }
-
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Person person = new Person(name, phone, email, address, tagList);
-
-        return new AddClientCommand(person);
-    }
 
     // TODO: revise syntax
     /**
@@ -143,7 +146,6 @@ public class ClientCommandParser implements Parser<ClientCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
-     * Used in AddClientCommand - from original AB3 code
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());

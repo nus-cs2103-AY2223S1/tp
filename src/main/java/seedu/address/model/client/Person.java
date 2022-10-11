@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,8 +18,8 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final ClientPhone phone;
+    private final ClientEmail email;
 
     // Data fields
     private final Address address;
@@ -27,7 +28,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, ClientPhone phone, ClientEmail email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -40,11 +41,11 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
+    public ClientPhone getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
+    public ClientEmail getEmail() {
         return email;
     }
 
@@ -105,9 +106,9 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("; ClientPhone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("; ClientEmail: ")
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());

@@ -20,11 +20,11 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.Name;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.Ui;
 
@@ -100,8 +100,8 @@ public class EditClientCommand extends ClientCommand {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        ClientPhone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        ClientEmail updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
@@ -132,8 +132,8 @@ public class EditClientCommand extends ClientCommand {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
+        private ClientPhone phone;
+        private ClientEmail email;
         private Address address;
         private Set<Tag> tags;
 
@@ -166,19 +166,19 @@ public class EditClientCommand extends ClientCommand {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
+        public void setPhone(ClientPhone phone) {
             this.phone = phone;
         }
 
-        public Optional<Phone> getPhone() {
+        public Optional<ClientPhone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
+        public void setEmail(ClientEmail email) {
             this.email = email;
         }
 
-        public Optional<Email> getEmail() {
+        public Optional<ClientEmail> getEmail() {
             return Optional.ofNullable(email);
         }
 

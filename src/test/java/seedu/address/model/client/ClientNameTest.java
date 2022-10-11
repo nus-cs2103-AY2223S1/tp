@@ -6,35 +6,36 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.Name;
 
 public class ClientNameTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ClientName(null));
+        assertThrows(NullPointerException.class, () -> new Name(null));
     }
 
     @Test
     public void constructor_invalidClientName_throwsIllegalArgumentException() {
         String invalidClientName = "";
-        assertThrows(IllegalArgumentException.class, () -> new ClientName(invalidClientName));
+        assertThrows(IllegalArgumentException.class, () -> new Name(invalidClientName));
     }
 
     @Test
     public void isValidName() {
         // null name
-        assertThrows(NullPointerException.class, () -> ClientName.isValidClientName(null));
+        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
 
         // invalid name
-        assertFalse(ClientName.isValidClientName("")); // empty string
-        assertFalse(ClientName.isValidClientName(" ")); // spaces only
-        assertFalse(ClientName.isValidClientName("^")); // only non-alphanumeric characters
-        assertFalse(ClientName.isValidClientName("peter*")); // contains non-alphanumeric characters
-        assertFalse(ClientName.isValidClientName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertFalse(Name.isValidName("")); // empty string
+        assertFalse(Name.isValidName(" ")); // spaces only
+        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
+        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
 
         // valid name
-        assertTrue(ClientName.isValidClientName("peter jack")); // alphabets only
-        assertTrue(ClientName.isValidClientName("peter the 2nd")); // alphanumeric characters
-        assertTrue(ClientName.isValidClientName("Capital Tan Alan")); // with capital letters
-        assertTrue(ClientName.isValidClientName("12345")); // numbers only
+        assertTrue(Name.isValidName("peter jack")); // alphabets only
+        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
+        assertTrue(Name.isValidName("Capital Tan Alan")); // with capital letters
+        assertTrue(Name.isValidName("12345")); // numbers only
     }
 }

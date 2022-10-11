@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Client;
+import seedu.address.model.client.Client;
 
 /**
  * An UI component that displays information of a {@code Client}.
@@ -46,9 +46,9 @@ public class ClientCard extends UiPart<Region> {
         super(FXML);
         this.client = client;
         id.setText(displayedIndex + ". ");
-        name.setText(client.getName().fullName);
-        phone.setText(client.getPhone().value);
-        email.setText(client.getEmail().value);
+        name.setText(client.getClientName().toString());
+        phone.setText(client.getClientPhone().getPhoneRepresentation());
+        email.setText(client.getClientEmail().getEmailRepresentation());
         client.getProjects().stream()
                 .sorted(Comparator.comparing(project -> project.getProjectName().toString()))
                 .forEach(project -> projects.getChildren().add(new Label(project.getProjectName().toString())));

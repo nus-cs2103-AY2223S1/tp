@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.model.tag.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.client.Person;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
 /**
@@ -21,7 +21,7 @@ import seedu.address.model.project.Project;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate client(s).";
     private static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
     private static final String MESSAGE_DUPLICATE_ISSUE = "Issues list contains duplicate issue(s).";
 

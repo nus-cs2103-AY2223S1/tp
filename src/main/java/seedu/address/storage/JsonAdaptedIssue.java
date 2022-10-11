@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import seedu.address.model.Deadline;
 import seedu.address.model.issue.*;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.exceptions.IllegalValueException;

@@ -4,8 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the class for Client's Email address. This is modelled after Email in Person package of AB3,
- * particularly in checking the validity of emails.
+ * Represents a Person's email in the address book.
  */
 public class ClientEmail {
     private static final String SPECIAL_CHARACTERS = "+_.-";
@@ -46,21 +45,14 @@ public class ClientEmail {
     }
 
     /**
-     * Represents an Empty Email.
+     * Represents an Empty ClientEmail.
      */
-    private static class EmptyClientEmail extends ClientEmail {
-        private static final ClientEmail EMPTY_EMAIL = new EmptyClientEmail();
-        private EmptyClientEmail() {
+    private static class EmptyEmail extends ClientEmail {
+        private static final ClientEmail EMPTY_EMAIL = new EmptyEmail();
+        private EmptyEmail() {
             super("");
         }
-        /**
-         * Checks if this Client Email is empty.
-         * @return true if the Client Email is empty.
-         */
-        @Override
-        public boolean isEmpty() {
-            return true;
-        }
+
     }
 
     /**
@@ -74,6 +66,22 @@ public class ClientEmail {
     /**
      * Returns if a given string is a valid email.
      */
+    public static boolean isValidEmail(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ClientEmail // instanceof handles nulls
+                && this.email.equals(((ClientEmail) other).email)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return this.email.hashCode();
+    }
+
     public static boolean isValidClientEmail(String test) {
         return test.matches(VALIDATION_REGEX);
     }
@@ -83,7 +91,7 @@ public class ClientEmail {
      * @return String representing email
      */
     public String getEmailRepresentation() {
-        return this.email;
+        return "Client Email: " + this.email;
     }
 
     /**
@@ -92,25 +100,7 @@ public class ClientEmail {
      */
     @Override
     public String toString() {
-        return "Client Email: " + this.email;
-    }
-
-    /**
-     * Checks if an object equals this.
-     * @param other Object to be checked
-     * @return boolean true if this is equal to other and false otherwise
-     */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        } else if (other instanceof ClientEmail) {
-            ClientEmail otherEmail = (ClientEmail) other;
-            return this.email.equals(otherEmail.email);
-        } else {
-            return false;
-        }
+        return this.email;
     }
 
 }
-

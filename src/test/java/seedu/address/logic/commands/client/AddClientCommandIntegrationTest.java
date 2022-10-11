@@ -11,7 +11,7 @@ import seedu.address.logic.commands.client.AddClientCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Person;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;

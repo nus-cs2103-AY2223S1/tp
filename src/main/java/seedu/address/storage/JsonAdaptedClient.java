@@ -4,7 +4,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import seedu.address.model.person.*;
+import seedu.address.model.Name;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientId;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.exceptions.IllegalValueException;
 
@@ -48,10 +52,10 @@ class JsonAdaptedClient {
      * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        clientId = source.getId().toString();
+        name = source.getClientName().toString();
+        phone = source.getClientPhone().toString();
+        email = source.getClientEmail().toString();
+        clientId = source.getClientId().toString();
         projects.addAll(source.getProjects().stream()
                 .map(JsonAdaptedProject::new)
                 .collect(Collectors.toList()));
@@ -77,20 +81,22 @@ class JsonAdaptedClient {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClientPhone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!ClientPhone.isValidClientPhone(phone)) {
+            throw new IllegalValueException(ClientPhone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final ClientPhone modelPhone = new ClientPhone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClientEmail.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!ClientEmail.isValidEmail(email)) {
+            throw new IllegalValueException(ClientEmail.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final ClientEmail modelEmail = new ClientEmail(email);
 
         if (clientId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
