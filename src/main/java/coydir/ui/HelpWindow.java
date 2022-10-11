@@ -3,6 +3,8 @@ package coydir.ui;
 import java.util.logging.Logger;
 
 import coydir.commons.core.LogsCenter;
+import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,10 +18,15 @@ import javafx.stage.Stage;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t15-1.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "Click for more details: ";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
+    private static Application hostServicesApp = new Application() {
+            @Override
+            public void start(Stage stage) {}
+        };
 
     @FXML
     private Button copyButton;
@@ -98,5 +105,13 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    /**
+     * Opens the URL to the user guide in the default browser.
+     */
+    @FXML
+    private void openWebsite() {
+        HelpWindow.hostServicesApp.getHostServices().showDocument(USERGUIDE_URL);
     }
 }
