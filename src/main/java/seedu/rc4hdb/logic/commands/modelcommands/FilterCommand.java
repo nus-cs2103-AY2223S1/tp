@@ -9,6 +9,7 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
+
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
@@ -24,7 +25,7 @@ public class FilterCommand extends ModelCommand {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters the list using the attributes in the command"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "

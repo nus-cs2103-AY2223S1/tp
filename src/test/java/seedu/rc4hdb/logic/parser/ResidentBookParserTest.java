@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 
@@ -19,6 +20,7 @@ import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ClearCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
@@ -86,6 +88,16 @@ public class ResidentBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + NAME_DESC_AMY) instanceof FilterCommand);
+        Resident resident = new ResidentBuilder().build();
+        ResidentDescriptor descriptor = new ResidentDescriptorBuilder(resident).build();
+        FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
+                + " " + ResidentUtil.getResidentDescriptorDetails(descriptor));
+        assertEquals(new FilterCommand(descriptor), command);
     }
 
     @Test
