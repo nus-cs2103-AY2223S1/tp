@@ -46,8 +46,8 @@ public class TrackAScholarTest {
     @Test
     public void resetData_withDuplicateApplicants_throwsDuplicateApplicantException() {
         // Two applicants with the same identity fields
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         List<Applicant> newApplicants = Arrays.asList(ALICE, editedAlice);
         TrackAScholarStub newData = new TrackAScholarStub(newApplicants);
 
@@ -73,8 +73,8 @@ public class TrackAScholarTest {
     @Test
     public void hasApplicant_applicantWithSameIdentityFieldsInTrackAScholar_returnsTrue() {
         trackAScholar.addApplicant(ALICE);
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(trackAScholar.hasApplicant(editedAlice));
     }
 

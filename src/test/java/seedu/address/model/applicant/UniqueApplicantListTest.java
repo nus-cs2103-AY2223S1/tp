@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.applicant.exceptions.DuplicateApplicantException;
 import seedu.address.model.applicant.exceptions.ApplicantNotFoundException;
+import seedu.address.model.applicant.exceptions.DuplicateApplicantException;
 import seedu.address.testutil.ApplicantBuilder;
 
 public class UniqueApplicantListTest {
@@ -42,8 +42,8 @@ public class UniqueApplicantListTest {
     @Test
     public void contains_applicantWithSameIdentityFieldsInList_returnsTrue() {
         uniqueApplicantList.add(ALICE);
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(uniqueApplicantList.contains(editedAlice));
     }
 
@@ -85,8 +85,8 @@ public class UniqueApplicantListTest {
     @Test
     public void setApplicant_editedApplicantHasSameIdentity_success() {
         uniqueApplicantList.add(ALICE);
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         uniqueApplicantList.setApplicant(ALICE, editedAlice);
         UniqueApplicantList expectedUniqueApplicantList = new UniqueApplicantList();
         expectedUniqueApplicantList.add(editedAlice);
@@ -159,7 +159,8 @@ public class UniqueApplicantListTest {
     @Test
     public void setApplicants_listWithDuplicateApplicants_throwsDuplicateApplicantException() {
         List<Applicant> listWithDuplicateApplicants = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateApplicantException.class, () -> uniqueApplicantList.setApplicants(listWithDuplicateApplicants));
+        assertThrows(DuplicateApplicantException.class, () ->
+                uniqueApplicantList.setApplicants(listWithDuplicateApplicants));
     }
 
     @Test

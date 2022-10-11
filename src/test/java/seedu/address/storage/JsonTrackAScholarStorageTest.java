@@ -16,11 +16,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.TrackAScholar;
 import seedu.address.model.ReadOnlyTrackAScholar;
+import seedu.address.model.TrackAScholar;
 
 public class JsonTrackAScholarStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTrackAScholarStorageTest");
+    private static final Path TEST_DATA_FOLDER =
+            Paths.get("src", "test", "data", "JsonTrackAScholarStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -31,7 +32,8 @@ public class JsonTrackAScholarStorageTest {
     }
 
     private java.util.Optional<ReadOnlyTrackAScholar> readTrackAScholar(String filePath) throws Exception {
-        return new JsonTrackAScholarStorage(Paths.get(filePath)).readTrackAScholar(addToTestDataPathIfNotNull(filePath));
+        return new JsonTrackAScholarStorage(Paths.get(filePath))
+                .readTrackAScholar(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -52,12 +54,14 @@ public class JsonTrackAScholarStorageTest {
 
     @Test
     public void readTrackAScholar_invalidApplicantTrackAScholar_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTrackAScholar("invalidApplicantTrackAScholar.json"));
+        assertThrows(DataConversionException.class, () ->
+                readTrackAScholar("invalidApplicantTrackAScholar.json"));
     }
 
     @Test
     public void readTrackAScholar_invalidAndValidApplicantTrackAScholar_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTrackAScholar("invalidAndValidApplicantTrackAScholar.json"));
+        assertThrows(DataConversionException.class, () ->
+                readTrackAScholar("invalidAndValidApplicantTrackAScholar.json"));
     }
 
     @Test

@@ -36,10 +36,10 @@ import static seedu.address.testutil.TypicalApplicants.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.ApplicationStatus;
 import seedu.address.model.applicant.Email;
 import seedu.address.model.applicant.Name;
-import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Phone;
 import seedu.address.model.applicant.Scholarship;
 import seedu.address.model.tag.Tag;
@@ -83,8 +83,8 @@ public class AddCommandParserTest {
         //        new AddCommand(expectedApplicant));
 
         // multiple tags - all accepted
-        Applicant expectedApplicantMultipleTags = new ApplicantBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+        Applicant expectedApplicantMultipleTags = new ApplicantBuilder(BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
                 + TAG_DESC_HUSBAND + APPLICATION_STATUS_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedApplicantMultipleTags));

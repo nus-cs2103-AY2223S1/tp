@@ -19,7 +19,8 @@ public class EditApplicantDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditCommand.EditApplicantDescriptor descriptorWithSameValues = new EditCommand.EditApplicantDescriptor(DESC_AMY);
+        EditCommand.EditApplicantDescriptor descriptorWithSameValues =
+                new EditCommand.EditApplicantDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -35,7 +36,8 @@ public class EditApplicantDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditCommand.EditApplicantDescriptor editedAmy = new EditApplicantDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditCommand.EditApplicantDescriptor editedAmy =
+                new EditApplicantDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

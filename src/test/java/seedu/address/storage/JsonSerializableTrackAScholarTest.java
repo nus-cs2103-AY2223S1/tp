@@ -15,10 +15,14 @@ import seedu.address.testutil.TypicalApplicants;
 
 public class JsonSerializableTrackAScholarTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTrackAScholarTest");
-    private static final Path TYPICAL_APPLICANTS_FILE = TEST_DATA_FOLDER.resolve("typicalApplicantsTrackAScholar.json");
-    private static final Path INVALID_APPLICANT_FILE = TEST_DATA_FOLDER.resolve("invalidApplicantTrackAScholar.json");
-    private static final Path DUPLICATE_APPLICANT_FILE = TEST_DATA_FOLDER.resolve("duplicateApplicantTrackAScholar.json");
+    private static final Path TEST_DATA_FOLDER =
+            Paths.get("src", "test", "data", "JsonSerializableTrackAScholarTest");
+    private static final Path TYPICAL_APPLICANTS_FILE =
+            TEST_DATA_FOLDER.resolve("typicalApplicantsTrackAScholar.json");
+    private static final Path INVALID_APPLICANT_FILE =
+            TEST_DATA_FOLDER.resolve("invalidApplicantTrackAScholar.json");
+    private static final Path DUPLICATE_APPLICANT_FILE =
+            TEST_DATA_FOLDER.resolve("duplicateApplicantTrackAScholar.json");
 
     @Test
     public void toModelType_typicalApplicantsFile_success() throws Exception {

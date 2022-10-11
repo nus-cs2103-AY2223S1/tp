@@ -10,22 +10,22 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showApplicantAtIndex;
+import static seedu.address.testutil.TypicalApplicants.getTypicalTrackAScholar;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPLICANT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPLICANT;
-import static seedu.address.testutil.TypicalApplicants.getTypicalTrackAScholar;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditApplicantDescriptor;
-import seedu.address.model.TrackAScholar;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TrackAScholar;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.applicant.Applicant;
-import seedu.address.testutil.EditApplicantDescriptorBuilder;
 import seedu.address.testutil.ApplicantBuilder;
+import seedu.address.testutil.EditApplicantDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -112,7 +112,8 @@ public class EditCommandTest {
         showApplicantAtIndex(model, INDEX_FIRST_APPLICANT);
 
         // edit applicant in filtered list into a duplicate in TrackAScholar
-        Applicant applicantInList = model.getTrackAScholar().getApplicantList().get(INDEX_SECOND_APPLICANT.getZeroBased());
+        Applicant applicantInList = model.getTrackAScholar().getApplicantList()
+                .get(INDEX_SECOND_APPLICANT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_APPLICANT,
                 new EditApplicantDescriptorBuilder(applicantInList).build());
 
