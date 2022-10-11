@@ -25,15 +25,20 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Constructor using a PersonData parameter object.
+     * Requires name, phone, email, address, tags to be non-null.
+     *
+     * @param personData PersonData parameter object.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+    public Person(PersonData personData) {
+        requireAllNonNull(personData.getName(), personData.getPhone(),
+                personData.getEmail(), personData.getAddress(), personData.getTags());
+
+        this.name = personData.getName();
+        this.phone = personData.getPhone();
+        this.email = personData.getEmail();
+        this.address = personData.getAddress();
+        this.tags.addAll(personData.getTags());
     }
 
     public Name getName() {
@@ -69,8 +74,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPerson != null && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -104,13 +108,8 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append(getName()).append("; Phone: ").append(getPhone()).append("; Email: ")
+                .append(getEmail()).append("; Address: ").append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
