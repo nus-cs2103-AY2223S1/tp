@@ -35,6 +35,10 @@ public class DeleteRecordCommand extends Command {
         requireNonNull(model);
         List<Record> lastShownRecordList = model.getFilteredRecordList();
 
+        if (!model.isRecordListDisplayed()) {
+            throw new CommandException(MESSAGE_RECORD_COMMAND_PREREQUISITE);
+        }
+
         if (targetIndex.getZeroBased() >= lastShownRecordList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

@@ -21,7 +21,7 @@ public class AddRecordCommand extends Command {
             + PREFIX_DATE + "Record Date "
             + PREFIX_RECORD + "Record Content\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DATE + "31-10-2022 1430 (must be formatted in dd-MM-yyyy HHmm)"
+            + PREFIX_DATE + "31-10-2022 1430 (must be formatted in dd-MM-yyyy HHmm) "
             + PREFIX_RECORD + "suffers from common cold";
 
     public static final String MESSAGE_SUCCESS = "New record added: %1$s";
@@ -40,6 +40,10 @@ public class AddRecordCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.isRecordListDisplayed()) {
+            throw new CommandException(MESSAGE_RECORD_COMMAND_PREREQUISITE);
+        }
 
         if (model.hasRecord(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECORD);

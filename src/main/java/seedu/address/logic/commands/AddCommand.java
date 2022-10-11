@@ -54,6 +54,10 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        if (model.isRecordListDisplayed()) {
+            throw new CommandException(MESSAGE_ADDRESS_BOOK_COMMAND_PREREQUISITE);
+        }
+
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

@@ -136,6 +136,11 @@ public interface Model {
     void deleteRecord(Record record);
 
     /**
+     * Retrieve flag raised by record list being displayed.
+     */
+    boolean isRecordListDisplayed();
+
+    /**
      * Flag to determine is record list is being displayed.
      */
     void setRecordListDisplayed(boolean b);

@@ -145,6 +145,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isRecordListDisplayed() {
+        return isRecordListDisplayed;
+    }
+
+    @Override
     public void setPersonWithRecords(Person person) {
         personWithRecords.setDisplayedPerson(person, this.addressBook);
     }

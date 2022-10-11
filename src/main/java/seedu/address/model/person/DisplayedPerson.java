@@ -11,6 +11,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  */
 public class DisplayedPerson {
 
+    /** Person to be displayed */
     private Person person;
 
     /**
