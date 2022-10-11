@@ -23,7 +23,8 @@ import seedu.rc4hdb.model.resident.predicates.AttributesMatchKeywordsPredicate;
  */
 public class FilterCommand extends ModelCommand {
     public static final String COMMAND_WORD = "filter";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters the resident book by the attributes specified in the command"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": "
+            + "filters the resident book by the attributes specified in the command"
             + "Parameters:"
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
