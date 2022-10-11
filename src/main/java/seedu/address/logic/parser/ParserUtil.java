@@ -137,7 +137,6 @@ public class ParserUtil {
         requireNonNull(date);
 
         try {
-//            LocalDate parsedDate = LocalDate.parse(date);
             LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMyyyy"));
             return new MeetingDate(parsedDate);
         } catch (DateTimeParseException e) {
@@ -152,7 +151,6 @@ public class ParserUtil {
         requireNonNull(time);
 
         try {
-//            LocalTime parsedTime = LocalTime.parse(time);
             LocalTime parsedTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HHmm"));
             return new MeetingTime(parsedTime);
         } catch (DateTimeParseException e) {

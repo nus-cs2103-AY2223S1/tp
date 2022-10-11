@@ -3,6 +3,7 @@ package seedu.address.model.meeting;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Meeting's date in MyInsuRec.
@@ -24,7 +25,7 @@ public class MeetingDate {
     }
 
     public String toString() {
-        return date.toString();
+        return date.format(DateTimeFormatter.ofPattern("ddMMyyyy"));
     }
 
     @Override
