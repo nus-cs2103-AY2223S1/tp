@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.profile.AddProfileCommand;
 import seedu.address.logic.commands.profile.DeleteProfileCommand;
 import seedu.address.logic.commands.profile.EditProfileCommand;
+import seedu.address.logic.commands.profile.FindProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.commands.profile.ViewProfilesCommand;
 import seedu.address.logic.parser.Parser;
@@ -26,6 +27,7 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ProfileCommand parse(String args) throws ParseException {
+
         if (!args.matches("\\s+-.*")) {
             Matcher matcher = Pattern.compile("(\\s+-\\S*)").matcher(args);
             long numFlags = matcher.results().count();
@@ -54,6 +56,8 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
             return new DeleteProfileCommandParser().parse(args);
         case EditProfileCommand.COMMAND_OPTION:
             return new EditProfileCommandParser().parse(args);
+        case FindProfileCommand.COMMAND_OPTION:
+            return new FindProfileCommandParser().parse(args);
         case ViewProfilesCommand.COMMAND_OPTION:
             return new ViewProfilesCommandParser().parse(args);
         default:
