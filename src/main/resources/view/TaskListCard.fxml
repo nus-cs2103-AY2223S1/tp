@@ -26,6 +26,7 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="name" text="\$name" styleClass="cell_big_label" />
+                <Label fx:id="status" text="\$name" styleClass="cell_big_label" />
             </HBox>
             <FlowPane fx:id="tags" />
             <Label fx:id="module" styleClass="cell_small_label" text="\$module" />
