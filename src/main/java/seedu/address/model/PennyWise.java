@@ -52,11 +52,34 @@ public class PennyWise implements ReadOnlyPennyWise {
     }
 
     /**
+     * Replaces the given expenditure {@code target} in the list with {@code editedEntry}.
+     * {@code target} must exist in the expenditure list.
+     * The expenditure identity of {@code editedEntry} must not be the same as another existing expenditure
+     * in the expenditure list.
+     */
+    public void setExpenditure(Entry target, Entry editedEntry) {
+        requireNonNull(editedEntry);
+
+        expenditure.setEntries(target, editedEntry);
+    }
+
+    /**
      * Replaces the contents of the income list with {@code entries}.
      * {@code entries} must not contain duplicate incomes.
      */
     public void setIncome(List<Entry> entries) {
         this.income.setEntries(entries);
+    }
+
+    /**
+     * Replaces the given income {@code target} in the list with {@code editedEntry}.
+     * {@code target} must exist in the income list.
+     * The income identity of {@code editedEntry} must not be the same as another existing income in the income list.
+     */
+    public void setIncome(Entry target, Entry editedEntry) {
+        requireNonNull(editedEntry);
+
+        income.setEntries(target, editedEntry);
     }
 
     /**
@@ -88,17 +111,6 @@ public class PennyWise implements ReadOnlyPennyWise {
     }
 
     /**
-     * Replaces the given expenditure {@code target} in the list with {@code editedEntry}.
-     * {@code target} must exist in the expenditure list.
-     * The expenditure identity of {@code editedEntry} must not be the same as another existing expenditure in the expenditure list.
-     */
-    public void setExpenditure(Entry target, Entry editedEntry) {
-        requireNonNull(editedEntry);
-
-        expenditure.setEntries(target, editedEntry);
-    }
-
-    /**
      * Removes {@code key} from this {@code PennyWise}.
      * {@code key} must exist in the expenditure list.
      */
@@ -120,17 +132,6 @@ public class PennyWise implements ReadOnlyPennyWise {
      */
     public void addIncome(Entry e) {
         income.add(e);
-    }
-
-    /**
-     * Replaces the given income {@code target} in the list with {@code editedEntry}.
-     * {@code target} must exist in the income list.
-     * The income identity of {@code editedEntry} must not be the same as another existing income in the income list.
-     */
-    public void setIncome(Entry target, Entry editedEntry) {
-        requireNonNull(editedEntry);
-
-        income.setEntries(target, editedEntry);
     }
 
     /**

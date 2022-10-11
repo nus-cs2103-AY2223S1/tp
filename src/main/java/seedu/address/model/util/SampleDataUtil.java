@@ -6,7 +6,12 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.PennyWise;
 import seedu.address.model.ReadOnlyPennyWise;
-import seedu.address.model.entry.*;
+import seedu.address.model.entry.Amount;
+import seedu.address.model.entry.Date;
+import seedu.address.model.entry.Description;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.Expenditure;
+import seedu.address.model.entry.Income;
 import seedu.address.model.tag.Tag;
 
 /**

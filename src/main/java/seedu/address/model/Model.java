@@ -76,7 +76,8 @@ public interface Model {
     /**
      * Replaces the given expenditure {@code target} with {@code editedEntry}.
      * {@code target} must exist in the expenditure list.
-     * The expenditure identity of {@code editedEntry} must not be the same as another existing expenditure in the expenditure list.
+     * The expenditure identity of {@code editedEntry} must not be the same as another existing expenditure
+     * in the expenditure list.
      */
     void setExpenditure(Entry target, Entry editedEntry);
 
