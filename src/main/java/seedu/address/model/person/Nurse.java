@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class Nurse extends Person{
 
-    public Nurse(Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, gender, phone, email, address, tags);
+    public Nurse(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags) {
+        super(uid, name, gender, phone, email, address, tags);
     }
 
     public String getCategory() {

@@ -11,11 +11,13 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
 
     // Identity fields
+    private final Uid uid;
     private final Name name;
     private final Gender gender;
     private final Phone phone;
@@ -28,14 +30,22 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, gender, phone, email, address, tags);
+    public Person(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(uid, name, phone, email, address, tags);
+        this.uid = uid;
         this.name = name;
         this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * @return the id
+     */
+    public Uid getUid() {
+        return uid;
     }
 
     public Name getName() {
@@ -57,9 +67,16 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+    public String getCategory() {
+        return null;
+    }
+    public String getCategoryIndicator() {
+        return "person";
+    }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -75,8 +92,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPerson != null && otherPerson.getUid().equals(getUid());
     }
 
     /**
@@ -94,7 +110,8 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getUid().equals(getUid())
+                && otherPerson.getName().equals(getName())
                 && otherPerson.getGender().equals(getGender())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
@@ -105,13 +122,16 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, gender, phone, email, address, tags);
+        return Objects.hash(uid, name, gender, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("Uid: ")
+                .append(getUid())
+                .append("; Name: ")
+                .append(getName())
                 .append("; Gender: ")
                 .append(getGender())
                 .append("; Phone: ")
