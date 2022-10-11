@@ -2,10 +2,12 @@ package seedu.address.logic.commands.issue;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.model.Model;
 import seedu.address.ui.Ui;
 
+/**
+ * Edit issue command to edit issues
+ */
 public class EditIssueCommand extends IssueCommand {
 
     public static final String COMMAND_FLAG = "-e";
@@ -19,3 +21,4 @@ public class EditIssueCommand extends IssueCommand {
         return null;
     }
 }
+
