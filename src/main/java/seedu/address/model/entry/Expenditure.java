@@ -5,7 +5,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Expenditure in the address book.
+ * Represents an Expenditure in the penny wise application.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Expenditure extends Entry {
@@ -15,8 +15,6 @@ public class Expenditure extends Entry {
     public Expenditure(Description description, Date date, Amount amount, Set<Tag> tags) {
         super(description, date, amount, tags);
     }
-
-
 
     @Override
     public String toString() {

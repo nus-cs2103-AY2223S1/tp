@@ -11,7 +11,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.PennyWiseParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPennyWise;
@@ -27,7 +27,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final PennyWiseParser pennyWiseParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,7 +35,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        pennyWiseParser = new PennyWiseParser();
     }
 
     @Override
@@ -43,14 +43,14 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = pennyWiseParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.savePennyWise(model.getPennyWise());
             logger.info("TRYING TO LOGGGG ===========");
-            logger.info(model.getAddressBook().toString());
-            logger.info(storage.readAddressBook().toString());
+            logger.info(model.getPennyWise().toString());
+            logger.info(storage.readPennyWise().toString());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         } catch (DataConversionException e) {
@@ -61,8 +61,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyPennyWise getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyPennyWise getPennyWise() {
+        return model.getPennyWise();
     }
 
     @Override
@@ -76,8 +76,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getPennyWiseFilePath() {
+        return model.getPennyWiseFilePath();
     }
 
     @Override

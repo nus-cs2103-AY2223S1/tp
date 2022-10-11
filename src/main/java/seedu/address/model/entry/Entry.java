@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Entry in the address book.
+ * Represents an Entry in the penny wise application.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Entry {
@@ -75,7 +75,7 @@ public class Entry {
 
     /**
      * Returns true if both entries have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * This defines a stronger notion of equality between two entries.
      */
     @Override
     public boolean equals(Object other) {

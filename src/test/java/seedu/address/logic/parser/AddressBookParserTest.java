@@ -23,7 +23,7 @@
 //import seedu.address.logic.commands.HelpCommand;
 //import seedu.address.logic.commands.ListCommand;
 //import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.model.person.NameContainsKeywordsPredicate;
+//import seedu.address.model.entry.NameContainsKeywordsPredicate;
 //import seedu.address.model.person.Person;
 //import seedu.address.testutil.EditPersonDescriptorBuilder;
 //import seedu.address.testutil.PersonBuilder;
@@ -31,7 +31,7 @@
 //
 //public class AddressBookParserTest {
 //
-//    private final AddressBookParser parser = new AddressBookParser();
+//    private final PennyWiseParser parser = new PennyWiseParser();
 //
 //    @Test
 //    public void parseCommand_add() throws Exception {

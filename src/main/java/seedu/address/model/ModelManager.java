@@ -14,32 +14,32 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entry.Entry;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the PennyWise application data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final PennyWise pennyWise;
     private final UserPrefs userPrefs;
     private final FilteredList<Entry> filteredExpenditure;
     private final FilteredList<Entry> filteredIncome;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given pennyWise and userPrefs.
      */
-    public ModelManager(ReadOnlyPennyWise addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyPennyWise pennyWise, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(pennyWise, userPrefs);
 
-        logger.fine("Initializing with penny wise: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with penny wise: " + pennyWise + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.pennyWise = new PennyWise(pennyWise);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredExpenditure = new FilteredList<>(this.addressBook.getExpenditureList());
-        filteredIncome = new FilteredList<>(this.addressBook.getIncomeList());
+        filteredExpenditure = new FilteredList<>(this.pennyWise.getExpenditureList());
+        filteredIncome = new FilteredList<>(this.pennyWise.getIncomeList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new PennyWise(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -67,42 +67,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPennyWiseFilePath() {
+        return userPrefs.getPennyWiseFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setPennyWiseFilePath(Path pennyWiseFilePath) {
+        requireNonNull(pennyWiseFilePath);
+        userPrefs.setPennyWiseFilePath(pennyWiseFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== PennyWise ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyPennyWise addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setPennyWise(ReadOnlyPennyWise pennyWise) {
+        this.pennyWise.resetData(pennyWise);
     }
 
     @Override
-    public ReadOnlyPennyWise getAddressBook() {
-        return addressBook;
+    public ReadOnlyPennyWise getPennyWise() {
+        return pennyWise;
     }
 
     @Override
     public boolean hasExpenditure(Entry entry) {
         requireNonNull(entry);
-        return addressBook.hasExpenditure(entry);
+        return pennyWise.hasExpenditure(entry);
     }
 
     @Override
     public void deleteExpenditure(Entry target) {
-        addressBook.removeExpenditure(target);
+        pennyWise.removeExpenditure(target);
     }
 
     @Override
     public void addExpenditure(Entry entry) {
-        addressBook.addExpenditure(entry);
+        pennyWise.addExpenditure(entry);
         updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 
@@ -110,23 +110,23 @@ public class ModelManager implements Model {
     public void setExpenditure(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
 
-        addressBook.setExpenditure(target, editedEntry);
+        pennyWise.setExpenditure(target, editedEntry);
     }
 
     @Override
     public boolean hasIncome(Entry entry) {
         requireNonNull(entry);
-        return addressBook.hasIncome(entry);
+        return pennyWise.hasIncome(entry);
     }
 
     @Override
     public void deleteIncome(Entry target) {
-        addressBook.removeIncome(target);
+        pennyWise.removeIncome(target);
     }
 
     @Override
     public void addIncome(Entry entry) {
-        addressBook.addIncome(entry);
+        pennyWise.addIncome(entry);
         updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 
@@ -134,14 +134,14 @@ public class ModelManager implements Model {
     public void setIncome(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
 
-        addressBook.setIncome(target, editedEntry);
+        pennyWise.setIncome(target, editedEntry);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Entry List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code filteredExpenditure} backed by the internal list of
+     * {@code versionedPennyWise}
      */
     @Override
     public ObservableList<Entry> getFilteredExpenditureList() {
@@ -176,7 +176,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return pennyWise.equals(other.pennyWise)
                 && userPrefs.equals(other.userPrefs)
                 && filteredExpenditure.equals(other.filteredExpenditure);
     }

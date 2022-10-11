@@ -1,3 +1,4 @@
+
 package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.PennyWise;
 import seedu.address.model.entry.Expenditure;
 
 /**
@@ -50,8 +51,8 @@ public class TypicalEntry {
             .build();
     // add typical income
 
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static PennyWise getTypicalAddressBook() {
+        PennyWise ab = new PennyWise();
 
         for (Expenditure expenditure : getTypicalExpenditure()) {
             ab.addExpenditure(expenditure);

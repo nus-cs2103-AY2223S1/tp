@@ -4,17 +4,18 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.PennyWise;
 import seedu.address.model.ReadOnlyPennyWise;
 import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
+import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.Expenditure;
 import seedu.address.model.entry.Income;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code PennyWise} with sample data.
  */
 public class SampleDataUtil {
     public static Expenditure[] getSampleExpenditure() {
@@ -52,9 +53,9 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyPennyWise getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Expenditure sampleEntry : getSampleExpenditure()) {
+    public static ReadOnlyPennyWise getSamplePennyWise() {
+        PennyWise sampleAb = new PennyWise();
+        for (Entry sampleEntry : getSampleExpenditure()) {
             sampleAb.addExpenditure(sampleEntry);
         }
 

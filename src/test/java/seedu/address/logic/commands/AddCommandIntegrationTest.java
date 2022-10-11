@@ -31,7 +31,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_newExpenditure_success() {
         Entry validExpenditure = new ExpenditureBuilder().build();
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPennyWise(), new UserPrefs());
         expectedModel.addExpenditure(validExpenditure);
         assertCommandSuccess(new AddCommand(validExpenditure, new EntryType("e")), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validExpenditure), expectedModel);
@@ -39,11 +39,11 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateExpenditure_throwsCommandException() {
-        Entry expenditureInList = model.getAddressBook().getExpenditureList().get(0);
+        Entry expenditureInList = model.getPennyWise().getExpenditureList().get(0);
         assertCommandFailure(
                 new AddCommand(expenditureInList, new EntryType("e")),
                 model,
-                AddCommand.MESSAGE_DUPLICATE_PERSON);
+                AddCommand.MESSAGE_DUPLICATE_ENTRY);
     }
 
     // @Test

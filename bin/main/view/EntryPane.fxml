@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.StackPane?>
+<TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <tabs>
+        <Tab text="Expenses">
+            <content>
+                <StackPane fx:id="expenseEntryPlaceholder"/>
+            </content>
+        </Tab>
+        <Tab text="Income">
+            <content>
+                <StackPane fx:id="incomeEntryPlaceholder"/>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>

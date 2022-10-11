@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.PennyWise;
 import seedu.address.model.ReadOnlyPennyWise;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entry.Entry;
@@ -56,7 +56,7 @@ public class AddCommandTest {
 
         assertThrows(
                 CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+                AddCommand.MESSAGE_DUPLICATE_ENTRY, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -110,22 +110,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getPennyWiseFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setPennyWiseFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyPennyWise newData) {
+        public void setPennyWise(ReadOnlyPennyWise newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyPennyWise getAddressBook() {
+        public ReadOnlyPennyWise getPennyWise() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -240,8 +240,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyPennyWise getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyPennyWise getPennyWise() {
+            return new PennyWise();
         }
     }
 
@@ -264,8 +264,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyPennyWise getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyPennyWise getPennyWise() {
+            return new PennyWise();
         }
     }
 
