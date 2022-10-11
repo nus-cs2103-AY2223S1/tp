@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DeleteTaskCommand.DeleteTaskFromModuleDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -16,6 +17,8 @@ import seedu.address.model.module.ModuleCode;
  * Parses input arguments and creates a new {@code DeleteTaskCommand} object.
  */
 public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
+    public static final String MESSAGE_INDEX_IS_NOT_A_POSITIVE_INTEGER = "The "
+            + "task number must be a non-zero positive integer!";
 
     /**
      * Parses the given {@code String} of arguments in the context of the
@@ -47,6 +50,9 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
         deleteTaskFromPersonDescriptor.setModuleCodeOfModuleWithTaskToDelete(moduleCodeOfModuleToDeleteTaskFrom);
         String taskNumberGivenByUser =
                 argMultimap.getValue(PREFIX_TASK_NUMBER).get();
+        if (!StringUtil.isNonZeroUnsignedInteger(taskNumberGivenByUser)) {
+            throw new ParseException(MESSAGE_INDEX_IS_NOT_A_POSITIVE_INTEGER);
+        }
         Index taskIndexToRemove =
                 ParserUtil.parseTaskNumberToDelete(taskNumberGivenByUser);
         deleteTaskFromPersonDescriptor.setIndexOfTaskToDelete(taskIndexToRemove);
