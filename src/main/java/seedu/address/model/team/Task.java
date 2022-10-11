@@ -94,9 +94,7 @@ public class Task {
     }
 
     /**
-     * Returns true if two tasks have the same name.
-     *
-     * TODO: Check equality of deadline or other attributes when added.
+     * Returns true if two tasks have the same name, members that task is assigned to and deadline.
      *
      * @param other the other task to be compared with.
      * @return true if the tasks are considered equal, false otherwise.
@@ -105,7 +103,9 @@ public class Task {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof Task // instanceof handles nulls
-            && name.equals(((Task) other).name)); // state check
+            && name.equals(((Task) other).name))
+                && assignees.equals(((Task) other).assignees)
+                && deadline.equals(((Task) other).deadline); // state check
     }
 
     @Override
@@ -117,6 +117,11 @@ public class Task {
         assignees.add(assignee);
     }
 
+    /**
+     * Checks if task has already been assigned to the specified assignee.
+     * @param assignee
+     * @return true if the task has been assigned to the assignee before, false otherwise.
+     */
     public boolean checkAssignee(Person assignee) {
         return this.assignees.contains(assignee);
     }

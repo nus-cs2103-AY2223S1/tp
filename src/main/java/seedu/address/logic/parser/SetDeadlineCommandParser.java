@@ -4,9 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.Set;
 
-import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.SetDeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 

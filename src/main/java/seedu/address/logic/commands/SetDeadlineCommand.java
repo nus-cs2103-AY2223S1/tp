@@ -6,12 +6,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Task;
 
 /**
- * Assigns a task to a specific member in the team.
+ * Sets a deadline for a specified task.
  */
 public class SetDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "set_deadline";
@@ -30,9 +29,8 @@ public class SetDeadlineCommand extends Command {
 
     /**
      * Returns a command that adds a task to the current team.
-     * @param taskIndex the name of the task to be added.
-     * @param deadline deadline of task
-     * @throws ParseException when the task name does not follow the format specified.
+     * @param taskIndex The index of the task to be added.
+     * @param deadline Deadline of task
      */
     public SetDeadlineCommand(int taskIndex, LocalDate deadline) {
         this.taskIndex = taskIndex;

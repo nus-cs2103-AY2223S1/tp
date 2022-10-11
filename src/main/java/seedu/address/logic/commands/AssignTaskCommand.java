@@ -31,8 +31,8 @@ public class AssignTaskCommand extends Command {
     private final int memberIndex;
 
     /**
-     * Returns a command that adds a task to the current team.
-     * @param taskIndex the name of the task to be added.
+     * Returns a command that assigns a task to the specified member in the team.
+     * @param taskIndex the index of the task to be added.
      * @param memberIndex the index of the member that the task is assigned to.
      */
     public AssignTaskCommand(int taskIndex, int memberIndex) {
