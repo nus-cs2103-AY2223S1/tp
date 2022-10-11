@@ -34,9 +34,14 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' person model file path.
      */
-    Path getAddressBookFilePath();
+    Path getPersonModelFilePath();
+
+    /**
+     * Returns the user prefs' property model file path.
+     */
+    Path getPropertyModelFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -65,8 +65,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getPersonModelFilePath() {
         return model.getPersonModelFilePath();
+    }
+
+    @Override
+    public Path getPropertyModelFilePath() {
+        return model.getPropertyModelFilePath();
     }
 
     @Override
