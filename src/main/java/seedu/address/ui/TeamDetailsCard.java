@@ -13,19 +13,15 @@ import seedu.address.model.team.Team;
 public class TeamDetailsCard extends UiPart<Region> {
     private static final String FXML = "TeamDetailsCard.fxml";
 
+    private Team team;
+
     @FXML
     private HBox cardPane;
     @FXML
     private Label teamNameDisplay;
 
-    public TeamDetailsCard(StringProperty teamName) {
+    public TeamDetailsCard(Team team) {
         super(FXML);
-        teamNameDisplay.textProperty().bindBidirectional(teamName);
-        setTeamName(teamNameDisplay.getText());
-    }
-
-    public void setTeamName(String teamName) {
-        requireNonNull(teamName);
-        teamNameDisplay.setText(teamName);
+        teamNameDisplay.setText(team.getTeamName());
     }
 }

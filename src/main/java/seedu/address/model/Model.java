@@ -3,6 +3,7 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -103,5 +104,5 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    StringProperty getTeamAsProperty();
+    ObjectProperty<Team> getTeamAsProperty();
 }

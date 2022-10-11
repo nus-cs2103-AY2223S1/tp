@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -93,7 +94,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public StringProperty getTeamAsProperty() {
+    public ObjectProperty<Team> getTeamAsProperty() {
         return model.getTeamAsProperty();
     }
 }

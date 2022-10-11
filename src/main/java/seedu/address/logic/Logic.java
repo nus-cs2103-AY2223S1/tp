@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -54,5 +55,5 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
-    StringProperty getTeamAsProperty();
+    ObjectProperty<Team> getTeamAsProperty();
 }

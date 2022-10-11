@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -176,7 +177,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public StringProperty getTeamAsProperty() {
+        public ObjectProperty<Team> getTeamAsProperty() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -120,7 +121,7 @@ public class ModelManager implements Model {
         return addressBook.getTeam();
     }
     @Override
-    public StringProperty getTeamAsProperty() {
+    public ObjectProperty<Team> getTeamAsProperty() {
         return addressBook.getTeamAsProperty();
     }
 

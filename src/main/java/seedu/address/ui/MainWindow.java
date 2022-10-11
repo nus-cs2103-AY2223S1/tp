@@ -38,7 +38,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private TaskListPanel taskListPanel;
     private HelpWindow helpWindow;
-    private TeamDetailsCard teamDetailsCard;
+
+    private TeamDetailsPanel teamDetailsPanel;
 
     @FXML
     private StackPane teamListPanelPlaceholder;
@@ -127,8 +128,8 @@ public class MainWindow extends UiPart<Stage> {
         teamListPanel = new TeamListPanel(logic.getTeamList());
         teamListPanelPlaceholder.getChildren().add(teamListPanel.getRoot());
 
-        teamDetailsCard = new TeamDetailsCard(logic.getTeamAsProperty());
-        teamDetailsCardPlaceHolder.getChildren().add(teamDetailsCard.getRoot());
+        teamDetailsPanel = new TeamDetailsPanel(logic.getTeamAsProperty());
+        teamDetailsCardPlaceHolder.getChildren().add(teamDetailsPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
