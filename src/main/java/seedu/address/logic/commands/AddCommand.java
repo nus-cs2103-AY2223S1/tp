@@ -10,53 +10,54 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.applicant.Applicant;
 
 /**
- * Adds a person to the address book.
+ * Adds a applicant to TrackAScholar.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a applicant to TrackAScholar. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_SCHOLARSHIP + "SCHOLARSHIP "
+            + PREFIX_APPLICATION_STATUS + "APPLICATION STATUS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_SCHOLARSHIP + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_APPLICATION_STATUS + "pending"
+            + PREFIX_APPLICATION_STATUS + "pending "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney ";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the scholarship book";
+    public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";
+    public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in TrackAScholar";
 
-    private final Person toAdd;
+    private final Applicant toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Applicant}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Applicant applicant) {
+        requireNonNull(applicant);
+        toAdd = applicant;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasApplicant(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPLICANT);
         }
 
-        model.addPerson(toAdd);
+        model.addApplicant(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
