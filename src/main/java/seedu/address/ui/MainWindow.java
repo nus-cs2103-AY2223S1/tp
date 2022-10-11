@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -24,6 +25,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String DARK_CSS = "/view/DarkTheme.css";
+    private static final String LIGHT_CSS = "/view/LightTheme.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -35,6 +38,9 @@ public class MainWindow extends UiPart<Stage> {
     private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    @FXML
+    private Scene mainScene;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -166,6 +172,18 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    @FXML
+    public void handleLightTheme() {
+        mainScene.getStylesheets().clear();
+        mainScene.getStylesheets().add(getClass().getResource(LIGHT_CSS).toExternalForm());
+    }
+
+    @FXML
+    public void handleDarkTheme() {
+        mainScene.getStylesheets().clear();
+        mainScene.getStylesheets().add(getClass().getResource(DARK_CSS).toExternalForm());
     }
 
     public ClientListPanel getClientListPanel() {
