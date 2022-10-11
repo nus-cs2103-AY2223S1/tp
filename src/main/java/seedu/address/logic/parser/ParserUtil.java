@@ -15,6 +15,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.ta.TeachingAssistantId;
+import seedu.address.model.ta.TeachingAssistantName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
@@ -205,5 +207,23 @@ public class ParserUtil {
             throw new ParseException(TutorialTimeslot.MESSAGE_INVALID_DURATION);
         }
         return new TutorialTimeslot(trimmedName);
+    }
+
+    public static TeachingAssistantName parseTeachingAssistantName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!TeachingAssistantName.isValidName(trimmedName)) {
+            throw new ParseException(TeachingAssistantName.MESSAGE_CONSTRAINTS);
+        }
+        return new TeachingAssistantName(trimmedName);
+    }
+
+    public static TeachingAssistantId parseTeachingAssistantId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedName = id.trim();
+        if (!TeachingAssistantId.isValidId(trimmedName)) {
+            throw new ParseException(TeachingAssistantId.MESSAGE_CONSTRAINTS);
+        }
+        return new TeachingAssistantId(trimmedName);
     }
 }

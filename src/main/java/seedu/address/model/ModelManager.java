@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Tutorial> filteredTutorials;
+    private final FilteredList<TeachingAssistant> filteredTeachingAssistants;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
+        filteredTeachingAssistants = new FilteredList<>(this.addressBook.getTeachingAssistantList());
     }
 
     public ModelManager() {
@@ -187,4 +190,39 @@ public class ModelManager implements Model {
         filteredTutorials.setPredicate(predicate);
     }
 
+    //=========== Teaching Assistants =============================================================
+
+    /**
+     * Returns true if a teaching assistant with the same identity as {@code ta} exists in the ModQuik.
+     *
+     * @param ta
+     */
+    @Override
+    public boolean hasTeachingAssistant(TeachingAssistant ta) {
+        requireNonNull(ta);
+        return addressBook.hasTeachingAssistant(ta);
+    }
+
+    /**
+     * Adds the given teaching assistant.
+     * {@code ta} must not already exist in the ModQuik.
+     *
+     * @param ta
+     */
+    @Override
+    public void addTeachingAssistant(TeachingAssistant ta) {
+        addressBook.addTeachingAssistant(ta);
+        updateFilteredTeachingAssistantList(PREDICATE_SHOW_ALL_TEACHING_ASSISTANTS);
+    }
+
+    //=========== Filtered Tutorial List Accessors =============================================================
+
+    @Override
+    public ObservableList<TeachingAssistant> getFilteredTeachingAssistantList() { return filteredTeachingAssistants; }
+
+    @Override
+    public void updateFilteredTeachingAssistantList(Predicate<TeachingAssistant> predicate) {
+        requireNonNull(predicate);
+        filteredTeachingAssistants.setPredicate(predicate);
+    }
 }
