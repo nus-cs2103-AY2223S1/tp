@@ -179,15 +179,13 @@ public class MainWindow extends UiPart<Stage> {
 
     private void updatePocList() {
         ObservableList<Company> companies = logic.getFilteredCompanyList();
-
-        if (companies.size() == 0) {
-            pocListPanel.setPocList(FXCollections.observableArrayList());
-            return;
-        }
-
-        Company firstCompany = companies.get(0);
-        ObservableList<Poc> pocs = firstCompany.getPocs().asUnmodifiableObservableList();
+        Company company = companies.get(0);
+        ObservableList<Poc> pocs = company.getPocs().asUnmodifiableObservableList();
         pocListPanel.setPocList(pocs);
+    }
+
+    private void emptyPocList() {
+        pocListPanel.setPocList(FXCollections.observableArrayList());
     }
 
     /**
@@ -212,7 +210,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isView()) {
                 updatePocList();
             } else {
-                pocListPanel.setPocList(FXCollections.observableArrayList());
+                emptyPocList();
             }
 
             return commandResult;
