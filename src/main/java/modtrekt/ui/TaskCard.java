@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import modtrekt.model.task.Deadline;
 import modtrekt.model.task.Task;
 
 /**
@@ -31,6 +32,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label dueDate;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -40,9 +43,14 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = t;
         id.setText(displayedIndex + ". ");
+
         description.setText(task.getDescription().toString());
         Label moduleBadge = new Label(t.getModule().toString());
         this.tags.getChildren().add(moduleBadge);
+        dueDate.setText("");
+        if (t instanceof Deadline) {
+            dueDate.setText("Due by: " + ((Deadline) t).getDueDate().toString());
+        }
     }
 
     @Override
