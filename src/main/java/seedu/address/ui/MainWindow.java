@@ -165,12 +165,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    /* TODO REMOVE
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-     */
-
     /**
      * Executes the command and returns the result.
      *
