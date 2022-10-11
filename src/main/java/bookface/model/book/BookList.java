@@ -112,7 +112,7 @@ public class BookList implements Iterable<Book> {
      */
     public void loan(Person person, Book book) {
         CollectionUtil.requireAllNonNull(person, book);
-        book.loanTo(person, book);
+        book.loanTo(person);
         //Book loanedBook = new Book(book.getTitle(), book.getAuthor(), "Loaned to " + person.getName());
         int index = internalList.indexOf(book);
         internalList.set(index, book);

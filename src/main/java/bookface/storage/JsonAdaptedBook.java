@@ -7,6 +7,7 @@ import bookface.commons.exceptions.IllegalValueException;
 import bookface.model.book.Author;
 import bookface.model.book.Book;
 import bookface.model.book.Title;
+import bookface.model.person.Person;
 
 /**
  * Jackson-friendly version of {@link Book}.
@@ -17,19 +18,17 @@ class JsonAdaptedBook {
 
     private final String title;
     private final String author;
-
-    private final String loanStatus;
-
+    private final Person loanee;
 
     /**
      * Constructs a {@code JsonAdaptedBook} with the given book details.
      */
     @JsonCreator
     public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author,
-                           @JsonProperty("loanStatus") String loanStatus) {
+                           @JsonProperty("loanee") Person loanee) {
         this.title = title;
         this.author = author;
-        this.loanStatus = loanStatus;
+        this.loanee = loanee;
     }
 
     /**
@@ -38,7 +37,7 @@ class JsonAdaptedBook {
     public JsonAdaptedBook(Book source) {
         title = source.getTitle().bookTitle;
         author = source.getAuthor().bookAuthor;
-        loanStatus = source.getLoanStatus();
+        loanee = source.getLoanee();
     }
 
     /**
@@ -63,11 +62,11 @@ class JsonAdaptedBook {
         }
         final Author modelAuthor = new Author(author);
 
-        if (loanStatus == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "loanStatus"));
+        Book book = new Book(modelTitle, modelAuthor);
+        if (loanee != null) {
+            book.loanTo(loanee);
         }
-        return new Book(modelTitle, modelAuthor, loanStatus);
+        return book;
     }
-
 }
 

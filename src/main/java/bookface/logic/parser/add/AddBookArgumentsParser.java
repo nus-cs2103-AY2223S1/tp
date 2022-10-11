@@ -36,7 +36,7 @@ public class AddBookArgumentsParser implements ArgumentsParsable<AddBookCommand>
         Author author = ParserUtil.parseAuthor(argMultimap.getValue(PREFIX_AUTHOR).get());
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
 
-        Book book = new Book(title, author, "Available");
+        Book book = new Book(title, author);
         return new AddBookCommand(book);
     }
 

@@ -3,6 +3,7 @@ package bookface.model.util;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import bookface.model.BookFace;
@@ -13,8 +14,6 @@ import bookface.model.person.Person;
 import bookface.model.person.Phone;
 import bookface.model.tag.Tag;
 
-
-
 /**
  * Contains utility methods for populating {@code BookFace} with sample data.
  */
@@ -23,22 +22,22 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new HashSet<>(),
-                getTagSet("friends")),
+                getTagSetFromStringArray("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new HashSet<>(),
-                getTagSet("colleagues", "friends")),
+                getTagSetFromStringArray("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new HashSet<>(),
-                getTagSet("neighbours")),
+                getTagSetFromStringArray("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new HashSet<>(),
-                getTagSet("family")),
+                getTagSetFromStringArray("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new HashSet<>(),
-                getTagSet("classmates")),
+                getTagSetFromStringArray("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new HashSet<>(),
-                getTagSet("colleagues"))
+                getTagSetFromStringArray("colleagues"))
         };
     }
 
@@ -53,10 +52,18 @@ public class SampleDataUtil {
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Tag> getTagSetFromStringArray(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static <T> Set<T> getSetFromStringArray(Function<String, T> constructor, String... strings) {
+        return Arrays.stream(strings)
+                .map(constructor)
+                .collect(Collectors.toSet());
+    }
 }

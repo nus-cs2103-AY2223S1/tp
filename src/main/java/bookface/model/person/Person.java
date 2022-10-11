@@ -14,7 +14,6 @@ import bookface.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -36,17 +35,6 @@ public class Person {
         this.loanedBooks.addAll(loanedBook);
         this.tags.addAll(tags);
     }
-
-    /*
-    public Person(Name name, Phone phone, Email email, ArrayList<Title> loanedBook, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, phone, email, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.loanedBook = loanedBook;
-        this.tags.addAll(tags);
-    }
-    */
 
     public Name getName() {
         return name;
@@ -101,9 +89,6 @@ public class Person {
         return person.getLoanedTitlesSet().contains(title);
     }
 
-
-
-
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -128,7 +113,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, phone, email, loanedBooks, tags);
     }
 
     @Override

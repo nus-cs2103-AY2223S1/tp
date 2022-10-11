@@ -23,8 +23,7 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-
-    private Set<Title> titles;
+    private Set<Title> loanedBooks;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +34,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();
+        loanedBooks = new HashSet<>();
     }
 
     /**
@@ -45,6 +45,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         tags = new HashSet<>(personToCopy.getTags());
+        loanedBooks = new HashSet<>(personToCopy.getLoanedTitlesSet());
     }
 
     /**
@@ -59,7 +60,7 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tags = SampleDataUtil.getSetFromStringArray(Tag::new, tags);
         return this;
     }
 
@@ -79,8 +80,15 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, titles, tags);
+    /**
+     * Sets the {@code Email} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLoanedBooks(String ... titles) {
+        this.loanedBooks = SampleDataUtil.getSetFromStringArray(Title::new, titles);
+        return this;
     }
 
+    public Person build() {
+        return new Person(name, phone, email, loanedBooks, tags);
+    }
 }
