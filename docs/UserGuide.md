@@ -94,8 +94,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB] [t/TAG]`
 - A person in the contact list can have more than 1 tag.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20 MAR 2002`
-* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/friend t/criminal g/f d/14.12.1998`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
+* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/friend t/criminal g/f d/14/12/1998`
 
 __Optional Parameter 1: Gender__
 
@@ -118,9 +118,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DOB]`
 
 
 Examples:
-* `add n/John Wang p/98765432 e/johnwang@example.com a/John street, block 123, #01-01 d/20.03.2000`
-* `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 d/20 MAR 2000`
-* `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82 d/March 20, 2000`
+* `add n/John Wang p/98765432 e/johnwang@example.com a/John street, block 123, #01-01 d/20/03/2000`
+* `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 d/24/09/2000`
+* `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82 d/2/1/2000`
 
 
 ### Listing all persons : `list`
@@ -159,7 +159,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
    `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 3 n/Charlotte g/F d/3.4.1998` Edits the 3rd person’s contact: edits name to be `Charlotte`, 
+*  `edit 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`, 
 edits gender to be `Female` and edits date of birth to be `3.4.1998`.
 
 __Optional Parameter 1: Gender__
@@ -185,9 +185,9 @@ Format: `edit INDEX [d/DOB]`
 
 
 Examples:
-* `edit 1 d/20.03.2000`
-* `edit 2 d/20 MAR 2000`
-* `edit 3 d/March 20, 2000`
+* `edit 1 d/20/03/2000`
+* `edit 2 d/5/4/2000`
+* `edit 3 d/23/09/2000`
 
 ### Locating persons by name: `find`
 
