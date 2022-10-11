@@ -72,15 +72,16 @@ public class PersonCard extends UiPart<Region> {
 
         if (person.isBuyer()) {
             buyerRole.setText(person.isBuyer() ? "Buyer" : "");
-            buyerRange.setText(person.isBuyer() ? person.getBuyerRange() : "");
-            buyerCharacteristics.setText(person.isBuyer() ? person.getBuyerCharacteristics() : "");
+            buyerRange.setText(person.isBuyer() ? person.getBuyerRange().toString() : "");
+            buyerCharacteristics.setText(person.isBuyer() ? person.getBuyerCharacteristics().toString() : "");
         }
 
         if (person.isSeller()) {
             sellerRole.setText(person.isSeller() ? "Seller" : "");
             person.getSellerProperties()
+                    .getPropertyList()
                     .forEach(pr -> sellerProperties.getChildren()
-                            .add(new Label(String.valueOf(pr))));
+                            .add(new Label(pr.toString())));
         }
     }
 

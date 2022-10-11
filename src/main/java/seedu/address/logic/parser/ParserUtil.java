@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,8 +19,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.PropertyName;
-import seedu.address.model.role.Characteristics;
+import seedu.address.model.role.DesiredCharacteristics;
 import seedu.address.model.role.PriceRange;
+import seedu.address.model.role.Properties;
 import seedu.address.model.tag.Tag;
 
 
@@ -151,45 +151,35 @@ public class ParserUtil {
      * Parses {@code String range} into a {@code PriceRange}.
      */
     public static PriceRange parsePriceRange(String range) throws ParseException {
-        if (range.isEmpty()) {
-            return new PriceRange(Optional.empty(), Optional.empty());
-        }
-        String trimmedPriceRange = range.trim();
-        if (!PriceRange.isValidPriceRange(trimmedPriceRange)) {
+        requireNonNull(range);
+        String trimmedRange = range.trim();
+        if (!PriceRange.isValidPriceRange(trimmedRange)) {
             throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
         }
-        String[] rangeArr = range.split("-");
-        float first = Float.parseFloat(rangeArr[0].trim());
-        float second = Float.parseFloat(rangeArr[1].trim());
-        Optional<Float> low = Optional.of(Math.min(first, second));
-        Optional<Float> high = Optional.of(Math.max(first, second));
-        return new PriceRange(low, high);
+        return new PriceRange(trimmedRange);
     }
 
     /**
      * Parses {@code String characteristics} into a {@code Characteristics}.
      */
-    public static Characteristics parseCharacteristics(String characteristics) throws ParseException {
+    public static DesiredCharacteristics parseCharacteristics(String characteristics) throws ParseException {
         if (characteristics.isEmpty()) {
-            return new Characteristics(new String[0]);
+            return new DesiredCharacteristics("");
         }
         String trimmedCharacteristics = characteristics.trim();
-        if (!Characteristics.isValidCharacteristics(trimmedCharacteristics)) {
-            throw new ParseException(Characteristics.MESSAGE_CONSTRAINTS);
+        if (!DesiredCharacteristics.isValidDesiredCharacteristics(trimmedCharacteristics)) {
+            throw new ParseException(DesiredCharacteristics.MESSAGE_CONSTRAINTS);
         }
-        String[] charArray = characteristics.split(";");
-        for (String item : charArray) {
-            item = item.trim();
-        }
-        return new Characteristics(charArray);
+        return new DesiredCharacteristics(characteristics);
     }
 
     /**
      * Parses {@code String properties} into a {@code List<Integer>}.
      */
-    public static List<Integer> parseProperties(String properties) throws ParseException {
+    // TODO: Actually parse properties here?
+    public static Properties parseProperties(String properties) throws ParseException {
         if (properties.isEmpty()) {
-            return List.of();
+            return new Properties("");
         }
         String trimmedProperties = properties.trim();
         List<Integer> propertyArray = Arrays.stream(trimmedProperties.split(";"))
@@ -198,7 +188,7 @@ public class ParserUtil {
 
         // TODO: should add a check that all values that are ; separated are integers
 
-        return propertyArray;
+        return new Properties("");
     }
 
     /**
