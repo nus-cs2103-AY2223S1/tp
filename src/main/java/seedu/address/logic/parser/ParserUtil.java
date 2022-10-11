@@ -123,16 +123,11 @@ public class ParserUtil {
         if (!Time.isValidTime(trimmedTime)) {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
-        Time resultingTime;
-        try {
-            String[] splitTime = trimmedTime.split("-");
-            resultingTime = new Time(splitTime[0], splitTime[1]);
-        } catch (DateTimeParseException e) {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
-        }
-        return resultingTime;
+        String[] splitTime = trimmedTime.split("-");
+        return new Time(splitTime[0], splitTime[1]);
     }
 
+    
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
