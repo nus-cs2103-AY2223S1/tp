@@ -30,7 +30,8 @@ public class ListCommandTest {
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListCommand(), model,
                 new CommandResult(ListCommand.MESSAGE_SUCCESS, false, false,
-                        false, true, false), expectedModel);
+                        false, true,
+                        false, false), expectedModel);
     }
 
     @Test
@@ -38,6 +39,7 @@ public class ListCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new ListCommand(), model,
                 new CommandResult(ListCommand.MESSAGE_SUCCESS, false, false,
-                        false, true, false), expectedModel);
+                        false, true,
+                        false, false), expectedModel);
     }
 }

@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the profNUS to the user.
  */
 public class ModuleListCommand extends Command {
 
@@ -20,7 +20,8 @@ public class ModuleListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true,
+                false, false, false);
     }
 }
 

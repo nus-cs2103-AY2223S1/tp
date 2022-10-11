@@ -1,23 +1,17 @@
-package seedu.address.logic.commands.module;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -25,60 +19,46 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.ScheduleBuilder;
 
-public class AddModuleCommandTest {
+
+public class AddScheduleCommandTest {
 
     @Test
-    public void constructor_nullModule_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddModuleCommand(null));
+    public void constructor_null_throwNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddScheduleCommand(null));
     }
 
     @Test
-    public void execute_moduleAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingModuleAdded modelStub = new ModelStubAcceptingModuleAdded();
-        Module validModule = new ModuleBuilder().build();
-
-        CommandResult commandResult = new AddModuleCommand(validModule).execute(modelStub);
-
-        assertEquals(String.format(AddModuleCommand.MESSAGE_SUCCESS, validModule), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validModule), modelStub.modulesAdded);
+    public void execute_moduleDoesNotExist_throwCommandException() {
+        Schedule schedule = new ScheduleBuilder().build();
+        AddScheduleCommand addScheduleCommand = new AddScheduleCommand(schedule);
+        ModelStubWithModuleNotExist modelStub = new ModelStubWithModuleNotExist(schedule);
+        assertThrows(CommandException.class, AddScheduleCommand.MESSAGE_MODULE_NOT_EXIST, () ->
+                addScheduleCommand.execute(modelStub));
     }
 
     @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Module validModule = new ModuleBuilder().build();
-        AddModuleCommand addModuleCommand = new AddModuleCommand(validModule);
-        ModelStub modelStub = new ModelStubWithModule(validModule);
-        assertThrows(CommandException.class, AddModuleCommand.MESSAGE_DUPLICATE_MODULE, ()
-                -> addModuleCommand.execute(modelStub));
+    public void execute_conflictWithOtherSchedule_throwCommandException() {
+        Schedule schedule = new ScheduleBuilder().build();
+        AddScheduleCommand addScheduleCommand = new AddScheduleCommand(schedule);
+        ModelStubWithScheduleConflict modelStub = new ModelStubWithScheduleConflict(schedule);
+        assertThrows(CommandException.class, AddScheduleCommand.MESSAGE_CONFLICT_SCHEDULE, () ->
+                addScheduleCommand.execute(modelStub));
     }
 
     @Test
-    public void equals() {
-        Module module1 = new ModuleBuilder().withName("CS2103T").build();
-        Module module2 = new ModuleBuilder().withName("CS2103").build();
-        AddModuleCommand addModule1Command = new AddModuleCommand(module1);
-        AddModuleCommand addModule2Command = new AddModuleCommand(module2);
-
-        // same object -> returns true
-        assertTrue(addModule1Command.equals(addModule1Command));
-
-        // same values -> returns true
-        AddModuleCommand addModule1CommandCopy = new AddModuleCommand(module1);
-        assertTrue(addModule1Command.equals(addModule1CommandCopy));
-
-        // different types -> returns false
-        assertFalse(addModule1Command.equals(1));
-
-        // null -> returns false
-        assertFalse(addModule1Command.equals(null));
-
-        // different person -> returns false
-        assertFalse(addModule1Command.equals(addModule2Command));
+    public void execute_scheduleAcceptedByModel_addSuccessful() throws CommandException {
+        Module module = new ModuleBuilder().build();
+        Schedule schedule = new ScheduleBuilder().build();
+        AddScheduleCommand addScheduleCommand = new AddScheduleCommand(schedule);
+        ModelStubWithAcceptingScheduleAdded modelStub = new ModelStubWithAcceptingScheduleAdded(module);
+        CommandResult commandResult = addScheduleCommand.execute(modelStub);
+        assertEquals(String.format(AddScheduleCommand.MESSAGE_SUCCESS, schedule), commandResult.getFeedbackToUser());
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -187,6 +167,7 @@ public class AddModuleCommandTest {
         public ObservableList<Schedule> getFilteredScheduleList() {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
@@ -209,44 +190,70 @@ public class AddModuleCommandTest {
     }
 
     /**
-     * A Model stub that contains a single module.
+     * A Model stub that contains a schedule which cannot find the target module
      */
-    private class ModelStubWithModule extends ModelStub {
-        private final Module module;
+    private class ModelStubWithModuleNotExist extends ModelStub {
+        private final Schedule schedule;
 
-        ModelStubWithModule(Module module) {
-            requireNonNull(module);
-            this.module = module;
+        ModelStubWithModuleNotExist(Schedule schedule) {
+            requireNonNull(schedule);
+            this.schedule = schedule;
         }
 
         @Override
-        public boolean hasModule(Module module) {
-            requireNonNull(module);
-            return this.module.isSameModule(module);
+        public Module getModuleByModuleCode(String moduleCode) {
+            requireNonNull(moduleCode);
+            return null;
+        }
+
+        @Override
+        public boolean conflictSchedule(Schedule schedule) {
+            return false;
         }
     }
 
     /**
-     * A Model stub that always accept the module being added.
+     * A Model stub that always has schedule conflict.
      */
-    private class ModelStubAcceptingModuleAdded extends ModelStub {
-        final ArrayList<Module> modulesAdded = new ArrayList<>();
+    private class ModelStubWithScheduleConflict extends ModelStub {
+        private final Schedule schedule;
 
-        @Override
-        public boolean hasModule(Module module) {
-            requireNonNull(module);
-            return modulesAdded.stream().anyMatch(module::isSameModule);
+        ModelStubWithScheduleConflict(Schedule schedule) {
+            requireNonNull(schedule);
+            this.schedule = schedule;
         }
 
         @Override
-        public void addModule(Module module) {
-            requireNonNull(module);
-            modulesAdded.add(module);
+        public Module getModuleByModuleCode(String moduleCode) {
+            requireNonNull(moduleCode);
+            return new ModuleBuilder().build();
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public boolean conflictSchedule(Schedule schedule) {
+            return true;
+        }
+    }
+
+    private class ModelStubWithAcceptingScheduleAdded extends ModelStub {
+        private final Module module;
+
+        ModelStubWithAcceptingScheduleAdded(Module module) {
+            this.module = module;
+        }
+        @Override
+        public Module getModuleByModuleCode(String moduleCode) {
+            requireNonNull(moduleCode);
+            return new ModuleBuilder().build();
+        }
+
+        @Override
+        public boolean conflictSchedule(Schedule schedule) {
+            return false;
+        }
+        @Override
+        public void addSchedule(Schedule schedule) {
+            module.addSchedule(schedule);
         }
     }
 }
