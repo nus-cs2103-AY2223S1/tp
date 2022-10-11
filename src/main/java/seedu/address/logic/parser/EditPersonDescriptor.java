@@ -132,17 +132,17 @@ public class EditPersonDescriptor {
                                                               EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Set<Appointment> updatedAppointments = personToEdit.getAppointments();
-        editPersonDescriptor.appointments.forEach(updatedAppointments::add);
+//        Set<Appointment> updatedAppointments = personToEdit.getAppointments();
+//        editPersonDescriptor.appointments.forEach(updatedAppointments::add);
 
         Name name = personToEdit.getName();
         Phone phone = personToEdit.getPhone();
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
-        Person newPerson = new Person(name, phone, email, address, tags);
+        Set<Appointment> updatedAppointment =  editPersonDescriptor.getAppointments().get();
+        Person newPerson = new Person(name, phone, email, address, tags, updatedAppointment);
 
-        newPerson.setAppointments(updatedAppointments);
         return newPerson;
     }
 

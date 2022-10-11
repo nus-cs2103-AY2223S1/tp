@@ -32,11 +32,9 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
      */
     public AddAppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE);
 
-        if (anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG)
-                || argMultimap.getPreamble().isEmpty() || !arePrefixesPresent(argMultimap, PREFIX_DATE)) {
+        if (argMultimap.getPreamble().isEmpty() || !arePrefixesPresent(argMultimap, PREFIX_DATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddAppointmentCommand.MESSAGE_USAGE));
         }
@@ -51,7 +49,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(AddAppointmentCommand.FIELD_NOT_INCLUDED);
+            throw new ParseException(AddAppointmentCommand.MESSAGE_DATE_FIELD_NOT_INCLUDED);
         }
 
         Index index;

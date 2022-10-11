@@ -39,7 +39,7 @@ public class JsonAdaptedAppointment {
      * Converts this Jackson-friendly adapted appointment object into the model's {@code Appointment} object.
      */
     public Appointment toModelType() {
-        String dateAndTime = appointmentName.substring(15);
+        String dateAndTime = appointmentName.trim();
         LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(dateAndTime.trim());
         DateTime dateTime = new DateTime(localDateTime);
         return new Appointment(dateTime);

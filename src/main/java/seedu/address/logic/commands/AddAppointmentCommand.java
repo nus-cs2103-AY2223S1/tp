@@ -18,20 +18,20 @@ import seedu.address.model.person.Person;
  * Adds appointment(s) for a particular client.
  */
 public class AddAppointmentCommand extends Command {
-    public static final String COMMAND_WORD = "addappt";
+    public static final String COMMAND_WORD = "aa";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedules an appointment with a specific client "
-            + "by the index number used in the displayed person list"
-            + "Parameters: "
+            + "by the index number used in the displayed person list \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DATE + "DATE AND TIME]...\n"
+            + "[" + PREFIX_DATE + "DATE AND TIME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "21-Jan-2023 12:30 PM ";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "You have already scheduled "
-            + "an appointment at this timing for this client";
-    public static final String FIELD_NOT_INCLUDED = "At least one field must be provided.";
+    public static final String MESSAGE_EXISTING_APPOINTMENT = "You have already scheduled an " +
+                                                              "appointment for this client" +
+                                                              "Use command \"ea\" to edit appointment instead";
+    public static final String MESSAGE_DATE_FIELD_NOT_INCLUDED = "Date field must be provided.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -64,7 +64,7 @@ public class AddAppointmentCommand extends Command {
         Person editedPerson = createEditedPersonWithNewAppointment(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+            throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
         }
 
         model.setPerson(personToEdit, editedPerson);
