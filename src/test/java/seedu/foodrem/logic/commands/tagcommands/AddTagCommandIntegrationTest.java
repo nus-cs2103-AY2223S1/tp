@@ -23,7 +23,7 @@ public class AddTagCommandIntegrationTest {
 
     @Test
     public void execute_newTag_success() {
-        Tag validTag = new TagBuilder().withTagName(VALID_TAG_NAME_FRUITS).build();
+        Tag validTag = new TagBuilder().withTagName("test").build();
 
         Model expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.addTag(validTag);
