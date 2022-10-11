@@ -51,7 +51,7 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /** Returns the PersonModel */
     ReadOnlyAddressBook getAddressBook();
 
     /**
