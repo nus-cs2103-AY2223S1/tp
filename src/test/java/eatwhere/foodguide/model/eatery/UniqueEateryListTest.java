@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import eatwhere.foodguide.model.eatery.exceptions.DuplicateEateryException;
 import eatwhere.foodguide.model.eatery.exceptions.EateryNotFoundException;
 import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.PersonBuilder;
+import eatwhere.foodguide.testutil.EateryBuilder;
 import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class UniqueEateryListTest {
@@ -41,7 +41,7 @@ public class UniqueEateryListTest {
     @Test
     public void contains_eateryWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEateryList.add(TypicalEateries.ALICE);
-        Eatery editedAlice = new PersonBuilder(TypicalEateries.ALICE)
+        Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueEateryList.contains(editedAlice));
@@ -88,7 +88,7 @@ public class UniqueEateryListTest {
     @Test
     public void setEatery_editedEateryHasSameIdentity_success() {
         uniqueEateryList.add(TypicalEateries.ALICE);
-        Eatery editedAlice = new PersonBuilder(TypicalEateries.ALICE)
+        Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueEateryList.setEatery(TypicalEateries.ALICE, editedAlice);

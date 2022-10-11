@@ -21,7 +21,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalEateries.getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalEateries.getTypicalFoodGuide(), new UserPrefs());
         expectedModel = new ModelManager(model.getFoodGuide(), new UserPrefs());
     }
 
@@ -32,7 +32,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        CommandTestUtil.showEateryAtIndex(model, TypicalIndexes.INDEX_FIRST_EATERY);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

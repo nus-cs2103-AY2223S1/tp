@@ -26,7 +26,7 @@ import eatwhere.foodguide.storage.JsonFoodGuideStorage;
 import eatwhere.foodguide.storage.JsonUserPrefsStorage;
 import eatwhere.foodguide.storage.StorageManager;
 import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.PersonBuilder;
+import eatwhere.foodguide.testutil.EateryBuilder;
 import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class LogicManagerTest {
@@ -69,7 +69,7 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonFoodGuideStorage foodGuideStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonFoodGuideIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(foodGuideStorage, userPrefsStorage);
@@ -79,7 +79,7 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD
                 + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
                 + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
-        Eatery expectedEatery = new PersonBuilder(TypicalEateries.AMY).withTags().build();
+        Eatery expectedEatery = new EateryBuilder(TypicalEateries.AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEatery(expectedEatery);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -87,8 +87,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredEateryList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEateryList().remove(0));
     }
 
     /**
@@ -147,8 +147,8 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonFoodGuideStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonFoodGuideIoExceptionThrowingStub extends JsonFoodGuideStorage {
+        private JsonFoodGuideIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 

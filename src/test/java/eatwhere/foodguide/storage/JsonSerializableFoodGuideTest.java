@@ -25,7 +25,7 @@ public class JsonSerializableFoodGuideTest {
         JsonSerializableFoodGuide dataFromFile = JsonUtil.readJsonFile(TYPICAL_FOODGUIDE_FILE,
                 JsonSerializableFoodGuide.class).get();
         FoodGuide foodGuideFromFile = dataFromFile.toModelType();
-        FoodGuide typicalFoodGuide = TypicalEateries.getTypicalAddressBook();
+        FoodGuide typicalFoodGuide = TypicalEateries.getTypicalFoodGuide();
         assertEquals(foodGuideFromFile, typicalFoodGuide);
     }
 

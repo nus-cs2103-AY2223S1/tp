@@ -10,7 +10,7 @@ import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
 import eatwhere.foodguide.model.UserPrefs;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.testutil.PersonBuilder;
+import eatwhere.foodguide.testutil.EateryBuilder;
 import eatwhere.foodguide.testutil.TypicalEateries;
 
 /**
@@ -22,12 +22,12 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalEateries.getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalEateries.getTypicalFoodGuide(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
-        Eatery validEatery = new PersonBuilder().build();
+        Eatery validEatery = new EateryBuilder().build();
 
         Model expectedModel = new ModelManager(model.getFoodGuide(), new UserPrefs());
         expectedModel.addEatery(validEatery);
@@ -37,7 +37,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateEatery_throwsCommandException() {
         Eatery eateryInList = model.getFoodGuide().getEateryList().get(0);
         assertCommandFailure(new AddCommand(eateryInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }

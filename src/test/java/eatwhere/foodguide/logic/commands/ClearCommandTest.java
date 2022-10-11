@@ -13,7 +13,7 @@ import eatwhere.foodguide.testutil.TypicalEateries;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyFoodGuide_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,9 +21,9 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(TypicalEateries.getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(TypicalEateries.getTypicalAddressBook(), new UserPrefs());
+    public void execute_nonEmptyFoodGuide_success() {
+        Model model = new ModelManager(TypicalEateries.getTypicalFoodGuide(), new UserPrefs());
+        Model expectedModel = new ModelManager(TypicalEateries.getTypicalFoodGuide(), new UserPrefs());
         expectedModel.setFoodGuide(new FoodGuide());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.exceptions.DuplicateEateryException;
 import eatwhere.foodguide.testutil.Assert;
-import eatwhere.foodguide.testutil.PersonBuilder;
+import eatwhere.foodguide.testutil.EateryBuilder;
 import eatwhere.foodguide.testutil.TypicalEateries;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,7 +37,7 @@ public class FoodGuideTest {
 
     @Test
     public void resetData_withValidReadOnlyFoodGuide_replacesData() {
-        FoodGuide newData = TypicalEateries.getTypicalAddressBook();
+        FoodGuide newData = TypicalEateries.getTypicalFoodGuide();
         foodGuide.resetData(newData);
         assertEquals(newData, foodGuide);
     }
@@ -45,7 +45,7 @@ public class FoodGuideTest {
     @Test
     public void resetData_withDuplicateEateries_throwsDuplicateEateryException() {
         // Two eateries with the same identity fields
-        Eatery editedAlice = new PersonBuilder(TypicalEateries.ALICE)
+        Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -74,7 +74,7 @@ public class FoodGuideTest {
     @Test
     public void hasEatery_eateryWithSameIdentityFieldsInFoodGuide_returnsTrue() {
         foodGuide.addEatery(TypicalEateries.ALICE);
-        Eatery editedAlice = new PersonBuilder(TypicalEateries.ALICE)
+        Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();

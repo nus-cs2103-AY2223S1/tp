@@ -21,14 +21,14 @@ import eatwhere.foodguide.testutil.TypicalIndexes;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(TypicalEateries.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalEateries.getTypicalFoodGuide(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Eatery eateryToDelete = model.getFilteredEateryList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
+        Eatery eateryToDelete = model.getFilteredEateryList().get(TypicalIndexes.INDEX_FIRST_EATERY.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_EATERY);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, eateryToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EATERY_SUCCESS, eateryToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getFoodGuide(), new UserPrefs());
         expectedModel.deleteEatery(eateryToDelete);
@@ -46,25 +46,25 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        CommandTestUtil.showEateryAtIndex(model, TypicalIndexes.INDEX_FIRST_EATERY);
 
-        Eatery eateryToDelete = model.getFilteredEateryList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
+        Eatery eateryToDelete = model.getFilteredEateryList().get(TypicalIndexes.INDEX_FIRST_EATERY.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_EATERY);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, eateryToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EATERY_SUCCESS, eateryToDelete);
 
         Model expectedModel = new ModelManager(model.getFoodGuide(), new UserPrefs());
         expectedModel.deleteEatery(eateryToDelete);
-        showNoPerson(expectedModel);
+        showNoEatery(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        CommandTestUtil.showEateryAtIndex(model, TypicalIndexes.INDEX_FIRST_EATERY);
 
-        Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_EATERY;
         // ensures that outOfBoundIndex is still in bounds of food guide list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodGuide().getEateryList().size());
 
@@ -75,14 +75,14 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_PERSON);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_EATERY);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_EATERY);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(TypicalIndexes.INDEX_FIRST_EATERY);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -98,7 +98,7 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoEatery(Model model) {
         model.updateFilteredEateryList(p -> false);
 
         assertTrue(model.getFilteredEateryList().isEmpty());

@@ -45,23 +45,23 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Eatery: %1$s";
+    public static final String MESSAGE_EDIT_EATERY_SUCCESS = "Edited Eatery: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This eatery already exists in the food guide.";
+    public static final String MESSAGE_DUPLICATE_EATERY = "This eatery already exists in the food guide.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditEateryDescriptor editEateryDescriptor;
 
     /**
      * @param index of the eatery in the filtered eatery list to edit
-     * @param editPersonDescriptor details to edit the eatery with
+     * @param editEateryDescriptor details to edit the eatery with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditEateryDescriptor editEateryDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editEateryDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editEateryDescriptor = new EditEateryDescriptor(editEateryDescriptor);
     }
 
     @Override
@@ -74,29 +74,29 @@ public class EditCommand extends Command {
         }
 
         Eatery eateryToEdit = lastShownList.get(index.getZeroBased());
-        Eatery editedEatery = createEditedPerson(eateryToEdit, editPersonDescriptor);
+        Eatery editedEatery = createEditedEatery(eateryToEdit, editEateryDescriptor);
 
         if (!eateryToEdit.isSameEatery(editedEatery) && model.hasEatery(editedEatery)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_EATERY);
         }
 
         model.setEatery(eateryToEdit, editedEatery);
         model.updateFilteredEateryList(Model.PREDICATE_SHOW_ALL_EATERIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedEatery));
+        return new CommandResult(String.format(MESSAGE_EDIT_EATERY_SUCCESS, editedEatery));
     }
 
     /**
      * Creates and returns a {@code Eatery} with the details of {@code eateryToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Eatery createEditedPerson(Eatery eateryToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Eatery createEditedEatery(Eatery eateryToEdit, EditEateryDescriptor editEateryDescriptor) {
         assert eateryToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(eateryToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(eateryToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(eateryToEdit.getEmail());
-        Location updatedLocation = editPersonDescriptor.getAddress().orElse(eateryToEdit.getLocation());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(eateryToEdit.getTags());
+        Name updatedName = editEateryDescriptor.getName().orElse(eateryToEdit.getName());
+        Phone updatedPhone = editEateryDescriptor.getPhone().orElse(eateryToEdit.getPhone());
+        Email updatedEmail = editEateryDescriptor.getEmail().orElse(eateryToEdit.getEmail());
+        Location updatedLocation = editEateryDescriptor.getAddress().orElse(eateryToEdit.getLocation());
+        Set<Tag> updatedTags = editEateryDescriptor.getTags().orElse(eateryToEdit.getTags());
 
         return new Eatery(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedTags);
     }
@@ -116,27 +116,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editEateryDescriptor.equals(e.editEateryDescriptor);
     }
 
     /**
      * Stores the details to edit the eatery with. Each non-empty field value will replace the
      * corresponding field value of the eatery.
      */
-    public static class EditPersonDescriptor {
+    public static class EditEateryDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Location location;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditEateryDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditEateryDescriptor(EditEateryDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -208,12 +208,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditEateryDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditEateryDescriptor e = (EditEateryDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(TypicalIndexes.INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(TypicalIndexes.INDEX_FIRST_EATERY, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(TypicalIndexes.INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(TypicalIndexes.INDEX_FIRST_EATERY, ParserUtil.parseIndex("  1  "));
     }
 
     @Test

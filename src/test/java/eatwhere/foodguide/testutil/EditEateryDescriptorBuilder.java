@@ -4,7 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import eatwhere.foodguide.logic.commands.EditCommand.EditPersonDescriptor;
+import eatwhere.foodguide.logic.commands.EditCommand;
+import eatwhere.foodguide.logic.commands.EditCommand.EditEateryDescriptor;
 import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
@@ -15,23 +16,23 @@ import eatwhere.foodguide.model.tag.Tag;
 /**
  * A utility class to help with building EditPersonDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditEateryDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditEateryDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+    public EditEateryDescriptorBuilder() {
+        descriptor = new EditCommand.EditEateryDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditEateryDescriptorBuilder(EditCommand.EditEateryDescriptor descriptor) {
+        this.descriptor = new EditEateryDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code eatery}'s details
      */
-    public EditPersonDescriptorBuilder(Eatery eatery) {
-        descriptor = new EditPersonDescriptor();
+    public EditEateryDescriptorBuilder(Eatery eatery) {
+        descriptor = new EditEateryDescriptor();
         descriptor.setName(eatery.getName());
         descriptor.setPhone(eatery.getPhone());
         descriptor.setEmail(eatery.getEmail());
@@ -42,7 +43,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditEateryDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
@@ -50,7 +51,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
+    public EditEateryDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
         return this;
     }
@@ -58,7 +59,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
+    public EditEateryDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
         return this;
     }
@@ -66,7 +67,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Location} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
+    public EditEateryDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Location(address));
         return this;
     }
@@ -75,13 +76,13 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
+    public EditEateryDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditCommand.EditEateryDescriptor build() {
         return descriptor;
     }
 }
