@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.model.person.testutil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +10,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonGroup;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -32,6 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private HashMap<String, ArrayList<Assignment>> assignments;
+    private ArrayList<PersonGroup> personGroup;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,6 +45,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         assignments = new HashMap<>();
+        personGroup = new ArrayList<>();
     }
 
     /**
@@ -55,6 +58,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         assignments = new HashMap<>(personToCopy.getAssignments());
+        personGroup = new ArrayList<>(personToCopy.getPersonGroups());
     }
 
     /**
@@ -101,18 +105,32 @@ public class PersonBuilder {
      * Parses the {@code Assignments} into a {@code HashMap<String, ArrayList<Assignment>>}
      * and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withAssignments(String group, String assignment) {
-        ArrayList<Assignment> assignmentList = new ArrayList<>();
-        if (assignments.containsKey(group)) {
-            assignmentList = assignments.get(group);
+    public PersonBuilder withAssignments(String[] group, String[][] assignment) {
+        this.assignments = new HashMap<>();
+        for (int i = 0; i < group.length; i++) {
+            ArrayList<Assignment> assignmentList = new ArrayList<>();
+            for (int j = 0; j < assignment[i].length; j++) {
+                assignmentList.add(new Assignment(assignment[i][j]));
+            }
+            this.assignments.put(group[i], assignmentList);
         }
-        assignmentList.add(new Assignment(assignment));
-        this.assignments.put(group, assignmentList);
         return this;
     }
 
+    /**
+     * Parses the {@code PersonGroup} into a {@code Arraylist<PersonGroup>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withGroups(String groups) {
+        ArrayList<PersonGroup> personGroupArrayList = new ArrayList<>();
+        personGroupArrayList.add(new PersonGroup(groups));
+        this.personGroup.addAll(personGroupArrayList);
+        return this;
+
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, assignments);
+        return new Person(name, phone, email, address, tags, assignments, personGroup);
     }
 
 }

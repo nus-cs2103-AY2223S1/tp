@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.model.person.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +32,5 @@ public class DeleteUserByNameCommandTest {
 
         assertCommandSuccess(deleteUserByNameCommand, model, expectedMessage, expectedModel);
     }
-
-
 
 }

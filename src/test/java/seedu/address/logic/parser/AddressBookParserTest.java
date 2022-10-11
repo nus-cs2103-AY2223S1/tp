@@ -6,19 +6,24 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.model.person.testutil.Assert.assertThrows;
+import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.AddUserCommand;
 import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteGroupCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
+import seedu.address.logic.commands.DeleteUserByNameCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditUserByNameCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -26,19 +31,33 @@ import seedu.address.logic.commands.FindUserCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupName;
 import seedu.address.model.person.FullNamePredicate;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.model.person.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.person.testutil.PersonBuilder;
+import seedu.address.model.person.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addgroup() throws Exception {
+        String groupname = "Group";
+        GroupName groupName = new GroupName(groupname);
+        Group group = new Group(groupName, new HashSet<>());
+        AddGroupCommand command = (AddGroupCommand) parser.parseCommand(
+                AddGroupCommand.COMMAND_WORD + " " + PREFIX_GROUP + groupname);
+        assertEquals(new AddGroupCommand(group), command);
+    }
+
+    @Test
+    public void parseCommand_adduser() throws Exception {
         Person person = new PersonBuilder().build();
         AddUserCommand command = (AddUserCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddUserCommand(person), command);
@@ -53,7 +72,7 @@ public class AddressBookParserTest {
                 AssignTaskCommand.COMMAND_WORD + " " + name + " "
                         + PREFIX_GROUP + group + " "
                         + PREFIX_TASK + task);
-        assertEquals(new AssignTaskCommand(name, group, task), command);
+        assertEquals(new AssignTaskCommand(new Name(name), group, new Assignment(task)), command);
     }
 
     @Test
@@ -67,6 +86,37 @@ public class AddressBookParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_deletegroup() throws Exception {
+        String groupname = "Group";
+        GroupName groupName = new GroupName(groupname);
+        Group group = new Group(groupName, new HashSet<>());
+        DeleteGroupCommand command = (DeleteGroupCommand) parser.parseCommand(
+                DeleteGroupCommand.COMMAND_WORD + " " + PREFIX_GROUP + groupname);
+        assertEquals(new DeleteGroupCommand(group), command);
+    }
+
+    @Test
+    public void parseCommand_deletetask() throws Exception {
+        String name = "Alex";
+        String group = "Group1";
+        String task = "assignment 0";
+        DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
+                DeleteTaskCommand.COMMAND_WORD + " " + name + " "
+                        + PREFIX_GROUP + group + " "
+                        + PREFIX_TASK + task);
+        assertEquals(new DeleteTaskCommand(new Name(name), group, new Assignment(task)), command);
+    }
+
+    @Test
+    public void parseCommand_deleteuserbyname() throws Exception {
+        String name = "Alex";
+        DeleteUserByNameCommand command = (DeleteUserByNameCommand) parser.parseCommand(
+                DeleteUserByNameCommand.COMMAND_WORD + " " + name);
+        FullNamePredicate pred = new FullNamePredicate(name);
+        assertEquals(new DeleteUserByNameCommand(pred), command);
     }
 
     @Test

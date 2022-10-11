@@ -34,7 +34,18 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "tagged" : [ ],
-    "assignments": { }
+    "assignments" : {
+      "Alpha": [
+        {
+          "value": "Team Project"
+        }
+      ],
+      "Beta": [
+        {
+          "value": "Team Beta"
+        }
+      ]
+    }
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",

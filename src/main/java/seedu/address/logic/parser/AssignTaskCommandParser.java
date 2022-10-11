@@ -9,6 +9,8 @@ import java.util.NoSuchElementException;
 
 import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.person.Name;
 
 /**
  * Parses input arguments and creates a new {@code AssignTaskCommand} object
@@ -36,6 +38,6 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE), e);
         }
 
-        return new AssignTaskCommand(name, group, task);
+        return new AssignTaskCommand(new Name(name), group, new Assignment(task));
     }
 }

@@ -12,11 +12,13 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Adds an assignment of an existing person in a group in the address book.
  */
 public class AssignTaskCommand extends Command {
 
@@ -29,6 +31,8 @@ public class AssignTaskCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
+    public static final String MESSAGE_INVALID_PERSON_NOT_IN_GROUP = "This person is not in the specifed group.";
+    public static final String MESSAGE_INVALID_GROUP = "This group is not in the address book.";
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "New task added for the following person.";
 
     private final Name name;
@@ -39,11 +43,11 @@ public class AssignTaskCommand extends Command {
      * @param name of the person in the filtered person list to edit the remark
      * @param task of the person to be updated to
      */
-    public AssignTaskCommand(String name, String group, String task) {
+    public AssignTaskCommand(Name name, String group, Assignment task) {
         requireAllNonNull(name, group, task);
-        this.name = new Name(name);
+        this.name = name;
         this.group = group;
-        this.task = new Assignment(task);
+        this.task = task;
     }
 
     @Override
@@ -56,6 +60,19 @@ public class AssignTaskCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
+
+        ObservableList<Group> groupList = model.getGroupWithName(new GroupName(this.group));
+        Group groupToCheck;
+        try {
+            groupToCheck = groupList.get(0);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(MESSAGE_INVALID_GROUP);
+        }
+
+        if (!groupToCheck.contains(personToAssignTask)) {
+            throw new CommandException(MESSAGE_INVALID_PERSON_NOT_IN_GROUP);
+        }
+
         HashMap<String, ArrayList<Assignment>> assignments = personToAssignTask.getAssignments();
 
         ArrayList<Assignment> listOfAssignment;
@@ -70,7 +87,8 @@ public class AssignTaskCommand extends Command {
 
         Person editedPerson = new Person(
                 personToAssignTask.getName(), personToAssignTask.getPhone(), personToAssignTask.getEmail(),
-                personToAssignTask.getAddress(), personToAssignTask.getTags(), assignments);
+                personToAssignTask.getAddress(), personToAssignTask.getTags(), assignments,
+                personToAssignTask.getPersonGroups());
 
         if (!personToAssignTask.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -179,6 +180,14 @@ public class ModelManager implements Model {
     public void updateFilteredGroupList(Predicate<Group> predicate) {
         requireNonNull(predicate);
         filteredGroups.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Group> getGroupWithName(GroupName name) {
+        ObservableList<Group> groupList = getAddressBook().getGroupList();
+        Predicate<Group> namePredicate = curr -> (curr.getName().equals(name));
+
+        return groupList.filtered(namePredicate);
     }
 
     @Override
