@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,7 +8,6 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import java.util.logging.Logger;
 
 /**
  * Controller for a help page
@@ -22,7 +22,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "Interface (GUI). If you can type fast, uNivUSal can get your contact management tasks "
             + "done faster than traditional\n"
             + "GUI apps.";
-    public static final String HELP_MESSAGE_TITLE = "Refer to the user guide for more info: " + USERGUIDE_URL + "\n\n" + DESCRIPTION;
+    public static final String HELP_MESSAGE_TITLE = "Refer to the user guide for more info: " + USERGUIDE_URL
+            + "\n\n" + DESCRIPTION;
 
     public static final String TABLE_HEADERS = "|  Command  |                     Format                      "
             + "|                    Example                    | ";
