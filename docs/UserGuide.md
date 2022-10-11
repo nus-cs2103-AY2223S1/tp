@@ -26,7 +26,7 @@ GREWZ is a **desktop app for managing student details, optimized for use via a C
 
    * **`list`** : Lists all students.
 
-   * **`add`**`n/student p/98765432 e/student@example.com a/student street, block 123, #01-01` : Adds a student named `John Doe` to the student list.
+   * **`add`**`n/student p/98765432 i/e077xxxx [e/student@example.com] [p/91251211]` : Adds a student named `John Doe` to the student list.
 
    * **`delete`**`3` : Deletes the 3rd student shown in the current list.
 
