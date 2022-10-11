@@ -48,6 +48,9 @@ public class Person {
         return email;
     }
 
+    public boolean hasBooksOnLoan() {
+        return loanedBooks.size() > 0;
+    }
 
     public Set<Book> getLoanedBooksSet() {
         return loanedBooks;

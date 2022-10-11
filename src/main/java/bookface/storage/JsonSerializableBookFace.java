@@ -2,6 +2,7 @@ package bookface.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -45,7 +46,8 @@ class JsonSerializableBookFace {
      */
     public JsonSerializableBookFace(ReadOnlyBookFace source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        books.addAll(source.getBookList().stream().map(JsonAdaptedBook::new).collect(Collectors.toList()));
+        books.addAll(source.getBookList().stream().filter(x -> !x.isLoaned())
+                .map(JsonAdaptedBook::new).collect(Collectors.toList()));
     }
 
     /**
@@ -61,6 +63,13 @@ class JsonSerializableBookFace {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             bookFace.addPerson(person);
+            if (person.hasBooksOnLoan()) {
+                Set<Book> loanedBooks = person.getLoanedBooksSet();
+                for (Book book : loanedBooks) {
+                    book.loanTo(person);
+                    bookFace.addBook(book);
+                }
+            }
         }
 
         for (JsonAdaptedBook jsonAdaptedBook : books) {

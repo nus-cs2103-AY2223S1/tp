@@ -17,7 +17,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import bookface.commons.core.GuiSettings;
-import bookface.model.person.NameContainsKeywordsPredicate;
 import bookface.testutil.BookFaceBuilder;
 
 public class ModelManagerTest {

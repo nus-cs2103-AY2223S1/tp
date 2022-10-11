@@ -22,13 +22,6 @@ public class TypicalBooks {
     public static final Book GET_MOTIVATED = new BookBuilder().withTitle("Get Motivated")
             .withAuthor("Lim Chee Teck").build();
 
-
-    // Manually added - Book's details found in {@code CommandTestUtil}
-    //    public static final Book HowToSpell = new BookBuilder().withTitle(CommandTestUtil.VALID_TITLE_HOW)
-    //            .withAuthor(CommandTestUtil.VALID_AUTHOR_RONALD).build();
-    //    public static final Book MakingAComputer = new BookBuilder().withTitle(CommandTestUtil.VALID_TITLE_MAKING)
-    //            .withAuthor(CommandTestUtil.VALID_AUTHOR_ROGER).build();
-
     private TypicalBooks() {} // prevents instantiation
 
     /**

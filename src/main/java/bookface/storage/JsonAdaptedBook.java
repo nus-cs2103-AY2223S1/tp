@@ -1,6 +1,5 @@
 package bookface.storage;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,7 +7,6 @@ import bookface.commons.exceptions.IllegalValueException;
 import bookface.model.book.Author;
 import bookface.model.book.Book;
 import bookface.model.book.Title;
-import bookface.model.person.Person;
 
 /**
  * Jackson-friendly version of {@link Book}.
@@ -19,18 +17,14 @@ class JsonAdaptedBook {
 
     private final String title;
     private final String author;
-    @JsonBackReference
-    private final Person loanee;
 
     /**
      * Constructs a {@code JsonAdaptedBook} with the given book details.
      */
     @JsonCreator
-    public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author,
-                           @JsonProperty("loanee") Person loanee) {
+    public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author) {
         this.title = title;
         this.author = author;
-        this.loanee = loanee;
     }
 
     /**
@@ -39,7 +33,6 @@ class JsonAdaptedBook {
     public JsonAdaptedBook(Book source) {
         title = source.getTitle().bookTitle;
         author = source.getAuthor().bookAuthor;
-        loanee = source.getLoanee();
     }
 
     /**
@@ -64,11 +57,7 @@ class JsonAdaptedBook {
         }
         final Author modelAuthor = new Author(author);
 
-        Book book = new Book(modelTitle, modelAuthor);
-        if (loanee != null) {
-            book.loanTo(loanee);
-        }
-        return book;
+        return new Book(modelTitle, modelAuthor);
     }
 }
 
