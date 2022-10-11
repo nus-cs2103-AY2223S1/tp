@@ -22,25 +22,35 @@ public class StatusCommandParser implements Parser<StatusCommand> {
      */
     public StatusCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STATUS);
+        System.out.println("COMMAND IS:" + args);
+        //ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STATUS);
+        String[] splitedCommand = args.split("\\s+");
 
         Index index;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            //commented out parts are for if we wish to use prefix s/ in the future
+            //index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(splitedCommand[1]);
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatusCommand.MESSAGE_USAGE), ive);
         }
 
-        String status = argMultimap.getValue(PREFIX_STATUS).orElse("");
+        //this is the user input
+        //String status = argMultimap.getValue(PREFIX_STATUS).orElse("");
+        String status = splitedCommand[2];
         String value;
+
+        System.out.println("INDEX IS:" + index);
+        System.out.println("STATUS IS:" + status);
 
         if (status.equals("r") || status.equals("R")) {
             value = "Rejected";
         } else if (status.equals("o") || status.equals("O")) {
             value = "Offered";
         } else {
-            value = "Progress";
+            value = "Progressing";
         }
+        System.out.println("VALUE IS:" + value);
 
         //checks if the status command word is within the constraints set
         if (!status.equals("p") && !status.equals("P") && !status.equals("o")

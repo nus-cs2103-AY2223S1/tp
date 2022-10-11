@@ -21,20 +21,20 @@ public class StatusCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, status: %2$s";
     public static final String COMMAND_WORD = "status";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
+            + ": Quickly updates the progress of the your Internship status "
+            + "by the index number used in the last Internship listing. "
+            + "Existing Status will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "s/ [STATUS]\n"
+            + " [STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "s/ p";
-    public static final String STATUS_COMMAND_CONSTRAINTS = COMMAND_WORD
-            + ": you can only use the command word p or P to set this Internship as PROGRESSING, \n"
-            + "the command word o or O to set this Internship as OFFERED\n"
-            + "and the command word r or R to set this Internship as REJECTED\n"
+            + " p";
+    public static final String STATUS_COMMAND_CONSTRAINTS =
+              "You can only use the command word p or P to set this Internship as Progressing, \n"
+            + "the command word o or O to set this Internship as Offered\n"
+            + "and the command word r or R to set this Internship as Rejected\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "s/ r\n"
-            + "to set this Internship's status to REJECTED";
+            + " r\n"
+            + "to set this Internship's status to Rejected";
 
     public static final String MESSAGE_UPDATE_STATUS_SUCCESS = "Updated status of Internship: %1$s";
     public static final String MESSAGE_DELETE_STATUS_SUCCESS = "Removed status from Internship: %1$s";

@@ -11,7 +11,7 @@ public class Status {
     enum StatusType {
         PROGRESS, OFFERED, REJECTED
     }
-    public static final String MESSAGE_CONSTRAINTS = "Status can be of 3 types: Progress, Offered, Rejected";
+    public static final String MESSAGE_CONSTRAINTS = "Status can be of 3 types: Progressing, Offered, Rejected";
 
     /*
      * The first character of the status must not be a whitespace,
