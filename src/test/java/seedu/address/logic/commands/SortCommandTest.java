@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.ELLE;
@@ -19,20 +18,18 @@ import seedu.address.model.person.Person;
 
 public class SortCommandTest {
     private Model model;
+    private Model expectedModel;
 
     @BeforeEach
     public void setModel() {
         Model model = new ModelManager();
+        expectedModel = new ModelManager();
         Person[] persons = {ELLE, AMY, BOB};
         for (Person p: persons) {
             model.addPerson(p);
         }
     }
 
-    @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SortCommand(null, null));
-    }
 
     @Test
     public void equals() {
@@ -57,7 +54,6 @@ public class SortCommandTest {
 
     @Test
     public void execute_sortByName_success() {
-        Model expectedModel = new ModelManager();
         Person[] persons = {AMY, BOB, ELLE};
         for (Person p: persons) {
             expectedModel.addPerson(p);
