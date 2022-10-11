@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -25,6 +26,7 @@ public class GitHub {
      * @param name A valid name.
      */
     public GitHub(String name) {
+        requireNonNull(name);
         checkArgument(isValidGitHub(name), MESSAGE_CONSTRAINTS);
         username = name;
     }
@@ -33,9 +35,6 @@ public class GitHub {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidGitHub(String test) {
-        if (test == null) {
-            return true;
-        }
         return test.matches(VALIDATION_REGEX);
     }
 

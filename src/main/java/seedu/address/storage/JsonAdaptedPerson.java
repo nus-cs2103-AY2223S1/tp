@@ -54,10 +54,22 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
+        if (source.getPhone() == null) {
+            phone = null;
+        } else {
+            phone = source.getPhone().value;
+        }
+        if (source.getEmail() == null) {
+            email = null;
+        } else {
+            email = source.getEmail().value;
+        }
+        if (source.getGitHub() == null) {
+            username = null;
+        } else {
+            username = source.getGitHub().username;
+        }
         handle = source.getTelegram().handle;
-        username = source.getGitHub().username;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -74,9 +86,9 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        Phone modelPhone = new Phone(null);
-        Email modelEmail = new Email(null);
-        GitHub modelGitHub = new GitHub(null);
+        Phone modelPhone = null;
+        Email modelEmail = null;
+        GitHub modelGitHub = null;
 
         // mandatory
         if (name == null) {

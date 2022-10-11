@@ -42,9 +42,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Telegram handle = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
-        Phone phone = new Phone(null);
-        Email email = new Email(null);
-        GitHub gitHub = new GitHub(null);
+        Phone phone = null;
+        Email email = null;
+        GitHub gitHub = null;
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
