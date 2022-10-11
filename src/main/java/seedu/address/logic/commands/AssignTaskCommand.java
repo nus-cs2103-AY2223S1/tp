@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -96,7 +97,6 @@ public class AssignTaskCommand extends Command {
 
         model.setPerson(personToAssignTask, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS + "\n" + MESSAGE_ARGUMENTS,
                 this.name, this.group, this.task));
