@@ -58,9 +58,8 @@ public class ClientCard extends UiPart<Region> {
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
         if (client.getMeeting() != null) {
-//            meetingsBox.getChildren().add(new MeetingCard(client.getMeeting(), 1).getRoot());
-            Label label = new Label("•  " + client.getMeeting().getMeetingDate().toString() +
-                    ", " + client.getMeeting().getMeetingTime().toString());
+            Label label = new Label("•  " + client.getMeeting().getMeetingDate().toString()
+                    + ", " + client.getMeeting().getMeetingTime().toString());
             label.getStyleClass().add("cell_small_label");
             meetingsBox.getChildren().add(label);
         } else {
