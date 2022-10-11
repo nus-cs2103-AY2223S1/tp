@@ -55,7 +55,10 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
             new Task(new TaskTitle("Grade assignments"), new TaskDescription("Complete by tonight")),
-            new Task(new TaskTitle("Prepare slides for studio"), new TaskDescription("Topic Environment Model"))
+            new Task(new TaskTitle("Prepare slides for studio"), new TaskDescription("Topic Environment Model")),
+            new Task(new TaskTitle("Review CS1101S topics with Adam"), new TaskDescription("Essence of Recursion")),
+            new Task(new TaskTitle("Collect robot"), new TaskDescription("At MakersLab")),
+            new Task(new TaskTitle("Go through tutorial sheet"), new TaskDescription("By this friday"))
         };
     }
 
