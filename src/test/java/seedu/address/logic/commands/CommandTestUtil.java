@@ -66,6 +66,8 @@ public class CommandTestUtil {
     public static final String VALID_DATE_LUNCH = "20-08-2022";
     public static final String VALID_DATE_MOVIE = "21-08-2022";
     public static final String VALID_DATE_DINNER = "24-08-2022";
+    public static final String VALID_TAG_LUNCH = "Lunch";
+    public static final String VALID_TAG_DINNER = "Dinner";
 
     public static final String TYPE_INCOME = " " + PREFIX_TYPE + VALID_TYPE_INCOME;
     public static final String TYPE_EXPENDITURE = " " + PREFIX_TYPE + VALID_TYPE_EXPENDITURE;
