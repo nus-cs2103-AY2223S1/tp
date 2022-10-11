@@ -1,11 +1,11 @@
 package seedu.condonery.storage;
 
-import seedu.condonery.commons.exceptions.DataConversionException;
-import seedu.condonery.model.ReadOnlyClientDirectory;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.condonery.commons.exceptions.DataConversionException;
+import seedu.condonery.model.ReadOnlyClientDirectory;
 
 /**
  * Represents a storage for {@link seedu.condonery.model.ClientDirectory}.

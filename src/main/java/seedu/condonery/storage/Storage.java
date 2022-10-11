@@ -5,7 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.condonery.commons.exceptions.DataConversionException;
-import seedu.condonery.model.*;
+import seedu.condonery.model.ReadOnlyClientDirectory;
+import seedu.condonery.model.ReadOnlyPropertyDirectory;
+import seedu.condonery.model.ReadOnlyUserPrefs;
+import seedu.condonery.model.UserPrefs;
 
 /**
  * API of the Storage component

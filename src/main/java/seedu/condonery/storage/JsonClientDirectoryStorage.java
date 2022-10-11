@@ -1,18 +1,18 @@
 package seedu.condonery.storage;
 
-import seedu.condonery.commons.core.LogsCenter;
-import seedu.condonery.commons.exceptions.DataConversionException;
-import seedu.condonery.commons.exceptions.IllegalValueException;
-import seedu.condonery.commons.util.FileUtil;
-import seedu.condonery.commons.util.JsonUtil;
-import seedu.condonery.model.ReadOnlyClientDirectory;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
+import seedu.condonery.commons.core.LogsCenter;
+import seedu.condonery.commons.exceptions.DataConversionException;
+import seedu.condonery.commons.exceptions.IllegalValueException;
+import seedu.condonery.commons.util.FileUtil;
+import seedu.condonery.commons.util.JsonUtil;
+import seedu.condonery.model.ReadOnlyClientDirectory;
 
 /**
  * A class to access ClientDirectory data stored as a json file on the hard disk.

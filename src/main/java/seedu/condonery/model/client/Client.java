@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.condonery.model.client.Address;
-import seedu.condonery.model.client.Name;
 import seedu.condonery.model.tag.Tag;
 
 /**

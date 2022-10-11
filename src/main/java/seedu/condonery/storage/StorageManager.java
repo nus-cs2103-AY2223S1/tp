@@ -7,7 +7,10 @@ import java.util.logging.Logger;
 
 import seedu.condonery.commons.core.LogsCenter;
 import seedu.condonery.commons.exceptions.DataConversionException;
-import seedu.condonery.model.*;
+import seedu.condonery.model.ReadOnlyClientDirectory;
+import seedu.condonery.model.ReadOnlyPropertyDirectory;
+import seedu.condonery.model.ReadOnlyUserPrefs;
+import seedu.condonery.model.UserPrefs;
 
 /**
  * Manages storage of PropertyDirectory data in local storage.
