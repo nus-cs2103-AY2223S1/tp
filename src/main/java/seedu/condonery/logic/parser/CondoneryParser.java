@@ -13,8 +13,9 @@ import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
-import seedu.condonery.logic.commands.ListCommand;
 import seedu.condonery.logic.commands.client.AddClientCommand;
+import seedu.condonery.logic.commands.ListClientCommand;
+import seedu.condonery.logic.commands.ListPropertyCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.parser.client.AddClientCommandParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
@@ -67,8 +68,11 @@ public class CondoneryParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListPropertyCommand.COMMAND_WORD:
+            return new ListPropertyCommand();
+
+        case ListClientCommand.COMMAND_WORD:
+            return new ListClientCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
