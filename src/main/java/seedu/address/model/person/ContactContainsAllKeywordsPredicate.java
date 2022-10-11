@@ -39,19 +39,19 @@ public class ContactContainsAllKeywordsPredicate implements Predicate<Person> {
             switch (prefix) {
             case INDICATOR_NAME:
                 isNameContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                        .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getName().fullName, keyword));
                 break;
             case INDICATOR_ADDRESS:
                 isAddressContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword));
+                        .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getAddress().value, keyword));
                 break;
             case INDICATOR_EMAIL:
                 isEmailContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getEmail().value, keyword));
+                        .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getEmail().value, keyword));
                 break;
             case INDICATOR_PHONE:
                 isPhoneContained = keywords.stream()
-                        .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getPhone().value, keyword));
+                        .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getPhone().value, keyword));
                 break;
             case INDICATOR_TAG:
                 isTagContained = true; // Implementation postponed, waiting for tag feature

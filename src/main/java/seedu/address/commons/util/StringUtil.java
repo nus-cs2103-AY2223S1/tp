@@ -7,7 +7,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Helper functions for handling strings.
@@ -60,7 +62,7 @@ public class StringUtil {
 
         List<String> wordsInPreppedSentence = Arrays.asList(sentence.split("\\s+"));
 
-        return !Collections.disjoint(wordsInPreppedSentence, preppedKeywords);
+        return wordsInPreppedSentence.containsAll(preppedKeywords);
     }
 
     /**
