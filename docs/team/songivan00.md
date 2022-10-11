@@ -15,7 +15,9 @@ Given below are my contributions to the project.
 
 * **Project management**: to be added soon
 
-* **Enhancements to existing features**: to be added soon
+* **Enhancements to existing features**: 
+  * Changed naming convention for all Contacts features
+  * Added and allowed commands to take in Mods field 
 
 * **Documentation**:
   * User Guide:
