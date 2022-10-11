@@ -103,6 +103,7 @@ public class EditPersonCommand extends Command {
         InternshipId updatedInternshipId =
                 editPersonDescriptor.getInternshipId().orElse(personToEdit.getInternshipId());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Index updateLinkIndex = editPersonDescriptor.getLinkIndex().orElse(personToEdit.getLinkIndex());
 
         return new Person(
                 personId,
@@ -110,7 +111,8 @@ public class EditPersonCommand extends Command {
                 updatedPhone,
                 updatedEmail,
                 updatedInternshipId,
-                updatedTags);
+                updatedTags,
+                updateLinkIndex);
     }
 
     @Override
@@ -141,6 +143,7 @@ public class EditPersonCommand extends Command {
         private Email email;
         private InternshipId internshipId;
         private Set<Tag> tags;
+        private Index linkIndex;
 
         public EditPersonDescriptor() {
         }
@@ -155,6 +158,7 @@ public class EditPersonCommand extends Command {
             setEmail(toCopy.email);
             setInternshipId(toCopy.internshipId);
             setTags(toCopy.tags);
+            setLinkIndex(toCopy.linkIndex);
         }
 
         /**
@@ -211,6 +215,14 @@ public class EditPersonCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public void setLinkIndex(Index linkIndex) {
+            this.linkIndex = linkIndex;
+        }
+
+        public Optional<Index> getLinkIndex() {
+            return Optional.ofNullable(linkIndex);
         }
 
         @Override

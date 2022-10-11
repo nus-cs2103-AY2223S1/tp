@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.internship.InternshipId;
 import seedu.address.model.tag.Tag;
 
@@ -22,6 +23,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final InternshipId internshipId;
+    private final Index linkIndex;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -35,7 +37,8 @@ public class Person {
             Phone phone,
             Email email,
             InternshipId internshipId,
-            Set<Tag> tags) {
+            Set<Tag> tags,
+            Index linkIndex) {
         requireAllNonNull(name, phone, email, tags);
         this.personId = personId;
         this.name = name;
@@ -43,6 +46,7 @@ public class Person {
         this.email = email;
         this.internshipId = internshipId;
         this.tags.addAll(tags);
+        this.linkIndex = linkIndex;
     }
 
     public PersonId getPersonId() {
@@ -71,6 +75,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Index getLinkIndex() {
+        return linkIndex;
     }
 
     /**

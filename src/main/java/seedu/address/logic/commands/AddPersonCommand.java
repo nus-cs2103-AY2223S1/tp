@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.internship.InternshipId;
@@ -49,6 +50,7 @@ public class AddPersonCommand extends Command {
     private final Email email;
     private final InternshipId internshipId;
     private final Set<Tag> tags = new HashSet<>();
+    private final Index linkIndex;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -60,6 +62,7 @@ public class AddPersonCommand extends Command {
         this.email = person.getEmail();
         this.internshipId = person.getInternshipId();
         this.tags.addAll(person.getTags());
+        this.linkIndex = person.getLinkIndex();
     }
 
     /**
@@ -72,13 +75,15 @@ public class AddPersonCommand extends Command {
             Phone phone,
             Email email,
             InternshipId internshipId,
-            Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
+            Set<Tag> tags,
+            Index linkIndex) {
+        requireAllNonNull(name, phone, email, tags, linkIndex);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.internshipId = internshipId;
         this.tags.addAll(tags);
+        this.linkIndex = linkIndex;
     }
 
     @Override
@@ -93,7 +98,8 @@ public class AddPersonCommand extends Command {
                     phone,
                     email,
                     null,
-                    tags
+                    tags,
+                    linkIndex
             );
         } else {
             toAdd = new Person(
@@ -102,7 +108,8 @@ public class AddPersonCommand extends Command {
                     phone,
                     email,
                     internshipId,
-                    tags
+                    tags,
+                    linkIndex
             );
         }
 
@@ -129,6 +136,7 @@ public class AddPersonCommand extends Command {
                 && phone.equals(otherCommand.phone)
                 && email.equals(otherCommand.email)
                 && Objects.equals(internshipId, otherCommand.internshipId)
-                && tags.equals(otherCommand.tags);
+                && tags.equals(otherCommand.tags)
+                && Objects.equals(linkIndex, otherCommand.linkIndex);
     }
 }
