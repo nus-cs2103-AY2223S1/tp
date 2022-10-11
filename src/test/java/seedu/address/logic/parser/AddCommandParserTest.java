@@ -1,141 +1,142 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.POSITION_DESC_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.POSITION_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACT_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalApplications.FACEBOOK;
+import static seedu.address.testutil.TypicalApplications.GOOGLE;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.application.Application;
+import seedu.address.model.application.Company;
+import seedu.address.model.application.Contact;
+import seedu.address.model.application.Date;
+import seedu.address.model.application.Email;
+import seedu.address.model.application.Position;
+import seedu.address.testutil.ApplicationBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Application expectedApplication = new ApplicationBuilder(GOOGLE).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
 
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple companies - last company accepted
+        assertParseSuccess(parser, COMPANY_DESC_FACEBOOK + COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
 
-        // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple contacts - last contact accepted
+        assertParseSuccess(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_FACEBOOK + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
+
+        // multiple dates - last date accepted
+        assertParseSuccess(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_FACEBOOK + DATE_DESC_GOOGLE
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + EMAIL_DESC_FACEBOOK + DATE_DESC_GOOGLE
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
 
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-
-        // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+        // multiple positions - last position accepted
+        assertParseSuccess(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + EMAIL_DESC_GOOGLE + DATE_DESC_GOOGLE
+                + POSITION_DESC_FACEBOOK + POSITION_DESC_GOOGLE, new AddCommand(expectedApplication));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+        // zero tags - used for later
+        Application expectedApplication = new ApplicationBuilder(FACEBOOK).build();
+        assertParseSuccess(parser, COMPANY_DESC_FACEBOOK + CONTACT_DESC_FACEBOOK + DATE_DESC_FACEBOOK
+                + EMAIL_DESC_FACEBOOK + POSITION_DESC_FACEBOOK, new AddCommand(expectedApplication));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
+        // missing company prefix
+        assertParseFailure(parser, VALID_COMPANY_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE + EMAIL_DESC_GOOGLE
+                + POSITION_DESC_GOOGLE, expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
+        // missing contact prefix
+        assertParseFailure(parser, COMPANY_DESC_GOOGLE + VALID_CONTACT_GOOGLE + DATE_DESC_GOOGLE + EMAIL_DESC_GOOGLE
+                + POSITION_DESC_GOOGLE, expectedMessage);
+
+        // missing date prefix
+        assertParseFailure(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + VALID_DATE_GOOGLE + EMAIL_DESC_GOOGLE
+                + POSITION_DESC_GOOGLE, expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
+        assertParseFailure(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE + VALID_EMAIL_GOOGLE
+                + POSITION_DESC_GOOGLE, expectedMessage);
 
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
+        // missing position prefix
+        assertParseFailure(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE + EMAIL_DESC_GOOGLE
+                + VALID_POSITION_GOOGLE, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
+        assertParseFailure(parser, VALID_COMPANY_GOOGLE + VALID_CONTACT_GOOGLE + VALID_DATE_GOOGLE + VALID_EMAIL_GOOGLE
+                + VALID_POSITION_GOOGLE, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+        // invalid company
+        assertParseFailure(parser, INVALID_COMPANY_DESC + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE + EMAIL_DESC_GOOGLE
+                + POSITION_DESC_GOOGLE, Company.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+        // invalid contact
+        assertParseFailure(parser, COMPANY_DESC_GOOGLE + INVALID_CONTACT_DESC + DATE_DESC_GOOGLE + EMAIL_DESC_GOOGLE
+                + POSITION_DESC_GOOGLE, Contact.MESSAGE_CONSTRAINTS);
+
+        // invalid date
+        assertParseFailure(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + INVALID_DATE_DESC + EMAIL_DESC_GOOGLE
+                + POSITION_DESC_GOOGLE, Date.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE + INVALID_EMAIL_DESC
+                + POSITION_DESC_GOOGLE, Email.MESSAGE_CONSTRAINTS);
 
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
-
-        // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        // invalid position
+        assertParseFailure(parser, COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE + EMAIL_DESC_GOOGLE
+                + INVALID_POSITION_DESC, Position.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_COMPANY_DESC + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE + INVALID_EMAIL_DESC
+                + POSITION_DESC_GOOGLE, Company.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

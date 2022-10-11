@@ -25,7 +25,7 @@ public class ApplicationBuilder {
     private Position position;
 
     /**
-     * Creates a {@code ApplicationBuilder} with the default details.
+     * Creates an {@code ApplicationBuilder} with the default details.
      */
     public ApplicationBuilder() {
         company = new Company(DEFAULT_COMPANY);

@@ -1,60 +1,41 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.ApplicationBook;
+import seedu.address.model.ReadOnlyApplicationBook;
+import seedu.address.model.application.Application;
+import seedu.address.model.application.Company;
+import seedu.address.model.application.Contact;
+import seedu.address.model.application.Date;
+import seedu.address.model.application.Email;
+import seedu.address.model.application.Position;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ApplicationBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+    public static Application[] getSampleApplications() {
+        return new Application[] {
+            new Application(new Company("Google"), new Contact("68882888"), new Email("internships@google.com.sg"),
+                    new Position("Software Engineer Intern"), new Date("2022-09-10")),
+            new Application(new Company("Grab"), new Contact("67773777"), new Email("internships@grab.com.sg"),
+                    new Position("Backend Engineer Intern"), new Date("2022-10-01")),
+            new Application(new Company("ByteDance"), new Contact("63334333"), new Email("hr@bytedance.com.sg"),
+                    new Position("Frontend Engineer Intern"), new Date("2021-08-08")),
+            new Application(new Company("Shopee"), new Contact("67436743"), new Email("talent@shopee.com.sg"),
+                    new Position("Quality Assurance Intern"), new Date("2021-09-30")),
+            new Application(new Company("Wise"), new Contact("64164161"), new Email("humanresource@wise.org"),
+                    new Position("Software Engineer Intern"), new Date("2022-09-10")),
+            new Application(new Company("Stripe"), new Contact("66210987"), new Email("intern@stripe.org"),
+                    new Position("System Analyst"), new Date("2022-10-08"))
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+    public static ReadOnlyApplicationBook getSampleApplicationBook() {
+        ApplicationBook sampleAb = new ApplicationBook();
+        for (Application sampleApplication : getSampleApplications()) {
+            sampleAb.addApplication(sampleApplication);
         }
         return sampleAb;
-    }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
     }
 
 }
