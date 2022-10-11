@@ -24,4 +24,26 @@ public class TypicalAddressBook {
         }
         return ab;
     }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical modules.
+     */
+    public static AddressBook getTypicalAddressBookWithOnlyModules() {
+        AddressBook ab = new AddressBook();
+        for (Module module : getTypicalModules()) {
+            ab.addModule(module);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons.
+     */
+    public static AddressBook getTypicalAddressBookWithOnlyPersons() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
 }
