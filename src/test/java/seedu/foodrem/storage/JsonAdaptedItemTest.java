@@ -13,11 +13,11 @@ import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
-import seedu.foodrem.model.item.itemvalidator.ItemBoughtDateValidator;
-import seedu.foodrem.model.item.itemvalidator.ItemExpiryDateValidator;
-import seedu.foodrem.model.item.itemvalidator.ItemNameValidator;
-import seedu.foodrem.model.item.itemvalidator.ItemQuantityValidator;
-import seedu.foodrem.model.item.itemvalidator.ItemUnitValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemExpiryDateValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemNameValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemUnitValidator;
 
 public class JsonAdaptedItemTest {
     private static final String INVALID_NAME = "Po|a|oes\\";

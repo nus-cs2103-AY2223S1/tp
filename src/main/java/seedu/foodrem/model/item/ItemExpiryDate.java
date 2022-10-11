@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import seedu.foodrem.model.item.itemvalidator.ItemExpiryDateValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemExpiryDateValidator;
 
 /**
  * Represents an item date in an {@link Item}.
@@ -38,8 +38,8 @@ public class ItemExpiryDate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof ItemExpiryDate // instanceof handles nulls
-            && itemDate.equals(((ItemExpiryDate) other).itemDate)); // state check
+                || (other instanceof ItemExpiryDate // instanceof handles nulls
+                && itemDate.equals(((ItemExpiryDate) other).itemDate)); // state check
     }
 
     /**

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import seedu.foodrem.model.item.itemvalidator.ItemBoughtDateValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator;
 
 /**
  * Represents an item date in an {@link Item}.
@@ -38,8 +38,8 @@ public class ItemBoughtDate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof ItemBoughtDate // instanceof handles nulls
-            && itemDate.equals(((ItemBoughtDate) other).itemDate)); // state check
+                || (other instanceof ItemBoughtDate // instanceof handles nulls
+                && itemDate.equals(((ItemBoughtDate) other).itemDate)); // state check
     }
 
     /**

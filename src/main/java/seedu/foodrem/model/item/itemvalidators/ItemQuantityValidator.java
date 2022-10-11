@@ -1,4 +1,4 @@
-package seedu.foodrem.model.item.itemvalidator;
+package seedu.foodrem.model.item.itemvalidators;
 
 import seedu.foodrem.model.item.Item;
 

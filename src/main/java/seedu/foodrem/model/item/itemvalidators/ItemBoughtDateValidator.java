@@ -1,4 +1,4 @@
-package seedu.foodrem.model.item.itemvalidator;
+package seedu.foodrem.model.item.itemvalidators;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
