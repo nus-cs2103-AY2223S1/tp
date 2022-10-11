@@ -52,9 +52,9 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         telegramHandle.setText(student.getTelegramHandle().toString());
-        masteryCheck.setText(student.getMasteryCheck().toString());
-        consultation.setText(student.getConsultation().toString());
-        remark.setText(student.getRemark().value);
+        masteryCheck.setText(String.format("Mastery Check: %s", student.getMasteryCheck().toString()));
+        consultation.setText(String.format("Consultation: %s", student.getConsultation().toString()));
+        remark.setText(String.format("Remark(s): %s", student.getRemark().toString()));
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

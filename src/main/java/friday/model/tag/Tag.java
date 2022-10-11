@@ -9,8 +9,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric. Whitespaces are allowed.";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ]*$";
 
     public final String tagName;
 
