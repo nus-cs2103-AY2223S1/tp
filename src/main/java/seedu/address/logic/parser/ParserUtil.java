@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +20,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_PERSON_CATEGORY = PersonCategory.MESSAGE_CONSTRAINTS;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -125,11 +128,10 @@ public class ParserUtil {
      * @throws ParseException if the specified person category is invalid (not a buyer, deliverer, or supplier).
      */
     public static PersonCategory parsePersonCategory(String personCategory) throws ParseException {
-        requireNonNull(personCategory);
-        String trimmedPersonCategory = personCategory.trim();
-        if (!PersonCategory.isValidPersonCategory(trimmedPersonCategory)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new PersonCategory(trimmedPersonCategory);
+        String trimmed = personCategory.trim();
+        checkArgument(PersonCategory.isValidPersonCategory(trimmed), MESSAGE_INVALID_PERSON_CATEGORY);
+        return Arrays.stream(PersonCategory.class.getEnumConstants())
+                .filter(x -> x.toString().equals(trimmed))
+                .findFirst().orElse(PersonCategory.BUYER);
     }
 }

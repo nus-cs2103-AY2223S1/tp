@@ -14,7 +14,7 @@ public enum PersonCategory {
     DELIVERER("Deliverer"),
     SUPPLIER("Supplier");
 
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "PersonCategory should only contain alphanumeric characters, it is case sensitive and it should not "
                     + "be blank. It can only be one of the following types: 'Buyer', 'Deliverer' and 'Supplier'.";
 
