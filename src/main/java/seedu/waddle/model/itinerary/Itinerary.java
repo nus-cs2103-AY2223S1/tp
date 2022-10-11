@@ -84,11 +84,11 @@ public class Itinerary {
     }
 
     public Item removeItem(int index) {
-        return this.itemList.remove(index);
+        return this.uniqueItemList.remove(index);
     }
 
     public int getItemSize() {
-        return this.itemList.getSize();
+        return this.uniqueItemList.getSize();
     }
 
     /**
