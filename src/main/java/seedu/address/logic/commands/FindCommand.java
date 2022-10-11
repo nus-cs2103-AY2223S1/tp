@@ -54,10 +54,10 @@ public class FindCommand extends Command {
         model.updateFilteredBuyerList(bPredicate);
         model.updateFilteredDelivererList(dPredicate);
         model.updateFilteredSupplierList(sPredicate);
-        if (type.equals(new PersonCategory("Buyer"))) {
+        if (type.equals(PersonCategory.BUYER)) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredBuyerList().size()));
-        } else if (type.equals(new PersonCategory("Deliverer"))) {
+        } else if (type.equals(PersonCategory.DELIVERER)) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredDelivererList().size()));
         } else {

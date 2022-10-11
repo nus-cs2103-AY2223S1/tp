@@ -33,7 +33,7 @@ public class FindCommandParserTest {
                 new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
-                        new PersonCategory("Buyer"));
+                        PersonCategory.BUYER);
         assertParseSuccess(parser, "Buyer Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -47,7 +47,7 @@ public class FindCommandParserTest {
                 new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
-                        new PersonCategory("Deliverer"));
+                        PersonCategory.DELIVERER);
         assertParseSuccess(parser, "Deliverer Charlie Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -61,7 +61,7 @@ public class FindCommandParserTest {
                 new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
-                        new PersonCategory("Supplier"));
+                        PersonCategory.SUPPLIER);
         assertParseSuccess(parser, "Supplier Charlie Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords

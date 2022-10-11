@@ -45,7 +45,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code PersonCategory} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPersonCategory(String personCategory) {
-        descriptor.setPersonCategory(new PersonCategory(personCategory));
+        descriptor.setPersonCategory(PersonCategory.getFromString(personCategory));
         return this;
     }
 
