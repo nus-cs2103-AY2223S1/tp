@@ -1,0 +1,13 @@
+package seedu.foodrem.model;
+
+import java.util.Comparator;
+
+import seedu.foodrem.model.item.Item;
+
+/**
+ * A common Comparator interface for comparators used in the Sort
+ * command to inherit from. Allows for sorting of Items.
+ */
+public interface FoodRemItemComparator extends Comparator<Item> {
+    boolean equals(Object other);
+}
