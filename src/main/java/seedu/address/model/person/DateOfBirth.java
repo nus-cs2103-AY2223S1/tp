@@ -7,10 +7,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a Person's date of birth in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ */
 public class DateOfBirth {
 
     public static final String MESSAGE_CONSTRAINTS = "Date of birth must be in format: dd/mm/yyyy";
-    private static final String MESSAGE_ARGUMENT_CONSTRAINTS = "compareTo() of DateOfBirth must take in argument of type LocalDate";
+    private static final String MESSAGE_ARGUMENT_CONSTRAINTS =
+        "compareTo() of DateOfBirth must take in argument of type LocalDate";
 
     private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
@@ -19,6 +24,9 @@ public class DateOfBirth {
 
     private boolean isEmpty;
 
+    /**
+     * Constructs an empty {@code DateOfBirth}.
+     */
     public DateOfBirth() {
         this.date = null;
         this.isEmpty = true;
@@ -43,11 +51,13 @@ public class DateOfBirth {
         return new DateOfBirth();
     }
 
-     /**
+    /**
      * Returns true if a given string is a valid DOB input, "" empty string is used to represent an empty DateOfBirth.
      * @return boolean
      */
-    public static boolean isValidDate(String test) { //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
+
+    //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
+    public static boolean isValidDate(String test) {
         if (test == "") {
             return true;
         }
@@ -70,10 +80,10 @@ public class DateOfBirth {
         if (!(other instanceof DateOfBirth)) {
             throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
         }
-        if (this.isEmpty() & ((DateOfBirth)other).isEmpty()) {
+        if (this.isEmpty() & ((DateOfBirth) other).isEmpty()) {
             return 0;
         }
-        return this.date.compareTo(((DateOfBirth)other).date);
+        return this.date.compareTo(((DateOfBirth) other).date);
     }
 
     /**

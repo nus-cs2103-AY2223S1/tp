@@ -44,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_DOB+ "DATE OF BIRTH] "
+            + "[" + PREFIX_DOB + "DATE OF BIRTH] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_GENDER + "GENDER]...\n"
@@ -107,7 +107,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedDob, updatedAddress, updatedTags, updatedGender);
+        return new Person(updatedName, updatedPhone, updatedEmail,
+             updatedDob, updatedAddress, updatedTags, updatedGender);
     }
 
     @Override

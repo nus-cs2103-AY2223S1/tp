@@ -143,7 +143,7 @@ public class Person {
 
         if (!getDob().isEmpty()) { //Need check if DateOfBirth is empty
             builder.append("; Date of Birth: ")
-            .append(getDob());
+                .append(getDob());
         }
 
         Set<Tag> tags = getTags();
