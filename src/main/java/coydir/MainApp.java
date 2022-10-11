@@ -29,6 +29,7 @@ import coydir.storage.UserPrefsStorage;
 import coydir.ui.Ui;
 import coydir.ui.UiManager;
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.stage.Stage;
 
 /**
@@ -45,6 +46,7 @@ public class MainApp extends Application {
     protected Storage storage;
     protected Model model;
     protected Config config;
+    protected HostServices hostService;
 
     @Override
     public void init() throws Exception {
@@ -66,6 +68,8 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+
+        hostService = getHostServices();
     }
 
     /**
@@ -163,6 +167,10 @@ public class MainApp extends Application {
         }
 
         return initializedPrefs;
+    }
+
+    public void openWebsite(String url) {
+        hostService.showDocument(url);
     }
 
     @Override

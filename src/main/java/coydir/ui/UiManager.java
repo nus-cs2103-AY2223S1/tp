@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import coydir.MainApp;
 import coydir.commons.core.LogsCenter;
+import coydir.commons.util.AppUtil;
 import coydir.commons.util.StringUtil;
 import coydir.logic.Logic;
 import javafx.application.Platform;
@@ -37,7 +38,7 @@ public class UiManager implements Ui {
         logger.info("Starting UI...");
 
         //Set the application icon.
-        primaryStage.getIcons().add(getImage(ICON_APPLICATION));
+        primaryStage.getIcons().add(AppUtil.getImage(ICON_APPLICATION));
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
@@ -48,10 +49,6 @@ public class UiManager implements Ui {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
-    }
-
-    private Image getImage(String imagePath) {
-        return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
 
     void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
