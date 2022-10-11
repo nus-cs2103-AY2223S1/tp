@@ -1,14 +1,13 @@
-package seedu.rc4hdb.logic.parser;
+package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
+import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
-import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
