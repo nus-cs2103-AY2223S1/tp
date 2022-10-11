@@ -7,13 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.*;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Team;
 
 
 /**
- * Adds a person to the address book.
+ * Removes a person from a team.
  */
 public class UnAssignMemberCommand extends Command {
 
@@ -35,7 +34,7 @@ public class UnAssignMemberCommand extends Command {
     private final Index teamIndex;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an UnAssignMemberCommand to remove the specified {@code Person} from specified {@code Team}
      */
     public UnAssignMemberCommand(Index teamIndex, Index personIndex) {
         requireAllNonNull(personIndex, teamIndex);
