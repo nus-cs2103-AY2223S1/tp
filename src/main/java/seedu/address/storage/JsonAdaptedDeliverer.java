@@ -55,8 +55,8 @@ class JsonAdaptedDeliverer {
     /**
      * Converts a given {@code Deliverer} into this class for Jackson use.
      */
-    public JsonAdaptedDeliverer (Deliverer source) {
-        personCategory = source.getPersonCategory().value;
+    public JsonAdaptedDeliverer(Deliverer source) {
+        personCategory = source.getPersonCategory().toString();
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -83,7 +83,7 @@ class JsonAdaptedDeliverer {
         if (!PersonCategory.isValidPersonCategory(personCategory)) {
             throw new IllegalValueException(PersonCategory.MESSAGE_CONSTRAINTS);
         }
-        final PersonCategory modelPersonCategory = new PersonCategory(personCategory);
+        final PersonCategory modelPersonCategory = PersonCategory.getFromString(personCategory);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));

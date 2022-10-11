@@ -41,7 +41,7 @@ public class DeleteCommand extends Command {
 
         ObservableList<? extends Person> lastShownList;
 
-        switch (personCategory.value) {
+        switch (personCategory.toString()) {
         case "Buyer":
             lastShownList = model.getFilteredBuyerList();
             break;
@@ -61,7 +61,7 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        switch (personCategory.value) {
+        switch (personCategory.toString()) {
         case "Buyer":
             model.deleteBuyer((Buyer) personToDelete);
             break;
