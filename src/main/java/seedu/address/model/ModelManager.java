@@ -103,7 +103,7 @@ public class ModelManager implements Model {
     @Override
     public void addExpenditure(Entry entry) {
         pennyWise.addExpenditure(entry);
-        updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
+        updateFilteredExpenditureList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class ModelManager implements Model {
     @Override
     public void addIncome(Entry entry) {
         pennyWise.addIncome(entry);
-        updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
+        updateFilteredExpenditureList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 
     @Override
@@ -160,6 +160,24 @@ public class ModelManager implements Model {
     public void updateFilteredEntryList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
         filteredExpenditure.setPredicate(predicate);
+    }
+
+    /**
+     * Updates the filter of the filtered expenditure list to filter by the given {@code predicate}.
+     *
+     */
+    public void updateFilteredExpenditureList(Predicate<Entry> predicate) {
+        requireNonNull(predicate);
+        filteredExpenditure.setPredicate(predicate);
+    }
+
+    /**
+     * Updates the filter of the filtered income list to filter by the given {@code predicate}.
+     *
+     */
+    public void updateFilteredIncomeList(Predicate<Entry> predicate) {
+        requireNonNull(predicate);
+        filteredIncome.setPredicate(predicate);
     }
 
     @Override
