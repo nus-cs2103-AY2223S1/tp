@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalClients.getTypicalMyInsuRec;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ELEMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ELEMENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,8 +26,8 @@ public class ViewClientCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Client clientToView = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
-        ViewClientCommand viewCommand = new ViewClientCommand(INDEX_FIRST_CLIENT);
+        Client clientToView = model.getFilteredClientList().get(INDEX_FIRST_ELEMENT.getZeroBased());
+        ViewClientCommand viewCommand = new ViewClientCommand(INDEX_FIRST_ELEMENT);
 
         String expectedMessage = String.format(viewCommand.MESSAGE_SUCCESS, clientToView);
         ModelManager expectedModel = new ModelManager(model.getMyInsuRec(), new UserPrefs());
@@ -44,14 +44,14 @@ public class ViewClientCommandTest {
 
     @Test
     public void equals() {
-        ViewClientCommand viewFirstCommand = new ViewClientCommand(INDEX_FIRST_CLIENT);
-        ViewClientCommand viewSecondCommand = new ViewClientCommand(INDEX_SECOND_CLIENT);
+        ViewClientCommand viewFirstCommand = new ViewClientCommand(INDEX_FIRST_ELEMENT);
+        ViewClientCommand viewSecondCommand = new ViewClientCommand(INDEX_SECOND_ELEMENT);
 
         // same object -> returns true
         assertTrue(viewFirstCommand.equals(viewFirstCommand));
 
         // same values -> returns true
-        ViewClientCommand viewFirstCommandCopy = new ViewClientCommand(INDEX_FIRST_CLIENT);
+        ViewClientCommand viewFirstCommandCopy = new ViewClientCommand(INDEX_FIRST_ELEMENT);
         assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
 
         // different types -> returns false
