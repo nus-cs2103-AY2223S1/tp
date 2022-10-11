@@ -20,7 +20,7 @@ import seedu.address.model.client.Client;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteClientCommand}.
  */
 public class DeleteClientCommandTest {
 
@@ -29,22 +29,22 @@ public class DeleteClientCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Client clientToDelete = model.getFilteredClientList().get(INDEX_FIRST_ELEMENT.getZeroBased());
-        DeleteClientCommand deleteCommand = new DeleteClientCommand(INDEX_FIRST_ELEMENT);
+        DeleteClientCommand deleteClientCommand = new DeleteClientCommand(INDEX_FIRST_ELEMENT);
 
         String expectedMessage = String.format(DeleteClientCommand.MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getMyInsuRec(), new UserPrefs());
         expectedModel.deleteClient(clientToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
-        DeleteClientCommand deleteCommand = new DeleteClientCommand(outOfBoundIndex);
+        DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class DeleteClientCommandTest {
         showClientAtIndex(model, INDEX_FIRST_ELEMENT);
 
         Client clientToDelete = model.getFilteredClientList().get(INDEX_FIRST_ELEMENT.getZeroBased());
-        DeleteClientCommand deleteCommand = new DeleteClientCommand(INDEX_FIRST_ELEMENT);
+        DeleteClientCommand deleteClientCommand = new DeleteClientCommand(INDEX_FIRST_ELEMENT);
 
         String expectedMessage = String.format(DeleteClientCommand.MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete);
 
@@ -60,7 +60,7 @@ public class DeleteClientCommandTest {
         expectedModel.deleteClient(clientToDelete);
         showNoClient(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -71,9 +71,9 @@ public class DeleteClientCommandTest {
         // ensures that outOfBoundIndex is still in bounds of client list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMyInsuRec().getClientList().size());
 
-        DeleteClientCommand deleteCommand = new DeleteClientCommand(outOfBoundIndex);
+        DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test
