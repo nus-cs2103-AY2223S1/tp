@@ -132,6 +132,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskBook.hasTask(task);
+    }
+
+    @Override
     public void addTask(Task task) {
         requireNonNull(task);
         taskBook.addTask(task);

@@ -93,6 +93,8 @@ public interface Model {
 
     ObservableList<Task> getTaskList();
 
+    boolean hasTask(Task task);
+
     void addTask(Task task);
 
     void deleteTask(Task target);

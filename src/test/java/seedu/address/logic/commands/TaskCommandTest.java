@@ -1,80 +1,65 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.*;
+import seedu.address.model.student.Student;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.TaskBuilder;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import org.junit.jupiter.api.Test;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.address.testutil.Assert.assertThrows;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
-import seedu.address.model.student.Student;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.StudentBuilder;
-
-public class AddCommandTest {
+public class TaskCommandTest {
 
     @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TaskCommand(null));
     }
 
     @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
-        Student validStudent = new StudentBuilder().build();
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
+        CommandResult commandResult = new TaskCommand(validTask).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
-    }
-
-    @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
-        AddCommand addCommand = new AddCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
+        assertEquals(String.format(TaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
 
     @Test
     public void equals() {
-        Student alice = new StudentBuilder().withName("Alice").build();
-        Student bob = new StudentBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Task firstTask = new TaskBuilder().withTitle("First").build();
+        Task secondTask = new TaskBuilder().withTitle("Second").build();
+        TaskCommand addFirstTaskCommand = new TaskCommand(firstTask);
+        TaskCommand addSecondTaskCommand = new TaskCommand(secondTask);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addFirstTaskCommand.equals(addFirstTaskCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        TaskCommand addFirstTaskCommandCopy = new TaskCommand(firstTask);
+        assertTrue(addFirstTaskCommand.equals(addFirstTaskCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addFirstTaskCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addFirstTaskCommand.equals(null));
 
         // different student -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addFirstTaskCommand.equals(addSecondTaskCommand));
     }
 
-    /**
-     * A default model stub that have all of the methods failing.
-     */
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -177,46 +162,24 @@ public class AddCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single student.
-     */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    private class ModelStubAcceptingTaskAdded extends TaskCommandTest.ModelStub {
+        final ArrayList<Task> tasksAdded = new ArrayList<>();
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+        @Override
+        public boolean hasTask(Task task) {
+            requireNonNull(task);
+            return tasksAdded.stream().anyMatch(task::equals);
         }
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return this.student.isSameStudent(student);
+        public void addTask(Task task) {
+            requireNonNull(task);
+            tasksAdded.add(task);
+        }
+
+        @Override
+        public ReadOnlyTaskBook getTaskBook() {
+            return new TaskBook();
         }
     }
-
-    /**
-     * A Model stub that always accept the student being added.
-     */
-    private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> studentsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
-        }
-
-        @Override
-        public void addStudent(Student student) {
-            requireNonNull(student);
-            studentsAdded.add(student);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
-    }
-
 }

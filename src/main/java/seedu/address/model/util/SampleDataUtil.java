@@ -47,8 +47,8 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-                new Task(new TaskTitle("First task"), new TaskDescription("First description")),
-                new Task(new TaskTitle("Second task"), new TaskDescription("Second description"))
+                new Task(new TaskTitle("Grade assignments"), new TaskDescription("Mark by tonight")),
+                new Task(new TaskTitle("Prepare slides for studio"), new TaskDescription("Topic Environment Model"))
         };
     }
 

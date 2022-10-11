@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
@@ -56,11 +57,16 @@ public class TaskBook implements ReadOnlyTaskBook {
         setTasks(newData.getTaskList());
     }
 
-    //// student-level operations
+    //// task-level operations
+
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
+    }
 
     /**
-     * Adds a student to the address book.
-     * The student must not already exist in the address book.
+     * Adds a task to the address book.
+     * The task must not already exist in the address book.
      */
     public void addTask(Task t) {
         tasks.add(t);

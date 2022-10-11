@@ -1,0 +1,19 @@
+{
+  "_comment": "TaskBook save file which contains the same Task values as in TypicalTasks#getTypicalTaskBook()",
+  "tasks" : [ {
+    "title" : "First title",
+    "description" : "First description"
+  }, {
+    "title" : "Second title",
+    "description" : "Second description"
+  }, {
+    "title" : "Third title",
+    "description" : "Third description"
+  }, {
+    "title" : "Fourth title",
+    "description" : "Fourth description"
+  }, {
+    "title" : "Fifth title",
+    "description" : "Fifth description"
+  } ]
+}

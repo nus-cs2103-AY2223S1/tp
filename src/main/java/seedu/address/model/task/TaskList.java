@@ -28,6 +28,11 @@ public class TaskList implements Iterable<Task> {
         internalList.remove(toRemove);
     }
 
+    public boolean contains(Task toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
+    }
+
     public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);
 
