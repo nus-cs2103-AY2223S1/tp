@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.profile;
 
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_KEYWORDS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -10,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.profile.FindProfileCommand;
-import seedu.address.logic.parser.profile.FindProfileCommandParser;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 
 public class FindProfileCommandParserTest {
