@@ -47,6 +47,7 @@ public class TrackO implements ReadOnlyTrackO {
      */
     public void resetData(ReadOnlyTrackO newData) {
         requireNonNull(newData);
+        setItems(newData.getInventoryList());
         setOrders(newData.getOrderList());
     }
 
