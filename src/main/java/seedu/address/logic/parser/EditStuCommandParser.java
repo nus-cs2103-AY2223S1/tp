@@ -1,15 +1,15 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditStuCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditStuCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditStuCommand object
@@ -45,7 +45,8 @@ public class EditStuCommandParser {
             editStudentDescriptor.setEmail(ParserUtil.parseStuEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ATTENDANCE).isPresent()) {
-            editStudentDescriptor.setAttendance(ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get()));
+            editStudentDescriptor.setAttendance(ParserUtil.
+                    parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get()));
         }
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {

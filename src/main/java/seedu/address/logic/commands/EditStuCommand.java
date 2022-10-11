@@ -1,5 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -7,20 +16,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.HelpTag;
+import seedu.address.model.student.Response;
 import seedu.address.model.student.StuEmail;
 import seedu.address.model.student.StuName;
-import seedu.address.model.student.Response;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Telegram;
-
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 /**
  * Edits the details of an existing student in the SETA.
@@ -83,7 +83,8 @@ public class EditStuCommand extends Command {
      * Creates and returns a {@code Student} with the details of {@code studentToEdit}
      * edited with {@code editStudentDescriptor}.
      */
-    private static Student createEditedStudent(Student studentToEdit, EditStuCommand.EditStudentDescriptor editStudentDescriptor) {
+    private static Student createEditedStudent(Student studentToEdit,
+                                               EditStuCommand.EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
         StuName updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
