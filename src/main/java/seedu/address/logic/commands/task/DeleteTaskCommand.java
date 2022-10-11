@@ -2,6 +2,8 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -9,10 +11,10 @@ import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.UniqueTaskList;
 
-import java.util.List;
-
+/**
+ * Deletes a task from the task panel
+ */
 public class DeleteTaskCommand extends TaskCommand {
     public static final String COMMAND_WORD = "delete";
     public static final String COMMAND_WORD_FULL = TaskCommand.COMMAND_WORD + " " + COMMAND_WORD;
@@ -21,10 +23,12 @@ public class DeleteTaskCommand extends TaskCommand {
             + "Parameters: \n"
             + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_SUCCESS = "Task deleted: %1$s";
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteCommand to remove the specified {@code Task}
+     */
     public DeleteTaskCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;

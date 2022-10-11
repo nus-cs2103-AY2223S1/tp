@@ -1,16 +1,16 @@
 package seedu.address.logic.parser.task;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.TaskParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
 
+/**
+ * Parses input arguments and creates a new DeleteTaskCommand object
+ */
 public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
     /**
