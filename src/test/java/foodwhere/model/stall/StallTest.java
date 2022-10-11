@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import foodwhere.logic.commands.CommandTestUtil;
 import foodwhere.testutil.StallBuilder;
-import foodwhere.testutil.TypicalStalls;
 import foodwhere.testutil.TypicalReviews;
+import foodwhere.testutil.TypicalStalls;
 
 public class StallTest {
 
@@ -81,8 +81,8 @@ public class StallTest {
         assertFalse(TypicalStalls.ALICE.equals(editedAlice));
 
         // different reviews -> returns false
-        Stall Alice = new StallBuilder(TypicalStalls.ALICE).withReview(TypicalReviews.ALICE).build();
+        Stall alice = new StallBuilder(TypicalStalls.ALICE).withReview(TypicalReviews.ALICE).build();
         editedAlice = new StallBuilder(TypicalStalls.ALICE).withReview(TypicalReviews.BOB).build();
-        assertFalse(Alice.equals(editedAlice));
+        assertFalse(alice.equals(editedAlice));
     }
 }

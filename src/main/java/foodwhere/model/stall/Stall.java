@@ -35,6 +35,9 @@ public class Stall {
         this.details.addAll(details);
     }
 
+    /**
+     * Constructor with reviews, reviews can be empty as it is optional
+     */
     public Stall(Name name, Address address, Set<Detail> details, Set<Review> reviews) {
         requireAllNonNull(name, address, details);
         this.name = name;
