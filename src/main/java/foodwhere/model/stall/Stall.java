@@ -35,6 +35,19 @@ public class Stall {
         this.details.addAll(details);
     }
 
+    /**
+     * Constructor with reviews, reviews can be empty as it is optional
+     */
+    public Stall(Name name, Address address, Set<Detail> details, Set<Review> reviews) {
+        requireAllNonNull(name, address, details);
+        this.name = name;
+        this.address = address;
+        this.details.addAll(details);
+        if (!reviews.isEmpty()) {
+            this.reviews.addAll(reviews);
+        }
+    }
+
     public Name getName() {
         return name;
     }
