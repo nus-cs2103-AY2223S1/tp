@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
 import seedu.address.model.sort.EmailComparator;
 import seedu.address.model.sort.NameComparator;
 import seedu.address.model.sort.PhoneComparator;
