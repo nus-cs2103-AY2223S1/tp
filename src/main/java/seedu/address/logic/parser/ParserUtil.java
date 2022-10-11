@@ -111,6 +111,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code String contact} into a {@code StaffContact}.
+     */
     public static StaffContact parseStaffContact(String contact) throws ParseException {
         requireNonNull(contact);
         String trimmedContact = contact.trim();
@@ -120,6 +123,9 @@ public class ParserUtil {
         return new StaffContact(trimmedContact);
     }
 
+    /**
+     * Parses {@code String department} into a {@code StaffDepartment}.
+     */
     public static StaffDepartment parseStaffDepartment(String department) throws ParseException {
         requireNonNull(department);
         String trimmedDepartment = department.trim();
@@ -129,6 +135,9 @@ public class ParserUtil {
         return new StaffDepartment(trimmedDepartment);
     }
 
+    /**
+     * Parses {@code String insurance} into a {@code StaffInsurance}.
+     */
     public static StaffInsurance parseStaffInsurance(String insurance) throws ParseException {
         requireNonNull(insurance);
         String trimmedInsurance = insurance.trim();
@@ -138,6 +147,9 @@ public class ParserUtil {
         return new StaffInsurance(trimmedInsurance);
     }
 
+    /**
+     * Parses {@code String name} into a {@code StaffName}.
+     */
     public static StaffName parseStaffName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
@@ -147,6 +159,9 @@ public class ParserUtil {
         return new StaffName(trimmedName);
     }
 
+    /**
+     * Parses {@code String title} into a {@code StaffTitle}.
+     */
     public static StaffTitle parseStaffTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();

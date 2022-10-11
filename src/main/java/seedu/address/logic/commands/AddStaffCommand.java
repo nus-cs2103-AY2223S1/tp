@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BUDGET;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
@@ -17,25 +15,17 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.project.Budget;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.Staff;
-import seedu.address.model.staff.StaffContact;
-import seedu.address.model.staff.StaffDepartment;
-import seedu.address.model.staff.StaffInsurance;
-import seedu.address.model.staff.StaffName;
-import seedu.address.model.staff.StaffTitle;
-
-import seedu.address.model.tag.Tag;
 
 import java.util.List;
-import java.util.Set;
 
+/**
+ * Adds a staff to the address book.
+ */
 public class AddStaffCommand extends Command {
-
-
+    
     public static final String COMMAND_WORD = "addStaff";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the address book. "
@@ -58,7 +48,6 @@ public class AddStaffCommand extends Command {
     public static final String MESSAGE_ADD_STAFF_SUCCESS = "New staff added: %1$s";
     public static final String MESSAGE_DUPLICATE_STAFF = "This staff already exists in the project";
 
-//    private final Project toAdd;
     private final Staff toAdd;
     private final ProjectName addTo;
 
@@ -75,8 +64,6 @@ public class AddStaffCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Project> lastShownList = model.getFilteredProjectList();
-
-
         int projectIndex = 0;
 
         for (int i = 0; i < lastShownList.size(); ++i) {
@@ -92,15 +79,13 @@ public class AddStaffCommand extends Command {
         }
 
         Project projectToAdd = lastShownList.get(index.getZeroBased());
-
         assert projectToAdd != null;
 
-        if (projectToAdd.hasStaff(toAdd)) {
+        if (projectToAdd.getStaffList().hasStaff(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STAFF);
         }
 
-        projectToAdd.getStaffList().add(toAdd);
-
+        projectToAdd.getStaffList().addStaff(toAdd);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, projectToAdd));
     }
