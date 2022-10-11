@@ -2,14 +2,18 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_DAVE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_TIFFANI;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DAVE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TIFFANI;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DAVE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_TIFFANI;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_GROUP_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +21,8 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.student.Student;
+
+
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -48,7 +54,7 @@ public class TypicalStudents {
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND)
             .build();
@@ -56,6 +62,14 @@ public class TypicalStudents {
             .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    // Students with tutorial group and no tags
+    public static final Student TIFFANI = new StudentBuilder().withName(VALID_NAME_TIFFANI)
+            .withPhone(VALID_PHONE_TIFFANI).withEmail(VALID_EMAIL_TIFFANI)
+            .build();
+
+    public static final Student DAVE = new StudentBuilder().withName(VALID_NAME_DAVE)
+            .withPhone(VALID_PHONE_DAVE).withEmail(VALID_EMAIL_DAVE)
+            .build();
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalStudents() {} // prevents instantiation

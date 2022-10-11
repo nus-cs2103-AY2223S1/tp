@@ -27,7 +27,7 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
      */
     public boolean contains(TutorialGroup toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameTutorialGroup);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -102,7 +102,7 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
     private boolean tutorialGroupsAreUnique(List<TutorialGroup> tasks) {
         for (int i = 0; i < tasks.size() - 1; i++) {
             for (int j = i + 1; j < tasks.size(); j++) {
-                if (tasks.get(i).isSameTutorialGroup(tasks.get(j))) {
+                if (tasks.get(i).equals(tasks.get(j))) {
                     return false;
                 }
             }

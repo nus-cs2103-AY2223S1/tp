@@ -29,16 +29,26 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_TIFFANI = "Tiffani Tiffany";
+    public static final String VALID_NAME_DAVE = "Dave Bag";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_TIFFANI = "33333333";
+    public static final String VALID_PHONE_DAVE = "44444444";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_EMAIL_TIFFANI = "tiffani@example.com";
+    public static final String VALID_EMAIL_DAVE = "dave@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_ADDRESS_TIFFANI = "Block 123, Tiffani Street 2";
+    public static final String VALID_ADDRESS_DAVE = "Block 123, Dave Street 4";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_TUTORIAL_GROUP_AMY = "T01";
-    public static final String VALID_TUTORIAL_GROUP_BOB = "T02";
+    public static final String VALID_TAG_BESTIE = "bestie";
+
+    public static final String VALID_TUTORIAL_GROUP_TIFFANI = "T01";
+    public static final String VALID_TUTORIAL_GROUP_DAVE = "T02";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -50,8 +60,6 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String TUTORIAL_GROUP_DESC_AMY = " " + PREFIX_TUTORIAL_GROUP + VALID_TUTORIAL_GROUP_AMY;
-    public static final String TUTORIAL_GROUP_DESC_BOB = " " + PREFIX_TUTORIAL_GROUP + VALID_TUTORIAL_GROUP_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

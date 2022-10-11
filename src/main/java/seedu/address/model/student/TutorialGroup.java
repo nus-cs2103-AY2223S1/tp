@@ -1,7 +1,7 @@
 package seedu.address.model.student;
 
-//import static java.util.Objects.requireNonNull;
-//import static seedu.address.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
 
@@ -20,9 +20,9 @@ public class TutorialGroup {
 
     public static final String DEFAULT_TUTORIAL_GROUP = "T01";
 
-    public final String tutorialGroup;
+    private final String tutorialGroup;
 
-    private ArrayList<Student> students = new ArrayList<>();
+    private final ArrayList<Student> students = new ArrayList<>();
 
 
 
@@ -32,9 +32,8 @@ public class TutorialGroup {
      * @param group A valid tutorial group.
      */
     public TutorialGroup(String group) {
-        // requireNonNull(group);
-        // checkArgument(isValidTutorialGroup(group), MESSAGE_CONSTRAINTS);
-        // implement later
+        requireNonNull(group);
+        checkArgument(isValidTutorialGroup(group), MESSAGE_CONSTRAINTS);
         tutorialGroup = group;
     }
 
@@ -52,7 +51,6 @@ public class TutorialGroup {
      * Returns true if a given string is a valid tutorial group.
      */
     public static boolean isValidTutorialGroup(String test) {
-        System.out.println(test);
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -64,7 +62,17 @@ public class TutorialGroup {
         return students;
     }
 
-    public boolean isSameTutorialGroup(TutorialGroup group) {
+    /**
+     * Returns true if a given tutorial group is the same.
+     * @param group the given tutorial group.
+     * @return true if the two tutorial groups are the same, false otherwise.
+     */
+    private boolean isSameTutorialGroup(TutorialGroup group) {
+        if (this.tutorialGroup == null && group.tutorialGroup == null) {
+            return true;
+        } else if (this.tutorialGroup == null) {
+            return false;
+        }
         return this.tutorialGroup.equals(group.tutorialGroup);
     }
 
@@ -76,8 +84,8 @@ public class TutorialGroup {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && tutorialGroup.equals(((TutorialGroup) other).tutorialGroup)); // state check
+                || (other instanceof TutorialGroup // instanceof handles nulls
+                && this.isSameTutorialGroup(((TutorialGroup) other))); // state check
     }
 
     @Override
