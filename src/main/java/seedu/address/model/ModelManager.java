@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
+import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 
 /**
@@ -206,6 +207,20 @@ public class ModelManager implements Model {
         throw new PersonNotFoundException();
     }
 
+    @Override
+    public seedu.address.model.person.Name getPersonName(Index personIndex) {
+        requireNonNull(personIndex);
+        Person person = getPersonUsingIndex(personIndex);
+        return person.getName();
+    }
+
+    @Override
+    public Person getPersonUsingIndex(Index personIndex) {
+        List<Person> persons = getFilteredPersonList();
+        requireNonNull(personIndex);
+        return persons.get(personIndex.getZeroBased());
+    }
+
     //=========== Filtered Team List Accessors =============================================================
 
     /**
@@ -217,6 +232,7 @@ public class ModelManager implements Model {
         return filteredTeams;
     }
 
+    @Override
     public Team getTeam(seedu.address.model.team.Name name) {
         List<Team> teams = getFilteredTeamList();
         requireNonNull(name);
@@ -227,6 +243,19 @@ public class ModelManager implements Model {
             }
         }
         throw new PersonNotFoundException();
+    }
+
+    public Name getTeamName(Index teamIndex) {
+        requireNonNull(teamIndex);
+        Team team = getTeamUsingIndex(teamIndex);
+        return team.getName();
+    }
+
+    @Override
+    public Team getTeamUsingIndex(Index teamIndex) {
+        List<Team> teams = getFilteredTeamList();
+        requireNonNull(teamIndex);
+        return teams.get(teamIndex.getZeroBased());
     }
 
     // todo implementation of updateFilteredTeamList
