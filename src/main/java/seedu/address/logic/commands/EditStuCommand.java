@@ -15,7 +15,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Attendance;
-import seedu.address.model.student.HelpTag;
 import seedu.address.model.student.Response;
 import seedu.address.model.student.StuEmail;
 import seedu.address.model.student.StuName;
