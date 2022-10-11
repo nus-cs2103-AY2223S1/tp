@@ -13,7 +13,7 @@ public class DeleteProjectCommand extends ProjectCommand {
     public static final String COMMAND_FLAG = "-d";
 
     // TODO: Better message
-    public static final String MESSAGE_SUCCESS = "Edited Project";
+    public static final String MESSAGE_SUCCESS = "Deleted Project";
 
     // TODO: implement
     @Override

@@ -36,7 +36,7 @@ public class EditClientCommand extends ClientCommand {
     public static final String COMMAND_FLAG = "-e";
 
     // TODO: Better message
-    public static final String MESSAGE_SUCCESS = "Added Client";
+    public static final String MESSAGE_SUCCESS = "Edited Client";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "

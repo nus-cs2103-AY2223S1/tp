@@ -20,6 +20,11 @@ public class Deadline {
         private EmptyDeadline() {
             super("2022-05-03");
         }
+
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
     }
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -41,6 +46,10 @@ public class Deadline {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         this.deadline = LocalDate.parse(deadline);
+    }
+
+    public boolean isEmpty() {
+        return false;
     }
 
     /**

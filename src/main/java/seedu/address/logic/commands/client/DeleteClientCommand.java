@@ -20,7 +20,7 @@ public class DeleteClientCommand extends ClientCommand {
     public static final String COMMAND_FLAG = "-d";
 
     // TODO: Better message
-    public static final String MESSAGE_SUCCESS = "Added Client";
+    public static final String MESSAGE_SUCCESS = "Deleted Client";
 
 
     public static final String MESSAGE_USAGE = COMMAND_WORD

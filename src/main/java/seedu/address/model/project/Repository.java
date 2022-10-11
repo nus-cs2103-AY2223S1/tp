@@ -17,6 +17,15 @@ public class Repository {
         private EmptyRepository() {
             super("conrad/tp");
         }
+
+        /**
+         * Checks if this Repository is empty.
+         * @return true since the Repository is empty.
+         */
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
     }
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -39,6 +48,14 @@ public class Repository {
         requireNonNull(repository);
         checkArgument(isValidRepository(repository), MESSAGE_CONSTRAINTS);
         this.projectRepository = repository;
+    }
+
+    /**
+     * Checks if this Repository is empty.
+     * @return false since the Repository is not empty.
+     */
+    public boolean isEmpty() {
+        return false;
     }
 
     /**
