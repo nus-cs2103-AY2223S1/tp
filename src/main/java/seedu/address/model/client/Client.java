@@ -46,7 +46,6 @@ public class Client extends Person {
         this.birthday = birthday;
         this.income = income;
         this.ra = ra;
-
     }
 
 

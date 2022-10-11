@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Long Time No See (LTNS)" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root  minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Long Time No See (LTNS)" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/LTNSlogo.png" />
   </icons>
@@ -32,14 +32,13 @@
           </Menu>
         </MenuBar>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane style="-fx-background-color: white;" fx:id="resultDisplayPlaceholder" mouseTransparent="false" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
         </StackPane>
 
 
-        <StackPane fx:id="personList" minWidth="340" prefWidth="340" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-        </StackPane>
-
+        <VBox fx:id="personList" minWidth="340" prefWidth="340" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <StackPane style="-fx-background-color: white;" fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+        </VBox>
 
 <!--        \\\\\\\\\\\\ Commented out attempt at Policy list panel \\\\\\\\\\\-->
         <StackPane fx:id="policyList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">

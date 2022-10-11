@@ -21,7 +21,6 @@ import seedu.address.model.policy.Policy;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -41,6 +40,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredPolicies = new FilteredList<>(this.addressBook.getPolicyList());
+
     }
 
     public ModelManager() {
