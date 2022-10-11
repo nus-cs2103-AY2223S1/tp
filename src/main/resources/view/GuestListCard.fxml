@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -25,11 +27,78 @@
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Region HBox.hgrow="ALWAYS" />
       </HBox>
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="dateRange" styleClass="cell_small_label" text="\$dateRange" />
-      <Label fx:id="numberOfGuests" styleClass="cell_small_label" text="\$numberOfGuests" />
+
+      <HBox HBox.hgrow="ALWAYS">
+        <VBox id="personalParticulars" minWidth="320" maxWidth="320" HBox.hgrow="NEVER">
+          <Label fx:id="personalParticulars" text="Personal Particulars" />
+
+          <HBox fx:id="phoneBox" alignment="CENTER_LEFT">
+            <ImageView
+                    fitHeight="12.0"
+                    fitWidth="12.0"
+                    smooth="false"
+                    HBox.hgrow="NEVER" >
+              <image>
+                <Image url="@/images/phone.png" />
+              </image>
+            </ImageView>
+            <Region minWidth="5" HBox.hgrow="NEVER" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+          </HBox>
+
+          <HBox fx:id="emailBox" alignment="CENTER_LEFT">
+            <ImageView
+                    fitHeight="12.0"
+                    fitWidth="12.0"
+                    smooth="false"
+                    HBox.hgrow="NEVER" >
+              <image>
+                <Image url="@/images/email.png" />
+              </image>
+            </ImageView>
+            <Region minWidth="5" HBox.hgrow="NEVER" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+          </HBox>
+
+          <HBox fx:id="numberOfGuestsBox" alignment="CENTER_LEFT">
+            <ImageView
+                    fitHeight="12.0"
+                    fitWidth="12.0"
+                    smooth="false"
+                    HBox.hgrow="NEVER" >
+              <image>
+                <Image url="@/images/group.png" />
+              </image>
+            </ImageView>
+            <Region minWidth="5" HBox.hgrow="NEVER" />
+            <Label fx:id="numberOfGuests" styleClass="cell_small_label" text="\$numberOfGuests" />
+          </HBox>
+        </VBox>
+
+        <Region minWidth="5" HBox.hgrow="NEVER" />
+
+        <HBox HBox.hgrow="ALWAYS">
+          <VBox id="roomDetails" minWidth="320" maxWidth="320" HBox.hgrow="NEVER">
+            <Label fx:id="roomDetails" text="Room Details" />
+
+            <HBox fx:id="roomDetailsBox" alignment="CENTER_LEFT">
+              <ImageView
+                      fitHeight="12.0"
+                      fitWidth="12.0"
+                      smooth="false"
+                      HBox.hgrow="NEVER" >
+                <image>
+                  <Image url="@/images/dateRange.png" />
+                </image>
+              </ImageView>
+              <Region minWidth="5" HBox.hgrow="NEVER" />
+              <Label fx:id="dateRange" styleClass="cell_small_label" text="\$dateRange" />
+            </HBox>
+          </VBox>
+        </HBox>
+      </HBox>
     </VBox>
   </GridPane>
 </HBox>
