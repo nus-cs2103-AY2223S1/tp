@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Module {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Module codes should contain only alphanumeric characters and should not be blank.";
+            "Module codes should not contain spaces and should not be blank.";
 
     /*
      * The first character of the name must not be a whitespace,
