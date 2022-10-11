@@ -43,9 +43,10 @@ public class ModuleParser {
         JsonNode node = mapper.readValue(res, JsonNode.class);
         String moduleCredit = (node.get("moduleCredit")).toString();
         String moduleName = (node.get("title")).toString();
-
         moduleCredit = moduleCredit.substring(1, moduleCredit.length() - 1);
-        moduleName = moduleName.substring(1, moduleName.length() - 1);
+        moduleName = moduleName.substring(1, moduleName.length() - 1)
+                .replaceAll("[^a-zA-Z0-9\\s]", " ")
+                .trim().replaceAll(" +", " ");
 
         return new Module(code, moduleName, moduleCredit);
     }
