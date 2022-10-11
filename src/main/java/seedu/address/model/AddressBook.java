@@ -145,7 +145,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeTutorial(Tutorial key) {
         tutorials.remove(key);
     }
-    
     //// consultation-level operations
     /**
      * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuilk.
