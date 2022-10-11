@@ -30,7 +30,7 @@ public class ClearDebtsCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_CLEAR_DEBTS_SUCCESS = "Cleared Person: %1$s";
+    public static final String MESSAGE_CLEAR_DEBTS_SUCCESS = "Cleared debts from Person: %1$s";
 
     private final Index index;
 
@@ -58,7 +58,7 @@ public class ClearDebtsCommand extends Command {
 
         model.setPerson(debtorToClear, clearedDebtor);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_CLEAR_DEBTS_SUCCESS, clearedDebtor));
+        return new CommandResult(String.format(MESSAGE_CLEAR_DEBTS_SUCCESS, clearedDebtor.getName()));
     }
 
     /**
