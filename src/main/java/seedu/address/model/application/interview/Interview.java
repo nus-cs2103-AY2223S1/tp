@@ -14,18 +14,18 @@ public class Interview {
     private final Round round;
     private final InterviewDate interviewDate;
     private final InterviewTime interviewTime;
-    private final Remark remark;
+    private final Location location;
 
 
     /**
      * Every field must be present and not null.
      */
-    public Interview(Round round, InterviewDate interviewDate, InterviewTime interviewTime, Remark remark) {
-        requireAllNonNull(round, interviewDate, interviewTime, remark);
+    public Interview(Round round, InterviewDate interviewDate, InterviewTime interviewTime, Location location) {
+        requireAllNonNull(round, interviewDate, interviewTime, location);
         this.round = round;
         this.interviewDate = interviewDate;
         this.interviewTime = interviewTime;
-        this.remark = remark;
+        this.location = location;
     }
 
     public Round getRound() {
@@ -40,12 +40,12 @@ public class Interview {
         return interviewTime;
     }
 
-    public Remark getRemark() {
-        return remark;
+    public Location getLocation() {
+        return location;
     }
 
     /**
-     * Returns true if both applications have the same company and position.
+     * Returns true if both interviews have the same date and time.
      * This defines a weaker notion of equality between two applications.
      */
     public boolean isOnSameTime(Interview otherInterview) {
@@ -76,13 +76,13 @@ public class Interview {
         return otherApplication.getRound().equals(getRound())
                 && otherApplication.getInterviewDate().equals(getInterviewDate())
                 && otherApplication.getInterviewTime().equals(getInterviewTime())
-                && otherApplication.getRemark().equals(getRemark());
+                && otherApplication.getLocation().equals(getLocation());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(round, interviewDate, interviewTime, remark);
+        return Objects.hash(round, interviewDate, interviewTime, location);
     }
 
     @Override
@@ -94,8 +94,8 @@ public class Interview {
                 .append(getInterviewDate())
                 .append("; Time: ")
                 .append(getInterviewTime())
-                .append("; Remark: ")
-                .append(getRemark());
+                .append("; Location: ")
+                .append(getLocation());
 
         return builder.toString();
     }
