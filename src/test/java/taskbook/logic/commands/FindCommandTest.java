@@ -8,20 +8,19 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
-
 import taskbook.commons.core.Messages;
 import taskbook.model.Model;
 import taskbook.model.ModelManager;
 import taskbook.model.UserPrefs;
 import taskbook.model.person.NameContainsKeywordsPredicate;
-import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTaskBook;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(TypicalPersons.getTypicalTaskBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalPersons.getTypicalTaskBook(), new UserPrefs());
+    private final Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -67,7 +66,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA),
+        assertEquals(Arrays.asList(TypicalTaskBook.CARL, TypicalTaskBook.ELLE, TypicalTaskBook.FIONA),
                 model.getFilteredPersonList());
     }
 

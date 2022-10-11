@@ -5,31 +5,30 @@ import org.junit.jupiter.api.Test;
 
 import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.TaskBuilder;
-import taskbook.testutil.TypicalPersons;
-import taskbook.testutil.TypicalTasks;
+import taskbook.testutil.TypicalTaskBook;
 
 public class TaskTest {
 
     @Test
     public void isSameTask() {
         // same object -> returns true
-        Assertions.assertTrue(TypicalTasks.EATING.isSameTask(TypicalTasks.EATING));
+        Assertions.assertTrue(TypicalTaskBook.EATING.isSameTask(TypicalTaskBook.EATING));
 
         // null -> returns false
-        Assertions.assertFalse(TypicalTasks.EATING.isSameTask(null));
+        Assertions.assertFalse(TypicalTaskBook.EATING.isSameTask(null));
 
         // same person, same assignment, same description, all other attributes different
         // -> returns true
-        Task editedEating = new TaskBuilder().withPerson(TypicalPersons.ALICE)
+        Task editedEating = new TaskBuilder().withPerson(TypicalTaskBook.ALICE)
                 .withAssignment(Assignment.TO).withDescription("eat fruit").withIsDone(false)
                 .build();
-        Assertions.assertTrue(TypicalTasks.EATING.isSameTask(editedEating));
+        Assertions.assertTrue(TypicalTaskBook.EATING.isSameTask(editedEating));
 
         // different person, all other attributes same
         // -> returns false
-        editedEating = new TaskBuilder().withPerson(TypicalPersons.BOB)
+        editedEating = new TaskBuilder().withPerson(TypicalTaskBook.BOB)
                 .withAssignment(Assignment.TO).withDescription("eat fruit").withIsDone(false)
                 .build();
-        Assertions.assertFalse(TypicalTasks.EATING.isSameTask(editedEating));
+        Assertions.assertFalse(TypicalTaskBook.EATING.isSameTask(editedEating));
     }
 }

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
 import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
 import taskbook.model.Model;
@@ -15,14 +14,14 @@ import taskbook.model.person.Person;
 import taskbook.testutil.EditPersonDescriptorBuilder;
 import taskbook.testutil.PersonBuilder;
 import taskbook.testutil.TypicalIndexes;
-import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTaskBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(TypicalPersons.getTypicalTaskBook(), new UserPrefs());
+    private final Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

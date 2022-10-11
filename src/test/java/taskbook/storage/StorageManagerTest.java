@@ -8,12 +8,11 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import taskbook.commons.core.GuiSettings;
 import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.TaskBook;
 import taskbook.model.UserPrefs;
-import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTaskBook;
 
 public class StorageManagerTest {
 
@@ -54,7 +53,7 @@ public class StorageManagerTest {
          * {@link JsonTaskBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonTaskBookStorageTest} class.
          */
-        TaskBook original = TypicalPersons.getTypicalTaskBook();
+        TaskBook original = TypicalTaskBook.getTypicalTaskBook();
         storageManager.saveTaskBook(original);
         ReadOnlyTaskBook retrieved = storageManager.readTaskBook().get();
         assertEquals(original, new TaskBook(retrieved));

@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import taskbook.commons.core.Messages;
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.CommandTestUtil;
@@ -27,7 +26,7 @@ import taskbook.storage.JsonUserPrefsStorage;
 import taskbook.storage.StorageManager;
 import taskbook.testutil.Assert;
 import taskbook.testutil.PersonBuilder;
-import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTaskBook;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -79,7 +78,7 @@ public class LogicManagerTest {
         String addCommand = ContactCategoryParser.CATEGORY_WORD + " " + ContactAddCommand.COMMAND_WORD
             + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
             + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(TypicalPersons.AMY).withTags().build();
+        Person expectedPerson = new PersonBuilder(TypicalTaskBook.AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

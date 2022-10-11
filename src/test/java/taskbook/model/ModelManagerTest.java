@@ -10,12 +10,11 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
-
 import taskbook.commons.core.GuiSettings;
 import taskbook.model.person.NameContainsKeywordsPredicate;
 import taskbook.testutil.Assert;
 import taskbook.testutil.TaskBookBuilder;
-import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTaskBook;
 
 
 public class ModelManagerTest {
@@ -79,13 +78,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personNotIntaskBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(TypicalPersons.ALICE));
+        assertFalse(modelManager.hasPerson(TypicalTaskBook.ALICE));
     }
 
     @Test
     public void hasPerson_personIntaskBook_returnsTrue() {
-        modelManager.addPerson(TypicalPersons.ALICE);
-        assertTrue(modelManager.hasPerson(TypicalPersons.ALICE));
+        modelManager.addPerson(TypicalTaskBook.ALICE);
+        assertTrue(modelManager.hasPerson(TypicalTaskBook.ALICE));
     }
 
     @Test
@@ -95,7 +94,7 @@ public class ModelManagerTest {
 
     @Test
     public void findPerson_personNotIntaskBook_returnsNull() {
-        assertNull(modelManager.findPerson(TypicalPersons.ALICE.getName()));
+        assertNull(modelManager.findPerson(TypicalTaskBook.ALICE.getName()));
     }
 
     @Test
@@ -111,7 +110,7 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         TaskBook taskBook = new TaskBookBuilder()
-                .withPerson(TypicalPersons.ALICE).withPerson(TypicalPersons.BENSON).build();
+                .withPerson(TypicalTaskBook.ALICE).withPerson(TypicalTaskBook.BENSON).build();
         TaskBook differenttaskBook = new TaskBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -133,7 +132,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differenttaskBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = TypicalPersons.ALICE.getName().fullName.split("\\s+");
+        String[] keywords = TypicalTaskBook.ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(taskBook, userPrefs)));
 

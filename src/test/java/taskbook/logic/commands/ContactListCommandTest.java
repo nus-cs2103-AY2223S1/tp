@@ -3,7 +3,7 @@ package taskbook.logic.commands;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static taskbook.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static taskbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static taskbook.testutil.TypicalPersons.getTypicalTaskBook;
+import static taskbook.testutil.TypicalTaskBook.getTypicalTaskBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

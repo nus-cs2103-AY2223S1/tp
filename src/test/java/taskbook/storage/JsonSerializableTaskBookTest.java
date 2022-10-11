@@ -6,12 +6,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
-
 import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.commons.util.JsonUtil;
 import taskbook.model.TaskBook;
 import taskbook.testutil.Assert;
-import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTaskBook;
 
 public class JsonSerializableTaskBookTest {
 
@@ -26,7 +25,7 @@ public class JsonSerializableTaskBookTest {
         JsonSerializableTaskBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableTaskBook.class).get();
         TaskBook taskBookFromFile = dataFromFile.toModelType();
-        TaskBook typicalPersonstaskBook = TypicalPersons.getTypicalTaskBook();
+        TaskBook typicalPersonstaskBook = TypicalTaskBook.getTypicalTaskBook();
         assertEquals(taskBookFromFile, typicalPersonstaskBook);
     }
 

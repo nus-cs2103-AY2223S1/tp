@@ -6,14 +6,13 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.model.person.Address;
 import taskbook.model.person.Email;
 import taskbook.model.person.Name;
 import taskbook.model.person.Phone;
 import taskbook.testutil.Assert;
-import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTaskBook;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -22,18 +21,18 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = TypicalPersons.BENSON.getName().toString();
-    private static final String VALID_PHONE = TypicalPersons.BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = TypicalPersons.BENSON.getEmail().toString();
-    private static final String VALID_ADDRESS = TypicalPersons.BENSON.getAddress().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalPersons.BENSON.getTags().stream()
+    private static final String VALID_NAME = TypicalTaskBook.BENSON.getName().toString();
+    private static final String VALID_PHONE = TypicalTaskBook.BENSON.getPhone().toString();
+    private static final String VALID_EMAIL = TypicalTaskBook.BENSON.getEmail().toString();
+    private static final String VALID_ADDRESS = TypicalTaskBook.BENSON.getAddress().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalTaskBook.BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(TypicalPersons.BENSON);
-        Assertions.assertEquals(TypicalPersons.BENSON, person.toModelType());
+        JsonAdaptedPerson person = new JsonAdaptedPerson(TypicalTaskBook.BENSON);
+        Assertions.assertEquals(TypicalTaskBook.BENSON, person.toModelType());
     }
 
     @Test
