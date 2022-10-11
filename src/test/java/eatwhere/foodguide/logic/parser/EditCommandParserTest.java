@@ -132,7 +132,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = TypicalIndexes.INDEX_THIRD_PERSON;
+        Index targetIndex = TypicalIndexes.INDEX_THIRD_EATERY;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.NAME_DESC_AMY;
         EditCommand.EditEateryDescriptor descriptor = new EditEateryDescriptorBuilder()
                 .withName(CommandTestUtil.VALID_NAME_AMY).build();
@@ -205,7 +205,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = TypicalIndexes.INDEX_THIRD_PERSON;
+        Index targetIndex = TypicalIndexes.INDEX_THIRD_EATERY;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditEateryDescriptor descriptor = new EditEateryDescriptorBuilder().withTags().build();
