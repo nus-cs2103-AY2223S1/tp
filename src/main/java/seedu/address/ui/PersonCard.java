@@ -43,17 +43,9 @@ public class PersonCard extends UiPart<Region> {
 
     // TODO: set the following labels as optional
     @FXML
-    private Label buyerRole;
+    private Label priceRange;
     @FXML
-    private Label buyerRange;
-    @FXML
-    private Label buyerCharacteristics;
-
-    @FXML
-    private Label sellerRole;
-
-    @FXML
-    private FlowPane sellerProperties;
+    private Label desiredCharacteristics;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -69,20 +61,8 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        if (person.isBuyer()) {
-            buyerRole.setText(person.isBuyer() ? "Buyer" : "");
-            buyerRange.setText(person.isBuyer() ? person.getBuyerRange().toString() : "");
-            buyerCharacteristics.setText(person.isBuyer() ? person.getBuyerCharacteristics().toString() : "");
-        }
-
-        if (person.isSeller()) {
-            sellerRole.setText(person.isSeller() ? "Seller" : "");
-            person.getSellerProperties()
-                    .getPropertyList()
-                    .forEach(pr -> sellerProperties.getChildren()
-                            .add(new Label(pr.toString())));
-        }
+        priceRange.setText(person.getPriceRange().toString());
+        desiredCharacteristics.setText(person.getDesiredCharacteristics().toString());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package seedu.address.model.role;
+package seedu.address.model.pricerange;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -34,7 +34,6 @@ public class PriceRange {
         String[] rangeValues = priceRange.split("-");
         this.low = Float.parseFloat(rangeValues[0].trim());
         this.high = Float.parseFloat(rangeValues[1].trim());
-
     }
 
     /**
@@ -72,6 +71,6 @@ public class PriceRange {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PriceRange // instanceof handles nulls
-                && this.toString().equals(((Address) other).toString())); // state check
+                && this.toString().equals(((PriceRange) other).toString())); // state check
     }
 }

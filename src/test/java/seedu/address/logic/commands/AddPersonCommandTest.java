@@ -22,7 +22,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.role.Buyer;
-import seedu.address.model.role.Seller;
+import seedu.address.model.property.Seller;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddPersonCommandTest {

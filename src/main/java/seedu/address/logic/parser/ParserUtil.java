@@ -19,9 +19,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.PropertyName;
-import seedu.address.model.role.DesiredCharacteristics;
-import seedu.address.model.role.PriceRange;
-import seedu.address.model.role.Properties;
+import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.property.Properties;
 import seedu.address.model.tag.Tag;
 
 

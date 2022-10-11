@@ -11,10 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.address.Address;
+import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.pricerange.PriceRange;
+import seedu.address.model.property.Description;
+import seedu.address.model.property.Price;
 import seedu.address.model.tag.Tag;
 
 
@@ -29,6 +33,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String priceRange;
+    private final String desiredCharacteristics;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -37,11 +43,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("priceRange") String priceRange, @JsonProperty("desiredCharacteristics") String desiredCharacteristics,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.priceRange = priceRange;
+        this.desiredCharacteristics = desiredCharacteristics;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -55,6 +64,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        priceRange = source.getPriceRange().toString();
+        desiredCharacteristics = source.getDesiredCharacteristics().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -103,8 +114,18 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (!PriceRange.isValidPriceRange(priceRange)) {
+            throw new IllegalValueException(PriceRange.MESSAGE_CONSTRAINTS);
+        }
+        final PriceRange modelPriceRange = new PriceRange(priceRange);
+
+        if (!DesiredCharacteristics.isValidDesiredCharacteristics(desiredCharacteristics)) {
+            throw new IllegalValueException(DesiredCharacteristics.MESSAGE_CONSTRAINTS);
+        }
+        final DesiredCharacteristics modelDesiredCharacteristics = new DesiredCharacteristics(desiredCharacteristics);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelPriceRange, modelDesiredCharacteristics, modelTags);
     }
 
 }
