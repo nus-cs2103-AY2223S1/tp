@@ -59,7 +59,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyTrackAScholar> readTrackAScholar(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTrackAScholar> readTrackAScholar(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return trackAScholarStorage.readTrackAScholar(filePath);
     }

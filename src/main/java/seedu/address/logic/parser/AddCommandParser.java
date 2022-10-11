@@ -13,10 +13,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.ApplicationStatus;
 import seedu.address.model.applicant.Email;
 import seedu.address.model.applicant.Name;
-import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Phone;
 import seedu.address.model.applicant.Scholarship;
 import seedu.address.model.tag.Tag;

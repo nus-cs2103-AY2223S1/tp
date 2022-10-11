@@ -4,10 +4,14 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.TrackAScholar;
 import seedu.address.model.ReadOnlyTrackAScholar;
-import seedu.address.model.applicant.*;
+import seedu.address.model.TrackAScholar;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.ApplicationStatus;
+import seedu.address.model.applicant.Email;
+import seedu.address.model.applicant.Name;
+import seedu.address.model.applicant.Phone;
+import seedu.address.model.applicant.Scholarship;
 import seedu.address.model.tag.Tag;
 
 /**

@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.applicant.exceptions.DuplicateApplicantException;
 import seedu.address.model.applicant.exceptions.ApplicantNotFoundException;
+import seedu.address.model.applicant.exceptions.DuplicateApplicantException;
 
 /**
  * A list of applicants that enforces uniqueness between its elements and does not allow nulls.

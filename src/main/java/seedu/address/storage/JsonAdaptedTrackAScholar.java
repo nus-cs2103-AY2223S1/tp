@@ -10,8 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.applicant.*;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.ApplicationStatus;
+import seedu.address.model.applicant.Email;
+import seedu.address.model.applicant.Name;
+import seedu.address.model.applicant.Phone;
+import seedu.address.model.applicant.Scholarship;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,8 +37,10 @@ class JsonAdaptedTrackAScholar {
      * Constructs a {@code JsonAdaptedTrackAScholar} with the given applicant details.
      */
     @JsonCreator
-    public JsonAdaptedTrackAScholar(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                                    @JsonProperty("email") String email, @JsonProperty("scholarship") String scholarship,
+    public JsonAdaptedTrackAScholar(@JsonProperty("name") String name,
+                                    @JsonProperty("phone") String phone,
+                                    @JsonProperty("email") String email,
+                                    @JsonProperty("scholarship") String scholarship,
                                     @JsonProperty("applicationStatus") String applicationStatus,
                                     @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
