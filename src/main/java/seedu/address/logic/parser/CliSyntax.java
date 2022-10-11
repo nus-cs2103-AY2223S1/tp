@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import seedu.address.logic.parser.exceptions.DuplicatePrefixException;
+import seedu.address.logic.parser.exceptions.PrefixNotFoundException;
+
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */
@@ -23,8 +26,31 @@ public class CliSyntax {
             PREFIX_JOBTYPETAG));
     private static ArrayList<Prefix> prefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
             PREFIX_ADDRESS, PREFIX_SKILLTAG, PREFIX_DEGREETAG, PREFIX_JOBTYPETAG));
-    public static void addPrefix(Prefix pref) {
+
+    /**
+     * Adds a tag prefix to the list of prefixes.
+     * @param pref Prefix to be added.
+     * @throws DuplicatePrefixException If the prefix is already present in the list of prefixes.
+     */
+    public static void addTagPrefix(Prefix pref) throws DuplicatePrefixException {
+        if (prefixTags.contains(pref) || prefixes.contains(pref)) {
+            throw new DuplicatePrefixException();
+        }
+        prefixTags.add(pref);
         prefixes.add(pref);
+    }
+
+    /**
+     * Removes a tag prefix from the list of prefixes.
+     * @param pref Prefix to be removed.
+     * @throws PrefixNotFoundException If the prefix doesn't exist in the list of prefixes.
+     */
+    public static void removeTagPrefix(Prefix pref) throws PrefixNotFoundException {
+        if (!prefixTags.contains(pref) || !prefixes.contains(pref)) {
+            throw new PrefixNotFoundException();
+        }
+        prefixTags.remove(pref);
+        prefixes.remove(pref);
     }
     public static Prefix[] getPrefixes() {
         requireNonNull(prefixes);
