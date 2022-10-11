@@ -53,4 +53,8 @@ public class StageManager {
     public void switchStage(Stages selectedStage) {
         this.currentStage = selectedStage;
     }
+
+    public Itinerary getSelectedItinerary() {
+        return this.selectedItinerary;
+    }
 }
