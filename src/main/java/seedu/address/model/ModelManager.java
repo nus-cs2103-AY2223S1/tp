@@ -165,7 +165,7 @@ public class ModelManager implements Model {
     //=========== Filtered Appointment List Accessors =============================================================
 
     @Override
-    public ObservableList<Appointment> getFilterAppointmentList() {
+    public ObservableList<Appointment> getFilteredAppointmentList() {
         return filteredAppointments;
     }
 
