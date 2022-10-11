@@ -17,7 +17,7 @@ import seedu.address.model.applicant.Name;
 import seedu.address.model.applicant.Phone;
 import seedu.address.model.applicant.Scholarship;
 
-public class JsonAdaptedPersonTest {
+public class JsonAdaptedApplicantTest {
 
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_NAME = "R@chel";
@@ -36,82 +36,82 @@ public class JsonAdaptedPersonTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedTrackAScholar person = new JsonAdaptedTrackAScholar(BENSON);
-        assertEquals(BENSON, person.toModelType());
+    public void toModelType_validApplicantDetails_returnsApplicant() throws Exception {
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(BENSON);
+        assertEquals(BENSON, applicant.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedTrackAScholar person = new JsonAdaptedTrackAScholar(INVALID_NAME,
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(INVALID_NAME,
                 VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedTrackAScholar person = new JsonAdaptedTrackAScholar(null,
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(null,
                 VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
 
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedTrackAScholar person = new JsonAdaptedTrackAScholar(VALID_NAME,
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(VALID_NAME,
                 INVALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedTrackAScholar person = new JsonAdaptedTrackAScholar(VALID_NAME,
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(VALID_NAME,
                 null, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
 
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
-        JsonAdaptedTrackAScholar person = new JsonAdaptedTrackAScholar(VALID_NAME,
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(VALID_NAME,
                 VALID_PHONE, INVALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedTrackAScholar person = new JsonAdaptedTrackAScholar(VALID_NAME,
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(VALID_NAME,
                 VALID_PHONE, null, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedTrackAScholar person = new JsonAdaptedTrackAScholar(VALID_NAME,
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(VALID_NAME,
                 VALID_PHONE, VALID_EMAIL, INVALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
         String expectedMessage = Scholarship.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedTrackAScholar person = new JsonAdaptedTrackAScholar(VALID_NAME,
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(VALID_NAME,
                 VALID_PHONE, VALID_EMAIL, null, VALID_APPLICATION_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Scholarship.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedTrackAScholar person = new JsonAdaptedTrackAScholar(VALID_NAME,
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(VALID_NAME,
                 VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, invalidTags);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        assertThrows(IllegalValueException.class, applicant::toModelType);
     }
 
 }
