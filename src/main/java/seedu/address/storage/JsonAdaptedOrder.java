@@ -2,12 +2,10 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.*;
 import seedu.address.model.person.Buyer;
-import seedu.address.model.tag.Tag;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -48,7 +46,7 @@ class JsonAdaptedOrder {
        }
        this.byDate = byDate;
        this.settledPrice = settledPrice;
-       this.status =status;
+       this.status = status;
     }
 
     /**
@@ -58,6 +56,7 @@ class JsonAdaptedOrder {
         this.buyer = new JsonAdaptedBuyer(order.getBuyer());
         this.requestedPriceRange = new JsonAdaptedPriceRange(order.getRequestedPriceRange());
         this.request = new JsonAdaptedRequest(order.getRequest());
+        this.additionalRequests.addAll(order.getAdditionalRequests().getAdditionalRequests());
         this.byDate = order.getByDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         this.settledPrice = order.getSettledPrice().getPrice();
         this.status = order.getOrderStatus().getStatus();
@@ -69,7 +68,16 @@ class JsonAdaptedOrder {
      * @throws IllegalValueException if there were any data constraints violated in the adapted order.
      */
     public Order toModelType() throws IllegalValueException {
-        return null;
+        //TODO validate the data before converting
+        Buyer modelBuyer = buyer.toModelType();
+        PriceRange modelPriceRange = requestedPriceRange.toModelType();
+        Request modelRequest = request.toModelType();
+        AdditionalRequests modelAdditionalRequest = new AdditionalRequests(additionalRequests.toArray(new String[0]));
+        LocalDate modelByDate = LocalDate.parse(byDate);
+        Price modelPrice = new Price(settledPrice);
+        OrderStatus modelOrderStatus = new OrderStatus(status);
+        return new Order(modelBuyer, modelPriceRange, modelRequest, modelAdditionalRequest, modelByDate, modelPrice,
+                modelOrderStatus);
     }
 
 }

@@ -8,7 +8,7 @@ public class OrderStatus {
 
     private final String status;
 
-    private OrderStatus(String status) {
+    public OrderStatus(String status) {
         this.status = status;
     }
 

@@ -27,8 +27,7 @@ class JsonAdaptedBuyer {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    //TODO JsonAdaptedOrder
-    private final List<Order> orders = new ArrayList<>();
+    private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedBuyer} with the given buyer details.
@@ -38,7 +37,7 @@ class JsonAdaptedBuyer {
                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                             @JsonProperty("address") String address,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                            @JsonProperty("orders") List<Order> orders) {
+                            @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
         this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;

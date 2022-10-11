@@ -253,7 +253,9 @@ public class AddressBook implements ReadOnlyAddressBook {
                 || (other instanceof AddressBook // instanceof handles nulls
                 && buyers.equals(((AddressBook) other).buyers)
                 && suppliers.equals(((AddressBook) other).suppliers)
-                && deliverers.equals(((AddressBook) other).deliverers));
+                && deliverers.equals(((AddressBook) other).deliverers)
+                && pets.equals(((AddressBook) other).pets)
+                && orders.equals(((AddressBook) other).orders));
     }
 
 }

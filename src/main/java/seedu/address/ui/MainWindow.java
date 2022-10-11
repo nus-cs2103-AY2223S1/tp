@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private BuyerListPanel buyerListPanel;
     private SupplierListPanel supplierListPanel;
     private DelivererListPanel delivererListPanel;
+    private OrderListPanel orderListPanel;
     private MainListPanel mainListPanel;
 
     private ResultDisplay resultDisplay;
@@ -120,7 +121,9 @@ public class MainWindow extends UiPart<Stage> {
         buyerListPanel = new BuyerListPanel(logic.getFilteredBuyerList());
         supplierListPanel = new SupplierListPanel(logic.getFilteredSupplierList());
         delivererListPanel = new DelivererListPanel(logic.getFilteredDelivererList());
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
         mainListPanel = new MainListPanel(logic.getFilteredMainList());
+
         personListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
 
@@ -201,6 +204,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public void showOrder() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
     }
 
     /**

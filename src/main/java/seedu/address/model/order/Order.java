@@ -7,7 +7,7 @@ import seedu.address.model.person.Buyer;
 
 public class Order {
 
-    private final Buyer buyer;
+    private Buyer buyer;
     private final PriceRange requestedPriceRange;
     private final Request request;
     private final AdditionalRequests additionalRequests;
@@ -39,6 +39,9 @@ public class Order {
         status = OrderStatus.getPendingStatus();
     }
 
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
+    }
     public Buyer getBuyer() {
         return buyer;
     }
@@ -109,6 +112,7 @@ public class Order {
                 .append(additionalRequests.toString()).append(System.lineSeparator())
                 .append("==========").append(System.lineSeparator())
                 .append("Settled price: ").append(getSettledPrice())
+                .append(System.lineSeparator())
                 .append("Status: ").append(getOrderStatus());
         return builder.toString();
     }
