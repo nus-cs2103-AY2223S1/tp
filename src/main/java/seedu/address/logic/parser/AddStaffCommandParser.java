@@ -9,11 +9,14 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.StaffContact;
-import seedu.address.model.person.StaffDepartment;
-import seedu.address.model.person.StaffInsurance;
-import seedu.address.model.person.StaffName;
-import seedu.address.model.person.StaffTitle;
+import seedu.address.model.project.ProjectName;
+import seedu.address.model.staff.StaffContact;
+import seedu.address.model.staff.StaffDepartment;
+import seedu.address.model.staff.StaffInsurance;
+import seedu.address.model.staff.StaffName;
+import seedu.address.model.staff.Staff;
+import seedu.address.model.staff.StaffTitle;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddStaffCommand object
@@ -28,25 +31,29 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand>{
     public AddStaffCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_STAFF_CONTACT, PREFIX_STAFF_NAME, PREFIX_STAFF_DEPARTMENT,
-                        PREFIX_STAFF_INSURANCE, PREFIX_STAFF_TITLE);
+                        PREFIX_STAFF_INSURANCE, PREFIX_STAFF_TITLE, PREFIX_PROJECT_NAME, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STAFF_CONTACT, PREFIX_STAFF_NAME, PREFIX_STAFF_DEPARTMENT,
-                PREFIX_STAFF_INSURANCE, PREFIX_STAFF_TITLE) || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_STAFF_INSURANCE, PREFIX_STAFF_TITLE, PREFIX_TAG, PREFIX_PROJECT_NAME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         StaffContact staffContact = ParserUtil.parseStaffContact(argMultimap.getValue(PREFIX_STAFF_CONTACT).get());
+
         StaffDepartment staffDepartment =
-                ParserUtil.parseStaffDepartment(argMultimap.getValue(PREFIX_STAFF_DEPARTMENT).get();
+                ParserUtil.parseStaffDepartment(argMultimap.getValue(PREFIX_STAFF_DEPARTMENT).get());
+
         StaffInsurance staffInsurance =
                 ParserUtil.parseStaffInsurance(argMultimap.getValue(PREFIX_STAFF_INSURANCE).get());
         StaffName staffName =
                 ParserUtil.parseStaffName(argMultimap.getValue(PREFIX_STAFF_NAME).get());
         StaffTitle staffTitle =
                 ParserUtil.parseStaffTitle(argMultimap.getValue(PREFIX_STAFF_TITLE).get());
-
+        ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // do staff creation
+        Staff staff = new Staff(staffContact, staffTitle, staffDepartment, staffInsurance, tagList);
         // do project name parsing
         // return new add staff command
     }

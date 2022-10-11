@@ -21,11 +21,12 @@ import seedu.address.model.project.Budget;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.person.StaffContact;
-import seedu.address.model.person.StaffDepartment;
-import seedu.address.model.person.StaffInsurance;
-import seedu.address.model.person.StaffName;
-import seedu.address.model.person.StaffTitle;
+import seedu.address.model.staff.Staff;
+import seedu.address.model.staff.StaffContact;
+import seedu.address.model.staff.StaffDepartment;
+import seedu.address.model.staff.StaffInsurance;
+import seedu.address.model.staff.StaffName;
+import seedu.address.model.staff.StaffTitle;
 
 import seedu.address.model.tag.Tag;
 
@@ -59,12 +60,12 @@ public class AddStaffCommand extends Command {
 
 //    private final Project toAdd;
     private final Staff toAdd;
-    private final String addTo;
+    private final ProjectName addTo;
 
     /**
      * Creates an AddStaffCommand to add the specified {@code Staff} to the {@code Project} with specified {@code pname}.
      */
-    public AddStaffCommand(Staff staff, String pname) {
+    public AddStaffCommand(Staff staff, ProjectName pname) {
         requireNonNull(staff);
         toAdd = staff;
         addTo = pname;
@@ -100,9 +101,7 @@ public class AddStaffCommand extends Command {
 
         projectToAdd.getStaffList().add(toAdd);
 
-//        model.setProject(projectToEdit, editedProject);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-//        return new CommandResult(String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject));
         return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, projectToAdd));
     }
 
