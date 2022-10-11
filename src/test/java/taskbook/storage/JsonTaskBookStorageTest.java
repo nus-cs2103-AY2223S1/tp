@@ -14,7 +14,7 @@ import taskbook.commons.exceptions.DataConversionException;
 import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.TaskBook;
 import taskbook.testutil.Assert;
-import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTaskBook;
 
 public class JsonTaskBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTaskBookStorageTest");
@@ -23,11 +23,11 @@ public class JsonTaskBookStorageTest {
     public Path testFolder;
 
     @Test
-    public void readtaskBook_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> readtaskBook(null));
+    public void readTaskBook_nullFilePath_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> readTaskBook(null));
     }
 
-    private java.util.Optional<ReadOnlyTaskBook> readtaskBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyTaskBook> readTaskBook(String filePath) throws Exception {
         return new JsonTaskBookStorage(Paths.get(filePath)).readTaskBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -39,62 +39,63 @@ public class JsonTaskBookStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readtaskBook("NonExistentFile.json").isPresent());
+        assertFalse(readTaskBook("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        Assert.assertThrows(DataConversionException.class, () -> readtaskBook("notJsonFormatAddressBook.json"));
+        Assert.assertThrows(DataConversionException.class, () -> readTaskBook("notJsonFormatAddressBook.json"));
     }
 
     @Test
-    public void readtaskBook_invalidPersontaskBook_throwDataConversionException() {
+    public void readTaskBook_invalidPersonTaskBook_throwDataConversionException() {
         Assert.assertThrows(DataConversionException.class, ()
-                -> readtaskBook("invalidPersonAddressBook.json"));
+                -> readTaskBook("invalidPersonTaskBook.json"));
     }
 
     @Test
-    public void readtaskBook_invalidAndValidPersontaskBook_throwDataConversionException() {
+    public void readTaskBook_invalidAndValidPersonTaskBook_throwDataConversionException() {
         Assert.assertThrows(DataConversionException.class, ()
-                -> readtaskBook("invalidAndValidPersonAddressBook.json"));
+                -> readTaskBook("invalidAndValidPersonAddressBook.json"));
     }
 
     @Test
-    public void readAndSavetaskBook_allInOrder_success() throws Exception {
+    public void readAndSaveTaskBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        TaskBook original = TypicalPersons.getTypicalTaskBook();
-        JsonTaskBookStorage jsontaskBookStorage = new JsonTaskBookStorage(filePath);
+        TaskBook original = TypicalTaskBook.getTypicalTaskBook();
+        JsonTaskBookStorage jsonTaskBookStorage = new JsonTaskBookStorage(filePath);
 
         // Save in new file and read back
-        jsontaskBookStorage.saveTaskBook(original, filePath);
-        ReadOnlyTaskBook readBack = jsontaskBookStorage.readTaskBook(filePath).get();
+        jsonTaskBookStorage.saveTaskBook(original, filePath);
+        ReadOnlyTaskBook readBack = jsonTaskBookStorage.readTaskBook(filePath).get();
         assertEquals(original, new TaskBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(TypicalPersons.HOON);
-        original.removePerson(TypicalPersons.ALICE);
-        jsontaskBookStorage.saveTaskBook(original, filePath);
-        readBack = jsontaskBookStorage.readTaskBook(filePath).get();
+        original.addPerson(TypicalTaskBook.HOON);
+        original.removePerson(TypicalTaskBook.FIONA); // v1.2: Must not remove person who has a task
+        jsonTaskBookStorage.saveTaskBook(original, filePath);
+        readBack = jsonTaskBookStorage.readTaskBook(filePath).get();
         assertEquals(original, new TaskBook(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(TypicalPersons.IDA);
-        jsontaskBookStorage.saveTaskBook(original); // file path not specified
-        readBack = jsontaskBookStorage.readTaskBook().get(); // file path not specified
+        original.addPerson(TypicalTaskBook.IDA);
+        jsonTaskBookStorage.saveTaskBook(original); // file path not specified
+        readBack = jsonTaskBookStorage.readTaskBook().get(); // file path not specified
         assertEquals(original, new TaskBook(readBack));
-
     }
 
+    // TODO: Test if person is removed all his/her tasks are removed such that readAndSaveTaskBook all in order
+
     @Test
-    public void savetaskBook_nulltaskBook_throwsNullPointerException() {
+    public void saveTaskBook_nullTaskBook_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, ()
-                -> savetaskBook(null, "SomeFile.json"));
+                -> saveTaskBook(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code taskBook} at the specified {@code filePath}.
+     * Saves {@code TaskBook} at the specified {@code filePath}.
      */
-    private void savetaskBook(ReadOnlyTaskBook taskBook, String filePath) {
+    private void saveTaskBook(ReadOnlyTaskBook taskBook, String filePath) {
         try {
             new JsonTaskBookStorage(Paths.get(filePath))
                     .saveTaskBook(taskBook, addToTestDataPathIfNotNull(filePath));
@@ -104,7 +105,7 @@ public class JsonTaskBookStorageTest {
     }
 
     @Test
-    public void savetaskBook_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> savetaskBook(new TaskBook(), null));
+    public void saveTaskBook_nullFilePath_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> saveTaskBook(new TaskBook(), null));
     }
 }

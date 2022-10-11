@@ -16,7 +16,7 @@ import taskbook.model.person.exceptions.DuplicatePersonException;
 import taskbook.model.person.exceptions.PersonNotFoundException;
 import taskbook.testutil.Assert;
 import taskbook.testutil.PersonBuilder;
-import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTaskBook;
 
 public class UniquePersonListTest {
 
@@ -29,19 +29,19 @@ public class UniquePersonListTest {
 
     @Test
     public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(TypicalPersons.ALICE));
+        assertFalse(uniquePersonList.contains(TypicalTaskBook.ALICE));
     }
 
     @Test
     public void contains_personInList_returnsTrue() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        assertTrue(uniquePersonList.contains(TypicalPersons.ALICE));
+        uniquePersonList.add(TypicalTaskBook.ALICE);
+        assertTrue(uniquePersonList.contains(TypicalTaskBook.ALICE));
     }
 
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+        uniquePersonList.add(TypicalTaskBook.ALICE);
+        Person editedAlice = new PersonBuilder(TypicalTaskBook.ALICE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
@@ -54,44 +54,44 @@ public class UniquePersonListTest {
 
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        Assert.assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(TypicalPersons.ALICE));
+        uniquePersonList.add(TypicalTaskBook.ALICE);
+        Assert.assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(TypicalTaskBook.ALICE));
     }
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, ()
-                -> uniquePersonList.setPerson(null, TypicalPersons.ALICE));
+                -> uniquePersonList.setPerson(null, TypicalTaskBook.ALICE));
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, ()
-                -> uniquePersonList.setPerson(TypicalPersons.ALICE, null));
+                -> uniquePersonList.setPerson(TypicalTaskBook.ALICE, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
         Assert.assertThrows(PersonNotFoundException.class, ()
-                -> uniquePersonList.setPerson(TypicalPersons.ALICE, TypicalPersons.ALICE));
+                -> uniquePersonList.setPerson(TypicalTaskBook.ALICE, TypicalTaskBook.ALICE));
     }
 
     @Test
     public void setPerson_editedPersonIsSamePerson_success() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        uniquePersonList.setPerson(TypicalPersons.ALICE, TypicalPersons.ALICE);
+        uniquePersonList.add(TypicalTaskBook.ALICE);
+        uniquePersonList.setPerson(TypicalTaskBook.ALICE, TypicalTaskBook.ALICE);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(TypicalPersons.ALICE);
+        expectedUniquePersonList.add(TypicalTaskBook.ALICE);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+        uniquePersonList.add(TypicalTaskBook.ALICE);
+        Person editedAlice = new PersonBuilder(TypicalTaskBook.ALICE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniquePersonList.setPerson(TypicalPersons.ALICE, editedAlice);
+        uniquePersonList.setPerson(TypicalTaskBook.ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);
         assertEquals(expectedUniquePersonList, uniquePersonList);
@@ -99,19 +99,19 @@ public class UniquePersonListTest {
 
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        uniquePersonList.setPerson(TypicalPersons.ALICE, TypicalPersons.BOB);
+        uniquePersonList.add(TypicalTaskBook.ALICE);
+        uniquePersonList.setPerson(TypicalTaskBook.ALICE, TypicalTaskBook.BOB);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(TypicalPersons.BOB);
+        expectedUniquePersonList.add(TypicalTaskBook.BOB);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        uniquePersonList.add(TypicalPersons.BOB);
+        uniquePersonList.add(TypicalTaskBook.ALICE);
+        uniquePersonList.add(TypicalTaskBook.BOB);
         Assert.assertThrows(DuplicatePersonException.class, ()
-                -> uniquePersonList.setPerson(TypicalPersons.ALICE, TypicalPersons.BOB));
+                -> uniquePersonList.setPerson(TypicalTaskBook.ALICE, TypicalTaskBook.BOB));
     }
 
     @Test
@@ -121,13 +121,13 @@ public class UniquePersonListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        Assert.assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(TypicalPersons.ALICE));
+        Assert.assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(TypicalTaskBook.ALICE));
     }
 
     @Test
     public void remove_existingPerson_removesPerson() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        uniquePersonList.remove(TypicalPersons.ALICE);
+        uniquePersonList.add(TypicalTaskBook.ALICE);
+        uniquePersonList.remove(TypicalTaskBook.ALICE);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -139,9 +139,9 @@ public class UniquePersonListTest {
 
     @Test
     public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniquePersonList.add(TypicalPersons.ALICE);
+        uniquePersonList.add(TypicalTaskBook.ALICE);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(TypicalPersons.BOB);
+        expectedUniquePersonList.add(TypicalTaskBook.BOB);
         uniquePersonList.setPersons(expectedUniquePersonList);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -153,17 +153,17 @@ public class UniquePersonListTest {
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniquePersonList.add(TypicalPersons.ALICE);
-        List<Person> personList = Collections.singletonList(TypicalPersons.BOB);
+        uniquePersonList.add(TypicalTaskBook.ALICE);
+        List<Person> personList = Collections.singletonList(TypicalTaskBook.BOB);
         uniquePersonList.setPersons(personList);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(TypicalPersons.BOB);
+        expectedUniquePersonList.add(TypicalTaskBook.BOB);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Person> listWithDuplicatePersons = Arrays.asList(TypicalPersons.ALICE, TypicalPersons.ALICE);
+        List<Person> listWithDuplicatePersons = Arrays.asList(TypicalTaskBook.ALICE, TypicalTaskBook.ALICE);
         Assert.assertThrows(DuplicatePersonException.class, ()
                 -> uniquePersonList.setPersons(listWithDuplicatePersons));
     }

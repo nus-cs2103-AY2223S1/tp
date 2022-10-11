@@ -2,7 +2,7 @@ package taskbook.logic.commands;
 
 import static taskbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static taskbook.testutil.TypicalPersons.getTypicalTaskBook;
+import static taskbook.testutil.TypicalTaskBook.getTypicalTaskBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

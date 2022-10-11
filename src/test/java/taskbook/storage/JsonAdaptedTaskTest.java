@@ -1,21 +1,15 @@
 package taskbook.storage;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import taskbook.commons.exceptions.IllegalValueException;
-import taskbook.model.person.Address;
-import taskbook.model.person.Email;
-import taskbook.model.person.Name;
-import taskbook.model.person.Phone;
-import taskbook.testutil.Assert;
+import taskbook.model.TaskBook;
 import taskbook.testutil.TypicalTaskBook;
 
-public class JsonAdaptedPersonTest {
+public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -30,18 +24,28 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(TypicalTaskBook.BENSON);
-        Assertions.assertEquals(TypicalTaskBook.BENSON, person.toModelType());
-    }
+    private static final String VALID_ASSIGNMENT = TypicalTaskBook.SLEEPING.getAssignment().name();
+    private static final String VALID_DESCRIPTION = TypicalTaskBook.SLEEPING.getDescription().toString();
 
     @Test
-    public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+    public void toModelType_validTaskDetails_returnsTask() throws Exception {
+        TaskBook taskBook = new TaskBook();
+        taskBook.addPerson(TypicalTaskBook.BENSON);
+        JsonAdaptedTask task = new JsonAdaptedTask(TypicalTaskBook.SLEEPING);
+        Assertions.assertEquals(TypicalTaskBook.SLEEPING, task.toModelType(taskBook));
+    }
+
+    // TODO: Change Task implementation to contain task hashcode instead of Person
+    // so that Task::toModelType is a functional interface (no side effects)
+
+    /*
+    @Test
+    public void toModelType_invalidName_throwsIllegalValueException() throws IllegalValueException {
+        TaskBook taskBook = new TaskBook();
+        taskBook.addPerson(TypicalTaskBook.BENSON);
+        JsonAdaptedTask task = new JsonAdaptedTask(INVALID_NAME, VALID_ASSIGNMENT, VALID_DESCRIPTION, false);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-        Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        Assert.assertThrows(IllegalValueException.class, ((tb) -> task.toModelType(tb)));
     }
 
     @Test
@@ -50,7 +54,7 @@ public class JsonAdaptedPersonTest {
                 VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT,
                 Name.class.getSimpleName());
-        Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        Assert.assertThrows(IllegalValueException.class, expectedMessage, person.toModelType());
     }
 
     @Test
@@ -112,5 +116,7 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);
         Assert.assertThrows(IllegalValueException.class, person::toModelType);
     }
+
+     */
 
 }

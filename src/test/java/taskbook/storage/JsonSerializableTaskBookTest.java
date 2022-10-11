@@ -11,22 +11,22 @@ import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.commons.util.JsonUtil;
 import taskbook.model.TaskBook;
 import taskbook.testutil.Assert;
-import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTaskBook;
 
 public class JsonSerializableTaskBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths
             .get("src", "test", "data", "JsonSerializableTaskBookTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
+    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsTaskBook.json");
+    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonTaskBook.json");
+    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonTaskBook.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableTaskBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableTaskBook.class).get();
         TaskBook taskBookFromFile = dataFromFile.toModelType();
-        TaskBook typicalPersonstaskBook = TypicalPersons.getTypicalTaskBook();
+        TaskBook typicalPersonstaskBook = TypicalTaskBook.getTypicalTaskBook();
         assertEquals(taskBookFromFile, typicalPersonstaskBook);
     }
 

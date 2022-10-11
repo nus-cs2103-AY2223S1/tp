@@ -1,5 +1,6 @@
 package taskbook.testutil;
 
+
 import static taskbook.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static taskbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static taskbook.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -17,12 +18,15 @@ import java.util.List;
 
 import taskbook.model.TaskBook;
 import taskbook.model.person.Person;
+import taskbook.model.task.Task;
+import taskbook.model.task.enums.Assignment;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Task} and {@code Person} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalTaskBook {
 
+    // Typical Persons
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
@@ -57,20 +61,40 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    // Typical Tasks
+    public static final Task EATING = new TaskBuilder().withPerson(ALICE)
+            .withAssignment(Assignment.TO).withDescription("eat fruit").withIsDone(true)
+            .build();
+
+    public static final Task SLEEPING = new TaskBuilder().withPerson(BENSON)
+            .withAssignment(Assignment.FROM).withDescription("sleep early").withIsDone(false)
+            .build();
+
+    public static final Task PARTYING = new TaskBuilder().withPerson(CARL)
+            .withAssignment(Assignment.TO).withDescription("party at kevin's house")
+            .withIsDone(true).build();
+
+    private TypicalTaskBook() {} // prevents instantiation
 
     /**
      * Returns an {@code TaskBook} with all the typical persons.
      */
     public static TaskBook getTypicalTaskBook() {
-        TaskBook ab = new TaskBook();
+        TaskBook tb = new TaskBook();
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            tb.addPerson(person);
         }
-        return ab;
+        for (Task task : getTypicalTasks()) {
+            tb.addTask(task);
+        }
+        return tb;
     }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Task> getTypicalTasks() {
+        return new ArrayList<>(Arrays.asList(EATING, SLEEPING, PARTYING));
     }
 }

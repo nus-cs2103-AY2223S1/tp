@@ -25,8 +25,8 @@ import static taskbook.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static taskbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static taskbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static taskbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static taskbook.testutil.TypicalPersons.AMY;
-import static taskbook.testutil.TypicalPersons.BOB;
+import static taskbook.testutil.TypicalTaskBook.AMY;
+import static taskbook.testutil.TypicalTaskBook.BOB;
 
 import org.junit.jupiter.api.Test;
 

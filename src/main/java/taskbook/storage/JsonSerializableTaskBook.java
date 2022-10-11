@@ -12,24 +12,28 @@ import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.TaskBook;
 import taskbook.model.person.Person;
+import taskbook.model.task.Task;
 
 /**
  * An Immutable TaskBook that is serializable to JSON format.
  */
-// TODO: Verify JsonRootName
-@JsonRootName(value = "taskbook")
+@JsonRootName(value = "taskBook")
 class JsonSerializableTaskBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableTaskBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableTaskBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableTaskBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                    @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.persons.addAll(persons);
+        this.tasks.addAll(tasks);
     }
 
     /**
@@ -39,6 +43,7 @@ class JsonSerializableTaskBook {
      */
     public JsonSerializableTaskBook(ReadOnlyTaskBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,12 +53,20 @@ class JsonSerializableTaskBook {
      */
     public TaskBook toModelType() throws IllegalValueException {
         TaskBook taskBook = new TaskBook();
+        // Persons must be loaded before tasks.
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (taskBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             taskBook.addPerson(person);
+        }
+        for (JsonAdaptedTask jsonAdaptedTask: tasks) {
+            Task task = jsonAdaptedTask.toModelType(taskBook);
+            if (taskBook.hasTask(task)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
+            taskBook.addTask(task);
         }
         return taskBook;
     }

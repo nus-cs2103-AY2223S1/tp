@@ -20,7 +20,7 @@ import taskbook.model.person.exceptions.DuplicatePersonException;
 import taskbook.model.task.Task;
 import taskbook.testutil.Assert;
 import taskbook.testutil.PersonBuilder;
-import taskbook.testutil.TypicalPersons;
+import taskbook.testutil.TypicalTaskBook;
 
 public class TaskBookTest {
 
@@ -38,7 +38,7 @@ public class TaskBookTest {
 
     @Test
     public void resetData_withValidReadOnlytaskBook_replacesData() {
-        TaskBook newData = TypicalPersons.getTypicalTaskBook();
+        TaskBook newData = TypicalTaskBook.getTypicalTaskBook();
         taskBook.resetData(newData);
         assertEquals(newData, taskBook);
     }
@@ -46,10 +46,10 @@ public class TaskBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+        Person editedAlice = new PersonBuilder(TypicalTaskBook.ALICE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(TypicalPersons.ALICE, editedAlice);
+        List<Person> newPersons = Arrays.asList(TypicalTaskBook.ALICE, editedAlice);
         TaskBookStub newData = new TaskBookStub(newPersons);
 
         Assert.assertThrows(DuplicatePersonException.class, () -> taskBook.resetData(newData));
@@ -62,19 +62,19 @@ public class TaskBookTest {
 
     @Test
     public void hasPerson_personNotIntaskBook_returnsFalse() {
-        assertFalse(taskBook.hasPerson(TypicalPersons.ALICE));
+        assertFalse(taskBook.hasPerson(TypicalTaskBook.ALICE));
     }
 
     @Test
     public void hasPerson_personIntaskBook_returnsTrue() {
-        taskBook.addPerson(TypicalPersons.ALICE);
-        assertTrue(taskBook.hasPerson(TypicalPersons.ALICE));
+        taskBook.addPerson(TypicalTaskBook.ALICE);
+        assertTrue(taskBook.hasPerson(TypicalTaskBook.ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsIntaskBook_returnsTrue() {
-        taskBook.addPerson(TypicalPersons.ALICE);
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE)
+        taskBook.addPerson(TypicalTaskBook.ALICE);
+        Person editedAlice = new PersonBuilder(TypicalTaskBook.ALICE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(taskBook.hasPerson(editedAlice));
