@@ -4,6 +4,7 @@ import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.ItemList;
 
 /**
@@ -68,6 +69,14 @@ public class Itinerary {
 
         return otherItinerary != null
                 && otherItinerary.getName().equals(getName());
+    }
+
+    public boolean hasItem(Item item) {
+        return this.itemList.contains(item);
+    }
+
+    public void addItem(Item item) {
+        this.itemList.add(item);
     }
 
     /**

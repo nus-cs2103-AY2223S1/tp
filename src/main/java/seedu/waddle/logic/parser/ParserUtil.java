@@ -90,4 +90,19 @@ public class ParserUtil {
         }
         return new People(trimmedPeople);
     }
+
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        // TODO: implement Description class
+        /*
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Description(trimmedDescription);
+         */
+        return trimmedDescription;
+    }
+
 }

@@ -9,18 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.Stages;
-import seedu.waddle.logic.commands.AddCommand;
-import seedu.waddle.logic.commands.ClearCommand;
-import seedu.waddle.logic.commands.Command;
-import seedu.waddle.logic.commands.DeleteCommand;
-import seedu.waddle.logic.commands.EditCommand;
-import seedu.waddle.logic.commands.ExitCommand;
-import seedu.waddle.logic.commands.FindCommand;
-import seedu.waddle.logic.commands.HelpCommand;
-import seedu.waddle.logic.commands.HomeCommand;
-import seedu.waddle.logic.commands.ListCommand;
-import seedu.waddle.logic.commands.PlanCommand;
-import seedu.waddle.logic.commands.StageCommand;
+import seedu.waddle.logic.commands.*;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 
 /**
@@ -130,6 +119,9 @@ public class WaddleParser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case AddItemCommand.COMMAND_WORD:
+            return new AddItemCommandParser().parse(arguments);
 
         //TODO: help commands must change here
         case HelpCommand.COMMAND_WORD:
