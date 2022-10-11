@@ -207,6 +207,14 @@
     -fx-background-color: black;
 }
 
+.tab-pane .tab-header-area .tab-header-background {
+   -fx-background-color: #05071F;
+}
+
+.tab-label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+}
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
@@ -350,3 +358,4 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
