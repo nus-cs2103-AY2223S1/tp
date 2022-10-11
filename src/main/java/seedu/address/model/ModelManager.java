@@ -190,6 +190,10 @@ public class ModelManager implements Model {
         // TODO: updateFilteredTaskList
     }
 
+    @Override
+    public void deleteTask(Task deletedTask) {
+        taskPanel.removeTask(deletedTask);
+    }
 
     @Override
     public void setTask(Task target, Task editedTask) {
