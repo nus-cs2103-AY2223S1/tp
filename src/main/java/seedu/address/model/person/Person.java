@@ -3,11 +3,17 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.util.Callback;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,8 +28,9 @@ public class Person {
     private final Email email;
 
     // Data fields
+    private final Callback<Appointment, Observable[]> extractor = Appointment::getProperties;
+    private final ObservableList<Appointment> appointments = FXCollections.observableArrayList(extractor);
     private final Address address;
-    private final List<Appointment> listOfAppointments;
     private final Set<Tag> tags = new HashSet<>();
     /**
      * Every field must be present and not null.
@@ -35,7 +42,17 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.listOfAppointments = listOfAppointments;
+        this.appointments.addAll(listOfAppointments);
+        this.appointments.addListener((ListChangeListener<Appointment>) c -> {
+            while (c.next()) {
+                if (c.wasUpdated()) {
+                    appointments.sort(Comparator.comparing(Appointment::getDateTime));
+                }
+                if (c.wasAdded()) {
+                    appointments.sort(Comparator.comparing(Appointment::getDateTime));
+                }
+            }
+        });
         this.tags.addAll(tags);
     }
 
@@ -56,12 +73,12 @@ public class Person {
     }
 
     public List<Appointment> getAppointments() {
-        return listOfAppointments;
+        return appointments;
     }
 
 
-    public Appointment cancelAppointment(int apptIndex) {
-        return listOfAppointments.remove(apptIndex);
+    public void cancelAppointment(int apptIndex) {
+        appointments.remove(apptIndex);
     }
 
     /**
@@ -87,10 +104,14 @@ public class Person {
 
     public String getAppointmentsString() {
         StringBuilder str = new StringBuilder("Appointments:\n");
-        for (int i = 0; i < listOfAppointments.size(); i++) {
-            str.append(i + 1).append(": ").append(listOfAppointments.get(i)).append("\n");
+        for (int i = 0; i < appointments.size(); i++) {
+            str.append(i + 1).append(": ").append(appointments.get(i)).append("\n");
         }
         return str.toString();
+    }
+
+    public Observable getApptsProperty() {
+        return appointments;
     }
 
     /**
@@ -142,5 +163,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }

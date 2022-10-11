@@ -108,7 +108,6 @@ public class EditPatientCommand extends Command {
         for (Appointment appointment : appointments) {
             appointment.setPatient(editedPerson);
         }
-        model.refreshAppointments(appointments);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
