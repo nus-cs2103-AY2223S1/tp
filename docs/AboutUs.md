@@ -11,7 +11,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/justinpeng13.png" width="200px">
 
-[[homepage](https://justinpeng.vercel.app)]
+[[homepage](https://www.justinpeng.com)]
 [[github](https://github.com/JustinPeng13)]
 [[portfolio](team/justinpeng13.md)]
 
