@@ -29,9 +29,9 @@ public class ScholarshipTest {
         assertFalse(Scholarship.isValidScholarship(" ")); // spaces only
 
         // valid scholarship
-        assertTrue(Scholarship.isValidScholarship("Blk 456, Den Road, #01-355"));
-        assertTrue(Scholarship.isValidScholarship("-")); // one character
-        assertTrue(Scholarship
-                .isValidScholarship("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long scholarship
+        assertTrue(Scholarship.isValidScholarship("NUS Global Merit"));
+        assertTrue(Scholarship.isValidScholarship("A")); // one character
+        assertTrue(Scholarship.isValidScholarship(
+                        "Hong Kong & Shanghai Banking Corporation Centenary Scholarship")); // long scholarship
     }
 }

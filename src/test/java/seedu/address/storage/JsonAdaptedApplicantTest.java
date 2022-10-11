@@ -23,7 +23,7 @@ public class JsonAdaptedApplicantTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_SCHOLARSHIP = " ";
-    private static final String INVALID_APPLICATION_STATUS = "accept";
+    private static final String INVALID_APPLICATION_STATUS = "failure";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
