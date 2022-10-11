@@ -31,6 +31,7 @@ public class HelpWindow extends UiPart<Stage> {
             + USERGUIDE_URL
             + COMMAND_SUMMARY;
 
+
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
