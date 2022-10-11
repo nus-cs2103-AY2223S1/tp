@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CAP_VALUE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADUATION_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAJOR_BOB;
@@ -60,6 +61,10 @@ public class EditPersonDescriptorTest {
 
         // different gender -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withGender(VALID_GENDER_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different graduationDate -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withGraduationDate(VALID_GRADUATION_DATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different CAP -> returns false

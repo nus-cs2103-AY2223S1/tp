@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GraduationDate;
 import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -37,6 +38,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String gender;
+    private final String graduationDate;
     private final String cap;
     private final String university;
     private final String major;
@@ -54,6 +56,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email,
             @JsonProperty("address") String address,
             @JsonProperty("gender") String gender,
+            @JsonProperty("graduationDate") String graduationDate,
             @JsonProperty("cap") String cap,
             @JsonProperty("university") String university,
             @JsonProperty("major") String major,
@@ -66,6 +69,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.gender = gender;
         this.cap = cap;
+        this.graduationDate = graduationDate;
         this.university = university;
         this.major = major;
         this.id = id;
@@ -85,6 +89,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         gender = source.getGender().value;
         cap = source.getCap().toString();
+        graduationDate = source.getGraduationDate().value;
         university = source.getUniversity().value;
         major = source.getMajor().value;
         id = source.getJob().getId().value;
@@ -145,6 +150,15 @@ class JsonAdaptedPerson {
         }
         final Gender modelGender = new Gender(gender);
 
+        if (graduationDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GraduationDate.class.getSimpleName()));
+        }
+        if (!GraduationDate.isValidGraduationDate(graduationDate)) {
+            throw new IllegalValueException(GraduationDate.MESSAGE_CONSTRAINTS);
+        }
+        final GraduationDate modelGraduationDate = new GraduationDate(graduationDate);
+
         if (cap == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Cap.class.getSimpleName()));
         }
@@ -187,6 +201,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
                 modelGender,
+                modelGraduationDate,
                 modelCap,
                 modelUniversity,
                 modelMajor,

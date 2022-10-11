@@ -43,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label gender;
     @FXML
+    private Label graduationDate;
+    @FXML
     private Label cap;
     @FXML
     private Label university;
@@ -63,6 +65,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
         gender.setText(person.getGender().value);
+        graduationDate.setText(person.getGraduationDate().value);
         cap.setText(person.getCap().toString());
         address.setText(person.getAddress().value);
         university.setText(person.getUniversity().value);

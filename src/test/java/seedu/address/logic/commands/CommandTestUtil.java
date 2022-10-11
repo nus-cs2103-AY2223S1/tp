@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CAP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADUATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
@@ -43,6 +44,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_GENDER_AMY = "Female";
     public static final String VALID_GENDER_BOB = "Male";
+    public static final String VALID_GRADUATION_DATE_AMY = "05-2024";
+    public static final String VALID_GRADUATION_DATE_BOB = "05-2025";
     public static final String VALID_UNIVERSITY_AMY = "NUS";
     public static final String VALID_UNIVERSITY_BOB = "NTU";
     public static final String VALID_MAJOR_AMY = "Computer Science";
@@ -70,6 +73,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
+    public static final String GRADUATION_DATE_DESC_AMY = " " + PREFIX_GRADUATION_DATE + VALID_GRADUATION_DATE_AMY;
+    public static final String GRADUATION_DATE_DESC_BOB = " " + PREFIX_GRADUATION_DATE + VALID_GRADUATION_DATE_BOB;
     public static final String UNIVERSITY_DESC_AMY = " " + PREFIX_UNIVERSITY + VALID_UNIVERSITY_AMY;
     public static final String UNIVERSITY_DESC_BOB = " " + PREFIX_UNIVERSITY + VALID_UNIVERSITY_BOB;
     public static final String MAJOR_DESC_AMY = " " + PREFIX_MAJOR + VALID_MAJOR_AMY;
@@ -88,6 +93,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "4Male"; // '4' not allowed in gender
+    public static final String INVALID_GRADUATION_DESC = " "
+            + PREFIX_GRADUATION_DATE + "asdf-12"; //alphabets not allowed in graduation date
     public static final String INVALID_UNIVERSITY_DESC = " " + PREFIX_UNIVERSITY + "St@r"; // '@' not allowed for
     // universities
     public static final String INVALID_MAJOR_DESC = " " + PREFIX_MAJOR + "C0MPUT3R $C13NC3"; // '0, 3, $, 1'
@@ -113,6 +120,7 @@ public class CommandTestUtil {
                 .withUniversity(VALID_UNIVERSITY_AMY)
                 .withMajor(VALID_MAJOR_AMY)
                 .withGender(VALID_GENDER_AMY)
+                .withGraduationDate(VALID_GRADUATION_DATE_AMY)
                 .withId(VALID_JOB_ID_AMY)
                 .withTitle(VALID_JOB_TITLE_AMY)
                 .withTags(VALID_TAG_REJECTED).build();
@@ -123,6 +131,7 @@ public class CommandTestUtil {
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withMajor(VALID_MAJOR_BOB)
                 .withGender(VALID_GENDER_BOB)
+                .withGraduationDate(VALID_GRADUATION_DATE_BOB)
                 .withId(VALID_JOB_ID_BOB)
                 .withTitle(VALID_JOB_TITLE_BOB)
                 .withTags(VALID_TAG_KIV, VALID_TAG_REJECTED).build();

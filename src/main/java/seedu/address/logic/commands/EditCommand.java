@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CAP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADUATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
@@ -31,6 +32,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GraduationDate;
 import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -54,6 +56,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GENDER + "GENDER] "
+            + "[" + PREFIX_GRADUATION_DATE + "GRADUATION DATE] "
             + "[" + PREFIX_CAP + "CAP] "
             + "[" + PREFIX_UNIVERSITY + "UNIVERSITY] "
             + "[" + PREFIX_MAJOR + "MAJOR] "
@@ -117,6 +120,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Cap updatedCap = editPersonDescriptor.getCap().orElse(personToEdit.getCap());
+        GraduationDate updatedGraduationDate = editPersonDescriptor.getGraduationDate()
+                .orElse(personToEdit.getGraduationDate());
         University updatedUniversity = editPersonDescriptor.getUniversity().orElse(personToEdit.getUniversity());
         Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
         Id updatedJobId = editPersonDescriptor.getJobId().orElse(personToEdit.getJob().getId());
@@ -126,6 +131,7 @@ public class EditCommand extends Command {
         return new Person(updatedName, updatedPhone, updatedEmail,
                 updatedAddress,
                 updatedGender,
+                updatedGraduationDate,
                 updatedCap,
                 updatedUniversity,
                 updatedMajor,
@@ -162,6 +168,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Gender gender;
+        private GraduationDate graduationDate;
         private Cap cap;
         private University university;
         private Major major;
@@ -181,6 +188,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setGender(toCopy.gender);
+            setGraduationDate(toCopy.graduationDate);
             setCap(toCopy.cap);
             setUniversity(toCopy.university);
             setMajor(toCopy.major);
@@ -196,6 +204,7 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email,
                     address,
                     gender,
+                    graduationDate,
                     cap,
                     university,
                     major,
@@ -242,6 +251,12 @@ public class EditCommand extends Command {
 
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
+        }
+        public void setGraduationDate(GraduationDate graduationDate) {
+            this.graduationDate = graduationDate;
+        }
+        public Optional<GraduationDate> getGraduationDate() {
+            return Optional.ofNullable(graduationDate);
         }
 
         public void setCap(Cap cap) {
@@ -322,6 +337,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getGender().equals(e.getGender())
                     && getCap().equals(e.getCap())
+                    && getGraduationDate().equals(e.getGraduationDate())
                     && getUniversity().equals(e.getUniversity())
                     && getMajor().equals(e.getMajor())
                     && getJobId().equals(e.getJobId())

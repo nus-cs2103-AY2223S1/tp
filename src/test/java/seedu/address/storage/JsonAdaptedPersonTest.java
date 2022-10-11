@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GraduationDate;
 import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -29,6 +30,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_GENDER = "4Male";
+    private static final String INVALID_GRADUATION_DATE = "asdf-12";
     private static final String INVALID_CAP = "10/5";
     private static final String INVALID_UNIVERSITY = "@univ";
     private static final String INVALID_MAJOR = "C0MPUT3R $C1ENCE";
@@ -42,6 +44,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_CAP = BENSON.getCap().toString();
     private static final String VALID_GENDER = BENSON.getGender().toString();
+    private static final String VALID_GRADUATION_DATE = BENSON.getGraduationDate().toString();
     private static final String VALID_UNIVERSITY = BENSON.getUniversity().toString();
     private static final String VALID_MAJOR = BENSON.getMajor().toString();
     private static final String VALID_ID = BENSON.getJob().getId().toString();
@@ -61,6 +64,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -76,6 +80,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -91,6 +96,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, INVALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -106,6 +112,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -121,6 +128,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -136,6 +144,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -151,6 +160,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 INVALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -166,6 +176,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 null,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -181,6 +192,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 INVALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -196,6 +208,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 null,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -207,10 +220,45 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_invalidGraduationDate_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                        VALID_ADDRESS,
+                        VALID_GENDER,
+                        INVALID_GRADUATION_DATE,
+                        VALID_CAP,
+                        VALID_UNIVERSITY,
+                        VALID_MAJOR,
+                        VALID_ID,
+                        VALID_TITLE,
+                        VALID_TAGS);
+        String expectedMessage = GraduationDate.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullGraduationDate_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                        VALID_ADDRESS,
+                        VALID_GENDER,
+                        null,
+                        VALID_CAP,
+                        VALID_UNIVERSITY,
+                        VALID_MAJOR,
+                        VALID_ID,
+                        VALID_TITLE,
+                        VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, GraduationDate.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
     public void toModelType_invalidCap_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 INVALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -226,6 +274,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 null,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -241,6 +290,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 INVALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -256,6 +306,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 null,
                 VALID_MAJOR,
@@ -271,6 +322,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 INVALID_MAJOR,
@@ -286,6 +338,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 null,
@@ -301,6 +354,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -316,6 +370,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -331,6 +386,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -346,6 +402,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,
@@ -363,6 +420,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS,
                 VALID_GENDER,
+                VALID_GRADUATION_DATE,
                 VALID_CAP,
                 VALID_UNIVERSITY,
                 VALID_MAJOR,

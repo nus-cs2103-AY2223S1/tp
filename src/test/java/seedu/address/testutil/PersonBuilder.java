@@ -9,6 +9,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GraduationDate;
 import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -27,6 +28,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GENDER = "Female";
+    public static final String DEFAULT_GRADUATION_DATE = "05-2024";
     public static final double DEFAULT_CAP_VALUE = 4.99;
     public static final double DEFAULT_CAP_MAXIMUM_VALUE = 5.0;
     public static final String DEFAULT_UNIVERSITY = "NUS";
@@ -39,6 +41,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Gender gender;
+    private GraduationDate graduationDate;
     private Cap cap;
     private University university;
     private Major major;
@@ -55,6 +58,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         gender = new Gender(DEFAULT_GENDER);
+        graduationDate = new GraduationDate(DEFAULT_GRADUATION_DATE);
         cap = new Cap(DEFAULT_CAP_VALUE, DEFAULT_CAP_MAXIMUM_VALUE);
         university = new University(DEFAULT_UNIVERSITY);
         major = new Major(DEFAULT_MAJOR);
@@ -72,6 +76,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         gender = personToCopy.getGender();
+        graduationDate = personToCopy.getGraduationDate();
         cap = personToCopy.getCap();
         university = personToCopy.getUniversity();
         major = personToCopy.getMajor();
@@ -137,6 +142,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code GraduationDate} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGraduationDate(String graduationDate) {
+        this.graduationDate = new GraduationDate(graduationDate);
+        return this;
+    }
+
+    /**
      * Sets the {@code University} of the {@code Person} that we are building.
      */
     public PersonBuilder withUniversity(String university) {
@@ -175,6 +188,7 @@ public class PersonBuilder {
         return new Person(name, phone, email,
                 address,
                 gender,
+                graduationDate,
                 cap,
                 university,
                 major,

@@ -9,10 +9,13 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.GRADUATION_DATE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.GRADUATION_DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CAP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GRADUATION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_JOB_ID_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_JOB_TITLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MAJOR_DESC;
@@ -42,6 +45,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADUATION_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADUATION_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_AMY;
@@ -75,6 +80,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GraduationDate;
 import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -125,6 +131,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_GENDER_DESC, Gender.MESSAGE_CONSTRAINTS); // invalid gender
+        assertParseFailure(parser, "1" + INVALID_GRADUATION_DESC,
+                GraduationDate.MESSAGE_CONSTRAINTS); // invalid graduation date
         assertParseFailure(parser, "1" + INVALID_UNIVERSITY_DESC, University.MESSAGE_CONSTRAINTS); // invalid university
         assertParseFailure(parser, "1" + INVALID_MAJOR_DESC, Major.MESSAGE_CONSTRAINTS); // invalid major
         assertParseFailure(parser, "1" + INVALID_CAP_DESC, Cap.MESSAGE_CONSTRAINTS); // invalid CAP
@@ -152,6 +160,7 @@ public class EditCommandParserTest {
                 + VALID_ADDRESS_AMY
                 + VALID_PHONE_AMY
                 + VALID_GENDER_AMY
+                + VALID_GRADUATION_DATE_AMY
                 + VALID_UNIVERSITY_AMY
                 + VALID_MAJOR_AMY
                 + VALID_CAP_AMY
@@ -169,6 +178,7 @@ public class EditCommandParserTest {
                 + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY
                 + GENDER_DESC_BOB
+                + GRADUATION_DATE_DESC_AMY
                 + UNIVERSITY_DESC_BOB
                 + MAJOR_DESC_BOB
                 + CAP_DESC_BOB
@@ -183,6 +193,7 @@ public class EditCommandParserTest {
                 .withEmail(VALID_EMAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY)
                 .withGender(VALID_GENDER_BOB)
+                .withGraduationDate(VALID_GRADUATION_DATE_AMY)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withMajor(VALID_MAJOR_BOB)
                 .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
@@ -240,6 +251,12 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // graduation date
+        userInput = targetIndex.getOneBased() + GRADUATION_DATE_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withGraduationDate(VALID_GRADUATION_DATE_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // university
         userInput = targetIndex.getOneBased() + UNIVERSITY_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withUniversity(VALID_UNIVERSITY_AMY).build();
@@ -286,6 +303,7 @@ public class EditCommandParserTest {
                 + ADDRESS_DESC_AMY
                 + EMAIL_DESC_AMY
                 + GENDER_DESC_AMY
+                + GRADUATION_DATE_DESC_AMY
                 + UNIVERSITY_DESC_AMY
                 + MAJOR_DESC_AMY
                 + CAP_DESC_AMY
@@ -296,6 +314,7 @@ public class EditCommandParserTest {
                 + ADDRESS_DESC_BOB
                 + EMAIL_DESC_BOB
                 + GENDER_DESC_BOB
+                + GRADUATION_DATE_DESC_BOB
                 + UNIVERSITY_DESC_BOB
                 + MAJOR_DESC_BOB
                 + CAP_DESC_BOB
@@ -308,6 +327,7 @@ public class EditCommandParserTest {
                 .withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
+                .withGraduationDate(VALID_GRADUATION_DATE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withMajor(VALID_MAJOR_BOB)
                 .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
@@ -335,6 +355,7 @@ public class EditCommandParserTest {
                 + INVALID_PHONE_DESC
                 + ADDRESS_DESC_BOB
                 + GENDER_DESC_BOB
+                + GRADUATION_DATE_DESC_BOB
                 + UNIVERSITY_DESC_BOB
                 + MAJOR_DESC_BOB
                 + CAP_DESC_BOB
@@ -344,6 +365,7 @@ public class EditCommandParserTest {
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
+                .withGraduationDate(VALID_GRADUATION_DATE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withMajor(VALID_MAJOR_BOB)
                 .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)

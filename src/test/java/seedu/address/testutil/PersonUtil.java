@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CAP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADUATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
@@ -41,6 +42,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
+        sb.append(PREFIX_GRADUATION_DATE + person.getGraduationDate().value + " ");
         sb.append(PREFIX_CAP + person.getCap().toString() + " ");
         sb.append(PREFIX_UNIVERSITY + person.getUniversity().value + " ");
         sb.append(PREFIX_MAJOR + person.getMajor().value + " ");
@@ -66,7 +68,10 @@ public class PersonUtil {
         descriptor.getAddress()
                 .ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getGender()
-                .ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.value).append(" "));
+            .ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.value).append(" "));
+        descriptor.getGraduationDate()
+                .ifPresent(graduationDate -> sb.append(PREFIX_GRADUATION_DATE)
+                        .append(graduationDate.value).append(" "));
         descriptor.getCap()
                 .ifPresent(cap -> sb.append(PREFIX_CAP).append(cap).append(" "));
         descriptor.getUniversity()

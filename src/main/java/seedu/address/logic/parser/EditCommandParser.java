@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CAP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADUATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
@@ -41,6 +42,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_ADDRESS,
                         PREFIX_GENDER,
+                        PREFIX_GRADUATION_DATE,
                         PREFIX_CAP,
                         PREFIX_UNIVERSITY,
                         PREFIX_MAJOR,
@@ -80,6 +82,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
             editPersonDescriptor
                 .setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+        }
+        if (argMultimap.getValue(PREFIX_GRADUATION_DATE).isPresent()) {
+            editPersonDescriptor
+                    .setGraduationDate(ParserUtil.parseGraduationDate(
+                            argMultimap.getValue(PREFIX_GRADUATION_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_UNIVERSITY).isPresent()) {
             editPersonDescriptor

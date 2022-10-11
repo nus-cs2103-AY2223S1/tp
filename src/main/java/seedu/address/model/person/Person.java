@@ -26,6 +26,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Gender gender;
+    private final GraduationDate graduationDate;
     private final Cap cap;
     private final University university;
     private final Major major;
@@ -38,6 +39,7 @@ public class Person {
     public Person(Name name, Phone phone, Email email,
                   Address address,
                   Gender gender,
+                  GraduationDate graduationDate,
                   Cap cap,
                   University university,
                   Major major,
@@ -47,6 +49,7 @@ public class Person {
         requireAllNonNull(name, phone, email,
             address,
             gender,
+            graduationDate,
             cap,
             university,
             major,
@@ -56,6 +59,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.gender = gender;
+        this.graduationDate = graduationDate;
         this.cap = cap;
         this.university = university;
         this.major = major;
@@ -81,6 +85,10 @@ public class Person {
 
     public Gender getGender() {
         return gender;
+    }
+
+    public GraduationDate getGraduationDate() {
+        return graduationDate;
     }
 
     public Cap getCap() {
@@ -140,6 +148,7 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getGender().equals(getGender())
+                && otherPerson.getGraduationDate().equals(getGraduationDate())
                 && otherPerson.getCap().equals(getCap())
                 && otherPerson.getUniversity().equals(getUniversity())
                 && otherPerson.getMajor().equals(getMajor())
@@ -152,6 +161,7 @@ public class Person {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address,
                 gender,
+                graduationDate,
                 cap,
                 university,
                 major,
@@ -171,6 +181,8 @@ public class Person {
                 .append(getAddress())
                 .append("; Gender: ")
                 .append(getGender())
+                .append("; Graduation Date: ")
+                .append(getGraduationDate())
                 .append("; CAP: ")
                 .append(getCap())
                 .append("; University: ")

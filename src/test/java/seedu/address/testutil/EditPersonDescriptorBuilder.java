@@ -11,6 +11,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Cap;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GraduationDate;
 import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -43,6 +44,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setGender(person.getGender());
+        descriptor.setGraduationDate(person.getGraduationDate());
         descriptor.setCap(person.getCap());
         descriptor.setUniversity(person.getUniversity());
         descriptor.setMajor(person.getMajor());
@@ -88,6 +90,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withGender(String gender) {
         descriptor.setGender(new Gender(gender));
+        return this;
+    }
+
+    /**
+     * Sets the {@code GraduationDate} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGraduationDate(String graduationDate) {
+        descriptor.setGraduationDate(new GraduationDate(graduationDate));
         return this;
     }
 
