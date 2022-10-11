@@ -1,0 +1,12 @@
+{
+  "residents": [ {
+    "name": "Hans Muster",
+    "phone": "94824241",
+    "email": "invalid@email!3e",
+    "room": "03-11",
+    "gender": "M",
+    "house": "D",
+    "matricNumber": "A0123456A",
+    "tagged" : [ ]
+  } ]
+}

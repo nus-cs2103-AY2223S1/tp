@@ -1,14 +1,17 @@
 package seedu.rc4hdb.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.GENDER_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.HOUSE_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.MATRIC_NUMBER_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.PHONE_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ROOM_DESC_AMY;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
-import static seedu.rc4hdb.testutil.TypicalPersons.AMY;
+import static seedu.rc4hdb.testutil.TypicalResidents.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -25,13 +28,13 @@ import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
-import seedu.rc4hdb.model.ReadOnlyAddressBook;
+import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.UserPrefs;
-import seedu.rc4hdb.model.person.Person;
-import seedu.rc4hdb.storage.JsonAddressBookStorage;
+import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.storage.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.StorageManager;
-import seedu.rc4hdb.testutil.PersonBuilder;
+import seedu.rc4hdb.testutil.ResidentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -44,10 +47,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonResidentBookStorage residentBookStorage =
+                new JsonResidentBookStorage(temporaryFolder.resolve("residentBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(residentBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -72,34 +75,34 @@ public class LogicManagerTest {
     @Test
     public void execute_modelCommandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertModelCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, CommandException.class);
+        assertModelCommandException(deleteCommand, MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, CommandException.class);
     }
 
     // To add StorageCommand test here when a StorageCommand is implemented
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonResidentBookIoExceptionThrowingStub
+        JsonResidentBookStorage residentBookStorage =
+                new JsonResidentBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionResidentBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(residentBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+                + ROOM_DESC_AMY + GENDER_DESC_AMY + HOUSE_DESC_AMY + MATRIC_NUMBER_DESC_AMY;
+        Resident expectedResident = new ResidentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addResident(expectedResident);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertModelCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredResidentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredResidentList().remove(0));
     }
 
     /**
@@ -142,7 +145,7 @@ public class LogicManagerTest {
      */
     private void assertModelCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getResidentBook(), new UserPrefs());
         assertModelCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -162,13 +165,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonResidentBookIoExceptionThrowingStub extends JsonResidentBookStorage {
+        private JsonResidentBookIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveResidentBook(ReadOnlyResidentBook addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
