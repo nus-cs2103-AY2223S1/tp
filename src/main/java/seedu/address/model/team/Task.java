@@ -1,15 +1,13 @@
 package seedu.address.model.team;
 
-import seedu.address.model.person.Person;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.model.person.Person;
 
 /**
  * Tasks are used to track the progress of a team.
@@ -60,7 +58,9 @@ public class Task {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public boolean isValidIndex(int test) { return test < assignees.size(); }
+    public boolean isValidIndex(int test) {
+        return test < assignees.size();
+    }
 
     @Override
     public String toString() {

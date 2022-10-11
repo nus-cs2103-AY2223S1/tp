@@ -1,16 +1,13 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.team.Task;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.model.team.Task;
 
 /**
  * Assigns a task to a specific member in the team.
@@ -26,15 +23,17 @@ public class AssignTaskCommand extends Command {
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned Task: %1$s assigned to %2$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This task has already been assigned to %1$s";
-    public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. There are less than %1$s tasks in your list.";
-    public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "This member does not exist. There are less than %1$s members in your team.";
+    public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
+            + "There are less than %1$s tasks in your list.";
+    public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "This member does not exist. "
+            + "There are less than %1$s members in your team.";
     private final int taskIndex;
     private final int memberIndex;
 
     /**
      * Returns a command that adds a task to the current team.
      * @param taskIndex the name of the task to be added.
-     * @throws ParseException when the task name does not follow the format specified.
+     * @param memberIndex the index of the member that the task is assigned to.
      */
     public AssignTaskCommand(int taskIndex, int memberIndex) {
         this.taskIndex = taskIndex;
@@ -51,7 +50,8 @@ public class AssignTaskCommand extends Command {
         } else if (memberIndex >= memberList.size()) {
             throw new CommandException(String.format(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS, memberIndex + 1));
         } else if (taskList.get(taskIndex).checkAssignee(memberList.get(memberIndex))) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_ASSIGNMENT, memberList.get(memberIndex).getName()));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_ASSIGNMENT,
+                    memberList.get(memberIndex).getName()));
         }
         model.getTeam().assignTask(taskIndex, memberIndex);
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,

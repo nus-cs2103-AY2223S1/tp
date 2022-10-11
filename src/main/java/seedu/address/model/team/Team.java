@@ -81,6 +81,11 @@ public class Team {
         return taskList.contains(task);
     }
 
+    /**
+     * Sets a specified team member as the assignee for the task.
+     * @param task The index of the specified task
+     * @param person The index of the specified person
+     */
     public void assignTask(int task, int person) {
         Person assignee = this.getTeamMembers().get(person);
         this.getTaskList().get(task).assignTo(assignee);

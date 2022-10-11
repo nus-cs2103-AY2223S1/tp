@@ -1,17 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDate;
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
-
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
 
 /**
  * Assigns a task to a specific member in the team.
@@ -26,13 +23,15 @@ public class SetDeadlineCommand extends Command {
         + "Example: " + COMMAND_WORD + " 1" + " 2023-02-25";
 
     public static final String MESSAGE_SET_DEADLINE_SUCCESS = "Set Deadline: %1$s %2$s";
-    public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. There are less than %1$s tasks in your list.";
+    public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
+            + "There are less than %1$s tasks in your list.";
     private final int taskIndex;
     private final LocalDate deadline;
 
     /**
      * Returns a command that adds a task to the current team.
      * @param taskIndex the name of the task to be added.
+     * @param deadline deadline of task
      * @throws ParseException when the task name does not follow the format specified.
      */
     public SetDeadlineCommand(int taskIndex, LocalDate deadline) {
