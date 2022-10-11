@@ -48,7 +48,7 @@ This guide is targeted at users using FoodRem who wants to find out more about t
 Readers do not have to be familiar with the command line to use this guide effectively.
 The only expectation we have of you is to carefully read through the different sections.
 
-<div style="page-break-after: always"></div> <!---Testing line break-->
+{% include page-break.html %} <!-- Force a page break -->
 
 ## Table of Contents
 
