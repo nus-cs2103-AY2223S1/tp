@@ -52,11 +52,15 @@ public class Supplier extends Person {
         int i = 1;
         builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
                 .append("Summary of pets on sale").append(System.lineSeparator());
-        for (Pet pet : petsOnSale) {
-            builder.append("======== Pet ").append(i).append(" ========").append(System.lineSeparator())
-                    .append(pet.toString()).append(System.lineSeparator());
-            i++;
+
+        if (petsOnSale != null) {
+            for (Pet pet : petsOnSale) {
+                builder.append("======== Pet ").append(i).append(" ========").append(System.lineSeparator())
+                        .append(pet.toString()).append(System.lineSeparator());
+                i++;
+            }
         }
+
         return builder.toString();
     }
 
