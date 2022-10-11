@@ -30,6 +30,7 @@
       </HBox>
       <FlowPane fx:id="tags" prefWidth="130.0" />
       <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
+      <Label fx:id="className" styleClass="cell_small_label" text="\$className" />
       <Label fx:id="parentName" styleClass="cell_small_label" text="\$parentName" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />

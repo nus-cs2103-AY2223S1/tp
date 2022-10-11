@@ -35,6 +35,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label studentId;
     @FXML
+    private Label className;
+    @FXML
     private Label parentName;
     @FXML
     private Label phone;
@@ -52,6 +54,7 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         studentId.setText(student.getId().toString());
         studentName.setText(student.getStudentName().fullName);
+        className.setText(student.getClassName().className);
         parentName.setText(student.getParentName().fullName);
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
@@ -69,6 +72,8 @@ public class StudentCard extends UiPart<Region> {
      * Updates PersonCard to show all info
      */
     public void showAllInfo() {
+        className.setManaged(true);
+        className.setVisible(true);
         parentName.setManaged(true);
         parentName.setVisible(true);
         phone.setManaged(true);
@@ -83,6 +88,8 @@ public class StudentCard extends UiPart<Region> {
      * Updates PersonCard to only show student's name and ID
      */
     public void showConciseInfo() {
+        className.setManaged(false);
+        className.setVisible(false);
         parentName.setManaged(false);
         parentName.setVisible(false);
         phone.setManaged(false);
