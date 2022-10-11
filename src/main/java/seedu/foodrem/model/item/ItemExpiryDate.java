@@ -53,11 +53,11 @@ public class ItemExpiryDate {
      */
     public int compareTo(ItemExpiryDate other) {
         return itemDate.compareTo(other.itemDate);
+    }
 
-
-        /**
-         * {@inheritDoc}
-         */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return itemDate.hashCode();
