@@ -21,6 +21,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.question.Question;
+import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.PersonBuilder;
 
@@ -147,6 +149,66 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasStudent(Student student) {
+            return false;
+        }
+
+        @Override
+        public void deleteStudent(Student target) {
+
+        }
+
+        @Override
+        public void addStudent(Student student) {
+
+        }
+
+        @Override
+        public void setStudent(Student target, Student editedStudent) {
+
+        }
+
+        @Override
+        public ObservableList<Student> getFilteredStudentList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
+
+        }
+
+        @Override
+        public boolean hasQuestion(Question question) {
+            return false;
+        }
+
+        @Override
+        public void deleteQuestion(Question target) {
+
+        }
+
+        @Override
+        public void addQuestion(Question question) {
+
+        }
+
+        @Override
+        public void setQuestion(Question target, Question editedQuestion) {
+
+        }
+
+        @Override
+        public ObservableList<Question> getFilteredQuestionList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredQuestionList(Predicate<Question> predicate) {
+
         }
 
         //tutorial

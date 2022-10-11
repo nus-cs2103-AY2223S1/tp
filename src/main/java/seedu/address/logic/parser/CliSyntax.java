@@ -14,5 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_GROUP = new Prefix("g/");
     public static final Prefix PREFIX_CONTENT = new Prefix("c/");
     public static final Prefix PREFIX_TIME = new Prefix("t/");
+    public static final Prefix PREFIX_MESSAGE_COUNT = new Prefix("m/");
 
 }

@@ -10,7 +10,7 @@ public class Response {
     public static final String MESSAGE_CONSTRAINTS =
             "Response should only contain numbers, and it should be at least 1 digit long";
     public static final String VALIDATION_REGEX = "\\d{1,}";
-    public final String response;
+    public final String value;
 
     /**
      * Constructs a {@code Response}.
@@ -20,7 +20,7 @@ public class Response {
     public Response(String response) {
         requireNonNull(response);
         checkArgument(isValidResponse(response), MESSAGE_CONSTRAINTS);
-        this.response = response;
+        value = response;
     }
 
     /**
@@ -32,18 +32,18 @@ public class Response {
 
     @Override
     public String toString() {
-        return response;
+        return "message count: " + value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Response // instanceof handles nulls
-                && response.equals(((Response) other).response)); // state check
+                && value.equals(((Response) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return response.hashCode();
+        return value.hashCode();
     }
 }
