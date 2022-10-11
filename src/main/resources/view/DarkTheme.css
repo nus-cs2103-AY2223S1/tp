@@ -41,10 +41,10 @@
 
 .table-view {
     -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
+    -fx-control-inner-background: white;
+    -fx-background-color: #D8D8D8;
+    -fx-table-cell-border-color: white;
+    -fx-table-header-border-color: #ACACAC;
     -fx-padding: 5;
 }
 
@@ -54,22 +54,37 @@
 
 .table-view .column-header, .table-view .filler {
     -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
 .table-view .column-header .label {
-    -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-alignment: center-left;
+    -fx-font-size: 18pt;
+    -fx-font-family: "Roboto";
+    -fx-text-fill: black;
+    -fx-text-weight: bold;
+    -fx-alignment: center;
     -fx-opacity: 1;
+}
+
+.table-view .table-cell {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Roboto";
+    -fx-text-fill: black;
+    -fx-alignment: center;
+    -fx-opacity: 1;
+}
+
+.table-row-cell: odd {
+    -fx-background-color: #D8D8D8;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell: even {
+    -fx-background-color: #E8E8E8;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
 }
 
 .table-view:focused .table-row-cell:filled:focused:selected {
