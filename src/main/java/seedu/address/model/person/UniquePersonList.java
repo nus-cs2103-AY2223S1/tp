@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.order.Order;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -116,16 +117,30 @@ public class UniquePersonList implements Iterable<Person> {
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && internalList.equals(((UniquePersonList) other).internalList));
     }
-
     /**
-     * Sorts the ObservableList in lexicographical order
+     * Sorts the ObservableList by name in specified order
      */
-    public void sortLexicographical() {
+    public void sortName(Order order) {
         Comparator<? super Person> nameComparator = (p1, p2) ->
-                p1.compareNameLexicographically(p2);
-        this.internalList.sort(nameComparator);
+                p1.compareName(p2);
+        if (!order.isIncreasingOrder()) {
+            this.internalList.sort(nameComparator.reversed());
+        } else {
+            this.internalList.sort(nameComparator);
+        }
     }
-
+    /**
+     * Sorts the ObservableList by moduleCode in specified order
+     */
+    public void sortModuleCode(Order order) {
+        Comparator<? super Person> moduleCodeComparator = (p1, p2) ->
+                p1.compareModuleCode(p2);
+        if (!order.isIncreasingOrder()) {
+            this.internalList.sort(moduleCodeComparator.reversed());
+        } else {
+            this.internalList.sort(moduleCodeComparator);
+        }
+    }
     @Override
     public int hashCode() {
         return internalList.hashCode();

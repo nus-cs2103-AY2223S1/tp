@@ -34,7 +34,7 @@ public class ProfCommand extends Command {
             + PREFIX_MODULE_CODE + "CS1231S "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "wongTK@example.com "
-            + PREFIX_GENDER + "Male "
+            + PREFIX_GENDER + "M "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
             + PREFIX_LOCATION + "COM2 LT4";
