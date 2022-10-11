@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.person.GenderType.NA;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -52,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         // add gender in parser
         Gender gender;
         if (!arePrefixesPresent(argMultimap, PREFIX_GENDER)) {
-            gender = new Gender(NA);
+            gender = Gender.getNoGender();
         } else {
             gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get(), Boolean.FALSE);
         }

@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.person.GenderType.NA;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -50,7 +49,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.gender = new Gender(NA);
+        this.gender = Gender.getNoGender();
     }
 
     public Name getName() {
@@ -69,7 +68,7 @@ public class Person {
         return address;
     }
 
-    public seedu.address.model.person.Gender getGender() {
+    public Gender getGender() {
         return gender;
     }
 

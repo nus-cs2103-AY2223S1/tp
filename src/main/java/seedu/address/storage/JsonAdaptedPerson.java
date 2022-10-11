@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import static seedu.address.model.person.GenderType.NA;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -112,7 +110,7 @@ class JsonAdaptedPerson {
         // add in optional field gender
         Gender modelGender;
         if (gender == null) {
-            modelGender = new Gender(NA);
+            modelGender = Gender.getNoGender();
         } else if (!Gender.isValidGender(gender)) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         } else {

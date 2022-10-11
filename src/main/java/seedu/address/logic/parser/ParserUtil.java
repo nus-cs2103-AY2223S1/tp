@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.person.GenderType.NA;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -100,16 +99,17 @@ public class ParserUtil {
     /**
      * Parses a {@code String gender} into an {@code Gender}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * @param gender string containing gender.
+     * @param isNaAllowed boolean value, true represents NA value is considered a valid gender, false otherwise.
+     *                    For Edit gender command, NA value is considered a valid gender;
+     *                    for Add gender command, NA value is considered an invalid gender.
      * @throws ParseException if the given {@code gender} is invalid.
      */
     public static Gender parseGender(String gender, Boolean isNaAllowed) throws ParseException {
         requireNonNull(gender);
+        requireNonNull(isNaAllowed);
         String trimmedGender = gender.trim();
-        if (isNaAllowed && !Gender.isValidGender(trimmedGender)) {
-            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
-        }
-        if (!isNaAllowed && (!Gender.isValidGender(trimmedGender) || trimmedGender.equals(NA.toString()))) {
+        if (!Gender.isValidGender(trimmedGender, isNaAllowed)) {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(gender);

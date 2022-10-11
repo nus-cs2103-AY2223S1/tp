@@ -2,21 +2,23 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.person.GenderType.NO_GENDER;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Represents a Person's gender in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS = "Gender is an optional field, it should be one of the following"
         + " format: m, f, M, F, male, female, Male, Female";
 
-    private static final List<String> VALID_GENDERS = new ArrayList<>(Arrays.asList("m", "male", "M", "Male",
+    private static final Set<String> VALID_GENDERS = new HashSet<>(Arrays.asList("m", "male", "M", "Male",
             "f", "female", "F", "Female", "NA"));
     public final GenderType value;
 
@@ -42,7 +44,22 @@ public class Gender {
     public static boolean isValidGender(String test) {
         return VALID_GENDERS.contains(test);
     }
-
+    /**
+     * Returns if a given string is a valid gender.
+     * This method is an overloaded gender validity check method.
+     * @param test string containing gender.
+     * @param isNaAllowed boolean value, true represents NA value is considered a valid gender, false otherwise.
+     */
+    public static boolean isValidGender(String test, Boolean isNaAllowed) {
+        if (isNaAllowed) {
+            return VALID_GENDERS.contains(test);
+        } else {
+            return VALID_GENDERS.contains(test) && !test.equals(NO_GENDER.toString());
+        }
+    }
+    public static Gender getNoGender() {
+        return new Gender(NO_GENDER);
+    }
     @Override
     public String toString() {
         return value.toString();

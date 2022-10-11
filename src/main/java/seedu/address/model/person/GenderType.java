@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Enum class of a Person's gender in the address book.
@@ -11,10 +11,10 @@ import java.util.List;
 public enum GenderType {
     MALE("Male"),
     FEMALE("Female"),
-    NA("NA"); //NA is the default gender option
+    NO_GENDER("NA"); //NA is the default gender option
 
-    private static final List<String> MALE_GENDERS = new ArrayList<>(Arrays.asList("m", "male", "M", "Male"));
-    private static final List<String> FEMALE_GENDERS = new ArrayList<>(Arrays.asList("F", "Female", "f", "female"));
+    private static final Set<String> MALE_GENDERS = new HashSet<>(Arrays.asList("m", "male", "M", "Male"));
+    private static final Set<String> FEMALE_GENDERS = new HashSet<>(Arrays.asList("F", "Female", "f", "female"));
     private String gender;
 
     GenderType(String gender) {
@@ -27,7 +27,7 @@ public enum GenderType {
         } else if (FEMALE_GENDERS.contains(gender)) {
             return FEMALE;
         } else {
-            return NA;
+            return NO_GENDER;
         }
     }
 

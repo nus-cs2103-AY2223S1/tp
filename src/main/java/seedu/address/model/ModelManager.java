@@ -142,16 +142,6 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-
-        /*
-        for testing only, delete later
-        System.out.println("addressBook equals = " + addressBook.equals(other.addressBook));
-        System.out.println("userPrefs equals = " + userPrefs.equals(other.userPrefs));
-        System.out.println("filteredPersons = " + filteredPersons.equals(other.filteredPersons));
-        System.out.println("this filteredPersons: " + filteredPersons);
-        System.out.println("other filteredPersons: " + other.filteredPersons);
-         */
-
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
