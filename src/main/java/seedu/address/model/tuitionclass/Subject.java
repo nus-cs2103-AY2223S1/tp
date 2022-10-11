@@ -37,14 +37,14 @@ public enum Subject {
     /**
      * Returns true if a given string is a valid value in enum Subject.
      */
-    public static boolean isValidSubject(String subject) {
-        for (Subject s : Subject.values()) {
-            if (s.name().equals(subject)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public static boolean isValidSubject(String subject) {
+//        for (Subject s : Subject.values()) {
+//            if (s.name().equals(subject)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     public String toString() {

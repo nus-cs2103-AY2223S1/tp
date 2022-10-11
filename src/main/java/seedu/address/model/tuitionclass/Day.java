@@ -40,14 +40,14 @@ public enum Day {
     /**
      * Returns true if a given string is a valid value in enum Day.
      */
-    public static boolean isValidDay(String day) {
-        for (Day d : Day.values()) {
-            if (d.name().equals(day)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public static boolean isValidDay(String day) {
+//        for (Day d : Day.values()) {
+//            if (d.name().equals(day)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     public String toString() {

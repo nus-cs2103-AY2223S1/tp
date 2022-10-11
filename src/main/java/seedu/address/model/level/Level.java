@@ -38,14 +38,14 @@ public enum Level {
     /**
      * Returns true if a given string is a valid value in enum Level
      */
-    public static boolean isValidLevel(String level) {
-        for (Level l : Level.values()) {
-            if (l.name().equals(level)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public static boolean isValidLevel(String level) {
+//        for (Level l : Level.values()) {
+//            if (l.name().equals(level)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     public String toString() {
