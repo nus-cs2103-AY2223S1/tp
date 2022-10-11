@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.tutorial.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.consultation.Consultation;
 
