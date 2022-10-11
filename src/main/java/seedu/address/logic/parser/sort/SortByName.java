@@ -13,4 +13,15 @@ public class SortByName implements Comparator<Person> {
     public int compare(Person p1, Person p2) {
         return p1.getName().fullName.compareTo(p2.getName().fullName);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // if object is the same, short circuit this code
+        if (other == this) {
+            return true;
+        }
+
+        // handles null
+        return other instanceof SortByName;
+    }
 }
