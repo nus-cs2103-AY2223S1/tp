@@ -270,6 +270,7 @@ Tags can be renamed and these changes would be reflected on all items immediatel
 
 {Image of entire application}
 
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -296,11 +297,13 @@ Tags can be renamed and these changes would be reflected on all items immediatel
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ## Flags
 
 Flags are delimiters that enable FoodRem to distinguish different parameters without ambiguity.
 
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -335,11 +338,13 @@ Flags are delimiters that enable FoodRem to distinguish different parameters wit
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ## Placeholders
 
 Placeholders are words in UPPER_CASE to show you what parameters you can supply to a command.
 
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -391,6 +396,7 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ## Features
 
@@ -656,6 +662,7 @@ bye
 
 ### Item Commands
 
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -702,9 +709,11 @@ bye
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ### Tag Commands
 
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -739,9 +748,11 @@ bye
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ### Other Commands
 
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -764,6 +775,7 @@ bye
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ## Troubleshooting
 
