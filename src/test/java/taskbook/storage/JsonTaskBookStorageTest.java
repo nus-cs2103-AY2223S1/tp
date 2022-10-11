@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import taskbook.commons.exceptions.DataConversionException;
 import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.TaskBook;
@@ -94,10 +95,10 @@ public class JsonTaskBookStorageTest {
     /**
      * Saves {@code TaskBook} at the specified {@code filePath}.
      */
-    private void saveTaskBook(ReadOnlyTaskBook TaskBook, String filePath) {
+    private void saveTaskBook(ReadOnlyTaskBook taskBook, String filePath) {
         try {
             new JsonTaskBookStorage(Paths.get(filePath))
-                    .saveTaskBook(TaskBook, addToTestDataPathIfNotNull(filePath));
+                    .saveTaskBook(taskBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

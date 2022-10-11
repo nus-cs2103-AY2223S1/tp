@@ -2,6 +2,7 @@ package taskbook.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.model.TaskBook;
 import taskbook.model.person.Email;
@@ -66,7 +67,8 @@ class JsonAdaptedTask {
         final Person modelPerson = taskBook.findPerson(modelName);
 
         if (assignment == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Assignment.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Assignment.class.getSimpleName()));
         }
         if (!Assignment.isValidAssignment(assignment)) {
             throw new IllegalValueException(Assignment.MESSAGE_CONSTRAINTS);

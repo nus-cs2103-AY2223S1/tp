@@ -11,9 +11,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
 import taskbook.model.person.Person;
 import taskbook.model.person.exceptions.DuplicatePersonException;
 import taskbook.model.task.Task;

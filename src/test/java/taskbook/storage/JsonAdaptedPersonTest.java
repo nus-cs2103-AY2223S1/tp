@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.model.person.Address;
 import taskbook.model.person.Email;
