@@ -2,6 +2,7 @@ package seedu.address.commons.util;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -51,8 +52,7 @@ public class StringUtil {
      * @param keywords cannot be null, cannot be empty, can be multiple words
      */
     public static boolean containsKeywordsIgnoreCase(String sentence, String keywords) {
-        requireNonNull(sentence);
-        requireNonNull(keywords);
+        requireAllNonNull(sentence, keywords);
 
         List<String> preppedKeywords = Arrays.asList(keywords.toUpperCase().trim().split("\\s+"));
         checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
