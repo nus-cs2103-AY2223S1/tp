@@ -58,7 +58,11 @@ public class CommissionCard extends UiPart<Region> {
         completionStatus.setText("completed: " + commission.getCompletionStatus().isCompleted);
         commission.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.setStyle(tagLabel.getStyle() + " -fx-background-color: #F26417;");
+                    tags.getChildren().add(tagLabel);
+                });
     }
 
     @Override
