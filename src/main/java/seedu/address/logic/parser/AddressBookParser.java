@@ -53,7 +53,7 @@ public class AddressBookParser {
             return new EditCommandParser(model).parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteCommandParser(model).parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
