@@ -59,6 +59,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                 editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(0)));
             } else if (argMultimap.getAllValues(PREFIX_PHONE).size() == 2) {
                 editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(1)));
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
             }
         }
         if (!argMultimap.getAllValues(PREFIX_EMAIL).isEmpty()) {
@@ -66,6 +68,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                 editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(0)));
             } else if (argMultimap.getAllValues(PREFIX_EMAIL).size() == 2) {
                 editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(1)));
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
             }
         }
         if (argMultimap.getValue(PREFIX_REWARD).isPresent()) {

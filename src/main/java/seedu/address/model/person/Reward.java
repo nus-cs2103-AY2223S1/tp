@@ -31,6 +31,15 @@ public class Reward {
     }
 
     /**
+     * Returns reward value without any trailing zeroes.
+     *
+     * @return Reward value without any trailing zeroes.
+     */
+    public String removeTrailingZeroes() {
+        return String.valueOf(Integer.parseInt(value));
+    }
+
+    /**
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidReward(String test) {
