@@ -53,6 +53,11 @@
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
+                     <Label alignment="CENTER" prefHeight="30.0" prefWidth="336.0" styleClass="header-text" stylesheets="@Label.css" text="Companies" textFill="RED">
+                        <VBox.margin>
+                           <Insets bottom="15.0" />
+                        </VBox.margin>
+                     </Label>
                 <StackPane fx:id="companyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
                   <VBox prefWidth="100.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
