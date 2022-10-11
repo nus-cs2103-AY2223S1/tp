@@ -120,13 +120,20 @@
     -fx-text-fill: white;
 }
 
-/*
-names of the tutor
-*/
 .cell_big_label {
     -fx-font-family: "Segoe UI Bold";
-    -fx-font-size: 20px;
+    -fx-font-size: 25px;
     -fx-text-fill: #000000;
+}
+
+.cell_module_label {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-color: #c08189;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
 }
 
 .cell_small_label {
@@ -346,10 +353,11 @@ names of the tutor
 }
 
 #tags .label {
-    -fx-text-fill: white;
     -fx-background-color: #3e7b91;
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
 }
