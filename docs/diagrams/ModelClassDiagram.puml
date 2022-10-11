@@ -46,6 +46,8 @@ Customer *--> UniqueCommissionList
 
 UniqueCommissionList --> "~*" Commission : all
 ModelManager --> "~*" Commission : filtered
+ModelManager --> "0..1" Commission : selected
+ModelManager --> "0..1" Customer : selected
 AddressBook *--> "1" UniqueCommissionList: full list
 
 Name -[hidden]right-> Phone

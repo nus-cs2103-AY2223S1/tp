@@ -11,6 +11,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant "customerList:List" as CustomerList MODEL_COLOR
 end box
 
 [-> LogicManager : execute("delcus 1")
@@ -48,11 +49,17 @@ deactivate AddressBookParser
 LogicManager -> DeleteCustomerCommand : execute()
 activate DeleteCustomerCommand
 
-DeleteCustomerCommand -> Model : getFilteredCustomerList(1)
+DeleteCustomerCommand -> Model : getFilteredCustomerList()
 activate Model
 
-Model --> DeleteCustomerCommand : customerToDelete
+Model --> DeleteCustomerCommand : customerList
 deactivate Model
+
+DeleteCustomerCommand -> CustomerList : get(1)
+activate CustomerList
+
+CustomerList --> DeleteCustomerCommand : customerToDelete
+deactivate CustomerList
 
 
 DeleteCustomerCommand -> Model : deleteCustomer(customerToDelete)
