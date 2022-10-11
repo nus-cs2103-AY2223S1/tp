@@ -6,7 +6,7 @@
 .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #000000;
     -fx-opacity: 0.9;
 }
 
@@ -123,13 +123,13 @@
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #ffffff;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-font-size: 15px;
+    -fx-text-fill: #ffffff;
 }
 
 .stack-pane {
@@ -334,7 +334,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #personListPanel, #personWebpage, #appointmentListPanel, #appointmentWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
