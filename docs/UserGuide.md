@@ -14,7 +14,8 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
    * Listing all persons : list
    * Editing a person : edit
    * Deleting a person : delete
-   * Clearing all entries : clear
+  * Clearing all entries : clear
+  * Undoing last command : undo
 * Command summary
 
 --------------------------------------------------------------------------------------------------------------------
@@ -40,6 +41,8 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
    * **`clear`** : Deletes all contacts.
+
+   * **`undo`** : Undoes last modifying command.
 
    * **`exit`** : Exits the app.
 
@@ -140,9 +143,17 @@ Examples:
 Clears all entries from uNivUSal.
 
 Format: `clear`
-* Deletes every person in uNivUSal
+* Deletes every person in uNivUSal.
 * Only a blank uNivUSal will remain.
 
+### Undo last modification : `undo`
+
+Undoes the last command that modifies the address book.
+
+Format: `undo`
+* Undoes the last modifying command.
+* Ignores modifying commands if they don't modify the address book.
+* Will cancel out when trying to undo an undo command.
 
 ### Exiting the program : `exit`
 
@@ -179,11 +190,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                       |
-|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`  |
-| **Clear**       | `clear`                                                                                                                                                                |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                    |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                            |                                                                             |                                                                                                          |
-| **List**        | `list`                                                                                                                                                                 |
-| **Help**        | `help`                                                                                                                                                                 |
+| Action     | Format, Examples                                                                                                                                            |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                                                                                                      |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **List**   | `list`                                                                                                                                                      |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                             |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
+| **Clear**  | `clear`                                                                                                                                                     |                                                                             |                                                                                                          |
+| **Undo**   | `undo`                                                                                                                                                      |
+| **Exit**   | `exit`                                                                                                                                                      |
