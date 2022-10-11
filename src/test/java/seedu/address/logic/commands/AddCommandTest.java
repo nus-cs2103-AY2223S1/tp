@@ -140,7 +140,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void removeEvent(Event event) {
+        public void deleteEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
         @Override
