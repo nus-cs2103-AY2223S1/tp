@@ -19,7 +19,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HELP_CONTENT = "Here are all the commands in Friday:\n"
             + "add - to add a student\n"
             + "delete - to delete a student\n"
-            + "view - to view a specific student\n"
+            + "find - to find students related to a keyword\n"
             + "edit - to edit a specific student's details\n"
             + "list - to list all students\n"
             + "For more details, refer to the user guide: ";
