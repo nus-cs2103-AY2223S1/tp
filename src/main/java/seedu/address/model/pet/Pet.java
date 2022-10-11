@@ -17,6 +17,7 @@ public class Pet {
     private final Name name;
     private final Person owner;
     private final Color color;
+    private final ColorPattern colorPattern;
     private final DateOfBirth dateOfBirth;
     private final Species species;
     private final Weight weight;
@@ -28,6 +29,7 @@ public class Pet {
     public Pet(Name name,
                Person owner,
                Color color,
+               ColorPattern colorPattern,
                DateOfBirth dateOfBirth,
                Species species,
                Weight weight,
@@ -35,10 +37,11 @@ public class Pet {
                VaccinationStatus vaccinationStatus,
                Set<Tag> tags,
                Set<PetCertificate> certificates) {
-        requireAllNonNull(name, owner, color, dateOfBirth, species, weight, height, vaccinationStatus);
+        requireAllNonNull(name, owner, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus);
         this.name = name;
         this.owner = owner;
         this.color = color;
+        this.colorPattern = colorPattern;
         this.dateOfBirth = dateOfBirth;
         this.species = species;
         this.weight = weight;
@@ -50,6 +53,7 @@ public class Pet {
 
     public Pet(Name name,
                Color color,
+               ColorPattern colorPattern,
                String dateOfBirthString,
                Species species,
                Weight weight,
@@ -59,6 +63,7 @@ public class Pet {
         this(name,
                 null,
                 color,
+                colorPattern,
                 DateOfBirth.parseString(dateOfBirthString),
                 species,
                 weight,
@@ -70,6 +75,7 @@ public class Pet {
 
     public Pet(Name name,
                Color color,
+               ColorPattern colorPattern,
                DateOfBirth dateOfBirth,
                Species species,
                Weight weight,
@@ -77,6 +83,7 @@ public class Pet {
         this(name,
                 null,
                 color,
+                colorPattern,
                 dateOfBirth,
                 species,
                 weight,
@@ -88,12 +95,14 @@ public class Pet {
 
     public Pet(Name name,
                Color color,
+               ColorPattern colorPattern,
                String dateOfBirthString,
                Species species,
                Weight weight,
                Height height) throws IllegalValueException {
         this(name,
                 color,
+                colorPattern,
                 DateOfBirth.parseString(dateOfBirthString),
                 species,
                 weight,
@@ -114,6 +123,8 @@ public class Pet {
                 .append(getHeight())
                 .append("; Color: ")
                 .append(getColor())
+                .append("; Color pattern: ")
+                .append(getColorPattern())
                 .append("; ")
                 .append(getVaccinationStatus());
 
@@ -129,21 +140,6 @@ public class Pet {
             tags.forEach(builder::append);
         }
         return builder.toString();
-    }
-
-    /**
-     * Returns true if both sets have the same name.
-     * This defines a weaker notion of equality between two pets.
-     *
-     * @return true iff they have the same name.
-     */
-    public boolean isSamePet(Pet otherPet) {
-        if (otherPet == this) {
-            return true;
-        }
-
-        return otherPet != null
-                && otherPet.getName().equals(getName());
     }
 
     /**
@@ -165,6 +161,7 @@ public class Pet {
         Pet otherPet = (Pet) other;
         return otherPet.getName().equals(getName())
                 && otherPet.getColor().equals(getColor())
+                && otherPet.getColorPattern().equals(getColorPattern())
                 && otherPet.getDateOfBirth().equals(getDateOfBirth())
                 && otherPet.getHeight().equals(getHeight())
                 && otherPet.getWeight().equals(getWeight())
@@ -188,12 +185,31 @@ public class Pet {
                 certificates, owner);
     }
 
+    /**
+     * Returns true if both sets have the same name.
+     * This defines a weaker notion of equality between two pets.
+     *
+     * @return true iff they have the same name.
+     */
+    public boolean isSamePet(Pet otherPet) {
+        if (otherPet == this) {
+            return true;
+        }
+
+        return otherPet != null
+                && otherPet.getName().equals(getName());
+    }
+
     public Name getName() {
         return name;
     }
 
     public Color getColor() {
         return color;
+    }
+
+    public ColorPattern getColorPattern() {
+        return colorPattern;
     }
 
     public DateOfBirth getDateOfBirth() {
@@ -235,4 +251,5 @@ public class Pet {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
 }
