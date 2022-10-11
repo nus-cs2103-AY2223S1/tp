@@ -3,18 +3,18 @@ package seedu.condonery.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.condonery.model.fields.Address;
-import seedu.condonery.model.fields.Name;
-import seedu.condonery.model.property.Property;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.tag.Tag;
 import seedu.condonery.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
  */
-public class PropertyBuilder {
+public class ClientBuilder {
 
-    public static final String DEFAULT_NAME = "Pinnacle@Duxton";
+    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
@@ -24,7 +24,7 @@ public class PropertyBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public PropertyBuilder() {
+    public ClientBuilder() {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -33,16 +33,16 @@ public class PropertyBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PropertyBuilder(Property propertyToCopy) {
-        name = propertyToCopy.getName();
-        address = propertyToCopy.getAddress();
-        tags = new HashSet<>(propertyToCopy.getTags());
+    public ClientBuilder(Client personToCopy) {
+        name = personToCopy.getName();
+        address = personToCopy.getAddress();
+        tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PropertyBuilder withName(String name) {
+    public ClientBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -50,7 +50,7 @@ public class PropertyBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PropertyBuilder withTags(String... tags) {
+    public ClientBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -58,13 +58,13 @@ public class PropertyBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PropertyBuilder withAddress(String address) {
+    public ClientBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
 
-    public Property build() {
-        return new Property(name, address, tags);
+    public Client build() {
+        return new Client(name, address, tags);
     }
 
 }

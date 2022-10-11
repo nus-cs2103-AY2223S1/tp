@@ -14,7 +14,9 @@ import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.ListCommand;
+import seedu.condonery.logic.commands.client.AddClientCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
+import seedu.condonery.logic.parser.client.AddClientCommandParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.logic.parser.property.AddPropertyCommandParser;
 
@@ -47,9 +49,11 @@ public class CondoneryParser {
         final String arguments = matcher.group("arguments");
         
         switch (commandWord) {
-
         case AddPropertyCommand.COMMAND_WORD:
             return new AddPropertyCommandParser().parse(arguments);
+
+        case AddClientCommand.COMMAND_WORD:
+            return new AddClientCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
@@ -76,5 +80,4 @@ public class CondoneryParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

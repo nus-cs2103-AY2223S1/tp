@@ -1,5 +1,6 @@
 package seedu.condonery.logic.commands;
 
+import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
@@ -20,8 +21,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalPropertyDirectory(), new UserPrefs());
-        expectedModel = new ModelManager(model.getPropertyDirectory(), new UserPrefs());
+        model = new ModelManager(getTypicalPropertyDirectory(), getTypicalClientDirectory(), new UserPrefs());
+        expectedModel = new ModelManager(model.getPropertyDirectory(), model.getClientDirectory(), new UserPrefs());
     }
 
     @Test
