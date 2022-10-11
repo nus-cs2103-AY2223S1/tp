@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private QuestionListPanel questionListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane questionListPanelPlaceholder;
+
+    @FXML
+    private StackPane studentListPanelPlaceHolder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -176,6 +180,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public QuestionListPanel getQuestionListPanel() {
         return questionListPanel;
+    }
+
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
     }
 
     /**

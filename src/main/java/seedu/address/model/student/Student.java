@@ -10,9 +10,9 @@ import java.util.Objects;
 public class Student {
 
     // Identity fields
-    private final Name name;
+    private final StuName name;
     private final Telegram telegram;
-    private final Email email;
+    private final StuEmail email;
 
     // Data fields
     private final Response response;
@@ -20,9 +20,9 @@ public class Student {
     private final HelpTag helpTag;
 
     /**
-     * Every field must be present and not null.
+     * Name, Telegram and Email field must not be null.
      */
-    public Student(Name name, Telegram telegram, Email email, Response response, Attendance attendance,
+    public Student(StuName name, Telegram telegram, StuEmail email, Response response, Attendance attendance,
                    HelpTag helpTag) {
         requireAllNonNull(name, telegram, email);
         this.name = name;
@@ -33,7 +33,7 @@ public class Student {
         this.helpTag = helpTag;
     }
 
-    public Name getName() {
+    public StuName getName() {
         return name;
     }
 
@@ -41,7 +41,7 @@ public class Student {
         return telegram;
     }
 
-    public Email getEmail() {
+    public StuEmail getEmail() {
         return email;
     }
 
