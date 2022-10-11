@@ -20,7 +20,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
-    private final HashSet<Title> loanedBook = new HashSet<>();
+    private final HashSet<Title> loanedBooks = new HashSet<>();
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -33,7 +33,7 @@ public class Person {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.loanedBook.addAll(loanedBook);
+        this.loanedBooks.addAll(loanedBook);
         this.tags.addAll(tags);
     }
 
@@ -61,16 +61,16 @@ public class Person {
     }
 
 
-    public Set<Title> getTitle() {
-        return loanedBook;
+    public Set<Title> getLoanedTitlesSet() {
+        return loanedBooks;
     }
 
-    public String getLoanedBookTitle() {
-        return loanedBook.toString();
+    public String getLoanedTitlesDisplayString() {
+        return loanedBooks.toString();
     }
 
     public void addLoanedBookTitle(Title title) {
-        loanedBook.add(title);
+        loanedBooks.add(title);
     }
 
     /**
@@ -98,12 +98,11 @@ public class Person {
      * Returns true if the person has already loaned the same book.
      */
     public boolean hasSameLoanedBook(Person person, Title title) {
-        if (person.getTitle().contains(title)) {
-            return true;
-        } else {
-            return false;
-        }
+        return person.getLoanedTitlesSet().contains(title);
     }
+
+
+
 
     /**
      * Returns true if both persons have the same identity and data fields.
