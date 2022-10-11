@@ -48,7 +48,6 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            System.out.println("called");
             storage.saveTaskBook(model.getTaskBook());
             storage.saveModuleList(model.getModuleList());
         } catch (IOException ioe) {

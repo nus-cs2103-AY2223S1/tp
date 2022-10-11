@@ -73,7 +73,7 @@ Examples:
 - `add module CS2103T`
 - `add -m CS2103T`
 
-### Removing a module: `module remove`
+### Removing a module: `remove module`
 
 Deletes a module from the program.
 

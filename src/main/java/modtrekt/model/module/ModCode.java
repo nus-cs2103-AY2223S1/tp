@@ -13,7 +13,7 @@ public class ModCode {
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     public static final String VALIDATION_REGEX = ALPHANUMERIC_NO_UNDERSCORE;
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code ModCode}.
@@ -50,4 +50,7 @@ public class ModCode {
         return value.hashCode();
     }
 
+    public String getValue() {
+        return value;
+    }
 }

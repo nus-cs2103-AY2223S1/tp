@@ -37,6 +37,30 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public boolean containsCode(ModCode toCheck) {
+        requireNonNull(toCheck);
+        ObservableList<Module> checkList = internalList.filtered(x -> x.getCode().equals(toCheck));
+
+        return checkList.size() > 0;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public Module getModuleFromCode(ModCode toCheck) {
+        requireNonNull(toCheck);
+        ObservableList<Module> checkList = internalList.filtered(x -> x.getCode().equals(toCheck));
+
+        if (checkList.size() > 0) {
+            return checkList.get(0);
+        }
+        return null;
+    }
+
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */

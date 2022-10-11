@@ -1,15 +1,20 @@
 package modtrekt.model.module;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import modtrekt.model.task.Task;
 
 /**
  * Represents a module in the module list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Module {
-    public final ModCode code;
-    public final ModName name;
-    public final ModCredit credits;
+    private final ModCode code;
+    private final ModName name;
+    private final ModCredit credits;
+    private final ArrayList<Task> tasksList;
 
     /**
      * Creates a Module with the given code, name, credits and tasks.
@@ -22,6 +27,21 @@ public class Module {
         this.code = code;
         this.name = name;
         this.credits = credits;
+        this.tasksList = new ArrayList<>();
+    }
+
+    /**
+     * Creates a Module with the string representation of code, name, credits and tasks.
+     *
+     * @param code    the module code
+     * @param name    the module name
+     * @param credits the number of credits for the module
+     */
+    public Module(String code, String name, String credits) {
+        this.code = new ModCode(code);
+        this.name = new ModName(name);
+        this.credits = new ModCredit(credits);
+        this.tasksList = new ArrayList<>();
     }
 
     public ModName getName() {
@@ -36,6 +56,28 @@ public class Module {
         return credits;
     }
 
+    public ArrayList<Task> getTasksList() {
+        return this.tasksList;
+    }
+    public int getTaskCount() {
+        return this.tasksList.size();
+    }
+
+
+    public void addTask(Task t) {
+        this.tasksList.add(t);
+    }
+
+    public void removeTask(Task t) {
+        this.tasksList.remove(t);
+    }
+
+
+    public void addTasks(List<Task> t) {
+        this.tasksList.addAll(t);
+    }
+
+
     /**
      * Returns true if both modules have the same name.
      * This defines a weaker notion of equality between two modules.
@@ -47,6 +89,16 @@ public class Module {
 
         return otherModule != null
                 && otherModule.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both modules have the same name.
+     * This defines a weaker notion of equality between two modules.
+     */
+    public boolean isSameCodeModule(ModCode otherModule) {
+
+        return otherModule != null
+                && otherModule.equals(getCode());
     }
 
     /**
@@ -77,13 +129,6 @@ public class Module {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Code: ")
-                .append(getCode())
-                .append("; Credits: ")
-                .append(getCredits());
-
-        return builder.toString();
+        return getName() + "; Code: " + getCode() + "; Credits: " + getCredits();
     }
 }

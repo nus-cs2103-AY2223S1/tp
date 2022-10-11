@@ -13,10 +13,12 @@ import modtrekt.model.task.Task;
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_IDENTIFIER = "-t";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task book. "
             + "Parameters: "
-            + CliSyntax.PREFIX_TASK + "DESCRIPTION ";
+            + CliSyntax.PREFIX_TASK + "DESCRIPTION "
+            + CliSyntax.PREFIX_MOD_CODE + "MODULE CODE ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
 
@@ -33,7 +35,9 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
+        if (!(model.hasModuleWithModCode(toAdd.getModule()))) {
+            throw new CommandException("Module code does not exist");
+        }
         model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

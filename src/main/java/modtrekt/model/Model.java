@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import modtrekt.commons.core.GuiSettings;
+import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
 import modtrekt.model.task.Task;
 
@@ -15,6 +16,8 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+    Predicate<Task> PREDICATE_HIDE_ARCHIVED_TASKS = task -> !task.isArchived();
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -65,14 +68,34 @@ public interface Model {
      * The task must exist in the address book.
      */
     void deleteTask(Task target);
+
+    /** Check if given module exists within module list */
     boolean hasModule(Module module);
+
+    /** Check if given module exists within module list based on module code */
+    boolean hasModuleWithModCode(ModCode code);
+
+
+    /** Updates module list after task removal */
+    void updateModuleRemoveTask(Task t);
+
+    /** Updates module list after adding task */
+    void updateModuleAddTask(Task t);
+
+    /** Updates task list after module removal */
+    void deleteTasksOfModule(Module target);
 
     /**
      * Adds the given task.
      * {@code task} must not already exist in the task book.
      */
     void addTask(Task t);
+
+    /** Deletes the given module, must exist within the module list */
     void deleteModule(Module target);
+
+    /** Parses module within module list from a given module code */
+    Module parseModuleFromCode(ModCode code);
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
@@ -89,6 +112,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Adds the given module.
+     * {@code module} must not already exist in the task book.
+     */
     void addModule(Module module);
 
     /**

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import modtrekt.model.module.ModCode;
 import modtrekt.model.task.Task;
 import modtrekt.model.task.UniqueTaskList;
 
@@ -83,6 +84,14 @@ public class TaskBook implements ReadOnlyTaskBook {
      */
     public void removeTask(Task key) {
         tasks.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code TaskBook}.
+     * {@code key} must exist in the task book.
+     */
+    public void removeTasksWithModCode(ModCode code) {
+        tasks.removeTasksWithModCode(code);
     }
 
     //// util methods

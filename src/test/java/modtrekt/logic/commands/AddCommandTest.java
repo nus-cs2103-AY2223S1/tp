@@ -21,6 +21,7 @@ import modtrekt.model.ModuleList;
 import modtrekt.model.ReadOnlyModuleList;
 import modtrekt.model.ReadOnlyTaskBook;
 import modtrekt.model.ReadOnlyUserPrefs;
+import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
 import modtrekt.model.task.Task;
 import modtrekt.testutil.ModuleBuilder;
@@ -49,7 +50,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validModule);
         ModelStub modelStub = new ModelStubWithModule(validModule);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_MODULE, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -131,7 +132,32 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModuleWithModCode(ModCode code) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteModule(Module target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTasksOfModule(Module target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateModuleAddTask(Task t) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateModuleRemoveTask(Task t) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Module parseModuleFromCode(ModCode code) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -224,6 +250,12 @@ public class AddCommandTest {
         public boolean hasModule(Module person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSameModule);
+        }
+
+        @Override
+        public boolean hasModuleWithModCode(ModCode code) {
+            requireNonNull(code);
+            return personsAdded.stream().anyMatch(x -> x.isSameCodeModule(code));
         }
 
         @Override

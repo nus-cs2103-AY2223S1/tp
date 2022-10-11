@@ -18,6 +18,8 @@ public class TypicalModules {
             .withCredit("4").withCode("ST2334").build();
     public static final Module MA1521 = new ModuleBuilder().withName("Calculus for Computing")
             .withCredit("4").withCode("MA1521").build();
+    public static final Module CS2103T = new ModuleBuilder().withName("Software Engineering")
+            .withCredit("4").withCode("CS2103T").build();
 
     private TypicalModules() {
     } // prevents instantiation
@@ -34,6 +36,6 @@ public class TypicalModules {
     }
 
     public static List<Module> getTypicalModules() {
-        return new ArrayList<>(Arrays.asList(MA1521, ST2334, MA2001));
+        return new ArrayList<>(Arrays.asList(MA1521, ST2334, MA2001, CS2103T));
     }
 }
