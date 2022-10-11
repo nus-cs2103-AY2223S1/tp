@@ -1,88 +1,71 @@
 package nus.climods.model.module;
 
-import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Collections;
-import java.util.HashSet;
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+import java.util.stream.Collectors;
 
-import nus.climods.model.tag.Tag;
+import org.openapitools.client.model.ModuleInformationSemesterDataInner;
 
+/**
+ * A wrapper class for <code>ModuleInformation</code>
+ */
 public class Module {
-    // Identity fields
-    private final ModuleCode code;
 
-    //Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private final org.openapitools.client.model.ModuleInformation apiModuleInfo;
 
-    /**
-     * Every field must be present and not null.
-     */
-    public Module(ModuleCode code, Set<Tag> tags) {
-        requireAllNonNull(code, tags);
-        this.code = code;
-        this.tags.addAll(tags);
-    }
-
-    public ModuleCode getCode() {
-        return this.code;
+    public Module(org.openapitools.client.model.ModuleInformation apiModuleInfo) {
+        this.apiModuleInfo = apiModuleInfo;
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if modification is attempted.
+     * Returns the number of modular credits.
+     * <p>
+     * String is used as the return type as there module credits may not be a integer. Example: YSC2251 2.5 MCs Since
+     * there are no calculations needed as of yet, we will preserve the String representation
+     * </p>
+     *
+     * @return module credits
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public String getModuleCredit() {
+        return apiModuleInfo.getModuleCredit();
     }
 
     /**
-     * Returns true if both modules have the same name. This defines a weaker notion of equality between two modules.
+     * Returns the module title.
+     *
+     * @return module title
      */
-    public boolean isSameModule(Module otherModule) {
-        if (otherModule == this) {
-            return true;
-        }
-
-        return otherModule != null
-                && otherModule.getCode().equals(getCode());
+    public String getTitle() {
+        return apiModuleInfo.getTitle();
     }
 
     /**
-     * Returns true if both modules have the same identity and data fields. This defines a stronger notion of equality
-     * between two modules.
+     * Returns the module code.
+     *
+     * @return module code
      */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Module)) {
-            return false;
-        }
-
-        Module otherModule = (Module) other;
-        return otherModule.getCode().equals(getCode())
-                && otherModule.getTags().equals(getTags());
+    public String getCode() {
+        return apiModuleInfo.getModuleCode();
     }
 
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(code, tags);
+    /**
+     * Returns the department that offers this module.
+     *
+     * @return module department
+     */
+    public String getDepartment() {
+        return apiModuleInfo.getDepartment();
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getCode());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
+    /**
+     * Returns the semesters that this module is offered.
+     *
+     * @return list of integers representing semesters
+     */
+    public List<Integer> getSemesters() {
+        List<ModuleInformationSemesterDataInner> apiSemesterData = apiModuleInfo.getSemesterData();
+        return apiSemesterData.stream().map(ModuleInformationSemesterDataInner::getSemester).filter(Objects::nonNull)
+                .map(BigDecimal::intValue).collect(Collectors.toList());
     }
 }

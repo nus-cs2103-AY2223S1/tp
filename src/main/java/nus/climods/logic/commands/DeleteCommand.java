@@ -4,19 +4,16 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import nus.climods.commons.core.Messages;
-import nus.climods.commons.core.index.Index;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.module.UserModule;
-import nus.climods.model.person.Person;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "rm";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + " <Module Code> : Deletes the Module as indicated by the user. ";
