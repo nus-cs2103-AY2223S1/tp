@@ -16,7 +16,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 
-import seedu.address.model.person.Person;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.student.Student;
 
 /**
@@ -51,4 +55,14 @@ public class TypicalStudents {
             .withLevel(VALID_LEVEL_BOB).withNextOfKin(VALID_NEXTOFKIN_BOB).withTags(VALID_TAG_FRIEND).build();
 
     private TypicalStudents() {} // prevents instantiation
+
+    public static AddressBook getTypicalStudentsAddressBook() {
+        AddressBook ab = new AddressBook();
+
+        List<Student> studentList = new ArrayList<>(Arrays.asList(TypicalStudents.STUDENT1, TypicalStudents.STUDENT2));
+        for (Student s : studentList) {
+            ab.addPerson(s);
+        }
+        return ab;
+    }
 }

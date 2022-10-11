@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +33,9 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
+    private TutorListPanel tutorListPanel;
+    private TuitionClassListPanel tuitionClassListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -78,6 +82,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -113,10 +118,16 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
+        tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
+        //personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        // might one to change this to show all the different file paths? or just remove it entirely.
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTutorAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -163,6 +174,31 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Updates the displayed list.
+     */
+    @FXML
+    private void handleList() {
+        Model.ListType type = logic.getCurrentListType();
+        personListPanelPlaceholder.getChildren().clear();
+        switch (type) {
+        case STUDENT_LIST:
+            personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            break;
+        case TUTOR_LIST:
+            personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+            break;
+        case TUITIONCLASS_LIST:
+            personListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+            break;
+        case PERSON_LIST:
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            break;
+        default:
+            break;
+        }
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -184,6 +220,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isList()) {
+                handleList();
             }
 
             return commandResult;
