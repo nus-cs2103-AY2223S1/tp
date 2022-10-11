@@ -60,6 +60,9 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+        // Set title
+        primaryStage.setTitle("Teaching Assistant Assistant");
+
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
