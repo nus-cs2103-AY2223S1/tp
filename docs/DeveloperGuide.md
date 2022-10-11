@@ -351,12 +351,12 @@ _{Explain here how the data archiving feature will be implemented}_
 This feature is mainly implemented by the `CustomiseCommand` and `PersonCard` classes. The following methods are the main ones:
 
 * `CustomiseCommand#changeAttributeOrder(Model model)` - saves the new attribute order in the `preferences.json` file.
-* `PersonCard#setAttributes()` - reads the order from the `preferences.json` file and builds the PersonCard in the order specified.
+* `PersonCard#setAttributes()` - reads the order from the `preferences.json` file and builds the `PersonCard` in the order specified.
 
 _{diagrams and more in depth explanation to be added}_
 
-#### Design consideration:
-* **Alternative 1 (current choice):** Sets the order in 4 placeholder JavaFX FlowPane.
+#### Design consideration
+* **Alternative 1 (current choice):** Sets the order in 4 placeholder JavaFX `FlowPane`.
   * Pros: Easy to implement.
   * Cons: Unable to have different styling for different attributes.
 
