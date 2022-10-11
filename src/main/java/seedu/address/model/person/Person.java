@@ -22,16 +22,20 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Module module;
+    private final Year year;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Module module, Year year, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, module, year, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.module = module;
+        this.year = year;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -46,6 +50,13 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+    public Module getModule() {
+        return module;
+    }
+
+    public Year getYear() {
+        return year;
     }
 
     public Address getAddress() {
@@ -91,6 +102,8 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getModule().equals(getModule())
+                && otherPerson.getYear().equals(getYear())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -98,7 +111,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, module, year, address, tags);
     }
 
     @Override
@@ -109,6 +122,10 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Module: ")
+                .append(getModule())
+                .append("; Year: ")
+                .append(getYear())
                 .append("; Address: ")
                 .append(getAddress());
 
