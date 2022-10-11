@@ -6,14 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 import seedu.address.model.sort.EmailComparator;
 import seedu.address.model.sort.NameComparator;
 import seedu.address.model.sort.PhoneComparator;
-
-import java.util.Comparator;
-
-import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -45,6 +43,6 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new SortCommand(new EmailComparator());
         }
 
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,SortCommand.MESSAGE_USAGE));
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 }

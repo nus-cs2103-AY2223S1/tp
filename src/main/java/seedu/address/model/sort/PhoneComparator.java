@@ -1,9 +1,12 @@
 package seedu.address.model.sort;
 
-import seedu.address.model.person.Person;
-
 import java.util.Comparator;
 
+import seedu.address.model.person.Person;
+
+/**
+ * PhoneComparator class to sort the persons list based on phone number.
+ */
 public class PhoneComparator implements Comparator<Person> {
     private final String comparator = "phone";
 

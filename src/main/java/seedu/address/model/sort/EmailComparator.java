@@ -1,9 +1,12 @@
 package seedu.address.model.sort;
 
-import seedu.address.model.person.Person;
-
 import java.util.Comparator;
 
+import seedu.address.model.person.Person;
+
+/**
+ * EmailComparator class to sort the persons list based on email address.
+ */
 public class EmailComparator implements Comparator<Person> {
     private final String comparator = "email";
 
