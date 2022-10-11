@@ -43,7 +43,7 @@ public class InterviewDate {
     }
 
     private LocalDate parseLocalDate(String dateString) {
-        return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        return LocalDate.parse(dateString);
     }
 
     @Override
