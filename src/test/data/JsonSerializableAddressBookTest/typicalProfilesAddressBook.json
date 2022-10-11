@@ -43,7 +43,25 @@
     "address" : "4th street",
     "tagged" : [ ]
   } ],
-  "events": [
-
-  ]
+  "events": [ {
+    "title" : "Discuss presentation",
+    "start" : "11/10/2022 09:00",
+    "end" : "11/10/2022 10:00",
+    "tagged" : ["CS2103T"]
+  }, {
+    "title" : "Practice",
+    "start" : "11/10/2022 13:00",
+    "end" : "11/10/2022 14:00",
+    "tagged" : ["CCA"]
+  }, {
+    "title" : "Finish problem set",
+    "start" : "12/10/2022 16:00",
+    "end" : "12/10/2022 17:00",
+    "tagged" : ["CS2109S"]
+  }, {
+    "title" : "Formal dinner",
+    "start" : "12/10/2022 19:00",
+    "end" : "12/10/2022 23:00",
+    "tagged" : ["RC"]
+  } ]
 }
