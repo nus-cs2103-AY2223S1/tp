@@ -8,7 +8,11 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddQCommand;
+<<<<<<< HEAD
 import seedu.address.logic.commands.AddResponseCommand;
+=======
+import seedu.address.logic.commands.AddStuCommand;
+>>>>>>> ed19e00eb75223fae039e2ec476540640011a725
 import seedu.address.logic.commands.AddTutorialCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -16,6 +20,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteQCommand;
 import seedu.address.logic.commands.DeleteTutorialCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditStuCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -56,8 +61,14 @@ public class AddressBookParser {
         case AddQCommand.COMMAND_WORD:
             return new AddQCommandParser().parse(arguments);
 
+        case AddStuCommand.COMMAND_WORD:
+            return new AddStuCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case EditStuCommand.COMMAND_WORD:
+            return new EditStuCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
