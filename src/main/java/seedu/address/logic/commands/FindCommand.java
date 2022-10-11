@@ -4,10 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Buyer;
-import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Supplier;
+import seedu.address.model.person.*;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -28,7 +25,7 @@ public class FindCommand extends Command {
 
     private final NameContainsKeywordsPredicate<Supplier> sPredicate;
 
-    private final String type;
+    private final PersonCategory type;
 
     /**
      * Constructs a FindCommand, which has three predicates - one
@@ -44,7 +41,7 @@ public class FindCommand extends Command {
      */
     public FindCommand(NameContainsKeywordsPredicate<Buyer> bPredicate,
                        NameContainsKeywordsPredicate<Deliverer> dPredicate,
-                       NameContainsKeywordsPredicate<Supplier> sPredicate, String type) {
+                       NameContainsKeywordsPredicate<Supplier> sPredicate, PersonCategory type) {
         this.bPredicate = bPredicate;
         this.dPredicate = dPredicate;
         this.sPredicate = sPredicate;
@@ -57,10 +54,10 @@ public class FindCommand extends Command {
         model.updateFilteredBuyerList(bPredicate);
         model.updateFilteredDelivererList(dPredicate);
         model.updateFilteredSupplierList(sPredicate);
-        if (type.equals("Buyer")) {
+        if (type.equals(new PersonCategory("Buyer"))) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredBuyerList().size()));
-        } else if (type.equals("Deliverer")) {
+        } else if (type.equals(new PersonCategory("Deliverer"))) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredDelivererList().size()));
         } else {

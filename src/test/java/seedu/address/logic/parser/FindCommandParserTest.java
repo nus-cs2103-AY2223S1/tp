@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonCategory;
 
 public class FindCommandParserTest {
 
@@ -32,7 +33,7 @@ public class FindCommandParserTest {
                 new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
-                        "Buyer");
+                        new PersonCategory("Buyer"));
         assertParseSuccess(parser, "Buyer Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -46,7 +47,7 @@ public class FindCommandParserTest {
                 new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
-                        "Deliverer");
+                        new PersonCategory("Deliverer"));
         assertParseSuccess(parser, "Deliverer Charlie Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -60,7 +61,7 @@ public class FindCommandParserTest {
                 new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
                         new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
-                        "Supplier");
+                        new PersonCategory("Supplier"));
         assertParseSuccess(parser, "Supplier Charlie Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
