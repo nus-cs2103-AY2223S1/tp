@@ -1,7 +1,37 @@
 package seedu.rc4hdb.logic.parser;
 
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.*;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.GENDER_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.GENDER_DESC_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.HOUSE_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_NAME_DESC;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_ROOM_DESC;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_TAG_DESC;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.MATRIC_NUMBER_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.PHONE_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.PHONE_DESC_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ROOM_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ROOM_DESC_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_GENDER_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_GENDER_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_HOUSE_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_MATRIC_NUMBER_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_NAME_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_PHONE_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ROOM_AMY;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ROOM_BOB;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -13,8 +43,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
-import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
+import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.fields.Email;
 import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
@@ -141,19 +171,19 @@ public class EditCommandParserTest {
 
         // gender
         userInput = targetIndex.getOneBased() + GENDER_DESC_AMY;
-        descriptor = new ResidentDescriptorBuilder().withRoom(VALID_GENDER_AMY).build();
+        descriptor = new ResidentDescriptorBuilder().withGender(VALID_GENDER_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // house
         userInput = targetIndex.getOneBased() + HOUSE_DESC_AMY;
-        descriptor = new ResidentDescriptorBuilder().withRoom(VALID_HOUSE_AMY).build();
+        descriptor = new ResidentDescriptorBuilder().withHouse(VALID_HOUSE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // matric number
         userInput = targetIndex.getOneBased() + MATRIC_NUMBER_DESC_AMY;
-        descriptor = new ResidentDescriptorBuilder().withRoom(VALID_MATRIC_NUMBER_AMY).build();
+        descriptor = new ResidentDescriptorBuilder().withMatricNumber(VALID_MATRIC_NUMBER_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

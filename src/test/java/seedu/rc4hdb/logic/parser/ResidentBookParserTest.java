@@ -25,8 +25,8 @@ import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
-import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 import seedu.rc4hdb.testutil.ResidentBuilder;
+import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 import seedu.rc4hdb.testutil.ResidentUtil;
 
 public class ResidentBookParserTest {
@@ -58,7 +58,7 @@ public class ResidentBookParserTest {
         Resident resident = new ResidentBuilder().build();
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder(resident).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_RESIDENT.getOneBased() + " " + ResidentUtil.getEditResidentDescriptorDetails(descriptor));
+                + INDEX_FIRST_RESIDENT.getOneBased() + " " + ResidentUtil.getResidentDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_RESIDENT, descriptor), command);
     }
 

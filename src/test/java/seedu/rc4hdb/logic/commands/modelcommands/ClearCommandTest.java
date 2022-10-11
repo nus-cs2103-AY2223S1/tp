@@ -5,7 +5,10 @@ import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.model.*;
+import seedu.rc4hdb.model.Model;
+import seedu.rc4hdb.model.ModelManager;
+import seedu.rc4hdb.model.ResidentBook;
+import seedu.rc4hdb.model.UserPrefs;
 
 public class ClearCommandTest {
 

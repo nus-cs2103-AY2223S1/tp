@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.commons.core.index.Index;
-import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
+import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.UserPrefs;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;

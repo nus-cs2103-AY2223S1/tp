@@ -19,7 +19,7 @@ import seedu.rc4hdb.model.ReadOnlyResidentBook;
  */
 public class JsonResidentBookStorage implements ResidentBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonResidentBookStorage.class);
 
     private Path filePath;
 

@@ -17,9 +17,11 @@ import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.model.*;
+import seedu.rc4hdb.model.Model;
+import seedu.rc4hdb.model.ReadOnlyResidentBook;
+import seedu.rc4hdb.model.ReadOnlyUserPrefs;
+import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.testutil.PersonBuilder;
 import seedu.rc4hdb.testutil.ResidentBuilder;
 
 public class AddCommandTest {
@@ -46,7 +48,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validResident);
         ModelStub modelStub = new ModelStubWithResident(validResident);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RESIDENT, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RESIDENT, ()
+                -> addCommand.execute(modelStub));
     }
 
     @Test
