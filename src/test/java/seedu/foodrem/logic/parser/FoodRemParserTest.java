@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.foodrem.logic.commands.generalcommands.ClearCommand;
+import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
 import seedu.foodrem.logic.commands.itemcommands.AddCommand;
@@ -42,8 +42,8 @@ public class FoodRemParserTest {
 
     @Test
     public void parseCommand_clear() {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD) instanceof ResetCommand);
+        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD + " 3") instanceof ResetCommand);
     }
 
     @Test
