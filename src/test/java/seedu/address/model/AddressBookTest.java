@@ -106,7 +106,8 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Task> getTaskList() {return tasks;}
+        public ObservableList<Task> getTaskList() {
+            return tasks;
+        }
     }
-
 }
