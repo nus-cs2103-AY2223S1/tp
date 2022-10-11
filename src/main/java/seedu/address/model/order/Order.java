@@ -7,6 +7,7 @@ import seedu.address.model.person.Buyer;
 
 public class Order {
 
+    private String description; //TODO Remove this temp stub
     private Buyer buyer;
     private final PriceRange requestedPriceRange;
     private final Request request;
@@ -14,6 +15,17 @@ public class Order {
     private final LocalDate byDate;
     private final Price settledPrice;
     private final OrderStatus status;
+
+    public Order(String description) { // TODO Remove this stub
+        this.buyer = null;
+        this.requestedPriceRange = null;
+        this.request = null;
+        this.additionalRequests = null;
+        this.byDate = null;
+        this.settledPrice = null;
+        this.status = null;
+        this.description = description;
+    }
 
     public Order(Buyer buyer, PriceRange requestedPriceRange,
                  Request request, AdditionalRequests additionalRequests,
@@ -100,6 +112,7 @@ public class Order {
 
     @Override
     public String toString() {
+
         StringBuilder builder = new StringBuilder();
         builder.append("RequestedPriceRange: ").append(getRequestedPriceRange())
                 .append(System.lineSeparator())
@@ -115,6 +128,23 @@ public class Order {
                 .append(System.lineSeparator())
                 .append("Status: ").append(getOrderStatus());
         return builder.toString();
+
+        //TODO Uncomment this
+//        StringBuilder builder = new StringBuilder();
+//        builder.append("RequestedPriceRange: ").append(getRequestedPriceRange())
+//                .append(System.lineSeparator())
+//                .append("Process order by: ").append(getByDate())
+//                .append(System.lineSeparator())
+//                .append("=== Request ===").append(System.lineSeparator())
+//                .append(request.toString()).append(System.lineSeparator())
+//                .append("==========").append(System.lineSeparator())
+//                .append("=== Additional Requests ===").append(System.lineSeparator())
+//                .append(additionalRequests.toString()).append(System.lineSeparator())
+//                .append("==========").append(System.lineSeparator())
+//                .append("Settled price: ").append(getSettledPrice())
+//                .append("Status: ").append(getOrderStatus());
+//        return builder.toString();
+
     }
 
 }

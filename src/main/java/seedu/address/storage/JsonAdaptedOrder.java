@@ -17,7 +17,7 @@ import java.util.List;
  */
 class JsonAdaptedOrder {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Buyer's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
     private final JsonAdaptedBuyer buyer;
     private final JsonAdaptedPriceRange requestedPriceRange;

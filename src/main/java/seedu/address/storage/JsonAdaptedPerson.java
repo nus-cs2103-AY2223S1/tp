@@ -18,7 +18,6 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
-
 //    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 //
 //    private final String personCategory;
@@ -50,7 +49,7 @@ class JsonAdaptedPerson {
 //     * Converts a given {@code Person} into this class for Jackson use.
 //     */
 //    public JsonAdaptedPerson(Person source) {
-//        personCategory = source.getPersonCategory().value;
+//        personCategory = source.getPersonCategory().toString();
 //        name = source.getName().fullName;
 //        phone = source.getPhone().value;
 //        email = source.getEmail().value;
@@ -77,7 +76,7 @@ class JsonAdaptedPerson {
 //        if (!PersonCategory.isValidPersonCategory(personCategory)) {
 //            throw new IllegalValueException(PersonCategory.MESSAGE_CONSTRAINTS);
 //        }
-//        final PersonCategory modelPersonCategory = new PersonCategory(personCategory);
+//        final PersonCategory modelPersonCategory = PersonCategory.getFromString(personCategory);
 //
 //        if (name == null) {
 //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -114,5 +113,4 @@ class JsonAdaptedPerson {
 //        final Set<Tag> modelTags = new HashSet<>(personTags);
 //        return new Person(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags);
 //    }
-
 }

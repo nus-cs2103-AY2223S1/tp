@@ -42,6 +42,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_CAL = "Block 213, Cally Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ORDER_1 = "Order1"; //TODO Remove these two stubs
+    public static final String VALID_ORDER_2 = "Order2";
 
     public static final String PERSON_CATEGORY_DESC_AMY = " " + PREFIX_PERSON_CATEGORY + VALID_PERSON_CATEGORY_AMY;
     public static final String PERSON_CATEGORY_DESC_BOB = " " + PREFIX_PERSON_CATEGORY + VALID_PERSON_CATEGORY_BOB;
