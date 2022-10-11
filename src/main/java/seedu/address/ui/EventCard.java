@@ -30,25 +30,16 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label event_title;
+    private Label eventTitle;
     @FXML
     private Label date;
     @FXML
     private Label time;
     @FXML
     private Label purpose;
-//    @FXML
-//    private Label name;
     @FXML
     private Label id;
-//    @FXML
-//    private Label phone;
-//    @FXML
-//    private Label address;
-//    @FXML
-//    private Label email;
-//    @FXML
-//    private FlowPane tags;
+
 
     /**
      * Creates a {@code EventCode} with the given {@code Event} and index to display.
@@ -57,7 +48,7 @@ public class EventCard extends UiPart<Region> {
         super(FXML);
         this.event = event;
         id.setText(displayedIndex + ". ");
-        event_title.setText(event.getEventTitle());
+        eventTitle.setText(event.getEventTitle());
         date.setText(event.getDate());
         time.setText(event.getTime());
         purpose.setText(event.getPurpose());
