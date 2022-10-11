@@ -1,5 +1,8 @@
 package seedu.address.model.group;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
@@ -9,6 +12,12 @@ import seedu.address.model.item.EntryType;
  */
 public class Group extends AbstractContainerItem {
 
+    public static final String MESSAGE_CONSTRAINTS = "A group name should only consist "
+            + "of alphanumeric characters and should not include whitespaces or "
+            + "slashes.\n";
+
+    public static final String VALIDATION_REGEX = "[{Alnum}]*";
+
     private final String groupName;
     private final Group parent;
 
@@ -16,9 +25,21 @@ public class Group extends AbstractContainerItem {
         this(groupName, null);
     }
 
-    Group(String groupName, Group parent) {
+    Group(String groupName, String fullPath, Group parent) {
+        super(parent);
         this.groupName = groupName;
         this.parent = parent;
+    }
+
+    /**
+     * Checks if the group name is valid. A group name is valid
+     * if the group name is fully alphanumeric.
+     *
+     * @param groupName for a specific team.
+     * @return true if the group name is valid, false otherwise.
+     */
+    public static boolean isValidGroupName(String groupName) {
+        return groupName.matches(VALIDATION_REGEX);
     }
 
     @Override

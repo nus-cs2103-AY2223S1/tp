@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddTeamCommand;
+import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.ChangeTeamCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -70,8 +70,8 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case AddTeamCommand.COMMAND_WORD:
-            return new AddTeamCommandParser().parse(arguments);
+        case AddGroupCommand.COMMAND_WORD:
+            return new AddGroupCommandParser().parse(arguments);
 
         case ChangeTeamCommand.COMMAND_WORD:
             return new ChangeTeamCommandParser().parse(arguments);

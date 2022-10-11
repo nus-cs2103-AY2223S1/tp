@@ -18,6 +18,15 @@ public abstract class AbstractContainerItem extends DisplayItemList<DisplayItem>
     protected AbstractContainerItem parent = null;
     protected String fullPath = null;
 
+    public AbstractContainerItem(AbstractContainerItem parent) {
+        this(parent, null);
+    }
+
+    public AbstractContainerItem(AbstractContainerItem parent, String fullPath) {
+        this.parent = parent;
+        this.fullPath = fullPath;
+    }
+
     @Override
     public void add(DisplayItem toAdd) {
         requireNonNull(toAdd);

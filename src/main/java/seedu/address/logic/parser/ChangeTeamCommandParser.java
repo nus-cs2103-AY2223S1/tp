@@ -22,8 +22,7 @@ public class ChangeTeamCommandParser {
     public ChangeTeamCommand parse(String args) throws ParseException {
         try {
             requireNonNull(args);
-            String trimmedArgs = args.trim();
-            Path path = ParserUtil.parsePath(trimmedArgs);
+            Path path = ParserUtil.parsePath(args);
             return new ChangeTeamCommand(path);
         } catch (ParseException pe) {
             throw new ParseException(

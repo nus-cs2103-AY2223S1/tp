@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -142,18 +143,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String team} into a {@code Team}.
+     * Parses {@code String group} into a {@code Group}.
      *
-     * @param team name of team that is currently being accessed.
-     * @return a Team object that refers to a specified team.
-     * @throws ParseException if the given {@Code Team} is not valid.
+     * @param group name of group that is currently being accessed.
+     * @return a Group object that refers to a specified team.
+     * @throws ParseException if the given {@Code Group} is not valid.
      */
-    public static Team parseTeam(String team) throws ParseException {
-        requireNonNull(team);
-        if (!Team.isValidTeamName(team)) {
-            throw new ParseException(Team.MESSAGE_CONSTRAINTS);
+    public static Group parseGroup(String group) throws ParseException {
+        requireNonNull(group);
+        if (!Group.isValidGroupName(group)) {
+            throw new ParseException(Group.MESSAGE_CONSTRAINTS);
         }
-        Name teamName = parseName(team);
-        return new Team(teamName);
+
+        return new Group(group);
     }
 }
