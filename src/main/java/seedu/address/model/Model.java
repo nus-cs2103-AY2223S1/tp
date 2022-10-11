@@ -116,7 +116,9 @@ public interface Model {
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     /**
-     * Update the mark status of a task
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the address book.
+     * The task of {@code editedTask} must not be the same as another existing task in the address book.
      */
-    void markTask(Task task);
+    void setTask(Task target, Task editedTask);
 }

@@ -3,6 +3,7 @@ package seedu.address.logic.commands.task;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -12,15 +13,31 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for MarkTaskCommand.
  */
 public class MarkTaskCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskPanel(), new UserPrefs());
+
+//    @Test
+//    public void execute_validIndexUnfilteredList_success() {
+//        Task taskToMark = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
+//        Task editedTask = new Task(taskToMark.getTitle(), true);
+//        MarkTaskCommand mtc = new MarkTaskCommand(INDEX_FIRST_PERSON);
+//
+//        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, taskToMark);
+//
+//        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskPanel(), new UserPrefs());
+//        expectedModel.setTask(taskToMark, editedTask);
+//
+//        assertCommandSuccess(mtc, model, expectedMessage, expectedModel);
+//    }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {

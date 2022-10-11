@@ -29,15 +29,16 @@ public class MarkTaskCommand extends TaskCommand {
 
     public static final String MESSAGE_SUCCESS = "Task %1$d is marked as complete";
 
-    private final Index task_index;
+    private final Index targetIndex;
+    private final boolean mark = true;
 
     /**
-     * @param task_index of the person's task to be updated
+     * @param tarIndex of the person's task to be updated
      */
-    public MarkTaskCommand(Index task_index) {
-        requireAllNonNull(task_index);
+    public MarkTaskCommand(Index tarIndex) {
+        requireAllNonNull(tarIndex);
 
-        this.task_index = task_index;
+        this.targetIndex = tarIndex;
     }
 
     @Override
@@ -45,13 +46,16 @@ public class MarkTaskCommand extends TaskCommand {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (task_index.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Task taskToMark = lastShownList.get(task_index.getZeroBased());
-        model.markTask(taskToMark);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, task_index.getOneBased()));
+        Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
+        Task editedTask = new Task(taskToMark.getTitle(), mark);
+
+        model.setTask(taskToMark, editedTask);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
     }
 
     @Override
@@ -68,6 +72,6 @@ public class MarkTaskCommand extends TaskCommand {
 
         // state check
         MarkTaskCommand e = (MarkTaskCommand) other;
-        return task_index.equals(e.task_index);
+        return targetIndex.equals(e.targetIndex);
     }
 }

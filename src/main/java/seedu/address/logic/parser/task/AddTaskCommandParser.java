@@ -24,7 +24,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         Title title = TaskParserUtil.parseTitle(argMultimap.getPreamble());
 
-        Task task = new Task(title);
+        Task task = new Task(title, false);
 
         return new AddTaskCommand(task);
     }

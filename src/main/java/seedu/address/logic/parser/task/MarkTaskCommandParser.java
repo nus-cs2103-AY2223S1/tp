@@ -22,15 +22,15 @@ public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
     public MarkTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
-        Index task_index;
+        Index targetIndex;
 
         try {
-            task_index = TaskParserUtil.parseIndex(argMultimap.getPreamble());
+            targetIndex = TaskParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE), pe);
         }
 
-        return new MarkTaskCommand(task_index);
+        return new MarkTaskCommand(targetIndex);
     }
 }
 

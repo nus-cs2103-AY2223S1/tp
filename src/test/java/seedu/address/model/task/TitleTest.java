@@ -10,7 +10,7 @@ public class TitleTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Task(null));
+        assertThrows(NullPointerException.class, () -> new Task(null, false));
     }
 
     @Test

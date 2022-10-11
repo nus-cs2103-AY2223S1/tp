@@ -190,8 +190,9 @@ public class ModelManager implements Model {
         // TODO: updateFilteredTaskList
     }
 
+
     @Override
-    public void markTask(Task task) {
-        task.mark();
+    public void setTask(Task target, Task editedTask) {
+        taskPanel.setTask(target, editedTask);
     }
 }
