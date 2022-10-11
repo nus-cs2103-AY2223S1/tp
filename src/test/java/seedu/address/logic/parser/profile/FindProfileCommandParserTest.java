@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.profile;
 
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_KEYWORDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
@@ -14,16 +14,12 @@ import seedu.address.logic.parser.profile.FindProfileCommandParser;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 
 public class FindProfileCommandParserTest {
-    /**
-     * All inputs passed to FindProfileCommandParser begins with this string.
-     */
-    private String requiredFlagOption = " " + PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION + " ";
 
     private FindProfileCommandParser parser = new FindProfileCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, requiredFlagOption + "     ",
+        assertParseFailure(parser, "      ",
                 String.format(MESSAGE_MISSING_KEYWORDS + FindProfileCommand.MESSAGE_USAGE));
     }
 
@@ -32,10 +28,10 @@ public class FindProfileCommandParserTest {
         // no leading and trailing whitespaces
         FindProfileCommand expectedFindCommand =
                 new FindProfileCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, requiredFlagOption + "Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, requiredFlagOption + "     Alice   Bob  ", expectedFindCommand);
+        assertParseSuccess(parser, "     Alice   Bob  ", expectedFindCommand);
     }
 
 }
