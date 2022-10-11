@@ -26,50 +26,8 @@ public class MarkTaskCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskPanel(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Task taskToMark = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
-        MarkTaskCommand mtc = new MarkTaskCommand(INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(mtc.MESSAGE_SUCCESS, taskToMark.toString());
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskPanel(), new UserPrefs());
-        expectedModel.markTask(taskToMark);
-
-        assertCommandSuccess(mtc, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        MarkTaskCommand MarkTaskCommand = new MarkTaskCommand(outOfBoundIndex);
-
-        assertCommandFailure(MarkTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Task taskToMark = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
-        MarkTaskCommand MarkTaskCommand = new MarkTaskCommand(INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_SUCCESS, taskToMark);
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskPanel(), new UserPrefs());
-        expectedModel.markTask(taskToMark);
-        showNoPerson(expectedModel);
-
-        assertCommandSuccess(MarkTaskCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
-
         MarkTaskCommand MarkTaskCommand = new MarkTaskCommand(outOfBoundIndex);
 
         assertCommandFailure(MarkTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
