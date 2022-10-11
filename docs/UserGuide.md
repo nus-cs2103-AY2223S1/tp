@@ -296,3 +296,4 @@ _Details coming soon ..._
 | **Create Tag** | `tag create t/TAG` <br> e.g., `tag create t/friend`                                                                                                            |
 | **Edit Tag**   | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`                                                                                          |
 | **Add Tag**    | `tag add INDEX t/TAG` <br> e.g., `tag add 1 t/friend`                                                                                                          |
+
