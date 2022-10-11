@@ -33,6 +33,6 @@ public class ItemTest {
         assertTrue(Item.isValidItem("Broccoli"));
         assertTrue(Item.isValidItem("Celery"));
         assertTrue(Item.isValidItem("Luncheon Meat")); // two words
-        assertTrue(Item.isValidItem("Chicken 65 masala")); // items with numbers in them
+        assertTrue(Item.isValidItem("Chicken 65 Masala")); // items with numbers in them
     }
 }
