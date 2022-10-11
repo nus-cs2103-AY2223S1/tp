@@ -15,7 +15,7 @@ public class Repository {
         public static final Repository EMPTY_REPOSITORY = new EmptyRepository();
 
         private EmptyRepository() {
-            super("");
+            super("conrad/tp");
         }
     }
 

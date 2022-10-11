@@ -52,6 +52,7 @@ public class Client {
         this.phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
         this.email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
         this.projects = new ArrayList<>();
+        this.clientId = ClientId.EmptyClientId.EMPTY_CLIENT_ID;
     }
 
     public static final String MESSAGE_INVALID = "Client does not exist in the project.";

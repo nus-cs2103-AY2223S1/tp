@@ -25,6 +25,33 @@ public class ClientId {
     }
 
     /**
+     * Checks if this ClientID is empty.
+     * @return false since the ClientID is not empty.
+     */
+    public boolean isEmpty() {
+        return false;
+    }
+
+    /**
+     * Represents an Empty ClientID.
+     */
+    public static class EmptyClientId extends ClientId {
+        public static final ClientId EMPTY_CLIENT_ID = new EmptyClientId();
+        public EmptyClientId() {
+            super(3);
+        }
+
+        /**
+         * Checks if this ClientID is empty.
+         * @return true since the ClientID is empty.
+         */
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+    }
+
+    /**
      * Checks whether the client ID string is valid.
      * @param clientId
      * @return Boolean value representing the validity of the string.
@@ -41,6 +68,7 @@ public class ClientId {
     public String uiRepresentation() {
         return "(#" + toString() + ")";
     }
+
     @Override
     public String toString() {
         return String.valueOf(this.clientId);

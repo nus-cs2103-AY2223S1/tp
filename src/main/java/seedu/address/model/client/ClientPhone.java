@@ -31,7 +31,7 @@ public class ClientPhone {
     public static class EmptyClientPhone extends ClientPhone {
         public static final ClientPhone EMPTY_PHONE = new EmptyClientPhone();
         public EmptyClientPhone() {
-            super("");
+            super("91234567");
         }
 
         /**
