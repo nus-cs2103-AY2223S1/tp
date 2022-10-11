@@ -149,11 +149,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTask(Task task, Index targetIndex) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -177,8 +172,19 @@ public class AddCommandTest {
         public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTask(Task task, Index targetIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTask(Index index) {
             throw new AssertionError("This method should not be called.");
         }
 
