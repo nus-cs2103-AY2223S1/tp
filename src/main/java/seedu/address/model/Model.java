@@ -97,11 +97,11 @@ public interface Model {
 
     /////////////////////////
 
-    /** Returns an unmodifiable view of the filtered question list */
+    /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
     /**
-     * Updates the filter of the filtered question list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Question> predicate);
