@@ -110,7 +110,6 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -126,6 +125,11 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+    //=========== Person List Accessors =============================================================
+    @Override
+    public void sortContactLexicographical() {
+        addressBook.sortLexicographical();
     }
 
     @Override

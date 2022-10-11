@@ -23,7 +23,7 @@ public class StudentBuilder extends PersonBuilder {
     }
 
     public Student build() {
-        return new Student(getName(), getPhone(), getEmail(), getGender(), getTags());
+        return new Student(getName(), getPhone(), getEmail(), getGender(), getTags(), getLocation());
     }
 
 }
