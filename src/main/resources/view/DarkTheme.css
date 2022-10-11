@@ -1,6 +1,7 @@
 .background {
     -fx-background-color: derive(#CCCCCC, 20%);
-    background-color: #CCCCCC; /* Used in the default.html file */
+    background-color: #CCCCCC;
+    /* Used in the default.html file */
 }
 
 .label {
@@ -19,7 +20,7 @@
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Open Sans Light";
+    -fx-font-family: "Open Sans Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
@@ -52,15 +53,13 @@
     -fx-background-color: transparent;
 }
 
-.table-view .column-header, .table-view .filler {
+.table-view .column-header,
+.table-view .filler {
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+        transparent transparent derive(-fx-base, 80%) transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -97,7 +96,7 @@
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
+    -fx-graphic-text-gap: 0;
     -fx-padding: 10;
     -fx-background-color: transparent;
 }
@@ -136,7 +135,7 @@
 }
 
 .cell_small_italics_label {
-    -fx-font-family: "Open Sans Light Italic";
+    -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 13px;
     -fx-text-fill: #202632;
     -fx-pref-width: 90;
@@ -144,14 +143,14 @@
 }
 
 .cell_small_label {
-    -fx-font-family: "Open Sans Regular";
+    -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 13px;
     -fx-text-fill: #202632;
 }
 
 .check-box .box {
     -fx-background-color: gray;
-    -fx-border-radius:0;
+    -fx-border-radius: 0;
     -fx-padding: 6px;
 }
 
@@ -165,7 +164,7 @@
 }
 
 .stack-pane {
-     -fx-background-color: transparent;
+    -fx-background-color: transparent;
 }
 
 .status-bar {
@@ -173,7 +172,7 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Open Sans Light";
+    -fx-font-family: "Open Sans Semibold";
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -206,7 +205,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Open Sans Regular";
+    -fx-font-family: "Open Sans Semibold";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
@@ -234,7 +233,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
-    -fx-font-family: "Open Sans Regular";
+    -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -244,9 +243,10 @@
     -fx-background-color: #3a3a3a;
 }
 
-.button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+.button:pressed,
+.button:default:hover:pressed {
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
 }
 
 .button:focused {
@@ -257,7 +257,8 @@
     -fx-border-insets: 1 1 1 1, 0;
 }
 
-.button:disabled, .button:default:disabled {
+.button:disabled,
+.button:default:disabled {
     -fx-opacity: 0.4;
     -fx-background-color: #1d1d1d;
     -fx-text-fill: white;
@@ -276,11 +277,11 @@
     -fx-background-color: #1d1d1d;
 }
 
-.dialog-pane > *.button-bar > *.container {
+.dialog-pane>*.button-bar>*.container {
     -fx-background-color: #1d1d1d;
 }
 
-.dialog-pane > *.label.content {
+.dialog-pane>*.label.content {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
@@ -298,28 +299,32 @@
 }
 
 .scroll-bar {
-    -fx-background-color: rgba(46,74,138,0.5);
+    -fx-background-color: rgba(46, 74, 138, 0.5);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: rgba(46,74,138,0.8);
+    -fx-background-color: rgba(46, 74, 138, 0.8);
     -fx-background-insets: 3;
 }
 
-.scroll-bar .increment-button, .scroll-bar .decrement-button {
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
     -fx-background-color: transparent;
     -fx-padding: 0 0 0 0;
 }
 
-.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
     -fx-shape: " ";
 }
 
-.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
     -fx-padding: 1 8 1 8;
 }
 
-.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+.scroll-bar:horizontal .increment-arrow,
+.scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
 }
 
@@ -343,21 +348,22 @@
     -fx-background-color: #c6e2ec;
     -fx-background-radius: 0 0 0 120;
 }
+
 .pane-with-border {
     -fx-background-color: white;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
     -fx-background-radius: 20;
     -fx-padding: 10 25 10 25;
 }
 
 .text-area {
-    -fx-font-family: "Open Sans Regular";
+    -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 16px;
     -fx-background-color: white;
     -fx-padding: 0 3 0 5;
     -fx-effect: null;
     -fx-focus-color: transparent;
-    -fx-highlight-fill: rgba(46,74,138,0.3);
+    -fx-highlight-fill: rgba(46, 74, 138, 0.3);
     -fx-text-box-border: transparent;
     -fx-text-fill: #202632;
     -fx-background-radius: 0;
@@ -386,33 +392,32 @@
 
 /* Elderly list */
 .titled-pane {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0, 0, 0);
     -fx-background-radius: 20;
     -fx-background-color: white;
 }
 
-.titled-pane > .title > .arrow-button > .arrow {
+.titled-pane>.title>.arrow-button>.arrow {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-effect: null;
 }
 
-.titled-pane > .title {
+.titled-pane>.title {
     -fx-background-color: transparent;
     -fx-fit-to-width: true;
 }
 
-.titled-pane > .content
-{
+.titled-pane>.content {
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 
-.titled-pane:expanded > .title {
+.titled-pane:expanded>.title {
     -fx-background-color: #c8e8e5;
 }
 
-.titled-pane:expanded > .content {
+.titled-pane:expanded>.content {
     -fx-background-color: #c8e8e5;
 }
 
@@ -459,17 +464,20 @@
 }
 
 #commandTextField {
-    -fx-background-color: rgba(46,74,138,0.3);
+    -fx-background-color: rgba(46, 74, 138, 0.3);
     -fx-background-insets: 0;
     -fx-border-width: 0;
     -fx-background-radius: 5;
-    -fx-font-family: "Open Sans Light";
+    -fx-font-family: "Open Sans Semibold";
     -fx-font-size: 16px;
     -fx-prompt-text-fill: #202632;
     -fx-text-fill: #202632;
 }
 
-#filterField, #elderlyListPanel, #taskListPanel, #personWebpage {
+#filterField,
+#elderlyListPanel,
+#taskListPanel,
+#personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

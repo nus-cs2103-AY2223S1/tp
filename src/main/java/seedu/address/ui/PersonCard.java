@@ -57,6 +57,10 @@ public class PersonCard extends UiPart<Region> {
      */
     public PersonCard(Patient person, int displayedIndex, boolean taskListFlag) {
         super(FXML);
+        cardPane.setSpacing(10);
+        cardPane.setStyle("-fx-padding: 10;" + "-fx-border-style: solid inside;"
+                + "-fx-border-width: 2;" + "-fx-border-insets: 5;"
+                + "-fx-border-radius: 5;" + "-fx-border-color: black;");
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
