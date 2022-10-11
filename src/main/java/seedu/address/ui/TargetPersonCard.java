@@ -32,8 +32,6 @@ public class TargetPersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label id;
-    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -47,10 +45,9 @@ public class TargetPersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public TargetPersonCard(Person person, int displayedIndex) {
+    public TargetPersonCard(Person person) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
@@ -75,7 +72,6 @@ public class TargetPersonCard extends UiPart<Region> {
 
         // state check
         TargetPersonCard card = (TargetPersonCard) other;
-        return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+        return person.equals(card.person);
     }
 }

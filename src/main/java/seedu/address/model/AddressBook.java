@@ -111,8 +111,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Removes the given tags from the person
      * {@code tagsToRemove} must already be tagged to the person.
+     * Returns the untagged {@code Person}.
      */
-    public void removeTags(Person target, Collection<Tag> tagsToRemove) {
+    public Person removeTags(Person target, Collection<Tag> tagsToRemove) {
         Set<Tag> newTags = new HashSet<>(target.getTags());
         newTags.removeAll(tagsToRemove);
 
@@ -120,6 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
                 target.getName(), target.getPhone(), target.getEmail(),
                 target.getAddress(), target.getRemark(), newTags);
         persons.setPerson(target, untaggedPerson);
+        return untaggedPerson;
     }
 
     //// tag operations

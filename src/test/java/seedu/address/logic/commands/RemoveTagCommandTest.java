@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.RemoveTagCommand.MESSAGE_SUCCESS;
-import static seedu.address.logic.commands.TagCommandTest.ModelStubWithPersonList;
+import static seedu.address.logic.commands.RemoveTagCommand.MESSAGE_TAGS_NOT_BELONG_TO_USER;
+import static seedu.address.logic.commands.RemoveTagCommand.MESSAGE_TAGS_NOT_FOUND;
+import static seedu.address.logic.commands.TagCommandTest.ModelStubWithPersonListAndTargetPerson;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalTags.VALID_TAG_FRIENDS;
@@ -28,24 +30,68 @@ public class RemoveTagCommandTest {
 
     @Test
     public void contructor_nullSet_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new RemoveTagCommand(Index.fromZeroBased(0), null));
+        assertThrows(NullPointerException.class, ()
+                -> new RemoveTagCommand(Index.fromZeroBased(0), null));
     }
 
     @Test
     public void execute_indexDoesNotExist_throwsCommandException() {
-        ModelStubWithPersonList modelStub = new ModelStubWithPersonList();
+        ModelStubWithPersonListAndTargetPerson modelStub = new ModelStubWithPersonListAndTargetPerson();
         assertThrows(CommandException.class, () -> new RemoveTagCommand(
                 Index.fromZeroBased(0), new HashSet<>()).execute(modelStub));
     }
 
     @Test
-    public void execute_tagsExistAndBelongToUser_success() throws Exception {
-        ModelStubWithPersonList modelStub = new ModelStubWithPersonList();
+    public void execute_noTargetPerson_throwsCommandException() {
+        ModelStubWithPersonListAndTargetPerson modelStub = new ModelStubWithPersonListAndTargetPerson();
+        // no index provided
+        assertThrows(CommandException.class, () -> new RemoveTagCommand(new HashSet<>()).execute(modelStub));
+    }
+
+    @Test
+    public void execute_tagsExistAndBelongToPerson_success() throws Exception {
+        ModelStubWithPersonListAndTargetPerson modelStub = new ModelStubWithPersonListAndTargetPerson();
         modelStub.addPerson(ALICE);
         Set<Tag> tagsToRemove = new HashSet<>();
         tagsToRemove.add(VALID_TAG_FRIENDS);
-        CommandResult commandResult = new RemoveTagCommand(Index.fromZeroBased(0), tagsToRemove).execute(modelStub);
+        CommandResult commandResult =
+                new RemoveTagCommand(Index.fromZeroBased(0), tagsToRemove).execute(modelStub);
         assertEquals(String.format(MESSAGE_SUCCESS, Tag.toString(tagsToRemove)), commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_tagsExistAndBelongToTargetPerson_success() throws Exception {
+        ModelStubWithPersonListAndTargetPerson modelStub = new ModelStubWithPersonListAndTargetPerson();
+        modelStub.addPerson(ALICE);
+        modelStub.setTargetPerson(ALICE);
+        Set<Tag> tagsToRemove = new HashSet<>();
+        tagsToRemove.add(VALID_TAG_FRIENDS);
+        // no index provided
+        CommandResult commandResult = new RemoveTagCommand(tagsToRemove).execute(modelStub);
+        assertEquals(String.format(MESSAGE_SUCCESS, Tag.toString(tagsToRemove)), commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_tagDoesNotExist_tagsNotFound() throws Exception {
+        ModelStubWithPersonListAndTargetPerson modelStub = new ModelStubWithPersonListAndTargetPerson();
+        modelStub.addPerson(ALICE);
+        Set<Tag> tagsToRemove = new HashSet<>();
+        tagsToRemove.add(new Tag("FakeTag"));
+        CommandResult commandResult = new TagCommand(Index.fromZeroBased(0), tagsToRemove).execute(modelStub);
+        assertEquals(String.format(MESSAGE_TAGS_NOT_FOUND, Tag.toString(tagsToRemove)),
+                commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_tagsExistButDoesNotBelongToPerson_tagDoesNotBelongToPersonMessage() throws Exception {
+        ModelStubWithPersonListAndTargetPerson modelStub = new ModelStubWithPersonListAndTargetPerson();
+        modelStub.addPerson(ALICE);
+        Set<Tag> tagsToRemove = new HashSet<>();
+        tagsToRemove.add(VALID_TAG_OWES_MONEY);
+        CommandResult commandResult =
+                new RemoveTagCommand(Index.fromZeroBased(0), tagsToRemove).execute(modelStub);
+        assertEquals(String.format(MESSAGE_TAGS_NOT_BELONG_TO_USER, Tag.toString(tagsToRemove)),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
