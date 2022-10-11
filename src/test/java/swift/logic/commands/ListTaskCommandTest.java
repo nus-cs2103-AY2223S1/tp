@@ -2,7 +2,8 @@ package swift.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static swift.logic.commands.CommandTestUtil.*;
+import static swift.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static swift.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static swift.testutil.TypicalTaskIndexes.INDEX_FIRST_TASK;
 import static swift.testutil.TypicalTasks.getTypicalAddressBook;
 
