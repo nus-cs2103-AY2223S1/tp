@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import java.time.LocalDate;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -24,7 +22,7 @@ class JsonAdaptedApplication {
     private final String contact;
     private final String email;
     private final String position;
-    private final LocalDate date;
+    private final String date;
 
     /**
      * Constructs a {@code JsonAdaptedApplication} with the given application details.
@@ -32,7 +30,7 @@ class JsonAdaptedApplication {
     @JsonCreator
     public JsonAdaptedApplication(@JsonProperty("company") String company, @JsonProperty("contact") String contact,
                                   @JsonProperty("email") String email, @JsonProperty("position") String position,
-                                  @JsonProperty("date") LocalDate date) {
+                                  @JsonProperty("date") String date) {
         this.company = company;
         this.contact = contact;
         this.email = email;
@@ -48,7 +46,7 @@ class JsonAdaptedApplication {
         contact = source.getContact().value;
         email = source.getEmail().value;
         position = source.getPosition().value;
-        date = source.getDate().value;
+        date = source.getDate().value.toString();
     }
 
     /**
@@ -93,10 +91,10 @@ class JsonAdaptedApplication {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        if (!Date.isValidDate(date.toString())) {
+        if (!Date.isValidDate(date)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
-        final Date modelDate = new Date(date.toString());
+        final Date modelDate = new Date(date);
 
         return new Application(modelCompany, modelContact, modelEmail, modelPosition, modelDate);
     }

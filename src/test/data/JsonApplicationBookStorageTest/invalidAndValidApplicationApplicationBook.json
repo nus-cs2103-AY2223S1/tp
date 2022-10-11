@@ -1,0 +1,15 @@
+{
+  "applications": [ {
+    "company": "Valid Application",
+    "contact": "9482424",
+    "email": "hans@example.com",
+    "position": "AI programmer",
+    "date": "2022-10-10"
+  }, {
+    "company": "Application With Invalid Contact Field",
+    "contact": "948asdf2424",
+    "email": "hans@example.com",
+    "position": "AI programmer",
+    "date": "2022-10-10"
+  } ]
+}
