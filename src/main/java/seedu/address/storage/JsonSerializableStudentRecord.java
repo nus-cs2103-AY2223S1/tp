@@ -46,15 +46,15 @@ class JsonSerializableStudentRecord {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public StudentRecord toModelType() throws IllegalValueException {
-        StudentRecord addressBook = new StudentRecord();
+        StudentRecord studentRecord = new StudentRecord();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (addressBook.hasStudent(student)) {
+            if (studentRecord.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            addressBook.addStudent(student);
+            studentRecord.addStudent(student);
         }
-        return addressBook;
+        return studentRecord;
     }
 
 }
