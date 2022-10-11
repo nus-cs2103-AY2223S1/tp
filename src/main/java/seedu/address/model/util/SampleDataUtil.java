@@ -16,6 +16,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
 
@@ -54,9 +55,10 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new TaskName("Lab2"), new Module("CS2030S"), new Deadline("2022-02-02 23:59")),
+            new Task(new TaskName("Lab2"), new Module("CS2030S"), new Deadline("2022-02-02 23:59"),
+                    new Status(false)),
             new Task(new TaskName("Problem Set 2"), new Module("CS2040S"),
-                new Deadline("2022-02-04 23:59"))
+                    new Deadline("2022-02-04 23:59"), new Status(false))
         };
 
     }

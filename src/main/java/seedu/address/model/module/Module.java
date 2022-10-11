@@ -16,7 +16,7 @@ public class Module {
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\S+";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String moduleName;
 
@@ -48,7 +48,7 @@ public class Module {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Module // instanceof handles nulls
-                && moduleName.equals(((Module) other).moduleName)); // state check
+                && moduleName.equalsIgnoreCase(((Module) other).moduleName)); // state check
     }
 
     @Override

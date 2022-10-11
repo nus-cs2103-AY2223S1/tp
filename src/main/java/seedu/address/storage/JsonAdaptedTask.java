@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
 
@@ -19,22 +20,24 @@ import seedu.address.model.task.TaskName;
 public class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
-
     private static final DateTimeFormatter DEADLINE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
 
     public final String taskName;
     public final String module;
     public final String deadline;
+    public final String status;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskName") String taskName, @JsonProperty("module") String module,
-            @JsonProperty("deadline") String deadline) {
+            @JsonProperty("deadline") String deadline, @JsonProperty("status") String status) {
         this.taskName = taskName;
         this.module = module;
         this.deadline = deadline;
+        this.status = status;
     }
 
     /**
@@ -44,6 +47,7 @@ public class JsonAdaptedTask {
         taskName = source.getName().fullName;
         module = source.getModule().moduleName;
         deadline = source.getDeadline().deadline.format(DEADLINE_FORMATTER);
+        status = source.getStatus().toString();
     }
 
     /**
@@ -81,6 +85,16 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
         Deadline modelDeadline = new Deadline(parsedDeadline);
-        return new Task(modelTaskName, modelModule, modelDeadline);
+
+        if (status == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        if (!Status.isValidStatus(status)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
+
+        Status modelStatus = new Status(status);
+        return new Task(modelTaskName, modelModule, modelDeadline, modelStatus);
     }
 }
