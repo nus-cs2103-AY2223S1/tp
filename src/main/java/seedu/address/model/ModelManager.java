@@ -17,6 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.exceptions.TeamNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -226,7 +227,7 @@ public class ModelManager implements Model {
                 return team;
             }
         }
-        throw new PersonNotFoundException();
+        throw new TeamNotFoundException();
     }
 
     // todo implementation of updateFilteredTeamList
