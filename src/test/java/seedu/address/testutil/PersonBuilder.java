@@ -21,7 +21,7 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_PERSON_CATEGORY = "Test";
+    public static final String DEFAULT_PERSON_CATEGORY = "Buyer";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
@@ -38,7 +38,7 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        personCategory = new PersonCategory(DEFAULT_PERSON_CATEGORY); // Person Category to be instantiated later
+        personCategory = PersonCategory.getFromString(DEFAULT_PERSON_CATEGORY); // Person Category to be instantiated later
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -62,7 +62,7 @@ public class PersonBuilder {
      * Sets the {@code PersonCategory} of the {@code Person} that we are building.
      */
     public PersonBuilder withPersonCategory(String personCategory) {
-        this.personCategory = new PersonCategory(personCategory);
+        this.personCategory = PersonCategory.getFromString(personCategory);
         return this;
     }
 
@@ -111,17 +111,17 @@ public class PersonBuilder {
     }
 
     public Buyer buildBuyer() {
-        personCategory = new PersonCategory("Buyer");
+        personCategory = PersonCategory.BUYER;
         return new Buyer(personCategory, name, phone, email, address, tags, new ArrayList<>());
     }
 
     public Deliverer buildDeliverer() {
-        personCategory = new PersonCategory("Deliverer");
+        personCategory = PersonCategory.DELIVERER;
         return new Deliverer(personCategory, name, phone, email, address, tags, new ArrayList<>());
     }
 
     public Supplier buildSupplier() {
-        personCategory = new PersonCategory("Supplier");
+        personCategory = PersonCategory.SUPPLIER;
         return new Supplier(personCategory, name, phone, email, address, tags, new ArrayList<>());
     }
 }

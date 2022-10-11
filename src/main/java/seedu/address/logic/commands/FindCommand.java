@@ -4,7 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Deliverer;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonCategory;
+import seedu.address.model.person.Supplier;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -54,10 +58,10 @@ public class FindCommand extends Command {
         model.updateFilteredBuyerList(bPredicate);
         model.updateFilteredDelivererList(dPredicate);
         model.updateFilteredSupplierList(sPredicate);
-        if (type.equals(new PersonCategory("Buyer"))) {
+        if (type.equals(PersonCategory.BUYER)) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredBuyerList().size()));
-        } else if (type.equals(new PersonCategory("Deliverer"))) {
+        } else if (type.equals(PersonCategory.DELIVERER)) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredDelivererList().size()));
         } else {

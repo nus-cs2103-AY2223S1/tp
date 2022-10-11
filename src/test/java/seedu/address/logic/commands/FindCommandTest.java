@@ -38,12 +38,12 @@ public class FindCommandTest {
                 new NameContainsKeywordsPredicate<>(Arrays.asList("first")),
                 new NameContainsKeywordsPredicate<>(Arrays.asList("first")),
                 new NameContainsKeywordsPredicate<>(Arrays.asList("first")),
-                new PersonCategory("Buyer"));
+                PersonCategory.BUYER);
         FindCommand findSecondCommand = new FindCommand(
                 new NameContainsKeywordsPredicate<>(Arrays.asList("second")),
                 new NameContainsKeywordsPredicate<>(Arrays.asList("second")),
                 new NameContainsKeywordsPredicate<>(Arrays.asList("second")),
-                new PersonCategory("Buyer"));
+                PersonCategory.BUYER);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
@@ -53,7 +53,7 @@ public class FindCommandTest {
                 new NameContainsKeywordsPredicate<>(Arrays.asList("first")),
                 new NameContainsKeywordsPredicate<>(Arrays.asList("first")),
                 new NameContainsKeywordsPredicate<>(Arrays.asList("first")),
-                new PersonCategory("Buyer"));
+                PersonCategory.BUYER);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -72,7 +72,7 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate<Buyer> predicate = preparePredicateBuyer("    ");
         FindCommand command = new FindCommand(predicate,
                 new NameContainsKeywordsPredicate<>(new ArrayList<>()),
-                new NameContainsKeywordsPredicate<>(new ArrayList<>()), new PersonCategory("Buyer"));
+                new NameContainsKeywordsPredicate<>(new ArrayList<>()), PersonCategory.BUYER);
         bExpectedModel.updateFilteredBuyerList(predicate);
         assertCommandSuccess(command, bModel, expectedMessage, bExpectedModel);
         assertEquals(Collections.emptyList(), bModel.getFilteredBuyerList());
@@ -85,7 +85,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate,
                 new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
                 new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
-                new PersonCategory("Buyer"));
+                PersonCategory.BUYER);
         bExpectedModel.updateFilteredBuyerList(predicate);
         assertCommandSuccess(command, bModel, expectedMessage, bExpectedModel);
         assertEquals(Arrays.asList(TypicalBuyers.CARL, TypicalBuyers.ELLE, TypicalBuyers.FIONA),
@@ -99,7 +99,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(
                 new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
                 predicate, new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
-                new PersonCategory("Deliverer"));
+                PersonCategory.DELIVERER);
         dExpectedModel.updateFilteredDelivererList(predicate);
         assertCommandSuccess(command, dModel, expectedMessage, dExpectedModel);
         assertEquals(Arrays.asList(TypicalDeliverers.CARL, TypicalDeliverers.ELLE, TypicalDeliverers.FIONA),
@@ -113,7 +113,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(
                 new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
                 new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")), predicate,
-                new PersonCategory("Supplier"));
+                PersonCategory.SUPPLIER);
         sExpectedModel.updateFilteredSupplierList(predicate);
         assertCommandSuccess(command, sModel, expectedMessage, sExpectedModel);
         assertEquals(Arrays.asList(TypicalSuppliers.CARL, TypicalSuppliers.ELLE, TypicalSuppliers.FIONA),
@@ -126,7 +126,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate,
                 new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
                 new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
-                new PersonCategory("Buyer"));
+                PersonCategory.BUYER);
         command.execute(dModel);
         assertEquals(Arrays.asList(TypicalDeliverers.CARL, TypicalDeliverers.ELLE, TypicalDeliverers.FIONA),
                 dModel.getFilteredDelivererList());
@@ -138,7 +138,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(
                 new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")), predicate,
                 new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
-                new PersonCategory("Deliverer"));
+                PersonCategory.DELIVERER);
         command.execute(sModel);
         assertEquals(Arrays.asList(TypicalSuppliers.CARL, TypicalSuppliers.ELLE, TypicalSuppliers.FIONA),
                 sModel.getFilteredSupplierList());
