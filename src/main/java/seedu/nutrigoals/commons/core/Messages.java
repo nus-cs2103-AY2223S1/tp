@@ -9,5 +9,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_MEAL_DISPLAYED_INDEX = "The meal index provided is invalid";
     public static final String MESSAGE_MEALS_LISTED_OVERVIEW = "%1$d meals listed!";
+    public static final String MESSAGE_MULTIPLE_TAGS_ERROR = "Each tag should only be used once!";
 
 }

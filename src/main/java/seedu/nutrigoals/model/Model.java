@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.meal.Food;
+import seedu.nutrigoals.model.user.User;
 
 /**
  * The API of the Model component.
@@ -102,5 +103,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFoodList(Predicate<Food> predicate);
+
+    void setUserDetails(User user);
+
+    User getUserDetails();
 
 }

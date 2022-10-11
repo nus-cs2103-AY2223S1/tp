@@ -1,6 +1,5 @@
 package seedu.nutrigoals.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,14 +7,12 @@ import static seedu.nutrigoals.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
-import seedu.nutrigoals.logic.commands.exceptions.CommandException;
 import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.NutriGoals;
@@ -23,62 +20,44 @@ import seedu.nutrigoals.model.ReadOnlyNutriGoals;
 import seedu.nutrigoals.model.ReadOnlyUserPrefs;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.user.User;
-import seedu.nutrigoals.testutil.FoodBuilder;
+import seedu.nutrigoals.testutil.UserBuilder;
 
-public class AddCommandTest {
 
+
+public class SetupCommandTest {
     @Test
-    public void constructor_nullFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullUserThrowsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new SetupCommand(null));
     }
 
     @Test
-    public void execute_foodAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingFoodAdded modelStub = new ModelStubAcceptingFoodAdded();
-        Food validFood = new FoodBuilder().build();
+    public void execute_userAcceptedByModelSuccess() throws Exception {
+        ModelStubWithUser modelStub = new ModelStubWithUser();
+        User validUser = new UserBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validFood).execute(modelStub);
+        CommandResult commandResult = new SetupCommand(validUser).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFood), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validFood), modelStub.foodsAdded);
-    }
-
-    @Test
-    public void execute_duplicateFood_throwsCommandException() {
-        Food validFood = new FoodBuilder().build();
-        AddCommand addCommand = new AddCommand(validFood);
-        ModelStub modelStub = new ModelStubWithFood(validFood);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FOOD, () -> addCommand.execute(modelStub));
+        assertEquals(String.format(SetupCommand.MESSAGE_SUCCESS, validUser), commandResult.getFeedbackToUser());
+        assertEquals(validUser, modelStub.user);
     }
 
     @Test
     public void equals() {
-        Food alice = new FoodBuilder().withName("Alice").build();
-        Food bob = new FoodBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        User userA = new UserBuilder().build();
+        User userB = new UserBuilder().withGender("F").build();
 
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        SetupCommand addUserA = new SetupCommand(userA);
+        SetupCommand addUserB = new SetupCommand(userB);
 
-        // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        assertTrue(addUserA.equals(addUserA));
 
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addUserA.equals(2));
 
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addUserA.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addUserA.equals(addUserB));
     }
 
-    /**
-     * A default model stub that have all of the methods failing.
-     */
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -133,6 +112,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
         /**
          * @return Calorie User's calorie target
          */
@@ -177,40 +157,19 @@ public class AddCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single food.
-     */
-    private class ModelStubWithFood extends ModelStub {
-        private final Food food;
 
-        ModelStubWithFood(Food food) {
-            requireNonNull(food);
-            this.food = food;
-        }
-
-        @Override
-        public boolean hasFood(Food food) {
-            requireNonNull(food);
-            return this.food.isSameFood(food);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the food being added.
-     */
-    private class ModelStubAcceptingFoodAdded extends ModelStub {
+    private class ModelStubWithUser extends ModelStub {
         final ArrayList<Food> foodsAdded = new ArrayList<>();
+        private User user = new User();
 
         @Override
-        public boolean hasFood(Food food) {
-            requireNonNull(food);
-            return foodsAdded.stream().anyMatch(food::isSameFood);
+        public User getUserDetails() {
+            return this.user;
         }
 
         @Override
-        public void addFood(Food food) {
-            requireNonNull(food);
-            foodsAdded.add(food);
+        public void setUserDetails(User newUser) {
+            this.user = newUser;
         }
 
         @Override
@@ -218,5 +177,4 @@ public class AddCommandTest {
             return new NutriGoals();
         }
     }
-
 }

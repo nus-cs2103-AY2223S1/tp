@@ -3,7 +3,7 @@ package seedu.nutrigoals.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
 /**
- *
+ * Represents a calorie object
  */
 public class Calorie {
     public static final String VALIDATION_REGEX = "\\d+";

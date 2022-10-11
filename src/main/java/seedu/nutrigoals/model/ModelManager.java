@@ -13,6 +13,7 @@ import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.commons.core.LogsCenter;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedTodayPredicate;
+import seedu.nutrigoals.model.user.User;
 
 /**
  * Represents the in-memory model of the nutrigoals data.
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final NutriGoals nutriGoals;
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoods;
+    private User user;
 
     /**
      * Initializes a ModelManager with the given nutriGoals and userPrefs.
@@ -143,6 +145,17 @@ public class ModelManager implements Model {
     public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
         filteredFoods.setPredicate(predicate);
+    }
+
+    @Override
+    public void setUserDetails(User user) {
+        requireNonNull(user);
+        nutriGoals.setUser(user);
+    }
+
+    @Override
+    public User getUserDetails() {
+        return user;
     }
 
     @Override

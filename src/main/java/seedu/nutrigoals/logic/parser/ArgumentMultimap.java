@@ -1,10 +1,15 @@
 package seedu.nutrigoals.logic.parser;
 
+import static seedu.nutrigoals.commons.core.Messages.MESSAGE_MULTIPLE_TAGS_ERROR;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import seedu.nutrigoals.logic.parser.exceptions.ParseException;
+
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -25,10 +30,16 @@ public class ArgumentMultimap {
      * @param prefix   Prefix key with which the specified argument value is to be associated
      * @param argValue Argument value to be associated with the specified prefix key
      */
-    public void put(Prefix prefix, String argValue) {
+    public void put(Prefix prefix, String argValue) throws ParseException {
         List<String> argValues = getAllValues(prefix);
-        argValues.add(argValue);
-        argMultimap.put(prefix, argValues);
+        if (argValues.size() > 0) {
+            throw new ParseException(MESSAGE_MULTIPLE_TAGS_ERROR);
+        } else {
+            argValues.add(argValue);
+            argMultimap.put(prefix, argValues);
+        }
+
+
     }
 
     /**

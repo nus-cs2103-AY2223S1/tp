@@ -68,29 +68,17 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Food} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_BREAKFAST + TAG_DESC_QUANTITY + TAG_EMPTY,
-                Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_BREAKFAST + TAG_EMPTY + TAG_DESC_QUANTITY,
-                Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_BREAKFAST + TAG_DESC_QUANTITY,
-                Tag.MESSAGE_CONSTRAINTS);
-
-        // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_CALORIE_DESC, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_MEAL;
         String userInput = targetIndex.getOneBased() + TAG_DESC_BREAKFAST
-                + NAME_DESC_BREAD + TAG_DESC_QUANTITY + VALID_CALORIE_DESC;
+                + NAME_DESC_BREAD + VALID_CALORIE_DESC;
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder()
                 .withName(VALID_BREAD_NAME)
-                .withTags(VALID_TAG_BREAKFAST, VALID_QUANTITY_TAG)
+                .withTags(VALID_TAG_BREAKFAST)
                 .withCalorie(VALID_CALORIE)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -128,21 +116,6 @@ public class EditCommandParserTest {
         userInput = targetIndex.getOneBased() + VALID_CALORIE_DESC;
         descriptor = new EditFoodDescriptorBuilder().withCalorie(VALID_CALORIE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_MEAL;
-        String userInput = targetIndex.getOneBased()
-                + TAG_DESC_BREAKFAST + TAG_DESC_BREAKFAST
-                + TAG_DESC_QUANTITY;
-
-        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder()
-                .withTags(VALID_QUANTITY_TAG, VALID_TAG_BREAKFAST)
-                .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

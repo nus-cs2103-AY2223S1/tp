@@ -3,8 +3,12 @@ package seedu.nutrigoals.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_CALORIE;
+import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_HEIGHT;
+import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_IDEAL_WEIGHT;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -36,6 +40,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_BREAKFAST = "breakfast";
     public static final String VALID_TAG_BREAKFAST_QUANTITY = "oneSlice";
     public static final String VALID_TAG_LUNCH = "lunch";
+    public static final String VALID_HEIGHT_AMOUNT = "170";
+    public static final String VALID_WEIGHT_AMOUNT = "60";
+    public static final String VALID_GENDER = "M";
 
     public static final String CALORIE_DESC_APPLE = " " + PREFIX_CALORIE + VALID_APPLE_CALORIE;
     public static final String CALORIE_DESC_BREAD = " " + PREFIX_CALORIE + VALID_BREAD_CALORIE;
@@ -47,12 +54,29 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String TAG_DESC_LUNCH = " " + PREFIX_TAG + VALID_TAG_LUNCH;
+    public static final String WEIGHT_VALID_WEIGHT = " " + PREFIX_WEIGHT + VALID_WEIGHT_AMOUNT;
+    public static final String GENDER_VALID_GENDER = " " + PREFIX_GENDER + VALID_GENDER;
+    public static final String HEIGHT_VALID_HEIGHT = " " + PREFIX_HEIGHT + VALID_HEIGHT_AMOUNT;
+    public static final String IDEAL_VALID_WEIGHT = " " + PREFIX_IDEAL_WEIGHT + VALID_WEIGHT_AMOUNT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_WEIGHT_NEGATIVE = " " + PREFIX_WEIGHT + "-40"; //negative weights not allowed
+    public static final String INVALID_WEIGHT_TOO_MUCH = " " + PREFIX_WEIGHT + "1000"; //number too large
+    public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "abc"; //should only contain integers
+    public static final String INVALID_IDEAL_NEGATIVE = " " + PREFIX_IDEAL_WEIGHT + "-40"; //no negative weights
+    public static final String INVALID_IDEAL_TOO_MUCH = " " + PREFIX_IDEAL_WEIGHT + "1000"; //number too large
+    public static final String INVALID_IDEAL_DESC = " " + PREFIX_IDEAL_WEIGHT + "abc"; //should only contain integers
+    public static final String INVALID_HEIGHT_NEGATIVE = " " + PREFIX_HEIGHT + "-40"; //negative weights not allowed
+    public static final String INVALID_HEIGHT_TOO_MUCH = " " + PREFIX_HEIGHT + "1000"; //number too large
+    public static final String INVALID_HEIGHT_DESC = " " + PREFIX_HEIGHT + "abc"; //should only contain integers
+    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "man"; //should be a single char
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+
+
 
     public static final EditCommand.EditFoodDescriptor DESC_AMY;
     public static final EditCommand.EditFoodDescriptor DESC_BOB;

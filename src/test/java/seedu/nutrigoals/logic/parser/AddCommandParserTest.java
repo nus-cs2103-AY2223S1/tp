@@ -1,6 +1,7 @@
 package seedu.nutrigoals.logic.parser;
 
 import static seedu.nutrigoals.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nutrigoals.commons.core.Messages.MESSAGE_MULTIPLE_TAGS_ERROR;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.CALORIE_DESC_APPLE;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.CALORIE_DESC_BREAD;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -13,7 +14,6 @@ import static seedu.nutrigoals.logic.commands.CommandTestUtil.TAG_DESC_LUNCH;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_APPLE_CALORIE;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_APPLE_NAME;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_BREAD_CALORIE;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -43,12 +43,9 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
                 + TAG_DESC_LUNCH, new AddCommand(expectedFood));
 
-        // multiple tags - all accepted
-        Food expectedFoodMultipleTags = new FoodBuilder(BREAD)
-                .withCalorie(VALID_BREAD_CALORIE).withTags(VALID_TAG_LUNCH, VALID_TAG_BREAKFAST)
-                .build();
-        assertParseSuccess(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
-                + TAG_DESC_LUNCH + TAG_DESC_BREAKFAST, new AddCommand(expectedFoodMultipleTags));
+        // multiple tags - should not be allowed to input multiple tags
+        assertParseFailure(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
+                + TAG_DESC_LUNCH + TAG_DESC_BREAKFAST, MESSAGE_MULTIPLE_TAGS_ERROR);
     }
 
     @Test
@@ -72,11 +69,11 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + CALORIE_DESC_BREAD
-                + TAG_DESC_BREAKFAST + TAG_DESC_LUNCH, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_BREAKFAST , Name.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
-                + INVALID_TAG_DESC + VALID_TAG_LUNCH, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // one invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + CALORIE_DESC_BREAD + TAG_DESC_LUNCH,
@@ -84,7 +81,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BREAD + CALORIE_DESC_BREAD
-                        + TAG_DESC_BREAKFAST + TAG_DESC_LUNCH,
+                        + TAG_DESC_BREAKFAST,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
