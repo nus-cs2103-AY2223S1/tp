@@ -9,7 +9,7 @@ PetCode is a software app that aims to facilitate better working experience and 
 
 Download [Petcode]() to facilitate your business now.
 
-Visit our [website](https://nus-cs2103-ay2223s1.github.io/tp/) to find out more.
+Visit our [website](https://ay2223s1-cs2103t-t09-2.github.io/tp/) to find out more.
 
 ## Site Map
 + [User Guide](/docs/UserGuide.md)

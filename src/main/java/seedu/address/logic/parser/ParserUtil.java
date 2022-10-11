@@ -1,18 +1,20 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.order.Order;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +23,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_PERSON_CATEGORY = PersonCategory.MESSAGE_CONSTRAINTS;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -111,6 +114,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String order} into an {@code Order}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Order parseOrder(String order) throws ParseException {
+        requireNonNull(order);
+        String trimmedOrder = order.trim();
+        if (!Tag.isValidTagName(trimmedOrder)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Order(trimmedOrder);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -120,5 +138,30 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> orders} into a {@code Set<Order>}.
+     */
+    public static List<Order> parseOrders(Collection<String> orders) throws ParseException {
+        requireNonNull(orders);
+        final List<Order> orderList = new ArrayList<>();
+        for (String order : orders) {
+            orderList.add(parseOrder(order));
+        }
+        return orderList;
+    }
+
+    /**
+     * Parses {@code personCategory} into a {@code PersonCategory} and returns it. Leading and trailing whitespaces
+     * will be trimmed.
+     * @throws ParseException if the specified person category is invalid (not a buyer, deliverer, or supplier).
+     */
+    public static PersonCategory parsePersonCategory(String personCategory) throws ParseException {
+        String trimmed = personCategory.trim();
+        checkArgument(PersonCategory.isValidPersonCategory(trimmed), MESSAGE_INVALID_PERSON_CATEGORY);
+        return Arrays.stream(PersonCategory.class.getEnumConstants())
+                .filter(x -> x.toString().equals(trimmed))
+                .findFirst().orElse(PersonCategory.BUYER);
     }
 }

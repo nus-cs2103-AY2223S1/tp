@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Set;
@@ -13,9 +11,9 @@ public class Supplier extends Person {
 
     private final ArrayList<Pet> petsOnSale;
 
-    public Supplier(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Pet> petsOnSale) {
-        super(name, phone, email, address, tags);
-        requireNonNull(petsOnSale);
+    public Supplier(PersonCategory personCategory, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                    ArrayList<Pet> petsOnSale) {
+        super(personCategory, name, phone, email, address, tags);
         this.petsOnSale = petsOnSale;
     }
 
@@ -45,7 +43,7 @@ public class Supplier extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getPhone(), getEmail(), getAddress(), getTags(), petsOnSale);
+        return Objects.hash(getPersonCategory(), getName(), getPhone(), getEmail(), getAddress(), getTags(), petsOnSale);
     }
 
     @Override
@@ -54,11 +52,15 @@ public class Supplier extends Person {
         int i = 1;
         builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
                 .append("Summary of pets on sale").append(System.lineSeparator());
-        for (Pet pet : petsOnSale) {
-            builder.append("======== Pet ").append(i).append(" ========").append(System.lineSeparator())
-                    .append(pet.toString()).append(System.lineSeparator());
-            i++;
+
+        if (petsOnSale != null) {
+            for (Pet pet : petsOnSale) {
+                builder.append("======== Pet ").append(i).append(" ========").append(System.lineSeparator())
+                        .append(pet.toString()).append(System.lineSeparator());
+                i++;
+            }
         }
+
         return builder.toString();
     }
 

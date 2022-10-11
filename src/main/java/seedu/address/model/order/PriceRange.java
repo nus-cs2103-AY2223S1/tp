@@ -35,7 +35,7 @@ public class PriceRange {
 
     @Override
     public String toString() {
-        return "Upper bound: " + upperBound + "; Lower bound: " + lowerBound;
+        return " " + lowerBound + " - " + upperBound;
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,18 +20,21 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final PersonCategory personCategory;
 
     // Data fields
     private final Address address;
     private final Location location;
     private final Set<Tag> tags = new HashSet<>();
+    public Order order;
 
     /**
      * Every field must be present and not null, except Location, which is
      * set by default to Singapore.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(PersonCategory personCategory, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(personCategory, name, phone, email, address, tags);
+        this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -68,7 +72,13 @@ public class Person {
         return address;
     }
 
+
     public Location getLocation() { return location; }
+
+    public PersonCategory getPersonCategory() {
+        return personCategory;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -106,7 +116,8 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getPersonCategory().equals(getPersonCategory())
+                && otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
@@ -116,7 +127,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, location, tags);
+        return Objects.hash(personCategory, name, phone, email, address, tags);
     }
 
     @Override

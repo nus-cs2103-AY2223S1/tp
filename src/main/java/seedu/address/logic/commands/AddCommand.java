@@ -12,9 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * The abstract base class of all AddCommand variations, including AddBuyerCommand, AddOrderCommand, AddPetCommand etc.
  */
-public class AddCommand extends Command {
+public abstract class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -36,32 +36,11 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Person toAdd;
-
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Construct a default base AddCommand
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
-    }
+    public AddCommand() {}
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
-    }
+    public abstract CommandResult execute(Model model) throws CommandException;
 }

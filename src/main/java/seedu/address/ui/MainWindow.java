@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "newMainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -31,7 +31,12 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private BuyerListPanel buyerListPanel;
+    private SupplierListPanel supplierListPanel;
+    private DelivererListPanel delivererListPanel;
+    private OrderListPanel orderListPanel;
+    private MainListPanel mainListPanel;
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -49,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane selectionBoxPlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,8 +118,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        buyerListPanel = new BuyerListPanel(logic.getFilteredBuyerList());
+        supplierListPanel = new SupplierListPanel(logic.getFilteredSupplierList());
+        delivererListPanel = new DelivererListPanel(logic.getFilteredDelivererList());
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
+        mainListPanel = new MainListPanel(logic.getFilteredMainList());
+
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -121,6 +135,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        SelectionBox selectionBox = new SelectionBox(this);
+        selectionBoxPlaceHolder.getChildren().add(selectionBox.getRoot());
+
     }
 
     /**
@@ -162,9 +180,32 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
     }
+    public void showAll() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
+    }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public void showBuyer() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(buyerListPanel.getRoot());
+    }
+
+    public void showSupplier() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(supplierListPanel.getRoot());
+    }
+
+    public void showDeliverer() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(delivererListPanel.getRoot());
+    }
+
+    public void showPet() {
+    }
+
+    public void showOrder() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
     }
 
     /**
@@ -193,4 +234,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }

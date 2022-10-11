@@ -1,8 +1,7 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,16 +10,20 @@ import seedu.address.model.tag.Tag;
 
 public class Buyer extends Person {
 
-    private final ArrayList<Order> orders;
+    private final List<Order> orders;
 
-
-    public Buyer(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Order> orders) {
-        super(name, phone, email, address, tags);
-        requireNonNull(orders);
+    public Buyer(PersonCategory personCategory,
+                 Name name,
+                 Phone phone,
+                 Email email,
+                 Address address,
+                 Set<Tag> tags,
+                 List<Order> orders) {
+        super(personCategory, name, phone, email, address, tags);
         this.orders = orders;
     }
 
-    public ArrayList<Order> getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
@@ -28,7 +31,7 @@ public class Buyer extends Person {
         orders.add(order);
     }
 
-    public void deleteOrder() {
+    public void deleteOrder(Order order) {
         // TODO: implement this method
     }
 
@@ -46,7 +49,7 @@ public class Buyer extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getPhone(), getEmail(), getAddress(), getTags(), orders);
+        return Objects.hash(getPersonCategory(), getName(), getPhone(), getEmail(), getAddress(), getTags(), orders);
     }
 
     @Override
@@ -55,11 +58,15 @@ public class Buyer extends Person {
         int i = 1;
         builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
                 .append("Order summary").append(System.lineSeparator());
-        for (Order order : orders) {
-            builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
-                    .append(order.toString()).append(System.lineSeparator());
-            i++;
+
+        if (orders != null) {
+            for (Order order : orders) {
+                builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
+                        .append(order.toString()).append(System.lineSeparator());
+                i++;
+            }
         }
+
         return builder.toString();
     }
 
