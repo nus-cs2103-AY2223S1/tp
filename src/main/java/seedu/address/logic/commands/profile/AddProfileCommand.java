@@ -33,7 +33,7 @@ public class AddProfileCommand extends ProfileCommand {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New profile added: \n%1$s";
+    public static final String MESSAGE_SUCCESS = "New profile added:\n%1$s";
     public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the address book";
 
     private final Profile toAdd;
