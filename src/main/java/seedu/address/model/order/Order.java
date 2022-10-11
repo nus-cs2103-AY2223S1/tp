@@ -39,7 +39,7 @@ public class Order {
         this.additionalRequests = additionalRequests;
         this.byDate = byDate;
         this.settledPrice = settledPrice;
-        status = OrderStatus.getPendingStatus();
+        status = OrderStatus.PENDING;
     }
 
     public void setBuyer(Buyer buyer) {
