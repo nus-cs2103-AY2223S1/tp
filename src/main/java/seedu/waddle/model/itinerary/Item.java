@@ -38,9 +38,7 @@ public class Item {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
                 .append("; Priority: ")
-                // .append(getPriority())
                 .append("; Category: ");
-                // . append(getCategory());
         return builder.toString();
     }
 }

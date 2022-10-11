@@ -7,10 +7,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.waddle.commons.core.LogsCenter;
 import seedu.waddle.model.itinerary.Item;
-import seedu.waddle.model.itinerary.Itinerary;
 
 import java.util.logging.Logger;
 
+/**
+ * Panel containing the list of Items.
+ */
 public class ItemListPanel extends UiPart<Region> {
     private static final String FXML = "ItemListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ItemListPanel.class);

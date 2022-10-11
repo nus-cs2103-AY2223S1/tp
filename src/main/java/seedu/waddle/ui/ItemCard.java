@@ -37,6 +37,7 @@ public class ItemCard extends UiPart<Region> {
         // category.setText(item.getCategory());
     }
 
+    @Override
     public boolean equals(Object other) {
         // short circuit if same object
         if (other == this) {

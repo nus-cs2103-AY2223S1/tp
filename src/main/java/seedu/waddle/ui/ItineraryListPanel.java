@@ -11,7 +11,7 @@ import seedu.waddle.commons.core.LogsCenter;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of Iineraries.
  */
 public class ItineraryListPanel extends UiPart<Region> {
     private static final String FXML = "ItineraryListPanel.fxml";
