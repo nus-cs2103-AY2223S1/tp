@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import tracko.model.order.Order;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of an {@code Order}.
  */
 public class OrderCard extends UiPart<Region> {
 

@@ -3,7 +3,6 @@ package tracko.logic.parser.item;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
-import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.HashSet;
@@ -22,9 +21,8 @@ import tracko.model.items.ItemName;
 import tracko.model.items.Quantity;
 
 /**
- * Parse inout arguments and creates a new/update AddItemCommand Object
+ * Parses input arguments and creates a new/update AddItemCommand Object.
  */
-
 public class AddItemCommandParser implements Parser<AddItemCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddItemCommand
@@ -34,9 +32,9 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
     public AddItemCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ITEM, PREFIX_NAME, PREFIX_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM, PREFIX_NAME, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
         }
