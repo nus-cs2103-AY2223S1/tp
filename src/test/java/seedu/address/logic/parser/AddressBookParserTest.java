@@ -31,6 +31,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addProfile() throws Exception {
         Profile profile = new ProfileBuilder().build();
+        String userInput = ProfileUtil.getAddProfileCommand(profile);
         AddProfileCommand command =
                 (AddProfileCommand) parser.parseCommand(ProfileUtil.getAddProfileCommand(profile));
         assertEquals(new AddProfileCommand(profile), command);

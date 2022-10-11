@@ -53,7 +53,7 @@ class JsonAdaptedProfile {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        telegram = source.getTelegram().username;
+        telegram = source.getTelegram().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

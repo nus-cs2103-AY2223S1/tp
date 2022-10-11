@@ -52,7 +52,7 @@ public class ProfileCard extends UiPart<Region> {
         phone.setText(profile.getPhone().value);
         email.setText(profile.getEmail().value);
         if (!profile.getTelegram().isEmpty()) {
-            Label telegramLabel = new Label(profile.getTelegram().username);
+            Label telegramLabel = new Label(profile.getTelegram().value);
             telegram.getChildren().add(telegramLabel);
         }
         profile.getTags().stream()

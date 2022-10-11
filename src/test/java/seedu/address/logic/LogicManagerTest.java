@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProfiles.AMY;
@@ -83,7 +84,7 @@ public class LogicManagerTest {
         // Execute add command
         String addProfileCommand = AddProfileCommand.COMMAND_WORD + " " + PREFIX_OPTION
                 + AddProfileCommand.COMMAND_OPTION
-                + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
+                + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + TELEGRAM_DESC_AMY;
         Profile expectedProfile = new ProfileBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addProfile(expectedProfile);
