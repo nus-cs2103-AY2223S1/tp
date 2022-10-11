@@ -27,7 +27,7 @@ If you can type fast, and struggle with managing all your students' information,
 
    * **`list`** : Lists all student records.
 
-   * **`new student`**`n/Jonathan Tan id/123A pn/George Tan a/Kent Ridge View hp/91234567` : Adds a new student named `Jonathan Tan` with his details to *Class-ify*.
+   * **`addstud`**`nm/John Doe id/928C pn/Bob Doe hp/98765432 ad/311, Clementi Ave 2, #02-25` : Adds a new student named `Jonathan Tan` with his details to *Class-ify*.
 
    * **`delete`**`n/Jonathan Tan` : Deletes the student record with name of student as 'Jonathan Tan'.
 
@@ -41,24 +41,25 @@ If you can type fast, and struggle with managing all your students' information,
 
 ## Features
 
-### Creating a new student record : `new student`
+### Creating a new student record : `addstud`
 
 Creates a new student record with the name of the student and other relevant details such as:
 
-* Student ID
+* Student ID (last 4 digits of NRIC)
 * Name of Parent
 * Home Address
 * Mobile Number of Parent
+* Tags (Optional)
 
-Format: `new student n/[name of student] id/[id of student] pn/[name of parent] a/[home address] hp/[mobile number of parent]`
+Format: `addstud nm/[name of student] id/[id of student] pn/[name of parent] hp/[mobile number of parent] ad/[home address] [t/[tags]]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-All fields are compulsory and cannot be left empty.
+All fields are compulsory and except for the tag field. A student can have multiple tags.
 </div>
 
 Examples:
-* `new student n/Jonathan Tan id/123A pn/George Tan a/10 Kent Ridge View hp/91234567`
-* `new student n/Sally Teo id/789B pn/Amy Toh a/200 River Valley Street hp/97654321`
+* `addstud nm/John Doe id/928C pn/Bob Doe hp/98765432 ad/311, Clementi Ave 2, #02-25 t/Peanut-Allergy t/No-Seafood`
+* `addstud nm/Alex Yeoh id/123A pn/Bernice Yu hp/99272758 ad/Blk 30 Lorong 3 Serangoon Gardens, #07-18`
 
 ### Listing all students : `view all`
 
@@ -141,13 +142,13 @@ Class-ify will discard all data and start with an empty data file at the next ru
 
 ## Command summary
 
-|                 Action                | Format                                                                                                                  | Example                                                                          |  
-|:-------------------------------------:|:------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
-|         Add individual student        | `new student n/[name of student] id/[ID of student] pn/[name of parent] a/[home address] hp/[mobile number of parent]`  | _new student n/Jonathan Tan id/123A pn/George Tan a/Kent Ridge View hp/91234567_ |
-|      View all student information     | `view all`                                                                                                              | _view all_                                                                       |
-|  View individual student information  | `view n/[name]` or `view id/[id]`                                                                                       | _view n/Jonathan Tan_                                                            |
-| Update individual student information | `update [index] n/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                     | _update 1 a/Kent Ridge View_                                                     |
-|       Delete individual student       | `delete n/[name]` or `delete id/[id]`                                                                                   | _delete n/Jonathan Tan *or* delete id/123A_                                      |
-|                  Exit                 | `exit`                                                                                                                  | _exit_                                                                           |
+|                 Action                | Format                                                                                                                          | Example                                                                                               |  
+|:-------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------|
+|         Add individual student        | `addstud nm/[name of student] id/[id of student] pn/[name of parent] hp/[mobile number of parent] ad/[home address] [t/[tags]]` | _addstud nm/Alex Yeoh id/123A pn/Bernice Yu hp/99272758 ad/Blk 30 Lorong 3 Serangoon Gardens, #07-18_ |
+|      View all student information     | `view all`                                                                                                                      | _view all_                                                                                            |
+|  View individual student information  | `view n/[name]` or `view id/[id]`                                                                                               | _view n/Jonathan Tan_                                                                                 |
+| Update individual student information | `update [index] n/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                             | _update 1 a/Kent Ridge View_                                                                          |
+|       Delete individual student       | `delete n/[name]` or `delete id/[id]`                                                                                           | _delete n/Jonathan Tan *or* delete id/123A_                                                           |
+|                  Exit                 | `exit`                                                                                                                          | _exit_                                                                                                |
 
                                                                                                                               
