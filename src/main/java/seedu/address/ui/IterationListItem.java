@@ -18,6 +18,8 @@ public class IterationListItem extends UiPart<Region> {
     @FXML
     private VBox iterationListItem;
     @FXML
+    private Label id;
+    @FXML
     private Label date;
     @FXML
     private Label description;
@@ -28,9 +30,10 @@ public class IterationListItem extends UiPart<Region> {
     /**
      * Creates a {@code IterationListItem} with the given {@code Iteration} and index to display.
      */
-    public IterationListItem(Iteration iteration) {
+    public IterationListItem(Iteration iteration, int displayIndex) {
         super(FXML);
         this.iteration = iteration;
+        id.setText(displayIndex + ". ");
         date.setText(iteration.getDate().date.toString());
         description.setText(iteration.getDescription().description);
         feedback.setText(iteration.getFeedback().feedback);

@@ -398,3 +398,21 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#iterationListView.list-view {
+    -fx-padding: 0px;
+    -fx-background-color: #15181F;
+    -fx-background-radius: 4px;
+}
+
+#iterationListView .list-cell {
+    -fx-padding: 16px;
+    -fx-border-width: 0px;
+    -fx-background-color: transparent, #1E2128;
+    -fx-background-insets: 0px, 8px;
+    -fx-background-radius: 4px;
+}
+
+#iterationListView .list-cell:empty {
+    -fx-background-color: transparent;
+}

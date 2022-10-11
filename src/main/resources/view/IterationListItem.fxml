@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
 
 <VBox id="iterationListItem" fx:id="iterationListItem"
-      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-      minWidth="320" minHeight="90">
-    <Label fx:id="id" styleClass="cell_big_label" text="\$id"/>
-    <Label fx:id="date" styleClass="cell_big_label" text="\$date"/>
-    <Label fx:id="description" styleClass="cell_big_label" text="\$description"/>
-    <Label fx:id="feedback" styleClass="cell_big_label" text="\$feedback"/>
+      xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" prefWidth="0">
+    <BorderPane>
+        <left>
+            <Label fx:id="id" styleClass="cell_small_label" text="\$id"/>
+        </left>
+        <center>
+            <HBox alignment="CENTER_LEFT">
+                <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+            </HBox>
+        </center>
+        <right>
+            <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+        </right>
+        <VBox.margin>
+            <Insets top="4.0" />
+        </VBox.margin>
+    </BorderPane>
+    <Label fx:id="feedback" styleClass="cell_small_label" text="\$feedback" />
+    <VBox.margin>
+        <Insets bottom="4.0" />
+    </VBox.margin>
 </VBox>
