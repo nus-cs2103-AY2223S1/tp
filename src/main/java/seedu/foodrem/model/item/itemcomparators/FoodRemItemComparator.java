@@ -1,4 +1,4 @@
-package seedu.foodrem.model;
+package seedu.foodrem.model.item.itemcomparators;
 
 import java.util.Comparator;
 

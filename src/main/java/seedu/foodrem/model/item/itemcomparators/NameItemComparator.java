@@ -1,6 +1,6 @@
-package seedu.foodrem.model.item;
+package seedu.foodrem.model.item.itemcomparators;
 
-import seedu.foodrem.model.FoodRemItemComparator;
+import seedu.foodrem.model.item.Item;
 
 /**
  * Comparator comparing between ItemNames in lexicographical order.

@@ -3,8 +3,8 @@ package seedu.foodrem.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.foodrem.commons.core.Messages;
-import seedu.foodrem.model.FoodRemItemComparator;
 import seedu.foodrem.model.Model;
+import seedu.foodrem.model.item.itemcomparators.FoodRemItemComparator;
 
 /**
  * Sorts a list of all items in FoodRem depending on the
