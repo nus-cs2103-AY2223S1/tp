@@ -403,17 +403,25 @@ otherwise)
 
 **MSS**
 
-1. User requests to add attendance.
-2. SETA updates student's attendance.
+1. User requests to list students.
+2. SETA shows a list of students.
+3. User requests to add attendance to a specific student in the list.
+4. SETA adds attendance to the student.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Resulting attendance is negative.
-    * 1a1. SETA shows an error message.
+* 2a. The list is empty.
 
-      Use case ends.
+  Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. SETA shows an error message. Use case resumes at step 2.
+
+* 3b. Resulting attendance is negative.
+    * 3b1. SETA shows an error message.
+
+      Use case resumes at step 2.
 
 ****
 
