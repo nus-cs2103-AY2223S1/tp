@@ -10,13 +10,13 @@
     "allowed_elements": ["sub", "sup"]
   },
   "MD035": { // Horizontal rule style
-    "style": "----"
+    "style": "---"
   },
   "MD044": { // Proper names should have the correct capitalization
     "names": ["FoodRem"]
   },
   "MD046": { // Code block style
-    "style": "indented"
+    "style": "fenced"
   },
   "MD048": { // Code fence style
     "style": "backtick"
