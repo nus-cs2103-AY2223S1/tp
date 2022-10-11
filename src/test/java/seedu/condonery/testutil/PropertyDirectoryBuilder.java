@@ -1,7 +1,7 @@
 package seedu.condonery.testutil;
 
 import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.person.Person;
+import seedu.condonery.model.property.Property;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -23,8 +23,8 @@ public class PropertyDirectoryBuilder {
     /**
      * Adds a new {@code Person} to the {@code PropertyDirectory} that we are building.
      */
-    public PropertyDirectoryBuilder withPerson(Person person) {
-        propertyDirectory.addPerson(person);
+    public PropertyDirectoryBuilder withProperty(Property property) {
+        propertyDirectory.addProperty(property);
         return this;
     }
 

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.person.Person;
 
 /**
@@ -59,17 +58,6 @@ public class TypicalPersons {
 
     private TypicalPersons() {
     } // prevents instantiation
-
-    /**
-     * Returns an {@code PropertyDirectory} with all the typical persons.
-     */
-    public static PropertyDirectory getTypicalPropertyDirectory() {
-        PropertyDirectory ab = new PropertyDirectory();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-        }
-        return ab;
-    }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));

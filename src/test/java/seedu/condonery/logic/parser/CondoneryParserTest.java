@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.condonery.testutil.Assert.assertThrows;
-import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,17 +17,17 @@ import seedu.condonery.logic.commands.AddCommand;
 import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.DeleteCommand;
 import seedu.condonery.logic.commands.EditCommand;
-import seedu.condonery.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.ListCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
-import seedu.condonery.model.person.NameContainsKeywordsPredicate;
-import seedu.condonery.model.person.Person;
-import seedu.condonery.testutil.EditPersonDescriptorBuilder;
-import seedu.condonery.testutil.PersonBuilder;
-import seedu.condonery.testutil.PersonUtil;
+import seedu.condonery.model.property.NameContainsKeywordsPredicate;
+import seedu.condonery.model.property.Property;
+import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
+import seedu.condonery.testutil.PropertyBuilder;
+import seedu.condonery.testutil.PropertyUtil;
 
 public class CondoneryParserTest {
 
@@ -35,9 +35,9 @@ public class CondoneryParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Property property = new PropertyBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(PropertyUtil.getAddCommand(property));
+        assertEquals(new AddCommand(property), command);
     }
 
     @Test
@@ -49,17 +49,17 @@ public class CondoneryParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PROPERTY.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_PROPERTY), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Property property = new PropertyBuilder().build();
+        EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(property).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+            + INDEX_FIRST_PROPERTY.getOneBased() + " " + PropertyUtil.getEditPropertyDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_PROPERTY, descriptor), command);
     }
 
     @Test

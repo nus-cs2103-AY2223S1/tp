@@ -16,7 +16,7 @@ import seedu.condonery.model.property.Property;
 /**
  * An Immutable PropertyDirectory that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "propertyDirectory")
 class JsonSerializablePropertyDirectory {
 
     public static final String MESSAGE_DUPLICATE_PROPERTY = "Properties list contains duplicate property(s).";

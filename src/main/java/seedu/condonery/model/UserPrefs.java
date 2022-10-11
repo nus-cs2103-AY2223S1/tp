@@ -14,7 +14,8 @@ import seedu.condonery.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path propertyDirectoryFilePath = Paths.get("data" , "addressbook.json");
+    private Path propertyDirectoryFilePath = Paths.get("data" , "propertyDirectory.json");
+    private Path clientDirectoryFilePath = Paths.get("data" , "clientDirectory.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -51,9 +52,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return propertyDirectoryFilePath;
     }
 
+    public Path getClientDirectoryFilePath() {
+        return clientDirectoryFilePath;
+    }
+
     public void setPropertyDirectoryFilePath(Path propertyDirectoryFilePath) {
         requireNonNull(propertyDirectoryFilePath);
         this.propertyDirectoryFilePath = propertyDirectoryFilePath;
+    }
+
+    public void setClientDirectoryFilePath(Path clientDirectoryFilePath) {
+        requireNonNull(clientDirectoryFilePath);
+        this.clientDirectoryFilePath = clientDirectoryFilePath;
     }
 
     @Override

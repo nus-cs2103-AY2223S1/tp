@@ -1,10 +1,12 @@
-package seedu.condonery.logic.commands;
+package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.condonery.logic.commands.Command;
+import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.property.Property;
@@ -12,9 +14,9 @@ import seedu.condonery.model.property.Property;
 /**
  * Adds a property to Condonery.
  */
-public class AddCommand extends Command {
+public class AddPropertyCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add -p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to Condonery. "
             + "Parameters: "
@@ -35,7 +37,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Property}
      */
-    public AddCommand(Property property) {
+    public AddPropertyCommand(Property property) {
         requireNonNull(property);
         toAdd = property;
     }
@@ -55,7 +57,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddPropertyCommand // instanceof handles nulls
+                && toAdd.equals(((AddPropertyCommand) other).toAdd));
     }
 }
