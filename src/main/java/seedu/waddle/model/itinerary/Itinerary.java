@@ -1,10 +1,10 @@
 package seedu.waddle.model.itinerary;
 
-import seedu.waddle.model.item.ItemList;
-
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
+import seedu.waddle.model.item.ItemList;
 
 /**
  * Represents a Person in the address book.
