@@ -49,7 +49,7 @@ public class MyInsuRecParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
-                DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST_ELEMENT.getOneBased());
+                DeleteClientCommand.COMMAND_WORD + " i/" + INDEX_FIRST_ELEMENT.getOneBased());
         assertEquals(new DeleteClientCommand(INDEX_FIRST_ELEMENT), command);
     }
 
@@ -57,7 +57,7 @@ public class MyInsuRecParserTest {
     public void parseCommand_edit() throws Exception {
         Client client = new ClientBuilder().build();
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " i/"
                 + INDEX_FIRST_ELEMENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_ELEMENT, descriptor), command);
     }

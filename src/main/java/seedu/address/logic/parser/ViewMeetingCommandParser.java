@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
@@ -18,6 +19,7 @@ public class ViewMeetingCommandParser implements Parser<ViewMeetingCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewMeetingCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
 
         Index index;

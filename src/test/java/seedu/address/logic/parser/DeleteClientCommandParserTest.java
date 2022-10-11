@@ -22,12 +22,12 @@ public class DeleteClientCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteClientCommand(INDEX_FIRST_ELEMENT));
+        assertParseSuccess(parser, " i/1", new DeleteClientCommand(INDEX_FIRST_ELEMENT));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a",
+        assertParseFailure(parser, " i/a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE));
     }
 }
