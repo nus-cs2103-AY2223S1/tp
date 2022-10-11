@@ -101,6 +101,11 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
+     * Returns true if a task with {@code module} exists in the task list.
+     */
+    boolean hasTaskWithModule(Module module);
+
+    /**
      * Adds the given task.
      * {@code task} must not already exist in the task list.
      */
@@ -117,6 +122,18 @@ public interface Model {
     ObservableList<Task> getFilteredTaskList();
 
     boolean hasModule(Module module);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the address book.
+     */
+    void deleteTask(Task target);
+
+    /**
+     * Deletes the given module.
+     * The module must exist in the address book.
+     */
+    void deleteModule(Module target);
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.

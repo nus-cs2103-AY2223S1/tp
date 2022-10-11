@@ -9,6 +9,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * This class represents a list which contains Module objects which are distinct from
@@ -49,6 +52,17 @@ public class DistinctModuleList implements Iterable<Module> {
     public void setModules(List<Module> modules) {
         requireAllNonNull(modules);
         moduleList.setAll(modules);
+    }
+
+    /**
+     * Removes the equivalent module from the module list.
+     * The module must exist in the list.
+     */
+    public void remove(Module toRemove) {
+        requireNonNull(toRemove);
+        if (!moduleList.remove(toRemove)) {
+            throw new ModuleNotFoundException();
+        }
     }
 
     @Override
