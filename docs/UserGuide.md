@@ -61,14 +61,13 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 ### Adding an internship application: `add`
-###### (coming soon)
 
 Adds an internship to the tracker.
 
-Format: `add [TITLE]`
+Format: `add [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE]`
 
 Examples:
-* `add software engineer internship at Apple`
+* `add c/APPLE l/https://jobs.apple.com/en-sg d/Software Engineering Internship a/11-10-2022`
 
 ### Marking an internship application status: `mark` 
 

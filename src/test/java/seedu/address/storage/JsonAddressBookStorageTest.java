@@ -50,15 +50,21 @@ public class JsonAddressBookStorageTest {
         assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void readAddressBook_invalidInternshipAddressBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAddressBook("invalidInternshipAddressBook.json"));
     }
+    */
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void readAddressBook_invalidAndValidInternshipAddressBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidInternshipAddressBook.json"));
     }
+    */
 
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {

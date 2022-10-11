@@ -16,47 +16,47 @@ import seedu.address.model.tag.Tag;
 public class Internship {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Company company;
+    private final Link link;
+    private final Description description;
     private final ApplicationStatus applicationStatus;
 
     // Data fields
-    private final Address address;
+    private final AppliedDate appliedDate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Internship(Name name, Phone phone, Email email, ApplicationStatus applicationStatus,
-                      Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
+    public Internship(Company company, Link link, Description description, ApplicationStatus applicationStatus,
+                      AppliedDate appliedDate, Set<Tag> tags) {
+        requireAllNonNull(company, link, description, appliedDate, tags);
+        this.company = company;
+        this.link = link;
+        this.description = description;
         this.applicationStatus = applicationStatus;
-        this.address = address;
+        this.appliedDate = appliedDate;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Company getCompany() {
+        return company;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Link getLink() {
+        return link;
     }
 
-    public Email getEmail() {
-        return email;
+    public Description getDescription() {
+        return description;
     }
 
     public ApplicationStatus getApplicationStatus() {
         return applicationStatus;
     }
 
-    public Address getAddress() {
-        return address;
+    public AppliedDate getAppliedDate() {
+        return appliedDate;
     }
 
     /**
@@ -68,7 +68,7 @@ public class Internship {
     }
 
     /**
-     * Returns true if both internships have the same name.
+     * Returns true if both internships have the same company.
      * This defines a weaker notion of equality between two internships.
      */
     public boolean isSameInternship(Internship otherInternship) {
@@ -77,7 +77,7 @@ public class Internship {
         }
 
         return otherInternship != null
-                && otherInternship.getName().equals(getName());
+                && otherInternship.getCompany().equals(getCompany());
     }
 
     /**
@@ -95,32 +95,32 @@ public class Internship {
         }
 
         Internship otherInternship = (Internship) other;
-        return otherInternship.getName().equals(getName())
-                && otherInternship.getPhone().equals(getPhone())
-                && otherInternship.getEmail().equals(getEmail())
+        return otherInternship.getCompany().equals(getCompany())
+                && otherInternship.getLink().equals(getLink())
+                && otherInternship.getDescription().equals(getDescription())
                 && otherInternship.getApplicationStatus().equals(getApplicationStatus())
-                && otherInternship.getAddress().equals(getAddress())
+                && otherInternship.getAppliedDate().equals(getAppliedDate())
                 && otherInternship.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, applicationStatus, address, tags);
+        return Objects.hash(company, link, description, applicationStatus, appliedDate, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
+        builder.append(getCompany())
+                .append("; Link: ")
+                .append(getLink())
+                .append("; Description: ")
+                .append(getDescription())
                 .append("; Application Status: ")
                 .append(getApplicationStatus())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; AppliedDate: ")
+                .append(getAppliedDate());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.internship.Address;
 import seedu.address.model.internship.ApplicationStatus;
-import seedu.address.model.internship.Email;
+import seedu.address.model.internship.AppliedDate;
+import seedu.address.model.internship.Company;
+import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Name;
-import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,8 +25,8 @@ class JsonAdaptedInternship {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Internship's %s field is missing!";
 
-    private final String name;
-    private final String phone;
+    private final String company;
+    private final String link;
     private final String email;
     private final String applicationStatus;
     private final String address;
@@ -36,13 +36,13 @@ class JsonAdaptedInternship {
      * Constructs a {@code JsonAdaptedInternship} with the given internship details.
      */
     @JsonCreator
-    public JsonAdaptedInternship(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedInternship(@JsonProperty("name") String company, @JsonProperty("phone") String link,
                                  @JsonProperty("email") String email,
                                  @JsonProperty("applicationStatus") String applicationStatus,
                                  @JsonProperty("address") String address,
                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
-        this.phone = phone;
+        this.company = company;
+        this.link = link;
         this.email = email;
         this.applicationStatus = applicationStatus;
         this.address = address;
@@ -55,11 +55,11 @@ class JsonAdaptedInternship {
      * Converts a given {@code Internship} into this class for Jackson use.
      */
     public JsonAdaptedInternship(Internship source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
+        company = source.getCompany().value;
+        link = source.getLink().value;
+        email = source.getDescription().value;
         applicationStatus = source.getApplicationStatus().toString().toLowerCase();
-        address = source.getAddress().value;
+        address = source.getAppliedDate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -76,29 +76,32 @@ class JsonAdaptedInternship {
             internshipTags.add(tag.toModelType());
         }
 
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (company == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Company.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!Company.isValidCompany(company)) {
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Company modelCompany = new Company(company);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (link == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Link.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Link.isValidLink(link)) {
+            throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Link modelLink = new Link(link);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Description.isValidDescription(email)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Description modelDescription = new Description(email);
 
         if (applicationStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -107,15 +110,17 @@ class JsonAdaptedInternship {
         final ApplicationStatus modelApplicationStatus = ApplicationStatus.parse(applicationStatus);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    AppliedDate.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!AppliedDate.isValidAppliedDate(address)) {
+            throw new IllegalValueException(AppliedDate.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final AppliedDate modelAppliedDate = new AppliedDate(address);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelName, modelPhone, modelEmail, modelApplicationStatus, modelAddress, modelTags);
+        return new Internship(modelCompany, modelLink, modelDescription,
+                modelApplicationStatus, modelAppliedDate, modelTags);
     }
 
 }
