@@ -62,7 +62,7 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
 
 ### Adding a student: `add`
 
-Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, and Mastery Check date. 
+Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, and Mastery Check date.
 
 Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE]`
 
@@ -86,7 +86,7 @@ Deletes the student at the given index from FRIDAY.
 Format: `delete i/INDEX`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index of the student can be seen from the student list. 
+The index of the student can be seen from the student list.
 
 </div>
 

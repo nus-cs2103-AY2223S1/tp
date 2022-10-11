@@ -3,7 +3,7 @@
 ![Ui](docs/images/Ui.png)
 
 # FRIDAY
-FRIDAY is a one easy-to-access desktop app for you to track your student's progress, optimized for use via a 
+FRIDAY is a one easy-to-access desktop app for you to track your student's progress, optimized for use via a
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 FRIDAY can get your student's progress management tasks done faster than traditional GUI apps !
 
