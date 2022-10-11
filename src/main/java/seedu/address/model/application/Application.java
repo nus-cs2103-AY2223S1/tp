@@ -1,5 +1,7 @@
 package seedu.address.model.application;
 
+import seedu.address.model.application.interview.Interview;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -16,17 +18,19 @@ public class Application {
     private final Email email;
     private final Position position;
     private final Date date;
+    private final Interview interview;
 
     /**
      * Every field must be present and not null.
      */
-    public Application(Company company, Contact contact, Email email, Position position, Date date) {
-        requireAllNonNull(company, contact, email, position, date);
+    public Application(Company company, Contact contact, Email email, Position position, Date date, Interview interview) {
+        requireAllNonNull(company, contact, email, position, date, interview);
         this.company = company;
         this.contact = contact;
         this.email = email;
         this.position = position;
         this.date = date;
+        this.interview = interview;
     }
 
     public Company getCompany() {
@@ -46,6 +50,9 @@ public class Application {
     }
     public Date getDate() {
         return date;
+    }
+    public Interview getInterview() {
+        return interview;
     }
 
     /**
@@ -81,13 +88,14 @@ public class Application {
                 && otherApplication.getContact().equals(getContact())
                 && otherApplication.getEmail().equals(getEmail())
                 && otherApplication.getPosition().equals(getPosition())
-                && otherApplication.getDate().equals(getDate());
+                && otherApplication.getDate().equals(getDate())
+                && otherApplication.getInterview().equals((getInterview()));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, contact, email, position, date);
+        return Objects.hash(company, contact, email, position, date, interview);
     }
 
     @Override
@@ -101,7 +109,9 @@ public class Application {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Apply on: ")
-                .append(getDate());
+                .append(getDate())
+                .append("; Interview: ")
+                .append(getInterview());
 
         return builder.toString();
     }

@@ -88,8 +88,7 @@ public class Interview {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Interview: ")
-                .append(getRound())
+        builder.append(getRound())
                 .append("; Date: ")
                 .append(getInterviewDate())
                 .append("; Time: ")
