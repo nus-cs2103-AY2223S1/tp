@@ -97,7 +97,7 @@ class FocusCommandTest {
         }
 
         public boolean isFocusedModuleClass(ModuleClass moduleClass) {
-            return this.focusedClass.isSameModuleClass(moduleClass);
+            return this.focusedClass.isSame(moduleClass);
         }
     }
 }

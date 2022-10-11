@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
-import seedu.taassist.model.student.exceptions.DuplicateStudentException;
+import seedu.taassist.model.uniquelist.exceptions.DuplicateElementException;
 import seedu.taassist.testutil.StudentBuilder;
 
 public class TaAssistTest {
@@ -54,7 +54,7 @@ public class TaAssistTest {
         List<ModuleClass> newModuleClasses = Arrays.asList(); // TODO: Add test case for classes too
         TaAssistStub newData = new TaAssistStub(newStudents, newModuleClasses);
 
-        assertThrows(DuplicateStudentException.class, () -> taAssist.resetData(newData));
+        assertThrows(DuplicateElementException.class, () -> taAssist.resetData(newData));
     }
 
     @Test

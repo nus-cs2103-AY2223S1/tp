@@ -142,7 +142,7 @@ public class ModelManager implements Model {
         taAssist.removeModuleClass(target);
 
         // TODO: Should an Exception be thrown instead?
-        if (target.isSameModuleClass(focusedClass)) {
+        if (target.isSame(focusedClass)) {
             exitFocusMode();
         }
     }
@@ -152,7 +152,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedModuleClass);
         taAssist.setModuleClass(target, editedModuleClass);
 
-        if (target.isSameModuleClass(focusedClass)) {
+        if (target.isSame(focusedClass)) {
             enterFocusMode(editedModuleClass);
         }
     }
@@ -222,7 +222,7 @@ public class ModelManager implements Model {
         // This is done as the passed in module class might not be the exact module class needed.
         // Hence, it should look for the module class with equivalent identity in taAssist.
         // As it's taAssist's module class that contains the actual Session content.
-        this.focusedClass = taAssist.findModuleClass(classToFocus).get();
+        this.focusedClass = taAssist.findModuleClass(classToFocus);
 
         focusLabelProperty.set(String.format(FOCUS_LABEL_FORMAT, focusedClass));
         IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(focusedClass);
