@@ -11,8 +11,8 @@ public class Category {
 
     public static final String MESSAGE_CONSTRAINTS = "Category names can be only N or P, N for nurse and P for patient";
     public static final String NURSE_SYMBOL = "N";
-    public static final String PATIENT_SYMBOL ="P";
-    public static final String VALIDATION_REGEX = "[" + NURSE_SYMBOL +  "|" + PATIENT_SYMBOL + "]";
+    public static final String PATIENT_SYMBOL = "P";
+    public static final String VALIDATION_REGEX = "[" + NURSE_SYMBOL + "|" + PATIENT_SYMBOL + "]";
 
     public final String categoryName;
 

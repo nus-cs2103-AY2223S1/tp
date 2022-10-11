@@ -12,8 +12,8 @@ import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Nurse;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
@@ -25,11 +25,11 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePatients() {
         return new Person[] {
-            new Nurse(new Uid("1"),new Name("Betsy"), new Gender("F"), new Phone("98345432"),
+            new Nurse(new Uid("1"), new Name("Betsy"), new Gender("F"), new Phone("98345432"),
                 new Email("betsy@example.com"), new Address("Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-01"),
                 getTagSet("Pediatric", "heartDiseaseSpecialist")),
-            new Nurse(new Uid("2"),new Name("Jason"), new Gender("M"), new Phone("98723432"), new Email("jason@example.com"),
-                new Address("Blk 855 Woodlands Street 83, Singapore 730855 #01-01"),
+            new Nurse(new Uid("2"), new Name("Jason"), new Gender("M"), new Phone("98723432"),
+                new Email("jason@example.com"), new Address("Blk 855 Woodlands Street 83, Singapore 730855 #01-01"),
                 getTagSet("asthmaSpecialist")),
             new Patient(new Uid("3"), new Name("Alex Yeoh"), new Gender("M"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),

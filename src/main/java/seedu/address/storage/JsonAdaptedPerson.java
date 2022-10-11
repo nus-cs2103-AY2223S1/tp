@@ -1,5 +1,8 @@
 package seedu.address.storage;
 
+import static seedu.address.model.category.Category.NURSE_SYMBOL;
+import static seedu.address.model.category.Category.PATIENT_SYMBOL;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,15 +20,12 @@ import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
-
-import static seedu.address.model.category.Category.NURSE_SYMBOL;
-import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -166,9 +166,10 @@ class JsonAdaptedPerson {
         final List<DateTime> modelDatesTimes = patientHomeVisitDatesTimes;
 
         if (category == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Category.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Category.class.getSimpleName()));
         }
-        if(category.equals(NURSE_SYMBOL)) {
+        if (category.equals(NURSE_SYMBOL)) {
             return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
         } else if (category.equals(PATIENT_SYMBOL)) {
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,

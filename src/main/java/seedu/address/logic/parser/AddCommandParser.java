@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.model.category.Category.NURSE_SYMBOL;
-import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
@@ -12,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
+import static seedu.address.model.category.Category.NURSE_SYMBOL;
+import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 
 import java.util.List;
 import java.util.Set;
@@ -25,8 +25,8 @@ import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Nurse;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
@@ -65,12 +65,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         String categorySymbol = category.toString();
         Person person;
 
-        if(categorySymbol.equals(NURSE_SYMBOL)) {
+        if (categorySymbol.equals(NURSE_SYMBOL)) {
             person = new Nurse(id, name, gender, phone, email, address, tagList);
-        } else if(categorySymbol.equals(PATIENT_SYMBOL)) {
+        } else if (categorySymbol.equals(PATIENT_SYMBOL)) {
             person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeList);
-        } else
+        } else {
             throw new ParseException("Illegal category detected!");
+        }
 
         return new AddCommand(person);
     }
