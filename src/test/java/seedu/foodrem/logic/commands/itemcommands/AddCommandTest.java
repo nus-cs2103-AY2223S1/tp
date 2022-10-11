@@ -8,6 +8,7 @@ import static seedu.foodrem.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -24,6 +25,7 @@ import seedu.foodrem.model.ReadOnlyUserPrefs;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.ItemBuilder;
+
 
 public class AddCommandTest {
 
@@ -102,6 +104,21 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Tag> getFilteredTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Item> getFilteredSortedItemList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Item> getSortedItemList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedItemList(Comparator<Item> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
