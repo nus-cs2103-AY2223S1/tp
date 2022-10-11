@@ -109,7 +109,7 @@ public interface Model {
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task list.
-     * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
+     * The task identity of {@code editedTask} must be the same as task identity of {@code target}.
      */
     void setTask(Task target, Task editedTask);
 

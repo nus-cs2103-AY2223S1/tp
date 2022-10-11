@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -129,10 +130,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the task list.
-     * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
+     * The task identity of {@code editedTask} must be the same as task identity of {@code target}.
      */
     public void setTask(Task target, Task editedTask) {
-        requireNonNull(editedTask);
+        requireAllNonNull(target, editedTask);
 
         tasks.setTask(target, editedTask);
     }
