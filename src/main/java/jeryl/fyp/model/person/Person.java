@@ -17,7 +17,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final StudentID id;
     private final Email email;
     private final String projectName;
 
@@ -28,10 +28,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, String projectName, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, projectName, tags);
+    public Person(Name name, StudentID id, Email email, Address address, String projectName, Set<Tag> tags) {
+        requireAllNonNull(name, id, email, address, projectName, tags);
         this.name = name;
-        this.phone = phone;
+        this.id = id;
         this.email = email;
         this.address = address;
         this.projectName = projectName;
@@ -42,8 +42,8 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public StudentID getStudentID() {
+        return id;
     }
 
     public Email getEmail() {
@@ -95,7 +95,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getStudentID().equals(getStudentID())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getProjectName().equals(getProjectName())
@@ -105,15 +105,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, projectName, tags);
+        return Objects.hash(name, id, email, address, projectName, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Student ID: ")
+                .append(getStudentID())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")

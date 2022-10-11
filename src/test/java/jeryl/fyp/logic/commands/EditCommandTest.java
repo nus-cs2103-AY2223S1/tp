@@ -1,13 +1,6 @@
 package jeryl.fyp.logic.commands;
 
-import static jeryl.fyp.logic.commands.CommandTestUtil.DESC_AMY;
-import static jeryl.fyp.logic.commands.CommandTestUtil.DESC_BOB;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandFailure;
-import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static jeryl.fyp.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static jeryl.fyp.logic.commands.CommandTestUtil.*;
 import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static jeryl.fyp.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static jeryl.fyp.testutil.TypicalPersons.getTypicalAddressBook;
@@ -54,11 +47,11 @@ public class EditCommandTest {
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Person editedPerson = personInList.withName(VALID_NAME_BOB).withStudentID(VALID_STUDENTID_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withStudentID(VALID_STUDENTID_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);

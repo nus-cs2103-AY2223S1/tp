@@ -5,7 +5,7 @@ import static jeryl.fyp.logic.commands.CommandTestUtil.DESC_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -40,7 +40,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withStudentID(VALID_STUDENTID_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false

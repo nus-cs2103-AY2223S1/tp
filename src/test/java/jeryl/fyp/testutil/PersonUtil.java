@@ -3,8 +3,8 @@ package jeryl.fyp.testutil;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_NAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PHONE;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECTNAME;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -32,7 +32,7 @@ public class PersonUtil {
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
+        sb.append(PREFIX_STUDENTID + person.getStudentID().id + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_PROJECTNAME + person.getProjectName() + " ");
@@ -48,7 +48,7 @@ public class PersonUtil {
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
+        descriptor.getStudentID().ifPresent(studentID -> sb.append(PREFIX_STUDENTID).append(studentID.id).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getProjectName().ifPresent(projectName -> sb.append(PREFIX_PROJECTNAME).append(projectName)

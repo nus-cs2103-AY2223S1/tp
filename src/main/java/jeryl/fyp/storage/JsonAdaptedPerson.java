@@ -14,7 +14,7 @@ import jeryl.fyp.model.person.Address;
 import jeryl.fyp.model.person.Email;
 import jeryl.fyp.model.person.Name;
 import jeryl.fyp.model.person.Person;
-import jeryl.fyp.model.person.Phone;
+import jeryl.fyp.model.person.StudentID;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -25,7 +25,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final String id;
     private final String email;
     private final String address;
     private final String projectName;
@@ -35,11 +35,11 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("studentID") String id,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("projectName") String projectName, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
+        this.id = id;
         this.email = email;
         this.address = address;
         this.projectName = projectName;
@@ -53,7 +53,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        id = source.getStudentID().id;
         email = source.getEmail().value;
         address = source.getAddress().value;
         projectName = source.getProjectName();
@@ -81,13 +81,14 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (id == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, StudentID.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!StudentID.isValidStudentID(id)) {
+            throw new IllegalValueException(StudentID.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final StudentID modelStudentID = new StudentID(id);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -114,10 +115,11 @@ class JsonAdaptedPerson {
             throw new IllegalValueException("Projects can take any values, and it should not be blank");
         }
          */
-        final String modelprojectName = projectName;
+        final String modelProjectName = projectName;
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelprojectName, modelTags);
+
+        return new Person(modelName, modelStudentID, modelEmail, modelAddress, modelProjectName, modelTags);
     }
 
 }

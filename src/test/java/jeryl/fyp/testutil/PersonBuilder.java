@@ -7,7 +7,7 @@ import jeryl.fyp.model.person.Address;
 import jeryl.fyp.model.person.Email;
 import jeryl.fyp.model.person.Name;
 import jeryl.fyp.model.person.Person;
-import jeryl.fyp.model.person.Phone;
+import jeryl.fyp.model.person.StudentID;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.model.util.SampleDataUtil;
 
@@ -17,13 +17,13 @@ import jeryl.fyp.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_STUDENTID = "A1355255B";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_PROJECTNAME = "CS2103 SE";
 
     private Name name;
-    private Phone phone;
+    private StudentID id;
     private Email email;
     private Address address;
     private String projectName;
@@ -34,7 +34,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        id = new StudentID(DEFAULT_STUDENTID);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         projectName = DEFAULT_PROJECTNAME;
@@ -46,7 +46,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
+        id = personToCopy.getStudentID();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         projectName = personToCopy.getProjectName();
@@ -78,10 +78,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code StudentID} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PersonBuilder withStudentID(String id) {
+        this.id = new StudentID(id);
         return this;
     }
 
@@ -102,7 +102,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, projectName, tags);
+        return new Person(name, id, email, address, projectName, tags);
     }
 
 }

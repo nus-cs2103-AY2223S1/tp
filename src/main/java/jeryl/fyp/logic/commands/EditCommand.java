@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_NAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PHONE;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECTNAME;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -24,7 +24,7 @@ import jeryl.fyp.model.person.Address;
 import jeryl.fyp.model.person.Email;
 import jeryl.fyp.model.person.Name;
 import jeryl.fyp.model.person.Person;
-import jeryl.fyp.model.person.Phone;
+import jeryl.fyp.model.person.StudentID;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -39,13 +39,13 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_STUDENTID + "STUDENT_ID] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_PROJECTNAME + "PROJECTNAME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_STUDENTID + "A91234567H "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -96,13 +96,13 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        StudentID updatedStudentID = editPersonDescriptor.getStudentID().orElse(personToEdit.getStudentID());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         String updatedProjectName = editPersonDescriptor.getProjectName().orElse(personToEdit.getProjectName());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedProjectName, updatedTags);
+        return new Person(updatedName, updatedStudentID, updatedEmail, updatedAddress, updatedProjectName, updatedTags);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
+        private StudentID id;
         private Email email;
         private Address address;
         private String projectName;
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setStudentID(toCopy.id);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setProjectName(toCopy.projectName);
@@ -154,7 +154,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, projectName, tags);
+            return CollectionUtil.isAnyNonNull(name, id, email, address, projectName, tags);
         }
 
         public void setName(Name name) {
@@ -165,13 +165,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setStudentID(StudentID id) {
+            this.id = id;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<StudentID> getStudentID() {
+            return Optional.ofNullable(id);
         }
+        //public Optional<Phone> getPhone() { return Optional.ofNullable(phone); }
 
         public void setEmail(Email email) {
             this.email = email;
@@ -230,7 +231,7 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
+                    && getStudentID().equals(e.getStudentID())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getProjectName().equals(e.getProjectName())

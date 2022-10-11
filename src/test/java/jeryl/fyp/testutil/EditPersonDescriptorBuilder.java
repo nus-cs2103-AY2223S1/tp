@@ -9,7 +9,7 @@ import jeryl.fyp.model.person.Address;
 import jeryl.fyp.model.person.Email;
 import jeryl.fyp.model.person.Name;
 import jeryl.fyp.model.person.Person;
-import jeryl.fyp.model.person.Phone;
+import jeryl.fyp.model.person.StudentID;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -33,7 +33,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
+        descriptor.setStudentID(person.getStudentID());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setProjectName(person.getProjectName());
@@ -49,10 +49,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code StudentID} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditPersonDescriptorBuilder withStudentID(String id) {
+        descriptor.setStudentID(new StudentID(id));
         return this;
     }
 

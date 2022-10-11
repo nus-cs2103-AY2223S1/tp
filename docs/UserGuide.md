@@ -71,7 +71,7 @@ title: User Guide
 
 Adds a new FYP of a student to the FYP manager.
 
-Format: `add STUDENT_ID n/FYP_NAME e/EMAIL [t/TAG]…​`
+Format: `add id/STUDENT_ID n/FYP_NAME e/EMAIL [t/TAG]…​`
 * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -79,8 +79,8 @@ A student can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add A0123456G n/Neural Network e/e0123456@u.nus.edu t/NN`
-* `add A0987654X n/Data Caching e/e09876567@u.nus.edu`
+* `add id/A0123456G n/Neural Network e/e0123456@u.nus.edu t/NN`
+* `add id/A0987654X n/Data Caching e/e09876567@u.nus.edu`
 
 ### Removing students FYP: `delete`
 
@@ -158,12 +158,12 @@ Format: `exit`
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                               |
-|------------|----------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add STUDENT_ID n/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add A0987654X n/Data Caching e/e09876567@u.nus.edu`  |
-| **Delete** | `delete STUDENT_ID`<br> e.g., `delete A0123456G`                                                               |
-| **Mark**   | `mark STUDENT_ID STATUS`<br> e.g.,`mark A0123456G IP`                                                          |
-| **Find**   | `find KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find neural network/tree`                                      |
-| **Help**   | `help [COMMAND]`<br> e.g., `help add`, `help`                                                                  |
-| **List**   | `list`                                                                                                         |
-| **Exit**   | `exit`                                                                                                         |
+| Action     | Format, Examples                                                                                                    |
+|------------|---------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add id/STUDENT_ID n/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add id/A0987654X n/Data Caching e/e09876567@u.nus.edu` |
+| **Delete** | `delete STUDENT_ID`<br> e.g., `delete A0123456G`                                                                    |
+| **Mark**   | `mark STUDENT_ID STATUS`<br> e.g.,`mark A0123456G IP`                                                               |
+| **Find**   | `find KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find neural network/tree`                                           |
+| **Help**   | `help [COMMAND]`<br> e.g., `help add`, `help`                                                                       |
+| **List**   | `list`                                                                                                              |
+| **Exit**   | `exit`                                                                                                              |
