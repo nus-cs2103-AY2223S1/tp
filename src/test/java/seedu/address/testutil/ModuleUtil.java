@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.MODULE_COMMAND_IDENTIFIER;
+import static seedu.address.logic.parser.CliSyntax.COMMAND_IDENTIFIER_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
@@ -28,7 +28,7 @@ public class ModuleUtil {
      * Returns an add command string for adding the {@code module}.
      */
     public static String getAddModuleCommand(Module module) {
-        return AddModuleCommand.COMMAND_WORD + " " + MODULE_COMMAND_IDENTIFIER + getModuleDetails(module);
+        return AddModuleCommand.COMMAND_WORD + " " + COMMAND_IDENTIFIER_MODULE + getModuleDetails(module);
     }
 
     /**
@@ -41,7 +41,7 @@ public class ModuleUtil {
         sb.append(PREFIX_TUTORIAL + module.getTutorialDetails().value + " ");
         sb.append(PREFIX_ZOOM + module.getZoomLink().zoomLink + " ");
         module.getAssignmentDetails().stream().forEach(
-                s -> sb.append(PREFIX_ADDRESS + s.assignmentDetails + " ")
+            s -> sb.append(PREFIX_ADDRESS + s.assignmentDetails + " ")
         );
         return sb.toString();
     }

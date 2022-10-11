@@ -20,7 +20,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ASSIGNMENT = new Prefix("a/");
 
     /* Command Types*/
-    public static final String CONTACT_COMMAND_IDENTIFIER = "c";
-    public static final String MODULE_COMMAND_IDENTIFIER = "m";
+    public static final String COMMAND_IDENTIFIER_PERSON = "p";
+    public static final String COMMAND_IDENTIFIER_MODULE = "m";
 
 }
