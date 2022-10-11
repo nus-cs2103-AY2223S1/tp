@@ -102,6 +102,7 @@ public class PersonBuilder {
      * and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withAssignments(String[] group, String[][] assignment) {
+        this.assignments = new HashMap<>();
         for (int i = 0; i < group.length; i++) {
             ArrayList<Assignment> assignmentList = new ArrayList<>();
             for (int j = 0; j < assignment[i].length; j++) {
