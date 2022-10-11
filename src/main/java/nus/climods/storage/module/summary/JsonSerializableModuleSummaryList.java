@@ -1,4 +1,4 @@
-package nus.climods.storage.module;
+package nus.climods.storage.module.summary;
 
 import java.util.List;
 

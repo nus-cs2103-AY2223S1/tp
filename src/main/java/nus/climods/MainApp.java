@@ -15,19 +15,20 @@ import nus.climods.commons.util.ConfigUtil;
 import nus.climods.commons.util.StringUtil;
 import nus.climods.logic.Logic;
 import nus.climods.logic.LogicManager;
-import nus.climods.model.AddressBook;
 import nus.climods.model.Model;
 import nus.climods.model.ModelManager;
-import nus.climods.model.ReadOnlyAddressBook;
 import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.UserPrefs;
-import nus.climods.model.util.SampleDataUtil;
-import nus.climods.storage.AddressBookStorage;
-import nus.climods.storage.JsonAddressBookStorage;
+import nus.climods.model.module.ModuleList;
+import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.storage.JsonUserPrefsStorage;
 import nus.climods.storage.Storage;
 import nus.climods.storage.StorageManager;
 import nus.climods.storage.UserPrefsStorage;
+import nus.climods.storage.module.JsonModuleListStorage;
+import nus.climods.storage.module.ModuleListStorage;
+import nus.climods.storage.module.user.JsonUserModuleListStorage;
+import nus.climods.storage.module.user.UserModuleListStorage;
 import nus.climods.ui.Ui;
 import nus.climods.ui.UiManager;
 
@@ -48,7 +49,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing CliMods ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,13 +57,15 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+
+        // TODO Change userPref file path getters
+        UserModuleListStorage userModuleListStorage = new JsonUserModuleListStorage(userPrefs.getAddressBookFilePath());
+        ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(moduleListStorage, userModuleListStorage, userPrefsStorage);
 
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
-
         logic = new LogicManager(model, storage);
         ui = new UiManager(logic);
     }
@@ -73,23 +76,21 @@ public class MainApp extends Application {
      * empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyModuleList> moduleListOptional;
+        ReadOnlyModuleList initialModuleList;
+        String academicYear = userPrefs.getAcademicYear();
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            moduleListOptional = storage.readModuleList(academicYear);
+            if (moduleListOptional.isEmpty()) {
+                logger.info("Data file not found!");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialModuleList = moduleListOptional.orElseGet(() -> new ModuleList(academicYear));
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format!");
+            initialModuleList = new ModuleList(academicYear);
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialModuleList, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -170,7 +171,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping CliMods ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

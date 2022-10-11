@@ -1,15 +1,25 @@
 {
-  "modules" : [ {
-    "moduleCode" : "AC5001",
-    "title" : "Architectural History of Singapore",
-    "semesters" : [ 1 ]
-  }, {
-    "moduleCode" : "AC5002",
-    "title" : "Conservation Approaches and Philosophies",
-    "semesters" : [ 1 ]
-  }, {
-    "moduleCode" : "AC5003",
-    "title" : "Urban Conservation and Regeneration",
-    "semesters" : [ 2 ]
-  } ]
+  "modules": [
+    {
+      "moduleCode": "AC5001",
+      "title": "Architectural History of Singapore",
+      "semesters": [
+        1
+      ]
+    },
+    {
+      "moduleCode": "AC5002",
+      "title": "Conservation Approaches and Philosophies",
+      "semesters": [
+        1
+      ]
+    },
+    {
+      "moduleCode": "AC5003",
+      "title": "Urban Conservation and Regeneration",
+      "semesters": [
+        2
+      ]
+    }
+  ]
 }

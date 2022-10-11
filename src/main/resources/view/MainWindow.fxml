@@ -11,49 +11,49 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="CLIMods"
-  type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" minHeight="600" minWidth="450" onCloseRequest="#handleExit"
+  title="CLIMods" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18">
   <icons>
     <Image url="@/images/address_book_32.png"/>
   </icons>
   <scene>
     <Scene>
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <MenuBar VBox.vgrow="NEVER" fx:id="menuBar">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp"
-              text="Help"/>
+            <MenuItem mnemonicParsing="false" onAction="#handleHelp" text="Help"
+              fx:id="helpMenuItem"/>
           </Menu>
         </MenuBar>
 
-        <SplitPane fx:id="modulePane" dividerPositions="0.5" VBox.vgrow="ALWAYS">
-          <VBox fx:id="moduleListPanel" minWidth="350" styleClass="pane-with-border"
-            VBox.vgrow="ALWAYS">
-            <StackPane fx:id="moduleListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.5" fx:id="modulePane">
+          <VBox VBox.vgrow="ALWAYS" minWidth="350" styleClass="pane-with-border"
+            fx:id="moduleListPanel">
+            <StackPane VBox.vgrow="ALWAYS" fx:id="moduleListPanelPlaceholder"/>
             <padding>
               <Insets bottom="10" left="10" right="10" top="10"/>
             </padding>
           </VBox>
 
-          <VBox fx:id="savedModuleListPanel" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-            <StackPane fx:id="savedModuleListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-border" fx:id="savedModuleListPanel">
+            <StackPane VBox.vgrow="ALWAYS" fx:id="savedModuleListPanelPlaceholder"/>
             <padding>
               <Insets bottom="10" left="10" right="10" top="10"/>
             </padding>
           </VBox>
         </SplitPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border">
+        <StackPane styleClass="pane-with-border" fx:id="resultDisplayPlaceholder">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5"/>
           </padding>
         </StackPane>
 
         <!--Use a split pane to contain the panels -->
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane styleClass="pane-with-border" fx:id="commandBoxPlaceholder">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5"/>
           </padding>
