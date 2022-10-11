@@ -10,6 +10,7 @@ import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.Model;
 import nus.climods.model.ReadOnlyAddressBook;
 import nus.climods.model.module.DummyModule;
+import nus.climods.model.module.UserModule;
 import nus.climods.model.person.Person;
 
 /**
@@ -27,9 +28,9 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    ObservableList<DummyModule> getFilteredModuleList();
+    ObservableList<UserModule> getFilteredModuleList();
 
-    ObservableList<DummyModule> getFilteredSavedModuleList();
+    ObservableList<UserModule> getFilteredSavedModuleList();
 
     /**
      * Returns the AddressBook.

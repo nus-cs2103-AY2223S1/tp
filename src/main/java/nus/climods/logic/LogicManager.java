@@ -18,6 +18,7 @@ import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.Model;
 import nus.climods.model.ReadOnlyAddressBook;
 import nus.climods.model.module.DummyModule;
+import nus.climods.model.module.UserModule;
 import nus.climods.model.person.Person;
 import nus.climods.storage.Storage;
 
@@ -60,16 +61,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<DummyModule> getFilteredModuleList() {
+    public ObservableList<UserModule> getFilteredModuleList() {
         List<DummyModule> dummyModuleList = new ArrayList<>();
         dummyModuleList.add(new DummyModule());
         dummyModuleList.add(new DummyModule());
 
-        return FXCollections.observableList(dummyModuleList);
+        return FXCollections.observableList(model.getFilteredUserModuleList());
     }
 
     @Override
-    public ObservableList<DummyModule> getFilteredSavedModuleList() {
+    public ObservableList<UserModule> getFilteredSavedModuleList() {
         List<DummyModule> dummySavedModuleList = new ArrayList<>();
         dummySavedModuleList.add(new DummyModule());
         dummySavedModuleList.add(new DummyModule());
@@ -78,7 +79,7 @@ public class LogicManager implements Logic {
         dummySavedModuleList.add(new DummyModule());
         dummySavedModuleList.add(new DummyModule());
 
-        return FXCollections.observableList(dummySavedModuleList);
+        return FXCollections.observableList(model.getFilteredUserModuleList());
     }
 
     @Override

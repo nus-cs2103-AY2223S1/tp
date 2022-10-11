@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import nus.climods.model.module.DummyModule;
+import nus.climods.model.module.UserModule;
 import nus.climods.ui.UiPart;
 import nus.climods.ui.common.Pill;
 
@@ -27,7 +27,7 @@ public class SavedModuleCard extends UiPart<Region> {
 
     private static final String AY_SEMESTER_TEXT_COLOR = "#2E333D";
 
-    public final DummyModule module;
+    public final UserModule module;
 
     @FXML
     private HBox cardPane;
@@ -43,10 +43,10 @@ public class SavedModuleCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public SavedModuleCard(DummyModule module) {
+    public SavedModuleCard(UserModule module) {
         super(FXML);
         this.module = module;
-        moduleCode.setText(module.getModuleCode());
+        moduleCode.setText(module.getUserModuleCode());
         tutorial.setText(module.getTutorial());
         lecture.setText(module.getLecture());
         ayData.getChildren().add(new Pill(module.getAcademicYear(), AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR));
