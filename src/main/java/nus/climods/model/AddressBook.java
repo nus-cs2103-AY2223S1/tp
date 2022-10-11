@@ -6,9 +6,12 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import nus.climods.model.module.Module;
+import nus.climods.model.module.ReadOnlyModuleSummaryList;
+import nus.climods.model.module.UserModule;
 import nus.climods.model.person.Person;
 import nus.climods.model.person.UniquePersonList;
-import nus.climods.model.module.UniqueModuleList;
+import nus.climods.model.module.UniqueUserModuleList;
+import org.openapitools.client.model.ModuleCondensed;
 
 /**
  * Wraps all data at the address-book level Duplicates are not allowed (by .isSamePerson comparison)
@@ -16,7 +19,7 @@ import nus.climods.model.module.UniqueModuleList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueModuleList modules;
+    private final UniqueUserModuleList modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,7 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        modules = new UniqueModuleList();
+        modules = new UniqueUserModuleList();
     }
 
     public AddressBook() {
@@ -102,11 +105,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    //-------------------------Module --------------------------------------------------------
+
+    //-------------------------UserModule --------------------------------------------------------
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.
      */
-    public boolean hasModule(Module module) {
+    public boolean hasUserModule(UserModule module) {
         requireNonNull(module);
         return modules.contains(module);
     }
@@ -114,25 +118,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds a module to the address book. The module must not already exist in the address book.
      */
-    public void addModule(Module p) {
+    public void addUserModule(UserModule p) {
         modules.add(p);
     }
 
     /**
-     * Replaces the given module {@code target} in the list with {@code editedModule}. {@code target} must exist in the
-     * address book. The module identity of {@code editedModule} must not be the same as another existing module in the
+     * Replaces the given module {@code target} in the list with {@code editedUserModule}. {@code target} must exist in the
+     * address book. The module identity of {@code editedUserModule} must not be the same as another existing module in the
      * address book.
      */
-    public void setModule(Module target, Module editedModule) {
-        requireNonNull(editedModule);
+    public void setUserModule(UserModule target, UserModule editedUserModule) {
+        requireNonNull(editedUserModule);
 
-        modules.setModule(target, editedModule);
+        modules.setUserModule(target, editedUserModule);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in the address book.
      */
-    public void removeModule(Module key) {
+    public void removeUserModule(UserModule key) {
         modules.remove(key);
     }
 
@@ -145,7 +149,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Module> getModuleList() {
+    public ObservableList<UserModule> getUserModuleList() {
         return modules.asUnmodifiableObservableList();
     }
 
@@ -160,4 +164,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return modules.hashCode();
     }
+
 }

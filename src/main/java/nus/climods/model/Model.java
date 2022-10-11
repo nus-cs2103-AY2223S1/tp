@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
+import nus.climods.model.module.UserModule;
 import nus.climods.model.person.Person;
 import nus.climods.model.module.Module;
 
@@ -17,7 +18,7 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+    Predicate<UserModule> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -59,40 +60,40 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-// -----------------------for Module --------------------------------------------------------------------------
+// -----------------------for UserModule --------------------------------------------------------------------------
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.
      */
-    boolean hasModule(Module module);
+    boolean hasUserModule(UserModule module);
 
     /**
      * Deletes the given module. The module must exist in the address book.
      */
-    void deleteModule(Module target);
+    void deleteUserModule(UserModule target);
 
     /**
      * Adds the given module. {@code module} must not already exist in the address book.
      */
-    void addModule(Module module);
+    void addUserModule(UserModule module);
 
     /**
-     * Replaces the given module {@code target} with {@code editedModule}. {@code target} must exist in the address
-     * book. The module identity of {@code editedModule} must not be the same as another existing module in the address
+     * Replaces the given module {@code target} with {@code editedUserModule}. {@code target} must exist in the address
+     * book. The module identity of {@code editedUserModule} must not be the same as another existing module in the address
      * book.
      */
-    void setModule(Module target, Module editedModule);
+    void setUserModule(UserModule target, UserModule editedUserModule);
 
     /**
      * Returns an unmodifiable view of the filtered module list
      */
-    ObservableList<Module> getFilteredModuleList();
+    ObservableList<UserModule> getFilteredUserModuleList();
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredModuleList(Predicate<Module> predicate);
+    void updateFilteredUserModuleList(Predicate<UserModule> predicate);
 
 
 // -----------------------for Person --------------------------------------------------------------------------
