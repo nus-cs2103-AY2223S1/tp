@@ -17,7 +17,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.user.EmptyUser;
-import seedu.address.model.person.user.User;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -195,7 +194,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             userProfile.update(logic.getUser());
-//            profileDisplay.setUser();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

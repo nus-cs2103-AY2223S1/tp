@@ -1,24 +1,23 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import seedu.address.model.person.user.EmptyUser;
 import seedu.address.model.person.user.ExistingUser;
 import seedu.address.model.person.user.User;
 
-import java.awt.*;
-import java.util.Comparator;
-
+/**
+ * Class to render user profile on UI
+ */
 public class UserProfile extends UiPart<Region> {
 
     private static final String FXML = "UserProfile.fxml";
 
-    public User user;
+    private User user;
 
     @FXML
     private HBox userProfilePane;
@@ -45,6 +44,11 @@ public class UserProfile extends UiPart<Region> {
     @FXML
     private FlowPane planModulesTags;
 
+    /**
+     * creates a new UserProfile
+     *
+     * @param user current user
+     */
     public UserProfile(User user) {
         super(FXML);
         this.user = user;
@@ -71,6 +75,11 @@ public class UserProfile extends UiPart<Region> {
         }
     }
 
+    /**
+     * Updates the current user
+     *
+     * @param user new current user
+     */
     public void update(User user) {
         this.user = user;
         if (user instanceof ExistingUser) {
