@@ -23,8 +23,7 @@ import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.MoneyPaid;
+import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -94,6 +93,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -109,8 +109,8 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
-        MoneyOwed updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
-        MoneyPaid updatedMoneyPaid = editPersonDescriptor.getMoneyPaid().orElse(personToEdit.getMoneyPaid());
+        Money updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
+        Money updatedMoneyPaid = editPersonDescriptor.getMoneyPaid().orElse(personToEdit.getMoneyPaid());
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
 
@@ -146,8 +146,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Class aClass;
-        private MoneyOwed moneyOwed;
-        private MoneyPaid moneyPaid;
+        private Money moneyOwed;
+        private Money moneyPaid;
         private AdditionalNotes additionalNotes;
 
         public EditPersonDescriptor() {
@@ -207,19 +207,19 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setMoneyOwed(MoneyOwed moneyOwed) {
+        public void setMoneyOwed(Money moneyOwed) {
             this.moneyOwed = moneyOwed;
         }
 
-        public Optional<MoneyOwed> getMoneyOwed() {
+        public Optional<Money> getMoneyOwed() {
             return Optional.ofNullable(moneyOwed);
         }
 
-        public void setMoneyPaid(MoneyPaid moneyPaid) {
+        public void setMoneyPaid(Money moneyPaid) {
             this.moneyPaid = moneyPaid;
         }
 
-        public Optional<MoneyPaid> getMoneyPaid() {
+        public Optional<Money> getMoneyPaid() {
             return Optional.ofNullable(moneyPaid);
         }
 

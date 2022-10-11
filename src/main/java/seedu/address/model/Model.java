@@ -85,4 +85,12 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /** Returns an unmodifiable view of the schedule list for that day*/
+    ObservableList<Person> getFilteredScheduleList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredScheduleList(Predicate<Person> predicate);
 }

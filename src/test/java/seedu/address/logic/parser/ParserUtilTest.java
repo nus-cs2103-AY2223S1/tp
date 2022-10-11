@@ -14,8 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.MoneyPaid;
+import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -153,34 +152,34 @@ public class ParserUtilTest {
 
     @Test
     public void parseMoneyOwed_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseMoneyOwed((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMoney((String) null));
     }
 
     @Test
     public void parseMoneyOwed_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseMoneyOwed(INVALID_MONEY_OWED.toString()));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney(INVALID_MONEY_OWED.toString()));
     }
 
     @Test
     public void parseMoneyOwed_validValue_returnsMoneyOwed() throws Exception {
-        MoneyOwed expectedMoneyOwed = new MoneyOwed(VALID_MONEY_OWED);
-        assertEquals(expectedMoneyOwed, ParserUtil.parseMoneyOwed(VALID_MONEY_OWED.toString()));
+        Money expectedMoneyOwed = new Money(VALID_MONEY_OWED);
+        assertEquals(expectedMoneyOwed, ParserUtil.parseMoney(VALID_MONEY_OWED.toString()));
     }
 
     @Test
     public void parseMoneyPaid_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseMoneyPaid((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMoney((String) null));
     }
 
     @Test
     public void parseMoneyPaid_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseMoneyPaid(INVALID_MONEY_PAID.toString()));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMoney(INVALID_MONEY_PAID.toString()));
     }
 
     @Test
     public void parseMoneyPaid_validValue_returnsMoneyOwed() throws Exception {
-        MoneyPaid expectedMoneyPaid = new MoneyPaid(VALID_MONEY_PAID);
-        assertEquals(expectedMoneyPaid, ParserUtil.parseMoneyPaid(VALID_MONEY_PAID.toString()));
+        Money expectedMoneyPaid = new Money(VALID_MONEY_PAID);
+        assertEquals(expectedMoneyPaid, ParserUtil.parseMoney(VALID_MONEY_PAID.toString()));
     }
 
     @Test

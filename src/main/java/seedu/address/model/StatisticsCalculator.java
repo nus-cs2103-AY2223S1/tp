@@ -15,7 +15,7 @@ public class StatisticsCalculator {
     private final ReadOnlyAddressBook addressBook;
 
     /**
-     * Creates a new StatisticsCalculator.
+     * Constructs an {@code StatisticsCalculator}.
      *
      * @param addressBook AddressBook used to calculate the statistics.
      */
@@ -24,7 +24,9 @@ public class StatisticsCalculator {
     }
 
     /**
-     * Returns the number of people in AddressBook.
+     * Calculates the number of people in AddressBook.
+     *
+     * @return the number of people stored in AddressBook.
      */
     public int getSize() {
         return addressBook.getPersonList().size();
@@ -32,25 +34,37 @@ public class StatisticsCalculator {
 
     /**
      * Sums up the total money owed by the people in AddressBook.
+     *
+     * @return the total amount of money owed.
      */
-    public int getAmountOwed() {
+    public String getAmountOwed() {
         ObservableList<Person> personList = addressBook.getPersonList();
         int moneyOwed = 0;
-        for (Person person : personList) {
-            moneyOwed += person.getMoneyOwed().value;
+        try {
+            for (Person person : personList) {
+                moneyOwed = Math.addExact(moneyOwed, person.getMoneyOwed().value);
+            }
+        } catch (ArithmeticException e) {
+            return "Owed amount too large to calculate.";
         }
-        return moneyOwed;
+        return "$" + String.valueOf(moneyOwed);
     }
 
     /**
      * Sums up the total money paid by the people in AddressBook.
+     *
+     * @return the total amount of money paid.
      */
-    public int getAmountPaid() {
+    public String getAmountPaid() {
         ObservableList<Person> personList = addressBook.getPersonList();
         int moneyPaid = 0;
-        for (Person person : personList) {
-            moneyPaid += person.getMoneyPaid().value;
+        try {
+            for (Person person : personList) {
+                moneyPaid = Math.addExact(moneyPaid, person.getMoneyPaid().value);
+            }
+        } catch (ArithmeticException e) {
+            return "Paid amount too large to calculate.";
         }
-        return moneyPaid;
+        return "$" + String.valueOf(moneyPaid);
     }
 }

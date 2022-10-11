@@ -14,8 +14,7 @@ import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.MoneyOwed;
-import seedu.address.model.person.MoneyPaid;
+import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -156,43 +155,23 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String moneyOwed} into an {@code MoneyOwed}.
+     * Parses a {@code String money} into an {@code Money}.
      *
-     * @throws ParseException if the given {@code moneyOwed} is invalid.
+     * @throws ParseException if the given {@code money} is invalid.
      */
-    public static MoneyOwed parseMoneyOwed(String moneyOwed) throws ParseException {
-        requireNonNull(moneyOwed);
+    public static Money parseMoney(String money) throws ParseException {
+        requireNonNull(money);
         Integer value;
         try {
-            value = Integer.valueOf(moneyOwed);
+            value = Integer.valueOf(money);
         } catch (NumberFormatException ex) {
-            throw new ParseException(MoneyOwed.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Money.MESSAGE_CONSTRAINTS);
         }
 
-        if (!MoneyOwed.isValidMoneyOwed(value)) {
-            throw new ParseException(MoneyOwed.MESSAGE_CONSTRAINTS);
+        if (!Money.isValidMoney(value)) {
+            throw new ParseException(Money.MESSAGE_CONSTRAINTS);
         }
-        return new MoneyOwed(value);
-    }
-
-    /**
-     * Parses a {@code String moneyPaid} into an {@code MoneyPaid}.
-     *
-     * @throws ParseException if the given {@code moneyPaid} is invalid.
-     */
-    public static MoneyPaid parseMoneyPaid(String moneyPaid) throws ParseException {
-        requireNonNull(moneyPaid);
-        Integer value;
-        try {
-            value = Integer.valueOf(moneyPaid);
-        } catch (NumberFormatException ex) {
-            throw new ParseException(MoneyPaid.MESSAGE_CONSTRAINTS);
-        }
-
-        if (!MoneyPaid.isValidMoneyPaid(value)) {
-            throw new ParseException(MoneyPaid.MESSAGE_CONSTRAINTS);
-        }
-        return new MoneyPaid(value);
+        return new Money(value);
     }
 
     /**

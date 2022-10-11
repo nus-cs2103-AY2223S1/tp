@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.UniqueScheduleList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +16,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueScheduleList schedule;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        schedule = new UniqueScheduleList();
     }
 
     public AddressBook() {}
@@ -48,12 +51,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the schedule list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setSchedule(List<Person> persons) {
+        this.schedule.setPersons(persons);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setSchedule(newData.getPersonList());
     }
 
     //// person-level operations
@@ -72,6 +84,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+        schedule.add(p);
     }
 
     /**
@@ -83,6 +96,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        schedule.setPerson(target, editedPerson);
     }
 
     /**
@@ -91,6 +105,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        schedule.remove(key);
     }
 
     //// util methods
@@ -104,6 +119,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Person> getScheduleList() {
+        return schedule.asUnmodifiableObservableList();
     }
 
     @Override
