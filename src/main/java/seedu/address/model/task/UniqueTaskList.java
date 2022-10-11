@@ -1,15 +1,15 @@
 package seedu.address.model.task;
 
 
-import seedu.address.model.item.DisplayItemList;
-import seedu.address.model.item.exceptions.DuplicateItemException;
-import seedu.address.model.item.exceptions.ItemNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.item.DisplayItemList;
+import seedu.address.model.item.exceptions.DuplicateItemException;
+import seedu.address.model.item.exceptions.ItemNotFoundException;
 
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls. A task is considered unique

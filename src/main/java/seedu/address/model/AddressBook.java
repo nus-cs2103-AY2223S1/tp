@@ -1,5 +1,9 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
@@ -7,10 +11,6 @@ import seedu.address.model.item.exceptions.ItemNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level Duplicates are not allowed (by .weakEquality comparison)
@@ -29,7 +29,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other
      * ways to avoid duplication
      * among constructors.
-     */ {
+     */
+    {
         persons = new UniquePersonList();
         teams = new UniqueGroupList();
     }

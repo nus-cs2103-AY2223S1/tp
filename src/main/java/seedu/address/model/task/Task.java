@@ -1,12 +1,15 @@
 package seedu.address.model.task;
 
+import java.time.LocalDateTime;
+
 import seedu.address.model.group.Group;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 
-import java.time.LocalDateTime;
-
+/**
+ * Stores task details.
+ */
 public class Task implements DisplayItem {
 
     private final String title;
