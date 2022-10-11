@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import static seedu.address.logic.commands.consultation.AddConsultationCommand.MESSAGE_DUPLICATE_CONSULTATION;
 import static seedu.address.logic.commands.tutorial.AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL;
 
 import java.util.ArrayList;
@@ -80,7 +81,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedConsultation jsonAdaptedConsultation : consultations) {
             Consultation consultation = jsonAdaptedConsultation.toModelType();
             if (addressBook.hasConsultation(consultation)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_TUTORIAL);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CONSULTATION);
             }
             addressBook.addConsulation(consultation);
         }
