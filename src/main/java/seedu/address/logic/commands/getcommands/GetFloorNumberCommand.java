@@ -39,9 +39,9 @@ public class GetFloorNumberCommand extends GetCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        PatientTypePredicate patientTypePredicate = new PatientTypePredicate(PatientType.PatientTypes.INPATIENT);
-        Predicate<Person> inPatientFloorNumberPredicate = patientTypePredicate.and(predicate);
-        model.updateFilteredPersonList(inPatientFloorNumberPredicate);
+        PatientTypePredicate inPatientPredicate = new PatientTypePredicate(PatientType.PatientTypes.INPATIENT);
+        Predicate<Person> floorNumberPredicate = inPatientPredicate.and(predicate);
+        model.updateFilteredPersonList(floorNumberPredicate);
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));

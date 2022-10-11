@@ -15,12 +15,12 @@ import seedu.address.model.person.HospitalWingContainsKeywordsPredicate;
 public class GetHospitalWingCommandParser implements Parser<GetHospitalWingCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the GetHospitalWingcommand
+     * Parses the given {@code String} of arguments in the context of the GetHospitalWingCommand
      * and returns a GetHospitalWingCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public GetHospitalWingCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
+    public GetHospitalWingCommand parse(String userInput) throws ParseException {
+        String trimmedArgs = userInput.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetHospitalWingCommand.MESSAGE_USAGE));
@@ -30,8 +30,4 @@ public class GetHospitalWingCommandParser implements Parser<GetHospitalWingComma
 
         return new GetHospitalWingCommand(new HospitalWingContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
-
 }
-
-
-

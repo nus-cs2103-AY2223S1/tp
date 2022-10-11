@@ -22,7 +22,7 @@ public class GetHospitalWingCommand extends GetCommand {
     public static final String HOSPITAL_WING_PREFIX = "/hw";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gets all patients within the same hospital wing "
-            + "and displays them as a list with index numbers. The specified keywords are case-insensitive\n"
+            + "and displays them as a list with index numbers. The specified keywords are case-insensitive.\n"
             + "Parameters: "
             + HOSPITAL_WING_PREFIX + " HOSPITAL WING\n"
             + "Example: "
@@ -39,9 +39,9 @@ public class GetHospitalWingCommand extends GetCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        PatientTypePredicate patientTypePredicate = new PatientTypePredicate(PatientType.PatientTypes.INPATIENT);
-        Predicate<Person> inPatientHospitalWingPredicate = patientTypePredicate.and(predicate);
-        model.updateFilteredPersonList(inPatientHospitalWingPredicate);
+        PatientTypePredicate inPatientPredicate = new PatientTypePredicate(PatientType.PatientTypes.INPATIENT);
+        Predicate<Person> hospitalWingPredicate = inPatientPredicate.and(predicate);
+        model.updateFilteredPersonList(hospitalWingPredicate);
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
