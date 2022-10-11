@@ -22,5 +22,4 @@ public class AddTaskCommandTest {
         assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, TASK_INSULIN));
     }
 
-
 }
