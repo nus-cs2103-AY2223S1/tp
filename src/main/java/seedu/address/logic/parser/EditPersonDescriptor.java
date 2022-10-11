@@ -1,11 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
@@ -129,18 +132,24 @@ public class EditPersonDescriptor {
      * edited with appointments added from {@code editPersonDescriptor}.
      */
     public static Person createEditedPersonByAddingAppointments(Person personToEdit,
-                                                                EditPersonDescriptor editPersonDescriptor) {
+                                                                EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
 
-        Set<Appointment> updatedAppointments = personToEdit.getAppointments();
-        editPersonDescriptor.appointments.forEach(updatedAppointments::add);
+        Set<Appointment> currentAppointments = personToEdit.getAppointments();
+        Set<Appointment> newAppointments = editPersonDescriptor.getAppointments().get();
+        for(Appointment newAppointment:newAppointments) {
+           if(currentAppointments.contains(newAppointment)) {
+              throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+           }
+        }
+        editPersonDescriptor.appointments.forEach(currentAppointments::add);
 
         Name name = personToEdit.getName();
         Phone phone = personToEdit.getPhone();
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
-        Person newPerson = new Person(name, phone, email, address, tags, updatedAppointments);
+        Person newPerson = new Person(name, phone, email, address, tags, currentAppointments);
         return newPerson;
     }
 

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FIRST_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class AddAppointmentCommandParserTest {
@@ -56,6 +58,12 @@ public class AddAppointmentCommandParserTest {
 
         // add appointment with no field
         assertParseFailure(parser, targetIndex + "", expectedFailureMessage);
+
+        // add multiple appointments with invalid field in one of them
+        assertParseFailure(parser, targetIndex + FIRST_APPOINTMENT_DESC + INVALID_APPOINTMENT_DESC, expectedFailureMessage);
+
+        // add duplicate appointments
+//        assertParseFailure(parser, targetIndex + FIRST_APPOINTMENT_DESC + FIRST_APPOINTMENT_DESC, MESSAGE_DUPLICATE_APPOINTMENT);
     }
 
     @Test

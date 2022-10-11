@@ -59,6 +59,12 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
+    public static final Person CreateNewAlice() {
+        return new PersonBuilder().withName("Alice Pauline")
+               .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+               .withPhone("94351253")
+               .withTags("friends").build();
+    }
     private TypicalPersons() {} // prevents instantiation
 
     /**

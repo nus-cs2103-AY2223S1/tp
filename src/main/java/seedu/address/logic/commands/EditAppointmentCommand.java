@@ -85,6 +85,6 @@ public class EditAppointmentCommand extends Command {
         // state check
         EditAppointmentCommand e = (EditAppointmentCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+               && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 }

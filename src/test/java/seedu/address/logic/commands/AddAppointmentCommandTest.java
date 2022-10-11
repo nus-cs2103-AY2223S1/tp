@@ -21,6 +21,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.CreateNewAlice;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.HashSet;
@@ -41,6 +42,8 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 public class AddAppointmentCommandTest {
 
@@ -56,43 +59,51 @@ public class AddAppointmentCommandTest {
         assertThrows(NullPointerException.class, () -> new AddAppointmentCommand(null, null));
     }
 
+
     @Test
-    public void execute_addOneAppointment_success() {
-        Person firstPerson = model.getAddressBook().getPersonList().get(0);
-        Set<Appointment> sets = new HashSet<>();
-        sets.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+    public void execute_addOneAppointmentAcceptedByModel_success() {
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        expectedModel.addPerson(CreateNewAlice());
+        actualModel.addPerson(CreateNewAlice());
+
+        Set<Appointment> appointments = new HashSet<>();
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_21_JAN_2023))));
-        firstPerson.setAppointments(sets);
+        Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
+        expectedPerson.setAppointments(appointments);
+
         EditPersonDescriptor descriptor = DESC_APPOINTMENT;
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, firstPerson);
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, expectedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), firstPerson);
 
-        assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addAppointmentCommand, actualModel, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_addMultipleAppointment_success() {
-        Person firstPerson = model.getAddressBook().getPersonList().get(0);
-        Set<Appointment> sets = new HashSet<>();
-        sets.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        expectedModel.addPerson(CreateNewAlice());
+        actualModel.addPerson(CreateNewAlice());
+
+        Set<Appointment> appointments = new HashSet<>();
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_21_JAN_2023))));
-        sets.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_22_JAN_2023))));
-        firstPerson.setAppointments(sets);
+        Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
+        expectedPerson.setAppointments(appointments);
+
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, firstPerson);
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, expectedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), firstPerson);
-
-        assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addAppointmentCommand, actualModel , expectedMessage, actualModel);
     }
 
     @Test
