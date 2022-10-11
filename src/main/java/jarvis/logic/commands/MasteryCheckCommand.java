@@ -2,7 +2,7 @@ package jarvis.logic.commands;
 
 import static jarvis.logic.parser.CliSyntax.PREFIX_MC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_MC_RES;
-import static jarvis.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -50,7 +50,7 @@ public class MasteryCheckCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         studentToEdit.updateMcStatus(mcResult);
         model.setStudent(studentToEdit, studentToEdit);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format("Updated " + mcResult + " for " + studentToEdit));
     }
 }

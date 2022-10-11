@@ -1,7 +1,7 @@
 package jarvis.logic.commands;
 
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
-import static jarvis.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -67,8 +67,9 @@ public class EditStudentCommand extends Command {
         }
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent),
+                true, false);
     }
 
     /**

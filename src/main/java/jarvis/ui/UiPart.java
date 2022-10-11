@@ -19,6 +19,8 @@ public abstract class UiPart<T> {
 
     private final FXMLLoader fxmlLoader = new FXMLLoader();
 
+    private boolean isShowing = true;
+
     /**
      * Constructs a UiPart with the specified FXML file URL.
      * The FXML file must not specify the {@code fx:controller} attribute.
@@ -85,4 +87,19 @@ public abstract class UiPart<T> {
         return requireNonNull(fxmlFileUrl);
     }
 
+    /**
+     * Returns whether the Ui part is showing or not.
+     *
+     * @return True if Ui part is showing otherwise false.
+     */
+    public boolean isShowing() {
+        return isShowing;
+    }
+
+    /**
+     * Changes the display status of the Ui part.
+     */
+    public void changeShowingStatus() {
+        isShowing = !isShowing;
+    }
 }
