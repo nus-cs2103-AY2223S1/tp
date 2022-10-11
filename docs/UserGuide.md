@@ -211,7 +211,7 @@ Examples:
 
 ### Viewing a company : `view`
 
-`view` displays the points of contact and transaction log of a company.
+`view` displays the points of contact and transaction log of the specified company.
 
 Format: `view INDEX`
 
