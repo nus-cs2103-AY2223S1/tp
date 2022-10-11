@@ -4,12 +4,12 @@
     "phone": "9482424",
     "email": "hans@example.com",
     "applicationStatus" : "applied",
-    "address": "4th street"
+    "address": "30 Oct 2022"
   }, {
     "name": "Internship With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "applicationStatus" : "applied",
-    "address": "4th street"
+    "address": "30 Oct 2022"
   } ]
 }

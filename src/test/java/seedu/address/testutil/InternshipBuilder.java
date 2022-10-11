@@ -21,7 +21,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "careers@google.com";
     public static final ApplicationStatus DEFAULT_APPLICATION_STATUS = ApplicationStatus.Applied;
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ADDRESS = "25 Oct 2022";
 
     private Company company;
     private Link link;

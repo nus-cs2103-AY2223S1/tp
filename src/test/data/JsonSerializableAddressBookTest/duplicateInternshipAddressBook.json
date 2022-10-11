@@ -4,13 +4,13 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "applicationStatus" : "applied",
-    "address": "123, Jurong West Ave 6, #08-111",
+    "address": "5 Oct 2022",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "applicationStatus" : "applied",
-    "address": "4th street"
+    "address": "8 Oct 2022"
   } ]
 }
