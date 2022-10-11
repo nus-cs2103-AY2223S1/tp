@@ -37,8 +37,8 @@ public class ParserUtil {
      */
     public static List<String> convertArgumentStringToList(String arguments) {
         List<String> res = ArgumentTokenizer
-                .tokenize(arguments.trim(), new Prefix(""))
-                .getAllValues(new Prefix(""));
+            .tokenize(arguments.trim(), new Prefix(""))
+            .getAllValues(new Prefix(""));
 
         // When arguments is empty string once trimmed, res is a List with just one empty string
         // Return empty list to demarcate this case clearly
@@ -50,9 +50,9 @@ public class ParserUtil {
     }
 
     /**
-     * Returns String array of whitespace-delimited arguments given arguments string supplied by the user.
-     * This function makes it more convenient to work with commons.cli which accepts a String array of arguments to
-     * parse
+     * Returns String array of whitespace-delimited arguments given arguments string supplied by the user. This function
+     * makes it more convenient to work with commons.cli which accepts a String array of arguments to parse
+     *
      * @param arguments String supplied by user as arguments after preamble
      * @return String array of arguments provided
      */
@@ -62,9 +62,10 @@ public class ParserUtil {
 
     /**
      * Parses module code according to user input
+     *
      * @param input Input string from user representing a module code
-     * @return Empty Optional if input string does not pass initial validation check, else Optional
-     *      of the entered String
+     * @return Empty Optional if input string does not pass initial validation check, else Optional of the entered
+     *               String
      */
     public static Optional<String> parseModuleCode(String input) {
         if (!MODULE_CODE_PATTERN.matcher(input.trim()).find()) {
@@ -83,7 +84,6 @@ public class ParserUtil {
         if (!USER_FLAG_PATTERN.matcher(input.trim()).find()) {
             return Optional.empty();
         }
-
         return Optional.of(Boolean.TRUE);
     }
 

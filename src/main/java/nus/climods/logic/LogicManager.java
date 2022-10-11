@@ -1,9 +1,6 @@
 package nus.climods.logic;
 
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -13,12 +10,11 @@ import nus.climods.commons.core.LogsCenter;
 import nus.climods.logic.commands.Command;
 import nus.climods.logic.commands.CommandResult;
 import nus.climods.logic.commands.exceptions.CommandException;
-import nus.climods.logic.parser.AddressBookParser;
+import nus.climods.logic.parser.CliModsParser;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.Model;
-import nus.climods.model.ReadOnlyAddressBook;
-import nus.climods.model.module.DummyModule;
-import nus.climods.model.person.Person;
+import nus.climods.model.module.Module;
+import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.storage.Storage;
 
 /**
@@ -31,7 +27,6 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -39,61 +34,28 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        logger.info("----------------[USER COMMAND][" + commandText + "]");
+        logger.info("[User Command] " + commandText);
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = CliModsParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
-        try {
-            storage.saveAddressBook(model.getAddressBook());
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
 
         return commandResult;
     }
 
     @Override
-    public ObservableList<DummyModule> getFilteredModuleList() {
-        List<DummyModule> dummyModuleList = new ArrayList<>();
-        dummyModuleList.add(new DummyModule());
-        dummyModuleList.add(new DummyModule());
-
-        return FXCollections.observableList(dummyModuleList);
+    public ReadOnlyModuleList getModuleList() {
+        return model.getModuleList();
     }
 
     @Override
-    public ObservableList<DummyModule> getFilteredSavedModuleList() {
-        List<DummyModule> dummySavedModuleList = new ArrayList<>();
-        dummySavedModuleList.add(new DummyModule());
-        dummySavedModuleList.add(new DummyModule());
-        dummySavedModuleList.add(new DummyModule());
-        dummySavedModuleList.add(new DummyModule());
-        dummySavedModuleList.add(new DummyModule());
-        dummySavedModuleList.add(new DummyModule());
-
-        return FXCollections.observableList(dummySavedModuleList);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<Module> getUserModuleList() {
+        // TODO Add implementation for user module list
+        return FXCollections.observableList(new ArrayList<>());
     }
 
     @Override

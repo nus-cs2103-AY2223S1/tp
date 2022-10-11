@@ -22,13 +22,13 @@ class JsonSerializableUserModuleList {
     // TODO: Change AddressBook model to UserModuleList after model has been created.
     public static final String MESSAGE_DUPLICATE_MODULE = "Modules list contains duplicate person(s).";
 
-    private final List<JsonAdaptedModule> modules = new ArrayList<>();
+    private final List<JsonAdaptedUserModule> modules = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableUserModuleList} with the given modules.
      */
     @JsonCreator
-    public JsonSerializableUserModuleList(@JsonProperty("persons") List<JsonAdaptedModule> modules) {
+    public JsonSerializableUserModuleList(@JsonProperty("persons") List<JsonAdaptedUserModule> modules) {
         this.modules.addAll(modules);
     }
 
@@ -38,7 +38,7 @@ class JsonSerializableUserModuleList {
      * @param source future changes to this will not affect the created {@code JsonSerializableUserModuleList}.
      */
     public JsonSerializableUserModuleList(ReadOnlyAddressBook source) {
-        modules.addAll(source.getPersonList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
+        modules.addAll(source.getPersonList().stream().map(JsonAdaptedUserModule::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,7 +48,7 @@ class JsonSerializableUserModuleList {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedModule jsonAdaptedModule : modules) {
+        for (JsonAdaptedUserModule jsonAdaptedModule : modules) {
             Person person = jsonAdaptedModule.toModelType();
             if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);

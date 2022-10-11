@@ -1,7 +1,6 @@
 package nus.climods.logic.parser;
 
 import static nus.climods.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static nus.climods.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,7 +11,7 @@ import nus.climods.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class CliModsParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -26,19 +25,15 @@ public class AddressBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public static Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ""));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Invalid command"));
         }
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-        }
+        return null;
     }
-
 }

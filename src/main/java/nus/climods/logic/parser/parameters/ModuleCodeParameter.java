@@ -6,6 +6,7 @@ import nus.climods.logic.parser.ParserUtil;
  * Represents a positional ModuleCode parameter
  */
 public class ModuleCodeParameter extends PositionalParameter<String> {
+
     public static final String INVALID_INPUT_MESSAGE = "Module code should not be empty!";
     public static final String PARSE_EXCEPTION_MESSAGE = "Invalid module code: %s";
     private static final int MODULE_CODE_INDEX = 0;
@@ -13,6 +14,7 @@ public class ModuleCodeParameter extends PositionalParameter<String> {
 
     /**
      * Creates a ModuleCodeParameter with
+     *
      * @param argumentsString
      */
     public ModuleCodeParameter(String argumentsString) {
