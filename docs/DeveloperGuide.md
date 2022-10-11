@@ -311,7 +311,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. HR Pro Max++ detects error in add project command.
     * 1a1. HR Pro Max++ shows error
-    
+
       Use case resume at step 1.
 
 **Use case: UC02- Add staff member to project**
@@ -366,7 +366,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User add a project(UC01).
-2. User request to edit project in Project list with new arguments 
+2. User request to edit project in Project list with new arguments
 3. HR Pro Max++ records the change in local storage and display project
 with updated details.
 
@@ -378,7 +378,7 @@ with updated details.
     * 3a1. HR Pro Max++ shows error
 
       Use case resume at step 2.
-    
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

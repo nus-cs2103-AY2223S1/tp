@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -86,6 +87,12 @@ public interface Model {
      * another existing project in the address book.
      */
     void setProject(Project target, Project editedProject);
+
+    /** Sets the given project to be the target of the view command */
+    void setTargetProject(Project target);
+
+    /** Returns the project that is the target of the view command */
+    ArrayList<Project> getTargetProject();
 
     /**
      * Returns an unmodifiable view of the filtered project list

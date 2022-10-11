@@ -28,7 +28,7 @@
         <Label fx:id="projectName" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="budget" styleClass="cell_small_label" text="\$budget" />
+      <Label fx:id="budget" styleClass="cell_small_label" text="\$budget"/>
       <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
     </VBox>
   </GridPane>

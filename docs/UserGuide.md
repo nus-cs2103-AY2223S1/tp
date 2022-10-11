@@ -108,7 +108,7 @@ Format: `listProj`
 
 Adds a staff member info to Project in project list.
 
-Format: `addStaff pn/PROJECT_NAME sn/STAFF_NAME si/INSURANCE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT NUMBER` 
+Format: `addStaff pn/PROJECT_NAME sn/STAFF_NAME si/INSURANCE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT NUMBER`
 
 * All fields for staff member are required
 

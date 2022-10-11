@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Project> filteredProjects;
+    private final ArrayList<Project> targetProject = new ArrayList<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -109,6 +111,21 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedProject);
 
         addressBook.setProject(target, editedProject);
+    }
+
+    @Override
+    public void setTargetProject(Project target) {
+        requireNonNull(target);
+        if (this.targetProject.isEmpty()) {
+            this.targetProject.add(target);
+        } else {
+            this.targetProject.set(0, target);
+        }
+    }
+
+    @Override
+    public ArrayList<Project> getTargetProject() {
+        return targetProject;
     }
 
     //=========== Filtered Project List Accessors =============================================================

@@ -7,14 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.project.Project;
+import seedu.address.model.staff.Staff;
 
 /**
- * An UI component that displays information of a {@code Project}.
+ * An UI component that displays information of a {@code Staff}.
  */
-public class ProjectCard extends UiPart<Region> {
+public class StaffCard extends UiPart<Region> {
 
-    private static final String FXML = "ProjectListCard.fxml";
+    private static final String FXML = "StaffListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,32 +24,35 @@ public class ProjectCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Project project;
+    public final Staff staff;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label projectName;
+    private Label staffName;
+    @FXML
+    private Label staffTitle;
+    @FXML
+    private Label staffContact;
     @FXML
     private Label id;
     @FXML
-    private Label budget;
-    @FXML
-    private Label deadline;
+    private FlowPane staffInsurance;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code ProjectCode} with the given {@code Project} and index to display.
+     * Creates a {@code StaffCode} with the given {@code Staff} and index to display.
      */
-    public ProjectCard(Project project, int displayedIndex) {
+    public StaffCard(Staff staff, int displayedIndex) {
         super(FXML);
-        this.project = project;
+        this.staff = staff;
         id.setText(displayedIndex + ". ");
-        projectName.setText(project.getProjectName().fullName);
-        budget.setText("Budget: " + project.getBudget().value);
-        deadline.setText("Project deadline: " + project.getDeadline().deadline);
-        project.getTags().stream()
+        staffName.setText(staff.getStaffName().toString());
+        staffTitle.setText(staff.getStaffTitle().toString());
+        staffContact.setText("Phone : " + staff.getStaffContact());
+
+        staff.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -62,13 +65,13 @@ public class ProjectCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ProjectCard)) {
+        if (!(other instanceof StaffCard)) {
             return false;
         }
 
         // state check
-        ProjectCard card = (ProjectCard) other;
+        StaffCard card = (StaffCard) other;
         return id.getText().equals(card.id.getText())
-                && project.equals(card.project);
+                && staff.equals(card.staff);
     }
 }
