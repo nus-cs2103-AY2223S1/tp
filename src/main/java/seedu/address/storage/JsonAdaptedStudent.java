@@ -10,11 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.Address;
+import seedu.address.model.attendance.Attendance;
+import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,7 +29,10 @@ class JsonAdaptedStudent {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String classGroup;
+    private final String studentId;
+    private final String attendance;
+
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,15 +40,19 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("email") String email, @JsonProperty("classGroup") String classGroup,
+                              @JsonProperty("studentId") String studentId,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("attendance") String attendance) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.classGroup = classGroup;
+        this.studentId = studentId;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.attendance = attendance;
     }
 
     /**
@@ -53,10 +62,12 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        classGroup = source.getClassGroup().value;
+        studentId = source.getStudentId().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        attendance = source.getAttendance().value;
     }
 
     /**
@@ -94,16 +105,37 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (classGroup == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClassGroup.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        final ClassGroup modelClassGroup = new ClassGroup(classGroup);
+
+        if (studentId == null) {
+            throw new IllegalValueException(String.format(
+                        MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
         }
-        final Address modelAddress = new Address(address);
+        if (!StudentId.isValidStudentId(studentId)) {
+            throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
+        }
+
+        final StudentId modelStudentId = new StudentId(studentId);
+
+        if (attendance == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Attendance.class.getSimpleName()));
+        }
+
+        if (!Attendance.isValidMark(attendance)) {
+            throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+
+        final Attendance modelAttendance = new Attendance(attendance);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        return new Student(modelName, modelPhone, modelEmail, modelClassGroup,
+                modelStudentId, modelTags, modelAttendance);
     }
 
 }

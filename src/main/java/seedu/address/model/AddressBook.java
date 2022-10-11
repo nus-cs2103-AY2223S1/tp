@@ -67,6 +67,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a student with the same StudentId as {@code student} exists in the address book.
+     */
+    public boolean hasStudentWithSameIdAs(Student student) {
+        requireNonNull(student);
+        return students.haveSameId(student);
+
+    }
+
+    /**
      * Adds a student to the address book.
      * The student must not already exist in the address book.
      */

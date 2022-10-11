@@ -3,12 +3,17 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "classGroup": "CS2030 Lab 2",
+    "studentId": "e0123456",
+    "tagged": [ "friends" ],
+    "attendance": "0"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "classGroup": "CS2030 Lab 6",
+    "studentId": "e0334821"
+    "studentId": "e0334821",
+    "attendance": "0"
   } ]
 }

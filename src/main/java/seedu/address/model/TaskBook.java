@@ -5,13 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameStudent comparison)
+ * Wraps all data at the task-book level
  */
 public class TaskBook implements ReadOnlyTaskBook {
 
@@ -31,7 +29,7 @@ public class TaskBook implements ReadOnlyTaskBook {
     public TaskBook() {}
 
     /**
-     * Creates an AddressBook using the Students in the {@code toBeCopied}
+     * Creates a TaskBook using the Tasks in the {@code toBeCopied}
      */
     public TaskBook(ReadOnlyTaskBook toBeCopied) {
         this();
@@ -41,15 +39,14 @@ public class TaskBook implements ReadOnlyTaskBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the student list with {@code students}.
-     * {@code students} must not contain duplicate students.
+     * Replaces the contents of the task list with {@code tasks}.
      */
     public void setTasks(List<Task> tasks) {
         this.tasks.setTasks(tasks);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TaskBook} with {@code newData}.
      */
     public void resetData(ReadOnlyTaskBook newData) {
         requireNonNull(newData);
@@ -59,14 +56,16 @@ public class TaskBook implements ReadOnlyTaskBook {
 
     //// task-level operations
 
+    /**
+     * Returns true if the list contains an equivalent task as the given argument.
+     */
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return tasks.contains(task);
     }
 
     /**
-     * Adds a task to the address book.
-     * The task must not already exist in the address book.
+     * Adds a task to the task book.
      */
     public void addTask(Task t) {
         tasks.add(t);

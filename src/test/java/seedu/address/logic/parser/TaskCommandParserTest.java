@@ -1,10 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.TaskCommand;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_TITLE_DESC;
@@ -13,13 +8,23 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DESCRIPTIO
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.TaskCommand;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.TaskBuilder;
+
+
 public class TaskCommandParserTest {
 
     private TaskCommandParser parser = new TaskCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder().withTitle(VALID_TASK_TITLE).withDescription(VALID_TASK_DESCRIPTION).build();
+        Task expectedTask = new TaskBuilder()
+                .withTitle(VALID_TASK_TITLE)
+                .withDescription(VALID_TASK_DESCRIPTION)
+                .build();
 
         assertParseSuccess(parser, TASK_TITLE_DESC + TASK_DESCRIPTION_DESC, new TaskCommand(expectedTask));
     }

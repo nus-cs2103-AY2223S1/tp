@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -7,8 +9,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Removes a task identified using it's displayed index from the task book.
+ */
 public class RemoveTaskCommand extends Command {
     public static final String COMMAND_WORD = "remove-task";
 
@@ -21,6 +24,9 @@ public class RemoveTaskCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a RemoveTaskCommand with the specified {@code Index}
+     */
     public RemoveTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

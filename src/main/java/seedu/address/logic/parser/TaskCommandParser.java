@@ -1,19 +1,27 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskTitle;
 
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-
+/**
+ * Parses input arguments and creates a new TaskCommand object.
+ */
 public class TaskCommandParser implements Parser<TaskCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the TaskCommand
+     * and returns a TaskCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public TaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TASK_TITLE, PREFIX_TASK_DESCRIPTION);

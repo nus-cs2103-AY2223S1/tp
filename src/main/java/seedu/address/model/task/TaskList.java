@@ -1,14 +1,19 @@
 package seedu.address.model.task;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
+
+/**
+ * A list of tasks that does not allow nulls.
+ * Supports a minimal set of list operations.
+ */
 public class TaskList implements Iterable<Task> {
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
@@ -23,16 +28,26 @@ public class TaskList implements Iterable<Task> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Removes the equivalent task from the list.
+     * The task must exist in the list.
+     */
     public void remove(Task toRemove) {
         requireNonNull(toRemove);
         internalList.remove(toRemove);
     }
 
+    /**
+     * Returns true if the list contains an equivalent task as the given argument.
+     */
     public boolean contains(Task toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::equals);
     }
 
+    /**
+     * Replaces the contents of this list with {@code tasks}.
+     */
     public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);
 

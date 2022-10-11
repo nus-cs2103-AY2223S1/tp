@@ -8,47 +8,54 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.TaskBook;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDescription;
-import seedu.address.model.task.TaskTitle;
-import seedu.address.model.student.Address;
+import seedu.address.model.attendance.Attendance;
+import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskTitle;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
+    public static final ClassGroup EMPTY_CLASS_GROUP = new ClassGroup("");
+    public static final Attendance EMPTY_ATTENDANCE = new Attendance("0");
+
     public static Student[] getSampleStudents() {
+
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
+                new ClassGroup("CS2030S Lab 32"), new StudentId("e0712345"),
+                    getTagSet("friends"), EMPTY_ATTENDANCE),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
+                new ClassGroup("CS2030S Lab 32"), new StudentId("e0123456"),
+                    getTagSet("colleagues", "friends"), EMPTY_ATTENDANCE),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
+                new ClassGroup("CS2040S Tutorial 3"), new StudentId("e0132456"),
+                    getTagSet("neighbours"), EMPTY_ATTENDANCE),
             new Student(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
+                new ClassGroup("CS2040S Tutorial 3"), new StudentId("e0987123"),
+                    getTagSet("family"), EMPTY_ATTENDANCE),
             new Student(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
+                new ClassGroup("CS2030S Lab 32"), new StudentId("e0984750"),
+                    getTagSet("classmates"), EMPTY_ATTENDANCE),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                new ClassGroup("CS2040S Tutorial 3"), new StudentId("e0453933"),
+                getTagSet("colleagues"), EMPTY_ATTENDANCE)
         };
     }
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-                new Task(new TaskTitle("Grade assignments"), new TaskDescription("Complete by tonight")),
-                new Task(new TaskTitle("Prepare slides for studio"), new TaskDescription("Topic Environment Model"))
+            new Task(new TaskTitle("Grade assignments"), new TaskDescription("Complete by tonight")),
+            new Task(new TaskTitle("Prepare slides for studio"), new TaskDescription("Topic Environment Model"))
         };
     }
 

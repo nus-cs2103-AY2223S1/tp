@@ -4,10 +4,17 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+/**
+ * Represents a Task in the task book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Task {
     public final TaskTitle title;
     public final TaskDescription description;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Task(TaskTitle title, TaskDescription description) {
         requireAllNonNull(title, description);
         this.title = title;

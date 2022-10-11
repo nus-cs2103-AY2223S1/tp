@@ -3,6 +3,10 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Task's title in the task book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
+ */
 public class TaskTitle {
     public static final String MESSAGE_CONSTRAINTS =
             "Task titles should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -15,6 +19,11 @@ public class TaskTitle {
 
     public final String title;
 
+    /**
+     * Constructs a {@code TaskTitle}.
+     *
+     * @param title A valid task title.
+     */
     public TaskTitle(String title) {
         requireNonNull(title);
         checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);

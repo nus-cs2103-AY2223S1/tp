@@ -35,11 +35,16 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label studentId;
     @FXML
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label classGroup;
+
+    @FXML
+    private Label attendance;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -50,8 +55,10 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
+        studentId.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
+        attendance.setText(student.getAttendance().value);
+        classGroup.setText(student.getClassGroup().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

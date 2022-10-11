@@ -3,6 +3,10 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Task's description in the task book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
+ */
 public class TaskDescription {
     public static final String MESSAGE_CONSTRAINTS =
             "Task descriptions should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -15,6 +19,11 @@ public class TaskDescription {
 
     public final String description;
 
+    /**
+     * Constructs a {@code TaskDescription}.
+     *
+     * @param description A valid task description.
+     */
     public TaskDescription(String description) {
         requireNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);

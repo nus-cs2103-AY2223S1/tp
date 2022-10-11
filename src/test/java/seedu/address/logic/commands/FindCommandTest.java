@@ -51,7 +51,8 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different STUDENT -> returns false
+        // different student -> returns false
+
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
