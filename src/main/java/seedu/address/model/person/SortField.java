@@ -22,9 +22,10 @@ public class SortField {
     // Comparator logic
     private static final Comparator<Person> SORT_BY_NAME = (p1, p2) -> p1.getName().compareTo(p2.getName());
 
-    // TODO: Fill in logic for other fields
+    // TODO: Fill in logic for DOB
     private static final Comparator<Person> SORT_BY_DATE_OF_BIRTH = (p1, p2) -> 0;
-    private static final Comparator<Person> SORT_BY_GENDER = (p1, p2) -> 0;
+
+    private static final Comparator<Person> SORT_BY_GENDER = (p1, p2) -> p1.getGender().compareTo(p2.getGender());
     private static final Comparator<Person> SORT_BY_NO_FIELD = (p1, p2) -> 0;
 
 
