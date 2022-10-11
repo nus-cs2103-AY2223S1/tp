@@ -32,6 +32,6 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
                     AttendanceCommand.MESSAGE_USAGE), ive);
         }
 
-        return new AttendanceCommand(index, ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get()));
+        return new AttendanceCommand(index, ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE)));
     }
 }

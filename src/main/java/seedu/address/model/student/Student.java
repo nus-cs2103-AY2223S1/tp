@@ -33,7 +33,7 @@ public class Student {
      */
     public Student(Name name, Phone phone, Email email,
                    ClassGroup classGroup, StudentId studentId, Set<Tag> tags, Attendance attendance) {
-        requireAllNonNull(name, phone, email, classGroup, studentId, tags, attendance);
+        requireAllNonNull(name, studentId);
         this.name = name;
         this.phone = phone;
         this.email = email;
