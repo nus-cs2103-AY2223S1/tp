@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.internship.Address;
+import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
@@ -27,7 +27,7 @@ public class InternshipBuilder {
     private Link link;
     private Email email;
     private ApplicationStatus applicationStatus;
-    private Address address;
+    private AppliedDate appliedDate;
     private Set<Tag> tags;
 
     /**
@@ -38,7 +38,7 @@ public class InternshipBuilder {
         link = new Link(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         applicationStatus = DEFAULT_APPLICATION_STATUS;
-        address = new Address(DEFAULT_ADDRESS);
+        appliedDate = new AppliedDate(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -50,7 +50,7 @@ public class InternshipBuilder {
         link = internshipToCopy.getLink();
         email = internshipToCopy.getEmail();
         applicationStatus = internshipToCopy.getApplicationStatus();
-        address = internshipToCopy.getAddress();
+        appliedDate = internshipToCopy.getAppliedDate();
         tags = new HashSet<>(internshipToCopy.getTags());
     }
 
@@ -71,10 +71,10 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Internship} that we are building.
+     * Sets the {@code AppliedDate} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.appliedDate = new AppliedDate(address);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(company, link, email, applicationStatus, address, tags);
+        return new Internship(company, link, email, applicationStatus, appliedDate, tags);
     }
 
 }

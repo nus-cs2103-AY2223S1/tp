@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.internship.Address;
 import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
@@ -43,10 +43,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Link link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         ApplicationStatus applicationStatus = ApplicationStatus.Applied;
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        AppliedDate appliedDate = ParserUtil.parseAppliedDate(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Internship internship = new Internship(company, link, email, applicationStatus, address, tagList);
+        Internship internship = new Internship(company, link, email, applicationStatus, appliedDate, tagList);
 
         return new AddCommand(internship);
     }

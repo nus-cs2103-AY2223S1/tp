@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.internship.Address;
+import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Email;
@@ -59,7 +59,7 @@ class JsonAdaptedInternship {
         link = source.getLink().value;
         email = source.getEmail().value;
         applicationStatus = source.getApplicationStatus().toString().toLowerCase();
-        address = source.getAddress().value;
+        address = source.getAppliedDate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -107,15 +107,15 @@ class JsonAdaptedInternship {
         final ApplicationStatus modelApplicationStatus = ApplicationStatus.parse(applicationStatus);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, AppliedDate.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!AppliedDate.isValidAppliedDate(address)) {
+            throw new IllegalValueException(AppliedDate.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final AppliedDate modelAppliedDate = new AppliedDate(address);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelLink, modelEmail, modelApplicationStatus, modelAddress, modelTags);
+        return new Internship(modelCompany, modelLink, modelEmail, modelApplicationStatus, modelAppliedDate, modelTags);
     }
 
 }

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.internship.Address;
+import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Link;
@@ -28,7 +28,7 @@ public class JsonAdaptedInternshipTest {
     private static final String VALID_PHONE = BINANCE.getLink().toString();
     private static final String VALID_EMAIL = BINANCE.getEmail().toString();
     private static final String VALID_APPLICATION_STATUS = BINANCE.getApplicationStatus().toString();
-    private static final String VALID_ADDRESS = BINANCE.getAddress().toString();
+    private static final String VALID_ADDRESS = BINANCE.getAppliedDate().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BINANCE.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -95,7 +95,7 @@ public class JsonAdaptedInternshipTest {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                         VALID_APPLICATION_STATUS, INVALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        String expectedMessage = AppliedDate.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
@@ -103,7 +103,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_APPLICATION_STATUS, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, AppliedDate.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 

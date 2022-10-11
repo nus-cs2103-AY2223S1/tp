@@ -22,20 +22,20 @@ public class Internship {
     private final ApplicationStatus applicationStatus;
 
     // Data fields
-    private final Address address;
+    private final AppliedDate appliedDate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Internship(Company company, Link link, Email email, ApplicationStatus applicationStatus,
-                      Address address, Set<Tag> tags) {
-        requireAllNonNull(company, link, email, address, tags);
+                      AppliedDate appliedDate, Set<Tag> tags) {
+        requireAllNonNull(company, link, email, appliedDate, tags);
         this.company = company;
         this.link = link;
         this.email = email;
         this.applicationStatus = applicationStatus;
-        this.address = address;
+        this.appliedDate = appliedDate;
         this.tags.addAll(tags);
     }
 
@@ -55,8 +55,8 @@ public class Internship {
         return applicationStatus;
     }
 
-    public Address getAddress() {
-        return address;
+    public AppliedDate getAppliedDate() {
+        return appliedDate;
     }
 
     /**
@@ -99,14 +99,14 @@ public class Internship {
                 && otherInternship.getLink().equals(getLink())
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getApplicationStatus().equals(getApplicationStatus())
-                && otherInternship.getAddress().equals(getAddress())
+                && otherInternship.getAppliedDate().equals(getAppliedDate())
                 && otherInternship.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, link, email, applicationStatus, address, tags);
+        return Objects.hash(company, link, email, applicationStatus, appliedDate, tags);
     }
 
     @Override
@@ -119,8 +119,8 @@ public class Internship {
                 .append(getEmail())
                 .append("; Application Status: ")
                 .append(getApplicationStatus())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; AppliedDate: ")
+                .append(getAppliedDate());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -35,7 +35,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label link;
     @FXML
-    private Label address;
+    private Label appliedDate;
     @FXML
     private Label applicationStatus;
     @FXML
@@ -52,7 +52,7 @@ public class InternshipCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         company.setText(internship.getCompany().value);
         link.setText(internship.getLink().value);
-        address.setText(internship.getAddress().value);
+        appliedDate.setText(internship.getAppliedDate().value);
         applicationStatus.setText(internship.getApplicationStatus().toString());
         email.setText(internship.getEmail().value);
         internship.getTags().stream()

@@ -33,7 +33,7 @@ public class InternshipUtil {
         sb.append(PREFIX_NAME + internship.getCompany().value + " ");
         sb.append(PREFIX_PHONE + internship.getLink().value + " ");
         sb.append(PREFIX_EMAIL + internship.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + internship.getAddress().value + " ");
+        sb.append(PREFIX_ADDRESS + internship.getAppliedDate().value + " ");
         internship.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -48,7 +48,7 @@ public class InternshipUtil {
         descriptor.getCompany().ifPresent(name -> sb.append(PREFIX_NAME).append(name.value).append(" "));
         descriptor.getLink().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getAppliedDate().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

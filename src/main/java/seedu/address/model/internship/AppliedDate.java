@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Internship's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents an Internship's applied date in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidAppliedDate(String)}
  */
-public class Address {
+public class AppliedDate {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
@@ -20,20 +20,20 @@ public class Address {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code AppliedDate}.
      *
-     * @param address A valid address.
+     * @param appliedDate A valid appliedDate.
      */
-    public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public AppliedDate(String appliedDate) {
+        requireNonNull(appliedDate);
+        checkArgument(isValidAppliedDate(appliedDate), MESSAGE_CONSTRAINTS);
+        value = appliedDate;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidAppliedDate(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -45,8 +45,8 @@ public class Address {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                || (other instanceof AppliedDate // instanceof handles nulls
+                && value.equals(((AppliedDate) other).value)); // state check
     }
 
     @Override
