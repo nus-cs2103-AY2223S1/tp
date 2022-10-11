@@ -207,7 +207,7 @@ Examples:
 
 ### Hide Contact Details: `customise hide`
 
-Hide certain information of all contacts shown.
+Hide certain information of all contacts displayed.
 
 Format: `customise hide [p/] [e/] [a/] [t/]`
 
@@ -216,10 +216,11 @@ Format: `customise hide [p/] [e/] [a/] [t/]`
 
 Example:
 * `customise hide e/` The application no longer shows emails in the contact list.
+* `customise hide p/ t/` The application no longer shows phone numbers and tags in the contact list.
 
 ### Show Contact Details: `customise show`
 
-Show certain information of all contacts shown.
+Show certain information of all contacts displayed.
 
 Format: `customise show [p/] [e/] [a/] [t/]`
 
@@ -228,6 +229,7 @@ Format: `customise show [p/] [e/] [a/] [t/]`
 
 Example:
 * `customise show a/` The application now shows addresses in the contact list.
+* `customise show p/ t/` The application now shows phone numbers and tags in the contact list.
 
 ### Customise Order of Details: `customise order`
 
@@ -235,11 +237,12 @@ Customise order of information shown in all contacts shown.
 
 Format: `customise order [p/] [e/] [a/] [t/]`
 
-*Attributes not given will be ordered last in default order. (tag > phone > address > email)
+* Attributes not given will be ordered last in default order. (tag > phone > email > address)
 
 Example:
 
-* `customise order a/ e/ p/` The application now shows address first, followed by email, phone, then tags.
+* `customise order a/ e/ p/` The application will show address first, followed by email, phone number, then tags.
+* `customise order a/` The application will show address first. The rest of the attributes will follow the default order. Therefore, address will be followed by tags, phone number and then email.
 
 ### Clearing all entries : `clear`
 
@@ -284,7 +287,7 @@ _Details coming soon ..._
 |----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`                         |
 | **Clear**      | `clear`                                                                                                                                                        |
-| **Customise**  | `customise hide [p/] [e/] [a/] [t/]` <br> `customise show [p/] [e/] [a/] [t/]` <br> `customise order [p/] [e/] [a/] [t/]` <br> e.g, `customise order a/ e/ p/` |
+| **Customise**  | `customise hide [t/] [p/] [e/] [a/]` <br> `customise show [t/] [p/] [e/] [a/]` <br> `customise order [t/] [p/] [e/] [a/]` <br> e.g, `customise hide a/ e/ p/` `customise show a/` `customise order a/ p/` |
 | **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
 | **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                              |
 | **Search**     | `search [n/NAME] [p/PHONE_NUMBER] ...`<br> e.g., `seach n/John Doe t/cs2103t`                                                                                  |
