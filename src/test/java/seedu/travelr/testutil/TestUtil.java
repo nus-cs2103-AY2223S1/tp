@@ -1,8 +1,8 @@
 package seedu.travelr.testutil;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.travelr.commons.core.index.Index;
+import seedu.travelr.model.Model;
+import seedu.travelr.model.trip.Trip;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -33,23 +33,23 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Returns the middle index of the trip in the {@code model}'s trip list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+        return Index.fromOneBased(model.getFilteredTripList().size() / 2);
     }
 
     /**
-     * Returns the last index of the person in the {@code model}'s person list.
+     * Returns the last index of the trip in the {@code model}'s trip list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+        return Index.fromOneBased(model.getFilteredTripList().size());
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the trip in the {@code model}'s trip list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Trip getTrip(Model model, Index index) {
+        return model.getFilteredTripList().get(index.getZeroBased());
     }
 }
