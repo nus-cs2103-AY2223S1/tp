@@ -46,7 +46,6 @@ public class Item {
                 && otherItem.getDescription().equals(getDescription());
     }
 
-
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
