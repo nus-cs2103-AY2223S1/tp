@@ -6,21 +6,21 @@ import static seedu.foodrem.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.foodrem.logic.commands.AddCommand;
-import seedu.foodrem.logic.commands.ClearCommand;
 import seedu.foodrem.logic.commands.Command;
-import seedu.foodrem.logic.commands.DeleteCommand;
-import seedu.foodrem.logic.commands.EditCommand;
-import seedu.foodrem.logic.commands.ExitCommand;
-import seedu.foodrem.logic.commands.FindCommand;
-import seedu.foodrem.logic.commands.HelpCommand;
-import seedu.foodrem.logic.commands.ListCommand;
+import seedu.foodrem.logic.commands.generalcommands.ClearCommand;
+import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
+import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
+import seedu.foodrem.logic.commands.itemcommands.AddCommand;
+import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
+import seedu.foodrem.logic.commands.itemcommands.EditCommand;
+import seedu.foodrem.logic.commands.itemcommands.FindCommand;
+import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class FoodRemParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -36,6 +36,7 @@ public class AddressBookParser {
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }

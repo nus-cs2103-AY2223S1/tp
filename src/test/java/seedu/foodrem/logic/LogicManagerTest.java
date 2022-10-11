@@ -18,10 +18,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.foodrem.logic.commands.AddCommand;
 import seedu.foodrem.logic.commands.CommandResult;
-import seedu.foodrem.logic.commands.ListCommand;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
+import seedu.foodrem.logic.commands.itemcommands.AddCommand;
+import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;

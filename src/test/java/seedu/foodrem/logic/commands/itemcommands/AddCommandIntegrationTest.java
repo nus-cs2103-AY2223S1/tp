@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.commands;
+package seedu.foodrem.logic.commands.itemcommands;
 
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_ITEM_NAME_CARROTS;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;

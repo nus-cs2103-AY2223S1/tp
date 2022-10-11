@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.commands;
+package seedu.foodrem.logic.commands.itemcommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

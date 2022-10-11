@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.commands;
+package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
@@ -14,6 +14,8 @@ import java.util.Optional;
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.commons.util.CollectionUtil;
+import seedu.foodrem.logic.commands.Command;
+import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
@@ -31,17 +33,17 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item identified "
-        + "by the index number used in the displayed item list. "
-        + "Existing values will be overwritten by the input values.\n"
-        + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_ITEM_NAME + "NAME] "
-        + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
-        + "[" + PREFIX_ITEM_UNIT + "UNIT] "
-        + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE] "
-        + "[" + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE]...\n"
-        + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_ITEM_QUANTITY + "1000 "
-        + PREFIX_ITEM_QUANTITY + "grams";
+            + "by the index number used in the displayed item list. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_ITEM_NAME + "NAME] "
+            + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
+            + "[" + PREFIX_ITEM_UNIT + "UNIT] "
+            + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE] "
+            + "[" + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_ITEM_QUANTITY + "1000 "
+            + PREFIX_ITEM_QUANTITY + "grams";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -113,7 +115,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-            && editItemDescriptor.equals(e.editItemDescriptor);
+                && editItemDescriptor.equals(e.editItemDescriptor);
     }
 
     /**
@@ -222,10 +224,10 @@ public class EditCommand extends Command {
             EditItemDescriptor e = (EditItemDescriptor) other;
 
             return getItemName().equals(e.getItemName())
-                && getItemQuantity().equals(e.getItemQuantity())
-                && getItemUnit().equals(e.getItemUnit())
-                && getItemBoughtDate().equals(e.getItemBoughtDate())
-                && getItemExpiryDate().equals(e.getItemExpiryDate());
+                    && getItemQuantity().equals(e.getItemQuantity())
+                    && getItemUnit().equals(e.getItemUnit())
+                    && getItemBoughtDate().equals(e.getItemBoughtDate())
+                    && getItemExpiryDate().equals(e.getItemExpiryDate());
         }
     }
 }

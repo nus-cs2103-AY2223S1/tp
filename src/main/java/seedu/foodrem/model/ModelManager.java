@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.foodrem.commons.core.GuiSettings;
 import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.model.tag.Tag;
 
 /**
  * Represents the in-memory model of FoodRem data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final FoodRem foodRem;
     private final UserPrefs userPrefs;
     private final FilteredList<Item> filteredItems;
+    private final FilteredList<Tag> filteredTags;
 
     /**
      * Initializes a ModelManager with the given foodRem and userPrefs.
@@ -34,6 +36,8 @@ public class ModelManager implements Model {
         this.foodRem = new FoodRem(foodRem);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.foodRem.getItemList());
+        filteredTags = new FilteredList<>(this.foodRem.getTagList());
+
     }
 
     public ModelManager() {
@@ -111,6 +115,30 @@ public class ModelManager implements Model {
         foodRem.setItem(target, editedItem);
     }
 
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return foodRem.hasTag(tag);
+    }
+
+    @Override
+    public void deleteTag(Tag target) {
+        foodRem.removeTag(target);
+    }
+
+    @Override
+    public void addTag(Tag tag) {
+        foodRem.addTag(tag);
+        updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
+    }
+
+    @Override
+    public void setTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+
+        foodRem.setTag(target, editedTag);
+    }
+
     //=========== Filtered Item List Accessors =============================================================
 
     /**
@@ -122,10 +150,24 @@ public class ModelManager implements Model {
         return filteredItems;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    public ObservableList<Tag> getFilteredTagList() {
+        return filteredTags;
+    }
+
     @Override
     public void updateFilteredItemList(Predicate<Item> predicate) {
         requireNonNull(predicate);
         filteredItems.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredTagList(Predicate<Tag> predicate) {
+        requireNonNull(predicate);
+        filteredTags.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +186,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return foodRem.equals(other.foodRem)
                 && userPrefs.equals(other.userPrefs)
-                && filteredItems.equals(other.filteredItems);
+                && filteredItems.equals(other.filteredItems)
+                && filteredTags.equals(other.filteredTags);
     }
 
 }

@@ -19,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.exceptions.DuplicateItemException;
+import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.ItemBuilder;
 
 public class FoodRemTest {
@@ -89,6 +90,7 @@ public class FoodRemTest {
      */
     private static class FoodRemStub implements ReadOnlyFoodRem {
         private final ObservableList<Item> items = FXCollections.observableArrayList();
+        private final ObservableList<Tag> tags = FXCollections.observableArrayList();
 
         FoodRemStub(Collection<Item> items) {
             this.items.setAll(items);
@@ -97,6 +99,11 @@ public class FoodRemTest {
         @Override
         public ObservableList<Item> getItemList() {
             return items;
+        }
+
+        @Override
+        public ObservableList<Tag> getTagList() {
+            return tags;
         }
     }
 

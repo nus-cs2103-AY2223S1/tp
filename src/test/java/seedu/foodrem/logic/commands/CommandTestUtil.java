@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.logic.commands.EditCommand.EditItemDescriptor;
+import seedu.foodrem.logic.commands.Command;
+import seedu.foodrem.logic.commands.CommandResult;
+import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;

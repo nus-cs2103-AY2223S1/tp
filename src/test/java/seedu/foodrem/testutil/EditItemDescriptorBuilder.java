@@ -1,6 +1,6 @@
 package seedu.foodrem.testutil;
 
-import seedu.foodrem.logic.commands.EditCommand.EditItemDescriptor;
+import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
 import seedu.foodrem.model.item.ItemExpiryDate;

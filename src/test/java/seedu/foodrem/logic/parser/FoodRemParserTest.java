@@ -12,15 +12,15 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.foodrem.logic.commands.AddCommand;
-import seedu.foodrem.logic.commands.ClearCommand;
-import seedu.foodrem.logic.commands.DeleteCommand;
-import seedu.foodrem.logic.commands.EditCommand;
-import seedu.foodrem.logic.commands.EditCommand.EditItemDescriptor;
-import seedu.foodrem.logic.commands.ExitCommand;
-import seedu.foodrem.logic.commands.FindCommand;
-import seedu.foodrem.logic.commands.HelpCommand;
-import seedu.foodrem.logic.commands.ListCommand;
+import seedu.foodrem.logic.commands.generalcommands.ClearCommand;
+import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
+import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
+import seedu.foodrem.logic.commands.itemcommands.AddCommand;
+import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
+import seedu.foodrem.logic.commands.itemcommands.EditCommand;
+import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
+import seedu.foodrem.logic.commands.itemcommands.FindCommand;
+import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
@@ -28,32 +28,33 @@ import seedu.foodrem.testutil.EditItemDescriptorBuilder;
 import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.testutil.ItemUtil;
 
-public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+public class FoodRemParserTest {
+
+    private final FoodRemParser parser = new FoodRemParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_add() {
         Item item = new ItemBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(ItemUtil.getAddCommand(item));
         assertEquals(new AddCommand(item), command);
     }
 
     @Test
-    public void parseCommand_clear() throws Exception {
+    public void parseCommand_clear() {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_delete() {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ITEM.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_ITEM), command);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_edit() {
         Item item = new ItemBuilder().build();
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(item).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
@@ -62,13 +63,13 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_exit() throws Exception {
+    public void parseCommand_exit() {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_find() {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
@@ -76,13 +77,13 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_help() throws Exception {
+    public void parseCommand_help() {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_list() {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }

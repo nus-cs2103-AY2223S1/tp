@@ -38,8 +38,8 @@ import static seedu.foodrem.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.logic.commands.EditCommand;
-import seedu.foodrem.logic.commands.EditCommand.EditItemDescriptor;
+import seedu.foodrem.logic.commands.itemcommands.EditCommand;
+import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.testutil.EditItemDescriptorBuilder;
 
 public class EditCommandParserTest {

@@ -9,7 +9,7 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
 
 import java.util.stream.Stream;
 
-import seedu.foodrem.logic.commands.AddCommand;
+import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;

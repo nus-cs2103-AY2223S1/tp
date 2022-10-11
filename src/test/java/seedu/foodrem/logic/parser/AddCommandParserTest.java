@@ -31,7 +31,7 @@ import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.foodrem.logic.commands.AddCommand;
+import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.testutil.ItemBuilder;
 

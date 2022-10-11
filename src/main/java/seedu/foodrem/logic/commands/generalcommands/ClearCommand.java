@@ -1,17 +1,19 @@
-package seedu.foodrem.logic.commands;
+package seedu.foodrem.logic.commands.generalcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.foodrem.logic.commands.Command;
+import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
 
 /**
- * Clears the FoodRem.
+ * Clears FoodRem.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "FoodRem has been cleared!";
 
 
     @Override

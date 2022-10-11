@@ -1,5 +1,7 @@
-package seedu.foodrem.logic.commands;
+package seedu.foodrem.logic.commands.generalcommands;
 
+import seedu.foodrem.logic.commands.Command;
+import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;
 
 /**
