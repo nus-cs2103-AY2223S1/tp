@@ -34,7 +34,7 @@ public class TypicalTransaction {
             .withPrice("5.50")
             .withQuantity("100")
             .build();
-    public static final Transaction SELL_CLOTHES_ = new TransactionBuilder()
+    public static final Transaction SELL_CLOTHES = new TransactionBuilder()
             .withTransactionType("sell")
             .withGoods("Clothes")
             .withPrice("33.99")

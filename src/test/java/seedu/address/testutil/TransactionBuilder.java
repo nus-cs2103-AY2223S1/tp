@@ -76,6 +76,10 @@ public class TransactionBuilder {
         return this;
     }
 
+    /**
+     * Build a Transaction object from the TransactionBuilder object.
+     * @return A Transaction Object.
+     */
     public Transaction build() {
         if (this.transactionType.equals(TRANSACTION_TYPE_BUY)) {
             return new BuyTransaction(goods, price, quantity);
