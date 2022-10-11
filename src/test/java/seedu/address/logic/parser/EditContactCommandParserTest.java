@@ -92,6 +92,7 @@ public class EditContactCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+
         assertParseFailure(parser, "1" + INVALID_MODS_DESC, Module.MESSAGE_CONSTRAINTS); // invalid mods
 
         // invalid phone followed by valid email
@@ -189,7 +190,8 @@ public class EditContactCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).withModules(VALID_MODULE_CS2030S).build();
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withModules(VALID_MODULE_CS2030S, VALID_MODULE_CS1101).build();
         EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
