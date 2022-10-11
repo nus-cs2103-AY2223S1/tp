@@ -51,11 +51,6 @@ public class SortCommandTest {
     }
 
     @Test
-    public void testSortCommandParse_Implement_Parser() {
-
-    }
-
-    @Test
     public void execute_sortByName_success() {
         this.expectedModel = new ModelManager();
         Person[] persons = {AMY, BOB, ELLE};
