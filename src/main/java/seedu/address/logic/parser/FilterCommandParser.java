@@ -17,7 +17,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
+        String trimmedArgs = args.toLowerCase().trim();
         switch (trimmedArgs) {
         case "pending":
         case "accepted":
