@@ -13,10 +13,10 @@
   <GridPane HBox.hgrow="ALWAYS">
     <VBox GridPane.columnIndex="0" alignment="CENTER_LEFT" minHeight="105">
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <FlowPane alignment="CENTER_LEFT" hgap="5" fx:id="moduleInfo"/>
         <Label style="-fx-font-size: 20;" maxHeight="1.7976931348623157E308"
           maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
           text="\$moduleCode" fx:id="moduleCode"/>
+        <FlowPane alignment="CENTER_LEFT" hgap="5" fx:id="moduleInfo"/>
       </HBox>
       <Label style="-fx-font-size: 15;" text="\$title" fx:id="title"/>
       <Label style="-fx-font-size: 15;" text="\$department" fx:id="department"/>
