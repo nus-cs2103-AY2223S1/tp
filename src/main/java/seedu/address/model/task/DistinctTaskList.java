@@ -8,11 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskIdentityModifiedException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
-import seedu.address.model.module.Module;
 
 /**
  * This class represents a list which contains Tasks objects which are distinct from
@@ -57,7 +56,6 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
-<<<<<<< HEAD
      * Replaces the task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
      * The task identity of {@code editedTask} should be the same as task identity of {@code target}.

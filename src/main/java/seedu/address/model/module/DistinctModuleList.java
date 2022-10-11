@@ -10,8 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * This class represents a list which contains Module objects which are distinct from
