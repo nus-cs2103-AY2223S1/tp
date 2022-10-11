@@ -7,6 +7,9 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable;
  */
 public class Priority {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Priority must be one of the following: " + PriorityEnum.getValidPriorities();
+
     private final PriorityEnum priority;
 
     /**
@@ -16,7 +19,6 @@ public class Priority {
         requireNonNull(priority);
         this.priority = priority;
     }
-
     /**
      * Returns the string representation of the task priority.
      *

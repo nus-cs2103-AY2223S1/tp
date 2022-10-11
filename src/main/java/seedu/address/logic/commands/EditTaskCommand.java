@@ -56,7 +56,7 @@ public class EditTaskCommand extends Command {
     private final EditTaskCommand.EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param index of the task in the filtered task list to edit
+     * @param index              of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
     public EditTaskCommand(Index index, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
@@ -103,7 +103,7 @@ public class EditTaskCommand extends Command {
         Person updatedPerson = editTaskDescriptor.getPerson().orElse(taskToEdit.getPerson());
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
 
-        return new Task(updatedName, updatedCategory, updatedDescription, updatedPriority,
+        return new Task(updatedName, updatedDescription, updatedPriority, updatedCategory,
                 updatedDeadline, updatedPerson, updatedIsDone);
     }
 
@@ -141,7 +141,8 @@ public class EditTaskCommand extends Command {
         private Person person;
         private boolean isDone;
 
-        public EditTaskDescriptor() {}
+        public EditTaskDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -203,6 +204,7 @@ public class EditTaskCommand extends Command {
         public Optional<TaskDeadline> getDeadline() {
             return ofNullable(deadline);
         }
+
         public void setPerson(Person person) {
             this.person = person;
         }
@@ -210,6 +212,7 @@ public class EditTaskCommand extends Command {
         public Optional<Person> getPerson() {
             return ofNullable(person);
         }
+
         public void setDone(boolean isDone) {
             this.isDone = isDone;
         }
