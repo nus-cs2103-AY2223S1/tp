@@ -216,6 +216,53 @@ The following activity diagram summarizes what happens when a user executes a so
 
 _{more aspects and alternatives to be added}_
 
+### Search feature
+
+#### Implementation
+
+The search mechanism is facilitated by `SearchCommand` and `SearchCommandParser`.
+
+This feature allows user to customise the contacts displayed based on the information provided. For example, user can decide to have specific search result that satisfies all the conditions or to have more generic result that only satisfies one of the conditions.
+
+It implements the following main operations:
+
+* `SearchCommand#execute(Model model)` — Updates filtered person list to contain contacts that match the search query.
+* `SearchCommandParser#parse()` — Parses search query based on the condition and information specified.
+
+Given below is an example usage scenario and how the search mechanism behaves at each step.
+
+Step 1. The user executes `search n/John a/NUS` command to perform a joint search. `SearchCommandParser` calls `ArgumentTokenizer#tokenize` to group the search parameters according to the prefix `/n` and `/a`.
+
+Step 2. The `search` command search the Address Book by matching the search parameters and condition with the available contact information, calling `StringUtil#containsKeywordsIgnoreCase(String sentence, String keywords)`.
+
+The following sequence diagram shows how the search operation works:
+
+(insert sequence diagram here)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SearchCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Step 3. The user is shown the searched list. The searched list contains all contacts that are relevant to the user's search query.
+
+The following activity diagram summarizes what happens when a user executes a search command:
+
+(insert activity diagram here)
+
+#### Design consideration
+
+**Aspect: How to implement searching:**
+
+* **Alternative 1 (current choice):** Search the list once for each parameter entered by the user.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of time needed to search.
+
+* **Alternative 2:** Single complex searching method that combines all the individual searching for each parameter.
+    * Pros: Save time as only 1 search operation is carried out.
+    * Cons: Harder to modify when more parameters are added. Can result in more bugs due to complexity.
+
+_{more aspects and alternatives to be added}_
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed implementation
@@ -281,7 +328,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design consideration
 
 **Aspect: How undo & redo executes:**
 
@@ -305,7 +352,6 @@ Additionally, The mechanism utilises the following operations in `UniqueTagList`
 
 * `UniqueTagList#hasTag(Tag tag)` - Checks if the tagList has the tag.
 * `UniquePersonList#setPerson(Person target, Person editedPerson)` - Sets the same person with the new tag.
-* 
 
 These operations are exposed in the `Model` interface under the same method name.
 
