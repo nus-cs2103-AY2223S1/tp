@@ -10,6 +10,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_MODULE_LISTED = "Here's the module you requested!";
-    public static final String MESSAGE_NO_SUCH_MODULE = "Looking kind of empty? I think so too! Add the module in!";
+    public static final String MESSAGE_NO_SUCH_MODULE = "No such module!";
 
 }
