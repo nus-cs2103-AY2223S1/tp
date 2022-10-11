@@ -179,7 +179,10 @@ public class AddTaskCommand extends Command {
             // state check
             AddTaskToModuleDescriptor e = (AddTaskToModuleDescriptor) other;
 
-            return getTask().equals(e.getTask());
+            Boolean hasSameModule = this.moduleCode.equals(e.moduleCode);
+            Boolean hasSameTask = getTask().equals(e.getTask());
+
+            return hasSameModule && hasSameTask;
         }
     }
 }
