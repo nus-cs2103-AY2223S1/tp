@@ -13,7 +13,9 @@ import modtrekt.model.task.exceptions.TaskNotFoundException;
 
 /**
  * A list of tasks that does not allow nulls.
+ *
  * Supports a minimal set of list operations.
+ *
  */
 public class UniqueTaskList implements Iterable<Task> {
 

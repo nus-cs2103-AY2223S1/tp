@@ -17,6 +17,7 @@ import modtrekt.model.module.exceptions.ModuleNotFoundException;
  * persons uses Module#isSameModule(Module) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniqueModuleList. However, the removal of a person uses Module#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
+ *
  * Supports a minimal set of list operations.
  *
  * @see Module#isSameModule(Module)
