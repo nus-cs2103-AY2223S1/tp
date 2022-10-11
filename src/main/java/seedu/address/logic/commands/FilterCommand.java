@@ -7,7 +7,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
 
-import java.util.Set;
 
 /**
  * Filters and list all persons in the address book
