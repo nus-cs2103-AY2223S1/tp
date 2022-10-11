@@ -8,7 +8,7 @@ import bookface.logic.parser.ParserUtil;
 import bookface.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates the relevant new AddCommand object for the relevant entity to be added
+ * Parses input arguments and creates the relevant new DeleteCommand object for the relevant entity to be added
  */
 public class DeleteUserArgumentsParser implements ArgumentsParsable<DeleteUserCommand> {
     /**

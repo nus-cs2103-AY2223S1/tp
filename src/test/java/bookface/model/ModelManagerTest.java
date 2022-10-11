@@ -2,6 +2,7 @@ package bookface.model;
 
 import static bookface.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static bookface.testutil.Assert.assertThrows;
+import static bookface.testutil.TestUtil.preparePredicateToCheckPersonForPartialWordIgnoreCase;
 import static bookface.testutil.TypicalPersons.ALICE;
 import static bookface.testutil.TypicalPersons.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -119,7 +120,8 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPersonList(preparePredicateToCheckPersonForPartialWordIgnoreCase(
+                Arrays.asList(keywords)));
         assertNotEquals(modelManager, new ModelManager(bookFace, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
