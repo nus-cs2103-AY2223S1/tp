@@ -8,7 +8,7 @@ import java.util.function.Predicate;
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class ObjectContainsKeywordsPredicate<T, R> implements Predicate<T> {
-    private final List<R> keywords;
+    private final List<? extends R> keywords;
     private final Function<? super T, Predicate<? super R>> wrappedPredicate;
 
     /**
@@ -16,7 +16,7 @@ public class ObjectContainsKeywordsPredicate<T, R> implements Predicate<T> {
      * @param keywords A list of keywords to filter by
      * @param wrappedPredicate The predicate function to test by
      */
-    public ObjectContainsKeywordsPredicate(List<R> keywords,
+    public ObjectContainsKeywordsPredicate(List<? extends R> keywords,
                                            Function<? super T, Predicate<? super R>> wrappedPredicate) {
         this.keywords = keywords;
         this.wrappedPredicate = wrappedPredicate;

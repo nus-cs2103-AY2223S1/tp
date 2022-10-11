@@ -1,30 +1,32 @@
-package bookface.logic.parser;
+package bookface.logic.parser.find;
 
 import static bookface.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static bookface.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static bookface.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static bookface.testutil.TestUtil.preparePredicateToCheckPersonForPartialWordIgnoreCase;
 
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import bookface.logic.commands.FindCommand;
-import bookface.model.person.NameContainsKeywordsPredicate;
+import bookface.logic.commands.find.FindUserCommand;
 
-public class FindCommandParserTest {
+public class FindUserArgumentsParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private final FindUserArgumentsParser parser = new FindUserArgumentsParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindUserCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        FindUserCommand expectedFindCommand =
+                new FindUserCommand(
+                        preparePredicateToCheckPersonForPartialWordIgnoreCase(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords

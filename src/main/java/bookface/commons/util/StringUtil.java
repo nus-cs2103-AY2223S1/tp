@@ -71,7 +71,7 @@ public class StringUtil {
      * @param stringToSearchIn cannot be null
      * @param keyword cannot be null
      */
-    public static boolean containsIgnoreCase(String stringToSearchIn, String keyword) {
+    private static boolean containsIgnoreCase(String stringToSearchIn, String keyword) {
         if (keyword == null || stringToSearchIn == null) {
             return false;
         }

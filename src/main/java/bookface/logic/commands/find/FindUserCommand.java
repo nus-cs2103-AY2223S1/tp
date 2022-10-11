@@ -17,9 +17,10 @@ public class FindUserCommand extends FindCommand {
     public static final String COMMAND_WORD = "user";
 
     public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Deletes the user identified by the index number used in the displayed user list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + FindCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
+            + ": Finds all users whose names contain any of the specified keywords (case-insensitive) and displays"
+            + "them as a list with index numbers\n"
+            + "Parameters: STRING...\n"
+            + "Example: " + FindCommand.COMMAND_WORD + " " + COMMAND_WORD + " alice bob";
 
     private final ObjectContainsKeywordsPredicate<Person, String> predicate;
 
