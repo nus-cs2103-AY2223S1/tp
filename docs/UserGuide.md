@@ -68,7 +68,7 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpmessage.png)
+![help message](images/helpMessage.png)
 
 Format: `help`
 
@@ -126,6 +126,12 @@ Format: `rdel INDEX`
 
 Example:
 * `rdel 2` deletes the 2nd review in the application.
+
+### Clearing all entries : `clear`
+
+Deletes all entries from the stall list and review list.
+
+Format: `clear`
 
 ### Exiting the program : `exit`
 

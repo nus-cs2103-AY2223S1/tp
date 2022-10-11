@@ -34,8 +34,8 @@ public class RAddCommand extends Command {
             + CliSyntax.PREFIX_STALL_INDEX + "3 "
             + CliSyntax.PREFIX_DATE + "2022-09-20 "
             + CliSyntax.PREFIX_CONTENT + "The food was good, the chicken rice was fresh.\n"
-            + CliSyntax.PREFIX_DETAIL + "friends "
-            + CliSyntax.PREFIX_DETAIL + "owesMoney";
+            + CliSyntax.PREFIX_DETAIL + "opensDaily "
+            + CliSyntax.PREFIX_DETAIL + "worthyTrip";
 
 
     public static final String MESSAGE_SUCCESS = "New review added: %1$s";

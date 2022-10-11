@@ -39,6 +39,8 @@ public class ReviewCard extends UiPart<Region> {
     private Label content;
     @FXML
     private Label details;
+    @FXML
+    private Label detailsLabel;
 
     /**
      * Creates a {@code ReviewCode} with the given {@code Review} and index to display.
@@ -58,6 +60,9 @@ public class ReviewCard extends UiPart<Region> {
                     .collect(Collectors.joining(", "));
 
             details.setText(assigneesNames);
+            detailsLabel.setText("Details:");
+        } else {
+            detailsLabel.setText("");
         }
     }
 
