@@ -123,13 +123,13 @@
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill:white;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill:white;
 }
 
 .stack-pane {
@@ -345,6 +345,48 @@
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#currModulesTags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#currModulesTags .label {
+    -fx-text-fill: white;
+    -fx-background-color:black;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#prevModulesTags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#prevModulesTags .label {
+    -fx-text-fill: white;
+    -fx-background-color:black;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#planModulesTags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#planModulesTags .label {
+    -fx-text-fill: white;
+    -fx-background-color:black;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
