@@ -67,15 +67,19 @@ public class CommandResult {
     }
 
     public boolean isClientSpecific() {
-        return specific.equals(CommandSpecific.CLIENT);
+        return specific != null && specific.equals(CommandSpecific.CLIENT);
     }
 
     public boolean isMeetingSpecific() {
-        return specific.equals(CommandSpecific.MEETING);
+        return specific != null && specific.equals(CommandSpecific.MEETING);
+    }
+
+    public boolean isDetailedClientSpecific() {
+        return specific != null && specific.equals(CommandSpecific.DETAILED_CLIENT);
     }
 
     public boolean isDetailedMeetingSpecific() {
-        return specific.equals(CommandSpecific.DETAILED_MEETING);
+        return specific != null && specific.equals(CommandSpecific.DETAILED_MEETING);
     }
 
     @Override

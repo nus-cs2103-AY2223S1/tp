@@ -105,6 +105,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getDetailedClientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getDetailedClientList().remove(0));
+    }
+
+    @Test
     public void getDetailedMeetingList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getDetailedMeetingList().remove(0));
     }
@@ -126,6 +131,27 @@ public class ModelManagerTest {
         assertEquals(modelManager.getFilteredMeetingList().size(), 1);
         modelManager.updateFilteredMeetingList(unused -> false);
         assertEquals(modelManager.getFilteredMeetingList().size(), 0);
+    }
+
+    @Test
+    public void hasMeeting() {
+        MyInsuRec myInsuRec = new MyInsuRecBuilder().withClient(ALICE).withClient(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        modelManager = new ModelManager(myInsuRec, userPrefs);
+        Meeting meeting1 = new MeetingBuilder(MEETING1)
+                .withDescription(VALID_DESCRIPTION_MEETING1)
+                .withMeetingDate(VALID_MEETING_DATE_MEETING1)
+                .withMeetingTime(VALID_MEETING_TIME_MEETING1)
+                .withClient(ALICE)
+                .build();
+        modelManager.addMeeting(meeting1);
+        assertTrue(modelManager.hasMeeting(meeting1));
+        modelManager.updateFilteredMeetingList(unused -> false);
+        assertTrue(modelManager.hasMeeting(meeting1));
+        modelManager.deleteMeeting(meeting1);
+        assertFalse(modelManager.hasMeeting(meeting1));
     }
 
     @Test
