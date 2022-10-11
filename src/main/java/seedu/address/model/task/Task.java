@@ -1,8 +1,12 @@
 package seedu.address.model.task;
 
+import seedu.address.model.person.Person;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Represents a Task in the task list.
@@ -14,14 +18,29 @@ public class Task {
     private final Title title;
     private final boolean marked;
 
+    private final Set<Person> assignedContacts = new HashSet<>();;
+
     /**
-     * Every field must be present and not null.
+     * Creates a new Task with no assigned contacts. (Used when a new task is added)
+     * @param title Title of task.
+     * @param marked Whether task is completed.
      */
     public Task(Title title, boolean marked) {
-        requireAllNonNull(title);
+        requireAllNonNull(title, marked);
 
         this.title = title;
         this.marked = marked; // task is default as unmarked
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Title title, boolean marked, Set<Person> assignedContacts) {
+        requireAllNonNull(title, marked, assignedContacts);
+
+        this.title = title;
+        this.marked = marked; // task is default as unmarked
+        this.assignedContacts.addAll(assignedContacts);
     }
 
     public Title getTitle() {
@@ -29,10 +48,17 @@ public class Task {
     }
 
     /**
-     * Returns true if task is marked, false if
+     * Returns true if task is marked, false if not marked.
      */
     public boolean getMarkStatus() {
         return this.marked;
+    }
+
+    /**
+     * Returns set of contacts assigned to task.
+     */
+    public Set<Person> getAssignedContacts() {
+        return this.assignedContacts;
     }
 
     /**

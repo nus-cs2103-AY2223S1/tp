@@ -51,7 +51,7 @@ public class MarkTaskCommand extends TaskCommand {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        Task editedTask = new Task(taskToMark.getTitle(), mark);
+        Task editedTask = new Task(taskToMark.getTitle(), mark, taskToMark.getAssignedContacts());
 
         model.setTask(taskToMark, editedTask);
 
