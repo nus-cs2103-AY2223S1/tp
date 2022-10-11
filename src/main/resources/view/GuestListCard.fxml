@@ -31,7 +31,7 @@
       </HBox>
 
       <HBox HBox.hgrow="ALWAYS">
-        <VBox id="personalParticulars" minWidth="320" maxWidth="320" HBox.hgrow="NEVER">
+        <VBox id="personalParticulars" minWidth="280" maxWidth="280" HBox.hgrow="NEVER">
           <Label fx:id="personalParticulars" text="Personal Particulars" />
 
           <HBox fx:id="phoneBox" alignment="CENTER_LEFT">
@@ -79,8 +79,8 @@
 
         <Region minWidth="5" HBox.hgrow="NEVER" />
 
-        <HBox HBox.hgrow="ALWAYS">
-          <VBox id="roomDetails" minWidth="320" maxWidth="320" HBox.hgrow="NEVER">
+        <HBox minWidth="280" maxWidth="280" >
+          <VBox id="roomDetails" minWidth="280" HBox.hgrow="NEVER">
             <Label fx:id="roomDetails" text="Room Details" />
 
             <HBox fx:id="roomDetailsBox" alignment="CENTER_LEFT">
@@ -96,6 +96,19 @@
               <Region minWidth="5" HBox.hgrow="NEVER" />
               <Label fx:id="dateRange" styleClass="cell_small_label" text="\$dateRange" />
             </HBox>
+
+          </VBox>
+        </HBox>
+
+        <Region minWidth="10" HBox.hgrow="NEVER"/>
+
+        <HBox minWidth="120" maxWidth="120" HBox.hgrow="NEVER">
+          <VBox id="roomStatus" minWidth="120" HBox.hgrow="NEVER">
+            <Label fx:id="roomStatus" text="Room Status" />
+
+            <HBox alignment="CENTER_LEFT">
+            </HBox>
+
           </VBox>
         </HBox>
       </HBox>
