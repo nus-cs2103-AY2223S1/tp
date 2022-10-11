@@ -58,7 +58,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void execute_pending_multiplePersonsFound() {
+    public void execute_pending_multipleApplicantsFiltered() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 4);
         ApplicationStatusPredicate predicate = preparePredicate("pending");
         FilterCommand command = new FilterCommand(predicate);
@@ -68,7 +68,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void execute_accepted_twoPersonsFound() {
+    public void execute_accepted_twoApplicantsFiltered() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 2);
         ApplicationStatusPredicate predicate = preparePredicate("accepted");
         FilterCommand command = new FilterCommand(predicate);
@@ -78,7 +78,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void execute_rejected_onePersonFound() {
+    public void execute_rejected_oneApplicantFiltered() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 1);
         ApplicationStatusPredicate predicate = preparePredicate("rejected");
         FilterCommand command = new FilterCommand(predicate);
