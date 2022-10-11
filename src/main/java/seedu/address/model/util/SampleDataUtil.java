@@ -20,24 +20,24 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Internship[] getSampleInternships() {
         return new Internship[] {
-            new Internship(new Company("Google"), new Link("87438807"), new Description("careers@google.com"),
-                ApplicationStatus.Applied, new AppliedDate("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Internship(new Company("Tiktok"), new Link("99272758"), new Description("careers@tiktok.com"),
-                ApplicationStatus.Applied, new AppliedDate("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Internship(new Company("Stripe"), new Link("93210283"), new Description("careers@stripe.com"),
-                ApplicationStatus.Applied, new AppliedDate("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Internship(new Company("Meta"), new Link("91031282"), new Description("careers@meta.com"),
-                ApplicationStatus.Applied, new AppliedDate("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Internship(new Company("Jane Street"), new Link("92492021"), new Description("careers@janestreet.com"),
-                ApplicationStatus.Applied, new AppliedDate("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Internship(new Company("Amazon"), new Link("92624417"), new Description("careers@amazon.com"),
-                ApplicationStatus.Applied, new AppliedDate("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                new Internship(new Company("Google"), new Link("https://careers.google.com/students"),
+                        new Description("careers@google.com"), ApplicationStatus.Applied,
+                        new AppliedDate("2022-10-30"), getTagSet("friends")),
+                new Internship(new Company("Tiktok"), new Link("careers@tiktok.com"),
+                        new Description("careers@tiktok.com"), ApplicationStatus.Applied,
+                        new AppliedDate("2022-11-30"), getTagSet("colleagues", "friends")),
+                new Internship(new Company("Stripe"), new Link("https://stripe.com/en-sg/jobs/university"),
+                        new Description("careers@stripe.com"), ApplicationStatus.Applied,
+                        new AppliedDate("2022-12-30"), getTagSet("neighbours")),
+                new Internship(new Company("Meta"), new Link("https://metacareers.com/careerprograms/students"),
+                        new Description("careers@meta.com"), ApplicationStatus.Applied,
+                        new AppliedDate("2022-11-05"), getTagSet("family")),
+                new Internship(new Company("Jane Street"), new Link("https://janestreet.com/join-jane-street/open-roles"),
+                        new Description("careers@janestreet.com"), ApplicationStatus.Applied,
+                        new AppliedDate("2022-11-10"), getTagSet("classmates")),
+                new Internship(new Company("Amazon"), new Link("https://amazon.jobs/en/business_categories"),
+                        new Description("careers@amazon.com"), ApplicationStatus.Applied,
+                        new AppliedDate("2022-11-15"), getTagSet("colleagues"))
         };
     }
 
