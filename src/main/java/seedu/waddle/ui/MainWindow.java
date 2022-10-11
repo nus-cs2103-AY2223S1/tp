@@ -2,6 +2,7 @@ package seedu.waddle.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -13,9 +14,12 @@ import javafx.stage.Stage;
 import seedu.waddle.commons.core.GuiSettings;
 import seedu.waddle.commons.core.LogsCenter;
 import seedu.waddle.logic.Logic;
+import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.CommandResult;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.logic.parser.exceptions.ParseException;
+import seedu.waddle.model.item.Item;
+import seedu.waddle.model.itinerary.Itinerary;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -27,14 +31,12 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
-
+    private final Stage primaryStage;
+    private final Logic logic;
+    private final HelpWindow helpWindow;
     // Independent Ui parts residing in this Ui container
-    private ItineraryListPanel itineraryListPanel;
+    private ListPanel listPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
-
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -42,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane itineraryListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -78,6 +80,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,8 +113,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        itineraryListPanel = new ItineraryListPanel(logic.getFilteredItineraryList());
-        itineraryListPanelPlaceholder.getChildren().add(itineraryListPanel.getRoot());
+        listPanel = new ItineraryListPanel(logic.getFilteredItineraryList());
+        listPanelPlaceholder.getChildren().add(listPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +166,18 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ItineraryListPanel getItineraryListPanel() {
-        return itineraryListPanel;
+    public ListPanel getListPanel() {
+        return listPanel;
+    }
+
+    /**
+     * Changes the list panel.
+     */
+    @FXML
+    public void setListPanel(ListPanel listPanel) {
+        this.listPanel = listPanel;
+        listPanelPlaceholder.getChildren().removeAll();
+        listPanelPlaceholder.getChildren().add(this.listPanel.getRoot());
     }
 
     /**
@@ -184,6 +197,26 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            // if the command results in a stage change, update the listPanel
+            if (commandResult.hasStage()) {
+                switch (commandResult.getStage()) {
+                case HOME:
+                    ObservableList<Itinerary> itineraryList = logic.getFilteredItineraryList();
+                    setListPanel(new ItineraryListPanel(itineraryList));
+                    break;
+                case WISH:
+                    ObservableList<Item> itemList = StageManager.getInstance().getSelectedItinerary()
+                            .getItemList().asUnmodifiableObservableList();
+                    setListPanel(new ItemListPanel(itemList));
+                    break;
+                case SCHEDULE:
+                    //TODO: create a ListPanel for Schedule page
+                    break;
+                default:
+                    break;
+                }
             }
 
             return commandResult;
