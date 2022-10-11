@@ -139,12 +139,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTargetProject(Project target){
+        public void setTargetProject(Project target) {
 
         }
-
+ 
         @Override
-        public ArrayList<Project> getTargetProject(){
+        public ArrayList<Project> getTargetProject() {
             return null;
         }
 
