@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Optional;
 
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Gender;
 import seedu.address.model.tag.Tag;
@@ -43,8 +42,7 @@ public class ListCommandParser implements Parser {
                     } else {
                         gender[0] = Optional.empty();
                     }
-                },
-                () -> gender[0] = Optional.empty());
+                }, () -> gender[0] = Optional.empty());
         Optional<Tag> tag = argMultimap.getValue(PREFIX_TAG).map(Tag::new);
 
         return new ListCommand(address, category, gender[0], tag);
