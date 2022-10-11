@@ -91,7 +91,7 @@ public class Module {
      * @return true if conflicts; false otherwise
      */
     public boolean conflictAnySchedule(Schedule newSchedule) {
-        return schedules.stream().anyMatch(newSchedule::isConflict);
+        return schedules.stream().anyMatch(newSchedule::isConflictWith);
     }
 
     /**

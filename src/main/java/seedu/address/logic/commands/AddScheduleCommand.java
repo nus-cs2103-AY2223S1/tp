@@ -42,6 +42,7 @@ public class AddScheduleCommand extends Command {
      * Creates an AddScheduleCommand to add the specified schedule.
      */
     public AddScheduleCommand(Schedule toAdd) {
+        requireNonNull(toAdd);
         this.scheduleToAdd = toAdd;
     }
 
