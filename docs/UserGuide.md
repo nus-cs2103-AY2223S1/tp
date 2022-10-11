@@ -242,8 +242,8 @@ Format: `customise order [p/] [e/] [a/] [t/]`
 
 Example:
 
-* `customise order a/ e/ p/` The application now shows address first, followed by email, phone, then tags.
-* `customise order a/` The application now shows address first the rest of the attributes will follow the default order, therefore address will be followed by tags, phone and then email.
+* `customise order a/ e/ p/` The application will show address first, followed by email, phone, then tags.
+* `customise order a/` The application will show address first. The rest of the attributes will follow the default order, therefore address will be followed by tags, phone and then email.
 
 ### Clearing all entries : `clear`
 
