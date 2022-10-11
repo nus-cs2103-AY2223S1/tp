@@ -12,17 +12,30 @@ public class Student {
 
     // Identity fields
     private final StudentName studentName;
+    private final MasteryCheckStatus mcStatus;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(StudentName studentName) {
+    public Student(StudentName studentName, MasteryCheckStatus mcStatus) {
         requireAllNonNull(studentName);
         this.studentName = studentName;
+        this.mcStatus = mcStatus;
     }
 
     public StudentName getName() {
         return studentName;
+    }
+
+    public MasteryCheckStatus getMcStatus() {
+        return mcStatus;
+    }
+
+    /**
+     * Updates the student's mastery check status with the given mastery check result.
+     */
+    public void updateMcStatus(MasteryCheckResult mcResult) {
+        mcStatus.updateMcResult(mcResult);
     }
 
     /**

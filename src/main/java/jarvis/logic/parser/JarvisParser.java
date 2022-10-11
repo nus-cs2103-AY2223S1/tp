@@ -19,6 +19,8 @@ import jarvis.logic.commands.HelpCommand;
 import jarvis.logic.commands.ListStudentCommand;
 import jarvis.logic.commands.ListTaskCommand;
 import jarvis.logic.commands.MarkTaskCommand;
+import jarvis.logic.commands.MasteryCheckCommand;
+import jarvis.logic.commands.UnmarkTaskCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,8 +77,14 @@ public class JarvisParser {
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();
 
+        case MasteryCheckCommand.COMMAND_WORD:
+            return new MasteryCheckCommandParser().parse(arguments);
+
         case MarkTaskCommand.COMMAND_WORD:
             return new MarkTaskCommandParser().parse(arguments);
+
+        case UnmarkTaskCommand.COMMAND_WORD:
+            return new UnmarkTaskCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -23,34 +23,34 @@ public class AddTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_TASK_DESC + "Mark missions " + PREFIX_DEADLINE + "2022-10-09";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in JARVIS";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in JARVIS";
 
-    private final Task toAdd;
+    private final Task taskToAdd;
 
     /**
      * Creates an AddTaskCommand to add the specified {@code Task}
      */
     public AddTaskCommand(Task task) {
         requireNonNull(task);
-        toAdd = task;
+        taskToAdd = task;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasTask(taskToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        model.addTask(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, true);
+        model.addTask(taskToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, taskToAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddTaskCommand // instanceof handles nulls
-                && toAdd.equals(((AddTaskCommand) other).toAdd));
+                && taskToAdd.equals(((AddTaskCommand) other).taskToAdd));
     }
 }

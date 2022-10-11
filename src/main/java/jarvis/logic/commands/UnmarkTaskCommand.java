@@ -12,22 +12,23 @@ import jarvis.model.Model;
 import jarvis.model.Task;
 
 /**
- * Marks a task as done. The task is identified using its displayed index from the task book.
+ * Marks a task as not done. The task is identified using its displayed index from the task book.
  */
-public class MarkTaskCommand extends Command {
+public class UnmarkTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "marktask";
+    public static final String COMMAND_WORD = "unmarktask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks a task as done. The task is identified by the index number used in the displayed task list.\n"
+            + ": Marks a task as not done."
+            + "The task is identified by the index number used in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked task as done: %1$s";
+    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Marked task as not done: %1$s";
 
     private final Index targetIndex;
 
-    public MarkTaskCommand(Index targetIndex) {
+    public UnmarkTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -40,18 +41,18 @@ public class MarkTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        taskToMark.markAsDone();
-        model.setTask(taskToMark, taskToMark);
+        Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
+        taskToUnmark.markAsNotDone();
+        model.setTask(taskToUnmark, taskToUnmark);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark));
+        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MarkTaskCommand // instanceof handles nulls
-                && targetIndex.equals(((MarkTaskCommand) other).targetIndex));
+                || (other instanceof UnmarkTaskCommand // instanceof handles nulls
+                && targetIndex.equals(((UnmarkTaskCommand) other).targetIndex));
         // state check
     }
 }

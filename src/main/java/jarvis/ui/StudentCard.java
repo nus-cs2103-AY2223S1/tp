@@ -1,6 +1,5 @@
 package jarvis.ui;
 
-
 import jarvis.model.Student;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -30,6 +29,8 @@ public class StudentCard extends UiPart<Region> {
     private Label studentName;
     @FXML
     private Label id;
+    @FXML
+    private Label mcResult;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -39,6 +40,7 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         studentName.setText(student.getName().fullName);
+        mcResult.setText(student.getMcStatus().toString());
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.time.format.DateTimeParseException;
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.parser.exceptions.ParseException;
+import jarvis.model.MasteryCheckStatus;
 import jarvis.model.StudentName;
 import jarvis.model.TaskDeadline;
 import jarvis.model.TaskDesc;
@@ -60,7 +61,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Deadline}.
+     * Parses a {@code String deadline} into a {@code Deadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -75,6 +76,44 @@ public class ParserUtil {
             return new TaskDeadline(trimmedDeadline);
         } catch (DateTimeParseException e) {
             throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String mcNum} into an {@code int} indicating the mastery check number.
+     *
+     * @throws ParseException if the given {@code mcNum} is invalid.
+     */
+    public static int parseMcNum(String mcNum) throws ParseException {
+        String trimmedMcNum = mcNum.trim();
+        int value;
+        try {
+            value = Integer.parseInt(trimmedMcNum);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(MasteryCheckStatus.MESSAGE_INVALID_MCNUM);
+        }
+
+        if (value != 1 && value != 2) {
+            throw new ParseException(MasteryCheckStatus.MESSAGE_INVALID_MCNUM);
+        }
+        return value;
+    }
+
+    /**
+     * Parses a {@code String mcResult} into a {@code boolean}.
+     *
+     * @return True if the mastery check result is a pass
+     * @throws ParseException if the given {@code mcResult} is invalid.
+     */
+    public static boolean parseMcResult(String mcResult) throws ParseException {
+        requireNonNull(mcResult);
+        String trimmedMcResult = mcResult.trim().toLowerCase();
+        if (trimmedMcResult.equals("pass")) {
+            return true;
+        } else if (trimmedMcResult.equals("fail")) {
+            return false;
+        } else {
+            throw new ParseException(MasteryCheckStatus.MESSAGE_INVALID_MCRESULT);
         }
     }
 }
