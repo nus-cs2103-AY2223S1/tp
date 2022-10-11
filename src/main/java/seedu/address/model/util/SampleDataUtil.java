@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
@@ -8,6 +9,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniqueTagTypeMap;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagType;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -50,10 +53,11 @@ public class SampleDataUtil {
      * Returns a tag set containing the list of strings given.
      */
     public static UniqueTagTypeMap getTagTypeMap(String... strings) {
-        //        return Arrays.stream(strings)
-        //                .map(Tag::new)
-        //                .collect(Collectors.toSet());
-        return null;
+        UniqueTagTypeMap tags = new UniqueTagTypeMap();
+        for (String tag: strings) {
+            tags.addTag(new TagType("Skill", new Prefix("st")), new Tag(tag));
+        }
+        return tags;
     }
 
 }

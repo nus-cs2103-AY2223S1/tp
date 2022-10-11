@@ -1,7 +1,10 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagType;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.person.UniqueTagTypeMap;
@@ -27,7 +31,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final Map<JsonAdaptedTagType, JsonAdaptedTagList> tagged = new HashMap<>();
+//    private final Map<JsonAdaptedTagType, JsonAdaptedTagList> tagged = new HashMap<>();
+    private final List<List<JsonAdaptedTag>> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -35,13 +40,16 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") Map<JsonAdaptedTagType, JsonAdaptedTagList> tagged) {
+            @JsonProperty("tagged") List<List<JsonAdaptedTag>> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+//        if (tagged != null) {
+//            this.tagged.putAll(tagged);
+//        }
         if (tagged != null) {
-            this.tagged.putAll(tagged);
+            this.tags.addAll(tagged);
         }
     }
 
@@ -53,7 +61,15 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.putAll(new JsonAdaptedTagTypeMap(source.getTags()).getTagTypeMap());
+        Map<TagType, UniqueTagList> map = source.getTags();
+        for (TagType t: map.keySet()) {
+            Tag tagtype = new Tag(t.toString());
+            JsonAdaptedTag jTagType = new JsonAdaptedTag(tagtype);
+            List<JsonAdaptedTag> list = new ArrayList<>();
+            list.add(jTagType);
+            list.addAll(map.get(t).toStream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+            tags.add(list);
+        }
     }
 
     /**
@@ -64,8 +80,14 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final Map<TagType, UniqueTagList> personTags = new HashMap<>();
 
-        for (JsonAdaptedTagType key: tagged.keySet()) {
-            personTags.put(key.toModelType(), tagged.get(key).toModelType());
+        for (List<JsonAdaptedTag> tags : tags) {
+            String tagType = tags.get(0).toModelType().toString();
+            TagType t = new TagType(tagType, UniqueTagTypeMap.getPrefixFromTagType(tagType));
+            List<Tag> tagList = tags.subList(1, tags.size()).stream().map(JsonAdaptedTag::toModelType)
+                    .collect(Collectors.toList());
+            UniqueTagList uniqueTagList = new UniqueTagList();
+            uniqueTagList.setTags(tagList);
+            personTags.put(t,uniqueTagList);
         }
 
         if (name == null) {
@@ -102,6 +124,7 @@ class JsonAdaptedPerson {
 
         final UniqueTagTypeMap modelTags = new UniqueTagTypeMap();
         modelTags.setTagTypeMap(personTags);
+        
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
