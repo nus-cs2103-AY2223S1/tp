@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -44,7 +42,7 @@ public class FindCommandParserTest {
     public void parse_validPhoneArgs_returnsFindCommand() {
         FindCommand expectedFindCommand =
                 new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList("11111111", "22222222")));
-        assertParseSuccess(parser, " " + PREFIX_PHONE + " " + VALID_PHONE_AMY + " " + VALID_PHONE_BOB, expectedFindCommand);
+        assertParseSuccess(parser, " " + PREFIX_PHONE + "11111111 22222222", expectedFindCommand);
     }
 
     @Test
@@ -70,7 +68,8 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidPrefix_throwsParseException() {
-        assertParseFailure(parser, " /g", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " /g", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE));
     }
 
 
