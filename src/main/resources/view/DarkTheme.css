@@ -90,7 +90,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1d1d1d, 100%);
 }
 
 .list-cell {
@@ -100,15 +100,15 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #191b1d;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #3d4247;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #24b3a8;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -133,17 +133,17 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(#05071F, 30%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #05071F;
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#0e1011, 10%);
 }
 
 .result-display {
@@ -207,6 +207,14 @@
     -fx-background-color: black;
 }
 
+.tab-pane .tab-header-area .tab-header-background {
+   -fx-background-color: #05071F;
+}
+
+.tab-label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+}
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
@@ -333,7 +341,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: derive(#05071F, 20%);
     -fx-background-radius: 0;
 }
 
@@ -350,3 +358,4 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
