@@ -113,7 +113,4 @@ public class Order {
         return builder.toString();
     }
 
-    public int compareTo(Order order) {
-        return this.byDate.compareTo(order.byDate);
-    }
 }
