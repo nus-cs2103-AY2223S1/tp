@@ -44,11 +44,11 @@ public class SampleDataUtil {
 
     public static Income[] getSampleIncome() {
         return new Income[] {
-           new Income(
-                   new Description("Tutoring"),
-                   new Date("01-01-2022"),
-                   new Amount("100"),
-                   getTagSet("tutoring"))
+            new Income(
+                    new Description("Tutoring"),
+                    new Date("01-01-2022"),
+                    new Amount("100"),
+                    getTagSet("tutoring"))
         };
     }
 

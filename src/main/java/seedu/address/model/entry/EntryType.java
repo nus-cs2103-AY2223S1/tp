@@ -8,8 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidEntryType(String)}}
  */
 public class EntryType {
-    private static final String ENTRY_TYPE_EXPENDITURE = "e";
-    private static final String ENTRY_TYPE_INCOME = "i";
+    public static final String ENTRY_TYPE_EXPENDITURE = "e";
+    public static final String ENTRY_TYPE_INCOME = "i";
 
     public static final String MESSAGE_CONSTRAINTS = "Entry type should only be either '"
             + ENTRY_TYPE_EXPENDITURE
