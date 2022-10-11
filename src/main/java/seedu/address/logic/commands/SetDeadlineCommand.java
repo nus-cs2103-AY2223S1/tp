@@ -55,6 +55,7 @@ public class SetDeadlineCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof SetDeadlineCommand // instanceof handles nulls
-            && taskIndex == (((SetDeadlineCommand) other).taskIndex)); // state check
+            && taskIndex == (((SetDeadlineCommand) other).taskIndex))
+                && deadline.equals(((SetDeadlineCommand) other).deadline); // state check
     }
 }

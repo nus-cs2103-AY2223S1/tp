@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Set;
 
 import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.SetDeadlineCommand;
@@ -25,14 +26,14 @@ public class SetDeadlineCommandParser implements Parser<SetDeadlineCommand> {
             String[] indexes = args.split(" ", 3);
             if (indexes.length < 3) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        AssignTaskCommand.MESSAGE_USAGE));
+                        SetDeadlineCommand.MESSAGE_USAGE));
             }
             int task = Integer.parseInt(indexes[1]) - 1;
             LocalDate deadline = LocalDate.parse(indexes[2]);
             return new SetDeadlineCommand(task, deadline);
         } catch (DateTimeParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AssignTaskCommand.MESSAGE_USAGE), pe);
+                    SetDeadlineCommand.MESSAGE_USAGE), pe);
         }
     }
 }

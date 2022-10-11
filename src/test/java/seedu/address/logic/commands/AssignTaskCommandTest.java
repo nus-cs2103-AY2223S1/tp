@@ -42,7 +42,7 @@ class AssignTaskCommandTest {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(validTaskIndex, outOfBoundMemberIndex);
 
         assertCommandFailure(assignTaskCommand, model,
-                String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, outOfBoundMemberIndex + 1));
+                String.format(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS, outOfBoundMemberIndex + 1));
     }
 
     @Test
