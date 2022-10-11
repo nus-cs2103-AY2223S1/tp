@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Sherlock, The Digital Detective
+title: Watson, The Teaching Assistant
 ---
 
 [![Java CI](https://github.com/AY2223S1-CS2103T-T08-1/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2223S1-CS2103T-T08-1/tp/actions/workflows/gradle.yml)
@@ -8,10 +8,10 @@ title: Sherlock, The Digital Detective
 
 ![Ui](images/Ui.png)
 
-**Sherlock is a desktop application for managing the data of individuals.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**Watson is an all-in-one application for teachers that aids in their teaching process.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-- If you are interested in using Sherlock, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-- If you are interested about developing Sherlock, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+- If you are interested in using Watson, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+- If you are interested about developing Watson, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 **Acknowledgements**
 
