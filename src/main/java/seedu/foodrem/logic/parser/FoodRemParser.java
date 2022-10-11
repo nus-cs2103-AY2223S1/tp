@@ -15,6 +15,7 @@ import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
+import seedu.foodrem.logic.commands.tagcommands.TagCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**
@@ -68,6 +69,9 @@ public class FoodRemParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case TagCommand.COMMAND_WORD:
+            return new TagCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
