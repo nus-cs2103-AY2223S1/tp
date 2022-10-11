@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Set;
@@ -13,9 +11,9 @@ public class Buyer extends Person {
 
     private final ArrayList<Order> orders;
 
-    public Buyer(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Order> orders) {
-        super(name, phone, email, address, tags);
-        //requireNonNull(orders);
+    public Buyer(PersonCategory personCategory, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                 ArrayList<Order> orders) {
+        super(personCategory, name, phone, email, address, tags);
         this.orders = orders;
     }
 
@@ -27,7 +25,7 @@ public class Buyer extends Person {
         orders.add(order);
     }
 
-    public void deleteOrder() {
+    public void deleteOrder(Order order) {
         // TODO: implement this method
     }
 
@@ -45,7 +43,7 @@ public class Buyer extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getPhone(), getEmail(), getAddress(), getTags(), orders);
+        return Objects.hash(getPersonCategory(),getName(), getPhone(), getEmail(), getAddress(), getTags(), orders);
     }
 
     @Override
@@ -54,11 +52,11 @@ public class Buyer extends Person {
         int i = 1;
         builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
                 .append("Order summary").append(System.lineSeparator());
-        for (Order order : orders) {
-            builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
-                    .append(order.toString()).append(System.lineSeparator());
-            i++;
-        }
+//        for (Order order : orders) {
+//            builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
+//                    .append(order.toString()).append(System.lineSeparator());
+//            i++;
+//        }
         return builder.toString();
     }
 

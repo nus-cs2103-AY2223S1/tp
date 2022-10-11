@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Set;
@@ -13,9 +11,9 @@ public class Supplier extends Person {
 
     private final ArrayList<Pet> petsOnSale;
 
-    public Supplier(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Pet> petsOnSale) {
-        super(name, phone, email, address, tags);
-//        requireNonNull(petsOnSale);
+    public Supplier(PersonCategory personCategory, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                    ArrayList<Pet> petsOnSale) {
+        super(personCategory, name, phone, email, address, tags);
         this.petsOnSale = petsOnSale;
     }
 
@@ -45,7 +43,7 @@ public class Supplier extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getPhone(), getEmail(), getAddress(), getTags(), petsOnSale);
+        return Objects.hash(getPersonCategory(), getName(), getPhone(), getEmail(), getAddress(), getTags(), petsOnSale);
     }
 
     @Override

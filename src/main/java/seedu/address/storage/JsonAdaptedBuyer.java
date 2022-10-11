@@ -21,6 +21,7 @@ class JsonAdaptedBuyer {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Buyer's %s field is missing!";
 
+    private final String personCategory;
     private final String name;
     private final String phone;
     private final String email;
@@ -33,10 +34,12 @@ class JsonAdaptedBuyer {
      * Constructs a {@code JsonAdaptedBuyer} with the given buyer details.
      */
     @JsonCreator
-    public JsonAdaptedBuyer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("orders") List<Order> orders) {
+    public JsonAdaptedBuyer(@JsonProperty("personCategory") String personCategory, @JsonProperty("name") String name,
+                            @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                            @JsonProperty("address") String address,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                            @JsonProperty("orders") List<Order> orders) {
+        this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -53,6 +56,7 @@ class JsonAdaptedBuyer {
      * Converts a given {@code Buyer} into this class for Jackson use.
      */
     public JsonAdaptedBuyer(Buyer source) {
+        personCategory = source.getPersonCategory().value;
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -72,6 +76,14 @@ class JsonAdaptedBuyer {
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
+
+        if (personCategory == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!PersonCategory.isValidPersonCategory(personCategory)) {
+            throw new IllegalValueException(PersonCategory.MESSAGE_CONSTRAINTS);
+        }
+        final PersonCategory modelPersonCategory = new PersonCategory(personCategory);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -107,7 +119,7 @@ class JsonAdaptedBuyer {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Buyer(modelName, modelPhone, modelEmail, modelAddress, modelTags, null);
+        return new Buyer(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags, null);
     }
 
 }

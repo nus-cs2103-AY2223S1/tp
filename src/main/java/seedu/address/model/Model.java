@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Supplier;
 
 /**
@@ -102,5 +103,4 @@ public interface Model {
     void updateFilteredBuyerList(Predicate<Buyer> predicate);
     void updateFilteredSupplierList(Predicate<Supplier> predicate);
     void updateFilteredDelivererList(Predicate<Deliverer> predicate);
-
 }
