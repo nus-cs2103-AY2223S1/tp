@@ -1,9 +1,7 @@
 package seedu.rc4hdb.logic.parser;
 
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_NAME_DESC;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_PHONE_DESC;
@@ -13,7 +11,6 @@ import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.PHO
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.PHONE_DESC_BOB;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_NAME_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_PHONE_AMY;
@@ -24,14 +21,13 @@ import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseSuccess
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand.FilterPersonDescriptor;
 import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
-import seedu.rc4hdb.model.person.Address;
-import seedu.rc4hdb.model.person.Email;
-import seedu.rc4hdb.model.person.Name;
-import seedu.rc4hdb.model.person.Phone;
+import seedu.rc4hdb.model.resident.ResidentDescriptor;
+import seedu.rc4hdb.model.resident.fields.Email;
+import seedu.rc4hdb.model.resident.fields.Name;
+import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.tag.Tag;
-import seedu.rc4hdb.testutil.FilterPersonDescriptorBuilder;
+import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 
 public class FilterCommandParserTest {
 
@@ -62,7 +58,6 @@ public class FilterCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
@@ -79,17 +74,16 @@ public class FilterCommandParserTest {
         assertParseFailure(parser, TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_EMAIL_DESC +  VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String userInput = PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY;
+        String userInput = PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY;
 
-        FilterPersonDescriptor descriptor = new FilterPersonDescriptorBuilder().withName(new Name(VALID_NAME_AMY))
-                .withPhone(new Phone(VALID_PHONE_AMY)).withEmail(new Email(VALID_EMAIL_AMY))
-                .withAddress(new Address(VALID_ADDRESS_AMY)).build();
+        ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
         FilterCommand expectedCommand = new FilterCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -99,8 +93,8 @@ public class FilterCommandParserTest {
     public void parse_someFieldsSpecified_success() {
         String userInput = PHONE_DESC_AMY + EMAIL_DESC_AMY;
 
-        FilterPersonDescriptor descriptor = new FilterPersonDescriptorBuilder().withPhone(new Phone(VALID_PHONE_AMY))
-                .withEmail(new Email(VALID_EMAIL_AMY)).build();
+        ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withPhone(VALID_PHONE_AMY)
+                .withEmail(VALID_EMAIL_AMY).build();
         FilterCommand expectedCommand = new FilterCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

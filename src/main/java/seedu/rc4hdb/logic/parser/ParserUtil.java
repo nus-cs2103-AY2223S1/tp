@@ -9,10 +9,13 @@ import java.util.Set;
 import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.commons.util.StringUtil;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.person.Address;
-import seedu.rc4hdb.model.person.Email;
-import seedu.rc4hdb.model.person.Name;
-import seedu.rc4hdb.model.person.Phone;
+import seedu.rc4hdb.model.resident.fields.Email;
+import seedu.rc4hdb.model.resident.fields.Gender;
+import seedu.rc4hdb.model.resident.fields.House;
+import seedu.rc4hdb.model.resident.fields.MatricNumber;
+import seedu.rc4hdb.model.resident.fields.Name;
+import seedu.rc4hdb.model.resident.fields.Phone;
+import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.tag.Tag;
 
 /**
@@ -66,21 +69,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -93,6 +81,66 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String room} into an {@code Room}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code room} is invalid.
+     */
+    public static Room parseRoom(String room) throws ParseException {
+        requireNonNull(room);
+        String trimmedRoom = room.trim();
+        if (!Room.isValidRoom(trimmedRoom)) {
+            throw new ParseException(Room.MESSAGE_CONSTRAINTS);
+        }
+        return new Room(trimmedRoom);
+    }
+
+    /**
+     * Parses a {@code String gender} into an {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
+    }
+
+    /**
+     * Parses a {@code String house} into an {@code House}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code house} is invalid.
+     */
+    public static House parseHouse(String house) throws ParseException {
+        requireNonNull(house);
+        String trimmedHouse = house.trim();
+        if (!House.isValidHouse(trimmedHouse)) {
+            throw new ParseException(House.MESSAGE_CONSTRAINTS);
+        }
+        return new House(trimmedHouse);
+    }
+
+    /**
+     * Parses a {@code String matricNumber} into an {@code MatricNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code matricNumber} is invalid.
+     */
+    public static MatricNumber parseMatricNumber(String matricNumber) throws ParseException {
+        requireNonNull(matricNumber);
+        String trimmedMatricNumber = matricNumber.trim();
+        if (!MatricNumber.isValidMatricNumber(trimmedMatricNumber)) {
+            throw new ParseException(MatricNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new MatricNumber(trimmedMatricNumber);
     }
 
     /**
