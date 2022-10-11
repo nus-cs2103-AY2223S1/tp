@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import seedu.address.model.module.ModuleCode;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Student}'s {@code ModuleCode} matches any of the keywords given.
  */
 public class StudentContainsModulePredicate implements Predicate<Person> {
     private final ModuleCode keyword;
