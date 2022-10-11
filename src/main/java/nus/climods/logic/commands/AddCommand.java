@@ -14,7 +14,8 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to module record. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " <Module Code> : Adds a module to module record. ";
+    /*
         + "Parameters: "
         + CliSyntax.PREFIX_CODE + "CODE "
         + CliSyntax.PREFIX_TUTORIAL + "TUTORIAL "
@@ -23,6 +24,7 @@ public class AddCommand extends Command {
         + CliSyntax.PREFIX_CODE + "CS2103 "
         + CliSyntax.PREFIX_TUTORIAL + "Monday 2pm "
         + CliSyntax.PREFIX_TAG + "4 MC";
+     */
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE= "This module already exist in your list of modules";
