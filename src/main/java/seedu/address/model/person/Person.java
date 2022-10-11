@@ -14,7 +14,8 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
+    //boolean toggle for fullView format.
+    private boolean fullView;
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -22,18 +23,24 @@ public class Person {
     // Data fields
     private final LessonPlan lessonPlan;
     private final HomeworkList homeworkList;
+    private final AttendanceList attendanceList;
+    private final GradeProgressList gradeProgressList;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, LessonPlan lessonPlan,
-                  HomeworkList homeworkList, Set<Tag> tags) {
+                  HomeworkList homeworkList, AttendanceList attendanceList,
+                  GradeProgressList gradeProgressList, Set<Tag> tags) {
         requireAllNonNull(name, phone, tags);
+        this.fullView = false;
         this.name = name;
         this.phone = phone;
         this.lessonPlan = lessonPlan;
         this.homeworkList = homeworkList;
+        this.attendanceList = attendanceList;
+        this.gradeProgressList = gradeProgressList;
         this.tags.addAll(tags);
     }
 
@@ -52,12 +59,52 @@ public class Person {
     public HomeworkList getHomeworkList() {
         return homeworkList;
     }
+    public AttendanceList getAttendanceList() {
+        return attendanceList;
+    }
+    public GradeProgressList getGradeProgressList() {
+        return gradeProgressList;
+    }
 
+    /**
+     * Toggle fullView to true to allow for toString to be
+     * called when setting PersonListCard.
+     * This is called when ViewCommand is the command input by user.
+     */
+    public void setFullView() {
+        fullView = true;
+    }
+
+    /**
+     * checks fullView, then sets fullView to false if fullView is true.
+     * @return a boolean to signify whether the Person object should be displayed in fullView.
+     */
+    public boolean isFullView() {
+        if (fullView) {
+            fullView = false;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Clears the person's attendance list.
+     */
+    public void clearAttendanceList() {
+        attendanceList.clearList();
+    }
     /**
      * Clears the person's homework list.
      */
     public void clearHomeworkList() {
         homeworkList.clearList();
+    }
+
+    /**
+     * Clears the person's Grade progress list.
+     */
+    public void clearGradeProgressList() {
+        gradeProgressList.clearList();
     }
 
     /**
@@ -100,13 +147,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getLessonPlan().equals(getLessonPlan())
                 && otherPerson.getHomeworkList().equals(getHomeworkList())
+                && otherPerson.getGradeProgressList().equals(getGradeProgressList())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, lessonPlan, homeworkList, tags);
+        return Objects.hash(name, phone, lessonPlan, homeworkList, gradeProgressList, tags);
     }
 
     @Override
@@ -118,7 +166,11 @@ public class Person {
                 .append("; Lesson Plan: ")
                 .append(getLessonPlan())
                 .append("; Homework: ")
-                .append(getHomeworkList());
+                .append(getHomeworkList())
+                .append("; Attendance: ")
+                .append(getAttendanceList())
+                .append("; Grade Progress: ")
+                .append(getGradeProgressList());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -4,11 +4,16 @@
     "phone": "94351253",
     "lessonPlan" : "Algorithms",
     "homework": [ "science worksheet" ],
+    "attendance": ["2022-08-07"],
+    "gradeProgress" : ["Math: A"],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "lessonPlan" : "Algorithms",
-    "homework": [ "science worksheet" ]
+    "homework": [ "science worksheet" ],
+    "attendance": [ "2022-08-07" ],
+    "gradeProgress" : ["Math: A"],
+    "tagged": [ "friends" ]
   } ]
 }

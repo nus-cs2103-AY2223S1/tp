@@ -22,8 +22,9 @@ import seedu.address.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
+ * Same as TypicalPersons, but specifically for HomeworkCommandTest.
  */
-public class TypicalPersons {
+public class AttendanceTestTypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withPhone("94351253").withLessonPlan("Algorithms")
@@ -68,7 +69,7 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private AttendanceTestTypicalPersons() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
