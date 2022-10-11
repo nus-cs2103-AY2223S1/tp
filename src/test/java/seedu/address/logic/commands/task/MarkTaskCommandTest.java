@@ -24,22 +24,19 @@ import seedu.address.model.UserPrefs;
  */
 public class MarkTaskCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskPanel(), new UserPrefs());
-/**
-    @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Task taskToMark = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Task editedTask = new Task(taskToMark.getTitle(), true);
-        MarkTaskCommand mtc = new MarkTaskCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, taskToMark);
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskPanel(), new UserPrefs());
-        expectedModel.setTask(taskToMark, editedTask);
-
-        assertCommandSuccess(mtc, model, expectedMessage, expectedModel);
-    }
- **/
-
+    /**
+     * @Test
+     * public void execute_validIndexUnfilteredList_success() {
+     * Task taskToMark = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
+     * Task editedTask = new Task(taskToMark.getTitle(), true);
+     * MarkTaskCommand mtc = new MarkTaskCommand(INDEX_FIRST_PERSON);
+     * String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, taskToMark);
+     * ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskPanel(), new UserPrefs());
+     * expectedModel.setTask(taskToMark, editedTask);
+     * assertCommandSuccess(mtc, model, expectedMessage, expectedModel);
+     * }
+     **/
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
