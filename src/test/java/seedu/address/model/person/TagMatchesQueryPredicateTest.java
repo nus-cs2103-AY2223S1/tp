@@ -58,9 +58,6 @@ public class TagMatchesQueryPredicateTest {
         predicate = new TagMatchesQueryPredicate(new Tag("Alice"));
         assertFalse(predicate.test(testPerson));
 
-        predicate = new TagMatchesQueryPredicate(new Tag("12345"));
-        assertFalse(predicate.test(testPerson));
-
         predicate = new TagMatchesQueryPredicate(new Tag("email"));
         assertFalse(predicate.test(testPerson));
 
