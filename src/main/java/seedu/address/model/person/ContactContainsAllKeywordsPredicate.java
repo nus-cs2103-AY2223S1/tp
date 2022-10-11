@@ -65,10 +65,26 @@ public class ContactContainsAllKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ContactContainsAllKeywordsPredicate // instanceof handles nulls
-                // state check
-                && searchedKeywords.equals(((ContactContainsAllKeywordsPredicate) other).searchedKeywords));
-    }
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof ContactContainsAllKeywordsPredicate)) {
+            return false;
+        }
+        ContactContainsAllKeywordsPredicate otherPred = (ContactContainsAllKeywordsPredicate) other;
 
+        if (prefixes.size() != otherPred.prefixes.size()
+                || searchedKeywords.size() != otherPred.searchedKeywords.size()) {
+            return false;
+        }
+        boolean result = true;
+        for (int i = 0; i < prefixes.size(); i++) {
+            result = prefixes.get(i).equals(otherPred.prefixes.get(i))
+                    && searchedKeywords.get(i).equals(otherPred.searchedKeywords.get(i));
+            if (!result) {
+                break;
+            }
+        }
+        return result;
+    }
 }
