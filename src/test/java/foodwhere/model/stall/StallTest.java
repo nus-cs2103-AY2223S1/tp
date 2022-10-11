@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import foodwhere.logic.commands.CommandTestUtil;
 import foodwhere.testutil.StallBuilder;
 import foodwhere.testutil.TypicalStalls;
+import foodwhere.testutil.TypicalReviews;
 
 public class StallTest {
 
@@ -27,10 +28,11 @@ public class StallTest {
         assertFalse(TypicalStalls.ALICE.isSameStall(null));
 
         // same name, all other attributes different -> returns true
-        Stall editedAlice =
-                new StallBuilder(TypicalStalls.ALICE)
-                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
-                        .build();
+        Stall editedAlice = new StallBuilder(TypicalStalls.ALICE)
+                .withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+                .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
+                .withReview(TypicalReviews.BOB)
+                .build();
         assertTrue(TypicalStalls.ALICE.isSameStall(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -77,5 +79,10 @@ public class StallTest {
         // different details -> returns false
         editedAlice = new StallBuilder(TypicalStalls.ALICE).withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND).build();
         assertFalse(TypicalStalls.ALICE.equals(editedAlice));
+
+        // different reviews -> returns false
+        Stall Alice = new StallBuilder(TypicalStalls.ALICE).withReview(TypicalReviews.ALICE).build();
+        editedAlice = new StallBuilder(TypicalStalls.ALICE).withReview(TypicalReviews.BOB).build();
+        assertFalse(Alice.equals(editedAlice));
     }
 }

@@ -1,6 +1,8 @@
 package foodwhere.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -8,6 +10,7 @@ import foodwhere.model.AddressBook;
 import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 
@@ -47,6 +50,13 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Detail::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a review set containing the list of reviews given.
+     */
+    public static Set<Review> getReviewSet(Review... reviews) {
+        return new HashSet<>(List.of(reviews));
     }
 
 }
