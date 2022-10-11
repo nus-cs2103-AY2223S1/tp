@@ -11,11 +11,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonGroup;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
+    private final List<JsonAdaptedPersonGroup> personGroup = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,7 +42,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("assignments") HashMap<String, ArrayList<Assignment>> assignments) {
+                             @JsonProperty("assignments") HashMap<String, ArrayList<Assignment>> assignments,
+                             @JsonProperty("personGroups") List<JsonAdaptedPersonGroup> personGroupList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +52,9 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.assignments.putAll(assignments);
+        if (personGroupList != null) {
+            this.personGroup.addAll(personGroupList);
+        }
     }
 
     /**
@@ -63,6 +69,10 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         assignments.putAll(source.getAssignments());
+        personGroup.addAll(source.getPersonGroups().stream()
+                .map(JsonAdaptedPersonGroup::new)
+                .collect(Collectors.toList()));
+
     }
 
     /**
@@ -74,6 +84,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<PersonGroup> personGroupsList = new ArrayList<>();
+        for (JsonAdaptedPersonGroup g : personGroup) {
+            personGroupsList.add(g.toModelType());
         }
 
         if (name == null) {
@@ -112,7 +127,10 @@ class JsonAdaptedPerson {
 
         final HashMap<String, ArrayList<Assignment>> modelAssignment = new HashMap<>(assignments);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelAssignment);
+        final List<PersonGroup> modelPersonGroup = new ArrayList<>(personGroupsList);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                modelAssignment, modelPersonGroup);
     }
 
 }

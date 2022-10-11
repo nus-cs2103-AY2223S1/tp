@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonGroup;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -42,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane assignments;
+    @FXML
+    private FlowPane personGroup;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -59,9 +62,13 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getAssignments()
                 .forEach((key, value) -> {
-                    String assignment = key + " : " + value + " | ";
+                    String assignment = key + " : " + value;
                     assignments.getChildren().add(new Label(assignment));
                 });
+        person.getPersonGroups().stream()
+                .sorted(Comparator.comparing(PersonGroup::getGroupName))
+                .forEach(group -> personGroup.getChildren()
+                        .add((new Label(group.getGroupName()))));
     }
 
     @Override

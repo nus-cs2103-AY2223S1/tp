@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.model.person.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -43,6 +43,9 @@ public class PersonUtil {
                 PREFIX_NAME + person.getName().fullName + " "
                         + PREFIX_GROUP + key + " "
                         + PREFIX_TASK + value + " ")
+        );
+        person.getPersonGroups().stream().forEach(
+                s -> sb.append(PREFIX_GROUP + s.getGroupName() + " ")
         );
         return sb.toString();
     }
