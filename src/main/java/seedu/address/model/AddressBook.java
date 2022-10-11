@@ -11,6 +11,7 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.UniqueTeamList;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at the address-book level
@@ -20,6 +21,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueTeamList teams;
+    private final UniqueTaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         teams = new UniqueTeamList();
+        tasks = new UniqueTaskList();
     }
 
     public AddressBook() {}
@@ -177,6 +180,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Team> getTeamList() {
         return teams.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
     }
 
     @Override

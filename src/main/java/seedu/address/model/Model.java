@@ -109,6 +109,8 @@ public interface Model {
 
     public Team getTeam(Name name);
 
+    ObservableList<Task> getFilteredTaskList();
+
     void addTask(Index index, Task task);
 
     void markTask(Index index, Task task);
