@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Person;
 
 /**
@@ -41,6 +42,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    @FXML
+    private Label gender;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -55,6 +59,12 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (Gender.isValidGender(person.getGender(), Boolean.FALSE)) { // invalid gender (NA is considered invalid)
+            gender.setManaged(true); //Show label
+            gender.setText(person.getGender().value.toString());
+        } else {
+            gender.setManaged(false); //Hide and minimises label
+        }
     }
 
     @Override
