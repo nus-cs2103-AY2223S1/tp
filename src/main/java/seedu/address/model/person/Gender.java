@@ -12,7 +12,6 @@ import java.util.Set;
  * Represents a Person's gender in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
-@SuppressWarnings("checkstyle:Regexp")
 public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS = "Gender is an optional field, it should be one of the following"
@@ -55,6 +54,19 @@ public class Gender {
             return VALID_GENDERS.contains(test);
         } else {
             return VALID_GENDERS.contains(test) && !test.equals(NO_GENDER.toString());
+        }
+    }
+    /**
+     * Returns if a given gender is a valid gender.
+     * This method is an overloaded gender validity check method.
+     * @param test a gender object.
+     * @param isNaAllowed boolean value, true represents NA value is considered a valid gender, false otherwise.
+     */
+    public static boolean isValidGender(Gender test, Boolean isNaAllowed) {
+        if (isNaAllowed) {
+            return isNaAllowed;
+        } else {
+            return !test.equals(Gender.getNoGender());
         }
     }
     public static Gender getNoGender() {
