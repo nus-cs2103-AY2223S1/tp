@@ -118,6 +118,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        groupListPanel = new GroupListPanel(logic.getFilteredGroupList());
+        groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -128,10 +131,6 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    void showGroupList() {
-        groupListPanel = new GroupListPanel(logic.getFilteredGroupList());
-        groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
-    }
 
     /**
      * Sets the default size based on {@code guiSettings}.
