@@ -59,9 +59,9 @@ public class AddBuyerCommandParser extends AddCommandParser implements Parser<Ad
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        List<Order> orders = ParserUtil.parseOrders(argMultimap.getAllValues(PREFIX_ORDER));
+        Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, tagList, null);
 
-        Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, tagList, orders);
+        List<Order> orders = ParserUtil.parseOrders(argMultimap.getAllValues(PREFIX_ORDER), buyer);
 
         return new AddBuyerCommand(buyer);
     }

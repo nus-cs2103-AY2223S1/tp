@@ -21,6 +21,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_ORDER_PRICE = new Prefix("o_p/");
     public static final Prefix PREFIX_ORDER_PRICE_RANGE = new Prefix("o_pr/");
     public static final Prefix PREFIX_ORDER_ADDITIONAL_REQUESTS = new Prefix("o_ar/");
+    public static final Prefix PREFIX_ORDER_DATE = new Prefix("o_d/");
+    public static final Prefix PREFIX_ORDER_PET = new Prefix("o_pt/");
 
     // Prefixes for pets
     public static final Prefix PREFIX_PET_DATE_OF_BIRTH = new Prefix("p_d/");

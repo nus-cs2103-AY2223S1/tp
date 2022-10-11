@@ -2,6 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -114,18 +121,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String order} into an {@code Order}.
+     * Parses a {@code String orderString} into an {@code Order}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code order} is invalid.
+     * @throws ParseException if the given {@code orderString} is invalid.
      */
-    public static Order parseOrder(String order) throws ParseException {
-        requireNonNull(order);
-        String trimmedOrder = order.trim();
-        if (!Tag.isValidTagName(trimmedOrder)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Order(trimmedOrder);
+    public static Order parseOrder(String orderString, Buyer buyer) throws ParseException {
+        requireNonNull(orderString);
+        String trimmedOrderString = orderString.trim();
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(orderString, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ORDER);
+
+
+        return new Order(trimmedOrderString);
     }
 
     /**
@@ -143,11 +152,11 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> orders} into a {@code Set<Order>}.
      */
-    public static List<Order> parseOrders(Collection<String> orders) throws ParseException {
+    public static List<Order> parseOrders(Collection<String> orders, Buyer buyer) throws ParseException {
         requireNonNull(orders);
         final List<Order> orderList = new ArrayList<>();
         for (String order : orders) {
-            orderList.add(parseOrder(order));
+            orderList.add(parseOrder(order, buyer));
         }
         return orderList;
     }
