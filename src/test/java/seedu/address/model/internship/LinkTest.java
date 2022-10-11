@@ -13,12 +13,17 @@ public class LinkTest {
         assertThrows(NullPointerException.class, () -> new Link(null));
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void constructor_invalidPhone_throwsIllegalArgumentException() {
         String invalidPhone = "";
         assertThrows(IllegalArgumentException.class, () -> new Link(invalidPhone));
     }
+    */
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void isValidPhone() {
         // null phone number
@@ -37,4 +42,5 @@ public class LinkTest {
         assertTrue(Link.isValidLink("93121534"));
         assertTrue(Link.isValidLink("124293842033123")); // long phone numbers
     }
+    */
 }

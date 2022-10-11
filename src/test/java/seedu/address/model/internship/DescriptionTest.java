@@ -13,12 +13,17 @@ public class DescriptionTest {
         assertThrows(NullPointerException.class, () -> new Description(null));
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void constructor_invalidEmail_throwsIllegalArgumentException() {
         String invalidEmail = "";
         assertThrows(IllegalArgumentException.class, () -> new Description(invalidEmail));
     }
+    */
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void isValidEmail() {
         // null email
@@ -65,4 +70,5 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(Description.isValidDescription("e1234567@u.nus.edu")); // more than one period in domain
     }
+    */
 }

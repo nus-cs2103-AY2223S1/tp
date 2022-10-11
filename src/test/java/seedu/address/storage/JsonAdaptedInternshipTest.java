@@ -39,6 +39,8 @@ public class JsonAdaptedInternshipTest {
         assertEquals(BINANCE, internship.toModelType());
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
@@ -47,6 +49,7 @@ public class JsonAdaptedInternshipTest {
         String expectedMessage = Company.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
+    */
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
@@ -56,6 +59,8 @@ public class JsonAdaptedInternshipTest {
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
@@ -64,6 +69,7 @@ public class JsonAdaptedInternshipTest {
         String expectedMessage = Link.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
+    */
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
@@ -73,6 +79,8 @@ public class JsonAdaptedInternshipTest {
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
@@ -81,6 +89,7 @@ public class JsonAdaptedInternshipTest {
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
+    */
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
@@ -90,6 +99,8 @@ public class JsonAdaptedInternshipTest {
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
@@ -98,6 +109,7 @@ public class JsonAdaptedInternshipTest {
         String expectedMessage = AppliedDate.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
+    */
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {

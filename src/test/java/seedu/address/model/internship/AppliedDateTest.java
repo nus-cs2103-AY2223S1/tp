@@ -13,12 +13,17 @@ public class AppliedDateTest {
         assertThrows(NullPointerException.class, () -> new AppliedDate(null));
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
         String invalidAddress = "";
         assertThrows(IllegalArgumentException.class, () -> new AppliedDate(invalidAddress));
     }
+    */
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void isValidAddress() {
         // null address
@@ -33,4 +38,5 @@ public class AppliedDateTest {
         assertTrue(AppliedDate.isValidAppliedDate("-")); // one character
         assertTrue(AppliedDate.isValidAppliedDate("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
     }
+    */
 }

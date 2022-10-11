@@ -13,12 +13,17 @@ public class CompanyTest {
         assertThrows(NullPointerException.class, () -> new Company(null));
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
         assertThrows(IllegalArgumentException.class, () -> new Company(invalidName));
     }
+    */
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void isValidName() {
         // null name
@@ -37,4 +42,5 @@ public class CompanyTest {
         assertTrue(Company.isValidCompany("Capital Tan")); // with capital letters
         assertTrue(Company.isValidCompany("David Roger Jackson Ray Jr 2nd")); // long names
     }
+    */
 }

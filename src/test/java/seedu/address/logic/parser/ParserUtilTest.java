@@ -64,10 +64,13 @@ public class ParserUtilTest {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCompany((String) null));
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void parseName_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseCompany(INVALID_NAME));
     }
+    */
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
@@ -87,10 +90,13 @@ public class ParserUtilTest {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseLink((String) null));
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void parsePhone_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseLink(INVALID_PHONE));
     }
+    */
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
@@ -110,10 +116,13 @@ public class ParserUtilTest {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAppliedDate((String) null));
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAppliedDate(INVALID_ADDRESS));
     }
+    */
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
@@ -133,11 +142,13 @@ public class ParserUtilTest {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((String) null));
     }
 
+    /*
+    // Removed for now as there are no constraints on the inputs
     @Test
     public void parseEmail_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_EMAIL));
     }
-
+    */
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
         Description expectedDescription = new Description(VALID_EMAIL);

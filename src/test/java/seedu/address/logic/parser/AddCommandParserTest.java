@@ -107,6 +107,8 @@ public class AddCommandParserTest {
                 expectedMessage);
     }
 
+    /*
+    // Removed for now as there are no constraints on inputs
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
@@ -137,5 +139,5 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_TIKTOK + PHONE_DESC_TIKTOK + EMAIL_DESC_TIKTOK
                 + ADDRESS_DESC_TIKTOK + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-    }
+    }*/
 }
