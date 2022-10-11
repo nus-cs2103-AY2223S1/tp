@@ -54,8 +54,7 @@ public class Login extends UiPart<Stage> {
     Button submit = new Button("Submit");
 
     // Textfield event handler
-
-    //Setting an action for the Submit button
+    // Setting an action for the Submit button
     submit.setOnAction(
       new EventHandler<ActionEvent>() {
         // Dynamically make an event handler for each button
