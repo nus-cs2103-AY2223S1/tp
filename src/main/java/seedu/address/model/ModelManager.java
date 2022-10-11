@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -117,6 +119,10 @@ public class ModelManager implements Model {
     public Team getTeam() {
         return addressBook.getTeam();
     }
+    @Override
+    public StringProperty getTeamAsProperty() {
+        return addressBook.getTeamAsProperty();
+    }
 
     @Override
     public void setTeam(Team teamToSet) {
@@ -154,6 +160,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+
 
     @Override
     public boolean equals(Object obj) {

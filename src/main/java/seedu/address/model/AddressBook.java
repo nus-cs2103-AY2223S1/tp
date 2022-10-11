@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -18,7 +21,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueTeamList teams;
-    private Team currentTeam;
+    private CurrentTeam currentTeam = new CurrentTeam();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -89,7 +92,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -104,11 +106,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// team-level operations
 
     public Team getTeam() {
-        return currentTeam;
+        return currentTeam.getTeam();
+    }
+    public StringProperty getTeamAsProperty() {
+        return currentTeam.getTeamAsProperty();
     }
 
     public void setTeam(Team team) {
-        this.currentTeam = team;
+        currentTeam.setTeam(team);
     }
 
     public void addTeam(Team teamToAdd) {

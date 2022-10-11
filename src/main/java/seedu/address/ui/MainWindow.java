@@ -127,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         teamListPanel = new TeamListPanel(logic.getTeamList());
         teamListPanelPlaceholder.getChildren().add(teamListPanel.getRoot());
 
-        teamDetailsCard = new TeamDetailsCard(logic.getCurrentTeam());
+        teamDetailsCard = new TeamDetailsCard(logic.getTeamAsProperty());
         teamDetailsCardPlaceHolder.getChildren().add(teamDetailsCard.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
