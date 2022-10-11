@@ -1,5 +1,9 @@
 package seedu.address.logic.commands.getcommands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.GetCommand;
@@ -9,10 +13,10 @@ import seedu.address.model.person.PatientTypePredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.WardNumberPredicate;
 
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Finds and lists all patients within a ward number.
+ * Integers must be positive.
+ */
 public class GetWardNumberCommand extends GetCommand {
 
     public static final String WARD_NUMBER_PREFIX = "/wn";

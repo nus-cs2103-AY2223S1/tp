@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Person}'s {@code Ward Number} matches any of the ward numbers given.
+ */
 public class WardNumberPredicate implements Predicate<Person> {
 
     private final List<Integer> wardNumbers;
