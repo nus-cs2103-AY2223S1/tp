@@ -17,7 +17,12 @@ import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
-import seedu.address.model.issue.*;
+import seedu.address.model.issue.Description;
+import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.IssueId;
+import seedu.address.model.issue.Priority;
+import seedu.address.model.issue.Status;
+import seedu.address.model.issue.UniqueIssueList;
 import seedu.address.model.project.Project;
 
 /**
