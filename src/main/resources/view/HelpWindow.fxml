@@ -5,6 +5,8 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -22,6 +24,8 @@
       </stylesheets>
 
       <VBox prefWidth="600" VBox.vgrow="NEVER" fx:id="helpContainer">
+
+        <!--Container for User Guide reference and button-->
         <HBox alignment="CENTER">
           <children>
             <Label fx:id="helpMessage" text="Label">
@@ -29,7 +33,7 @@
                 <Insets right="5.0" />
               </HBox.margin>
             </Label>
-            <Button fx:id="copyButton" mnemonicParsing="false" onAction="#openWebsite" text="User Guide">
+            <Button fx:id="openButton" mnemonicParsing="false" onAction="#openWebsite" text="User Guide">
               <HBox.margin>
                 <Insets left="5.0" />
               </HBox.margin>
@@ -42,6 +46,24 @@
             <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
           </padding>
         </HBox>
+
+        <ScrollPane fitToWidth="true">
+          <VBox styleClass="commands-panel">
+            <Label styleClass="label-header" text="Basic Functions"/>
+            <TableView fx:id="basicTableView">
+              <VBox.margin>
+                <Insets top="10.0"/>
+              </VBox.margin>
+            </TableView>
+            <Label styleClass="label-header" text="Advanced Functions"/>
+            <TableView fx:id="advancedTableView">
+              <VBox.margin>
+                <Insets top="10.0"/>
+              </VBox.margin>
+            </TableView>
+          </VBox>
+        </ScrollPane>
+
       </VBox>
     </Scene>
   </scene>
