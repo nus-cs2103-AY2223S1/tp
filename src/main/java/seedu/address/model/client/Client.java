@@ -58,6 +58,10 @@ public class Client {
         return this.clientId;
     }
 
+    public void setClientId(ClientId id) {
+        this.clientId = id;
+    }
+
     /**
      * Returns the client name as is represented in the Name object.
      * @return String representing client's name.
