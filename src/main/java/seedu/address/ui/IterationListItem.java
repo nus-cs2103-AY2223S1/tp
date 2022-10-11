@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.iteration.Iteration;
@@ -14,6 +16,7 @@ public class IterationListItem extends UiPart<Region> {
     private static final String FXML = "IterationListItem.fxml";
 
     public final Iteration iteration;
+    private final Image placeholder = new Image("/images/placeholderart.png");
 
     @FXML
     private VBox iterationListItem;
@@ -25,7 +28,8 @@ public class IterationListItem extends UiPart<Region> {
     private Label description;
     @FXML
     private Label feedback;
-
+    @FXML
+    private ImageView artImage;
 
     /**
      * Creates a {@code IterationListItem} with the given {@code Iteration} and index to display.
@@ -37,6 +41,7 @@ public class IterationListItem extends UiPart<Region> {
         date.setText(iteration.getDate().date.toString());
         description.setText(iteration.getDescription().description);
         feedback.setText(iteration.getFeedback().feedback);
+        artImage.setImage(placeholder);
     }
 
     @Override

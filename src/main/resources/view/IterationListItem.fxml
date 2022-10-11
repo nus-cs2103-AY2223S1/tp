@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
 
+<?import javafx.scene.image.ImageView?>
 <VBox id="iterationListItem" fx:id="iterationListItem"
       xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" prefWidth="0">
     <BorderPane>
@@ -21,10 +22,17 @@
             <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
         </right>
         <VBox.margin>
-            <Insets top="4.0" />
+            <Insets top="4.0" bottom="4.0" />
         </VBox.margin>
     </BorderPane>
-    <Label fx:id="feedback" styleClass="cell_small_label" text="\$feedback" />
+    <HBox>
+        <ImageView fx:id="artImage" fitHeight="70.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+            <HBox.margin>
+                <Insets right="5.0" />
+            </HBox.margin>
+        </ImageView>
+        <Label fx:id="feedback" styleClass="cell_small_label" text="\$feedback" />
+    </HBox>
     <VBox.margin>
         <Insets bottom="4.0" />
     </VBox.margin>
