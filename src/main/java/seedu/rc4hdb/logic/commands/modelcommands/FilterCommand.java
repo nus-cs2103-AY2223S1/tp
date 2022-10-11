@@ -18,14 +18,13 @@ import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.predicates.AttributesMatchKeywordsPredicate;
 
 /**
- * Filters and lists all residents in address book whose attributes are equal to any of the argument keywords.
+ * Filters and lists all residents in resident book whose attributes are equal to any of the argument keywords.
  * Keyword matching is case sensitive.
  */
 public class FilterCommand extends ModelCommand {
     public static final String COMMAND_WORD = "filter";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters the list using the attributes in the command"
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters the resident book by the attributes specified in the command"
+            + "Parameters:"
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
