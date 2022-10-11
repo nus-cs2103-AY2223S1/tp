@@ -15,7 +15,7 @@ import seedu.address.model.tutorial.Tutorial;
 /**
  * Adds a tutorial to the ModQuik.
  */
-public class AddConsultaionCommand extends Command {
+public class AddTutorialCommand extends Command {
 
     public static final String COMMAND_WORD = "add tutorial";
 
@@ -41,7 +41,7 @@ public class AddConsultaionCommand extends Command {
     /**
      * Creates an AddTutorialCommand to add the specified {@code Tutorial}
      */
-    public AddConsultaionCommand(Tutorial tutorial) {
+    public AddTutorialCommand(Tutorial tutorial) {
         requireNonNull(tutorial);
         toAdd = tutorial;
     }
@@ -63,7 +63,7 @@ public class AddConsultaionCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddConsultaionCommand // instanceof handles nulls
-                && toAdd.equals(((AddConsultaionCommand) other).toAdd));
+                || (other instanceof AddTutorialCommand // instanceof handles nulls
+                && toAdd.equals(((AddTutorialCommand) other).toAdd));
     }
 }

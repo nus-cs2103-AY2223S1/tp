@@ -20,6 +20,7 @@ import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialTimeslot;
 import seedu.address.model.tutorial.TutorialVenue;
+import seedu.address.model.consultation.*;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -205,5 +206,83 @@ public class ParserUtil {
             throw new ParseException(TutorialTimeslot.MESSAGE_INVALID_DURATION);
         }
         return new TutorialTimeslot(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code TutorialName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static ConsultationName parseConsultationName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!ConsultationName.isValidName(trimmedName)) {
+            throw new ParseException(ConsultationName.MESSAGE_CONSTRAINTS);
+        }
+        return new ConsultationName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String moduleName} into a {@code ConsultationModule}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code moduleName} is invalid.
+     */
+    public static ConsultationModule parseConsultationModule(String moduleName) throws ParseException {
+        requireNonNull(moduleName);
+        String trimmedName = moduleName.trim();
+        if (!ConsultationModule.isValidModule(trimmedName)) {
+            throw new ParseException(ConsultationModule.MESSAGE_CONSTRAINTS);
+        }
+        return new ConsultationModule(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String venue} into a {@code ConsultationVenue}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code venue} is invalid.
+     */
+    public static ConsultationVenue parseConsultationVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedName = venue.trim();
+        if (!ConsultationVenue.isValidVenue(trimmedName)) {
+            throw new ParseException(ConsultationVenue.MESSAGE_CONSTRAINTS);
+        }
+        return new ConsultationVenue(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String timeslot} into a {@code ConsultationTimeslot}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code timeslot} is invalid.
+     */
+    public static ConsultationTimeslot parseConsultationTimeslot(String timeslot) throws ParseException {
+        requireNonNull(timeslot);
+        String trimmedName = timeslot.trim();
+        if (!ConsultationTimeslot.isValidTimeslot(trimmedName)) {
+            throw new ParseException(ConsultationTimeslot.MESSAGE_CONSTRAINTS);
+        }
+        if (!ConsultationTimeslot.isValidDuration(trimmedName)) {
+            throw new ParseException(ConsultationTimeslot.MESSAGE_INVALID_DURATION);
+        }
+        return new ConsultationTimeslot(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code TutorialName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static ConsultationDescription parseConsultationDescription(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!ConsultationName.isValidName(trimmedName)) {
+            throw new ParseException(ConsultationName.MESSAGE_CONSTRAINTS);
+        }
+        return new ConsultationDescription(trimmedName);
     }
 }

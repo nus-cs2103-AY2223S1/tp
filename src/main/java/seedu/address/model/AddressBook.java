@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.consultation.Consultation;
+import seedu.address.model.consultation.UniqueConsultationList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tutorial.Tutorial;
@@ -19,6 +21,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final UniqueTutorialList tutorials;
 
+    private final UniqueConsultationList consultations;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -29,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         tutorials = new UniqueTutorialList();
+        consultations = new UniqueConsultationList();
     }
 
     public AddressBook() {}
@@ -131,6 +136,31 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTutorial(Tutorial t) {
         tutorials.add(t);
+    }
+
+    //// consultation-level operations
+    /**
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuilk.
+     */
+    public boolean hasConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return consultations.contains(consultation);
+    }
+
+    /**
+     * Returns true if a Consultation with the same venue and timeslot as {@code Consultation} exists in the ModQuik.
+     */
+    public boolean hasConsultationClashingWith(Consultation consultation) {
+        requireNonNull(consultation);
+        return consultations.containsClashingWith(consultation);
+    }
+
+    /**
+     * Adds a Consultation to the ModQuik.
+     * The consultation must not already exist in the ModQuik.
+     */
+    public void addConsulation(Consultation consultation) {
+        consultations.add(consultation);
     }
 
     //// util methods

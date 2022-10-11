@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 import seedu.address.model.tutorial.Tutorial;
 
@@ -167,6 +168,26 @@ public class ModelManager implements Model {
     @Override
     public void addTutorial(Tutorial tutorial) {
         addressBook.addTutorial(tutorial);
+        updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
+    }
+
+    //=========== Consultation ==================================================================================
+
+    @Override
+    public boolean hasConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return addressBook.hasConsultation(consultation);
+    }
+
+    @Override
+    public boolean hasConsultationClashingWith(Consultation consultation) {
+        requireNonNull(consultation);
+        return addressBook.hasConsultationClashingWith(consultation);
+    }
+
+    @Override
+    public void addConsultation(Consultation consultation) {
+        addressBook.addConsulation(consultation);
         updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
     }
 

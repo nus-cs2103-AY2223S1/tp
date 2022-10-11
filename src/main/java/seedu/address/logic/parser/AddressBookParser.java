@@ -14,7 +14,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.tutorial.AddConsultaionCommand;
+import seedu.address.logic.commands.consultation.AddConsultationCommand;
+import seedu.address.logic.commands.tutorial.AddTutorialCommand;
+import seedu.address.logic.parser.consultation.AddConsultationCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.UnknownPreambleException;
 import seedu.address.logic.parser.tutorial.AddTutorialCommandParser;
@@ -71,8 +73,11 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case AddConsultaionCommand.COMMAND_WORD:
+        case AddTutorialCommand.COMMAND_WORD:
             return new AddTutorialCommandParser().parse(arguments);
+
+        case AddConsultationCommand.COMMAND_WORD:
+            return new AddConsultationCommandParser().parse(arguments);
 
         default:
             throw new UnknownPreambleException(commandWords);
