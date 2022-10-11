@@ -421,7 +421,7 @@ What you should expect to find:
 
 #### Create a new item
 
-<!--- Remember to warn users if expiry date < bought date-->
+<!--- TODO: emember to warn users if expiry date < bought date-->
 
 Command: `item new ITEM_NAME`
 
