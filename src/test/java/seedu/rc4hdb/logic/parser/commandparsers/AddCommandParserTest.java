@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.parser;
+package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.EMAIL_DESC_AMY;
@@ -36,15 +36,14 @@ import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VAL
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ROOM_BOB;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
+import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
 import static seedu.rc4hdb.testutil.TypicalResidents.AMY;
 import static seedu.rc4hdb.testutil.TypicalResidents.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
-import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.fields.Email;
 import seedu.rc4hdb.model.resident.fields.Gender;
@@ -88,17 +87,17 @@ public class AddCommandParserTest {
                 + ROOM_DESC_BOB + GENDER_DESC_BOB + HOUSE_DESC_BOB + MATRIC_NUMBER_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedResident));
 
-        // multiple gender - last room accepted
+        // multiple gender - last gender accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROOM_DESC_BOB
                 + GENDER_DESC_AMY + GENDER_DESC_BOB + HOUSE_DESC_BOB + MATRIC_NUMBER_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedResident));
 
-        // multiple houses - last room accepted
+        // multiple houses - last house accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROOM_DESC_BOB
                 + GENDER_DESC_BOB + HOUSE_DESC_AMY + HOUSE_DESC_BOB + MATRIC_NUMBER_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedResident));
 
-        // multiple matric numbers - last room accepted
+        // multiple matric numbers - last matric number accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROOM_DESC_BOB
                 + GENDER_DESC_BOB + HOUSE_DESC_BOB + MATRIC_NUMBER_DESC_AMY + MATRIC_NUMBER_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedResident));
