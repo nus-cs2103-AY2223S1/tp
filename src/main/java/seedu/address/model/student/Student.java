@@ -106,7 +106,7 @@ public class Student {
         Student otherStudent = (Student) other;
         return otherStudent.getStudentName().equals(getStudentName())
                 && otherStudent.getId().equals(getId())
-                && otherStudent.getClass().equals(getClassName())
+                && otherStudent.getClassName().equals(getClassName())
                 && otherStudent.getParentName().equals(getParentName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getAddress().equals(getAddress())

@@ -68,10 +68,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String className} into a {@code Id}.
+     * Parses a {@code String className} into a {@code Class}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code id} is invalid.
+     * @throws ParseException if the given {@code className} is invalid.
      */
     public static Class parseClass(String className) throws ParseException {
         requireNonNull(className);

@@ -14,7 +14,7 @@ public class ClassPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
-        return student.getClassName().equals(this.className);
+        return student.getClassName().className.equalsIgnoreCase(this.className.className);
     }
 
     @Override

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PARENT_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_BOB;
@@ -35,6 +36,7 @@ public class StudentTest {
         // same name, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE)
                 .withId(VALID_ID_BOB)
+                .withClassName(VALID_CLASS_BOB)
                 .withParentName(VALID_PARENT_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)

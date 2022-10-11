@@ -2,6 +2,7 @@
   "students": [ {
     "studentName": "Person with invalid name field: Ha!ns Mu@ster",
     "id": "123A",
+    "className" : "1A",
     "parentName": "Johnny",
     "phone": "9482424",
     "address": "4th street"

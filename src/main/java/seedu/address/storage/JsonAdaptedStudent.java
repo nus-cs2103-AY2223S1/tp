@@ -99,7 +99,7 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Class.class.getSimpleName()));
         }
         if (!Class.isValidClassName(className)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Class.MESSAGE_CONSTRAINTS);
         }
 
         final Class modelClassName = new Class(className);
