@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -98,12 +99,15 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Map<TagType, UniqueTagList> map = personToEdit.getTags();
-        UniqueTagTypeMap temp = new UniqueTagTypeMap();
-        temp.setTagTypeMap(map);
-        UniqueTagTypeMap updatedTags = editPersonDescriptor.getTags().orElse(temp);
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Map<TagType, UniqueTagList> personToEditTags = personToEdit.getTags();
+        UniqueTagTypeMap original = new UniqueTagTypeMap();
+        original.setTagTypeMap(personToEditTags);
+        UniqueTagTypeMap toEdit = editPersonDescriptor.getOldTagTypeMap().get();
+        UniqueTagTypeMap editTo = editPersonDescriptor.getNewTagTypeMap().get();
+        original.removeTags(toEdit);
+        original.mergeTagTypeMap(editTo);
+        UniqueTagTypeMap updatedTags = original;
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, original);
     }
 
     @Override
@@ -155,7 +159,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, newTagTypeMap);
         }
 
         public void setName(Name name) {

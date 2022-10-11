@@ -60,7 +60,7 @@ public class AddTagCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        editPersonDescriptor.setTags(toAdd);
+        editPersonDescriptor.setNewTagTypeMap(toAdd);
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
@@ -78,7 +78,7 @@ public class AddTagCommand extends Command {
         assert personToEdit != null;
         UniqueTagTypeMap updatedTags = new UniqueTagTypeMap();
         updatedTags.setTagTypeMap(personToEdit.getTags());
-        updatedTags.mergeTagTypeMap(editPersonDescriptor.getTags().get());
+        updatedTags.mergeTagTypeMap(editPersonDescriptor.getNewTagTypeMap().get());
 
         return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), updatedTags);
