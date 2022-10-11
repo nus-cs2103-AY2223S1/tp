@@ -41,5 +41,5 @@ public class TaskParserUtil {
         }
         return new Title(trimmedTitle);
     }
-    
+
 }

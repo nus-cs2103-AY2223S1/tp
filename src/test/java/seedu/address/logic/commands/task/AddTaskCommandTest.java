@@ -181,7 +181,6 @@ public class AddTaskCommandTest {
         public void deleteTask(Task deletedTask) {
             throw new AssertionError("This method should not be called.");
         }
-        
         @Override
         public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
