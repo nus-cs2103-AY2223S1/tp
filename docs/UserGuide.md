@@ -66,8 +66,11 @@ Adds an internship to the tracker.
 
 Format: `add [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE]`
 
+* The `APPLIED_DATE` must have a format of `d MMM yyyy` (30 Oct 2022) or `d/M/yyyy` (30/10/2022).
+* The year can be omitted from `APPLIED_DATE` to default to current year.
+
 Examples:
-* `add c/APPLE l/https://jobs.apple.com/en-sg d/Software Engineering Internship a/11-10-2022`
+* `add c/APPLE l/https://jobs.apple.com/en-sg d/Software Engineering Internship a/11/10/2022`
 
 ### Marking an internship application status: `mark` 
 
@@ -153,7 +156,7 @@ FindMyIntern data is saved in the hard disk automatically after any command that
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
-**Add** | `add [TITLE]` <br> e.g., `add software engineer internship at Apple`
+**Add** | `add [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE]` <br> e.g., `add c/APPLE l/https://jobs.apple.com/en-sg d/Software Engineering Internship a/11/10/2022`
 **Mark** | `mark [INDEX] [s/STATUS]` <br> e.g., `mark 3 s/interviewed`
 **List** | `list`
 **Delete** | `delete [INDEX]` <br> e.g., `delete 4`
