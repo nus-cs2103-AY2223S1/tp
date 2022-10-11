@@ -71,6 +71,11 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
         internalList.set(index, editedMeeting);
     }
 
+    public void setMeeting(NoConflictMeetingList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
     /**
      * Removes the equivalent meeting from the list.
      * The meeting must exist in the list.
@@ -80,11 +85,6 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
         if (!internalList.remove(toRemove)) { // Checks equivalence through Meeting#equals
             throw new MeetingNotFoundException();
         }
-    }
-
-    public void setMeetings(NoConflictMeetingList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
     }
 
     /**

@@ -21,6 +21,8 @@ import seedu.address.model.Model;
 import seedu.address.model.MyInsuRec;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingContainsClientPredicate;
 import seedu.address.testutil.EditClientDescriptorBuilder;
 
 /**
@@ -121,7 +123,7 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s client filtered list to show only the client at the given {@code targetIndex} in the
      * {@code model}'s MyInsuRec.
      */
     public static void showClientAtIndex(Model model, Index targetIndex) {
@@ -132,6 +134,20 @@ public class CommandTestUtil {
         model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredClientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s meeting filtered list to show only the meeting at the given {@code targetIndex} in
+     * the {@code model}'s MyInsuRec.
+     */
+    public static void showMeetingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
+
+        Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        final Client[] clientList = {meeting.getClient()};
+        model.updateFilteredMeetingList(new MeetingContainsClientPredicate(Arrays.asList(clientList)));
+
+        assertEquals(1, model.getFilteredMeetingList().size());
     }
 
 }
