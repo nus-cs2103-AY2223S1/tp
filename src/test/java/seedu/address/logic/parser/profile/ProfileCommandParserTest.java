@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROFILE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.profile.AddProfileCommand;
+import seedu.address.logic.commands.profile.DeleteProfileCommand;
 import seedu.address.logic.commands.profile.FindProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -56,6 +58,18 @@ public class ProfileCommandParserTest {
             AddProfileCommand command =
                     (AddProfileCommand) parser.parse(ProfileUtil.getAddProfileCommand(profile));
             assertEquals(new AddProfileCommand(profile), command);
+        } catch (ParseException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void parse_profileOption_delete() {
+        try {
+            DeleteProfileCommand command = (DeleteProfileCommand) parser.parse(
+                    " " + PREFIX_OPTION + DeleteProfileCommand.COMMAND_OPTION + " "
+                            + INDEX_FIRST_PROFILE.getOneBased());
+            assertEquals(new DeleteProfileCommand(INDEX_FIRST_PROFILE), command);
         } catch (ParseException e) {
             fail();
         }

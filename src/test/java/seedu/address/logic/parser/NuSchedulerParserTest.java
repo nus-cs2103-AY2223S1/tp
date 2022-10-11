@@ -41,12 +41,6 @@ public class NuSchedulerParserTest {
     /* This test has been commented out as the delete, edit and find commands have been temporarily
     disabled during option flag implementation. */
 
-    //    @Test
-    //    public void parseCommand_delete() throws Exception {
-    //        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-    //                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PROFILE.getOneBased());
-    //        assertEquals(new DeleteCommand(INDEX_FIRST_PROFILE), command);
-    //    }
     //
     //    @Test
     //    public void parseCommand_edit() throws Exception {
