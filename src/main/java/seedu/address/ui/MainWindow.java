@@ -124,6 +124,9 @@ public class MainWindow extends UiPart<Stage> {
         questionListPanel = new QuestionListPanel(logic.getFilteredQuestionList());
         questionListPanelPlaceholder.getChildren().add(questionListPanel.getRoot());
 
+        //studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        //studentListPanelPlaceHolder.getChildren().add(studentListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 

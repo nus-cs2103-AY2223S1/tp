@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.student.Attendance;
 import seedu.address.model.student.StuEmail;
 import seedu.address.model.student.StuName;
 import seedu.address.model.student.Telegram;
@@ -47,6 +48,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
+     * @return
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
@@ -234,5 +236,18 @@ public class ParserUtil {
         return new Telegram(telegram);
     }
 
-
+    /**
+     * Parses a {@code String attendance} into a {@code Attendance}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code attendance} is invalid.
+     */
+    public static Attendance parseAttendance(String attendance) throws ParseException {
+        requireNonNull(attendance);
+        String trimmedAttendance = attendance.trim();
+        if (!Attendance.isValidAttendance(trimmedAttendance)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        return new Attendance(attendance);
+    }
 }

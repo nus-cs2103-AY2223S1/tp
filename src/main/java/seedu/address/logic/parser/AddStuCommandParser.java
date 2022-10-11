@@ -3,6 +3,9 @@ package seedu.address.logic.parser;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Attendance;
+import seedu.address.model.student.HelpTag;
+import seedu.address.model.student.Response;
 import seedu.address.model.student.StuEmail;
 import seedu.address.model.student.StuName;
 import seedu.address.model.student.Student;
@@ -36,8 +39,11 @@ public class AddStuCommandParser {
         StuName name = ParserUtil.parseStuName(argMultimap.getValue(PREFIX_NAME).get());
         Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
         StuEmail email = ParserUtil.parseStuEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Response response= new Response("0");
+        Attendance attendance = new Attendance("0");
+        HelpTag helpTag = new HelpTag("");
 
-        Student student = new Student(name, telegram, email, null, null, null);
+        Student student = new Student(name, telegram, email, response, attendance, helpTag);
 
         return new AddStuCommand(student);
     }
