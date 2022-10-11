@@ -35,9 +35,9 @@ public class FindProfileCommand extends ProfileCommand {
         int size = model.getFilteredProfileList().size();
         switch (size) {
         case 0:
-            return new CommandResult(String.format(Messages.MESSAGE_NO_MATCH));
+            return new CommandResult(Messages.MESSAGE_NO_MATCH);
         case 1:
-            return new CommandResult(String.format(Messages.MESSAGE_PROFILE_LISTED_OVERVIEW, size));
+            return new CommandResult(Messages.MESSAGE_PROFILE_LISTED_OVERVIEW);
         default:
             return new CommandResult(String.format(Messages.MESSAGE_PROFILES_LISTED_OVERVIEW, size));
         }
