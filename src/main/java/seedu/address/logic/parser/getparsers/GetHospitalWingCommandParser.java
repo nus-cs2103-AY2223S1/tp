@@ -3,6 +3,7 @@ package seedu.address.logic.parser.getparsers;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
+import java.util.List;
 
 import seedu.address.logic.commands.getcommands.GetHospitalWingCommand;
 import seedu.address.logic.parser.Parser;
@@ -26,8 +27,9 @@ public class GetHospitalWingCommandParser implements Parser<GetHospitalWingComma
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetHospitalWingCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] hospitalWings = trimmedArgs.split("\\s+");
 
-        return new GetHospitalWingCommand(new HospitalWingContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new GetHospitalWingCommand(new HospitalWingContainsKeywordsPredicate(Arrays.asList(hospitalWings)));
     }
+
 }

@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.PatientType;
 import seedu.address.model.person.PatientTypePredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.WardNumberContainsKeywordsPredicate;
+import seedu.address.model.person.WardNumberPredicate;
 
 import java.util.function.Predicate;
 
@@ -27,9 +27,9 @@ public class GetWardNumberCommand extends GetCommand {
             + WARD_NUMBER_PREFIX
             + " D312 T36";
 
-    private final WardNumberContainsKeywordsPredicate predicate;
+    private final WardNumberPredicate predicate;
 
-    public GetWardNumberCommand(WardNumberContainsKeywordsPredicate predicate) {
+    public GetWardNumberCommand(WardNumberPredicate predicate) {
         this.predicate = predicate;
     }
 

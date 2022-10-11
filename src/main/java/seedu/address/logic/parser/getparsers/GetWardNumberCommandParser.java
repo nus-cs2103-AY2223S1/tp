@@ -3,8 +3,7 @@ package seedu.address.logic.parser.getparsers;
 import seedu.address.logic.commands.getcommands.GetWardNumberCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.WardNumber;
-import seedu.address.model.person.WardNumberContainsKeywordsPredicate;
+import seedu.address.model.person.WardNumberPredicate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +20,22 @@ public class GetWardNumberCommandParser implements Parser<GetWardNumberCommand> 
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetWardNumberCommand.MESSAGE_USAGE));
         }
 
-        List<WardNumber> wardNumbers = new ArrayList<>();
+        List<Integer> wardNumbers = new ArrayList<>();
         for (String arg : trimmedArgs.split("\\s+")) {
             try {
-                wardNumbers.add(new WardNumber(Integer.parseInt(arg)));
-            } catch (IllegalArgumentException e) { // Catches both String input and negative number errors.
+                int ward = Integer.parseInt(arg);
+                if (ward < 1) { // Throw exception if input is invalid ward number.
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetWardNumberCommand.MESSAGE_USAGE));
+                }
+                wardNumbers.add(ward);
+            } catch (NumberFormatException e) { // Catches both String input and negative number errors.
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetWardNumberCommand.MESSAGE_USAGE));
             }
         }
-        return new GetWardNumberCommand(new WardNumberContainsKeywordsPredicate(wardNumbers));
+
+        return new GetWardNumberCommand(new WardNumberPredicate(wardNumbers));
     }
+
 }

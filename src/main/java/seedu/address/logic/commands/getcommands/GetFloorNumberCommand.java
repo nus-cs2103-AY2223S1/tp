@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.GetCommand;
 import seedu.address.model.Model;
-import seedu.address.model.person.FloorNumberContainsKeywordsPredicate;
+import seedu.address.model.person.FloorNumberPredicate;
 import seedu.address.model.person.PatientType;
 import seedu.address.model.person.PatientTypePredicate;
 import seedu.address.model.person.Person;
@@ -30,9 +30,9 @@ public class GetFloorNumberCommand extends GetCommand {
             + FLOOR_NUMBER_PREFIX
             + " 10 4 3";
 
-    private final FloorNumberContainsKeywordsPredicate predicate;
+    private final FloorNumberPredicate predicate;
 
-    public GetFloorNumberCommand(FloorNumberContainsKeywordsPredicate predicate) {
+    public GetFloorNumberCommand(FloorNumberPredicate predicate) {
         this.predicate = predicate;
     }
 
