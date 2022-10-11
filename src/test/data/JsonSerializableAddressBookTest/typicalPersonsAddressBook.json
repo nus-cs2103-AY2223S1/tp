@@ -5,7 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tasks" : [ "Update health records" ],
+    "tasks" : [ ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -19,7 +19,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tasks" : [ ],
+    "tasks" : [ "Update health records" ],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
