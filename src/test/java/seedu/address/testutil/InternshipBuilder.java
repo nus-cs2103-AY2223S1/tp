@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.ApplicationStatus;
-import seedu.address.model.internship.Email;
+import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Link;
@@ -25,7 +25,7 @@ public class InternshipBuilder {
 
     private Company company;
     private Link link;
-    private Email email;
+    private Description description;
     private ApplicationStatus applicationStatus;
     private AppliedDate appliedDate;
     private Set<Tag> tags;
@@ -36,7 +36,7 @@ public class InternshipBuilder {
     public InternshipBuilder() {
         company = new Company(DEFAULT_NAME);
         link = new Link(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        description = new Description(DEFAULT_EMAIL);
         applicationStatus = DEFAULT_APPLICATION_STATUS;
         appliedDate = new AppliedDate(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -48,7 +48,7 @@ public class InternshipBuilder {
     public InternshipBuilder(Internship internshipToCopy) {
         company = internshipToCopy.getCompany();
         link = internshipToCopy.getLink();
-        email = internshipToCopy.getEmail();
+        description = internshipToCopy.getDescription();
         applicationStatus = internshipToCopy.getApplicationStatus();
         appliedDate = internshipToCopy.getAppliedDate();
         tags = new HashSet<>(internshipToCopy.getTags());
@@ -87,10 +87,10 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Internship} that we are building.
+     * Sets the {@code Description} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.description = new Description(email);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(company, link, email, applicationStatus, appliedDate, tags);
+        return new Internship(company, link, description, applicationStatus, appliedDate, tags);
     }
 
 }

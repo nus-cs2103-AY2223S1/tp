@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
-import seedu.address.model.internship.Email;
+import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Link;
 
 public class JsonAdaptedInternshipTest {
@@ -26,7 +26,7 @@ public class JsonAdaptedInternshipTest {
 
     private static final String VALID_NAME = BINANCE.getCompany().toString();
     private static final String VALID_PHONE = BINANCE.getLink().toString();
-    private static final String VALID_EMAIL = BINANCE.getEmail().toString();
+    private static final String VALID_EMAIL = BINANCE.getDescription().toString();
     private static final String VALID_APPLICATION_STATUS = BINANCE.getApplicationStatus().toString();
     private static final String VALID_ADDRESS = BINANCE.getAppliedDate().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BINANCE.getTags().stream()
@@ -78,7 +78,7 @@ public class JsonAdaptedInternshipTest {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_PHONE, INVALID_EMAIL,
                         VALID_APPLICATION_STATUS, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
@@ -86,7 +86,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_NAME, VALID_PHONE, null,
                 VALID_APPLICATION_STATUS, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 

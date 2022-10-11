@@ -13,7 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Company;
-import seedu.address.model.internship.Email;
+import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
@@ -57,7 +57,7 @@ class JsonAdaptedInternship {
     public JsonAdaptedInternship(Internship source) {
         company = source.getCompany().value;
         link = source.getLink().value;
-        email = source.getEmail().value;
+        email = source.getDescription().value;
         applicationStatus = source.getApplicationStatus().toString().toLowerCase();
         address = source.getAppliedDate().value;
         tagged.addAll(source.getTags().stream()
@@ -93,12 +93,12 @@ class JsonAdaptedInternship {
         final Link modelLink = new Link(link);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Description.isValidDescription(email)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Description modelDescription = new Description(email);
 
         if (applicationStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -115,7 +115,7 @@ class JsonAdaptedInternship {
         final AppliedDate modelAppliedDate = new AppliedDate(address);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelLink, modelEmail, modelApplicationStatus, modelAppliedDate, modelTags);
+        return new Internship(modelCompany, modelLink, modelDescription, modelApplicationStatus, modelAppliedDate, modelTags);
     }
 
 }

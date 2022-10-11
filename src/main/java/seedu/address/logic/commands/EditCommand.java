@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
@@ -22,7 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
-import seedu.address.model.internship.Email;
+import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
@@ -38,14 +38,14 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed internship list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_COMPANY + "NAME] "
+            + "[" + PREFIX_LINK + "PHONE] "
+            + "[" + PREFIX_DESCRIPTION + "EMAIL] "
+            + "[" + PREFIX_APPLIED_DATE + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_LINK + "91234567 "
+            + PREFIX_DESCRIPTION + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -97,13 +97,13 @@ public class EditCommand extends Command {
 
         Company updatedCompany = editInternshipDescriptor.getCompany().orElse(internshipToEdit.getCompany());
         Link updatedLink = editInternshipDescriptor.getLink().orElse(internshipToEdit.getLink());
-        Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
+        Description updatedDescription = editInternshipDescriptor.getDescription().orElse(internshipToEdit.getDescription());
         AppliedDate updatedAppliedDate = editInternshipDescriptor.getAppliedDate().orElse(internshipToEdit.getAppliedDate());
         ApplicationStatus updatedApplicationStatus =
                 editInternshipDescriptor.getApplicationStatus().orElse(internshipToEdit.getApplicationStatus());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedCompany, updatedLink, updatedEmail, updatedApplicationStatus, updatedAppliedDate,
+        return new Internship(updatedCompany, updatedLink, updatedDescription, updatedApplicationStatus, updatedAppliedDate,
                 updatedTags);
     }
 
@@ -132,7 +132,7 @@ public class EditCommand extends Command {
     public static class EditInternshipDescriptor {
         private Company company;
         private Link link;
-        private Email email;
+        private Description description;
         private AppliedDate appliedDate;
         private ApplicationStatus applicationStatus;
         private Set<Tag> tags;
@@ -146,7 +146,7 @@ public class EditCommand extends Command {
         public EditInternshipDescriptor(EditInternshipDescriptor toCopy) {
             setName(toCopy.company);
             setLink(toCopy.link);
-            setEmail(toCopy.email);
+            setDescription(toCopy.description);
             setAppliedDate(toCopy.appliedDate);
             setApplicationStatus(toCopy.applicationStatus);
             setTags(toCopy.tags);
@@ -156,7 +156,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, link, email, appliedDate, tags);
+            return CollectionUtil.isAnyNonNull(company, link, description, appliedDate, tags);
         }
 
         public void setName(Company company) {
@@ -175,12 +175,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(link);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         public void setAppliedDate(AppliedDate appliedDate) {
@@ -233,7 +233,7 @@ public class EditCommand extends Command {
 
             return getCompany().equals(e.getCompany())
                     && getLink().equals(e.getLink())
-                    && getEmail().equals(e.getEmail())
+                    && getDescription().equals(e.getDescription())
                     && getAppliedDate().equals(e.getAppliedDate())
                     && getApplicationStatus().equals(e.getApplicationStatus())
                     && getTags().equals(e.getTags());

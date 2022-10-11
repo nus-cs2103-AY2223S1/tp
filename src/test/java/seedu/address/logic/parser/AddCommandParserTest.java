@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
-import seedu.address.model.internship.Email;
+import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
@@ -119,7 +119,7 @@ public class AddCommandParserTest {
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_TIKTOK + PHONE_DESC_TIKTOK + INVALID_EMAIL_DESC + ADDRESS_DESC_TIKTOK
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Description.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_TIKTOK + PHONE_DESC_TIKTOK + EMAIL_DESC_TIKTOK + INVALID_ADDRESS_DESC

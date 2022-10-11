@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
-import seedu.address.model.internship.Email;
+import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
@@ -34,7 +34,7 @@ public class EditInternshipDescriptorBuilder {
         descriptor = new EditCommand.EditInternshipDescriptor();
         descriptor.setName(internship.getCompany());
         descriptor.setLink(internship.getLink());
-        descriptor.setEmail(internship.getEmail());
+        descriptor.setDescription(internship.getDescription());
         descriptor.setAppliedDate(internship.getAppliedDate());
         descriptor.setTags(internship.getTags());
     }
@@ -56,10 +56,10 @@ public class EditInternshipDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditInternshipDescriptor} that we are building.
+     * Sets the {@code Description} of the {@code EditInternshipDescriptor} that we are building.
      */
     public EditInternshipDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        descriptor.setDescription(new Description(email));
         return this;
     }
 

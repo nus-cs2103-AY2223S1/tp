@@ -39,7 +39,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label applicationStatus;
     @FXML
-    private Label email;
+    private Label description;
     @FXML
     private FlowPane tags;
 
@@ -54,7 +54,7 @@ public class InternshipCard extends UiPart<Region> {
         link.setText(internship.getLink().value);
         appliedDate.setText(internship.getAppliedDate().value);
         applicationStatus.setText(internship.getApplicationStatus().toString());
-        email.setText(internship.getEmail().value);
+        description.setText(internship.getDescription().value);
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

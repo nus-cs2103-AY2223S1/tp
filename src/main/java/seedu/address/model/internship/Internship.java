@@ -18,7 +18,7 @@ public class Internship {
     // Identity fields
     private final Company company;
     private final Link link;
-    private final Email email;
+    private final Description description;
     private final ApplicationStatus applicationStatus;
 
     // Data fields
@@ -28,12 +28,12 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Company company, Link link, Email email, ApplicationStatus applicationStatus,
+    public Internship(Company company, Link link, Description description, ApplicationStatus applicationStatus,
                       AppliedDate appliedDate, Set<Tag> tags) {
-        requireAllNonNull(company, link, email, appliedDate, tags);
+        requireAllNonNull(company, link, description, appliedDate, tags);
         this.company = company;
         this.link = link;
-        this.email = email;
+        this.description = description;
         this.applicationStatus = applicationStatus;
         this.appliedDate = appliedDate;
         this.tags.addAll(tags);
@@ -47,8 +47,8 @@ public class Internship {
         return link;
     }
 
-    public Email getEmail() {
-        return email;
+    public Description getDescription() {
+        return description;
     }
 
     public ApplicationStatus getApplicationStatus() {
@@ -97,7 +97,7 @@ public class Internship {
         Internship otherInternship = (Internship) other;
         return otherInternship.getCompany().equals(getCompany())
                 && otherInternship.getLink().equals(getLink())
-                && otherInternship.getEmail().equals(getEmail())
+                && otherInternship.getDescription().equals(getDescription())
                 && otherInternship.getApplicationStatus().equals(getApplicationStatus())
                 && otherInternship.getAppliedDate().equals(getAppliedDate())
                 && otherInternship.getTags().equals(getTags());
@@ -106,7 +106,7 @@ public class Internship {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, link, email, applicationStatus, appliedDate, tags);
+        return Objects.hash(company, link, description, applicationStatus, appliedDate, tags);
     }
 
     @Override
@@ -115,8 +115,8 @@ public class Internship {
         builder.append(getCompany())
                 .append("; Link: ")
                 .append(getLink())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Description: ")
+                .append(getDescription())
                 .append("; Application Status: ")
                 .append(getApplicationStatus())
                 .append("; AppliedDate: ")

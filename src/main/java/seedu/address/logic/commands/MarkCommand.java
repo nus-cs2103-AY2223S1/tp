@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
-import seedu.address.model.internship.Email;
+import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
@@ -75,11 +75,11 @@ public class MarkCommand extends Command {
 
         Company updatedCompany = internshipToMark.getCompany();
         Link updatedLink = internshipToMark.getLink();
-        Email updatedEmail = internshipToMark.getEmail();
+        Description updatedDescription = internshipToMark.getDescription();
         AppliedDate updatedAppliedDate = internshipToMark.getAppliedDate();
         Set<Tag> updatedTags = internshipToMark.getTags();
 
-        return new Internship(updatedCompany, updatedLink, updatedEmail, updatedApplicationStatus, updatedAppliedDate,
+        return new Internship(updatedCompany, updatedLink, updatedDescription, updatedApplicationStatus, updatedAppliedDate,
                 updatedTags);
     }
 
