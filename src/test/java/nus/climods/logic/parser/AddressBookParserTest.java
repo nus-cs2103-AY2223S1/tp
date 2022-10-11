@@ -2,7 +2,6 @@ package nus.climods.logic.parser;
 
 import static nus.climods.testutil.Assert.assertThrows;
 import static nus.climods.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;

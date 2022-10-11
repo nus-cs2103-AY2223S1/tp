@@ -3,7 +3,6 @@ package nus.climods.logic.commands;
 import static nus.climods.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static nus.climods.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static nus.climods.testutil.TypicalPersons.getTypicalAddressBook;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;

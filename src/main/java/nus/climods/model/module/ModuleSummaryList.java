@@ -32,8 +32,8 @@ public class ModuleSummaryList implements ReadOnlyModuleSummaryList {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModuleSummaryList // instanceof handles nulls
-                && this.condensedModules.equals(((ModuleSummaryList) other).condensedModules));
+            || (other instanceof ModuleSummaryList // instanceof handles nulls
+            && this.condensedModules.equals(((ModuleSummaryList) other).condensedModules));
     }
 
     @Override

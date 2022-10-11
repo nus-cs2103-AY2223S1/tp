@@ -1,9 +1,8 @@
-package nus.climods.storage.module;
+package nus.climods.storage.module.summary;
 
 import java.util.List;
 
 import org.openapitools.client.model.ModuleCondensed;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;

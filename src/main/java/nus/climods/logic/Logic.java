@@ -1,16 +1,13 @@
 package nus.climods.logic;
 
-import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.logic.commands.CommandResult;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
-import nus.climods.model.Model;
-import nus.climods.model.ReadOnlyAddressBook;
-import nus.climods.model.module.DummyModule;
-import nus.climods.model.person.Person;
+import nus.climods.model.module.Module;
+import nus.climods.model.module.ReadOnlyModuleList;
 
 /**
  * API of the Logic component
@@ -27,29 +24,9 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    ObservableList<DummyModule> getFilteredModuleList();
+    ReadOnlyModuleList getModuleList();
 
-    ObservableList<DummyModule> getFilteredSavedModuleList();
-
-    /**
-     * Returns the AddressBook.
-     *
-     * @see Model#getAddressBook()
-     */
-    @Deprecated
-    ReadOnlyAddressBook getAddressBook();
-
-    /**
-     * Returns an unmodifiable view of the filtered list of persons
-     */
-    @Deprecated
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Returns the user prefs' address book file path.
-     */
-    @Deprecated
-    Path getAddressBookFilePath();
+    ObservableList<Module> getUserModuleList();
 
     /**
      * Returns the user prefs' GUI settings.

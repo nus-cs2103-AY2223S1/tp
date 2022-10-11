@@ -6,12 +6,10 @@ import static nus.climods.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static nus.climods.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static nus.climods.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static nus.climods.logic.commands.CommandTestUtil.assertCommandFailure;
-import static nus.climods.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static nus.climods.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static nus.climods.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static nus.climods.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static nus.climods.testutil.TypicalPersons.getTypicalAddressBook;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;

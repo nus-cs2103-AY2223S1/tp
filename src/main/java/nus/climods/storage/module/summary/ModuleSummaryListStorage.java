@@ -1,4 +1,4 @@
-package nus.climods.storage.module;
+package nus.climods.storage.module.summary;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -23,8 +23,8 @@ public interface ModuleSummaryListStorage {
     Path getModuleSummaryListFilePath();
 
     /**
-     * Returns user module list data as a {@link ReadOnlyModuleSummaryList}.
-     * Returns {@code Optional.empty()} if storage file is not found.
+     * Returns user module list data as a {@link ReadOnlyModuleSummaryList}. Returns {@code Optional.empty()} if storage
+     * file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
@@ -35,7 +35,7 @@ public interface ModuleSummaryListStorage {
      * @see #getModuleSummaryListFilePath()
      */
     Optional<ReadOnlyModuleSummaryList> readModuleSummaryList(Path filePath)
-            throws DataConversionException, IOException;
+        throws DataConversionException, IOException;
 
     void saveModuleSummaryList(List<ModuleCondensed> modules) throws IOException;
 

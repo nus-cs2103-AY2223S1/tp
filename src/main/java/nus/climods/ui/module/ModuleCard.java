@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import nus.climods.model.module.DummyModule;
+import nus.climods.model.module.Module;
 import nus.climods.ui.UiPart;
 import nus.climods.ui.common.Pill;
 
@@ -29,7 +29,7 @@ public class ModuleCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final DummyModule module;
+    public final Module module;
 
     @FXML
     private HBox cardPane;
@@ -45,15 +45,22 @@ public class ModuleCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public ModuleCard(DummyModule module) {
+    public ModuleCard(Module module) {
         super(FXML);
         this.module = module;
-        moduleCode.setText(module.getModuleCode());
+        moduleCode.setText(module.getCode());
         title.setText(module.getTitle());
         department.setText(module.getDepartment());
         module.getSemesterData()
-            .forEach(tag -> moduleInfo.getChildren().add(new Pill(tag, SEMESTER_BG_COLOR, SEMESTER_TEXT_COLOR, 13)));
-        moduleInfo.getChildren().add(new Pill(module.getWorkload(), WORKLOAD_BG_COLOR, WORKLOAD_TEXT_COLOR, 13));
+            .forEach(semData -> {
+                assert semData.getSemester() != null;
+                moduleInfo.getChildren()
+                    .add(new Pill(String.format("Semester %s", semData.getSemester().toString()), SEMESTER_BG_COLOR,
+                        SEMESTER_TEXT_COLOR, 13));
+            });
+        moduleInfo.getChildren()
+            .add(new Pill(String.format("%s MCs", module.getModuleCredit()), WORKLOAD_BG_COLOR, WORKLOAD_TEXT_COLOR,
+                13));
     }
 
     @Override

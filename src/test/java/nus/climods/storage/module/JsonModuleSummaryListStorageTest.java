@@ -17,8 +17,10 @@ import org.openapitools.client.model.ModuleCondensed;
 
 import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.model.module.ReadOnlyModuleSummaryList;
+import nus.climods.storage.module.summary.JsonModuleSummaryListStorage;
 
 class JsonModuleSummaryListStorageTest {
+
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModuleSummaryListStorageTest");
 
     @TempDir
@@ -57,8 +59,9 @@ class JsonModuleSummaryListStorageTest {
     }
 
     /**
-     * Calls the API to fetch the module list data and saves in a temporary folder.
-     * Then, checks that the data received from API is the same as the data read from storage.
+     * Calls the API to fetch the module list data and saves in a temporary folder. Then, checks that the data received
+     * from API is the same as the data read from storage.
+     *
      * @throws Exception any exception that may occur.
      */
     @Test

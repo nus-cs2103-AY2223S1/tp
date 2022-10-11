@@ -21,7 +21,7 @@ import nus.climods.storage.JsonAdaptedTag;
 /**
  * Jackson-friendly version of {@link Module}.
  */
-class JsonAdaptedModule {
+class JsonAdaptedUserModule {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Module's %s field is missing!";
 
@@ -36,9 +36,9 @@ class JsonAdaptedModule {
      * Constructs a {@code JsonAdaptedModule} with the given module's details.
      */
     @JsonCreator
-    public JsonAdaptedModule(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedUserModule(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+        @JsonProperty("email") String email, @JsonProperty("address") String address,
+        @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,14 +51,14 @@ class JsonAdaptedModule {
     /**
      * Converts a given {@code Module} into this class for Jackson use.
      */
-    public JsonAdaptedModule(Person source) {
+    public JsonAdaptedUserModule(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
     }
 
     /**

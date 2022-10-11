@@ -1,6 +1,5 @@
 package nus.climods.logic.commands;
 
-import static nus.climods.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static nus.climods.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;

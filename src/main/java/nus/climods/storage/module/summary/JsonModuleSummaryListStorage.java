@@ -1,4 +1,4 @@
-package nus.climods.storage.module;
+package nus.climods.storage.module.summary;
 
 import static java.util.Objects.requireNonNull;
 
@@ -21,6 +21,7 @@ import nus.climods.model.module.ReadOnlyModuleSummaryList;
  * A class to access ModuleSummaryList data stored as a json file on the hard disk.
  */
 public class JsonModuleSummaryListStorage implements ModuleSummaryListStorage {
+
     private static final Logger logger = LogsCenter.getLogger(JsonModuleSummaryListStorage.class);
 
     private final Path filePath;
@@ -48,7 +49,7 @@ public class JsonModuleSummaryListStorage implements ModuleSummaryListStorage {
         requireNonNull(filePath);
 
         Optional<JsonSerializableModuleSummaryList> jsonAcadYearModuleList = JsonUtil.readJsonFile(
-                filePath, JsonSerializableModuleSummaryList.class);
+            filePath, JsonSerializableModuleSummaryList.class);
         if (jsonAcadYearModuleList.isEmpty()) {
             return Optional.empty();
         }

@@ -1,7 +1,5 @@
 package nus.climods.logic.commands;
 
-import static nus.climods.logic.commands.CommandTestUtil.assertCommandSuccess;
-
 import org.junit.jupiter.api.Test;
 
 import nus.climods.model.Model;

@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import nus.climods.commons.core.LogsCenter;
-import nus.climods.model.module.DummyModule;
+import nus.climods.model.module.Module;
 import nus.climods.ui.UiPart;
 
 /**
@@ -20,12 +20,12 @@ public class SavedModuleListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(SavedModuleListPanel.class);
 
     @FXML
-    private ListView<DummyModule> moduleListView;
+    private ListView<Module> moduleListView;
 
     /**
      * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
      */
-    public SavedModuleListPanel(ObservableList<DummyModule> moduleList) {
+    public SavedModuleListPanel(ObservableList<Module> moduleList) {
         super(FXML);
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListViewCell());
@@ -34,10 +34,10 @@ public class SavedModuleListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Module} using a {@code ModuleCard}.
      */
-    class ModuleListViewCell extends ListCell<DummyModule> {
+    class ModuleListViewCell extends ListCell<Module> {
 
         @Override
-        protected void updateItem(DummyModule module, boolean empty) {
+        protected void updateItem(Module module, boolean empty) {
             super.updateItem(module, empty);
 
             if (empty || module == null) {
