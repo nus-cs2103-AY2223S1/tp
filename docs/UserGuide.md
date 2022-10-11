@@ -229,7 +229,8 @@ Format: `exit`
 **List** | `list`
 **Add Group** | `addgroup GROUP` <br> e.g. `addgroup CS2103T`
 **Add Member** | `addmember [g/GROUP] [n/NAME]` <br> e.g. `addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser`
-**Assign Task** | `assigntask [n/NAME] [t/TASK]` <br> e.g. `assigntask n/John t/TeamProject`
+**Assign Task** | `assigntask NAME [g/GROUP] [task/TASK]` <br> e.g. `assigntask John g/CS2103T task/TeamProject`
+**Delete Task** | `deletetask NAME [g/GROUP] [task/TASK]` <br> e.g. `deletetask John g/CS2103T task/TeamProject`
 **Display Group** | `display GROUP` <br> e.g. `display CS2103T`
 **Delete Group** | `deletegroup GROUP` <br> e.g. `deletegroup CS2103T`
 **Exit** | `exit`
