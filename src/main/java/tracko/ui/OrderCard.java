@@ -52,7 +52,17 @@ public class OrderCard extends UiPart<Region> {
         email.setText(order.getEmail().value);
         order.getItemList().stream()
                 .forEach(item -> items.getChildren().add(
-                    new Label("\u2022 " + item.getQuantity() + " * " + item.getItem())));
+                        constructItemLabel("\u2022 " + item.getQuantity() + " * " + item.getItem())));
+    }
+
+    /**
+     * Constructs a new label for each item while assigning
+     * a custom style to it.
+     */
+    public Label constructItemLabel(String text) {
+        Label itemLabel = new Label(text);
+        itemLabel.getStyleClass().add("cell_small_label");
+        return itemLabel;
     }
 
     @Override

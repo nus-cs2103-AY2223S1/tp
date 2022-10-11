@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -19,7 +21,7 @@
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Poppins";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
@@ -96,7 +98,7 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 3px;
 }
 
 .list-cell:filled:even {
@@ -121,14 +123,15 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-font-family: "Poppins";
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #E9EBFF !important;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
+    -fx-font-family: "Poppins";
+    -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
@@ -137,8 +140,8 @@
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: #FFF2E7;
+     -fx-border-color: #FFF2E7;
      -fx-border-top-width: 1px;
 }
 
@@ -147,14 +150,14 @@
 }
 
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: #FFF2E7;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
 
 .result-display .label {
-    -fx-text-fill: black !important;
+    -fx-text-fill: transparent !important;
 }
 
 .status-bar .label {
@@ -281,13 +284,27 @@
     -fx-text-fill: white;
 }
 
+.scroll-pane {
+    -fx-background-color: #0B132B;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #c24848;
+    -fx-background-radius: 15px;
+}
+
+#orderListView .scroll-pane > .viewport {
+    -fx-background-color: #6930c3;
+    -fx-background-radius: 15px;
+}
+
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
-    -fx-background-insets: 3;
+    -fx-background-color: #707BE3;
+    -fx-background-insets: 6px;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -332,9 +349,45 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
+#orderListView {
+    -fx-background-insets: 0;
+    -fx-background-color: #D9DCFF;
+    -fx-background-radius: 15px;
+    -fx-padding: 20px 10px;
+    -fx-border-color: #707BE3;
+    -fx-border-radius: 15px;
+    -fx-border-width: 2px;
+}
+
+#orderListView .list-cell:filled {
+    -fx-background-color: #707BE3;
+    -fx-background-radius: 15px;
+    -fx-background-insets: 0px, 5px;
+}
+
+#orderListView .list-view {
+    -fx-padding: 3px;
+}
+
+#orderListView .list-cell {
+    -fx-padding: 2px ;
+    -fx-background-color: transparent, -fx-background ;
+    -fx-background-insets: 0px, 2px ;
+}
+
+#orderListView .list-cell:empty {
+    -fx-padding: 2px ;
+    -fx-background-color: transparent ;
+    -fx-background-insets: 0 ;
+}
+
+
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
+    -fx-background-color: #E8E8E8;
+    -fx-background-radius: 15px;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-border-color: #878787;
 }
 
 #tags {
