@@ -48,6 +48,7 @@ public class ClassStorageTest {
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         ClassStorage classStorage = new ClassStorage(addressBookFromFile);
+        // Throws an exception because Alex Yeoh in personsAddressBook has class timing conflict with Daniel Tan.
         assertThrows(CommandException.class, () -> classStorage.saveClass(person));
     }
 
