@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_A;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 
 import seedu.address.commons.core.index.Index;

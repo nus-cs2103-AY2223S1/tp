@@ -16,9 +16,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.module.task.Task;
-import seedu.address.model.module.task.TaskList;
 
 public class TaskListTest {
 

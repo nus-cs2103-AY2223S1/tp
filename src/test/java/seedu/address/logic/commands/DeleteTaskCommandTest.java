@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
-import static seedu.address.testutil.TypicalModules.CS2103TWithTaskA;
+import static seedu.address.testutil.TypicalModules.CS2103T_WITH_TASK_A;
 import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalModules.getTypicalModules;
 
@@ -40,14 +40,14 @@ public class DeleteTaskCommandTest {
     @Test
     public void execute_taskDeletedFromModule_success() {
         DeleteTaskFromModuleDescriptor descriptor =
-                new DeleteTaskFromModuleDescriptorBuilder(CS2103TWithTaskA).build();
+                new DeleteTaskFromModuleDescriptorBuilder(CS2103T_WITH_TASK_A).build();
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(descriptor);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS,
                 CS2103T);
 
         Model modelWithTaskToDelete = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        modelWithTaskToDelete.setModule(CS2103T, CS2103TWithTaskA);
+        modelWithTaskToDelete.setModule(CS2103T, CS2103T_WITH_TASK_A);
 
         assertCommandSuccess(deleteTaskCommand, modelWithTaskToDelete,
                 expectedMessage, model);

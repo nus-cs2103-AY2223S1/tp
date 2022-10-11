@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
-import static seedu.address.testutil.TypicalModules.CS2103TWithTaskA;
+import static seedu.address.testutil.TypicalModules.CS2103T_WITH_TASK_A;
 import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalModules.getTypicalModules;
 import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
@@ -43,10 +43,10 @@ public class AddTaskCommandTest {
         AddTaskCommand addTaskCommand = new AddTaskCommand(descriptor);
 
         String expectedMessage = String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS,
-                CS2103TWithTaskA);
+                CS2103T_WITH_TASK_A);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setModule(CS2103T, CS2103TWithTaskA);
+        expectedModel.setModule(CS2103T, CS2103T_WITH_TASK_A);
 
         assertCommandSuccess(addTaskCommand, model, expectedMessage, expectedModel);
     }

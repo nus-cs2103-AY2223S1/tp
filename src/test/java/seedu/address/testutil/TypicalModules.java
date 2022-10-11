@@ -26,13 +26,13 @@ public class TypicalModules {
             .withModuleTitle(VALID_CS_MODULE_TITLE).build();
     public static final Module MA2001 = new ModuleBuilder().withModuleCode(VALID_MA_MODULE_CODE)
             .withModuleTitle(VALID_MA_MODULE_TITLE).build();
-    public static final Module CS2103TWithTaskA =
+    public static final Module CS2103T_WITH_TASK_A =
             new ModuleBuilder().withModuleCode("CS2103T").withTasks(VALID_TASKS.subList(0, 1))
                     .withModuleTitle("Software Engineering").build();
-    public static final Module CS2106WithTaskA =
+    public static final Module CS2106_WITH_TASK_A =
             new ModuleBuilder().withModuleCode(VALID_CS_MODULE_CODE).withTasks(VALID_TASKS.subList(0, 1))
             .withModuleTitle(VALID_CS_MODULE_TITLE).build();
-    public static final Module MA2001WithTaskA =
+    public static final Module MA2001_WITH_TASK_A =
             new ModuleBuilder().withModuleCode(VALID_MA_MODULE_CODE).withTasks(VALID_TASKS.subList(0, 1))
                     .withModuleTitle(VALID_MA_MODULE_TITLE).build();
     private TypicalModules() {} // prevents instantiation

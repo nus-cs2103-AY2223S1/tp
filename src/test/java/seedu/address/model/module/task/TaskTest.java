@@ -8,8 +8,6 @@ import static seedu.address.testutil.TypicalTasks.TASK_B;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.module.task.Task;
-
 public class TaskTest {
 
     @Test
