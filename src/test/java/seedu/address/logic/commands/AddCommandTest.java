@@ -31,10 +31,10 @@ public class AddCommandTest {
         assertThrows(NullPointerException.class, () -> new AddCommand(null, new EntryType("e")));
     }
 
-//    @Test
-//    public void constructor_nullEntryType_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> new AddCommand(new ExpenditureBuilder().build(), null));
-//    }
+    // @Test
+    // public void constructor_nullEntryType_throwsNullPointerException() {
+    //     assertThrows(NullPointerException.class, () -> new AddCommand(new ExpenditureBuilder().build(), null));
+    // }
 
     @Test
     public void execute_expenditureAcceptedByModel_addSuccessful() throws Exception {
@@ -56,8 +56,7 @@ public class AddCommandTest {
 
         assertThrows(
                 CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_PERSON,
-                () -> addCommand.execute(modelStub));
+                AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test

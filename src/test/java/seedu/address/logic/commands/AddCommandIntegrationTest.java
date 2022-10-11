@@ -12,8 +12,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
-import seedu.address.model.entry.Expenditure;
-import seedu.address.model.entry.Income;
 import seedu.address.testutil.ExpenditureBuilder;
 //import seedu.address.model.person.Person;
 //import seedu.address.testutil.PersonBuilder;
@@ -42,7 +40,10 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicateExpenditure_throwsCommandException() {
         Entry expenditureInList = model.getAddressBook().getExpenditureList().get(0);
-        assertCommandFailure(new AddCommand(expenditureInList, new EntryType("e")), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(
+                new AddCommand(expenditureInList, new EntryType("e")),
+                model,
+                AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     // @Test

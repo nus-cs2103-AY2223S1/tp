@@ -1,8 +1,10 @@
 package seedu.address.model.entry;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class DescriptionTest {
 
@@ -12,8 +14,8 @@ public class DescriptionTest {
     }
 
     @Test
-    public void constructor_invalidDescription_throws_IllegalArgumentException() {
-        String invalidDescription= "";
+    public void constructor_invalidDescription_throwsIllegalArgumentExceptio() {
+        String invalidDescription = "";
         assertThrows(IllegalArgumentException.class, () -> new Description(invalidDescription));
     }
 

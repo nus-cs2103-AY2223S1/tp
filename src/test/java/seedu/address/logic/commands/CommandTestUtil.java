@@ -75,9 +75,9 @@ public class CommandTestUtil {
     public static final String AMT_LUNCH = " " + PREFIX_AMOUNT + VALID_AMT_LUNCH;
     public static final String AMT_MOVIE = " " + PREFIX_AMOUNT + VALID_AMT_MOVIE;
     public static final String AMT_DINNER = " " + PREFIX_AMOUNT + VALID_AMT_DINNER;
-    public static final String DATE_LUNCH = " " + PREFIX_DATE + VALID_AMT_LUNCH;
-    public static final String DATE_MOVIE = " " + PREFIX_DATE + VALID_AMT_MOVIE;
-    public static final String DATE_DINNER = " " + PREFIX_DATE + VALID_AMT_DINNER;
+    public static final String DATE_LUNCH = " " + PREFIX_DATE + VALID_DATE_LUNCH;
+    public static final String DATE_MOVIE = " " + PREFIX_DATE + VALID_DATE_MOVIE;
+    public static final String DATE_DINNER = " " + PREFIX_DATE + VALID_DATE_DINNER;
 
     public static final String INVALID_DESC = " " + PREFIX_DESCRIPTION + " ";
     public static final String INVALID_AMT = " " + PREFIX_AMOUNT + " ";
