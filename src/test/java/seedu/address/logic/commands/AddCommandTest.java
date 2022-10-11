@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
+
 public class AddCommandTest {
 
     @Test
@@ -35,6 +36,7 @@ public class AddCommandTest {
         ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
         Student validStudent = new StudentBuilder().build();
 
+
         CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
@@ -46,12 +48,23 @@ public class AddCommandTest {
         Student validStudent = new StudentBuilder().build();
         AddCommand addCommand = new AddCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
-
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
+    public void execute_duplicateStudentId_throwsCommandException() {
+        Student existingStudent = new StudentBuilder().build();
+        String existingStudentId = existingStudent.getStudentId().toString();
+        ModelStub modelStub = new ModelStubWithStudent(existingStudent);
+        Student copyIdStudent = new StudentBuilder().withName("Other Name").withStudentId(existingStudentId).build();
+        AddCommand addCommand = new AddCommand(copyIdStudent);
+        String expectedMessage = String.format(AddCommand.MESSAGE_DUPLICATE_ID, existingStudentId);
+        assertThrows(CommandException.class, expectedMessage, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
+
         Student alice = new StudentBuilder().withName("Alice").build();
         Student bob = new StudentBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
@@ -147,11 +160,17 @@ public class AddCommandTest {
         public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasStudentWithMatchingId(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
      * A Model stub that contains a single student.
      */
+
     private class ModelStubWithStudent extends ModelStub {
         private final Student student;
 
@@ -165,11 +184,19 @@ public class AddCommandTest {
             requireNonNull(student);
             return this.student.isSameStudent(student);
         }
+
+        @Override
+        public boolean hasStudentWithMatchingId(Student student) {
+            requireNonNull(student);
+            return this.student.hasSameId(student);
+        }
+
     }
 
     /**
      * A Model stub that always accept the student being added.
      */
+
     private class ModelStubAcceptingStudentAdded extends ModelStub {
         final ArrayList<Student> studentsAdded = new ArrayList<>();
 
@@ -183,6 +210,12 @@ public class AddCommandTest {
         public void addStudent(Student student) {
             requireNonNull(student);
             studentsAdded.add(student);
+        }
+
+        @Override
+        public boolean hasStudentWithMatchingId(Student student) {
+            requireNonNull(student);
+            return studentsAdded.stream().anyMatch(student::hasSameId);
         }
 
         @Override

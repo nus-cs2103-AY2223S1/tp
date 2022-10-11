@@ -5,52 +5,66 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Student in the address book.
+ * Represents a Student in the studentId book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
 
     // Identity fields
     private final Name name;
-    private final Optional<Phone> phone;
-    private final Optional<Email> email;
+    private final Phone phone;
+    private final Email email;
 
     // Data fields
-    private final Optional<Address> address;
+    private final ClassGroup classGroup;
+    private final StudentId studentId;
     private final Set<Tag> tags = new HashSet<>();
+
+    private final Attendance attendance;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Optional<Phone> phone, Optional<Email> email, Optional<Address> address, Set<Tag> tags) {
-        requireAllNonNull(name);
+    public Student(Name name, Phone phone, Email email,
+                   ClassGroup classGroup, StudentId studentId, Set<Tag> tags, Attendance attendance) {
+        requireAllNonNull(name, studentId);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.classGroup = classGroup;
+        this.studentId = studentId;
         this.tags.addAll(tags);
+        this.attendance = attendance;
+    }
+
+    public Attendance getAttendance() {
+        return attendance;
     }
 
     public Name getName() {
         return name;
     }
 
-    public Optional<Phone> getPhone() {
+    public Phone getPhone() {
         return phone;
     }
 
-    public Optional<Email> getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public Optional<Address> getAddress() {
-        return address;
+    public ClassGroup getClassGroup() {
+        return classGroup;
+    }
+
+    public StudentId getStudentId() {
+        return studentId;
     }
 
     /**
@@ -75,6 +89,15 @@ public class Student {
     }
 
     /**
+     * Returns true is both students have the same studentId
+     * @param otherStudent
+     * @return Whether this and provided student have the same studentId
+     */
+    public boolean hasSameId(Student otherStudent) {
+        return otherStudent.studentId.equals(studentId);
+    }
+
+    /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */
@@ -92,14 +115,15 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getClassGroup().equals(getClassGroup())
+                && otherStudent.getStudentId().equals(getStudentId())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, classGroup, studentId, tags);
     }
 
     @Override
@@ -107,11 +131,15 @@ public class Student {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Phone: ")
-                .append(getPhone().get())
+                .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail().get())
-                .append("; Address: ")
-                .append(getAddress().get());
+                .append(getEmail())
+                .append("; Class Group: ")
+                .append(getClassGroup())
+                .append("; StudentId: ")
+                .append(getStudentId())
+                .append("; Attendance: ")
+                .append(getAttendance());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -94,6 +94,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasStudentWithMatchingId(Student student) {
+        requireNonNull(student);
+        return addressBook.hasStudentWithSameIdAs(student);
+    }
+
+    @Override
     public void deleteStudent(Student target) {
         addressBook.removeStudent(target);
     }
