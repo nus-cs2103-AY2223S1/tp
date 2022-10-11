@@ -29,12 +29,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Stage primaryStage;
     private final Logic logic;
-
+    private final HelpWindow helpWindow;
     // Independent Ui parts residing in this Ui container
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
-    private final HelpWindow helpWindow;
-
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -111,7 +109,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        itemListPanel = new ItemListPanel(logic.getFilteredItemList());
+        itemListPanel = new ItemListPanel(logic.getFilteredSortedItemList());
         itemListPanelPlaceholder.getChildren().add(itemListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -158,7 +156,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-            (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
