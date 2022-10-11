@@ -43,6 +43,8 @@ public class ClientCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private VBox vbox;
+    @FXML
+    private VBox meetingsBox;
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
@@ -56,8 +58,13 @@ public class ClientCard extends UiPart<Region> {
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
         if (client.getMeeting() != null) {
-            vbox.getChildren().add(new Label("Meetings: "));
-            vbox.getChildren().add(new MeetingCard(client.getMeeting(), 1).getRoot());
+//            meetingsBox.getChildren().add(new MeetingCard(client.getMeeting(), 1).getRoot());
+            Label label = new Label("•  " + client.getMeeting().getMeetingDate().toString() +
+                    ", " + client.getMeeting().getMeetingTime().toString());
+            label.getStyleClass().add("cell_small_label");
+            meetingsBox.getChildren().add(label);
+        } else {
+            meetingsBox.getChildren().clear();
         }
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

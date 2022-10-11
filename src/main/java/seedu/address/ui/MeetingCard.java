@@ -33,7 +33,6 @@ public class MeetingCard extends UiPart<Region> {
         description.setText(meeting.getDescription().toString());
         date.setText(meeting.getMeetingDate().toString());
         time.setText(meeting.getMeetingTime().toString());
-
     }
 
     @Override
