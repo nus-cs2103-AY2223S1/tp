@@ -1,7 +1,7 @@
 package seedu.address.model.internship;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+// import static org.junit.jupiter.api.Assertions.assertFalse;
+// import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -49,7 +49,7 @@ public class DescriptionTest {
         assertFalse(Description.isValidDescription("peter@jack@example.com")); // '@' symbol in local part
         assertFalse(Description.isValidDescription("-peterjack@example.com")); // local part starts with a hyphen
         assertFalse(Description.isValidDescription("peterjack-@example.com")); // local part ends with a hyphen
-        assertFalse(Description.isValidDescription("peter..jack@example.com")); // local part has two consecutive periods
+        assertFalse(Description.isValidDescription("peter..jack@example.com")); // local part has consecutive periods
         assertFalse(Description.isValidDescription("peterjack@example@com")); // '@' symbol in domain name
         assertFalse(Description.isValidDescription("peterjack@.example.com")); // domain name starts with a period
         assertFalse(Description.isValidDescription("peterjack@example.com.")); // domain name ends with a period
@@ -65,7 +65,7 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("a@bc")); // minimal
         assertTrue(Description.isValidDescription("test@localhost")); // alphabets only
         assertTrue(Description.isValidDescription("123@145")); // numeric local part and domain name
-        assertTrue(Description.isValidDescription("a1+be.d@example1.com")); // mixture of alphanumeric and special characters
+        assertTrue(Description.isValidDescription("a1+be.d@example1.com")); // mixture of alphanumeric and special
         assertTrue(Description.isValidDescription("peter_jack@very-very-very-long-example.com")); // long domain name
         assertTrue(Description.isValidDescription("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(Description.isValidDescription("e1234567@u.nus.edu")); // more than one period in domain

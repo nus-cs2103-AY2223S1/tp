@@ -79,8 +79,8 @@ public class MarkCommand extends Command {
         AppliedDate updatedAppliedDate = internshipToMark.getAppliedDate();
         Set<Tag> updatedTags = internshipToMark.getTags();
 
-        return new Internship(updatedCompany, updatedLink, updatedDescription, updatedApplicationStatus, updatedAppliedDate,
-                updatedTags);
+        return new Internship(updatedCompany, updatedLink, updatedDescription,
+                updatedApplicationStatus, updatedAppliedDate, updatedTags);
     }
 
     @Override

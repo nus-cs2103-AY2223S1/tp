@@ -18,14 +18,17 @@ public class CompanyContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        CompanyContainsKeywordsPredicate firstPredicate = new CompanyContainsKeywordsPredicate(firstPredicateKeywordList);
-        CompanyContainsKeywordsPredicate secondPredicate = new CompanyContainsKeywordsPredicate(secondPredicateKeywordList);
+        CompanyContainsKeywordsPredicate firstPredicate =
+                new CompanyContainsKeywordsPredicate(firstPredicateKeywordList);
+        CompanyContainsKeywordsPredicate secondPredicate =
+                new CompanyContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        CompanyContainsKeywordsPredicate firstPredicateCopy = new CompanyContainsKeywordsPredicate(firstPredicateKeywordList);
+        CompanyContainsKeywordsPredicate firstPredicateCopy =
+                new CompanyContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +44,8 @@ public class CompanyContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        CompanyContainsKeywordsPredicate predicate = new CompanyContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        CompanyContainsKeywordsPredicate predicate =
+                new CompanyContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords

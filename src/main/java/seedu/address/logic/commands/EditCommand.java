@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
@@ -97,14 +97,18 @@ public class EditCommand extends Command {
 
         Company updatedCompany = editInternshipDescriptor.getCompany().orElse(internshipToEdit.getCompany());
         Link updatedLink = editInternshipDescriptor.getLink().orElse(internshipToEdit.getLink());
-        Description updatedDescription = editInternshipDescriptor.getDescription().orElse(internshipToEdit.getDescription());
-        AppliedDate updatedAppliedDate = editInternshipDescriptor.getAppliedDate().orElse(internshipToEdit.getAppliedDate());
+        Description updatedDescription = editInternshipDescriptor.getDescription()
+                .orElse(internshipToEdit.getDescription());
+        AppliedDate updatedAppliedDate = editInternshipDescriptor.getAppliedDate()
+                .orElse(internshipToEdit.getAppliedDate());
         ApplicationStatus updatedApplicationStatus =
-                editInternshipDescriptor.getApplicationStatus().orElse(internshipToEdit.getApplicationStatus());
-        Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
+                editInternshipDescriptor.getApplicationStatus()
+                        .orElse(internshipToEdit.getApplicationStatus());
+        Set<Tag> updatedTags = editInternshipDescriptor.getTags()
+                .orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedCompany, updatedLink, updatedDescription, updatedApplicationStatus, updatedAppliedDate,
-                updatedTags);
+        return new Internship(updatedCompany, updatedLink, updatedDescription,
+                updatedApplicationStatus, updatedAppliedDate, updatedTags);
     }
 
     @Override

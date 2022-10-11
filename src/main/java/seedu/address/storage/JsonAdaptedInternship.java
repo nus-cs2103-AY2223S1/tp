@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
@@ -77,7 +77,8 @@ class JsonAdaptedInternship {
         }
 
         if (company == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Company.class.getSimpleName()));
         }
         if (!Company.isValidCompany(company)) {
             throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
@@ -85,7 +86,8 @@ class JsonAdaptedInternship {
         final Company modelCompany = new Company(company);
 
         if (link == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Link.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Link.class.getSimpleName()));
         }
         if (!Link.isValidLink(link)) {
             throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
@@ -93,7 +95,8 @@ class JsonAdaptedInternship {
         final Link modelLink = new Link(link);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(email)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -107,7 +110,8 @@ class JsonAdaptedInternship {
         final ApplicationStatus modelApplicationStatus = ApplicationStatus.parse(applicationStatus);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, AppliedDate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    AppliedDate.class.getSimpleName()));
         }
         if (!AppliedDate.isValidAppliedDate(address)) {
             throw new IllegalValueException(AppliedDate.MESSAGE_CONSTRAINTS);
@@ -115,7 +119,8 @@ class JsonAdaptedInternship {
         final AppliedDate modelAppliedDate = new AppliedDate(address);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelLink, modelDescription, modelApplicationStatus, modelAppliedDate, modelTags);
+        return new Internship(modelCompany, modelLink, modelDescription,
+                modelApplicationStatus, modelAppliedDate, modelTags);
     }
 
 }

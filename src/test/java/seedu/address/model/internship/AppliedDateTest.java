@@ -1,7 +1,7 @@
 package seedu.address.model.internship;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+// import static org.junit.jupiter.api.Assertions.assertFalse;
+// import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +22,7 @@ public class AppliedDateTest {
     }
     */
 
+
     /*
     // Removed for now as there are no constraints on the inputs
     @Test
@@ -36,7 +37,8 @@ public class AppliedDateTest {
         // valid addresses
         assertTrue(AppliedDate.isValidAppliedDate("Blk 456, Den Road, #01-355"));
         assertTrue(AppliedDate.isValidAppliedDate("-")); // one character
-        assertTrue(AppliedDate.isValidAppliedDate("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(AppliedDate.isValidAppliedDate(
+                "Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
     }
     */
 }

@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -45,10 +45,14 @@ public class InternshipUtil {
      */
     public static String getEditInternshipDescriptorDetails(EditInternshipDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getCompany().ifPresent(name -> sb.append(PREFIX_COMPANY).append(name.value).append(" "));
-        descriptor.getLink().ifPresent(phone -> sb.append(PREFIX_LINK).append(phone.value).append(" "));
-        descriptor.getDescription().ifPresent(email -> sb.append(PREFIX_DESCRIPTION).append(email.value).append(" "));
-        descriptor.getAppliedDate().ifPresent(address -> sb.append(PREFIX_APPLIED_DATE).append(address.value).append(" "));
+        descriptor.getCompany().ifPresent(name -> sb.append(PREFIX_COMPANY)
+                .append(name.value).append(" "));
+        descriptor.getLink().ifPresent(phone -> sb.append(PREFIX_LINK)
+                .append(phone.value).append(" "));
+        descriptor.getDescription().ifPresent(email -> sb.append(PREFIX_DESCRIPTION)
+                .append(email.value).append(" "));
+        descriptor.getAppliedDate().ifPresent(address -> sb.append(PREFIX_APPLIED_DATE)
+                .append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
