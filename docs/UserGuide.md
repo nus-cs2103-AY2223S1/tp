@@ -120,11 +120,12 @@ Format: `find [c/CATEGORY] KEYWORDS…`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The `CATEGORY` tag refers to company_name (or n), position (or p), application_process (or pr), website (or web), date(or d) (case-insensitive)
+* The `CATEGORY` tag refers to company_name (or n), position (or p), application_process (or pr), tags (or t), date (or d) (case-insensitive)
 * If not specified, the `CATEGORY` tag will be set to company_name as a default
 * Only the target category is searched.
 * A `KEYWORD` will match any string if the `KEYWORD` is contained in that string e.g. `Han` will match both `Reyhan` and `Handy`
 * Internships whose target category match at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
+* For the find by date category, all `KEYWORD` must be a valid date in `dd-mm-yyyy` format
 
 Examples:
 * `find c/p engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
