@@ -28,14 +28,14 @@ public class MarkTaskCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Task taskToMark = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
-        MarkTaskCommand MarkTaskCommand = new MarkTaskCommand(INDEX_FIRST_PERSON);
+        MarkTaskCommand mtc = new MarkTaskCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(MarkTaskCommand.MESSAGE_SUCCESS, taskToMark);
+        String expectedMessage = String.format(mtc.MESSAGE_SUCCESS, taskToMark.toString());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskPanel(), new UserPrefs());
         expectedModel.markTask(taskToMark);
 
-        assertCommandSuccess(MarkTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(mtc, model, expectedMessage, expectedModel);
     }
 
     @Test
