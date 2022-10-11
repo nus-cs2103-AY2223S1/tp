@@ -35,7 +35,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredClients = new FilteredList<>(this.addressBook.getPersonList());
+        filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredLists = new FilteredList<>(this.addressBook.getListingList());
     }
 
@@ -91,9 +91,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Client client) {
+    public boolean hasClient(Client client) {
         requireNonNull(client);
-        return addressBook.hasPerson(client);
+        return addressBook.hasClient(client);
     }
 
     @Override
@@ -103,8 +103,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Client target) {
-        addressBook.removePerson(target);
+    public void deleteClient(Client target) {
+        addressBook.removeClient(target);
     }
 
     @Override
@@ -113,9 +113,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Client client) {
-        addressBook.addPerson(client);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addClient(Client client) {
+        addressBook.addClient(client);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
     @Override
@@ -125,10 +125,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Client target, Client editedClient) {
+    public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
-        addressBook.setPerson(target, editedClient);
+        addressBook.setClients(target, editedClient);
     }
 
     @Override
@@ -145,7 +145,7 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Client> getFilteredPersonList() {
+    public ObservableList<Client> getFilteredClientList() {
         return filteredClients;
     }
 
@@ -155,7 +155,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Client> predicate) {
+    public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
     }

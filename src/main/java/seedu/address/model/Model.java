@@ -13,7 +13,7 @@ import seedu.address.model.client.Client;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Client> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
     Predicate<Listing> PREDICATE_SHOW_ALL_LISTINGS = unused -> true;
 
     /**
@@ -57,7 +57,7 @@ public interface Model {
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
-    boolean hasPerson(Client client);
+    boolean hasClient(Client client);
 
     boolean hasListing(Listing listing);
 
@@ -65,7 +65,7 @@ public interface Model {
      * Deletes the given client.
      * The client must exist in the address book.
      */
-    void deletePerson(Client target);
+    void deleteClient(Client target);
 
     /**
      * Deletes the given listing.
@@ -77,7 +77,7 @@ public interface Model {
      * Adds the given client.
      * {@code client} must not already exist in the address book.
      */
-    void addPerson(Client client);
+    void addClient(Client client);
 
     /**
      * Adds the given listing.
@@ -90,7 +90,7 @@ public interface Model {
      * {@code target} must exist in the address book.
      * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
      */
-    void setPerson(Client target, Client editedClient);
+    void setClient(Client target, Client editedClient);
 
     /**
      * Replaces the given listing {@code target} with {@code editedListing}.
@@ -101,7 +101,7 @@ public interface Model {
     void setListing(Listing target, Listing editedListing);
 
     /** Returns an unmodifiable view of the filtered client list */
-    ObservableList<Client> getFilteredPersonList();
+    ObservableList<Client> getFilteredClientList();
 
     /** Returns an unmodifiable view of the filtered listing list */
     ObservableList<Listing> getFilteredListingList();
@@ -110,7 +110,7 @@ public interface Model {
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Client> predicate);
+    void updateFilteredClientList(Predicate<Client> predicate);
 
     /**
      * Updates the filter of the filtered listing list to filter by the given {@code predicate}.

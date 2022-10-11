@@ -3,11 +3,10 @@ package seedu.address.model.client;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,64 +16,64 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.client.exceptions.ClientNotFoundException;
 import seedu.address.model.client.exceptions.DuplicateClientException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ClientBuilder;
 
 public class UniqueClientListTest {
 
     private final UniqueClientList uniqueClientList = new UniqueClientList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
+    public void contains_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClientList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_clientNotInList_returnsFalse() {
         assertFalse(uniqueClientList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_clientInList_returnsTrue() {
         uniqueClientList.add(ALICE);
         assertTrue(uniqueClientList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_clientWithSameIdentityFieldsInList_returnsTrue() {
         uniqueClientList.add(ALICE);
-        Client editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE).withListingList(VALID_LISTINGLIST_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueClientList.contains(editedAlice));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
+    public void add_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClientList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
+    public void add_duplicateClient_throwsDuplicateClientException() {
         uniqueClientList.add(ALICE);
         assertThrows(DuplicateClientException.class, () -> uniqueClientList.add(ALICE));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
+    public void setClient_nullTargetClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClientList.setClient(null, ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
+    public void setClient_nullEditedClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClientList.setClient(ALICE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
+    public void setClient_targetClientNotInList_throwsClientNotFoundException() {
         assertThrows(ClientNotFoundException.class, () -> uniqueClientList.setClient(ALICE, ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
+    public void setClient_editedClientIsSameClient_success() {
         uniqueClientList.add(ALICE);
         uniqueClientList.setClient(ALICE, ALICE);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
@@ -83,9 +82,9 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
+    public void setClient_editedClientHasSameIdentity_success() {
         uniqueClientList.add(ALICE);
-        Client editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE).withListingList(VALID_LISTINGLIST_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueClientList.setClient(ALICE, editedAlice);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
@@ -94,7 +93,7 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
+    public void setClient_editedClientHasDifferentIdentity_success() {
         uniqueClientList.add(ALICE);
         uniqueClientList.setClient(ALICE, BOB);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
@@ -103,24 +102,24 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+    public void setClient_editedClientHasNonUniqueIdentity_throwsDuplicateClientException() {
         uniqueClientList.add(ALICE);
         uniqueClientList.add(BOB);
         assertThrows(DuplicateClientException.class, () -> uniqueClientList.setClient(ALICE, BOB));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClientList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
+    public void remove_clientDoesNotExist_throwsClientNotFoundException() {
         assertThrows(ClientNotFoundException.class, () -> uniqueClientList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
+    public void remove_existingClient_removesClient() {
         uniqueClientList.add(ALICE);
         uniqueClientList.remove(ALICE);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
@@ -128,12 +127,12 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
+    public void setClients_nullUniqueClientList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClientList.setClients((UniqueClientList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
+    public void setClients_uniqueClientList_replacesOwnListWithProvidedUniqueClientList() {
         uniqueClientList.add(ALICE);
         UniqueClientList expectedUniqueClientList = new UniqueClientList();
         expectedUniqueClientList.add(BOB);
@@ -142,12 +141,12 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
+    public void setClients_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueClientList.setClients((List<Client>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
+    public void setClients_list_replacesOwnListWithProvidedList() {
         uniqueClientList.add(ALICE);
         List<Client> clientList = Collections.singletonList(BOB);
         uniqueClientList.setClients(clientList);
@@ -157,7 +156,7 @@ public class UniqueClientListTest {
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
+    public void setClients_listWithDuplicateClients_throwsDuplicateClientException() {
         List<Client> listWithDuplicateClients = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicateClientException.class, () -> uniqueClientList.setClients(listWithDuplicateClients));
     }

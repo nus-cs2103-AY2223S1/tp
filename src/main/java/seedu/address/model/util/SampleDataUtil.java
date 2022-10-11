@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,6 +9,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.client.*;
 import seedu.address.model.client.Client;
+import seedu.address.model.listing.Listing;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.offer.Offer;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,33 +21,33 @@ public class SampleDataUtil {
 
     public static final Remark EMPTY_REMARK = new Remark("");
 
-    public static Client[] getSamplePersons() {
+    public static Client[] getSampleCLients() {
         return new Client[]{
-            new Client(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK,
+            new Client(new Name("Alex Yeoh"), new ArrayList<Meeting>(), new ArrayList<Offer>(),
+                new ArrayList<Listing>(), EMPTY_REMARK,
                 getTagSet("friends")),
-            new Client(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY_REMARK,
+            new Client(new Name("Bernice Yu"), new ArrayList<Meeting>(), new ArrayList<Offer>(),
+                    new ArrayList<Listing>(), EMPTY_REMARK,
                 getTagSet("colleagues", "friends")),
-            new Client(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), EMPTY_REMARK,
+            new Client(new Name("Charlotte Oliveiro"), new ArrayList<Meeting>(), new ArrayList<Offer>(),
+                    new ArrayList<Listing>(), EMPTY_REMARK,
                 getTagSet("neighbours")),
-            new Client(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY_REMARK,
+            new Client(new Name("David Li"), new ArrayList<Meeting>(), new ArrayList<Offer>(),
+                    new ArrayList<Listing>(), EMPTY_REMARK,
                 getTagSet("family")),
-            new Client(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY_REMARK,
+            new Client(new Name("Irfan Ibrahim"), new ArrayList<Meeting>(), new ArrayList<Offer>(),
+                    new ArrayList<Listing>(), EMPTY_REMARK,
                 getTagSet("classmates")),
-            new Client(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_REMARK,
+            new Client(new Name("Roy Balakrishnan"), new ArrayList<Meeting>(), new ArrayList<Offer>(),
+                    new ArrayList<Listing>(), EMPTY_REMARK,
                 getTagSet("colleagues"))
         };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Client sampleClient : getSamplePersons()) {
-            sampleAb.addPerson(sampleClient);
+        for (Client sampleClient : getSampleCLients()) {
+            sampleAb.addClient(sampleClient);
         }
         return sampleAb;
     }
