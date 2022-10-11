@@ -162,21 +162,23 @@ Example:
 
 ###  Search for a Contact: `search`
 
-Search for contacts using tags or other information.
+Search for contacts using partial information.
 
-Format: `search [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+Format: `search [CONDITION] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-* `search t/TAG1 and t/TAG2…` searches for contacts that contains all given tags.
-* `search t/TAG1 or t/TAG2…` searches for contacts that contain any of the given tags.
-* The search using `n/NAM`E is case-insensitive. e.g `hans` will match `Hans`.
+* `search t/TAG1 t/TAG2…` searches for contacts that contain all the given tags.
+* `search and n/NAME p/PHONE…` searches for contacts that match all the given information.
+* `search n/NAME p/PHONE…` and `search and n/NAME p/PHONE…` will return the same contacts that match all the given information.
+* `search or t/TAG1 t/TAG2…` searches for contacts that contain any of the given tags.
+* The search using `n/NAME` is case-insensitive. e.g `hans` will match `Hans`.
 * Displays a list of relevant contacts related to the search query if no search result available.
 
 Example:
 * `search t/family` returns all people tagged with family in the contact list.
-* `search p/86178789` returns all contacts with that phone number.
-* `search t/cs2103t and t/tp` returns all contacts tagged with both cs2103t and tp.
-* `search t/friends or t/family` returns all contacts tagged with either friends or family.
-* `search n/Johm` is supposed to return an empty result since there is no person named `Johm` in the contact list, but now it will return people with names similar to that, for example, `John`.
+* `search and a/NUS p/86178789` returns all contacts with that address and phone number.
+* `search t/cs2103t t/tp` returns all contacts tagged with both cs2103t and tp.
+* `search or t/friends t/family` returns all contacts tagged with either friends or family.
+* `search n/Johm` is supposed to return an empty result since there is no person named `Johm` in the contact list, but now it will return people with names similar to that. For example, `John`.
 
 ### Autocomplete: `search`
 
@@ -288,7 +290,7 @@ _Details coming soon ..._
 | **Customise**  | `customise hide [p/] [e/] [a/] [t/]` <br> `customise show [p/] [e/] [a/] [t/]` <br> `customise order [p/] [e/] [a/] [t/]` <br> e.g, `customise order a/ e/ p/`        |
 | **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Search**     | `search [n/NAME] [p/PHONE_NUMBER] ...`<br> e.g., `seach n/John Doe t/cs2103t`                                                                                         |
+| **Search**     | `search [CONDITION] [n/NAME] [p/PHONE_NUMBER]…​`<br> e.g., `seach n/John Doe t/cs2103t`                                                                            |
 | **List**       | `list`                                                                                                                                                                |
 | **Sort**       | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/friend n/`                                                                                                    |
 | **Help**       | `help`                                                                                                                                                                |
