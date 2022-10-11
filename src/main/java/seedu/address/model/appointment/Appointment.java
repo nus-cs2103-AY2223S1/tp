@@ -45,6 +45,10 @@ public class Appointment {
         return doctor;
     }
 
+    public boolean isSameAppointment(Appointment appointment) {
+        return equals(appointment);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this) {
