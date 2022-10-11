@@ -11,7 +11,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+//import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +27,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.ClassGroup;
 import seedu.address.model.attendance.Attendance;
+import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
@@ -44,7 +44,8 @@ public class AddressBookParserTest {
         final String attendance = "0";
         AttendanceCommand command = (AttendanceCommand) parser.parseCommand(AttendanceCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_STUDENT.getOneBased() + " " + PREFIX_ATTENDANCE + attendance.toString());
-        assertEquals(new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(attendance)), command);    }
+        assertEquals(new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(attendance)), command);
+    }
     @Test
     public void parseCommand_add() throws Exception {
         Student student = new StudentBuilder().build();

@@ -2,8 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
@@ -26,22 +29,21 @@ public class AttendanceCommandTest {
     private static final String ATTENDANCE_STUB = "1";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-//    @Test
-//    public void execute_addAttendanceUnfilteredList_success() {
-//        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-//        Student editedStudent = new StudentBuilder(firstStudent)
-//                .withAttendance(ATTENDANCE_STUB)
-//                .build();
-//
-//        AttendanceCommand remarkCommand = new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(editedStudent.getAttendance().value));
-//
-//        String expectedMessage = String.format(AttendanceCommand.MESSAGE_ADD_ATTENDANCE_SUCCESS, editedStudent);
-//
-//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-//        expectedModel.setStudent(firstStudent, editedStudent);
-//
-//        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-//    }
+    //@Test
+    //public void execute_addAttendanceUnfilteredList_success() {
+    //    Student firstStudent = model.getFilteredStudentList()
+    //    .get(INDEX_FIRST_STUDENT.getZeroBased());
+    //    Student editedStudent = new StudentBuilder(firstStudent)
+    //            .withAttendance(ATTENDANCE_STUB).build();
+    //    AttendanceCommand remarkCommand = new AttendanceCommand(INDEX_FIRST_STUDENT,
+    //    new Attendance(editedStudent.getAttendance().value));
+
+    //    String expectedMessage = String.format(AttendanceCommand.MESSAGE_ADD_ATTENDANCE_SUCCESS, editedStudent);
+
+    //    Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+    //    expectedModel.setStudent(firstStudent, editedStudent);
+    //    assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+    //    }
 
     @Test
     public void execute_deleteAttendanceUnfilteredList_success() {
@@ -82,10 +84,12 @@ public class AttendanceCommandTest {
     }
     @Test
     public void equals() {
-        final AttendanceCommand standardCommand = new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(VALID_ATTENDANCE_AMY));
+        final AttendanceCommand standardCommand = new AttendanceCommand(INDEX_FIRST_STUDENT,
+                new Attendance(VALID_ATTENDANCE_AMY));
 
         // same values -> returns true
-        AttendanceCommand commandWithSameValues = new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(VALID_ATTENDANCE_AMY));
+        AttendanceCommand commandWithSameValues = new AttendanceCommand(INDEX_FIRST_STUDENT,
+                new Attendance(VALID_ATTENDANCE_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -98,10 +102,12 @@ public class AttendanceCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new AttendanceCommand(INDEX_SECOND_STUDENT, new Attendance(VALID_ATTENDANCE_AMY))));
+        assertFalse(standardCommand.equals(new AttendanceCommand(INDEX_SECOND_STUDENT,
+                new Attendance(VALID_ATTENDANCE_AMY))));
 
         // different remark -> returns false
-        assertFalse(standardCommand.equals(new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(VALID_ATTENDANCE_BOB))));
+        assertFalse(standardCommand.equals(new AttendanceCommand(INDEX_FIRST_STUDENT,
+                new Attendance(VALID_ATTENDANCE_BOB))));
     }
 
 }

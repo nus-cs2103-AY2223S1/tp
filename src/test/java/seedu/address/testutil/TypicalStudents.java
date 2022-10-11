@@ -33,7 +33,8 @@ public class TypicalStudents {
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withStudentId("e0354264").withClassGroup("CS2040 Tutorial 32")
-            .withEmail("johnd@example.com").withPhone("98765432").withTags("owesMoney", "friends").withAttendance("1").build();
+            .withEmail("johnd@example.com").withPhone("98765432")
+            .withTags("owesMoney", "friends").withAttendance("1").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withClassGroup("CS2030 Lab 2")
             .withPhone("95352563").withEmail("heinz@example.com").withStudentId("e0023682").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withClassGroup("CS2030 Lab 2")

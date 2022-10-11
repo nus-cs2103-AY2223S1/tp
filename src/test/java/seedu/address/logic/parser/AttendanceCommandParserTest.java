@@ -21,7 +21,8 @@ public class AttendanceCommandParserTest {
         // have remark
         Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_ATTENDANCE + nonEmptyAttendance;
-        AttendanceCommand expectedCommand = new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(nonEmptyAttendance));
+        AttendanceCommand expectedCommand = new AttendanceCommand(INDEX_FIRST_STUDENT,
+                new Attendance(nonEmptyAttendance));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no remark
