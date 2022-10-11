@@ -11,10 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
-import seedu.address.model.client.Email;
+import seedu.address.model.client.ClientEmail;
 import seedu.address.model.Name;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Person;
-import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -80,20 +80,20 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientPhone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!ClientPhone.isValidPhone(phone)) {
+            throw new IllegalValueException(ClientPhone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final ClientPhone modelPhone = new ClientPhone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientEmail.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!ClientEmail.isValidEmail(email)) {
+            throw new IllegalValueException(ClientEmail.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final ClientEmail modelEmail = new ClientEmail(email);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));

@@ -14,11 +14,11 @@ public class Client {
     //Represents the Client's name
     private Name name;
 
-    //Represents the Client's Email
-    private Email email;
+    //Represents the Client's ClientEmail
+    private ClientEmail email;
 
-    //Represents the Client's Phone
-    private Phone phone;
+    //Represents the Client's ClientPhone
+    private ClientPhone phone;
 
     //Represents a Collection of projects that the client is responsible for
     private List<Project> projects;
@@ -31,7 +31,7 @@ public class Client {
      * @param phone String representing phone number of the client
      * @param email String representing email address of the client
      */
-    public Client(Name name, Phone phone, Email email, List<Project> projects, ClientId clientId) {
+    public Client(Name name, ClientPhone phone, ClientEmail email, List<Project> projects, ClientId clientId) {
         requireAllNonNull(name, phone, email, projects, clientId);
         this.name = name;
         this.phone = phone;
@@ -56,7 +56,7 @@ public class Client {
      * Returns the client email as is represented in the ClientEmail object.
      * @return String representing client's email.
      */
-    public Email getEmail() {
+    public ClientEmail getEmail() {
         return this.email;
     }
 
@@ -64,7 +64,7 @@ public class Client {
      * Returns the client phone as is represented in the ClientPhone object.
      * @return String representing client's phone.
      */
-    public Phone getPhone() {
+    public ClientPhone getPhone() {
         return this.phone;
     }
 
