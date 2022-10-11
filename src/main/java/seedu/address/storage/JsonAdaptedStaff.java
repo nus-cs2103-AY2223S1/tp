@@ -35,10 +35,11 @@ class JsonAdaptedStaff {
      * Constructs a {@code JsonAdaptedStaff} with the given staff details.
      */
     @JsonCreator
-    public JsonAdaptedStaff(@JsonProperty("staffContact") String staffContact,
+    public JsonAdaptedStaff(@JsonProperty("staffName") String staffName,
+                            @JsonProperty("staffContact") String staffContact,
+                            @JsonProperty("staffTitle") String staffTitle,
                             @JsonProperty("staffDepartment") String staffDepartment,
                             @JsonProperty("staffInsurance") String staffInsurance,
-                            @JsonProperty("staffName") String staffName, @JsonProperty("staffTitle") String staffTitle,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.staffContact = staffContact;
         this.staffDepartment = staffDepartment;

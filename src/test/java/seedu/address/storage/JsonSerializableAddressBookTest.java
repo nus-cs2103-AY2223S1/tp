@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -26,7 +26,7 @@ public class JsonSerializableAddressBookTest {
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         AddressBook typicalProjectsAddressBook = TypicalProjects.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalProjectsAddressBook);
+        assertTrue(addressBookFromFile.equals(typicalProjectsAddressBook));
     }
 
     @Test
