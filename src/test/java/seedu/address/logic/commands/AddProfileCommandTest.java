@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalProfiles.BOB;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -43,13 +45,25 @@ public class AddProfileCommandTest {
     }
 
     @Test
-    public void execute_duplicateProfile_throwsCommandException() {
+    public void execute_duplicateName_throwsCommandException() {
         Profile validProfile = new ProfileBuilder().build();
         AddProfileCommand addProfileCommand = new AddProfileCommand(validProfile);
         ModelStub modelStub = new ModelStubWithProfile(validProfile);
 
         assertThrows(CommandException.class,
                 AddProfileCommand.MESSAGE_DUPLICATE_NAME, () -> addProfileCommand.execute(modelStub)
+        );
+    }
+
+    @Test
+    public void execute_duplicateEmail_throwsCommandException() {
+        Profile validProfile = new ProfileBuilder(BOB).build();
+        Profile editedNameProfile = new ProfileBuilder(BOB).withName(VALID_NAME_AMY).build();
+        AddProfileCommand addProfileCommand = new AddProfileCommand(validProfile);
+        ModelStub modelStub = new ModelStubWithProfile(editedNameProfile);
+
+        assertThrows(CommandException.class,
+                AddProfileCommand.MESSAGE_DUPLICATE_EMAIL, () -> addProfileCommand.execute(modelStub)
         );
     }
 

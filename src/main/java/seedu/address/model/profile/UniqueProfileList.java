@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.profile.exceptions.DuplicateProfileException;
 import seedu.address.model.profile.exceptions.ProfileNotFoundException;
+import seedu.address.model.profile.exceptions.SimilarProfileException;
 
 /**
  * A list of profiles that enforces uniqueness between its elements and does not allow nulls.
@@ -51,8 +51,8 @@ public class UniqueProfileList implements Iterable<Profile> {
      */
     public void add(Profile toAdd) {
         requireNonNull(toAdd);
-        if (containsName(toAdd)) {
-            throw new DuplicateProfileException();
+        if (containsName(toAdd) || containsEmail(toAdd)) {
+            throw new SimilarProfileException();
         }
         internalList.add(toAdd);
     }
@@ -70,8 +70,9 @@ public class UniqueProfileList implements Iterable<Profile> {
             throw new ProfileNotFoundException();
         }
 
-        if (!target.isSameName(editedProfile) && containsName(editedProfile)) {
-            throw new DuplicateProfileException();
+        if ((!target.isSameName(editedProfile) && containsName(editedProfile))
+                || (!target.isSameEmail(editedProfile) && containsEmail(editedProfile))) {
+            throw new SimilarProfileException();
         }
 
         internalList.set(index, editedProfile);
@@ -100,7 +101,7 @@ public class UniqueProfileList implements Iterable<Profile> {
     public void setProfiles(List<Profile> profiles) {
         requireAllNonNull(profiles);
         if (!profilesAreUnique(profiles)) {
-            throw new DuplicateProfileException();
+            throw new SimilarProfileException();
         }
 
         internalList.setAll(profiles);

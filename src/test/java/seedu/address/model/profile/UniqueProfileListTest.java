@@ -3,9 +3,12 @@ package seedu.address.model.profile;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
+import static seedu.address.testutil.TypicalProfiles.AMY;
 import static seedu.address.testutil.TypicalProfiles.BOB;
 
 import java.util.Arrays;
@@ -14,8 +17,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.profile.exceptions.DuplicateProfileException;
 import seedu.address.model.profile.exceptions.ProfileNotFoundException;
+import seedu.address.model.profile.exceptions.SimilarProfileException;
 import seedu.address.testutil.ProfileBuilder;
 
 public class UniqueProfileListTest {
@@ -30,12 +33,21 @@ public class UniqueProfileListTest {
     @Test
     public void contains_profileNotInList_returnsFalse() {
         assertFalse(uniqueProfileList.containsName(ALICE));
+        assertFalse(uniqueProfileList.containsEmail(ALICE));
     }
 
     @Test
-    public void contains_profileInList_returnsTrue() {
+    public void contains_nameInList_returnsTrue() {
         uniqueProfileList.add(ALICE);
         assertTrue(uniqueProfileList.containsName(ALICE));
+    }
+
+    @Test
+    public void contains_emailInList_returnsTrue() {
+        uniqueProfileList.add(AMY);
+        Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY)
+                .build();
+        assertTrue(uniqueProfileList.containsEmail(editedBob));
     }
 
     @Test
@@ -52,9 +64,17 @@ public class UniqueProfileListTest {
     }
 
     @Test
-    public void add_duplicateProfile_throwsDuplicateProfileException() {
+    public void add_duplicateName_throwsSimilarProfileException() {
         uniqueProfileList.add(ALICE);
-        assertThrows(DuplicateProfileException.class, () -> uniqueProfileList.add(ALICE));
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.add(ALICE));
+    }
+
+    @Test
+    public void add_duplicateEmail_throwsSimilarProfileException() {
+        uniqueProfileList.add(AMY);
+        Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY)
+                .build();
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.add(editedBob));
     }
 
     @Test
@@ -102,10 +122,19 @@ public class UniqueProfileListTest {
     }
 
     @Test
-    public void setProfile_editedProfileHasNonUniqueIdentity_throwsDuplicateProfileException() {
+    public void setProfile_editedProfileHasNonUniqueName_throwsSimilarProfileException() {
         uniqueProfileList.add(ALICE);
         uniqueProfileList.add(BOB);
-        assertThrows(DuplicateProfileException.class, () -> uniqueProfileList.setProfile(ALICE, BOB));
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfile(ALICE, BOB));
+    }
+
+    @Test
+    public void setProfile_editedProfileHasNonUniqueEmail_throwsSimilarProfileException() {
+        uniqueProfileList.add(ALICE);
+        uniqueProfileList.add(BOB);
+        Profile editedAlice = new ProfileBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+                .build();
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfile(ALICE, editedAlice));
     }
 
     @Test
@@ -156,9 +185,17 @@ public class UniqueProfileListTest {
     }
 
     @Test
-    public void setProfiles_listWithDuplicateProfiles_throwsDuplicateProfileException() {
-        List<Profile> listWithDuplicateProfiles = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateProfileException.class, () -> uniqueProfileList.setProfiles(listWithDuplicateProfiles));
+    public void setProfiles_listWithDuplicateNames_throwsSimilarProfileException() {
+        List<Profile> listWithDuplicateNames = Arrays.asList(ALICE, ALICE);
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfiles(listWithDuplicateNames));
+    }
+
+    @Test
+    public void setProfiles_listWithDuplicateEmails_throwsSimilarProfileException() {
+        Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY)
+                .build();
+        List<Profile> listWithDuplicateEmails = Arrays.asList(AMY, editedBob);
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfiles(listWithDuplicateEmails));
     }
 
     @Test

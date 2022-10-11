@@ -1,0 +1,11 @@
+{
+  "profiles": [ {
+    "name": "Alice Paul",
+    "phone": "94351253",
+    "email": "pauline@example.com"
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com"
+  } ]
+}

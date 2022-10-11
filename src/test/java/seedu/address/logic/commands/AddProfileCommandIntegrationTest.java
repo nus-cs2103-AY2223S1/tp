@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalProfiles.AMY;
 import static seedu.address.testutil.TypicalProfiles.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -38,12 +39,24 @@ public class AddProfileCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicateProfile_throwsCommandException() {
+    public void execute_duplicateName_throwsCommandException() {
         Profile profileInList = model.getAddressBook().getProfileList().get(0);
         assertCommandFailure(
                 new AddProfileCommand(profileInList),
                 model,
                 AddProfileCommand.MESSAGE_DUPLICATE_NAME
+        );
+    }
+
+    @Test
+    public void execute_duplicateEmail_throwsCommandException() {
+        Profile profileInList = model.getAddressBook().getProfileList().get(0);
+        Profile newProfile = new ProfileBuilder(AMY).withEmail(profileInList.getEmail().toString())
+                        .build();
+        assertCommandFailure(
+                new AddProfileCommand(newProfile),
+                model,
+                AddProfileCommand.MESSAGE_DUPLICATE_EMAIL
         );
     }
 

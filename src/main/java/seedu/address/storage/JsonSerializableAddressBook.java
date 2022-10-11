@@ -19,7 +19,8 @@ import seedu.address.model.profile.Profile;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PROFILE = "Profiles list contains duplicate profile(s).";
+    public static final String MESSAGE_DUPLICATE_NAME = "Profiles list contains duplicate name(s).";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "Profiles list contains duplicate email(s).";
 
     private final List<JsonAdaptedProfile> profiles = new ArrayList<>();
 
@@ -50,7 +51,10 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedProfile jsonAdaptedProfile : profiles) {
             Profile profile = jsonAdaptedProfile.toModelType();
             if (addressBook.hasName(profile)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PROFILE);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_NAME);
+            }
+            if (addressBook.hasEmail(profile)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EMAIL);
             }
             addressBook.addProfile(profile);
         }
