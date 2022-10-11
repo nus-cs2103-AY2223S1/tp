@@ -31,8 +31,12 @@ public class UniqueProfileListTest {
     }
 
     @Test
-    public void contains_profileNotInList_returnsFalse() {
+    public void contains_nameNotInList_returnsFalse() {
         assertFalse(uniqueProfileList.containsName(ALICE));
+    }
+
+    @Test
+    public void contains_emailNotInList_returnsFalse() {
         assertFalse(uniqueProfileList.containsEmail(ALICE));
     }
 
