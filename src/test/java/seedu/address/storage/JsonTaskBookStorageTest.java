@@ -3,9 +3,9 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 import static seedu.address.testutil.TypicalTasks.FIRST;
 import static seedu.address.testutil.TypicalTasks.SECOND;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 
 import java.io.IOException;
 import java.nio.file.Path;

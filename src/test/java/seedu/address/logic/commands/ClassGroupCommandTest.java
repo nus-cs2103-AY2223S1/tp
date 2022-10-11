@@ -41,7 +41,8 @@ class ClassGroupCommandTest {
 
         String expectedMessage = String.format(ClassGroupCommand.MESSAGE_ADD_CLASS_GROUP_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook(model.getAddressBook()), model.getTaskBook(), new UserPrefs());
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(classGroupCommand, model, expectedMessage, expectedModel);
@@ -57,7 +58,8 @@ class ClassGroupCommandTest {
 
         String expectedMessage = String.format(ClassGroupCommand.MESSAGE_DELETE_CLASS_GROUP_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook(model.getAddressBook()), model.getTaskBook(), new UserPrefs());
         expectedModel.setStudent(firstPerson, editedPerson);
 
         assertCommandSuccess(classGroupCommand, model, expectedMessage, expectedModel);
@@ -77,7 +79,8 @@ class ClassGroupCommandTest {
 
         String expectedMessage = String.format(ClassGroupCommand.MESSAGE_ADD_CLASS_GROUP_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook(model.getAddressBook()), model.getTaskBook(), new UserPrefs());
         expectedModel.setStudent(firstPerson, editedPerson);
 
         assertCommandSuccess(classGroupCommand, model, expectedMessage, expectedModel);

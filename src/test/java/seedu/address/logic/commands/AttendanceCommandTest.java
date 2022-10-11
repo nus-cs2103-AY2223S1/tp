@@ -56,7 +56,8 @@ public class AttendanceCommandTest {
 
         String expectedMessage = String.format(AttendanceCommand.MESSAGE_DELETE_ATTENDANCE_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook(model.getAddressBook()), model.getTaskBook(), new UserPrefs());
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);

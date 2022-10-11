@@ -1,27 +1,34 @@
 package seedu.address.testutil;
 
-import seedu.address.model.TaskBook;
-import seedu.address.model.task.Task;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.TaskBook;
+import seedu.address.model.task.Task;
+
+/**
+ * A utility class containing a list of {@code Task} objects to be used in tests.
+ */
 public class TypicalTasks {
 
-    public static final Task FIRST = new TaskBuilder().withTitle("First title")
-            .withDescription("First description").build();
-    public static final Task SECOND = new TaskBuilder().withTitle("Second title")
-            .withDescription("Second description").build();
-    public static final Task THIRD = new TaskBuilder().withTitle("Third title")
-            .withDescription("Third description").build();
-    public static final Task FOURTH = new TaskBuilder().withTitle("Fourth title")
-            .withDescription("Fourth description").build();
-    public static final Task FIFTH = new TaskBuilder().withTitle("Fifth title")
-            .withDescription("Fifth description").build();
+    public static final Task FIRST = new TaskBuilder().withTitle("Grade assignments")
+            .withDescription("Complete by tonight").build();
+    public static final Task SECOND = new TaskBuilder().withTitle("Prepare slides for studio")
+            .withDescription("Topic Environment Model").build();
+    public static final Task THIRD = new TaskBuilder().withTitle("Review CS1101S topics with Adam")
+            .withDescription("Essence of Recursion").build();
+    public static final Task FOURTH = new TaskBuilder().withTitle("Collect robot")
+            .withDescription("At MakersLab").build();
+    public static final Task FIFTH = new TaskBuilder().withTitle("Go through tutorial sheet")
+            .withDescription("By this friday").build();
 
     private TypicalTasks() {}
 
+    /**
+     * Returns a {@code TaskBook} with all the typical tasks.
+     * @return
+     */
     public static TaskBook getTypicalTaskBook() {
         TaskBook tb = new TaskBook();
         for (Task task : getTypicalTasks()) {
