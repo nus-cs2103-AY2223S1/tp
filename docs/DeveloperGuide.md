@@ -3,8 +3,7 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+{% include toc.md header=true show-in-toc=false %}
 
 ---
 

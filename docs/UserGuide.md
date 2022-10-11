@@ -50,41 +50,7 @@ The only expectation we have of you is to carefully read through the different s
 
 {% include page-break.html %} <!-- Force a page break -->
 
-## Table of Contents
-
-1. [How to use the user guide](#how-to-use-the-user-guide)
-1. [Quick Start](#quick-start)
-1. [Items and Tags](#items-and-tags)
-1. [Navigating around the application](#navigating-around-the-application)
-1. [Flags](#flags)
-1. [Placeholders](#placeholders)
-1. [Features](#features)
-   7.1. [Item Features](#item-features)
-   &emsp; 7.1.1. [Create a new item](#create-a-new-item)
-   &emsp; 7.1.2. [List all items](#list-all-items)
-   &emsp; 7.1.3. [Search for an item](#search-for-an-item)
-   &emsp; 7.1.4. [Sort all items by an attribute](#sort-all-items-by-an-attribute)
-   &emsp; 7.1.5. [View the information of an item](#view-the-information-of-an-item)
-   &emsp; 7.1.6. [Increase the quantity of an item](#increase-the-quantity-of-an-item)
-   &emsp; 7.1.7. [Decrease the quantity of an item](#decrease-the-quantity-of-an-item)
-   &emsp; 7.1.8. [Update the information of an item](#update-the-information-of-an-item)
-   &emsp; 7.1.9. [Delete an item](#delete-an-item)
-   7.2. [Tag Features](#tag-features)
-   &emsp; 7.2.1. [Create a new tag](#create-a-new-tag)
-   &emsp; 7.2.2. [List all tags](#list-all-tags)
-   &emsp; 7.2.3. [Tag an item](#tag-an-item)
-   &emsp; 7.2.4. [Untag an item](#untag-an-item)
-   &emsp; 7.2.5. [Rename a tag](#rename-a-tag)
-   &emsp; 7.2.6. [Delete a tag](#delete-an-item)
-   7.3. [Receive help during usage](#receive-help-during-usage)
-   7.4. [Reset the application](#reset-the-application)
-   7.5. [Exit the application](#exit-the-application)
-1. [Command Summary](#command-summary)
-1. [Troubleshooting](#troubleshooting)
-1. [FAQ](#faq)
-1. [Future Extensions](#future-extensions)
-1. [Acknowledgements](#acknowledgements)
-1. [Glossary](#glossary)
+{% include toc.md header=true show-in-toc=true ordered=true %}
 
 ## How to use the User Guide
 
