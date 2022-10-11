@@ -199,13 +199,15 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
-        return filteredSchedule;
+        ObservableList<Schedule> tempary = new FilteredList<>(this.addressBook.getScheduleList());
+        return tempary;
     }
 
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
+        System.out.println("1");
         filteredSchedule.setPredicate(predicate);
     }
 
