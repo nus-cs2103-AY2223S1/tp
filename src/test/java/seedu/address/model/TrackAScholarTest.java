@@ -22,7 +22,7 @@ import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.exceptions.DuplicateApplicantException;
 import seedu.address.testutil.ApplicantBuilder;
 
-public class AddressBookTest {
+public class TrackAScholarTest {
 
     private final TrackAScholar trackAScholar = new TrackAScholar();
 
@@ -37,14 +37,14 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyTrackAScholar_replacesData() {
         TrackAScholar newData = getTypicalTrackAScholar();
         trackAScholar.resetData(newData);
         assertEquals(newData, trackAScholar);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateApplicants_throwsDuplicateApplicantException() {
         // Two applicants with the same identity fields
         Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -55,23 +55,23 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasApplicant_nullApplicant_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> trackAScholar.hasApplicant(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasApplicant_applicantNotInTrackAScholar_returnsFalse() {
         assertFalse(trackAScholar.hasApplicant(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasApplicant_applicantInTrackAScholar_returnsTrue() {
         trackAScholar.addApplicant(ALICE);
         assertTrue(trackAScholar.hasApplicant(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasApplicant_applicantWithSameIdentityFieldsInTrackAScholar_returnsTrue() {
         trackAScholar.addApplicant(ALICE);
         Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -79,7 +79,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getApplicantList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> trackAScholar.getApplicantList().remove(0));
     }
 

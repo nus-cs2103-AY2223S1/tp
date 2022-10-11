@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class AddressTest {
+public class ScholarshipTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -14,24 +14,24 @@ public class AddressTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Scholarship(invalidAddress));
+    public void constructor_invalidScholarship_throwsIllegalArgumentException() {
+        String invalidScholarship = "";
+        assertThrows(IllegalArgumentException.class, () -> new Scholarship(invalidScholarship));
     }
 
     @Test
-    public void isValidAddress() {
-        // null address
+    public void isValidScholarship() {
+        // null scholarship
         assertThrows(NullPointerException.class, () -> Scholarship.isValidScholarship(null));
 
-        // invalid addresses
+        // invalid scholarship
         assertFalse(Scholarship.isValidScholarship("")); // empty string
         assertFalse(Scholarship.isValidScholarship(" ")); // spaces only
 
-        // valid addresses
+        // valid scholarship
         assertTrue(Scholarship.isValidScholarship("Blk 456, Den Road, #01-355"));
         assertTrue(Scholarship.isValidScholarship("-")); // one character
         assertTrue(Scholarship
-                .isValidScholarship("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+                .isValidScholarship("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long scholarship
     }
 }
