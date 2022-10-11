@@ -23,12 +23,16 @@ public class AddCommentUnfilteredList {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
+    /**
+     * Test for comment
+     */
     @Test
     public void execute_addCommentUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withComment(COMMENT_STUB).build();
 
-        CommentCommand commentCommand = new CommentCommand(INDEX_FIRST_PERSON, new Comment(editedPerson.getComment().value));
+        CommentCommand commentCommand = new CommentCommand(INDEX_FIRST_PERSON,
+                new Comment(editedPerson.getComment().value));
 
         String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS, editedPerson);
 
