@@ -57,18 +57,27 @@
             </graphic></Label>
          <VBox fx:id="meetingsBox">
             <children>
-               <Label styleClass="cell_meeting_label" text="Meetings">
-                  <padding>
-                     <Insets top="10.0" />
-                  </padding>
-                  <graphic>
-                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../images/account-multiple.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-               </Label>
+               <HBox>
+                  <children>
+                     <Label styleClass="cell_meeting_label" text="Meetings">
+                        <padding>
+                           <Insets top="10.0" />
+                        </padding>
+                        <graphic>
+                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../images/account-multiple.png" />
+                              </image>
+                           </ImageView>
+                        </graphic>
+                     </Label>
+                     <Label fx:id="numMeetings" styleClass="cell_num_meeting_label" text="1">
+                        <padding>
+                           <Insets left="5.0" top="10.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </HBox>
             </children>
          </VBox>
     </VBox>

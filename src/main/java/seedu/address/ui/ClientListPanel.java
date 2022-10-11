@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -20,6 +21,9 @@ public class ClientListPanel extends UiPart<Region> {
     @FXML
     private ListView<Client> clientListView;
 
+    @FXML
+    private Label numClients;
+
     /**
      * Creates a {@code ClientListPanel} with the given {@code ObservableList}.
      */
@@ -27,6 +31,7 @@ public class ClientListPanel extends UiPart<Region> {
         super(FXML);
         clientListView.setItems(clientList);
         clientListView.setCellFactory(listView -> new PersonListViewCell());
+        numClients.setText(Integer.toString(clientList.size()) + " Records");
     }
 
     /**
