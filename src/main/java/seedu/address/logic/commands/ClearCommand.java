@@ -14,7 +14,7 @@ public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear-confirm";
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
     public static final String MESSAGE_CONFIRMATION = "You are attempting to clear all addresses in the memory."
-            + " Add '-confirm' to clear all addresses.";
+            + " Add '-confirm' to end of command to clear all addresses.";
     public static final String MESSAGE_EMPTY_LIST = "Address book is already empty!";
 
     @Override
