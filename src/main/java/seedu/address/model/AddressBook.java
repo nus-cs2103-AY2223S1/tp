@@ -44,22 +44,6 @@ public class AddressBook implements ReadOnlyPennyWise {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setExpenditure(List<Entry> entries) {
-        this.expenditure.setEntries(entries);
-    }
-
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setIncome(List<Entry> entries) {
-        this.income.setEntries(entries);
-    }
-
-    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyPennyWise newData) {
@@ -85,6 +69,14 @@ public class AddressBook implements ReadOnlyPennyWise {
      */
     public void addExpenditure(Entry e) {
         expenditure.add(e);
+    }
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setExpenditure(List<Entry> entries) {
+        this.expenditure.setEntries(entries);
     }
 
     /**
@@ -120,6 +112,14 @@ public class AddressBook implements ReadOnlyPennyWise {
      */
     public void addIncome(Entry e) {
         income.add(e);
+    }
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setIncome(List<Entry> entries) {
+        this.income.setEntries(entries);
     }
 
     /**

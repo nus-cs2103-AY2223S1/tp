@@ -3,6 +3,10 @@ package seedu.address.model.entry;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Entry's type in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidEntryType(String)}}
+ */
 public class EntryType {
     private static final String ENTRY_TYPE_EXPENDITURE = "e";
     private static final String ENTRY_TYPE_INCOME = "i";

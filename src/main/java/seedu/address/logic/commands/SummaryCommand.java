@@ -48,9 +48,9 @@ public class SummaryCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Entry> expenditureList = model.getFilteredExpenditureList();
         List<Entry> incomeList = model.getFilteredIncomeList();
-        Double totalExpenditure = expenditureList.
-                stream().
-                mapToDouble(entry -> Double.parseDouble(entry.getAmount().amount))
+        Double totalExpenditure = expenditureList
+                .stream()
+                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().amount))
                 .sum();
         Double totalIncome = incomeList
                 .stream()
