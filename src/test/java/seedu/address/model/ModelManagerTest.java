@@ -73,19 +73,35 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasProfile_nullProfile_throwsNullPointerException() {
+    public void hasName_nullName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasName(null));
     }
 
     @Test
-    public void hasProfile_profileNotInAddressBook_returnsFalse() {
+    public void hasName_nameNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasName(ALICE));
     }
 
     @Test
-    public void hasProfile_profileInAddressBook_returnsTrue() {
+    public void hasName_nameInAddressBook_returnsTrue() {
         modelManager.addProfile(ALICE);
         assertTrue(modelManager.hasName(ALICE));
+    }
+
+    @Test
+    public void hasEmail_nullEmail_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasEmail(null));
+    }
+
+    @Test
+    public void hasEmail_emailNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasEmail(ALICE));
+    }
+
+    @Test
+    public void hasEmail_emailInAddressBook_returnsTrue() {
+        modelManager.addProfile(ALICE);
+        assertTrue(modelManager.hasEmail(ALICE));
     }
 
     @Test

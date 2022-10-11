@@ -137,12 +137,11 @@ public class UniqueProfileList implements Iterable<Profile> {
     private boolean profilesAreUnique(List<Profile> profiles) {
         for (int i = 0; i < profiles.size() - 1; i++) {
             for (int j = i + 1; j < profiles.size(); j++) {
-                if (profiles.get(i).isSameName(profiles.get(j))) {
+                if ((profiles.get(i).isSameName(profiles.get(j)))
+                        || (profiles.get(i).isSameEmail(profiles.get(j)))) {
                     return false;
                 }
-                if (profiles.get(i).isSameEmail(profiles.get(j))) {
-                    return false;
-                }
+
             }
         }
         return true;

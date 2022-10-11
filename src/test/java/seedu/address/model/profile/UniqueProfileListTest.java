@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
@@ -26,8 +27,13 @@ public class UniqueProfileListTest {
     private final UniqueProfileList uniqueProfileList = new UniqueProfileList();
 
     @Test
-    public void contains_nullProfile_throwsNullPointerException() {
+    public void contains_nullName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueProfileList.containsName(null));
+    }
+
+    @Test
+    public void contains_nullEmail_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProfileList.containsEmail(null));
     }
 
     @Test
@@ -55,11 +61,21 @@ public class UniqueProfileListTest {
     }
 
     @Test
-    public void contains_profileWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_profileWithSameNameFieldsInList_returnsTrue() {
         uniqueProfileList.add(ALICE);
-        Profile editedAlice = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Profile editedAliceSameName = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniqueProfileList.containsName(editedAlice));
+        Profile editedAliceSameEmail = new ProfileBuilder(ALICE).withName(VALID_NAME_BOB)
+                .build();
+        assertTrue(uniqueProfileList.containsName(editedAliceSameName));
+    }
+
+    @Test
+    public void contains_profileWithSameEmailFieldsInList_returnsTrue() {
+        uniqueProfileList.add(ALICE);
+        Profile editedAliceSameEmail = new ProfileBuilder(ALICE).withName(VALID_NAME_BOB)
+                .build();
+        assertTrue(uniqueProfileList.containsEmail(editedAliceSameEmail));
     }
 
     @Test
