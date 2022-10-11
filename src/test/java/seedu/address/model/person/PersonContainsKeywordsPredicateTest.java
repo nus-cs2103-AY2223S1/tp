@@ -41,7 +41,8 @@ public class PersonContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        PersonContainsKeywordsPredicate predicate = new PersonContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        List<String> tmp = Collections.singletonList("Alice");
+        PersonContainsKeywordsPredicate predicate = new PersonContainsKeywordsPredicate(tmp);
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
