@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.profile;
 
-import static seedu.address.commons.core.Messages.MESSAGE_MISSING_KEYWORDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
 import java.util.Arrays;
@@ -16,6 +15,8 @@ import seedu.address.model.profile.NameContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindProfileCommandParser implements Parser<FindProfileCommand> {
+
+    public static final String MESSAGE_MISSING_KEYWORDS = "Provide at least one keyword. \n";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand

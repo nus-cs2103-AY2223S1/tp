@@ -3,10 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_MATCH;
 import static seedu.address.commons.core.Messages.MESSAGE_PROFILES_LISTED_OVERVIEW;
-import static seedu.address.commons.core.Messages.MESSAGE_PROFILE_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.profile.FindProfileCommand.MESSAGE_NO_MATCH;
+import static seedu.address.logic.commands.profile.FindProfileCommand.MESSAGE_PROFILE_LISTED_OVERVIEW;
 import static seedu.address.testutil.TypicalProfiles.CARL;
 import static seedu.address.testutil.TypicalProfiles.ELLE;
 import static seedu.address.testutil.TypicalProfiles.FIONA;
@@ -59,11 +59,10 @@ public class FindProfileCommandTest {
 
     @Test
     public void execute_zeroKeywords_noProfileFound() {
-        String expectedMessage = String.format(MESSAGE_NO_MATCH);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindProfileCommand command = new FindProfileCommand(predicate);
         expectedModel.updateFilteredProfileList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, MESSAGE_NO_MATCH, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredProfileList());
     }
 

@@ -15,6 +15,8 @@ import seedu.address.model.profile.NameContainsKeywordsPredicate;
 public class FindProfileCommand extends ProfileCommand {
 
     public static final String COMMAND_OPTION = "f";
+    public static final String MESSAGE_PROFILE_LISTED_OVERVIEW = "1 profile listed!";
+    public static final String MESSAGE_NO_MATCH = "There are no matching results!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
             + ": Finds all profiles whose names contain any of "
@@ -35,9 +37,9 @@ public class FindProfileCommand extends ProfileCommand {
         int size = model.getFilteredProfileList().size();
         switch (size) {
         case 0:
-            return new CommandResult(Messages.MESSAGE_NO_MATCH);
+            return new CommandResult(MESSAGE_NO_MATCH);
         case 1:
-            return new CommandResult(Messages.MESSAGE_PROFILE_LISTED_OVERVIEW);
+            return new CommandResult(MESSAGE_PROFILE_LISTED_OVERVIEW);
         default:
             return new CommandResult(String.format(Messages.MESSAGE_PROFILES_LISTED_OVERVIEW, size));
         }
