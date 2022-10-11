@@ -46,8 +46,11 @@ public class GuestCard extends UiPart<Region> {
         this.guest = guest;
         id.setText(displayedIndex + ". ");
         name.setText(guest.getName().fullName);
+        name.setWrapText(true);
         phone.setText(guest.getPhone().value);
+        phone.setWrapText(true);
         email.setText(guest.getEmail().value);
+        email.setWrapText(true);
         dateRange.setText(guest.getDateRange().value);
         numberOfGuests.setText("No. of Guests: " + guest.getNumberOfGuests().value);
     }
