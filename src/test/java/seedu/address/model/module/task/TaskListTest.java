@@ -1,4 +1,4 @@
-package seedu.address.model.module.task.module;
+package seedu.address.model.module.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

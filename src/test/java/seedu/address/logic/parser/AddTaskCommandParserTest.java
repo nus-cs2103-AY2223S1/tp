@@ -6,9 +6,9 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_D
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_CS2106;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_MA2001;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASK_A;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASK_B;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASK_C;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASK_DESC_A;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASK_DESC_B;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASK_DESC_C;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
@@ -33,16 +33,16 @@ public class AddTaskCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser,
-                PREAMBLE_WHITESPACE + MODULE_CODE_DESC_CS2106 + MODULE_TASK_A,
+                PREAMBLE_WHITESPACE + MODULE_CODE_DESC_CS2106 + MODULE_TASK_DESC_A,
                 expectedCommand);
 
         // multiple task descriptions - last task accepted
         assertParseSuccess(parser,
-                MODULE_CODE_DESC_CS2106 + MODULE_TASK_C + MODULE_TASK_B
-                        + MODULE_TASK_A, expectedCommand);
+                MODULE_CODE_DESC_CS2106 + MODULE_TASK_DESC_C + MODULE_TASK_DESC_B
+                        + MODULE_TASK_DESC_A, expectedCommand);
 
         // order of arguments should not matter
-        assertParseSuccess(parser, MODULE_TASK_A + MODULE_CODE_DESC_CS2106,
+        assertParseSuccess(parser, MODULE_TASK_DESC_A + MODULE_CODE_DESC_CS2106,
                 expectedCommand);
     }
 
@@ -55,7 +55,7 @@ public class AddTaskCommandParserTest {
         assertParseFailure(parser, VALID_CS_MODULE_CODE, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, MODULE_TASK_C, expectedMessage);
+        assertParseFailure(parser, MODULE_TASK_DESC_C, expectedMessage);
     }
 
     @Test
