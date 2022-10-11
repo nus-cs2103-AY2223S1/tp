@@ -50,12 +50,12 @@ public class FilterCommandParserTest {
     @Test
     public void parse_validArgs_returnsFilterCommand() {
         // no leading and trailing whitespaces
-        Set<NameContainsKeywordsPredicate> namePredicates =
-                Stream.of("Alice", "Bob").map(name -> new NameContainsKeywordsPredicate(name))
-                        .collect(Collectors.toSet());
+        Set<NameContainsKeywordsPredicate> namePredicates = Stream.of("Alice", "Bob")
+                .map(name -> new NameContainsKeywordsPredicate(name))
+                .collect(Collectors.toSet());
         Set<Tag> tagSetQuery = Set.of(new Tag("friend"), new Tag("neighbor"));
-        Set<TagMatchesQueryPredicate> tagPredicates =
-                tagSetQuery.stream().map(tag -> new TagMatchesQueryPredicate(tag)).collect(Collectors.toSet());
+        Set<TagMatchesQueryPredicate> tagPredicates = tagSetQuery.stream()
+                .map(tag -> new TagMatchesQueryPredicate(tag)).collect(Collectors.toSet());
         FilterCommand expectedFindCommand =
                 new FilterCommand(new FilterCommandPredicate(namePredicates, tagPredicates));
         String input1 = PREFIX_NAME + "Alice,Bob" + " " + PREFIX_TAG + "friend,neighbor";
@@ -69,12 +69,12 @@ public class FilterCommandParserTest {
     @Test
     public void parse_validArgs_returnsFilterClearCommand() {
         // no leading and trailing whitespaces
-        Set<NameContainsKeywordsPredicate> namePredicates =
-                Stream.of("Alice", "Bob").map(name -> new NameContainsKeywordsPredicate(name))
-                        .collect(Collectors.toSet());
+        Set<NameContainsKeywordsPredicate> namePredicates = Stream.of("Alice", "Bob")
+                .map(name -> new NameContainsKeywordsPredicate(name))
+                .collect(Collectors.toSet());
         Set<Tag> tagSetQuery = Set.of(new Tag("friend"), new Tag("neighbor"));
-        Set<TagMatchesQueryPredicate> tagPredicates =
-                tagSetQuery.stream().map(tag -> new TagMatchesQueryPredicate(tag)).collect(Collectors.toSet());
+        Set<TagMatchesQueryPredicate> tagPredicates = tagSetQuery.stream()
+                .map(tag -> new TagMatchesQueryPredicate(tag)).collect(Collectors.toSet());
 
         FilterCommand expectedFindCommand =
                 new FilterClearCommand(new FilterCommandPredicate(namePredicates, tagPredicates));

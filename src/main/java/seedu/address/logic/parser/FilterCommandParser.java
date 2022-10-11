@@ -130,7 +130,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     }
 
     private static boolean hasEmptyStrings(List<String> values) {
-        return values.stream().anyMatch((value) -> value.equals(""));
+        return values.stream()
+                .anyMatch((value) -> value.equals(""));
     }
 
     private List<String> extractPrefixValues(ArgumentMultimap argMultimap, Prefix prefix) throws ParseException {

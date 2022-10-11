@@ -153,7 +153,9 @@ public class ParserUtil {
     public static Set<NameContainsKeywordsPredicate> parseNameQueryPredicate(Collection<String> names)
             throws ParseException {
         requireNonNull(names);
-        return names.stream().map(name -> new NameContainsKeywordsPredicate(name)).collect(Collectors.toSet());
+        return names.stream()
+                .map(name -> new NameContainsKeywordsPredicate(name))
+                .collect(Collectors.toSet());
     }
 
     /**
@@ -166,7 +168,9 @@ public class ParserUtil {
     public static Set<TagMatchesQueryPredicate> parseTagsQueryPredicate(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         Set<Tag> tagSetQuery = parseTags(tags);
-        return tagSetQuery.stream().map(tag -> new TagMatchesQueryPredicate(tag)).collect(Collectors.toSet());
+        return tagSetQuery.stream()
+                .map(tag -> new TagMatchesQueryPredicate(tag))
+                .collect(Collectors.toSet());
     }
 
     /**

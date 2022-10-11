@@ -49,11 +49,11 @@ public class FilterClearCommand extends FilterCommand {
         }
         assert isAnyNonNull(predicate.getNamePredicate(), predicate.getTagPredicate());
         if (predicate.getNamePredicate() != null) {
-            predicate.getNamePredicate().stream()
+            predicate.getNamePredicate()
                     .forEach((namePredicate) -> model.removeFilterFromFilteredPersonList(namePredicate));
         }
         if (predicate.getTagPredicate() != null) {
-            predicate.getTagPredicate().stream()
+            predicate.getTagPredicate()
                     .forEach((tagPredicate) -> model.removeFilterFromFilteredPersonList(tagPredicate));
         }
     }

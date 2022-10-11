@@ -77,9 +77,9 @@ public class AddressBookParserTest {
                 .parseCommand(FilterCommand.COMMAND_WORD + " " + PREFIX_NAME
                         + keywords.stream().collect(Collectors.joining(",")));
 
-        Set<NameContainsKeywordsPredicate> namePredicate =
-                keywords.stream().map(keyword -> new NameContainsKeywordsPredicate(keyword))
-                        .collect(Collectors.toSet());
+        Set<NameContainsKeywordsPredicate> namePredicate = keywords.stream()
+                .map(keyword -> new NameContainsKeywordsPredicate(keyword))
+                .collect(Collectors.toSet());
         assertEquals(new FilterCommand(new FilterCommandPredicate(namePredicate, null)), command);
     }
 
