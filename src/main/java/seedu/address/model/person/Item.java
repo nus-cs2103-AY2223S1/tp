@@ -15,7 +15,7 @@ public class Item {
      * The first character of the item must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "(?![0-9]+$)[^\\s].*";
 
     public final String value;
 
