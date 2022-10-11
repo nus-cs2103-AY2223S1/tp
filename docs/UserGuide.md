@@ -42,7 +42,7 @@ MyInsuRec is a **desktop app for financial advisors, optimized for use via a Com
   e.g. in `addClient n/NAME ...`, `NAME` is a parameter which can be used as `addClient n/John Tan ...`.
 
 * Items in square brackets are optional, while those not in square brackets are compulsory.<br>
-  e.g `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]` can be used as `addClient n/John Tan p/12345678 e/John@abc.com` or as `addClient n/John Tan p/12345678`.
+  e.g `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]` can be used as `addClient i/1 p/12345678 e/John@abc.com` or as `addClient n/John Tan p/12345678`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -113,18 +113,15 @@ Examples:
 ### Adding a meeting : `addMeeting`
 
 Adds a new meeting to MyInsuRec. 
-DATE should be in DDMMYYYY format and TIME should be in 24-hour format.
+DATE should be in DD-MM-YYYY format and TIME should be in 24-hour format.
 
 Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 
 * Adds a meeting.
-* A meeting contains INDEX, DATE, TIME and DESCRIPTION.
-* Adds the client at the specific `INDEX` to the meeting.
-* The index refers to the index number shown in the displayed clients' list.
+* A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 
 Examples:
 * `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
-* `addMeeting i/1 t/1400 d/28092022 dn/Follow up meeting`
 
 ### Listing meetings: `listMeeting`
 
@@ -170,7 +167,7 @@ MyInsuRec data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-MyInsuRec data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
@@ -185,7 +182,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app, then overwrite the myinsurec_data.json file created by the app with the version of the file from the previous computer.
+**A**: Install the app, then overwrite the `myinsurec.json` file created by the app with the version of the file from the previous computer.
 
 **Q**: I accidentally closed the app, will my data still be there?<br>
 **A**: Yes, your data is saved automatically after every action.
@@ -203,7 +200,7 @@ _Details coming soon ..._
 | **List all clients**  | `listClient`                                                                                                                                                       |
 | **View client**       | `viewClient i/INDEX` <br> e.g., <br> • `viewClient i/1`                                                                                                            |
 | **Delete client**     | `delClient i/INDEX` <br> e.g., <br> • `delClient i/1`                                                                                                              |
-| **Add meeting**       | `addMeeting n/NAME d/DATE t/TIME dn/DESCRIPTION` <br> e.g., <br> • `addMeeting n/Thomas d/28092022 t/1400 dn/Team meeting`                                         |
+| **Add meeting**       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION` <br> e.g., <br> • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                             |
 | **List all meetings** | `listMeeting`                                                                                                                                                      |
 | **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                          |
 | **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <br> • `delMeeting i/1`                                                                                                            |

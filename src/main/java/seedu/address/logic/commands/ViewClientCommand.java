@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 
@@ -12,22 +11,24 @@ import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 
 /**
- * Deletes a client identified using it's displayed index from MyInsuRec.
+ * Views a client.
  */
-public class DeleteClientCommand extends Command {
-
-    public static final String COMMAND_WORD = "delClient";
+public class ViewClientCommand extends Command {
+    public static final String COMMAND_WORD = "viewClient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the client identified by the index number used in the displayed client list.\n"
+            + ": Views the client identified by the index number used in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_INDEX + "1";
+            + "Example: " + COMMAND_WORD + " i/1";
 
-    public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
+    public static final String MESSAGE_SUCCESS = "Viewed client: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteClientCommand(Index targetIndex) {
+    /**
+     * Creates an AddCommand to add the specified {@code Client}
+     */
+    public ViewClientCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -40,16 +41,15 @@ public class DeleteClientCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteClient(clientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete),
-                false, false, true, false);
+        Client clientToView = lastShownList.get(targetIndex.getZeroBased());
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, clientToView), false, false, true, false);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteClientCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteClientCommand) other).targetIndex)); // state check
+                || (other instanceof ViewClientCommand // instanceof handles nulls
+                && targetIndex.equals(((ViewClientCommand) other).targetIndex)); // state check
     }
 }

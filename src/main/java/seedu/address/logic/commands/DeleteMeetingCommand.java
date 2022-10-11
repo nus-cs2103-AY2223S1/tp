@@ -23,8 +23,7 @@ public class DeleteMeetingCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " i/1";
 
-    public static final String MESSAGE_ADD_DELETE_MEETING_SUCCESS = "Remove meeting from Client: %1$s";
-    public static final String MESSAGE_MEETING_NOT_FOUND = "Meeting not found from Client: %1$s";
+    public static final String MESSAGE_DELETE_MEETING_SUCCESS = "Remove meeting from Client: %1$s";
 
     private final Index index;
 
@@ -64,7 +63,7 @@ public class DeleteMeetingCommand extends Command {
      * is removed from {@code clientToEdit}
      */
     private String generateSuccessMessage(Client clientToEdit) {
-        return String.format(MESSAGE_ADD_DELETE_MEETING_SUCCESS, clientToEdit);
+        return String.format(MESSAGE_DELETE_MEETING_SUCCESS, clientToEdit);
     }
 
     @Override
