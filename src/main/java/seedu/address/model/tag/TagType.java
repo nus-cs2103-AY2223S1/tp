@@ -58,4 +58,7 @@ public class TagType {
     public String toString() {
         return String.format("%s %s", tagType, p.toString());
     }
+    public String getTagTypeName() {
+        return this.tagType;
+    }
 }

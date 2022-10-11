@@ -147,13 +147,16 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteTagTypeForAllPerson(TagType toDelete) {
-        List<Person> personList =  addressBook.getPersonList();
+        List<Person> personList = addressBook.getPersonList();
         personList.stream().map(x -> x.getTags().remove(toDelete));
         addressBook.setPersons(personList);
     }
 
+    /**
+     * Edits an existing tag type for all person.
+     */
     public void editTagTypeForAllPerson(TagType toEdit, TagType editTo) {
-        List<Person> personList =  addressBook.getPersonList();
+        List<Person> personList = addressBook.getPersonList();
         for (Person p: personList) {
             UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
             tagTypeMap.setTagTypeMap(p.getTags());

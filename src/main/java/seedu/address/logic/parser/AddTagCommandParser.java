@@ -19,8 +19,7 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
     @Override
     public AddTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.getPrefixes());
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.getPrefixes());
 
         Index index;
 

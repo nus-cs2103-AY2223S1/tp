@@ -104,7 +104,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static UniqueTagList parseTagType(List<String> tags) throws ParseException {
+    public static UniqueTagList parseTagList(List<String> tags) throws ParseException {
         requireNonNull(tags);
         UniqueTagList tagList = new UniqueTagList();
         for (String t : tags) {
@@ -124,9 +124,55 @@ public class ParserUtil {
         final UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
         Map<TagType, UniqueTagList> tagTypeMap = new HashMap<>();
         for (Prefix tagName : tags.keySet()) {
-            tagTypeMap.put(UniqueTagTypeMap.getTagType(tagName), parseTagType(tags.get(tagName)));
+            tagTypeMap.put(UniqueTagTypeMap.getTagType(tagName), parseTagList(tags.get(tagName)));
         }
         tagMap.setTagTypeMap(tagMap);
         return tagMap;
+    }
+
+    /**
+     * Parses a {@code String prefix} into a {@code Prefix}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code prefix} is invalid.
+     */
+    public static Prefix parsePrefix(String prefix) throws ParseException {
+        requireNonNull(prefix);
+        String trimmedPrefix = prefix.trim();
+        if (!Prefix.isValidPrefixName(trimmedPrefix)) {
+            throw new ParseException(Prefix.MESSAGE_CONSTRAINTS);
+        }
+        return new Prefix(trimmedPrefix + "/");
+    }
+
+    /**
+     * Parses a {@code String tagType} into a {@code TagType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tagType} is invalid.
+     */
+    public static TagType parseTagType(String tagType, String prefix) throws ParseException {
+        requireNonNull(tagType);
+        String trimmedTagType = tagType.trim();
+        if (!TagType.isValidTagType(trimmedTagType)) {
+            throw new ParseException(TagType.MESSAGE_CONSTRAINTS);
+        }
+        Prefix pref = parsePrefix(prefix);
+        return new TagType(trimmedTagType, pref);
+    }
+
+    /**
+     * Parses a {@code String tagType} into a {@code TagType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tagType} is invalid.
+     */
+    public static TagType parseTagType(String tagType, Prefix prefix) throws ParseException {
+        requireNonNull(tagType);
+        String trimmedTagType = tagType.trim();
+        if (!TagType.isValidTagType(trimmedTagType)) {
+            throw new ParseException(TagType.MESSAGE_CONSTRAINTS);
+        }
+        return new TagType(trimmedTagType, prefix);
     }
 }

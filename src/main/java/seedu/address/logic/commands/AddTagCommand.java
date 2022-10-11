@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTYPETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILLTAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,7 +15,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniqueTagTypeMap;
 
-import java.util.List;
 
 /**
  * Adds a tag of a specific tag type to a person.
@@ -74,7 +75,8 @@ public class AddTagCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedPerson));
     }
 
-    private static Person createEditedPerson(Person personToEdit, EditCommand.EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit,
+                                             EditCommand.EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
         UniqueTagTypeMap updatedTags = new UniqueTagTypeMap();
         updatedTags.setTagTypeMap(personToEdit.getTags());

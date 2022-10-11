@@ -15,10 +15,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagType;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.model.person.UniqueTagTypeMap;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -83,8 +83,11 @@ class JsonAdaptedPerson {
         for (List<JsonAdaptedTag> tags : tags) {
             String tagType = tags.get(0).toModelType().toString();
             TagType t = new TagType(tagType, UniqueTagTypeMap.getPrefixFromTagType(tagType));
-            List<Tag> tagList = tags.subList(1, tags.size()).stream().map(JsonAdaptedTag::toModelType)
-                    .collect(Collectors.toList());
+            List<Tag> tagList = new ArrayList<>();
+            for (JsonAdaptedTag jsonAdaptedTag : tags.subList(1, tags.size())) {
+                Tag toModelType = jsonAdaptedTag.toModelType();
+                tagList.add(toModelType);
+            }
             UniqueTagList uniqueTagList = new UniqueTagList();
             uniqueTagList.setTags(tagList);
             personTags.put(t,uniqueTagList);

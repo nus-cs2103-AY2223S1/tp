@@ -51,7 +51,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     /**
      * Adds a new tag type to the existing TAG_TYPES.
      */
-    public static void createTagType(Prefix prefix, TagType  tagType) {
+    public static void createTagType(Prefix prefix, TagType tagType) {
         prefixMap.put(prefix, tagType);
     }
 
@@ -215,5 +215,22 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     }
     public static TagType getTagType(Prefix pref) {
         return prefixMap.get(pref);
+    }
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        for (TagType t: internalMap.keySet()) {
+            res.append(String.format("%s: %s\n", t.toString(), internalMap.get(t)));
+        }
+        return res.toString();
+    }
+
+    public static Prefix getPrefixFromTagType(String tagType) throws TagTypeNotFoundException {
+        for (Prefix pref: prefixMap.keySet()) {
+            if (prefixMap.get(pref).getTagTypeName().equals(tagType)) {
+                return pref;
+            }
+        }
+        throw new TagTypeNotFoundException();
     }
 }
