@@ -129,7 +129,13 @@
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 12px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #D8D8D8;
+}
+
+.cell_title_label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #E8E8E8;
 }
 
 .stack-pane {
@@ -263,6 +269,13 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
+.detailsPane {
+    -fx-background-color: #15181F;
+    -fx-background-radius: 12px;
+    -fx-text-fill: #E8E8E8;
+    -fx-padding: 36 24 24 36;
+}
+
 .dialog-pane {
     -fx-background-color: #1d1d1d;
 }
@@ -347,34 +360,6 @@
     -fx-font-size: 12pt;
     -fx-text-fill: #D3D3D3;
     -fx-padding: 12px 24px 12px 24px;
-}
-
-#detailsPane {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-}
-
-#detailsPane #detailsPaneName {
-    -fx-font-family: "Inter";
-    -fx-font-size: 22px;
-}
-
-#detailsPane .label {
-    -fx-text-fill: white;
-}
-
-#customerDetailsPane {
-    -fx-background-color: #15181F;
-    -fx-background-radius: 12px;
-    -fx-text-fill: #E8E8E8;
-    -fx-padding: 36 24 24 36;
-}
-
-#commissionDetailsPane {
-    -fx-background-color: #15181F;
-    -fx-background-radius: 12px;
-    -fx-text-fill: #E8E8E8;
-    -fx-padding: 8;
 }
 
 #filterField, #customerListPanel, #customerWebpage {
