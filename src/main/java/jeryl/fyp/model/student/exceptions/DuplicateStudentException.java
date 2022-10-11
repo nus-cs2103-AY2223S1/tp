@@ -6,6 +6,6 @@ package jeryl.fyp.model.student.exceptions;
  */
 public class DuplicateStudentException extends RuntimeException {
     public DuplicateStudentException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate students");
     }
 }
