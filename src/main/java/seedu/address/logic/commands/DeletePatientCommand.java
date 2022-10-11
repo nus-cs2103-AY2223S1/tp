@@ -13,9 +13,9 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeletePersonCommand extends Command {
+public class DeletePatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deletepatient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
@@ -26,14 +26,14 @@ public class DeletePersonCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeletePersonCommand(Index targetIndex) {
+    public DeletePatientCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPatientList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
@@ -47,7 +47,7 @@ public class DeletePersonCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeletePersonCommand // instanceof handles nulls
-                && targetIndex.equals(((DeletePersonCommand) other).targetIndex)); // state check
+                || (other instanceof DeletePatientCommand // instanceof handles nulls
+                && targetIndex.equals(((DeletePatientCommand) other).targetIndex)); // state check
     }
 }

@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DOCTOR_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEDICAL_TEST_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_SLOT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_SLOT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DOCTOR_CAITIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_TEST_7;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SLOT_7;
@@ -63,7 +63,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_invalidSlot_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment =
-                new JsonAdaptedAppointment(VALID_NAME, VALID_MEDICAL_TEST_7, INVALID_SLOT, VALID_DOCTOR_CAITIE);
+                new JsonAdaptedAppointment(VALID_NAME, VALID_MEDICAL_TEST_7, INVALID_SLOT_DESC, VALID_DOCTOR_CAITIE);
         String expectedMessage = Slot.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
     }
