@@ -1,6 +1,6 @@
 package jeryl.fyp.storage;
 
-import static jeryl.fyp.testutil.TypicalPersons.getTypicalAddressBook;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

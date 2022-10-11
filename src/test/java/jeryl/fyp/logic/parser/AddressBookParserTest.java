@@ -3,7 +3,7 @@ package jeryl.fyp.logic.parser;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static jeryl.fyp.testutil.Assert.assertThrows;
-import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -17,17 +17,17 @@ import jeryl.fyp.logic.commands.AddCommand;
 import jeryl.fyp.logic.commands.ClearCommand;
 import jeryl.fyp.logic.commands.DeleteCommand;
 import jeryl.fyp.logic.commands.EditCommand;
-import jeryl.fyp.logic.commands.EditCommand.EditPersonDescriptor;
+import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.logic.commands.ExitCommand;
 import jeryl.fyp.logic.commands.FindCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.person.Person;
-import jeryl.fyp.model.person.ProjectNameContainsKeywordsPredicate;
-import jeryl.fyp.testutil.EditPersonDescriptorBuilder;
-import jeryl.fyp.testutil.PersonBuilder;
-import jeryl.fyp.testutil.PersonUtil;
+import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
+import jeryl.fyp.model.student.Student;
+import jeryl.fyp.testutil.EditStudentDescriptorBuilder;
+import jeryl.fyp.testutil.StudentBuilder;
+import jeryl.fyp.testutil.StudentUtil;
 
 public class AddressBookParserTest {
 
@@ -35,9 +35,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Student student = new StudentBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
+        assertEquals(new AddCommand(student), command);
     }
 
     @Test
@@ -49,17 +49,17 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Student student = new StudentBuilder().build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);
     }
 
     @Test
@@ -99,8 +99,8 @@ public class AddressBookParserTest {
         // assertTrue(parser.parseCommand(MarkCommand.COMMAND_WORD) instanceof MarkCommand);
         // final String remark = "Some remark.";
         // RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
-        //     + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + remark);
-        // assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, remark), command);
+        //     + INDEX_FIRST_STUDENT.getOneBased() + " " + PREFIX_REMARK + remark);
+        // assertEquals(new RemarkCommand(INDEX_FIRST_STUDENT, remark), command);
     }
 
     @Test

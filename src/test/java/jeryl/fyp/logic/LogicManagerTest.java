@@ -1,13 +1,13 @@
 package jeryl.fyp.logic;
 
-import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static jeryl.fyp.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static jeryl.fyp.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENTID_DESC_AMY;
 import static jeryl.fyp.testutil.Assert.assertThrows;
-import static jeryl.fyp.testutil.TypicalPersons.AMY;
+import static jeryl.fyp.testutil.TypicalStudents.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -26,11 +26,11 @@ import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ModelManager;
 import jeryl.fyp.model.ReadOnlyAddressBook;
 import jeryl.fyp.model.UserPrefs;
-import jeryl.fyp.model.person.Person;
+import jeryl.fyp.model.student.Student;
 import jeryl.fyp.storage.JsonAddressBookStorage;
 import jeryl.fyp.storage.JsonUserPrefsStorage;
 import jeryl.fyp.storage.StorageManager;
-import jeryl.fyp.testutil.PersonBuilder;
+import jeryl.fyp.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -59,7 +59,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -79,18 +79,18 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + STUDENTID_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
     }
 
     /**

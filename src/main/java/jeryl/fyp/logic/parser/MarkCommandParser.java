@@ -8,7 +8,7 @@ import jeryl.fyp.commons.exceptions.IllegalValueException;
 import jeryl.fyp.logic.commands.MarkCommand;
 import jeryl.fyp.logic.commands.MarkCommand.Status;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.StudentID;
 
 /**
  * Parses input arguments and creates a new {@code MarkCommand} object

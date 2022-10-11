@@ -1,9 +1,9 @@
 package jeryl.fyp.logic.commands;
 
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static jeryl.fyp.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static jeryl.fyp.testutil.TypicalPersons.getTypicalAddressBook;
+import static jeryl.fyp.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

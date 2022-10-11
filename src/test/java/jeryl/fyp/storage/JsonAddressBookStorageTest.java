@@ -1,10 +1,10 @@
 package jeryl.fyp.storage;
 
 import static jeryl.fyp.testutil.Assert.assertThrows;
-import static jeryl.fyp.testutil.TypicalPersons.ALICE;
-import static jeryl.fyp.testutil.TypicalPersons.HOON;
-import static jeryl.fyp.testutil.TypicalPersons.IDA;
-import static jeryl.fyp.testutil.TypicalPersons.getTypicalAddressBook;
+import static jeryl.fyp.testutil.TypicalStudents.ALICE;
+import static jeryl.fyp.testutil.TypicalStudents.HOON;
+import static jeryl.fyp.testutil.TypicalStudents.IDA;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -51,13 +51,13 @@ public class JsonAddressBookStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readAddressBook_invalidStudentAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidStudentAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readAddressBook_invalidAndValidStudentAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidStudentAddressBook.json"));
     }
 
     @Test
@@ -72,14 +72,14 @@ public class JsonAddressBookStorageTest {
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addStudent(HOON);
+        original.removeStudent(ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addStudent(IDA);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));

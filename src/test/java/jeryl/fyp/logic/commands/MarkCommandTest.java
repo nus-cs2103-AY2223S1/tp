@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.StudentID;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
@@ -18,8 +18,8 @@ public class MarkCommandTest {
     /**
      * Code to be revisited later :(
      * final Status status = "IP";
-     * assertCommandFailure(new RemarkCommand(INDEX_FIRST_PERSON, remark), model,
-     *           String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), remark));
+     * assertCommandFailure(new RemarkCommand(INDEX_FIRST_STUDENT, remark), model,
+     *           String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_STUDENT.getOneBased(), remark));
     */
 
     @Test

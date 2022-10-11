@@ -8,7 +8,7 @@ import jeryl.fyp.logic.commands.CommandResult;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.ReadOnlyAddressBook;
-import jeryl.fyp.model.person.Person;
+import jeryl.fyp.model.student.Student;
 
 /**
  * API of the Logic component
@@ -30,8 +30,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of students */
+    ObservableList<Student> getFilteredStudentList();
 
     /**
      * Returns the user prefs' address book file path.
