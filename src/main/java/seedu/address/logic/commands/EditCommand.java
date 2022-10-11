@@ -194,10 +194,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            if (category.categoryName.equals("P")) {
-                return CollectionUtil.isAnyNonNull(category, name, gender, phone, email, address, tags, datesTimes);
-            }
-            return CollectionUtil.isAnyNonNull(category, name, gender, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(category, name, gender, phone, email, address, tags, datesTimes);
         }
 
         public void setCategory(Category category) {

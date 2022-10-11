@@ -17,7 +17,7 @@ public class Nurse extends Person{
 
     @Override
     public String toString(){
-        return getCategory()+ " " + super.toString();
+        return "Category: " + getCategory() + " " + super.toString();
     }
 
 }
