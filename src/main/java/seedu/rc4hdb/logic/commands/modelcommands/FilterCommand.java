@@ -31,7 +31,7 @@ import seedu.rc4hdb.model.tag.Tag;
 public class FilterCommand extends ModelCommand {
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters the list using the attributes in the command"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters the resident book by the attributes specified in the command"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
