@@ -106,6 +106,13 @@ public interface Model {
      */
     void addTask(Task task);
 
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     * The task identity of {@code editedTask} must be the same as task identity of {@code target}.
+     */
+    void setTask(Task target, Task editedTask);
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 

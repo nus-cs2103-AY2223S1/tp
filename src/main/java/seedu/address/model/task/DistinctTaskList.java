@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
+import seedu.address.model.task.exceptions.TaskIdentityModifiedException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * This class represents a list which contains Tasks objects which are distinct from
@@ -41,6 +44,26 @@ public class DistinctTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         taskList.add(taskAdded);
+    }
+
+    /**
+     * Replaces the task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the list.
+     * The task identity of {@code editedTask} should be the same as task identity of {@code target}.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        int index = taskList.indexOf(target);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        if (!target.isSameTask(editedTask)) {
+            throw new TaskIdentityModifiedException();
+        }
+
+        taskList.set(index, editedTask);
     }
 
     @Override
