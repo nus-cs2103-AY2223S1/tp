@@ -162,7 +162,7 @@ Format: `clear`
 
 ### Getting reminders : `remind`
 
-Reminds the user of the upcoming birthdays of all contacts stored in Friendnancial.
+Reminds the user of the upcoming birthdays of all the users contacts stored in Friendnancial.
 
 Format: `remind`
 
