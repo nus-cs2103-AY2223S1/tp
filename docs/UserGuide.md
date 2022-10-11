@@ -26,8 +26,7 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
 
    * **`slist`** : Lists all food stalls.
 
-   * **`sadd`**`n/John Doe Eatery a/Blk 123 Bedok South d/+658123131
-     d/Opens 9am - 11pm`: Adds a food stall named John Doe Eatery to
+   * **`sadd`**`n/John Doe Eatery a/Blk 123 Bedok South d/halal`: Adds a food stall named John Doe Eatery to
      the list of food stalls.
 
    * **`sdel`**`3` : Deletes the 3rd food stall shown in the current list.
@@ -48,7 +47,7 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
   e.g. in `sadd n/NAME a/ADDRESS`, `NAME` and `ADDRESS` are parameters which can be used as `sadd n/John Doe a/ABC Ave`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [d/DETAILS]` can be used as `n/John Doe d/Opens 9am - 11pm` or as `n/John Doe`.
+  e.g `n/NAME [d/DETAILS]` can be used as `n/John Doe d/opensDaily` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[d/DETAILS]…​` can be used as ` ` (i.e. 0 times), `d/opendaily`, `d/petfriendly` etc.
@@ -88,24 +87,24 @@ Examples:
 
 Adds a review.
 
-Format: `radd s/STALL_INDEX date/DATE c/CONTENT [d/DETAILS]`
+Format: `radd s/STALL_INDEX date/DATE c/CONTENT [d/DETAILS]...`
 Examples:
 * `radd s/3 date/2022-09-20 c/The food was good, the chicken rice was fresh.`
 
-### Listing all stalls: slist
-Shows a list of all stalls in the book.
+### Listing all stalls: `slist`
+Shows a list of all stalls in the application.
 
 Format: `slist`
 
-### Listing all reviews: rlist
+### Listing all reviews: `rlist`
 
-Shows a list of all reviews in the book.
+Shows a list of all reviews in the application.
 
 Format: `rlist`
 
-### Deleting a stall: sdel
+### Deleting a stall: `sdel`
 
-Deletes the specified stall from the address book at the specified `INDEX`.
+Deletes the specified stall from the application at the specified `INDEX`.
 
 Format: `sdel INDEX`
 
@@ -115,7 +114,7 @@ Format: `sdel INDEX`
 Example:
 * `sdel 2` deletes the 2nd stall in the application.
 
-### Deleting a review: rdel
+### Deleting a review: `rdel`
 
 Deletes a review at the specified `INDEX`.
 
@@ -162,13 +161,14 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 
 ## Command summary
 
-| Action    | Format, Examples                                                                                     |
-|-----------|------------------------------------------------------------------------------------------------------|
-| **Exit**  | `exit`                                                                                               |
-| **Help**  | `help`                                                                                               |
-| **rAdd**  | `radd s/STALL_INDEX date/DATE c/CONTENT [d/DETAILS]`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
-| **rDel**  | `rdel INDEX`                                                                                         |
-| **rList** | `rlist`                                                                                              |
-| **sAdd**  | `sadd n/NAME a/ADDRESS [d/DETAILS]…`<br> e.g., `sadd n/John Doe a/Blk 123 Bedok South d/veryNice`    |
-| **sDel**  | `sdel INDEX`                                                                                         |
-| **sList** | `slist`                                                                                              |
+| Action    | Format, Examples                                                                                           |
+|-----------|------------------------------------------------------------------------------------------------------------|
+| **Exit**  | `exit`                                                                                                     |
+| **Help**  | `help`                                                                                                     |
+| **Clear** | `clear`                                                                                                    |
+| **rAdd**  | `radd s/STALL_INDEX date/DATE c/CONTENT [d/DETAILS]`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!`       |
+| **rDel**  | `rdel INDEX`                                                                                               |
+| **rList** | `rlist`                                                                                                    |
+| **sAdd**  | `sadd n/NAME a/ADDRESS [d/DETAILS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South d/veryNice` |
+| **sDel**  | `sdel INDEX`                                                                                               |
+| **sList** | `slist`                                                                                                    |
