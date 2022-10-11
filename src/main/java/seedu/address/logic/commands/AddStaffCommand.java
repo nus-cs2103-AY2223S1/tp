@@ -2,14 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_INSURANCE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
-
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_INSURANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
+
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -19,15 +20,11 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.Staff;
 
-import java.util.List;
-
 /**
  * Adds a staff to the address book.
  */
 public class AddStaffCommand extends Command {
-    
     public static final String COMMAND_WORD = "addStaff";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the address book. "
             + "Parameters: "
             + PREFIX_PROJECT_NAME + "PROJECT NAME "
@@ -52,7 +49,8 @@ public class AddStaffCommand extends Command {
     private final ProjectName addTo;
 
     /**
-     * Creates an AddStaffCommand to add the specified {@code Staff} to the {@code Project} with specified {@code pname}.
+     * Creates an AddStaffCommand to add the specified {@code Staff} to the
+     * {@code Project} with specified {@code pname}.
      */
     public AddStaffCommand(Staff staff, ProjectName pname) {
         requireNonNull(staff);
@@ -81,13 +79,13 @@ public class AddStaffCommand extends Command {
         Project projectToAdd = lastShownList.get(index.getZeroBased());
         assert projectToAdd != null;
 
-        if (projectToAdd.getStaffList().hasStaff(toAdd)) {
+        if (projectToAdd.getStaffList().contains(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STAFF);
         }
 
-        projectToAdd.getStaffList().addStaff(toAdd);
+        projectToAdd.getStaffList().add(toAdd);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, projectToAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, toAdd));
     }
 
     @Override
