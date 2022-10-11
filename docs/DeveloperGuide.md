@@ -257,44 +257,105 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* is a 2103t student, TA or professor
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Students/TAs/Professors all have different preferred modes of communication. So our product will be able to link users to all the modes of communication of other users to make their lives' easier. (E.g providing quick links to other users telegram and nus mail and personal email, github, phone number etc)
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | potential user exploring the app           | see usage instructions         |  refer to instructions when I forget how to use the App                |
+| `* * *`  | user ready to start using the app          | add a new person               |  access them later on                                                  |
+| `* * *`  | user who just started using the app        | edit a person’s name           |  correct any mistakes i might have made previously                     |
+| `* * *`  | user currently using the app               | delete a person                |  remove entries that I no longer need and clear space in my address book|
+| `* * *`  | currently using the app                    | list out all the information in my address book |  see all the data I currently have                    |
+| `* * *`  | user currently using the app               | preferred methods of communication of the people in my address book|  know what venue to contact them by|
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `uNivUSal` and the **Actor** is the `user`, unless specified otherwise)
+<br>
+</br>
+
+**Use case: Get Help**
+
+**MSS**
+
+1. User enters command ‘help’
+2. uNivUSal displays help message to user
+
+    Use case ends.
+<br>
+
+**Use case: Edit a person**
+
+**MSS**
+
+1. User wants to edit a person in uNivUSal
+2. User requests to list people
+3. uNivUSal shows a list of people
+4. User edits the relevant fields they wish to edit of the person using edit command
+5. uNivUSal displays the person with updated fields
+
+   Use case ends.
+   <br>
+
+
+**Use case: List people in uNivUSal**
+
+**MSS**
+
+1. User requests for the list of people in uNivUSal
+2. uNivUSal displays the list of people to user
+
+    Use case ends.
+<br>
 
 **Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list people
+2. uNivUSal shows a list of people
+3. User selects person to be deleted based on the index
+4. User deletes person from uNivUSal using delete command and the person’s index
+5. uNivUSal displays updated list
 
     Use case ends.
+<br>
+
+**Use case: Clear uNivUSal**
+
+**MSS**
+
+1. User enters command ‘clear’
+2. System clears all the contacts in uNivUSal
+
+    Use case ends.
+<br>
+
+**Use case: Add a person**
+
+**MSS**
+
+1. User wants to add a person to uNivUSal
+2. User enters command ‘add’
+
+   Use case ends.
+<br>
 
 **Extensions**
 
@@ -304,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. uNivUSal shows an error message.
 
       Use case resumes at step 2.
 
@@ -312,16 +373,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  The system should work in 64-bit environments.
+2.  The app should open within 5 seconds.
+3.  uNivUSal should be able to hold at least 100 contacts.
+4.  The app should be usable by a novice who has never used our app.
+5.  The app should work on **Mainstream OS**.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 

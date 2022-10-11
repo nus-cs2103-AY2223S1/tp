@@ -1,10 +1,12 @@
 package seedu.address.commons.util;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -14,17 +16,16 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
-     * Ignores case, but a full word match is required.
-     * <br>examples:<pre>
+     *   Ignores case, but a full word match is required.
+     *   <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "DEF") == true
      *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
      *       </pre>
-     *
      * @param sentence cannot be null
-     * @param word     cannot be null, cannot be empty, must be a single word
+     * @param word cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean containsAnyIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
@@ -34,9 +35,14 @@ public class StringUtil {
 
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        ArrayList<String> temp = new ArrayList<String>(Arrays.asList(wordsInPreppedSentence));
+        boolean returnVal = false;
 
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+        for (int i = 0; i < temp.size(); i++) {
+            returnVal = returnVal || temp.get(i).toLowerCase().contains(preppedWord.toLowerCase());
+        }
+
+        return returnVal;
     }
 
     /**
@@ -54,7 +60,6 @@ public class StringUtil {
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input
      * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
-     *
      * @throws NullPointerException if {@code s} is null.
      */
     public static boolean isNonZeroUnsignedInteger(String s) {

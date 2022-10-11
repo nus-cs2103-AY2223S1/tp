@@ -16,10 +16,10 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final Occupation occupation;
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final Remark remark;
 
     // Data fields
     private final Address address;
@@ -28,14 +28,18 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark) {
-        requireAllNonNull(name, phone, email, address, tags, remark);
+    public Person(Occupation occupation, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.occupation = occupation;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.remark = remark;
+    }
+
+    public Occupation getOccupation() {
+        return occupation;
     }
 
     public Name getName() {
@@ -52,10 +56,6 @@ public class Person {
 
     public Address getAddress() {
         return address;
-    }
-
-    public Remark getRemark() {
-        return remark;
     }
 
     /**
@@ -95,6 +95,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
+                && otherPerson.getOccupation().equals(getOccupation())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
@@ -104,13 +105,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(occupation, name, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getOccupation())
+                .append("; Name: ")
+                .append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
