@@ -41,7 +41,19 @@ public class DateOfBirth {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid DOB to be logged.
+     */
+    public static boolean isValidLogDate(String test) { //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
+        try {
+            outputFormatter.parse(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+     /**
+     * Returns true if a given string is a valid DOB input.
      */
     public static boolean isValidDate(String test) { //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
         try {
@@ -61,6 +73,10 @@ public class DateOfBirth {
 
     public boolean isEmpty() {
         return this.isEmpty;
+    }
+
+    public String toLogFormat() {
+        return this.date.format(inputFormatter);
     }
 
     @Override

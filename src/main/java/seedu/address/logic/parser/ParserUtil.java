@@ -76,7 +76,7 @@ public class ParserUtil {
         requireNonNull(Dob);
         String trimmedDob = Dob.trim();
         if (!DateOfBirth.isValidDate(Dob)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
         return new DateOfBirth(trimmedDob);
     }

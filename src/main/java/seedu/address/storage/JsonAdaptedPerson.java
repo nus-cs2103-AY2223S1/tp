@@ -56,7 +56,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        dob = source.getDob().toString();
+        dob = source.getDob().toLogFormat();
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -98,11 +98,8 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (dob == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
-        }
         if (!DateOfBirth.isValidDate(dob)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
         final DateOfBirth modelDob = new DateOfBirth(dob);
 

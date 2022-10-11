@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -41,6 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_DOB+ "DATE OF BIRTH] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -130,7 +132,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private DateOfBirth Dob;
+        private DateOfBirth dob;
         private Address address;
         private Set<Tag> tags;
 
@@ -144,7 +146,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setDob(toCopy.Dob);
+            setDob(toCopy.dob);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -153,7 +155,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, dob, address, tags);
         }
 
         public void setName(Name name) {
@@ -180,12 +182,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setDob(DateOfBirth Dob) {
-            this.Dob = Dob;
+        public void setDob(DateOfBirth dob) {
+            this.dob = dob;
         }
 
         public Optional<DateOfBirth> getDob() {
-            return Optional.ofNullable(Dob);
+            return Optional.ofNullable(dob);
         }
 
         public void setAddress(Address address) {
