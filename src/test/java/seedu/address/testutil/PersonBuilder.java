@@ -155,6 +155,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a person object given the attributes
+     */
     public Person build() {
         return new Person(name, phone, email, address, clazz, personality, attendance,
                 subject, grade, tags);

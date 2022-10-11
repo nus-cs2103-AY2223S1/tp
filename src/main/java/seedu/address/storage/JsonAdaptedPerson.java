@@ -21,7 +21,7 @@ import seedu.address.model.person.Personality;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Subject;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.Tag;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -130,9 +130,12 @@ class JsonAdaptedPerson {
         }
         final Clazz modelClazz = new Clazz(clazz);
 
+
         if (personality == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Personality.class.getSimpleName()));
         }
+
+
         if (!Personality.isValidPersonality(personality)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
