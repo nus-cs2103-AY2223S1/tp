@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Random;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
@@ -31,7 +30,7 @@ public class AddIterationCommand extends Command {
             + "Parameters: "
             + PREFIX_ITERATION_DATE + "DATE "
             + PREFIX_ITERATION_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_ITERATION_IMAGEPATH + "IMAGEPATH "
+            + PREFIX_ITERATION_IMAGEPATH + "IMAGE PATH "
             + PREFIX_ITERATION_FEEDBACK + "FEEDBACK\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ITERATION_DATE + "2022-10-10 "
@@ -69,19 +68,8 @@ public class AddIterationCommand extends Command {
                     activeCommission.getTitle().toString()));
         }
 
-        int leftLimit = 48; // numeral '0'
-        int rightLimit = 122; // letter 'z'
-        int targetStringLength = 10;
-        Random random = new Random();
-
-        String randomName = random.ints(leftLimit, rightLimit + 1)
-                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-                .limit(targetStringLength)
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
-
         String src = toAdd.getImagePath().path;
-        String dst = "saved/" + randomName + ".png";
+        String dst = "saved/" + activeCommission.getTitle() + activeCommission.getIterationCounter() + ".png";
         try {
             Files.copy(Paths.get(src), Paths.get("src/main/resources/" + dst));
         } catch (Exception e) {

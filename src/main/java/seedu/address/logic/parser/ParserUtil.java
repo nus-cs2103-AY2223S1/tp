@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
@@ -232,20 +235,32 @@ public class ParserUtil {
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static IterationDescription parseIterationDescription(String description) throws ParseException {
+    public static IterationDescription parseIterationDescription(String description) {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         return new IterationDescription(trimmedDescription);
     }
 
     /**
-     * Parses a {@code String description} into a {@code Description}.
+     * Parses a {@code String imagePath} into a {@code ImagePath}.
      * Leading and trailing whitespaces will be trimmed.
      */
     public static ImagePath parseImagePath(String imagePath) throws ParseException {
         requireNonNull(imagePath);
         String trimmedImagePath = imagePath.trim();
-        return new ImagePath(trimmedImagePath);
+        Path srcPath = Path.of(trimmedImagePath);
+        if (Files.exists(srcPath)) {
+            try {
+                System.out.println(Files.probeContentType(srcPath));
+                if (Files.probeContentType(srcPath).split("/")[0].equals("image")) {
+                    return new ImagePath(trimmedImagePath);
+                }
+                throw new ParseException(Messages.MESSAGE_NOT_AN_IMAGE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        throw new ParseException(Messages.MESSAGE_NONEXISTENT_IMAGE_PATH);
     }
 
 

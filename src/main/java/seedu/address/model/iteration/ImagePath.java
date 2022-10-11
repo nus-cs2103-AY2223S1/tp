@@ -7,7 +7,6 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; any image is valid
  */
 public class ImagePath {
-
     public final String path;
 
     /**

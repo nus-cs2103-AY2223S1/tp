@@ -22,4 +22,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_ITERATION_DATE = "The iteration date provided is invalid. "
             + "The input format should be YYYY-MM-DD.";
     public static final String MESSAGE_INVALID_ITERATION_DISPLAYED_INDEX = "The iteration index provided is invalid";
+    public static final String MESSAGE_NONEXISTENT_IMAGE_PATH = "The image path provided does not exist";
+    public static final String MESSAGE_NOT_AN_IMAGE = "The file at the given path is not an image";
 }
