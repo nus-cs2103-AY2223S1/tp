@@ -81,7 +81,7 @@ public class UniqueClientList implements Iterable<Client> {
 
     public Client getClient(ClientId id) {
         for (Client c: internalList) {
-            if(c.getClientId().equals(id)){
+            if (c.getClientId().equals(id)) {
                 return c;
             }
         }
