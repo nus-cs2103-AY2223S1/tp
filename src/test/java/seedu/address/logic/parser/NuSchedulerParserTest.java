@@ -38,20 +38,6 @@ public class NuSchedulerParserTest {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
-    /* This test has been commented out as the delete, edit and find commands have been temporarily
-    disabled during option flag implementation. */
-
-    //
-    //    @Test
-    //    public void parseCommand_edit() throws Exception {
-    //        Profile profile = new ProfileBuilder().build();
-    //        EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(profile).build();
-    //        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-    //                + INDEX_FIRST_PROFILE.getOneBased() + " "
-    //                + ProfileUtil.getEditProfileDescriptorDetails(descriptor));
-    //        assertEquals(new EditCommand(INDEX_FIRST_PROFILE, descriptor), command);
-    //    }
-
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);

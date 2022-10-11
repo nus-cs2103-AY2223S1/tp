@@ -15,11 +15,14 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.profile.AddProfileCommand;
 import seedu.address.logic.commands.profile.DeleteProfileCommand;
+import seedu.address.logic.commands.profile.EditProfileCommand;
+import seedu.address.logic.commands.profile.EditProfileCommand.EditProfileDescriptor;
 import seedu.address.logic.commands.profile.FindProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 import seedu.address.model.profile.Profile;
+import seedu.address.testutil.EditProfileDescriptorBuilder;
 import seedu.address.testutil.ProfileBuilder;
 import seedu.address.testutil.ProfileUtil;
 
@@ -70,6 +73,21 @@ public class ProfileCommandParserTest {
                     " " + PREFIX_OPTION + DeleteProfileCommand.COMMAND_OPTION + " "
                             + INDEX_FIRST_PROFILE.getOneBased());
             assertEquals(new DeleteProfileCommand(INDEX_FIRST_PROFILE), command);
+        } catch (ParseException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void parseCommand_edit() {
+        Profile profile = new ProfileBuilder().build();
+        try {
+            EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(profile).build();
+            EditProfileCommand command = (EditProfileCommand) parser.parse(
+                    " " + PREFIX_OPTION + EditProfileCommand.COMMAND_OPTION + " "
+                            + INDEX_FIRST_PROFILE.getOneBased() + " "
+                            + ProfileUtil.getEditProfileDescriptorDetails(descriptor));
+            assertEquals(new EditProfileCommand(INDEX_FIRST_PROFILE, descriptor), command);
         } catch (ParseException e) {
             fail();
         }
