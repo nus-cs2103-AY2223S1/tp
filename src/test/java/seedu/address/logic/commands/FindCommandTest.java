@@ -54,11 +54,6 @@ public class FindCommandTest {
 
     @Test
     public void equals() throws CommandException {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
-
         List<String> firstKeywords = Collections.singletonList("first");
         List<String> secondKeywords = Collections.singletonList("second");
 
@@ -94,7 +89,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noPersonFound() throws CommandException {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         List<String> keywords = prepareKeywords(" ");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate<Person>(keywords);
+        NameContainsKeywordsPredicate<Person> predicate = new NameContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedModel.updateFilteredPersonList(predicate);
         model.updateCurrentListType(Model.ListType.PERSON_LIST);
@@ -108,7 +103,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noStudentFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         List<String> keywords = prepareKeywords(" ");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate<Student>(keywords);
+        NameContainsKeywordsPredicate<Student> predicate = new NameContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedStudentModel.updateFilteredStudentList(predicate);
         studentModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
@@ -121,7 +116,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noTutorFound() {
         String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 0);
         List<String> keywords = prepareKeywords(" ");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate<Tutor>(keywords);
+        NameContainsKeywordsPredicate<Tutor> predicate = new NameContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedTutorModel.updateFilteredTutorList(predicate);
         tutorModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
@@ -134,7 +129,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noTuitionClassFound() {
         String expectedMessage = String.format(MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW, 0);
         List<String> keywords = prepareKeywords(" ");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate<TuitionClass>(keywords);
+        NameContainsKeywordsPredicate<TuitionClass> predicate = new NameContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedTuitionClassModel.updateFilteredTuitionClassList(predicate);
         tuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
@@ -147,7 +142,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         List<String> keywords = prepareKeywords("Kurz Elle Kunz");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate<Person>(keywords);
+        NameContainsKeywordsPredicate<Person> predicate = new NameContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedModel.updateFilteredPersonList(predicate);
         model.updateCurrentListType(Model.ListType.PERSON_LIST);
@@ -160,7 +155,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 2);
         List<String> keywords = prepareKeywords("Alice Benson");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate<Student>(keywords);
+        NameContainsKeywordsPredicate<Student> predicate = new NameContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedStudentModel.updateFilteredStudentList(predicate);
         expectedStudentModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
@@ -174,7 +169,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleTutorsFound() {
         String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 2);
         List<String> keywords = prepareKeywords("Alice Benson");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate<Tutor>(keywords);
+        NameContainsKeywordsPredicate<Tutor> predicate = new NameContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedTutorModel.updateFilteredTutorList(predicate);
         expectedTutorModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
@@ -187,7 +182,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleTuitionClassesFound() {
         String expectedMessage = String.format(MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW, 2);
         List<String> keywords = prepareKeywords("P2MATH P5ENG");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate<TuitionClass>(keywords);
+        NameContainsKeywordsPredicate<TuitionClass> predicate = new NameContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedTuitionClassModel.updateFilteredTuitionClassList(predicate);
         expectedTuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
