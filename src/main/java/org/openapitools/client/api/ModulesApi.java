@@ -25,7 +25,6 @@ import java.util.function.Consumer;
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.ApiResponse;
-import org.openapitools.client.model.Module;
 import org.openapitools.client.model.ModuleCondensed;
 import org.openapitools.client.model.ModuleInformation;
 import com.fasterxml.jackson.core.type.TypeReference;
