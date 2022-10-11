@@ -51,7 +51,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     /**
      * Adds a new tag type to the existing TAG_TYPES.
      */
-    public static void createTagTypes(Prefix prefix, TagType  tagType) {
+    public static void createTagType(Prefix prefix, TagType  tagType) {
         prefixMap.put(prefix, tagType);
     }
 
@@ -61,7 +61,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
 
     public static void setExistingTagType(Prefix toRemovePrefix, Prefix prefix, TagType tagType) {
         prefixMap.remove(toRemovePrefix);
-        createTagTypes(prefix, tagType);
+        createTagType(prefix, tagType);
     }
 
     /**
