@@ -9,6 +9,8 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.student.UniqueTutorialGroupList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at the address-book level
@@ -17,7 +19,7 @@ import seedu.address.model.student.UniqueTutorialGroupList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueStudentList students;
-
+    private final UniqueTaskList tasks;
     private UniqueTutorialGroupList tutorialGroups;
 
     /*
@@ -30,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         students = new UniqueStudentList();
         tutorialGroups = new UniqueTutorialGroupList();
+        tasks = new UniqueTaskList();
     }
 
     public AddressBook() {}
@@ -106,6 +109,51 @@ public class AddressBook implements ReadOnlyAddressBook {
         students.remove(key);
     }
 
+    /**
+     * Find the student based on name
+     * @return the student
+     */
+    public Student findStudent(String name) {
+        return students.find(name);
+    }
+
+    //// task methods
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
+    }
+
+    /**
+     * Adds a task to the address book.
+     * The task must not already exist in the address book.
+     */
+    public void addTask(Task t) {
+        tasks.add(t);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the address book.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        tasks.setTask(target, editedTask);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTask(Task key) {
+        tasks.remove(key);
+    }
+
     // tutorial group level
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -136,6 +184,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
+        // return tasks.asUnmodifiableObservableList().size() + " tasks";
         return students.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
@@ -146,12 +195,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
+    }
+
+    @Override
     public ObservableList<TutorialGroup> getTutorialGroupList() {
         return tutorialGroups.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
+        // TODO: Add tasks to check
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && students.equals(((AddressBook) other).students));
@@ -159,6 +214,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
+        // TODO: Add tasks to hashcode
         return students.hashCode();
     }
 }

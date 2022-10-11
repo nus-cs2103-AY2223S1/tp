@@ -37,6 +37,14 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * Finds a student in the list with the same name as the given argument.
+     */
+    public Student find(String toFind) {
+        requireNonNull(toFind);
+        return internalList.stream().filter(s -> toFind.equals(s.getName().toString())).findFirst().orElse(null);
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */

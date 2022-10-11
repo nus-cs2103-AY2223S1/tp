@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TutorialGroup;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -18,6 +19,9 @@ public interface Model {
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     Predicate<TutorialGroup> PREDICATE_SHOW_ALL_TUTORIAL_GROUPS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -69,6 +73,12 @@ public interface Model {
     void deleteStudent(Student target);
 
     /**
+     * Find the student based on name
+     * @return the student
+     */
+    Student findStudent(String name);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
@@ -117,4 +127,33 @@ public interface Model {
      */
     void updateFilteredTutorialGroupList(Predicate<TutorialGroup> predicate);
 
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     */
+    boolean hasTask(Task target);
+
+    /**
+     * Deletes the given task.
+     */
+    void deleteTask(Task target);
+
+    /**
+     * Adds the given task.
+     */
+    void addTask(Task task);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     */
+    void setTask(Task target, Task editedTask);
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
 }
