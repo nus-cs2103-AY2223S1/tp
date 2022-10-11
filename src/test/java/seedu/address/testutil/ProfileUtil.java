@@ -22,7 +22,7 @@ public class ProfileUtil {
      * Returns an add command string for adding the {@code profile}.
      */
     public static String getAddProfileCommand(Profile profile) {
-        return AddProfileCommand.COMMAND_WORD + " " + PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION
+        return " " + PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION
                 + " " + getProfileDetails(profile);
     }
 

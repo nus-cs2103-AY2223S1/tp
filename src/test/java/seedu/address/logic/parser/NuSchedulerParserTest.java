@@ -12,7 +12,9 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.profile.AddProfileCommand;
+import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.profile.ProfileCommandParser;
 import seedu.address.model.profile.Profile;
 import seedu.address.testutil.ProfileBuilder;
 import seedu.address.testutil.ProfileUtil;
@@ -22,11 +24,12 @@ public class NuSchedulerParserTest {
     private final NuSchedulerParser parser = new NuSchedulerParser();
 
     @Test
-    public void parseCommand_addProfile() throws Exception {
+    public void parseCommand_profile() throws Exception {
         Profile profile = new ProfileBuilder().build();
+        String addProfileArguments = ProfileUtil.getAddProfileCommand(profile);
         AddProfileCommand command =
-                (AddProfileCommand) parser.parseCommand(ProfileUtil.getAddProfileCommand(profile));
-        assertEquals(new AddProfileCommand(profile), command);
+                (AddProfileCommand) parser.parseCommand(ProfileCommand.COMMAND_WORD + addProfileArguments);
+        assertEquals(new ProfileCommandParser().parse(addProfileArguments), command);
     }
 
     @Test
@@ -60,15 +63,6 @@ public class NuSchedulerParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
-
-    //    @Test
-    //    public void parseCommand_find() throws Exception {
-    //        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-    //        FindProfileCommand command = (FindProfileCommand) parser.parseCommand(
-    //                FindProfileCommand.COMMAND_OPTION + " " + PREFIX_OPTION
-    //                + keywords.stream().collect(Collectors.joining(" ")));
-    //        assertEquals(new FindProfileCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    //    }
 
     @Test
     public void parseCommand_help() throws Exception {
