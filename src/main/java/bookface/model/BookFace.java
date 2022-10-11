@@ -35,7 +35,7 @@ public class BookFace implements ReadOnlyBookFace {
     public BookFace() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an BookFace using the Persons in the {@code toBeCopied}
      */
     public BookFace(ReadOnlyBookFace toBeCopied) {
         this();
@@ -61,7 +61,7 @@ public class BookFace implements ReadOnlyBookFace {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code BookFace} with {@code newData}.
      */
     public void resetData(ReadOnlyBookFace newData) {
         requireNonNull(newData);
@@ -141,7 +141,7 @@ public class BookFace implements ReadOnlyBookFace {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code BookFace}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {

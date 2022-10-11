@@ -49,11 +49,11 @@ public interface Model {
     void setBookFaceFilePath(Path bookFaceFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code bookFace}.
      */
     void setBookFace(ReadOnlyBookFace bookFace);
 
-    /** Returns the AddressBook */
+    /** Returns the BookFace */
     ReadOnlyBookFace getBookFace();
 
     /**

@@ -25,8 +25,8 @@ class JsonAdaptedBook {
      * Constructs a {@code JsonAdaptedBook} with the given book details.
      */
     @JsonCreator
-    public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author
-            , @JsonProperty("loanStatus") String loanStatus) {
+    public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author,
+                           @JsonProperty("loanStatus") String loanStatus) {
         this.title = title;
         this.author = author;
         this.loanStatus = loanStatus;
@@ -66,8 +66,7 @@ class JsonAdaptedBook {
         if (loanStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "loanStatus"));
         }
-        final String modelStatus = new String(loanStatus);
-        return new Book(modelTitle, modelAuthor, modelStatus);
+        return new Book(modelTitle, modelAuthor, loanStatus);
     }
 
 }

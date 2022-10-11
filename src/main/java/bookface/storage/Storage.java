@@ -12,7 +12,7 @@ import bookface.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends BookFaceStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getBookFaceFilePath();
 
     @Override
-    Optional<ReadOnlyBookFace> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyBookFace> readBookFace() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyBookFace addressBook) throws IOException;
+    void saveBookFace(ReadOnlyBookFace bookFace) throws IOException;
 
 }

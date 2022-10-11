@@ -126,7 +126,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
 
-       private Set<Title> loanedBook;
+        private Set<Title> loanedBook;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}

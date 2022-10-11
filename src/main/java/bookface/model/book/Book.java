@@ -21,10 +21,9 @@ public class Book {
     private String loanStatus;
 
 
-
-    /**
-     * Every field must be present and not null.
-     */
+    //    /**
+    //     * Every field must be present and not null.
+    //     */
     /*
     public Book(Title title, Author author) {
         CollectionUtil.requireAllNonNull(title, author);

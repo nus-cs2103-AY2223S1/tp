@@ -26,11 +26,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the BookFace.
      *
      * @see Model#getBookFace()
      */
-    ReadOnlyBookFace getAddressBook();
+    ReadOnlyBookFace getBookFace();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -41,7 +41,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getBookFaceFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

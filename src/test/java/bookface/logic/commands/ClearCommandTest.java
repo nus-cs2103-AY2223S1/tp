@@ -13,7 +13,7 @@ import bookface.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyBookFace_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,7 +21,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyBookFace_success() {
         Model model = new ModelManager(getTypicalBookFaceData(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalBookFaceData(), new UserPrefs());
         expectedModel.setBookFace(new BookFace());

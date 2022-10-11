@@ -54,7 +54,7 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code BookFace} with all the typical persons.
      */
     public static BookFace getTypicalBookFaceData() {
         BookFace ab = new BookFace();
@@ -72,6 +72,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getSinglePerson() {
-        return new ArrayList<>(Arrays.asList(ALICE));
+        return new ArrayList<>(List.of(ALICE));
     }
 }

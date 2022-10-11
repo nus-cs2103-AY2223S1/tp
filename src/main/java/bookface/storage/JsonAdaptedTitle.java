@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import bookface.commons.exceptions.IllegalValueException;
 import bookface.model.book.Title;
 
+/**
+ * Jackson-friendly version of {@link Title}.
+ */
 public class JsonAdaptedTitle {
     private final String titleName;
 
@@ -24,6 +27,10 @@ public class JsonAdaptedTitle {
         titleName = source.bookTitle;
     }
 
+    /**
+     * Returns the String representation of the title name
+     * @return The String representation of the title
+     */
     @JsonValue
     public String getTitleName() {
         return titleName;

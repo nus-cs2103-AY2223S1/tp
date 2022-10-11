@@ -6,24 +6,24 @@ import bookface.model.person.Person;
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code BookFace ab = new BookFaceBuilder().withPerson("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class BookFaceBuilder {
 
-    private BookFace bookFace;
+    private final BookFace bookFace;
 
-    public AddressBookBuilder() {
+    public BookFaceBuilder() {
         bookFace = new BookFace();
     }
 
-    public AddressBookBuilder(BookFace bookFace) {
+    public BookFaceBuilder(BookFace bookFace) {
         this.bookFace = bookFace;
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Person} to the {@code BookFace} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
+    public BookFaceBuilder withPerson(Person person) {
         bookFace.addPerson(person);
         return this;
     }
