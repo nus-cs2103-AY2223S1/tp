@@ -1,8 +1,12 @@
 package seedu.foodrem.model.item;
 
+import seedu.foodrem.model.tag.Tag;
+
 import static seedu.foodrem.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 /**
@@ -19,7 +23,9 @@ public class Item {
     private final ItemUnit unit;
     private final ItemBoughtDate boughtDate;
     private final ItemExpiryDate expiryDate;
-    // TODO: Implement Item with Tags
+
+    private final Set<Tag> tagSet;
+
 
     /**
      * Constructs an item.
@@ -41,6 +47,7 @@ public class Item {
         this.unit = unit;
         this.boughtDate = boughtDate;
         this.expiryDate = expiryDate;
+        this.tagSet = new HashSet<>();
     }
 
     public ItemName getName() {
@@ -80,6 +87,27 @@ public class Item {
         return expiryDate.toListView();
     }
 
+    public Set<Tag> getTagSet() {
+        return tagSet;
+    }
+
+    /**
+     * Returns true if item contains a certain tag.
+     */
+    public boolean containsTag(Tag tag) {
+        if (tagSet.contains(tag)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Adds a tag to the item's tagSet
+     */
+    public void addTag(Tag tag) {
+        tagSet.add(tag);
+    }
+
     /**
      * Returns true if both items have the same name.
      * This defines a weaker notion of equality between two items.
@@ -115,7 +143,8 @@ public class Item {
                 && otherItem.getQuantity().equals(quantity)
                 && otherItem.getUnit().equals(unit)
                 && otherItem.getBoughtDate().equals(boughtDate)
-                && otherItem.getExpiryDate().equals(expiryDate);
+                && otherItem.getExpiryDate().equals(expiryDate)
+                && otherItem.getTagSet().equals(tagSet);
     }
 
     /**
