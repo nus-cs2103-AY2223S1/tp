@@ -3,10 +3,18 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTITUTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXTOFKIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -26,16 +34,45 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_ENTITY_STUDENT = "student";
+    public static final String VALID_ENTITY_TUTOR = "tutor";
+    public static final String VALID_ENTITY_CLASS = "class";
+
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VAILID_NAME_CLASS = "Class Name";
+
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+
+    public static final String VALID_SCHOOL_AMY = "Amy Primary School";
+    public static final String VALID_SCHOOL_BOB = "Bob Primary School";
+    public static final String VALID_LEVEL_AMY = "Primary1";
+    public static final String VALID_LEVEL_BOB = "Primary2";
+    public static final String VALID_NEXTOFKIN_AMY = "Amy Nok";
+    public static final String VALID_NEXTOFKIN_BOB = "Bob Nok";
+
+    public static final String VALID_QUALIFICATION_AMY = "BAmy";
+    public static final String VALID_QUALIFICATION_BOB = "MBob";
+    public static final String VALID_INSTITUTION_AMY = "Amy University";
+    public static final String VALID_INSTITUTION_BOB = "Bob University";
+
+    public static final String VALID_SUBJECT_CLASS = "Chemistry";
+    public static final String VALID_LEVEL_CLASS = "Primary3";
+    public static final String VALID_DAY_CLASS = "Wednesday";
+    public static final String VALID_TIME_CLASS = "12:00-14:00";
+
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String ENTITY_DESC_STUDENT = " " + VALID_ENTITY_STUDENT;
+    public static final String ENTITY_DESC_TUTOR = " " + VALID_ENTITY_TUTOR;
+    public static final String ENTITY_DESC_CLASS = " " + VALID_ENTITY_CLASS;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,6 +82,24 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+
+    public static final String SCHOOL_DESC_AMY = " " + PREFIX_SCHOOL + VALID_SCHOOL_AMY;
+    public static final String SCHOOL_DESC_BOB = " " + PREFIX_SCHOOL + VALID_SCHOOL_BOB;
+    public static final String LEVEL_DESC_AMY = " " + PREFIX_LEVEL + VALID_LEVEL_AMY;
+    public static final String LEVEL_DESC_BOB = " " + PREFIX_LEVEL + VALID_LEVEL_BOB;
+    public static final String NEXTOFKIN_DESC_AMY = " " + PREFIX_NEXTOFKIN + VALID_NEXTOFKIN_AMY;
+    public static final String NEXTOFKIN_DESC_BOB = " " + PREFIX_NEXTOFKIN + VALID_NEXTOFKIN_BOB;
+
+    public static final String QUALIFICATION_DESC_AMY = " " + PREFIX_QUALIFICATION + VALID_QUALIFICATION_AMY;
+    public static final String QUALIFICATION_DESC_BOB = " " + PREFIX_QUALIFICATION + VALID_QUALIFICATION_BOB;
+    public static final String INSTITUTION_DESC_AMY = " " + PREFIX_INSTITUTION + VALID_INSTITUTION_AMY;
+    public static final String INSTITUTION_DESC_BOB = " " + PREFIX_INSTITUTION + VALID_INSTITUTION_BOB;
+
+    public static final String SUBJECT_DESC_CLASS = " " + PREFIX_SUBJECT + VALID_SUBJECT_CLASS;
+    public static final String LEVEL_DESC_CLASS = " " + PREFIX_LEVEL + VALID_LEVEL_CLASS;
+    public static final String DAY_DESC_CLASS = " " + PREFIX_DAY + VALID_DAY_CLASS;
+    public static final String TIME_DESC_CLASS = " " + PREFIX_TIME + VALID_TIME_CLASS;
+
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
