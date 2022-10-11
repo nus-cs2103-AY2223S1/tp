@@ -1,11 +1,11 @@
 package seedu.rc4hdb.logic.parser;
 
+import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.rc4hdb.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
@@ -59,7 +59,7 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_includeDuplicateFields_returnsListCommand() {
-        ListCommand expectedListCommand = new ListCommand(List.of( "index", "email", "tag"));
+        ListCommand expectedListCommand = new ListCommand(List.of("index", "email", "tag"));
         assertParseSuccess(parser, "/i name phone name phone address", expectedListCommand);
     }
 
