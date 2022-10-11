@@ -175,6 +175,13 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            if (commandResult.isUndo()) {
+                commandResult = logic.undo();
+            }
+            if (commandResult.isRedo()) {
+                commandResult = logic.redo();
+            }
+
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
