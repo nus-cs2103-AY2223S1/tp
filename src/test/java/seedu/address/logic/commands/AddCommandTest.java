@@ -179,9 +179,20 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
         public void setFilteredRecordList(Person person) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setRecordListDisplayed(boolean b) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void setPersonWithRecords(Person person) {
+            throw new AssertionError("This method should not be called.");
+        };
     }
 
     /**

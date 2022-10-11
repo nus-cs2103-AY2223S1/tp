@@ -135,8 +135,14 @@ public interface Model {
      */
     void deleteRecord(Record record);
 
+    /**
+     * Flag to determine is record list is being displayed.
+     */
     void setRecordListDisplayed(boolean b);
 
+    /**
+     * Set the person whose records are being displayed / processed.
+     */
     void setPersonWithRecords(Person person);
 
 }

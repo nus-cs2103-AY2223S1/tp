@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -125,6 +126,13 @@ public class Person {
      */
     public void clearRecords() {
         records.clearRecords();
+    }
+
+    /**
+     * Retrieve unmodifiable list of records
+     */
+    public ObservableList<Record> getUnmodifiableRecords() {
+        return records.asUnmodifiableObservableList();
     }
 
     //======================================================================================

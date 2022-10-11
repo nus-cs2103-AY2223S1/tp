@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -19,11 +20,6 @@ public class DisplayedPerson {
      */
     public DisplayedPerson(Person person, AddressBook addressBook) {
         requireAllNonNull(person, addressBook);
-
-        if (!addressBook.hasPerson(person)) {
-            throw new PersonNotFoundException();
-        }
-
         this.person = person;
     }
 
@@ -34,7 +30,11 @@ public class DisplayedPerson {
             throw new PersonNotFoundException();
         }
 
-        this.person = person;
+        setPerson(person);
+    }
+
+    private void setPerson(Person toSet) {
+        this.person = toSet;
     }
 
     /**
@@ -65,5 +65,12 @@ public class DisplayedPerson {
      */
     public void clearRecords() {
         person.clearRecords();
+    }
+
+    /**
+     * Retrieve unmodifiable list of records
+     */
+    public ObservableList<Record> getUnmodifiableRecords() {
+        return person.getUnmodifiableRecords();
     }
 }
