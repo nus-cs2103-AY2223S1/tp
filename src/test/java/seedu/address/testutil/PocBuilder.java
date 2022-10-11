@@ -24,7 +24,7 @@ public class PocBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PoCBuilder} with the default details.
+     * Creates a {@code PocBuilder} with the default details.
      */
     public PocBuilder() {
         name = new PersonName(DEFAULT_NAME);
@@ -60,7 +60,7 @@ public class PocBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code PoC} that we are building.
+     * Sets the {@code Phone} of the {@code Poc} that we are building.
      */
     public PocBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -68,7 +68,7 @@ public class PocBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code PoC} that we are building.
+     * Sets the {@code Email} of the {@code Poc} that we are building.
      */
     public PocBuilder withEmail(String email) {
         this.email = new Email(email);

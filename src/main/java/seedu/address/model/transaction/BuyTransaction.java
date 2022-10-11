@@ -6,7 +6,7 @@ package seedu.address.model.transaction;
 public class BuyTransaction extends Transaction {
     private static final double NEGATIVE = -1;
 
-    BuyTransaction(Goods goods, Price price, Quantity quantity) {
+    public BuyTransaction(Goods goods, Price price, Quantity quantity) {
         super(goods, price, quantity);
     }
 
