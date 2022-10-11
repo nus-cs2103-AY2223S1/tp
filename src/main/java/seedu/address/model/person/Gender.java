@@ -11,8 +11,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS = "Gender can only be F or M, F for female, M for male";
-    private static final String FEMALE_SYMBOL = "F";
-    private static final String MALE_SYMBOL = "M";
+    public static final String FEMALE_SYMBOL = "F";
+    public static final String MALE_SYMBOL = "M";
 
     /**
      * The gender can only be F or M.
@@ -55,6 +55,5 @@ public class Gender {
     public int hashCode() {
         return gender.hashCode();
     }
-
 
 }

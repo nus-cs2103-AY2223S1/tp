@@ -4,7 +4,7 @@
     "category" : "P",
     "uid": "1",
     "name" : "Alice Pauline",
-    "gender" : "M",
+    "gender" : "F",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
@@ -41,7 +41,7 @@
     "dateTimes" : [ "2022-11-10T15:00", "2022-09-10T14:00" ],
     "tagged" : [ "friends" ]
   }, {
-    "category" : "P",
+    "category" : "N",
     "uid": "5",
     "name" : "Elle Meyer",
     "gender" : "F",
