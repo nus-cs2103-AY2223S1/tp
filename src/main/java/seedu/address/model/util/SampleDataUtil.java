@@ -23,7 +23,7 @@ public class SampleDataUtil {
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet("siblings")),
             new Student(new Name("David Yeoh"), new Id("456B"), new Name("Bernice Yu"), new Phone("87438807"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet("siblings")),
-            new Student(new Name("Charlotte Oliveiro"), new Id("123A"), new Name("Bernice Yu"), new Phone("93210283"),
+            new Student(new Name("Charlotte Oliveiro"), new Id("435A"), new Name("Bernice Yu"), new Phone("93210283"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), getTagSet("peanutallergy")),
             new Student(new Name("Irfan Ibrahim"), new Id("189A"), new Name("Roy Balakrishnan"), new Phone("91031282"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"), getTagSet("shy")),
