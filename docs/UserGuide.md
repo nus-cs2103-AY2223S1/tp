@@ -54,7 +54,7 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -120,7 +120,7 @@ Find profiles whose names contain any of the given keywords.
 Examples:
 * `profile -f John` returns `john` and `John Doe`
 * `profile -f alex david john` returns `Alex Yeoh`, `David Li`, `Johnny Smith`<br>
-  ![result for 'profile -f alex david'](images/findAlexDavidResult.png)
+  ![result for 'profile -f alex david john'](images/findAlexDavidJohnResult.png)
 
 
 ### Deleting a profile: `profile -d`
