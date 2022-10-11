@@ -42,5 +42,4 @@ public class ConsultationListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
