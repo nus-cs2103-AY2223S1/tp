@@ -105,7 +105,7 @@ Default sorting orders:
 * Contacts that have a specified *tag* appear before those without the *tag*.
 
 Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
-* To sort in reverse order, insert a `!` like so `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
+* To sort in reverse order, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
 * To sort with multiple parameters, arrange the parameters in order of decreasing priority.
 
 Example:

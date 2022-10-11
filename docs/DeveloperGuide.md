@@ -193,7 +193,7 @@ The following activity diagram summarizes what happens when a user executes a so
 
 (insert activity diagram here)
 
-#### Design considerations:
+#### Design consideration
 
 **Aspect: How to implement multi-level sorting:**
 
@@ -209,7 +209,7 @@ _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### Proposed implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -484,7 +484,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enters command to sort the contact list by name
+1.  User enters command to sort the contact list by name.
 2.  SoConnect sorts the list by name and displays the new list.
 
     Use case ends.
