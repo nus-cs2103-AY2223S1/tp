@@ -61,23 +61,30 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<UserModule> getFilteredModuleList() {
-        List<DummyModule> dummyModuleList = new ArrayList<>();
-        dummyModuleList.add(new DummyModule());
-        dummyModuleList.add(new DummyModule());
+    public ObservableList<UserModule> getFilteredModuleList() throws ParseException{
+        List<UserModule> UserModuleList = new ArrayList<>();
+        UserModule test = new UserModule("CS1101S");
+        UserModuleList.add(test);
 
-        return FXCollections.observableList(model.getFilteredUserModuleList());
+        UserModule test2 = new UserModule("CS1010S");
+        UserModuleList.add(test2);
+
+        UserModule test3 = new UserModule("CS1010J");
+        UserModuleList.add(test3);
+
+
+        return FXCollections.observableList(UserModuleList);
     }
 
     @Override
-    public ObservableList<UserModule> getFilteredSavedModuleList() {
-        List<DummyModule> dummySavedModuleList = new ArrayList<>();
-        dummySavedModuleList.add(new DummyModule());
-        dummySavedModuleList.add(new DummyModule());
-        dummySavedModuleList.add(new DummyModule());
-        dummySavedModuleList.add(new DummyModule());
-        dummySavedModuleList.add(new DummyModule());
-        dummySavedModuleList.add(new DummyModule());
+    public ObservableList<UserModule> getFilteredSavedModuleList() throws ParseException {
+        List<UserModule> savedUserModuleList = new ArrayList<>();
+        UserModule test = new UserModule("CS2100");
+        savedUserModuleList.add(test);
+        savedUserModuleList.add(test);
+        savedUserModuleList.add(test);
+        savedUserModuleList.add(test);
+        savedUserModuleList.add(test);
 
         return FXCollections.observableList(model.getFilteredUserModuleList());
     }

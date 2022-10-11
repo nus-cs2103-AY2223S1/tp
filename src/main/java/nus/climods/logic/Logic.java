@@ -28,9 +28,9 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    ObservableList<UserModule> getFilteredModuleList();
+    ObservableList<UserModule> getFilteredModuleList() throws ParseException;
 
-    ObservableList<UserModule> getFilteredSavedModuleList();
+    ObservableList<UserModule> getFilteredSavedModuleList() throws ParseException;
 
     /**
      * Returns the AddressBook.

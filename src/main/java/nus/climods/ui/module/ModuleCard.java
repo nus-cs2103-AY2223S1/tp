@@ -49,7 +49,7 @@ public class ModuleCard extends UiPart<Region> {
         super(FXML);
         this.module = module;
         moduleCode.setText(module.getUserModuleCode());
-        title.setText(module.getTitle());
+        title.setText(module.getUserModuleTitle());
         department.setText(module.getDepartment());
         module.getSemesterData()
             .forEach(tag -> moduleInfo.getChildren().add(new Pill(tag, SEMESTER_BG_COLOR, SEMESTER_TEXT_COLOR, 13)));

@@ -19,6 +19,8 @@ public class UserModule {
     // Identity fields
     private final Module userModule;
     private final String acadYear = "2022-2023";
+    private String tutorial = "Tutorial: Monday, 1400-1500";
+    private String lecture = "Lecture: Friday, 1600-1800";
 
     public UserModule(String moduleCode) throws ParseException{
         try {
@@ -34,7 +36,7 @@ public class UserModule {
         return this.userModule.getModuleCode();
     }
 
-    public String getAcadYear() { return this.acadYear;}
+    public String getAcademicYear() { return this.userModule.getAcadYear();}
 
     public String getUserModuleTitle() { return this.userModule.getTitle();}
 
@@ -42,24 +44,26 @@ public class UserModule {
         return "Computer Science";
     }
 
+    //TODO: fix getWorkload from API
     public String getWorkload() {
-        return "4 MCs";
+        return "4 MC";
     }
 
-    public String getTitle() {
-        return "Software Engineering";
-    }
-
-    public String getAcademicYear() {
-        return "AY2223";
-    }
-
+    //TODO: add Tutorial method
     public String getTutorial() {
-        return "Tutorial: Monday, 1400-1500";
+        return this.tutorial;
+    }
+
+    public void setTutorial(String tutorial) {
+        this.tutorial = tutorial;
     }
 
     public String getLecture() {
-        return "Lecture: Friday, 1600-1800";
+        return this.lecture;
+    }
+
+    public void setLecture(String lecture) {
+        this.lecture = lecture;
     }
 
     public ArrayList<String> getSemesterData() {
