@@ -12,10 +12,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.internship.Address;
 import seedu.address.model.internship.ApplicationStatus;
+import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Company;
-import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -74,12 +74,12 @@ public class MarkCommand extends Command {
         assert internshipToMark != null;
 
         Company updatedCompany = internshipToMark.getCompany();
-        Phone updatedPhone = internshipToMark.getPhone();
+        Link updatedLink = internshipToMark.getLink();
         Email updatedEmail = internshipToMark.getEmail();
         Address updatedAddress = internshipToMark.getAddress();
         Set<Tag> updatedTags = internshipToMark.getTags();
 
-        return new Internship(updatedCompany, updatedPhone, updatedEmail, updatedApplicationStatus, updatedAddress,
+        return new Internship(updatedCompany, updatedLink, updatedEmail, updatedApplicationStatus, updatedAddress,
                 updatedTags);
     }
 

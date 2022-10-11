@@ -8,7 +8,7 @@ import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Company;
-import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -24,7 +24,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Company company;
-    private Phone phone;
+    private Link link;
     private Email email;
     private ApplicationStatus applicationStatus;
     private Address address;
@@ -35,7 +35,7 @@ public class InternshipBuilder {
      */
     public InternshipBuilder() {
         company = new Company(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        link = new Link(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         applicationStatus = DEFAULT_APPLICATION_STATUS;
         address = new Address(DEFAULT_ADDRESS);
@@ -47,7 +47,7 @@ public class InternshipBuilder {
      */
     public InternshipBuilder(Internship internshipToCopy) {
         company = internshipToCopy.getCompany();
-        phone = internshipToCopy.getPhone();
+        link = internshipToCopy.getLink();
         email = internshipToCopy.getEmail();
         applicationStatus = internshipToCopy.getApplicationStatus();
         address = internshipToCopy.getAddress();
@@ -79,10 +79,10 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Internship} that we are building.
+     * Sets the {@code Link} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.link = new Link(phone);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(company, phone, email, applicationStatus, address, tags);
+        return new Internship(company, link, email, applicationStatus, address, tags);
     }
 
 }

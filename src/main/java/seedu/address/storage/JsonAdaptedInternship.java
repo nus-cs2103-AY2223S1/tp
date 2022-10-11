@@ -15,7 +15,7 @@ import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,7 +26,7 @@ class JsonAdaptedInternship {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Internship's %s field is missing!";
 
     private final String company;
-    private final String phone;
+    private final String link;
     private final String email;
     private final String applicationStatus;
     private final String address;
@@ -36,13 +36,13 @@ class JsonAdaptedInternship {
      * Constructs a {@code JsonAdaptedInternship} with the given internship details.
      */
     @JsonCreator
-    public JsonAdaptedInternship(@JsonProperty("name") String company, @JsonProperty("phone") String phone,
+    public JsonAdaptedInternship(@JsonProperty("name") String company, @JsonProperty("phone") String link,
                                  @JsonProperty("email") String email,
                                  @JsonProperty("applicationStatus") String applicationStatus,
                                  @JsonProperty("address") String address,
                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
-        this.phone = phone;
+        this.link = link;
         this.email = email;
         this.applicationStatus = applicationStatus;
         this.address = address;
@@ -56,7 +56,7 @@ class JsonAdaptedInternship {
      */
     public JsonAdaptedInternship(Internship source) {
         company = source.getCompany().value;
-        phone = source.getPhone().value;
+        link = source.getLink().value;
         email = source.getEmail().value;
         applicationStatus = source.getApplicationStatus().toString().toLowerCase();
         address = source.getAddress().value;
@@ -84,13 +84,13 @@ class JsonAdaptedInternship {
         }
         final Company modelCompany = new Company(company);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (link == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Link.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Link.isValidLink(link)) {
+            throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Link modelLink = new Link(link);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -115,7 +115,7 @@ class JsonAdaptedInternship {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelPhone, modelEmail, modelApplicationStatus, modelAddress, modelTags);
+        return new Internship(modelCompany, modelLink, modelEmail, modelApplicationStatus, modelAddress, modelTags);
     }
 
 }

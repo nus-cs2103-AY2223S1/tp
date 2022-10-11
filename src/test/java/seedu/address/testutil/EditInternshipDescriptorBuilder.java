@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.internship.Address;
+import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Company;
-import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,7 +33,7 @@ public class EditInternshipDescriptorBuilder {
     public EditInternshipDescriptorBuilder(Internship internship) {
         descriptor = new EditCommand.EditInternshipDescriptor();
         descriptor.setName(internship.getCompany());
-        descriptor.setPhone(internship.getPhone());
+        descriptor.setLink(internship.getLink());
         descriptor.setEmail(internship.getEmail());
         descriptor.setAddress(internship.getAddress());
         descriptor.setTags(internship.getTags());
@@ -48,10 +48,10 @@ public class EditInternshipDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditInternshipDescriptor} that we are building.
+     * Sets the {@code Link} of the {@code EditInternshipDescriptor} that we are building.
      */
     public EditInternshipDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        descriptor.setLink(new Link(phone));
         return this;
     }
 

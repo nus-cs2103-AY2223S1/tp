@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Internship's phone number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
+ * Represents an Internship's link in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidLink(String)}
  */
-public class Phone {
+public class Link {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -16,20 +16,20 @@ public class Phone {
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Link}.
      *
-     * @param phone A valid phone number.
+     * @param link A valid link.
      */
-    public Phone(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+    public Link(String link) {
+        requireNonNull(link);
+        checkArgument(isValidLink(link), MESSAGE_CONSTRAINTS);
+        value = link;
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid link.
      */
-    public static boolean isValidPhone(String test) {
+    public static boolean isValidLink(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -41,8 +41,8 @@ public class Phone {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Phone // instanceof handles nulls
-                && value.equals(((Phone) other).value)); // state check
+                || (other instanceof Link // instanceof handles nulls
+                && value.equals(((Link) other).value)); // state check
     }
 
     @Override

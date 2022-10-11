@@ -17,7 +17,7 @@ import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,13 +40,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Link link = ParserUtil.parseLink(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         ApplicationStatus applicationStatus = ApplicationStatus.Applied;
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Internship internship = new Internship(company, phone, email, applicationStatus, address, tagList);
+        Internship internship = new Internship(company, link, email, applicationStatus, address, tagList);
 
         return new AddCommand(internship);
     }

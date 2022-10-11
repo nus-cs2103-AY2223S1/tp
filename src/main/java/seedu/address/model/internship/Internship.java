@@ -17,7 +17,7 @@ public class Internship {
 
     // Identity fields
     private final Company company;
-    private final Phone phone;
+    private final Link link;
     private final Email email;
     private final ApplicationStatus applicationStatus;
 
@@ -28,11 +28,11 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Company company, Phone phone, Email email, ApplicationStatus applicationStatus,
+    public Internship(Company company, Link link, Email email, ApplicationStatus applicationStatus,
                       Address address, Set<Tag> tags) {
-        requireAllNonNull(company, phone, email, address, tags);
+        requireAllNonNull(company, link, email, address, tags);
         this.company = company;
-        this.phone = phone;
+        this.link = link;
         this.email = email;
         this.applicationStatus = applicationStatus;
         this.address = address;
@@ -43,8 +43,8 @@ public class Internship {
         return company;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Link getLink() {
+        return link;
     }
 
     public Email getEmail() {
@@ -96,7 +96,7 @@ public class Internship {
 
         Internship otherInternship = (Internship) other;
         return otherInternship.getCompany().equals(getCompany())
-                && otherInternship.getPhone().equals(getPhone())
+                && otherInternship.getLink().equals(getLink())
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getApplicationStatus().equals(getApplicationStatus())
                 && otherInternship.getAddress().equals(getAddress())
@@ -106,15 +106,15 @@ public class Internship {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, phone, email, applicationStatus, address, tags);
+        return Objects.hash(company, link, email, applicationStatus, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getCompany())
-                .append("; Phone: ")
-                .append(getPhone())
+                .append("; Link: ")
+                .append(getLink())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Application Status: ")

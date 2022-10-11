@@ -24,7 +24,7 @@ import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Phone;
+import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,14 +96,14 @@ public class EditCommand extends Command {
         assert internshipToEdit != null;
 
         Company updatedCompany = editInternshipDescriptor.getCompany().orElse(internshipToEdit.getCompany());
-        Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
+        Link updatedLink = editInternshipDescriptor.getLink().orElse(internshipToEdit.getLink());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
         Address updatedAddress = editInternshipDescriptor.getAddress().orElse(internshipToEdit.getAddress());
         ApplicationStatus updatedApplicationStatus =
                 editInternshipDescriptor.getApplicationStatus().orElse(internshipToEdit.getApplicationStatus());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedCompany, updatedPhone, updatedEmail, updatedApplicationStatus, updatedAddress,
+        return new Internship(updatedCompany, updatedLink, updatedEmail, updatedApplicationStatus, updatedAddress,
                 updatedTags);
     }
 
@@ -131,7 +131,7 @@ public class EditCommand extends Command {
      */
     public static class EditInternshipDescriptor {
         private Company company;
-        private Phone phone;
+        private Link link;
         private Email email;
         private Address address;
         private ApplicationStatus applicationStatus;
@@ -145,7 +145,7 @@ public class EditCommand extends Command {
          */
         public EditInternshipDescriptor(EditInternshipDescriptor toCopy) {
             setName(toCopy.company);
-            setPhone(toCopy.phone);
+            setLink(toCopy.link);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setApplicationStatus(toCopy.applicationStatus);
@@ -156,7 +156,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(company, link, email, address, tags);
         }
 
         public void setName(Company company) {
@@ -167,12 +167,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(company);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setLink(Link link) {
+            this.link = link;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Link> getLink() {
+            return Optional.ofNullable(link);
         }
 
         public void setEmail(Email email) {
@@ -232,7 +232,7 @@ public class EditCommand extends Command {
             EditInternshipDescriptor e = (EditInternshipDescriptor) other;
 
             return getCompany().equals(e.getCompany())
-                    && getPhone().equals(e.getPhone())
+                    && getLink().equals(e.getLink())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getApplicationStatus().equals(e.getApplicationStatus())
