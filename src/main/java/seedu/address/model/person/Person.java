@@ -24,19 +24,21 @@ public class Person {
     private final Address address;
     private final Module module;
     private final Year year;
+    private final Comment comment;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Module module, Year year, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, module, year, address, tags);
+    public Person(Name name, Phone phone, Email email, Module module, Year year, Address address,  Comment comment, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, module, year, address, comment, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.module = module;
         this.year = year;
         this.address = address;
+        this.comment = comment;
         this.tags.addAll(tags);
     }
 
@@ -62,6 +64,10 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+    public Comment getComment() {
+        return comment;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -105,13 +111,14 @@ public class Person {
                 && otherPerson.getModule().equals(getModule())
                 && otherPerson.getYear().equals(getYear())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getComment().equals(getComment())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, module, year, address, tags);
+        return Objects.hash(name, phone, email, module, year, address, comment, tags);
     }
 
     @Override
@@ -126,8 +133,12 @@ public class Person {
                 .append(getModule())
                 .append("; Year: ")
                 .append(getYear())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(" Address: ")
+                .append(getAddress())
+                .append(" Comment: ")
+                .append(getComment())
+                .append(" Tags: ");
+        getTags().forEach(builder::append);
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

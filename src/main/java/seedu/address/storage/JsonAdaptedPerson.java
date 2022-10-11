@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Module;
 import seedu.address.model.person.Name;
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String module;
     private final String year;
     private final String address;
+    private final String comment;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -41,13 +43,14 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("module") String module,
             @JsonProperty("year") String year, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("comment") String comment, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.module = module;
         this.year = year;
         this.address = address;
+        this.comment = comment;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -63,6 +66,7 @@ class JsonAdaptedPerson {
         module = source.getModule().value;
         year = source.getYear().value;
         address = source.getAddress().value;
+        comment = source.getComment().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -127,8 +131,13 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (comment == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Comment.class.getSimpleName()));
+        }
+        final Comment modelComment = new Comment(comment);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelModule, modelYear, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelModule, modelYear, modelAddress, modelComment, modelTags);
     }
 
 }
