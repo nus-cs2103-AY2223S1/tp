@@ -12,9 +12,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.tag.TagType;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.model.person.UniqueTagTypeMap;
 
 /**
  * Jackson-friendly version of {@link Person}.

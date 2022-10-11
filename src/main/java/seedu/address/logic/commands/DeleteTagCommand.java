@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTYPETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILLTAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,8 +15,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniqueTagTypeMap;
 
-
-import java.util.List;
 
 /**
  * Deletes a specified tag of a person.
@@ -44,7 +44,7 @@ public class DeleteTagCommand extends Command {
     /**
      * Creates an DeleteTagCommand to delete the specified {@code Tag} of a person at the specified {@code Index}
      */
-    public DeleteTagCommand(Index targetIndex,UniqueTagTypeMap toDelete) {
+    public DeleteTagCommand(Index targetIndex, UniqueTagTypeMap toDelete) {
         requireNonNull(targetIndex);
         requireNonNull(toDelete);
         this.targetIndex = targetIndex;
@@ -74,7 +74,8 @@ public class DeleteTagCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_TAGS_SUCCESS, editedPerson));
     }
 
-    private static Person createEditedPerson(Person personToEdit, EditCommand.EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit,
+                                             EditCommand.EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
         UniqueTagTypeMap updatedTags = new UniqueTagTypeMap();
         updatedTags.setTagTypeMap(personToEdit.getTags());

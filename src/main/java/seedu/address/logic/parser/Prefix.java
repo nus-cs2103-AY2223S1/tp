@@ -5,6 +5,10 @@ package seedu.address.logic.parser;
  * E.g. 't/' in 'add James t/ friend'.
  */
 public class Prefix {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Prefix names should be alphanumeric and should contain atleast 1 character";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+
     private final String prefix;
 
     public Prefix(String prefix) {
@@ -35,5 +39,12 @@ public class Prefix {
 
         Prefix otherPrefix = (Prefix) obj;
         return otherPrefix.getPrefix().equals(getPrefix());
+    }
+
+    /**
+     * Returns true if a given string is a valid prefix name.
+     */
+    public static boolean isValidPrefixName(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 }
