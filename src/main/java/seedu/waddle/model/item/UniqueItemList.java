@@ -20,6 +20,20 @@ public class UniqueItemList implements Iterable<Item> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Get an item in the list.
+     */
+    public Item get(int index) {
+        return internalList.get(index);
+    }
+
+    /**
+     * Returns number of items in the list.
+     */
+    public int getSize() {
+        return internalList.size();
+    }
+
+    /**
      * Returns true if the list contains an equivalent item as the given argument.
      */
     public boolean contains(Item toCheck) {
@@ -63,11 +77,13 @@ public class UniqueItemList implements Iterable<Item> {
      * Removes the equivalent item from the list.
      * The item must exist in the list.
      */
-    public void remove(Item toRemove) {
+    public Item remove(int index) {
+        Item toRemove = get(index);
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new ItemNotFoundException();
         }
+        return toRemove;
     }
 
     public void setItemList(UniqueItemList replacement) {
