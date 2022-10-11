@@ -30,7 +30,7 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label quantity;
+    private Label quantityAndUnit;
     @FXML
     private Label bought;
     @FXML
@@ -45,17 +45,16 @@ public class ItemCard extends UiPart<Region> {
         super(FXML);
         this.item = item;
         id.setText(displayedIndex + ". ");
-        name.setText(String.valueOf(item.getName()));
-        quantity.setText(item.getQuantity() + " " + item.getUnit());
-        bought.setText(item.getBoughtDate().toString());
-        expiry.setText(item.getExpiryDate().toString());
-        //        name.setText(String.valueOf(item.getName()));
-        //        phone.setText(String.valueOf(item.getQuantity()));
-        //        address.setText(String.valueOf(item.getBoughtDate()));
-        //        email.setText(String.valueOf(item.getExpiryDate()));
-        //        item.getTags().stream()
-        //                .sorted(Comparator.comparing(tag -> tag.tagName))
-        //                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        name.setText(item.getNameToListView());
+        quantityAndUnit.setText(item.getQuantityAndUnitToListView());
+        bought.setText(item.getBoughtDateToListView());
+        expiry.setText(item.getExpiryDateToListView());
+        // TODO: Add tags into card once tags in item
+        //item.getTags().stream()
+        //        .sorted(Comparator.comparing(tag -> tag.tagName))
+        //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        //        .sorted(Comparator.comparing(Tag::getName))
+        //        .forEach(tag -> tags.getChildren().add(new Label(tag.getName())));
     }
 
     @Override
@@ -73,6 +72,6 @@ public class ItemCard extends UiPart<Region> {
         // state check
         ItemCard card = (ItemCard) other;
         return id.getText().equals(card.id.getText())
-            && item.equals(card.item);
+                && item.equals(card.item);
     }
 }

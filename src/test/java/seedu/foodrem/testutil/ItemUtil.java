@@ -6,8 +6,8 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
 
-import seedu.foodrem.logic.commands.AddCommand;
-import seedu.foodrem.logic.commands.EditCommand.EditItemDescriptor;
+import seedu.foodrem.logic.commands.itemcommands.AddCommand;
+import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.model.item.Item;
 
 /**
@@ -27,16 +27,16 @@ public class ItemUtil {
      */
     public static String getItemDetails(Item item) {
         return String.format("%s%s %s%s %s%s %s%s %s%s",
-            PREFIX_ITEM_NAME,
-            item.getName(),
-            PREFIX_ITEM_QUANTITY,
-            item.getQuantity(),
-            PREFIX_ITEM_UNIT,
-            item.getUnit(),
-            PREFIX_ITEM_BOUGHT_DATE,
-            item.getBoughtDate(),
-            PREFIX_ITEM_EXPIRY_DATE,
-            item.getExpiryDate());
+                PREFIX_ITEM_NAME,
+                item.getName(),
+                PREFIX_ITEM_QUANTITY,
+                item.getQuantity(),
+                PREFIX_ITEM_UNIT,
+                item.getUnit(),
+                PREFIX_ITEM_BOUGHT_DATE,
+                item.getBoughtDate(),
+                PREFIX_ITEM_EXPIRY_DATE,
+                item.getExpiryDate());
     }
 
     /**
@@ -45,15 +45,15 @@ public class ItemUtil {
     public static String getEditItemDescriptorDetails(EditItemDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getItemName()
-            .ifPresent(name -> sb.append(PREFIX_ITEM_NAME).append(name).append(" "));
+                .ifPresent(name -> sb.append(PREFIX_ITEM_NAME).append(name).append(" "));
         descriptor.getItemQuantity()
-            .ifPresent(quantity -> sb.append(PREFIX_ITEM_QUANTITY).append(quantity).append(" "));
+                .ifPresent(quantity -> sb.append(PREFIX_ITEM_QUANTITY).append(quantity).append(" "));
         descriptor.getItemUnit()
-            .ifPresent(unit -> sb.append(PREFIX_ITEM_UNIT).append(unit).append(" "));
+                .ifPresent(unit -> sb.append(PREFIX_ITEM_UNIT).append(unit).append(" "));
         descriptor.getItemExpiryDate()
-            .ifPresent(boughtDate -> sb.append(PREFIX_ITEM_BOUGHT_DATE).append(boughtDate).append(" "));
+                .ifPresent(boughtDate -> sb.append(PREFIX_ITEM_BOUGHT_DATE).append(boughtDate).append(" "));
         descriptor.getItemBoughtDate()
-            .ifPresent(expiryDate -> sb.append(PREFIX_ITEM_EXPIRY_DATE).append(expiryDate).append(" "));
+                .ifPresent(expiryDate -> sb.append(PREFIX_ITEM_EXPIRY_DATE).append(expiryDate).append(" "));
         //if (descriptor.getTags().isPresent()) {
         //    Set<Tag> tags = descriptor.getTags().get();
         //    if (tags.isEmpty()) {

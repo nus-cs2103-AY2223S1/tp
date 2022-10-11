@@ -1,29 +1,31 @@
 package seedu.foodrem.model.item.itemvalidators;
 
+import static seedu.foodrem.commons.util.AppUtil.checkArgument;
+import static seedu.foodrem.model.item.ItemBoughtDate.BOUGHT_DATE_FORMATTER;
+import static seedu.foodrem.model.item.ItemBoughtDate.BOUGHT_DATE_PATTERN_REGEX;
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import seedu.foodrem.model.item.Item;
-import seedu.foodrem.model.validator.DateValidator;
+import seedu.foodrem.model.util.DateParser;
 
 /**
  * Validation class for item dates.
  */
-public class ItemBoughtDateValidator {
+public class ItemBoughtDateValidator implements Validator {
 
     // Validation for parsing
-    private static final String DATE_INPUT_PATTERN_REGEX = "yyyy-MM-dd";
-    public static final String MESSAGE_FOR_UNABLE_TO_PARSE =
-        String.format("Dates must follow the format %s.", DATE_INPUT_PATTERN_REGEX);
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN_REGEX);
+    public static final String MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE =
+            String.format("Dates must follow the format %s.", BOUGHT_DATE_PATTERN_REGEX);
+
     // Validation for year
     private static final int MIN_YEAR = 1000;
     private static final String MESSAGE_FOR_YEAR_TOO_SMALL =
-        String.format("Year should be larger than %d.", MIN_YEAR);
+            String.format("Year should be larger than %d.", MIN_YEAR);
 
     private static final int MAX_YEAR = 2100;
     private static final String MESSAGE_FOR_YEAR_TOO_LARGE =
-        String.format("Year should be less than %d.", MAX_YEAR);
+            String.format("Year should be less than %d.", MAX_YEAR);
 
     /**
      * Validates a given input String.
@@ -31,39 +33,37 @@ public class ItemBoughtDateValidator {
      * @param dateString String representation of date to validate against.
      */
     public static void validate(String dateString) {
-        // TODO: Fix validation for item bought date
-        // checkArgument(isParsableItemDatetime(dateString), MESSAGE_FOR_UNABLE_TO_PARSE);
-        // LocalDate date = LocalDate.parse(dateString);
-        // checkArgument(!isYearMoreThanMaxYear(date), MESSAGE_FOR_YEAR_TOO_LARGE);
-        // checkArgument(!isYearLessThanMaxYear(date), MESSAGE_FOR_YEAR_TOO_SMALL);
+        checkArgument(isParsableItemBoughtDate(dateString), MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        LocalDate date = LocalDate.parse(dateString, BOUGHT_DATE_FORMATTER);
+        checkArgument(isYearLessThanMaxYear(date), MESSAGE_FOR_YEAR_TOO_LARGE);
+        checkArgument(isYearMoreThanMinYear(date), MESSAGE_FOR_YEAR_TOO_SMALL);
     }
 
     /**
      * Returns true if an item date is parsable, false otherwise.
      *
-     * @param dateTimeString a string that represents the itemDate of the format
-     *                       {@link ItemBoughtDateValidator#DATE_INPUT_PATTERN_REGEX}
+     * @param dateTimeString a string that represents the itemDate of the format provided by formatter.
      */
-    private static boolean isParsableItemDatetime(String dateTimeString) {
-        DateValidator validator = new DateValidator(DATE_TIME_FORMATTER);
+    private static boolean isParsableItemBoughtDate(String dateTimeString) {
+        DateParser validator = new DateParser(BOUGHT_DATE_FORMATTER);
         return validator.isParsableDateString(dateTimeString);
     }
 
     /**
-     * Returns true if an item date has a year more than {@link ItemBoughtDateValidator#MAX_YEAR}, false otherwise.
+     * Returns true if an item date has a year more than {@link ItemBoughtDateValidator#MIN_YEAR}, false otherwise.
      *
      * @param date a local date that represents the date of the {@link Item}.
      */
-    private static boolean isYearMoreThanMaxYear(LocalDate date) {
-        return date.getYear() > MAX_YEAR;
+    private static boolean isYearMoreThanMinYear(LocalDate date) {
+        return date.getYear() > MIN_YEAR;
     }
 
     /**
-     * Returns true if an item date has a year less than {@link ItemBoughtDateValidator#MIN_YEAR}, false otherwise.
+     * Returns true if an item date has a year less than {@link ItemBoughtDateValidator#MAX_YEAR}, false otherwise.
      *
      * @param date a LocalDate that represents the date of the {@link Item}.
      */
     private static boolean isYearLessThanMaxYear(LocalDate date) {
-        return date.getYear() < MIN_YEAR;
+        return date.getYear() < MAX_YEAR;
     }
 }

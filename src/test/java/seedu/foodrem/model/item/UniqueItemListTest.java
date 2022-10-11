@@ -42,8 +42,8 @@ public class UniqueItemListTest {
     public void contains_itemWithSameIdentityFieldsInList_returnsTrue() {
         uniqueItemList.add(POTATOES);
         Item editedPotato = new ItemBuilder(POTATOES)
-            .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
-            .build();
+                .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
+                .build();
         assertTrue(uniqueItemList.contains(editedPotato));
     }
 
@@ -86,8 +86,8 @@ public class UniqueItemListTest {
     public void setItem_editedItemHasSameIdentity_success() {
         uniqueItemList.add(POTATOES);
         Item editedPotato = new ItemBuilder(POTATOES)
-            .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
-            .build();
+                .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
+                .build();
         uniqueItemList.setItem(POTATOES, editedPotato);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
         expectedUniqueItemList.add(editedPotato);
@@ -166,6 +166,6 @@ public class UniqueItemListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueItemList.asUnmodifiableObservableList().remove(0));
+                -> uniqueItemList.asUnmodifiableObservableList().remove(0));
     }
 }

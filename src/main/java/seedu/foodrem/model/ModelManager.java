@@ -14,6 +14,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.foodrem.commons.core.GuiSettings;
 import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.model.tag.Tag;
 
 /**
  * Represents the in-memory model of FoodRem data.
@@ -21,22 +22,26 @@ import seedu.foodrem.model.item.Item;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final FoodRem addressBook;
+    private final FoodRem foodRem;
     private final UserPrefs userPrefs;
     private final ObservableList<Item> itemsList;
     private final FilteredList<Item> filteredItems;
+    private final FilteredList<Tag> filteredTags;
     private final SortedList<Item> sortedItems;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given foodRem and userPrefs.
      */
-    public ModelManager(ReadOnlyFoodRem addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyFoodRem foodRem, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(foodRem, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with RoodRem: " + foodRem + " and user prefs " + userPrefs);
 
-        this.addressBook = new FoodRem(addressBook);
+        this.foodRem = new FoodRem(foodRem);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredItems = new FilteredList<>(this.foodRem.getItemList());
+        filteredTags = new FilteredList<>(this.foodRem.getTagList());
+
         filteredItems = new FilteredList<>(this.addressBook.getItemList());
         sortedItems = new SortedList<>(filteredItems);
         itemsList = sortedItems;
@@ -71,42 +76,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getFoodRemFilePath() {
+        return userPrefs.getFoodRemFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setFoodRemFilePath(Path foodRemFilePath) {
+        requireNonNull(foodRemFilePath);
+        userPrefs.setFoodRemFilePath(foodRemFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public ReadOnlyFoodRem getAddressBook() {
-        return addressBook;
+    public ReadOnlyFoodRem getFoodRem() {
+        return foodRem;
     }
 
     @Override
-    public void setAddressBook(ReadOnlyFoodRem addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setFoodRem(ReadOnlyFoodRem foodRem) {
+        this.foodRem.resetData(foodRem);
     }
 
     @Override
     public boolean hasItem(Item item) {
         requireNonNull(item);
-        return addressBook.hasItem(item);
+        return foodRem.hasItem(item);
     }
 
     @Override
     public void deleteItem(Item target) {
-        addressBook.removeItem(target);
+        foodRem.removeItem(target);
     }
 
     @Override
     public void addItem(Item item) {
-        addressBook.addItem(item);
+        foodRem.addItem(item);
         updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
@@ -114,7 +119,31 @@ public class ModelManager implements Model {
     public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
 
-        addressBook.setItem(target, editedItem);
+        foodRem.setItem(target, editedItem);
+    }
+
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return foodRem.hasTag(tag);
+    }
+
+    @Override
+    public void deleteTag(Tag target) {
+        foodRem.removeTag(target);
+    }
+
+    @Override
+    public void addTag(Tag tag) {
+        foodRem.addTag(tag);
+        updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
+    }
+
+    @Override
+    public void setTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+
+        foodRem.setTag(target, editedTag);
     }
 
     //=========== Sorted Item List Accessors =============================================================
@@ -146,10 +175,24 @@ public class ModelManager implements Model {
         return filteredItems;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    public ObservableList<Tag> getFilteredTagList() {
+        return filteredTags;
+    }
+
     @Override
     public void updateFilteredItemList(Predicate<Item> predicate) {
         requireNonNull(predicate);
         filteredItems.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredTagList(Predicate<Tag> predicate) {
+        requireNonNull(predicate);
+        filteredTags.setPredicate(predicate);
     }
 
     @Override
@@ -166,9 +209,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return foodRem.equals(other.foodRem)
                 && userPrefs.equals(other.userPrefs)
                 && filteredItems.equals(other.filteredItems)
+                && filteredTags.equals(other.filteredTags)
                 && sortedItems.equals(other.sortedItems)
                 && itemsList.equals(other.itemsList);
     }

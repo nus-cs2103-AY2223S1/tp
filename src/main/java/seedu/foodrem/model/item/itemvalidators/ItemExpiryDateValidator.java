@@ -1,21 +1,24 @@
 package seedu.foodrem.model.item.itemvalidators;
 
+import static seedu.foodrem.commons.util.AppUtil.checkArgument;
+import static seedu.foodrem.model.item.ItemExpiryDate.EXPIRY_DATE_FORMATTER;
+import static seedu.foodrem.model.item.ItemExpiryDate.EXPIRY_DATE_PATTERN_REGEX;
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import seedu.foodrem.model.item.Item;
-import seedu.foodrem.model.validator.DateValidator;
+import seedu.foodrem.model.item.ItemExpiryDate;
+import seedu.foodrem.model.util.DateParser;
 
 /**
  * Validation class for item dates.
  */
-public class ItemExpiryDateValidator {
+public class ItemExpiryDateValidator implements Validator {
 
     // Validation for parsing
-    private static final String DATE_INPUT_PATTERN_REGEX = "yyyy-MM-dd";
-    public static final String MESSAGE_FOR_UNABLE_TO_PARSE =
-            String.format("Dates must follow the format %s.", DATE_INPUT_PATTERN_REGEX);
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_INPUT_PATTERN_REGEX);
+    public static final String MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE =
+            String.format("Dates must follow the format %s.", EXPIRY_DATE_PATTERN_REGEX);
+
     // Validation for year
     private static final int MIN_YEAR = 1000;
     private static final String MESSAGE_FOR_YEAR_TOO_SMALL =
@@ -31,39 +34,38 @@ public class ItemExpiryDateValidator {
      * @param dateString String representation of date to validate against.
      */
     public static void validate(String dateString) {
-        // TODO: Fix validation for item expiry date
-        // checkArgument(isParsableItemDatetime(dateString), MESSAGE_FOR_UNABLE_TO_PARSE);
-        // LocalDate date = LocalDate.parse(dateString);
-        // checkArgument(!isYearMoreThanMaxYear(date), MESSAGE_FOR_YEAR_TOO_LARGE);
-        // checkArgument(!isYearLessThanMaxYear(date), MESSAGE_FOR_YEAR_TOO_SMALL);
+        checkArgument(isParsableItemExpiryDate(dateString), MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        LocalDate date = LocalDate.parse(dateString, EXPIRY_DATE_FORMATTER);
+        checkArgument(isYearLessThanMaxYear(date), MESSAGE_FOR_YEAR_TOO_LARGE);
+        checkArgument(isYearMoreThanMinYear(date), MESSAGE_FOR_YEAR_TOO_SMALL);
     }
 
     /**
      * Returns true if an item date is parsable, false otherwise.
      *
      * @param dateTimeString a string that represents the itemDate of the format
-     *                       {@link ItemExpiryDateValidator#DATE_INPUT_PATTERN_REGEX}
+     *                       {@link ItemExpiryDate#EXPIRY_DATE_FORMATTER}
      */
-    private static boolean isParsableItemDatetime(String dateTimeString) {
-        DateValidator validator = new DateValidator(DATE_TIME_FORMATTER);
+    private static boolean isParsableItemExpiryDate(String dateTimeString) {
+        DateParser validator = new DateParser(EXPIRY_DATE_FORMATTER);
         return validator.isParsableDateString(dateTimeString);
     }
 
     /**
-     * Returns true if an item date has a year more than {@link ItemExpiryDateValidator#MAX_YEAR}, false otherwise.
+     * Returns true if an item date has a year more than {@link ItemExpiryDateValidator#MIN_YEAR}, false otherwise.
      *
      * @param date a local date that represents the date of the {@link Item}.
      */
-    private static boolean isYearMoreThanMaxYear(LocalDate date) {
-        return date.getYear() > MAX_YEAR;
+    private static boolean isYearMoreThanMinYear(LocalDate date) {
+        return date.getYear() > MIN_YEAR;
     }
 
     /**
-     * Returns true if an item date has a year less than {@link ItemExpiryDateValidator#MIN_YEAR}, false otherwise.
+     * Returns true if an item date has a year less than {@link ItemExpiryDateValidator#MAX_YEAR}, false otherwise.
      *
      * @param date a LocalDate that represents the date of the {@link Item}.
      */
     private static boolean isYearLessThanMaxYear(LocalDate date) {
-        return date.getYear() < MIN_YEAR;
+        return date.getYear() < MAX_YEAR;
     }
 }

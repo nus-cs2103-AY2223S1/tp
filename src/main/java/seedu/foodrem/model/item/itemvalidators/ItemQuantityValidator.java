@@ -1,40 +1,41 @@
 package seedu.foodrem.model.item.itemvalidators;
 
+import static seedu.foodrem.commons.util.AppUtil.checkArgument;
+
 import seedu.foodrem.model.item.Item;
 
 /**
  * Validation class for item quantities.
  */
-public class ItemQuantityValidator {
+public class ItemQuantityValidator implements Validator {
 
-    // Validation for quantity is a number
+
     public static final String MESSAGE_FOR_NOT_A_NUMBER = "Quantities should be a number.";
+    public static final String MESSAGE_FOR_QUANTITY_IS_NEGATIVE =
+            "Quantity should not be negative.";
 
     // Validation for quantity precision
     private static final int MAX_DECIMAL_PLACE = 4;
+    public static final String MESSAGE_FOR_PRECISION_TOO_HIGH =
+            String.format("Quantity should not have more than %d decimal places", MAX_DECIMAL_PLACE);
     private static final String DECIMAL_POINT = ".";
-    private static final String MESSAGE_FOR_PRECISION_TOO_HIGH =
-        String.format("Quantity should not have more than %d decimal places", MAX_DECIMAL_PLACE);
 
     // Validation for size of quantity
     private static final int MAX_QUANTITY = 1000000;
     private static final String MESSAGE_FOR_QUANTITY_TOO_LARGE =
-        String.format("Quantity should not be more than %d.", MAX_QUANTITY);
-    private static final String MESSAGE_FOR_QUANTITY_IS_NEGATIVE =
-        "Quantity should not be negative.";
+            String.format("Quantity should not be more than %d.", MAX_QUANTITY);
 
     /**
-     * Validates a given input String.
+     * Validates a given input String. This is to be used during construction.
      *
      * @param itemQuantityString String representation of item quantity to validate against.
      */
     public static void validate(String itemQuantityString) {
-        // TODO: Fix validation for item quantity
-        // checkArgument(isParsableQuantity(itemQuantityString), MESSAGE_FOR_NOT_A_NUMBER);
-        // checkArgument(!isQuantityTooPrecise(itemQuantityString), MESSAGE_FOR_PRECISION_TOO_HIGH);
-        // double quantity = Double.parseDouble(itemQuantityString);
-        // checkArgument(!isQuantityMoreThanMaxQuantity(quantity), MESSAGE_FOR_QUANTITY_TOO_LARGE);
-        // checkArgument(!isQuantityNegative(quantity), MESSAGE_FOR_QUANTITY_IS_NEGATIVE);
+        checkArgument(isParsableQuantity(itemQuantityString), MESSAGE_FOR_NOT_A_NUMBER);
+        checkArgument(!isQuantityTooPrecise(itemQuantityString), MESSAGE_FOR_PRECISION_TOO_HIGH);
+        double quantity = Double.parseDouble(itemQuantityString);
+        checkArgument(isQuantityLessThanEqualMaxQuantity(quantity), MESSAGE_FOR_QUANTITY_TOO_LARGE);
+        checkArgument(isQuantityNotNegative(quantity), MESSAGE_FOR_QUANTITY_IS_NEGATIVE);
     }
 
     /**
@@ -58,27 +59,28 @@ public class ItemQuantityValidator {
      */
     private static boolean isQuantityTooPrecise(String itemQuantityString) {
         if (!itemQuantityString.contains(DECIMAL_POINT)) {
-            return true;
+            return false;
         }
         int numberOfDecimalPoints = itemQuantityString.length() - itemQuantityString.indexOf(DECIMAL_POINT);
         return numberOfDecimalPoints > MAX_DECIMAL_PLACE;
     }
 
     /**
-     * Returns true if an item quantity is more than the {@link ItemQuantityValidator#MAX_QUANTITY}, false otherwise.
+     * Returns true if an item quantity is less than or equal to the {@link ItemQuantityValidator#MAX_QUANTITY},
+     * false otherwise.
      *
      * @param itemQuantity a double that represents the quantity of the {@link Item}.
      */
-    private static boolean isQuantityMoreThanMaxQuantity(double itemQuantity) {
-        return itemQuantity > MAX_QUANTITY;
+    private static boolean isQuantityLessThanEqualMaxQuantity(double itemQuantity) {
+        return itemQuantity <= MAX_QUANTITY;
     }
 
     /**
-     * Returns true if an item quantity is negative, false otherwise.
+     * Returns true if an item quantity is positive or zero, false otherwise.
      *
      * @param itemQuantity a double that represents the quantity of the {@link Item}.
      */
-    private static boolean isQuantityNegative(double itemQuantity) {
-        return itemQuantity < 0;
+    private static boolean isQuantityNotNegative(double itemQuantity) {
+        return itemQuantity >= 0;
     }
 }

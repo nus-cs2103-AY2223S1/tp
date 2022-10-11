@@ -2,6 +2,7 @@ package seedu.foodrem.model;
 
 import javafx.collections.ObservableList;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.model.tag.Tag;
 
 /**
  * Unmodifiable view of FoodRem.
@@ -13,5 +14,7 @@ public interface ReadOnlyFoodRem {
      * This list will not contain any duplicate items.
      */
     ObservableList<Item> getItemList();
+
+    ObservableList<Tag> getTagList();
 
 }

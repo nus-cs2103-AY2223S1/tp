@@ -8,16 +8,10 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.logic.commands.EditCommand;
-import seedu.foodrem.logic.commands.EditCommand.EditItemDescriptor;
+import seedu.foodrem.logic.commands.itemcommands.EditCommand;
+import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
-import seedu.foodrem.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -33,12 +27,12 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args,
-                PREFIX_ITEM_NAME,
-                PREFIX_ITEM_QUANTITY,
-                PREFIX_ITEM_UNIT,
-                PREFIX_ITEM_BOUGHT_DATE,
-                PREFIX_ITEM_EXPIRY_DATE);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_ITEM_NAME,
+                        PREFIX_ITEM_QUANTITY,
+                        PREFIX_ITEM_UNIT,
+                        PREFIX_ITEM_BOUGHT_DATE,
+                        PREFIX_ITEM_EXPIRY_DATE);
         Index index;
 
         try {
@@ -48,26 +42,25 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
-        if (argMultimap.getValue(PREFIX_ITEM_NAME).isPresent()) {
-            editItemDescriptor.setItemName(ParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get()));
+        if (argMultimap.isValuePresent(PREFIX_ITEM_NAME)) {
+            editItemDescriptor.setItemName(ParserUtil.parseName(argMultimap.getPresentValue(PREFIX_ITEM_NAME)));
         }
-        if (argMultimap.getValue(PREFIX_ITEM_QUANTITY).isPresent()) {
+        if (argMultimap.isValuePresent(PREFIX_ITEM_QUANTITY)) {
             editItemDescriptor.setItemQuantity(
-                ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get()));
+                    ParserUtil.parseQuantity(argMultimap.getPresentValue(PREFIX_ITEM_QUANTITY)));
         }
-        if (argMultimap.getValue(PREFIX_ITEM_UNIT).isPresent()) {
+        if (argMultimap.isValuePresent(PREFIX_ITEM_UNIT)) {
             editItemDescriptor.setItemUnit(
-                ParserUtil.parseUnit(argMultimap.getValue(PREFIX_ITEM_UNIT).get()));
+                    ParserUtil.parseUnit(argMultimap.getPresentValue(PREFIX_ITEM_UNIT)));
         }
-        if (argMultimap.getValue(PREFIX_ITEM_BOUGHT_DATE).isPresent()) {
+        if (argMultimap.isValuePresent(PREFIX_ITEM_BOUGHT_DATE)) {
             editItemDescriptor.setItemBoughtDate(
-                ParserUtil.parseBoughtDate(argMultimap.getValue(PREFIX_ITEM_BOUGHT_DATE).get()));
+                    ParserUtil.parseBoughtDate(argMultimap.getPresentValue(PREFIX_ITEM_BOUGHT_DATE)));
         }
-        if (argMultimap.getValue(PREFIX_ITEM_EXPIRY_DATE).isPresent()) {
+        if (argMultimap.isValuePresent(PREFIX_ITEM_EXPIRY_DATE)) {
             editItemDescriptor.setItemExpiryDate(
-                ParserUtil.parseExpiryDate(argMultimap.getValue(PREFIX_ITEM_EXPIRY_DATE).get()));
+                    ParserUtil.parseExpiryDate(argMultimap.getPresentValue(PREFIX_ITEM_EXPIRY_DATE)));
         }
-        // parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editItemDescriptor::setTags);
 
         if (!editItemDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -76,19 +69,18 @@ public class EditCommandParser implements Parser<EditCommand> {
         return new EditCommand(index, editItemDescriptor);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
-    }
-
+    ///**
+    // * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+    // * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+    // * {@code Set<Tag>} containing zero tags.
+    // */
+    //private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    //    assert tags != null;
+    //
+    //    if (tags.isEmpty()) {
+    //        return Optional.empty();
+    //    }
+    //    Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+    //    return Optional.of(ParserUtil.parseTags(tagSet));
+    //}
 }

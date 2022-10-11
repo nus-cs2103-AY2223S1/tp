@@ -3,7 +3,7 @@ package seedu.foodrem.logic.parser;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.logic.commands.DeleteCommand;
+import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**

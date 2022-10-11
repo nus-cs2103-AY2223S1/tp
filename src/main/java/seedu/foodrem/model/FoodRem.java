@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.UniqueItemList;
+import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.model.tag.UniqueTagList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,7 @@ import seedu.foodrem.model.item.UniqueItemList;
 public class FoodRem implements ReadOnlyFoodRem {
 
     private final UniqueItemList items;
+    private final UniqueTagList tags;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,7 @@ public class FoodRem implements ReadOnlyFoodRem {
 
     {
         items = new UniqueItemList();
+        tags = new UniqueTagList();
     }
 
     public FoodRem() {
@@ -50,12 +54,21 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setTags(List<Tag> tags) {
+        this.tags.setTags(tags);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyFoodRem newData) {
         requireNonNull(newData);
 
         setItems(newData.getItemList());
+        setTags(newData.getTagList());
     }
 
     //// item-level operations
@@ -95,11 +108,48 @@ public class FoodRem implements ReadOnlyFoodRem {
         items.remove(key);
     }
 
+    //// tag-level methods
+    /**
+     * Returns true if a tag with the same name as {@code tag} exists in the address book.
+     */
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return tags.contains(tag);
+    }
+
+    /**
+     * Adds a tag to the address book.
+     * The tag must not already exist in the address book.
+     */
+    public void addTag(Tag t) {
+        tags.add(t);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedTag}.
+     * {@code target} must exist in the address book.
+     * The tag in {@code editedTag} must not be the same as another existing tag in the address book.
+     */
+    public void setTag(Tag target, Tag editedTag) {
+        requireNonNull(editedTag);
+
+        tags.setTag(target, editedTag);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTag(Tag key) {
+        tags.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return items.asUnmodifiableObservableList().size() + " items";
+        return items.asUnmodifiableObservableList().size() + " items"
+                + tags.asUnmodifiableObservableList().size() + " tags";
         // TODO: refine later
     }
 
@@ -109,14 +159,20 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     @Override
+    public ObservableList<Tag> getTagList() {
+        return tags.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof FoodRem // instanceof handles nulls
-            && items.equals(((FoodRem) other).items));
+                || (other instanceof FoodRem // instanceof handles nulls
+                && items.equals(((FoodRem) other).items))
+                && tags.equals(((FoodRem) other).tags);
     }
 
     @Override
     public int hashCode() {
-        return items.hashCode();
+        return items.hashCode() ^ tags.hashCode();
     }
 }

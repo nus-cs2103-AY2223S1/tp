@@ -21,7 +21,7 @@ public class ItemListPanel extends UiPart<Region> {
     private ListView<Item> itemListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ItemListPanel} with the given {@code ObservableList}.
      */
     public ItemListPanel(ObservableList<Item> itemList) {
         super(FXML);

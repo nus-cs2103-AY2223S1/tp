@@ -2,7 +2,7 @@ package seedu.foodrem.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.foodrem.testutil.TypicalItems.getTypicalAddressBook;
+import static seedu.foodrem.testutil.TypicalItems.getTypicalFoodRem;
 
 import java.nio.file.Path;
 
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonFoodRemStorage foodRemStorage = new JsonFoodRemStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(foodRemStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void foodRemReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonFoodRemStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonFoodRemStorageTest} class.
          */
-        FoodRem original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyFoodRem retrieved = storageManager.readAddressBook().get();
+        FoodRem original = getTypicalFoodRem();
+        storageManager.saveFoodRem(original);
+        ReadOnlyFoodRem retrieved = storageManager.readFoodRem().get();
         assertEquals(original, new FoodRem(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getFoodRemFilePath() {
+        assertNotNull(storageManager.getFoodRemFilePath());
     }
 
 }

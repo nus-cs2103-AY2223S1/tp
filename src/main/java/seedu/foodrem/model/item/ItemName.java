@@ -59,4 +59,8 @@ public class ItemName {
     public String toString() {
         return itemName;
     }
+
+    public String toListView() {
+        return itemName;
+    }
 }

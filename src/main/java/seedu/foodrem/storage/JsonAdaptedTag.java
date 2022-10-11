@@ -3,7 +3,6 @@ package seedu.foodrem.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import seedu.foodrem.commons.exceptions.IllegalValueException;
 import seedu.foodrem.model.tag.Tag;
 
 /**
@@ -25,7 +24,7 @@ class JsonAdaptedTag {
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedTag(Tag source) {
-        tagName = source.tagName;
+        tagName = source.getName();
     }
 
     @JsonValue
@@ -36,11 +35,11 @@ class JsonAdaptedTag {
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalArgumentException if there were any data constraints violated in the adapted tag.
      */
-    public Tag toModelType() throws IllegalValueException {
+    public Tag toModelType() throws IllegalArgumentException {
         if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalArgumentException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(tagName);
     }

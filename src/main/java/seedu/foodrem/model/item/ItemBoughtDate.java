@@ -3,6 +3,8 @@ package seedu.foodrem.model.item;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator;
 
@@ -12,34 +14,49 @@ import seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator;
  */
 public class ItemBoughtDate {
 
-    private static final String DATE_OUTPUT_PATTERN_REGEX = "yyyy-mm-dd";
-
-    private final LocalDate itemDate;
+    public static final String BOUGHT_DATE_PATTERN_REGEX = "dd-MM-yyyy";
+    public static final DateTimeFormatter BOUGHT_DATE_FORMATTER = DateTimeFormatter
+            .ofPattern(BOUGHT_DATE_PATTERN_REGEX);
+    private static final String BOUGHT_DATE_NOT_SET_PLACEHOLDER = "Not Set";
+    private final LocalDate boughtDate;
 
     /**
-     * Constructs an itemDate.
+     * Constructs an boughtDate.
      *
-     * @param dateString a string that represents the itemDate of the format
+     * @param dateString a string that represents the boughtDate of the
+     *                   format in ItemBoughtDateValidator.
      */
     public ItemBoughtDate(String dateString) {
         requireNonNull(dateString);
-        if (dateString.isEmpty()) {
-            itemDate = LocalDate.now();
+        if (dateString.isBlank()) {
+            boughtDate = null;
             return;
         }
         ItemBoughtDateValidator.validate(dateString);
-        itemDate = LocalDate.parse(dateString);
+        boughtDate = LocalDate.parse(dateString, BOUGHT_DATE_FORMATTER);
     }
 
     /**
-     * Returns true if both {@link ItemBoughtDate#itemDate} have the same date by
+     * Returns true if both {@link ItemBoughtDate#boughtDate} have the same date by
      * {@link LocalDate#equals(Object)}.
      */
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ItemBoughtDate // instanceof handles nulls
-                && itemDate.equals(((ItemBoughtDate) other).itemDate)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ItemBoughtDate)) {
+            return false;
+        }
+
+        ItemBoughtDate date = (ItemBoughtDate) other;
+
+        if (date.boughtDate == null && boughtDate == null) {
+            return true;
+        }
+
+        return boughtDate.equals(((ItemBoughtDate) other).boughtDate);
     }
 
     /**
@@ -59,7 +76,7 @@ public class ItemBoughtDate {
      */
     @Override
     public int hashCode() {
-        return itemDate.hashCode();
+        return boughtDate.hashCode();
     }
 
     /**
@@ -67,6 +84,14 @@ public class ItemBoughtDate {
      */
     @Override
     public String toString() {
-        return itemDate.toString();
+        return boughtDate == null ? "" : boughtDate.format(BOUGHT_DATE_FORMATTER);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String toListView() {
+        String date = Objects.toString(boughtDate, BOUGHT_DATE_NOT_SET_PLACEHOLDER);
+        return String.format("(Bought Date: %s)", date);
     }
 }

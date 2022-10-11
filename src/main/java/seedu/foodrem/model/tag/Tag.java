@@ -8,11 +8,11 @@ import static seedu.foodrem.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
+    public static final String MESSAGE_CONSTRAINTS = "Tags names have a max length of 30 characters";
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    private static final int MAX_CHAR_LIMIT = 30;
 
-    public final String tagName;
+    public final TagName tagName;
 
     /**
      * Constructs a {@code Tag}.
@@ -22,14 +22,18 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        this.tagName = new TagName(tagName);
+    }
+
+    public String getName() {
+        return this.tagName.toString();
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.length() <= MAX_CHAR_LIMIT;
     }
 
     @Override
@@ -48,7 +52,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return tagName.toString();
     }
 
 }

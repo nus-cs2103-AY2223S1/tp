@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.logic.commands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
+import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
@@ -26,73 +26,75 @@ import seedu.foodrem.testutil.EditItemDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_ITEM_NAME_CARROTS = "Carrots";
+
     public static final String VALID_ITEM_NAME_POTATOES = "Potatoes";
     public static final String VALID_ITEM_QUANTITY_POTATOES = "10";
     public static final String VALID_ITEM_UNIT_POTATOES = "kg";
-    public static final String VALID_ITEM_BOUGHT_DATE_POTATOES = "2022-11-11";
-    public static final String VALID_ITEM_EXPIRY_DATE_POTATOES = "2022-11-11";
+    public static final String VALID_ITEM_BOUGHT_DATE_POTATOES = "11-11-2022";
+    public static final String VALID_ITEM_EXPIRY_DATE_POTATOES = "11-11-2022";
 
     public static final String VALID_ITEM_NAME_CUCUMBERS = "Cucumbers";
     public static final String VALID_ITEM_QUANTITY_CUCUMBERS = "2000";
     public static final String VALID_ITEM_UNIT_CUCUMBERS = "grams";
-    public static final String VALID_ITEM_BOUGHT_DATE_CUCUMBERS = "2022-12-12";
-    public static final String VALID_ITEM_EXPIRY_DATE_CUCUMBERS = "2022-12-12";
+    public static final String VALID_ITEM_BOUGHT_DATE_CUCUMBERS = "12-12-2022";
+    public static final String VALID_ITEM_EXPIRY_DATE_CUCUMBERS = "12-12-2022";
 
-    public static final String VALID_DESC_ITEM_NAME_POTATOES = PREFIX_ITEM_NAME
-        + VALID_ITEM_NAME_POTATOES;
-    public static final String VALID_DESC_ITEM_QUANTITY_POTATOES = PREFIX_ITEM_QUANTITY
-        + VALID_ITEM_QUANTITY_POTATOES;
-    public static final String VALID_DESC_ITEM_UNIT_POTATOES = PREFIX_ITEM_UNIT
-        + VALID_ITEM_UNIT_POTATOES;
-    public static final String VALID_DESC_ITEM_BOUGHT_DATE_POTATOES = PREFIX_ITEM_BOUGHT_DATE
-        + VALID_ITEM_BOUGHT_DATE_POTATOES;
-    public static final String VALID_DESC_ITEM_EXPIRY_DATE_POTATOES = PREFIX_ITEM_EXPIRY_DATE
-        + VALID_ITEM_EXPIRY_DATE_POTATOES;
+    public static final String VALID_DESC_ITEM_NAME_POTATOES = " " + PREFIX_ITEM_NAME
+            + VALID_ITEM_NAME_POTATOES;
+    public static final String VALID_DESC_ITEM_QUANTITY_POTATOES = " " + PREFIX_ITEM_QUANTITY
+            + VALID_ITEM_QUANTITY_POTATOES;
+    public static final String VALID_DESC_ITEM_UNIT_POTATOES = " " + PREFIX_ITEM_UNIT
+            + VALID_ITEM_UNIT_POTATOES;
+    public static final String VALID_DESC_ITEM_BOUGHT_DATE_POTATOES = " " + PREFIX_ITEM_BOUGHT_DATE
+            + VALID_ITEM_BOUGHT_DATE_POTATOES;
+    public static final String VALID_DESC_ITEM_EXPIRY_DATE_POTATOES = " " + PREFIX_ITEM_EXPIRY_DATE
+            + VALID_ITEM_EXPIRY_DATE_POTATOES;
 
-    public static final String VALID_DESC_ITEM_NAME_CUCUMBERS = PREFIX_ITEM_NAME
-        + VALID_ITEM_NAME_CUCUMBERS;
-    public static final String VALID_DESC_ITEM_QUANTITY_CUCUMBERS = PREFIX_ITEM_QUANTITY
-        + VALID_ITEM_QUANTITY_CUCUMBERS;
-    public static final String VALID_DESC_ITEM_UNIT_CUCUMBERS = PREFIX_ITEM_UNIT
-        + VALID_ITEM_UNIT_CUCUMBERS;
-    public static final String VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS = PREFIX_ITEM_BOUGHT_DATE
-        + VALID_ITEM_BOUGHT_DATE_CUCUMBERS;
-    public static final String VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = PREFIX_ITEM_EXPIRY_DATE
-        + VALID_ITEM_EXPIRY_DATE_CUCUMBERS;
+    public static final String VALID_DESC_ITEM_NAME_CUCUMBERS = " " + PREFIX_ITEM_NAME
+            + VALID_ITEM_NAME_CUCUMBERS;
+    public static final String VALID_DESC_ITEM_QUANTITY_CUCUMBERS = " " + PREFIX_ITEM_QUANTITY
+            + VALID_ITEM_QUANTITY_CUCUMBERS;
+    public static final String VALID_DESC_ITEM_UNIT_CUCUMBERS = " " + PREFIX_ITEM_UNIT
+            + VALID_ITEM_UNIT_CUCUMBERS;
+    public static final String VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS = " " + PREFIX_ITEM_BOUGHT_DATE
+            + VALID_ITEM_BOUGHT_DATE_CUCUMBERS;
+    public static final String VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = " " + PREFIX_ITEM_EXPIRY_DATE
+            + VALID_ITEM_EXPIRY_DATE_CUCUMBERS;
 
-    public static final String INVALID_ITEM_NAME_POTATOES = "Potatoes|/";
-    public static final String INVALID_ITEM_QUANTITY_POTATOES = "10|/";
-    public static final String INVALID_ITEM_UNIT_POTATOES = "kg|/";
-    public static final String INVALID_ITEM_BOUGHT_DATE_POTATOES = "2022-11-11|/";
-    public static final String INVALID_ITEM_EXPIRY_DATE_POTATOES = "2022-11-11|/";
+    public static final String INVALID_ITEM_NAME_POTATOES = "Potatoe@s";
+    public static final String INVALID_ITEM_QUANTITY_POTATOES = "1@0";
+    public static final String INVALID_ITEM_UNIT_POTATOES = "k@g";
+    public static final String INVALID_ITEM_BOUGHT_DATE_POTATOES = "11-11-202@2";
+    public static final String INVALID_ITEM_EXPIRY_DATE_POTATOES = "11-11-202@2";
 
-    public static final String INVALID_ITEM_NAME_CUCUMBERS = "Cucumbers|/";
-    public static final String INVALID_ITEM_QUANTITY_CUCUMBERS = "2000|/";
-    public static final String INVALID_ITEM_UNIT_CUCUMBERS = "grams|/";
-    public static final String INVALID_ITEM_BOUGHT_DATE_CUCUMBERS = "2022-12-12|/";
-    public static final String INVALID_ITEM_EXPIRY_DATE_CUCUMBERS = "2022-12-12|/";
+    public static final String INVALID_ITEM_NAME_CUCUMBERS = "Cucumber@s";
+    public static final String INVALID_ITEM_QUANTITY_CUCUMBERS = "2$00@0";
+    public static final String INVALID_ITEM_UNIT_CUCUMBERS = "gram@s";
+    public static final String INVALID_ITEM_BOUGHT_DATE_CUCUMBERS = "12-12-202@2";
+    public static final String INVALID_ITEM_EXPIRY_DATE_CUCUMBERS = "12-12-202@2";
 
-    public static final String INVALID_DESC_ITEM_NAME_CUCUMBERS = PREFIX_ITEM_NAME
-        + INVALID_ITEM_NAME_CUCUMBERS;
-    public static final String INVALID_DESC_ITEM_QUANTITY_CUCUMBERS = PREFIX_ITEM_QUANTITY
-        + INVALID_ITEM_QUANTITY_CUCUMBERS;
-    public static final String INVALID_DESC_ITEM_UNIT_CUCUMBERS = PREFIX_ITEM_UNIT
-        + INVALID_ITEM_UNIT_CUCUMBERS;
-    public static final String INVALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS = PREFIX_ITEM_BOUGHT_DATE
-        + INVALID_ITEM_BOUGHT_DATE_CUCUMBERS;
-    public static final String INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = PREFIX_ITEM_EXPIRY_DATE
-        + INVALID_ITEM_EXPIRY_DATE_CUCUMBERS;
+    public static final String INVALID_DESC_ITEM_NAME_CUCUMBERS = " " + PREFIX_ITEM_NAME
+            + INVALID_ITEM_NAME_CUCUMBERS;
+    public static final String INVALID_DESC_ITEM_QUANTITY_CUCUMBERS = " " + PREFIX_ITEM_QUANTITY
+            + INVALID_ITEM_QUANTITY_CUCUMBERS;
+    public static final String INVALID_DESC_ITEM_UNIT_CUCUMBERS = " " + PREFIX_ITEM_UNIT
+            + INVALID_ITEM_UNIT_CUCUMBERS;
+    public static final String INVALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS = " " + PREFIX_ITEM_BOUGHT_DATE
+            + INVALID_ITEM_BOUGHT_DATE_CUCUMBERS;
+    public static final String INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = " " + PREFIX_ITEM_EXPIRY_DATE
+            + INVALID_ITEM_EXPIRY_DATE_CUCUMBERS;
 
-    public static final String INVALID_DESC_ITEM_NAME_POTATOES = PREFIX_ITEM_NAME
-        + INVALID_ITEM_NAME_POTATOES;
-    public static final String INVALID_DESC_ITEM_QUANTITY_POTATOES = PREFIX_ITEM_QUANTITY
-        + INVALID_ITEM_QUANTITY_POTATOES;
-    public static final String INVALID_DESC_ITEM_UNIT_POTATOES = PREFIX_ITEM_UNIT
-        + INVALID_ITEM_UNIT_POTATOES;
-    public static final String INVALID_DESC_ITEM_BOUGHT_DATE_POTATOES = PREFIX_ITEM_BOUGHT_DATE
-        + INVALID_ITEM_BOUGHT_DATE_POTATOES;
-    public static final String INVALID_DESC_ITEM_EXPIRY_DATE_POTATOES = PREFIX_ITEM_EXPIRY_DATE
-        + INVALID_ITEM_EXPIRY_DATE_POTATOES;
+    public static final String INVALID_DESC_ITEM_NAME_POTATOES = " " + PREFIX_ITEM_NAME
+            + INVALID_ITEM_NAME_POTATOES;
+    public static final String INVALID_DESC_ITEM_QUANTITY_POTATOES = " " + PREFIX_ITEM_QUANTITY
+            + INVALID_ITEM_QUANTITY_POTATOES;
+    public static final String INVALID_DESC_ITEM_UNIT_POTATOES = " " + PREFIX_ITEM_UNIT
+            + INVALID_ITEM_UNIT_POTATOES;
+    public static final String INVALID_DESC_ITEM_BOUGHT_DATE_POTATOES = " " + PREFIX_ITEM_BOUGHT_DATE
+            + INVALID_ITEM_BOUGHT_DATE_POTATOES;
+    public static final String INVALID_DESC_ITEM_EXPIRY_DATE_POTATOES = " " + PREFIX_ITEM_EXPIRY_DATE
+            + INVALID_ITEM_EXPIRY_DATE_POTATOES;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -102,19 +104,19 @@ public class CommandTestUtil {
 
     static {
         DESC_POTATOES = new EditItemDescriptorBuilder()
-            .withItemName(VALID_ITEM_NAME_POTATOES)
-            .withItemQuantity(VALID_ITEM_QUANTITY_POTATOES)
-            .withItemUnit(VALID_ITEM_UNIT_POTATOES)
-            .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_POTATOES)
-            .withItemExpiryDate(VALID_ITEM_EXPIRY_DATE_POTATOES)
-            .build();
+                .withItemName(VALID_ITEM_NAME_POTATOES)
+                .withItemQuantity(VALID_ITEM_QUANTITY_POTATOES)
+                .withItemUnit(VALID_ITEM_UNIT_POTATOES)
+                .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_POTATOES)
+                .withItemExpiryDate(VALID_ITEM_EXPIRY_DATE_POTATOES)
+                .build();
         DESC_CUCUMBERS = new EditItemDescriptorBuilder()
-            .withItemName(VALID_ITEM_EXPIRY_DATE_CUCUMBERS)
-            .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
-            .withItemUnit(VALID_ITEM_EXPIRY_DATE_CUCUMBERS)
-            .withItemBoughtDate(VALID_ITEM_EXPIRY_DATE_CUCUMBERS)
-            .withItemExpiryDate(VALID_ITEM_EXPIRY_DATE_CUCUMBERS)
-            .build();
+                .withItemName(VALID_ITEM_NAME_CUCUMBERS)
+                .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
+                .withItemUnit(VALID_ITEM_UNIT_CUCUMBERS)
+                .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_CUCUMBERS)
+                .withItemExpiryDate(VALID_ITEM_EXPIRY_DATE_CUCUMBERS)
+                .build();
     }
 
     /**
@@ -147,22 +149,22 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - FoodRem, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - FoodRem, filtered item list and selected item in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        FoodRem expectedAddressBook = new FoodRem(actualModel.getAddressBook());
+        FoodRem expectedAddressBook = new FoodRem(actualModel.getFoodRem());
         List<Item> expectedFilteredList = new ArrayList<>(actualModel.getFilteredItemList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedAddressBook, actualModel.getFoodRem());
         assertEquals(expectedFilteredList, actualModel.getFilteredItemList());
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the item at the given {@code targetIndex} in the
+     * {@code model}'s foodRem.
      */
     public static void showItemAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredItemList().size());

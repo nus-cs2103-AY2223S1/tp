@@ -17,14 +17,14 @@ import seedu.foodrem.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private final AddressBookStorage addressBookStorage;
+    private final FoodRemStorage foodRemStorage;
     private final UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(FoodRemStorage foodRemStorage, UserPrefsStorage userPrefsStorage) {
+        this.foodRemStorage = foodRemStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -49,30 +49,30 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getFoodRemFilePath() {
+        return foodRemStorage.getFoodRemFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyFoodRem> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyFoodRem> readFoodRem() throws DataConversionException, IOException {
+        return readFoodRem(foodRemStorage.getFoodRemFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyFoodRem> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFoodRem> readFoodRem(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return foodRemStorage.readFoodRem(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyFoodRem addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveFoodRem(ReadOnlyFoodRem addressBook) throws IOException {
+        saveFoodRem(addressBook, foodRemStorage.getFoodRemFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyFoodRem addressBook, Path filePath) throws IOException {
+    public void saveFoodRem(ReadOnlyFoodRem addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        foodRemStorage.saveFoodRem(addressBook, filePath);
     }
 
 }

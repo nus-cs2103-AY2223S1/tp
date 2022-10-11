@@ -9,7 +9,7 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
 
 import java.util.stream.Stream;
 
-import seedu.foodrem.logic.commands.AddCommand;
+import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
@@ -39,43 +39,30 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args,
-                PREFIX_ITEM_NAME,
-                PREFIX_ITEM_QUANTITY,
-                PREFIX_ITEM_UNIT,
-                PREFIX_ITEM_BOUGHT_DATE,
-                PREFIX_ITEM_EXPIRY_DATE);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_ITEM_NAME,
+                        PREFIX_ITEM_QUANTITY,
+                        PREFIX_ITEM_UNIT,
+                        PREFIX_ITEM_BOUGHT_DATE,
+                        PREFIX_ITEM_EXPIRY_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME)
-            || !argMultimap.getPreamble().isEmpty()) {
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         ItemName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
 
-        // TODO: Refactor this to have default values / copy edit command.
-        String quantity = "";
-        if (argMultimap.getValue(PREFIX_ITEM_QUANTITY).isPresent()) {
-            quantity = argMultimap.getValue(PREFIX_ITEM_QUANTITY).get();
-        }
+        String quantity = argMultimap.getValue(PREFIX_ITEM_QUANTITY).orElse("");
         ItemQuantity itemQuantity = ParserUtil.parseQuantity(quantity);
 
-        String unit = "";
-        if (argMultimap.getValue(PREFIX_ITEM_UNIT).isPresent()) {
-            unit = argMultimap.getValue(PREFIX_ITEM_UNIT).get();
-        }
+        String unit = argMultimap.getValue(PREFIX_ITEM_UNIT).orElse("");
         ItemUnit itemUnit = ParserUtil.parseUnit(unit);
 
-        String boughtDate = "";
-        if (argMultimap.getValue(PREFIX_ITEM_BOUGHT_DATE).isPresent()) {
-            boughtDate = argMultimap.getValue(PREFIX_ITEM_BOUGHT_DATE).get();
-        }
+        String boughtDate = argMultimap.getValue(PREFIX_ITEM_BOUGHT_DATE).orElse("");
         ItemBoughtDate itemBoughtDate = ParserUtil.parseBoughtDate(boughtDate);
 
-        String expiryDate = "";
-        if (argMultimap.getValue(PREFIX_ITEM_EXPIRY_DATE).isPresent()) {
-            expiryDate = argMultimap.getValue(PREFIX_ITEM_EXPIRY_DATE).get();
-        }
+        String expiryDate = argMultimap.getValue(PREFIX_ITEM_EXPIRY_DATE).orElse("");
         ItemExpiryDate itemExpiryDate = ParserUtil.parseExpiryDate(expiryDate);
 
         Item item = new Item(name, itemQuantity, itemUnit, itemBoughtDate, itemExpiryDate);

@@ -22,8 +22,8 @@ import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.model.ReadOnlyUserPrefs;
 import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.model.util.SampleDataUtil;
-import seedu.foodrem.storage.AddressBookStorage;
-import seedu.foodrem.storage.JsonAddressBookStorage;
+import seedu.foodrem.storage.FoodRemStorage;
+import seedu.foodrem.storage.JsonFoodRemStorage;
 import seedu.foodrem.storage.JsonUserPrefsStorage;
 import seedu.foodrem.storage.Storage;
 import seedu.foodrem.storage.StorageManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        FoodRemStorage foodRemStorage = new JsonFoodRemStorage(userPrefs.getFoodRemFilePath());
+        storage = new StorageManager(foodRemStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -77,7 +77,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyFoodRem> addressBookOptional;
         ReadOnlyFoodRem initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readFoodRem();
             if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
@@ -120,7 +120,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                + "Using default config properties");
+                    + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -148,7 +148,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                + "Using default user prefs");
+                    + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");

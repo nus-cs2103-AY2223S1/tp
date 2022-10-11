@@ -12,8 +12,8 @@ import seedu.foodrem.model.item.ItemUnit;
  */
 public class ItemBuilder {
 
-    public static final String DEFAULT_NAME = "";
-    public static final String DEFAULT_QUANTITY = "0.0";
+    public static final String DEFAULT_NAME = "NONE";
+    public static final String DEFAULT_QUANTITY = "0";
     public static final String DEFAULT_ITEM_UNIT = "";
     public static final String DEFAULT_BOUGHT_DATE = "";
     public static final String DEFAULT_EXPIRY_DATE = "";
@@ -39,7 +39,7 @@ public class ItemBuilder {
     }
 
     /**
-     * Initializes the ItemBuilder with the data of {@code personToCopy}.
+     * Initializes the ItemBuilder with the data of {@code itemToCopy}.
      */
     public ItemBuilder(Item itemToCopy) {
         name = itemToCopy.getName();
@@ -88,8 +88,6 @@ public class ItemBuilder {
         this.expiryDate = new ItemExpiryDate(expiryDate);
         return this;
     }
-
-    // TODO: Implement withItemTags
 
     ///**
     // * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@link Item} that we are building.
