@@ -111,8 +111,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         PersonListTab personListTab = new PersonListTab(logic.getFilteredPersonList());
+        TaskListTab taskListTab = new TaskListTab(logic.getFilteredTaskList());
+        TagListTab tagListTab = new TagListTab(logic.getTagList());
 
-        tabContainer = new TabContainer(personListTab);
+        tabContainer = new TabContainer(personListTab, taskListTab, tagListTab);
         tabContainerPlaceholder.getChildren().add(tabContainer.getRoot());
 
         resultDisplay = new ResultDisplay();

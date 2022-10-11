@@ -36,7 +36,7 @@
 
 .tab-label {
     -fx-text-fill: white;
-    -fx-font-size: 13pt;
+    -fx-font-size: 12pt;
 }
 
 .tab-pane {
@@ -354,7 +354,7 @@
 
 #tags {
     -fx-hgap: 7;
-    -fx-vgap: 3;
+    -fx-vgap: 7;
 }
 
 #tags .label {
