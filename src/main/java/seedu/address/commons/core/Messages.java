@@ -14,4 +14,5 @@ public class Messages {
     public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d appointments listed!";
 
 
+    public static final String MESSAGE_INVALID_SORT_CRITERIA = "Sort criteria is invalid";
 }
