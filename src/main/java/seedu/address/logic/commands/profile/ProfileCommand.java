@@ -17,6 +17,7 @@ public abstract class ProfileCommand extends Command {
             + PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + DeleteProfileCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + EditProfileCommand.COMMAND_OPTION + ", "
+            + PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + ViewProfilesCommand.COMMAND_OPTION + ".";
 
     public static final String OPTION_UNKNOWN = "That is not a valid option flag.\n";
