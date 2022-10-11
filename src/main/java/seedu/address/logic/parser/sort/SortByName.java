@@ -1,6 +1,6 @@
 package seedu.address.logic.parser.sort;
 
-import  java.util.Comparator;
+import java.util.Comparator;
 
 import seedu.address.model.person.Person;
 
