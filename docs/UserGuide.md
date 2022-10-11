@@ -12,7 +12,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 * [Features](#features)
   * [Adding a company: `add`](#adding-a-company-add)
   * [Clearing all entries: `clear`](#clearing-all-entries--clear)
-  * [Creating a point-of-contact: `create`](#creating-a-point-of-contact-create)
+  * [Creating a point-of-contact: `create`](#creating-a-person-create)
   * [Deleting a company: `delete`](#deleting-a-company--delete)
   * [Editing a company: `edit`](#editing-a-company--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
@@ -20,7 +20,8 @@ interactions recorded faster and simpler than traditional GUI applications.
   * [Listing all companies: `list`](#listing-all-companies--list)
   * [Locating companies by name: `find`](#locating-companies-by-name-find)
   * [Viewing help: `help`](#viewing-help--help)
-  * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user-guide)
+  * [Viewing a company: `view`](#viewing-a-company--view)
+  * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
   * [Sorting the address book: `sort`](#sorting-the-address-book-sort)
   * [Creating a transaction: `transaction`](#creating-a-transaction-transaction)
   * [Saving the data](#saving-the-data)
@@ -208,6 +209,16 @@ Examples:
 * `find Mac` returns `MacDonald`
 * `find fairprice` returns `NTUC Fairprice` <br>
 
+### Viewing a company : `view`
+
+`view` displays the points of contact and transaction log of the specified company.
+
+Format: `view INDEX`
+
+* Views the company at the specified `INDEX`.
+* The index refers to the index number shown in the displayed company list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
 ### Sorting the address book: `sort`
 
 Coming soon.
@@ -263,6 +274,7 @@ _Details coming soon ..._
 | **Filter**      | Coming Soon                                                                                                                                                                                                                                                                |
 | **List**        | `list`                                                                                                                                                                                                                                                                     |
 | **Help**        | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                                                                                                                                   |
+| **View**        | `view INDEX`<br> e.g., `view 3`                                                                                                                                                                                                                                            |
 | **Sort**        | Coming Soon                                                                                                                                                                                                                                                                |
 | **Transaction** | `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/BUY` <br/> e.g `transaction coy/McDonalds g/apples q/100 pr/1.5 d/buy` <br/> `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/SELL` <br/> e.g. `transaction coy/KFC g/Chickens q/50 pr/2.55 d/SELL` |
 | **User Guide**  | `user_guide`                                                                                                                                                                                                                                                               |
