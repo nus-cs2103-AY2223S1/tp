@@ -19,8 +19,6 @@ import seedu.address.logic.commands.project.ProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.ClientProjectList;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.Repository;
@@ -64,25 +62,24 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
     }
 
     private AddProjectCommand parseAddProjectCommand(String arguments) throws ParseException {
-//        ArgumentMultimap argMultimap =
-//                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT, PREFIX_REPOSITORY, PREFIX_DEADLINE);
-//
-//        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
-//                || !argMultimap.getPreamble().isEmpty()) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-//                    AddProjectCommand.MESSAGE_ADD_PROJECT_USAGE));
-//        }
-//
-//        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-//        Name clientName = ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT).get());
-//        Repository repository = ParserUtil.parseRepository(argMultimap.getValue(PREFIX_REPOSITORY).get());
-//        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-//        List<Issue> issueList = new ArrayList<>();
-//
-//        Project project = new Project(name, repository, deadline, null, issueList, null);
-//
-//        return new AddProjectCommand(project);
-        return null;
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT, PREFIX_REPOSITORY, PREFIX_DEADLINE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddProjectCommand.MESSAGE_ADD_PROJECT_USAGE));
+        }
+
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Name clientName = ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT).get());
+        Repository repository = ParserUtil.parseRepository(argMultimap.getValue(PREFIX_REPOSITORY).get());
+        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        List<Issue> issueList = new ArrayList<>();
+
+        Project project = new Project(name, repository, deadline, null, issueList, null);
+
+        return new AddProjectCommand(project);
     }
 
     //TODO: implement
