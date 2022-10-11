@@ -15,6 +15,7 @@ import seedu.nutrigoals.logic.commands.ExitCommand;
 import seedu.nutrigoals.logic.commands.FindCommand;
 import seedu.nutrigoals.logic.commands.HelpCommand;
 import seedu.nutrigoals.logic.commands.ListCommand;
+import seedu.nutrigoals.logic.commands.ReviewCommand;
 import seedu.nutrigoals.logic.commands.TargetCommand;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 
@@ -68,8 +69,13 @@ public class NutriGoalsParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
         case TargetCommand.COMMAND_WORD:
             return new TargetCommandParser().parse(arguments);
+
+        case ReviewCommand.COMMAND_WORD:
+            return new ReviewCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
