@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.client.Client;
@@ -33,6 +34,7 @@ public class AddMeetingCommand extends Command {
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in MyInsuRec";
+    public static final String MESSAGE_CLIENT_NOT_FOUND = "A client named %s could not be found";
 
     private final MeetingDate meetingDate;
     private final MeetingTime meetingTime;
@@ -53,6 +55,9 @@ public class AddMeetingCommand extends Command {
         List<Client> filteredClientList = clientBook.getClientList().stream().filter(
                 client -> client.getName().toString().equals(linkedClientName)
         ).collect(Collectors.toList());
+        if (filteredClientList.size() != 1) {
+            throw new CommandException(String.format(MESSAGE_CLIENT_NOT_FOUND, linkedClientName));
+        }
         Client oldClient = filteredClientList.get(0);
         Client newClient = new Client(
                 oldClient.getName(),
