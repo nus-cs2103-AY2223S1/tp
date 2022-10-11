@@ -33,7 +33,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
-    public static final String MESSAGE_WRONG_TAG_COMMAND = "Tag cannot be added here. Please use the Tag Commands.";
+    public static final String MESSAGE_WRONG_TAG_COMMAND = "Please use Tag commands to add tags";
 
     private final Person toAdd;
 
