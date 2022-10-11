@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -24,7 +25,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddBuyerCommandParser extends AddCommandParser implements Parser<AddCommand> {
+public class AddBuyerCommandParser extends AddCommandParser implements Parser<AddBuyerCommand> {
 
     public AddBuyerCommandParser() {
 
@@ -35,7 +36,7 @@ public class AddBuyerCommandParser extends AddCommandParser implements Parser<Ad
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddBuyerCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CATEGORY);
@@ -45,13 +46,6 @@ public class AddBuyerCommandParser extends AddCommandParser implements Parser<Ad
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE)); //TODO Replace the MESSAGE_USAGE
         }
 
-        PersonCategory personCategory =
-                ParserUtil.parsePersonCategory(argMultimap.getValue(PREFIX_PERSON_CATEGORY).orElse(""));
-
-        switch (personCategory) {
-        case BUYER:
-            return
-        }
 
         PersonCategory personCategory =
                 ParserUtil.parsePersonCategory(argMultimap.getValue(PREFIX_PERSON_CATEGORY).get());
