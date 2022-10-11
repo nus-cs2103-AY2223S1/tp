@@ -1,5 +1,7 @@
 package nus.climods.ui.module;
 
+import java.util.stream.Collectors;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -10,17 +12,19 @@ import nus.climods.ui.UiPart;
 import nus.climods.ui.common.Pill;
 
 /**
- * An UI component that displays information of a {@code Module}.
+ * A UI component that displays information of a {@code Module}.
  */
 public class ModuleCard extends UiPart<Region> {
 
     private static final String FXML = "ModuleListCard.fxml";
 
-    private static final String WORKLOAD_BG_COLOR = "#61AFEF";
-    private static final String WORKLOAD_TEXT_COLOR = "#FFFFFF";
+    private static final String MODULE_CREDITS_BG_COLOR = "#61AFEF";
+    private static final String MODULE_CREDITS_TEXT_COLOR = "#FFFFFF";
+    private static final int MODULE_CREDITS_FONT_SIZE = 13;
 
     private static final String SEMESTER_BG_COLOR = "#C678DD";
     private static final String SEMESTER_TEXT_COLOR = "#000000";
+    private static final int SEMESTER_FONT_SIZE = 13;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX. As a consequence, UI
@@ -48,19 +52,23 @@ public class ModuleCard extends UiPart<Region> {
     public ModuleCard(Module module) {
         super(FXML);
         this.module = module;
+
         moduleCode.setText(module.getCode());
         title.setText(module.getTitle());
         department.setText(module.getDepartment());
-        module.getSemesterData()
-            .forEach(semData -> {
-                assert semData.getSemester() != null;
-                moduleInfo.getChildren()
-                    .add(new Pill(String.format("Semester %s", semData.getSemester().toString()), SEMESTER_BG_COLOR,
-                        SEMESTER_TEXT_COLOR, 13));
-            });
         moduleInfo.getChildren()
-            .add(new Pill(String.format("%s MCs", module.getModuleCredit()), WORKLOAD_BG_COLOR, WORKLOAD_TEXT_COLOR,
-                13));
+            .addAll(module.getSemesters().stream().map(this::createSemesterPill).collect(Collectors.toList()));
+        moduleInfo.getChildren().add(createModuleCreditsPill(module.getModuleCredit()));
+    }
+
+    private Pill createSemesterPill(int semesterNum) {
+        return new Pill(String.format("Semester %s", semesterNum), SEMESTER_BG_COLOR, SEMESTER_TEXT_COLOR,
+            SEMESTER_FONT_SIZE);
+    }
+
+    private Pill createModuleCreditsPill(String moduleCredits) {
+        return new Pill(String.format("%s MCs", moduleCredits), MODULE_CREDITS_BG_COLOR, MODULE_CREDITS_TEXT_COLOR,
+            MODULE_CREDITS_FONT_SIZE);
     }
 
     @Override
