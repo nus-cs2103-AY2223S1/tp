@@ -87,7 +87,7 @@ public class JsonGuestBookStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
+    public void saveGuestBook_nullGuestBook_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveGuestBook(null, "SomeFile.json"));
     }
 

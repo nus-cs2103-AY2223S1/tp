@@ -36,14 +36,14 @@ public class GuestBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyGuestBook_replacesData() {
         GuestBook newData = getTypicalGuestBook();
         guestBook.resetData(newData);
         assertEquals(newData, guestBook);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateGuests_throwsDuplicateGuestException() {
         // Two persons with the same identity fields
         Guest editedAlice = new GuestBuilder(ALICE).build();
         List<Guest> newGuests = Arrays.asList(ALICE, editedAlice);
@@ -53,30 +53,30 @@ public class GuestBookTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasGuest_nullGuest_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> guestBook.hasGuest(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasGuest_guestNotInGuestBook_returnsFalse() {
         assertFalse(guestBook.hasGuest(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasGuest_guestInGuestBook_returnsTrue() {
         guestBook.addGuest(ALICE);
         assertTrue(guestBook.hasGuest(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasGuest_guestWithSameIdentityFieldsInGuestBook_returnsTrue() {
         guestBook.addGuest(ALICE);
         Guest editedAlice = new GuestBuilder(ALICE).build();
         assertTrue(guestBook.hasGuest(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getGuestList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> guestBook.getGuestList().remove(0));
     }
 

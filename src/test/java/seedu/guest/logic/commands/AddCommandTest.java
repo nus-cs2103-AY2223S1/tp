@@ -31,7 +31,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_guestAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingGuestAdded modelStub = new ModelStubAcceptingGuestAdded();
         Guest validGuest = new GuestBuilder().build();
 
@@ -43,7 +43,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateGuest_throwsCommandException() {
         Guest validGuest = new GuestBuilder().build();
         AddCommand addCommand = new AddCommand(validGuest);
         ModelStub modelStub = new ModelStubWithGuest(validGuest);

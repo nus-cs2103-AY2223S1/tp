@@ -23,56 +23,56 @@ public class UniqueGuestBookTest {
     private final UniqueGuestList uniqueGuestList = new UniqueGuestList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
+    public void contains_nullGuest_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueGuestList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_guestNotInList_returnsFalse() {
         assertFalse(uniqueGuestList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_guestInList_returnsTrue() {
         uniqueGuestList.add(ALICE);
         assertTrue(uniqueGuestList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_guestWithSameIdentityFieldsInList_returnsTrue() {
         uniqueGuestList.add(ALICE);
         Guest editedAlice = new GuestBuilder(ALICE).build();
         assertTrue(uniqueGuestList.contains(editedAlice));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
+    public void add_nullGuest_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueGuestList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
+    public void add_duplicateGuest_throwsDuplicateGuestException() {
         uniqueGuestList.add(ALICE);
         assertThrows(DuplicateGuestException.class, () -> uniqueGuestList.add(ALICE));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
+    public void setGuest_nullTargetGuest_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueGuestList.setGuest(null, ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
+    public void setGuest_nullEditedGuest_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueGuestList.setGuest(ALICE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
+    public void setGuest_targetGuestNotInList_throwsGuestNotFoundException() {
         assertThrows(GuestNotFoundException.class, () -> uniqueGuestList.setGuest(ALICE, ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
+    public void setGuest_editedGuestIsSameGuest_success() {
         uniqueGuestList.add(ALICE);
         uniqueGuestList.setGuest(ALICE, ALICE);
         UniqueGuestList expectedUniqueGuestList = new UniqueGuestList();
@@ -81,7 +81,7 @@ public class UniqueGuestBookTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
+    public void setGuest_editedGuestHasSameIdentity_success() {
         uniqueGuestList.add(ALICE);
         Guest editedAlice = new GuestBuilder(ALICE).build();
         uniqueGuestList.setGuest(ALICE, editedAlice);
@@ -91,7 +91,7 @@ public class UniqueGuestBookTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
+    public void setGuest_editedGuestHasDifferentIdentity_success() {
         uniqueGuestList.add(ALICE);
         uniqueGuestList.setGuest(ALICE, BOB);
         UniqueGuestList expectedUniqueGuestList = new UniqueGuestList();
@@ -100,24 +100,24 @@ public class UniqueGuestBookTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+    public void setGuest_editedGuestHasNonUniqueIdentity_throwsDuplicateGuestException() {
         uniqueGuestList.add(ALICE);
         uniqueGuestList.add(BOB);
         assertThrows(DuplicateGuestException.class, () -> uniqueGuestList.setGuest(ALICE, BOB));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullGuest_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueGuestList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
+    public void remove_guestDoesNotExist_throwsGuestNotFoundException() {
         assertThrows(GuestNotFoundException.class, () -> uniqueGuestList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
+    public void remove_existingGuest_removesGuest() {
         uniqueGuestList.add(ALICE);
         uniqueGuestList.remove(ALICE);
         UniqueGuestList expectedUniqueGuestList = new UniqueGuestList();
@@ -125,12 +125,12 @@ public class UniqueGuestBookTest {
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
+    public void setGuests_nullUniqueGuestList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueGuestList.setGuests((UniqueGuestList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
+    public void setGuests_uniqueGuestList_replacesOwnListWithProvidedUniqueGuestList() {
         uniqueGuestList.add(ALICE);
         UniqueGuestList expectedUniqueGuestList = new UniqueGuestList();
         expectedUniqueGuestList.add(BOB);
@@ -139,12 +139,12 @@ public class UniqueGuestBookTest {
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
+    public void setGuests_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueGuestList.setGuests((List<Guest>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
+    public void setGuests_list_replacesOwnListWithProvidedList() {
         uniqueGuestList.add(ALICE);
         List<Guest> guestList = Collections.singletonList(BOB);
         uniqueGuestList.setGuests(guestList);
@@ -154,7 +154,7 @@ public class UniqueGuestBookTest {
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
+    public void setGuests_listWithDuplicateGuests_throwsDuplicateGuestException() {
         List<Guest> listWithDuplicateGuests = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicateGuestException.class, () -> uniqueGuestList.setGuests(listWithDuplicateGuests));
     }

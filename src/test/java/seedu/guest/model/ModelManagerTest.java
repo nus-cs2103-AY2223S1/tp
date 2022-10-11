@@ -61,35 +61,35 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setGuestBookFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setGuestBookFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setGuestBookFilePath_validPath_setsGuestBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setGuestBookFilePath(path);
         assertEquals(path, modelManager.getGuestBookFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasGuest_nullGuest_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasGuest(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasGuest_guestNotInGuestBook_returnsFalse() {
         assertFalse(modelManager.hasGuest(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasGuest_guestInGuestBook_returnsTrue() {
         modelManager.addGuest(ALICE);
         assertTrue(modelManager.hasGuest(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredGuestList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredGuestList().remove(0));
     }
 
