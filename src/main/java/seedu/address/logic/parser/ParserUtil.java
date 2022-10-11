@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.*;
 import seedu.address.model.project.Budget;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectName;
@@ -104,5 +105,50 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static StaffContact parseStaffContact(String contact) throws ParseException {
+        requireNonNull(contact);
+        String trimmedContact = contact.trim();
+        if (!StaffContact.isValidName(trimmedContact)) {
+            throw new ParseException(StaffContact.MESSAGE_CONSTRAINTS);
+        }
+        return new StaffContact(trimmedContact);
+    }
+
+    public static StaffDepartment parseStaffDepartment(String department) throws ParseException {
+        requireNonNull(department);
+        String trimmedDepartment = department.trim();
+        if (!StaffDepartment.isValidName(department)) {
+            throw new ParseException(StaffDepartment.MESSAGE_CONSTRAINTS);
+        }
+        return new StaffDepartment(trimmedDepartment);
+    }
+
+    public static StaffInsurance parseStaffInsurance(String insurance) throws ParseException {
+        requireNonNull(insurance);
+        String trimmedInsurance = insurance.trim();
+        if (!StaffInsurance.isValidName(insurance)) {
+            throw new ParseException(StaffInsurance.MESSAGE_CONSTRAINTS);
+        }
+        return new StaffInsurance(trimmedInsurance);
+    }
+
+    public static StaffName parseStaffName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!StaffName.isValidName(trimmedName)) {
+            throw new ParseException(StaffName.MESSAGE_CONSTRAINTS);
+        }
+        return new StaffName(trimmedName);
+    }
+
+    public static StaffTitle parseStaffTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!StaffTitle.isValidName(title)) {
+            throw new ParseException(StaffTitle.MESSAGE_CONSTRAINTS);
+        }
+        return new StaffTitle(trimmedTitle);
     }
 }

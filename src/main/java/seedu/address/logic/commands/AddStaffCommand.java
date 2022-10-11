@@ -5,54 +5,105 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BUDGET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_INSURANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.project.Budget;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
+import seedu.address.model.person.StaffContact;
+import seedu.address.model.person.StaffDepartment;
+import seedu.address.model.person.StaffInsurance;
+import seedu.address.model.person.StaffName;
+import seedu.address.model.person.StaffTitle;
+
+import seedu.address.model.tag.Tag;
+
+import java.util.List;
+import java.util.Set;
 
 public class AddStaffCommand extends Command {
 
 
     public static final String COMMAND_WORD = "addStaff";
 
-//    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the address book. "
-//            + "Parameters: "
-//            + PREFIX_PROJECT_NAME + "PROJECT NAME "
-//            + PREFIX_BUDGET + "BUDGET "
-//            + PREFIX_DEADLINE + "DEADLINE "
-//            + "[" + PREFIX_TAG + "TAG]...\n"
-//            + "Example: " + COMMAND_WORD + " "
-//            + PREFIX_PROJECT_NAME + "CS2103T TP "
-//            + PREFIX_BUDGET + "$200 "
-//            + PREFIX_DEADLINE + "2022-01-01 "
-//            + PREFIX_TAG + "friends "
-//            + PREFIX_TAG + "busy";
-//
-//    public static final String MESSAGE_SUCCESS = "New project added: %1$s";
-//    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the address book. "
+            + "Parameters: "
+            + PREFIX_PROJECT_NAME + "PROJECT NAME "
+            + PREFIX_STAFF_NAME + "NAME "
+            + PREFIX_STAFF_CONTACT + "PHONE_NUMBER "
+            + PREFIX_STAFF_INSURANCE + "INSURANCE_STATUS "
+            + PREFIX_STAFF_TITLE + "STAFF_TITLE "
+            + PREFIX_STAFF_DEPARTMENT + "STAFF_DEPARTMENT "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_PROJECT_NAME + "CS2103T TP "
+            + PREFIX_STAFF_NAME + "John Doe "
+            + PREFIX_STAFF_CONTACT + "98765432 "
+            + PREFIX_STAFF_INSURANCE + "true "
+            + PREFIX_STAFF_TITLE + "Accountant "
+            + PREFIX_STAFF_DEPARTMENT + "Accounting";
+
+    public static final String MESSAGE_ADD_STAFF_SUCCESS = "New staff added: %1$s";
+    public static final String MESSAGE_DUPLICATE_STAFF = "This staff already exists in the project";
 
 //    private final Project toAdd;
-
     private final Staff toAdd;
+    private final String addTo;
 
     /**
-     * Creates an AddCommand to add the specified {@code Staff}
+     * Creates an AddStaffCommand to add the specified {@code Staff} to the {@code Project} with specified {@code pname}.
      */
-    public AddStaff(Staff staff) {
+    public AddStaffCommand(Staff staff, String pname) {
         requireNonNull(staff);
         toAdd = staff;
+        addTo = pname;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Project> lastShownList = model.getFilteredProjectList();
 
-        if (model.hasStaff(toAdd)) {
+
+        int projectIndex = 0;
+
+        for (int i = 0; i < lastShownList.size(); ++i) {
+            if (lastShownList.get(i).getProjectName().equals(addTo)) {
+                projectIndex = i;
+            }
+        }
+
+        Index index = Index.fromZeroBased(projectIndex);
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        }
+
+        Project projectToAdd = lastShownList.get(index.getZeroBased());
+
+        assert projectToAdd != null;
+
+        if (projectToAdd.hasStaff(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STAFF);
         }
 
-        model.addStaff(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        projectToAdd.getStaffList().add(toAdd);
+
+//        model.setProject(projectToEdit, editedProject);
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+//        return new CommandResult(String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject));
+        return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, projectToAdd));
     }
 
     @Override

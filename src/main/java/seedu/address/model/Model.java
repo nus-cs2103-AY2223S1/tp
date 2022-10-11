@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.project.Project;
+import seedu.address.model.staff.Staff;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,9 @@ import seedu.address.model.project.Project;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Staff> PREDICATE_SHOW_ALL_STAFF = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -85,10 +89,3 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
-
-    /**
-     * Adds the given staff.
-     * {@code Staff} must not already exist in the address book. 
-     */
-    void addStaff(Staff staff);
-}
