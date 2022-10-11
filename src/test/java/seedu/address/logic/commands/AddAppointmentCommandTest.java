@@ -22,7 +22,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.CreateNewAlice;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.HashSet;
@@ -65,8 +64,8 @@ public class AddAppointmentCommandTest {
     public void execute_addOneAppointmentAcceptedByModel_success() {
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
-        expectedModel.addPerson(CreateNewAlice());
-        actualModel.addPerson(CreateNewAlice());
+        expectedModel.addPerson(new PersonBuilder().build());
+        actualModel.addPerson(new PersonBuilder().build());
 
         Set<Appointment> appointments = new HashSet<>();
         appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
@@ -87,8 +86,8 @@ public class AddAppointmentCommandTest {
     public void execute_addMultipleAppointment_success() {
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
-        expectedModel.addPerson(CreateNewAlice());
-        actualModel.addPerson(CreateNewAlice());
+        expectedModel.addPerson(new PersonBuilder().build());
+        actualModel.addPerson(new PersonBuilder().build());
 
         Set<Appointment> appointments = new HashSet<>();
         appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
@@ -110,7 +109,7 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_addDuplicateAppointment_failure() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        testModel.addPerson(CreateNewAlice());
+        testModel.addPerson(new PersonBuilder().build());
 
         Set<Appointment> appointments = new HashSet<>();
         appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(

@@ -66,11 +66,12 @@ public class EditAppointmentCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPersonByOverwritingAppointments(personToEdit, editPersonDescriptor);
-
-        if (personToEdit.getAppointments().size() == 0){
+        if (personToEdit.getAppointments() == null){
             throw new CommandException(MESSAGE_NO_APPOINTMENT_TO_EDIT);
         }
+
+        Person editedPerson = createEditedPersonByOverwritingAppointments(personToEdit, editPersonDescriptor);
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedPerson));

@@ -104,7 +104,13 @@ public class PersonBuilder {
         return new Person(name, phone, email, address, tags);
     }
 
+    public Person buildWithAppointments() {
+        return new Person(name, phone, email, address, tags, appointments);
+    }
+
     public Person buildWithoutAppointments() {
         return new Person(name, phone, email, address, tags, null);
     }
+
+
 }

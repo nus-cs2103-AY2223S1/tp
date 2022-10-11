@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_21_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_22_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -27,6 +29,13 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
+
+    public static final Person MUSAB = new PersonBuilder().withName("Musab")
+            .withAddress("301 Upper Thomson Rd, Singapore 574408")
+            .withEmail("musab@gmail.com").withPhone("92345678")
+            .withTags("gay")
+            .build();
+
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
@@ -59,12 +68,6 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    public static final Person CreateNewAlice() {
-        return new PersonBuilder().withName("Alice Pauline")
-               .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-               .withPhone("94351253")
-               .withTags("friends").build();
-    }
     private TypicalPersons() {} // prevents instantiation
 
     /**
