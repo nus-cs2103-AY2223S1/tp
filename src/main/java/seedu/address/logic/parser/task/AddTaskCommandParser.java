@@ -4,6 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.task.AddTaskCommand;
@@ -13,6 +15,8 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
@@ -36,8 +40,12 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
+        // TODO: Implement deadline, isdone, description, tags
+        Deadline deadline = new Deadline("");
+        Boolean isDone = false;
+        Set<Tag> tags = new HashSet<>();
 
-        Task task = new Task(description);
+        Task task = new Task(description, deadline, isDone, tags);
 
         return new AddTaskCommand(task);
     }
