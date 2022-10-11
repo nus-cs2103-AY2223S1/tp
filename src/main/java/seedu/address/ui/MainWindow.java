@@ -32,7 +32,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
-    private ResultDisplay resultDisplay;
+    private TaskListPanel taskListPanel;
+    private CommandOutput commandOutput;
     private HelpWindow helpWindow;
 
     @FXML
@@ -42,10 +43,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane studentListPanelPlaceholder;
+    private StackPane resultListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane commandOutputPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -113,11 +114,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        // Show a list of students upon startup.
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        resultListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        commandOutput = new CommandOutput();
+        commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -166,9 +168,37 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     *  When the 'Students' button in the sidebar is clicked,
+     *  display a list of students in MainWindow.
+     */
+    @FXML
+    public void handleClickStudentsButton() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        resultListPanelPlaceholder.getChildren().clear();
+        resultListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    }
+
+    /**
+     *  When the 'Tasks' button in the sidebar is clicked,
+     *  display a list of tasks in MainWindow.
+     */
+    @FXML
+    public void handleClickTasksButton() {
+        // A helpful comment goes here.
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        resultListPanelPlaceholder.getChildren().clear();
+        resultListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+    }
+
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
     }
+
+    public TaskListPanel getTaskListPanel() {
+        return taskListPanel;
+    }
+
 
     /**
      * Executes the command and returns the result.
@@ -179,7 +209,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            commandOutput.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -192,7 +222,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            commandOutput.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }

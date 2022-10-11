@@ -9,14 +9,14 @@ import javafx.scene.layout.Region;
 /**
  * A ui for the status bar that is displayed at the header of the application.
  */
-public class ResultDisplay extends UiPart<Region> {
+public class CommandOutput extends UiPart<Region> {
 
-    private static final String FXML = "ResultDisplay.fxml";
+    private static final String FXML = "CommandOutput.fxml";
 
     @FXML
     private TextArea resultDisplay;
 
-    public ResultDisplay() {
+    public CommandOutput() {
         super(FXML);
     }
 
