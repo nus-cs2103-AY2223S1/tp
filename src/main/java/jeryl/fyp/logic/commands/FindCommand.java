@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import jeryl.fyp.commons.core.Messages;
 import jeryl.fyp.model.Model;
-import jeryl.fyp.model.person.ProjectNameContainsKeywordsPredicate;
+import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

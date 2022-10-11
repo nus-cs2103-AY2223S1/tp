@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import jeryl.fyp.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -20,7 +21,6 @@ import jeryl.fyp.model.AddressBook;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ReadOnlyAddressBook;
 import jeryl.fyp.model.ReadOnlyUserPrefs;
-import jeryl.fyp.model.person.Person;
 import jeryl.fyp.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -33,27 +33,27 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Student validStudent = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validStudent), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        Student validStudent = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validStudent);
+        ModelStub modelStub = new ModelStubWithPerson(validStudent);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Student alice = new PersonBuilder().withName("Alice").build();
+        Student bob = new PersonBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addPerson(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +124,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasPerson(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deletePerson(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setPerson(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Student> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -153,17 +153,17 @@ public class AddCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+        private final Student student;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPerson(Student student) {
+            requireNonNull(student);
+            this.student = student;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasPerson(Student student) {
+            requireNonNull(student);
+            return this.student.isSamePerson(student);
         }
     }
 
@@ -171,18 +171,18 @@ public class AddCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Student> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasPerson(Student student) {
+            requireNonNull(student);
+            return personsAdded.stream().anyMatch(student::isSamePerson);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addPerson(Student student) {
+            requireNonNull(student);
+            personsAdded.add(student);
         }
 
         @Override

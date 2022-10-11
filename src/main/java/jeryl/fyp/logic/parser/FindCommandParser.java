@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import jeryl.fyp.logic.commands.FindCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.person.ProjectNameContainsKeywordsPredicate;
+import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

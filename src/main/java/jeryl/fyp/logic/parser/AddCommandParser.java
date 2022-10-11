@@ -13,11 +13,8 @@ import java.util.stream.Stream;
 
 import jeryl.fyp.logic.commands.AddCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.person.Address;
-import jeryl.fyp.model.person.Email;
-import jeryl.fyp.model.person.Name;
-import jeryl.fyp.model.person.Person;
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.*;
+import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -47,9 +44,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         String projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECTNAME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, id, email, address, projectName, tagList);
+        Student student = new Student(name, id, email, address, projectName, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(student);
     }
 
     /**

@@ -1,4 +1,4 @@
-package jeryl.fyp.model.person;
+package jeryl.fyp.model.student;
 
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.util.AppUtil.checkArgument;

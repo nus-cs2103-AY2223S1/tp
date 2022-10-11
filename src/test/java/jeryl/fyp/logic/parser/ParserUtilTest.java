@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.person.Address;
-import jeryl.fyp.model.person.Email;
-import jeryl.fyp.model.person.Name;
-import jeryl.fyp.model.person.Phone;
+import jeryl.fyp.model.student.Address;
+import jeryl.fyp.model.student.Email;
+import jeryl.fyp.model.student.Name;
+import jeryl.fyp.model.student.Phone;
 import jeryl.fyp.model.tag.Tag;
 
 public class ParserUtilTest {

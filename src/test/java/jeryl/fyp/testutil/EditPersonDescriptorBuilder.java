@@ -5,11 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import jeryl.fyp.logic.commands.EditCommand.EditPersonDescriptor;
-import jeryl.fyp.model.person.Address;
-import jeryl.fyp.model.person.Email;
-import jeryl.fyp.model.person.Name;
-import jeryl.fyp.model.person.Person;
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.*;
+import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -30,14 +27,14 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Student student) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setStudentID(person.getStudentID());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setProjectName(person.getProjectName());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(student.getName());
+        descriptor.setStudentID(student.getStudentID());
+        descriptor.setEmail(student.getEmail());
+        descriptor.setAddress(student.getAddress());
+        descriptor.setProjectName(student.getProjectName());
+        descriptor.setTags(student.getTags());
     }
 
     /**

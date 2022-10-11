@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.logic.commands.EditCommand.EditPersonDescriptor;
-import jeryl.fyp.model.person.Address;
-import jeryl.fyp.model.person.Email;
-import jeryl.fyp.model.person.Name;
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.Address;
+import jeryl.fyp.model.student.Email;
+import jeryl.fyp.model.student.Name;
+import jeryl.fyp.model.student.StudentID;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.testutil.EditPersonDescriptorBuilder;
 

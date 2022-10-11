@@ -4,13 +4,13 @@ import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jeryl.fyp.testutil.TypicalPersons.getTypicalAddressBook;
 
+import jeryl.fyp.model.student.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ModelManager;
 import jeryl.fyp.model.UserPrefs;
-import jeryl.fyp.model.person.Person;
 import jeryl.fyp.testutil.PersonBuilder;
 
 /**
@@ -27,19 +27,19 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Student validStudent = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        expectedModel.addPerson(validStudent);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validStudent), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        Student studentInList = model.getAddressBook().getPersonList().get(0);
+        assertCommandFailure(new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

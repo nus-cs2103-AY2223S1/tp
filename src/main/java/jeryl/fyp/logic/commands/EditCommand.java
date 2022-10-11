@@ -20,11 +20,8 @@ import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.commons.util.CollectionUtil;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
-import jeryl.fyp.model.person.Address;
-import jeryl.fyp.model.person.Email;
-import jeryl.fyp.model.person.Name;
-import jeryl.fyp.model.person.Person;
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.*;
+import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -70,39 +67,39 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student editedStudent = createEditedPerson(studentToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(studentToEdit, editedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        StudentID updatedStudentID = editPersonDescriptor.getStudentID().orElse(personToEdit.getStudentID());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        String updatedProjectName = editPersonDescriptor.getProjectName().orElse(personToEdit.getProjectName());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
+        StudentID updatedStudentID = editPersonDescriptor.getStudentID().orElse(studentToEdit.getStudentID());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        String updatedProjectName = editPersonDescriptor.getProjectName().orElse(studentToEdit.getProjectName());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Person(updatedName, updatedStudentID, updatedEmail, updatedAddress, updatedProjectName, updatedTags);
+        return new Student(updatedName, updatedStudentID, updatedEmail, updatedAddress, updatedProjectName, updatedTags);
     }
 
     @Override

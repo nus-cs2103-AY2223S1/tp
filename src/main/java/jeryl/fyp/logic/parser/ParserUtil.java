@@ -9,11 +9,11 @@ import java.util.Set;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.commons.util.StringUtil;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.person.Address;
-import jeryl.fyp.model.person.Email;
-import jeryl.fyp.model.person.Name;
-import jeryl.fyp.model.person.Phone;
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.Address;
+import jeryl.fyp.model.student.Email;
+import jeryl.fyp.model.student.Name;
+import jeryl.fyp.model.student.Phone;
+import jeryl.fyp.model.student.StudentID;
 import jeryl.fyp.model.tag.Tag;
 
 /**

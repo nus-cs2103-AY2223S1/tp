@@ -1,4 +1,4 @@
-package jeryl.fyp.model.person;
+package jeryl.fyp.model.student;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -9,7 +9,7 @@ import jeryl.fyp.commons.util.StringUtil;
 /**
  * Tests that a {@code Person}'s {@code ProjectName} matches any of the keywords given.
  */
-public class ProjectNameContainsKeywordsPredicate implements Predicate<Person> {
+public class ProjectNameContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
     /**
@@ -21,9 +21,9 @@ public class ProjectNameContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Student student) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(person.getProjectName(), keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(student.getProjectName(), keyword));
     }
 
     @Override

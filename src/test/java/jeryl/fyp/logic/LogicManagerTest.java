@@ -26,7 +26,7 @@ import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ModelManager;
 import jeryl.fyp.model.ReadOnlyAddressBook;
 import jeryl.fyp.model.UserPrefs;
-import jeryl.fyp.model.person.Person;
+import jeryl.fyp.model.student.Student;
 import jeryl.fyp.storage.JsonAddressBookStorage;
 import jeryl.fyp.storage.JsonUserPrefsStorage;
 import jeryl.fyp.storage.StorageManager;
@@ -81,9 +81,9 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + STUDENTID_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Student expectedStudent = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addPerson(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

@@ -10,15 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jeryl.fyp.commons.exceptions.IllegalValueException;
-import jeryl.fyp.model.person.Address;
-import jeryl.fyp.model.person.Email;
-import jeryl.fyp.model.person.Name;
-import jeryl.fyp.model.person.Person;
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.*;
+import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Student}.
  */
 class JsonAdaptedPerson {
 
@@ -51,7 +48,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedPerson(Student source) {
         name = source.getName().fullName;
         id = source.getStudentID().id;
         email = source.getEmail().value;
@@ -67,7 +64,7 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Student toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -119,7 +116,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelStudentID, modelEmail, modelAddress, modelProjectName, modelTags);
+        return new Student(modelName, modelStudentID, modelEmail, modelAddress, modelProjectName, modelTags);
     }
 
 }

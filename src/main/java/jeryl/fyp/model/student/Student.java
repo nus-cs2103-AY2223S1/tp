@@ -1,4 +1,4 @@
-package jeryl.fyp.model.person;
+package jeryl.fyp.model.student;
 
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -13,7 +13,7 @@ import jeryl.fyp.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Student {
 
     // Identity fields
     private final Name name;
@@ -28,7 +28,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, StudentID id, Email email, Address address, String projectName, Set<Tag> tags) {
+    public Student(Name name, StudentID id, Email email, Address address, String projectName, Set<Tag> tags) {
         requireAllNonNull(name, id, email, address, projectName, tags);
         this.name = name;
         this.id = id;
@@ -70,13 +70,13 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Student otherStudent) {
+        if (otherStudent == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherStudent != null
+                && otherStudent.getName().equals(getName());
     }
 
     /**
@@ -89,17 +89,17 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Student)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getStudentID().equals(getStudentID())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getProjectName().equals(getProjectName())
-                && otherPerson.getTags().equals(getTags());
+        Student otherStudent = (Student) other;
+        return otherStudent.getName().equals(getName())
+                && otherStudent.getStudentID().equals(getStudentID())
+                && otherStudent.getEmail().equals(getEmail())
+                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getProjectName().equals(getProjectName())
+                && otherStudent.getTags().equals(getTags());
     }
 
     @Override

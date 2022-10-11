@@ -5,7 +5,7 @@ import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.StudentID;
 
 /**
  * Marks the status of a FYP as "DONE", "IP" or "YTS"

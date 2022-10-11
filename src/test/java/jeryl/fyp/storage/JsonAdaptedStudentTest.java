@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.commons.exceptions.IllegalValueException;
-import jeryl.fyp.model.person.Address;
-import jeryl.fyp.model.person.Email;
-import jeryl.fyp.model.person.Name;
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.Address;
+import jeryl.fyp.model.student.Email;
+import jeryl.fyp.model.student.Name;
+import jeryl.fyp.model.student.StudentID;
 
-public class JsonAdaptedPersonTest {
+public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_STUDENTID = "+1651234D";
     private static final String INVALID_ADDRESS = " ";

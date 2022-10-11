@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import jeryl.fyp.logic.commands.EditCommand.EditPersonDescriptor;
 import jeryl.fyp.testutil.EditPersonDescriptorBuilder;
 
-public class EditPersonDescriptorTest {
+public class EditStudentDescriptorTest {
 
     @Test
     public void equals() {

@@ -14,7 +14,7 @@ import jeryl.fyp.logic.parser.AddressBookParser;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ReadOnlyAddressBook;
-import jeryl.fyp.model.person.Person;
+import jeryl.fyp.model.student.Student;
 import jeryl.fyp.storage.Storage;
 
 /**
@@ -60,7 +60,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Student> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
 

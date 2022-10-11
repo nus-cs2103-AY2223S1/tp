@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.commons.core.GuiSettings;
-import jeryl.fyp.model.person.NameContainsKeywordsPredicate;
+import jeryl.fyp.model.student.NameContainsKeywordsPredicate;
 import jeryl.fyp.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

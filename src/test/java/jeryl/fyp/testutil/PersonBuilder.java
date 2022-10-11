@@ -3,11 +3,8 @@ package jeryl.fyp.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import jeryl.fyp.model.person.Address;
-import jeryl.fyp.model.person.Email;
-import jeryl.fyp.model.person.Name;
-import jeryl.fyp.model.person.Person;
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.*;
+import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.model.util.SampleDataUtil;
 
@@ -44,13 +41,13 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        id = personToCopy.getStudentID();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        projectName = personToCopy.getProjectName();
-        tags = new HashSet<>(personToCopy.getTags());
+    public PersonBuilder(Student studentToCopy) {
+        name = studentToCopy.getName();
+        id = studentToCopy.getStudentID();
+        email = studentToCopy.getEmail();
+        address = studentToCopy.getAddress();
+        projectName = studentToCopy.getProjectName();
+        tags = new HashSet<>(studentToCopy.getTags());
     }
 
     /**
@@ -101,8 +98,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, id, email, address, projectName, tags);
+    public Student build() {
+        return new Student(name, id, email, address, projectName, tags);
     }
 
 }

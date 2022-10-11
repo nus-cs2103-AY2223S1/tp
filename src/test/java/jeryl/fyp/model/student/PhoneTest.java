@@ -1,4 +1,4 @@
-package jeryl.fyp.model.person;
+package jeryl.fyp.model.student;
 
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;

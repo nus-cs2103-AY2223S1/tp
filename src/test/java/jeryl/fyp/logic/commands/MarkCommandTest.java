@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import jeryl.fyp.model.person.StudentID;
+import jeryl.fyp.model.student.StudentID;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.

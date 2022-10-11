@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ModelManager;
 import jeryl.fyp.model.UserPrefs;
-import jeryl.fyp.model.person.ProjectNameContainsKeywordsPredicate;
+import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

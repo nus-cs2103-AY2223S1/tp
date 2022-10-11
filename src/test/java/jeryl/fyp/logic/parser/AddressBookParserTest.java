@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import jeryl.fyp.model.student.Student;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.logic.commands.AddCommand;
@@ -23,8 +24,7 @@ import jeryl.fyp.logic.commands.FindCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.person.Person;
-import jeryl.fyp.model.person.ProjectNameContainsKeywordsPredicate;
+import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
 import jeryl.fyp.testutil.EditPersonDescriptorBuilder;
 import jeryl.fyp.testutil.PersonBuilder;
 import jeryl.fyp.testutil.PersonUtil;
@@ -35,9 +35,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Student student = new PersonBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
+        assertEquals(new AddCommand(student), command);
     }
 
     @Test
@@ -55,8 +55,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Student student = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);

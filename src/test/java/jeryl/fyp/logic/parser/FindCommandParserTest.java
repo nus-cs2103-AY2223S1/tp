@@ -10,7 +10,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.logic.commands.FindCommand;
-import jeryl.fyp.model.person.ProjectNameContainsKeywordsPredicate;
+import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

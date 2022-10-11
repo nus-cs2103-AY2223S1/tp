@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import jeryl.fyp.model.person.Person;
+import jeryl.fyp.model.student.Student;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -24,7 +24,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Student student;
 
     @FXML
     private HBox cardPane;
@@ -46,16 +46,16 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Student student, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.student = student;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        studentID.setText(person.getStudentID().id);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        projectName.setText(person.getProjectName());
-        person.getTags().stream()
+        name.setText(student.getName().fullName);
+        studentID.setText(student.getStudentID().id);
+        address.setText(student.getAddress().value);
+        email.setText(student.getEmail().value);
+        projectName.setText(student.getProjectName());
+        student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -75,6 +75,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && student.equals(card.student);
     }
 }
