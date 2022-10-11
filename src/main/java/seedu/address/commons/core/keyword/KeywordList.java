@@ -37,4 +37,14 @@ public class KeywordList {
                 || (other instanceof KeywordList // instanceof handles nulls
                 && keywords.equals(((KeywordList) other).keywords));
     }
+
+    public boolean isAllKeywordDate() {
+        boolean result = true;
+
+        for(Keyword k: keywords) {
+            result = result && k.isDate();
+        }
+
+        return result;
+    }
 }
