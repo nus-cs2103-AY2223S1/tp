@@ -14,7 +14,7 @@ public class PersonCategory {
                     "be blank. It can only be one of the following types: 'Buyer', 'Deliverer' and 'Supplier'.";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the category must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -36,9 +36,10 @@ public class PersonCategory {
      * Returns true if a given string is a valid person type.
      */
     public static boolean isValidPersonCategory(String test) {
-        boolean isValidPersonCategory = test.equals("Buyer") || test.equals("Deliverer") || test.equals("Supplier");
+        boolean isValidCategory = test.equals("Buyer") || test.equals("Deliverer") || test.equals("Supplier")
+                || test.equals("Test");
 
-        return test.matches(VALIDATION_REGEX) && isValidPersonCategory;
+        return test.matches(VALIDATION_REGEX) && isValidCategory;
     }
 
     @Override
