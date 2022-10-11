@@ -29,7 +29,7 @@ public class AddTutorialCommandTest {
 
     @Test
     public void constructor_nullTutorial_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTutorialCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddConsultaionCommand(null));
     }
 
     @Test
@@ -37,10 +37,10 @@ public class AddTutorialCommandTest {
         ModelStubAcceptingTutorialAdded modelStub = new ModelStubAcceptingTutorialAdded();
         Tutorial validTutorial = new TutorialBuilder().build();
 
-        CommandResult commandResult = new AddTutorialCommand(validTutorial).execute(modelStub);
+        CommandResult commandResult = new AddConsultaionCommand(validTutorial).execute(modelStub);
 
         assertEquals(String.format(
-                AddTutorialCommand.MESSAGE_SUCCESS, validTutorial),
+                AddConsultaionCommand.MESSAGE_SUCCESS, validTutorial),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTutorial), modelStub.tutorialsAdded);
     }
@@ -48,25 +48,25 @@ public class AddTutorialCommandTest {
     @Test
     public void execute_duplicateTutorial_throwsCommandException() {
         Tutorial validTutorial = new TutorialBuilder().build();
-        AddTutorialCommand addCommand = new AddTutorialCommand(validTutorial);
+        AddConsultaionCommand addCommand = new AddConsultaionCommand(validTutorial);
         ModelStub modelStub = new ModelStubWithTutorial(validTutorial);
 
         assertThrows(CommandException.class,
-                AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL, () -> addCommand.execute(modelStub));
+                AddConsultaionCommand.MESSAGE_DUPLICATE_TUTORIAL, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Tutorial w17 = new TutorialBuilder().withName("CS2103T W17").build();
         Tutorial f01 = new TutorialBuilder().withName("CS2103T F01").build();
-        AddTutorialCommand addW17Command = new AddTutorialCommand(w17);
-        AddTutorialCommand addF01Command = new AddTutorialCommand(f01);
+        AddConsultaionCommand addW17Command = new AddConsultaionCommand(w17);
+        AddConsultaionCommand addF01Command = new AddConsultaionCommand(f01);
 
         // same object -> returns true
         assertTrue(addW17Command.equals(addW17Command));
 
         // same values -> returns true
-        AddTutorialCommand addAliceCommandCopy = new AddTutorialCommand(w17);
+        AddConsultaionCommand addAliceCommandCopy = new AddConsultaionCommand(w17);
         assertTrue(addW17Command.equals(addAliceCommandCopy));
 
         // different types -> returns false

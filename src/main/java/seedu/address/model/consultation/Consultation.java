@@ -1,2 +1,4 @@
-package seedu.address.model.consultation;public class Consulation {
+package seedu.address.model.consultation;
+
+public class Consultation {
 }

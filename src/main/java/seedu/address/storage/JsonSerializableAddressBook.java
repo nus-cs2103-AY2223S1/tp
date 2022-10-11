@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static seedu.address.logic.commands.tutorial.AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL;
+import static seedu.address.logic.commands.tutorial.AddConsultaionCommand.MESSAGE_DUPLICATE_TUTORIAL;
 
 import java.util.ArrayList;
 import java.util.List;
