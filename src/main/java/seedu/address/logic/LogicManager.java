@@ -44,10 +44,6 @@ public class LogicManager implements Logic {
         return this.isDisplayGroupCommand;
     }
 
-    private void setDisplayGroupCommand() {
-        this.isDisplayGroupCommand = true;
-    }
-
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
