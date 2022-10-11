@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import java.util.List;
+
 /**
  * Represents a Task in the TaskList.
  */
@@ -56,5 +58,18 @@ public class Task {
      */
     public void unmarkTask() {
         isDone = false;
+    }
+
+    /**
+     * Returns true if task contains any of the description or deadline keywords.
+     * By default, empty lists will return true.
+     *
+     * @param descriptionKeywords Possibly empty list containing keywords for {@code Description}.
+     * @param deadlineKeywords Possibly empty list containing keywords for {@code Deadline}.
+     * @return boolean indicating if task contains supplied keywords.
+     */
+    public boolean containsKeywords(List<Description> descriptionKeywords, List<Deadline> deadlineKeywords) {
+        return (descriptionKeywords.isEmpty() || descriptionKeywords.contains(description))
+                && (deadlineKeywords.isEmpty() || deadlineKeywords.contains(deadline));
     }
 }

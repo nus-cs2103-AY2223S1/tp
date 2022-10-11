@@ -3,8 +3,6 @@ package seedu.address.model.task;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Tests that a {@code task}'s {@code Description} and/or {@code Deadline}
  * matches any of the keywords given.
@@ -25,12 +23,16 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
         this.deadlineKeywords = deadlineKeywords;
     }
 
+    /**
+     * Returns true if task contains any of the description or deadline keywords.
+     * By default, empty keyword lists will return true.
+     *
+     * @param  task Task that will be checked for matching keywords.
+     * @return boolean indicating if task contains supplied keywords.
+     */
     @Override
     public boolean test(Task task) {
-        return (descriptionKeywords.isEmpty() || descriptionKeywords.stream().anyMatch(keyword ->
-                StringUtil.containsWordIgnoreCase(task.getDescription().toString(), keyword.toString())))
-                && (deadlineKeywords.isEmpty() || deadlineKeywords.stream().anyMatch(keyword ->
-                StringUtil.containsWordIgnoreCase(task.getDeadline().toString(), keyword.toString())));
+        return task.containsKeywords(descriptionKeywords, deadlineKeywords);
     }
 
     @Override
