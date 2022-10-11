@@ -129,8 +129,7 @@
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-text-fill: #D8D8D8;
+    -fx-font-size: 12px;
 }
 
 .stack-pane {
@@ -327,6 +326,11 @@
     -fx-background-color: transparent;
 }
 
+.noSuchData {
+    -fx-background-color: #1E2128;
+    -fx-background-radius: 4px;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -397,4 +401,22 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#iterationListView.list-view {
+    -fx-padding: 0px;
+    -fx-background-color: #15181F;
+    -fx-background-radius: 4px;
+}
+
+#iterationListView .list-cell {
+    -fx-padding: 16px;
+    -fx-border-width: 0px;
+    -fx-background-color: transparent, #1E2128;
+    -fx-background-insets: 0px, 8px;
+    -fx-background-radius: 4px;
+}
+
+#iterationListView .list-cell:empty {
+    -fx-background-color: transparent;
 }
