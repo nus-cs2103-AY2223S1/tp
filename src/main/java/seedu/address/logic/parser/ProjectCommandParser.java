@@ -29,9 +29,9 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         case AddProjectCommand.COMMAND_FLAG:
             return parseAddProjectCommand(arguments);
         case EditProjectCommand.COMMAND_FLAG:
-            return parseEditProjectComand(arguments);
+            return parseEditProjectCommand(arguments);
         case DeleteProjectCommand.COMMAND_FLAG:
-            return parseDeleteProjectComand(arguments);
+            return parseDeleteProjectCommand(arguments);
         case ListProjectCommand.COMMAND_FLAG:
             return parseListProjectCommand(arguments);
         default:
@@ -45,17 +45,17 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
     }
 
     //TODO: implement
-    private EditProjectCommand parseEditProjectComand(String arguments) {
+    private EditProjectCommand parseEditProjectCommand(String arguments) {
         return null;
     }
 
     //TODO: implement
-    private DeleteProjectCommand parseDeleteProjectComand(String arguments) {
+    private DeleteProjectCommand parseDeleteProjectCommand(String arguments) {
         return null;
     }
 
     //TODO: implement
     private ListProjectCommand parseListProjectCommand(String arguments) {
-        return null;
+        return new ListProjectCommand();
     }
 }
