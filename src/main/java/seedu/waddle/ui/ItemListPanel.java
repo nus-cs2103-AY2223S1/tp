@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.waddle.commons.core.LogsCenter;
-import seedu.waddle.model.itinerary.Item;
+import seedu.waddle.model.item.Item;
 
 /**
  * Panel containing the list of Items.

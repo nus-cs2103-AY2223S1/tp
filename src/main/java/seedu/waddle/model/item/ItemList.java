@@ -1,4 +1,4 @@
-package seedu.waddle.model.itinerary;
+package seedu.waddle.model.item;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
