@@ -52,6 +52,10 @@ public class JsonAdaptedEntry {
                 .collect(Collectors.toList()));
     }
 
+    /**
+     * Checks the JsonEntry for validity
+     * @throws IllegalValueException if the json entry is not valid
+     */
     public void checkIsValidJsonEntry() throws IllegalValueException {
         if (description == null) {
             throw new IllegalValueException(

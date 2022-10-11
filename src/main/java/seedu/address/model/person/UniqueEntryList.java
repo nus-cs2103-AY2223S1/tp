@@ -50,6 +50,17 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
 
     /**
+     * Removes the equivalent entry from the list.
+     * The entry must exist in the list.
+     */
+    public void remove(Entry toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new EntryNotFoundException();
+        }
+    }
+
+    /**
      * Replaces the entry {@code target} in the list with {@code editedEntry}.
      * {@code target} must exist in the list.
      * The entry identity of {@code editedEntry} must not be the same as another existing entry in the list.
@@ -72,17 +83,6 @@ public class UniqueEntryList implements Iterable<Entry> {
     public void setEntries(UniqueEntryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Removes the equivalent entry from the list.
-     * The entry must exist in the list.
-     */
-    public void remove(Entry toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new EntryNotFoundException();
-        }
     }
 
     /**

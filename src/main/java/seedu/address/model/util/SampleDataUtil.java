@@ -9,28 +9,57 @@ import seedu.address.model.ReadOnlyPennyWise;
 import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
-import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.Expenditure;
+import seedu.address.model.entry.Income;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Entry[] getSampleEntries() {
-        return new Entry[]{
-            new Entry(new Description("Lunch"), new Date("20-01-2022"), new Amount("20"), getTagSet("Lunch")),
-            new Entry(new Description("Dinner"), new Date("20-02-2022"), new Amount("30"), getTagSet("Dinner")),
-            new Entry(new Description("Breakfast"), new Date("21-01-2022"), new Amount("40"),
-                getTagSet("Breakfast")),
-            new Entry(new Description("Paid this guy"), new Date("21-01-2022"), new Amount("0.10"),
-                getTagSet("paid"))
+    public static Expenditure[] getSampleExpenditure() {
+        return new Expenditure[] {
+            new Expenditure(
+                    new Description("Lunch"),
+                    new Date("20-01-2022"),
+                    new Amount("20"),
+                    getTagSet("Lunch")),
+            new Expenditure(
+                    new Description("Dinner"),
+                    new Date("20-02-2022"),
+                    new Amount("30"),
+                    getTagSet("Dinner")),
+            new Expenditure(
+                    new Description("Breakfast"),
+                    new Date("21-01-2022"),
+                    new Amount("40"),
+                    getTagSet("Breakfast")),
+            new Expenditure(
+                    new Description("Paid this guy"),
+                    new Date("21-01-2022"),
+                    new Amount("0.10"),
+                    getTagSet("paid"))
+        };
+    }
+
+    public static Income[] getSampleIncome() {
+        return new Income[] {
+            new Income(
+                    new Description("Tutoring"),
+                    new Date("01-01-2022"),
+                    new Amount("100"),
+                    getTagSet("tutoring"))
         };
     }
 
     public static ReadOnlyPennyWise getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Entry sampleEntry : getSampleEntries()) {
+        for (Expenditure sampleEntry : getSampleExpenditure()) {
             sampleAb.addExpenditure(sampleEntry);
+        }
+
+        for (Income sampleIncome : getSampleIncome()) {
+            sampleAb.addIncome(sampleIncome);
         }
         return sampleAb;
     }

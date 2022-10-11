@@ -1,14 +1,19 @@
 package seedu.address.model.expenditure;
 
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.tag.Tag;
 
+
+/**
+ * Represents a Expenditure in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Expenditure {
     // Identity fields
     private final Description description;
@@ -21,7 +26,7 @@ public class Expenditure {
     /**
      * Every field must be present and not null.
      */
-    public Expenditure( Description description, Date date, Amount amount, Set<Tag> tags) {
+    public Expenditure(Description description, Date date, Amount amount, Set<Tag> tags) {
         requireAllNonNull(date, amount, description, tags);
         this.date = date;
         this.amount = amount;
