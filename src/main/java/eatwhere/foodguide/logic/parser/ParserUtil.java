@@ -71,7 +71,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Location parseAddress(String address) throws ParseException {
+    public static Location parseLocation(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!Location.isValidLocation(trimmedAddress)) {
@@ -84,15 +84,15 @@ public class ParserUtil {
      * Parses a {@code String email} into an {@code Cuisine}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code cuisine} is invalid.
      */
-    public static Cuisine parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Cuisine.isValidEmail(trimmedEmail)) {
+    public static Cuisine parseCuisine(String cuisine) throws ParseException {
+        requireNonNull(cuisine);
+        String trimmedCuisine = cuisine.trim();
+        if (!Cuisine.isValidCuisine(trimmedCuisine)) {
             throw new ParseException(Cuisine.MESSAGE_CONSTRAINTS);
         }
-        return new Cuisine(trimmedEmail);
+        return new Cuisine(trimmedCuisine);
     }
 
     /**

@@ -94,7 +94,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editEateryDescriptor.getName().orElse(eateryToEdit.getName());
         Phone updatedPhone = editEateryDescriptor.getPhone().orElse(eateryToEdit.getPhone());
-        Cuisine updatedCuisine = editEateryDescriptor.getEmail().orElse(eateryToEdit.getEmail());
+        Cuisine updatedCuisine = editEateryDescriptor.getEmail().orElse(eateryToEdit.getCuisine());
         Location updatedLocation = editEateryDescriptor.getAddress().orElse(eateryToEdit.getLocation());
         Set<Tag> updatedTags = editEateryDescriptor.getTags().orElse(eateryToEdit.getTags());
 
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
         public EditEateryDescriptor(EditEateryDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.cuisine);
+            setCuisine(toCopy.cuisine);
             setAddress(toCopy.location);
             setTags(toCopy.tags);
         }
@@ -167,7 +167,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Cuisine cuisine) {
+        public void setCuisine(Cuisine cuisine) {
             this.cuisine = cuisine;
         }
 

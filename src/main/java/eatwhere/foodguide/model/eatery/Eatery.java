@@ -35,6 +35,18 @@ public class Eatery {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Constructor for an eatery that does not require a phone.
+     */
+    public Eatery(Name name, Cuisine cuisine, Location location, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(name, cuisine, location, tags);
+        this.name = name;
+        this.cuisine = cuisine;
+        this.location = location;
+        this.tags.addAll(tags);
+        this.phone = new Phone();
+    }
+
     public Name getName() {
         return name;
     }
@@ -43,7 +55,7 @@ public class Eatery {
         return phone;
     }
 
-    public Cuisine getEmail() {
+    public Cuisine getCuisine() {
         return cuisine;
     }
 
@@ -90,7 +102,7 @@ public class Eatery {
         Eatery otherEatery = (Eatery) other;
         return otherEatery.getName().equals(getName())
                 && otherEatery.getPhone().equals(getPhone())
-                && otherEatery.getEmail().equals(getEmail())
+                && otherEatery.getCuisine().equals(getCuisine())
                 && otherEatery.getLocation().equals(getLocation())
                 && otherEatery.getTags().equals(getTags());
     }
@@ -108,7 +120,7 @@ public class Eatery {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Cuisine: ")
-                .append(getEmail())
+                .append(getCuisine())
                 .append("; Location: ")
                 .append(getLocation());
 

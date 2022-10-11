@@ -26,34 +26,34 @@ public class AddCommandParserTest {
         // whitespace only preamble
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.PREAMBLE_WHITESPACE + CommandTestUtil.NAME_DESC_BOB
-                        + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
+                        + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.CUISINE_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND, new AddCommand(expectedEatery));
 
         // multiple names - last name accepted
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.NAME_DESC_BOB
-                        + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
+                        + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.CUISINE_DESC_BOB
                         + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND,
                         new AddCommand(expectedEatery));
 
         // multiple phones - last phone accepted
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_AMY
-                        + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
+                        + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.CUISINE_DESC_BOB
                         + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND,
                         new AddCommand(expectedEatery));
 
         // multiple emails - last email accepted
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.EMAIL_DESC_BOB
+                        + CommandTestUtil.CUISINE_DESC_AMY + CommandTestUtil.CUISINE_DESC_BOB
                         + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND,
                         new AddCommand(expectedEatery));
 
         // multiple addresses - last address accepted
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_AMY
+                        + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.ADDRESS_DESC_AMY
                         + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_FRIEND,
                         new AddCommand(expectedEatery));
 
@@ -63,7 +63,7 @@ public class AddCommandParserTest {
                 .build();
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
+                        + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
                         + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
                         new AddCommand(expectedEateryMultipleTags));
     }
@@ -74,7 +74,7 @@ public class AddCommandParserTest {
         Eatery expectedEatery = new EateryBuilder(TypicalEateries.AMY).withTags().build();
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
-                        + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY,
+                        + CommandTestUtil.CUISINE_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY,
                         new AddCommand(expectedEatery));
     }
 
@@ -85,31 +85,25 @@ public class AddCommandParserTest {
         // missing name prefix
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.VALID_NAME_BOB + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB,
+                        + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB,
                         expectedMessage);
 
-        // missing phone prefix
-        CommandParserTestUtil.assertParseFailure(parser,
-                CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.VALID_PHONE_BOB
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB,
-                        expectedMessage);
-
-        // missing email prefix
+        // missing cuisine prefix
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.VALID_EMAIL_BOB + CommandTestUtil.ADDRESS_DESC_BOB,
+                        + CommandTestUtil.VALID_CUISINE_BOB + CommandTestUtil.ADDRESS_DESC_BOB,
                         expectedMessage);
 
         // missing address prefix
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.VALID_ADDRESS_BOB,
+                        + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.VALID_ADDRESS_BOB,
                         expectedMessage);
 
         // all prefixes missing
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.VALID_NAME_BOB + CommandTestUtil.VALID_PHONE_BOB
-                        + CommandTestUtil.VALID_EMAIL_BOB + CommandTestUtil.VALID_ADDRESS_BOB,
+                        + CommandTestUtil.VALID_CUISINE_BOB + CommandTestUtil.VALID_ADDRESS_BOB,
                         expectedMessage);
     }
 
@@ -118,48 +112,48 @@ public class AddCommandParserTest {
         // invalid name
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.INVALID_NAME_DESC + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
+                        + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
                         + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
                         Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.INVALID_PHONE_DESC
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
+                        + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
                         + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
                         Phone.MESSAGE_CONSTRAINTS);
 
-        // invalid email
+        // invalid cuisine
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.INVALID_EMAIL_DESC + CommandTestUtil.ADDRESS_DESC_BOB
+                        + CommandTestUtil.INVALID_CUISINE_DESC + CommandTestUtil.ADDRESS_DESC_BOB
                         + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
                         Cuisine.MESSAGE_CONSTRAINTS);
 
         // invalid address
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.INVALID_ADDRESS_DESC
+                        + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.INVALID_ADDRESS_DESC
                         + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND,
                         Location.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
+                        + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
                         + CommandTestUtil.INVALID_TAG_DESC + CommandTestUtil.VALID_TAG_FRIEND,
                         Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.INVALID_NAME_DESC + CommandTestUtil.PHONE_DESC_BOB
-                        + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.INVALID_ADDRESS_DESC,
+                        + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.INVALID_ADDRESS_DESC,
                         Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         CommandParserTestUtil.assertParseFailure(parser,
                 CommandTestUtil.PREAMBLE_NON_EMPTY + CommandTestUtil.NAME_DESC_BOB
-                        + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB
+                        + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.CUISINE_DESC_BOB
                         + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.TAG_DESC_HUSBAND
                         + CommandTestUtil.TAG_DESC_FRIEND,
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));

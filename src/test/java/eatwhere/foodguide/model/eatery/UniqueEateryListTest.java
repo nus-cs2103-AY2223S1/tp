@@ -42,7 +42,7 @@ public class UniqueEateryListTest {
     public void contains_eateryWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEateryList.add(TypicalEateries.ALICE);
         Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .withLocation(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueEateryList.contains(editedAlice));
     }
@@ -89,7 +89,7 @@ public class UniqueEateryListTest {
     public void setEatery_editedEateryHasSameIdentity_success() {
         uniqueEateryList.add(TypicalEateries.ALICE);
         Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .withLocation(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueEateryList.setEatery(TypicalEateries.ALICE, editedAlice);
         UniqueEateryList expectedUniqueEateryList = new UniqueEateryList();

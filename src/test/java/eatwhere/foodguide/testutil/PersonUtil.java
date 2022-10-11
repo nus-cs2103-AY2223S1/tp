@@ -1,7 +1,7 @@
 package eatwhere.foodguide.testutil;
 
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_CUISINE;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
@@ -32,7 +32,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + eatery.getName().fullName + " ");
         sb.append(PREFIX_PHONE + eatery.getPhone().value + " ");
-        sb.append(PREFIX_CUISINE + eatery.getEmail().value + " ");
+        sb.append(PREFIX_CUISINE + eatery.getCuisine().value + " ");
         sb.append(PREFIX_LOCATION + eatery.getLocation().value + " ");
         eatery.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")

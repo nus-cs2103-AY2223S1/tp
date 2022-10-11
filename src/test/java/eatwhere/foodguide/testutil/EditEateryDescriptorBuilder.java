@@ -35,7 +35,7 @@ public class EditEateryDescriptorBuilder {
         descriptor = new EditEateryDescriptor();
         descriptor.setName(eatery.getName());
         descriptor.setPhone(eatery.getPhone());
-        descriptor.setEmail(eatery.getEmail());
+        descriptor.setCuisine(eatery.getCuisine());
         descriptor.setAddress(eatery.getLocation());
         descriptor.setTags(eatery.getTags());
     }
@@ -59,8 +59,8 @@ public class EditEateryDescriptorBuilder {
     /**
      * Sets the {@code Cuisine} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditEateryDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Cuisine(email));
+    public EditEateryDescriptorBuilder withEmail(String cuisine) {
+        descriptor.setCuisine(new Cuisine(cuisine));
         return this;
     }
 

@@ -21,12 +21,12 @@ public class JsonAdaptedEateryTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_CUISINE = "e$$x$$$ample.co$$m";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = TypicalEateries.BENSON.getName().toString();
     private static final String VALID_PHONE = TypicalEateries.BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = TypicalEateries.BENSON.getEmail().toString();
+    private static final String VALID_EMAIL = TypicalEateries.BENSON.getCuisine().toString();
     private static final String VALID_ADDRESS = TypicalEateries.BENSON.getLocation().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = TypicalEateries.BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -69,9 +69,9 @@ public class JsonAdaptedEateryTest {
     }
 
     @Test
-    public void toModelType_invalidEmail_throwsIllegalValueException() {
+    public void toModelType_invalidCuisine_throwsIllegalValueException() {
         JsonAdaptedEatery eatery =
-                new JsonAdaptedEatery(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedEatery(VALID_NAME, VALID_PHONE, INVALID_CUISINE, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Cuisine.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, eatery::toModelType);
     }

@@ -51,7 +51,7 @@ public class EateryCard extends UiPart<Region> {
         name.setText(eatery.getName().fullName);
         phone.setText(eatery.getPhone().value);
         address.setText(eatery.getLocation().value);
-        cuisine.setText(eatery.getEmail().value);
+        cuisine.setText(eatery.getCuisine().value);
         eatery.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

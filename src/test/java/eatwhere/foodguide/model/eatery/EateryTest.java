@@ -1,7 +1,7 @@
 package eatwhere.foodguide.model.eatery;
 
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_CUISINE_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -32,8 +32,8 @@ public class EateryTest {
 
         // same name, all other attributes different -> returns true
         Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).withCuisine(VALID_CUISINE_BOB)
+                .withLocation(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(TypicalEateries.ALICE.isSameEatery(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -77,11 +77,11 @@ public class EateryTest {
         assertFalse(TypicalEateries.ALICE.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new EateryBuilder(TypicalEateries.ALICE).withEmail(VALID_EMAIL_BOB).build();
+        editedAlice = new EateryBuilder(TypicalEateries.ALICE).withCuisine(VALID_CUISINE_BOB).build();
         assertFalse(TypicalEateries.ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new EateryBuilder(TypicalEateries.ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        editedAlice = new EateryBuilder(TypicalEateries.ALICE).withLocation(VALID_ADDRESS_BOB).build();
         assertFalse(TypicalEateries.ALICE.equals(editedAlice));
 
         // different tags -> returns false

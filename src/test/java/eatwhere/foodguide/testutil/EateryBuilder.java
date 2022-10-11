@@ -18,7 +18,7 @@ public class EateryBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_EMAIL = "amygmailcom";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
@@ -44,7 +44,7 @@ public class EateryBuilder {
     public EateryBuilder(Eatery eateryToCopy) {
         name = eateryToCopy.getName();
         phone = eateryToCopy.getPhone();
-        cuisine = eateryToCopy.getEmail();
+        cuisine = eateryToCopy.getCuisine();
         location = eateryToCopy.getLocation();
         tags = new HashSet<>(eateryToCopy.getTags());
     }
@@ -68,7 +68,7 @@ public class EateryBuilder {
     /**
      * Sets the {@code Location} of the {@code Eatery} that we are building.
      */
-    public EateryBuilder withAddress(String address) {
+    public EateryBuilder withLocation(String address) {
         this.location = new Location(address);
         return this;
     }
@@ -84,8 +84,8 @@ public class EateryBuilder {
     /**
      * Sets the {@code Cuisine} of the {@code Eatery} that we are building.
      */
-    public EateryBuilder withEmail(String email) {
-        this.cuisine = new Cuisine(email);
+    public EateryBuilder withCuisine(String cuisine) {
+        this.cuisine = new Cuisine(cuisine);
         return this;
     }
 
