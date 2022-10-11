@@ -10,6 +10,7 @@ import seedu.nutrigoals.commons.core.index.Index;
 import seedu.nutrigoals.commons.util.StringUtil;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 import seedu.nutrigoals.model.Calorie;
+import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.tag.Tag;
 
@@ -18,6 +19,7 @@ import seedu.nutrigoals.model.tag.Tag;
  */
 public class ParserUtil {
 
+    public static final String DEFAULT_TIME = "T00:00:00";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -87,5 +89,21 @@ public class ParserUtil {
             throw new ParseException(Calorie.MESSAGE_CONSTRAINTS);
         }
         return new Calorie(trimmedCalorie);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @param date The string representing the date to parse.
+     * @return A {@code DateTime} representing the given {@code String date}.
+     * @throws ParseException if the given {@code date} is not in the format: YYYY-MM-DD.
+     */
+    public static DateTime parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDateTime = date.trim() + DEFAULT_TIME;
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DateTime(trimmedDateTime);
     }
 }

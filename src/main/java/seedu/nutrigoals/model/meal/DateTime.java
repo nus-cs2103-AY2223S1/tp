@@ -3,11 +3,18 @@ package seedu.nutrigoals.model.meal;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents the date and time a Food was recorded.
  */
 public class DateTime {
+
+    public static final String MESSAGE_CONSTRAINTS = "Date should be in the format: yyyy-MM-dd";
+
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy");
+
     private final LocalDateTime dateTime;
 
     /**
@@ -36,7 +43,6 @@ public class DateTime {
         return dateTime.isAfter(otherDateTime.dateTime);
     }
 
-
     /**
      * Checks if this {@code DateTime} was recorded on the same day as the given {@code DateTime}.
      * @param otherDateTime The other {@code DateTime} to compare to.
@@ -46,12 +52,33 @@ public class DateTime {
         return dateTime.toLocalDate().isEqual(otherDateTime.dateTime.toLocalDate());
     }
 
+    /**
+     * Returns true if a given string represents a valid date and time.
+     * @return True if the given string represents a valid date and time.
+     */
+    public static boolean isValidDateTime(String dateTime) {
+        try {
+            LocalDateTime.parse(dateTime);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns the date of this {@code DateTime}.
+     * @return A string representing the date of this {@code DateTime}.
+     */
+    public String getDate() {
+        return dateTime.format(DATE_FORMATTER);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (!(other instanceof DateTime)) {
             return false;
         }
-        return dateTime.equals(other);
+        return dateTime.isEqual(((DateTime) other).dateTime);
     }
 
     @Override
