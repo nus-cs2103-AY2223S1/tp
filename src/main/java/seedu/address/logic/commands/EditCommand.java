@@ -17,8 +17,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
 
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.tag.TagType;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -128,7 +133,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private UniqueTagTypeMap tags;
+        private UniqueTagTypeMap oldTagTypeMap;
+        private UniqueTagTypeMap newTagTypeMap;
 
         public EditPersonDescriptor() {}
 
@@ -141,7 +147,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setOldTagTypeMap(toCopy.oldTagTypeMap);
+            setNewTagTypeMap(toCopy.oldTagTypeMap);
         }
 
         /**
@@ -184,11 +191,19 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
+         * Sets {@code oldTagTypeMap} to this object's {@code oldTagTypeMap}.
+         * A defensive copy of {@code oldTagTypeMap} is used internally.
+         */
+        public void setOldTagTypeMap(UniqueTagTypeMap tags) {
+            this.oldTagTypeMap = oldTagTypeMap;
+        }
+
+        /**
+         * Sets {@code newTagTypeMap} to this object's {@code newTagTypeMap}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(UniqueTagTypeMap tags) {
-            this.tags = tags;
+        public void setNewTagTypeMap(UniqueTagTypeMap tags) {
+            this.newTagTypeMap = newTagTypeMap;
         }
 
         /**
@@ -196,8 +211,17 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<UniqueTagTypeMap> getTags() {
-            return (tags != null) ? Optional.of(tags) : Optional.empty();
+        public Optional<UniqueTagTypeMap> getOldTagTypeMap() {
+            return (oldTagTypeMap != null) ? Optional.of(oldTagTypeMap) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<UniqueTagTypeMap> getNewTagTypeMap() {
+            return (newTagTypeMap != null) ? Optional.of(newTagTypeMap) : Optional.empty();
         }
 
         @Override
@@ -219,7 +243,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getOldTagTypeMap().equals(e.getOldTagTypeMap())
+                    && getNewTagTypeMap().equals(e.getNewTagTypeMap());
         }
     }
 }
