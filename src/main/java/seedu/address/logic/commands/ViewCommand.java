@@ -6,6 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.staff.UniqueStaffList;
+import seedu.address.ui.StaffListPanel;
 
 /**
  * Lists all projects in the address book to the user.
@@ -31,6 +32,7 @@ public class ViewCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
+        model.setTargetProject(project);
         UniqueStaffList list = project.getStaffList();
         return new CommandResult(MESSAGE_SUCCESS);
     }

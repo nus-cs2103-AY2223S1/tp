@@ -21,10 +21,22 @@ public class StaffListPanel extends UiPart<Region> {
     private ListView<Staff> staffListView;
 
     /**
-     * Creates a {@code StaffListPanel} with the given {@code ObservableList}.
+     * Creates a {@code StaffListPanel}.
      */
+    public StaffListPanel() {
+        super(FXML);
+    }
+
     public StaffListPanel(ObservableList<Staff> staffList) {
         super(FXML);
+        staffListView.setItems(staffList);
+        staffListView.setCellFactory(listView -> new StaffListViewCell());
+    }
+
+    /**
+     * Sets a {@code StaffListPanel} with the given {@code ObservableList}.
+     */
+    public void updateStaffList(ObservableList<Staff> staffList) {
         staffListView.setItems(staffList);
         staffListView.setCellFactory(listView -> new StaffListViewCell());
     }

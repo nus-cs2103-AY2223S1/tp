@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.staff.UniqueStaffList;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -117,11 +118,8 @@ public class MainWindow extends UiPart<Stage> {
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
-        //TODO: add staffListPanel
-        /*
-        staffListPanel = new StaffListPanel(logic.getFilteredStaffList());
+        staffListPanel = new StaffListPanel();
         staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
-         */
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -131,6 +129,13 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void updateStaffList() {
+        if (logic.getTargetProjectStaffList() != null) {
+            staffListPanel = new StaffListPanel(logic.getTargetProjectStaffList().asUnmodifiableObservableList());
+            staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
+        }
     }
 
     /**
@@ -195,7 +200,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
+            updateStaffList();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
