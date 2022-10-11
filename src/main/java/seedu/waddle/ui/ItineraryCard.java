@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Itinerary}.
  */
 public class ItineraryCard extends UiPart<Region> {
 
@@ -40,7 +40,7 @@ public class ItineraryCard extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ItineraryCode} with the given {@code Itinerary} and index to display.
      */
     public ItineraryCard(Itinerary itinerary, int displayedIndex) {
         super(FXML);

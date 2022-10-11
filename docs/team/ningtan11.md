@@ -15,7 +15,7 @@ Given below are my contributions to the project.
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **New Feature**: None yet
-* 
+
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
@@ -23,7 +23,6 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Wait
-  * 
 * **Documentation**:
   * User Guide:
     * I'm sure I'll contribute something eventually
