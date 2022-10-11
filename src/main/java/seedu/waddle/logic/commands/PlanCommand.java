@@ -5,6 +5,7 @@ import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.waddle.commons.core.Messages;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.StageManager;
+import seedu.waddle.logic.Stages;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.itinerary.Itinerary;
@@ -53,7 +54,9 @@ public class PlanCommand extends Command {
         //TODO: allow users to directly select which planning stage
         // instead of going to wish stage by default
 
-        return new CommandResult(String.format(MESSAGE_PLAN_ITINERARY_SUCCESS, selectedItinerary.getName()));
+        // return command result with stage change to wish by default for now (refer above)
+        return new CommandResult(String.format(MESSAGE_PLAN_ITINERARY_SUCCESS, selectedItinerary.getName()),
+                Stages.WISH);
     }
 
     @Override

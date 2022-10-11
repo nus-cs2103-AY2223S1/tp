@@ -14,7 +14,7 @@ import seedu.waddle.model.itinerary.exceptions.ItemNotFoundException;
 /**
  * Represents the list of items in an itinerary.
  */
-public class ItemList implements Iterable<Item> {
+public class UniqueItemList implements Iterable<Item> {
     private final ObservableList<Item> internalList = FXCollections.observableArrayList();
     private final ObservableList<Item> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -86,7 +86,7 @@ public class ItemList implements Iterable<Item> {
         return toRemove;
     }
 
-    public void setItemList(ItemList replacement) {
+    public void setItemList(UniqueItemList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -119,8 +119,8 @@ public class ItemList implements Iterable<Item> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ItemList // instanceof handles nulls
-                && internalList.equals(((ItemList) other).internalList));
+                || (other instanceof UniqueItemList // instanceof handles nulls
+                && internalList.equals(((UniqueItemList) other).internalList));
     }
 
     @Override

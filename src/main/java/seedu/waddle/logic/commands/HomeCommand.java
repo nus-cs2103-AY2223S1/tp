@@ -32,7 +32,8 @@ public class HomeCommand extends Command {
         // change to home stage in stage manager
         stageManager.setHomeStage();
 
-        return new CommandResult(MESSAGE_HOME_SUCCESS);
+        // return command result with HOME stage change
+        return new CommandResult(MESSAGE_HOME_SUCCESS, Stages.HOME);
     }
 
     @Override

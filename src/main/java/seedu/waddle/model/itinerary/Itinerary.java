@@ -5,7 +5,7 @@ import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.waddle.model.item.Item;
-import seedu.waddle.model.item.ItemList;
+import seedu.waddle.model.item.UniqueItemList;
 
 /**
  * Represents a Person in the address book.
@@ -20,7 +20,7 @@ public class Itinerary {
     private final Date endDate;
     private final People people;
 
-    private ItemList itemList;
+    private UniqueItemList uniqueItemList;
 
     /**
      * Every field must be present and not null.
@@ -35,7 +35,7 @@ public class Itinerary {
         this.startDate = startDate;
         this.endDate = endDate;
         this.people = people;
-        this.itemList = new ItemList();
+        this.uniqueItemList = new UniqueItemList();
     }
 
     public Name getName() {
@@ -58,8 +58,8 @@ public class Itinerary {
         return people;
     }
 
-    public ItemList getItemList() {
-        return itemList;
+    public UniqueItemList getItemList() {
+        return uniqueItemList;
     }
 
     /**
@@ -76,11 +76,11 @@ public class Itinerary {
     }
 
     public boolean hasItem(Item item) {
-        return this.itemList.contains(item);
+        return this.uniqueItemList.contains(item);
     }
 
     public void addItem(Item item) {
-        this.itemList.add(item);
+        this.uniqueItemList.add(item);
     }
 
     public Item removeItem(int index) {
