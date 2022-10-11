@@ -298,7 +298,7 @@ _{more aspects and alternatives to be added}_
 
 ### Tag adding feature
 
-### Implementation
+#### Implementation
 
 The tag adding mechanism is facilitated by `TagAddCommand` and `TagAddCommandParser`.
 Additionally, The mechanism utilises the following operations in `UniqueTagList` and `UniquePersonList`.
