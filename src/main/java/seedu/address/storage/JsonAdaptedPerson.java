@@ -74,6 +74,11 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
+        Phone modelPhone = new Phone(null);
+        Email modelEmail = new Email(null);
+        GitHub modelGitHub = new GitHub(null);
+
+        // mandatory
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -81,22 +86,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
 
         if (handle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -107,13 +96,27 @@ class JsonAdaptedPerson {
         }
         final Telegram modelHandle = new Telegram(handle);
 
-        if (username == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, GitHub.class.getSimpleName()));
+        // optional
+        if (phone != null && !Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        if (!GitHub.isValidGitHub(username)) {
+        if (phone != null) {
+            modelPhone = new Phone(phone);
+        }
+
+        if (email != null && !Email.isValidEmail(email)) {
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        }
+        if (email != null) {
+            modelEmail = new Email(email);
+        }
+
+        if (username != null && !GitHub.isValidGitHub(username)) {
             throw new IllegalValueException(GitHub.MESSAGE_CONSTRAINTS);
         }
-        final GitHub modelGitHub = new GitHub(username);
+        if (username != null) {
+            modelGitHub = new GitHub(username);
+        }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelHandle, modelGitHub, modelTags);

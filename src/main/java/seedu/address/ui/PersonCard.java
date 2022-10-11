@@ -52,17 +52,19 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         telegram.setText("Telegram: " + person.getTelegram().handle);
-        if (person.getPhone() != null) {
+        if (person.getPhone().toString() != null) {
             phone.setText("HP: " + person.getPhone().value);
-        }
-        if (person.getEmail() != null) {
-            email.setText("Email: " + person.getEmail().value);
-        }
-        if (person.getGitHub() != null) {
-            github.setText("GitHub: " + person.getGitHub().username);
         } else {
             phone.setText("");
+        }
+        if (person.getEmail().toString() != null) {
+            email.setText("Email: " + person.getEmail().value);
+        } else {
             email.setText("");
+        }
+        if (person.getGitHub().toString() != null) {
+            github.setText("GitHub: " + person.getGitHub().username);
+        } else {
             github.setText("");
         }
         person.getTags().stream()
