@@ -30,17 +30,6 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags, Set<Mod> mods) {
-        requireAllNonNull(name, phone, email, handle, gitHub, tags, mods);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.handle = handle;
-        this.tags.addAll(tags);
-        this.gitHub = gitHub;
-        this.mods.addAll(mods);
-    }
-
-    public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags) {
         requireAllNonNull(name, handle);
         this.name = name;
         this.phone = phone;
@@ -48,6 +37,7 @@ public class Person {
         this.handle = handle;
         this.tags.addAll(tags);
         this.gitHub = gitHub;
+        this.mods.addAll(mods);
     }
 
     public Name getName() {
@@ -84,6 +74,15 @@ public class Person {
      */
     public Set<Mod> getMods() {
         return Collections.unmodifiableSet(mods);
+    }
+
+    /**
+     * Appends a set of mods to the current mods linked to this person.
+     *
+     * @param mods The set of mods to add in.
+     */
+    public void addMods(Set<Mod> mods) {
+        this.mods.addAll(mods);
     }
 
     /**

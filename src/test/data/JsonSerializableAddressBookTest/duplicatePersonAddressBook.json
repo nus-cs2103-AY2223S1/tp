@@ -5,6 +5,7 @@
     "email": "alice@example.com",
     "handle": "alice",
     "username": "alifur",
+    "mods" : [ "CS2100" ],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -12,6 +13,7 @@
     "email": "pauline@example.com",
     "handle": "alicia",
     "username": "alpaul",
+    "mods" : [ ],
     "address": "4th street"
   } ]
 }

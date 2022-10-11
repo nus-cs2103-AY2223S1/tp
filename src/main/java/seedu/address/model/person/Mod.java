@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.tag.Tag;
-
 /**
  * Represents a mod in Mass Linkers.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModName(String)}
@@ -27,17 +25,18 @@ public class Mod {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid mod name.
      */
     public static boolean isValidModName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Tag // instanceof handles nulls
-                && modName.equals(((Tag) other).tagName)); // state check
+                || (other instanceof Mod // instanceof handles nulls
+                && modName.equals(((Mod) other).modName)); // state check
     }
 
     @Override
