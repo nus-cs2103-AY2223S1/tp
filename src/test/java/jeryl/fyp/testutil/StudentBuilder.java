@@ -3,15 +3,18 @@ package jeryl.fyp.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import jeryl.fyp.model.student.*;
+import jeryl.fyp.model.student.Address;
+import jeryl.fyp.model.student.Email;
+import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentID;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Student objects.
  */
-public class PersonBuilder {
+public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_STUDENTID = "A1355255B";
@@ -27,9 +30,9 @@ public class PersonBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code StudentBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
         id = new StudentID(DEFAULT_STUDENTID);
         email = new Email(DEFAULT_EMAIL);
@@ -39,9 +42,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the StudentBuilder with the data of {@code studentToCopy}.
      */
-    public PersonBuilder(Student studentToCopy) {
+    public StudentBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
         id = studentToCopy.getStudentID();
         email = studentToCopy.getEmail();
@@ -51,49 +54,49 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Student} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public StudentBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public StudentBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Student} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public StudentBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
 
     /**
-     * Sets the {@code StudentID} of the {@code Person} that we are building.
+     * Sets the {@code StudentID} of the {@code Student} that we are building.
      */
-    public PersonBuilder withStudentID(String id) {
+    public StudentBuilder withStudentID(String id) {
         this.id = new StudentID(id);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Student} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public StudentBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
 
     /**
-     * Sets the {@code Project} of the {@code Person} that we are building.
+     * Sets the {@code Project} of the {@code Student} that we are building.
      */
-    public PersonBuilder withProjectName(String projectName) {
+    public StudentBuilder withProjectName(String projectName) {
         this.projectName = projectName;
         return this;
     }

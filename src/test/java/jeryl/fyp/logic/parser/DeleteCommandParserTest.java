@@ -3,7 +3,7 @@ package jeryl.fyp.logic.parser;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_STUDENT));
     }
 
     @Test

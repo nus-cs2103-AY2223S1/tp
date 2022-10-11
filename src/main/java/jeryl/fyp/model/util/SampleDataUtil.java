@@ -6,15 +6,18 @@ import java.util.stream.Collectors;
 
 import jeryl.fyp.model.AddressBook;
 import jeryl.fyp.model.ReadOnlyAddressBook;
-import jeryl.fyp.model.student.*;
+import jeryl.fyp.model.student.Address;
+import jeryl.fyp.model.student.Email;
+import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentID;
 import jeryl.fyp.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Student[] getSamplePersons() {
+    public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new StudentID("A1438807T"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), "neural network",
@@ -39,8 +42,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Student sampleStudent : getSamplePersons()) {
-            sampleAb.addPerson(sampleStudent);
+        for (Student sampleStudent : getSampleStudents()) {
+            sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
     }

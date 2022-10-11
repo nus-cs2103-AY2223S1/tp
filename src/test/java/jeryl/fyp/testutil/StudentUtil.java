@@ -10,26 +10,26 @@ import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import jeryl.fyp.logic.commands.AddCommand;
-import jeryl.fyp.logic.commands.EditCommand.EditPersonDescriptor;
+import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Student.
  */
-public class PersonUtil {
+public class StudentUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code student}.
      */
     public static String getAddCommand(Student student) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(student);
+        return AddCommand.COMMAND_WORD + " " + getStudentDetails(student);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code student}'s details.
      */
-    public static String getPersonDetails(Student student) {
+    public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + student.getName().fullName + " ");
         sb.append(PREFIX_STUDENTID + student.getStudentID().id + " ");
@@ -43,9 +43,9 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditStudentDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getStudentID().ifPresent(studentID -> sb.append(PREFIX_STUDENTID).append(studentID.id).append(" "));

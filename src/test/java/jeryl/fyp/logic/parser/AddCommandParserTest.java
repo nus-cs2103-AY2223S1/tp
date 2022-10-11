@@ -26,8 +26,8 @@ import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static jeryl.fyp.testutil.TypicalPersons.AMY;
-import static jeryl.fyp.testutil.TypicalPersons.BOB;
+import static jeryl.fyp.testutil.TypicalStudents.AMY;
+import static jeryl.fyp.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,16 +36,16 @@ import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.Student;
-import jeryl.fyp.model.student.Phone;
+import jeryl.fyp.model.student.StudentID;
 import jeryl.fyp.model.tag.Tag;
-import jeryl.fyp.testutil.PersonBuilder;
+import jeryl.fyp.testutil.StudentBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Student expectedStudent = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Student expectedStudent = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + STUDENTID_DESC_BOB + EMAIL_DESC_BOB
@@ -68,7 +68,7 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple tags - all accepted
-        Student expectedStudentMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + STUDENTID_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedStudentMultipleTags));
@@ -77,7 +77,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Student expectedStudent = new PersonBuilder(AMY).withTags().build();
+        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + STUDENTID_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedStudent));
     }
@@ -113,9 +113,9 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + STUDENTID_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
+        // invalid studentOD
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_STUDENTID_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, StudentID.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + STUDENTID_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB

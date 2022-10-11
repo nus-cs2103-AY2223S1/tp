@@ -18,8 +18,8 @@ public class MarkCommandTest {
     /**
      * Code to be revisited later :(
      * final Status status = "IP";
-     * assertCommandFailure(new RemarkCommand(INDEX_FIRST_PERSON, remark), model,
-     *           String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_PERSON.getOneBased(), remark));
+     * assertCommandFailure(new RemarkCommand(INDEX_FIRST_STUDENT, remark), model,
+     *           String.format(MESSAGE_ARGUMENTS, INDEX_FIRST_STUDENT.getOneBased(), remark));
     */
 
     @Test

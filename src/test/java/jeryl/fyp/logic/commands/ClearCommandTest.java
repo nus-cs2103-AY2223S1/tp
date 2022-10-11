@@ -1,7 +1,7 @@
 package jeryl.fyp.logic.commands;
 
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static jeryl.fyp.testutil.TypicalPersons.getTypicalAddressBook;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 

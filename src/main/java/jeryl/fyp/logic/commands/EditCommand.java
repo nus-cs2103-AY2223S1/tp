@@ -7,7 +7,7 @@ import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECTNAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
-import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,19 +20,22 @@ import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.commons.util.CollectionUtil;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
-import jeryl.fyp.model.student.*;
+import jeryl.fyp.model.student.Address;
+import jeryl.fyp.model.student.Email;
+import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentID;
 import jeryl.fyp.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing student in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+            + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -45,61 +48,62 @@ public class EditCommand extends Command {
             + PREFIX_STUDENTID + "A91234567H "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the student in the filtered student list to edit
+     * @param editStudentDescriptor details to edit the student with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editStudentDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedStudent = createEditedPerson(studentToEdit, editPersonDescriptor);
+        Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.setPerson(studentToEdit, editedStudent);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
+     * edited with {@code editStudentDescriptor}.
      */
-    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
-        StudentID updatedStudentID = editPersonDescriptor.getStudentID().orElse(studentToEdit.getStudentID());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        String updatedProjectName = editPersonDescriptor.getProjectName().orElse(studentToEdit.getProjectName());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
+        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        StudentID updatedStudentID = editStudentDescriptor.getStudentID().orElse(studentToEdit.getStudentID());
+        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        String updatedProjectName = editStudentDescriptor.getProjectName().orElse(studentToEdit.getProjectName());
+        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedStudentID, updatedEmail, updatedAddress, updatedProjectName, updatedTags);
+        return new Student(updatedName, updatedStudentID, updatedEmail, updatedAddress,
+                updatedProjectName, updatedTags);
     }
 
     @Override
@@ -117,14 +121,14 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editStudentDescriptor.equals(e.editStudentDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the student with. Each non-empty field value will replace the
+     * corresponding field value of the student.
      */
-    public static class EditPersonDescriptor {
+    public static class EditStudentDescriptor {
         private Name name;
         private StudentID id;
         private Email email;
@@ -132,13 +136,13 @@ public class EditCommand extends Command {
         private String projectName;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditStudentDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setStudentID(toCopy.id);
             setEmail(toCopy.email);
@@ -169,7 +173,6 @@ public class EditCommand extends Command {
         public Optional<StudentID> getStudentID() {
             return Optional.ofNullable(id);
         }
-        //public Optional<Phone> getPhone() { return Optional.ofNullable(phone); }
 
         public void setEmail(Email email) {
             this.email = email;
@@ -220,12 +223,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getStudentID().equals(e.getStudentID())

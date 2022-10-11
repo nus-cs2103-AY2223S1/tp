@@ -6,7 +6,7 @@ import jeryl.fyp.model.student.Student;
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code AddressBook ab = new AddressBookBuilder().withStudent("John", "Doe").build();}
  */
 public class AddressBookBuilder {
 
@@ -21,10 +21,10 @@ public class AddressBookBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Student} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Student student) {
-        addressBook.addPerson(student);
+    public AddressBookBuilder withStudent(Student student) {
+        addressBook.addStudent(student);
         return this;
     }
 

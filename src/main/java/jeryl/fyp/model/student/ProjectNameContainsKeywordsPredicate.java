@@ -7,7 +7,7 @@ import jeryl.fyp.commons.util.StringUtil;
 
 
 /**
- * Tests that a {@code Person}'s {@code ProjectName} matches any of the keywords given.
+ * Tests that a {@code Student}'s {@code ProjectName} matches any of the keywords given.
  */
 public class ProjectNameContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
