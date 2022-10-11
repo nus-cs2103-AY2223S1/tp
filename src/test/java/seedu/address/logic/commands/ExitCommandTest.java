@@ -7,9 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.ui.StubUIManager;
+import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
 
 public class ExitCommandTest {
     private Model model = new ModelManager();
@@ -18,7 +17,7 @@ public class ExitCommandTest {
     @Test
     public void execute_exit_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel, stubUi);
     }
 }

@@ -22,11 +22,14 @@ public class DeleteClientCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, DeleteClientCommand.COMMAND_FLAG, "1", new DeleteClientCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser,
+                DeleteClientCommand.COMMAND_FLAG, "1", new DeleteClientCommand(INDEX_FIRST_PERSON));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, DeleteClientCommand.COMMAND_FLAG, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE));
+        assertParseFailure(parser,
+                DeleteClientCommand.COMMAND_FLAG, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE));
     }
 }

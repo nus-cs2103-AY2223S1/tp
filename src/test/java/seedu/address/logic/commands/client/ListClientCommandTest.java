@@ -11,9 +11,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.ui.StubUIManager;
+import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -31,7 +30,7 @@ public class ListClientCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
         assertCommandSuccess(new ListClientCommand(), model, ListClientCommand.MESSAGE_SUCCESS, expectedModel, stubUi);
     }
 
@@ -39,7 +38,7 @@ public class ListClientCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
         assertCommandSuccess(new ListClientCommand(), model, ListClientCommand.MESSAGE_SUCCESS, expectedModel, stubUi);
     }
 }

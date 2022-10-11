@@ -17,8 +17,12 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.client.*;
+import seedu.address.logic.commands.client.AddClientCommand;
+import seedu.address.logic.commands.client.ClientCommand;
+import seedu.address.logic.commands.client.DeleteClientCommand;
+import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.client.Person;
@@ -56,8 +60,8 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
-                + EditClientCommand.COMMAND_FLAG + " " + INDEX_FIRST_PERSON.getOneBased() + " " +
-                PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + EditClientCommand.COMMAND_FLAG + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditClientCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

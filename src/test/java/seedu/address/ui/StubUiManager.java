@@ -7,9 +7,9 @@ import javafx.stage.Stage;
  * with NO IMPLEMENTATION
  * TODO: Add implementation if necessary
  */
-public class StubUIManager implements Ui {
+public class StubUiManager implements Ui {
 
-    public StubUIManager() {
+    public StubUiManager() {
 
     }
 

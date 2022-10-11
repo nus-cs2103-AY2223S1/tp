@@ -13,14 +13,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Person;
-import seedu.address.ui.StubUIManager;
+import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -40,7 +38,7 @@ public class DeleteClientCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
         assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
 
@@ -48,7 +46,7 @@ public class DeleteClientCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
 
         assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, stubUi);
     }
@@ -65,7 +63,7 @@ public class DeleteClientCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
 
         assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
@@ -79,7 +77,7 @@ public class DeleteClientCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
 
         assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, stubUi);
     }

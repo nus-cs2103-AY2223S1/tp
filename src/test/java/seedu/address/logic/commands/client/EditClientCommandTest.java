@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -28,9 +27,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.ui.StubUIManager;
+import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -49,7 +47,7 @@ public class EditClientCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
 
         assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
@@ -71,7 +69,7 @@ public class EditClientCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
 
         assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
@@ -84,7 +82,7 @@ public class EditClientCommandTest {
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
 
         assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
@@ -103,7 +101,7 @@ public class EditClientCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
         assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
 
@@ -113,7 +111,7 @@ public class EditClientCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
 
         EditClientCommand editClientCommand = new EditClientCommand(INDEX_SECOND_PERSON, descriptor);
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
 
         assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_PERSON, stubUi);
     }
@@ -126,7 +124,7 @@ public class EditClientCommandTest {
         Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditClientCommand editClientCommand = new EditClientCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
 
         assertCommandFailure(editClientCommand, model, EditClientCommand.MESSAGE_DUPLICATE_PERSON, stubUi);
     }
@@ -137,7 +135,7 @@ public class EditClientCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
 
         EditClientCommand editClientCommand = new EditClientCommand(outOfBoundIndex, descriptor);
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
 
         assertCommandFailure(editClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, stubUi);
     }
@@ -156,7 +154,7 @@ public class EditClientCommandTest {
         EditClientCommand editClientCommand = new EditClientCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        Ui stubUi = new StubUIManager();
+        Ui stubUi = new StubUiManager();
         assertCommandFailure(editClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, stubUi);
     }
 
