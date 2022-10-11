@@ -1,9 +1,14 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Student objects.
@@ -12,11 +17,10 @@ public class StudentBuilder extends PersonBuilder {
 
     public static final String DEFAULT_ID = "A0123123X";
     public static final String DEFAULT_TELEGRAM_HANDLE = "@amyb123";
-    public static final String DEFAULT_STUDENT_INFO = "abc";
 
     private StudentId id;
     private TelegramHandle telegramHandle;
-    private String studentInfo;
+    private Set<ModuleCode> studentInfo;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -25,7 +29,7 @@ public class StudentBuilder extends PersonBuilder {
         super();
         id = new StudentId(DEFAULT_ID);
         telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
-        studentInfo = DEFAULT_STUDENT_INFO;
+        studentInfo = new HashSet<>();
     }
 
     /**
@@ -36,7 +40,7 @@ public class StudentBuilder extends PersonBuilder {
         super(person);
         id = new StudentId(DEFAULT_ID);
         telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
-        studentInfo = DEFAULT_STUDENT_INFO;
+        studentInfo = new HashSet<>();
     }
 
     /**
@@ -45,7 +49,7 @@ public class StudentBuilder extends PersonBuilder {
     public StudentBuilder(Student studentToCopy) {
         id = studentToCopy.getId();
         telegramHandle = studentToCopy.getTelegramHandle();
-        studentInfo = studentToCopy.getStudentInfo();
+        studentInfo = studentToCopy.getStudentModuleInfo();
     }
 
 
@@ -69,8 +73,8 @@ public class StudentBuilder extends PersonBuilder {
     /**
      * Sets the {@code studentInfo} of the {@code Student} that we are building.
      */
-    public StudentBuilder withStudentInfo(String studentInfo) {
-        this.studentInfo = studentInfo;
+    public StudentBuilder withStudentInfo(String ... moduleCodes) {
+        this.studentInfo = SampleDataUtil.getModuleCodeSet(moduleCodes);
         return this;
     }
 

@@ -38,7 +38,9 @@ public class StudentUtil {
         );
         sb.append(PREFIX_ID + student.getId().value + " ");
         sb.append(PREFIX_HANDLE + student.getTelegramHandle().telegramHandle + " ");
-        sb.append(PREFIX_STUDENT_INFO + student.getStudentInfo() + " ");
+        student.getStudentModuleInfo().stream().forEach(
+                s -> sb.append(PREFIX_STUDENT_INFO + s.fullCode + " ")
+        );
         return sb.toString();
     }
 }

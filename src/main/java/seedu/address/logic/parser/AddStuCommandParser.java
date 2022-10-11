@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,7 +41,7 @@ public class AddStuCommandParser implements Parser<AddStuCommand> {
                         PREFIX_ID, PREFIX_HANDLE, PREFIX_STUDENT_INFO);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ID, PREFIX_HANDLE, PREFIX_STUDENT_INFO)
+                PREFIX_ID, PREFIX_HANDLE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStuCommand.MESSAGE_USAGE));
         }
@@ -52,7 +53,7 @@ public class AddStuCommandParser implements Parser<AddStuCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         StudentId id = ParserUtil.parseID(argMultimap.getValue(PREFIX_ID).get());
         TelegramHandle handle = ParserUtil.parseTelegramHandle(argMultimap.getValue(PREFIX_HANDLE).get());
-        String studentInfo = ParserUtil.parseStudentInfo(argMultimap.getValue(PREFIX_STUDENT_INFO).get());
+        Set<ModuleCode> studentInfo = ParserUtil.parseStudentInfo(argMultimap.getAllValues(PREFIX_STUDENT_INFO));
 
         Student student = new Student(name, phone, email, address, tagList, id, handle, studentInfo);
 

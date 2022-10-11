@@ -173,11 +173,15 @@ public class ParserUtil {
      * @return String
      * @throws ParseException If null.
      */
-    public static String parseStudentInfo(String info) throws ParseException {
+    public static Set<ModuleCode> parseStudentInfo(Collection<String> info) throws ParseException {
         requireNonNull(info);
-        String trimmedID = info.trim();
-        return info;
+        final Set<ModuleCode> moduleSet = new HashSet<>();
+        for (String moduleCode: info) {
+            moduleSet.add(parseModuleCode(moduleCode));
+        }
+        return moduleSet;
     }
+
     /**
      * Parses module name.
      *

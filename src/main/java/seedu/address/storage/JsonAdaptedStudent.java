@@ -1,10 +1,15 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.StudentId;
@@ -19,7 +24,7 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
 
     private final String id;
     private final String handle;
-    private final String info;
+    private final List<JsonAdaptedModuleCode> info = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given person details.
@@ -34,11 +39,13 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("ID") String id, @JsonProperty("handle") String handle,
-                              @JsonProperty("info") String info) {
+                              @JsonProperty("info") List<JsonAdaptedModuleCode> info) {
         super(name, phone, email, address, tagged);
         this.id = id;
         this.handle = handle;
-        this.info = info;
+        if (info != null) {
+            this.info.addAll(info);
+        }
     }
 
     /**
@@ -50,12 +57,19 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
         super(source);
         id = ((Student) source).getId().value;
         handle = ((Student) source).getTelegramHandle().telegramHandle;
-        info = ((Student) source).getStudentInfo();
+        info.addAll(((Student) source).getStudentModuleInfo().stream()
+                .map(JsonAdaptedModuleCode::new)
+                .collect(Collectors.toList()));
     }
 
     @Override
     public Student toModelType() throws IllegalValueException {
         Person person = super.toModelType();
+        final List<ModuleCode> moduleCodes = new ArrayList<>();
+        for (JsonAdaptedModuleCode moduleCode : info) {
+            moduleCodes.add(moduleCode.toModelType());
+        }
+
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     StudentId.class.getSimpleName()));
@@ -78,7 +92,8 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "INFO"));
         }
 
+        final Set<ModuleCode> modelCodes = new HashSet<>(moduleCodes);
         return new Student(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
-                person.getTags(), modelStudentId, modelTelegramHandle, info);
+                person.getTags(), modelStudentId, modelTelegramHandle, modelCodes);
     }
 }

@@ -1,7 +1,12 @@
 package seedu.address.model.person;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -9,9 +14,9 @@ import seedu.address.model.tag.Tag;
  */
 public class Student extends Person {
 
-    private StudentId id;
-    private TelegramHandle telegramHandle;
-    private String studentInfo;
+    private final StudentId id;
+    private final TelegramHandle telegramHandle;
+    private final Set<ModuleCode> studentModuleInfo = new HashSet<>();
     /**
      * Every field must be present and not null.
      *
@@ -22,11 +27,12 @@ public class Student extends Person {
      * @param tags
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, StudentId id,
-                   TelegramHandle telegramHandle, String studentInfo) {
+                   TelegramHandle telegramHandle, Set<ModuleCode> studentModuleInfo) {
         super(name, phone, email, address, tags);
+        requireAllNonNull(id, telegramHandle, studentModuleInfo);
         this.id = id;
         this.telegramHandle = telegramHandle;
-        this.studentInfo = studentInfo;
+        this.studentModuleInfo.addAll(studentModuleInfo);
     }
 
     public StudentId getId() {
@@ -37,8 +43,8 @@ public class Student extends Person {
         return telegramHandle;
     }
 
-    public String getStudentInfo() {
-        return studentInfo;
+    public Set<ModuleCode> getStudentModuleInfo() {
+        return Collections.unmodifiableSet(studentModuleInfo);
     }
 
     /**
@@ -47,13 +53,16 @@ public class Student extends Person {
      * @param otherStudent
      * @return True if students are the same.
      */
-    public boolean isSameStudent(Student otherStudent) {
+    public boolean isSamePerson(Person otherStudent) {
         if (otherStudent == this) {
             return true;
         }
-
-        return otherStudent != null
-                && otherStudent.getId().equals(getId());
+        if (otherStudent instanceof Student) {
+            Student temp = (Student) otherStudent;
+            return otherStudent != null
+                    && temp.getId().equals(getId());
+        }
+        return false;
     }
 
     @Override
@@ -69,14 +78,17 @@ public class Student extends Person {
                 .append("; ID: ")
                 .append(getId())
                 .append("; Telegram: ")
-                .append(getTelegramHandle())
-                .append("; Student Info:")
-                .append(getStudentInfo());
+                .append(getTelegramHandle());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        Set<ModuleCode> moduleInfo = getStudentModuleInfo();
+        if (!moduleInfo.isEmpty()) {
+            builder.append("; Module Info: ");
+            moduleInfo.forEach(builder::append);
         }
         return builder.toString();
     }
