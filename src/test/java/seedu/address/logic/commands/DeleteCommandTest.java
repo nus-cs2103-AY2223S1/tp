@@ -8,8 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_ONE_INDEX;
 import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_ONE_AND_SECOND_INDEX;
+import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_ONE_INDEX;
 import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_SECOND_INDEX;
 
 import java.util.Arrays;
