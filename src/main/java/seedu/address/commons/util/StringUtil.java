@@ -1,10 +1,12 @@
 package seedu.address.commons.util;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -23,7 +25,7 @@ public class StringUtil {
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean containsAnyIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
@@ -33,9 +35,14 @@ public class StringUtil {
 
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        ArrayList<String> temp = new ArrayList<String>(Arrays.asList(wordsInPreppedSentence));
+        boolean returnVal = false;
 
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+        for (int i = 0; i < temp.size(); i++) {
+            returnVal = returnVal || temp.get(i).toLowerCase().contains(preppedWord.toLowerCase());
+        }
+
+        return returnVal;
     }
 
     /**
