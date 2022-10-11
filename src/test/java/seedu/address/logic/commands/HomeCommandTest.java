@@ -1,32 +1,54 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
+import seedu.address.testutil.TypicalModules;
+import seedu.address.testutil.TypicalPersons;
 
 public class HomeCommandTest {
-    private Model model;
-    private Model expectedModel;
+    private Model moduleModel;
+    private Model personModel;
+    private Model expectedModuleModel;
+    private Model expectedPersonModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        moduleModel = new ModelManager(TypicalModules.getTypicalAddressBook(), new UserPrefs());
+        personModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+        expectedModuleModel = new ModelManager(moduleModel.getAddressBook(), new UserPrefs());
+        expectedPersonModel = new ModelManager(personModel.getAddressBook(), new UserPrefs());
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new HomeCommand(), model, HomeCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_moduleListIsNotFiltered_showsSameList() {
+        assertCommandSuccess(new HomeCommand(), moduleModel, HomeCommand.MESSAGE_SUCCESS, expectedModuleModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
+    public void execute_personListIsNotFiltered_showsSameList() {
+        assertCommandSuccess(new HomeCommand(), personModel, HomeCommand.MESSAGE_SUCCESS, expectedPersonModel);
+    }
+
+    @Test
+    public void execute_moduleListIsFiltered_showsEverything() {
         // To be added with filtered model
-        assertCommandSuccess(new HomeCommand(), model, HomeCommand.MESSAGE_SUCCESS, expectedModel);
+        showModuleAtIndex(moduleModel, INDEX_FIRST_MODULE);
+        assertCommandSuccess(new HomeCommand(), moduleModel, HomeCommand.MESSAGE_SUCCESS, expectedModuleModel);
+    }
+
+    @Test
+    public void execute_personListIsFiltered_showsSameList() {
+        showPersonAtIndex(personModel, INDEX_FIRST_PERSON);
+        assertCommandSuccess(new HomeCommand(), personModel, HomeCommand.MESSAGE_SUCCESS, expectedPersonModel);
     }
 }
