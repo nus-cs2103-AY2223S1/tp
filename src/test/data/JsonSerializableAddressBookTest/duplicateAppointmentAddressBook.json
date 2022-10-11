@@ -1,0 +1,14 @@
+{
+  "persons": [],
+  "appointments": [{
+      "name" : "Benson Meier",
+      "medicalTest" : "gastric fluid analysis",
+      "slot" : "2022-11-01 08:00",
+      "doctor" : "Edith Hilton"
+    }, {
+      "name" : "Benson Meier",
+      "medicalTest" : "gastric fluid analysis",
+      "slot" : "2022-11-01 08:00",
+      "doctor" : "Edith Hilton"
+    }]
+}

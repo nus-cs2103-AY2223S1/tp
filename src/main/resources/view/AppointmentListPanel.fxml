@@ -1,8 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane HBox.hgrow="ALWAYS">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+  </columnConstraints>
+<Label fx:id="name" minHeight="30.0" text="Patient" styleClass="cell_small_label">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+    <Label fx:id="medicalTest" minHeight="30.0" styleClass="cell_small_label" text="Medical Test" GridPane.columnIndex="1">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+    <Label fx:id="slot" minHeight="30.0" styleClass="cell_small_label" text="Slot" GridPane.columnIndex="2">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+    <Label fx:id="doctor" minHeight="30.0" styleClass="cell_small_label" text="Doctor" GridPane.columnIndex="3">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+  <rowConstraints>
+    <RowConstraints />
+  </rowConstraints>
+</GridPane>
   <ListView fx:id="appointmentListView" VBox.vgrow="ALWAYS" />
 </VBox>

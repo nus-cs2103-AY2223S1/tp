@@ -8,6 +8,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SLOT_7;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SLOT_8;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.FIONA;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,22 +27,22 @@ import seedu.address.model.appointment.Appointment;
  */
 public class TypicalAppointments {
 
-    public static final Appointment APPOINTMENT_1 = new AppointmentBuilder().withName("Benson Meier")
+    public static final Appointment APPOINTMENT_1 = new AppointmentBuilder().withName(ALICE.getName().toString())
             .withMedicalTest("gastric fluid analysis").withSlot("2022-11-01 08:00")
             .withDoctor("Edith Hilton").build();
-    public static final Appointment APPOINTMENT_2 = new AppointmentBuilder().withName("Tianna Russell")
+    public static final Appointment APPOINTMENT_2 = new AppointmentBuilder().withName(BENSON.getName().toString())
             .withMedicalTest("kidney function test").withSlot("2023-01-21 08:30")
             .withDoctor("Milly Everett").build();
-    public static final Appointment APPOINTMENT_3 = new AppointmentBuilder().withName("Monica Booker")
+    public static final Appointment APPOINTMENT_3 = new AppointmentBuilder().withName(CARL.getName().toString())
             .withMedicalTest("liver function test").withSlot("2022-11-01 08:00")
             .withDoctor("Fannie Lambert").build();
-    public static final Appointment APPOINTMENT_4 = new AppointmentBuilder().withName("Madeleine Mcbride")
+    public static final Appointment APPOINTMENT_4 = new AppointmentBuilder().withName(DANIEL.getName().toString())
             .withMedicalTest("lumbar puncture").withSlot("2022-11-01 08:00")
             .withDoctor("Zainab Gibbons").build();
-    public static final Appointment APPOINTMENT_5 = new AppointmentBuilder().withName("Abby Hopkins")
+    public static final Appointment APPOINTMENT_5 = new AppointmentBuilder().withName(ELLE.getName().toString())
             .withMedicalTest("malabsorption test").withSlot("2022-11-01 08:00")
             .withDoctor("Nadia Guzman").build();
-    public static final Appointment APPOINTMENT_6 = new AppointmentBuilder().withName("Bella Gordon")
+    public static final Appointment APPOINTMENT_6 = new AppointmentBuilder().withName(FIONA.getName().toString())
             .withMedicalTest("pap smear").withSlot("2022-11-01 08:00")
             .withDoctor("Lucy Poole").build();
 
@@ -55,7 +61,7 @@ public class TypicalAppointments {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAppointmentsAddressBook() {
         AddressBook ab = new AddressBook();
         for (Appointment appointment : getTypicalAppointments()) {
             ab.addAppointment(appointment);
