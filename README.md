@@ -13,7 +13,7 @@ With TABs, project team leaders can:
 * see an estimate of how much workload each member has.
 * receive information regarding upcoming deadlines.
 
-For the detailed documentation of this project, see the **[TABS Product Website](https://ay2223s1-cs2103t-w10-1.github.io/tp/)**. 
+For the detailed documentation of this project, see the **[TABS Product Website](https://ay2223s1-cs2103t-w10-1.github.io/tp/)**.
 
 # Adapted from AddressBook-Level3
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.

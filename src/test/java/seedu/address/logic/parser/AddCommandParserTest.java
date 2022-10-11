@@ -37,8 +37,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.person.testutil.PersonBuilder;
+import seedu.address.model.tag.Tag;
 
 public class AddCommandParserTest {
     private AddUserCommandParser parser = new AddUserCommandParser();

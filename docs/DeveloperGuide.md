@@ -39,7 +39,7 @@ Project team leaders can:
 | `* *`     | advanced user     | view deadlines for each project                                                | periodically use this for self-reminder                                                |
 | `* *`     | advanced user     | have a rough sense of the workload of every member in the group                | assign future tasks with more confidence                                               |
 | `*`       | advanced user     | view a member’s tasks in more detail                                           | assign future tasks to them with more confidence                                       |
-| `* * *`   | advanced user     | add more tasks to a member                                                     |                                                                                        |                       
+| `* * *`   | advanced user     | add more tasks to a member                                                     |                                                                                        |
 | `* * *`   | advanced user     | delete tasks from a member                                                     |                                                                                        |
 | `*`       | advanced user     | categorise the tasks assigned into different levels of intensity               | not judge workload based solely on the number of tasks per member                      |
 | `* * *`   | advanced user     | delete unused groups after the project is completed                            | declutter my app                                                                       |
