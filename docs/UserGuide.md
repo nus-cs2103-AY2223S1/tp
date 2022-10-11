@@ -1,5 +1,3 @@
-# Teacher's Pet User Guide (v1.2)
-
 Teacher’s Pet is a desktop application for managing contacts of students and classes, optimised for use via a
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 Teacher’s Pet can get your contact and class management tasks done faster than traditional GUI apps.
