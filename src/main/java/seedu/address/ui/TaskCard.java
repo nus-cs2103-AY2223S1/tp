@@ -2,9 +2,12 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.task.Task;
+
+import java.util.Comparator;
 
 /**
  * A UI component that displays information of a {@code Task}.
@@ -30,6 +33,9 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
 
+    @FXML
+    private FlowPane assignedPersons;
+
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
      */
@@ -38,6 +44,9 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().toString());
+        task.getAssignedPersons().stream()
+                .sorted(Comparator.comparing(person -> person.getName().fullName))
+                .forEach(person -> assignedPersons.getChildren().add(new Label(person.getName().fullName)));
     }
 
     @Override
