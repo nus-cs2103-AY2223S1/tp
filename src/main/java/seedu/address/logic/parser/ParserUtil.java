@@ -24,6 +24,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String DEFAULT_LOC_STRING = "DEFAULT_LOC";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -161,6 +162,9 @@ public class ParserUtil {
      */
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
+        if (location == DEFAULT_LOC_STRING) {
+            return new Location("NUS");
+        }
         String trimmedLocation = location.trim();
         if (!Location.isValidLocation(location)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
