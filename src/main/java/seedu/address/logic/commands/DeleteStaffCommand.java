@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableSet;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
@@ -11,7 +10,6 @@ import seedu.address.model.staff.UniqueStaffList;
 
 import java.util.List;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_PROJECT_DONT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
@@ -46,7 +44,7 @@ public class DeleteStaffCommand extends Command {
         Project project = null;
         for (int x = 0; x < len; x++) {
             String nameToCheck = projectList.get(x).getProjectName().fullName;
-            if (nameToCheck.equals(projectName)) {
+            if (nameToCheck.equalsIgnoreCase(projectName)) {
                 project = projectList.get(x);
                 break;
             }
@@ -57,7 +55,7 @@ public class DeleteStaffCommand extends Command {
         UniqueStaffList staffList = project.getStaffList();
         Staff staff = null;
         for (Staff tempStaff : staffList ) {
-            if (tempStaff.getStaffName().staffName.equals(staffName)) {
+            if (tempStaff.getStaffName().staffName.equalsIgnoreCase(staffName)) {
                 staff = tempStaff;
                 break;
             }

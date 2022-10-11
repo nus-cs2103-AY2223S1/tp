@@ -39,7 +39,7 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
                         PREFIX_STAFF_INSURANCE, PREFIX_STAFF_TITLE, PREFIX_PROJECT_NAME, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STAFF_CONTACT, PREFIX_STAFF_NAME, PREFIX_STAFF_DEPARTMENT,
-                PREFIX_STAFF_INSURANCE, PREFIX_STAFF_TITLE, PREFIX_TAG, PREFIX_PROJECT_NAME)
+                PREFIX_STAFF_INSURANCE, PREFIX_STAFF_TITLE, PREFIX_PROJECT_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE));
         }
