@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
@@ -13,6 +12,7 @@ import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
 import seedu.address.model.project.Project;
+import seedu.address.model.tag.exceptions.IllegalValueException;
 
 /**
  * Jackson-friendly version of {@link Issue}.

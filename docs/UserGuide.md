@@ -87,11 +87,11 @@ Examples:
 * `project -a n/ProjectX`
 * `project -a n/ProjectY r/AgentX/ProjectY`
 
-### Listing all projects : `list`
+### Listing all projects : `project -l`
 
 Shows a list of all projects.
 
-Format: `list`
+Format: `project -l`
 
 ### Editing a project : `project -e`
 
@@ -140,7 +140,7 @@ Examples:
     Charlie and `CLIENT_EMAIL` charlie@gmail.com.
 *  `client -t 2 n/Dave p/91111111 e/dave@gmail.com` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Dave, `CLIENT_CONTACT_NUMBER` 91111111 and `CLIENT_EMAIL` dave@gmail.com
 
-### Editing a client : `client -d`
+### Editing a client : `client -e`
 
 Edits the client for a specific project.
 
@@ -170,41 +170,40 @@ Format: `client -d i/PROJECT_ID n/CLIENT_NAME`
 Examples:
 * `client -d 1 n/Amy` Deletes client with `CLIENT_NAME` Amy tagged to project with `PROJECT_ID` 1.
 
-### Tagging a deadline : `deadline -t`
+### Adding an issue : `issue -a`
 
-Tags a deadline to a project.
+Adds an issue to a project.
 
-Format: `deadline -t i/PROJECT_ID d/DATETIME …​`
+Format: `issue -a i/PROJECT_ID …​`
 
-* Tags the deadline to the project with the specified `PROJECT_ID`.
-* `DATETIME` must be in the following format: yyyy-mm-dd.
-
-Examples:
-*  `deadline -t 1 2022-09-16` Tags the project with `PROJECT_ID` 1 with the specified deadline.
-
-### Editing a deadline : `deadline -e`
-
-Edits the deadline for a specific project.
-
-Format: `deadline -e i/PROJECT_ID d/NEW_DATETIME…​`
-
-* Edits the deadline of the project with the specified `PROJECT_ID`.
-* `DATETIME` must be in the following format: yyyy-mm-dd.
+* Tags the issue to the project with the specified `PROJECT_ID`.
 
 Examples:
-*  `deadline -e 1 2022-09-16` Edits the deadline of project with `PROJECT_ID` to be 2022-09-16.
+*  `issue -t i/1 ` Tags the project with `PROJECT_ID` 1.
 
-### Deleting a deadline : `deadline -d`
+### Editing an issue : `issue -e`
 
-Removes a deadline to a project.
+Edits the issue for a specific project.
 
-Format: `deadline -d i/PROJECT_ID`
+Format: `issue -e i/PROJECT_ID…​`
 
-* Deletes the deadline tagged to the specified project with given `PROJECT_ID`.
+* Edits the issue of the project with the specified `PROJECT_ID`.
+<!-- TODO: clarify * `DATETIME` must be in the following format: yyyy-mm-dd. -->
+
+Examples:
+*  `issue -e 1 2022-09-16` Edits the issue of project with `PROJECT_ID` to be 2022-09-16.
+
+### Deleting an issue : `issue -d`
+
+Removes an issue.
+
+Format: `issue -d i/ISSUE_ID p/PROJECT_ID`
+
+* Deletes the issue tagged to the specified project with given `ISSUE_ID` and `PROJECT_ID`.
 * The ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deadline -d 1` Deletes deadline tagged to project with `PROJECT_ID` 1.
+* `issue -d i/1 p/1` Deletes issue tagged to project with `PROJECT_ID` 1 and `ISSUE_ID` 1.
 
 ### Clearing all entries : `clear`
 
@@ -251,9 +250,9 @@ the data of your previous DevEnable home folder.
 | **Tag Client**     | `client -a`      |
 | **Edit Client**    | `client -e`      |
 | **Delete Client**  | `client -d`      |
-| **Tag Deadline**   | `deadline -a`    |
-| **Edit Deadline**   | `deadline -e`    |
-| **Delete Deadline** | `deadline -d`    |
+| **Tag Issue**      | `issue -a`       |
+| **Edit Issue**     | `issue -e`       |
+| **Delete Issue**   | `issue -d`       |
 | **Clear**          | `clear`          |
 | **List**           | `list`           |
 | **Help**           | `help`           |

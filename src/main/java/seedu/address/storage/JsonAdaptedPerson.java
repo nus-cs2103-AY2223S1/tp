@@ -9,13 +9,14 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Name;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Person;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.exceptions.IllegalValueException;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
