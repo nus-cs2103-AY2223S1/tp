@@ -5,7 +5,7 @@
     "email": "invalid@email!3e",
     "address": "4th street",
     "handle" : "@good_user",
-    "info" : "CS1101S",
+    "info" : ["CS1101S"],
     "id" : "A0123457W"
   } ],
   "modules" : [ {

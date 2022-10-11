@@ -33,7 +33,7 @@ public class TypicalStudents {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build())
-            .withId("A0433456W")
+            .withId("A0121212W")
             .withTelegramHandle("@good_user12")
             .withStudentInfo("CS1101S").build();
     public static final Student BENSON = new StudentBuilder(new PersonBuilder().withName("Benson Meier")
@@ -46,7 +46,7 @@ public class TypicalStudents {
     public static final Student CARL = new StudentBuilder(new PersonBuilder().withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build())
-            .withId("A0126546W")
+            .withId("A0126532W")
             .withTelegramHandle("@bad_user")
             .withStudentInfo("CS1101S").build();
     public static final Student DANIEL = new StudentBuilder(new PersonBuilder().withName("Daniel Meier")
@@ -58,19 +58,19 @@ public class TypicalStudents {
     public static final Student ELLE = new StudentBuilder(new PersonBuilder().withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build())
-            .withId("A0123123G")
+            .withId("A0124223G")
             .withTelegramHandle("@good321_user")
             .withStudentInfo("CS1101S").build();
     public static final Student FIONA = new StudentBuilder(new PersonBuilder().withName("Fiona Kunz")
             .withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").build())
-            .withId("A0120393U")
+            .withId("A0126393U")
             .withTelegramHandle("@good_use")
             .withStudentInfo("CS1101S").build();
     public static final Student GEORGE = new StudentBuilder(new PersonBuilder().withName("George Best")
             .withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").build())
-            .withId("A01234312G")
+            .withId("A0123431A")
             .withTelegramHandle("@good_user69")
             .withStudentInfo("CS1101S").build();
 
@@ -78,13 +78,13 @@ public class TypicalStudents {
     public static final Student HOON = new StudentBuilder(new PersonBuilder().withName("Hoon Meier")
             .withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").build())
-            .withId("A01234312G")
+            .withId("A0123999G")
             .withTelegramHandle("@HOON_user69")
             .withStudentInfo("CS1101S").build();
     public static final Student IDA = new StudentBuilder(new PersonBuilder().withName("Ida Mueller")
             .withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build())
-            .withId("A01234312G")
+            .withId("A0353431G")
             .withTelegramHandle("@IDA_user69")
             .withStudentInfo("CS1101S").build();
 

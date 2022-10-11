@@ -15,11 +15,14 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.StudentId;
+import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,7 +41,7 @@ public class AddStuCommandParser implements Parser<AddStuCommand> {
                         PREFIX_ID, PREFIX_HANDLE, PREFIX_STUDENT_INFO);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ID, PREFIX_HANDLE, PREFIX_STUDENT_INFO)
+                PREFIX_ID, PREFIX_HANDLE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStuCommand.MESSAGE_USAGE));
         }
@@ -48,9 +51,9 @@ public class AddStuCommandParser implements Parser<AddStuCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        String id = ParserUtil.parseID(argMultimap.getValue(PREFIX_ID).get());
-        String handle = ParserUtil.parseTelegramHandle(argMultimap.getValue(PREFIX_HANDLE).get());
-        String studentInfo = ParserUtil.parseStudentInfo(argMultimap.getValue(PREFIX_STUDENT_INFO).get());
+        StudentId id = ParserUtil.parseID(argMultimap.getValue(PREFIX_ID).get());
+        TelegramHandle handle = ParserUtil.parseTelegramHandle(argMultimap.getValue(PREFIX_HANDLE).get());
+        Set<ModuleCode> studentInfo = ParserUtil.parseStudentInfo(argMultimap.getAllValues(PREFIX_STUDENT_INFO));
 
         Student student = new Student(name, phone, email, address, tagList, id, handle, studentInfo);
 

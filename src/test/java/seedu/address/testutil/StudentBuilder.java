@@ -1,7 +1,14 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.StudentId;
+import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Student objects.
@@ -9,21 +16,20 @@ import seedu.address.model.person.Student;
 public class StudentBuilder extends PersonBuilder {
 
     public static final String DEFAULT_ID = "A0123123X";
-    public static final String DEFAULT_TELEGRAM_HANDLE = "amyb123";
-    public static final String DEFAULT_STUDENT_INFO = "abc";
+    public static final String DEFAULT_TELEGRAM_HANDLE = "@amyb123";
 
-    private String id;
-    private String telegramHandle;
-    private String studentInfo;
+    private StudentId id;
+    private TelegramHandle telegramHandle;
+    private Set<ModuleCode> studentInfo;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
      */
     public StudentBuilder() {
         super();
-        id = DEFAULT_ID;
-        telegramHandle = DEFAULT_TELEGRAM_HANDLE;
-        studentInfo = DEFAULT_STUDENT_INFO;
+        id = new StudentId(DEFAULT_ID);
+        telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
+        studentInfo = new HashSet<>();
     }
 
     /**
@@ -32,9 +38,9 @@ public class StudentBuilder extends PersonBuilder {
      */
     public StudentBuilder(Person person) {
         super(person);
-        id = DEFAULT_ID;
-        telegramHandle = DEFAULT_TELEGRAM_HANDLE;
-        studentInfo = DEFAULT_STUDENT_INFO;
+        id = new StudentId(DEFAULT_ID);
+        telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
+        studentInfo = new HashSet<>();
     }
 
     /**
@@ -43,7 +49,7 @@ public class StudentBuilder extends PersonBuilder {
     public StudentBuilder(Student studentToCopy) {
         id = studentToCopy.getId();
         telegramHandle = studentToCopy.getTelegramHandle();
-        studentInfo = studentToCopy.getStudentInfo();
+        studentInfo = studentToCopy.getStudentModuleInfo();
     }
 
 
@@ -52,7 +58,7 @@ public class StudentBuilder extends PersonBuilder {
      * Sets the {@code id} of the {@code Student} that we are building.
      */
     public StudentBuilder withId(String id) {
-        this.id = id;
+        this.id = new StudentId(id);
         return this;
     }
 
@@ -60,15 +66,15 @@ public class StudentBuilder extends PersonBuilder {
      * Sets the {@code telegramHandle} of the {@code Student} that we are building.
      */
     public StudentBuilder withTelegramHandle(String telegramHandle) {
-        this.telegramHandle = telegramHandle;
+        this.telegramHandle = new TelegramHandle(telegramHandle);
         return this;
     }
 
     /**
      * Sets the {@code studentInfo} of the {@code Student} that we are building.
      */
-    public StudentBuilder withStudentInfo(String studentInfo) {
-        this.studentInfo = studentInfo;
+    public StudentBuilder withStudentInfo(String ... moduleCodes) {
+        this.studentInfo = SampleDataUtil.getModuleCodeSet(moduleCodes);
         return this;
     }
 
