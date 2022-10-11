@@ -175,4 +175,18 @@ public class ParserUtil {
         }
         return new TagType(trimmedTagType, prefix);
     }
+
+    /**
+     * Splits a hyphen.
+     * @param oldNew Hyphenated String.
+     * @return Array of Strings consisting of strings preceding and following the hyphen.
+     * @throws ParseException If argument format incorrect.
+     */
+    public static String[] parseHyphen(String oldNew) throws ParseException {
+        String[] oldNewPair = oldNew.split("\\s+-\\s+", 2);
+        if (oldNewPair.length != 2) {
+            throw new ParseException("Invalid command format!");
+        }
+        return oldNewPair;
+    }
 }

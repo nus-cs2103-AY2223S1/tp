@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
@@ -30,11 +31,8 @@ public class EditTagTypeCommand extends Command {
     /**
      * Creates an EditTagTypeCommand to edit the specified {@code TagType}
      */
-    public EditTagTypeCommand( Prefix toEditPrefix, TagType toEditTagType, Prefix editToPrefix, TagType editToTagType) {
-        requireNonNull(toEditPrefix);
-        requireNonNull(toEditTagType);
-        requireNonNull(editToPrefix);
-        requireNonNull(editToTagType);
+    public EditTagTypeCommand(Prefix toEditPrefix, TagType toEditTagType, Prefix editToPrefix, TagType editToTagType) {
+        requireAllNonNull(toEditPrefix, toEditTagType, editToPrefix, editToTagType);
         this.toEditPrefix = toEditPrefix;
         this.toEditTagType = toEditTagType;
         this.editToPrefix = editToPrefix;

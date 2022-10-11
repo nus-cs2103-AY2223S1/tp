@@ -55,7 +55,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        // parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         Map<Prefix, List<String>> prefToStrings = new HashMap<>();
         CliSyntax.getPrefixTags().stream().forEach(pref -> prefToStrings.put(pref, argMultimap.getAllValues(pref)));
 
@@ -64,7 +63,12 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         for (Prefix p : prefToStrings.keySet()) {
             for (String tagPair: prefToStrings.get(p)) {
-                String[] oldNewPair = this.split(tagPair);
+                String[] oldNewPair;
+                try {
+                    oldNewPair = ParserUtil.parseHyphen(tagPair);
+                } catch (ParseException pe) {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+                }
                 if (oldTagMap.containsKey(p)) {
                     oldTagMap.get(p).add(oldNewPair[0]);
                     newTagMap.get(p).add(oldNewPair[1]);
@@ -88,29 +92,4 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         return new EditCommand(index, editPersonDescriptor);
     }
-
-    private String[] split(String oldNew) throws ParseException {
-        String[] oldNewPair = oldNew.split("\\s+-\\s+", 2);
-        if (oldNewPair.length != 2) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
-        }
-        return oldNewPair;
-    }
-
-    //    /**
-    //     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-    //     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-    //     * {@code Set<Tag>} containing zero tags.
-    //     */
-    //    private Optional<UniqueTagTypeMap> parseTagsForEdit(Collection<String> tags) throws ParseException {
-    //        assert tags != null;
-    //
-    //        if (tags.isEmpty()) {
-    //            return Optional.empty();
-    //        }
-    //        // Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-    //        Map<Prefix, List<String>> tagSet = new HashMap<>();
-    //        return Optional.of(ParserUtil.parseTags(tagSet));
-    //    }
-
 }
