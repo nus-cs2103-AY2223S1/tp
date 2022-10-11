@@ -55,7 +55,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
 
     //TODO: implement
     private ListIssueCommand parseListIssueCommand(String arguments) {
-        return null;
+        return new ListIssueCommand();
     }
 
 
