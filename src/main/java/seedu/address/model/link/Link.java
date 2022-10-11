@@ -9,14 +9,17 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Link {
 
-    public static final String MESSAGE_CONSTRAINTS = "links should have at least one top level domain (e.g. <.com>)";
+    public static final String MESSAGE_CONSTRAINTS =
+            "links should have no whitespace and should have one top level domain (e.g. <.com>)";
 
     //obtained from https://uibakery.io/regex-library/url-regex-java
     //Currently allows links with multiple dots (some browsers have the functionality to ignore multiple dots)
+    //Todo: improve on link validation & more precise in exactly what type of link allowed
     public static final String VALIDATION_REGEX_WITH_HTTPS = "^https?:\\/\\/(?:www\\.)?" +
             "[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\."
             + "[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$";
-    public static final String VALIDATION_REGEX_WITHOUT_HTTPS = "^[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}" +
+    public static final String VALIDATION_REGEX_WITHOUT_HTTPS =
+            "^[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}" +
             "\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&//=]*)$";
     public final String linkName;
 

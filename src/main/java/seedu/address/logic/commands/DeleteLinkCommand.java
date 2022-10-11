@@ -20,28 +20,27 @@ import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.task.Task;
 
 /**
- * Adds a link to an existing module in Plannit.
+ * Deletes a link to an existing module in Plannit.
  */
-public class AddLinkCommand extends Command {
-
-    public static final String COMMAND_WORD = "add-link";
+public class DeleteLinkCommand extends Command{
+    public static final String COMMAND_WORD = "delete-link";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Link: %2$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a link to the module identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a link from the module identified "
             + "by the index number used in the displayed module list. "
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE_LINK + "coursemology.org";
 
-    public static final String MESSAGE_ADD_LINK_SUCCESS = "Added link to module: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one link must be added.";
-    public static final String MESSAGE_DUPLICATE_LINK = "The link/s already exists in the module index ";
+    public static final String MESSAGE_DELETE_LINK_SUCCESS = "Deleted link from module: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one link must be deleted.";
+    public static final String MESSAGE_MISSING_LINK = "This link does not currently exist in module index ";
 
     private final Index index;
     private final Set<Link> links;
 
-    public AddLinkCommand(Index index, Set<Link> links) {
+    public DeleteLinkCommand(Index index, Set<Link> links) {
         requireAllNonNull(index, links);
         this.index = index;
         this.links = links;
@@ -56,30 +55,40 @@ public class AddLinkCommand extends Command {
         }
 
         Module moduleToEdit = lastShownList.get(index.getZeroBased());
-        Module editedModule = createEditedModule(moduleToEdit, links);
-
-        if (moduleToEdit.getLinks().equals(editedModule.getLinks())) {
-            throw new CommandException(MESSAGE_DUPLICATE_LINK + index.getOneBased());
-        }
+        Module editedModule = createEditedModule(moduleToEdit, links, index);
 
         model.setModule(moduleToEdit, editedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(String.format(MESSAGE_ADD_LINK_SUCCESS, editedModule));
+        return new CommandResult(String.format(MESSAGE_DELETE_LINK_SUCCESS, editedModule));
     }
 
     /**
      * Creates and returns a {@code Module} with the details of {@code moduleToEdit}
-     * appended with {@code links}.
+     * without the links specified in {@code links}.
      */
-    private static Module createEditedModule(Module moduleToEdit, Set<Link> linksToAdd) {
+    private static Module createEditedModule(Module moduleToEdit, Set<Link> linksToRemove, Index index)
+            throws CommandException {
         assert moduleToEdit != null;
 
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         Set<Task> moduleTasks = moduleToEdit.getTasks();
-        Set<Link> updatedLinks = moduleToEdit.copyLinks();
-        updatedLinks.addAll(linksToAdd);
+        Set<Link> originalLinksCopy = moduleToEdit.copyLinks();
+        Set<Link> updatedLinks = removeLinksFromSet(originalLinksCopy, linksToRemove, index);
         return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks);
+    }
+
+    //Partial deletion of links is not supported
+    //(where only some links from linksToRemove are found in originalLinksCopy)
+    private static Set<Link> removeLinksFromSet(Set<Link> originalLinksCopy, Set<Link> linksToRemove, Index index)
+            throws CommandException {
+        for (Link link : linksToRemove) {
+            if (!originalLinksCopy.contains(link)) {
+                throw new CommandException(MESSAGE_MISSING_LINK + index.getOneBased() + " [" + link.linkName + "]");
+            }
+        }
+        originalLinksCopy.removeAll(linksToRemove);
+        return originalLinksCopy;
     }
 
     @Override
@@ -90,12 +99,12 @@ public class AddLinkCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddLinkCommand)) {
+        if (!(other instanceof DeleteLinkCommand)) {
             return false;
         }
 
         // state check
-        AddLinkCommand c = (AddLinkCommand) other;
+        DeleteLinkCommand c = (DeleteLinkCommand) other;
         return index.equals(c.index) && links.equals(c.links);
     }
 }

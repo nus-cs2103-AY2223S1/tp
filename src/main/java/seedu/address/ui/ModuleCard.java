@@ -19,7 +19,7 @@ import java.net.URI;
  */
 public class ModuleCard extends UiPart<Region> {
 
-    private Desktop desktop = Desktop.getDesktop();
+    private static final Desktop desktop = Desktop.getDesktop();
     private static final String FXML = "ModuleListCard.fxml";
 
     /**
@@ -56,14 +56,13 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         moduleCode.setText(module.getModuleCodeAsUpperCaseString());
         moduleTitle.setText(module.getModuleTitleAsUpperCaseString());
-        for (Link link : module.getLinks()) {
-            Hyperlink node = createHyperLinkNode(link.linkName);
-            links.getChildren().add(node);
-        }
+        module.getLinks().stream()
+                .forEach(link -> links.getChildren()
+                        .add(createHyperLinkNode(link.linkName)));
         // ToDo: Add Ui components for tasks and links.
     }
 
-    private Hyperlink createHyperLinkNode(String linkURL) {
+    private static Hyperlink createHyperLinkNode(String linkURL) {
         Hyperlink node =  new Hyperlink(linkURL);
         node.setStyle("-fx-text-fill: #FFCC66");
         if (!linkURL.substring(0, 4).equals("http")) {

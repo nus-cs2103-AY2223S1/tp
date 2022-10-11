@@ -50,4 +50,13 @@ public class JsonAdaptedModuleTest {
                 ModuleCode.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
     }
+
+    @Test
+    public void toModelType_nullModuleTitle_throwsIllegalValueException() {
+        JsonAdaptedModule module = new JsonAdaptedModule(VALID_MODULE_CODE, null,
+                Arrays.asList(new JsonAdaptedLink((VALID_MODULE_LINK))));
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ModuleTitle.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
+    }
 }
