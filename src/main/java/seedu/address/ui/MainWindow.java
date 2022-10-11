@@ -24,8 +24,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final int STUDENTS = 0;
-    private static final int MODULE = 1;
+    private static final int STUDENTLIST = 0;
+    private static final int MODULELIST = 1;
+    private static final int MODULE = 2;
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -37,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ModuleListPanel moduleListPanel;
+    private ModuleInfoPanel moduleInfoPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -51,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane moduleListPanelPlaceholder;
+
+    @FXML
+    private StackPane moduleInfoPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -168,16 +173,26 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowTabStudents() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        tabPane.getSelectionModel().select(STUDENTS);
+        tabPane.getSelectionModel().select(STUDENTLIST);
     }
 
     /**
      * Switch to modules page.
      */
     @FXML
-    public void handleShowTabModule() {
+    public void handleShowTabModules() {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        tabPane.getSelectionModel().select(MODULELIST);
+    }
+
+    /**
+     * Switch to module information page.
+     */
+    @FXML
+    public void handleShowTabModule() {
+        moduleInfoPanel = new ModuleInfoPanel(logic.getFilteredPersonList());
+        moduleInfoPanelPlaceholder.getChildren().add(moduleInfoPanel.getRoot());
         tabPane.getSelectionModel().select(MODULE);
     }
 
@@ -221,11 +236,15 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowModuleList()) {
-                handleShowTabModule();
+                handleShowTabModules();
             }
 
             if (commandResult.isShowStudentList()) {
                 handleShowTabStudents();
+            }
+
+            if (commandResult.isShowModule()) {
+                handleShowTabModule();
             }
 
             return commandResult;
