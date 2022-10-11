@@ -76,7 +76,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task: " + this.getName()
+        return this.getName()
                 + "; Module: " + this.getModule()
                 + "; Deadline: " + this.getDeadline();
     }
