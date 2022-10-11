@@ -1,16 +1,12 @@
 package seedu.address.model.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleDescription;
-import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -29,52 +25,34 @@ public class SampleDataUtil {
         return new Person[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("good"),
+                getTagSet("friends"),
                     new StudentId("A0123457W"), new TelegramHandle("@good_user"),
                     getModuleCodeSet("CS1101S")),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("bad", "late"),
+                getTagSet("colleagues", "friends"),
                     new StudentId("A0123627W"), new TelegramHandle("@good_1234"),
                     getModuleCodeSet("CS1101S")),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("bad"),
+                getTagSet("neighbours"),
                     new StudentId("A0523457W"), new TelegramHandle("@good_1234r"),
                     getModuleCodeSet("CS1101S")),
             new Student(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("average"),
+                getTagSet("family"),
                     new StudentId("A0125357W"), new TelegramHandle("@1241_user"),
                     getModuleCodeSet("CS1101S")),
             new Student(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("good"),
+                getTagSet("classmates"),
                     new StudentId("A0897457W"), new TelegramHandle("@bad_user"),
                     getModuleCodeSet("CS1101S")),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("good"),
-                    new StudentId("A0123237K"), new TelegramHandle("@new_user"),
-                    getModuleCodeSet("CS1101S"))
-        };
-    }
-
-    public static Module[] getSampleModules() {
-        ArrayList<Student> sampleStudentList = new ArrayList<>();
-        sampleStudentList.add(new Student(new Name("Roy Balakrishnan"), new Phone("92624417"),
-                new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"),
-                new StudentId("A0123237K"), new TelegramHandle("@new_user"),
-                getModuleCodeSet("CS1101S")));
-        return new Module[] {
-            new Module(new ModuleName("Programming Methodology"), new ModuleCode("CS1101S"),
-                    new ModuleDescription("Description"), getTagSet("Good"), sampleStudentList),
-            new Module(new ModuleName("Introduction to Information Security"), new ModuleCode("CS2107"),
-                    new ModuleDescription("Description"), getTagSet("Ok"), sampleStudentList),
-            new Module(new ModuleName("Introduction to AI and Machine Learning"), new ModuleCode("CS2109S"),
-                    new ModuleDescription("Description"), getTagSet("Ok"), sampleStudentList),
+                    new StudentId("A01232347K"), new TelegramHandle("@new_user"),
+                    getModuleCodeSet("CS1101S"))
         };
     }
 
@@ -82,9 +60,6 @@ public class SampleDataUtil {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSampleStudents()) {
             sampleAb.addPerson(samplePerson);
-        }
-        for (Module sampleModule: getSampleModules()) {
-            sampleAb.addModule(sampleModule);
         }
         return sampleAb;
     }
