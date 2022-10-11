@@ -22,9 +22,9 @@ public class AddProfileCommand extends ProfileCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
             + ": Adds a profile to the address book. "
             + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " "
             + PREFIX_NAME + "John Doe "
@@ -33,7 +33,7 @@ public class AddProfileCommand extends ProfileCommand {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New profile added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New profile added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the address book";
 
     private final Profile toAdd;
