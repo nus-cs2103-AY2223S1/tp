@@ -6,10 +6,17 @@ import seedu.address.model.tuitionclass.exceptions.InvalidSubjectException;
  * Represents the subject of the tuition class.
  */
 public enum Subject {
-    ENGLISH, MATHEMATICS, PHYSICS, CHEMISTRY, BIOLOGY;
+    ENGLISH("english"), MATHEMATICS("mathematics"), PHYSICS("physics"), CHEMISTRY("chemistry"), BIOLOGY("biology");
 
     public static final String MESSAGE_CONSTRAINTS =
             "Subject name should only contain letters, and should be spelt out in full.";
+    public static final String VALIDATION_REGEX = "(?i)english|mathematics|physics|chemistry|biology";
+    public final String subject;
+
+    Subject(String subject) {
+        this.subject = subject;
+    }
+
 
     /**
      * Creates a Subject object depending on the inputSubject.
@@ -24,11 +31,15 @@ public enum Subject {
                 return subject;
             }
         }
-        throw new InvalidSubjectException();
+        throw new InvalidSubjectException(); //change to null?
     }
 
     @Override
     public String toString() {
         return name().charAt(0) + name().substring(1).toLowerCase();
+    }
+
+    public static boolean isValidSubject(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 }
