@@ -38,6 +38,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the list, excluding {@code toExclude}, contains an equivalent supplier as the given argument.
+     */
+    public boolean containsExcluding(Person toCheck, Person toExclude) {
+        requireNonNull(toCheck);
+        return internalList.stream().filter(person -> !person.equals(toExclude)).anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
      * Adds a supplier to the list.
      * The supplier must not already exist in the list.
      */
