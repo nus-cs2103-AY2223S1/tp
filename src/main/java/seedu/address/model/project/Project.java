@@ -4,8 +4,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
+import seedu.address.model.Deadline;
+import seedu.address.model.Name;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.person.Client;
+import seedu.address.model.client.Client;
 
 /**
  * Represents a Project.

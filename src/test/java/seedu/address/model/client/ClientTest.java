@@ -1,4 +1,6 @@
-package seedu.address.model.person;
+package seedu.address.model.client;
+
+import seedu.address.model.Name;
 
 import java.util.ArrayList;
 

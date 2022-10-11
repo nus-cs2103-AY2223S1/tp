@@ -4,6 +4,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.Deadline;
 import seedu.address.model.project.ProjectTest;
 
 public class IssueTest {

@@ -1,9 +1,10 @@
-package seedu.address.model.person;
+package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
+import seedu.address.model.Name;
 import seedu.address.model.project.Project;
 
 /**

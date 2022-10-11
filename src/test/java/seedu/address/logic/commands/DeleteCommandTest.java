@@ -16,7 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Person;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -100,7 +100,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different client -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.ClientTest;
+import seedu.address.model.Deadline;
+import seedu.address.model.Name;
+import seedu.address.model.client.ClientTest;
 
 
 
