@@ -98,12 +98,12 @@ public class ModelManager implements Model {
     //=========== PersonModel ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyPersonModel addressBook) {
-        this.personModel.resetData(addressBook);
+    public void setPersonModel(ReadOnlyPersonModel personModel) {
+        this.personModel.resetData(personModel);
     }
 
     @Override
-    public ReadOnlyPersonModel getAddressBook() {
+    public ReadOnlyPersonModel getPersonModel() {
         return personModel;
     }
 

@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new PersonModel(), new PersonModel(modelManager.getAddressBook()));
+        assertEquals(new PersonModel(), new PersonModel(modelManager.getPersonModel()));
     }
 
     @Test

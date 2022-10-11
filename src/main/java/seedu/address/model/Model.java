@@ -66,10 +66,10 @@ public interface Model {
     /**
      * Replaces person model data with the data in {@code personModel}.
      */
-    void setAddressBook(ReadOnlyPersonModel personModel);
+    void setPersonModel(ReadOnlyPersonModel personModel);
 
     /** Returns the PersonModel */
-    ReadOnlyPersonModel getAddressBook();
+    ReadOnlyPersonModel getPersonModel();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

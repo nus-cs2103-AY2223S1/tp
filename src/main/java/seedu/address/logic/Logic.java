@@ -8,7 +8,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPersonModel;
+import seedu.address.model.ReadOnlyPropertyModel;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
 
 /**
  * API of the Logic component
@@ -26,12 +28,22 @@ public interface Logic {
     /**
      * Returns the PersonModel.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getPersonModel()
      */
-    ReadOnlyPersonModel getAddressBook();
+    ReadOnlyPersonModel getPersonModel();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    /**
+     * Returns the PropertyModel.
+     *
+     * @see seedu.address.model.Model#getPropertyModel()
+     */
+    ReadOnlyPropertyModel getPropertyModel();
+
+    /** Returns an unmodifiable view of the filtered list of properties */
+    ObservableList<Property> getFilteredPropertyList();
 
     /**
      * Returns the user prefs' person model file path.

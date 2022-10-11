@@ -40,7 +40,7 @@ class AddSellerCommandTest {
 
         String expectedMessage = String.format(AddSellerCommand.MESSAGE_SUCCESS, validSeller);
 
-        Model expectedModel = new ModelManager(new PersonModel(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PersonModel(model.getPersonModel()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(newCommand, model, expectedMessage, expectedModel);

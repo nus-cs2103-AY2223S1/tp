@@ -117,12 +117,12 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyPersonModel newData) {
+        public void setPersonModel(ReadOnlyPersonModel newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyPersonModel getAddressBook() {
+        public ReadOnlyPersonModel getPersonModel() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -199,7 +199,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public ReadOnlyPersonModel getAddressBook() {
+        public ReadOnlyPersonModel getPersonModel() {
             return new PersonModel();
         }
     }
