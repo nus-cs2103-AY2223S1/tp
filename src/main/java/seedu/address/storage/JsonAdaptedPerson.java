@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -32,13 +33,15 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
+    private final String gender;
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("dob") String dob, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("gender") String gender) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,6 +50,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.gender = gender;
     }
 
     /**
@@ -61,6 +65,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        gender = source.getGender().value.toString();
     }
 
     /**
@@ -119,8 +124,18 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        // add in optional field gender
+        Gender modelGender;
+        if (gender == null) {
+            modelGender = Gender.getNoGender();
+        } else if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        } else {
+            modelGender = new Gender(gender);
+        }
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelDob, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelDob, modelAddress, modelTags, modelGender);
     }
 
 }
