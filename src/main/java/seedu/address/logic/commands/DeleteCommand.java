@@ -1,14 +1,18 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -24,24 +28,60 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    private final Index targetIndex;
+    private Index targetIndex;
+
+    private NameContainsKeywordsPredicate predicate;
 
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
+    public DeleteCommand(NameContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (targetIndex != null) {
+            List<Person> lastShownList = model.getFilteredPersonList();
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+            Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+            Set<Tag> personToDeleteTagSet = personToDelete.getTags();
+            for (Tag tag : personToDeleteTagSet) {
+                tag.removePerson(personToDelete);
+                if (tag.isPersonListEmpty()) {
+                    model.removeTag(tag);
+                }
+            }
+            model.deletePerson(personToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        } else {
+            model.updateFilteredPersonList(predicate);
+            List<Person> filteredList = model.getFilteredPersonList();
+            if (filteredList.size() > 1) {
+                throw new CommandException(String.format(Messages.MESSAGE_INVALID_AMBIGUOUS_NAME,
+                        predicate.getFirst()));
+            } else if (filteredList.size() <= 0) {
+                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+                throw new CommandException(String.format(Messages.MESSAGE_INVALID_NAME, predicate.getFirst()));
+            } else {
+                Person personToDelete = filteredList.get(0);
+                Set<Tag> personToDeleteTagSet = personToDelete.getTags();
+                for (Tag tag : personToDeleteTagSet) {
+                    tag.removePerson(personToDelete);
+                    if (tag.isPersonListEmpty()) {
+                        model.removeTag(tag);
+                    }
+                }
+                model.deletePerson(personToDelete);
+                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+                return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+            }
         }
-
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
     @Override

@@ -22,6 +22,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
                         || StringUtil.containsNumbers(person.getPhone().toString(), keyword)));
     }
 
+    public String getFirst() {
+        return keywords.get(0);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

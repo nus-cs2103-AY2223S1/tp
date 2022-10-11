@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/czhongwei.png" width="200px">
 
 [[github](http://github.com/czhongwei)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/czhongwei.md)]
 
 * Role: Developer
 * Responsibilities: Features
