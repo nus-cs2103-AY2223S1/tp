@@ -19,8 +19,8 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final MoneyOwed moneyOwed;
-    private final MoneyPaid moneyPaid;
+    private final Money moneyOwed;
+    private final Money moneyPaid;
     private final AdditionalNotes additionalNotes;
     private final Class aClass;
 
@@ -36,8 +36,8 @@ public class Person {
         this.email = email;
         this.address = address;
         this.aClass = new Class();
-        this.moneyOwed = new MoneyOwed();
-        this.moneyPaid = new MoneyPaid();
+        this.moneyOwed = new Money();
+        this.moneyPaid = new Money();
         this.additionalNotes = new AdditionalNotes("");
     }
 
@@ -46,8 +46,8 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, NokPhone nokPhone, Email email, Address address, Class aClass,
-                  MoneyOwed moneyOwed, MoneyPaid moneyPaid, AdditionalNotes additionalNotes) {
-        requireAllNonNull(name, phone, nokPhone, email, address, additionalNotes, aClass);
+                  Money moneyOwed, Money moneyPaid, AdditionalNotes additionalNotes) {
+        requireAllNonNull(name, phone, email, address, additionalNotes, aClass);
         this.name = name;
         this.phone = phone;
         this.nokPhone = nokPhone;
@@ -86,11 +86,11 @@ public class Person {
         return aClass;
     }
 
-    public MoneyOwed getMoneyOwed() {
+    public Money getMoneyOwed() {
         return moneyOwed;
     }
 
-    public MoneyPaid getMoneyPaid() {
+    public Money getMoneyPaid() {
         return moneyPaid;
     }
 
