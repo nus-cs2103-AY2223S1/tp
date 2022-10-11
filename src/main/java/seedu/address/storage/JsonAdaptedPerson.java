@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Mods;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -29,8 +29,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final String mods;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,15 +39,17 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("mods") String mods) {
+                             @JsonProperty("mods") List<JsonAdaptedModule> modules) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
-            this.tagged.addAll(tagged);
+            this.tags.addAll(tagged);
         }
-        this.mods = mods;
+        if (modules != null) {
+            this.modules.addAll(modules);
+        }
     }
 
     /**
@@ -58,10 +60,12 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
+        tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        mods = source.getMods().value;
+        modules.addAll(source.getModules().stream()
+                .map(JsonAdaptedModule::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -71,8 +75,12 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
+        for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+        final List<Module> personModules = new ArrayList<>();
+        for (JsonAdaptedModule module: modules) {
+            personModules.add(module.toModelType());
         }
 
         if (name == null) {
@@ -109,14 +117,8 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if (mods == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Mods.class.getSimpleName()));
-        }
-        if (!Mods.isValidMods(mods)) {
-            throw new IllegalValueException(Mods.MESSAGE_CONSTRAINTS);
-        }
-        final Mods modelMods = new Mods(mods);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMods);
+        final Set<Module> modelModules = new HashSet<>(personModules);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelModules);
     }
 
 }

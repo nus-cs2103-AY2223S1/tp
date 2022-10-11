@@ -5,12 +5,12 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
-    "mods": "CS1101S"
+    "mods": [ "CS1101S" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "mods": "CS1231"
+    "mods": [ "CS1231" ]
   } ]
 }

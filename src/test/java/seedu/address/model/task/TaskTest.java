@@ -8,6 +8,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.module.Module;
+
 public class TaskTest {
     private final Task sampleA = new Task(
             new TaskName("A"),

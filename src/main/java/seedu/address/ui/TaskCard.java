@@ -44,8 +44,8 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
+        module.setText(task.getModule().moduleName);
         status.setText(task.getStatus().toDisplayString());
-        module.setText(task.getModule().module);
         deadline.setText(task.getDeadline().toString());
     }
 

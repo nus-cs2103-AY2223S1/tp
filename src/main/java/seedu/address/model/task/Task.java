@@ -4,6 +4,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.module.Module;
+
+
 /**
  * Represents a Task in the task list.
  * Guarantees: details are present and not null, field values are validated, immutable.
