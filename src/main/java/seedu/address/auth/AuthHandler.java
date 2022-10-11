@@ -1,5 +1,8 @@
 package seedu.address.auth;
 
+/**
+ *
+ */
 public class AuthHandler {
 
     // HOW IT WORKS

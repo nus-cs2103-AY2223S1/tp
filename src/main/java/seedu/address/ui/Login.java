@@ -14,6 +14,9 @@ import seedu.address.auth.AuthHandler;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Logic;
 
+/**
+ * Class that handles the login window.
+ */
 public class Login extends UiPart<Stage> {
 
     private static final String FXML = "Login.fxml";
@@ -60,13 +63,8 @@ public class Login extends UiPart<Stage> {
                 // Dynamically make an event handler for each button
                 @Override
                 public void handle(ActionEvent e) {
-                    if (
-                        (nameField.getText() != null && !nameField.getText().isEmpty()) &&
-                        (
-                            passwordField.getText() != null &&
-                            !passwordField.getText().isEmpty()
-                        )
-                    ) {
+                    if ((nameField.getText() != null && !nameField.getText().isEmpty())
+                        && (passwordField.getText() != null && !passwordField.getText().isEmpty())) {
                         String nameText = nameField.getText();
                         String passwordText = passwordField.getText();
                         if (AuthHandler.checkCredentials(nameText, passwordText)) {
