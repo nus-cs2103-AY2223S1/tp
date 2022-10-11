@@ -14,4 +14,5 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
 
+    Object clone();
 }
