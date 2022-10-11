@@ -29,7 +29,7 @@ public class AddProfileCommand extends ProfileCommand {
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_EMAIL + "johnd@u.nus.edu "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
