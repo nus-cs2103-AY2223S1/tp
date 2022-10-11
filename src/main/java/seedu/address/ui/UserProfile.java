@@ -48,28 +48,27 @@ public class UserProfile extends UiPart<Region> {
     public UserProfile(User user) {
         super(FXML);
         this.user = user;
-        userLabel.setText("User: ");
-        userLabel.setStyle("-fx-text-fill:WHITE;");
-        name.setText(user.getName().fullName);
-        name.setStyle("-fx-text-fill:WHITE;");
-        phone.setText(user.getPhone().value);
-        phone.setStyle("-fx-text-fill:WHITE;");
-        address.setText(user.getAddress().value);
-        address.setStyle("-fx-text-fill:WHITE;");
-        email.setText(user.getEmail().value);
-        email.setStyle("-fx-text-fill:WHITE;");
-        currModuleDescription.setText("Current Modules: ");
-        prevModuleDescription.setText("Previous Modules: ");
-        planModuleDescription.setText("Planned Modules: ");
-        user.getCurrModules().stream()
-                .sorted(Comparator.comparing(mod -> mod.moduleName))
-                .forEach(mod -> currModulesTags.getChildren().add(new Label(mod.moduleName)));
-        user.getPrevModules().stream()
-                .sorted(Comparator.comparing(mod -> mod.moduleName))
-                .forEach(mod -> prevModulesTags.getChildren().add(new Label(mod.moduleName)));
-        user.getPlanModules().stream()
-                .sorted(Comparator.comparing(mod -> mod.moduleName))
-                .forEach(mod -> planModulesTags.getChildren().add(new Label(mod.moduleName)));
+        if (user instanceof ExistingUser) {
+            userLabel.setText("User: ");
+            name.setText(user.getName().fullName);
+            phone.setText(user.getPhone().value);
+            address.setText(user.getAddress().value);
+            email.setText(user.getEmail().value);
+            currModuleDescription.setText("Current Modules: ");
+            prevModuleDescription.setText("Previous Modules: ");
+            planModuleDescription.setText("Planned Modules: ");
+            user.getCurrModules().stream()
+                    .sorted(Comparator.comparing(mod -> mod.moduleName))
+                    .forEach(mod -> currModulesTags.getChildren().add(new Label(mod.moduleName)));
+            user.getPrevModules().stream()
+                    .sorted(Comparator.comparing(mod -> mod.moduleName))
+                    .forEach(mod -> prevModulesTags.getChildren().add(new Label(mod.moduleName)));
+            user.getPlanModules().stream()
+                    .sorted(Comparator.comparing(mod -> mod.moduleName))
+                    .forEach(mod -> planModulesTags.getChildren().add(new Label(mod.moduleName)));
+        } else {
+            userLabel.setText("User details have not been added.");
+        }
     }
 
     @Override

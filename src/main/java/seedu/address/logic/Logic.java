@@ -34,6 +34,8 @@ public interface Logic {
 
     User getUser();
 
+    boolean hasUser();
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 

@@ -37,10 +37,10 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        addUser(new ExistingUser(new Name("Koh Rui Jie"), new Phone("80000000"), new Email("kohrj@example.com"),
-                new Address("somewhere near bishan"),
-                getCurrentModuleSet("CS2103t"),
-                getPreviousModuleSet("CS1101s", "CS1231s"), getPlannedModuleSet("CS2109s")));
+//        addUser(new ExistingUser(new Name("Koh Rui Jie"), new Phone("80000000"), new Email("kohrj@example.com"),
+//                new Address("somewhere near bishan"),
+//                getCurrentModuleSet("CS2103t"),
+//                getPreviousModuleSet("CS1101s", "CS1231s"), getPlannedModuleSet("CS2109s")));
     }
 
     public ModelManager() {
