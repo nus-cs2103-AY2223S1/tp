@@ -114,4 +114,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Update the mark status of a task
+     */
+    void markTask(Task task);
 }

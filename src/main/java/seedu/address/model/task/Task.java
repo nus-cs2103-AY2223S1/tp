@@ -12,6 +12,7 @@ public class Task {
 
     // identity fields
     private final Title title;
+    private boolean marked;
 
     /**
      * Every field must be present and not null.
@@ -20,6 +21,7 @@ public class Task {
         requireAllNonNull(title);
 
         this.title = title;
+        this.marked = false; // task is default as unmarked
     }
 
     public Title getTitle() {
@@ -27,7 +29,18 @@ public class Task {
     }
 
     /**
-     * Returns true if both task have the same title.
+     * Returns true if task is marked.
+     */
+    public boolean getMarkStatus() {
+        return this.marked;
+    }
+
+    public void mark() {
+        this.marked = true;
+    }
+
+    /**
+     * Returns true if both task have the same title and size.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {

@@ -38,7 +38,6 @@ public class TaskPanelParser implements Parser<TaskCommand> {
         switch (commandWord) {
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
-
         case MarkTaskCommand.COMMAND_WORD:
             return new MarkTaskCommandParser().parse(arguments);
         case ListTasksCommand.COMMAND_WORD:

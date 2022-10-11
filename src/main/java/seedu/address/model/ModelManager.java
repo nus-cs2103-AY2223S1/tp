@@ -189,4 +189,9 @@ public class ModelManager implements Model {
         taskPanel.addTask(task);
         // TODO: updateFilteredTaskList
     }
+
+    @Override
+    public void markTask(Task task) {
+        task.mark();
+    }
 }

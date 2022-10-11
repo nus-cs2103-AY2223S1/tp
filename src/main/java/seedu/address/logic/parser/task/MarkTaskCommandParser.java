@@ -24,16 +24,14 @@ public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
         Index task_index;
-        Index person_index;
 
         try {
             task_index = TaskParserUtil.parseIndex(argMultimap.getPreamble());
-            person_index = TaskParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE), ive);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE), pe);
         }
 
-        return new MarkTaskCommand(task_index, person_index);
+        return new MarkTaskCommand(task_index);
     }
 }
 
