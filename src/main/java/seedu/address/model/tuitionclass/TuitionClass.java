@@ -2,12 +2,16 @@ package seedu.address.model.tuitionclass;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.level.Level;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,11 +25,15 @@ public class TuitionClass {
     private final Day day;
     private final Time time;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Student> students = new ArrayList<>();
+    private final List<Tutor> tutors = new ArrayList<>();
+
 
     /**
      * Every field must be present and not null.
      */
-    public TuitionClass(Name name, Subject subject, Level level, Day day, Time time, Set<Tag> tags) {
+    public TuitionClass(Name name, Subject subject, Level level, Day day, Time time, Set<Tag> tags,
+                        List<Student> students, List<Tutor> tutors) {
         requireAllNonNull(name, subject, day, time, tags);
         this.name = name;
         this.subject = subject;
@@ -33,6 +41,8 @@ public class TuitionClass {
         this.day = day;
         this.time = time;
         this.tags.addAll(tags);
+        this.students.addAll(students);
+        this.tutors.addAll(tutors);
     }
 
     public Name getName() {
@@ -54,6 +64,15 @@ public class TuitionClass {
     public Time getTime() {
         return time;
     }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public List<Tutor> getTutors() {
+        return tutors;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

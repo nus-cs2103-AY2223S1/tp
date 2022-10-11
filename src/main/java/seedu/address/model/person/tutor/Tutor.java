@@ -2,6 +2,8 @@ package seedu.address.model.person.tutor;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Represents a Tutor in the address book.
@@ -19,16 +22,18 @@ public class Tutor extends Person {
 
     private final Qualification qualification;
     private final Institution institution;
+    private final List<TuitionClass> tuitionClasses = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
     public Tutor(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                 Qualification qualification, Institution institution) {
+                 Qualification qualification, Institution institution, List<TuitionClass> tuitionClasses) {
         super(name, phone, email, address, tags);
         requireAllNonNull(qualification, institution);
         this.qualification = qualification;
         this.institution = institution;
+        this.tuitionClasses.addAll(tuitionClasses);
     }
 
     public Qualification getQualification() {
@@ -37,6 +42,10 @@ public class Tutor extends Person {
 
     public Institution getInstitution() {
         return institution;
+    }
+
+    public List<TuitionClass> getTuitionClasses() {
+        return tuitionClasses;
     }
 
     /**

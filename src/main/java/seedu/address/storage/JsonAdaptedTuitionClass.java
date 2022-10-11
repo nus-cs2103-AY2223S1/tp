@@ -13,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.level.Level;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.Day;
 import seedu.address.model.tuitionclass.Name;
@@ -34,6 +36,9 @@ class JsonAdaptedTuitionClass {
     private final String startTime;
     private final String endTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedStudent> students = new ArrayList<>();
+    private final List<JsonAdaptedTutor> tutors = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedTutor} with the given person details.
@@ -42,7 +47,9 @@ class JsonAdaptedTuitionClass {
     public JsonAdaptedTuitionClass(@JsonProperty("name") String name, @JsonProperty("subject") String subject,
                             @JsonProperty("level") String level, @JsonProperty("day") String day,
                             @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
-                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                            @JsonProperty("students") List<JsonAdaptedStudent> students,
+                            @JsonProperty("tutors") List<JsonAdaptedTutor> tutors) {
         this.name = name;
         this.subject = subject;
         this.level = level;
@@ -51,6 +58,12 @@ class JsonAdaptedTuitionClass {
         this.endTime = endTime;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (students != null) {
+            this.students.addAll(students);
+        }
+        if (tutors != null) {
+            this.tutors.addAll(tutors);
         }
     }
 
@@ -66,6 +79,12 @@ class JsonAdaptedTuitionClass {
         endTime = source.getTime().getEndTime();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        students.addAll(source.getStudents().stream()
+                .map(JsonAdaptedStudent::new)
+                .collect(Collectors.toList()));
+        tutors.addAll(source.getTutors().stream()
+                .map(JsonAdaptedTutor::new)
                 .collect(Collectors.toList()));
     }
 
@@ -131,7 +150,18 @@ class JsonAdaptedTuitionClass {
         final Time modelTime = new Time(startTime, endTime);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new TuitionClass(modelName, modelSubject, modelLevel, modelDay, modelTime, modelTags);
+
+        final List<Student> modelStudents = new ArrayList<>();
+        for (JsonAdaptedStudent student: students) {
+            modelStudents.add(student.toModelType());
+        }
+
+        final List<Tutor> modelTutors = new ArrayList<>();
+        for (JsonAdaptedTutor tutor: tutors) {
+            modelTutors.add(tutor.toModelType());
+        }
+        return new TuitionClass(modelName, modelSubject, modelLevel, modelDay, modelTime,
+                modelTags, modelStudents, modelTutors);
     }
 
 }

@@ -18,6 +18,7 @@ import seedu.address.model.person.tutor.Institution;
 import seedu.address.model.person.tutor.Qualification;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Jackson-friendly version of {@link Tutor}.
@@ -33,6 +34,7 @@ class JsonAdaptedTutor {
     private final String qualification;
     private final String institution;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTuitionClass> tuitionClasses = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedTutor} with the given person details.
@@ -42,7 +44,8 @@ class JsonAdaptedTutor {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("qualification") String qualification,
                              @JsonProperty("institution") String institution,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("tuitionClasses") List<JsonAdaptedTuitionClass> tuitionClasses) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,6 +54,9 @@ class JsonAdaptedTutor {
         this.institution = institution;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (tuitionClasses != null) {
+            this.tuitionClasses.addAll(tuitionClasses);
         }
     }
 
@@ -66,6 +72,9 @@ class JsonAdaptedTutor {
         institution = source.getInstitution().institution;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        tuitionClasses.addAll(source.getTuitionClasses().stream()
+                .map(JsonAdaptedTuitionClass::new)
                 .collect(Collectors.toList()));
     }
 
@@ -131,8 +140,13 @@ class JsonAdaptedTutor {
         final Institution modelInstitution = new Institution(institution);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        final List<TuitionClass> modelTuitionClasses = new ArrayList<>();
+        for (JsonAdaptedTuitionClass tuitionClass: tuitionClasses) {
+            modelTuitionClasses.add(tuitionClass.toModelType());
+        }
         return new Tutor(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                modelQualification, modelInstitution);
+                modelQualification, modelInstitution, modelTuitionClasses);
     }
 
 }

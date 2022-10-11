@@ -2,6 +2,8 @@ package seedu.address.model.person.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -12,6 +14,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.Time;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Represents a Student in the address book.
@@ -21,17 +25,19 @@ public class Student extends Person {
     private final School school;
     private final Level level;
     private final NextOfKin nextOfKin;
+    private final List<TuitionClass> tuitionClasses = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, School school, Level level,
-                   NextOfKin nextOfKin) {
+                   NextOfKin nextOfKin, List<TuitionClass> tuitionClasses) {
         super(name, phone, email, address, tags);
         requireAllNonNull(school, level, nextOfKin);
         this.school = school;
         this.level = level;
         this.nextOfKin = nextOfKin;
+        this.tuitionClasses.addAll(tuitionClasses);
     }
 
     public School getSchool() {
@@ -44,6 +50,10 @@ public class Student extends Person {
 
     public NextOfKin getNextOfKin() {
         return nextOfKin;
+    }
+
+    public List<TuitionClass> getTuitionClasses() {
+        return tuitionClasses;
     }
 
     /**
