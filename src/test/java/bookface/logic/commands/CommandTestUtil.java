@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import bookface.commons.core.index.Index;
@@ -143,5 +142,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredBookList().size());
     }
-
 }
