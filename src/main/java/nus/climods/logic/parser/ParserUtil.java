@@ -28,7 +28,8 @@ public class ParserUtil {
     public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("[A-Z]{0,3}\\d{4}");
     // Validates user flag, case insensitive
     public static final Pattern USER_FLAG_PATTERN = Pattern.compile("(?i)--user(?-i)");
-
+    // Validates faculty code, case insensitive and matches between 2-3 chars
+    public static final Pattern FACULTY_CODE_PATTERN = Pattern.compile("^[A-Za-z]{2,3}$");
     /**
      * Returns List of whitespace-delimited arguments given arguments string supplied by the user
      * @param arguments String supplied by user as arguments after preamble
@@ -86,6 +87,18 @@ public class ParserUtil {
         return Optional.of(Boolean.TRUE);
     }
 
+    /**
+     * Parse faculty code according to user input
+     * @param input Input string from user containing faculty code
+     * @return
+     */
+    public static Optional<String> parseFacultyCode(String input) {
+        if (!FACULTY_CODE_PATTERN.matcher(input.trim()).find()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(input);
+    }
     // TODO: Remove addressbook code
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

@@ -18,7 +18,6 @@ import org.junit.jupiter.api.io.TempDir;
 import nus.climods.commons.core.Messages;
 import nus.climods.logic.commands.AddCommand;
 import nus.climods.logic.commands.CommandResult;
-import nus.climods.logic.commands.ListCommand;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.Model;

@@ -6,15 +6,7 @@ import static nus.climods.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import nus.climods.logic.commands.AddCommand;
-import nus.climods.logic.commands.ClearCommand;
-import nus.climods.logic.commands.Command;
-import nus.climods.logic.commands.DeleteCommand;
-import nus.climods.logic.commands.EditCommand;
-import nus.climods.logic.commands.ExitCommand;
-import nus.climods.logic.commands.FindCommand;
-import nus.climods.logic.commands.HelpCommand;
-import nus.climods.logic.commands.ListCommand;
+import nus.climods.logic.commands.*;
 import nus.climods.logic.parser.exceptions.ParseException;
 
 /**
@@ -59,8 +51,8 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case LsCommand.COMMAND_WORD:
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

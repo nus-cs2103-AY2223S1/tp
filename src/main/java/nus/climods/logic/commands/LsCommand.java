@@ -1,25 +1,26 @@
 package nus.climods.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static nus.climods.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+import nus.climods.logic.parser.parameters.FacultyCodeParameter;
+import nus.climods.logic.parser.parameters.UserFlagParameter;
 import nus.climods.model.Model;
-import nus.climods.model.person.NameContainsKeywordsPredicate;
 
 import java.util.Optional;
+
+import static java.util.Objects.requireNonNull;
+import static nus.climods.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Lists all modules in NUS to the user.
  */
-public class ListCommand extends Command {
+public class LsCommand extends Command {
 
     public static final String COMMAND_WORD = "ls";
 
     public static final String MESSAGE_SUCCESS = "Listed all relevant modules";
 
-    private final Optional<NameContainsKeywordsPredicate> faculty;
+    private final Optional<FacultyCodeParameter> faculty;
 
-    private final Optional<Boolean> hasUser;
+    private final Optional<UserFlagParameter> hasUser;
 
 
     /**
@@ -27,7 +28,7 @@ public class ListCommand extends Command {
      * @param faculty optional argument to specify the faculty
      * @param faculty
      */
-    public ListCommand(Optional<NameContainsKeywordsPredicate> faculty, Optional<Boolean> hasUser) {
+    public LsCommand(Optional<FacultyCodeParameter> faculty, Optional<UserFlagParameter> hasUser) {
         this.faculty = faculty;
         this.hasUser = hasUser;
     }
