@@ -2,6 +2,9 @@ Teacher’s Pet is a desktop application for managing contacts of students and c
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 Teacher’s Pet can get your contact and class management tasks done faster than traditional GUI apps.
 
+* Table of Contents
+  {:toc}
+
 ---
 
 ## Quick start
@@ -64,8 +67,6 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-Example: `help`
-
 ![Help](images/UiHelp.png)
 
 ---
@@ -77,41 +78,37 @@ Adds a student to the Teacher’s Pet.
 
 1. Student’s Name
     - Student’s Name must not be empty
-    - Student’s Name must only contain alphabetical letters.
+    - Student’s Name must only contain alphanumeric characters
 ```yaml
 Note: Duplicates students are not allowed!
 ```
 
 2. Student’s Contact Number
    - Contact number must only contain numerical digits between `0` and `9`
-   - White spaces between numbers will be automatically removed. eg: `8123 4556` will be converted to `81234567`
-   - Number must have 8 digits and starts with either ‘8’ or ‘9’
 ```yaml
-Note: Contact number cannot be empty. It must contain at least 1 digit.
+Note: Contact number cannot be empty. It must contain at least 3 digits.
 ```
 
 3. Next of Kin’s Number
-    - Next of Kin’s Number must only contain numerical digits between `0` and `9`
-    - Next of Kin’s Number must have 8 digits and starts with either ‘8’ or ‘9’
-    - White spaces between numbers will be automatically removed. eg: `8123 4556` will be converted to `81234567`
+    - Next of Kin’s number must only contain numerical digits between `0` and `9`
 ```yaml
-Note: Next of Kin’s number cannot be empty. It must contain at least 1 digit.
+Note: Next of Kin’s number cannot be empty. It must contain at least 3 digits.
 ```
 
 4. Address
     - Address must not be empty
     - Address may contain any kinds of character
-
 ```yaml
 Note: Address cannot be empty. It must contain at least 1 character.
 ```
 
 5. Email
-    - Email may contain any kinds of `character`, other than white space ` `
-    - Email must contain a `@`
+    - Email should be in the format of `local@domain`, where:
+      - Local address should only contain alphanumeric characters and these special characters `+_.-`
+      - Domain address should be least 2 characters long
 
 ```yaml
-Note: Email cannot be empty. It must contain at least 1 character.
+Note: Email cannot be empty. It must fulfil the above requirements.
 ```
 
 6. Class Date
@@ -135,7 +132,7 @@ Note: Amount paid, Amount owed, Additional notes fields are to be updated via `e
 
 ---
 
-### Edit student details: `edit`
+### Editing student details: `edit`
 
 Edits an existing student in the list.
 
@@ -148,21 +145,24 @@ Edits an existing student in the list.
 - Amount owed
 - Additional notes
 
-1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow the same convention as in Adding a student:
-    [`add` section](#adding-a-studentadd)
+1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow 
+the same convention as [adding a student](#adding-a-studentadd)
 2. Amount paid
-    - Amount paid can be an integer or a double.
-    - Amount paid must be non negative.
+    - Amount paid can be an integer or a double
+    - Amount paid must be non-negative
 3. Amount owed
-    - Amount owed can be an integer or a double.
-    - Amount owed must be non negative.
-    - Amount owed and Amount paid are modified independent of each other.
+    - Amount owed can be an integer or a double
+    - Amount owed must be non-negative
+    - Amount owed and Amount paid are modified independent of each other
+```yaml
+Note: Amount paid, Amount owed can only be between $0 and $2147483647.
+```
 4. Additional notes
-    - Additional notes is a String and can be empty.
+    - Additional notes can be left empty
+    - Additional notes can take in any types of character
 
 ```yaml
-Important:
-- note **at least one** of these fields must exist in order to make the
+Important: Note **at least one** of these fields must exist in order to make the
   `edit` command valid.
 ```
 
@@ -176,7 +176,7 @@ Example:
 ![UiEdit](images/UiEdit.png)
 
 ---
-### View all students: `list`
+### Viewing all students: `list`
 
 Allows the user to view students and their information which includes:
 
@@ -192,6 +192,55 @@ Allows the user to view students and their information which includes:
 Format: `list`
 
 ![UiUList](images/UiList.png)
+
+---
+### Finding a student : `find`
+
+Finds students whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+- The search is case-insensitive. e.g. `alex` will match `Alex`
+- The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`
+- Only the name is searched.
+- Only full words will be matched e.g. `Han` will not match `Hans`
+- Persons matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Example:
+
+`find tan` returns `Tan Xiao Ming` and `John Tan`
+
+![UiFind](images/UiFind.png)
+
+---
+### Deleting a student: 'delete'
+
+Deletes the specified person from the student list.
+
+Format: `delete INDEX`
+
+- Deletes the person at the specified `INDEX`
+- The index refers to the index number shown in the Student's Details panel (bottom left)
+- The index must be a positive integer. e.g. `1, 2, 3, ...`
+
+Examples:
+- `list` followed by `delete 2` deletes the 2nd person in the Student's Details panel.
+- `find Betsy` followed by `delete 1` deletes the 1st person in the Stundent's Details panel.
+
+```yaml
+❗ Caution: Deleting a student is irreversible! Please ensure the correct index number.
+```
+
+---
+### Clearing all student: 'clear'
+
+Clears all students and their details from the list.
+
+Format: `clear`
+
+```yaml
+❗ Caution: Clearing all students is irreversible!
+```
 
 ---
 ### Exiting the program : `exit`
