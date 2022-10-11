@@ -1,5 +1,8 @@
 package tracko.logic.commands.item;
 
+import static java.util.Objects.requireNonNull;
+import static tracko.model.Model.PREDICATE_SHOW_ALL_ITEMS;
+
 import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
 import tracko.model.Model;
@@ -14,10 +17,8 @@ public class ListItemsCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        // requireNonNull(model);
-        // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        // return new CommandResult(MESSAGE_SUCCESS);
-        // TODO: implement list functionality for orders
-        return null;
+        requireNonNull(model);
+        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

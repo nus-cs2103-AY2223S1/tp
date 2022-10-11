@@ -112,7 +112,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        orderListPanel = new OrderListPanel(logic.getOrderList());
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
         //TODO: Edit when getInventoryList() is implemented in Logic
         itemListPanel = new ItemListPanel(logic.getTrackO().getInventoryList());
         displayBox = new DisplayBox(orderListPanel, itemListPanel);
