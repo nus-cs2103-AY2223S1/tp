@@ -160,4 +160,19 @@ public class ParserUtil {
         Prefix pref = parsePrefix(prefix);
         return new TagType(trimmedTagType, pref);
     }
+
+    /**
+     * Parses a {@code String tagType} into a {@code TagType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tagType} is invalid.
+     */
+    public static TagType parseTagType(String tagType, Prefix prefix) throws ParseException {
+        requireNonNull(tagType);
+        String trimmedTagType = tagType.trim();
+        if (!TagType.isValidTagType(trimmedTagType)) {
+            throw new ParseException(TagType.MESSAGE_CONSTRAINTS);
+        }
+        return new TagType(trimmedTagType, prefix);
+    }
 }

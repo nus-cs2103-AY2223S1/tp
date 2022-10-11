@@ -224,4 +224,13 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
         return res.toString();
     }
+
+    public static Prefix getPrefixFromTagType(String tagType) throws TagTypeNotFoundException {
+        for (Prefix pref: prefixMap.keySet()) {
+            if (prefixMap.get(pref).getTagTypeName().equals(tagType)) {
+                return pref;
+            }
+        }
+        throw new TagTypeNotFoundException();
+    }
 }
