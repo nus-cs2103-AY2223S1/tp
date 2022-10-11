@@ -12,7 +12,7 @@ import friday.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends FridayStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getFridayFilePath();
 
     @Override
-    Optional<ReadOnlyFriday> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyFriday> readFriday() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyFriday addressBook) throws IOException;
+    void saveFriday(ReadOnlyFriday friday) throws IOException;
 
 }
