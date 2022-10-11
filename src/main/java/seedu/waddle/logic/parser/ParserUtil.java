@@ -90,4 +90,23 @@ public class ParserUtil {
         }
         return new People(trimmedPeople);
     }
+
+    /**
+     * Parses a {@code String description}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseDescription(String description) {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        // TODO: implement Description class
+        /*
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Description(trimmedDescription);
+         */
+        return trimmedDescription;
+    }
+
 }

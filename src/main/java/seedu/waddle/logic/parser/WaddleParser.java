@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.Stages;
 import seedu.waddle.logic.commands.AddCommand;
+import seedu.waddle.logic.commands.AddItemCommand;
 import seedu.waddle.logic.commands.ClearCommand;
 import seedu.waddle.logic.commands.Command;
 import seedu.waddle.logic.commands.DeleteCommand;
@@ -130,6 +131,9 @@ public class WaddleParser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case AddItemCommand.COMMAND_WORD:
+            return new AddItemCommandParser().parse(arguments);
 
         //TODO: help commands must change here
         case HelpCommand.COMMAND_WORD:
