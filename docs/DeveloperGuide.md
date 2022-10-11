@@ -425,9 +425,51 @@ Step 1 and 2 is repeated until all members have been added
     * 1b1. EZLead displays an error message.
 
       Use case ends.
-    
 
-*{More to be added}*
+**Use case: UC6 - Creating a task item**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies the team and the task.
+2. EZLead creates a new task object associated to the specified team.
+
+**Extensions:**
+
+* 1a. Specified team does not exist.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC7 - Deleting a task item**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies the team and the task.
+2. EZLead removes the task associated to the specified team.
+
+**Extensions:**
+
+* 1a. Specified team does not exist.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
