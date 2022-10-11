@@ -1,6 +1,6 @@
 .background {
     -fx-background-color: derive(#e6e6e6, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    background-color: white; /* Used in the default.html file */
 }
 
 .label {
@@ -205,7 +205,7 @@
 }
 
 .menu .left-container {
-    -fx-background-color: black;
+    -fx-background-color: white;
 }
 
 /*

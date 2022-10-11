@@ -27,6 +27,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
     private static final String DARK_CSS = "/view/DarkTheme.css";
     private static final String LIGHT_CSS = "/view/LightTheme.css";
+    private static final String DARK_EXTENSION_CSS = "/view/ExtensionsDark.css";
+    private static final String LIGHT_EXTENSION_CSS = "/view/ExtensionsLight.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -174,16 +176,24 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Loads the light themed css.
+     */
     @FXML
     public void handleLightTheme() {
         mainScene.getStylesheets().clear();
         mainScene.getStylesheets().add(getClass().getResource(LIGHT_CSS).toExternalForm());
+        mainScene.getStylesheets().add(getClass().getResource(LIGHT_EXTENSION_CSS).toExternalForm());
     }
 
+    /**
+     * Loads the dark themed css.
+     */
     @FXML
     public void handleDarkTheme() {
         mainScene.getStylesheets().clear();
         mainScene.getStylesheets().add(getClass().getResource(DARK_CSS).toExternalForm());
+        mainScene.getStylesheets().add(getClass().getResource(DARK_EXTENSION_CSS).toExternalForm());
     }
 
     public ClientListPanel getClientListPanel() {
