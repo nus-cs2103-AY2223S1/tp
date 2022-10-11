@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalProjects.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.StaffBuilder;
 
 public class ProjectTest {
 
@@ -32,6 +33,7 @@ public class ProjectTest {
 
         // same name, all other attributes different -> returns true
         Project editedApple = new ProjectBuilder(APPLE).withBudget(VALID_BUDGET_BOB).withDeadline(VALID_DEADLINE_BOB)
+                .withStaff(new StaffBuilder().build())
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(APPLE.isSameProject(editedApple));
 
