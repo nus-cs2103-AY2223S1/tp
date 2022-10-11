@@ -40,7 +40,8 @@ public class TagAddCommand extends Command {
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Tag added: %1$s";
     public static final String MESSAGE_NO_SUCH_TAG = "This tag does not exist";
-    public static final String MESSAGE_TAG_ALREADY_ADDED = "The contact already has the tag.";
+    public static final String MESSAGE_TAG_ALREADY_ADDED = "The contact already has the tag";
+    public static final String MESSAGE_NO_TAG = "Please specify a tag";
 
     private final Index index;
     private final Tag tag;
