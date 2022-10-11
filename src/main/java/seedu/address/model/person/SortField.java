@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class SortField {
 
-    public static final String MESSAGE_CONSTRAINTS = "Sort field must either be n, d or g.";
+    public static final String MESSAGE_CONSTRAINTS = "Sort field must either be n, N, d, D, g or G.";
 
     // Accept exactly one upper or lower case n, d or g
     public static final String VALIDATION_REGEX = "[nNdDgG]{1}";

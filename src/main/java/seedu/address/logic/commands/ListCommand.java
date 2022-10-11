@@ -14,8 +14,9 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
+    // MESSAGE_USAGE is currently unused
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all persons in the address book."
-            + "Parameters: " + "[" + PREFIX_SORT + "FIELD] (must be n, d or g)\n"
+            + "Parameters: " + "[" + PREFIX_SORT + "FIELD] (must be n, N, d, D, g or G)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_SORT + "n";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons sorted by %s";
