@@ -21,6 +21,7 @@ public class Email {
             + "    - have each domain label start and end with alphanumeric characters\n"
             + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
     // alphanumeric and special characters
+    public static final String INFO_NOT_AVAILABLE = "NA";
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
     private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
             + ALPHANUMERIC_NO_UNDERSCORE + ")*";
@@ -38,7 +39,7 @@ public class Email {
      * @param email A valid email address.
      */
     public Email(String email) {
-        if (email != "NA") {
+        if (!email.equals(INFO_NOT_AVAILABLE)) {
             checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         }
         value = email;
@@ -48,7 +49,7 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.equals("NA") || test.matches(VALIDATION_REGEX);
+        return test.equals(INFO_NOT_AVAILABLE) || test.matches(VALIDATION_REGEX);
     }
 
     @Override

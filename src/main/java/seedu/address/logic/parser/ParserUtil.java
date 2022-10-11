@@ -24,6 +24,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String INFO_NOT_AVAILABLE = "NA";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -60,7 +61,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(Optional<String> phone) throws ParseException {
-        String trimmedPhone = phone.orElse("NA").trim();
+        String trimmedPhone = phone.orElse(INFO_NOT_AVAILABLE).trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
@@ -74,7 +75,7 @@ public class ParserUtil {
      * @throws ParseException
      */
     public static Attendance parseAttendance(Optional<String> attendance) throws ParseException {
-        String trimmedAttendance = attendance.orElse("NA").trim();
+        String trimmedAttendance = attendance.orElse(INFO_NOT_AVAILABLE).trim();
         if (!Attendance.isValidMark(trimmedAttendance)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
@@ -103,7 +104,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(Optional<String> email) throws ParseException {
-        String trimmedEmail = email.orElse("NA").trim();
+        String trimmedEmail = email.orElse(INFO_NOT_AVAILABLE).trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -117,7 +118,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static ClassGroup parseClassGroup(Optional<String> classGroup) throws ParseException {
-        String trimmedClassGroup = classGroup.orElse("NA").trim();
+        String trimmedClassGroup = classGroup.orElse(INFO_NOT_AVAILABLE).trim();
         return new ClassGroup(trimmedClassGroup);
     }
 
