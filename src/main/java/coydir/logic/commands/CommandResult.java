@@ -17,6 +17,7 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -45,6 +46,7 @@ public class CommandResult {
     public boolean isExit() {
         return exit;
     }
+
 
     @Override
     public boolean equals(Object other) {
