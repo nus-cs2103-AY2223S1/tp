@@ -57,7 +57,7 @@ public class ModelManager implements Model {
                 new Address(DEFAULT_ADDRESS),
                 new HashSet<Tag>(),
                 new RecordList());
-        this.personWithRecords = new DisplayedPerson(placeholderPerson, this.addressBook);
+        this.personWithRecords = new DisplayedPerson(placeholderPerson);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredRecords = new FilteredList<>(FXCollections.observableArrayList()); // empty FilteredList
     }
