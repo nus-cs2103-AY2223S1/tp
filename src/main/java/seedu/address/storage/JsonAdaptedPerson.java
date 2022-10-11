@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Loan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String loan;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,7 +38,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("loan") String loan) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +47,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.loan = loan;
     }
 
     /**
@@ -57,19 +61,33 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        loan = String.valueOf(source.getLoan().getAmount());
     }
+
+    public Person toModelType() throws IllegalValueException {
+        return toModelType(new ArrayList<>());
+    }
+
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Person toModelType(List<Tag> addressBookTagList) throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            for (Tag realTag : addressBookTagList) {
+                if (realTag.isSameTag(tag.toModelType())) {
+                    // Add the unique tag object reference in AddressBook's uniqueTagList to this Person's tags
+                    personTags.add(realTag);
+                }
+            }
         }
 
+        // We could really use some abstraction here -- Rui Han
+
+        // Name validity check
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -78,6 +96,7 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
+        // Phone validity check
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -86,6 +105,7 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
+        // Email validity check
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
@@ -94,6 +114,8 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+
+        // Address validity check
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -103,7 +125,17 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        // Loan validity check
+        if (loan == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Loan.class.getSimpleName()));
+        }
+        if (!Loan.isValidLoan(loan)) {
+            throw new IllegalValueException(Loan.MESSAGE_CONSTRAINTS);
+        }
+        final Loan modelLoan = new Loan(loan);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelLoan);
     }
 
 }

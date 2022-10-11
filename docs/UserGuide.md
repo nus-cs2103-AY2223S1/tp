@@ -52,6 +52,9 @@ SectresBook helps **secretaries** to maintain all the information of the members
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
+* `<OR>` signifies an exclusive-or parameter that is to be input.<br>
+  e.g `INDEX <OR> NAME` allows either the parameter `INDEX` or the parameter `NAME`, but not both
+
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
@@ -79,14 +82,15 @@ Format: `help`
 
 Adds a person to the SectresBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...​ [l/LOAN]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/HumanResources`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Member`
+* `add n/Jane Doe p/98876542 e/jane@example.com a/That Street, block 133, #11-10 t/Member l/10`
 * `add n/Neethesh t/Vice-president e/neethesh@example.com a/Happy Avenue p/91234567`
 
 ### Listing all persons : `list`
@@ -99,11 +103,14 @@ Format: `list`
 
 Edits an existing club member’s information in the SectresBook
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX <OR> NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 Example of usage:
 
-`edit 1 p/99999999` can be used to easily update a person’s contact information.
+`edit 1 p/99999999` can be used to easily update the first person's contact information.
+
+`edit John p/91235555` can be used to update a person’s contact information if there exists only one person whose name contains John.<br>
+  If no person is named `John`, no operations are performed. If more than one person has `John` in their name, then the operation is equivalent to `find John`.
 
 ### Locating persons by name: `find`
 

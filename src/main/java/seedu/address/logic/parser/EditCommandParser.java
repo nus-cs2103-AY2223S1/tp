@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AMBIGUOUS_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -13,16 +15,28 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser implements Parser<EditCommand> {
+    private Model model;
+
+    /**
+     * Constructs a {@code EditCommandParser}
+     * @param model the model of the current state
+     */
+    public EditCommandParser(Model model) {
+        this.model = model;
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -32,14 +46,16 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_LOAN);
 
         Index index;
-
+        String preamble = argMultimap.getPreamble();
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(preamble);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            filterPersonListByName(preamble, pe);
+            index = Index.fromOneBased(1);
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
@@ -57,11 +73,38 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
+        if (argMultimap.getValue(PREFIX_LOAN).isPresent()) {
+            editPersonDescriptor.setLoan(ParserUtil.parseLoan(argMultimap.getValue(PREFIX_LOAN).get()));
+        }
+
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Filters the {@code ObservableList<Person>} by person name
+     * @param preamble the name to search for, by complete word
+     * @param pe the ParseException to throw on failure
+     * @throws ParseException if there is nobody found by the find command, or there exist
+     *      an ambiguity
+     */
+    private void filterPersonListByName(String preamble, ParseException pe) throws ParseException {
+        try {
+            new FindCommandParser().parse(preamble).execute(model);
+        } catch (ParseException ignored) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        }
+
+        ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
+
+        if (filteredPersonList.size() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        } else if (filteredPersonList.size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_AMBIGUOUS_NAME, preamble), pe);
+        }
     }
 
     /**

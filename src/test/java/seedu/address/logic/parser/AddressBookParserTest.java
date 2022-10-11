@@ -46,7 +46,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD, model) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3", model) instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3", model)
+                instanceof ClearCommand);
     }
 
     @Test
@@ -76,7 +77,8 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")), model);
+        FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")),
+            model);
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -98,8 +100,11 @@ public class AddressBookParserTest {
             -> parser.parseCommand("", model));
     }
 
+
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand", model));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND,
+                //CHECKSTYLE.OFF: SeparatorWrap
+                () -> parser.parseCommand("unknownCommand", model));
     }
 }

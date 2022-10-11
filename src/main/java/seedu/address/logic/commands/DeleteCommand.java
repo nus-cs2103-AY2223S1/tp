@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -11,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -48,6 +50,13 @@ public class DeleteCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+            Set<Tag> personToDeleteTagSet = personToDelete.getTags();
+            for (Tag tag : personToDeleteTagSet) {
+              tag.removePerson(personToDelete);
+              if (tag.isPersonListEmpty()) {
+                model.removeTag(tag);
+              }
+            }
             model.deletePerson(personToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
         } else {
@@ -61,12 +70,18 @@ public class DeleteCommand extends Command {
                 throw new CommandException(String.format(Messages.MESSAGE_INVALID_NAME, predicate.getFirst()));
             } else {
                 Person personToDelete = filteredList.get(0);
+                Set<Tag> personToDeleteTagSet = personToDelete.getTags();
+                for (Tag tag : personToDeleteTagSet) {
+                  tag.removePerson(personToDelete);
+                    if (tag.isPersonListEmpty()) {
+                      model.removeTag(tag);
+                    }
+                }
                 model.deletePerson(personToDelete);
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
                 return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
             }
         }
-
     }
 
     @Override
