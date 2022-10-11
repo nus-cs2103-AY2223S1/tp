@@ -6,12 +6,12 @@ import seedu.address.model.Model;
 import seedu.address.model.PennyWise;
 
 /**
- * Clears the address book.
+ * Clears the penny wise application
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "PennyWise has been cleared!";
 
 
     @Override

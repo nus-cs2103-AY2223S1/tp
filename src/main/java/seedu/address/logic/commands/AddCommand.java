@@ -33,7 +33,7 @@ public class AddCommand extends Command {
         + PREFIX_DATE + "4-10-2022 ";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This entry already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the penny wise application";
 
     final Entry toAdd;
     final EntryType entryType;
@@ -52,7 +52,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasExpenditure(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }
 
         switch (entryType.getEntryType()) {
