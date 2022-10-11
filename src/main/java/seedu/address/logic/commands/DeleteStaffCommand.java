@@ -46,7 +46,7 @@ public class DeleteStaffCommand extends Command {
         Project project = null;
         for (int x = 0; x < len; x++) {
             String nameToCheck = projectList.get(x).getProjectName().fullName;
-            if (nameToCheck == projectName) {
+            if (nameToCheck.equals(projectName)) {
                 project = projectList.get(x);
                 break;
             }
