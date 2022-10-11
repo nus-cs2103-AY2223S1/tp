@@ -157,4 +157,8 @@ public class Person {
 
         return builder.toString();
     }
+
+    public int compareTo(Person person) {
+        return this.aClass.startTime.compareTo(person.aClass.startTime);
+    }
 }
