@@ -350,3 +350,24 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#attendances {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#attendances .label {
+    -fx-text-fill: white;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#present {
+    -fx-background-color: #00C851;
+}
+
+#absent {
+    -fx-background-color: #FF4444;
+}

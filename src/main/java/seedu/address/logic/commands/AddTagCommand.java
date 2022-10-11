@@ -65,7 +65,7 @@ public class AddTagCommand extends Command {
     /**
      * Constructs AddTagCommand that will add specified tag to all persons in the
      * displayed list.
-     * @param index of the person in the filtered person list to add the tag
+     *
      * @param tags of the person to be added
      */
     public AddTagCommand(Set<Tag> tags) {
