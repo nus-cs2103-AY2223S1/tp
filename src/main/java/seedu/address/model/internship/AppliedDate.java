@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class AppliedDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "To be added";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -31,10 +31,10 @@ public class AppliedDate {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid appliedDate.
      */
     public static boolean isValidAppliedDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return true;
     }
 
     @Override

@@ -10,9 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Link {
 
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String MESSAGE_CONSTRAINTS = "To be added";
+    //public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
     /**
@@ -30,7 +29,7 @@ public class Link {
      * Returns true if a given string is a valid link.
      */
     public static boolean isValidLink(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return true;
     }
 
     @Override
