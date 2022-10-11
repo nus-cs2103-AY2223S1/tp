@@ -8,6 +8,7 @@ import nus.climods.commons.core.Messages;
 import nus.climods.commons.core.index.Index;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
+import nus.climods.model.module.UserModule;
 import nus.climods.model.person.Person;
 
 /**
@@ -18,36 +19,37 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the person identified by the index number used in the displayed person list.\n"
-        + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + COMMAND_WORD + " 1";
+        + " <Module Code> : Deletes the Module as indicated by the user. ";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
+    public static final String MESSAGE_DELETE_MODULE_FAILED = "Module does not exist: %1$s";
 
-    private final Index targetIndex;
+    private final UserModule target;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(UserModule target) {
+        this.target = target;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<UserModule> lastShownList = model.getFilteredUserModuleList();
+        String msg = target.getUserModuleCode();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        System.out.println(lastShownList.contains(target));
+
+        if (!lastShownList.contains(target)) {
+            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, msg));
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        model.deleteUserModule(target);
+        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, msg));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof DeleteCommand // instanceof handles nulls
-            && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+            && target.equals(((DeleteCommand) other).target)); // state check
     }
 }

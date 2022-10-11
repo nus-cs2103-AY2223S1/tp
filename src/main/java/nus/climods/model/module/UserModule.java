@@ -92,12 +92,12 @@ public class UserModule {
             return true;
         }
 
-        if (!(other instanceof nus.climods.model.module.Module)) {
+        if (!(other instanceof nus.climods.model.module.UserModule)) {
             return false;
         }
 
-        nus.climods.model.module.Module otherModule = (nus.climods.model.module.Module) other;
-        return otherModule.getCode().equals(getUserModuleCode());
+        nus.climods.model.module.UserModule otherModule = (nus.climods.model.module.UserModule) other;
+        return otherModule.getUserModuleCode().equals(getUserModuleCode());
     }
 
     @Override
