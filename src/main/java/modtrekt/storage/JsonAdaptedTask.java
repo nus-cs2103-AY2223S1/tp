@@ -23,6 +23,7 @@ public class JsonAdaptedTask {
     private final String description;
     private final String modCode;
     private final String dueDate;
+    private final boolean isArchived;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -30,17 +31,17 @@ public class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String name, @JsonProperty("module code") String modCode,
-                           @JsonProperty("dueDate") String dueDate) {
+                           @JsonProperty("dueDate") String dueDate, @JsonProperty("isArchived") boolean isArchived) {
         this.description = name;
         this.modCode = modCode;
         this.dueDate = dueDate;
+        this.isArchived = isArchived;
     }
 
     /**
      * Converts a given {@code task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task task) {
-
         this.description = task.getDescription().toString();
         this.modCode = task.getModule().toString();
         if (task instanceof Deadline) {
@@ -48,6 +49,7 @@ public class JsonAdaptedTask {
         } else {
             dueDate = null;
         }
+        this.isArchived = task.isArchived();
     }
 
     /**
@@ -71,11 +73,10 @@ public class JsonAdaptedTask {
         final ModCode modCode = new ModCode(this.modCode);
 
         if (dueDate == null) {
-            return new Task(modelDescription, modCode);
+            return new Task(modelDescription, modCode, isArchived);
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
         LocalDate dueDateObj = LocalDate.parse(dueDate, formatter);
-        return new Deadline(modelDescription, modCode, dueDateObj);
+        return new Deadline(modelDescription, modCode, dueDateObj, isArchived);
     }
-
 }

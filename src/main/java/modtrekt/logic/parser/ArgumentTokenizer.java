@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
- *     e.g. {@code some preamble text t/ 11.00 t/12.00 k/ m/ July}  where prefixes are {@code t/ k/ m/}.<br>
+ * e.g. {@code some preamble text t/ 11.00 t/12.00 k/ m/ July}  where prefixes are {@code t/ k/ m/}.<br>
  * 1. An argument's value can be an empty string e.g. the value of {@code k/} in the above example.<br>
  * 2. Leading and trailing whitespaces of an argument value will be discarded.<br>
  * 3. An argument may be repeated and all its values will be accumulated e.g. the value of {@code t/}
- *    in the above example.<br>
+ * in the above example.<br>
  */
 public class ArgumentTokenizer {
 
@@ -21,11 +21,23 @@ public class ArgumentTokenizer {
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
      * @param prefixes   Prefixes to tokenize the arguments string with
-     * @return           ArgumentMultimap object that maps prefixes to their arguments
+     * @return ArgumentMultimap object that maps prefixes to their arguments
      */
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
+    }
+
+    /**
+     * Returns true if the given flag is present in the given arguments string.
+     * Flags are prefixes without arguments, e.g. {@code -A}.
+     *
+     * @param argsString Arguments string of the form: {@code preamble [<prefix>value] ... <flag> ... [<prefix>value]}
+     * @param flag       Flag to search for
+     * @return true if the flag is present in the arguments string
+     */
+    public static boolean isFlagPresent(String argsString, Prefix flag) {
+        return !findPrefixPositions(argsString, flag).isEmpty();
     }
 
     /**

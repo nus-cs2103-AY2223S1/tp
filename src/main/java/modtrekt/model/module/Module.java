@@ -14,7 +14,7 @@ public class Module {
     private final ModCode code;
     private final ModName name;
     private final ModCredit credits;
-    private ArrayList<Task> tasksList;
+    private final ArrayList<Task> tasksList;
 
     /**
      * Creates a Module with the given code, name, credits and tasks.
@@ -129,13 +129,6 @@ public class Module {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Code: ")
-                .append(getCode())
-                .append("; Credits: ")
-                .append(getCredits());
-
-        return builder.toString();
+        return getName() + "; Code: " + getCode() + "; Credits: " + getCredits();
     }
 }

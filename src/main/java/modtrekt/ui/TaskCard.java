@@ -51,6 +51,11 @@ public class TaskCard extends UiPart<Region> {
         if (t instanceof Deadline) {
             dueDate.setText("Due by: " + ((Deadline) t).getDueDate().toString());
         }
+        if (task.isArchived()) {
+            // Add the `archived` badge if the task is archived.
+            Label archivedBadge = new Label("ARCHIVED");
+            this.tags.getChildren().add(archivedBadge);
+        }
     }
 
     @Override

@@ -8,12 +8,12 @@ import modtrekt.model.task.Task;
  * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
-
     public static final String DEFAULT_DESC = "Complete Assignment";
     public static final String DEFAULT_MOD_CODE = "CS2103T";
 
     private Description description;
     private ModCode modCode;
+    private boolean isArchived;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -46,9 +46,15 @@ public class TaskBuilder {
         return this;
     }
 
-
-    public Task build() {
-        return new Task(description, modCode);
+    /**
+     * Sets the {@code isArchived} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withIsArchived(boolean isArchived) {
+        this.isArchived = isArchived;
+        return this;
     }
 
+    public Task build() {
+        return new Task(description, modCode, isArchived);
+    }
 }
