@@ -21,7 +21,7 @@ public class SortCommandTest {
     private Model model;
 
     @BeforeEach
-    public static void setModel() {
+    public void setModel() {
         Model model = new ModelManager();
         Person[] persons = {ELLE, AMY, BOB};
         for (Person p: persons) {

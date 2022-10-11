@@ -48,9 +48,7 @@ public class SortCommand extends Command {
         if (obj instanceof SortCommand) {
             SortCommand s = (SortCommand) obj;
             return this.comparator.equals(s.comparator) && this.keyword.equals(s.keyword);
-        }
-
-        else {
+        } else {
             // handles null
             return false;
         }
