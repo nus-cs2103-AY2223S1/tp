@@ -170,8 +170,14 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleLightTheme() {
-        primaryStage.getScene().getStylesheets().remove(darkTheme);
-        primaryStage.getScene().getStylesheets().add(lightTheme);
+        boolean hasLightTheme = primaryStage.getScene().getStylesheets().contains(lightTheme);
+        boolean hasDarkTheme = primaryStage.getScene().getStylesheets().contains(darkTheme);
+
+        if (!hasLightTheme && hasDarkTheme) {
+            primaryStage.getScene().getStylesheets().remove(darkTheme);
+            primaryStage.getScene().getStylesheets().add(lightTheme);
+        }
+        helpWindow.setLightTheme();
     }
 
     /**
@@ -179,8 +185,14 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleDarkTheme() {
-        primaryStage.getScene().getStylesheets().remove(lightTheme);
-        primaryStage.getScene().getStylesheets().add(darkTheme);
+        boolean hasLightTheme = primaryStage.getScene().getStylesheets().contains(lightTheme);
+        boolean hasDarkTheme = primaryStage.getScene().getStylesheets().contains(darkTheme);
+
+        if (!hasDarkTheme && hasLightTheme) {
+            primaryStage.getScene().getStylesheets().remove(lightTheme);
+            primaryStage.getScene().getStylesheets().add(darkTheme);
+        }
+        helpWindow.setDarkTheme();
     }
 
     public PersonListPanel getPersonListPanel() {
