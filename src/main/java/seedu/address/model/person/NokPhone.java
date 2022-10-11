@@ -27,7 +27,7 @@ public class NokPhone {
     }
 
     /**
-     * Constructs an {@code NokPhone} with default value 000.
+     * Constructs a {@code NokPhone} with default value "000".
      */
     public NokPhone() {
         value = "000";

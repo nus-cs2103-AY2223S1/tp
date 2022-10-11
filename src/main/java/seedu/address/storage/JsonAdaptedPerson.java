@@ -93,14 +93,15 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
+        final NokPhone modelNokPhone;
         if (nokPhone == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, NokPhone.class.getSimpleName()));
+            modelNokPhone = new NokPhone("000");
+        } else {
+            if (!NokPhone.isValidNokPhone(nokPhone)) {
+                throw new IllegalValueException(NokPhone.MESSAGE_CONSTRAINTS);
+            }
+            modelNokPhone = new NokPhone(nokPhone);
         }
-        if (!NokPhone.isValidNokPhone(nokPhone)) {
-            throw new IllegalValueException(NokPhone.MESSAGE_CONSTRAINTS);
-        }
-        final NokPhone modelNokPhone = new NokPhone(nokPhone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
