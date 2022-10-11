@@ -103,7 +103,7 @@ public class EditStudentCommandTest {
         EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test
@@ -115,7 +115,7 @@ public class EditStudentCommandTest {
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_PERSON,
                 new EditStudentDescriptorBuilder(studentInList).build());
 
-        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test
