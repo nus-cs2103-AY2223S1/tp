@@ -276,13 +276,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​            | So that I can…​                                     |
-|----------| -------------------------------------- |-------------------------|-----------------------------------------------------|
-| `* * *`  | user                                   | list all tutor profiles | get a quick view of all available tutors            |
-| `* * *`  | user                                   | add a new tutor         | track their profiles                                |
-| `* * *`  | user                                   | delete a tutor profile  | remove tutors that are no longer available for work |
-| `* * *`  | user                                   | save data               | there is a local backup on the computer             |
-| `* * *`  | user                                   | exit the program        |                                                     |
+| Priority | As a …​                               | I can …​                              | So that I can…​                                   |
+|----------| --------------------------------------|---------------------------------------|---------------------------------------------------|
+| `* * *`  | user                                  | list all tutor profiles               | get a quick view of all available tutors          |
+| `* * *`  | user                                  | add a new tutor                       | track their profiles                              |
+| `* * *`  | user                                  | find a specific tutor by name easily  | filter tutor names                                |
+| `* * *`  | user                                  | delete a tutor profile                | remove tutors that are no longer available for work |
+| `* * *`  | user                                  | save data                             | there is a local backup on the computer           |
+| `* * *`  | user                                  | exit the program                      |                                                   |
 
 *{More to be added}*
 
