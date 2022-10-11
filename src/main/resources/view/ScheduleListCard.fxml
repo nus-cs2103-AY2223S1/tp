@@ -38,9 +38,6 @@
                 <Label styleClass="cell_small_label" text="Address: " />
                 <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             </HBox>
-
-
-
         </VBox>
     </GridPane>
 </HBox>
