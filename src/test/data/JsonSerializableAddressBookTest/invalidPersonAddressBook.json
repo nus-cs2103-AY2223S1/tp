@@ -4,5 +4,12 @@
     "phone": "9482424",
     "email": "invalid@email!3e",
     "address": "4th street"
+  } ],
+  "events" : [ {
+    "eventTitle" : "Dinosaur Sale",
+    "date" : "2022-01-04",
+    "time" : "12:00",
+    "purpose" : "Selling all dinosaurs at 15% discount"
   } ]
+
 }
