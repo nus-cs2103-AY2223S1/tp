@@ -24,6 +24,12 @@ public class DisplayedPerson {
         this.person = person;
     }
 
+    /**
+     * Set the person displayed to the input person parameter.
+     *
+     * @param person New person to be displayed.
+     * @param addressBook Addressbook from which the new person originated from.
+     */
     public void setDisplayedPerson(Person person, AddressBook addressBook) {
         requireAllNonNull(person, addressBook);
 

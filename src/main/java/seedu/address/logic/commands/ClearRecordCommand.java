@@ -26,6 +26,7 @@ public class ClearRecordCommand extends Command {
         }
 
         model.clearRecords();
+
         return new CommandResult(MESSAGE_SUCCESS,
                 false, false, true);
     }

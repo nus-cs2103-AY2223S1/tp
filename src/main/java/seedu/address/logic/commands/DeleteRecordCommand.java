@@ -45,6 +45,7 @@ public class DeleteRecordCommand extends Command {
 
         Record recordToDelete = lastShownRecordList.get(targetIndex.getZeroBased());
         model.deleteRecord(recordToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, recordToDelete),
                 false, false, true);
     }

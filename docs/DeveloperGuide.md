@@ -288,7 +288,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `OmniHealth` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a patient**
+**Use case: UC01 - Add a patient**
+**Precondition: Addressbook is displayed**
 
 **MSS**
 
@@ -305,14 +306,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Add a record**
+**Use case: UC02 - Add a record**
 
 **MSS**
 
-1.  User requests to list patients
-2.  OmniHealth shows a list of patients
-3.  User requests to add record with given fields into to a specific patient in the list
-4.  OmniHealth adds a record with given fields to the record list of the specified patient.
+1. User !!requests to list patients (UC05)!!
+2. User !!requests to display record list of specific patient (UC06)!!
+3. User requests to add record with given fields into to the patient.
+4. OmniHealth adds a record with given fields to the record list of the patient.
 
     Use case ends.
 
@@ -324,7 +325,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a patient**
+**Use case: UC03 - Delete a patient**
+**Precondition: Addressbook is displayed**
 
 **MSS**
 
@@ -357,14 +359,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Delete a record**
+**Use case: UC04 - Delete a record**
 
 **MSS**
 
-1.  User requests to list records of a specific patient
-2.  OmniHealth shows a list of records
-3.  User requests to delete a specific record in the list
-4.  OmniHealth deletes the record
+1.  User !!requests to list patients (UC05).!!
+2.  User !!requests to display record list of specific patient (UC06).!!
+3.  User requests to delete a specific record in the list.
+4.  OmniHealth deletes the record.
 
     Use case ends.
 
@@ -388,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: List all patients**
+**Use case: UC05 - List all patients**
 
 **MSS**
 
@@ -405,11 +407,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Use case ends.
 
-**Use case: List all records for a specified patient**
+**Use case: UC06 - List all records for a specified patient**
 
 **MSS**
 
-1. User requests to list all records for the specified patient.
+1. User requests to display all records for the specified patient.
 2. OmniHealth shows a list of all records for the specified patient.
 
    Use case ends.
@@ -428,7 +430,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Use case ends.
 
-**Use case: Clear patient list**
+**Use case: UC07 - Clear patient list**
+**Precondition: Addressbook is displayed**
 
 **MSS**
 
@@ -443,12 +446,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends
 
-**Use case: Clear patient records**
+**Use case: UC08 - Clear patient records**
 
 **MSS**
 
-1. User requests to clear all records from a patient
-2. Omnihealth deletes all patient records
+1. User !!requests to list patients (UC05)!!
+2. User !!requests to display record list of specific patient (UC06)!!
+3. User requests to clear all records from a patient
+4. Omnihealth deletes all patient records
 
    Use case ends
 
@@ -462,7 +467,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends
 
-**Use case: Get Help**
+**Use case: UC09 - Get Help**
 
 **MSS**
 
@@ -471,11 +476,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends
 
-**Use case: Find patient**
+**Use case: UC10 - Find patient**
+**Precondition: Addressbook is displayed**
 
 **MSS**
 
-1. User requests to find a patient by name
+1. User requests to find a patient by name.
 2. OmniHealth shows a list of all patients matching the input by the user.
 
 **Extensions**
@@ -488,13 +494,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends
 
-**Use case: Find patient records**
+**Use case: UC11 - Find patient records**
 
 **MSS**
 
-1. User requests to find a patient by name
-2. OmniHealth shows a list of all patients matching the input by the user.
-3. User inputs a keyword and a patient record index.
+1. User !!requests to list patients (UC05)!!
+2. User !!requests to display record list of specific patient (UC06)!!
+3. User inputs a keyword to search the record list.
 4. OmniHealth shows all the relevant records of the specified patient.
 
 **Extensions**

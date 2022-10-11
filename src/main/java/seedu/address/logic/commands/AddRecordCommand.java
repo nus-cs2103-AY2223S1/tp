@@ -50,6 +50,7 @@ public class AddRecordCommand extends Command {
         }
 
         model.addRecord(toAdd);
+
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, toAdd),
                 false, false, true);
