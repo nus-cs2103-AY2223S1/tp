@@ -13,19 +13,22 @@
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="20" prefWidth="20" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="20" prefWidth="200" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="20" prefWidth="400.0" />
     </columnConstraints>
-    <Rectangle GridPane.columnIndex="0" height="80.0" width="7.5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" stroke="DODGERBLUE" strokeType="INSIDE" GridPane.hgrow="NEVER">
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="82.0" stroke="DODGERBLUE" strokeType="INSIDE" width="7.5" GridPane.columnIndex="0" GridPane.hgrow="NEVER">
         <GridPane.margin>
           <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
         </GridPane.margin>
     </Rectangle>
-    <VBox GridPane.columnIndex="1" alignment="TOP_LEFT" minHeight="105" >
+    <VBox alignment="TOP_LEFT" minHeight="105" GridPane.columnIndex="1">
       <padding>
         <Insets bottom="5" left="5" right="5" top="15" />
       </padding>
       <Label fx:id="header" styleClass="cell_big_label" text="\$header" />
       <Label fx:id="taskList" styleClass="cell_small_label" text="\$taskList" />
     </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
   </GridPane>
 </HBox>
