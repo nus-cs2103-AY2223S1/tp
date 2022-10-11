@@ -1,19 +1,19 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EditCommandParser;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCUPATION;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model, EditCommand, and
@@ -29,7 +29,7 @@ class UndoCommandTest {
         EditCommandParser editCommandParser = new EditCommandParser();
         EditCommand editCommand = null;
         try {
-            editCommand = editCommandParser.parse("1 o/CHANGED");
+            editCommand = editCommandParser.parse("1 p/1234321");
         } catch (ParseException pe) {
             fail();
         }

@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Undoes the last modifying operator. An undo can be undone, effectively
@@ -23,9 +23,9 @@ public class UndoCommand extends Command {
 
     public static final String NO_ACTION_TO_UNDO = "No action to undo.";
 
-    public static Command lastCommand = null;
+    private static Command lastCommand = null;
 
-    public static ReadOnlyAddressBook undoAddressBook = null;
+    private static ReadOnlyAddressBook undoAddressBook = null;
 
     /*
      * For every possibly modifying command, add this just before model is
