@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Amount {
 
-    public static final String MESSAGE_CONSTRAINTS =  "Expense amount should only contain positive numbers, "
+    public static final String MESSAGE_CONSTRAINTS = "Expense amount should only contain positive numbers, "
             + "and it should be formatted to accept 2 decimal places";
-    public static final String VALIDATION_REGEX = "^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$";;
+    public static final String VALIDATION_REGEX = "^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$";
     public final String amount;
 
     /**

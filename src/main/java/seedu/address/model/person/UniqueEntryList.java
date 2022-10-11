@@ -69,10 +69,7 @@ public class UniqueEntryList implements Iterable<Entry> {
         internalList.set(index, editedEntry);
     }
 
-    public void setEntries(UniqueEntryList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
+
 
     /**
      * Removes the equivalent entry from the list.
@@ -83,6 +80,11 @@ public class UniqueEntryList implements Iterable<Entry> {
         if (!internalList.remove(toRemove)) {
             throw new EntryNotFoundException();
         }
+    }
+
+    public void setEntries(UniqueEntryList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
     }
 
     /**
