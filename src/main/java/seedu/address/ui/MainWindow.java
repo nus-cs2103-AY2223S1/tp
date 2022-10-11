@@ -52,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane tutorialListPanelPlaceholder;
 
     @FXML
+    private StackPane consultationListPanelPlaceholder;
+
+    @FXML
     private Label listHeader;
 
     @FXML
@@ -128,6 +131,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
+        consultationListPanel = new ConsultationListPanel(logic.getFilteredConsultationList());
 
         // show the person list by default.
         modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());

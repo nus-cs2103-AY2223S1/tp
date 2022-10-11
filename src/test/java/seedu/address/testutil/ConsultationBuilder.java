@@ -70,6 +70,14 @@ public class ConsultationBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ConsultationDescription} of the {@code Consultation} that we are building.
+     */
+    public ConsultationBuilder withDescription(String description) {
+        this.ConsultationDescription = new ConsultationDescription(description);
+        return this;
+    }
+
     public Consultation build() {
         return new Consultation(ConsultationName, ConsultationModule, ConsultationVenue, ConsultationTimeslot, ConsultationDescription);
     }

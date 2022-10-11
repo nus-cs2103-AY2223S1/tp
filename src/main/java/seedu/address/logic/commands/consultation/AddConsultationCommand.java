@@ -16,16 +16,16 @@ public class AddConsultationCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a consultation to the ModQuik. "
             + "Parameters: "
-            + PREFIX_TIMESLOT + "TIMESLOT "
-            + PREFIX_VENUE + "VENUE "
-            + PREFIX_MODULE + "MODULE "
             + PREFIX_NAME + "NAME "
+            + PREFIX_MODULE + "MODULE "
+            + PREFIX_VENUE + "VENUE "
+            + PREFIX_TIMESLOT + "TIMESLOT "
             + PREFIX_DESCRIPTION + "DESCRIPTION"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TIMESLOT + "1500-1800 "
-            + PREFIX_VENUE + "COM1-0203 "
-            + PREFIX_MODULE + "CS2103T "
             + PREFIX_NAME + "JakeLim"
+            + PREFIX_MODULE + "CS2103T "
+            + PREFIX_VENUE + "COM1-0203 "
+            + PREFIX_TIMESLOT + "1500-1800 "
             + PREFIX_DESCRIPTION + "Review past year paper";
 
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";

@@ -168,7 +168,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         String result = persons.asUnmodifiableObservableList().size() + " persons, "
-                + tutorials.asUnmodifiableObservableList().size() + " tutorials";
+                + tutorials.asUnmodifiableObservableList().size() + " tutorials"
+                + consultations.asUnmodifiableObservableList().size() + " consultations";
         return result;
         // TODO: refine later
     }
@@ -181,6 +182,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Tutorial> getTutorialList() {
         return tutorials.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Consultation> getConsultationList() {
+        return consultations.asUnmodifiableObservableList();
     }
 
     @Override

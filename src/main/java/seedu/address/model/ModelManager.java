@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Tutorial> filteredTutorials;
+    private final FilteredList<Consultation> filteredConsultations;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
+        filteredConsultations = new FilteredList<>(this.addressBook.getConsultationList());
     }
 
     public ModelManager() {
@@ -171,25 +173,6 @@ public class ModelManager implements Model {
         updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
     }
 
-    //=========== Consultation ==================================================================================
-
-    @Override
-    public boolean hasConsultation(Consultation consultation) {
-        requireNonNull(consultation);
-        return addressBook.hasConsultation(consultation);
-    }
-
-    @Override
-    public boolean hasConsultationClashingWith(Consultation consultation) {
-        requireNonNull(consultation);
-        return addressBook.hasConsultationClashingWith(consultation);
-    }
-
-    @Override
-    public void addConsultation(Consultation consultation) {
-        addressBook.addConsulation(consultation);
-        updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
-    }
 
     //=========== Filtered Tutorial List Accessors =============================================================
 
@@ -208,4 +191,40 @@ public class ModelManager implements Model {
         filteredTutorials.setPredicate(predicate);
     }
 
+    //=========== Consultation ==================================================================================
+
+    @Override
+    public boolean hasConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return addressBook.hasConsultation(consultation);
+    }
+
+    @Override
+    public boolean hasConsultationClashingWith(Consultation consultation) {
+        requireNonNull(consultation);
+        return addressBook.hasConsultationClashingWith(consultation);
+    }
+
+    @Override
+    public void addConsultation(Consultation consultation) {
+        addressBook.addConsulation(consultation);
+        updateFilteredConsultationList(PREDICATE_SHOW_ALL_CONSULTATIONS);
+    }
+
+    //=========== Filtered Tutorial List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Consultation} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Consultation> getFilteredConsultationList() {
+        return filteredConsultations;
+    }
+
+    @Override
+    public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
+        requireNonNull(predicate);
+        filteredConsultations.setPredicate(predicate);
+    }
 }

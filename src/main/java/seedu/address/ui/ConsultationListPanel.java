@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -8,22 +10,20 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.consultation.Consultation;
 
-import java.util.logging.Logger;
-
-public class ConsultationListPanel  extends UiPart<Region> {
+public class ConsultationListPanel extends UiPart<Region> {
     private static final String FXML = "ConsultationListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ConsultationListPanel.class);
 
-    @javafx.fxml.FXML
-    private ListView<Consultation> ConsultationListView;
+    @FXML
+    private ListView<Consultation> consultationListView;
 
     /**
      * Creates a {@code ConsultationListPanel} with the given {@code ObservableList}.
      */
-    public ConsultationListPanel(ObservableList<Consultation> ConsultationList) {
+    public ConsultationListPanel(ObservableList<Consultation> consultationList) {
         super(FXML);
-        ConsultationListView.setItems(ConsultationList);
-        ConsultationListView.setCellFactory(listView -> new ConsultationListPanel.ConsultationListViewCell());
+        consultationListView.setItems(consultationList);
+        consultationListView.setCellFactory(listView -> new ConsultationListViewCell());
     }
 
     /**
@@ -31,14 +31,14 @@ public class ConsultationListPanel  extends UiPart<Region> {
      */
     class ConsultationListViewCell extends ListCell<Consultation> {
         @Override
-        protected void updateItem(Consultation Consultation, boolean empty) {
-            super.updateItem(Consultation, empty);
+        protected void updateItem(Consultation consultation, boolean empty) {
+            super.updateItem(consultation, empty);
 
-            if (empty || Consultation == null) {
+            if (empty || consultation == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ConsultationCard(Consultation, getIndex() + 1).getRoot());
+                setGraphic(new ConsultationCard(consultation, getIndex() + 1).getRoot());
             }
         }
     }
