@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Budget;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.staff.StaffName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -104,5 +105,17 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     *
+     */
+    public static StaffName parseStaffName(String staffName) throws ParseException {
+        requireNonNull(staffName);
+        String trimmedStaffName = staffName.trim();
+        if (!StaffName.isValidStaffName(trimmedStaffName)) {
+            throw new ParseException(StaffName.MESSAGE_CONSTRAINTS);
+        }
+        return new StaffName(trimmedStaffName);
     }
 }
