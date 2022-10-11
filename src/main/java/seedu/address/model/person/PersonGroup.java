@@ -1,10 +1,9 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
-
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.ArrayList;
 
 /**
  * Represents a Person's group in the address book.
@@ -35,11 +34,11 @@ public class PersonGroup extends ArrayList<PersonGroup> {
     public PersonGroup(String group) {
         requireNonNull(group);
         checkArgument(isValidGroup(group), MESSAGE_CONSTRAINTS);
-        value = group;
+        this.value = group;
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid group.
      */
     public static boolean isValidGroup(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -48,12 +47,12 @@ public class PersonGroup extends ArrayList<PersonGroup> {
     /**
      * Get name of Group
      */
-    public String getGroup() {
+    public String getGroupName() {
         return value;
     }
 
     public boolean isEmpty() {
-        return isNull(value);
+        return value == null;
     }
     @Override
     public String toString() {
@@ -64,12 +63,11 @@ public class PersonGroup extends ArrayList<PersonGroup> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PersonGroup // instanceof handles nulls
-                && value.equals(((PersonGroup)other).value)); // state check
+                && value.equals(((PersonGroup) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
         return value.hashCode();
     }
-
 }

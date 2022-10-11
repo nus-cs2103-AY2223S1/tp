@@ -7,21 +7,21 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.NoSuchElementException;
 
-import seedu.address.logic.commands.AssignTaskCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Name;
 
 /**
- * Parses input arguments and creates a new {@code AssignTaskCommand} object
+ * Parses input arguments and creates a new {@code DeleteTaskCommand} object
  */
-public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
+public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code AssignTaskCommand}
-     * and returns a {@code AssignTaskCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code DeleteTaskCommand}
+     * and returns a {@code DeleteTaskCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AssignTaskCommand parse(String args) throws ParseException {
+    public DeleteTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_GROUP, PREFIX_TASK);
@@ -35,9 +35,9 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
             group = argMultimap.getValue(PREFIX_GROUP).get();
             task = argMultimap.getValue(PREFIX_TASK).get();
         } catch (NoSuchElementException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE), e);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE), e);
         }
 
-        return new AssignTaskCommand(new Name(name), group, new Assignment(task));
+        return new DeleteTaskCommand(new Name(name), group, new Assignment(task));
     }
 }

@@ -14,7 +14,8 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
   - Deleting a person : [`deleteuser`](#deleting-a-person--deleteuser)
   - Adding a group: [`addgroup`](#creating-a-group--addgroup)
   - Add member to  group: [`addmember`](#adding-a-member--addmember)
-  - Assign member a task: [`assigntask`](#assigning-a-task-to-a-user-assigntask)
+  - Assign member a task: [`assigntask`](#assigning-a-task-to-a-person-assigntask)
+  - Delete task from member [`deletetask`](#deleting-a-task-from-a-person-deletetask)
   - Locate group by name: [`display`](#display-a-group--display)
   - Delete a group: [`deletegroup`](#deleting-a-group--deletegroup)
   - Exiting the program : [`exit`](#exiting-the-program--exit)
@@ -157,17 +158,31 @@ Examples:
 
 ### Assigning a task to a person: `assigntask`
 
-Assigns a task to a person in TABS.
+Assigns a task to a person with a group in TABS.
 
-Format: `assigntask NAME t/TASK`
+Format: `assigntask NAME g/GROUP task/TASK`
 
-* Assigns a `TASK` to a person with the specified `NAME`.
+* Assigns a `TASK` to a person with the specified `NAME` and specified `GROUP`.
 * `TASK` is of type String.
 
 Examples:
 
-* `assigntask n/John t/TeamProject` assigns TeamProject task to person John.
-* `assigntask n/Billy Tom t/Team Delta Project` assigns Team Delta Project to person Billy Tom.
+* `assigntask John g/CS2103T task/TeamProject` assigns TeamProject task to person John with group CS2103T.
+* `assigntask Billy g/Team Delta task/Delta Project` assigns Delta Project to person Billy with group Team Delta.
+
+### Deleting a task from a person: `deletetask`
+
+Deletes a task from a person in a group in TABS.
+
+Format: `deletetask NAME g/GROUP task/TASK`
+
+* Deletes a `TASK` from a person with the specified `NAME` and specified `GROUP`.
+* `TASK` is of type String.
+
+Examples:
+
+* `deletetask John g/CS2103T task/TeamProject` deletes TeamProject task from person John in group CS2103T.
+* `deletetask Billy g/Team Delta task/Delta Project` deletes Delta Project from person Billy with in Team Delta.
 
 ### Display a group : `display`
 
@@ -214,7 +229,8 @@ Format: `exit`
 **List** | `list`
 **Add Group** | `addgroup GROUP` <br> e.g. `addgroup CS2103T`
 **Add Member** | `addmember [g/GROUP] [n/NAME]` <br> e.g. `addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser`
-**Assign Task** | `assigntask [n/NAME] [t/TASK]` <br> e.g. `assigntask n/John t/TeamProject`
+**Assign Task** | `assigntask NAME [g/GROUP] [task/TASK]` <br> e.g. `assigntask John g/CS2103T task/TeamProject`
+**Delete Task** | `deletetask NAME [g/GROUP] [task/TASK]` <br> e.g. `deletetask John g/CS2103T task/TeamProject`
 **Display Group** | `display GROUP` <br> e.g. `display CS2103T`
 **Delete Group** | `deletegroup GROUP` <br> e.g. `deletegroup CS2103T`
 **Exit** | `exit`

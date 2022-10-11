@@ -37,7 +37,11 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_GROUP_1 = "Group 1";
+    public static final String VALID_GROUP_2 = "Group 2";
     public static final String VALID_ASSIGNMENT = "ExampleAssignment";
+    public static final String VALID_ASSIGNMENT_1 = "ExampleAssignment123";
+    public static final String[] VALID_GROUPS = new String[]{VALID_GROUP_1, VALID_GROUP_2};
+    public static final String[][] VALID_ASSIGNMENTS = new String[][]{{VALID_ASSIGNMENT}, {VALID_ASSIGNMENT_1}};
     public static final String VALID_GROUPNAME_TP = "CS2103T Team Project";
     public static final String VALID_GROUPNAME_IP = "CS2103T Individual Project";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;

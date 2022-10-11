@@ -36,6 +36,12 @@ public class Group {
         return Collections.unmodifiableSet(members);
     }
 
+    /**
+     * Check if person is already in the group.
+     *
+     * @param toCheck person to check if in group
+     * @return true if person is in group, false otherwise
+     */
     public boolean contains(Person toCheck) {
         for (Person p : members) {
             if (p.isSamePerson(toCheck)) {
