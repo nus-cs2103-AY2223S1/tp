@@ -102,6 +102,14 @@ public class Task {
     }
 
     /**
+     * Returns true if this Task is done, and false otherwise.
+     * @return true if this Task is done, and false otherwise
+     */
+    public boolean isDone() {
+        return isDone;
+    }
+
+    /**
      * Returns the Name of this Task.
      * @return Name of this Task
      */
@@ -147,14 +155,6 @@ public class Task {
      */
     public Person getPerson() {
         return person;
-    }
-
-    /**
-     * Returns true if this Task is done, and false otherwise.
-     * @return true if this Task is done, and false otherwise
-     */
-    public boolean isDone() {
-        return isDone;
     }
 
     /**

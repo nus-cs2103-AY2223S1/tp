@@ -13,7 +13,7 @@ public class SortByCategory implements Comparator<Task> {
      * @param task1 the first Task to be compared
      * @param task2 the second Task to be compared
      * @return a negative integer, zero, or a positive integer as the Category of the first Task is less than,
-     * equal to, or greater than the second
+     *         equal to, or greater than the second
      */
     public int compare(Task task1, Task task2) {
         return task1.getCategory().getTaskCategoryType().compareTo(task2.getCategory().getTaskCategoryType());

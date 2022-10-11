@@ -117,7 +117,7 @@ Examples:
 
 Deletes a task from the tasklist.
 
-Format: `delete task TASK_NUMBER` 
+Format: `delete task TASK_NUMBER`
 * Deletes the task at the specified `TASK_NUMBER`.
 * The tasknumber refers to the task number shown in the displayed task list.
 * The tasknumber **must be a positive integer** 1, 2, 3, …​
@@ -129,7 +129,7 @@ Examples:
 
 Lists out all the tasks in the tasklist.
 
-Format: `view tasks` 
+Format: `view tasks`
 
 ### Assigning a task: `Assign`
 

@@ -1,12 +1,17 @@
 package seedu.address.model.task;
 
 
-
+/**
+ * Represents the category of a task.
+ */
 public class TaskCategory {
     private int level;
     private TaskCategoryType taskCategoryType;
 
-    public TaskCategory(int level, TaskCategoryType taskCategoryType){
+    /**
+     * Constructor for TaskCategory
+     */
+    public TaskCategory(int level, TaskCategoryType taskCategoryType) {
         this.level = level;
         this.taskCategoryType = taskCategoryType;
     }
@@ -62,8 +67,7 @@ public class TaskCategory {
         return other == this // short circuit if same object
                 || (other instanceof TaskCategory // instanceof handles nulls
                 && ((TaskCategory) other).level == this.level
-                && ((TaskCategory) other).taskCategoryType.equals(this.taskCategoryType)
-        );
+                && ((TaskCategory) other).taskCategoryType.equals(this.taskCategoryType));
     }
 
 }
