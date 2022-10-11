@@ -2,10 +2,12 @@ package bookface.model;
 
 import static bookface.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static bookface.testutil.Assert.assertThrows;
+import static bookface.testutil.TestUtil.preparePredicateToCheckPersonForPartialWordIgnoreCase;
 import static bookface.testutil.TypicalPersons.ALICE;
 import static bookface.testutil.TypicalPersons.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
@@ -15,7 +17,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import bookface.commons.core.GuiSettings;
-import bookface.model.person.NameContainsKeywordsPredicate;
 import bookface.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -102,24 +103,25 @@ public class ModelManagerTest {
         // same values -> returns true
         modelManager = new ModelManager(bookFace, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(bookFace, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotEquals(null, modelManager);
 
         // different types -> returns false
-        assertFalse(modelManager.equals(5));
+        assertNotEquals(5, modelManager);
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentBookFace, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(differentBookFace, userPrefs));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(bookFace, userPrefs)));
+        modelManager.updateFilteredPersonList(preparePredicateToCheckPersonForPartialWordIgnoreCase(
+                Arrays.asList(keywords)));
+        assertNotEquals(modelManager, new ModelManager(bookFace, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +129,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(bookFace, differentUserPrefs)));
+        assertNotEquals(modelManager, new ModelManager(bookFace, differentUserPrefs));
     }
 }

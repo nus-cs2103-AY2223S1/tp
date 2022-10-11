@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class StringUtil {
 
     /**
-     * Returns true if the {@code sentence} contains the {@code word}.
+     * Returns true if the {@code sentence} contains the entire {@code word}.
      *   Ignores case, but a full word match is required.
      *   <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
@@ -22,19 +22,71 @@ public class StringUtil {
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean matchesWholeWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
         String preppedWord = word.trim();
         AppUtil.checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        AppUtil.checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+        AppUtil.checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter"
+                + " should be a single word");
 
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String[] wordsInPreppedSentence = sentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code word} partially.
+     *   Ignores case, but a full word match is not required.
+     *   <br>examples:<pre>
+     *       containsWordIgnoreCase("ABc def", "ab") == true
+     *       containsWordIgnoreCase("ABc def", "DE") == true
+     *       containsWordIgnoreCase("ABc def", "Ac") == false
+     *       </pre>
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsPartialWordIgnoreCase(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        AppUtil.checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        AppUtil.checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter"
+                + "should be a single word");
+
+        String[] wordsInPreppedSentence = sentence.split("\\s+");
+
+        return Arrays.stream(wordsInPreppedSentence)
+                .anyMatch(keyword -> containsIgnoreCase(keyword, word));
+    }
+
+    // Code for parsing lower case strings safely is
+    // referenced from https://stackoverflow.com/a/14018549/13742805
+    /**
+     * Returns true if the {@code stringToSearchIn} contains the {@code keyword} partially.
+     *   Ignores case, but a full match is not required.
+     * @param stringToSearchIn cannot be null
+     * @param keyword cannot be null
+     */
+    private static boolean containsIgnoreCase(String stringToSearchIn, String keyword) {
+        if (keyword == null || stringToSearchIn == null) {
+            return false;
+        }
+
+        final int length = keyword.length();
+        if (length == 0) {
+            return true;
+        }
+
+        for (int i = stringToSearchIn.length() - length; i >= 0; i--) {
+            if (stringToSearchIn.regionMatches(true, i, keyword, 0, length)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -44,7 +96,7 @@ public class StringUtil {
         requireNonNull(t);
         StringWriter sw = new StringWriter();
         t.printStackTrace(new PrintWriter(sw));
-        return t.getMessage() + "\n" + sw.toString();
+        return t.getMessage() + "\n" + sw;
     }
 
     /**

@@ -5,20 +5,20 @@ import static bookface.logic.parser.CliSyntax.PREFIX_NAME;
 import static bookface.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookface.logic.parser.CliSyntax.PREFIX_TAG;
 import static bookface.testutil.Assert.assertThrows;
+import static bookface.testutil.TestUtil.preparePredicateToCheckPersonForPartialWordIgnoreCase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import bookface.commons.core.index.Index;
+import bookface.commons.util.StringUtil;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.BookFace;
 import bookface.model.Model;
+import bookface.model.ObjectContainsKeywordsPredicate;
 import bookface.model.book.Book;
-import bookface.model.book.TitleContainsKeywordsPredicate;
-import bookface.model.person.NameContainsKeywordsPredicate;
 import bookface.model.person.Person;
 import bookface.testutil.EditPersonDescriptorBuilder;
 
@@ -125,7 +125,7 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(preparePredicateToCheckPersonForPartialWordIgnoreCase(List.of(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
@@ -139,7 +139,9 @@ public class CommandTestUtil {
 
         Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
         final String[] splitTitle = book.getTitle().bookTitle.split("\\s+");
-        model.updateFilteredBookList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+        model.updateFilteredBookList(new ObjectContainsKeywordsPredicate<>(List.of(splitTitle[0]),
+                bookToCheck -> keyword -> StringUtil.containsPartialWordIgnoreCase(bookToCheck.getTitle().bookTitle,
+                        keyword)));
 
         assertEquals(1, model.getFilteredBookList().size());
     }

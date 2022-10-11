@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 import bookface.commons.core.index.Index;
+import bookface.commons.util.StringUtil;
 import bookface.model.Model;
+import bookface.model.ObjectContainsKeywordsPredicate;
 import bookface.model.person.Person;
 
 /**
@@ -51,5 +55,23 @@ public class TestUtil {
      */
     public static Person getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
+    }
+
+    /**
+     * Parses {@code userInput} from a String into a {@code ObjectContainsKeywordsPredicate}.
+     */
+    public static ObjectContainsKeywordsPredicate<Person, String>
+        preparePredicateToCheckPersonForPartialWordIgnoreCase(String userInput) {
+        return new ObjectContainsKeywordsPredicate<>(Arrays.asList(userInput.split("\\s+")), person ->
+                keyword -> StringUtil.containsPartialWordIgnoreCase(person.getName().fullName, keyword));
+    }
+
+    /**
+     * Parses {@code userInput} from a List into a {@code ObjectContainsKeywordsPredicate}.
+     */
+    public static ObjectContainsKeywordsPredicate<Person, String>
+        preparePredicateToCheckPersonForPartialWordIgnoreCase(List<? extends String> userInput) {
+        return new ObjectContainsKeywordsPredicate<>(userInput, person ->
+                keyword -> StringUtil.containsPartialWordIgnoreCase(person.getName().fullName, keyword));
     }
 }
