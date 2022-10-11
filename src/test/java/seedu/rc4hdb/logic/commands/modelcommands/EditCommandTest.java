@@ -152,6 +152,7 @@ public class EditCommandTest {
         // same values -> returns true
         ResidentDescriptor copyDescriptor = new ResidentDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_RESIDENT, copyDescriptor);
+
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true

@@ -18,16 +18,14 @@ import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.predicates.AttributesMatchKeywordsPredicate;
 
 /**
- * Filters and lists all persons in address book whose attributes are equal to any of the argument keywords.
+ * Filters and lists all residents in resident book whose attributes are equal to any of the argument keywords.
  * Keyword matching is case sensitive.
  */
 public class FilterCommand extends ModelCommand {
     public static final String COMMAND_WORD = "filter";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": filters the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": "
+            + "filters the resident book by the attributes specified in the command"
+            + "Parameters:"
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -40,14 +38,13 @@ public class FilterCommand extends ModelCommand {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_FILTER_PERSON_SUCCESS = "filtered Person: %1$s";
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the resident book.";
 
+    /** description to filter the resident with */
     private final ResidentDescriptor filterPersonDescriptor;
 
     /**
-     * @param filterPersonDescriptor details to filter the person with
+     * @param filterPersonDescriptor description object to filter the resident with
      */
     public FilterCommand(ResidentDescriptor filterPersonDescriptor) {
         requireNonNull(filterPersonDescriptor);
@@ -65,4 +62,21 @@ public class FilterCommand extends ModelCommand {
                 String.format(Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW, model.getFilteredResidentList().size()));
     }
 
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FilterCommand)) {
+            return false;
+        }
+
+        // state check
+        FilterCommand f = (FilterCommand) other;
+        return filterPersonDescriptor.equals(f.filterPersonDescriptor);
+    }
 }
