@@ -8,7 +8,8 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.IdMatchesPredicate;
+import seedu.address.model.student.Id;
+import seedu.address.model.student.IdPredicate;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 
 /**
@@ -34,7 +35,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             String[] nameKeywords = argMultiMap.getValue(PREFIX_STUDENT_NAME).get().split("\\s");
             return new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (argMultiMap.getValue(PREFIX_ID).isPresent()) {
-            return new ViewCommand(new IdMatchesPredicate(argMultiMap.getValue(PREFIX_ID).get()));
+            return new ViewCommand(new IdPredicate(new Id(argMultiMap.getValue(PREFIX_ID).get())));
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
