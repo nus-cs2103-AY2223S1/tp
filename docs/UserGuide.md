@@ -102,9 +102,15 @@ The Telegram handle, student number, mastery check, consultation, grade, and rem
 
 ### Viewing all students: `list`
 
-Lists all students in FRIDAY
+Lists all students in FRIDAY.
 
 Format: `list`
+
+### Getting User Guide link: `guide`
+
+Returns a link to FRIDAY's User Guide.
+
+Format: `guide`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -114,10 +120,11 @@ Format: `list`
 
 ## Command Summary
 
-| Action                       | Format                                                                                                        |
-|------------------------------|---------------------------------------------------------------------------------------------------------------|
-| **Add a student**            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE]`                                 |
-| **Delete a student**         | `delete i/INDEX`                                                                                              |
-| **Edit a student's details** | `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]` |
-| **View all students**        | `list`                                                                                                        |
-| **Find a student's details** | `find s/STUDENT_NAME`                                                                                         |
+| Action                           | Format                                                                                                        |
+|----------------------------------|---------------------------------------------------------------------------------------------------------------|
+| **Add a student**                | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE]`                                 |
+| **Delete a student**             | `delete i/INDEX`                                                                                              |
+| **Edit a student's details**     | `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]` |
+| **View all students**            | `list`                                                                                                        |
+| **Find a student's details**     | `find s/STUDENT_NAME`                                                                                         |
+| **Get a link to the User Guide** | `guide`                                                                                                       |
