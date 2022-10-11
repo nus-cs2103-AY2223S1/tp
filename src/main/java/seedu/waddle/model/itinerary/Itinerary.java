@@ -27,7 +27,7 @@ public class Itinerary {
      */
 
     // TODO
-    // Have to ensure startDate is < endDate
+    // Have to ensure startDate is < endDate.
     public Itinerary(Name name, Country country, Date startDate, Date endDate, People people) {
         requireAllNonNull(name, country, startDate, endDate, people);
         this.name = name;
