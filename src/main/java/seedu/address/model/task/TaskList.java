@@ -255,7 +255,6 @@ public class TaskList implements Iterable<Task> {
         return true;
     }
 
-    // For development
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
