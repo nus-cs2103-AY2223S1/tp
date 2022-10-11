@@ -29,7 +29,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label company;
     @FXML
     private Label id;
     @FXML
@@ -50,7 +50,7 @@ public class InternshipCard extends UiPart<Region> {
         super(FXML);
         this.internship = internship;
         id.setText(displayedIndex + ". ");
-        name.setText(internship.getName().fullName);
+        company.setText(internship.getCompany().value);
         phone.setText(internship.getPhone().value);
         address.setText(internship.getAddress().value);
         applicationStatus.setText(internship.getApplicationStatus().toString());

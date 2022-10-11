@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.internship.Address;
+import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Email;
-import seedu.address.model.internship.Name;
 import seedu.address.model.internship.Phone;
 
 public class JsonAdaptedInternshipTest {
@@ -24,7 +24,7 @@ public class JsonAdaptedInternshipTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BINANCE.getName().toString();
+    private static final String VALID_NAME = BINANCE.getCompany().toString();
     private static final String VALID_PHONE = BINANCE.getPhone().toString();
     private static final String VALID_EMAIL = BINANCE.getEmail().toString();
     private static final String VALID_APPLICATION_STATUS = BINANCE.getApplicationStatus().toString();
@@ -44,7 +44,7 @@ public class JsonAdaptedInternshipTest {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_APPLICATION_STATUS,
                         VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Company.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
@@ -52,7 +52,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedInternship internship = new JsonAdaptedInternship(null, VALID_PHONE, VALID_EMAIL,
                 VALID_APPLICATION_STATUS, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 

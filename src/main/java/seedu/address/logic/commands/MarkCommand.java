@@ -14,7 +14,7 @@ import seedu.address.model.internship.Address;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Name;
+import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -73,13 +73,13 @@ public class MarkCommand extends Command {
                                                      ApplicationStatus updatedApplicationStatus) {
         assert internshipToMark != null;
 
-        Name updatedName = internshipToMark.getName();
+        Company updatedCompany = internshipToMark.getCompany();
         Phone updatedPhone = internshipToMark.getPhone();
         Email updatedEmail = internshipToMark.getEmail();
         Address updatedAddress = internshipToMark.getAddress();
         Set<Tag> updatedTags = internshipToMark.getTags();
 
-        return new Internship(updatedName, updatedPhone, updatedEmail, updatedApplicationStatus, updatedAddress,
+        return new Internship(updatedCompany, updatedPhone, updatedEmail, updatedApplicationStatus, updatedAddress,
                 updatedTags);
     }
 

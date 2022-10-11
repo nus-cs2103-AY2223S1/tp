@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Internship {
 
     // Identity fields
-    private final Name name;
+    private final Company company;
     private final Phone phone;
     private final Email email;
     private final ApplicationStatus applicationStatus;
@@ -28,10 +28,10 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Name name, Phone phone, Email email, ApplicationStatus applicationStatus,
+    public Internship(Company company, Phone phone, Email email, ApplicationStatus applicationStatus,
                       Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+        requireAllNonNull(company, phone, email, address, tags);
+        this.company = company;
         this.phone = phone;
         this.email = email;
         this.applicationStatus = applicationStatus;
@@ -39,8 +39,8 @@ public class Internship {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public Company getCompany() {
+        return company;
     }
 
     public Phone getPhone() {
@@ -68,7 +68,7 @@ public class Internship {
     }
 
     /**
-     * Returns true if both internships have the same name.
+     * Returns true if both internships have the same company.
      * This defines a weaker notion of equality between two internships.
      */
     public boolean isSameInternship(Internship otherInternship) {
@@ -77,7 +77,7 @@ public class Internship {
         }
 
         return otherInternship != null
-                && otherInternship.getName().equals(getName());
+                && otherInternship.getCompany().equals(getCompany());
     }
 
     /**
@@ -95,7 +95,7 @@ public class Internship {
         }
 
         Internship otherInternship = (Internship) other;
-        return otherInternship.getName().equals(getName())
+        return otherInternship.getCompany().equals(getCompany())
                 && otherInternship.getPhone().equals(getPhone())
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getApplicationStatus().equals(getApplicationStatus())
@@ -106,13 +106,13 @@ public class Internship {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, applicationStatus, address, tags);
+        return Objects.hash(company, phone, email, applicationStatus, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getCompany())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")

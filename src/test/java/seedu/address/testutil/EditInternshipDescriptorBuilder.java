@@ -8,7 +8,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.internship.Address;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Name;
+import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -32,7 +32,7 @@ public class EditInternshipDescriptorBuilder {
      */
     public EditInternshipDescriptorBuilder(Internship internship) {
         descriptor = new EditCommand.EditInternshipDescriptor();
-        descriptor.setName(internship.getName());
+        descriptor.setName(internship.getCompany());
         descriptor.setPhone(internship.getPhone());
         descriptor.setEmail(internship.getEmail());
         descriptor.setAddress(internship.getAddress());
@@ -40,10 +40,10 @@ public class EditInternshipDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditInternshipDescriptor} that we are building.
+     * Sets the {@code Company} of the {@code EditInternshipDescriptor} that we are building.
      */
     public EditInternshipDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setName(new Company(name));
         return this;
     }
 

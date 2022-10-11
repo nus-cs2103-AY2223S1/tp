@@ -7,7 +7,7 @@ import seedu.address.model.internship.Address;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Email;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Name;
+import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -23,7 +23,7 @@ public class InternshipBuilder {
     public static final ApplicationStatus DEFAULT_APPLICATION_STATUS = ApplicationStatus.Applied;
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
+    private Company company;
     private Phone phone;
     private Email email;
     private ApplicationStatus applicationStatus;
@@ -34,7 +34,7 @@ public class InternshipBuilder {
      * Creates a {@code InternshipBuilder} with the default details.
      */
     public InternshipBuilder() {
-        name = new Name(DEFAULT_NAME);
+        company = new Company(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         applicationStatus = DEFAULT_APPLICATION_STATUS;
@@ -46,7 +46,7 @@ public class InternshipBuilder {
      * Initializes the InternshipBuilder with the data of {@code internshipToCopy}.
      */
     public InternshipBuilder(Internship internshipToCopy) {
-        name = internshipToCopy.getName();
+        company = internshipToCopy.getCompany();
         phone = internshipToCopy.getPhone();
         email = internshipToCopy.getEmail();
         applicationStatus = internshipToCopy.getApplicationStatus();
@@ -55,10 +55,10 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Internship} that we are building.
+     * Sets the {@code Company} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withName(String name) {
-        this.name = new Name(name);
+        this.company = new Company(name);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(name, phone, email, applicationStatus, address, tags);
+        return new Internship(company, phone, email, applicationStatus, address, tags);
     }
 
 }

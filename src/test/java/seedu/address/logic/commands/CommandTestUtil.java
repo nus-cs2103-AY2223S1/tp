@@ -18,7 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.NameContainsKeywordsPredicate;
+import seedu.address.model.internship.CompanyContainsKeywordsPredicate;
 import seedu.address.testutil.EditInternshipDescriptorBuilder;
 
 /**
@@ -121,8 +121,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredInternshipList().size());
 
         Internship internship = model.getFilteredInternshipList().get(targetIndex.getZeroBased());
-        final String[] splitName = internship.getName().fullName.split("\\s+");
-        model.updateFilteredInternshipList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitName = internship.getCompany().value.split("\\s+");
+        model.updateFilteredInternshipList(new CompanyContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredInternshipList().size());
     }
