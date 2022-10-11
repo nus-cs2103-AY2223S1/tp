@@ -5,7 +5,7 @@ import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.foodrem.logic.commands.FindCommand;
 import seedu.foodrem.logic.commands.SortCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
-import seedu.foodrem.model.item.itemcomparators.NameItemComparator;
+import seedu.foodrem.model.item.itemcomparators.ItemNameComparator;
 
 /**
  * Parses input arguments and creates a new
@@ -26,6 +26,6 @@ public class SortCommandParser implements Parser<SortCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        return new SortCommand(new NameItemComparator());
+        return new SortCommand(new ItemNameComparator());
     }
 }
