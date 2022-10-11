@@ -1,13 +1,13 @@
 package seedu.workbook.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.workbook.model.internship.Internship;
+
+import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Internship}.
@@ -37,8 +37,6 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
@@ -53,7 +51,6 @@ public class InternshipCard extends UiPart<Region> {
         company.setText(internship.getCompany().name);
         role.setText(internship.getRole().value);
         phone.setText(internship.getPhone().value);
-        address.setText(internship.getAddress().value);
         email.setText(internship.getEmail().value);
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

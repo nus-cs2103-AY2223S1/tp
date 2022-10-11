@@ -1,35 +1,31 @@
 package seedu.workbook.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.workbook.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.workbook.testutil.Assert.assertThrows;
-import static seedu.workbook.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
+import org.junit.jupiter.api.Test;
+import seedu.workbook.logic.parser.exceptions.ParseException;
+import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.Email;
+import seedu.workbook.model.internship.Phone;
+import seedu.workbook.model.tag.Tag;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.internship.Address;
-import seedu.workbook.model.internship.Company;
-import seedu.workbook.model.internship.Email;
-import seedu.workbook.model.internship.Phone;
-import seedu.workbook.model.tag.Tag;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.workbook.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.workbook.testutil.Assert.assertThrows;
+import static seedu.workbook.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
 public class ParserUtilTest {
     private static final String INVALID_COMPANY = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_COMPANY = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -102,28 +98,6 @@ public class ParserUtilTest {
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
-    @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
-    }
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {

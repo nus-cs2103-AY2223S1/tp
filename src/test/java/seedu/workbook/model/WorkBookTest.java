@@ -1,26 +1,24 @@
 package seedu.workbook.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.workbook.testutil.Assert.assertThrows;
-import static seedu.workbook.testutil.TypicalInternships.ALICE;
-import static seedu.workbook.testutil.TypicalInternships.getTypicalWorkBook;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.model.internship.exceptions.DuplicateInternshipException;
+import seedu.workbook.testutil.InternshipBuilder;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.exceptions.DuplicateInternshipException;
-import seedu.workbook.testutil.InternshipBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.workbook.testutil.Assert.assertThrows;
+import static seedu.workbook.testutil.TypicalInternships.ALICE;
+import static seedu.workbook.testutil.TypicalInternships.getTypicalWorkBook;
 
 public class WorkBookTest {
 
@@ -46,7 +44,7 @@ public class WorkBookTest {
     @Test
     public void resetData_withDuplicateInternships_throwsDuplicateInternshipException() {
         // Two internships with the same identity fields
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Internship editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Internship> newInternships = Arrays.asList(ALICE, editedAlice);
         WorkBookStub newData = new WorkBookStub(newInternships);
@@ -73,7 +71,7 @@ public class WorkBookTest {
     @Test
     public void hasInternship_internshipWithSameIdentityFieldsInWorkBook_returnsTrue() {
         workBook.addInternship(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Internship editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(workBook.hasInternship(editedAlice));
     }
