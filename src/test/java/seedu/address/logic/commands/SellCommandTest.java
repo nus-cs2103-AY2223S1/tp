@@ -5,8 +5,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
-import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
-import static seedu.address.testutil.TypicalTransaction.BUY_TOYS;
+import static seedu.address.testutil.TypicalTransaction.SELL_PAPAYA;
+import static seedu.address.testutil.TypicalTransaction.SELL_SOCKS;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -28,74 +28,74 @@ import seedu.address.testutil.CompanyBuilder;
 
 
 
-class BuyCommandTest {
+class SellCommandTest {
 
     private final Model model = new ModelManager(getTypicalJeeqTracker(), new UserPrefs());
 
     @Test
     public void constructor_nullTransaction_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new BuyCommand(INDEX_FIRST_COMPANY, null));
+        assertThrows(NullPointerException.class, () -> new SellCommand(INDEX_FIRST_COMPANY, null));
     }
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new BuyCommand(null, BUY_ORANGE));
+        assertThrows(NullPointerException.class, () -> new SellCommand(null, SELL_PAPAYA));
     }
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE)
+        assertThrows(NullPointerException.class, () -> new SellCommand(INDEX_FIRST_COMPANY, SELL_PAPAYA)
                 .execute(null));
     }
 
     @Test
     public void execute_invalidCompanyIndex_failure() {
-        assertThrows(CommandException.class, () -> new BuyCommand(Index.fromZeroBased(
-                model.getFilteredCompanyList().size() + 10), BUY_ORANGE).execute(model));
+        assertThrows(CommandException.class, () -> new SellCommand(Index.fromZeroBased(
+                model.getFilteredCompanyList().size() + 10), SELL_PAPAYA).execute(model));
 
         Company validCompany = new CompanyBuilder().build();
         Model modelStub = new ModelStub(validCompany);
 
-        assertThrows(CommandException.class, () -> new BuyCommand(Index.fromZeroBased(
-                modelStub.getFilteredCompanyList().size() + 10), BUY_ORANGE).execute(model));
+        assertThrows(CommandException.class, () -> new SellCommand(Index.fromZeroBased(
+                modelStub.getFilteredCompanyList().size() + 10), SELL_PAPAYA).execute(model));
     }
 
     @Test
     public void execute_addTransaction_success() throws Exception {
         Company validCompany = new CompanyBuilder().build();
         Model modelStub = new ModelStub(validCompany);
-        BuyCommand buyCommand = new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE);
-        buyCommand.execute(modelStub);
-        assertEquals(-10101.00, modelStub.getFilteredCompanyList().get(0).getTotalTransacted());
+        SellCommand sellCommand = new SellCommand(INDEX_FIRST_COMPANY, SELL_PAPAYA);
+        sellCommand.execute(modelStub);
+        assertEquals(27.5, modelStub.getFilteredCompanyList().get(0).getTotalTransacted());
     }
 
 
     @Test
     public void equals() {
-        BuyCommand buyCommand = new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE);
+        SellCommand sellCommand = new SellCommand(INDEX_FIRST_COMPANY, SELL_PAPAYA);
 
         // same values -> returns true
-        BuyCommand buyCommandCopy = new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE);
-        assertTrue(buyCommand.equals(buyCommandCopy));
+        SellCommand sellCommandCopy = new SellCommand(INDEX_FIRST_COMPANY, SELL_PAPAYA);
+        assertTrue(sellCommand.equals(sellCommandCopy));
 
         // same object -> returns true
-        assertTrue(buyCommand.equals(buyCommand));
+        assertTrue(sellCommand.equals(sellCommand));
 
         // null -> returns false
-        assertFalse(buyCommand.equals(null));
+        assertFalse(sellCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(buyCommand.equals(new ClearCommand()));
+        assertFalse(sellCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(buyCommand.equals(new BuyCommand(INDEX_SECOND_COMPANY, BUY_ORANGE)));
+        assertFalse(sellCommand.equals(new SellCommand(INDEX_SECOND_COMPANY, SELL_PAPAYA)));
 
         // different Transaction -> returns false
-        assertFalse(buyCommand.equals(new BuyCommand(INDEX_FIRST_COMPANY, BUY_TOYS)));
+        assertFalse(sellCommand.equals(new SellCommand(INDEX_FIRST_COMPANY, SELL_SOCKS)));
     }
 
     /**
-     * A default model stub that have all the methods failing.
+     * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
         private Company company;
