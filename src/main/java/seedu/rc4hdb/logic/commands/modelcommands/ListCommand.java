@@ -1,7 +1,7 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.rc4hdb.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.rc4hdb.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class ListCommand extends ModelCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
         model.setObservableFields(fieldsToHide);
 
         // Determine which ListCommand constructor was invoked

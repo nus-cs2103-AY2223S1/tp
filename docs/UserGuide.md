@@ -147,18 +147,13 @@ Examples:
 
 Shows a list of residents whose fields match the input keywords.
 
-Format: `filter [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-
-* The default specifier, if not specified by the user is `/all`.
-* Currently, only two specifiers are supported:
-  * `/all` returns a resident if it fulfills **all** of the specified keywords (Logical AND operation).
-  * `/any` returns a resident if it fulfills **any** of the specified keywords (Logical OR operation).
-* Repeated keys are not permitted for `/all` specifier, e.g. `filter /all h/D h/A` will not work.
+Format: `filter KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
+* The fields have to be the same (no substrings allowed) for the resident to be filtered.
+* Commands with multiple fields require the resident to match all the fields to be filtered.
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
-* `filter /all h/D g/M` returns residents who are in Draco house, **and** are Male.
-* `filter /any h/D h/A` returns residents belonging to either `Draco` **or** `Aquila` house.
+* `filter h/D g/M` returns residents who are in Draco house, **and** are Male.
 * `filter g/M` returns residents who are male.
 
 ### Deleting a resident : `delete`

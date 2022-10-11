@@ -9,21 +9,21 @@ import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
-import seedu.rc4hdb.model.person.Person;
+import seedu.rc4hdb.model.resident.Resident;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a resident identified using it's displayed index from the resident book.
  */
 public class DeleteCommand extends ModelCommand {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the resident identified by the index number used in the displayed resident list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_RESIDENT_SUCCESS = "Deleted Resident: %1$s";
 
     private final Index targetIndex;
 
@@ -34,15 +34,15 @@ public class DeleteCommand extends ModelCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Resident> lastShownList = model.getFilteredResidentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Resident residentToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteResident(residentToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_RESIDENT_SUCCESS, residentToDelete));
     }
 
     @Override

@@ -13,37 +13,36 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
-import seedu.rc4hdb.model.person.Fields;
-import seedu.rc4hdb.model.person.Person;
+import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.resident.fields.ResidentFields;
+
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the resident book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final ResidentBook residentBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Resident> filteredResidents;
     private final ObservableList<String> observableFieldList;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given residentBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyResidentBook residentBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(residentBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-        this.addressBook = new AddressBook(addressBook);
+        logger.fine("Initializing with resident book: " + residentBook + " and user prefs " + userPrefs);
+        this.residentBook = new ResidentBook(residentBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-
-        // Initialise list with global field list since all fields should be shown at first
-        this.observableFieldList = FXCollections.observableArrayList(Fields.FIELDS);
+        filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
+        this.observableFieldList = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ResidentBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -71,67 +70,66 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getResidentBookFilePath() {
+        return userPrefs.getResidentBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setResidentBookFilePath(Path residentBookFilePath) {
+        requireNonNull(residentBookFilePath);
+        userPrefs.setResidentBookFilePath(residentBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ResidentBook ===============================================================================
 
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setResidentBook(ReadOnlyResidentBook residentBook) {
+        this.residentBook.resetData(residentBook);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
+    public ReadOnlyResidentBook getResidentBook() {
+        return residentBook;
+    }
+
+    @Override
+    public boolean hasResident(Resident person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return residentBook.hasResident(person);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteResident(Resident target) {
+        residentBook.removeResident(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addResident(Resident person) {
+        residentBook.addResident(person);
+        updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setResident(Resident target, Resident editedResident) {
+        requireAllNonNull(target, editedResident);
 
-        addressBook.setPerson(target, editedPerson);
+        residentBook.setResident(target, editedResident);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Resident List Accessors ===========================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Resident} backed by the internal list of
+     * {@code versionedResidentBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Resident> getFilteredResidentList() {
+        return filteredResidents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredResidentList(Predicate<Resident> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredResidents.setPredicate(predicate);
     }
 
     @Override
@@ -148,9 +146,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return residentBook.equals(other.residentBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredResidents.equals(other.filteredResidents);
     }
 
     //=========== Observable Field List Accessors =============================================================

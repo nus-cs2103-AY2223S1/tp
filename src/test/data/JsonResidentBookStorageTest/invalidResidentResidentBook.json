@@ -1,0 +1,12 @@
+{
+  "residents": [ {
+    "name": "Person with invalid name field: Ha!ns Mu@ster",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "room": "04-10",
+    "gender": "M",
+    "house": "D",
+    "MatricNumber": "A0123456A",
+    "tagged" : [ ]
+  } ]
+}
