@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import seedu.address.model.category.Category;
 import seedu.address.model.tag.Tag;
 
 import java.util.Set;
@@ -10,8 +11,8 @@ public class Nurse extends Person{
         super(uid, name, gender, phone, email, address, tags);
     }
 
-    public String getCategory() {
-        return "N";
+    public Category getCategory() {
+        return new Category("N");
     }
 
     @Override

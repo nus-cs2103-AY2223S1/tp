@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.category.Category;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,8 +29,8 @@ public class Patient extends Person {
         this.dateTimes.addAll(dateTime);
     }
 
-    public String getCategory() {
-        return "P";
+    public Category getCategory() {
+        return new Category("P");
     }
 
     public String getCategoryIndicator() {

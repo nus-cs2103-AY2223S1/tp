@@ -7,8 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Nurse;
+
+import static seedu.address.model.person.Gender.MALE_SYMBOL;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -16,6 +19,13 @@ import seedu.address.model.person.Nurse;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final String NOT_APPLICABLE = "NA";
+    private static final String NURSE_LABEL_TEXT = "(Nurse)";
+    private static final String PATIENT_LABEL_TEXT = "(Patient)";
+    private static final String NAN_LABEL_TEXT = "(Unassigned)";
+    private static final String MALE_GENDER_LABEL_TEXT = "Male";
+    private static final String FEMALE_GENDER_LABEL_TEXT = "Female";
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -32,7 +42,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label category;
+    private FlowPane category;
+    @FXML
+    private Label uid;
+    @FXML
+    private Label dateTimes;
     @FXML
     private Label id;
     @FXML
@@ -53,19 +67,24 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+
         if (person instanceof Nurse) {
-            category.setText("(Nurse)");
-        //} else if (person instanceof Patient) {
-            //category.setText("(Patient)");
+            dateTimes.setText(NOT_APPLICABLE);
+            category.getChildren().add(new Label(NURSE_LABEL_TEXT));
+        } else if (person instanceof Patient) {
+            dateTimes.setText(((Patient) person).getDatesTimesInString());
+            category.getChildren().add(new Label(PATIENT_LABEL_TEXT));
         } else {
-            category.setText("(Unassigned)");
+            dateTimes.setText(NOT_APPLICABLE);
+            category.getChildren().add(new Label(NAN_LABEL_TEXT));
         }
         name.setText(person.getName().fullName);
-        if (person.getGender().gender.equals("M")){
-            gender.setText("Male");
+        if (person.getGender().gender.equals(MALE_SYMBOL)){
+            gender.setText(MALE_GENDER_LABEL_TEXT);
         } else {
-            gender.setText("Female");
+            gender.setText(FEMALE_GENDER_LABEL_TEXT);
         }
+        uid.setText("UID: [" + person.getUid().toString() + "]");
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
