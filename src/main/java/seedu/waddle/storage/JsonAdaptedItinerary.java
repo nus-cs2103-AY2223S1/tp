@@ -1,9 +1,13 @@
 package seedu.waddle.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
+import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
 import seedu.waddle.model.itinerary.Itinerary;
@@ -16,6 +20,7 @@ import seedu.waddle.model.itinerary.People;
 class JsonAdaptedItinerary {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Itinerary's %s field is missing!";
+    public static final String MESSAGE_DUPLICATE_ITEM = "Item list contains duplicate items.";
 
     private final String name;
     private final String country;
@@ -23,22 +28,27 @@ class JsonAdaptedItinerary {
     private final String endDate;
     private final String people;
 
+    private final List<JsonAdaptedItem> items = new ArrayList<>();
+
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given itinerary details.
      */
     @JsonCreator
     public JsonAdaptedItinerary(@JsonProperty("name") String name, @JsonProperty("country") String country,
                                 @JsonProperty("startDate") String startDate, @JsonProperty("endDate") String endDate,
-                                @JsonProperty("people") String people) {
+                                @JsonProperty("people") String people,
+                                @JsonProperty("items") List<JsonAdaptedItem> items) {
         this.name = name;
         this.country = country;
         this.startDate = startDate;
         this.endDate = endDate;
         this.people = people;
+        this.items.addAll(items);
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Itinerary} into this class for Jackson use.
      */
     public JsonAdaptedItinerary(Itinerary source) {
         name = source.getName().fullName;
@@ -46,6 +56,9 @@ class JsonAdaptedItinerary {
         startDate = source.getStartDate().date;
         endDate = source.getEndDate().date;
         people = source.getPeople().numOfPeople;
+        for (Item item : source.getItemList()) {
+            items.add(new JsonAdaptedItem(item));
+        }
     }
 
     /**
@@ -95,7 +108,15 @@ class JsonAdaptedItinerary {
         }
         final People modelPeople = new People(people);
 
-        return new Itinerary(modelName, modelCountry, modelStartDate, modelEndDate, modelPeople);
+        Itinerary itinerary = new Itinerary(modelName, modelCountry, modelStartDate, modelEndDate, modelPeople);
+        for (JsonAdaptedItem jsonAdaptedItem : items) {
+            Item item = jsonAdaptedItem.toModelType();
+            if (itinerary.hasItem(item)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ITEM);
+            }
+            itinerary.addItem(item);
+        }
+        return itinerary;
     }
 
 }

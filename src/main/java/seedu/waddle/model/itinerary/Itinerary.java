@@ -58,6 +58,10 @@ public class Itinerary {
         return people;
     }
 
+    public ItemList getItemList() {
+        return itemList;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
