@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.ui.StubUIManager;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -17,7 +18,7 @@ public class ExitCommandTest {
     @Test
     public void execute_exit_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
-        Ui stubUi = new UiManager(null);
+        Ui stubUi = new StubUIManager();
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel, stubUi);
     }
 }

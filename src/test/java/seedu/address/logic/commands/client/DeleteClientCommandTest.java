@@ -18,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Person;
+import seedu.address.ui.StubUIManager;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -39,7 +40,7 @@ public class DeleteClientCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
-        Ui stubUi = new UiManager(null);
+        Ui stubUi = new StubUIManager();
         assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
 
@@ -47,7 +48,7 @@ public class DeleteClientCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
-        Ui stubUi = new UiManager(null);
+        Ui stubUi = new StubUIManager();
 
         assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, stubUi);
     }
@@ -64,7 +65,7 @@ public class DeleteClientCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
-        Ui stubUi = new UiManager(null);
+        Ui stubUi = new StubUIManager();
 
         assertCommandSuccess(deleteClientCommand, model, expectedMessage, expectedModel, stubUi);
     }
@@ -78,7 +79,7 @@ public class DeleteClientCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         DeleteClientCommand deleteClientCommand = new DeleteClientCommand(outOfBoundIndex);
-        Ui stubUi = new UiManager(null);
+        Ui stubUi = new StubUIManager();
 
         assertCommandFailure(deleteClientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, stubUi);
     }

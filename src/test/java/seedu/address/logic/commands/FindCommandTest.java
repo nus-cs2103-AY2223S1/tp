@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.ui.StubUIManager;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -62,7 +63,7 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        Ui stubUi = new UiManager(null);
+        Ui stubUi = new StubUIManager();
         assertCommandSuccess(command, model, expectedMessage, expectedModel, stubUi);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -73,7 +74,7 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        Ui stubUi = new UiManager(null);
+        Ui stubUi = new StubUIManager();
         assertCommandSuccess(command, model, expectedMessage, expectedModel, stubUi);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }

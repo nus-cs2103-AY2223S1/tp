@@ -26,6 +26,7 @@ import seedu.address.model.client.Person;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.StubUIManager;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -40,7 +41,7 @@ public class AddClientCommandTest {
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
-        Ui stubUi = new UiManager(null);
+        Ui stubUi = new StubUIManager();
 
         CommandResult commandResult = new AddClientCommand(validPerson).execute(modelStub, stubUi);
 
@@ -53,7 +54,7 @@ public class AddClientCommandTest {
         Person validPerson = new PersonBuilder().build();
         AddClientCommand addClientCommand = new AddClientCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
-        Ui stubUi = new UiManager(null);
+        Ui stubUi = new StubUIManager();
 
         assertThrows(CommandException.class, AddClientCommand.MESSAGE_DUPLICATE_PERSON, ()
                 -> addClientCommand.execute(modelStub, stubUi));

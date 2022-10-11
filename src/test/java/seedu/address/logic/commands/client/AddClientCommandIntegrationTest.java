@@ -13,6 +13,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Person;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.StubUIManager;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -34,7 +35,7 @@ public class AddClientCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        Ui stubUi = new UiManager(null);
+        Ui stubUi = new StubUIManager();
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddClientCommand(validPerson), model,
@@ -44,7 +45,7 @@ public class AddClientCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
-        Ui stubUi = new UiManager(null);
+        Ui stubUi = new StubUIManager();
         assertCommandFailure(new AddClientCommand(personInList), model, AddClientCommand.MESSAGE_DUPLICATE_PERSON, stubUi);
     }
 
