@@ -25,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AddTaskToModuleDescriptorBuilder;
+import seedu.address.testutil.DeleteTaskFromModuleDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -89,8 +90,10 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
-    public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_WITH_TASK_A;
-    public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_WITH_TASK_B;
+    public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_ADD_TASK_A;
+    public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_ADD_TASK_B;
+    public static final DeleteTaskCommand.DeleteTaskFromModuleDescriptor DESC_CS2106_DELETE_TASK_ONE;
+    public static final DeleteTaskCommand.DeleteTaskFromModuleDescriptor DESC_CS2106_DELETE_TASK_TWO;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -100,10 +103,16 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
-        DESC_CS2106_WITH_TASK_A =
+        DESC_CS2106_ADD_TASK_A =
                 new AddTaskToModuleDescriptorBuilder(CS2106, VALID_TASK_A).build();
-        DESC_CS2106_WITH_TASK_B =
+        DESC_CS2106_ADD_TASK_B =
                 new AddTaskToModuleDescriptorBuilder(CS2106, VALID_TASK_B).build();
+        DESC_CS2106_DELETE_TASK_ONE =
+                new DeleteTaskFromModuleDescriptorBuilder(CS2106,
+                        Index.fromOneBased(1)).build();
+        DESC_CS2106_DELETE_TASK_TWO =
+                new DeleteTaskFromModuleDescriptorBuilder(CS2106,
+                        Index.fromOneBased(2)).build();
     }
 
     /**

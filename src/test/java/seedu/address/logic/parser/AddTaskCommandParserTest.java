@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2106_WITH_TASK_A;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2106_ADD_TASK_A;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_CS2106;
@@ -29,7 +29,7 @@ public class AddTaskCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         AddTaskCommand expectedCommand =
-                new AddTaskCommand(DESC_CS2106_WITH_TASK_A);
+                new AddTaskCommand(DESC_CS2106_ADD_TASK_A);
 
         // whitespace only preamble
         assertParseSuccess(parser,
