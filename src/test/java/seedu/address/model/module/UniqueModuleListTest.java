@@ -3,13 +3,13 @@ package seedu.address.model.module;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_SWE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_CYBERSEC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_SWE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MODULE_COORDINATOR;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.CS2102;
+import static seedu.address.testutil.TypicalModules.CS2103T;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -117,7 +117,7 @@ public class UniqueModuleListTest {
     }
 
     @Test
-    public void remove_ModuleDoesNotExist_throwsModuleNotFoundException() {
+    public void remove_moduleDoesNotExist_throwsModuleNotFoundException() {
         assertThrows(ModuleNotFoundException.class, () -> uniqueModuleList.remove(CS2103T));
     }
 
