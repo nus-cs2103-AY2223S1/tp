@@ -5,15 +5,14 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.consultation.AddConsultationCommand;
-import seedu.address.logic.commands.consultation.AddConsultationCommandTest;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.consultation.Consultation;
-import seedu.address.testutil.consultationBuilder;
+import seedu.address.model.tutorial.Tutorial;
+import seedu.address.testutil.ConsultationBuilder;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class AddConsultationCommandTest {
         AddConsultationCommandTest.ModelStub modelStub = new AddConsultationCommandTest.ModelStubWithConsultation(validConsultation);
 
         assertThrows(CommandException.class,
-                AddConsultationCommand.MESSAGE_DUPLICATE_Consultation, () -> addCommand.execute(modelStub));
+                AddConsultationCommand.MESSAGE_DUPLICATE_CONSULTATION, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -153,6 +152,31 @@ public class AddConsultationCommandTest {
         }
 
         @Override
+        public boolean hasTutorial(Tutorial tutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTutorialClashingWith(Tutorial tutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTutorial(Tutorial tutorial) {
+
+        }
+
+        @Override
+        public ObservableList<Tutorial> getFilteredTutorialList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasConsultation(Consultation Consultation) {
             throw new AssertionError("This method should not be called.");
         }
@@ -164,16 +188,6 @@ public class AddConsultationCommandTest {
 
         @Override
         public void addConsultation(Consultation Consultation) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Consultation> getFilteredConsultationList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

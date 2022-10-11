@@ -20,9 +20,9 @@ public class AddConsultationCommandParser  implements Parser<AddConsultationComm
      */
     public AddConsultationCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_TIMESLOT);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_TIMESLOT, PREFIX_DESCRIPTION);
 
-        ParserUtil.assertPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_TIMESLOT);
+        ParserUtil.assertPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_TIMESLOT, PREFIX_DESCRIPTION);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddConsultationCommand.MESSAGE_USAGE));
         }

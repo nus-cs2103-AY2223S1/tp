@@ -25,7 +25,7 @@ public class AddConsultationCommand extends Command {
             + PREFIX_TIMESLOT + "1500-1800 "
             + PREFIX_VENUE + "COM1-0203 "
             + PREFIX_MODULE + "CS2103T "
-            + PREFIX_NAME + "CS2103T W17 "
+            + PREFIX_NAME + "JakeLim"
             + PREFIX_DESCRIPTION + "Review past year paper";
 
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";

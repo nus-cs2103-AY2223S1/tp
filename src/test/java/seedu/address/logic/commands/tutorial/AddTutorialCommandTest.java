@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.TutorialBuilder;
@@ -175,6 +176,21 @@ public class AddTutorialCommandTest {
 
         @Override
         public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasConsultation(Consultation consultation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasConsultationClashingWith(Consultation consultation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addConsultation(Consultation consultation) {
             throw new AssertionError("This method should not be called.");
         }
     }
