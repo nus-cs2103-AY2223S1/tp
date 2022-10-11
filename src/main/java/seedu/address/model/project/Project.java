@@ -39,6 +39,7 @@ public class Project {
     public ProjectId getId() {
         return projectId;
     }
+
     public Name getProjectName() {
         return name;
     }

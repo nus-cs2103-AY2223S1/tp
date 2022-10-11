@@ -9,10 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
+import seedu.address.model.project.Repository;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +51,40 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String repository} into a {@code Repository}.
+     * Leading a trailing whitespaces will be trimmed.
+     *
+     * @param repository string argument input
+     * @return parsed Repository object
+     * @throws ParseException if the given {@code repository} is invalid.
+     */
+    public static Repository parseRepository(String repository) throws ParseException {
+        requireNonNull(repository);
+        String trimmedRepository = repository.trim();
+        if (!Repository.isValidRepository(trimmedRepository)) {
+            throw new ParseException(Repository.MESSAGE_CONSTRAINTS);
+        }
+        return new Repository(trimmedRepository);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading a trailing whitespaces will be trimmed.
+     *
+     * @param deadline string argument input
+     * @return parsed Deadline object
+     * @throws ParseException if the given {@code deadline} is invalid.
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return new Deadline(trimmedDeadline);
     }
 
     /**
