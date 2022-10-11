@@ -18,7 +18,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     public static final char INCLUDE_SPECIFIER = 'i';
     public static final char EXCLUDE_SPECIFIER = 'e';
 
-    public static final String NO_SPECIFIER_MESSAGE = "Please include a specifier [/i] or [/e]"
+    public static final String INTENDED_USAGE = "Please include a specifier [/i] or [/e]"
             + " followed by the fields to include or exclude";
 
     @Override
@@ -28,24 +28,24 @@ public class ListCommandParser implements Parser<ListCommand> {
             return new ListCommand();
         }
         if (hasInvalidSpecifier(args)) {
-            throw new ParseException(NO_SPECIFIER_MESSAGE);
+            throw new ParseException(INTENDED_USAGE);
         }
 
         // Process global list of fields into lowercase list first
         List<String> allFields = Fields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
 
         // Create one list for each specifier
-        List<String> fieldsToInclude = new ArrayList<>(allFields);
-        List<String> fieldsToExclude = new ArrayList<>();
+        List<String> fieldsToIncludeFromHiding = new ArrayList<>(allFields);
+        List<String> fieldsToExcludeFromShowing = new ArrayList<>();
 
         String[] specifiedFields = getSpecifiedFields(args);
 
-        populateFieldLists(specifiedFields, fieldsToInclude, fieldsToExclude);
+        populateFieldLists(specifiedFields, fieldsToIncludeFromHiding, fieldsToExcludeFromShowing);
 
         if (getListSpecifier(args) == INCLUDE_SPECIFIER) {
-            return new ListCommand(fieldsToInclude);
+            return new ListCommand(fieldsToIncludeFromHiding);
         } else {
-            return new ListCommand(fieldsToExclude);
+            return new ListCommand(fieldsToExcludeFromShowing);
         }
     }
 
@@ -71,6 +71,9 @@ public class ListCommandParser implements Parser<ListCommand> {
 
     private String[] getSpecifiedFields(String args) {
         String fieldsString = args.toLowerCase().substring(args.indexOf("/") + 2).trim();
+        if (fieldsString.isEmpty()) {
+            return new String[] {};
+        }
         return fieldsString.split(" ");
     }
 
