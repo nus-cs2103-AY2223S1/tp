@@ -10,6 +10,7 @@ import seedu.address.model.person.Module;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -24,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_MODULE = "cs2103t";
     public static final String DEFAULT_YEAR = "3";
+    public static final String DEFAULT_STUDENTID = "A1234567X";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_COMMENT = "";
 
@@ -32,6 +34,7 @@ public class PersonBuilder {
     private Email email;
     private Module module;
     private Year year;
+    private StudentId studentId;
     private Address address;
     private Comment comment;
     private Set<Tag> tags;
@@ -45,6 +48,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         module = new Module(DEFAULT_MODULE);
         year = new Year(DEFAULT_YEAR);
+        studentId = new StudentId(DEFAULT_STUDENTID);
         address = new Address(DEFAULT_ADDRESS);
         comment = new Comment(DEFAULT_COMMENT);
         tags = new HashSet<>();
@@ -59,6 +63,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         module = personToCopy.getModule();
         year = personToCopy.getYear();
+        studentId = personToCopy.getStudentId();
         address = personToCopy.getAddress();
         comment = personToCopy.getComment();
         tags = new HashSet<>(personToCopy.getTags());
@@ -127,8 +132,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code StudentId} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStudentId(String studentId) {
+        this.studentId = new StudentId(studentId);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, module, year, address, comment, tags);
+        return new Person(name, phone, email, module, year, studentId, address, comment, tags);
     }
 
 }

@@ -17,6 +17,7 @@ import seedu.address.model.person.Module;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String module;
     private final String year;
+    private final String studentId;
     private final String address;
     private final String comment;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -42,13 +44,15 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("module") String module,
-            @JsonProperty("year") String year, @JsonProperty("address") String address,
-                             @JsonProperty("comment") String comment, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("year") String year, @JsonProperty("studentId") String studentId,
+            @JsonProperty("address") String address, @JsonProperty("comment") String comment,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.module = module;
         this.year = year;
+        this.studentId = studentId;
         this.address = address;
         this.comment = comment;
         if (tagged != null) {
@@ -65,6 +69,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         module = source.getModule().value;
         year = source.getYear().value;
+        studentId = source.getStudentId().value;
         address = source.getAddress().value;
         comment = source.getComment().value;
         tagged.addAll(source.getTags().stream()
@@ -123,6 +128,15 @@ class JsonAdaptedPerson {
         }
         final Year modelYear = new Year(year);
 
+        if (studentId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StudentId.class.getSimpleName()));
+        }
+        if (!StudentId.isValidId(studentId)) {
+            throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
+        }
+        final StudentId modelStudentId = new StudentId(studentId);
+
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -137,7 +151,9 @@ class JsonAdaptedPerson {
         final Comment modelComment = new Comment(comment);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelModule, modelYear, modelAddress, modelComment, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelModule, modelYear,
+                modelStudentId, modelAddress, modelComment, modelTags);
     }
 
 }
