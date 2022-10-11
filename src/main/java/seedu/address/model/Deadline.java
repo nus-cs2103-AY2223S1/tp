@@ -43,6 +43,8 @@ public class Deadline {
         this.deadline = LocalDate.parse(deadline);
     }
 
+    public Deadline() {}
+
     /**
      * Returns true if a given string is a valid deadline.
      */

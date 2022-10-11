@@ -20,6 +20,10 @@ public class IssueId {
         this.issueId = id;
     }
 
+    public int getIdInt() {
+        return this.issueId;
+    }
+
     /**
      * Checks if the issue ID string is valid.
      * @param issueId

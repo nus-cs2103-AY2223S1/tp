@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.address.model.Deadline;
+import seedu.address.model.Name;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
@@ -56,7 +57,7 @@ class JsonAdaptedIssue {
         priority = source.getPriority().toString();
         deadline = source.getDeadline().toString();
         status = source.getStatus().toString();
-        issueId = source.getId().toString();
+        issueId = source.getIssueId().toString();
         project = new JsonAdaptedProject(source.getProject());
     }
 

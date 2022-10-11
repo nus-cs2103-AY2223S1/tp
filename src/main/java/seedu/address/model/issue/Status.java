@@ -21,7 +21,11 @@ public class Status {
     }
 
     public static boolean isValidStatus(String status) {
-        return parseBoolean(status);
+        if (status.toUpperCase().equals("FALSE")) {
+            return !parseBoolean(status);
+        } else {
+            return parseBoolean(status);
+        }
     }
 
     /**

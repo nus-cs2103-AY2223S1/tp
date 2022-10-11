@@ -3,6 +3,7 @@ package seedu.address.model.issue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.Deadline;
+import seedu.address.model.Name;
 import seedu.address.model.project.Project;
 
 /**
@@ -12,12 +13,12 @@ import seedu.address.model.project.Project;
 public class Issue {
 
     // Components of an issue
-    private IssueId issueId;
     private Description description;
     private Deadline deadline;
     private Priority priority;
     private Status status;
     private Project project;
+    private IssueId issueId;
 
     /**
      * Description field must be present and not null, but all other fields are optional.
@@ -33,8 +34,7 @@ public class Issue {
         this.issueId = issueId;
     }
 
-
-    public IssueId getId() {
+    public IssueId getIssueId() {
         return this.issueId;
     }
 
@@ -91,6 +91,6 @@ public class Issue {
                 && otherIssue.getDeadline().equals(getDeadline())
                 && otherIssue.getStatus().equals(getStatus())
                 && otherIssue.getPriority().equals(getPriority())
-                && otherIssue.getId().equals(getId());
+                && otherIssue.getIssueId().equals(getIssueId());
     }
 }

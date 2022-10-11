@@ -9,10 +9,17 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
+import seedu.address.model.issue.Description;
+import seedu.address.model.issue.Priority;
+import seedu.address.model.issue.Status;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
+import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.tag.Tag;
 
 /**
