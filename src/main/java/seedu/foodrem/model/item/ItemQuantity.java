@@ -29,6 +29,26 @@ public class ItemQuantity {
     }
 
     /**
+     * Overloaded constructor that returns an ItemQuantity from a specified item quantity (double).
+     */
+    public ItemQuantity(double itemQuantityDouble) {
+        requireNonNull(itemQuantityDouble);
+        // TODO: Add validation
+        this.itemQuantity = itemQuantityDouble;
+    }
+
+    /**
+     * Factory method that increments the ItemQuantity by a specified amount and returns a new ItemQuantity object
+     * with the quantity incremented.
+     *
+     * @param increment ItemQuantity amount to increment by.
+     * @return New ItemQuantity with quantity incremented.
+     */
+    public ItemQuantity incrementQuantity(ItemQuantity increment) {
+        return new ItemQuantity(increment.itemQuantity + itemQuantity);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
