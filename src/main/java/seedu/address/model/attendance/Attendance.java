@@ -8,10 +8,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  *
  */
 public class Attendance {
+    public static final String VALIDATION_REGEX = "[0-1]";
+    public static final String MESSAGE_CONSTRAINTS = "attendance is either a 0(absent) or 1(present)";
     public final String value;
 
-    public static final String MESSAGE_CONSTRAINTS = "attendance is either a 0(absent) or 1(present)";
-    public static final String VALIDATION_REGEX = "[0-1]";
+    /**
+     * Create attendance object
+     * @param attendance
+     */
     public Attendance(String attendance) {
         requireNonNull(attendance);
         checkArgument(isValidMark(attendance), MESSAGE_CONSTRAINTS);

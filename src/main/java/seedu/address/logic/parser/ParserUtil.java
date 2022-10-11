@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.Attendance;
+import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -67,9 +68,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String attendance} into an {}
-     * @param attendance
-     * @return
+     * Parses {@code String attendance} into an {@code Attendance attendance}
+     * @param attendance with the input
+     * @return Attendance
      * @throws ParseException
      */
     public static Attendance parseAttendance(String attendance) throws ParseException {
@@ -109,6 +110,18 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String classGroup} into an {@code ClassGroup}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static ClassGroup parseClassGroup(String classGroup) throws ParseException {
+        requireNonNull(classGroup);
+        String trimmedClassGroup = classGroup.trim();
+        return new ClassGroup(trimmedClassGroup);
     }
 
     /**

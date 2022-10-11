@@ -40,6 +40,8 @@ public class StudentCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label classGroup;
 
     @FXML
     private Label attendance;
@@ -56,6 +58,7 @@ public class StudentCard extends UiPart<Region> {
         studentId.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
         attendance.setText(student.getAttendance().value);
+        classGroup.setText(student.getClassGroup().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

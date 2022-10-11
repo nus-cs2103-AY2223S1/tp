@@ -8,7 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.attendance.Attendance;
+//import seedu.address.model.attendance.Attendance;
 
 
 /**
@@ -28,7 +28,8 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AttendanceCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AttendanceCommand.MESSAGE_USAGE), ive);
         }
 
         return new AttendanceCommand(index, ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get()));

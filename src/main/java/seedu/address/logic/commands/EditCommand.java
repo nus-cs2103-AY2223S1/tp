@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
-
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.Collections;
@@ -22,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attendance.Attendance;
+import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -43,11 +44,13 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_CLASS_GROUP + "CLASS] "
             + "[" + PREFIX_ID + "STUDENT ID] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
+
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -80,6 +83,7 @@ public class EditCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
+
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
@@ -104,11 +108,13 @@ public class EditCommand extends Command {
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        ClassGroup updatedClassGroup = editStudentDescriptor.getClassGroup().orElse(studentToEdit.getClassGroup());
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         Attendance updatedAttendance = studentToEdit.getAttendance();
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedStudentId, updatedTags, updatedAttendance);
+        return new Student(updatedName, updatedPhone, updatedEmail,
+                updatedClassGroup, updatedStudentId, updatedTags, updatedAttendance);
     }
 
     @Override
@@ -137,6 +143,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private ClassGroup classGroup;
         private StudentId studentId;
         private Set<Tag> tags;
 
@@ -150,6 +157,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setClassGroup(toCopy.classGroup);
             setStudentId(toCopy.studentId);
             setTags(toCopy.tags);
         }
@@ -158,7 +166,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, studentId, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, classGroup, studentId, tags);
         }
 
         public void setName(Name name) {
@@ -183,6 +191,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setClassGroup(ClassGroup classGroup) {
+            this.classGroup = classGroup;
+        }
+
+        public Optional<ClassGroup> getClassGroup() {
+            return Optional.ofNullable(classGroup);
         }
 
         public void setStudentId(StudentId studentId) {
@@ -221,13 +237,14 @@ public class EditCommand extends Command {
             if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
-
+            // might get errors here
             // state check
             EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getClassGroup().equals(e.getClassGroup())
                     && getStudentId().equals(e.getStudentId())
                     && getTags().equals(e.getTags());
         }

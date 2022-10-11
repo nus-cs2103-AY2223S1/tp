@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attendance.Attendance;
+import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -28,6 +29,7 @@ class JsonAdaptedStudent {
     private final String name;
     private final String phone;
     private final String email;
+    private final String classGroup;
     private final String studentId;
     private final String attendance;
 
@@ -38,11 +40,14 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email, @JsonProperty("studentId") String studentId,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("attendance") String attendance) {
+                              @JsonProperty("email") String email, @JsonProperty("classGroup") String classGroup,
+                              @JsonProperty("studentId") String studentId,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("attendance") String attendance) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.classGroup = classGroup;
         this.studentId = studentId;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -57,6 +62,7 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        classGroup = source.getClassGroup().value;
         studentId = source.getStudentId().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -99,6 +105,12 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
+        if (classGroup == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClassGroup.class.getSimpleName()));
+        }
+        final ClassGroup modelClassGroup = new ClassGroup(classGroup);
+
         if (studentId == null) {
             throw new IllegalValueException(String.format(
                         MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
@@ -110,7 +122,8 @@ class JsonAdaptedStudent {
         final StudentId modelStudentId = new StudentId(studentId);
 
         if (attendance == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Attendance.class.getSimpleName()));
         }
 
         if (!Attendance.isValidMark(attendance)) {
@@ -120,7 +133,9 @@ class JsonAdaptedStudent {
         final Attendance modelAttendance = new Attendance(attendance);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelStudentId, modelTags, modelAttendance);
+
+        return new Student(modelName, modelPhone, modelEmail, modelClassGroup,
+                modelStudentId, modelTags, modelAttendance);
     }
 
 }

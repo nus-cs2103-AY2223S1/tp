@@ -56,7 +56,8 @@ public class AttendanceCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = new Student(
                 studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
-                studentToEdit.getStudentId(), studentToEdit.getTags(), attendance);
+                studentToEdit.getClassGroup(), studentToEdit.getStudentId(), studentToEdit.getTags(),
+                studentToEdit.getAttendance());
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -70,7 +71,9 @@ public class AttendanceCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Student studentToEdit) {
-        String message = attendance.value.equals("1") ? MESSAGE_ADD_ATTENDANCE_SUCCESS : MESSAGE_DELETE_ATTENDANCE_SUCCESS;
+        String message = attendance.value.equals("1")
+                ? MESSAGE_ADD_ATTENDANCE_SUCCESS
+                : MESSAGE_DELETE_ATTENDANCE_SUCCESS;
         return String.format(message, studentToEdit);
     }
 
