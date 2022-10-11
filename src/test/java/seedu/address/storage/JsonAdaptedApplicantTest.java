@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.applicant.ApplicationStatus;
 import seedu.address.model.applicant.Email;
 import seedu.address.model.applicant.Name;
 import seedu.address.model.applicant.Phone;
@@ -90,7 +91,7 @@ public class JsonAdaptedApplicantTest {
     }
 
     @Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
+    public void toModelType_invalidScholarship_throwsIllegalValueException() {
         JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(VALID_NAME,
                 VALID_PHONE, VALID_EMAIL, INVALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
         String expectedMessage = Scholarship.MESSAGE_CONSTRAINTS;
@@ -98,7 +99,23 @@ public class JsonAdaptedApplicantTest {
     }
 
     @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
+    public void toModelType_nullScholarship_throwsIllegalValueException() {
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(VALID_NAME,
+                VALID_PHONE, VALID_EMAIL, null, VALID_APPLICATION_STATUS, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Scholarship.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidApplicationStatus_throwsIllegalValueException() {
+        JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(VALID_NAME,
+                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, INVALID_APPLICATION_STATUS, VALID_TAGS);
+        String expectedMessage = ApplicationStatus.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullApplicationStatus_throwsIllegalValueException() {
         JsonAdaptedTrackAScholar applicant = new JsonAdaptedTrackAScholar(VALID_NAME,
                 VALID_PHONE, VALID_EMAIL, null, VALID_APPLICATION_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Scholarship.class.getSimpleName());

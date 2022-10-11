@@ -69,8 +69,8 @@ public class Scholarship {
         }
 
         @Override
-        public boolean test(Applicant person) {
-            return StringUtil.containsWordIgnoreCase(person.getApplicationStatus().applicationStatus, keyword);
+        public boolean test(Applicant applicant) {
+            return StringUtil.containsWordIgnoreCase(applicant.getApplicationStatus().applicationStatus, keyword);
         }
 
         @Override
