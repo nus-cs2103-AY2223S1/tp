@@ -9,6 +9,7 @@ import seedu.address.model.person.Module;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -23,6 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_MODULE = "cs2103t";
     public static final String DEFAULT_YEAR = "3";
+    public static final String DEFAULT_STUDENTID = "A1234567X";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
@@ -30,6 +32,7 @@ public class PersonBuilder {
     private Email email;
     private Module module;
     private Year year;
+    private StudentId studentId;
     private Address address;
     private Set<Tag> tags;
 
@@ -42,6 +45,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         module = new Module(DEFAULT_MODULE);
         year = new Year(DEFAULT_YEAR);
+        studentId = new StudentId(DEFAULT_STUDENTID);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -55,6 +59,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         module = personToCopy.getModule();
         year = personToCopy.getYear();
+        studentId = personToCopy.getStudentId();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -115,8 +120,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code StudentId} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStudentId(String studentId) {
+        this.studentId = new StudentId(studentId);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, module, year, address, tags);
+        return new Person(name, phone, email, module, year, studentId, address, tags);
     }
 
 }

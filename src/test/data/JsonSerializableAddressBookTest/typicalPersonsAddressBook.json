@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "module": "CS2100",
     "year": "3",
+    "studentId": "A1234569L",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ]
   }, {
@@ -14,6 +15,7 @@
     "email" : "johnd@example.com",
     "module": "CS2100",
     "year": "3",
+    "studentId": "A0000009Y",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -22,6 +24,7 @@
     "email" : "heinz@example.com",
     "module": "CS2100",
     "year": "3",
+    "studentId": "A9875647U",
     "address" : "wall street",
     "tagged" : [ ]
   }, {
@@ -30,6 +33,7 @@
     "email" : "cornelia@example.com",
     "module": "CS2100",
     "year": "3",
+    "studentId": "A9345647M",
     "address" : "10th street",
     "tagged" : [ "friends" ]
   }, {
@@ -38,6 +42,7 @@
     "email" : "werner@example.com",
     "module": "CS2100",
     "year": "3",
+    "studentId": "A8768974P",
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
@@ -46,6 +51,7 @@
     "email" : "lydia@example.com",
     "module": "CS2100",
     "year": "3",
+    "studentId": "A9870921H",
     "address" : "little tokyo",
     "tagged" : [ ]
   }, {
@@ -54,6 +60,7 @@
     "email" : "anna@example.com",
     "module": "CS2100",
     "year": "3",
+    "studentId": "A0673201Y",
     "address" : "4th street",
     "tagged" : [ ]
   } ]
