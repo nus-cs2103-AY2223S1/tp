@@ -107,7 +107,7 @@ Examples:
 
 Edits an existing student in the student list.
 
-Format: `edit INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL]`
+Format: `edit INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
 
 * Edits the student at the specified INDEX. The index represents the index number of the student in the student list.
   The index must be a positive integer 0, 1, 2…
@@ -120,14 +120,6 @@ Examples:
 * `editstu 3 n/Mary Lee Jing Yi Edits the name of the person at index 3 to be Mary Lee Jing Yi.`
 
 ![edit student](images/userguide-screenshots/editstu.png)
-
-### Listing all students : `liststu`
-
-Shows a list of all the students in the student list.
-
-Format: `liststu`
-
-![list students](images/userguide-screenshots/liststu.png)
 
 ### Adding student's attendance : `attendance`
 
@@ -243,14 +235,6 @@ Examples:
 
 ![](images/userguide-screenshots/deleteq.png)
 
-### Listing all questions : `listq`
-
-Lists all questions.
-
-Format: `listq`
-
-![](images/userguide-screenshots/listq.png)
-
 ### Adding a tutorial : `addtut`
 
 Adds a tutorial to the tutorial list.
@@ -295,14 +279,6 @@ Example:
 * `marktut 1` marks the first tutorial from the tutorial list as done.
 
 ![result for 'marktut 1'](images/userguide-screenshots/marktut.png)
-
-### Listing all tutorials: `listtut`
-
-Shows a list of all the added tutorials.
-
-Format: `listtut`
-
-![result for 'listtut'](images/userguide-screenshots/listtut.png)
 
 ### Exiting the program : `exit`
 
