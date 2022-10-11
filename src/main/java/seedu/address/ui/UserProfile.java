@@ -18,7 +18,7 @@ public class UserProfile extends UiPart<Region> {
 
     private static final String FXML = "UserProfile.fxml";
 
-    public final User user;
+    public User user;
 
     @FXML
     private HBox userProfilePane;
@@ -47,6 +47,31 @@ public class UserProfile extends UiPart<Region> {
 
     public UserProfile(User user) {
         super(FXML);
+        this.user = user;
+        if (user instanceof ExistingUser) {
+            userLabel.setText("User: ");
+            name.setText(user.getName().fullName);
+            phone.setText(user.getPhone().value);
+            address.setText(user.getAddress().value);
+            email.setText(user.getEmail().value);
+            currModuleDescription.setText("Current Modules: ");
+            prevModuleDescription.setText("Previous Modules: ");
+            planModuleDescription.setText("Planned Modules: ");
+            user.getCurrModules().stream()
+                    .sorted(Comparator.comparing(mod -> mod.moduleName))
+                    .forEach(mod -> currModulesTags.getChildren().add(new Label(mod.moduleName)));
+            user.getPrevModules().stream()
+                    .sorted(Comparator.comparing(mod -> mod.moduleName))
+                    .forEach(mod -> prevModulesTags.getChildren().add(new Label(mod.moduleName)));
+            user.getPlanModules().stream()
+                    .sorted(Comparator.comparing(mod -> mod.moduleName))
+                    .forEach(mod -> planModulesTags.getChildren().add(new Label(mod.moduleName)));
+        } else {
+            userLabel.setText("User details have not been added.");
+        }
+    }
+
+    public void update(User user) {
         this.user = user;
         if (user instanceof ExistingUser) {
             userLabel.setText("User: ");
