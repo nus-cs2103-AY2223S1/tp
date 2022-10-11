@@ -108,7 +108,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.events.add(e);
     }
 
-    public void removeEvent(Event e) {
+    public void deleteEvent(Event e) {
         this.events.remove(e);
     }
 

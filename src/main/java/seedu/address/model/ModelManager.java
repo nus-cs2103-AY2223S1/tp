@@ -124,7 +124,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteEvent(Event event) {
         requireNonNull(event);
-        addressBook.removeEvent(event);
+        addressBook.deleteEvent(event);
     }
 
     //=========== Filtered Event List Accessor =================
