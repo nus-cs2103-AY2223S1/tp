@@ -126,6 +126,11 @@ public class StudentCommandTest {
         }
 
         @Override
+        public int getAddressBookSize() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
