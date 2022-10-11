@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
 
 /**
@@ -36,6 +37,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of modules */
     ObservableList<Module> getFilteredModuleList();
+
+    /** Returns an unmodifiable view of the filtered list of module schedules */
+    ObservableList<Schedule> getFilteredScheduleList();
 
     /**
      * Returns the user prefs' address book file path.
