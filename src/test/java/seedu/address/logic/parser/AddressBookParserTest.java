@@ -17,6 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMemberCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -101,6 +102,13 @@ public class AddressBookParserTest {
     public void parseCommand_listMembers() throws Exception {
         assertTrue(parser.parseCommand(ListMembersCommand.COMMAND_WORD) instanceof ListMembersCommand);
         assertTrue(parser.parseCommand(ListMembersCommand.COMMAND_WORD + " 3") instanceof ListMembersCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteMember() throws Exception {
+        DeleteMemberCommand command = (DeleteMemberCommand) parser.parseCommand(
+            DeleteMemberCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteMemberCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

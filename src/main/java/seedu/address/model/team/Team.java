@@ -61,12 +61,27 @@ public class Team {
         return teamMembers.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the team.
+     */
+    public boolean hasMember(Person person) {
+        return teamMembers.contains(person);
+    }
+
+    /**
+     * Adds a person to the team.
+     * The person must not already exist in the team.
+     */
     public void addMember(Person person) {
         teamMembers.add(person);
     }
 
-    public boolean hasMember(Person person) {
-        return teamMembers.contains(person);
+    /**
+     * Removes {@code Person} from this {@code Team}.
+     * {@code person} must exist in the address book.
+     */
+    public void removeMember(Person person) {
+        teamMembers.remove(person);
     }
 
     public ObservableList<Task> getTaskList() {
