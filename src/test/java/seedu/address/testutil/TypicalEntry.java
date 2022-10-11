@@ -1,7 +1,6 @@
+
 package seedu.address.testutil;
 
-import seedu.address.model.PennyWise;
-import seedu.address.model.entry.Expenditure;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_MOVIE;
@@ -15,6 +14,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_MOVIE;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.PennyWise;
+import seedu.address.model.entry.Expenditure;
 
 /**
  *  A utility class containing a list of {@code Entry} objects to be used in tests.
