@@ -12,7 +12,7 @@ public class Task {
      */
     public final ModCode module;
     private final Description description;
-    private boolean isArchived;
+    private final boolean isArchived;
 
     /**
      * Constructor for an instance of Task.
@@ -49,12 +49,12 @@ public class Task {
         return this.isArchived;
     }
 
-    public void archive() {
-        this.isArchived = true;
+    public Task archive() {
+        return new Task(this.description, this.module, true);
     }
 
-    public void unarchive() {
-        this.isArchived = false;
+    public Task unarchive() {
+        return new Task(this.description, this.module, false);
     }
 
     /**

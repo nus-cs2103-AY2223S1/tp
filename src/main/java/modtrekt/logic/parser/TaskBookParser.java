@@ -11,9 +11,13 @@ import modtrekt.logic.commands.Command;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
 import modtrekt.logic.commands.RemoveTaskCommand;
+import modtrekt.logic.commands.tasks.ArchiveTaskCommand;
 import modtrekt.logic.commands.tasks.ListTasksCommand;
+import modtrekt.logic.commands.tasks.UnarchiveTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
+import modtrekt.logic.parser.tasks.ArchiveTaskCommandParser;
 import modtrekt.logic.parser.tasks.ListTasksCommandParser;
+import modtrekt.logic.parser.tasks.UnarchiveTaskCommandParser;
 
 /**
  * Parses user input.
@@ -37,25 +41,20 @@ public class TaskBookParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
-        //case AddTaskCommand.COMMAND_WORD:
-        //    return new AddTaskCommandParser().parse(arguments);
+        switch (commandWord) {
         case RemoveTaskCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
         case ListTasksCommand.COMMAND_WORD:
             return new ListTasksCommandParser().parse(arguments);
-
-        //case DeleteCommand.COMMAND_WORD:
-        //    return new DeleteCommandParser().parse(arguments);
-
-        //case ListCommand.COMMAND_WORD:
-        //    return new ListCommand();
+        case ArchiveTaskCommand.COMMAND_WORD:
+            return new ArchiveTaskCommandParser().parse(arguments);
+        case UnarchiveTaskCommand.COMMAND_WORD:
+            return new UnarchiveTaskCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
