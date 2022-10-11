@@ -122,6 +122,13 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    /**
+     *
+     */
+    public void sortFilteredPersonList() {
+        this.addressBook.sort();
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
