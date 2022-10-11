@@ -27,7 +27,7 @@ public class DeleteMeetingCommandTest {
     private Model model = new ModelManager(getTypicalMyInsuRec(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfliteredList_success() {
+    public void execute_validIndexUnfilteredList_success() {
         Meeting meetingToDelete = model.getFilteredMeetingList().get(INDEX_FIRST_ELEMENT.getZeroBased());
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(INDEX_FIRST_ELEMENT);
 
