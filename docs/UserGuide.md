@@ -5,8 +5,8 @@ title: User Guide
 #Waddle User Guide 🦆
 Waddle is a **simple, no-frills travel planning application catered to people who love doing everything on their keyboards**. Waddle allows users to plan their travels in **3 simple steps**.
 1. Create a trip
-2. Add activities 
-3. Schedule 
+2. Add activities
+3. Schedule
 
 **That simple**.
 
