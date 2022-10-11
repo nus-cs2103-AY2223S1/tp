@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class ListCommandParser implements Parser {
     public ListCommand parse(String args) throws ParseException {
         if (args.length() == 0) {
-            return new ListCommand(null, null, null, null);
+            return new ListCommand(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
         }
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_ADDRESS,
