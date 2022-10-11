@@ -37,70 +37,71 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' penny wise file path.
      */
-    Path getAddressBookFilePath();
+    Path getPennyWiseFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' penny wise file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPennyWiseFilePath(Path pennyWiseFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces penny wise data with the data in {@code pennyWise}.
      */
-    void setAddressBook(ReadOnlyPennyWise addressBook);
+    void setPennyWise(ReadOnlyPennyWise pennyWise);
 
     /**
-     * Returns the AddressBook
+     * Returns the PennyWise
      */
-    ReadOnlyPennyWise getAddressBook();
+    ReadOnlyPennyWise getPennyWise();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an expenditure with the same identity as {@code entry} exists in the expenditure list.
      */
     boolean hasExpenditure(Entry entry);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given expenditure.
+     * The expenditure must exist in the expenditure list.
      */
     void deleteExpenditure(Entry target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given expenditure.
+     * {@code entry} must not already exist in the expenditure list.
      */
     void addExpenditure(Entry entry);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given expenditure {@code target} with {@code editedEntry}.
+     * {@code target} must exist in the expenditure list.
+     * The expenditure identity of {@code editedEntry} must not be the same as another existing expenditure
+     * in the expenditure list.
      */
     void setExpenditure(Entry target, Entry editedEntry);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an income with the same identity as {@code entry} exists in the income list.
      */
     boolean hasIncome(Entry entry);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given income.
+     * The income must exist in the income list.
      */
     void deleteIncome(Entry target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given income.
+     * {@code entry} must not already exist in the income list.
      */
     void addIncome(Entry entry);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given income {@code target} with {@code editedEntry}.
+     * {@code target} must exist in the income list.
+     * The income identity of {@code editedEntry} must not be the same as another existing income in the income list.
      */
     void setIncome(Entry target, Entry editedEntry);
 
@@ -115,7 +116,7 @@ public interface Model {
     ObservableList<Entry> getFilteredIncomeList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered entry list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */

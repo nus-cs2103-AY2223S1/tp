@@ -1,25 +1,24 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.PennyWise;
 import seedu.address.model.entry.Expenditure;
 import seedu.address.model.entry.Income;
-//import seedu.address.model.person.Person;
 
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code PennyWise ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private PennyWise pennyWise;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        pennyWise = new PennyWise();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
+    public AddressBookBuilder(PennyWise pennyWise) {
+        this.pennyWise = pennyWise;
     }
 
     // public AddressBookBuilder withPerson(Person person) {
@@ -27,10 +26,15 @@ public class AddressBookBuilder {
     //     return this;
     // }
     /**
-     * Adds a new {@code Expenditure} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Person} to the {@code PennyWise} that we are building.
      */
+    //    public AddressBookBuilder withPerson(Person person) {
+    //        pennyWise.addPerson(person);
+    //        return this;
+    //    }
+
     public AddressBookBuilder withExpenditure(Expenditure expenditure) {
-        addressBook.addExpenditure(expenditure);
+        pennyWise.addExpenditure(expenditure);
         return this;
     }
 
@@ -38,11 +42,11 @@ public class AddressBookBuilder {
      * Adds a new {@code Income} to the {@code AddressBook} that we are building.
      */
     public AddressBookBuilder withIncome(Income income) {
-        addressBook.addIncome(income);
+        pennyWise.addIncome(income);
         return this;
     }
 
-    public AddressBook build() {
-        return addressBook;
+    public PennyWise build() {
+        return pennyWise;
     }
 }

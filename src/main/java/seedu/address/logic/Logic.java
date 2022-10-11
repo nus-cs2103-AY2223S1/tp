@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the PennyWise.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getPennyWise()
      */
-    ReadOnlyPennyWise getAddressBook();
+    ReadOnlyPennyWise getPennyWise();
 
     /** Returns an unmodifiable view of the filtered list of expenditure */
     ObservableList<Entry> getFilteredExpenditureList();
@@ -37,9 +37,9 @@ public interface Logic {
     ObservableList<Entry> getFilteredIncomeList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' penny wise file path.
      */
-    Path getAddressBookFilePath();
+    Path getPennyWiseFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
