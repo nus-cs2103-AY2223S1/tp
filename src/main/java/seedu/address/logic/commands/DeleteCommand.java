@@ -52,10 +52,10 @@ public class DeleteCommand extends Command {
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
             Set<Tag> personToDeleteTagSet = personToDelete.getTags();
             for (Tag tag : personToDeleteTagSet) {
-              tag.removePerson(personToDelete);
-              if (tag.isPersonListEmpty()) {
-                model.removeTag(tag);
-              }
+                tag.removePerson(personToDelete);
+                if (tag.isPersonListEmpty()) {
+                    model.removeTag(tag);
+                }
             }
             model.deletePerson(personToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
@@ -72,9 +72,9 @@ public class DeleteCommand extends Command {
                 Person personToDelete = filteredList.get(0);
                 Set<Tag> personToDeleteTagSet = personToDelete.getTags();
                 for (Tag tag : personToDeleteTagSet) {
-                  tag.removePerson(personToDelete);
+                    tag.removePerson(personToDelete);
                     if (tag.isPersonListEmpty()) {
-                      model.removeTag(tag);
+                        model.removeTag(tag);
                     }
                 }
                 model.deletePerson(personToDelete);
