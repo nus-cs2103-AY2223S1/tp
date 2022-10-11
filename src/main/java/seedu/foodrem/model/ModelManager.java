@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.foodrem.commons.core.GuiSettings;
 import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.model.item.Item;
@@ -21,7 +23,9 @@ public class ModelManager implements Model {
 
     private final FoodRem addressBook;
     private final UserPrefs userPrefs;
+    private final ObservableList<Item> itemsList;
     private final FilteredList<Item> filteredItems;
+    private final SortedList<Item> sortedItems;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +38,8 @@ public class ModelManager implements Model {
         this.addressBook = new FoodRem(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.addressBook.getItemList());
+        sortedItems = new SortedList<>(filteredItems);
+        itemsList = sortedItems;
     }
 
     public ModelManager() {
@@ -111,6 +117,24 @@ public class ModelManager implements Model {
         addressBook.setItem(target, editedItem);
     }
 
+    //=========== Sorted Item List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
+     * {@code versionedAddressBook} according to a Comparator.
+     */
+    @Override
+    public ObservableList<Item> getSortedItemList() {
+        return sortedItems;
+    }
+
+    @Override
+    public void updateSortedItemList(Comparator<Item> comparator) {
+        requireNonNull(comparator);
+        sortedItems.setComparator(comparator);
+    }
+
+
     //=========== Filtered Item List Accessors =============================================================
 
     /**
@@ -143,8 +167,15 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-            && userPrefs.equals(other.userPrefs)
-            && filteredItems.equals(other.filteredItems);
+                && userPrefs.equals(other.userPrefs)
+                && filteredItems.equals(other.filteredItems)
+                && sortedItems.equals(other.sortedItems)
+                && itemsList.equals(other.itemsList);
+    }
+
+    @Override
+    public ObservableList<Item> getFilteredSortedItemList() {
+        return itemsList;
     }
 
 }
