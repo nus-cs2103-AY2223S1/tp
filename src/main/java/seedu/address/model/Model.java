@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -85,6 +86,22 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     void setNote(Note target, Note editedNote);
+
+    /**
+     * Adds the given tag {@code tag}.
+     */
+    void addTag(Tag tag);
+
+    /**
+     * Deletes the given tag.
+     * The person tag exist in the address book.
+     */
+    void removeTag(Tag tag);
+
+    /**
+     * Returns an unmodifiable view of the address book's unique tag list.
+     */
+    ObservableList<Tag> getTagList();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

@@ -9,6 +9,8 @@ import seedu.address.model.note.Note;
 import seedu.address.model.note.NoteBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 
 
 /**
@@ -19,6 +21,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final NoteBook notebook;
+    private final UniqueTagList tags;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         notebook = new NoteBook();
+        tags = new UniqueTagList();
     }
 
     public AddressBook() {}
@@ -57,6 +62,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setTags(List<Tag> tags) {
+        this.tags.setTags(tags);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -64,6 +77,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setNotes(newData.getNoteBook());
         setPersons(newData.getPersonList());
+        setTags(newData.getTagList());
     }
 
     //// note-level operations
@@ -105,6 +119,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
@@ -132,6 +147,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// tag level operations
+
+    public void addTag(Tag tag) {
+        tags.add(tag);
+    }
+
+    public void removeTag(Tag tag) {
+        tags.remove(tag);
+    }
+
     //// util methods
 
     @Override
@@ -148,6 +173,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Note> getNoteBook() {
         return notebook.asUnmodifiableObservableList();
+    }
+    @Override
+    public ObservableList<Tag> getTagList() {
+        return tags.asUnmodifiableObservableList();
     }
 
     @Override

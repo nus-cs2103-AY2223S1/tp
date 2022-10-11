@@ -13,6 +13,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -25,13 +26,17 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedNote> notes = new ArrayList<>();
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons and tags.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.persons.addAll(persons);
+        this.tags.addAll(tags);
     }
 
     /**
@@ -42,6 +47,8 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         notes.addAll(source.getNoteBook().stream().map(JsonAdaptedNote::new).collect(Collectors.toList()));
+        tags.addAll(source.getTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+
     }
 
     /**
@@ -51,12 +58,22 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+        List<Tag> addressBookTagList = new ArrayList<>();
+        List<Person> addressBookPersonList = new ArrayList<>();
+
+        for (JsonAdaptedTag jsonAdaptedTag : tags) {
+            Tag tag = jsonAdaptedTag.toModelType();
+            addressBook.addTag(tag);
+            addressBookTagList.add(tag);
+        }
+
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
+            Person person = jsonAdaptedPerson.toModelType(addressBookTagList);
             if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+            addressBookPersonList.add(person);
         }
 
         for (JsonAdaptedNote jsonAdaptedNote : notes) {
@@ -66,6 +83,17 @@ class JsonSerializableAddressBook {
             }
             addressBook.addNote(note);
         }
+
+        // Add person references into each tag
+        for (Tag tag : addressBookTagList) {
+            for (Person person : addressBookPersonList) {
+                if (person.getTags().contains(tag)) {
+                    tag.addPerson(person);
+                }
+            }
+        }
+
+
         return addressBook;
     }
 
