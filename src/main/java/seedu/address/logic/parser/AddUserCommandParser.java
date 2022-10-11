@@ -14,8 +14,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddUserCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
