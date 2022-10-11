@@ -40,15 +40,15 @@ public class House {
      */
     public String asFullWord() {
         switch (house) {
-        case ("D"):
+        case "D":
             return "Draco";
-        case("U"):
+        case "U":
             return "Ursa";
-        case("L"):
+        case "L":
             return "Leo";
-        case("A"):
+        case "A":
             return "Aquila";
-        case("N"):
+        case "N":
             return "Noctua";
         default:
             return null;
