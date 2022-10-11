@@ -76,7 +76,7 @@ Examples:
 * `delete member -i 2`
 
 
-### Listing all members of the team : `list members`
+### Listing all members of the team : `list_members`
 
 View all the members currently in the team, in the form of a list.
 
