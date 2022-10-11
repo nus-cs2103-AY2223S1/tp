@@ -45,9 +45,9 @@ class JsonAdaptedModule {
      * Converts a given {@code Module} into this class for Jackson use.
      */
     public JsonAdaptedModule(Module source) {
-        name = source.getName().fullName;
-        code = source.getCode().value;
-        credit = source.getCredits().value;
+        name = source.getName().getFullName();
+        code = source.getCode().getValue();
+        credit = source.getCredits().toString();
         tasks.addAll(source.getTasksList().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));

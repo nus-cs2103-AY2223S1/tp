@@ -11,9 +11,9 @@ import modtrekt.model.task.Task;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Module {
-    public final ModCode code;
-    public final ModName name;
-    public final ModCredit credits;
+    private final ModCode code;
+    private final ModName name;
+    private final ModCredit credits;
     private final ArrayList<Task> tasksList;
 
     /**
