@@ -16,6 +16,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 
 public class SortCommandTest {
+    private Model model;
 
     @BeforeEach
     public static void setModel() {
