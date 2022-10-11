@@ -238,45 +238,45 @@ _{more aspects and alternatives to be added}_
 
 ### Implementation
 
-The tag adding mechanism is facilitated bt `TagAddCommand` and `TagAddCommandParser`.
+The tag adding mechanism is facilitated by `TagAddCommand` and `TagAddCommandParser`.
 Additionally, The mechanism utilises the following operations in `UniqueTagList` and `UniquePersonList`.
 
-* `boolean hasTag(Tag tag)` - Checks if the tagList has the tag.
-* `void setPerson(Person target, Person editedPerson)` - Sets the same person with the new tag.
+* `UniqueTagList#hasTag(Tag tag)` - Checks if the tagList has the tag.
+* `UniquePersonList#setPerson(Person target, Person editedPerson)` - Sets the same person with the new tag.
 * 
 
 These operations are exposed in the `Model` interface under the same method name.
 
-Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+Given below is an example usage scenario and how the tag adding mechanism behaves at each step.
 
 Step 1. The user executes `tag add 1 t/friend` command to add the tag, `friend`, to the person indicated by the `INDEX`, 1.
 `TagAddCommandParser` calls  `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `1` and `t/friend`.
 
-Step 2. The `tag add` command collects the list of persons shown, containing them in `lastShownList = model#getFilteredPersonList()`.
+Step 2. The `tag add` command collects the list of persons shown, containing them in `Model#getFilteredPersonList()`.
 
-Step 3. The `tag add` command checks if the index is valid, calling `index.getZeroBased()`.
+Step 3. The `tag add` command checks if the index is valid, calling `Index#getZeroBased()`.
 
-Step 4. The `tag add` command receives the person indicated by the index, containing it in `personToEdit = lastShownList#get(int index)`.
+Step 4. The `tag add` command receives the person indicated by the index, containing it in `List#get(int index)`.
 
-Step 5. The `tag add` command creates the same person with the new tag included, containing it in `editedPerson = createEditedPerson(Person personToEdit, Tag tag)`.
+Step 5. The `tag add` command creates the same person with the new tag included, containing it in `TagAddCommand#createEditedPerson(Person personToEdit, Tag tag)`.
 
-Step 6. The `tag add` command replaces the old person with the new, updated person, calling `model#setPerson(Person target, Person editedPerson)`.
+Step 6. The `tag add` command replaces the old person with the new, updated person, calling `Model#setPerson(Person target, Person editedPerson)`.
 
 The following activity diagram summarizes what happens when a user executes a tag add command:
 
 (insert activity diagram here)
 
-#### Design considerations:
+#### Design consideration
 
 **Aspect: How to implement tag add:**
 
-* **Alternative 1 (current choice):** Creates a new Person with the tag included.
-    * Pros: Prevents direct access into a Person's tags.
+* **Alternative 1 (current choice):** Creates a new `Person` with the tag included.
+    * Pros: Prevents direct access into the tags of a `Person`.
     * Cons: Potential error occurs if some form of duplication is allowed.
 
-* **Alternative 2:** Directly add the tag into the Person .
+* **Alternative 2:** Directly add the tag into the `Person` .
     * Pros: Easy to implement.
-    * Cons: Easy to access into a Person's tags. Could cause accidental bugs.
+    * Cons: Easy to access into the tags of a `Person`. Could cause accidental bugs.
 
 ### \[Proposed\] Data archiving
 
