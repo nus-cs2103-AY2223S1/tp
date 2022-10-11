@@ -68,7 +68,7 @@ public class ItemBoughtDate {
      * @param other The ItemBoughtDate to compare this ItemBoughtDate against.
      */
     public int compareTo(ItemBoughtDate other) {
-        return itemDate.compareTo(other.itemDate);
+        return boughtDate.compareTo(other.boughtDate);
     }
 
     /**

@@ -69,7 +69,7 @@ public class ItemExpiryDate {
      * @param other The ItemExpiryDate to compare this ItemExpiryDate against.
      */
     public int compareTo(ItemExpiryDate other) {
-        return itemDate.compareTo(other.itemDate);
+        return expiryDate.compareTo(other.expiryDate);
     }
 
     /**

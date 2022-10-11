@@ -10,7 +10,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_SORT_BY_TYPE;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.foodrem.logic.commands.FindCommand;
 import seedu.foodrem.logic.commands.SortCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.Item;
@@ -39,7 +38,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
         List<ItemComparator> comparators = new ArrayList<>();
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,

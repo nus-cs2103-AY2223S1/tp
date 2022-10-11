@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.foodrem.logic.commands.Command;
+import seedu.foodrem.logic.commands.SortCommand;
 import seedu.foodrem.logic.commands.generalcommands.ClearCommand;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;

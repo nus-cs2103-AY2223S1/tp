@@ -20,8 +20,6 @@ public class ItemNameValidator implements Validator {
     private static final int MAX_LENGTH = 200;
     public static final String MESSAGE_FOR_NAME_TOO_LONG =
             String.format("The item name should not exceed %d characters", MAX_LENGTH);
-    private static final String MESSAGE_FOR_NAME_IS_BLANK =
-            "Item name should not be blank";
 
     /**
      * Validates a given input String.This is to be used during construction.

@@ -40,11 +40,9 @@ public class ModelManager implements Model {
         this.foodRem = new FoodRem(foodRem);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.foodRem.getItemList());
-        filteredTags = new FilteredList<>(this.foodRem.getTagList());
-
-        filteredItems = new FilteredList<>(this.addressBook.getItemList());
         sortedItems = new SortedList<>(filteredItems);
         itemsList = sortedItems;
+        filteredTags = new FilteredList<>(this.foodRem.getTagList());
     }
 
     public ModelManager() {
