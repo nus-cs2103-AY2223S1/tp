@@ -51,4 +51,8 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    public void edit(String editedName) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
+    }
+
 }

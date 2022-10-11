@@ -55,7 +55,7 @@ public class EditCommandTest {
 
         FoodBuilder foodInList = new FoodBuilder(lastFood);
         Food editedFood = foodInList.withName(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTag(VALID_TAG_HUSBAND).build();
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();

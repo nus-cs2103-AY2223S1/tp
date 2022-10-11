@@ -1,7 +1,7 @@
 {
   "foods": [ {
     "calorie" : "2000",
-    "tagged" : [ "breakfast" ],
+    "tagged" : "breakfast",
     "dateTime" : "2022-10-04T13:05:29.586882100",
     "name" : "A@ple"
   } ],

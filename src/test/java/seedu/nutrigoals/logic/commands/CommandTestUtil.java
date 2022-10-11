@@ -34,22 +34,16 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_BREAKFAST = "breakfast";
-    public static final String VALID_TAG_BREAKFAST_QUANTITY = "oneSlice";
     public static final String VALID_TAG_LUNCH = "lunch";
 
     public static final String CALORIE_DESC_APPLE = " " + PREFIX_CALORIE + VALID_APPLE_CALORIE;
     public static final String CALORIE_DESC_BREAD = " " + PREFIX_CALORIE + VALID_BREAD_CALORIE;
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_APPLE_NAME;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String NAME_DESC_BREAD = " " + PREFIX_NAME + VALID_BREAD_NAME;
     public static final String TAG_DESC_BREAKFAST = " " + PREFIX_TAG + VALID_TAG_BREAKFAST;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String TAG_DESC_LUNCH = " " + PREFIX_TAG + VALID_TAG_LUNCH;
-
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "breakfast*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -59,7 +53,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditFoodDescriptor DESC_BREAKFAST = new EditFoodDescriptorBuilder()
             .withName(VALID_BREAD_NAME)
             .withCalorie("150")
-            .withTags(VALID_TAG_BREAKFAST, VALID_TAG_BREAKFAST_QUANTITY)
+            .withTags(VALID_TAG_BREAKFAST)
             .build();
 
     public static final EditCommand.EditFoodDescriptor DESC_LUNCH = new EditFoodDescriptorBuilder()
@@ -72,7 +66,7 @@ public class CommandTestUtil {
         DESC_AMY = new EditFoodDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditFoodDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND).build();
     }
 
     /**

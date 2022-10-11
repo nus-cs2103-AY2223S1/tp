@@ -20,7 +20,7 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_CALORIE + "CALORIES "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_TAG + "TAG...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Banana "
             + PREFIX_CALORIE + "50 "

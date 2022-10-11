@@ -1,11 +1,5 @@
 package seedu.nutrigoals.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -25,7 +19,7 @@ class JsonAdaptedFood {
 
     private final String name;
     private final String calorie;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String tagged;
     private final String dateTime;
 
     /**
@@ -33,13 +27,11 @@ class JsonAdaptedFood {
      */
     @JsonCreator
     public JsonAdaptedFood(@JsonProperty("foodName") String foodName, @JsonProperty("calorie") String calorie,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                           @JsonProperty("tagged") String tagged,
                            @JsonProperty("dateTime") String dateTime) {
         this.name = foodName;
         this.calorie = calorie;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.tagged = tagged;
         this.dateTime = dateTime;
     }
 
@@ -49,9 +41,7 @@ class JsonAdaptedFood {
     public JsonAdaptedFood(Food source) {
         name = source.getName().fullName;
         calorie = source.getCalorie().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        tagged = source.getTag().tagName;
         dateTime = source.getDateTime().toString();
     }
 
@@ -61,10 +51,13 @@ class JsonAdaptedFood {
      * @throws IllegalValueException if there were any data constraints violated in the adapted food.
      */
     public Food toModelType() throws IllegalValueException {
-        final List<Tag> mealTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            mealTags.add(tag.toModelType());
+        if (tagged == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
         }
+        if (!Tag.isValidTagName(tagged)) {
+            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        final Tag modelTag = new Tag(tagged);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -79,9 +72,8 @@ class JsonAdaptedFood {
         }
         final Calorie modelCalorie = new Calorie(calorie);
 
-        final Set<Tag> modelTags = new HashSet<>(mealTags);
         final DateTime modelDateTime = new DateTime(dateTime);
-        return new Food(modelName, modelCalorie, modelTags, modelDateTime);
+        return new Food(modelName, modelCalorie, modelTag, modelDateTime);
     }
 
 }

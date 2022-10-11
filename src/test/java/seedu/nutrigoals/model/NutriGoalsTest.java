@@ -45,7 +45,7 @@ public class NutriGoalsTest {
     @Test
     public void resetData_withDuplicateFoods_throwsDuplicateFoodException() {
         // Two foods with the same identity fields
-        Food editedAlice = new FoodBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
+        Food editedAlice = new FoodBuilder(APPLE).withTag(VALID_TAG_HUSBAND).build();
         List<Food> newFoods = Arrays.asList(APPLE, editedAlice);
         NutriGoalsStub newData = new NutriGoalsStub(newFoods);
 
@@ -71,7 +71,7 @@ public class NutriGoalsTest {
     @Test
     public void hasFood_foodWithSameIdentityFieldsInNutriGoals_returnsTrue() {
         nutriGoals.addFood(APPLE);
-        Food editedAlice = new FoodBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
+        Food editedAlice = new FoodBuilder(APPLE).withTag(VALID_TAG_HUSBAND).build();
         assertTrue(nutriGoals.hasFood(editedAlice));
     }
 

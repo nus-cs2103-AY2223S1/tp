@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
-import static seedu.nutrigoals.testutil.TypicalFoods.HOON;
-import static seedu.nutrigoals.testutil.TypicalFoods.IDA;
+import static seedu.nutrigoals.testutil.TypicalFoods.PANCAKE;
+import static seedu.nutrigoals.testutil.TypicalFoods.SUSHI;
 import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 
 import java.io.IOException;
@@ -72,14 +72,14 @@ public class JsonNutriGoalsStorageTest {
         assertEquals(original, new NutriGoals(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addFood(HOON);
+        original.addFood(SUSHI);
         original.removeFood(APPLE);
         jsonNutriGoalsStorage.saveNutriGoals(original, filePath);
         readBack = jsonNutriGoalsStorage.readNutriGoals(filePath).get();
         assertEquals(original, new NutriGoals(readBack));
 
         // Save and read without specifying file path
-        original.addFood(IDA);
+        original.addFood(PANCAKE);
         jsonNutriGoalsStorage.saveNutriGoals(original); // file path not specified
         readBack = jsonNutriGoalsStorage.readNutriGoals().get(); // file path not specified
         assertEquals(original, new NutriGoals(readBack));

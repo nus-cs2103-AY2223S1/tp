@@ -83,7 +83,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_BREAD + CALORIE_DESC_BREAD + TAG_DESC_LUNCH;
         Food expectedFood = new FoodBuilder(BREAD).withCalorie(VALID_BREAD_CALORIE)
-                .withTags(VALID_TAG_LUNCH).build();
+                .withTag(VALID_TAG_LUNCH).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addFood(expectedFood);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

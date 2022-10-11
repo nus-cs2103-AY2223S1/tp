@@ -5,10 +5,7 @@ import static seedu.nutrigoals.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.nutrigoals.commons.core.index.Index;
 import seedu.nutrigoals.logic.commands.EditCommand;
@@ -50,7 +47,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             editFoodDescriptor.setCalorie(ParserUtil.parseCalorie(argMultimap.getValue(PREFIX_CALORIE).get()));
         }
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editFoodDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            parseTagForEdit(argMultimap.getValue(PREFIX_TAG).get()).ifPresent(editFoodDescriptor::setTag);
+        }
 
         if (!editFoodDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -64,14 +63,8 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+    private Optional<Tag> parseTagForEdit(String tag) throws ParseException {
+        return Optional.ofNullable(ParserUtil.parseTag(tag));
     }
 
 }

@@ -41,7 +41,7 @@ public class UniqueFoodListTest {
     @Test
     public void contains_foodWithSameIdentityFieldsInList_returnsTrue() {
         uniqueFoodList.add(APPLE);
-        Food editedAlice = new FoodBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
+        Food editedAlice = new FoodBuilder(APPLE).withTag(VALID_TAG_HUSBAND).build();
         assertTrue(uniqueFoodList.contains(editedAlice));
     }
 
@@ -83,7 +83,7 @@ public class UniqueFoodListTest {
     @Test
     public void setFood_editedFoodHasSameIdentity_success() {
         uniqueFoodList.add(APPLE);
-        Food editedAlice = new FoodBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
+        Food editedAlice = new FoodBuilder(APPLE).withTag(VALID_TAG_HUSBAND).build();
         uniqueFoodList.setFood(APPLE, editedAlice);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
         expectedUniqueFoodList.add(editedAlice);

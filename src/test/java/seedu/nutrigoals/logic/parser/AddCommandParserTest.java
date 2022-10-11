@@ -33,7 +33,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Food expectedFood = new FoodBuilder(BREAD).withCalorie(VALID_BREAD_CALORIE).withTags(VALID_TAG_LUNCH).build();
+        Food expectedFood = new FoodBuilder(BREAD).withCalorie(VALID_BREAD_CALORIE).withTag(VALID_TAG_LUNCH).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
@@ -44,19 +44,11 @@ public class AddCommandParserTest {
                 + TAG_DESC_LUNCH, new AddCommand(expectedFood));
 
         // multiple tags - all accepted
-        Food expectedFoodMultipleTags = new FoodBuilder(BREAD)
-                .withCalorie(VALID_BREAD_CALORIE).withTags(VALID_TAG_LUNCH, VALID_TAG_BREAKFAST)
+        Food expectedFoodMultipleTags = new FoodBuilder(APPLE)
+                .withCalorie(VALID_APPLE_CALORIE).withTag(VALID_TAG_BREAKFAST)
                 .build();
-        assertParseSuccess(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
-                + TAG_DESC_LUNCH + TAG_DESC_BREAKFAST, new AddCommand(expectedFoodMultipleTags));
-    }
-
-    @Test
-    public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Food expectedFood = new FoodBuilder(APPLE).withCalorie(VALID_APPLE_CALORIE).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_APPLE + CALORIE_DESC_APPLE,
-                new AddCommand(expectedFood));
+        assertParseSuccess(parser, NAME_DESC_APPLE + CALORIE_DESC_APPLE
+                + TAG_DESC_BREAKFAST, new AddCommand(expectedFoodMultipleTags));
     }
 
     @Test
