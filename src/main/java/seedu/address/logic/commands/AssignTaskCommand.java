@@ -39,11 +39,11 @@ public class AssignTaskCommand extends Command {
      * @param name of the person in the filtered person list to edit the remark
      * @param task of the person to be updated to
      */
-    public AssignTaskCommand(String name, String group, String task) {
+    public AssignTaskCommand(Name name, String group, Assignment task) {
         requireAllNonNull(name, group, task);
-        this.name = new Name(name);
+        this.name = name;
         this.group = group;
-        this.task = new Assignment(task);
+        this.task = task;
     }
 
     @Override

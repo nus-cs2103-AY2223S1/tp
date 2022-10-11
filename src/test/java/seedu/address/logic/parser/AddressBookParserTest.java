@@ -31,9 +31,11 @@ import seedu.address.logic.commands.FindUserCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupName;
 import seedu.address.model.person.FullNamePredicate;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -70,7 +72,7 @@ public class AddressBookParserTest {
                 AssignTaskCommand.COMMAND_WORD + " " + name + " "
                         + PREFIX_GROUP + group + " "
                         + PREFIX_TASK + task);
-        assertEquals(new AssignTaskCommand(name, group, task), command);
+        assertEquals(new AssignTaskCommand(new Name(name), group, new Assignment(task)), command);
     }
 
     @Test
@@ -105,7 +107,7 @@ public class AddressBookParserTest {
                 DeleteTaskCommand.COMMAND_WORD + " " + name + " "
                         + PREFIX_GROUP + group + " "
                         + PREFIX_TASK + task);
-        assertEquals(new DeleteTaskCommand(name, group, task), command);
+        assertEquals(new DeleteTaskCommand(new Name(name), group, new Assignment(task)), command);
     }
 
     @Test

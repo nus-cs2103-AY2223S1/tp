@@ -9,6 +9,8 @@ import java.util.NoSuchElementException;
 
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.person.Name;
 
 /**
  * Parses input arguments and creates a new {@code DeleteTaskCommand} object
@@ -36,6 +38,6 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE), e);
         }
 
-        return new DeleteTaskCommand(name, group, task);
+        return new DeleteTaskCommand(new Name(name), group, new Assignment(task));
     }
 }
