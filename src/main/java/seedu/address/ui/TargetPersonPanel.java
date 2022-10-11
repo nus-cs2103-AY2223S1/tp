@@ -41,7 +41,7 @@ public class TargetPersonPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TargetPersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new TargetPersonCard(person).getRoot());
             }
         }
     }

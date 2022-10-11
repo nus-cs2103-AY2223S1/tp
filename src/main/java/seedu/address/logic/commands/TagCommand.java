@@ -69,7 +69,8 @@ public class TagCommand extends TagCommandGroup {
         } else if (!index.isPresent() && !model.hasTargetPerson()) {
             throw new CommandException(Messages.MESSAGE_NO_TARGET_PERSON);
         }
-        Person personToTag = index.map(i -> lastShownList.get(i.getZeroBased())).orElseGet(() -> model.getTargetPerson());
+        Person personToTag = index.map(i -> lastShownList.get(i.getZeroBased()))
+                .orElseGet(() -> model.getTargetPerson());
 
         Set<Tag> notFoundTags = tagsToAdd.stream().filter(tag -> !model.hasTag(tag)).collect(Collectors.toSet());
         if (!notFoundTags.isEmpty()) {
