@@ -24,11 +24,13 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Location location;
     private final Set<Tag> tags = new HashSet<>();
     public Order order;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, except Location, which is
+     * set by default to Singapore.
      */
     public Person(PersonCategory personCategory, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(personCategory, name, phone, email, address, tags);
@@ -37,6 +39,20 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.location = new Location("Singapore");
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Location location, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.location = location;
         this.tags.addAll(tags);
     }
 
@@ -56,9 +72,13 @@ public class Person {
         return address;
     }
 
+
+    public Location getLocation() { return location; }
+
     public PersonCategory getPersonCategory() {
         return personCategory;
     }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -119,7 +139,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Location: ")
+                .append(getLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
