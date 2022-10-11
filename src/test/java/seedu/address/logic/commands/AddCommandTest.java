@@ -240,6 +240,11 @@ public class AddCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
-    }
 
+        @Override
+        public boolean isRecordListDisplayed() {
+            return false;
+        }
+
+    }
 }
