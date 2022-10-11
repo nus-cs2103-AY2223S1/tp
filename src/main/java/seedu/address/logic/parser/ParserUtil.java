@@ -8,6 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.order.Order;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
@@ -24,6 +25,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String DEFAULT_LOC_STRING = "DEFAULT_LOC";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -38,6 +40,15 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code order} into an {@code Order} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws IllegalArgumentException if the specified order is invalid.
+     */
+    public static Order parseOrder(String order) throws IllegalArgumentException {
+        String trimmedOrder = order.trim();
+        return Order.lexicographicalOrder(trimmedOrder);
+    }
     /**
      * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>}
      */
@@ -161,6 +172,9 @@ public class ParserUtil {
      */
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
+        if (location == DEFAULT_LOC_STRING) {
+            return new Location("NUS");
+        }
         String trimmedLocation = location.trim();
         if (!Location.isValidLocation(location)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);

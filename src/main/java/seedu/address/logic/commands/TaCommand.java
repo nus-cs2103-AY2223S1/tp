@@ -35,7 +35,7 @@ public class TaCommand extends Command {
         + PREFIX_MODULE_CODE + "CS2100 "
         + PREFIX_PHONE + "98765432 "
         + PREFIX_EMAIL + "AliceD@example.com "
-        + PREFIX_GENDER + "Female "
+        + PREFIX_GENDER + "F "
         + PREFIX_TAG + "friends "
         + PREFIX_TAG + "owesMoney "
         + PREFIX_LOCATION + "COM1-0203";

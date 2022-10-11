@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -91,5 +92,5 @@ public interface Model {
     /**
      * Sort the contact list by name in a lexicographical manner
      */
-    void sortContactLexicographical();
+    void sort(Order order, boolean hasName, boolean hasModuleCode);
 }
