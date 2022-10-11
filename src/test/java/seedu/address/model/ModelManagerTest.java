@@ -10,12 +10,18 @@ import static seedu.address.testutil.TypicalStudents.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentRecordBuilder;
 
 public class ModelManagerTest {
@@ -91,6 +97,27 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void isStudentListInfoConcise_initial_returnsTrue() {
+        assertTrue(modelManager.isStudentListInfoConcise());
+    }
+
+    @Test
+    public void setStudentListInfoConcise_setFalse() {
+        modelManager.setStudentListInfoConcise(false);
+        assertFalse(modelManager.isStudentListInfoConcise());
+    }
+
+    @Test
+    public void getFilteredStudents_noStudentsInList() {
+        List<Student> li = new ArrayList<>();
+        ObservableList<Student> emptyList = FXCollections.observableList(li);
+        FilteredStudents filteredStudentsTest = new FilteredStudents(new FilteredList<>(emptyList));
+        FilteredStudents filteredStudents = modelManager.getFilteredStudents();
+
+        assertEquals(filteredStudents, filteredStudentsTest);
     }
 
     @Test

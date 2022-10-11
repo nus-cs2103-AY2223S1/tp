@@ -3,6 +3,7 @@ package seedu.address.model.student;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PARENT_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -25,12 +26,12 @@ public class StudentTest {
     }
 
     @Test
-    public void isSameStudent() {
+    public void hasSameNameOrId() {
         // same object -> returns true
-        assertTrue(ALICE.isSameStudent(ALICE));
+        assertTrue(ALICE.hasSameNameOrId(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSameStudent(null));
+        assertFalse(ALICE.hasSameNameOrId(null));
 
         // same name, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE)
@@ -39,20 +40,23 @@ public class StudentTest {
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameStudent(editedAlice));
+        assertTrue(ALICE.hasSameNameOrId(editedAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new StudentBuilder(ALICE).withStudentName(VALID_STUDENT_NAME_BOB).build();
-        assertFalse(ALICE.isSameStudent(editedAlice));
+        // different name, different id, all other attributes same -> returns false
+        editedAlice = new StudentBuilder(ALICE).withStudentName(VALID_STUDENT_NAME_BOB)
+                .withId(VALID_ID_BOB).build();
+        assertFalse(ALICE.hasSameNameOrId(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
-        Student editedBob = new StudentBuilder(BOB).withStudentName(VALID_STUDENT_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        // name differs in case, different id, all other attributes same -> returns false
+        Student editedBob = new StudentBuilder(BOB).withStudentName(VALID_STUDENT_NAME_BOB.toLowerCase())
+                .withId(VALID_ID_AMY).build();
+        assertFalse(BOB.hasSameNameOrId(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
+        // name has trailing spaces, different id, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_STUDENT_NAME_BOB + " ";
-        editedBob = new StudentBuilder(BOB).withStudentName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameStudent(editedBob));
+        editedBob = new StudentBuilder(BOB).withStudentName(nameWithTrailingSpaces)
+                .withId(VALID_ID_AMY).build();
+        assertFalse(BOB.hasSameNameOrId(editedBob));
     }
 
     @Test

@@ -12,6 +12,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.StudentRecordParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.FilteredStudents;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyStudentRecord;
 import seedu.address.model.student.Student;
@@ -46,7 +47,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getStudentRecord());
+            storage.saveStudentRecord(model.getStudentRecord());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -78,4 +79,10 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public FilteredStudents getFilteredStudents() {
+        return this.model.getFilteredStudents();
+    }
+
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.FilteredStudents;
 import seedu.address.model.student.Student;
 
 /**
@@ -23,16 +24,23 @@ public class StudentListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public StudentListPanel(ObservableList<Student> studentList) {
+    public StudentListPanel(FilteredStudents filteredStudents) {
         super(FXML);
+        ObservableList<Student> studentList = filteredStudents.getFilteredStudentList();
         studentListView.setItems(studentList);
-        studentListView.setCellFactory(listView -> new StudentListViewCell());
+        studentListView.setCellFactory(listView -> new StudentListViewCell(filteredStudents));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
     class StudentListViewCell extends ListCell<Student> {
+        private FilteredStudents filteredStudents;
+
+        public StudentListViewCell(FilteredStudents filteredStudents) {
+            this.filteredStudents = filteredStudents;
+        }
+
         @Override
         protected void updateItem(Student person, boolean empty) {
             super.updateItem(person, empty);
@@ -41,7 +49,8 @@ public class StudentListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new StudentCard(person, getIndex() + 1).getRoot());
+                setGraphic(new StudentCard(person, getIndex() + 1,
+                        this.filteredStudents.hasConciseInfo()).getRoot());
             }
         }
     }

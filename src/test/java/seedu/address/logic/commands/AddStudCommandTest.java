@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.FilteredStudents;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyStudentRecord;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -148,6 +149,21 @@ public class AddStudCommandTest {
         public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setStudentListInfoConcise(boolean b) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isStudentListInfoConcise() {
+            return false;
+        }
+
+        @Override
+        public FilteredStudents getFilteredStudents() {
+            return null;
+        }
     }
 
     /**
@@ -163,7 +179,7 @@ public class AddStudCommandTest {
 
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return this.student.isSameStudent(student);
+            return this.student.hasSameNameOrId(student);
         }
     }
 
@@ -175,7 +191,7 @@ public class AddStudCommandTest {
 
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
+            return studentsAdded.stream().anyMatch(student::hasSameNameOrId);
         }
 
         @Override
