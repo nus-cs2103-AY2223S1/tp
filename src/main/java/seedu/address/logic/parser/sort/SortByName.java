@@ -1,8 +1,12 @@
 package seedu.address.logic.parser.sort;
 
+import  java.util.Comparator;
+
 import seedu.address.model.person.Person;
 
-import  java.util.Comparator;
+/**
+ * Custom comparator that sorts Person based on their Names.
+ */
 public class SortByName implements Comparator<Person> {
 
     @Override
