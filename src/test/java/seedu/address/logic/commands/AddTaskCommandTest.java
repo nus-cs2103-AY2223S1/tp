@@ -43,6 +43,12 @@ public class AddTaskCommandTest {
     }
 
     @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, TASK_INSULIN);
+        assertThrows(NullPointerException.class, () -> addTaskCommand.execute(null));
+    }
+
+    @Test
     public void execute_validIndexUnfilteredList_success() {
         Patient patientToAddTask = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(patientToAddTask).withTasks(VALID_TASK_DESC_FIRST).build();
