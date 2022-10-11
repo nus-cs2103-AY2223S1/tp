@@ -31,6 +31,7 @@ public class MeetingDate {
 
     /**
      * Returns true if a given string is a valid date.
+     * Checks if date is valid by parsing string to LocalDate
      */
     public static boolean isValidMeetingDate(String test) {
         if (test != null && !test.isEmpty()) {
@@ -60,7 +61,7 @@ public class MeetingDate {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + value + ']';
+        return value;
     }
 
 }
