@@ -49,7 +49,7 @@ public class DeleteTaskCommand extends TaskCommand {
         Task deletedTask = taskList.get(targetIndex.getZeroBased());
         model.deleteTask(deletedTask);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, deletedTask));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, deletedTask));
 
     }
 

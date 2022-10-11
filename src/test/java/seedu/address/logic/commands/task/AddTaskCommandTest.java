@@ -81,7 +81,7 @@ public class AddTaskCommandTest {
     /**
      * A default model stub that have all the methods failing.
      */
-    private class ModelStub implements Model {
+    protected class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -176,6 +176,11 @@ public class AddTaskCommandTest {
         public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteTask(Task deletedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -199,7 +204,7 @@ public class AddTaskCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingTaskAdded extends ModelStub {
+    protected class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
 
         @Override
