@@ -92,10 +92,76 @@ public class FindCommandTest {
                 bModel.getFilteredBuyerList());
     }
 
+    @Test
+    public void execute_multipleKeywords_multipleDeliverersFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        NameContainsKeywordsPredicate<Deliverer> predicate = preparePredicateDeliverer("Kurz Elle Kunz");
+        FindCommand command = new FindCommand(
+                new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
+                predicate, new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
+                new PersonCategory("Deliverer"));
+        dExpectedModel.updateFilteredDelivererList(predicate);
+        assertCommandSuccess(command, dModel, expectedMessage, dExpectedModel);
+        assertEquals(Arrays.asList(TypicalDeliverers.CARL, TypicalDeliverers.ELLE, TypicalDeliverers.FIONA),
+                dModel.getFilteredDelivererList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_multipleSuppliersFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        NameContainsKeywordsPredicate<Supplier> predicate = preparePredicateSupplier("Kurz Elle Kunz");
+        FindCommand command = new FindCommand(
+                new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
+                new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")), predicate,
+                new PersonCategory("Supplier"));
+        sExpectedModel.updateFilteredSupplierList(predicate);
+        assertCommandSuccess(command, sModel, expectedMessage, sExpectedModel);
+        assertEquals(Arrays.asList(TypicalSuppliers.CARL, TypicalSuppliers.ELLE, TypicalSuppliers.FIONA),
+                sModel.getFilteredSupplierList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_filterBuyerGetDeliverer() {
+        NameContainsKeywordsPredicate<Buyer> predicate = preparePredicateBuyer("Kurz Elle Kunz");
+        FindCommand command = new FindCommand(predicate,
+                new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
+                new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
+                new PersonCategory("Buyer"));
+        command.execute(dModel);
+        assertEquals(Arrays.asList(TypicalDeliverers.CARL, TypicalDeliverers.ELLE, TypicalDeliverers.FIONA),
+                dModel.getFilteredDelivererList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_filterDelivererGetSupplier() {
+        NameContainsKeywordsPredicate<Deliverer> predicate = preparePredicateDeliverer("Kurz Elle Kunz");
+        FindCommand command = new FindCommand(
+                new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")), predicate,
+                new NameContainsKeywordsPredicate<>(Arrays.asList("Kurz", "Elle", "Kunz")),
+                new PersonCategory("Deliverer"));
+        command.execute(sModel);
+        assertEquals(Arrays.asList(TypicalSuppliers.CARL, TypicalSuppliers.ELLE, TypicalSuppliers.FIONA),
+                sModel.getFilteredSupplierList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private NameContainsKeywordsPredicate<Buyer> preparePredicateBuyer(String userInput) {
+        return new NameContainsKeywordsPredicate<>(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     */
+    private NameContainsKeywordsPredicate<Deliverer> preparePredicateDeliverer(String userInput) {
+        return new NameContainsKeywordsPredicate<>(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     */
+    private NameContainsKeywordsPredicate<Supplier> preparePredicateSupplier(String userInput) {
         return new NameContainsKeywordsPredicate<>(Arrays.asList(userInput.split("\\s+")));
     }
 }
