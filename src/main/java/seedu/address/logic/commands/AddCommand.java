@@ -62,6 +62,9 @@ public class AddCommand extends Command {
         case INCOME:
             model.addIncome(toAdd);
             break;
+        default:
+            // should never reach here
+            return null;
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

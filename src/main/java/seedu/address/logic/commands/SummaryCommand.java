@@ -1,16 +1,17 @@
 package seedu.address.logic.commands;
-
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.SummaryCommandParser;
-import seedu.address.model.Model;
-import seedu.address.model.entry.Date;
-import seedu.address.model.entry.Entry;
-import seedu.address.model.entry.Expenditure;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.List;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.entry.Date;
+import seedu.address.model.entry.Entry;
 
+
+/**
+ * Summarizes the financials of the user
+ */
 public class SummaryCommand extends Command {
 
     public static final String COMMAND_WORD = "summary";
@@ -47,8 +48,14 @@ public class SummaryCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Entry> expenditureList = model.getFilteredExpenditureList();
         List<Entry> incomeList = model.getFilteredIncomeList();
-        Double totalExpenditure = expenditureList.stream().mapToDouble(entry -> Double.parseDouble(entry.getAmount().amount)).sum();
-        Double totalIncome = incomeList.stream().mapToDouble(entry -> Double.parseDouble(entry.getAmount().amount)).sum();
+        Double totalExpenditure = expenditureList.
+                stream().
+                mapToDouble(entry -> Double.parseDouble(entry.getAmount().amount))
+                .sum();
+        Double totalIncome = incomeList
+                .stream()
+                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().amount))
+                .sum();
         Double totalBalance = totalIncome - totalExpenditure;
         return new CommandResult(String.format(MESSAGE_SUCCESS, totalExpenditure, totalIncome, totalBalance));
     }
