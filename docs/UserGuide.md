@@ -132,6 +132,19 @@ List all meetings in MyInsuRec.
 
 Format: `listMeeting`
 
+### Viewing a meeting: `viewMeeting`
+
+View details associated with a meeting, such as meeting's date and time.
+
+Format: `viewMeeting i/INDEX`
+
+* Displays information about the meeting at the specific `INDEX`.
+* The index refers to the index number shown in the displayed meetings' list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `viewMeeting i/1`
+
 ### Deleting a Meeting : `delMeeting`
 
 Deletes a meeting from MyInsuRec.

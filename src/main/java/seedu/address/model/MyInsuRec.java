@@ -52,12 +52,21 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     }
 
     /**
+     * Replaces the contents of the client list with {@code meetings}.
+     * {@code meetings} must not contain duplicate meetings.
+     */
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings.setMeetings(meetings);
+    }
+
+    /**
      * Resets the existing data of this {@code MyInsuRec} with {@code newData}.
      */
     public void resetData(ReadOnlyMyInsuRec newData) {
         requireNonNull(newData);
 
         setClients(newData.getClientList());
+        setMeetings(newData.getMeetingList());
     }
 
     //// client-level operations
@@ -97,14 +106,31 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
         clients.remove(key);
     }
 
+    //// client-level operations
+
     /**
-     * Adds a client to the client book.
-     * The client must not already exist in the client book.
+     * Adds a meeting to the meeting list.
+     * There must not be any timing conflicts with any other meeting on the list.
      */
     public void addMeeting(Meeting meeting) {
         meetings.add(meeting);
     }
 
+    /**
+     * Removes meeting.
+     * The meeting must exist in MyInsuRec.
+     * @param meeting
+     */
+    public void removeMeeting(Meeting meeting) {
+        meetings.remove(meeting);
+    }
+
+    /**
+     * Returns true if a meeting with the same identity as {@code meeting} exists in the meetings book.
+     */
+    public boolean hasMeeting(Meeting meeting) {
+        return meetings.contains(meeting);
+    }
     //// util methods
 
     @Override
@@ -116,6 +142,11 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return meetings.asUnmodifiableObservableList();
     }
 
     @Override

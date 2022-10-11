@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * Represents the in-memory model of the client book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final MyInsuRec myInsuRec;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
+    private final FilteredList<Meeting> filteredMeetings;
 
     /**
      * Initializes a ModelManager with the given myInsuRec and userPrefs.
@@ -33,7 +35,9 @@ public class ModelManager implements Model {
 
         this.myInsuRec = new MyInsuRec(myInsuRec);
         this.userPrefs = new UserPrefs(userPrefs);
+
         filteredClients = new FilteredList<>(this.myInsuRec.getClientList());
+        filteredMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
     }
 
     public ModelManager() {
@@ -111,11 +115,29 @@ public class ModelManager implements Model {
         myInsuRec.setClient(target, editedClient);
     }
 
+    @Override
+    public void deleteMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        myInsuRec.removeMeeting(meeting);
+    }
+
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return myInsuRec.hasMeeting(meeting);
+    }
+
+    @Override
+    public void addMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        myInsuRec.addMeeting(meeting);
+    }
+
     //=========== Filtered Client List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
-     * {@code versionedclientBook}
+     * {@code versionedMyInsuRec}
      */
     @Override
     public ObservableList<Client> getFilteredClientList() {
@@ -126,6 +148,23 @@ public class ModelManager implements Model {
     public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
+    }
+
+    //=========== Filtered Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedMyInsuRec}
+     */
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
     }
 
     @Override

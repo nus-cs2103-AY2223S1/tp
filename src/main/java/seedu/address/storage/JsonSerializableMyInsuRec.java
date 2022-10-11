@@ -54,6 +54,9 @@ class JsonSerializableMyInsuRec {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
             myInsuRec.addClient(person);
+            if (person.hasMeeting()) {
+                myInsuRec.addMeeting(person.getMeeting());
+            }
         }
         return myInsuRec;
     }

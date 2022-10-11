@@ -6,13 +6,17 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /** {@code Predicate} that always evaluate to true. Used for filtered client list. */
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true. Used for filtered meeting list. */
+    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETING = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -70,6 +74,17 @@ public interface Model {
     void addClient(Client client);
 
     /**
+     * Returns true if a meeting with the same time as {@code meeting} exists in the MyInsuRec.
+     */
+    boolean hasMeeting(Meeting meeting);
+
+    /**
+     * Adds the given client.
+     * {@code meeting} must not already exist in the MyInsuRec.
+     */
+    void addMeeting(Meeting meeting);
+
+    /**
      * Replaces the given client {@code target} with {@code editedClient}.
      * {@code target} must exist in the MyInsuRec.
      * The client identity of {@code editedClient} must not be the same as another existing client in the MyInsuRec.
@@ -84,4 +99,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+    void deleteMeeting(Meeting meeting);
+
+    /** Returns an unmodifiable view of the filtered meeting list */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
+     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
 }

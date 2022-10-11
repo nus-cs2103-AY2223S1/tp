@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.meeting.Meeting;
 
@@ -11,8 +12,7 @@ import seedu.address.model.meeting.Meeting;
 public class MeetingCard extends UiPart<Region> {
 
     private static final String FXML = "MeetingListCard.fxml";
-
-    public final Meeting meeting;
+    private final Meeting meeting;
 
     @FXML
     private Label id;
@@ -33,6 +33,24 @@ public class MeetingCard extends UiPart<Region> {
         description.setText(meeting.getDescription().toString());
         date.setText(meeting.getMeetingDate().toString());
         time.setText(meeting.getMeetingTime().toString());
+
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MeetingCard)) {
+            return false;
+        }
+
+        // state check
+        MeetingCard card = (MeetingCard) other;
+        return id.getText().equals(card.id.getText())
+                && meeting.equals(card.meeting);
+    }
 }

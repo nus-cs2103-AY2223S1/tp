@@ -41,7 +41,8 @@ public class DeleteClientCommand extends Command {
 
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteClient(clientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete),
+                false, false, true, false);
     }
 
     @Override
