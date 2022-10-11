@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.CliSyntax;
 import nus.climods.model.Model;
-import nus.climods.model.module.Module;
+import nus.climods.model.module.UserModule;
 
 /**
  * Adds a person to the address book.
@@ -25,14 +25,14 @@ public class AddCommand extends Command {
         + CliSyntax.PREFIX_TAG + "4 MC";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This module already exist in your list of modules";
+    public static final String MESSAGE_DUPLICATE_MODULE= "This module already exist in your list of modules";
 
-    private final Module toAdd;
+    private final UserModule toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Module}
      */
-    public AddCommand(Module module) {
+    public AddCommand(UserModule module) {
         requireNonNull(module);
         toAdd = module;
     }
@@ -41,11 +41,11 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasModule(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasUserModule(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
-        model.addModule(toAdd);
+        model.addUserModule(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
