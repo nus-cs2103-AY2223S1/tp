@@ -45,7 +45,22 @@ public class ItemQuantity {
      * @return New ItemQuantity with quantity incremented.
      */
     public ItemQuantity incrementQuantity(ItemQuantity increment) {
+        // TODO: Needs validation to ensure item can be incremented with a valid amount, and final result is not
+        //  beyond the boundaries provided.
         return new ItemQuantity(increment.itemQuantity + itemQuantity);
+    }
+
+    /**
+     * Factory method that decrements the ItemQuantity by a specified amount and returns a new ItemQuantity object
+     * with the quantity decremented..
+     *
+     * @param increment ItemQuantity amount to decrement by.
+     * @return New ItemQuantity with quantity decremented..
+     */
+    public ItemQuantity decrementQuantity(ItemQuantity increment) {
+        // TODO: Needs validation to ensure item can be incremented with a valid amount, and final result is not
+        //  beyond the boundaries provided.
+        return new ItemQuantity(itemQuantity - increment.itemQuantity);
     }
 
     /**
