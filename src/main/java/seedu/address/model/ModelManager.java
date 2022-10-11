@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.question.Question;
+import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -26,6 +27,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Question> filteredQuestions;
     private final FilteredList<Tutorial> filteredTutorials;
+    private final FilteredList<Student> filteredStudents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,6 +42,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredQuestions = new FilteredList<>(this.addressBook.getQuestionList());
         filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
+        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
     }
 
     public ModelManager() {
@@ -118,6 +121,34 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== Student ================================================================================
+
+    @Override
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return addressBook.hasStudent(student);
+    }
+
+    @Override
+    public void deleteStudent(Student target) {
+        addressBook.removeStudent(target);
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        addressBook.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+
+        addressBook.setStudent(target, editedStudent);
+    }
+
+
+    //=========== Question ================================================================================
 
     @Override
     public boolean hasQuestion(Question question) {
@@ -143,31 +174,7 @@ public class ModelManager implements Model {
         addressBook.setQuestion(target, editedQuestion);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Question} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Question> getFilteredQuestionList() {
-        return filteredQuestions;
-    }
+    //=========== Tutorial ================================================================================
 
     @Override
     public boolean hasTutorial(Tutorial tutorial) {
@@ -193,6 +200,57 @@ public class ModelManager implements Model {
         addressBook.setTutorial(target, editedTutorial);
     }
 
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
+    }
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Question List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Question} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Question> getFilteredQuestionList() {
+        return filteredQuestions;
+    }
+
+    @Override
+    public void updateFilteredQuestionList(Predicate<Question> predicate) {
+        requireNonNull(predicate);
+        filteredQuestions.setPredicate(predicate);
+    }
     //=========== Filtered Tutorial List Accessors =============================================================
     /**
      * Returns an unmodifiable view of the list of {@code Tutorial} backed by the internal list of
@@ -207,12 +265,6 @@ public class ModelManager implements Model {
     public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
         requireNonNull(predicate);
         filteredTutorials.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredQuestionList(Predicate<Question> predicate) {
-        requireNonNull(predicate);
-        filteredQuestions.setPredicate(predicate);
     }
 
     @Override
