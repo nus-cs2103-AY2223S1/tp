@@ -32,21 +32,19 @@
           </Menu>
         </MenuBar>
 
-        <StackPane fx:id="resultDisplayPlaceholder" mouseTransparent="true" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
         </StackPane>
 
 
-        <VBox fx:id="personList" minWidth="340" prefWidth="340" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <StackPane fx:id="personList" minWidth="340" prefWidth="340" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-        </VBox>
+        </StackPane>
+
 
 <!--        \\\\\\\\\\\\ Commented out attempt at Policy list panel \\\\\\\\\\\-->
-<!--        <VBox fx:id="policyList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">-->
-<!--          <padding>-->
-<!--            <Insets top="10" right="10" bottom="10" left="10" />-->
-<!--          </padding>-->
-<!--          <StackPane fx:id="policyListPanelPlaceholder" VBox.vgrow="ALWAYS"/>-->
-<!--        </VBox>-->
+        <StackPane fx:id="policyList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <StackPane fx:id="policyListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        </StackPane>
 
         <StackPane fx:id="commandBoxPlaceholder" style="-fx-background-color: FFCFC0; -fx-min-width: 300" styleClass="command-box" VBox.vgrow="NEVER">
           <padding>

@@ -113,12 +113,9 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    void fillInnerParts(String tab) {
 
-        //policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
-        //policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
+        updateInnerContent(tab);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -128,6 +125,26 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Updates the content placeholders to display either policies or persons.
+     * @param tab The specified tab type. Either "policy" or "client".
+     */
+    void updateInnerContent(String tab) {
+        policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().removeAll();
+
+        switch (tab) {
+        case "policy":
+            personListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
+            break;
+        default:
+            //Default case is to display clients
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            break;
+        }
     }
 
     /**
@@ -191,6 +208,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowClient()) {
+                updateInnerContent("client");
+            }
+
+            if (commandResult.isShowPolicy()) {
+                updateInnerContent("policy");
             }
 
             return commandResult;
