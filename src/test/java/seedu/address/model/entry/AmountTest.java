@@ -29,5 +29,9 @@ public class AmountTest {
         assertFalse(Amount.isValidAmount(""));
         assertFalse(Amount.isValidAmount("  "));
 
+
+        // valid amount
+        String validAmount = "3.22";
+        assertTrue(Amount.isValidAmount(validAmount));
     }
 }
