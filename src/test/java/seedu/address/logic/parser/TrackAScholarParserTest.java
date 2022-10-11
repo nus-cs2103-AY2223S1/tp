@@ -20,11 +20,13 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditApplicantDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.NameContainsKeywordsPredicate;
+import seedu.address.model.applicant.ApplicationStatusPredicate;
 import seedu.address.testutil.ApplicantBuilder;
 import seedu.address.testutil.ApplicantUtil;
 import seedu.address.testutil.EditApplicantDescriptorBuilder;
@@ -75,6 +77,13 @@ public class TrackAScholarParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        FilterCommand command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + "accepted");
+        assertEquals(new FilterCommand(new ApplicationStatusPredicate("accepted")), command);
     }
 
     @Test
