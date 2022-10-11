@@ -17,7 +17,7 @@ import seedu.address.testutil.PersonBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for CommentCommand.
  */
-public class execute_addCommentUnfilteredList_success {
+public class AddCommentUnfilteredList {
 
     private static final String COMMENT_STUB = "Some comment";
 
