@@ -28,31 +28,31 @@ public class MarkTaskCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        MarkTaskCommand MarkTaskCommand = new MarkTaskCommand(outOfBoundIndex);
+        MarkTaskCommand markTaskCommand = new MarkTaskCommand(outOfBoundIndex);
 
-        assertCommandFailure(MarkTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(markTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        MarkTaskCommand FirstCommand = new MarkTaskCommand(INDEX_FIRST_PERSON);
-        MarkTaskCommand SecondCommand = new MarkTaskCommand(INDEX_SECOND_PERSON);
+        MarkTaskCommand firstCommand = new MarkTaskCommand(INDEX_FIRST_PERSON);
+        MarkTaskCommand secondCommand = new MarkTaskCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
-        assertTrue(FirstCommand.equals(FirstCommand));
+        assertTrue(firstCommand.equals(firstCommand));
 
         // same values -> returns true
-        MarkTaskCommand FirstCommandCopy = new MarkTaskCommand(INDEX_FIRST_PERSON);
-        assertTrue(FirstCommand.equals(FirstCommandCopy));
+        MarkTaskCommand firstCommandCopy = new MarkTaskCommand(INDEX_FIRST_PERSON);
+        assertTrue(firstCommand.equals(firstCommandCopy));
 
         // different types -> returns false
-        assertFalse(FirstCommand.equals(1));
+        assertFalse(firstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(FirstCommand.equals(null));
+        assertFalse(firstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(FirstCommand.equals(SecondCommand));
+        assertFalse(firstCommand.equals(secondCommand));
     }
 
     /**

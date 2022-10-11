@@ -106,8 +106,16 @@ public interface Model {
      */
     void addTask(Task task);
 
-    /** Returns an unmodifiable view of the filtered task list */
+    /**
+     * Deletes the given task. The task must exist in the task list.
+     * @param deletedTask The task to delete
+     */
+    void deleteTask(Task deletedTask);
+
+
+    /** Returns an unmodifiable version of task list */
     ObservableList<Task> getFilteredTaskList();
+
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
