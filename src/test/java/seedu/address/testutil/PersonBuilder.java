@@ -29,6 +29,7 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
+        occupation = new Occupation(DEFAULT_OCCUPATION);
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -40,11 +41,20 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
+        occupation = personToCopy.getOccupation();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+    }
+
+    /**
+     * Sets the {@code Occupation} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withOccupation(String occupation) {
+        this.occupation = new Occupation(occupation);
+        return this;
     }
 
     /**
