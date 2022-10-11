@@ -55,11 +55,7 @@ public class Task {
 
     @Override
     public boolean equals(Object other) {
-        boolean isSameObject = other == this;
-        boolean isTaskType = other instanceof Task;
-        boolean hasSameTaskDescription =
-                taskDescription.equals(((Task) other).taskDescription);
-        return isSameObject || (isTaskType && hasSameTaskDescription);
+        return other == this || (other instanceof Task && taskDescription.equals(((Task) other).taskDescription));
     }
 
     @Override
