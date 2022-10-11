@@ -95,13 +95,10 @@ public class Module {
      * Returns true if both modules have the same name.
      * This defines a weaker notion of equality between two modules.
      */
-    public boolean isSameCodeModule(Module otherModule) {
-        if (otherModule == this) {
-            return true;
-        }
+    public boolean isSameCodeModule(ModCode otherModule) {
 
         return otherModule != null
-                && otherModule.getCode().equals(getCode());
+                && otherModule.equals(getCode());
     }
 
     /**

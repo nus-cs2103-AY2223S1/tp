@@ -33,8 +33,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_MOD_NAME, CliSyntax.PREFIX_MOD_CODE,
-                        CliSyntax.PREFIX_MOD_CREDIT, CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_NAME,
+                        CliSyntax.PREFIX_MOD_CODE, CliSyntax.PREFIX_MOD_CREDIT,
+                        CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_DEADLINE);
 
         if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_MOD_CODE,
                 CliSyntax.PREFIX_DEADLINE)) {
@@ -50,8 +51,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             Task t = new Task(description, code);
             return new AddTaskCommand(t);
-        } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MOD_NAME, CliSyntax.PREFIX_MOD_CODE,
-                CliSyntax.PREFIX_MOD_CREDIT)) {
+        } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_NAME,
+                CliSyntax.PREFIX_MOD_CODE, CliSyntax.PREFIX_MOD_CREDIT)) {
             ModName name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_MOD_NAME).get());
             ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
             ModCredit credit = ParserUtil.parseCredit(argMultimap.getValue(CliSyntax.PREFIX_MOD_CREDIT).get());
@@ -59,7 +60,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             Module module = new Module(code, name, credit);
 
             return new AddCommand(module);
-        } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MOD_CODE)) {
+        } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_CODE)) {
             ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
             try {
                 Module module = ModuleParser.fetchModule(code);
@@ -75,7 +76,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             }
         }
 
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_1,
+                AddTaskCommand.MESSAGE_USAGE, AddDeadlineCommand.MESSAGE_USAGE, AddCommand.MESSAGE_USAGE_2));
     }
 
 }
