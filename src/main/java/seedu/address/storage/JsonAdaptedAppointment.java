@@ -80,6 +80,9 @@ class JsonAdaptedAppointment {
         if (doctor == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Doctor.class.getSimpleName()));
         }
+        if (!Doctor.isValidDoctorName(doctor)) {
+            throw new IllegalValueException(Doctor.MESSAGE_CONSTRAINTS);
+        }
         final Doctor modelDoctor = new Doctor(doctor);
 
         return new Appointment(modelEmail, modelMedicalTest, modelSlot, modelDoctor);
