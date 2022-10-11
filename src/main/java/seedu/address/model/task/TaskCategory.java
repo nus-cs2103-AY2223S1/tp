@@ -1,6 +1,8 @@
 package seedu.address.model.task;
 
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents the category of a task.
  */
@@ -12,6 +14,10 @@ public class TaskCategory {
      * Constructor for TaskCategory
      */
     public TaskCategory(int level, TaskCategoryType taskCategoryType) {
+        if(0 < level || level < 5) {
+
+        }
+        requireNonNull(taskCategoryType);
         this.level = level;
         this.taskCategoryType = taskCategoryType;
     }
