@@ -106,7 +106,7 @@ public interface Model {
     ObservableList<Meeting> getFilteredMeetingList();
 
     /**
-     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered Meeting list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);

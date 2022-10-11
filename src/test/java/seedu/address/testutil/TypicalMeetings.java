@@ -32,7 +32,7 @@ public class TypicalMeetings {
      * Returns an {@code MyInsuRec} with all the typical clients.
      */
     public static MyInsuRec getTypicalMyInsuRec() {
-        MyInsuRec cb = new MyInsuRec();
+        MyInsuRec cb = TypicalClients.getTypicalMyInsuRec();
         for (Meeting meeting : getTypicalMeetings()) {
             cb.addMeeting(meeting);
         }
