@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -65,7 +65,7 @@ public class PersonTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different client -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false

@@ -18,7 +18,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.ui.Ui;
+import seedu.address.ui.UiManager;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -50,7 +52,7 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different client -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
@@ -60,7 +62,8 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        Ui stubUi = new UiManager(null);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel, stubUi);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -70,7 +73,8 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        Ui stubUi = new UiManager(null);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel, stubUi);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 

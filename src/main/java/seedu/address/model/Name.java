@@ -1,4 +1,4 @@
-package seedu.address.model.client;
+package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents the name of the client. This class is modelled after the Name class in the Person package of AB3
  */
-public class ClientName {
+public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should not be blank and can contain only contain alphanumeric characters and spaces. A name may "
@@ -23,21 +23,21 @@ public class ClientName {
     private String fullName;
 
     /**
-     * Constructs a ClientName.
+     * Constructs a Name.
      *
      * @param name A valid name.
      */
-    public ClientName(String name) {
+    public Name(String name) {
         requireNonNull(name);
-        checkArgument(isValidClientName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
 
     /**
-     * Represents an Empty ClientName.
+     * Represents an Empty Name.
      */
-    private static class EmptyClientName extends ClientName {
-        private static final ClientName EMPTY_NAME = new EmptyClientName();
+    private static class EmptyClientName extends Name {
+        private static final Name EMPTY_NAME = new EmptyClientName();
         private EmptyClientName() {
             super("");
         }
@@ -59,7 +59,7 @@ public class ClientName {
      * @param test String representing name to be tested
      * @return boolean true if a given string is a valid name
      */
-    public static boolean isValidClientName(String test) {
+    public static boolean isValidName(String test) {
 
         String[] words = test.split(" ");
         boolean hasCorrectWordCount = words.length > 0 && words.length <= 3;
@@ -118,8 +118,8 @@ public class ClientName {
         if (other == this) {
             return true;
 
-        } else if (other instanceof ClientName) {
-            ClientName otherName = (ClientName) other;
+        } else if (other instanceof Name) {
+            Name otherName = (Name) other;
             return this.fullName.equals(otherName.fullName);
 
         } else {

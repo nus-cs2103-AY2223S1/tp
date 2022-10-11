@@ -64,7 +64,7 @@ public class ClientPhone {
      * @return String representing phone
      */
     public String getPhoneRepresentation() {
-        return this.phone;
+        return "Client Phone: " + this.phone;
     }
 
     /**
@@ -73,7 +73,7 @@ public class ClientPhone {
      */
     @Override
     public String toString() {
-        return "Client Phone: " + this.phone;
+        return this.phone;
     }
     /**
      * Checks if an object equals this.

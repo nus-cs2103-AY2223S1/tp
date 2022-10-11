@@ -117,7 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         issueListPanel = new IssueListPanel(logic.getFilteredIssueList());
 
         // TODO: Add different panel root to listPanelPlaceholder depending on what entity is to be displayed
-        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -127,6 +127,24 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void swapProjectListDisplay() {
+        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+    }
+
+    void swapIssueListDisplay() {
+        issueListPanel = new IssueListPanel(logic.getFilteredIssueList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
+    }
+
+    void swapClientListDisplay() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     /**

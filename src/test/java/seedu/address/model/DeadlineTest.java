@@ -1,4 +1,4 @@
-package seedu.address.model.project;
+package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,7 +22,7 @@ class DeadlineTest {
     @Test
     void isValidDeadline() {
         // null deadline
-        assertThrows(NullPointerException.class, () -> seedu.address.model.project.Deadline.isValidDeadline(null));
+        assertThrows(NullPointerException.class, () -> Deadline.isValidDeadline(null));
 
         // invalid deadline
         assertFalse(Deadline.isValidDeadline("")); // empty string

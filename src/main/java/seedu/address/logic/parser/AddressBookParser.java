@@ -14,7 +14,10 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListClientCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListIssueCommand;
+import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -62,7 +65,19 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            // TODO: Refactor to accommodate polymorphism of entity command classes
+            switch (flag) {
+            case ListClientCommand.COMMAND_FLAG:
+                return new ListClientCommand();
+            case ListProjectCommand.COMMAND_FLAG:
+                return new ListProjectCommand();
+            case ListIssueCommand.COMMAND_FLAG:
+                return new ListIssueCommand();
+            case "":
+                return new ListCommand();
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

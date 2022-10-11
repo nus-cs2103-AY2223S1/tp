@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.client.Person;
+import seedu.address.model.client.exceptions.DuplicatePersonException;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
 
@@ -92,11 +92,16 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
         private final ObservableList<Issue> issues = FXCollections.observableArrayList();
+        private int issueCount;
+        private int clientCount;
+        private int projectCount;
 
 
         AddressBookStub(Collection<Person> persons) {
             // TODO: Add test parameters for projects, issues
             this.persons.setAll(persons);
+            this.projects.setAll(projects);
+            this.issues.setAll(issues);
         }
 
         @Override
@@ -110,6 +115,30 @@ public class AddressBookTest {
 
         public ObservableList<Issue> getIssueList() {
             return issues;
+        }
+
+        /**
+         * @return
+         */
+        @Override
+        public String getProjectCount() {
+            return String.valueOf(projectCount);
+        }
+
+        /**
+         * @return
+         */
+        @Override
+        public String getIssueCount() {
+            return String.valueOf(issueCount);
+        }
+
+        /**
+         * @return
+         */
+        @Override
+        public String getClientCount() {
+            return String.valueOf(clientCount);
         }
     }
 

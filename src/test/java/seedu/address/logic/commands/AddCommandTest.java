@@ -20,10 +20,12 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.client.Person;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.Ui;
+import seedu.address.ui.UiManager;
 
 public class AddCommandTest {
 
@@ -36,8 +38,9 @@ public class AddCommandTest {
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
+        Ui stubUi = new UiManager(null);
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub, stubUi);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
@@ -48,8 +51,10 @@ public class AddCommandTest {
         Person validPerson = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        Ui stubUi = new UiManager(null);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, ()
+                -> addCommand.execute(modelStub, stubUi));
     }
 
     @Test
@@ -72,7 +77,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different client -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -212,7 +217,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single client.
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Person person;
@@ -230,7 +235,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the client being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();

@@ -1,95 +1,77 @@
 package seedu.address.model.client;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
+
+import seedu.address.model.Name;
+import seedu.address.model.project.Project;
 
 /**
- * Represents a Client associated with a project. This is modelled after the AB3 Person.
+ * Stub class for Client.
  */
 public class Client {
-
     //Represents the Client's name
-    private ClientName name;
+    private Name name;
 
-    //Represents the Client's Email
+    //Represents the Client's ClientEmail
     private ClientEmail email;
 
-    //Represents the Client's Phone
+    //Represents the Client's ClientPhone
     private ClientPhone phone;
 
-    //Represents the Client's unique ID
-    private ClientId id;
-
     //Represents a Collection of projects that the client is responsible for
-    private ClientProjectList projects;
+    private List<Project> projects;
 
-    //Represents the client type
-    private Type type;
+    private ClientId clientId;
 
     /**
      * Constructs a client with inputs given by the user.
-     * @param name Name representing name of the client
-     * @param phone Phone representing phone number of the client
-     * @param email Email representing email address of the client
-     * @param type Type representing the type of the client
+     * @param name String representing name of the client
+     * @param phone String representing phone number of the client
+     * @param email String representing email address of the client
      */
-    public Client(ClientName name, ClientPhone phone, ClientEmail email, Type type) {
-        //to be added
-        requireNonNull(name);
+    public Client(Name name, ClientPhone phone, ClientEmail email, List<Project> projects, ClientId clientId) {
+        requireAllNonNull(name, phone, email, projects, clientId);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.projects = new ClientProjectList();
-        this.type = type;
+        this.projects = projects;
+        this.clientId = clientId;
+    }
+
+    public ClientId getClientId() {
+        return this.clientId;
     }
 
     /**
-     * Returns the client name as is represented in the ClientName object.
+     * Returns the client name as is represented in the Name object.
      * @return String representing client's name.
      */
-    public String getClientName() {
-        return this.name.getFullNameRepresentation();
-    }
-
-    /**
-     * Returns the client Id as is represented in the ClientId object.
-     * @return String representing client's Id.
-     */
-    public String getClientId() {
-        return this.id.getIdentifierRepresentation();
+    public seedu.address.model.Name getClientName() {
+        return this.name;
     }
 
     /**
      * Returns the client email as is represented in the ClientEmail object.
      * @return String representing client's email.
      */
-    public String getClientEmail() {
-        return this.email.getEmailRepresentation();
+    public ClientEmail getClientEmail() {
+        return this.email;
     }
 
     /**
      * Returns the client phone as is represented in the ClientPhone object.
      * @return String representing client's phone.
      */
-    public String getClientPhone() {
-        return this.phone.getPhoneRepresentation();
+    public ClientPhone getClientPhone() {
+        return this.phone;
     }
 
-    /**
-     * Returns a list containing the projects the client is associated with.
-     * @return String representing client's projects.
-     */
-    public String getClientProjectList() {
-        return this.projects.listAllProjects();
+    public List<Project> getProjects() {
+        return projects;
     }
 
-    /**
-     * Returns the type of the client.
-     * @return String representing client type
-     */
-    public String getClientType() {
-        return this.type.toString();
-    }
 
     /**
      * Returns true if both clients have the same name.
@@ -116,13 +98,29 @@ public class Client {
         } else if (other instanceof Client) {
             Client otherClient = (Client) other;
             boolean hasSameId = this.getClientId().equals(otherClient.getClientId());
-            boolean hasSameName = this.getClientId().equals(otherClient.getClientName());
-            boolean hasSameEmail = this.getClientId().equals(otherClient.getClientEmail());
-            boolean hasSamePhone = this.getClientId().equals(otherClient.getClientPhone());
+            boolean hasSameName = this.getClientName().equals(otherClient.getClientName());
+            boolean hasSameEmail = this.getClientEmail().equals(otherClient.getClientEmail());
+            boolean hasSamePhone = this.getClientPhone().equals(otherClient.getClientPhone());
             return hasSameId && hasSameEmail && hasSamePhone && hasSameName;
         } else {
             return false;
         }
     }
 
+
+    //    /**
+    //     * Returns a list containing the projects the client is associated with.
+    //     * @return String representing client's projects.
+    //     */
+    //    public String getClientProjectList() {
+    //        return this.projects.listAllProjects();
+    //    }
+    //
+    //    /**
+    //     * Returns the type of the client.
+    //     * @return String representing client type
+    //     */
+    //    public String getClientType() {
+    //        return this.type.toString();
+    //    }
 }
