@@ -19,6 +19,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final StudentId studentId;
 
     // Data fields
     private final Address address;
@@ -29,13 +30,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Module module, Year year, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Module module, Year year, StudentId studentId, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, module, year, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.module = module;
         this.year = year;
+        this.studentId = studentId;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -51,6 +53,7 @@ public class Person {
     public Email getEmail() {
         return email;
     }
+
     public Module getModule() {
         return module;
     }
@@ -61,6 +64,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public StudentId getStudentId() {
+        return studentId;
     }
 
     /**
@@ -105,6 +112,7 @@ public class Person {
                 && otherPerson.getModule().equals(getModule())
                 && otherPerson.getYear().equals(getYear())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getStudentId().equals(getStudentId())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -126,6 +134,8 @@ public class Person {
                 .append(getModule())
                 .append("; Year: ")
                 .append(getYear())
+                .append("; Student ID: ")
+                .append(getStudentId())
                 .append("; Address: ")
                 .append(getAddress());
 

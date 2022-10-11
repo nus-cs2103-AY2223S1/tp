@@ -38,6 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_BOB = "CS2100";
     public static final String VALID_YEAR_AMY = "3";
     public static final String VALID_YEAR_BOB = "4";
+    public static final String VALID_STUDENTID_AMY = "A1234567X";
+    public static final String VALID_STUDENTID_BOB = "A9876543Y";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
