@@ -82,7 +82,7 @@ public class BuyCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CreateCommand // instanceof handles nulls
+                || (other instanceof BuyCommand // instanceof handles nulls
                 && index.equals(((BuyCommand) other).index)
                 && transaction.equals(((BuyCommand) other).transaction));
     }

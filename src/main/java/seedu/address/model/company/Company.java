@@ -99,6 +99,10 @@ public class Company implements ReadOnlyCompany {
         return pocs.contains(poc);
     }
 
+    public double getTotalTransacted() {
+        return transactions.calculateNetTransacted();
+    }
+
     /**
      * Adds a transaction to the transaction log in the company.
      * @param transaction to be added to the list.

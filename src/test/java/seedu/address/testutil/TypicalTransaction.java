@@ -1,9 +1,15 @@
 package seedu.address.testutil;
 
-import seedu.address.model.poc.Poc;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS_BUY_ORANGE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS_SELL_PAPAYA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BUY_ORANGE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_SELL_PAPAYA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BUY_ORANGE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SELL_PAPAYA;
+
 import seedu.address.model.transaction.Transaction;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+
 
 /**
  * A utility class containing a list of {@code Poc} objects to be used in tests.
@@ -11,11 +17,11 @@ import static seedu.address.logic.commands.CommandTestUtil.*;
 public class TypicalTransaction {
 
     public static final Transaction BUY_BOOKS = new TransactionBuilder()
-                    .withTransactionType("buy")
-                    .withGoods("Books")
-                    .withPrice("12.3")
-                    .withQuantity("10")
-                    .build();
+            .withTransactionType("buy")
+            .withGoods("Books")
+            .withPrice("12.3")
+            .withQuantity("10")
+            .build();
     public static final Transaction BUY_SHELVES = new TransactionBuilder()
             .withTransactionType("buy")
             .withGoods("Shelves")
