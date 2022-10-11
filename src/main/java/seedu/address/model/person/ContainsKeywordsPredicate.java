@@ -1,17 +1,27 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.core.keyword.KeywordList;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Set;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.keyword.KeywordList;
+import seedu.address.model.tag.Tag;
 
+/**
+ * Tests if a Person's data matches with the Keyword on the specified
+ * category.
+ */
 public class ContainsKeywordsPredicate implements Predicate<Person> {
     private final KeywordList keywords;
     private final FindableCategory category;
 
+    /**
+     * Constructs a predicate with the given keywords and category.
+     *
+     * @param keywords a list of keywords.
+     * @param category the category to test.
+     */
     public ContainsKeywordsPredicate(KeywordList keywords, FindableCategory category) {
         requireNonNull(category);
         requireNonNull(keywords);
@@ -21,7 +31,7 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test (Person person) {
+    public boolean test(Person person) {
         switch (category) {
         case COMPANY_NAME:
             return testName(person.getName());
@@ -39,8 +49,8 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
             return testTags(person.getTags());
 
         default:
-            //Should not fall to default case
-           return false;
+            // Should not fall to default case
+            return false;
         }
     }
 

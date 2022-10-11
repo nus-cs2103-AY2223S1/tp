@@ -1,12 +1,21 @@
 package seedu.address.commons.core.keyword;
 
-import seedu.address.model.person.ContainsKeywordsPredicate;
-
 import static java.util.Objects.requireNonNull;
 
-public class Keyword {
-    String keyword;
+import seedu.address.model.person.ContainsKeywordsPredicate;
+import seedu.address.model.person.Date;
 
+/**
+ * Represent a String of keyword.
+ */
+public class Keyword {
+    private String keyword;
+
+    /**
+     * Constructs a new Keyword Object representing the given keyword.
+     *
+     * @param keyword a String.
+     */
     public Keyword(String keyword) {
         requireNonNull(keyword);
         this.keyword = keyword;
@@ -21,5 +30,9 @@ public class Keyword {
         return other == this // short circuit if same object
                 || (other instanceof ContainsKeywordsPredicate // instanceof handles nulls
                 && keyword.equals(((Keyword) other).keyword)); // state check
+    }
+
+    public boolean isDate() {
+        return Date.isValidDate(keyword);
     }
 }

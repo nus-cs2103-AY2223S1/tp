@@ -378,6 +378,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1c2. Continue from 2
 
 
+* 1d. category is date with one of the keywords being an invalid date
+  * 1d1. PleaseHireUse shows an error message. 
+
+
 * 2a. The list is empty. 
 
     Use case ends.

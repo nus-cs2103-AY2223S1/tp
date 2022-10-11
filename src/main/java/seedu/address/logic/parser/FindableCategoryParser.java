@@ -3,8 +3,18 @@ package seedu.address.logic.parser;
 import seedu.address.logic.parser.exceptions.InvalidCategoryException;
 import seedu.address.model.person.FindableCategory;
 
+/**
+ * A class to parse user input to FindableCategory instance.
+ */
 public class FindableCategoryParser {
-    public final static FindableCategory parse(String string) throws InvalidCategoryException {
+    /**
+     * Parses the string to a FindableCategory instance.
+     *
+     * @param string user input.
+     * @return a FindableCategory instance.
+     * @throws InvalidCategoryException if user input is invalid.
+     */
+    public static FindableCategory parse(String string) throws InvalidCategoryException {
         switch (string.toLowerCase()) {
         case "company_name":
         case "n":
