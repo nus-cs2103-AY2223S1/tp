@@ -23,7 +23,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons with specifications: " + MESSAGE_ARGUMENTS;
+    public static final String MESSAGE_SUCCESS = "Listed all persons with specifications:\n" + MESSAGE_ARGUMENTS;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all enrolled users who fit the specified criteria, "
@@ -52,7 +52,8 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         Predicate<Person> predicate = x -> {
-            boolean addressMatch = x.getAddress().equals(address.orElse(x.getAddress()));
+            boolean addressMatch = x.getAddress().value.toLowerCase()
+                    .contains(address.orElse(x.getAddress()).value.toLowerCase());
             boolean categoryMatch = x.getCategory().equals(category.orElse(x.getCategory()));
             boolean genderMatch = x.getGender().equals(gender.orElse(x.getGender()));
 
