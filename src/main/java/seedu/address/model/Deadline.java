@@ -14,8 +14,8 @@ public class Deadline {
     /**
      * Represents an empty deadline.
      */
-    private static class EmptyDeadline extends Deadline {
-        private static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
+    public static class EmptyDeadline extends Deadline {
+        public static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
 
         private EmptyDeadline() {
             super("");

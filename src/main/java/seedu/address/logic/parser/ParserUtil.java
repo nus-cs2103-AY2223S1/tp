@@ -14,7 +14,9 @@ import seedu.address.model.Name;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.project.Repository;
 import seedu.address.model.tag.Tag;
 
@@ -56,7 +58,12 @@ public class ParserUtil {
     public static Client parseClient(String clientId) throws ParseException {
         requireNonNull(clientId);
         String trimmedClientId = clientId.trim();
-
+        ClientId client__id = new ClientId(Integer.parseInt(trimmedClientId));
+        Client client = UniqueClientList.getClient(client__id);
+        if (!Client.isValidClient(client)) {
+            throw new ParseException(Client.MESSAGE_INVALID);
+        }
+        return client;
     }
 
     /**

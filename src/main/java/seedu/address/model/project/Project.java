@@ -27,7 +27,7 @@ public class Project {
      */
     public Project(Name name, Repository repository, Deadline deadline,
                    Client client, List<Issue> issueList, ProjectId projectId) {
-        requireAllNonNull(name, repository, deadline, client);
+        requireAllNonNull(name);
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;

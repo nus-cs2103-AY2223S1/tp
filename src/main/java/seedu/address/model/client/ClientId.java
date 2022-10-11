@@ -20,6 +20,10 @@ public class ClientId {
         this.clientId = id;
     }
 
+    public int getIdInt() {
+        return this.clientId;
+    }
+
     /**
      * Checks whether the client ID string is valid.
      * @param clientId

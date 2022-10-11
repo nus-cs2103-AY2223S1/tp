@@ -26,10 +26,11 @@ public class AddProjectCommand extends ProjectCommand {
             + PREFIX_REPOSITORY + "REPOSITORY "
             + PREFIX_DEADLINE + "DEADLINE "
             + "Example: " + COMMAND_WORD + " "
+            + COMMAND_FLAG + " "
             + PREFIX_NAME + "John "
-            + PREFIX_CLIENT_ID + "Tom "
+            + PREFIX_CLIENT_ID + "1 "
             + PREFIX_REPOSITORY + "JohnDoe/tp "
-            + PREFIX_DEADLINE + "2202-03-05 ";
+            + PREFIX_DEADLINE + "2022-03-05 ";
 
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
     public static final String MESSAGE_ADD_PROJECT_SUCCESS = "New project added to the address book";

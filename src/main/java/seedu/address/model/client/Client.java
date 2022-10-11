@@ -54,6 +54,8 @@ public class Client {
         this.projects = new ArrayList<>();
     }
 
+    public static final String MESSAGE_INVALID = "Client does not exist in the project.";
+
 
     public ClientId getClientId() {
         return this.clientId;
@@ -131,6 +133,16 @@ public class Client {
 
         return otherClient != null
                 && otherClient.getClientName().equals(getClientName());
+    }
+
+    /**
+     * Returns true if client is valid and exists.
+     */
+    public static boolean isValidClient(Client client) {
+        if (client == EmptyClient.EMPTY_CLIENT) {
+            return false;
+        }
+        return true;
     }
 
     /**

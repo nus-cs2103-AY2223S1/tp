@@ -17,11 +17,14 @@ import seedu.address.logic.commands.project.EditProjectCommand;
 import seedu.address.logic.commands.project.ListProjectCommand;
 import seedu.address.logic.commands.project.ProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
 
 
@@ -73,12 +76,32 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Client client = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT_ID).get());
-        Repository repository = ParserUtil.parseRepository(argMultimap.getValue(PREFIX_REPOSITORY).get());
-        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        List<Issue> issueList = new ArrayList<>();
+        Client client;
+        Repository repository;
+        Deadline deadline;
 
-        Project project = new Project(name, repository, deadline, null, issueList, null);
+        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
+            client = Client.EmptyClient.EMPTY_CLIENT;
+        } else {
+            client = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+        }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_REPOSITORY)) {
+            repository = Repository.EmptyRepository.EMPTY_REPOSITORY;
+        } else {
+            repository = ParserUtil.parseRepository(argMultimap.getValue(PREFIX_REPOSITORY).get());
+        }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
+            deadline = Deadline.EmptyDeadline.EMPTY_DEADLINE;
+        } else {
+            deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        }
+
+        List<Issue> issueList = new ArrayList<>();
+        ProjectId projectId = new ProjectId(UniqueClientList.generateId());
+
+        Project project = new Project(name, repository, deadline, client, issueList, projectId);
 
         return new AddProjectCommand(project);
     }

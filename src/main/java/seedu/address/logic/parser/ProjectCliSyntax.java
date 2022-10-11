@@ -5,7 +5,7 @@ package seedu.address.logic.parser;
  */
 public class ProjectCliSyntax {
 
-    /*Prefix definitions */
+    /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_CLIENT_ID = new Prefix("c/");
     public static final Prefix PREFIX_REPOSITORY = new Prefix("r/");

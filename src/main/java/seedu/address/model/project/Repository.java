@@ -11,8 +11,8 @@ public class Repository {
     /**
      * Represents an empty Project repository.
      */
-    private static class EmptyRepository extends Repository {
-        private static final Repository EMPTY_REPOSITORY = new EmptyRepository();
+    public static class EmptyRepository extends Repository {
+        public static final Repository EMPTY_REPOSITORY = new EmptyRepository();
 
         private EmptyRepository() {
             super("");

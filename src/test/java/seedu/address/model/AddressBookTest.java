@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.client.Person;
 import seedu.address.model.client.exceptions.DuplicatePersonException;
 import seedu.address.model.issue.Issue;
+import seedu.address.model.client.Client;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.PersonBuilder;
 
@@ -92,6 +93,7 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
         private final ObservableList<Issue> issues = FXCollections.observableArrayList();
+        private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private int issueCount;
         private int clientCount;
         private int projectCount;
@@ -109,12 +111,19 @@ public class AddressBookTest {
             return persons;
         }
 
+        @Override
         public ObservableList<Project> getProjectList() {
             return projects;
         }
 
+        @Override
         public ObservableList<Issue> getIssueList() {
             return issues;
+        }
+
+        @Override
+        public ObservableList<Client> getClientList() {
+            return clients;
         }
 
         /**
