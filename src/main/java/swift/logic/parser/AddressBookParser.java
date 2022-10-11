@@ -12,7 +12,7 @@ import swift.logic.commands.ClearCommand;
 import swift.logic.commands.Command;
 import swift.logic.commands.DeleteCommand;
 import swift.logic.commands.DeleteTaskCommand;
-import swift.logic.commands.EditCommand;
+import swift.logic.commands.EditContactCommand;
 import swift.logic.commands.ExitCommand;
 import swift.logic.commands.FindContactCommand;
 import swift.logic.commands.FindTaskCommand;
@@ -49,8 +49,8 @@ public class AddressBookParser {
         switch (commandWord) {
         case AddContactCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditContactCommand.COMMAND_WORD:
+            return new EditContactCommandParser().parse(arguments);
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
         case ClearCommand.COMMAND_WORD:

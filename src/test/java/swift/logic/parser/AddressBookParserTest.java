@@ -17,8 +17,8 @@ import swift.logic.commands.AddContactCommand;
 import swift.logic.commands.AddTaskCommand;
 import swift.logic.commands.ClearCommand;
 import swift.logic.commands.DeleteCommand;
-import swift.logic.commands.EditCommand;
-import swift.logic.commands.EditCommand.EditPersonDescriptor;
+import swift.logic.commands.EditContactCommand;
+import swift.logic.commands.EditContactCommand.EditPersonDescriptor;
 import swift.logic.commands.ExitCommand;
 import swift.logic.commands.FindContactCommand;
 import swift.logic.commands.HelpCommand;
@@ -61,9 +61,9 @@ public class AddressBookParserTest {
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditContactCommand command = (EditContactCommand) parser.parseCommand(EditContactCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditContactCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test

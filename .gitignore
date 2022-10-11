@@ -8,6 +8,9 @@ src/main/resources/docs/
 /out/
 /*.iml
 
+# VSCode files
+/.vscode/
+
 # Storage/log files
 /data/
 /config.json

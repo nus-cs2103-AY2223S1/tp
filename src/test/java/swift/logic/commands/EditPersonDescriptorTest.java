@@ -12,7 +12,7 @@ import static swift.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import swift.logic.commands.EditCommand.EditPersonDescriptor;
+import swift.logic.commands.EditContactCommand.EditPersonDescriptor;
 import swift.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
