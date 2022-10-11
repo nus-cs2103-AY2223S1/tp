@@ -2,6 +2,9 @@
   "MD004": { // Unordered list style
     "style": "asterisk"
   },
+  "MD009": { // Trailing spaces
+    "br_spaces": 0
+  },
   "MD013": false, // Line length
   "MD029": { // Ordered list item prefix
     "style": "one"
