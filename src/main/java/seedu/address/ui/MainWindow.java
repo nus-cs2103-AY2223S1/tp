@@ -35,7 +35,6 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private ProfileDisplay profileDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -51,9 +50,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane profileDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -124,9 +120,6 @@ public class MainWindow extends UiPart<Stage> {
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        profileDisplay = new ProfileDisplay();
-        profileDisplayPlaceholder.getChildren().add(profileDisplay.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
