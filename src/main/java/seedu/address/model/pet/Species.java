@@ -3,7 +3,7 @@ package seedu.address.model.pet;
 public class Species {
     private final String species;
 
-    Species(String species) {
+    public Species(String species) {
         if (species == null) {
             this.species = "";
         } else {

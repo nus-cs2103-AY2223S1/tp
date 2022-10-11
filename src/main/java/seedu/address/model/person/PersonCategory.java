@@ -54,7 +54,7 @@ public enum PersonCategory {
         boolean isValidPersonCategory =
                 Arrays.stream(PersonCategory.class.getEnumConstants()).map(x -> x.value).anyMatch(x -> x.equals(test));
 
-        return test.matches(VALIDATION_REGEX) && isValidCategory;
+        return test.matches(VALIDATION_REGEX) && isValidPersonCategory;
     }
 
     @Override

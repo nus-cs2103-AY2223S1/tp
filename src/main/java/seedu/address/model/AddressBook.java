@@ -2,10 +2,16 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.UniqueOrderList;
 import seedu.address.model.person.*;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.UniquePetList;
 
 /**
  * Wraps all data at the address-book level
@@ -16,6 +22,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueBuyerList buyers;
     private final UniqueSupplierList suppliers;
     private final UniqueDelivererList deliverers;
+    private final UniquePetList pets;
+    private final UniqueOrderList orders;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,6 +36,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         buyers = new UniqueBuyerList();
         suppliers = new UniqueSupplierList();
         deliverers = new UniqueDelivererList();
+        pets = new UniquePetList();
+        orders = new UniqueOrderList();
     }
 
     public AddressBook() {}
@@ -58,6 +68,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.deliverers.setPersons(persons);
     }
 
+    public void setPets(List<Pet> pets) {
+        this.pets.setPets(pets);
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders.setOrders(orders);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -67,6 +85,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         setBuyers(newData.getBuyerList());
         setSuppliers(newData.getSupplierList());
         setDeliverers(newData.getDelivererList());
+        setPets(newData.getPetList());
+        setOrders(newData.getOrderList());
+
     }
 
     //// person-level operations
@@ -89,6 +110,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         return deliverers.contains(deliverer);
     }
 
+    public boolean hasPet(Pet pet) {
+        requireNonNull(pet);
+        return pets.contains(pet);
+    }
+
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return orders.contains(order);
+    }
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
@@ -103,6 +134,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void addDeliverer(Deliverer p) {
         deliverers.add(p);
+    }
+
+    public void addOrder(Order p) {
+        orders.add(p);
+    }
+
+    public void addPet(Pet p) {
+        pets.add(p);
     }
 
     /**
@@ -122,10 +161,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         suppliers.setPerson(target, editedSupplier);
     }
 
-    public void setDeliverers(Deliverer target, Deliverer editedDeliverer) {
+    public void setDeliverer(Deliverer target, Deliverer editedDeliverer) {
         requireNonNull(editedDeliverer);
 
         deliverers.setPerson(target, editedDeliverer);
+    }
+
+    public void setPet(Pet target, Pet editedPet) {
+        requireNonNull(editedPet);
+
+        pets.setPet(target, editedPet);
+    }
+
+    public void setOrder(Order target, Order editedOrder) {
+        requireNonNull(editedOrder);
+
+        orders.setOrder(target, editedOrder);
     }
 
     /**
@@ -144,6 +195,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         deliverers.remove(key);
     }
 
+    public void removePet(Pet key) {
+        pets.remove(key);
+    }
+
+    public void removeOrder(Order key) {
+        orders.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -154,6 +213,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         sb.append(suppliers.asUnmodifiableObservableList().size() + " suppliers");
         sb.append("\n");
         sb.append(deliverers.asUnmodifiableObservableList().size() + " deliverers");
+        sb.append("\n");
+        sb.append(pets.asUnmodifiableObservableList().size() + " pets");
+        sb.append("\n");
+        sb.append(orders.asUnmodifiableObservableList().size() + " orders");
         sb.append("\n");
         return sb.toString();
         // TODO: refine later
@@ -175,18 +238,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Pet> getPetList() {
+        return pets.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Order> getOrderList() {
+        return orders.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && buyers.equals(((AddressBook) other).buyers)
                 && suppliers.equals(((AddressBook) other).suppliers)
-                && deliverers.equals(((AddressBook) other).deliverers));
+                && deliverers.equals(((AddressBook) other).deliverers)
+                && pets.equals(((AddressBook) other).pets)
+                && orders.equals(((AddressBook) other).orders));
     }
-
-//TODO
-//    @Override
-//    public int hashCode() {
-//        return persons.hashCode();
-//    }
 
 }

@@ -3,7 +3,7 @@ package seedu.address.model.pet;
 public class Color {
     private final String color;
 
-    Color(String color) {
+    public Color(String color) {
         if (color == null) {
             this.color = "";
         } else {

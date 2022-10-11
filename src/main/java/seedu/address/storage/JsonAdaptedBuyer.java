@@ -27,8 +27,7 @@ class JsonAdaptedBuyer {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    //TODO JsonAdaptedOrder
-    private final List<Order> orders = new ArrayList<>();
+    private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedBuyer} with the given buyer details.
@@ -38,7 +37,7 @@ class JsonAdaptedBuyer {
                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                             @JsonProperty("address") String address,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                            @JsonProperty("orders") List<Order> orders) {
+                            @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
         this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
@@ -73,8 +72,14 @@ class JsonAdaptedBuyer {
      */
     public Buyer toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final ArrayList<Order> modelOrders = new ArrayList<>();
+
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        for (JsonAdaptedOrder order : orders) {
+            modelOrders.add(order.toModelType());
         }
 
         if (personCategory == null) {
@@ -119,7 +124,7 @@ class JsonAdaptedBuyer {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Buyer(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags, null);
+        return new Buyer(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelOrders);
     }
 
 }

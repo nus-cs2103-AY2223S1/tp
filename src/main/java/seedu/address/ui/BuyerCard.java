@@ -40,6 +40,8 @@ public class BuyerCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label orders;
 
     /**
      * Creates a {@code BuyerCode} with the given {@code Buyer} and index to display.
@@ -55,6 +57,7 @@ public class BuyerCard extends UiPart<Region> {
         buyer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        orders.setText(buyer.getOrders().toString());
     }
 
     @Override

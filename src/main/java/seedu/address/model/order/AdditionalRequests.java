@@ -14,6 +14,10 @@ public class AdditionalRequests {
         additionalRequests.addAll(Arrays.asList(descriptions));
     }
 
+    public ArrayList<String> getAdditionalRequests() {
+        return additionalRequests;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

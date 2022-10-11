@@ -8,9 +8,12 @@
    <children>
       <HBox>
          <children>
+            <Button fx:id="all" mnemonicParsing="false" onAction="#switchToAll" text="All" />
             <Button fx:id="buyer" mnemonicParsing="false" onAction="#switchToBuyer" text="Buyer" />
             <Button fx:id="supplier" alignment="CENTER" mnemonicParsing="false" onAction="#switchToSupplier" text="Supplier" />
             <Button fx:id="deliverer" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#switchToDeliverer" text="Delivery" />
+            <Button fx:id="pet" mnemonicParsing="false" onAction="#switchToPet" text="Pet" />
+            <Button fx:id="order" mnemonicParsing="false" onAction="#switchToOrder" text="Order" />
          </children>
       </HBox>
    </children>

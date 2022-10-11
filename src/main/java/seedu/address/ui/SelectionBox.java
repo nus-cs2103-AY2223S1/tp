@@ -11,17 +11,27 @@ public class SelectionBox extends  UiPart<Region> {
     private final MainWindow mainWindow;
 
     @FXML
+    private Button all;
+    @FXML
     private Button buyer;
     @FXML
     private Button supplier;
     @FXML
     private Button deliverer;
+    @FXML
+    private Button pet;
+    @FXML
+    private Button order;
 
     public SelectionBox(MainWindow mainWindow) {
         super(FXML);
         this.mainWindow = mainWindow;
     }
 
+    @FXML
+    private void switchToAll() {
+        mainWindow.showAll();
+    }
     @FXML
     private void switchToBuyer() {
         mainWindow.showBuyer();
@@ -35,5 +45,13 @@ public class SelectionBox extends  UiPart<Region> {
     @FXML
     private void switchToDeliverer() {
         mainWindow.showDeliverer();
+    }
+    @FXML
+    private void switchToPet() {
+        mainWindow.showPet();
+    }
+    @FXML
+    private void switchToOrder() {
+        mainWindow.showOrder();
     }
 }
