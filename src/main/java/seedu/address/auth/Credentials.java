@@ -5,8 +5,8 @@ package seedu.address.auth;
  */
 public class Credentials {
 
-    private static String DEBUG_USERNAME = "admin";
-    private static String DEBUG_PASSWORD = "admin";
+    private static final String DEBUG_USERNAME = "admin";
+    private static final String DEBUG_PASSWORD = "admin";
 
     public static String getDebugUsername() {
         return DEBUG_USERNAME;
