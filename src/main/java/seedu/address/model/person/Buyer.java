@@ -58,11 +58,15 @@ public class Buyer extends Person {
         int i = 1;
         builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
                 .append("Order summary").append(System.lineSeparator());
-//        for (Order order : orders) {
-//            builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
-//                    .append(order.toString()).append(System.lineSeparator());
-//            i++;
-//        }
+
+        if (orders != null) {
+            for (Order order : orders) {
+                builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
+                        .append(order.toString()).append(System.lineSeparator());
+                i++;
+            }
+        }
+
         return builder.toString();
     }
 

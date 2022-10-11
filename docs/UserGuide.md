@@ -28,7 +28,7 @@ Petcode is a **desktop app for coordinating pet sale business, optimized for use
 
    * **`add`**`add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` : Adds a buyer named `Hong Yi` who is looking for a ragdoll to the PetCode.
 
-   * **`delete n/Bernice`** : Deletes the person Bernice from the list.
+   * **`delete c/Buyer i/2`** : Deletes the second contact from the Buyer contacts list.
 
    * **`clear`** : Deletes all contacts.
 
@@ -133,14 +133,12 @@ Examples:
 
 Deleting a person from contacts.
 
-Format: `delete n/NAME`
-
-* If there are multiple contacts with the same name, the user will be prompted to choose which one to delete.
-* Else, the contact will be deleted successfully.
+Format: `delete c/PERSON_CATEGORY i/INDEX (must be a positive integer)`
 
 Examples:
-* `delete n/Bernice` will pop a success message if there is only one person named Bernice.
-* `delete n/John` will show a list of contacts if there are multiple people named John. Continue the input with `i/1` will delete the person with index 1.
+* `delete c/Buyer i/1` will delete the contact at index 1 of the Buyer contacts list, if index is found.
+* `delete c/Deliverer i/2` will delete the contact at index 2 of the Deliverer contacts list, if index is found.
+* `delete c/Supplier i/3` will delete the contact at index 3 of the Supplier contacts list, if index is found.
 
 ### Filter contacts : `filter`
 
@@ -207,7 +205,7 @@ _Details coming soon ..._
 | Action     | Format, Examples                                                                                                                                                                                             |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​` <br> e.g., `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
-| **Delete** | `delete n/NAME`<br> e.g., `delete n/Bernice`                                                                                                                                                                 |
+| **Delete** | `delete c/PERSON_CATEGORY i/INDEX` e.g., `delete c/Buyer i/1`                                                                                                                                                |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                         |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                   |
 | **Filter** | `filter t/INPUT`<br> e.g., `filter t/dog t/second-hand`                                                                                                                                                      |

@@ -19,7 +19,7 @@ public enum PersonCategory {
                     + "be blank. It can only be one of the following types: 'Buyer', 'Deliverer' and 'Supplier'.";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the category must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -54,7 +54,7 @@ public enum PersonCategory {
         boolean isValidPersonCategory =
                 Arrays.stream(PersonCategory.class.getEnumConstants()).map(x -> x.value).anyMatch(x -> x.equals(test));
 
-        return test.matches(VALIDATION_REGEX) && isValidPersonCategory;
+        return test.matches(VALIDATION_REGEX) && isValidCategory;
     }
 
     @Override
