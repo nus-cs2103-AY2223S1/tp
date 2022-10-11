@@ -1,7 +1,14 @@
 package seedu.address.model.meeting;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MEETING1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MEETING2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_DATE_MEETING1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_DATE_MEETING2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_MEETING1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_MEETING2;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BENSON;
 import static seedu.address.testutil.TypicalMeetings.MEETING1;
