@@ -47,9 +47,9 @@ public class ClientEmail {
     /**
      * Represents an Empty ClientEmail.
      */
-    private static class EmptyEmail extends ClientEmail {
-        private static final ClientEmail EMPTY_EMAIL = new EmptyEmail();
-        private EmptyEmail() {
+    public static class EmptyEmail extends ClientEmail {
+        public static final ClientEmail EMPTY_EMAIL = new EmptyEmail();
+        public EmptyEmail() {
             super("");
         }
 

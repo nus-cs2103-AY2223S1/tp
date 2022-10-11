@@ -79,6 +79,15 @@ public class UniqueClientList implements Iterable<Client> {
         }
     }
 
+    public Client getClient(ClientId id) {
+        for (Client c: internalList) {
+            if (c.getClientId().equals(id)) {
+                return c;
+            }
+        }
+        return Client.EmptyClient.EMPTY_CLIENT;
+    }
+
     public void setClients(UniqueClientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

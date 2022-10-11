@@ -28,9 +28,9 @@ public class ClientPhone {
     /**
      * Represents an Empty Client Phone.
      */
-    private static class EmptyClientPhone extends ClientPhone {
-        private static final ClientPhone EMPTY_PHONE = new EmptyClientPhone();
-        private EmptyClientPhone() {
+    public static class EmptyClientPhone extends ClientPhone {
+        public static final ClientPhone EMPTY_PHONE = new EmptyClientPhone();
+        public EmptyClientPhone() {
             super("");
         }
 
