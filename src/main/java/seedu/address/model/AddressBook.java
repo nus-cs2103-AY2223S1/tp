@@ -1,14 +1,17 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
+import seedu.address.model.item.exceptions.ItemNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.task.Task;
 
 /**
  * Wraps all data at the address-book level
@@ -137,6 +140,43 @@ public class AddressBook implements ReadOnlyAddressBook {
         teams.remove(grp);
     }
 
+    /**
+     * Returns true if a task with the same identity as {@code task} exists.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        Group parent = task.getParentGroup();
+        return hasGroup(parent) && parent.hasTask(task);
+    }
+
+    /**
+     * Adds a task to the team in the address book.
+     */
+    public void addTask(Task task) {
+        requireNonNull(task);
+        Group parent = task.getParentGroup();
+        if (hasGroup(parent)) {
+            Group myGroup = teams.get(parent);
+            task.setParent(myGroup);
+            myGroup.addTask(task);
+        } else {
+            throw new ItemNotFoundException();
+        }
+    }
+
+    /**
+     * Removes {@code task} from its group. Task must exist in address book.
+     */
+    public void removeTask(Task task) {
+        requireNonNull(task);
+        Group parent = task.getParentGroup();
+        if (hasGroup(parent)) {
+            Group myGroup = teams.get(parent);
+            myGroup.removeTask(task);
+        } else {
+            throw new ItemNotFoundException();
+        }
+    }
     //// util methods
 
     @Override

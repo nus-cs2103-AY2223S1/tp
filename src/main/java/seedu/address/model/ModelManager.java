@@ -16,6 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -138,6 +139,26 @@ public class ModelManager implements Model {
     @Override
     public void addTeam(Group grp) {
         addressBook.addGroup(grp);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    //// task level methods and accessors
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return addressBook.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task task) {
+        requireNonNull(task);
+        addressBook.removeTask(task);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        addressBook.addTask(task);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
