@@ -13,19 +13,27 @@ import modtrekt.model.module.Module;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_IDENTIFIER = "-m";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the module list. "
             + "Parameters: "
             + CliSyntax.PREFIX_MOD_NAME + "NAME "
             + CliSyntax.PREFIX_MOD_CODE + "CODE "
             + CliSyntax.PREFIX_MOD_CREDIT + "CREDIT "
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " -m "
             + CliSyntax.PREFIX_MOD_NAME + "Data Structures and Algorithms "
             + CliSyntax.PREFIX_MOD_CODE + "CS2040S "
-            + CliSyntax.PREFIX_MOD_CREDIT + "4 ";
+            + CliSyntax.PREFIX_MOD_CREDIT + "4 "
+            + "\n"
+            + COMMAND_WORD + ": Adds a module to the module list. "
+            + "Parameters: "
+            + CliSyntax.PREFIX_MOD_CODE + "CODE "
+            + "Example: " + COMMAND_WORD + " -m "
+            + CliSyntax.PREFIX_MOD_CODE + "CS2040S ";;
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This module already exists in the module list";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
 
     private final Module toAdd;
 
@@ -41,8 +49,8 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasModule(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasModule(toAdd) || model.hasModuleWithModCode(toAdd.getCode())) {
+            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
         model.addModule(toAdd);

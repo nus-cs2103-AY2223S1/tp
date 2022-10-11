@@ -2,11 +2,13 @@ package modtrekt.logic.parser;
 
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static modtrekt.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static modtrekt.logic.commands.utils.AddCommandMessages.MESSAGE_ADD_COMMAND_PREFIXES;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import modtrekt.logic.commands.AddCommand;
+import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.Command;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
@@ -23,7 +25,6 @@ import modtrekt.logic.parser.tasks.UnarchiveTaskCommandParser;
  * Parses user input.
  */
 public class TaskBookParser {
-
     /**
      * Used for initial separation of command word and args.
      */
@@ -48,7 +49,13 @@ public class TaskBookParser {
         case RemoveTaskCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            if (arguments.contains(AddCommand.COMMAND_IDENTIFIER)) {
+                return new AddCommandParser().parse(arguments);
+            } else if (arguments.contains(AddTaskCommand.COMMAND_IDENTIFIER)) {
+                return new AddTaskCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_ADD_COMMAND_PREFIXES));
+            }
         case ListTasksCommand.COMMAND_WORD:
             return new ListTasksCommandParser().parse(arguments);
         case ArchiveTaskCommand.COMMAND_WORD:
@@ -65,5 +72,4 @@ public class TaskBookParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

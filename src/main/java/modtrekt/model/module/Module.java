@@ -30,6 +30,20 @@ public class Module {
         this.tasksList = new ArrayList<>();
     }
 
+    /**
+     * Creates a Module with the string representation of code, name, credits and tasks.
+     *
+     * @param code    the module code
+     * @param name    the module name
+     * @param credits the number of credits for the module
+     */
+    public Module(String code, String name, String credits) {
+        this.code = new ModCode(code);
+        this.name = new ModName(name);
+        this.credits = new ModCredit(credits);
+        this.tasksList = new ArrayList<>();
+    }
+
     public ModName getName() {
         return name;
     }
@@ -81,13 +95,10 @@ public class Module {
      * Returns true if both modules have the same name.
      * This defines a weaker notion of equality between two modules.
      */
-    public boolean isSameCodeModule(Module otherModule) {
-        if (otherModule == this) {
-            return true;
-        }
+    public boolean isSameCodeModule(ModCode otherModule) {
 
         return otherModule != null
-                && otherModule.getCode().equals(getCode());
+                && otherModule.equals(getCode());
     }
 
     /**
