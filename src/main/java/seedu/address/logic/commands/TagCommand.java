@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,8 +22,9 @@ public class TagCommand extends TagCommandGroup {
 
     public static final String COMMAND_WORD = "tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags the person with the given tags. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags the person with the given tags identified "
+            + "by the index in the list or the target person if no index provided.\n"
+            + "Parameters: [INDEX] "
             + "[TAG1] [TAG2] ... \n"
             + "Example: " + COMMAND_WORD + " 1 friend colleague";
 
@@ -34,7 +36,7 @@ public class TagCommand extends TagCommandGroup {
 
     public static final String MESSAGE_NO_TAGS_ADDED = "No tags were added to the person";
 
-    private final Index index;
+    private final Optional<Index> index;
     private final Set<Tag> tagsToAdd;
 
     /**
@@ -44,7 +46,16 @@ public class TagCommand extends TagCommandGroup {
     public TagCommand(Index index, Set<Tag> tagsToAdd) {
         requireNonNull(index);
         requireNonNull(tagsToAdd);
-        this.index = index;
+        this.index = Optional.of(index);
+        this.tagsToAdd = tagsToAdd;
+    }
+
+    /**
+     * @param tagsToAdd to tag the person with
+     */
+    public TagCommand(Set<Tag> tagsToAdd) {
+        requireNonNull(tagsToAdd);
+        this.index = Optional.empty();
         this.tagsToAdd = tagsToAdd;
     }
 
@@ -53,10 +64,13 @@ public class TagCommand extends TagCommandGroup {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getFilteredPersonList();
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.isPresent() && index.get().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        } else if (!index.isPresent() && !model.hasTargetPerson()) {
+            throw new CommandException(Messages.MESSAGE_NO_TARGET_PERSON);
         }
-        Person personToTag = lastShownList.get(index.getZeroBased());
+        Person personToTag = index.map(i -> lastShownList.get(i.getZeroBased()))
+                .orElseGet(() -> model.getTargetPerson());
 
         Set<Tag> notFoundTags = tagsToAdd.stream().filter(tag -> !model.hasTag(tag)).collect(Collectors.toSet());
         if (!notFoundTags.isEmpty()) {

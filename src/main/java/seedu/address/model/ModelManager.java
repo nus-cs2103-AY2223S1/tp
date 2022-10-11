@@ -143,8 +143,12 @@ public class ModelManager implements Model {
 
     @Override
     public void removeTags(Person target, Collection<Tag> tags) {
-        addressBook.removeTags(target, tags);
+        Person untaggedPerson = addressBook.removeTags(target, tags);
         clearFiltersInFilteredPersonList();
+
+        if (isTargetPerson(target)) {
+            setTargetPerson(untaggedPerson);
+        }
     }
 
     /**

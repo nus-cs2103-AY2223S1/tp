@@ -100,19 +100,19 @@
 
 .list-cell:filled:even {
     -fx-background-color: #f4f4f4;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
 }
 
 .list-cell:filled:odd {
     -fx-background-color: #eaeaea;
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: #ede7fb;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #543cdf;
+    -fx-border-color: transparent;
     -fx-border-width: 1;
+}
+
+#personListView .list-cell:filled:selected {
+    -fx-background-color: #ede7fb;
+    -fx-border-color: #543cdf;
 }
 
 .list-cell .label {

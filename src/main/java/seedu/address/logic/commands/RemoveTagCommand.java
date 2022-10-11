@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,8 +22,9 @@ public class RemoveTagCommand extends TagCommandGroup {
     public static final String COMMAND_SPECIFIER = "remove";
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Remove tags like this. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Remove tags of the person identified "
+            + "by the index in the list or the target person if no index provided.\n"
+            + "Parameters: [INDEX] "
             + "[TAG1] [TAG2] ... \n"
             + "Example: " + COMMAND_WORD + " 1 friend";
 
@@ -30,27 +32,40 @@ public class RemoveTagCommand extends TagCommandGroup {
     public static final String MESSAGE_TAGS_NOT_FOUND = "Tags do not exist: %1$s";
     public static final String MESSAGE_TAGS_NOT_BELONG_TO_USER = "Tags do not belong to user: %1$s";
 
-    private final Index index;
+    private final Optional<Index> index;
     private final Set<Tag> tagsToRemove;
 
     /**
+     * @param index of the person in the filtered person list to tag
      * @param tagsToRemove to tag the person with
      */
     public RemoveTagCommand(Index index, Set<Tag> tagsToRemove) {
         requireNonNull(index);
         requireNonNull(tagsToRemove);
-        this.index = index;
+        this.index = Optional.of(index);
+        this.tagsToRemove = tagsToRemove;
+    }
+
+    /**
+     * @param tagsToRemove to tag the person with
+     */
+    public RemoveTagCommand(Set<Tag> tagsToRemove) {
+        requireNonNull(tagsToRemove);
+        this.index = Optional.empty();
         this.tagsToRemove = tagsToRemove;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Person> lastShownList = model.getFilteredPersonList();
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.isPresent() && index.get().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        } else if (!index.isPresent() && !model.hasTargetPerson()) {
+            throw new CommandException(Messages.MESSAGE_NO_TARGET_PERSON);
         }
-        Person person = lastShownList.get(index.getZeroBased());
+        Person person = index.map(i -> lastShownList.get(i.getZeroBased())).orElseGet(() -> model.getTargetPerson());
 
         Set<Tag> tagsNotFound = tagsToRemove.stream().filter(tag -> !model.hasTag(tag)).collect(Collectors.toSet());
         if (!tagsNotFound.isEmpty()) {

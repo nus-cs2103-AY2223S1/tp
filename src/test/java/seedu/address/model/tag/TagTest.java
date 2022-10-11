@@ -20,8 +20,14 @@ public class TagTest {
     }
 
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
+    public void constructor_invalidTagEmptyName_throwsIllegalArgumentException() {
         String invalidTagName = "";
+        assertThrows(IllegalArgumentException.class, () -> new Tag(invalidTagName));
+    }
+
+    @Test
+    public void constructor_invalidTagNumericOnlyName_throwsIllegalArgumentException() {
+        String invalidTagName = "123";
         assertThrows(IllegalArgumentException.class, () -> new Tag(invalidTagName));
     }
 

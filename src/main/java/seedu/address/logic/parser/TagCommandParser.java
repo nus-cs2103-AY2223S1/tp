@@ -2,13 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ParserUtil.parseIndex;
-import static seedu.address.logic.parser.ParserUtil.parseTags;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
@@ -33,15 +33,23 @@ public class TagCommandParser implements Parser<TagCommand> {
 
         String[] argArray = trimmedArgs.split("\\s+");
 
-        Index index;
+        Optional<Index> index;
         Set<Tag> tags;
+
         try {
             index = parseIndex(argArray[0]);
-            tags = parseTags(Arrays.asList(argArray).subList(1, argArray.length));
+            tags = ParserUtil.parseTags(Arrays.asList(argArray).subList(index.isPresent() ? 1 : 0, argArray.length));
         } catch (ParseException e) {
             throw new ParseException(TagCommand.MESSAGE_USAGE);
         }
 
-        return new TagCommand(index, tags);
+        return index.isPresent() ? new TagCommand(index.get(), tags) : new TagCommand(tags);
+    }
+
+    private Optional<Index> parseIndex(String arg) throws ParseException {
+        if (StringUtil.isNonZeroUnsignedInteger(arg)) {
+            return Optional.of(ParserUtil.parseIndex(arg));
+        }
+        return Optional.empty();
     }
 }

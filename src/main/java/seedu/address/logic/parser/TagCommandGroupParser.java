@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.CreateTagCommand;
 import seedu.address.logic.commands.RemoveTagCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.TagCommandGroup;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -25,8 +26,12 @@ public class TagCommandGroupParser implements Parser<TagCommandGroup> {
         requireNonNull(args);
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
+            String errorMessage = String.format("%s\n\n%s\n\n%s",
+                    CreateTagCommand.MESSAGE_USAGE,
+                    TagCommand.MESSAGE_USAGE,
+                    RemoveTagCommand.MESSAGE_USAGE);
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateTagCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, errorMessage));
         }
 
         String[] argArray = trimmedArgs.split("\\s+");

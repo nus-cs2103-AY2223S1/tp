@@ -11,8 +11,10 @@ import java.util.Collection;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and "
+            + "cannot contain only numerals";
+    public static final String VALIDATION_REGEX_ALPHA_NUMERIC = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX_ONLY_NUMERALS = "\\d+";
 
     public final String tagName;
 
@@ -31,7 +33,7 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return !test.matches(VALIDATION_REGEX_ONLY_NUMERALS) && test.matches(VALIDATION_REGEX_ALPHA_NUMERIC);
     }
 
     @Override
