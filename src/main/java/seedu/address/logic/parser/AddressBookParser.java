@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ADD_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DELETE_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EDIT_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_LIST_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -16,6 +17,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -72,6 +74,9 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(commandArguments);
 
+        case EditModuleCommand.COMMAND_WORD:
+            return new EditModuleCommandParser().parse(commandArguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -93,6 +98,9 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_TYPE:
             throw new ParseException(MESSAGE_INVALID_LIST_COMMAND);
+
+        case EditCommand.COMMAND_TYPE:
+            throw new ParseException(MESSAGE_INVALID_EDIT_COMMAND);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
