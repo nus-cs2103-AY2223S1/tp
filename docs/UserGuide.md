@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Designed for software engineering project leads, Swift+ is a seamless **desktop app for tracking daily interactions with 
+Designed for software engineering project leads, Swift+ is a seamless **desktop app for tracking daily interactions with
 contacts using a swift Command Line Interface** (CLI). If you have fast fingers, Swift+ can help you manage events with contacts
 more quickly than a traditional GUI app.
 
@@ -101,14 +101,14 @@ Examples:
 * `find_contact John` returns `john` and `John Doe`
 * `find_contact alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
- 
+
 ### Editing a contact : `edit_contact`
 
 Edits an existing contact.
 
 Format: `edit_contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the contact at the specified `INDEX`. 
+* Edits the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -231,15 +231,15 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 
 ## Command summary
 
-| Action             | Format                                                                         | 
+| Action             | Format                                                                         |
 |--------------------|--------------------------------------------------------------------------------|
 | **Add Contact**    | `add_contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                |
 | **List Contacts**  | `list_contact`                                                                 |
 | **Find Contact**   | `find_contact KEYWORD [MORE_KEYWORDS]`                                         |
 | **Edit Contact**   | `edit_contact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
 | **Delete Contact** | `delete_contact INDEX`                                                         |
-| **Add Task**       | `add_task n/NAME c/CONTACT_INDEX`                                              | 
-| **List Tasks**     | `list_task c/CONTACT_INDEX`                                                    | 
-| **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                            | 
+| **Add Task**       | `add_task n/NAME c/CONTACT_INDEX`                                              |
+| **List Tasks**     | `list_task c/CONTACT_INDEX`                                                    |
+| **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                            |
 | **Edit Task**      | `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`                                   |
 | **Delete Task**    | `delete_task INDEX`                                                            |
