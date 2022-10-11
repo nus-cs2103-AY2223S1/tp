@@ -65,8 +65,7 @@ public class RemoveTagCommand extends TagCommandGroup {
         } else if (!index.isPresent() && !model.hasTargetPerson()) {
             throw new CommandException(Messages.MESSAGE_NO_TARGET_PERSON);
         }
-        Person person = index.isPresent() ? lastShownList.get(index.get().getZeroBased())
-                : model.getTargetPerson();
+        Person person = index.map(i -> lastShownList.get(i.getZeroBased())).orElseGet(() -> model.getTargetPerson());
 
         Set<Tag> tagsNotFound = tagsToRemove.stream().filter(tag -> !model.hasTag(tag)).collect(Collectors.toSet());
         if (!tagsNotFound.isEmpty()) {
