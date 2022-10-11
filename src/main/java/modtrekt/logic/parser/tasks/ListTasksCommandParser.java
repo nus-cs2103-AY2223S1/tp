@@ -8,11 +8,11 @@ import modtrekt.logic.parser.ArgumentTokenizer;
 import modtrekt.logic.parser.exceptions.ParseException;
 
 /**
- * TODO: JAVADOC
+ * Parser for a command string input for a ListTasksCommand object.
  */
 public class ListTasksCommandParser {
     /**
-     * TODO: JAVADOC
+     * Returns a new ListTasksCommand object parsed from the given command string.
      */
     public ListTasksCommand parse(String args) throws ParseException {
         requireNonNull(args);

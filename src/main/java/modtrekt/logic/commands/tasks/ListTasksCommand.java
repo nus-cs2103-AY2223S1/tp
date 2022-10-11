@@ -6,7 +6,7 @@ import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.model.Model;
 
 /**
- * TODO: JAVADOC
+ * Lists all tasks in the task book.
  */
 public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "ls";
