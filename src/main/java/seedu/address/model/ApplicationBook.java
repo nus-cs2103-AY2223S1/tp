@@ -67,6 +67,15 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     }
 
     /**
+     * Returns true if an application with the same interview date and time as {@code application} exists
+     * in the application book.
+     */
+    public boolean hasSameInterviewTime(Application application) {
+        requireNonNull(application);
+        return applications.hasSameInterviewTimeAs(application);
+    }
+
+    /**
      * Adds an application to the application book.
      * The application must not already exist in the application book.
      */

@@ -94,6 +94,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSameInterviewTime(Application application) {
+        requireNonNull(application);
+        return applicationBook.hasSameInterviewTime(application);
+    }
+
+    @Override
     public void deleteApplication(Application target) {
         applicationBook.removeApplication(target);
     }

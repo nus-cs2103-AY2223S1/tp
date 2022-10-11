@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.application.exceptions.ApplicationNotFoundException;
 import seedu.address.model.application.exceptions.DuplicateApplicationException;
+import seedu.address.model.application.interview.exceptions.DuplicateInterviewException;
 
 /**
  * A list of applications that enforces uniqueness between its elements and does not allow nulls.
@@ -38,13 +39,23 @@ public class UniqueApplicationList implements Iterable<Application> {
     }
 
     /**
+     * Returns true if the list contains an equivalent interview as the given argument.
+     */
+    public boolean hasSameInterviewTimeAs(Application toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().map(Application::getInterview).anyMatch(toCheck.getInterview()::isOnSameTime);
+    }
+
+    /**
      * Adds an application to the list.
-     * The application must not already exist in the list.
+     * The application must not already exist in the list and application cannot have clashing interview slot.
      */
     public void add(Application toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateApplicationException();
+        } else if (hasSameInterviewTimeAs(toAdd)) {
+            throw new DuplicateInterviewException();
         }
         internalList.add(toAdd);
     }
@@ -64,6 +75,8 @@ public class UniqueApplicationList implements Iterable<Application> {
 
         if (!target.isSameApplication(editedApplication) && contains(editedApplication)) {
             throw new DuplicateApplicationException();
+        } else if (hasSameInterviewTimeAs(editedApplication)) {
+            throw new DuplicateInterviewException();
         }
 
         internalList.set(index, editedApplication);
@@ -93,6 +106,8 @@ public class UniqueApplicationList implements Iterable<Application> {
         requireAllNonNull(applications);
         if (!applicationsAreUnique(applications)) {
             throw new DuplicateApplicationException();
+        } else if (!interviewsAreUnique(applications)) {
+            throw new DuplicateInterviewException();
         }
 
         internalList.setAll(applications);
@@ -129,6 +144,20 @@ public class UniqueApplicationList implements Iterable<Application> {
         for (int i = 0; i < applications.size() - 1; i++) {
             for (int j = i + 1; j < applications.size(); j++) {
                 if (applications.get(i).isSameApplication(applications.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if {@code applications} contains only unique applications.
+     */
+    private boolean interviewsAreUnique(List<Application> applications) {
+        for (int i = 0; i < applications.size() - 1; i++) {
+            for (int j = i + 1; j < applications.size(); j++) {
+                if (applications.get(i).getInterview().isOnSameTime(applications.get(j).getInterview())) {
                     return false;
                 }
             }

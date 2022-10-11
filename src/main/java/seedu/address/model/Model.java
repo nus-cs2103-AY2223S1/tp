@@ -58,6 +58,12 @@ public interface Model {
     boolean hasApplication(Application application);
 
     /**
+     * Returns true if an application with the same interview date and time as {@code application} exists
+     * in the application book.
+     */
+    boolean hasSameInterviewTime(Application application);
+
+    /**
      * Deletes the given application.
      * The application must exist in the application book.
      */
