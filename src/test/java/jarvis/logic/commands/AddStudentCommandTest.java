@@ -50,7 +50,7 @@ public class AddStudentCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validStudent);
 
         assertThrows(CommandException.class,
-                AddStudentCommand.MESSAGE_DUPLICATE_PERSON, () -> addStudentCommand.execute(modelStub));
+                AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStudentCommand.execute(modelStub));
     }
 
     @Test
