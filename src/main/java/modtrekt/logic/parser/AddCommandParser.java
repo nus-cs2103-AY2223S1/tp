@@ -4,11 +4,8 @@ import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static modtrekt.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import modtrekt.logic.commands.AddCommand;
-import modtrekt.logic.commands.AddDeadlineCommand;
-import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.Command;
 import modtrekt.logic.module.ModuleParser;
 import modtrekt.logic.parser.exceptions.ParseException;
@@ -16,9 +13,6 @@ import modtrekt.model.module.ModCode;
 import modtrekt.model.module.ModCredit;
 import modtrekt.model.module.ModName;
 import modtrekt.model.module.Module;
-import modtrekt.model.task.Deadline;
-import modtrekt.model.task.Description;
-import modtrekt.model.task.Task;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -34,24 +28,9 @@ public class AddCommandParser implements Parser<AddCommand> {
     public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_NAME,
-                        CliSyntax.PREFIX_MOD_CODE, CliSyntax.PREFIX_MOD_CREDIT,
-                        CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_DEADLINE);
+                        CliSyntax.PREFIX_MOD_CODE, CliSyntax.PREFIX_MOD_CREDIT);
 
-        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_MOD_CODE,
-                CliSyntax.PREFIX_DEADLINE)) {
-            Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_TASK).get());
-            LocalDate dueDate = ParserUtil.parseDueDate(argMultimap.getValue(CliSyntax.PREFIX_DEADLINE).get());
-            ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
-            Task t = new Deadline(description, code, dueDate);
-            return new AddDeadlineCommand(t);
-        } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_MOD_CODE)) {
-            // Add task
-            Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_TASK).get());
-            ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
-
-            Task t = new Task(description, code);
-            return new AddTaskCommand(t);
-        } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_NAME,
+        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_NAME,
                 CliSyntax.PREFIX_MOD_CODE, CliSyntax.PREFIX_MOD_CREDIT)) {
             ModName name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_MOD_NAME).get());
             ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
@@ -76,8 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             }
         }
 
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_1,
-                AddTaskCommand.MESSAGE_USAGE, AddDeadlineCommand.MESSAGE_USAGE, AddCommand.MESSAGE_USAGE_2));
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
 }

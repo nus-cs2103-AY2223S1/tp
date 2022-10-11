@@ -13,8 +13,10 @@ import modtrekt.model.module.Module;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_IDENTIFIER = "-m";
 
-    public static final String MESSAGE_USAGE_1 = COMMAND_WORD + ": Adds a module to the module list. "
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the module list. "
             + "Parameters: "
             + CliSyntax.PREFIX_MOD_NAME + "NAME "
             + CliSyntax.PREFIX_MOD_CODE + "CODE "
@@ -22,13 +24,13 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " -m "
             + CliSyntax.PREFIX_MOD_NAME + "Data Structures and Algorithms "
             + CliSyntax.PREFIX_MOD_CODE + "CS2040S "
-            + CliSyntax.PREFIX_MOD_CREDIT + "4 ";
-
-    public static final String MESSAGE_USAGE_2 = COMMAND_WORD + ": Adds a module to the module list. "
+            + CliSyntax.PREFIX_MOD_CREDIT + "4 "
+            + "\n"
+            + COMMAND_WORD + ": Adds a module to the module list. "
             + "Parameters: "
             + CliSyntax.PREFIX_MOD_CODE + "CODE "
             + "Example: " + COMMAND_WORD + " -m "
-            + CliSyntax.PREFIX_MOD_CODE + "CS2040S ";
+            + CliSyntax.PREFIX_MOD_CODE + "CS2040S ";;
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
