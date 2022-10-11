@@ -15,7 +15,7 @@ import swift.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListContactCommand.
  */
-public class ListCommandTest {
+public class ListContactCommandTest {
 
     private Model model;
     private Model expectedModel;
