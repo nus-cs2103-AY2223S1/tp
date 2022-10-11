@@ -1,14 +1,18 @@
 package seedu.travelr.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
+
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Trip;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.travelr.logic.parser.CliSyntax.*;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
 
+/**
+ * Represents the AddEventCommand. Extends the Command class
+ */
 public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "add-e";

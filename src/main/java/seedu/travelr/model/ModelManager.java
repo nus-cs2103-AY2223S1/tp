@@ -125,6 +125,14 @@ public class ModelManager implements Model {
         //update filtered trip list??
     }
 
+    public Event getEvent(Event event) {
+        return addressBook.getEvent(event);
+    }
+
+    public Trip getTrip(Trip trip) {
+        return addressBook.getTrip(trip);
+    }
+
     @Override
     public void setTrip(Trip target, Trip editedTrip) {
         requireAllNonNull(target, editedTrip);

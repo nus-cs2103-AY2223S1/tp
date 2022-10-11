@@ -1,30 +1,57 @@
-package seedu.travelr.model.event;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.travelr.model.trip.Trip;
-import seedu.travelr.model.trip.UniqueTripList;
-import seedu.travelr.model.trip.exceptions.DuplicateTripException;
-import seedu.travelr.model.trip.exceptions.TripNotFoundException;
-
-import java.util.Iterator;
-import java.util.List;
+package seedu.travelr.model.list;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
-public class UniqueEventList implements Iterable<Event> {
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.travelr.model.event.Event;
+import seedu.travelr.model.event.exceptions.DuplicateEventException;
+import seedu.travelr.model.event.exceptions.EventNotFoundException;
+import seedu.travelr.model.trip.Title;
+
+/**
+ * Represents the BucketList class.
+ */
+public class BucketList extends EventList {
+
+    private final Set<Event> events = new HashSet<>();
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an Event with the given title.
+     *
+     * @param title the title to be searched
+     */
+    public boolean contains(String title) {
+        Event temp = new Event(new Title(title));
+        return events.contains(temp);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent Event as the given argument.
+     *
+     * @param toCheck the event desired
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameTrip);
+    }
+
+    /**
+     * Returns the internalList
+     * @return
+     */
+    @Override
+    protected ObservableList<Event> getInternalList() {
+        return this.internalList;
     }
 
     /**
@@ -34,9 +61,10 @@ public class UniqueEventList implements Iterable<Event> {
     public void add(Event toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateTripException();
+            throw new DuplicateEventException();
         }
         internalList.add(toAdd);
+        addEvent(toAdd);
     }
 
     /**
@@ -49,14 +77,25 @@ public class UniqueEventList implements Iterable<Event> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new TripNotFoundException();
+            throw new EventNotFoundException();
         }
 
         if (!target.isSameTrip(editedTrip) && contains(editedTrip)) {
-            throw new DuplicateTripException();
+            throw new DuplicateEventException();
         }
 
         internalList.set(index, editedTrip);
+        removeEvent(target);
+        addEvent(editedTrip);
+
+    }
+
+    /**
+     * Sets the internalList
+     */
+    public void setInternalList(Set<Event> collections) {
+        addEvents(collections);
+        internalList.setAll(collections);
     }
 
     /**
@@ -66,13 +105,14 @@ public class UniqueEventList implements Iterable<Event> {
     public void remove(Event toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new TripNotFoundException();
+            throw new EventNotFoundException();
         }
+        removeEvent(toRemove);
     }
 
-    public void setEvents(UniqueEventList replacement) {
+    public void setEvents(EventList replacement) {
         requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        internalList.setAll(replacement.getInternalList());
     }
 
     /**
@@ -82,7 +122,7 @@ public class UniqueEventList implements Iterable<Event> {
     public void setEvents(List<Event> events) {
         requireAllNonNull(events);
         if (!eventsAreUnique(events)) {
-            throw new DuplicateTripException();
+            throw new DuplicateEventException();
         }
 
         internalList.setAll(events);
@@ -103,8 +143,8 @@ public class UniqueEventList implements Iterable<Event> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueEventList // instanceof handles nulls
-                && internalList.equals(((UniqueEventList) other).internalList));
+                || (other instanceof EventList // instanceof handles nulls
+                && internalList.equals(((EventList) other).getInternalList()));
     }
 
     @Override
@@ -125,5 +165,43 @@ public class UniqueEventList implements Iterable<Event> {
         }
         return true;
     }
-}
 
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+
+    public void addEvents(Set<Event> events) {
+        this.events.addAll(events);
+    }
+
+    public void removeEvent(Event event) {
+        events.remove(event);
+    }
+
+    public void removeEvent(int i) {
+        events.remove(events.toArray()[i - 1]);
+    }
+
+    public Event getEvent(int i) {
+        Object temp = events.toArray()[i - 1];
+        Event event = (Event) temp;
+        return event;
+    }
+
+    public Event getEvent(Event event) {
+        Object[] temp = events.toArray();
+        int size = temp.length;
+        for (int i = 0; i < size; i++) {
+            if (temp[i].equals(event)) {
+                return (Event) temp[i];
+            }
+        }
+        return null;
+    }
+
+    public Set<Event> getList() {
+        return events;
+    }
+
+
+}

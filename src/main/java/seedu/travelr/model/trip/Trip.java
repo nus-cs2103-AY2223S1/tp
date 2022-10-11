@@ -3,11 +3,11 @@ package seedu.travelr.model.trip;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.travelr.model.event.Event;
+import seedu.travelr.model.list.Itineraries;
 
 /**
  * Represents a Person in the address book.
@@ -20,7 +20,7 @@ public class Trip {
     private final Description description;
 
     // Data fields
-    private final Set<Event> events = new HashSet<>();
+    private final Itineraries events = new Itineraries();
 
     /**
      * Every field must be present and not null.
@@ -29,8 +29,24 @@ public class Trip {
         requireAllNonNull(title, description, events);
         this.title = title;
         this.description = description;
-        this.events.addAll(events);
+        this.events.setInternalList(events);
         //System.out.println(events);
+    }
+
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+
+    public Event getEvent(Event event) {
+        return events.getEvent(event);
+    }
+
+    public void removeEvent(Event event) {
+        events.remove(event);
+    }
+
+    public boolean contains(Event event) {
+        return events.contains(event);
     }
 
     public Title getTitle() {
@@ -46,7 +62,7 @@ public class Trip {
      * if modification is attempted.
      */
     public Set<Event> getEvents() {
-        return Collections.unmodifiableSet(events);
+        return Collections.unmodifiableSet(events.getList());
     }
 
     /**
@@ -77,9 +93,9 @@ public class Trip {
         }
 
         Trip otherTrip = (Trip) other;
-        return otherTrip.getTitle().equals(getTitle())
-                && otherTrip.getDescription().equals(getDescription())
-                && otherTrip.getEvents().equals(getEvents());
+        return otherTrip.getTitle().equals(getTitle());
+        //        && otherTrip.getDescription().equals(getDescription())
+        //        && otherTrip.getEvents().equals(getEvents());
     }
 
     @Override

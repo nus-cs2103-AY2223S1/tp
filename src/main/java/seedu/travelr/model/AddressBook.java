@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.event.UniqueEventList;
+import seedu.travelr.model.list.BucketList;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.UniqueTripList;
 
@@ -16,8 +16,8 @@ import seedu.travelr.model.trip.UniqueTripList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private final BucketList bucketList;
     private final UniqueTripList trips;
-    private final UniqueEventList events;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -27,7 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         trips = new UniqueTripList();
-        events = new UniqueEventList();
+        bucketList = new BucketList();
     }
 
     public AddressBook() {}
@@ -75,7 +75,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
-        return events.contains(event);
+        return bucketList.contains(event);
     }
 
     /**
@@ -90,7 +90,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds an event to Travelr.
      */
     public void addEvent(Event e) {
-        events.add(e);
+        bucketList.add(e);
     }
 
     /**
@@ -111,7 +111,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
-        events.setEvent(target, editedEvent);
+        bucketList.setEvent(target, editedEvent);
     }
 
     /**
@@ -123,12 +123,28 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Gets the desired Event
+     * {@code key} must exist in the bucketList.
+     */
+    public Event getEvent(Event key) {
+        return bucketList.getEvent(key);
+    }
+
+    /**
+     * Gets the desired Trip
+     * {@code key} must exist in the trips.
+     */
+    public Trip getTrip(Trip key) {
+        return trips.getTrip(key);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in Travelr.
      * @return
      */
     public void removeEvent(Event key) {
-        events.remove(key);
+        bucketList.remove(key);
     }
 
     //// util methods
@@ -146,13 +162,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Event> getEventList() {
-        return events.asUnmodifiableObservableList();
+        return bucketList.asUnmodifiableObservableList();
     }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && trips.equals(((AddressBook) other).trips) && events.equals(((AddressBook) other).events));
+                && trips.equals(((AddressBook) other).trips) && bucketList.equals(((AddressBook) other).bucketList));
     }
 
     @Override

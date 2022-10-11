@@ -1,5 +1,7 @@
 package seedu.travelr.storage;
 
+import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -8,10 +10,6 @@ import seedu.travelr.commons.exceptions.IllegalValueException;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Title;
-
-import java.util.List;
-
-import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 
 /**
  * Jackson-friendly version of {@link Event}.

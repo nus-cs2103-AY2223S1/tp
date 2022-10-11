@@ -1,7 +1,5 @@
 package seedu.travelr.ui;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 
 /**
@@ -11,10 +9,11 @@ public class EventsLabeler extends UiPart<Region> {
 
     private static final String FXML = "EventsLabeler.fxml";
 
-
+    /**
+     * Labels event.
+     */
     public EventsLabeler() {
         super(FXML);
-
     }
 
 
