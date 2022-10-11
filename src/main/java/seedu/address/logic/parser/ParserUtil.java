@@ -47,7 +47,8 @@ public class ParserUtil {
     public static Order parseOrder(String order) throws IllegalArgumentException {
         String trimmedOrder = order.trim();
         return Order.lexicographicalOrder(trimmedOrder);
-        
+    }
+    /**
      * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>}
      */
     public static Set<Index> parseIndexes(Collection<String> oneBasedIndexes) throws ParseException {
