@@ -54,7 +54,12 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        dob.setText(person.getDob().toString());
+        if (!person.getDob().isEmpty()) { //if DateOfBirth is not empty
+            dob.setManaged(true); //Show label
+            dob.setText(person.getDob().toString());
+        } else {
+            dob.setManaged(false); //Hide and minimises label
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

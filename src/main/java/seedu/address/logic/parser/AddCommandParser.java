@@ -39,15 +39,19 @@ public class AddCommandParser implements Parser<AddCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-
+        DateOfBirth dob;
+        if (arePrefixesPresent(argMultimap, PREFIX_DOB)) { //As dob is an optinal field, need check if present
+            dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
+        } else {
+            dob = new DateOfBirth();
+        }
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        DateOfBirth Dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, Dob, address, tagList);
+        Person person = new Person(name, phone, email, dob, address, tagList);
 
         return new AddCommand(person);
     }

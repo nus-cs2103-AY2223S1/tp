@@ -116,10 +116,13 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Date of Birth: ")
-                .append(getDob())
                 .append("; Address: ")
                 .append(getAddress());
+        
+        if (!getDob().isEmpty()) { //Need check if DateOfBirth is empty
+            builder.append("; Date of Birth: ")
+            .append(getDob());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

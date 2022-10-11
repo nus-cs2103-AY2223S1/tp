@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 
 public class DateOfBirth {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date of birth must be in format: ";
+    public static final String MESSAGE_CONSTRAINTS = "Date of birth must be in format: dd/mm/yyyy";
     private static final String MESSAGE_ARGUMENT_CONSTRAINTS = "compareTo() of DateOfBirth must take in argument of type LocalDate";
 
     private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
@@ -25,9 +25,9 @@ public class DateOfBirth {
     }
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code DateOfBirth}.
      *
-     * @param address A valid address.
+     * @param date A valid date.
      */
     public DateOfBirth(String date) {
         requireNonNull(date);
@@ -36,26 +36,21 @@ public class DateOfBirth {
         this.isEmpty = false;
     }
 
+    /**
+     * Constructs an empty {@code DateOfBirth}.
+     */
     public static DateOfBirth empty() {
         return new DateOfBirth();
     }
 
-    /**
-     * Returns true if a given string is a valid DOB to be logged.
-     */
-    public static boolean isValidLogDate(String test) { //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
-        try {
-            outputFormatter.parse(test);
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-        return true;
-    }
-
      /**
-     * Returns true if a given string is a valid DOB input.
+     * Returns true if a given string is a valid DOB input, "" empty string is used to represent an empty DateOfBirth.
+     * @return boolean
      */
     public static boolean isValidDate(String test) { //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
+        if (test == "") {
+            return true;
+        }
         try {
             inputFormatter.parse(test);
         } catch (DateTimeParseException e) {
@@ -64,23 +59,47 @@ public class DateOfBirth {
         return true;
     }
 
+    /**
+     * Returns 1 if the other object is a DateOfBirth that is later, 
+     * -1 if the other object is a DateOfBirth that is earlier, 
+     * and 0 if the other object is a DateOfBirth that is of the same date .
+     * @param other The object to compare with
+     * @return int
+     */
     public int compareTo(Object other) {
-        if (!(other instanceof LocalDate)) {
+        if (!(other instanceof DateOfBirth)) {
             throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
         }
-        return this.date.compareTo((LocalDate) other);
+        if (this.isEmpty() & ((DateOfBirth)other).isEmpty()) {
+            return 0;
+        }
+        return this.date.compareTo(((DateOfBirth)other).date);
     }
 
+    /**
+     * Returns true if DateOfBirth is empty, false otherwise
+     * @return boolean
+     */
     public boolean isEmpty() {
         return this.isEmpty;
     }
 
+    /**
+     * Returns the the String representation of the DateOfBirth in format suitable for storage logging
+     * @return String
+     */
     public String toLogFormat() {
+        if (this.isEmpty()) {
+            return "";
+        }
         return this.date.format(inputFormatter);
     }
 
     @Override
     public String toString() {
+        if (this.isEmpty()) {
+            return "";
+        }
         return this.date.format(outputFormatter);
     }
 

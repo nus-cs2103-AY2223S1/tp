@@ -72,10 +72,10 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code Date_of_birth} is invalid.
      */
-    public static DateOfBirth parseDob(String Dob) throws ParseException {
-        requireNonNull(Dob);
-        String trimmedDob = Dob.trim();
-        if (!DateOfBirth.isValidDate(Dob)) {
+    public static DateOfBirth parseDob(String dob) throws ParseException {
+        requireNonNull(dob);
+        String trimmedDob = dob.trim();
+        if (!DateOfBirth.isValidDate(dob)) {
             throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
         return new DateOfBirth(trimmedDob);
