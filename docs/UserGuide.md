@@ -26,7 +26,7 @@ TutHub is a **desktop app for NUS School of Computing professors who have to kee
 
    * **`list`** : Lists all tutors.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com y/3 m/CS2103T` : Adds a tutor named `John Doe` to Tuthub.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2103T y/3` : Adds a tutor named `John Doe` to Tuthub.
 
    * **`delete`**`3` : Deletes the 3rd tutor shown in the current list.
    
@@ -71,15 +71,15 @@ TutHub is a **desktop app for NUS School of Computing professors who have to kee
 
 Adds a tutor to the Tuthub.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com y/3 m/CS2100`
-* `add n/Betsy Crowe t/senior ta e/betsycrowe@example.com y/3 m/CS1101S p/1234567`
+* `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3`
+* `add n/Betsy Crowe t/senior ta e/betsycrowe@example.com m/CS1101S y/3 p/1234567`
 
 ### Listing all tutors : `list`
 
@@ -151,7 +151,7 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                                            |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 y/3 m/CS1101S t/senior` |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 t/senior` |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
 | **List**   | `list`                                                                                                                                                      |
 | **Save**   | `save`                                                                                                                                                      |
