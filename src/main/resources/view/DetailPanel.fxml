@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.StackPane?>
-
-
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-      <children>
-          <VBox>
-              <HBox fx:id="profileBoxContainer" VBox.vgrow="ALWAYS" maxHeight="200"/>
-              <Label fx:id="contactHeader" text="test label" wrapText="true" />
-              <HBox fx:id="contactListBoxContainer" VBox.vgrow="ALWAYS"/>
-          </VBox>
-
-      </children>
-
+    <children>
+        <VBox spacing="16.0">
+            <HBox fx:id="profileBoxContainer" maxHeight="200" prefHeight="151.0" prefWidth="407.0" spacing="20.0">
+                <children>
+                    <Circle fx:id="profileImageContainer" fill="#e8e8e8" radius="75.0" stroke="#e0e0e0" strokeType="INSIDE" />
+                    <VBox prefHeight="200.0" prefWidth="237.0" spacing="8.0" HBox.hgrow="ALWAYS">
+                        <children>
+                            <Label fx:id="nameLabel" text="Name" />
+                            <Label fx:id="roleLabel" text="Role" />
+                            <Label fx:id="timezoneLabel" text="Timezone" />
+                        </children>
+                    </VBox>
+                </children>
+            </HBox>
+            <VBox spacing="8.0">
+                <Label text="Contacts"/>
+                <HBox spacing="10.0" fx:id="contactBoxContainer" VBox.vgrow="ALWAYS" />
+            </VBox>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+    </children>
 </StackPane>

@@ -1,9 +1,15 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
 
 /**
@@ -14,16 +20,22 @@ public class DetailPanel extends MainPanel {
     private static final String FXML = "DetailPanel.fxml";
 
     @FXML
-    private HBox profileBoxContainer;
+    private Circle profileImageContainer;
 
     @FXML
-    private HBox contactListBoxContainer;
+    private ImageView profileImageView;
 
     @FXML
-    private ContactListBox contactListBox;
+    private Label nameLabel;
 
     @FXML
-    private Label contactHeader;
+    private Label roleLabel;
+
+    @FXML
+    private Label timezoneLabel;
+
+    @FXML
+    private HBox contactBoxContainer;
 
     /**
      * Initialises the DetailPanel.
@@ -32,20 +44,23 @@ public class DetailPanel extends MainPanel {
      */
     public DetailPanel(Person person) {
         super(FXML);
-        contactHeader.setText("Contact");
-        ProfileBox profileBox = new ProfileBox("default",
-                                         "name",
-                                          "title",
-                                        "github",
-                                      "timezone");
-        HBox.setHgrow(profileBox.getRoot(), Priority.ALWAYS);
-        profileBoxContainer.getChildren().add(profileBox.getRoot());
 
-        ContactListBox contactListBox = new ContactListBox("email",
-                                                           "telegram",
-                                                           "twitter");
-        HBox.setHgrow(contactListBox.getRoot(), Priority.ALWAYS);
-        contactListBoxContainer.getChildren().add(contactListBox.getRoot());
+        nameLabel.setText(person.getName().toString());
+
+        // These are mock data, to be implemented in future
+        Image placeholder = new Image(this.getClass().getResourceAsStream("/images/user_placeholder.png"));
+        profileImageContainer.setFill(new ImagePattern(placeholder));
+        roleLabel.setText("DevOps Engineer");
+        timezoneLabel.setText("Local Time: 10.00 am (UTC+8)");
+
+        List<ContactBox> contactBoxList = new ArrayList<>();
+        contactBoxList.add(new ContactBox("telegram", "hello-world"));
+        contactBoxList.add(new ContactBox("email", "hello-world@gmail.com"));
+        contactBoxList.add(new ContactBox("slack", "hello-world"));
+
+        for (ContactBox contact : contactBoxList) {
+            contactBoxContainer.getChildren().add(contact.getRoot());
+        }
     }
 
     @Override
