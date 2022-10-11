@@ -1,10 +1,12 @@
 package seedu.address.model.consultation;
 
-import seedu.address.model.consultation.ConsultationVenue;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Consultation's venue in the ModQuik.
+ * Guarantees: immutable; is valid as declared in {@link #isValidVenue(String)}
+ */
 public class ConsultationVenue {
     public static final String MESSAGE_CONSTRAINTS =
             "Venue should only contain alphanumeric characters and spaces, and it should not be blank";

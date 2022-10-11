@@ -1,12 +1,13 @@
 package seedu.address.model.consultation;
-
-import seedu.address.model.consultation.ConsultationTimeslot;
-
-import java.time.LocalTime;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalTime;
+
+/**
+ * Represents a Consultation's timeslot in the ModQuik.
+ * Guarantees: immutable; is valid as declared in {@link #isValidTimeslot(String)}
+ */
 public class ConsultationTimeslot {
     public static final String MESSAGE_CONSTRAINTS =
             "Timeslot should be in HH:MM-HH:MM format, e.g 16:00-18:00";

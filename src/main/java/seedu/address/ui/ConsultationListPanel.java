@@ -10,6 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.consultation.Consultation;
 
+/**
+ * Panel containing the list of consultations.
+ */
 public class ConsultationListPanel extends UiPart<Region> {
     private static final String FXML = "ConsultationListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ConsultationListPanel.class);

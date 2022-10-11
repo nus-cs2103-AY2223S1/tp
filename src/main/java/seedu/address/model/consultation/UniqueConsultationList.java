@@ -1,18 +1,28 @@
 package seedu.address.model.consultation;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.consultation.Consultation;
-import seedu.address.model.consultation.UniqueConsultationList;
-import seedu.address.model.consultation.exceptions.DuplicateConsultationException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.consultation.exceptions.DuplicateConsultationException;
 
-public class UniqueConsultationList implements Iterable<Consultation>{
+/**
+ * A list of consultations that enforces uniqueness between its elements and does not allow nulls.
+ * A consultation is considered unique by comparing using {@code consultation#isSameconsultation(consultation)}.
+ * As such, adding and updating of consultations uses consultation#isSameconsultation(consultation)
+ * for equality so as to
+ * ensure that the consultation being added or updated is unique in terms of identity in the UniqueConsultationList.
+ * However, the removal of a consultation uses consultation#equals(Object) so as to ensure that the consultation
+ * with exactly the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Consultation#isSameConsultation(Consultation)
+ */
+public class UniqueConsultationList implements Iterable<Consultation> {
     private final ObservableList<Consultation> internalList = FXCollections.observableArrayList();
     private final ObservableList<Consultation> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -49,13 +59,13 @@ public class UniqueConsultationList implements Iterable<Consultation>{
      * Replaces the contents of this list with {@code Consultations}.
      * {@code Consultations} must not contain duplicate Consultations.
      */
-    public void setConsultations(List<Consultation > Consultations) {
-        requireAllNonNull(Consultations);
-        if (!ConsultationsAreUnique(Consultations)) {
+    public void setConsultations(List<Consultation > consultations) {
+        requireAllNonNull(consultations);
+        if (!consultationsAreUnique(consultations)) {
             throw new DuplicateConsultationException();
         }
 
-        internalList.setAll(Consultations);
+        internalList.setAll(consultations);
     }
 
     /**
@@ -85,10 +95,10 @@ public class UniqueConsultationList implements Iterable<Consultation>{
     /**
      * Returns true if {@code Consultations} contains only unique Consultations.
      */
-    private boolean ConsultationsAreUnique(List<Consultation > Consultations) {
-        for (int i = 0; i < Consultations.size() - 1; i++) {
-            for (int j = i + 1; j < Consultations.size(); j++) {
-                if (Consultations.get(i).isSameConsultation(Consultations.get(j))) {
+    private boolean consultationsAreUnique(List<Consultation > consultations) {
+        for (int i = 0; i < consultations.size() - 1; i++) {
+            for (int j = i + 1; j < consultations.size(); j++) {
+                if (consultations.get(i).isSameConsultation(consultations.get(j))) {
                     return false;
                 }
             }

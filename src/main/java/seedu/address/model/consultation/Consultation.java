@@ -1,11 +1,12 @@
 package seedu.address.model.consultation;
-
-import seedu.address.model.consultation.*;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+/**
+ * Represents a Consultation in the ModQuik.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Consultation {
     // Student name
     private final ConsultationName name;
@@ -19,7 +20,8 @@ public class Consultation {
     /**
      * Every field must be present and not null.
      */
-    public Consultation(ConsultationName name, ConsultationModule module, ConsultationVenue venue, ConsultationTimeslot timeslot, ConsultationDescription description) {
+    public Consultation(ConsultationName name, ConsultationModule module, ConsultationVenue venue,
+                        ConsultationTimeslot timeslot, ConsultationDescription description) {
         requireAllNonNull(name, module, venue, timeslot, description);
         this.name = name;
         this.module = module;

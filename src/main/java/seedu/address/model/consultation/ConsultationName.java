@@ -1,10 +1,12 @@
 package seedu.address.model.consultation;
 
-import seedu.address.model.consultation.ConsultationName;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Consultation's name (name of the student who book the consultation in the ModQuik.
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ */
 public class ConsultationName {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";

@@ -6,7 +6,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.consultation.Consultation;
 
-public class ConsultationCard extends UiPart<Region>{
+/**
+ * An UI component that displays information of a {@code Consultation}.
+ */
+public class ConsultationCard extends UiPart<Region> {
     private static final String FXML = "ConsultationListCard.fxml";
 
     /**
@@ -17,7 +20,7 @@ public class ConsultationCard extends UiPart<Region>{
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Consultation Consultation;
+    public final Consultation consultation;
 
     @javafx.fxml.FXML
     private HBox cardPane;
@@ -39,7 +42,7 @@ public class ConsultationCard extends UiPart<Region>{
      */
     public ConsultationCard(Consultation consultation, int displayedIndex) {
         super(FXML);
-        this.Consultation = consultation;
+        this.consultation = consultation;
         id.setText(displayedIndex + ". ");
         name.setText(consultation.getName().fullName);
         module.setText(consultation.getModule().moduleName);
@@ -63,6 +66,6 @@ public class ConsultationCard extends UiPart<Region>{
         // state check
         ConsultationCard card = (ConsultationCard) other;
         return id.getText().equals(card.id.getText())
-                && Consultation.equals(card.Consultation);
+                && consultation.equals(card.consultation);
     }
 }

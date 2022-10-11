@@ -2,9 +2,14 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.consultation.Consultation;
-import seedu.address.model.consultation.*;
+import seedu.address.model.consultation.ConsultationDescription;
+import seedu.address.model.consultation.ConsultationModule;
+import seedu.address.model.consultation.ConsultationName;
+import seedu.address.model.consultation.ConsultationTimeslot;
+import seedu.address.model.consultation.ConsultationVenue;
 
 /**
  * Jackson-friendly version of {@link Consultation}.
@@ -24,7 +29,8 @@ public class JsonAdaptedConsultation {
      */
     @JsonCreator
     public JsonAdaptedConsultation(@JsonProperty("name") String name, @JsonProperty("module") String module,
-                               @JsonProperty("venue") String venue, @JsonProperty("timeslot") String timeslot, @JsonProperty("description") String description) {
+                               @JsonProperty("venue") String venue, @JsonProperty("timeslot") String timeslot,
+                                   @JsonProperty("description") String description) {
         this.name = name;
         this.module = module;
         this.venue = venue;

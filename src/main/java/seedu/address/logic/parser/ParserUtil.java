@@ -11,6 +11,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.MissingPrefixesException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.consultation.ConsultationDescription;
+import seedu.address.model.consultation.ConsultationModule;
+import seedu.address.model.consultation.ConsultationName;
+import seedu.address.model.consultation.ConsultationTimeslot;
+import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -20,7 +25,6 @@ import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialTimeslot;
 import seedu.address.model.tutorial.TutorialVenue;
-import seedu.address.model.consultation.*;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

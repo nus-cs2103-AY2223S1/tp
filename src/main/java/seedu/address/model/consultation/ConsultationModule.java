@@ -1,10 +1,12 @@
 package seedu.address.model.consultation;
 
-import seedu.address.model.consultation.ConsultationModule;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Consultation's module in the ModQuik.
+ * Guarantees: immutable; is valid as declared in {@link #isValidModule(String)}
+ */
 public class ConsultationModule {
     public static final String MESSAGE_CONSTRAINTS =
             "Module's name should only contain alphanumeric characters and spaces, and it should not be blank";
