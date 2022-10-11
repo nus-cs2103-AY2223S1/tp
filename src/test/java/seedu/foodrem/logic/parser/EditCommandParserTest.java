@@ -26,6 +26,7 @@ import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_P
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_ITEM_UNIT_POTATOES;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import seedu.foodrem.logic.parser.itemcommandparser.EditCommandParser;
 import static seedu.foodrem.model.item.itemvalidator.ItemBoughtDateValidator.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE;
 import static seedu.foodrem.model.item.itemvalidator.ItemExpiryDateValidator.MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE;
 import static seedu.foodrem.model.item.itemvalidator.ItemNameValidator.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME;

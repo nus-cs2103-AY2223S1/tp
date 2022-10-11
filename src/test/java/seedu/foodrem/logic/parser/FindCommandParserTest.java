@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
+import seedu.foodrem.logic.parser.itemcommandparser.FindCommandParser;
 import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
