@@ -95,8 +95,8 @@ public class StringUtilTest {
     }
 
     @Test
-    public void containsKeywordsIgnoreCase_multipleWords_match() {
-        assertTrue(StringUtil.containsKeywordsIgnoreCase("John Doe Damian", "John Doe"));
+    public void containsKeywordsIgnoreCase_multipleWordsDifferentCase_match() {
+        assertTrue(StringUtil.containsKeywordsIgnoreCase("John Doe Damian", "john doe"));
     }
 
     @Test
