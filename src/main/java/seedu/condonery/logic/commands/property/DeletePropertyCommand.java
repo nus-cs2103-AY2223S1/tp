@@ -1,5 +1,9 @@
 package seedu.condonery.logic.commands.property;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.Command;
@@ -8,10 +12,9 @@ import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.property.Property;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Deletes a property from Condonery.
+ */
 public class DeletePropertyCommand extends Command {
 
     public static final String COMMAND_WORD = "delete -p";
@@ -20,7 +23,7 @@ public class DeletePropertyCommand extends Command {
             + "Parameters: "
             + "<INDEX>";
 
-    public static final String MESSAGE_DELETE_PROPERTY_SUCCESS  = "Property successfully deleted: %1$s";
+    public static final String MESSAGE_DELETE_PROPERTY_SUCCESS = "Property successfully deleted: %1$s";
 
     private final Index targetIndex;
 
