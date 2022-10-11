@@ -49,20 +49,21 @@ public class Book {
     }
 
     /**
-     * Sets the book's loanee to null.
-     * i.e. Collects a loaned book.
-     */
-    public void collect() {
-        this.loanee = null;
-    }
-
-    /**
      * Loans this book to a patron.
      *
      * @param loanee the person borrowing this book
      */
     public void loanTo(Person loanee) {
         this.loanee = loanee;
+    }
+
+    /**
+     * Return this loaned book .
+     *
+     * @param book the loaned boook
+     */
+    public void returnLoan(Book book) {
+        this.loanee = null;
     }
 
     /**

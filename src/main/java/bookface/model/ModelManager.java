@@ -138,6 +138,12 @@ public class ModelManager implements Model {
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
 
+    @Override
+    public void returnLoan(Book book) {
+        CollectionUtil.requireAllNonNull(book);
+        bookFace.returnLoan(book);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

@@ -64,6 +64,10 @@ public class Person {
         loanedBooks.add(book);
     }
 
+    public boolean returnLoan(Book book) {
+        return this.loanedBooks.remove(book);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

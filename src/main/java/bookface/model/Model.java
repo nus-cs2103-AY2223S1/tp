@@ -91,9 +91,13 @@ public interface Model {
     /**
      * Loans to given person {@code person} from {@code book}.
      * {@code person} and {@code book} must exist in BookFace.
-     *
      */
     void loan(Person person, Book book);
+
+    /**
+     * Returns the {@code book} loan.
+     */
+    void returnLoan(Book book);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

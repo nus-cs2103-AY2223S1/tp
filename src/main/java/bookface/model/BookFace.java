@@ -136,8 +136,24 @@ public class BookFace implements ReadOnlyBookFace {
      */
     public void loan(Person person, Book book) {
         CollectionUtil.requireAllNonNull(person, book);
+        if (book.isLoaned()) {
+            return;
+        }
         books.loan(person, book);
         persons.loan(person, book);
+    }
+
+    /**
+     * Loans to the person {@code person} in the user list with the book {@code book} in the book list.
+     * {@code person} and {@code book} must exist in BookFace.
+     */
+    public void returnLoan(Book book) {
+        CollectionUtil.requireAllNonNull(book);
+        if (!book.isLoaned()) {
+            return;
+        }
+        books.returnLoan(book);
+        persons.returnLoan(book);
     }
 
     /**

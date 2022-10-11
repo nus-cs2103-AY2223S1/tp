@@ -8,6 +8,7 @@ import bookface.logic.parser.CommandReturnable;
 import bookface.logic.parser.EditCommandParser;
 import bookface.logic.parser.LoanCommandParser;
 import bookface.logic.parser.ParserFunction;
+import bookface.logic.parser.ReturnCommandParser;
 import bookface.logic.parser.add.AddCommandParser;
 import bookface.logic.parser.delete.DeleteCommandParser;
 import bookface.logic.parser.exceptions.ParseException;
@@ -26,7 +27,8 @@ public enum PrimaryCommands implements CommandReturnable {
     LIST((args) -> new ListCommandParser().parse(args)),
     EXIT((args) -> new ExitCommand()),
     HELP((args) -> new HelpCommand()),
-    LOAN((args) -> new LoanCommandParser().parse(args));
+    LOAN((args) -> new LoanCommandParser().parse(args)),
+    RETURN((args) -> new ReturnCommandParser().parse(args));
 
     private final ParserFunction<? super String, ? extends Command> commandFunction;
 
