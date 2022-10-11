@@ -45,8 +45,8 @@ public class EditStuCommandParser {
             editStudentDescriptor.setEmail(ParserUtil.parseStuEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ATTENDANCE).isPresent()) {
-            editStudentDescriptor.setAttendance(ParserUtil.
-                    parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get()));
+            editStudentDescriptor.setAttendance(ParserUtil
+                    .parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get()));
         }
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
