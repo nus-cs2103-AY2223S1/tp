@@ -48,6 +48,14 @@ public class EditAppointmentCommand extends Command {
     }
 
 
+    public Index getIndex() {
+        return index;
+    }
+
+    public EditPersonDescriptor getEditPersonDescriptor() {
+        return editPersonDescriptor;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -69,7 +77,6 @@ public class EditAppointmentCommand extends Command {
     }
 
 
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -78,12 +85,13 @@ public class EditAppointmentCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditAppointmentCommand)) {
             return false;
         }
 
         // state check
         EditAppointmentCommand e = (EditAppointmentCommand) other;
+
         return index.equals(e.index)
                && editPersonDescriptor.equals(e.editPersonDescriptor);
     }

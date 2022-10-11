@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FIRST_APPOINTMENT_DESC;
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AppointmentTest;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -101,5 +103,5 @@ public class EditAppointmentCommandParserTest {
         EditAppointmentCommand expectedCommand = new EditAppointmentCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-    
+
 }
