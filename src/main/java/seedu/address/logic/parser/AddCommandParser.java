@@ -3,23 +3,25 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
-    private
+    private final AddBuyerCommandParser addBuyerCommandParser;
+    private final AddDelivererCommandParser addDelivererCommandParser;
+    private final AddSupplierCommandParser addSupplierCommandParser;
 
     public AddCommandParser() {
-
+        addBuyerCommandParser = new AddBuyerCommandParser();
+        addDelivererCommandParser = new AddDelivererCommandParser();
+        addSupplierCommandParser = new AddSupplierCommandParser();
     }
 
     /**
@@ -42,20 +44,14 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         switch (personCategory) {
         case BUYER:
-            return
+            return addBuyerCommandParser.parse(args);
+        case DELIVERER:
+            return addDelivererCommandParser.parse(args);
+        case SUPPLIER:
+            return addSupplierCommandParser.parse(args);
+        default:
+            throw new ParseException(PersonCategory.MESSAGE_CONSTRAINTS);
         }
-
-        PersonCategory personCategory =
-                ParserUtil.parsePersonCategory(argMultimap.getValue(PREFIX_PERSON_CATEGORY).get());
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Person person = new Person(personCategory, name, phone, email, address, tagList);
-
-        return new AddCommand(person);
     }
 
     /**

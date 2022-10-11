@@ -11,7 +11,12 @@ public class Buyer extends Person {
 
     private final ArrayList<Order> orders;
 
-    public Buyer(PersonCategory personCategory, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Buyer(PersonCategory personCategory,
+                 Name name,
+                 Phone phone,
+                 Email email,
+                 Address address,
+                 Set<Tag> tags,
                  ArrayList<Order> orders) {
         super(personCategory, name, phone, email, address, tags);
         this.orders = orders;

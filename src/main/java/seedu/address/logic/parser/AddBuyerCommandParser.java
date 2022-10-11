@@ -24,9 +24,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddBuyerCommandParser implements Parser<AddCommand> {
-
-    private
+public class AddBuyerCommandParser extends AddCommandParser implements Parser<AddCommand> {
 
     public AddBuyerCommandParser() {
 
