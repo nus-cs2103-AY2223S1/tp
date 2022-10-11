@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Address;
 
 public class AmountTest {
 
@@ -29,9 +28,9 @@ public class AmountTest {
         assertFalse(Amount.isValidAmount(""));
         assertFalse(Amount.isValidAmount("  "));
 
-
         // valid amount
         String validAmount = "3.22";
         assertTrue(Amount.isValidAmount(validAmount));
+
     }
 }

@@ -153,6 +153,10 @@ public class ModelManager implements Model {
         return filteredIncome;
     }
 
+    /**
+     * Updates the filter of the filtered entry list to filter by the given {@code predicate}.
+     *
+     */
     public void updateFilteredEntryList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
         filteredExpenditure.setPredicate(predicate);

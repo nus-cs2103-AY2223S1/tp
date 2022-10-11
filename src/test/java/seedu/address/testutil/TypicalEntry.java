@@ -1,14 +1,25 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.entry.Expenditure;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_LUNCH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_MOVIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_DINNER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_LUNCH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MOVIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_DINNER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_LUNCH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_MOVIE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.entry.Expenditure;
 
+/**
+ *  A utility class containing a list of {@code Entry} objects to be used in tests.
+ */
 public class TypicalEntry {
 
     public static final Expenditure LUNCH = new ExpenditureBuilder()
@@ -17,14 +28,14 @@ public class TypicalEntry {
             .withDate(VALID_DATE_LUNCH)
             .build();
     public static final Expenditure DINNER = new ExpenditureBuilder()
-            .withDescription(VALID_DATE_DINNER)
-            .withAmount(VALID_DATE_DINNER)
+            .withDescription(VALID_DESC_DINNER)
+            .withAmount(VALID_AMT_DINNER)
             .withDate(VALID_DATE_DINNER)
             .build();
     public static final Expenditure MOVIE = new ExpenditureBuilder()
-            .withDescription(VALID_AMT_MOVIE)
+            .withDescription(VALID_DESC_MOVIE)
             .withAmount(VALID_AMT_MOVIE)
-            .withDate(VALID_AMT_MOVIE)
+            .withDate(VALID_DATE_MOVIE)
             .build();
     public static final Expenditure GROCERIES = new ExpenditureBuilder()
             .withDescription("groceries")

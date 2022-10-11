@@ -55,6 +55,11 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code description} is invalid.
+     */
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
@@ -64,6 +69,11 @@ public class ParserUtil {
         return new Description(trimmedDescription);
     }
 
+    /**
+     * Parses a {@code String entryType} into a {@code EntryType}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code entryType} is invalid.
+     */
     public static EntryType parseEntryType(String entryType) throws ParseException {
         requireNonNull(entryType);
         String trimmedEntryType = entryType.trim();
@@ -73,6 +83,11 @@ public class ParserUtil {
         return new EntryType(trimmedEntryType);
     }
 
+    /**
+     * Parses a {@code String Amount} into a {@code Amount}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code amount} is invalid.
+     */
     public static Amount parseAmount(String amount) throws ParseException {
         requireNonNull(amount);
         String trimmedAmount = amount.trim();
@@ -82,6 +97,11 @@ public class ParserUtil {
         return new Amount(trimmedAmount);
     }
 
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code date} is invalid.
+     */
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
