@@ -31,6 +31,7 @@ import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.StubUIManager;
 import seedu.address.ui.UiManager;
 
 public class LogicManagerTest {
@@ -49,7 +50,8 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
-        logic.setUi(new UiManager(logic));
+        // TODO: You might want to relook at this next time
+        logic.setUi(new StubUIManager());
     }
 
     @Test
