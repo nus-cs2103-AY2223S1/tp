@@ -34,6 +34,12 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns an unmodifiable view of the sorted list for uNivUSal.
+     * @return Sorted list
+     */
+    ObservableList<Person> getSortedPersonList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
