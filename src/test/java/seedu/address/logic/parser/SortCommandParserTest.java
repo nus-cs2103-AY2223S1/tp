@@ -26,7 +26,6 @@ public class SortCommandParserTest {
     public void parse_validArgs_returnsSortCommand() {
         SortCommand expectedSortCommand =
                 new SortCommand(new SortByName(), "name");
-//        assertParseSuccess(parser, "name", expectedSortCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n name \n", expectedSortCommand);
