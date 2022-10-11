@@ -27,6 +27,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final int STUDENTS = 0;
     private static final int MODULE = 1;
 
+    private static final int SCHEDULE = 2;
+
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -37,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ModuleListPanel moduleListPanel;
+    private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -51,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane moduleListPanelPlaceholder;
+
+    @FXML
+    private StackPane scheduleListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -127,6 +133,9 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
+        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -180,6 +189,15 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
         tabPane.getSelectionModel().select(MODULE);
     }
+    /**
+     * Switch to schedules page.
+     */
+    @FXML
+    public void handleShowTabSchedule() {
+        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+        tabPane.getSelectionModel().select(SCHEDULE);
+    }
 
     void show() {
         primaryStage.show();
@@ -226,6 +244,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowStudentList()) {
                 handleShowTabStudents();
+            }
+
+            if (commandResult.isShowScheduleList()) {
+                handleShowTabSchedule();
             }
 
             return commandResult;
