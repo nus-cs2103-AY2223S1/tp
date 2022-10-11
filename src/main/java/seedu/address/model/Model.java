@@ -37,14 +37,24 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' person model file path.
      */
-    Path getAddressBookFilePath();
+    Path getPersonModelFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' person model file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPersonModelFilePath(Path addressBookFilePath);
+
+    /**
+     * Returns the user prefs' property model file path.
+     */
+    Path getPropertyModelFilePath();
+
+    /**
+     * Sets the user prefs' property model file path.
+     */
+    void setPropertyModelFilePath(Path addressBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
