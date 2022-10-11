@@ -29,11 +29,12 @@ public class Person {
     /**
      * Overloaded constructor that takes in optional parameter gender
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Gender gender) {
+    public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags, Gender gender) {
         requireAllNonNull(name, phone, email, address, tags, gender);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.dob = dob;
         this.address = address;
         this.tags.addAll(tags);
         this.gender = gender;
