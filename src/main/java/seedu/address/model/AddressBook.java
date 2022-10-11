@@ -95,12 +95,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
-    /**
-     * Refreshes the given person {@code target}, forcing the app to visually show any updated changes back to the user.
-     */
-    public void refreshPerson(Person target) {
-        persons.setPerson(target, target);
-    }
 
     /**
      *  Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
@@ -112,18 +106,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedAppointment);
 
         appointments.setAppointment(target, editedAppointment);
-    }
-
-    /**
-     * Refreshes the given appointment {@code target},
-     * forcing the app to visually show any updated changes back to the user.
-     */
-    public void refreshAppointment(Appointment target) {
-        appointments.setAppointment(target, target);
-    }
-
-    public void refreshAppointments(List<Appointment> appointmentList) {
-        appointments.refreshAppointments(appointmentList);
     }
 
     /**

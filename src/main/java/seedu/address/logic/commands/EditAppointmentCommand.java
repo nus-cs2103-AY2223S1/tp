@@ -7,7 +7,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,8 +71,9 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         }
 
         appointmentList.set(indexOfAppointment.getZeroBased(), editedAppointment);
-        appointmentList.sort(Comparator.comparing(Appointment::getDateTime));
-        updateDisplay(model, targetPerson, targetAppointment, editedAppointment);
+        model.setAppointment(targetAppointment, editedAppointment);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, targetPerson.getName(),
                 editedAppointment));
@@ -95,13 +95,6 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         List<Appointment> appointmentsToCheck = new ArrayList<>(appointments);
         appointmentsToCheck.remove(originalAppointment);
         return appointmentsToCheck.stream().anyMatch(x -> x.isSameTime(appointmentToCheck));
-    }
-
-    private void updateDisplay(Model model, Person person, Appointment appointment, Appointment editedAppointment) {
-        model.refreshPerson(person);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.setAppointment(appointment, editedAppointment);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override

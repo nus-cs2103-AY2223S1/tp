@@ -7,8 +7,11 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.util.Callback;
 import seedu.address.model.person.exceptions.AppointmentNotFoundException;
 import seedu.address.model.person.exceptions.DuplicateAppointmentException;
 
@@ -20,9 +23,28 @@ import seedu.address.model.person.exceptions.DuplicateAppointmentException;
  *
  */
 public class UniqueAppointmentList implements Iterable<Appointment> {
-    private final ObservableList<Appointment> internalList = FXCollections.observableArrayList();
+
+    private final Callback<Appointment, Observable[]> extractor = Appointment::getProperties;
+
+    private final ObservableList<Appointment> internalList = FXCollections.observableArrayList(extractor);
     private final ObservableList<Appointment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    /**
+     * Constructs a UniqueAppointmentList with an added listener to sort list when appointments are updated.
+     */
+    public UniqueAppointmentList() {
+        internalList.addListener((ListChangeListener<Appointment>) c -> {
+            while (c.next()) {
+                if (c.wasUpdated()) {
+                    sortList();
+                }
+                if (c.wasAdded()) {
+                    sortList();
+                }
+            }
+        });
+    }
 
     /**
      * Returns true if the list contains an equivalent appointment as the given argument.
@@ -42,7 +64,6 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             throw new DuplicateAppointmentException();
         }
         internalList.add(toAdd);
-        sortList();
     }
 
 
@@ -110,19 +131,6 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
         }
 
         internalList.set(index, editedAppointment);
-        sortList();
-    }
-
-    /**
-     * Refreshes the given appointments {@code appointments},
-     * forcing the app to visually show any updated changes back to the user.
-     *
-     * @param appointments The given list of appointments.
-     */
-    public void refreshAppointments(List<Appointment> appointments) {
-        for (Appointment appointment : appointments) {
-            setAppointment(appointment, appointment);
-        }
     }
 
     private void sortList() {
