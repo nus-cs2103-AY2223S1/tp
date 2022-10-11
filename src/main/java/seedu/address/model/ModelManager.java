@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
 import seedu.address.model.role.Buyer;
 import seedu.address.model.role.Seller;
 
@@ -21,25 +22,31 @@ import seedu.address.model.role.Seller;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final PersonModel personModel;
     private final UserPrefs userPrefs;
+    private final PersonModel personModel;
+    private final PropertyModel propertyModel;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Property> filteredProperties;
 
     /**
      * Initializes a ModelManager with the given personModel and userPrefs.
      */
-    public ModelManager(ReadOnlyPersonModel addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyPersonModel personModel, ReadOnlyPropertyModel propertyModel,
+                        ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(personModel, propertyModel, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with person model: " + personModel + " and property model: " + propertyModel
+                + " and user prefs " + userPrefs);
 
-        this.personModel = new PersonModel(addressBook);
+        this.personModel = new PersonModel(personModel);
+        this.propertyModel = new PropertyModel(propertyModel);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.personModel.getPersonList());
+        filteredProperties = new FilteredList<>(this.propertyModel.getPropertyList());
     }
 
     public ModelManager() {
-        this(new PersonModel(), new UserPrefs());
+        this(new PersonModel(), new PropertyModel(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -151,6 +158,58 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== PropertyModel ================================================================================
+
+    @Override
+    public void setPropertyModel(ReadOnlyPropertyModel propertyModel) {
+        this.propertyModel.resetData(propertyModel);
+    }
+
+    @Override
+    public ReadOnlyPropertyModel getPropertyModel() {
+        return propertyModel;
+    }
+
+    @Override
+    public boolean hasProperty(Property property) {
+        requireNonNull(property);
+        return propertyModel.hasProperty(property);
+    }
+
+    @Override
+    public void deleteProperty(Property target) {
+        propertyModel.removeProperty(target);
+    }
+
+    @Override
+    public void addProperty(Property property) {
+        propertyModel.addProperty(property);
+        updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+    }
+
+    @Override
+    public void setProperty(Property target, Property editedProperty) {
+        requireAllNonNull(target, editedProperty);
+        propertyModel.setProperty(target, editedProperty);
+    }
+
+    //=========== Filtered Property List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Property} backed by the internal list of
+     * {@code PropertyModel}
+     */
+    @Override
+    public ObservableList<Property> getFilteredPropertyList() {
+        return filteredProperties;
+    }
+
+    @Override
+    public void updateFilteredPropertyList(Predicate<Property> predicate) {
+        requireNonNull(predicate);
+        filteredProperties.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -165,9 +224,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return personModel.equals(other.personModel)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+        return userPrefs.equals(other.userPrefs)
+                && personModel.equals(other.personModel)
+                && propertyModel.equals(other.propertyModel)
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredProperties.equals(other.filteredProperties);
     }
 
 }
