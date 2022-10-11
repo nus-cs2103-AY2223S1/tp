@@ -32,7 +32,7 @@ public class DeleteTaskCommand extends Command {
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE CODE "
             + PREFIX_TASK_NUMBER + "TASK NUMBER \n"
-            + "Example: " + COMMAND_WORD
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CODE + "CS3230 "
             + PREFIX_TASK_NUMBER + "1";
 

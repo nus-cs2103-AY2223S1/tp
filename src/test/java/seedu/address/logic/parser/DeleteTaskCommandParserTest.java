@@ -3,14 +3,25 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2106_DELETE_TASK_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBER;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_CS2106;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_MA2001;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_NUMBER_ONE;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_NUMBER_THREE;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_NUMBER_TWO;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASK_DESC_C;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.DeleteModuleCommand;
+
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.model.module.ModuleCode;
 
 /**
@@ -22,23 +33,58 @@ import seedu.address.model.module.ModuleCode;
  */
 public class DeleteTaskCommandParserTest {
 
-    private DeleteModuleCommandParser parser = new DeleteModuleCommandParser();
+    private DeleteTaskCommandParser parser = new DeleteTaskCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteModuleCommand() {
-        assertParseSuccess(parser, MODULE_CODE_DESC_CS2106,
-                new DeleteModuleCommand(new ModuleCode(VALID_CS_MODULE_CODE)));
+    public void parse_allFieldsPresent_success() {
+        DeleteTaskCommand expectedCommand =
+                new DeleteTaskCommand(DESC_CS2106_DELETE_TASK_ONE);
+
+        // whitespace only preamble
+        assertParseSuccess(parser,
+                PREAMBLE_WHITESPACE + MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_NUMBER_ONE,
+                expectedCommand);
+
+        // multiple task descriptions - last task accepted
+        assertParseSuccess(parser,
+                MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_NUMBER_TWO
+                        + MODULE_TASKLIST_DESC_NUMBER_ONE, expectedCommand);
+
+        // order of arguments should not matter
+        assertParseSuccess(parser, MODULE_TASKLIST_DESC_NUMBER_ONE + MODULE_CODE_DESC_CS2106,
+                expectedCommand);
     }
 
     @Test
-    public void execute_invalidModuleCode_throwsCommandException() {
-        assertParseFailure(parser, INVALID_MODULE_CODE_DESC, ModuleCode.MESSAGE_CONSTRAINTS);
+    public void parse_compulsoryFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteTaskCommand.MESSAGE_USAGE);
+
+        // missing module code prefix
+        assertParseFailure(parser, VALID_CS_MODULE_CODE, expectedMessage);
+
+        // all prefixes missing
+        assertParseFailure(parser, MODULE_TASK_DESC_C, expectedMessage);
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteModuleCommand.MESSAGE_USAGE));
+    public void parse_invalidValue_failure() {
+        // invalid task prefix
+        assertParseFailure(parser, MODULE_CODE_DESC_MA2001 + ADDRESS_DESC_BOB,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
+        // invalid module code
+        assertParseFailure(parser, MODULE_TASKLIST_DESC_NUMBER_ONE + INVALID_MODULE_CODE_DESC,
+                ModuleCode.MESSAGE_CONSTRAINTS);
+        // both module code and task description are invalid - only
+        // invalid module code is reported.
+        assertParseFailure(parser, INVALID_TASK_NUMBER + INVALID_MODULE_CODE_DESC,
+                ModuleCode.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_MODULE_CODE_DESC + INVALID_TASK_NUMBER,
+                ModuleCode.MESSAGE_CONSTRAINTS);
+
+        // non-empty preamble
+        assertParseFailure(parser,
+                PREAMBLE_NON_EMPTY + MODULE_CODE_DESC_MA2001 + MODULE_TASKLIST_DESC_NUMBER_THREE,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
     }
 }
-//@@author

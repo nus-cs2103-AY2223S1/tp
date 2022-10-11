@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DeleteTaskCommand.DeleteTaskFromModuleDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -36,7 +35,7 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
                 PREFIX_TASK_NUMBER);
         if (isModuleCodeAbsent || isPreamblePresent || isTaskNumberAbsent) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddTaskCommand.MESSAGE_USAGE));
+                    DeleteTaskCommand.MESSAGE_USAGE));
         }
 
         DeleteTaskFromModuleDescriptor deleteTaskFromPersonDescriptor =

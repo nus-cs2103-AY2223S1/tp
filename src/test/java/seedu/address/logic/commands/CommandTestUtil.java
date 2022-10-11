@@ -93,6 +93,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final String INVALID_TASK_DESC = " " + PREFIX_TASK_DESCRIPTION; // empty string
+    public static final String INVALID_TASK_NUMBER =
+            " " + PREFIX_TASK_NUMBER + "-999";
     // not allowed for tasks
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;

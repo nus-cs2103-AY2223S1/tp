@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.address.logic.commands.DeleteModuleCommand;
@@ -21,7 +22,13 @@ public class DeleteModuleCommandParser implements Parser<DeleteModuleCommand> {
     public DeleteModuleCommand parse(String args) throws ParseException {
         try {
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE);
-            if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE) || !argMultimap.getPreamble().isEmpty()) {
+            Boolean isModuleCodePrefixAbsent =
+                    !arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE);
+            Boolean isTaskNumberPrefixAbsent =
+                    !arePrefixesPresent(argMultimap, PREFIX_TASK_NUMBER);
+            Boolean isArgumentPreamblePresent =
+                    !argMultimap.getPreamble().isEmpty();
+            if (isModuleCodePrefixAbsent || isTaskNumberPrefixAbsent || isArgumentPreamblePresent) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         DeleteModuleCommand.MESSAGE_USAGE));
             }
