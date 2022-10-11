@@ -29,15 +29,15 @@ public interface Logic {
      *
      * @see Model#getFoodGuide()
      */
-    ReadOnlyFoodGuide getAddressBook();
+    ReadOnlyFoodGuide getFoodGuide();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Eatery> getFilteredPersonList();
+    ObservableList<Eatery> getFilteredEateryList();
 
     /**
      * Returns the user prefs' food guide file path.
      */
-    Path getAddressBookFilePath();
+    Path getFoodGuideFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

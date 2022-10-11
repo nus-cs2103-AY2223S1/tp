@@ -12,7 +12,7 @@ import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;
-import eatwhere.foodguide.testutil.PersonBuilder;
+import eatwhere.foodguide.testutil.EateryBuilder;
 import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class AddCommandParserTest {
@@ -20,7 +20,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Eatery expectedEatery = new PersonBuilder(TypicalEateries.BOB)
+        Eatery expectedEatery = new EateryBuilder(TypicalEateries.BOB)
                 .withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
@@ -58,7 +58,7 @@ public class AddCommandParserTest {
                         new AddCommand(expectedEatery));
 
         // multiple tags - all accepted
-        Eatery expectedEateryMultipleTags = new PersonBuilder(TypicalEateries.BOB)
+        Eatery expectedEateryMultipleTags = new EateryBuilder(TypicalEateries.BOB)
                 .withTags(CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         CommandParserTestUtil.assertParseSuccess(parser,
@@ -71,7 +71,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Eatery expectedEatery = new PersonBuilder(TypicalEateries.AMY).withTags().build();
+        Eatery expectedEatery = new EateryBuilder(TypicalEateries.AMY).withTags().build();
         CommandParserTestUtil.assertParseSuccess(parser,
                 CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
                         + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY,
