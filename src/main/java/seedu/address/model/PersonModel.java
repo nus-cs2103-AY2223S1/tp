@@ -15,7 +15,7 @@ import seedu.address.model.role.Seller;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class PersonModel implements ReadOnlyAddressBook {
+public class PersonModel implements ReadOnlyPersonModel {
 
     private final UniquePersonList persons;
 
@@ -35,7 +35,7 @@ public class PersonModel implements ReadOnlyAddressBook {
     /**
      * Creates an PersonModel using the Persons in the {@code toBeCopied}
      */
-    public PersonModel(ReadOnlyAddressBook toBeCopied) {
+    public PersonModel(ReadOnlyPersonModel toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -53,7 +53,7 @@ public class PersonModel implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code PersonModel} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyPersonModel newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
