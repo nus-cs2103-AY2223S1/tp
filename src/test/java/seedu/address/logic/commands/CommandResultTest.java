@@ -57,4 +57,32 @@ public class CommandResultTest {
         // different isView value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true));
     }
+
+    @Test
+    public void isView() {
+        CommandResult firstCommandResult = new CommandResult("feedback");
+        CommandResult secondCommandResult = new CommandResult("feedback", false, false, true);
+
+        assertEquals(firstCommandResult.isView(), false);
+        assertEquals(secondCommandResult.isView(), true);
+    }
+
+    @Test
+    public void isShowUserGuide() {
+        CommandResult firstCommandResult = new CommandResult("feedback");
+        CommandResult secondCommandResult = new CommandResult("feedback", true, false, false);
+
+        assertEquals(firstCommandResult.isShowUserGuide(), false);
+        assertEquals(secondCommandResult.isShowUserGuide(), true);
+    }
+
+    @Test
+    public void isExit() {
+        CommandResult firstCommandResult = new CommandResult("feedback");
+        CommandResult secondCommandResult = new CommandResult("feedback", false, true, false);
+
+        assertEquals(firstCommandResult.isExit(), false);
+        assertEquals(secondCommandResult.isExit(), true);
+    }
+
 }
