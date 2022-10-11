@@ -142,6 +142,7 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void loan(Person person, Book book) {
         CollectionUtil.requireAllNonNull(person, book);
+        person.addLoanedBookTitle(book.getTitle());
         //if (person.hasSameLoanedBook(person, book.getTitle())) {
         //    throw new DuplicateBookException();
         //}

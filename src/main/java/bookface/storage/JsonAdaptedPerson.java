@@ -57,7 +57,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        title.addAll(source.getTitle().stream()
+        title.addAll(source.getLoanedTitlesSet().stream()
                 .map(JsonAdaptedTitle::new)
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()

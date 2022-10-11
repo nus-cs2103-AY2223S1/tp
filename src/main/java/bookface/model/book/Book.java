@@ -18,7 +18,7 @@ public class Book {
     private boolean isLoaned = false;
     private Person loanee = null;
 
-    private String loanStatus;
+    private final String loanStatus;
 
 
     //    /**
@@ -60,11 +60,9 @@ public class Book {
     public String getLoanStatus() {
         boolean temp = isLoaned;
         if (temp) {
-            loanStatus = "Loaned to " + loanee.getName();
-            return loanStatus;
+            return "Loaned to " + loanee.getName();
         } else {
-            loanStatus = "Available";
-            return loanStatus;
+            return "Available";
         }
     }
 
@@ -88,7 +86,6 @@ public class Book {
     public void loanTo(Person loanee, Book book) {
         this.isLoaned = true;
         this.loanee = loanee;
-        loanee.addLoanedBookTitle(book.getTitle());
     }
 
     /**
