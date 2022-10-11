@@ -2,9 +2,9 @@ package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
-import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;

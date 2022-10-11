@@ -55,11 +55,19 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param clientId in string format from user input
+     * @return Client of the client id
+     * @throws ParseException if the fiven {@code client} is invalid.
+     */
     public static Client parseClient(String clientId) throws ParseException {
         requireNonNull(clientId);
         String trimmedClientId = clientId.trim();
-        ClientId client__id = new ClientId(Integer.parseInt(trimmedClientId));
-        Client client = UniqueClientList.getClient(client__id);
+        ClientId clientIdRes = new ClientId(Integer.parseInt(trimmedClientId));
+        Client client = UniqueClientList.getClient(clientIdRes);
         if (!Client.isValidClient(client)) {
             throw new ParseException(Client.MESSAGE_INVALID);
         }

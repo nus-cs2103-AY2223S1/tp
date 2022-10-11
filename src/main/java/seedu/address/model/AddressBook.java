@@ -20,7 +20,7 @@ import seedu.address.model.project.UniqueProjectList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    public static int projectCount = 0;
+    private int projectCount = 1;
     private int clientCount = 1;
     private int issueCount = 1;
 

@@ -28,6 +28,11 @@ public class UniqueClientList implements Iterable<Client> {
     private final ObservableList<Client> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Method to generate a client id temporarily
+     *
+     * @return client id
+     */
     public static int generateId() {
         if (internalList.size() == 0) {
             return 1;

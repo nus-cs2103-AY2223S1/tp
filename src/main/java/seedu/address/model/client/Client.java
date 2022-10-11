@@ -13,6 +13,8 @@ import seedu.address.model.project.Project;
  */
 public class Client {
 
+    public static final String MESSAGE_INVALID = "Client does not exist in the project.";
+
     //Represents the Client's name
     private Name name;
 
@@ -54,9 +56,6 @@ public class Client {
         this.projects = new ArrayList<>();
         this.clientId = ClientId.EmptyClientId.EMPTY_CLIENT_ID;
     }
-
-    public static final String MESSAGE_INVALID = "Client does not exist in the project.";
-
 
     public ClientId getClientId() {
         return this.clientId;
