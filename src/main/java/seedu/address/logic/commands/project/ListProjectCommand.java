@@ -12,7 +12,7 @@ import seedu.address.ui.Ui;
  */
 public class ListProjectCommand extends ProjectCommand {
 
-    public static final String COMMAND_FLAG = "-p";
+    public static final String COMMAND_FLAG = "-l";
 
     public static final String MESSAGE_SUCCESS = "Listed all projects";
 
