@@ -93,9 +93,12 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final String INVALID_TASK_DESC = " " + PREFIX_TASK_DESCRIPTION; // empty string
-    public static final String INVALID_TASK_NUMBER =
+    public static final String INVALID_TASK_NUMBER_DESC_NON_NUMERIC =
+            " " + PREFIX_TASK_NUMBER + "-99$9";
+    public static final String INVALID_TASK_NUMBER_DESC_NEGATIVE =
             " " + PREFIX_TASK_NUMBER + "-999";
-    // not allowed for tasks
+    public static final String INVALID_TASK_NUMBER_DESC_ZERO =
+            " " + PREFIX_TASK_NUMBER + "0";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
