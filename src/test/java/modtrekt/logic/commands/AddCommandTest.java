@@ -50,7 +50,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validModule);
         ModelStub modelStub = new ModelStubWithModule(validModule);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_MODULE, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -250,6 +250,12 @@ public class AddCommandTest {
         public boolean hasModule(Module person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSameModule);
+        }
+
+        @Override
+        public boolean hasModuleWithModCode(ModCode code) {
+            requireNonNull(code);
+            return personsAdded.stream().anyMatch(x -> x.isSameCodeModule(code));
         }
 
         @Override
