@@ -11,8 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MODS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.MODS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CS1101;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CS2030S;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -22,8 +22,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS1101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2030S;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -41,9 +41,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.commands.EditContactCommand.EditPersonDescriptor;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Mods;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -92,7 +92,8 @@ public class EditContactCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-        assertParseFailure(parser, "1" + INVALID_MODS_DESC, Mods.MESSAGE_CONSTRAINTS); // invalid mods
+
+        assertParseFailure(parser, "1" + INVALID_MODS_DESC, Module.MESSAGE_CONSTRAINTS); // invalid mods
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -109,19 +110,19 @@ public class EditContactCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
-                        + VALID_PHONE_AMY + VALID_MODS_AMY, Name.MESSAGE_CONSTRAINTS);
+                        + VALID_PHONE_AMY + VALID_MODULE_CS1101, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + MODS_DESC_AMY;
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + MODULE_DESC_CS1101;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-                .withMods(VALID_MODS_AMY).build();
+                .withModules(VALID_MODULE_CS1101).build();
         EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -173,8 +174,8 @@ public class EditContactCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // mods
-        userInput = targetIndex.getOneBased() + MODS_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withMods(VALID_MODS_AMY).build();
+        userInput = targetIndex.getOneBased() + MODULE_DESC_CS1101;
+        descriptor = new EditPersonDescriptorBuilder().withModules(VALID_MODULE_CS1101).build();
         expectedCommand = new EditContactCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -182,14 +183,15 @@ public class EditContactCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + MODS_DESC_AMY + ADDRESS_DESC_AMY
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + MODULE_DESC_CS1101 + ADDRESS_DESC_AMY
                 + EMAIL_DESC_AMY + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + MODS_DESC_BOB
+                + TAG_DESC_FRIEND + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_CS2030S
                 + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).withMods(VALID_MODS_BOB).build();
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withModules(VALID_MODULE_CS2030S, VALID_MODULE_CS1101).build();
         EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -206,9 +208,9 @@ public class EditContactCommandParserTest {
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
-                + PHONE_DESC_BOB + MODS_DESC_BOB;
+                + PHONE_DESC_BOB + MODULE_DESC_CS2030S;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withMods(VALID_MODS_BOB).build();
+                .withAddress(VALID_ADDRESS_BOB).withModules(VALID_MODULE_CS2030S).build();
         expectedCommand = new EditContactCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

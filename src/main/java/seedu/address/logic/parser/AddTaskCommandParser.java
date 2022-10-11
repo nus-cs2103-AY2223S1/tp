@@ -8,8 +8,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Module;
 import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Module;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
 
@@ -35,8 +36,9 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         TaskName name = ParserUtil.parseTaskName(argMultimap.getPreamble());
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE_LONG).get());
+        Status status = new Status(false);
 
-        Task task = new Task(name, module, deadline);
+        Task task = new Task(name, module, deadline, status);
 
         return new AddTaskCommand(task);
     }

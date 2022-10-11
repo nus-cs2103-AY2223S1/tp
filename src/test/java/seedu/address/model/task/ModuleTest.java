@@ -7,6 +7,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.module.Module;
+
 public class ModuleTest {
 
     @Test
@@ -29,11 +31,13 @@ public class ModuleTest {
         assertFalse(Module.isValidModule("")); // empty string
         assertFalse(Module.isValidModule(" ")); // spaces only
         assertFalse(Module.isValidModule("A B")); // has spaces
+        assertFalse(Module.isValidModule("-")); // one character
+        assertFalse(Module.isValidModule("USGCSDSA13495798735729475238945273858gf_ewt3wi4rw34")); // long module
 
         // valid modules
         assertTrue(Module.isValidModule("CS2103T"));
-        assertTrue(Module.isValidModule("-")); // one character
-        assertTrue(Module.isValidModule("USGCSDSA13495798735729475238945273858gf_ewt3wi4rw34")); // long module
+        assertTrue(Module.isValidModule("CFG1003"));
+
     }
 
     @Test

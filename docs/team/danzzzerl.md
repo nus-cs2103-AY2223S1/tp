@@ -12,7 +12,10 @@ It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be added soon
+* **New Feature**:
+  * Implemented find feature for tasks:
+    * find tasks by keywords
+    * find tasks by their modules
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=danzzzerl&breakdown=true)
 
@@ -21,10 +24,10 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**: to be added soon
 
 * **Documentation**:
-    * User Guide: 
-      * Added documentation for the features `find` and `findc`
-    * Developer Guide: 
-      * Added use case for finding tasks
+  * User Guide: 
+    * Added documentation for the features `find` and `findc`
+  * Developer Guide: 
+    * Added use case for finding tasks
 
 * **Community**: to be added soon
 
