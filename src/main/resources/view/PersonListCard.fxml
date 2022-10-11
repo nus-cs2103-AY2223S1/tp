@@ -56,7 +56,6 @@
                   </image>
                </ImageView>
             </graphic></Label>
-        <FlowPane fx:id="appointments" />
     </VBox>
       <VBox minHeight="105.0" GridPane.columnIndex="1">
          <children>
@@ -81,22 +80,7 @@
                   <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <Label text="\$date" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/calendar.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Label>
-            <Label text="\$time" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/clock.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Label>
+           <FlowPane fx:id="appointments" />
          </children>
          <padding>
             <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
