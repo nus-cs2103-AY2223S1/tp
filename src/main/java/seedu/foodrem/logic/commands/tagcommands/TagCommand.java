@@ -70,6 +70,8 @@ public class TagCommand extends Command {
 
         itemToTag.addTag(tag);
 
+        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
+
         return new CommandResult(MESSAGE_SUCCESS);
 
     }
