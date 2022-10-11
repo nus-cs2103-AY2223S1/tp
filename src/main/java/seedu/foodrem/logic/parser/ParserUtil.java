@@ -10,6 +10,8 @@ import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
+import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.model.tag.TagName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -90,5 +92,20 @@ public class ParserUtil {
         requireNonNull(expiryDate);
         String trimmedExpiryDate = expiryDate.trim();
         return new ItemExpiryDate(trimmedExpiryDate);
+    }
+
+    /**
+     * Parses a {@code String name} into a tag {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static TagName parseTagName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!TagName.isValidName(trimmedName)) {
+            throw new ParseException(TagName.MESSAGE_CONSTRAINTS);
+        }
+        return new TagName(trimmedName);
     }
 }
