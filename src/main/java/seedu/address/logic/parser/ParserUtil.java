@@ -3,8 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -25,9 +29,12 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_INVALID_OPTIONS = "Command options is invalid";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -36,6 +43,30 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses two one based index and returns it. Leading and trailing whitespaces will be trimmed.
+     *
+     * @param oneBasedIndex to be parsed.
+     * @return a list of 2 oneBasedIndex.
+     * @throws ParseException if indices are invalid.
+     */
+    public static List<Index> parseTwoIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        String[] indexes = trimmedIndex.split(" ");
+
+        if (indexes.length != 2
+                || !StringUtil.isNonZeroUnsignedInteger(indexes[0])
+                || !StringUtil.isNonZeroUnsignedInteger(indexes[1])) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        List<Index> indices = new LinkedList<>();
+        indices.add(Index.fromOneBased(Integer.parseInt(indexes[0])));
+        indices.add(Index.fromOneBased(Integer.parseInt(indexes[1])));
+
+        return indices;
     }
 
     /**
@@ -119,11 +150,10 @@ public class ParserUtil {
     public static TaskList parseTasks(Collection<String> taskDescriptions) throws ParseException {
         requireNonNull(taskDescriptions);
         final ArrayList<Task> tasks = new ArrayList<>();
-        final TaskList taskList = new TaskList(tasks);
         for (String taskDescription : taskDescriptions) {
-            taskList.add(parseTask(taskDescription));
+            tasks.add(parseTask(taskDescription));
         }
-        return taskList;
+        return new TaskList(tasks);
     }
 
     /**
@@ -151,5 +181,71 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses the value of {@code String option} from {@code String arguments}.
+     */
+    private static Optional<String> parseOption(String arguments, String option) {
+        requireNonNull(arguments);
+        requireNonNull(option);
+        String[] options = arguments.trim().split("\\s+");
+        for (int i = 0; i < options.length; i++) {
+            if (options[i].contains("/")) {
+                break;
+            }
+            if (i > 0 && options[i - 1].equals(option)) {
+                return Optional.of(options[i]);
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Parses the values of {@code Prefix... options} from {@code String arguments}
+     * and return them in a {@code ArgumentMultimap}.
+     */
+    public static ArgumentMultimap parseOptions(String arguments, Prefix... options) {
+        requireNonNull(arguments);
+        requireNonNull(options);
+        ArgumentMultimap optionValues = new ArgumentMultimap();
+        for (int i = 0; i < options.length; i++) {
+            Optional<String> value = parseOption(arguments, options[i].toString());
+            if (value.isPresent()) {
+                optionValues.put(options[i], value.get());
+            }
+        }
+        return optionValues;
+    }
+
+    /**
+     * Erases the options and value of {@code String option} from {@code String arguments}
+     * and return the resulting {@code String}.
+     */
+    private static String eraseOption(String arguments, String option) {
+        requireNonNull(arguments);
+        requireNonNull(option);
+        String[] options = arguments.trim().split("\\s+");
+        for (int i = 0; i + 1 < options.length; i++) {
+            if (options[i].equals(option)) {
+                options[i] = "";
+                options[i + 1] = "";
+                break;
+            }
+        }
+        return Arrays.stream(options).reduce((x, y) -> x + " " + y).get().trim();
+    }
+
+    /**
+     * Erases the options and values of {@code Prefix... options} from {@code String arguments}
+     * and return the resulting {@code String}.
+     */
+    public static String eraseOptions(String arguments, Prefix... options) {
+        requireNonNull(arguments);
+        requireNonNull(options);
+        for (int i = 0; i < options.length; i++) {
+            arguments = eraseOption(arguments, options[i].toString());
+        }
+        return arguments;
     }
 }

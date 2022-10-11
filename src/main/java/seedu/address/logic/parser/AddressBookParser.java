@@ -6,13 +6,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.AddGenericCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteTaskCommand;
-import seedu.address.logic.commands.EditPatientCommand;
+import seedu.address.logic.commands.DeleteGenericCommand;
+import seedu.address.logic.commands.EditGenericCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -45,17 +43,18 @@ public class AddressBookParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final String arguments = ParserTranslator.translate(commandWord, matcher.group("arguments"));
+
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddGenericCommand.COMMAND_WORD:
+            return new AddGenericCommandParser().parse(arguments);
 
-        case EditPatientCommand.COMMAND_WORD:
-            return new EditPatientCommandParser().parse(arguments);
+        case EditGenericCommand.COMMAND_WORD:
+            return new EditGenericCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteGenericCommand.COMMAND_WORD:
+            return new DeleteGenericCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -65,12 +64,6 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
-        case AddTaskCommand.COMMAND_WORD:
-            return new AddTaskCommandParser().parse(arguments);
-
-        case DeleteTaskCommand.COMMAND_WORD:
-            return new DeleteTaskCommandParser().parse(arguments);
 
         case ViewTaskCommand.COMMAND_WORD:
             return new ViewTaskCommandParser().parse(arguments);

@@ -17,6 +17,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand
      * and returns an AddTaskCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTaskCommand parse(String args) throws ParseException {
