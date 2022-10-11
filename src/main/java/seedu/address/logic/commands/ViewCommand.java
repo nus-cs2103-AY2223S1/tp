@@ -6,7 +6,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.staff.UniqueStaffList;
-import seedu.address.ui.StaffListPanel;
 
 /**
  * Lists all projects in the address book to the user.

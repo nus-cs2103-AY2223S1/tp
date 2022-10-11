@@ -27,6 +27,9 @@ public class StaffListPanel extends UiPart<Region> {
         super(FXML);
     }
 
+    /**
+     * Creates a {@code StaffListPanel} with the given {@code ObservableList}.
+     */
     public StaffListPanel(ObservableList<Staff> staffList) {
         super(FXML);
         staffListView.setItems(staffList);
