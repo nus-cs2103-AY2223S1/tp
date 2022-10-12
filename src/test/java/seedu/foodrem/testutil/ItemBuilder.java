@@ -1,7 +1,5 @@
 package seedu.foodrem.testutil;
 
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_FRUITS;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +21,6 @@ public class ItemBuilder {
     public static final String DEFAULT_ITEM_UNIT = "";
     public static final String DEFAULT_BOUGHT_DATE = "";
     public static final String DEFAULT_EXPIRY_DATE = "";
-    public static final Tag DEFAULT_TAG =  new TagBuilder().withTagName(VALID_TAG_NAME_FRUITS).build();
 
     // Identity fields
     private ItemName name;
@@ -43,7 +40,7 @@ public class ItemBuilder {
         unit = new ItemUnit(DEFAULT_ITEM_UNIT);
         boughtDate = new ItemBoughtDate(DEFAULT_BOUGHT_DATE);
         expiryDate = new ItemExpiryDate(DEFAULT_EXPIRY_DATE);
-        tags = Set.of(DEFAULT_TAG);
+        tags = new HashSet<>();
     }
 
     /**
@@ -55,7 +52,7 @@ public class ItemBuilder {
         unit = itemToCopy.getUnit();
         boughtDate = itemToCopy.getBoughtDate();
         expiryDate = itemToCopy.getExpiryDate();
-        tags = itemToCopy.getTagSet();
+        tags = new HashSet<>(itemToCopy.getTagSet());
     }
 
     /**
@@ -101,9 +98,8 @@ public class ItemBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@link Item} that we are building.
      */
-    public ItemBuilder withTags(String... tags) {
-        this.tags = new HashSet<>();
-        for (String tagName : tags) {
+    public ItemBuilder withTags(String... tagNames) {
+        for (String tagName : tagNames) {
             this.tags.add(new TagBuilder().withTagName(tagName).build());
         }
         return this;
