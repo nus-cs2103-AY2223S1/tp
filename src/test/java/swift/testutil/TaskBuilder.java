@@ -9,7 +9,7 @@ import swift.model.task.TaskName;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_TASK_NAME = "Buy Milk";
+    public static final String DEFAULT_TASK_NAME = "Default Task";
     public static final int DEFAULT_INDEX = 0;
 
     private TaskName taskName;
