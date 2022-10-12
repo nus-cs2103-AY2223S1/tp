@@ -32,7 +32,7 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
      */
     @Override
     public boolean test(Task task) {
-        return task.containsKeywords(descriptionKeywords, deadlineKeywords);
+        return task.containsKeywordsCaseInsensitive(descriptionKeywords, deadlineKeywords);
     }
 
     @Override

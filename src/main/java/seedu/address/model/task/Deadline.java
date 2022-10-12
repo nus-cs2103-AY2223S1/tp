@@ -3,26 +3,25 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Represents the deadline of a task in the TaskList.
+ * Deadline contains a date but not a time.
  */
 public class Deadline {
-    // TODO: implement this class
-    // TODO: edit MESSAGE_CONSTRAINTS
-    public static final String MESSAGE_CONSTRAINTS = " ";
+    public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format DD-MM-YYYY";
 
-
-    // TODO: Edit VALIDATION_REGEX (Copied from Description class for now)
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Date should be in the format DD-MM-YYYY.
+     * Validation will be handled by DateTimeFormatter util class.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd MM yyyy");
 
-    // TODO: Implement deadline (e.g. DateTime... )
-    private final String deadline;
+    private final LocalDate date;
 
-    // TODO: Implement constructor
     /**
      * Constructs an {@code Deadline}.
      *
@@ -30,21 +29,37 @@ public class Deadline {
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
-
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        this.deadline = deadline;
+        date = LocalDate.parse(deadline);
     }
 
-    // TODO: Implement isValidDeadline method
     /**
-     * Returns true if a given string is a valid description.
+     * Returns if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
+        // TODO: Try-catch used as control flow, refactor
+        try {
+            DATE_TIME_FORMATTER.parse(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
         return true;
     }
 
     @Override
+    public String toString() {
+        return date.format(DATE_TIME_FORMATTER);
+    }
+
+    @Override
     public boolean equals(Object other) {
-        return true;
+        return other == this // short circuit if same object
+                || (other instanceof Deadline // instanceof handles nulls
+                && date.equals(((Deadline) other).date)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return date.hashCode();
     }
 }

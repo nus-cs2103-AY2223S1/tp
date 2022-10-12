@@ -24,6 +24,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
@@ -144,7 +145,9 @@ public class DeleteTagCommand extends Command {
         assert taskToEdit != null;
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getIsDone());
+        // TODO: Implement
+        Deadline updatedDeadline = new Deadline("");
+        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getIsDone());
         Set<Tag> newTags = editTaskDescriptor.getTags().orElse(new HashSet<>());
         Set<Tag> updatedTags = new HashSet<>();
         updatedTags.addAll(taskToEdit.getTags());
@@ -152,7 +155,7 @@ public class DeleteTagCommand extends Command {
             updatedTags.removeAll(newTags);
         }
 
-        return new Task(updatedDescription, updatedIsDone, updatedTags);
+        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags);
     }
 
     @Override
