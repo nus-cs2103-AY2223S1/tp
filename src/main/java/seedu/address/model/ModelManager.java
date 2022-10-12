@@ -147,6 +147,17 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasTuitionClass(TuitionClass tuitionClass) {
+        requireNonNull(tuitionClass);
+        return addressBook.hasTuitionClass(tuitionClass);
+    }
+
+    @Override
+    public void addTuitionClass(TuitionClass tuitionClass) {
+        addressBook.addTuitionClass(tuitionClass);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

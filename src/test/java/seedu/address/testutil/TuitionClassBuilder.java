@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.level.Level;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.Day;
@@ -39,7 +40,11 @@ public class TuitionClassBuilder {
         subject = Subject.createSubject(DEFAULT_SUBJECT);
         level = Level.createLevel(DEFAULT_LEVEL);
         day = Day.createDay(DEFAULT_DAY);
-        time = new Time(DEFAULT_START_TIME, DEFAULT_END_TIME);
+        try {
+            time = new Time(DEFAULT_START_TIME, DEFAULT_END_TIME);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         tags = new HashSet<>();
     }
 
@@ -99,7 +104,11 @@ public class TuitionClassBuilder {
      * Sets the {@code Time} of the {@code TuitionClass} that we are building.
      */
     public TuitionClassBuilder withTime(String startTime, String endTime) {
-        this.time = new Time(startTime, endTime);
+        try {
+            this.time = new Time(startTime, endTime);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 
