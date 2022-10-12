@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -250,18 +252,19 @@ public class ParserUtilTest {
         assertTrue(ParserUtil.parseMods(Collections.emptyList()).isEmpty());
     }
 
+    @SuppressWarnings("checkstyle:SingleSpaceSeparator")
     @Test
     public void parseMods_collectionWithValidMods_returnsModSet() throws Exception {
-        Set<Mod> actualModSet = ParserUtil.parseMods(Arrays.asList(VALID_MOD_1, VALID_MOD_2));
-        Set<Mod> expectedModSet = new HashSet<>(Arrays.asList(new Mod(VALID_MOD_1), new Mod(VALID_MOD_2)));
+        ObservableList<Mod> actualModSet = ParserUtil.parseMods(Arrays.asList(VALID_MOD_1, VALID_MOD_2));
+        ObservableList<Mod> expectedModSet = FXCollections.observableArrayList(Arrays.asList(new Mod(VALID_MOD_1), new Mod(VALID_MOD_2)));
 
         assertEquals(expectedModSet, actualModSet);
     }
 
     @Test
     public void parseMods_collectionWithValidDuplicateMods_returnsModSet() throws Exception {
-        Set<Mod> actualModSet = ParserUtil.parseMods(Arrays.asList(VALID_MOD_1, VALID_MOD_1));
-        Set<Mod> expectedModSet = new HashSet<>(Arrays.asList(new Mod(VALID_MOD_1)));
+        ObservableList<Mod> actualModSet = ParserUtil.parseMods(Arrays.asList(VALID_MOD_1, VALID_MOD_1));
+        ObservableList<Mod> expectedModSet = FXCollections.observableArrayList(Arrays.asList(new Mod(VALID_MOD_1)));
 
         assertEquals(expectedModSet, actualModSet);
     }

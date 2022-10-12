@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,12 +26,14 @@ public class Person {
     // Data fields
     private final Telegram handle;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<Mod> mods = new HashSet<>();
+    private final ObservableList<Mod> mods =
+            FXCollections.observableArrayList();
+//    private final Set<Mod> mods = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags, Set<Mod> mods) {
+    public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags, ObservableList<Mod> mods) {
         requireAllNonNull(name, handle);
         this.name = name;
         this.phone = phone;
@@ -72,8 +76,8 @@ public class Person {
      * Returns an immutable mods set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Mod> getMods() {
-        return Collections.unmodifiableSet(mods);
+    public ObservableList<Mod> getMods() {
+        return FXCollections.unmodifiableObservableList(mods);
     }
 
     /**
@@ -81,7 +85,7 @@ public class Person {
      *
      * @param mods The set of mods to add in.
      */
-    public void addMods(Set<Mod> mods) {
+    public void addMods(ObservableList<Mod> mods) {
         this.mods.addAll(mods);
     }
 

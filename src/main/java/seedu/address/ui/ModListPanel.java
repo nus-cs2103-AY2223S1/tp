@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -29,11 +30,8 @@ public class ModListPanel extends UiPart<Region> {
     }
 
     public void setPersonModList(Person person) {
-        modListView.getItems().clear();
-        Set<Mod> moduleList = person.getMods();
-        for (Mod m: moduleList) {
-            modListView.getItems().add(m);
-        }
+        ObservableList<Mod> moduleList = person.getMods();
+        modListView.setItems(moduleList);
         modListView.setCellFactory(listView -> new ModListViewCell());
     }
 

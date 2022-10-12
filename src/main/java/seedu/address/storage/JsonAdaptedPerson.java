@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
@@ -145,7 +147,7 @@ class JsonAdaptedPerson {
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Set<Mod> modelMods = new HashSet<>(personMods);
+        final ObservableList<Mod> modelMods = FXCollections.observableArrayList(personMods);
         return new Person(modelName, modelPhone, modelEmail, modelHandle, modelGitHub, modelTags, modelMods);
     }
 

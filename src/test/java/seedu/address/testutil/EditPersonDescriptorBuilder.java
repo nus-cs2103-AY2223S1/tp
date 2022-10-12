@@ -4,6 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
@@ -98,7 +100,7 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withMods(String... mods) {
-        Set<Mod> modSet = Stream.of(mods).map(Mod::new).collect(Collectors.toSet());
+        ObservableList<Mod> modSet = Stream.of(mods).map(Mod::new).collect(Collectors.toCollection(FXCollections::observableArrayList));
         descriptor.setMods(modSet);
         return this;
     }
