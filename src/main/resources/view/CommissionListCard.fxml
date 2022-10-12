@@ -20,26 +20,27 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="TOP_LEFT" id="cell_id_title_container" HBox.hgrow="ALWAYS">
-                <Label fx:id="id" id="cell_id_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
                 <VBox alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
                     <BorderPane>
+                        <left>
+                            <Label fx:id="id" id="cell_id_label">
+                                <minWidth>
+                                    <!-- Ensures that the label text is never truncated -->
+                                    <Region fx:constant="USE_PREF_SIZE" />
+                                </minWidth>
+                            </Label>
+                        </left>
                         <center>
-                            <VBox alignment="CENTER_LEFT" spacing="8">
-                                <Label fx:id="title" text="\$title" id="cell_title_label">
-                                </Label>
+                            <VBox alignment="TOP_LEFT" spacing="8">
+                                <Label fx:id="title" text="\$title" id="cell_title_label"/>
                                 <FlowPane fx:id="tags" styleClass="commissionTags"/>
                                 <BorderPane.margin>
-                                    <Insets right="16"/>
+                                    <Insets left="8" right="16"/>
                                 </BorderPane.margin>
                             </VBox>
                         </center>
                         <right>
-                            <VBox spacing="4">
+                            <VBox spacing="4" alignment="TOP_LEFT">
                                 <HBox alignment="CENTER_LEFT" spacing="8">
                                     <!-- workaround to buggy ui when using a shape node: use an empty rounded label -->
                                     <Label fx:id="completionStatusCircle" id="completionStatusCircle"
