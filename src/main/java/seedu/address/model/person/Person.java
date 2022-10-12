@@ -130,6 +130,29 @@ public class Person {
                 && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
     }
 
+    /**
+     * Returns true if both persons have the same identity and data fields, excluding Class.
+     */
+    public boolean allEqualsExceptClass(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Person)) {
+            return false;
+        }
+
+        Person otherPerson = (Person) other;
+
+        return otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getMoneyOwed().equals(getMoneyOwed())
+                && otherPerson.getMoneyPaid().equals(getMoneyPaid())
+                && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
