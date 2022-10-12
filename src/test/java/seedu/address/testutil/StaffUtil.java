@@ -19,7 +19,7 @@ public class StaffUtil {
      */
     public static String getAddCommand(Staff staff) {
         //todo
-        return AddStaffCommand.COMMAND_WORD + " " + getStaffDetails(staff);
+        return AddStaffCommand.COMMAND_WORD + " pn/CS2103T TP " + getStaffDetails(staff);
     }
 
     /**

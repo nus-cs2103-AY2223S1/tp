@@ -28,14 +28,10 @@ public class DeleteStaffParser implements Parser<DeleteStaffCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME, PREFIX_STAFF_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStaffCommand.MESSAGE_USAGE));
         }
-        try {
-            StaffName staffName = ParserUtil.parseStaffName(argMultimap.getValue(PREFIX_STAFF_NAME).get());
-            ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
-            return new DeleteStaffCommand(staffName, projectName);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
-        }
+
+        StaffName staffName = ParserUtil.parseStaffName(argMultimap.getValue(PREFIX_STAFF_NAME).get());
+        ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
+        return new DeleteStaffCommand(staffName, projectName);
     }
 
     /**

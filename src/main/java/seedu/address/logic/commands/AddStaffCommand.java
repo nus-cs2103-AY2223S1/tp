@@ -98,7 +98,8 @@ public class AddStaffCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddStaffCommand // instanceof handles nulls
-                && toAdd.equals(((AddStaffCommand) other).toAdd));
+                && toAdd.equals(((AddStaffCommand) other).toAdd)
+                && addTo.equals(((AddStaffCommand) other).addTo));
     }
 
 }

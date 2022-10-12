@@ -74,4 +74,12 @@ public class DeleteStaffCommand extends Command {
         staffList.remove(staff);
         return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteStaffCommand // instanceof handles nulls
+                && projectName.equals(((DeleteStaffCommand) other).projectName)
+                && staffName.equals(((DeleteStaffCommand) other).staffName));
+    }
 }

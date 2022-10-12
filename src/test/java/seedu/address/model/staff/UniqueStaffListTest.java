@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStaff.HOON;
-import static seedu.address.testutil.TypicalStaff.IDA;
+import static seedu.address.testutil.TypicalStaff.STAFF_HOON;
+import static seedu.address.testutil.TypicalStaff.STAFF_IDA;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,21 +29,21 @@ public class UniqueStaffListTest {
 
     @Test
     public void contains_staffNotInList_returnsFalse() {
-        assertFalse(uniqueStaffList.contains(HOON));
+        assertFalse(uniqueStaffList.contains(STAFF_HOON));
     }
 
     @Test
     public void contains_staffInList_returnsTrue() {
-        uniqueStaffList.add(HOON);
-        assertTrue(uniqueStaffList.contains(HOON));
+        uniqueStaffList.add(STAFF_HOON);
+        assertTrue(uniqueStaffList.contains(STAFF_HOON));
     }
 
     @Test
     public void contains_staffWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueStaffList.add(HOON);
-        Staff editedHoon = new StaffBuilder(HOON).withTags(VALID_TAG_HUSBAND)
+        uniqueStaffList.add(STAFF_HOON);
+        Staff editedSTAFF_HOON = new StaffBuilder(STAFF_HOON).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniqueStaffList.contains(editedHoon));
+        assertTrue(uniqueStaffList.contains(editedSTAFF_HOON));
     }
 
     @Test
@@ -53,59 +53,59 @@ public class UniqueStaffListTest {
 
     @Test
     public void add_duplicateStaff_throwsDuplicateStaffException() {
-        uniqueStaffList.add(HOON);
-        assertThrows(DuplicateStaffException.class, () -> uniqueStaffList.add(HOON));
+        uniqueStaffList.add(STAFF_HOON);
+        assertThrows(DuplicateStaffException.class, () -> uniqueStaffList.add(STAFF_HOON));
     }
 
     @Test
     public void setStaff_nullTargetStaff_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStaffList.setStaff(null, HOON));
+        assertThrows(NullPointerException.class, () -> uniqueStaffList.setStaff(null, STAFF_HOON));
     }
 
     @Test
     public void setStaff_nullEditedStaff_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStaffList.setStaff(HOON, null));
+        assertThrows(NullPointerException.class, () -> uniqueStaffList.setStaff(STAFF_HOON, null));
     }
 
     @Test
     public void setStaff_targetStaffNotInList_throwsStaffNotFoundException() {
-        assertThrows(StaffNotFoundException.class, () -> uniqueStaffList.setStaff(HOON, HOON));
+        assertThrows(StaffNotFoundException.class, () -> uniqueStaffList.setStaff(STAFF_HOON, STAFF_HOON));
     }
 
     @Test
     public void setStaff_editedStaffIsSameStaff_success() {
-        uniqueStaffList.add(HOON);
-        uniqueStaffList.setStaff(HOON, HOON);
+        uniqueStaffList.add(STAFF_HOON);
+        uniqueStaffList.setStaff(STAFF_HOON, STAFF_HOON);
         UniqueStaffList expectedUniqueStaffList = new UniqueStaffList();
-        expectedUniqueStaffList.add(HOON);
+        expectedUniqueStaffList.add(STAFF_HOON);
         assertEquals(expectedUniqueStaffList, uniqueStaffList);
     }
 
     @Test
     public void setStaff_editedStaffHasSameIdentity_success() {
-        uniqueStaffList.add(HOON);
-        Staff editedHoon = new StaffBuilder(HOON).withTags(VALID_TAG_HUSBAND)
+        uniqueStaffList.add(STAFF_HOON);
+        Staff editedSTAFF_HOON = new StaffBuilder(STAFF_HOON).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniqueStaffList.setStaff(HOON, editedHoon);
+        uniqueStaffList.setStaff(STAFF_HOON, editedSTAFF_HOON);
         UniqueStaffList expectedUniqueStaffList = new UniqueStaffList();
-        expectedUniqueStaffList.add(editedHoon);
+        expectedUniqueStaffList.add(editedSTAFF_HOON);
         assertEquals(expectedUniqueStaffList, uniqueStaffList);
     }
 
     @Test
     public void setStaff_editedStaffHasDifferentIdentity_success() {
-        uniqueStaffList.add(HOON);
-        uniqueStaffList.setStaff(HOON, IDA);
+        uniqueStaffList.add(STAFF_HOON);
+        uniqueStaffList.setStaff(STAFF_HOON, STAFF_IDA);
         UniqueStaffList expectedUniqueStaffList = new UniqueStaffList();
-        expectedUniqueStaffList.add(IDA);
+        expectedUniqueStaffList.add(STAFF_IDA);
         assertEquals(expectedUniqueStaffList, uniqueStaffList);
     }
 
     @Test
     public void setStaff_editedStaffHasNonUniqueIdentity_throwsDuplicateStaffException() {
-        uniqueStaffList.add(HOON);
-        uniqueStaffList.add(IDA);
-        assertThrows(DuplicateStaffException.class, () -> uniqueStaffList.setStaff(HOON, IDA));
+        uniqueStaffList.add(STAFF_HOON);
+        uniqueStaffList.add(STAFF_IDA);
+        assertThrows(DuplicateStaffException.class, () -> uniqueStaffList.setStaff(STAFF_HOON, STAFF_IDA));
     }
 
     @Test
@@ -115,13 +115,13 @@ public class UniqueStaffListTest {
 
     @Test
     public void remove_staffDoesNotExist_throwsStaffNotFoundException() {
-        assertThrows(StaffNotFoundException.class, () -> uniqueStaffList.remove(HOON));
+        assertThrows(StaffNotFoundException.class, () -> uniqueStaffList.remove(STAFF_HOON));
     }
 
     @Test
     public void remove_existingStaff_removesStaff() {
-        uniqueStaffList.add(HOON);
-        uniqueStaffList.remove(HOON);
+        uniqueStaffList.add(STAFF_HOON);
+        uniqueStaffList.remove(STAFF_HOON);
         UniqueStaffList expecteduniqueStaffList = new UniqueStaffList();
         assertEquals(expecteduniqueStaffList, uniqueStaffList);
     }
@@ -133,9 +133,9 @@ public class UniqueStaffListTest {
 
     @Test
     public void setStaffs_uniqueStaffList_replacesOwnListWithProvideduniqueStaffList() {
-        uniqueStaffList.add(HOON);
+        uniqueStaffList.add(STAFF_HOON);
         UniqueStaffList expectedUniqueStaffList = new UniqueStaffList();
-        expectedUniqueStaffList.add(IDA);
+        expectedUniqueStaffList.add(STAFF_IDA);
         uniqueStaffList.setStaffs(expectedUniqueStaffList);
         assertEquals(expectedUniqueStaffList, uniqueStaffList);
     }
@@ -147,17 +147,17 @@ public class UniqueStaffListTest {
 
     @Test
     public void setStaffs_list_replacesOwnListWithProvidedList() {
-        uniqueStaffList.add(HOON);
-        List<Staff> staffList = Collections.singletonList(IDA);
+        uniqueStaffList.add(STAFF_HOON);
+        List<Staff> staffList = Collections.singletonList(STAFF_IDA);
         uniqueStaffList.setStaffs(staffList);
         UniqueStaffList expectedUniqueStaffList = new UniqueStaffList();
-        expectedUniqueStaffList.add(IDA);
+        expectedUniqueStaffList.add(STAFF_IDA);
         assertEquals(expectedUniqueStaffList, uniqueStaffList);
     }
 
     @Test
     public void setStaffs_listWithDuplicateStaffs_throwsDuplicateStaffException() {
-        List<Staff> listWithDuplicateStaffs = Arrays.asList(HOON, HOON);
+        List<Staff> listWithDuplicateStaffs = Arrays.asList(STAFF_HOON, STAFF_HOON);
         assertThrows(DuplicateStaffException.class, () -> uniqueStaffList.setStaffs(listWithDuplicateStaffs));
     }
 

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
@@ -13,21 +14,15 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
-import seedu.address.testutil.EditProjectDescriptorBuilder;
-import seedu.address.testutil.ProjectBuilder;
-import seedu.address.testutil.ProjectUtil;
+import seedu.address.model.staff.Staff;
+import seedu.address.model.staff.StaffName;
+import seedu.address.testutil.*;
 
 public class AddressBookParserTest {
 
@@ -41,6 +36,13 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_addStaff() throws Exception {
+        Staff staff = new StaffBuilder().build();
+        AddStaffCommand command = (AddStaffCommand) parser.parseCommand(StaffUtil.getAddCommand(staff));
+        assertEquals(new AddStaffCommand(staff, new ProjectName("CS2103T TP")), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -51,6 +53,17 @@ public class AddressBookParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PROJECT), command);
+    }
+
+    @Test
+    public void parseCommand_deleteStaff() throws Exception {
+        Staff staff = new StaffBuilder().build();
+        StaffName staffName = staff.getStaffName();
+        ProjectName projectName = new ProjectName("CS2103T TP");
+        DeleteStaffCommand command = (DeleteStaffCommand) parser.parseCommand(
+                DeleteStaffCommand.COMMAND_WORD + " pn/" + projectName.fullName +" sn/" + staffName.staffName
+        );
+        assertEquals(new DeleteStaffCommand(staffName, projectName), command);
     }
 
     @Test

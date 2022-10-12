@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedProject.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.BANANA;
-import static seedu.address.testutil.TypicalStaff.NEVER;
+import static seedu.address.testutil.TypicalStaff.STAFF_1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,13 +28,13 @@ public class JsonAdaptedProjectTest {
     private static final String VALID_NAME = BANANA.getProjectName().toString();
     private static final String VALID_BUDGET = BANANA.getBudget().toString();
     private static final String VALID_DEADLINE = BANANA.getDeadline().toString();
-    private static final String VALID_STAFF_NAME = NEVER.getStaffName().toString();
-    private static final String VALID_STAFF_CONTACT = NEVER.getStaffContact().toString();
-    private static final String VALID_STAFF_TITLE = NEVER.getStaffTitle().toString();
-    private static final String VALID_STAFF_DEPARTMENT = NEVER.getStaffDepartment().toString();
-    private static final String VALID_STAFF_INSURANCE = NEVER.getStaffInsurance().toString();
-    private static final List<JsonAdaptedStaff> VALID_STAFF = Arrays.asList(new JsonAdaptedStaff(NEVER));
-    private static final List<JsonAdaptedTag> VALID_TAGS = BANANA.getTags().stream()
+    private static final String VALID_STAFF_NAME = STAFF_1.getStaffName().toString();
+    private static final String VALID_STAFF_CONTACT = STAFF_1.getStaffContact().toString();
+    private static final String VALID_STAFF_TITLE = STAFF_1.getStaffTitle().toString();
+    private static final String VALID_STAFF_DEPARTMENT = STAFF_1.getStaffDepartment().toString();
+    private static final String VALID_STAFF_INSURANCE = STAFF_1.getStaffInsurance().toString();
+    private static final List<JsonAdaptedStaff> VALID_STAFF = Arrays.asList(new JsonAdaptedStaff(STAFF_1));
+    private static final List<JsonAdaptedTag> VALID_TAGS = STAFF_1.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
