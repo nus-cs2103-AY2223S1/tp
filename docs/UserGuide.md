@@ -236,5 +236,6 @@ _Details coming soon ..._
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
 | **Clear**  | `clear`                                                                                                                                                     |                                                                             |                                                                                                          |
 | **Undo**   | `undo`                                                                                                                                                      |
-| **Sort**   | `sort PREFIX/` <br> e.g., `sort n/`                                                                                                                                                     |
+| **Sort**   | `sort PREFIX/` <br> e.g., `sort n/`                                                                                                                         |
+| **Find**   | `find KEYWORD` <br> e.g., `find John`                                                                                                                       |
 | **Exit**   | `exit`                                                                                                                                                      |
