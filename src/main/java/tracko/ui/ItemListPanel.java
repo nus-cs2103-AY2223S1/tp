@@ -25,9 +25,10 @@ public class ItemListPanel extends UiPart<Region> {
     public ItemListPanel(ObservableList<Item> itemList) {
         super(FXML);
         itemListView.setItems(itemList);
-        itemListView.setCellFactory(listView -> new ItemListViewCell(){{
-            setStyle("-fx-background-insets: 3px;");
-        }});
+        itemListView.setCellFactory(listView -> new ItemListViewCell() {{
+                setStyle("-fx-background-insets: 3px;");
+            }
+        });
     }
 
     /**

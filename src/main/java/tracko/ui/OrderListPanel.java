@@ -26,9 +26,10 @@ public class OrderListPanel extends UiPart<Region> {
     public OrderListPanel(ObservableList<Order> orderList) {
         super(FXML);
         orderListView.setItems(orderList);
-        orderListView.setCellFactory(listView -> new OrderListViewCell(){{
-            setStyle("-fx-background-insets: 3px;");
-        }});
+        orderListView.setCellFactory(listView -> new OrderListViewCell() {{
+                setStyle("-fx-background-insets: 3px;");
+            }
+        });
     }
 
     /**

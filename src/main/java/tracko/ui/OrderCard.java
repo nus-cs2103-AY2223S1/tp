@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import tracko.model.order.Order;
 
 /**
@@ -51,7 +50,7 @@ public class OrderCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(order.getName().fullName);
         name.setWrapText(true);
-        name.setPadding(new Insets(0,10,0,0));
+        name.setPadding(new Insets(0, 10, 0, 0));
 
         // If name consists of more than 1 line, this will align the id to the first line.
         id.prefHeightProperty().bind(name.heightProperty());
@@ -59,17 +58,17 @@ public class OrderCard extends UiPart<Region> {
 
         phone.setText(order.getPhone().value);
         phone.setWrapText(true);
-        phone.setPadding(new Insets(0,10,0,0));
+        phone.setPadding(new Insets(0, 10, 0, 0));
 
         address.setText(order.getAddress().value);
         address.setWrapText(true);
-        address.setPadding(new Insets(0,10,0,0));
+        address.setPadding(new Insets(0, 10, 0, 0));
 
         email.setText(order.getEmail().value);
         email.setWrapText(true);
-        email.setPadding(new Insets(0,10,0,0));
+        email.setPadding(new Insets(0, 10, 0, 0));
 
-        items.setPadding(new Insets(15,10,15,10));
+        items.setPadding(new Insets(15, 10, 15, 10));
         items.setStyle("-fx-background-insets: 10, 10, 0, 0;");
         items.getStyleClass().add("ordered-items-container");
         order.getItemList().stream()
@@ -85,7 +84,7 @@ public class OrderCard extends UiPart<Region> {
         Label itemLabel = new Label(text);
         itemLabel.getStyleClass().add("ordered-items-content");
         itemLabel.setWrapText(true);
-        itemLabel.setPadding(new Insets(0,10,0,10));
+        itemLabel.setPadding(new Insets(0, 10, 0, 10));
         return itemLabel;
     }
 

@@ -6,7 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import tracko.model.items.Item;
 
@@ -47,18 +46,18 @@ public class ItemCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         itemName.setText(item.getItemName().itemName);
         itemName.setWrapText(true);
-        itemName.setPadding(new Insets(0,10,0,0));
+        itemName.setPadding(new Insets(0, 10, 0, 0));
 
         // If item name consists of more than 1 line, this will align the id to the first line.
         id.prefHeightProperty().bind(itemName.heightProperty());
         id.setAlignment(Pos.TOP_LEFT);
 
         quantity.setText(item.getQuantity().toString());
-        
+
         description.setText(item.getDescription().value);
         description.setWrapText(true);
         description.setTextAlignment(TextAlignment.JUSTIFY);
-        description.setPadding(new Insets(0,10,0,0));
+        description.setPadding(new Insets(0, 10, 0, 0));
     }
 
     @Override

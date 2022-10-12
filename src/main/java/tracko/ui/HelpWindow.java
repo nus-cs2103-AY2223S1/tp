@@ -35,9 +35,9 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
-        helpMessage.setStyle("-fx-font-size: 20px;" +
-                "-fx-background-color: #FFF2E7;" +
-                "-fx-text-fill: #3C3C3C;");
+        helpMessage.setStyle("-fx-font-size: 20px;"
+                + "-fx-background-color: #FFF2E7;"
+                + "-fx-text-fill: #3C3C3C;");
     }
 
     /**
