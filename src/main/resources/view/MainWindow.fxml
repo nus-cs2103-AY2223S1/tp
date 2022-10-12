@@ -47,22 +47,24 @@
               <!-- Ensures that the label text is never truncated -->
               <Region fx:constant="USE_PREF_SIZE" />
             </minWidth>
-                  <HBox.margin>
-                     <Insets left="20.0" right="5.0" />
-                  </HBox.margin>
+              <HBox.margin>
+                 <Insets left="20.0" right="5.0" />
+              </HBox.margin>
           </Label>
-               <HBox alignment="CENTER" styleClass="header_box_background">
-                  <children>
-                     <Label styleClass="header_box_label" text="Total number of clients:" textFill="WHITE">
-                        <HBox.margin>
-                           <Insets left="5.0" right="5.0" />
-                        </HBox.margin></Label>
+           <HBox alignment="CENTER" styleClass="header_box_background">
+              <children>
+                 <Label styleClass="header_box_label" text="Total number of clients:" textFill="WHITE">
+                    <HBox.margin>
+                       <Insets left="5.0" right="5.0" />
+                    </HBox.margin>
+                 </Label>
                 <Label fx:id="totalClient" styleClass="header_label" text="0">
-                        <HBox.margin>
-                           <Insets left="5.0" right="5.0" />
-                        </HBox.margin></Label>
-                  </children>
-               </HBox>
+                    <HBox.margin>
+                       <Insets left="5.0" right="5.0" />
+                    </HBox.margin>
+                </Label>
+              </children>
+           </HBox>
         </HBox>
 
         <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
