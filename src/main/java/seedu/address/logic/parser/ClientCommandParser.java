@@ -101,7 +101,6 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         }
 
-        List<Project> projects = new ArrayList<>();
         //todo: replace with actual implementation
         ClientId clientId = new ClientId(-1);
 
