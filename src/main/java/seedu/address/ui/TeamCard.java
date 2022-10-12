@@ -19,7 +19,6 @@ public class TeamCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label id;
-
     @FXML
     private Label teamName;
 
