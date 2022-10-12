@@ -11,9 +11,7 @@ title: User Guide
 
 ## Features
 
-{% include note.html content="
-
-Notes about the command format:<br>
+:information_source: Notes about the command format:<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -27,8 +25,6 @@ Notes about the command format:<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-" %}
 
 | Command    | Format                                   |
 | ---------- | ---------------------------------------- |
@@ -133,10 +129,39 @@ Format: `find KEYWORD [MORE_KEYWORDS...]`
 
 Examples:
 
-- `find John` will find people with a **John** in their name (case-insensitive), i.e. **John Doe**, **John Brown**, **harry jOHn**, ****etc.
+- `find John` will find people with a **John** in their name (case-insensitive), i.e. **John Doe**, **John Brown**, **harry jOHn**, etc.
 - `find ben chris` will find people with either a **ben** or a **chris** in their name, i.e. **chris ben**, **ChRIs wonders**, **bEn ten**, etc.
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### List all students: `list`
+
+{% include note.html content="
+
+Shows a list of all the students.
+
+" %}
+
+Format: `list`
+
+- Note that `list` has different behavior in focus mode and outside focus mode.
+- In the focus mode, only students within the class will be listed.
+
+### Add a class: `addc`
+
+{% include note.html content="
+
+Adds a class.
+
+" %}
+
+Format: `addc c/CLASS_NAME`
+
+- Adds the class named `CLASS_NAME`
+
+Examples:
+
+- `addc c/CS2103T` adds the class named **CS2103T**.
 
 ### Delete a class: `deletec`
 
@@ -152,7 +177,7 @@ Format: `deletec c/CLASS_NAME`
 
 Examples:
 
-- `deletec c/CS2103T` deletes the class named **CS2103T.**
+- `deletec c/CS2103T` deletes the class named **CS2103T**.
 
 ### Assign students to class: `assign`
 
@@ -232,6 +257,7 @@ The following commands are only available in **focus mode.**
 | --------- | ------------------------------------ |
 | `list`    | `list`                               |
 | `session` | `session s/SESSION_NAME [d/DATE]`    |
+| `deletes` | `deletes s/SESSION_NAME`             |
 | `grade`   | `grade INDEX v/VALUE s/SESSION_NAME` |
 | `view`    | `view INDEX s/SESSION_NAME`          |
 | `lists`   | `lists`                              |
@@ -266,6 +292,22 @@ Format: `session s/SESSION_NAME [d/DATE]`
 Example:
 
 - `session s/Lab1 d/11-08-2022` will create a session `Lab1` on 11  August 2022.
+
+### Delete a session: `deletes`
+
+{% include note.html content="
+
+Deletes a session.
+
+" %}
+
+Format: `deletes s/SESSION_NAME`
+
+- Deletes the session named `SESSION_NAME`
+
+Examples:
+
+- `deletes s/Lab1` deletes the session named **Lab1**.
 
 ### Grade session: `grade`
 
