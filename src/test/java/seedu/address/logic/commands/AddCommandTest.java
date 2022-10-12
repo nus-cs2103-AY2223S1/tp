@@ -178,6 +178,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public Name getPersonName(Index personIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getPersonUsingIndex(Index personIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -199,6 +209,16 @@ public class AddCommandTest {
 
         @Override
         public Team getTeam(seedu.address.model.team.Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public seedu.address.model.team.Name getTeamName(Index teamIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Team getTeamUsingIndex(Index teamIndex) {
             throw new AssertionError("This method should not be called.");
         }
 

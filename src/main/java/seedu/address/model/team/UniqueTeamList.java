@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
+import seedu.address.model.team.exceptions.DuplicateTeamException;
+import seedu.address.model.team.exceptions.TeamNotFoundException;
 
 
 /**
@@ -44,7 +46,7 @@ public class UniqueTeamList implements Iterable<Team> {
     public void add(Team toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTeamException();
         }
         internalList.add(toAdd);
     }
@@ -66,7 +68,7 @@ public class UniqueTeamList implements Iterable<Team> {
                 return team;
             }
         }
-        throw new PersonNotFoundException();
+        throw new TeamNotFoundException();
     }
 
     /**

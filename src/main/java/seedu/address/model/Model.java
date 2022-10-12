@@ -97,6 +97,10 @@ public interface Model {
 
     public Person getPerson(seedu.address.model.person.Name name);
 
+    public seedu.address.model.person.Name getPersonName(Index personIndex);
+
+    public Person getPersonUsingIndex(Index personIndex);
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -110,6 +114,10 @@ public interface Model {
     public Team getTeam(Name name);
 
     ObservableList<Task> getFilteredTaskList();
+
+    public Name getTeamName(Index teamIndex);
+
+    public Team getTeamUsingIndex(Index teamIndex);
 
     void addTask(Index index, Task task);
 
