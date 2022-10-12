@@ -191,6 +191,11 @@ public class AddPersonCommandTest {
         public void sort(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteRelativeAppointments(Person patient) {
+            //to be implemented
+        }
     }
 
     /**
