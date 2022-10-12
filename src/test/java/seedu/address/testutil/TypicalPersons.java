@@ -30,9 +30,11 @@ public class TypicalPersons {
     public static final Patient BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
+            .withTasks("Insert urinary catheter", "Check vitals")
             .withTags("owesMoney", "friends").build();
     public static final Patient CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withAddress("wall street")
+            .withTasks("Update health records").build();
     public static final Patient DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
     public static final Patient ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")

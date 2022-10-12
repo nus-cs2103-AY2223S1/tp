@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
@@ -19,7 +20,7 @@ import seedu.address.model.task.TaskList;
 public class AddTaskCommand extends AddGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the person identified "
-            + "by the index number used in the last patient listing. "
+            + "by the index number used in the last patient listing.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TASK_DESCRIPTION + " [TASK_DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " 2 "
@@ -44,6 +45,7 @@ public class AddTaskCommand extends AddGenericCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

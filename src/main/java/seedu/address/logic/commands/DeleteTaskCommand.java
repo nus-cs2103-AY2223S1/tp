@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -43,27 +44,28 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient personToEdit = lastShownList.get(patientIndex.getZeroBased());
-        TaskList updatedTaskList = personToEdit.getTasks();
+        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        TaskList initialTaskList = patientToEdit.getTasks();
 
-        if (taskIndex.getZeroBased() >= updatedTaskList.size()) {
+        if (taskIndex.getZeroBased() >= initialTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
-        // TODO: update according to new implementation on TaskList#delete
-        Task deletedTask = updatedTaskList.delete(taskIndex.getZeroBased());
+        TaskList updatedTaskList = patientToEdit.getTasks().delete(taskIndex.getZeroBased());
+        Task deletedTask = initialTaskList.get(taskIndex.getZeroBased());
 
         Patient editedPerson = new Patient(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), updatedTaskList, personToEdit.getTags());
+                patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
+                patientToEdit.getAddress(), updatedTaskList, patientToEdit.getTags());
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(patientToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, editedPerson.getName(), deletedTask));
