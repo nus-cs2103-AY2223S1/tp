@@ -156,7 +156,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code orderString} is invalid.
      */
-    public static Order parseOrder(String orderString, Buyer buyer) throws ParseException {
+    public static Order parseOrder(String orderString, Buyer buyer) throws IllegalValueException {
         requireNonNull(orderString);
         String trimmedOrderString = orderString.trim();
         ArgumentMultimap argMultimap =
@@ -176,16 +176,15 @@ public class ParserUtil {
             throw new ParseException(AddOrderCommand.MESSAGE_USAGE);
         }
 
-        OrderStatus orderStatus =
+        PriceRange priceRange = parsePriceRange(argMultimap.getValue(PREFIX_ORDER_PRICE_RANGE).orElse(""));
+        Request request = parseRequest(argMultimap.getValue(PREFIX_ORDER_REQUESTS).orElse(""));
+        AdditionalRequests additionalRequests =
+                parseAdditionalRequests(argMultimap.getAllValues(PREFIX_ORDER_ADDITIONAL_REQUESTS));
+        LocalDate byDate = parseDate(argMultimap.getValue(PREFIX_ORDER_DATE).orElse(""));
+        Price price = parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).orElse(""));
+        OrderStatus orderStatus = parseOrderStatus(argMultimap.getValue(PREFIX_ORDER_STATUS).orElse(""));
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, tagList, null);
-
-        return new Order(trimmedOrderString);
+        return new Order(buyer, priceRange, request, additionalRequests, byDate, price, orderStatus);
     }
 
     /**
@@ -203,7 +202,7 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> orders} into a {@code List<Order>}.
      */
-    public static List<Order> parseOrders(Collection<String> orders, Buyer buyer) throws ParseException {
+    public static List<Order> parseOrders(Collection<String> orders, Buyer buyer) throws IllegalValueException {
         requireNonNull(orders);
         final List<Order> orderList = new ArrayList<>();
         for (String order : orders) {

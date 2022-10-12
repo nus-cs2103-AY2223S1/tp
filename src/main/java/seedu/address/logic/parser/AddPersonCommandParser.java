@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.*;
@@ -22,7 +23,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
      * and returns an AddPersonCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddPersonCommand parse(String args) throws ParseException {
+    public AddPersonCommand parse(String args) throws ParseException, IllegalValueException {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ORDER);
