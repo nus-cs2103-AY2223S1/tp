@@ -134,6 +134,27 @@
     -fx-max-height: Infinity;
 }
 
+.header_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+}
+
+.header_box_background {
+    -fx-background-color: #134074;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.header_box_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #c4c8cd;
+}
+
 .stack-pane {
      -fx-background-color: #13315C;
 }
