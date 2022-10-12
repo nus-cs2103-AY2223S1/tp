@@ -1,5 +1,6 @@
 package seedu.address.model.company;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -14,6 +15,7 @@ import seedu.address.model.ReadOnlyCompany;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Transaction;
 import seedu.address.model.transaction.TransactionLog;
 
 /**
@@ -44,6 +46,7 @@ public class Company implements ReadOnlyCompany {
      * @param address address of company.
      * @param tags tags of company.
      * @param pocs list of unique pocs.
+     * @param transactions list of transactions.
      */
     public Company(Name name, Address address, Set<Tag> tags, UniquePocList pocs, TransactionLog transactions) {
         requireAllNonNull(name, address, tags, pocs);
@@ -94,6 +97,18 @@ public class Company implements ReadOnlyCompany {
     public boolean hasPoc(Poc poc) {
         requireNonNull(poc);
         return pocs.contains(poc);
+    }
+
+    public double getTotalTransacted() {
+        return transactions.calculateNetTransacted();
+    }
+
+    /**
+     * Adds a transaction to the transaction log in the company.
+     * @param transaction to be added to the list.
+     */
+    public void addTransaction(Transaction transaction) {
+        this.transactions.addTransaction(transaction);
     }
 
     /**
@@ -157,6 +172,15 @@ public class Company implements ReadOnlyCompany {
             builder.append(prefix);
             prefix = ", ";
             builder.append(poc.getName());
+        }
+
+        TransactionLog transactions = getTransactions();
+        builder.append("; Total transactions: $");
+        if (!isNull(transactions) && !transactions.isEmpty()) {
+            System.out.println(transactions.calculateNetTransacted());
+            builder.append(transactions.calculateNetTransacted());
+        } else {
+            builder.append("0");
         }
         return builder.toString();
     }

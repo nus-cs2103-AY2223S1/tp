@@ -9,6 +9,7 @@ import seedu.address.model.company.Name;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Transaction;
 import seedu.address.model.transaction.TransactionLog;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -93,6 +94,14 @@ public class CompanyBuilder {
      */
     public CompanyBuilder withAddedPoc(Poc poc) {
         this.pocs.add(poc);
+        return this;
+    }
+
+    /**
+     * Adds transaction to the {@code Transactions} of the {@code Company} that we are building.
+     */
+    public CompanyBuilder withTransaction(Transaction transaction) {
+        this.transactions.addTransaction(transaction);
         return this;
     }
 
