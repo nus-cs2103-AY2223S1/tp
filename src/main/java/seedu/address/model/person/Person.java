@@ -10,6 +10,7 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+    public static final Integer DEFAULT_RATES_PER_CLASS = 40;
 
     // Identity fields
     private final Name name;
@@ -20,6 +21,7 @@ public class Person {
     private final Address address;
     private final Money moneyOwed;
     private final Money moneyPaid;
+    private final Money ratesPerClass;
     private final AdditionalNotes additionalNotes;
     private Class aClass;
 
@@ -36,6 +38,7 @@ public class Person {
         this.aClass = new Class();
         this.moneyOwed = new Money();
         this.moneyPaid = new Money();
+        this.ratesPerClass = new Money(DEFAULT_RATES_PER_CLASS);
         this.additionalNotes = new AdditionalNotes("");
     }
 
@@ -43,8 +46,8 @@ public class Person {
      * Overloaded constructor.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Class aClass,
-                  Money moneyOwed, Money moneyPaid, AdditionalNotes additionalNotes) {
+    public Person(Name name, Phone phone, Email email, Address address, Class aClass, Money moneyOwed,
+                  Money moneyPaid, Money ratesPerClass, AdditionalNotes additionalNotes) {
         requireAllNonNull(name, phone, email, address, additionalNotes, aClass);
         this.name = name;
         this.phone = phone;
@@ -53,6 +56,7 @@ public class Person {
         this.aClass = aClass;
         this.moneyOwed = moneyOwed;
         this.moneyPaid = moneyPaid;
+        this.ratesPerClass = ratesPerClass;
         this.additionalNotes = additionalNotes;
     }
 
@@ -91,6 +95,9 @@ public class Person {
         return moneyPaid;
     }
 
+    public Money getRatesPerClass() {
+        return ratesPerClass;
+    }
     public AdditionalNotes getAdditionalNotes() {
         return additionalNotes;
     }
@@ -131,13 +138,14 @@ public class Person {
                 && otherPerson.getAClass().toString().equals(getAClass().toString())
                 && otherPerson.getMoneyOwed().equals(getMoneyOwed())
                 && otherPerson.getMoneyPaid().equals(getMoneyPaid())
+                && otherPerson.getRatesPerClass().equals(getRatesPerClass())
                 && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, aClass, moneyOwed, moneyPaid, additionalNotes);
+        return Objects.hash(name, phone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass, additionalNotes);
     }
 
     @Override
@@ -156,6 +164,8 @@ public class Person {
                 .append(getMoneyOwed())
                 .append("; Money Paid: ")
                 .append(getMoneyPaid())
+                .append("; Money Per Class: ")
+                .append(getRatesPerClass())
                 .append("; Additional notes: ")
                 .append(getAdditionalNotes());
 

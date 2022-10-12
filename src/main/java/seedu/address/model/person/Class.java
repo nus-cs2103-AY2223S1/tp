@@ -1,6 +1,6 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -22,7 +22,7 @@ public class Class {
     public static final String VALIDATION_DATETIME_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
     public static final String VALIDATION_TIME_REGEX = "[0-9]{4}";
     public static final String VALIDATION_CLASS_REGEX = VALIDATION_DATETIME_REGEX
-            + "[ ]" + VALIDATION_TIME_REGEX + "[-]" + VALIDATION_TIME_REGEX;
+            + " " + VALIDATION_TIME_REGEX + "-" + VALIDATION_TIME_REGEX;
 
     public final LocalDate date;
     public final LocalTime startTime;
@@ -48,10 +48,7 @@ public class Class {
      * @param endTime LocalTime object.
      */
     public Class(LocalDate date, LocalTime startTime, LocalTime endTime, String classDateTime) {
-        requireNonNull(date);
-        requireNonNull(startTime);
-        requireNonNull(endTime);
-        requireNonNull(classDateTime);
+        requireAllNonNull(date, startTime, endTime, classDateTime);
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
