@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 
@@ -27,7 +27,7 @@ public class SAddCommandParser implements Parser<SAddCommand> {
                 ArgumentTokenizer.tokenize(args,
                         CliSyntax.PREFIX_NAME,
                         CliSyntax.PREFIX_ADDRESS,
-                        CliSyntax.PREFIX_DETAIL);
+                        CliSyntax.PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap,
                 CliSyntax.PREFIX_NAME,
@@ -38,9 +38,9 @@ public class SAddCommandParser implements Parser<SAddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
-        Set<Detail> detailList = ParserUtil.parseDetails(argMultimap.getAllValues(CliSyntax.PREFIX_DETAIL));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
-        Stall stall = new Stall(name, address, detailList);
+        Stall stall = new Stall(name, address, tagList);
 
         return new SAddCommand(stall);
     }

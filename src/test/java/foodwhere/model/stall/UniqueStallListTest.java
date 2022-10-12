@@ -43,7 +43,7 @@ public class UniqueStallListTest {
         Stall editedAlice =
                 new StallBuilder(TypicalStalls.ALICE)
                         .withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
-                        .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
+                        .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueStallList.contains(editedAlice));
     }
@@ -90,7 +90,7 @@ public class UniqueStallListTest {
         uniqueStallList.add(TypicalStalls.ALICE);
         Stall editedAlice = new StallBuilder(TypicalStalls.ALICE)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
-                .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         uniqueStallList.setStall(TypicalStalls.ALICE, editedAlice);
         UniqueStallList expectedUniqueStallList = new UniqueStallList();

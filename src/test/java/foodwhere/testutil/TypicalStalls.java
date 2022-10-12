@@ -2,10 +2,10 @@ package foodwhere.testutil;
 
 import static foodwhere.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static foodwhere.logic.commands.CommandTestUtil.VALID_DETAIL_FRIEND;
-import static foodwhere.logic.commands.CommandTestUtil.VALID_DETAIL_HUSBAND;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,14 +22,14 @@ public class TypicalStalls {
 
     public static final Stall ALICE = new StallBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
-            .withDetails("friends").build();
+            .withTags("friends").build();
     public static final Stall BENSON = new StallBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withDetails("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").build();
     public static final Stall CARL = new StallBuilder().withName("Carl Kurz")
             .withAddress("wall street").build();
     public static final Stall DANIEL = new StallBuilder().withName("Daniel Meier")
-            .withAddress("10th street").withDetails("friends").build();
+            .withAddress("10th street").withTags("friends").build();
     public static final Stall ELLE = new StallBuilder().withName("Elle Meyer")
             .withAddress("michegan ave").build();
     public static final Stall FIONA = new StallBuilder().withName("Fiona Kunz")
@@ -45,9 +45,9 @@ public class TypicalStalls {
 
     // Manually added - Stall's details found in {@code CommandTestUtil}
     public static final Stall AMY = new StallBuilder().withName(VALID_NAME_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withDetails(VALID_DETAIL_FRIEND).build();
+            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Stall BOB = new StallBuilder().withName(VALID_NAME_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withDetails(VALID_DETAIL_HUSBAND, VALID_DETAIL_FRIEND)
+            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

@@ -15,8 +15,8 @@ import foodwhere.commons.util.CollectionUtil;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.Model;
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 
@@ -27,13 +27,13 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the stall identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the tags of the stall identified "
             + "by the index number used in the displayed stall list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_NAME + "NAME] "
             + "[" + CliSyntax.PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + CliSyntax.PREFIX_DETAIL + "DETAIL]...\n"
+            + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_STALL_SUCCESS = "Edited Stall: %1$s";
@@ -85,9 +85,9 @@ public class EditCommand extends Command {
 
         Name updatedName = editStallDescriptor.getName().orElse(stallToEdit.getName());
         Address updatedAddress = editStallDescriptor.getAddress().orElse(stallToEdit.getAddress());
-        Set<Detail> updatedDetails = editStallDescriptor.getDetails().orElse(stallToEdit.getDetails());
+        Set<Tag> updatedTags = editStallDescriptor.getTags().orElse(stallToEdit.getTags());
 
-        return new Stall(updatedName, updatedAddress, updatedDetails);
+        return new Stall(updatedName, updatedAddress, updatedTags);
     }
 
     @Override
@@ -115,25 +115,25 @@ public class EditCommand extends Command {
     public static class EditStallDescriptor {
         private Name name;
         private Address address;
-        private Set<Detail> details;
+        private Set<Tag> tags;
 
         public EditStallDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code details} is used internally.
+         * A defensive copy of {@code tags} is used internally.
          */
         public EditStallDescriptor(EditStallDescriptor toCopy) {
             setName(toCopy.name);
             setAddress(toCopy.address);
-            setDetails(toCopy.details);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, address, details);
+            return CollectionUtil.isAnyNonNull(name, address, tags);
         }
 
         public void setName(Name name) {
@@ -153,20 +153,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code details} to this object's {@code details}.
-         * A defensive copy of {@code details} is used internally.
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
          */
-        public void setDetails(Set<Detail> details) {
-            this.details = (details != null) ? new HashSet<>(details) : null;
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
-         * Returns an unmodifiable detail set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code details} is null.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Detail>> getDetails() {
-            return (details != null) ? Optional.of(Collections.unmodifiableSet(details)) : Optional.empty();
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override
@@ -186,7 +186,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getAddress().equals(e.getAddress())
-                    && getDetails().equals(e.getDetails());
+                    && getTags().equals(e.getTags());
         }
     }
 }

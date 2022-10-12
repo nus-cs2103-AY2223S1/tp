@@ -18,12 +18,12 @@ public class SAddCommand extends Command {
             + "Parameters: "
             + CliSyntax.PREFIX_NAME + "NAME "
             + CliSyntax.PREFIX_ADDRESS + "ADDRESS "
-            + "[" + CliSyntax.PREFIX_DETAIL + "DETAIL]...\n"
+            + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_NAME + "Ah Kim Chicken Rice "
             + CliSyntax.PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + CliSyntax.PREFIX_DETAIL + "chickenRice "
-            + CliSyntax.PREFIX_DETAIL + "opensDaily";
+            + CliSyntax.PREFIX_TAG + "chickenRice "
+            + CliSyntax.PREFIX_TAG + "opensDaily";
 
     public static final String MESSAGE_SUCCESS = "New stall added: %1$s";
     public static final String MESSAGE_DUPLICATE_STALL = "This stall already exists in the address book";

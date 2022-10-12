@@ -16,7 +16,7 @@ public class StallTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Stall stall = new StallBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> stall.getDetails().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> stall.getTags().remove(0));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class StallTest {
         // same name, all other attributes different -> returns true
         Stall editedAlice = new StallBuilder(TypicalStalls.ALICE)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
-                .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .withReview(TypicalReviews.BOB)
                 .build();
         assertTrue(TypicalStalls.ALICE.isSameStall(editedAlice));
@@ -76,8 +76,8 @@ public class StallTest {
         editedAlice = new StallBuilder(TypicalStalls.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
         assertFalse(TypicalStalls.ALICE.equals(editedAlice));
 
-        // different details -> returns false
-        editedAlice = new StallBuilder(TypicalStalls.ALICE).withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND).build();
+        // different tags -> returns false
+        editedAlice = new StallBuilder(TypicalStalls.ALICE).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         assertFalse(TypicalStalls.ALICE.equals(editedAlice));
 
         // different reviews -> returns false

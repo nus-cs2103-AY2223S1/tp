@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 import foodwhere.model.AddressBook;
 import foodwhere.model.ReadOnlyAddressBook;
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Review;
@@ -23,22 +23,22 @@ public class SampleDataUtil {
     public static Stall[] getSampleStalls() {
         return new Stall[] {
             new Stall(new Name("Alex Chicken Rice"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getDetailSet("chickenrice")),
+                    getTagSet("chickenrice")),
             new Stall(new Name("Char Char Kuey Tiao"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getDetailSet("charkwaytiao")),
+                    getTagSet("charkwaytiao")),
             new Stall(new Name("Yu Bak Chor Mee"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getDetailSet("bakchormee")),
+                    getTagSet("bakchormee")),
             new Stall(new Name("Irfan Muslim Food"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getDetailSet("family", "halal", "muslim"))
+                    getTagSet("family", "halal", "muslim"))
         };
     }
 
     public static Review[] getSampleReviews() {
         return new Review[] {
             new Review(new Name("Alex Chicken Rice"), new Date("2022-09-20"),
-                    new Content("Very tasty. Worth the trip"), getDetailSet("travelworthy")),
+                    new Content("Very tasty. Worth the trip"), getTagSet("travelworthy")),
             new Review(new Name("Irfan Muslim Food"), new Date("2022-09-20"),
-                    new Content("Very affordable"), getDetailSet("halal"))
+                    new Content("Very affordable"), getTagSet("halal"))
         };
     }
 
@@ -55,11 +55,11 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a detail set containing the list of strings given.
+     * Returns a tag set containing the list of strings given.
      */
-    public static Set<Detail> getDetailSet(String... strings) {
+    public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Detail::new)
+                .map(Tag::new)
                 .collect(Collectors.toSet());
     }
 

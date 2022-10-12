@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.RAddCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.commons.Detail;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 
@@ -28,7 +28,7 @@ public class RAddCommandParser implements Parser<RAddCommand> {
                         CliSyntax.PREFIX_STALL_INDEX,
                         CliSyntax.PREFIX_DATE,
                         CliSyntax.PREFIX_CONTENT,
-                        CliSyntax.PREFIX_DETAIL);
+                        CliSyntax.PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap,
                 CliSyntax.PREFIX_STALL_INDEX,
@@ -48,10 +48,10 @@ public class RAddCommandParser implements Parser<RAddCommand> {
 
         Date date = ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE).get());
         Content content = ParserUtil.parseContent(argMultimap.getValue(CliSyntax.PREFIX_CONTENT).get());
-        Set<Detail> detailList = ParserUtil.parseDetails(argMultimap.getAllValues(CliSyntax.PREFIX_DETAIL));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
 
-        return new RAddCommand(stallIndex, date, content, detailList);
+        return new RAddCommand(stallIndex, date, content, tagList);
     }
 
     /**

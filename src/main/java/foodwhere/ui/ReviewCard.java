@@ -38,9 +38,9 @@ public class ReviewCard extends UiPart<Region> {
     @FXML
     private Label content;
     @FXML
-    private Label details;
+    private Label tags;
     @FXML
-    private Label detailsLabel;
+    private Label tagsLabel;
 
     /**
      * Creates a {@code ReviewCode} with the given {@code Review} and index to display.
@@ -53,16 +53,16 @@ public class ReviewCard extends UiPart<Region> {
         date.setText(review.getDate().value);
         content.setText(review.getContent().value);
 
-        if (!review.getDetails().isEmpty()) {
-            String assigneesNames = review.getDetails()
+        if (!review.getTags().isEmpty()) {
+            String assigneesNames = review.getTags()
                     .stream()
-                    .flatMap(rev -> Stream.of(rev.detail))
+                    .flatMap(rev -> Stream.of(rev.tag))
                     .collect(Collectors.joining(", "));
 
-            details.setText(assigneesNames);
-            detailsLabel.setText("Details:");
+            tags.setText(assigneesNames);
+            tagsLabel.setText("Tag:");
         } else {
-            detailsLabel.setText("");
+            tagsLabel.setText("");
         }
     }
 

@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import foodwhere.logic.commands.EditCommand;
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 
@@ -32,7 +32,7 @@ public class EditStallDescriptorBuilder {
         descriptor = new EditCommand.EditStallDescriptor();
         descriptor.setName(stall.getName());
         descriptor.setAddress(stall.getAddress());
-        descriptor.setDetails(stall.getDetails());
+        descriptor.setTags(stall.getTags());
     }
 
     /**
@@ -52,12 +52,12 @@ public class EditStallDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code details} into a {@code Set<Detail>} and set it to the {@code EditStallDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStallDescriptor}
      * that we are building.
      */
-    public EditStallDescriptorBuilder withDetails(String... details) {
-        Set<Detail> detailSet = Stream.of(details).map(Detail::new).collect(Collectors.toSet());
-        descriptor.setDetails(detailSet);
+    public EditStallDescriptorBuilder withTags(String... tags) {
+        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setTags(tagSet);
         return this;
     }
 

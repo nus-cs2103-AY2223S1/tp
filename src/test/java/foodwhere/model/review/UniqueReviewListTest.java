@@ -44,7 +44,7 @@ public class UniqueReviewListTest {
                 new ReviewBuilder(TypicalReviews.ALICE)
                         .withDate(CommandTestUtil.VALID_DATE_BOB)
                         .withContent(CommandTestUtil.VALID_CONTENT_BOB)
-                        .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
+                        .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                         .build();
         assertFalse(uniqueReviewList.contains(editedAlice));
     }
@@ -92,7 +92,7 @@ public class UniqueReviewListTest {
         Review editedAlice = new ReviewBuilder(TypicalReviews.ALICE)
                 .withDate(CommandTestUtil.VALID_DATE_BOB)
                 .withContent(CommandTestUtil.VALID_CONTENT_BOB)
-                .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         uniqueReviewList.setReview(TypicalReviews.ALICE, editedAlice);
         UniqueReviewList expectedUniqueReviewList = new UniqueReviewList();

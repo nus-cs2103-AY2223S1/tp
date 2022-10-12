@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import foodwhere.commons.exceptions.IllegalValueException;
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Review;
@@ -25,9 +25,7 @@ class JsonAdaptedReview {
 
     private final String date;
     private final String content;
-    private final List<JsonAdaptedDetail> details = new ArrayList<>();
-
-
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedReview} with the given stall details.
@@ -35,11 +33,11 @@ class JsonAdaptedReview {
     @JsonCreator
     public JsonAdaptedReview(@JsonProperty("date") String date,
                              @JsonProperty("content") String content,
-                             @JsonProperty("details") List<JsonAdaptedDetail> details) {
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.date = date;
         this.content = content;
-        if (details != null) {
-            this.details.addAll(details);
+        if (tags != null) {
+            this.tags.addAll(tags);
         }
     }
 
@@ -49,8 +47,8 @@ class JsonAdaptedReview {
     public JsonAdaptedReview(Review source) {
         this.date = source.getDate().value;
         this.content = source.getContent().value;
-        details.addAll(source.getDetails().stream()
-                .map(JsonAdaptedDetail::new)
+        this.tags.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
 
@@ -65,9 +63,9 @@ class JsonAdaptedReview {
                     Name.class.getSimpleName()));
         }
 
-        final List<Detail> reviewDetails = new ArrayList<>();
-        for (JsonAdaptedDetail detail : details) {
-            reviewDetails.add(detail.toModelType());
+        final List<Tag> reviewTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : this.tags) {
+            reviewTags.add(tag.toModelType());
         }
 
         if (date == null) {
@@ -88,9 +86,9 @@ class JsonAdaptedReview {
         }
         final Content modelContent = new Content(content); // to add later
 
-        final Set<Detail> modelDetails = new HashSet<>(reviewDetails);
+        final Set<Tag> modelTags = new HashSet<>(reviewTags);
 
-        return new Review(modelName, modelDate, modelContent, modelDetails);
+        return new Review(modelName, modelDate, modelContent, modelTags);
     }
 
 }

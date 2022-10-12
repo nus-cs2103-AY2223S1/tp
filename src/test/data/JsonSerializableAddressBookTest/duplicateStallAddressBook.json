@@ -2,7 +2,7 @@
   "stalls": [ {
     "name": "Alice Pauline",
     "address": "123, Jurong West Ave 6, #08-111",
-    "details": [ "friends" ]
+    "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "address": "4th street"

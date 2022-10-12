@@ -36,9 +36,9 @@ public class StallCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label details;
+    private Label tags;
     @FXML
-    private Label detailsLabel;
+    private Label tagsLabel;
 
     /**
      * Creates a {@code StallCode} with the given {@code Stall} and index to display.
@@ -50,16 +50,16 @@ public class StallCard extends UiPart<Region> {
         name.setText(stall.getName().fullName);
         address.setText(stall.getAddress().value);
 
-        if (!stall.getDetails().isEmpty()) {
-            String assigneesNames = stall.getDetails()
+        if (!stall.getTags().isEmpty()) {
+            String assigneesNames = stall.getTags()
                     .stream()
-                    .flatMap(rev -> Stream.of(rev.detail))
+                    .flatMap(rev -> Stream.of(rev.tag))
                     .collect(Collectors.joining(", "));
 
-            details.setText(assigneesNames);
-            detailsLabel.setText("Details:");
+            tags.setText(assigneesNames);
+            tagsLabel.setText("Tags:");
         } else {
-            detailsLabel.setText("");
+            tagsLabel.setText("");
         }
     }
 

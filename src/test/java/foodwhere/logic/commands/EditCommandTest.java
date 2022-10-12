@@ -47,11 +47,11 @@ public class EditCommandTest {
         StallBuilder stallInList = new StallBuilder(lastStall);
         Stall editedStall =
                 stallInList.withName(CommandTestUtil.VALID_NAME_BOB)
-                .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND).build();
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
 
         EditCommand.EditStallDescriptor descriptor =
                 new EditStallDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
-                .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND).build();
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastStall, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STALL_SUCCESS, editedStall);

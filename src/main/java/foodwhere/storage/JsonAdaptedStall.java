@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import foodwhere.commons.exceptions.IllegalValueException;
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
@@ -25,7 +25,7 @@ class JsonAdaptedStall {
 
     private final String name;
     private final String address;
-    private final List<JsonAdaptedDetail> details = new ArrayList<>();
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedReview> reviews = new ArrayList<>();
 
     /**
@@ -34,12 +34,12 @@ class JsonAdaptedStall {
     @JsonCreator
     public JsonAdaptedStall(@JsonProperty("name") String name,
                             @JsonProperty("address") String address,
-                            @JsonProperty("details") List<JsonAdaptedDetail> details,
+                            @JsonProperty("tags") List<JsonAdaptedTag> tags,
                             @JsonProperty("reviews") List<JsonAdaptedReview> reviews) {
         this.name = name;
         this.address = address;
-        if (details != null) {
-            this.details.addAll(details);
+        if (tags != null) {
+            this.tags.addAll(tags);
         }
         if (reviews != null) {
             this.reviews.addAll(reviews);
@@ -52,8 +52,8 @@ class JsonAdaptedStall {
     public JsonAdaptedStall(Stall source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
-        details.addAll(source.getDetails().stream()
-                .map(JsonAdaptedDetail::new)
+        tags.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
 
@@ -82,9 +82,9 @@ class JsonAdaptedStall {
      * @throws IllegalValueException if there were any data constraints violated in the adapted stall.
      */
     public Stall toModelType() throws IllegalValueException {
-        final List<Detail> stallDetails = new ArrayList<>();
-        for (JsonAdaptedDetail detail : details) {
-            stallDetails.add(detail.toModelType());
+        final List<Tag> stallTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : this.tags) {
+            stallTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -103,9 +103,9 @@ class JsonAdaptedStall {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Detail> modelDetails = new HashSet<>(stallDetails);
+        final Set<Tag> modelTags = new HashSet<>(stallTags);
 
-        return new Stall(modelName, modelAddress, modelDetails);
+        return new Stall(modelName, modelAddress, modelTags);
     }
 
     /**

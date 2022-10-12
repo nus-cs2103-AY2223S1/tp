@@ -5,7 +5,7 @@ import java.util.Set;
 import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.parser.CliSyntax;
-import foodwhere.model.commons.Detail;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.stall.Stall;
 
 /**
@@ -27,8 +27,8 @@ public class StallUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(CliSyntax.PREFIX_NAME + stall.getName().fullName + " ");
         sb.append(CliSyntax.PREFIX_ADDRESS + stall.getAddress().value + " ");
-        stall.getDetails().stream().forEach(
-            s -> sb.append(CliSyntax.PREFIX_DETAIL + s.detail + " ")
+        stall.getTags().stream().forEach(
+            s -> sb.append(CliSyntax.PREFIX_TAG + s.tag + " ")
         );
         return sb.toString();
     }
@@ -41,12 +41,12 @@ public class StallUtil {
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getAddress().ifPresent(address ->
                 sb.append(CliSyntax.PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getDetails().isPresent()) {
-            Set<Detail> details = descriptor.getDetails().get();
-            if (details.isEmpty()) {
-                sb.append(CliSyntax.PREFIX_DETAIL);
+        if (descriptor.getTags().isPresent()) {
+            Set<Tag> tags = descriptor.getTags().get();
+            if (tags.isEmpty()) {
+                sb.append(CliSyntax.PREFIX_TAG);
             } else {
-                details.forEach(s -> sb.append(CliSyntax.PREFIX_DETAIL).append(s.detail).append(" "));
+                tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG).append(s.tag).append(" "));
             }
         }
         return sb.toString();

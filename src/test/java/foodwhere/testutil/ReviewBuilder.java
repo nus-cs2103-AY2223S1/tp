@@ -3,8 +3,8 @@ package foodwhere.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Review;
@@ -22,7 +22,7 @@ public class ReviewBuilder {
     private Name name;
     private Date date;
     private Content content;
-    private Set<Detail> details;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code ReviewBuilder} with the default details.
@@ -31,7 +31,7 @@ public class ReviewBuilder {
         name = new Name(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
         content = new Content(DEFAULT_CONTENT);
-        details = new HashSet<>();
+        tags = new HashSet<>();
     }
 
     /**
@@ -41,7 +41,7 @@ public class ReviewBuilder {
         name = new Name(reviewToCopy.getName().fullName);
         date = reviewToCopy.getDate();
         content = reviewToCopy.getContent();
-        details = new HashSet<>(reviewToCopy.getDetails());
+        tags = new HashSet<>(reviewToCopy.getTags());
     }
 
     /**
@@ -69,15 +69,15 @@ public class ReviewBuilder {
     }
 
     /**
-     * Parses the {@code details} into a {@code Set<Detail>} and set it to the {@code Review} that we are building.
+     * Parses the {@code tag} into a {@code Set<Tag>} and set it to the {@code Review} that we are building.
      */
-    public ReviewBuilder withDetails(String ... details) {
-        this.details = SampleDataUtil.getDetailSet(details);
+    public ReviewBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
     public Review build() {
-        return new Review(name, date, content, details);
+        return new Review(name, date, content, tags);
     }
 
 }

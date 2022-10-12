@@ -77,7 +77,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = SAddCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
-        Stall expectedStall = new StallBuilder(AMY).withDetails().build();
+        Stall expectedStall = new StallBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStall(expectedStall);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

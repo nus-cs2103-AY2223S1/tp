@@ -9,8 +9,8 @@ import java.util.Set;
 import foodwhere.commons.core.index.Index;
 import foodwhere.commons.util.StringUtil;
 import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.stall.Address;
@@ -67,30 +67,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String detail} into a {@code Detail}.
+     * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code detail} is invalid.
+     * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Detail parseDetail(String detail) throws ParseException {
-        requireNonNull(detail);
-        String trimmedDetail = detail.trim();
-        if (!Detail.isValidDetail(trimmedDetail)) {
-            throw new ParseException(Detail.MESSAGE_CONSTRAINTS);
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTag(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Detail(trimmedDetail);
+        return new Tag(trimmedTag);
     }
 
     /**
-     * Parses {@code Collection<String> details} into a {@code Set<Detail>}.
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Detail> parseDetails(Collection<String> details) throws ParseException {
-        requireNonNull(details);
-        final Set<Detail> detailSet = new HashSet<>();
-        for (String detail : details) {
-            detailSet.add(parseDetail(detail));
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tag : tags) {
+            tagSet.add(parseTag(tag));
         }
-        return detailSet;
+        return tagSet;
     }
 
     /**

@@ -4,10 +4,10 @@ import static foodwhere.logic.commands.CommandTestUtil.VALID_CONTENT_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_CONTENT_BOB;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static foodwhere.logic.commands.CommandTestUtil.VALID_DETAIL_FRIEND;
-import static foodwhere.logic.commands.CommandTestUtil.VALID_DETAIL_HUSBAND;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,15 +23,15 @@ public class TypicalReviews {
     public static final Review ALICE = new ReviewBuilder().withName("Alice Pauline")
             .withDate("1/1/2020")
             .withContent("123, Jurong West Ave 6, #08-111")
-            .withDetails("friends").build();
+            .withTags("friends").build();
     public static final Review BENSON = new ReviewBuilder().withName("Benson Meier")
             .withDate("31/12/2021")
             .withContent("311, Clementi Ave 2, #02-25")
-            .withDetails("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").build();
     public static final Review CARL = new ReviewBuilder().withName("Carl Kurz")
             .withDate("1/4/2020").withContent("wall street").build();
     public static final Review DANIEL = new ReviewBuilder().withName("Daniel Meier")
-            .withDate("29/2/2020").withContent("10th street").withDetails("friends").build();
+            .withDate("29/2/2020").withContent("10th street").withTags("friends").build();
     public static final Review ELLE = new ReviewBuilder().withName("Elle Meyer")
             .withDate("29/9/2003").withContent("michegan ave").build();
     public static final Review FIONA = new ReviewBuilder().withName("Fiona Kunz")
@@ -48,10 +48,10 @@ public class TypicalReviews {
     // Manually added - Review's details found in {@code CommandTestUtil}
     public static final Review AMY = new ReviewBuilder().withName(VALID_NAME_AMY)
             .withDate(VALID_DATE_AMY).withContent(VALID_CONTENT_AMY)
-            .withDetails(VALID_DETAIL_FRIEND).build();
+            .withTags(VALID_TAG_FRIEND).build();
     public static final Review BOB = new ReviewBuilder().withName(VALID_NAME_BOB)
             .withDate(VALID_DATE_BOB).withContent(VALID_CONTENT_BOB)
-            .withDetails(VALID_DETAIL_HUSBAND, VALID_DETAIL_FRIEND).build();
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
