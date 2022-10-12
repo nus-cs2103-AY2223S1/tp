@@ -1,12 +1,16 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMyInsuRec;
@@ -25,7 +29,7 @@ public class AddMeetingCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to MyInsuRec.\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
+            + PREFIX_INDEX + "INDEX "
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in MyInsuRec";
@@ -33,27 +37,24 @@ public class AddMeetingCommand extends Command {
 
     private final MeetingDate meetingDate;
     private final MeetingTime meetingTime;
-    private final String linkedClientName;
+    private final Index linkedClientIndex;
 
     /**
      * Creates an AddMeetingCommand to add the specified meeting.
      */
-    public AddMeetingCommand(String clientName, MeetingDate date, MeetingTime time) {
+    public AddMeetingCommand(Index clientIndex, MeetingDate date, MeetingTime time) {
         meetingDate = date;
         meetingTime = time;
-        linkedClientName = clientName;
+        linkedClientIndex = clientIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ReadOnlyMyInsuRec clientBook = model.getMyInsuRec();
-        List<Client> filteredClientList = clientBook.getClientList().stream().filter(
-                client -> client.getName().toString().equals(linkedClientName)
-        ).collect(Collectors.toList());
-        if (filteredClientList.size() != 1) {
-            throw new CommandException(String.format(MESSAGE_CLIENT_NOT_FOUND, linkedClientName));
+        ObservableList<Client> clientList = model.getFilteredClientList();
+        if (linkedClientIndex.getZeroBased() > clientList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
-        Client oldClient = filteredClientList.get(0);
+        Client oldClient = clientList.get(linkedClientIndex.getZeroBased());
         Client newClient = new Client(
                 oldClient.getName(),
                 oldClient.getPhone(),
