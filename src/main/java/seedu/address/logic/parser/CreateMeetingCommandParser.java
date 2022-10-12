@@ -18,13 +18,12 @@ public class CreateMeetingCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public CreateMeetingCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        String meetingInfo = args.trim();
+        if (meetingInfo.isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateMeetingCommand.MESSAGE_USAGE));
         }
 
-        String meetingInfo = trimmedArgs;
         // String[] nameKeywords = trimmedArgs.split("\\s+"); // split by whitespace
 
         return new CreateMeetingCommand(meetingInfo);

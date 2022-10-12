@@ -112,4 +112,11 @@ public class CreateMeetingCommand extends Command {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof CreateMeetingCommand // instanceof handles nulls
+            && this.meetingInfo.equals(((CreateMeetingCommand) other).meetingInfo)); // state check
+    }
+
 }
