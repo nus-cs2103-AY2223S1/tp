@@ -3,11 +3,14 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 
-import java.util.List;
-import java.util.stream.Collectors;
+
+
 
 /**
  * Lists all persons in the address book to the user.
