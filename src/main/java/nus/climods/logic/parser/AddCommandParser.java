@@ -5,7 +5,6 @@ import java.util.stream.Stream;
 import nus.climods.logic.commands.AddCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.logic.parser.parameters.ModuleCodeParameter;
-import nus.climods.model.module.UserModule;
 
 
 /**
@@ -29,24 +28,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        /*
-        ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_CODE, CliSyntax.PREFIX_TUTORIAL, CliSyntax.PREFIX_TAG);
-
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_CODE, CliSyntax.PREFIX_TUTORIAL)
-            || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
-        */
-
         ModuleCodeParameter mcp = new ModuleCodeParameter(args);
-
         String mc = mcp.getArgValue();
-
-        UserModule module = new UserModule(mc);
-
-        return new AddCommand(module);
-
+        return new AddCommand(mc);
     }
 
 }

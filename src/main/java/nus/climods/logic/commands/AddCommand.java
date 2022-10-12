@@ -28,25 +28,26 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in your list of modules";
 
-    private final UserModule toAdd;
+    private final String toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Module}
      */
-    public AddCommand(UserModule module) {
-        requireNonNull(module);
-        toAdd = module;
+    public AddCommand(String moduleCode) {
+        requireNonNull(moduleCode);
+        toAdd = moduleCode;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        UserModule moduleToAdd = new UserModule(toAdd, model);
 
-        if (model.hasUserModule(toAdd)) {
+        if (model.hasUserModule(moduleToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
-        model.addUserModule(toAdd);
+        model.addUserModule(moduleToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
