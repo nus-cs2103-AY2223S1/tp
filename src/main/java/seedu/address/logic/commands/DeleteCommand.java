@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the entry identified by the index number used in the displayed entry list.\n"
-        + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + COMMAND_WORD + " 1";
+        + "Parameters: INDEX (must be a positive integer) " + PREFIX_TYPE + "TYPE\n"
+        + "Example: " + COMMAND_WORD + " 1 t/e";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Entry: %1$s";
 
@@ -36,6 +37,14 @@ public class DeleteCommand extends Command {
         this.entryType = entryType;
     }
 
+    private Entry getEntryToDelete(Index targetIndex, List<Entry> lastShownList)
+            throws CommandException {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+        return lastShownList.get(targetIndex.getZeroBased());
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -44,19 +53,27 @@ public class DeleteCommand extends Command {
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             lastShownList = model.getFilteredExpenditureList();
+
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
             }
             entryToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+            entryToDelete = getEntryToDelete(targetIndex, lastShownList);
+
             model.deleteExpenditure(entryToDelete);
             break;
         case INCOME:
             lastShownList = model.getFilteredIncomeList();
+
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
             }
 
             entryToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+            entryToDelete = getEntryToDelete(targetIndex, lastShownList);
+
             model.deleteIncome(entryToDelete);
             break;
         default:
