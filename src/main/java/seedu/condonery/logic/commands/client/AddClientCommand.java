@@ -1,7 +1,9 @@
 package seedu.condonery.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.condonery.logic.parser.CliSyntax.*;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;

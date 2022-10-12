@@ -13,7 +13,9 @@ import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.parser.CondoneryParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.Model;
+import seedu.condonery.model.ReadOnlyClientDirectory;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.storage.Storage;
 
@@ -68,6 +70,21 @@ public class LogicManager implements Logic {
     @Override
     public Path getPropertyDirectoryFilePath() {
         return model.getPropertyDirectoryFilePath();
+    }
+
+    @Override
+    public ReadOnlyClientDirectory getClientDirectory() {
+        return model.getClientDirectory();
+    }
+
+    @Override
+    public ObservableList<Client> getFilteredClientList() {
+        return model.getFilteredClientList();
+    }
+
+    @Override
+    public Path getClientDirectoryFilePath() {
+        return model.getClientDirectoryFilePath();
     }
 
     @Override

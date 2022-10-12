@@ -20,8 +20,7 @@ import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
-import seedu.condonery.logic.commands.ListCommand;
-import seedu.condonery.logic.commands.client.AddClientCommand;
+import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.property.NameContainsKeywordsPredicate;
@@ -85,8 +84,8 @@ public class CondoneryParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListPropertyCommand.COMMAND_WORD) instanceof ListPropertyCommand);
+        assertTrue(parser.parseCommand(ListPropertyCommand.COMMAND_WORD + " 3") instanceof ListPropertyCommand);
     }
 
     @Test

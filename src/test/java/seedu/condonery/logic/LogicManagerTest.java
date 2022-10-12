@@ -19,7 +19,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.condonery.logic.commands.AddCommand;
 import seedu.condonery.logic.commands.CommandResult;
-import seedu.condonery.logic.commands.ListCommand;
+import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.Model;
@@ -64,8 +64,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListPropertyCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListPropertyCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
