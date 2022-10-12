@@ -151,10 +151,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-//        backgroundImage.fitWidthProperty().bind(pocListPanel.getRoot().widthProperty());
-//        backgroundImage.fitHeightProperty().bind(landingArea.heightProperty());
-//        jeepImage.fitWidthProperty().bind(backgroundImage.fitWidthProperty());
-//        jeepImage.fitHeightProperty().bind(backgroundImage.fitHeightProperty());
+        backgroundImage.fitWidthProperty().bind(landingArea.widthProperty());
+        backgroundImage.fitHeightProperty().bind(landingArea.heightProperty());
     }
 
     /**
