@@ -134,7 +134,7 @@ public class MeetingTest {
                 .withMeetingTime(VALID_MEETING_TIME_MEETING1)
                 .withClient(ALICE)
                 .build();
-        String expected = "Client: Alice Pauline; Description: meeting1; Date: 2020-01-08; Time: 07:20:45.342123342";
+        String expected = "Client: Alice Pauline; Description: meeting1; Date: 08012020; Time: 0720";
         assertEquals(meeting1.toString(), expected);
     }
 }
