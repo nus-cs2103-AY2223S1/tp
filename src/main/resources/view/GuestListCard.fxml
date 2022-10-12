@@ -79,8 +79,8 @@
 
         <Region minWidth="5" HBox.hgrow="NEVER" />
 
-        <HBox minWidth="240" maxWidth="240" >
-          <VBox id="roomDetails" minWidth="240" HBox.hgrow="NEVER">
+        <HBox minWidth="280" maxWidth="280" >
+          <VBox id="roomDetails" minWidth="280" HBox.hgrow="NEVER">
             <Label fx:id="roomDetails" text="Room Details" />
 
             <HBox fx:id="roomDetailsBox" alignment="CENTER_LEFT">
