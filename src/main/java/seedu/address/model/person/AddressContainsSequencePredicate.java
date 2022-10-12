@@ -16,7 +16,7 @@ public class AddressContainsSequencePredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return StringUtil.containsIgnoreCase(person.getEmail().value, sequence);
+        return StringUtil.containsIgnoreCase(person.getAddress().value, sequence);
     }
 
     @Override

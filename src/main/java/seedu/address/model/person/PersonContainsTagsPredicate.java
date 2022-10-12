@@ -2,33 +2,31 @@ package seedu.address.model.person;
 
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 /**
  * Tests that a {@code Person}'s {@code Tags} contains all the tags given; case-insensitive.
  */
 public class PersonContainsTagsPredicate implements Predicate<Person> {
-    private final List<String> searchTags;
+    private final List<String> tagsToSearchInLowerCase;
 
-    public PersonContainsTagsPredicate(List<String> searchTags) {
-        this.searchTags = searchTags;
+    public PersonContainsTagsPredicate(List<String> tagsToSearch) {
+        this.tagsToSearchInLowerCase = tagsToSearch.stream().map(String::toLowerCase).collect(Collectors.toList());
     }
 
     @Override
     public boolean test(Person person) {
-        Stream<String> personTagsInStringStream = person.getTags().stream().map(tag -> tag.tagName.toLowerCase());
-        return searchTags.stream()
-                .allMatch(searchTag -> isTagPresentOnPersonIgnoreCase(personTagsInStringStream, searchTag));
-    }
+        List<String> personTagsInLowerCase =
+                person.getTags().stream().map(tag -> tag.tagName.toLowerCase()).collect(Collectors.toList());
 
-    private boolean isTagPresentOnPersonIgnoreCase(Stream<String> personTags, String searchTag) {
-        return personTags.anyMatch(personTag -> personTag.equals(searchTag));
+        return personTagsInLowerCase.containsAll(tagsToSearchInLowerCase);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PersonContainsTagsPredicate // instanceof handles nulls
-                && searchTags.equals(((PersonContainsTagsPredicate) other).searchTags)); // state check
+                // state check
+                && tagsToSearchInLowerCase.equals(((PersonContainsTagsPredicate) other).tagsToSearchInLowerCase));
     }
 }

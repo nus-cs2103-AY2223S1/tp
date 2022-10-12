@@ -13,14 +13,19 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 
+import java.security.cert.CertPathValidatorException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -43,11 +48,14 @@ import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AddressContainsSequencePredicate;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.DateTimeWithinRangePredicate;
 import seedu.address.model.person.EmailContainsSequencePredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsSequencePredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonContainsTagsPredicate;
 import seedu.address.model.person.PhoneContainsSequencePredicate;
+import seedu.address.model.person.ReasonContainsSequencePredicate;
 import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -161,10 +169,21 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + String.join(" ", searchString));
 
-        FindCommand expectedPersonPredicate = PREDICATE_SHOW_ALL_APPOINTMENTS
+        Predicate<Person> expectedPersonPredicate = PREDICATE_SHOW_ALL_PERSONS
                 .and(new NameContainsSequencePredicate(name)).and(new PhoneContainsSequencePredicate(phone))
-                .and(new EmailContainsSequencePredicate(email)).and(new AddressContainsSequencePredicate(address));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                .and(new EmailContainsSequencePredicate(email)).and(new AddressContainsSequencePredicate(address))
+                .and(new PersonContainsTagsPredicate(Collections.singletonList(tag)));
+        Predicate<Person> expectedPersonPredicate2 = PREDICATE_SHOW_ALL_PERSONS
+                .and(new NameContainsSequencePredicate(name)).and(new PhoneContainsSequencePredicate(phone))
+                .and(new EmailContainsSequencePredicate(email)).and(new AddressContainsSequencePredicate(address))
+                .and(new PersonContainsTagsPredicate(Collections.singletonList(tag)));
+        Predicate<Appointment> expectedAppointmentPredicate = PREDICATE_SHOW_ALL_APPOINTMENTS
+                .and(new ReasonContainsSequencePredicate(reason))
+                .and(new DateTimeWithinRangePredicate(
+                        LocalDateTime.parse("2022-12-13T12:12"), LocalDateTime.parse("2025-12-13T12:12")));
+        boolean isAnyAppointmentFieldSpecified = true;
+        assertEquals(new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate,
+                        isAnyAppointmentFieldSpecified), command);
     }
 
     @Test

@@ -55,6 +55,16 @@ public class StringUtil {
     }
 
     /**
+     * Removes redundant spaces in a string.
+     * E.g "     test    string  " becomes "test string".
+     * @param str a string
+     * @return A string with redundant spaces removed.
+     */
+    public static String removeRedundantSpaces(String str) {
+        return str.trim().replaceAll("\\s+", " ");
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

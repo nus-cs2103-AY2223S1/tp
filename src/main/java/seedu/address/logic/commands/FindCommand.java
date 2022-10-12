@@ -14,7 +14,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.AppointmentOfFilteredPersonsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -41,15 +40,15 @@ public class FindCommand extends Command {
             + PREFIX_TAG + "cough "
             + PREFIX_TAG + "tonsils";
 
-    private final Predicate<Person> personPredicate;
-    private final Predicate<Appointment> appointmentPredicate;
-    private final boolean isFindingAppointment;
+    private final CombinedPersonPredicate personPredicate;
+    private final CombinedAppointmentPredicate appointmentPredicate;
+    private final boolean isAnyAppointmentFieldSpecified;
 
-    public FindCommand(Predicate<Person> personPredicate, Predicate<Appointment> appointmentPredicate,
-                       boolean isFindingAppointment) {
+    public FindCommand(CombinedPersonPredicate personPredicate, CombinedAppointmentPredicate appointmentPredicate,
+                       boolean isAnyAppointmentFieldSpecified) {
         this.personPredicate = personPredicate;
         this.appointmentPredicate = appointmentPredicate;
-        this.isFindingAppointment = isFindingAppointment;
+        this.isAnyAppointmentFieldSpecified = isAnyAppointmentFieldSpecified;
     }
 
     @Override
@@ -61,7 +60,7 @@ public class FindCommand extends Command {
         the appointmentPredicate if any input related to appointments are present (Reason, date),
         and updates the model accordingly.
          */
-        Predicate<Person> personFufillingBothPredicates = !isFindingAppointment
+        Predicate<Person> personFufillingBothPredicates = !isAnyAppointmentFieldSpecified
                 ? personPredicate
                 : personPredicate.and(person -> person.getAppointments().stream().anyMatch(appointmentPredicate));
         model.updateFilteredPersonList(personFufillingBothPredicates);
