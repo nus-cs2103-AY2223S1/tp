@@ -16,8 +16,16 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Module> {
     public ModuleContainsKeywordsPredicate(List<Pattern> searchRegexes) {
         this.searchRegexes = searchRegexes;
     }
+
     @Override
     public boolean test(Module module) {
         return searchRegexes.stream().anyMatch(module::containsKeyword);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+            || (other instanceof ModuleContainsKeywordsPredicate
+            && searchRegexes.equals(((ModuleContainsKeywordsPredicate) other).searchRegexes));
     }
 }
