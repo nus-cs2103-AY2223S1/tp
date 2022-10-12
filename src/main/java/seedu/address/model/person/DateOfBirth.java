@@ -123,7 +123,7 @@ public class DateOfBirth {
         if (this.isEmpty() & ((DateOfBirth) other).isEmpty()) {
             return true;
         }
-        return this.date.equals(((DateOfBirth)other).date);
+        return this.date.equals(((DateOfBirth) other).date);
     }
 
     @Override
