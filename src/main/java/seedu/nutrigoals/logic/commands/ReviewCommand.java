@@ -32,9 +32,9 @@ public class ReviewCommand extends Command {
 
         int calorieCount = 0;
         for (Food food : listOfFoodsToday) {
-            calorieCount += Integer.parseInt(food.getCalorie().value);
+            calorieCount += food.getCalorie().getCalorieValue();
         }
-        int calorieTarget = Integer.parseInt(model.getCalorieTarget().value);
+        int calorieTarget = model.getCalorieTarget().getCalorieValue();
         int calorieDifference = calorieTarget - calorieCount;
 
         String calorieStatus;
