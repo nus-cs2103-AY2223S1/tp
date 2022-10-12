@@ -35,10 +35,10 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     // Require to be initialized because they contain dynamic data.
-    private PersonListPanel personListPanel;    // Contacts
-    private TaskListPanel taskListPanel;        // Tasks
-    private ResultDisplay resultDisplay;        // Command Result
-    private HelpWindow helpWindow;              // Help Window
+    private PersonListPanel personListPanel;
+    private TaskListPanel taskListPanel;
+    private ResultDisplay resultDisplay;
+    private HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -159,12 +159,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Focuses the task list tab.
+     */
     public void focusTaskTab() {
         SingleSelectionModel<Tab> selectionModel = tabPanePlaceholder.getSelectionModel();
         selectionModel.select(1);
 
     }
 
+    /**
+     * Focuses the contacts list tab.
+     */
     public void focusPersonTab() {
         SingleSelectionModel<Tab> selectionModel = tabPanePlaceholder.getSelectionModel();
         selectionModel.select(0);
@@ -210,7 +216,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if(commandResult.isTaskCommand()) {
+            if (commandResult.isSwitchTab()) {
                 focusTaskTab();
             } else {
                 focusPersonTab();
