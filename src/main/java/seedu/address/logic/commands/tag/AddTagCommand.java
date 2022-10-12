@@ -57,10 +57,11 @@ public class AddTagCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public AddTagCommand(Index index, EditPersonDescriptor editPersonDescriptor, boolean addTagToContact,
-        boolean addTagToTask, EditTaskDescriptor editTaskDescriptor) {
+    public AddTagCommand(Index index, EditPersonDescriptor editPersonDescriptor, EditTaskDescriptor editTaskDescriptor,
+        boolean addTagToContact, boolean addTagToTask) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
+        requireNonNull(editTaskDescriptor);
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
@@ -136,8 +137,8 @@ public class AddTagCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
+     * edited with {@code editTaskDescriptor}.
      */
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
@@ -345,15 +346,15 @@ public class AddTagCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditTaskDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditTaskDescriptor e = (EditTaskDescriptor) other;
 
-            return getDescription().equals(e.getName())
-                    && getIsDone().equals(e.getPhone())
+            return getDescription().equals(e.getDescription())
+                    && getIsDone().equals(e.getIsDone())
                     && getTags().equals(e.getTags());
         }
     }

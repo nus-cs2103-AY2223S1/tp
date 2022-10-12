@@ -57,7 +57,7 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
             throw new ParseException(AddTagCommand.MESSAGE_TAG_NOT_ADDED);
         }
 
-        return new AddTagCommand(index, editPersonDescriptor, addTagToContact, addTagToTask, editTaskDescriptor);
+        return new AddTagCommand(index, editPersonDescriptor, editTaskDescriptor, addTagToContact, addTagToTask);
     }
 
     /**
