@@ -54,7 +54,7 @@
                         <StackPane fx:id="folderListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
-      
+
               <VBox fx:id="personList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
