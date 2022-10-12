@@ -19,7 +19,7 @@ public class TaskContainsModulesPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         return modules.stream()
-                .anyMatch(module -> StringUtil.containsWordIgnoreCase(task.getModule().moduleName, module.toString()));
+                .anyMatch(module -> StringUtil.containsWordIgnoreCase(task.getModule().toString(), module.toString()));
     }
 
     @Override

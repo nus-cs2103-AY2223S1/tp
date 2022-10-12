@@ -33,7 +33,7 @@ public class AddContactCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
+            + PREFIX_TAG + "owesMoney "
             + PREFIX_MODULE + "CS1101S "
             + PREFIX_MODULE + "ES2660 ";
 
