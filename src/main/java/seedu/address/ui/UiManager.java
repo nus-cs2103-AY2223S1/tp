@@ -9,7 +9,6 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
-
 import java.util.logging.Logger;
 
 /**

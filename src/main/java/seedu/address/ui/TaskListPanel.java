@@ -7,7 +7,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-
 import java.util.logging.Logger;
 
 /**
