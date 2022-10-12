@@ -242,7 +242,7 @@ public class ModelManager implements Model {
     public boolean canChangeContext(String path) {
         ObservableList<Group> groupList = addressBook.getTeamsList();
         for (Group group : groupList) {
-            if (path == group.getFullPathName()) {
+            if (path.equals(group.getFullPathNameInclusive())) {
                 return true;
             }
         }
@@ -254,7 +254,7 @@ public class ModelManager implements Model {
     public void changeContext(String path) {
         ObservableList<Group> groupList = addressBook.getTeamsList();
         for (Group group : groupList) {
-            if (path == group.getFullPathName()) {
+            if (path.equals(group.getFullPathNameInclusive())) {
                 updateContextContainer(group);
             }
         }

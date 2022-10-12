@@ -36,6 +36,20 @@ public class Group extends AbstractContainerItem {
         return groupName.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Gets the full path to the group inclusive of the group itself.
+     *
+     * @return a string indicating the full path of the group, inclusive of the group name.
+     */
+    public String getFullPathNameInclusive() {
+        String fullPathExclusive = getFullPathName();
+        if (fullPathExclusive == null) {
+            return groupName;
+        }
+
+        return String.format("%s/%s", fullPathExclusive, groupName);
+    }
+
     @Override
     public EntryType getEntryType() {
         return EntryType.TEAM;

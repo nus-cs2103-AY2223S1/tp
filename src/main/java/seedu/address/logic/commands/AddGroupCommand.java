@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
+import seedu.address.model.item.AbstractContainerItem;
 
 import static java.util.Objects.requireNonNull;
 
@@ -40,7 +41,11 @@ public class AddGroupCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_GROUP);
         }
 
-        toAdd.setParent(model.getCurrentContext());
+        AbstractContainerItem currentContext = model.getCurrentContext();
+
+        if (currentContext != null) {
+            toAdd.setParent(currentContext);
+        }
         model.addTeam(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
