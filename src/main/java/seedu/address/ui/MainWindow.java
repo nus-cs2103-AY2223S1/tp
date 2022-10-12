@@ -199,13 +199,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public void showDeliverer() {
-        System.out.println(logic.getFilteredPetList());
         personListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(delivererListPanel.getRoot());
     }
 
     public void showPet() {
-        System.out.println("logic " + logic.getFilteredPetList().size());
         personListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(petListPanel.getRoot());
     }
