@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Module;
@@ -26,7 +25,6 @@ public class PersonBuilder {
     public static final String DEFAULT_MODULE = "cs2103t";
     public static final String DEFAULT_YEAR = "3";
     public static final String DEFAULT_STUDENTID = "A1234567X";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_COMMENT = "";
 
     private Name name;
@@ -35,7 +33,6 @@ public class PersonBuilder {
     private Module module;
     private Year year;
     private StudentId studentId;
-    private Address address;
     private Comment comment;
     private Set<Tag> tags;
 
@@ -49,7 +46,6 @@ public class PersonBuilder {
         module = new Module(DEFAULT_MODULE);
         year = new Year(DEFAULT_YEAR);
         studentId = new StudentId(DEFAULT_STUDENTID);
-        address = new Address(DEFAULT_ADDRESS);
         comment = new Comment(DEFAULT_COMMENT);
         tags = new HashSet<>();
     }
@@ -64,7 +60,6 @@ public class PersonBuilder {
         module = personToCopy.getModule();
         year = personToCopy.getYear();
         studentId = personToCopy.getStudentId();
-        address = personToCopy.getAddress();
         comment = personToCopy.getComment();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -82,14 +77,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
         return this;
     }
 
@@ -141,7 +128,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, module, year, studentId, address, comment, tags);
+        return new Person(name, phone, email, module, year, studentId, comment, tags);
     }
 
 }
