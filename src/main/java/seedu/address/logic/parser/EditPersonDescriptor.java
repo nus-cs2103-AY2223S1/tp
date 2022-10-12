@@ -132,15 +132,15 @@ public class EditPersonDescriptor {
      * edited with appointments added from {@code editPersonDescriptor}.
      */
     public static Person createEditedPersonByAddingAppointments(Person personToEdit,
-                                                                EditPersonDescriptor editPersonDescriptor) throws CommandException {
+                         EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
 
         Set<Appointment> currentAppointments = personToEdit.getAppointments();
         Set<Appointment> newAppointments = editPersonDescriptor.getAppointments().get();
-        for(Appointment newAppointment:newAppointments) {
-           if(currentAppointments.contains(newAppointment)) {
-              throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-           }
+        for (Appointment newAppointment:newAppointments) {
+            if (currentAppointments.contains(newAppointment)) {
+                throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+            }
         }
         editPersonDescriptor.appointments.forEach(currentAppointments::add);
 
@@ -153,6 +153,10 @@ public class EditPersonDescriptor {
         return newPerson;
     }
 
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * overwritten with appointments from {@code editPersonDescriptor}.
+     */
     public static Person createEditedPersonByOverwritingAppointments(Person personToEdit,
                                                                    EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
@@ -162,7 +166,7 @@ public class EditPersonDescriptor {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
-        Set<Appointment> newAppointmentsOnly =  editPersonDescriptor.getAppointments().get();
+        Set<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
         Person newPerson = new Person(name, phone, email, address, tags, newAppointmentsOnly);
 
         return newPerson;

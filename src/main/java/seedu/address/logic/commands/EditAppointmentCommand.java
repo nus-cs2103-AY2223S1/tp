@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByAddingAppointments;
 import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByOverwritingAppointments;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -16,13 +15,14 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Edits the appointment details of an existing person in the address book.
+ * Overwrites the appointment details of an existing person in the address book.
  */
 public class EditAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "ea";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Overwrites all appointment details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Overwrites all "
+            + " appointment details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DATE + "DATE]... \n"
@@ -30,14 +30,14 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_DATE + "21-Jan-2023 12:30 PM ";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Person's Appointment: %1$s";
-    public static final String MESSAGE_NO_APPOINTMENT_TO_EDIT = "This client does not have an appointment to edit\n" +
-                                                                "Use command \"aa\" to add appointment instead";
+    public static final String MESSAGE_NO_APPOINTMENT_TO_EDIT = "This client does not have an appointment to edit\n"
+            + "Use command \"aa\" to add appointment instead";
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the person in the filtered person list
+     * @param editPersonDescriptor new appointment details to overwrite with
      */
     public EditAppointmentCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -66,7 +66,7 @@ public class EditAppointmentCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        if (personToEdit.getAppointments() == null){
+        if (personToEdit.getAppointments() == null) {
             throw new CommandException(MESSAGE_NO_APPOINTMENT_TO_EDIT);
         }
 

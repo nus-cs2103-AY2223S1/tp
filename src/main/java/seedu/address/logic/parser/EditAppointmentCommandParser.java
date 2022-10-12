@@ -6,24 +6,22 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
 
 /**
- * Parses input arguments and creates a new AddAppointmentCommand object
+ * Parses input arguments and creates a new EditAppointmentCommand object
  */
 public class EditAppointmentCommandParser implements Parser<EditAppointmentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * AddAppointmentCommand and returns an AddAppointmentCommand object for execution.
+     * EditAppointmentCommand and returns an EditAppointmentCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditAppointmentCommand parse(String args) throws ParseException {

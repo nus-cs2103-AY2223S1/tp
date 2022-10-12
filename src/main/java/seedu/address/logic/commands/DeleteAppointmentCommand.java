@@ -1,21 +1,23 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPerson;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EditPersonDescriptor;
 import seedu.address.model.Model;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Deletes all appointments of an existing person in the address book.
  */
 public class DeleteAppointmentCommand extends Command {
 
@@ -31,18 +33,14 @@ public class DeleteAppointmentCommand extends Command {
 
     public static final String MESSAGE_NO_APPOINTMENT_TO_DELETE = "This person does not have an appointment to delete";
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the person in the filtered person list
      */
-    public DeleteAppointmentCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public DeleteAppointmentCommand(Index index) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
 
@@ -55,10 +53,14 @@ public class DeleteAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        Set<Appointment> emptyAppointments = new HashSet<>();
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        editPersonDescriptor.setAppointments(emptyAppointments);
+
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (personToEdit.getAppointments().size() == 0){
+        if (personToEdit.getAppointments().size() == 0) {
             throw new CommandException(MESSAGE_NO_APPOINTMENT_TO_DELETE);
         }
 
@@ -77,13 +79,12 @@ public class DeleteAppointmentCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof DeleteAppointmentCommand)) {
             return false;
         }
 
         // state check
         DeleteAppointmentCommand e = (DeleteAppointmentCommand) other;
-        return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+        return index.equals(e.index);
     }
 }
