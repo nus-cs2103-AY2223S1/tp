@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -56,6 +57,9 @@ public class CommandTestUtil {
     public static final String VALID_TASK_B = "Submit the quiz@LumiNUS";
     public static final String VALID_TASK_C = "Pay $5 to Ann for project costs";
 
+    public static final String VALID_MODULE_LINK = "https://nus-cs2103-ay2223s1.github.io/website/";
+    public static final String VALID_MODULE_LINK_2 = "https://nusmods.com/timetable/sem-1";
+
     // Module code cannot have brackets
     public static final String INVALID_MODULE_CODE = "(CS2103T)";
 
@@ -79,6 +83,8 @@ public class CommandTestUtil {
     public static final String MODULE_TASKLIST_DESC_NUMBER_THREE =
             " " + PREFIX_TASK_NUMBER + "3";
 
+
+    public static final String MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK + VALID_MODULE_LINK;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

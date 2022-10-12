@@ -1,7 +1,13 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -15,7 +21,13 @@ import seedu.address.model.module.task.Task;
  */
 public class ModuleCard extends UiPart<Region> {
 
+    private static final Desktop desktop = Desktop.getDesktop();
     private static final String FXML = "ModuleListCard.fxml";
+    private static final String MESSAGE_LINK_LAUNCH_FAILURE = "Error: Link cannot be launched by your desktop";
+    private static final String LINK_HEADER_PLAIN_TEXT = "http";
+    private static final String LINK_HEADER_TEXT_WITH_SLASH = "https://";
+    private static final String LINK_TEXT_COLOR = "-fx-text-fill: #FFCC66"; //Light Yellow
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved
@@ -55,10 +67,31 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         moduleCode.setText(module.getModuleCodeAsUpperCaseString());
         moduleTitle.setText(module.getModuleTitleAsUpperCaseString());
+        module.getLinks().stream()
+                .forEach(link -> links.getChildren()
+                        .add(createHyperLinkNode(link.linkName)));
         ObservableList<Task> taskList = module.getTasks();
         taskListPanel = new TaskListPanel(taskList);
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-        // ToDo: Add Ui components for links.
+    }
+
+    private static Hyperlink createHyperLinkNode(String linkUrl) {
+        Hyperlink node = new Hyperlink(linkUrl);
+        node.setStyle(LINK_TEXT_COLOR);
+        if (!linkUrl.substring(0, 4).equals(LINK_HEADER_PLAIN_TEXT)) {
+            linkUrl = LINK_HEADER_TEXT_WITH_SLASH + linkUrl;
+        }
+        final String finalLinkUrl = linkUrl;
+        node.setOnAction(e -> {
+            try {
+                desktop.browse(URI.create(finalLinkUrl));
+            } catch (IOException ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(MESSAGE_LINK_LAUNCH_FAILURE);
+                alert.showAndWait();
+            }
+        });
+        return node;
     }
 
     @Override

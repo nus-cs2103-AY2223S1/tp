@@ -38,10 +38,10 @@ contains some sample data.<br>
 |-----------------------------------------------------|----------------------------------------------------------------|---------------------------------------------------------------------------------|
 | [`add-module`](#211-add-module)                     | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`               | Add module with a module code and optional module title                         |
 | [`delete-module`](#212-delete-module)               | `delete-module   m/MODULE_CODE`                                | Delete module by module code                                                    |
-| [`add-task`](#221-add-task)                         | `add-task        m/MODULE_CODE d/TASK_DESCRIPTION`             | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)                   | `delete-task     m/MODULE_CODE n/TASK_NUMBER`                  | Delete task corresponding to specified task number of specified module code     |
-| [`add link`](#231-add-link)                         | `add    link     m/MODULE_CODE l/LINK_URL`                     | Add link to a specified module code by its URL                                  |
-| [`delete link`](#232-delete-link)                   | `delete link     m/MODULE_CODE l/LINK_URL`                     | Delete link from a specified module code by its URL                             |
+| [`add task`](#221-add-task)                         | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`             | Add task with specified module code and task description                        |
+| [`delete task`](#222-delete-task)                   | `delete task     m/MODULE_CODE n/TASK_NUMBER`                  | Delete task corresponding to specified task number of specified module code     |
+| [`add-link`](#231-add-link)                         | `add-link        INDEX l/LINK_URL`                             | Add link URL to a module by its displayed index                                 |
+| [`delete-link`](#232-delete-link)                   | `delete-link     INDEX l/LINK_URL`                             | Delete link URL from a module by its displayed index                            |
 | [`add-contact`](#241-add-contact)                   | `add-contact     n/NAME    e/EMAIL    p/PHONE_NUMBER`          | Add contact with specified name, email, and phone number                        |
 | [`delete-contact`](#242-delete-contact-coming-soon) | `delete-contact  n/NAME`                                       | Delete contact belonging to the specified name                                  |
 | [`edit-contact`](#243-edit-contact)                 | `edit-contact    INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])` | Edit contact belonging to the specified index currently displayed on the screen |
@@ -176,42 +176,52 @@ with the module code `CS2103T`.
 
 ### 2.3. Adding and deleting links
 #### 2.3.1. Add link
-You may add a link to a specific module using the `add link` command.
+You may add a link to a specific module using the `add-link` command.
 
-This command will require two flags:
-* `m/`: To be followed by the module code of the
-  module which is associated with the link.
+This command will require one flag:
 * `l/`: To be followed by the link URL.
 
-Format: `add link m/MODULE_CODE l/LINK_URL`
+Format: `add-link INDEX l/LINK_URL`
+* `INDEX`: To be replaced with the displayed index of the module which is associated with the link
 * You cannot add a link URL to a non-existent module code.
 * You cannot add a duplicate link URL for a single module code.
 
 Example:
 ```
-add module m/CS2040C l/visualgo.net/en
+add-link 1 l/visualgo.net/en
 ```
 In the above example, we are adding the link with the URL `visualgo.net/en` 
-to the module with module code `CS2040C`.
+to the module with the displayed index of `1`.
+
+```
+add-link 2 l/https://www.nusmods.com l/kattis.com
+```
+In the above example, we are adding the links with the URL `https://www.nusmods.com` and `l/kattis.com`
+to the module with the displayed index of `2`.
 
 #### 2.3.2. Delete link
-You may delete a link from a specific module using the `delete link` command.
+You may delete a link from a specific module using the `delete-link` command.
 
-This command will require two flags:
-* `m/`: To be followed by the module code of the
-  module which is associated with the link.
+This command will require one flag:
 * `l/`: To be followed by the link URL.
 
-Format: `delete link m/MODULE_CODE l/LINK_URL`
+Format: `delete-link INDEX l/LINK_URL`
+* `INDEX`: To be replaced with the displayed index of the module which is associated with the link
 * You cannot delete a link URL from a non-existent module code.
 * You cannot delete a non-existent link URL from a valid module code.
 
 Example:
 ```
-delete module m/CS2040C l/visualgo.net/en
+delete-link 1 l/visualgo.net/en
 ```
 In the above example, we are deleting the link with the URL `visualgo.net/en`
-from the module with module code `CS2040C`.
+from the module with the displayed index of `1`.
+
+```
+delete-link 2 l/https://www.nusmods.com l/kattis.com
+```
+In the above example, we are deleting the links with the URL `https://www.nusmods.com` and `l/kattis.com`
+from the module with the displayed index of `2`.
 <br>
 
 ### 2.4. Adding and deleting contacts
@@ -246,7 +256,7 @@ Format: `delete-contact n/NAME`
 
 Example:  
 ```
-delete contact n/Dinosaur Lim  
+delete-contact n/Dinosaur Lim  
 ```
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 
