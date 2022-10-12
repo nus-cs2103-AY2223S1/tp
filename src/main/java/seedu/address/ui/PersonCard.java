@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.internship.InternshipId;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,6 +16,7 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final String NO_INTERNSHIP = "No internship linked.";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -58,6 +60,18 @@ public class PersonCard extends UiPart<Region> {
             internship.setText("No internships linked.");
         } else {
             internship.setText("Internship: " + person.getInternshipId().toString());
+        }
+    }
+
+    public InternshipId getInternshipId() {
+        return person.getInternshipId();
+    }
+
+    public void setInternship(String internshipName) {
+        if (internshipName == null) {
+            internship.setText(NO_INTERNSHIP);
+        } else {
+            internship.setText("Internship: " + internshipName);
         }
     }
 
