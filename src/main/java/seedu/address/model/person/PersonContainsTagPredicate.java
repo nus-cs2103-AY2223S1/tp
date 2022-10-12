@@ -18,6 +18,10 @@ public class PersonContainsTagPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
 
+        if (keywords.isEmpty()) { //keywords = trimmed user input
+            return false;
+        }
+
         Set<String> personTagNameSet = person
                 .getTags()
                 .stream()
