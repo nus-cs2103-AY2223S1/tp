@@ -113,6 +113,13 @@ public interface Model {
                              String meetingDateAndTime, String meetingLocation) throws ParseException;
 
     /**
+     * Checks if a meeting exists in the address book.
+     *
+     * @param meeting the new meeting to check
+     */
+    boolean hasMeeting(Meeting meeting);
+
+    /**
      * Adds a new meeting to the address book.
      *
      * @param newMeeting the new meeting to add to address book

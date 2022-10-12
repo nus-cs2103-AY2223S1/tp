@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -42,11 +43,7 @@ public class CreateMeetingCommand extends Command {
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
         for (String personName: peopleToMeet) {
-            System.out.println(personName);
             String[] nameKeywords = personName.strip().split("\\s+");
-            for (String word: nameKeywords) {
-                System.out.println(word);
-            }
             NameContainsKeywordsPredicate personNamePredicate =
                 new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
 
@@ -66,10 +63,10 @@ public class CreateMeetingCommand extends Command {
         return output;
     }
 
-    private String peopleToList(ArrayList<Person> arrayOfPeopleToMeet) {
+    public static String peopleToNameAndTagList(ArrayList<Person> arrayOfPeopleToMeet) {
         String output = "";
         for (Person personToMeet : arrayOfPeopleToMeet) {
-            String toAppend = personToMeet.getName() + "\n";
+            String toAppend = String.format("%1$s %2$s \n", personToMeet.getName(), personToMeet.getTags());
             output += toAppend;
         }
         return output;
@@ -93,10 +90,10 @@ public class CreateMeetingCommand extends Command {
             model.addMeeting(newMeeting);
 
             return new CommandResult(
-                String.format(MESSAGE_CREATE_MEETING_SUCCESS, peopleToList(arrayOfPeopleToMeet))
-                    + String.format("For: %1$s \n", meetingTitle)
-                    + String.format("On: %1$s \n", newMeeting.getDateAndTime())
-                    + String.format("At: %1$s \n", meetingLocation)
+                String.format(MESSAGE_CREATE_MEETING_SUCCESS, peopleToNameAndTagList(arrayOfPeopleToMeet))
+                    + String.format("For: %1$s\n", meetingTitle)
+                    + String.format("On: %1$s\n", newMeeting.getDateAndTime())
+                    + String.format("At: %1$s\n", meetingLocation)
             );
 
         } catch (ParseException e) {
@@ -108,7 +105,11 @@ public class CreateMeetingCommand extends Command {
 
         } catch (PersonNotFoundException e) {
             return new CommandResult("Oops! The person you are meeting with doesn't exist"
-                + "in the address book. Do check if you have entered their name correctly.");
+                + " in the address book. Do check if you have entered their name correctly.");
+
+        } catch (DuplicateMeetingException e) {
+            return new CommandResult("Oops! Seems that you have already scheduled to meet the same person(s)"
+                + " at the same time");
         }
     }
 

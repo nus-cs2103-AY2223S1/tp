@@ -15,18 +15,19 @@ import seedu.address.model.person.Person;
 /**
  * New content added by Tian You (@HakkaNgin)
  * A list of meetings that enforces uniqueness between its elements and does not allow nulls.
- * Some of the methods were implemented for Person and may not be applicable for Meeting
  *
- *
- * Content copied over from UniquePersonList.java:
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A meeting is considered unique by comparing using {@code Meeting#isSameMeeting(Meeting)}.
+ * As such, adding and updating of meetings uses Meeting#isSameMeeting(Meeting) for equality
+ * so as to ensure the meeting being added or updated is unique in terms of identity in the UniqueMeetingList.
+ * However, the removal of a person uses Meeting#equals(Object) so as to ensure that the meeting
+ * with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * NOTE:
+ * Some methods here were implemented for Person and may not be applicable for Meeting
+ *
+ * @see Meeting#isSameMeeting(Meeting)
  */
 public class UniqueMeetingList implements Iterable<Meeting> {
 

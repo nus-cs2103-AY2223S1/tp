@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.CreateMeetingCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -20,7 +21,8 @@ import seedu.address.model.util.DateTimeProcessor;
  */
 public class Meeting {
 
-    private UniquePersonList peopleToMeet = new UniquePersonList();
+    private ArrayList<Person> peopleToMeetArray;
+    private UniquePersonList peopleToMeetList = new UniquePersonList();
     private String meetingDescription;
     private String meetingDateAndTime;
     private String meetingLocation;
@@ -34,14 +36,15 @@ public class Meeting {
     /**
      * Constructor for a new Meeting
      *
-     * @param peopleToMeet the people whom the user is meeting with
+     * @param peopleToMeetArray the people whom the user is meeting with
      * @param meetingTitle the description/ title of the meeting
      * @param meetingDateAndTime the date and time of meeting
      * @param meetingLocation the location of the meeting
      */
-    public Meeting(ArrayList<Person> peopleToMeet, String meetingTitle,
+    public Meeting(ArrayList<Person> peopleToMeetArray, String meetingTitle,
         String meetingDateAndTime, String meetingLocation) throws ParseException {
-        this.peopleToMeet.setPersons(peopleToMeet);
+        this.peopleToMeetArray = peopleToMeetArray;
+        this.peopleToMeetList.setPersons(peopleToMeetArray);
         this.meetingDescription = meetingTitle;
         this.meetingDateAndTime = validator.processDateTime(meetingDateAndTime);
         this.meetingLocation = meetingLocation;
@@ -109,12 +112,12 @@ public class Meeting {
      */
     public void addPersons(ArrayList<Person> people) {
         for (int i = 0; i < people.size(); i++) {
-            this.peopleToMeet.add(people.get(i));
+            this.peopleToMeetList.add(people.get(i));
         }
     }
 
     public UniquePersonList getPersonToMeet() {
-        return this.peopleToMeet;
+        return this.peopleToMeetList;
     }
 
     public String getDateAndTime() {
@@ -124,6 +127,11 @@ public class Meeting {
     public String getDescription() {
         return meetingDescription;
     }
+
+    public String getLocation() {
+        return meetingLocation;
+    }
+
     /**
      * Returns true if both meetings include the same person to meet
      * and are at the same time.
@@ -139,12 +147,33 @@ public class Meeting {
             && (otherMeeting.getDateAndTime().equals(getDateAndTime()));
     }
 
+    /**
+     * Returns true if both meetings have the same data fields.
+     * This defines a stronger notion of equality between two meetings.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Meeting)) {
+            return false;
+        }
+
+        Meeting otherMeeting = (Meeting) other;
+        return otherMeeting.getPersonToMeet().equals(getPersonToMeet())
+            && otherMeeting.getDescription().equals(getDescription())
+            && otherMeeting.getDateAndTime().equals(getDateAndTime())
+            && otherMeeting.getLocation().equals(getLocation());
+    }
+
     @Override
     public String toString() {
-        return "Meeting with: " + this.peopleToMeet.asUnmodifiableObservableList() + "\n"
+        return String.format("%1$s", CreateMeetingCommand.peopleToNameAndTagList(this.peopleToMeetArray))
             + "For: " + this.meetingDescription + "\n"
             + "On: " + this.meetingDateAndTime + "\n"
-            + "For: " + this.meetingLocation + "\n";
+            + "At: " + this.meetingLocation + "\n";
     }
 
 
