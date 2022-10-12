@@ -1,24 +1,19 @@
 package seedu.address.model.transaction;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.poc.Poc;
-
-import javax.swing.tree.TreeNode;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 /**
  * Store all transactions in a list.
  */
 public class TransactionLog {
     private final List<Transaction> transactionList;
-    private final ObservableList<Transaction> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Transaction> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
     /**
      * Creates a log to store all transactions.
      * @param transactionList list to store transactions.
@@ -64,6 +59,10 @@ public class TransactionLog {
         return transactionList.isEmpty();
     }
 
+    /**
+     * Creates an observable list of transactions to be used by MainWindow
+     * @return an unmodifiableObservableList of transactions
+     */
     public ObservableList<Transaction> listTransactions() {
         ObservableList<Transaction> internalList = FXCollections.observableArrayList();
         for (Transaction transation : transactionList) {

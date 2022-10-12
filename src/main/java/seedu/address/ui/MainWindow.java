@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -168,6 +167,7 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+        primaryStage.setMaximized(true);
     }
 
     /**
@@ -252,6 +252,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             handlePocListUpdate(commandResult);
+            handleTransactionListUpdate(commandResult);
             landingPageUpdate();
 
             return commandResult;

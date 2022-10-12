@@ -1,12 +1,12 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.transaction.BuyTransaction;
 import seedu.address.model.transaction.Transaction;
 
 /**
@@ -45,12 +45,12 @@ public class TransactionCard extends UiPart<Region> {
     public TransactionCard(Transaction transaction, int displayedIndex) {
         super(FXML);
         this.transaction = transaction;
-        String typeOfTransaction = "sell";
+        String typeOfTransaction = "Sell";
         id.setText(displayedIndex + ". ");
         good.setText(transaction.getGoods().toString());
         price.setText(transaction.getPrice().toString());
         quantity.setText(transaction.getQuantity().toString());
-        if (transaction.isBuy()) {
+        if (transaction instanceof BuyTransaction) {
             typeOfTransaction = "Buy";
         }
         transactionType.getChildren().add(new Label(typeOfTransaction));
