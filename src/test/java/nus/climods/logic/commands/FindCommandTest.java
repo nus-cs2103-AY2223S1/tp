@@ -33,7 +33,7 @@ class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleModulesFound() {
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 3);
 
         FindCommand command = new FindCommand(prepareSearchTokens("CS2103"));
