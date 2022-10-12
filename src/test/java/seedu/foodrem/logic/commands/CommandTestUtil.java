@@ -43,6 +43,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_NAME_FRUITS = "fruits";
     public static final String VALID_TAG_NAME_FRUITS_WITH_WHITESPACES = "f r u i t s";
     public static final String VALID_TAG_NAME_NUMBERS = "2 1 0 3 t";
+    public static final String VALID_TAG_NAME_VEGETABLES = "vegetables";
 
     public static final String VALID_DESC_ITEM_NAME_POTATOES = " " + PREFIX_NAME
             + VALID_ITEM_NAME_POTATOES;

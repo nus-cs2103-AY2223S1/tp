@@ -1,5 +1,7 @@
 package seedu.foodrem.testutil;
 
+import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_VEGETABLES;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,28 +13,38 @@ import seedu.foodrem.model.item.Item;
  */
 public class TypicalItems {
 
+    // WARNING: Ensure all items have a vegetable tag.
+    // Failure to do so will break test cases.
     public static final Item POTATOES = new ItemBuilder()
             .withItemName("Potatoes")
             .withItemQuantity("10")
             .withItemUnit("kg")
             .withItemBoughtDate("11-11-2022")
-            .withItemExpiryDate("11-11-2022").build();
+            .withItemExpiryDate("11-11-2022")
+            .withTags(VALID_TAG_NAME_VEGETABLES).build();
 
+    // WARNING: Ensure all items have a vegetable tag.
+    // Failure to do so will break test cases.
     public static final Item CUCUMBERS = new ItemBuilder()
             .withItemName("Cucumbers")
             .withItemQuantity("2000")
             .withItemUnit("grams")
             .withItemBoughtDate("12-12-2022")
-            .withItemExpiryDate("12-12-2022").build();
+            .withItemExpiryDate("12-12-2022")
+            .withTags(VALID_TAG_NAME_VEGETABLES).build();
 
+    // WARNING: Ensure all items have a vegetable tag.
+    // Failure to do so will break test cases.
     public static final Item CARROTS = new ItemBuilder()
             .withItemName("Carrots")
-            .build();
+            .withTags(VALID_TAG_NAME_VEGETABLES).build();
 
     private TypicalItems() {
     } // prevents instantiation
 
     public static List<Item> getTypicalItems() {
+        // WARNING: Ensure all items have a vegetable tag.
+        // Failure to do so will break test cases.
         return new ArrayList<>(Arrays.asList(POTATOES, CUCUMBERS));
     }
 }
