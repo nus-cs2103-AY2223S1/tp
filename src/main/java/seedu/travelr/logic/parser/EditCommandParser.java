@@ -42,12 +42,12 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditTripDescriptor editTripDescriptor = new EditTripDescriptor();
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
-            editTripDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_TITLE).get()));
+            editTripDescriptor.setTitle(ParserUtil.parseName(argMultimap.getValue(PREFIX_TITLE).get()));
         }
         if (argMultimap.getValue(PREFIX_DESC).isPresent()) {
             editTripDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESC).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTripDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTripDescriptor::setEvents);
 
         if (!editTripDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

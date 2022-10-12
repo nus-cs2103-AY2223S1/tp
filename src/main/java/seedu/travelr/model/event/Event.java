@@ -10,7 +10,7 @@ import seedu.travelr.model.trip.Title;
 
 /**
  * Represents a Tag in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidEventName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidEventTitle(String)}
  */
 public class Event {
 
