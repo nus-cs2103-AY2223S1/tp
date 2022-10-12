@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -46,12 +47,17 @@ public class ProfileCard extends UiPart<Region> {
      */
     public ProfileCard(Profile profile, int displayedIndex) {
         super(FXML);
+        ImageView telegramIcon = new ImageView("/images/telegram_icon.png");
+        telegramIcon.setFitHeight(15);
+        telegramIcon.setFitWidth(15);
+
         this.profile = profile;
         id.setText(displayedIndex + ". ");
         name.setText(profile.getName().fullName);
         phone.setText(profile.getPhone().value);
         email.setText(profile.getEmail().value);
         if (!profile.getTelegram().isEmpty()) {
+            telegram.getChildren().add(telegramIcon);
             Label telegramLabel = new Label(profile.getTelegram().value);
             telegram.getChildren().add(telegramLabel);
         }

@@ -1,3 +1,7 @@
 #phone, #email {
     -fx-font-size: 11pt;
 }
+
+#telegram > .label {
+    -fx-font-size: 11pt;
+}
