@@ -55,13 +55,13 @@ Format: `:a <exercise name> <weight(kg)> <sets> <reps>`
 ##### Parameter constraints:
 * The weight **must be a positive decimal number**
   * Examples: 1, 1.5, 2, ... 
-* The sets **must be a positive integer**
-  * Examples: 1, 2, 3, ...
-* The reps **must be a positive integer**
-  * Examples: 1, 2, 3, ...
+* The sets **must be a positive integer, up to 3 digits, with no leading zeros**
+  * Examples: 1, 2, 3, 10, 100...
+* The reps **must be a positive integer, up to 3 digits, with no leading zeros**
+  * Examples: 1, 2, 3, 10, 100...
 
 ##### Examples:
-* `:a Squat 30 3 5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps
+* `:a n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps
 
 
 ### Listing all exercises : `:ls`
