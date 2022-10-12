@@ -1,11 +1,13 @@
 package nus.climods.logic.parser;
 
 import static nus.climods.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static nus.climods.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import nus.climods.logic.commands.Command;
+import nus.climods.logic.commands.LsCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 
 /**
@@ -34,6 +36,12 @@ public class CliModsParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        return null;
+        switch (commandWord) {
+        case LsCommand.COMMAND_WORD:
+            return new ListCommandParser().parse(arguments);
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
     }
 }

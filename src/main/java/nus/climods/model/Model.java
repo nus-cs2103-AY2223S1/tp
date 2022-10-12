@@ -3,6 +3,8 @@ package nus.climods.model;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.model.module.ReadOnlyModuleList;
 
+import java.util.Optional;
+
 /**
  * The API of the Model component.
  */
@@ -29,4 +31,6 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     ReadOnlyModuleList getModuleList();
+
+    void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser);
 }

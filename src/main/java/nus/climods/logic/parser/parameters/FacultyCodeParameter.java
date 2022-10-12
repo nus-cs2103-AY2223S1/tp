@@ -6,7 +6,7 @@ import nus.climods.logic.parser.ParserUtil;
  * Represents a User Flag parameter
  */
 
-public class FacultyCodeParameter extends PositionalParameter<String> {
+public class FacultyCodeParameter extends OptionalPositionalParameter<String> {
     public static final int FACULTY_CODE_INDX = 0;
 
     public static final String PARSE_EXCEPTION_MESSAGE = "Invalid faculty code: %s";
