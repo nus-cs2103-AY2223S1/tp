@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECORD_DATA_FORMAT;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
@@ -14,12 +15,9 @@ import java.time.format.DateTimeParseException;
  */
 public class Record {
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
-    public static final String MESSAGE_CONSTRAINTS = "Record date should be in the following format: "
-            + "DD-MM-YYYY HHmm";
     /* Data Fields */
     public final String record;
     private final LocalDateTime recordDate;
-
 
     /**
      * Constructs a record.
@@ -31,8 +29,8 @@ public class Record {
         requireNonNull(recordDate);
         requireNonNull(record);
         checkArgument(isValidDate(recordDate), MESSAGE_INVALID_DATE_FORMAT);
+        checkArgument(isValidRecordData(record), MESSAGE_INVALID_RECORD_DATA_FORMAT);
         this.recordDate = LocalDateTime.parse(recordDate, DATE_FORMAT);
-        // record field not checked since any record input can be valid.
         this.record = record;
     }
 
@@ -49,6 +47,13 @@ public class Record {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if a given string is valid record data.
+     */
+    public static boolean isValidRecordData(String test) {
+        return !test.isBlank();
     }
 
     /**

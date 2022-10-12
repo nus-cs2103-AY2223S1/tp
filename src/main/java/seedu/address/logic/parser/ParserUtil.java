@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -134,9 +135,15 @@ public class ParserUtil {
         requireAllNonNull(recordDate, recordData);
         String trimmedDate = recordDate.trim();
         String trimmedData = recordData.trim();
+
         if (!Record.isValidDate(trimmedDate)) {
-            throw new ParseException(Record.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Messages.MESSAGE_INVALID_DATE_FORMAT);
         }
+
+        if (!Record.isValidRecordData(trimmedData)) {
+            throw new ParseException(Messages.MESSAGE_INVALID_RECORD_DATA_FORMAT);
+        }
+
         return new Record(trimmedDate, trimmedData);
     }
 }
