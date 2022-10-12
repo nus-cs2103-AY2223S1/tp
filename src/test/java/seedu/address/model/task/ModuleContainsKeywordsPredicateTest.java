@@ -17,14 +17,17 @@ public class ModuleContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        ModuleContainsKeywordsPredicate firstPredicate = new ModuleContainsKeywordsPredicate(firstPredicateKeywordList);
-        ModuleContainsKeywordsPredicate secondPredicate = new ModuleContainsKeywordsPredicate(secondPredicateKeywordList);
+        ModuleContainsKeywordsPredicate firstPredicate =
+                new ModuleContainsKeywordsPredicate(firstPredicateKeywordList);
+        ModuleContainsKeywordsPredicate secondPredicate =
+                new ModuleContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ModuleContainsKeywordsPredicate firstPredicateCopy = new ModuleContainsKeywordsPredicate(firstPredicateKeywordList);
+        ModuleContainsKeywordsPredicate firstPredicateCopy =
+                new ModuleContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -40,7 +43,8 @@ public class ModuleContainsKeywordsPredicateTest {
     @Test
     public void test_moduleContainsKeywords_returnsTrue() {
         // One keyword
-        ModuleContainsKeywordsPredicate predicate = new ModuleContainsKeywordsPredicate(Collections.singletonList("CS2013T"));
+        ModuleContainsKeywordsPredicate predicate =
+                new ModuleContainsKeywordsPredicate(Collections.singletonList("CS2013T"));
         assertTrue(predicate.test(new PersonBuilder().withModule("CS2013T").build()));
 
         predicate = new ModuleContainsKeywordsPredicate(Arrays.asList("CS2103T"));
