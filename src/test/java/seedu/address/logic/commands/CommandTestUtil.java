@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -19,8 +20,9 @@ import seedu.address.model.Model;
 import seedu.address.model.PennyWise;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.NameContainsKeywordsPredicate;
+import seedu.address.testutil.EditEntryDescriptorBuilder;
 //import seedu.address.model.person.Person;
-//import seedu.address.testutil.EditPersonDescriptorBuilder;
+//import seedu.address.testutil.EditEntryDescriptorBuilder;
 
 //import javax.print.DocFlavor;
 
@@ -58,52 +60,75 @@ public class CommandTestUtil {
     // public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String VALID_TYPE_INCOME = "i";
     public static final String VALID_TYPE_EXPENDITURE = "e";
+
+    public static final String VALID_MONTH_MARCH = "2022-03";
+
     public static final String VALID_DESC_LUNCH = "Lunch";
     public static final String VALID_DESC_MOVIE = "Movie";
     public static final String VALID_DESC_DINNER = "Dinner";
+    public static final String VALID_DESC_TUITION = "Tuition";
+
     public static final String VALID_AMT_LUNCH = "5.20";
     public static final String VALID_AMT_MOVIE = "8.00";
     public static final String VALID_AMT_DINNER = "4.80";
+    public static final String VALID_AMT_TUITION = "40.00";
+
     public static final String VALID_DATE_LUNCH = "20-08-2022";
     public static final String VALID_DATE_MOVIE = "21-08-2022";
     public static final String VALID_DATE_DINNER = "24-08-2022";
+    public static final String VALID_DATE_TUITION = "18-08-2022";
+
+    public static final String VALID_TAG_MEAL = "meal";
+    public static final String VALID_TAG_PERSONAL = "personal";
     public static final String VALID_TAG_LUNCH = "Lunch";
     public static final String VALID_TAG_DINNER = "Dinner";
     public static final String VALID_TAG_MOVIE = "Movie";
 
     public static final String TYPE_INCOME = " " + PREFIX_TYPE + VALID_TYPE_INCOME;
     public static final String TYPE_EXPENDITURE = " " + PREFIX_TYPE + VALID_TYPE_EXPENDITURE;
+    public static final String TYPE_MONTH = " " + PREFIX_MONTH + VALID_MONTH_MARCH;
+
     public static final String DESC_LUNCH = " " + PREFIX_DESCRIPTION + VALID_DESC_LUNCH;
     public static final String DESC_MOVIE = " " + PREFIX_DESCRIPTION + VALID_DESC_MOVIE;
     public static final String DESC_DINNER = " " + PREFIX_DESCRIPTION + VALID_DESC_DINNER;
+    public static final String DESC_TUITION = " " + PREFIX_DESCRIPTION + VALID_DESC_TUITION;
+
     public static final String AMT_LUNCH = " " + PREFIX_AMOUNT + VALID_AMT_LUNCH;
     public static final String AMT_MOVIE = " " + PREFIX_AMOUNT + VALID_AMT_MOVIE;
     public static final String AMT_DINNER = " " + PREFIX_AMOUNT + VALID_AMT_DINNER;
+    public static final String AMT_TUITION = " " + PREFIX_AMOUNT + VALID_AMT_TUITION;
+
     public static final String DATE_LUNCH = " " + PREFIX_DATE + VALID_DATE_LUNCH;
-    public static final String DATE_MOVIE = " " + PREFIX_DATE + VALID_DATE_MOVIE;
+    public static final String DATE_MOVIE = " " + PREFIX_DATE + VALID_DATE_DINNER;
     public static final String DATE_DINNER = " " + PREFIX_DATE + VALID_DATE_DINNER;
+    public static final String DATE_TUITION = " " + PREFIX_DATE + VALID_DATE_TUITION;
+
     public static final String TAG_LUNCH = " " + PREFIX_TAG + VALID_TAG_LUNCH;
     public static final String TAG_MOVIE = " " + PREFIX_TAG + VALID_TAG_MOVIE;
     public static final String TAG_DINNER = " " + PREFIX_TAG + VALID_TAG_DINNER;
-    public static final String INVALID_DESC = " " + PREFIX_DESCRIPTION + " ";
-    public static final String INVALID_AMT = " " + PREFIX_AMOUNT + " ";
-    public static final String INVALID_DATE = " " + PREFIX_DATE + " ";
+    public static final String TAG_DESC_MEAL = " " + PREFIX_TAG + VALID_TAG_MEAL;
+    public static final String TAG_DESC_PERSONAL = " " + PREFIX_TAG + VALID_TAG_PERSONAL;
 
-
+    public static final String INVALID_DESC = " " + PREFIX_DESCRIPTION + "Bre&kfast "; // '&' not allowed in description
+    public static final String INVALID_TYPE = " " + PREFIX_TYPE + "g "; // only 'e' and 'i' types allowed
+    public static final String INVALID_AMT = " " + PREFIX_AMOUNT + "12.20a "; // 'a' not allowed in amount
+    public static final String INVALID_DATE = " " + PREFIX_DATE + "32-32-3232 "; // only valid date strings allowed
+    public static final String INVALID_TAG = " " + PREFIX_TAG + "tag* "; // '*' not allowed in tags
+    public static final String INVALID_MONTH = " " + PREFIX_MONTH + "2022-00"; // only valid month and year combinations allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    // public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    // public static final EditCommand.EditPersonDescriptor DESC_BO
-    // static {
-    //     DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-    //             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-    //             .withTags(VALID_TAG_FRIEND).build();
-    //     DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-    //             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-    //             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    // }
+    public static final EditCommand.EditEntryDescriptor LUNCH;
+    public static final EditCommand.EditEntryDescriptor DINNER;
+    static {
+        LUNCH = new EditEntryDescriptorBuilder().withDescription(VALID_DESC_LUNCH)
+                .withType(VALID_TYPE_EXPENDITURE).withAmount(VALID_AMT_LUNCH).withDate(VALID_DATE_LUNCH)
+                .build();
+        DINNER = new EditEntryDescriptorBuilder().withDescription(VALID_DESC_DINNER)
+                .withType(VALID_TYPE_EXPENDITURE).withAmount(VALID_AMT_DINNER).withDate(VALID_DATE_DINNER)
+                .build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -111,7 +136,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -126,7 +151,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -169,8 +194,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredExpenditureList().size());
 
         Entry entry = model.getFilteredExpenditureList().get(targetIndex.getZeroBased());
-        final String[] splitName = entry.toString().split("\\s+");
-        model.updateFilteredEntryList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitName = entry.toString().split("; ");
+        model.updateFilteredExpenditureList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredExpenditureList().size());
     }
 

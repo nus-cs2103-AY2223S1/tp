@@ -115,10 +115,25 @@ public interface Model {
      */
     ObservableList<Entry> getFilteredIncomeList();
 
+    // todo remove updateFilteredEntryList after 'find' command has been implemented
     /**
      * Updates the filter of the filtered entry list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEntryList(Predicate<Entry> predicate);
+
+    /**
+     * Updates the filter of the filtered expenditure list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredExpenditureList(Predicate<Entry> predicate);
+
+    /**
+     * Updates the filter of the filtered income list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredIncomeList(Predicate<Entry> predicate);
 }

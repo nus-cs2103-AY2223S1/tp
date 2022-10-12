@@ -8,6 +8,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.Month;
 
 /**
  * View income/expenditure entries to the application.
@@ -23,20 +24,31 @@ public class ViewCommand extends Command {
             + "[" + PREFIX_MONTH + "MONTH]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TYPE + "e "
-            + PREFIX_MONTH + "09-2022 ";
-    public static final String MESSAGE_INVALID_ENTRY_TYPE = "Entry type is invalid.";
+            + PREFIX_MONTH + "2022-03";
 
     private static final String ENTRY_EXPENDITURE = "expenditures";
     private static final String ENTRY_INCOME = "income";
 
     private final EntryType entryType;
+    private final Month month;
 
     /**
-     * Creates a ViewCommand to view the specified {@code entryType}
+     * Creates a ViewCommand to view the specified {@code entryType}.
      */
     public ViewCommand(EntryType entryType) {
         requireNonNull(entryType);
         this.entryType = entryType;
+        this.month = null;
+    }
+
+    /**
+     * Creates a ViewCommand to view the specified {@code entryType} at the specified {@code month}.
+     */
+    public ViewCommand(EntryType entryType, Month month) {
+        requireNonNull(entryType);
+        requireNonNull(month);
+        this.entryType = entryType;
+        this.month = month;
     }
 
     @Override
@@ -44,18 +56,29 @@ public class ViewCommand extends Command {
         requireNonNull(model);
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
-            System.out.println("[ViewCommand] Show all expenditure");
             model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
             return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_EXPENDITURE));
         case INCOME:
-            System.out.println("[ViewCommand] Show all income");
             model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
             return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_INCOME));
         default:
             //should never reach here
-            break;
+            return null;
         }
+    }
 
-        throw new CommandException(MESSAGE_INVALID_ENTRY_TYPE);
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof ViewCommand)) {
+            return false;
+        }
+        ViewCommand otherViewCommand = (ViewCommand) other;
+        if (this.month == null) {
+            return this.entryType.equals(otherViewCommand.entryType);
+        }
+        return this.entryType.equals(otherViewCommand.entryType) && this.month.equals(otherViewCommand.month);
     }
 }
