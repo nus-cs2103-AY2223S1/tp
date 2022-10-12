@@ -55,7 +55,7 @@ public class SampleDataUtil {
     public static UniqueTagTypeMap getTagTypeMap(String... strings) {
         UniqueTagTypeMap tags = new UniqueTagTypeMap();
         for (String tag: strings) {
-            tags.addTag(new TagType("Skill", new Prefix("st")), new Tag(tag));
+            tags.mergeTag(new TagType("Skills", new Prefix("st/")), new Tag(tag));
         }
         return tags;
     }

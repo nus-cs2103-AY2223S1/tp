@@ -72,8 +72,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 if (oldTagMap.containsKey(p)) {
                     oldTagMap.get(p).add(oldNewPair[0]);
                     newTagMap.get(p).add(oldNewPair[1]);
-                }
-                else {
+                } else {
                     oldTagMap.put(p, new ArrayList<>(Arrays.asList(oldNewPair[0])));
                     newTagMap.put(p, new ArrayList<>(Arrays.asList(oldNewPair[1])));
                 }

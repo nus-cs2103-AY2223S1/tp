@@ -115,12 +115,16 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     /**
      * Adds a tag to the given tagType.
      */
-    public void addTag(TagType tagType, Tag tagName) throws TagTypeNotFoundException, DuplicateTagException {
+    public void mergeTag(TagType tagType, Tag tagName) throws DuplicateTagException {
         requireAllNonNull(tagType, tagName);
-        if (!this.contains(tagType)) {
-            throw new TagTypeNotFoundException();
+        boolean isExisting = this.contains(tagType);
+        if (isExisting) {
+            this.getTagList(tagType).add(tagName);
+        } else {
+            UniqueTagList tagList = new UniqueTagList();
+            tagList.add(tagName);
+            this.internalMap.put(tagType, tagList);
         }
-        this.getTagList(tagType).add(tagName);
     }
     /**
      * Replaces the tag type {@code target} in the list with {@code editedTagType}.
