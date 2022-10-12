@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -32,7 +33,8 @@ public class TaskCard extends UiPart<Region> {
     private Label title;
     @FXML
     private Label id;
-
+    @FXML
+    private CheckBox isCompleted;
     @FXML
     private FlowPane assignedPersons;
 
@@ -47,6 +49,9 @@ public class TaskCard extends UiPart<Region> {
         task.getAssignedPersons().stream()
                 .sorted(Comparator.comparing(person -> person.getName().fullName))
                 .forEach(person -> assignedPersons.getChildren().add(new Label(person.getName().fullName)));
+
+        isCompleted.setText("");
+        isCompleted.setSelected(task.getMarkStatus());
     }
 
     @Override
