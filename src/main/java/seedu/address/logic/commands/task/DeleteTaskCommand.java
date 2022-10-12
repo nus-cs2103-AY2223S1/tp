@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -13,34 +14,30 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Deletes a task from the task panel
+ * Deletes a task identified using it's displayed index from the task panel.
  */
 public class DeleteTaskCommand extends TaskCommand {
+
     public static final String COMMAND_WORD = "delete";
     public static final String COMMAND_WORD_FULL = TaskCommand.COMMAND_WORD + " " + COMMAND_WORD;
+
     public static final String MESSAGE_USAGE = COMMAND_WORD_FULL
-            + ": Deletes the task that index number refers to.\n"
+            + ": Deletes the task identified by the task index number used in the displayed task list.\n"
             + "Parameters: \n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD_FULL + " 1";
+
     public static final String MESSAGE_SUCCESS = "Task deleted: %1$s";
 
     private final Index targetIndex;
 
     /**
-     * Creates an DeleteTaskCommand to remove the specified {@code Task}
+     * Creates a DeleteTaskCommand to delete the specified {@code Task}
      */
     public DeleteTaskCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
-    /**
-     * Executes the command and returns the result message.
-     *
-     * @param model {@code Model} which the command should operate on
-     * @return feedback message of the operation result for display
-     * @throws CommandException If an error occurs during command execution.
-     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -50,11 +47,18 @@ public class DeleteTaskCommand extends TaskCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task deletedTask = taskList.get(targetIndex.getZeroBased());
-        model.deleteTask(deletedTask);
+        Task toDelete = taskList.get(targetIndex.getZeroBased());
+        model.deleteTask(toDelete);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, deletedTask));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof DeleteTaskCommand // instanceof handles nulls
+            && targetIndex.equals(((DeleteTaskCommand) other).targetIndex));
     }
 
 }

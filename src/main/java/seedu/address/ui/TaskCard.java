@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.task.Contact;
 import seedu.address.model.task.Task;
 
 /**
@@ -36,7 +37,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private CheckBox isCompleted;
     @FXML
-    private FlowPane assignedPersons;
+    private FlowPane assignedContacts;
 
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
@@ -46,12 +47,11 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().toString());
-        task.getAssignedPersons().stream()
-                .sorted(Comparator.comparing(person -> person.getName().fullName))
-                .forEach(person -> assignedPersons.getChildren().add(new Label(person.getName().fullName)));
-
         isCompleted.setText("");
-        isCompleted.setSelected(task.getMarkStatus());
+        isCompleted.setSelected(task.getCompleted());
+        task.getAssignedContacts().stream()
+                .sorted(Comparator.comparing(Contact::getContactName))
+                .forEach(contact -> assignedContacts.getChildren().add(new Label(contact.getContactName())));
     }
 
     @Override

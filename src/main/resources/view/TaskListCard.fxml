@@ -40,7 +40,7 @@
         </AnchorPane>
       </children>
       </HBox>
-      <FlowPane fx:id="assignedPersons" />
+      <FlowPane fx:id="assignedContacts" />
     </VBox>
   </GridPane>
 </HBox>

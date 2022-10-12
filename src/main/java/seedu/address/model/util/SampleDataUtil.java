@@ -14,6 +14,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Contact;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -54,8 +55,8 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Title("Add task functionality."), false),
-            new Task(new Title("Add task storage"), false)
+            new Task(new Title("Add task functionality."), false, getContactSet("Alex Yeoh")),
+            new Task(new Title("Add task storage"), false, getContactSet("Bernice Yu"))
         };
     }
 
@@ -73,6 +74,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a contact set containing the list of strings given.
+     */
+    public static Set<Contact> getContactSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Contact::new)
                 .collect(Collectors.toSet());
     }
 

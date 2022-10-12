@@ -2,11 +2,10 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import seedu.address.model.person.Person;
 
 /**
  * Represents a Task in the task list.
@@ -16,31 +15,29 @@ public class Task {
 
     // identity fields
     private final Title title;
-    private final boolean marked;
+    private final boolean isCompleted; // defaults to false if not specified
 
-    private final Set<Person> assignedPersons = new HashSet<>();
+    // data fields
+    private final Set<Contact> assignedContacts = new HashSet<>();
 
     /**
-     * Creates a new Task with no assigned contacts. (Used when a new task is added)
-     * @param title Title of task.
-     * @param marked Whether task is completed.
+     * Creates a new {@code Task} with no assigned contacts.
+     *
+     * @param title Title of task
      */
-    public Task(Title title, boolean marked) {
-        requireAllNonNull(title, marked);
-
-        this.title = title;
-        this.marked = marked; // task is default as unmarked
+    public Task(Title title) {
+        this(title, false, new HashSet<Contact>());
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, boolean marked, Set<Person> assignedPersons) {
-        requireAllNonNull(title, marked, assignedPersons);
+    public Task(Title title, boolean isCompleted, Set<Contact> assignedContacts) {
+        requireAllNonNull(title, isCompleted, assignedContacts);
 
         this.title = title;
-        this.marked = marked; // task is default as unmarked
-        this.assignedPersons.addAll(assignedPersons);
+        this.isCompleted = isCompleted;
+        this.assignedContacts.addAll(assignedContacts);
     }
 
     public Title getTitle() {
@@ -48,17 +45,17 @@ public class Task {
     }
 
     /**
-     * Returns true if task is marked, false if not marked.
+     * Returns true if task is completed, false if not complete.
      */
-    public boolean getMarkStatus() {
-        return this.marked;
+    public boolean getCompleted() {
+        return isCompleted;
     }
 
     /**
      * Returns set of contacts assigned to task.
      */
-    public Set<Person> getAssignedPersons() {
-        return this.assignedPersons;
+    public Set<Contact> getAssignedContacts() {
+        return Collections.unmodifiableSet(assignedContacts);
     }
 
     /**
@@ -89,19 +86,30 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getTitle().equals(getTitle());
+        return otherTask.getTitle().equals(getTitle())
+                && otherTask.getCompleted() == getCompleted()
+                && otherTask.getAssignedContacts().equals(getAssignedContacts());
+
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title);
+        return Objects.hash(title, isCompleted, assignedContacts);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle()).append(";");
+        builder.append(getTitle())
+                .append("; Status: ")
+                .append(getCompleted());
+
+        Set<Contact> contacts = getAssignedContacts();
+        if (!contacts.isEmpty()) {
+            builder.append("; Contacts: ");
+            contacts.forEach(builder::append);
+        }
 
         return builder.toString();
     }

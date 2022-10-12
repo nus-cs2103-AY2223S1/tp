@@ -2,6 +2,7 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -19,26 +20,24 @@ import seedu.address.model.task.Task;
 public class MarkTaskCommand extends TaskCommand {
 
     public static final String COMMAND_WORD = "mark";
-
     public static final String COMMAND_WORD_FULL = TaskCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Mark the task complete by the index number used in the displayed task list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD_FULL
+            + ": Marks the task complete by the index number used in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD_FULL + " 1";
 
     public static final String MESSAGE_SUCCESS = "Task %1$d is marked as complete";
 
     private final Index targetIndex;
-    private final boolean mark = true;
 
     /**
-     * @param tarIndex of the person's task to be updated
+     * @param targetIndex of the person's task to be updated
      */
-    public MarkTaskCommand(Index tarIndex) {
-        requireAllNonNull(tarIndex);
+    public MarkTaskCommand(Index targetIndex) {
+        requireAllNonNull(targetIndex);
 
-        this.targetIndex = tarIndex;
+        this.targetIndex = targetIndex;
     }
 
     @Override
@@ -51,9 +50,10 @@ public class MarkTaskCommand extends TaskCommand {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        Task editedTask = new Task(taskToMark.getTitle(), mark, taskToMark.getAssignedPersons());
+        Task editedTask = new Task(taskToMark.getTitle(), true, taskToMark.getAssignedContacts());
 
         model.setTask(taskToMark, editedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
     }

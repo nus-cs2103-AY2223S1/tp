@@ -1,8 +1,12 @@
 {
   "_comment": "TaskPanel save file which contains the same Task values as in TypicalTasks#getTypicalTaskPanel()",
   "tasks": [{
-    "title": "Add tasks to list"
+    "title": "Add tasks to list",
+    "isCompleted": "false",
+    "contacts": [ "Alex Yeoh" ]
   }, {
-    "title": "Assign contacts to task"
+    "title": "Assign contacts to task",
+    "isCompleted": "false",
+    "contacts": [ "Bernice Yu" ]
   } ]
 }
