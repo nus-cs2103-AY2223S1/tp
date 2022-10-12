@@ -30,6 +30,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderStatus;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
@@ -147,10 +148,23 @@ public class ParserUtil {
                         PREFIX_ORDER_PRICE_RANGE,
                         PREFIX_ORDER_ADDITIONAL_REQUESTS,
                         PREFIX_ORDER_DATE);
-        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_ADDRESS,
-                PREFIX_PHONE, PREFIX_EMAIL)) {
-            throw new ParseException(MESSAGE_ORDER_PARSE_ERROR);
+        if (!arePrefixesPresent(argMultimap,
+                PREFIX_ORDER_STATUS,
+                PREFIX_ORDER_REQUESTS,
+                PREFIX_ORDER_PRICE,
+                PREFIX_ORDER_PRICE_RANGE,
+                PREFIX_ORDER_DATE)) {
+            throw new ParseException(MESSAGE_ORDER_USAGE);
         }
+
+        OrderStatus orderStatus =
+
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, tagList, null);
 
         return new Order(trimmedOrderString);
     }
@@ -199,4 +213,29 @@ public class ParserUtil {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
+    /**
+     * Parses a {@code String orderStatus} into an {@code OrderStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code orderStatus} is invalid.
+     */
+    public static OrderStatus parseOrderStatus(String orderStatus) throws ParseException {
+        requireNonNull(orderStatus);
+        String trimmedOrderStatus = orderStatus.trim();
+        if (!OrderStatus.isValidOrderStatus(trimmedOrderStatus)) {
+            throw new ParseException(OrderStatus.MESSAGE_CONSTRAINTS);
+        }
+        return Arrays
+                .stream(OrderStatus.class.getEnumConstants())
+                .filter(x -> x.toString().equals(trimmedOrderStatus))
+                .findFirst()
+                .orElse(OrderStatus.PENDING);
+    }
+
+    PREFIX_ORDER_REQUESTS,
+    PREFIX_ORDER_PRICE,
+    PREFIX_ORDER_PRICE_RANGE,
+    PREFIX_ORDER_ADDITIONAL_REQUESTS,
+    PREFIX_ORDER_DATE
 }

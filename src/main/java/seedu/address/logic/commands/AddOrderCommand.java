@@ -6,19 +6,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PET;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 public class AddOrderCommand {
-
-
-    public static final Prefix PREFIX_ORDER_STATUS = new Prefix("o_s/");
-    public static final Prefix PREFIX_ORDER_REQUESTS = new Prefix("o_r/");
-    public static final Prefix PREFIX_ORDER_PRICE = new Prefix("o_p/");
-    public static final Prefix PREFIX_ORDER_PRICE_RANGE = new Prefix("o_pr/");
-    public static final Prefix PREFIX_ORDER_ADDITIONAL_REQUESTS = new Prefix("o_ar/");
-    public static final Prefix PREFIX_ORDER_DATE = new Prefix("o_d/");
-    public static final Prefix PREFIX_ORDER_PET = new Prefix("o_pt/");
 
     public static final String COMMAND_WORD = "add-o";
     public static final String MESSAGE_USAGE = COMMAND_WORD
