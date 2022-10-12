@@ -26,7 +26,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.testutil.PersonBuilder;
 
-public class AddCommandTest {
+public class AddUserCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
