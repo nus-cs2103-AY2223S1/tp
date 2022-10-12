@@ -1,7 +1,11 @@
 package seedu.taassist.model.session;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.AppUtil.checkArgument;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.time.LocalDate;
+
 /**
  * Represents a Session for a {@code ModuleClass} in TA-Assist.
  * Guarantees: immutable; name is valid as declared in {@link #isValidSessionName(String)}
@@ -17,6 +21,18 @@ public class Session {
 
     private final String sessionName;
     private final Date date;
+
+    /**
+     * Constructs a {@code Session}. Date will be set to epoch time.
+     *
+     * @param sessionName A valid session name.
+     */
+    public Session(String sessionName) {
+        requireNonNull(sessionName);
+        checkArgument(isValidSessionName(sessionName), MESSAGE_CONSTRAINTS);
+        this.sessionName = sessionName;
+        this.date = new Date(LocalDate.EPOCH);
+    }
 
     /**
      * Constructs a {@code Session}.

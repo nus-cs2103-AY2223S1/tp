@@ -1,6 +1,5 @@
 package seedu.taassist.testutil;
 
-import seedu.taassist.model.session.Date;
 import seedu.taassist.model.session.Session;
 
 /**

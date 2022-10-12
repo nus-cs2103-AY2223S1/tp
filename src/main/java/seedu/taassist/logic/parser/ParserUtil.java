@@ -166,6 +166,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String session} into a {@code Session}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code session} is invalid.
+     */
+    public static Session parseSession(String session) throws ParseException {
+        requireNonNull(session);
+        String trimmedSession = session.trim();
+        if (!Session.isValidSessionName(trimmedSession)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+        return new Session(session);
+    }
+
+    /**
      * Parses a {@code String session} along with a {@code Date date} into a {@code Session}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -180,4 +195,15 @@ public class ParserUtil {
         return new Session(session, date);
     }
 
+    /**
+     * Parses {@code Collection<String> sessions} into a {@code Set<Session>}.
+     */
+    public static Set<Session> parseSessions(Collection<String> sessions) throws ParseException {
+        requireNonNull(sessions);
+        final Set<Session> sessionSet = new HashSet<>();
+        for (String sessionName : sessions) {
+            sessionSet.add(parseSession(sessionName));
+        }
+        return sessionSet;
+    }
 }

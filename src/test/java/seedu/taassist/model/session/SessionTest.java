@@ -16,6 +16,7 @@ public class SessionTest {
     public void constructor_invalidSessionName_throwsIllegalArgumentException() {
         String invalidSessionName = "";
         Date validDate = ASSIGNMENT_1.getDate();
+        assertThrows(IllegalArgumentException.class, () -> new Session(invalidSessionName));
         assertThrows(IllegalArgumentException.class, () -> new Session(invalidSessionName, validDate));
     }
 
@@ -23,6 +24,7 @@ public class SessionTest {
     public void constructor_null_throwsNullPointerException() {
         String validSessionName = ASSIGNMENT_1.getSessionName();
         Date validDate = ASSIGNMENT_1.getDate();
+        assertThrows(NullPointerException.class, () -> new Session(null));
         assertThrows(NullPointerException.class, () -> new Session(null, validDate));
         assertThrows(NullPointerException.class, () -> new Session(validSessionName, null));
     }
