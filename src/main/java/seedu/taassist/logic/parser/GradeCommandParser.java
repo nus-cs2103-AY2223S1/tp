@@ -40,6 +40,6 @@ public class GradeCommandParser implements Parser<GradeCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
         }
 
-        return new GradeCommand(index, grade, session);
+        return new GradeCommand(index, session, grade);
     }
 }
