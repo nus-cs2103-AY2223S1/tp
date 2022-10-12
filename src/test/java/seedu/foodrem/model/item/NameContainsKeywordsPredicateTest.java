@@ -42,7 +42,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Potato"));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections
+                .singletonList("Potato"));
         assertTrue(predicate.test(new ItemBuilder().withItemName("Potato Cucumber").build()));
 
         // Multiple keywords
