@@ -17,21 +17,30 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should display policies. */
+    private final boolean showPolicy;
+
+    /** The application should display clients. */
+    private final boolean showClients;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean showPolicy, boolean showClient) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showPolicy = showPolicy;
+        this.showClients = showClient;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+    public CommandResult(String feedbackToUser, boolean showPolicy, boolean showClients) {
+        this(feedbackToUser, false, false, showPolicy, showClients);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +53,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowPolicy() {
+        return showPolicy;
+    }
+
+    public boolean isShowClient() {
+        return showClients;
     }
 
     @Override
@@ -61,6 +78,9 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
+        //Todo: Implement testing for showClients and showPolicy
+//                && showClients == otherCommandResult.showClients
+//                && showPolicy == otherCommandResult.showPolicy;
     }
 
     @Override

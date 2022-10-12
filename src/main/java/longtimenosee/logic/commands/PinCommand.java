@@ -42,7 +42,7 @@ public class PinCommand extends Command {
         personToPin.setPin(!personToPin.getPin()); //set to pin or not
         //model.deletePerson(personToPin); optional because we don't alter the list
         return new CommandResult(String.format(personToPin.getPin()
-                ? MESSAGE_PIN_PERSON_SUCCESS : MESSAGE_UNPIN_PERSON_SUCCESS , personToPin));
+                ? MESSAGE_PIN_PERSON_SUCCESS : MESSAGE_UNPIN_PERSON_SUCCESS , personToPin), false, true);
     }
 
 }

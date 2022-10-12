@@ -18,6 +18,7 @@ import longtimenosee.logic.commands.ExitCommand;
 import longtimenosee.logic.commands.FindCommand;
 import longtimenosee.logic.commands.HelpCommand;
 import longtimenosee.logic.commands.ListCommand;
+import longtimenosee.logic.commands.PersonCommand;
 import longtimenosee.logic.commands.PinCommand;
 import longtimenosee.logic.commands.PolicyCommand;
 import longtimenosee.logic.commands.SortCommand;
@@ -93,6 +94,9 @@ public class AddressBookParser {
 
         case PolicyCommand.COMMAND_WORD:
             return new PolicyCommand();
+
+        case PersonCommand.COMMAND_WORD:
+            return new PersonCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

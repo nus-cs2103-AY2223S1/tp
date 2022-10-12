@@ -280,12 +280,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a person by name             | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name              | locate a person easily                                                 |
-| `**`     | new user                                   | see sample data                   | Have a better understanding of the app's default layout                |     
-| `**`     | user                                       | filter my contacts by keywords    | Locate my contacts easily, based on a particular critera               |  
-| `**`     | user                                       | update my contacts list           | Edit their contact details                                             | 
-| `*`      | user                                       | have a reliable method            | store contact information without losing data                          | 
- | `*`      | user                                       | view individual client's profiles | keep track of multiple, unique clients                                 | 
- | `*`      | user                                       | pin important contacts            | be reminded of users which are of higher priority                      | 
+| `**`     | new user                                   | see sample data                   | Have a better understanding of the app's default layout                |
+| `**`     | user                                       | filter my contacts by keywords    | Locate my contacts easily, based on a particular critera               |
+| `**`     | user                                       | update my contacts list           | Edit their contact details                                             |
+| `*`      | user                                       | have a reliable method            | store contact information without losing data                          |
+| `*`      | user                                       | view individual client's profiles | keep track of multiple, unique clients                                 |
+| `*`      | user                                       | pin important contacts            | be reminded of users which are of higher priority                      |
 *{More to be added}* 
 
 ### Use cases
