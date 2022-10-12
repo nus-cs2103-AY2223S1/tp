@@ -635,4 +635,4 @@ FoodRem is a brownfield software project based off [AddressBook3](https://se-edu
 
 ## Glossary
 
-{% include_relative _Glossary.md %}
+{% include glossary.md type="ug" %}

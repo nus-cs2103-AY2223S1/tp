@@ -279,7 +279,7 @@ This application will help small businesses to manage perishable goods within a 
 
 ## Glossary
 
-{% include_relative _Glossary.md %}
+{% include glossary.md type="dg" %}
 
 ---
 
