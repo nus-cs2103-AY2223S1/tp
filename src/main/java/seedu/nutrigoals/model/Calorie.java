@@ -10,7 +10,6 @@ public class Calorie {
     public static final String MESSAGE_CONSTRAINTS = "Calorie must take on a positive number that is not too large.";
     public final String value;
 
-
     /**
      * Initialises a Calorie object.
      */
@@ -33,13 +32,21 @@ public class Calorie {
     public static boolean isValidCalorie(String calorie) {
         if (!calorie.isEmpty() && calorie.matches(VALIDATION_REGEX)) {
             try {
-                Integer calorieValue = Integer.parseInt(calorie);
+                int calorieValue = Integer.parseInt(calorie);
                 return calorieValue >= 0;
             } catch (NumberFormatException e) {
                 return false;
             }
         }
         return false;
+    }
+
+    /**
+     * Returns the calorie value as an integer.
+     * @return the calorie value.
+     */
+    public int getCalorieValue() {
+        return Integer.parseInt(value);
     }
 
     @Override
