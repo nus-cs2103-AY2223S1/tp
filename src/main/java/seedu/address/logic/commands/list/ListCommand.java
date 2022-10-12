@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.List;
+package seedu.address.logic.commands.list;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -23,7 +23,7 @@ public class ListCommand extends Command {
     public ListCommand() {};
 
     public ListCommand(String MESSAGE_SUCCESS) {
-        this.MESSAGE_SUCCESS =MESSAGE_SUCCESS;
+        this.MESSAGE_SUCCESS = MESSAGE_SUCCESS;
     }
 
     @Override

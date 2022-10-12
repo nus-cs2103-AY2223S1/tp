@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class ModuleContainsKeywordsPredicate implements Predicate<Task> {
+
     private final List<String> keywords;
 
     public ModuleContainsKeywordsPredicate(List<String> keywords) {

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.List.ListUnmarkedCommand;
+import seedu.address.logic.commands.list.ListUnmarkedCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -9,13 +9,14 @@ import seedu.address.model.task.ModuleIsDonePredicate;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.*;
-import static seedu.address.testutil.TypicalPersons.FIONA;
 
 public class ListUnmarkedCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -23,17 +24,16 @@ public class ListUnmarkedCommandTest {
 
     @Test
     public void equals() {
-        ModuleIsDonePredicate predicate =
-                new ModuleIsDonePredicate(false);
+        ModuleIsDonePredicate firstPredicate =
+                new ModuleIsDonePredicate(Collections.singletonList("false"));
 
-
-        ListUnmarkedCommand listUnmarkedCommand = new ListUnmarkedCommand(predicate);
+        ListUnmarkedCommand listUnmarkedCommand = new ListUnmarkedCommand(firstPredicate);
 
         // same object -> returns true
         assertTrue(listUnmarkedCommand.equals(listUnmarkedCommand));
 
         // same values -> returns true
-        ListUnmarkedCommand findCommandCopy = new ListUnmarkedCommand(predicate);
+        ListUnmarkedCommand findCommandCopy = new ListUnmarkedCommand(firstPredicate);
         assertTrue(listUnmarkedCommand.equals(findCommandCopy));
 
         // different types -> returns false
@@ -45,7 +45,7 @@ public class ListUnmarkedCommandTest {
     }
 
     @Test
-    public void execute_allMarked_noPersonFound() {
+    public void execute_allMarked_noTasksFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         ModuleIsDonePredicate predicate = preparePredicate(" ");
         ListUnmarkedCommand command = new ListUnmarkedCommand(predicate);
@@ -55,13 +55,13 @@ public class ListUnmarkedCommandTest {
     }
 
     @Test
-    public void execute_multipleUnmarked_multiplePersonsFound() {
+    public void execute_multipleUnmarked_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        ModuleIsDonePredicate predicate = preparePredicate("cs2103t");
+        ModuleIsDonePredicate predicate = preparePredicate("false");
         ListUnmarkedCommand command = new ListUnmarkedCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(List.of(ELLE, FIONA, GEORGE), model.getFilteredPersonList());
     }
 
     /**
@@ -69,6 +69,6 @@ public class ListUnmarkedCommandTest {
      * @return
      */
     private ModuleIsDonePredicate preparePredicate(String userInput) {
-        return new ModuleIsDonePredicate(false);
+        return new ModuleIsDonePredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.List.ListModuleCommand;
+import seedu.address.logic.commands.list.ListModuleCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -9,6 +9,7 @@ import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.*;
-import static seedu.address.testutil.TypicalPersons.FIONA;
 
 public class ListModuleCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -50,7 +50,7 @@ public class ListModuleCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noTasksFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         ModuleContainsKeywordsPredicate predicate = preparePredicate(" ");
         ListModuleCommand command = new ListModuleCommand(predicate);
@@ -60,13 +60,13 @@ public class ListModuleCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleTasksFound() {
+        ModuleContainsKeywordsPredicate predicate = preparePredicate("CS2100");
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        ModuleContainsKeywordsPredicate predicate = preparePredicate("cs2103t");
         ListModuleCommand command = new ListModuleCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(List.of(ALICE, BENSON, CARL), model.getFilteredPersonList());
     }
 
     /**

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.List;
+package seedu.address.logic.commands.list;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -6,9 +6,9 @@ import seedu.address.model.Model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-public class ListAllCommand extends ListCommand{
+public class ListAllCommand extends ListCommand {
 
-    public static final String COMMAND_WORD = "-a";
+    public static final String COMMAND_WORD = "a";
 
     public ListAllCommand() {
         super(MESSAGE_SUCCESS);
@@ -20,7 +20,6 @@ public class ListAllCommand extends ListCommand{
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
-
 }
 
 
