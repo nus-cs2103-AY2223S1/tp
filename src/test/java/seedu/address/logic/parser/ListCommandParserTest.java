@@ -5,15 +5,16 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.list.ListAllCommand;
 import seedu.address.logic.commands.list.ListCommand;
 import seedu.address.logic.commands.list.ListModuleCommand;
 import seedu.address.logic.commands.list.ListUnmarkedCommand;
 import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 import seedu.address.model.task.ModuleIsDonePredicate;
-
-import java.util.List;
 
 public class ListCommandParserTest {
 

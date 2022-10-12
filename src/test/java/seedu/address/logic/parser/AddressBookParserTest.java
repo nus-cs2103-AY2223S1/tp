@@ -100,7 +100,9 @@ public class AddressBookParserTest {
     public void parseCommand_listUnmarked() throws Exception {
         List<String> isDone = List.of("false");
         String str = ListCommand.COMMAND_WORD + " " + ListUnmarkedCommand.COMMAND_WORD;
-        ListUnmarkedCommand command = (ListUnmarkedCommand) parser.parseCommand(str + " " + isDone.stream().collect(Collectors.joining(" ")));
+        ListUnmarkedCommand command = (ListUnmarkedCommand) parser.parseCommand(str + " " + isDone
+                .stream()
+                .collect(Collectors.joining(" ")));
         assertEquals(new ListUnmarkedCommand(new ModuleIsDonePredicate(isDone)), command);
     }
 
@@ -108,7 +110,9 @@ public class AddressBookParserTest {
     public void parseCommand_listModule() throws Exception {
         List<String> module = List.of("CS2100");
         String str = ListCommand.COMMAND_WORD + " " + ListModuleCommand.COMMAND_WORD;
-        ListModuleCommand command = (ListModuleCommand) parser.parseCommand(str + " " + module.stream().collect(Collectors.joining(" ")));
+        ListModuleCommand command = (ListModuleCommand) parser.parseCommand(str + " " + module
+                .stream()
+                .collect(Collectors.joining(" ")));
         assertEquals(new ListModuleCommand(new ModuleContainsKeywordsPredicate(module)), command);
     }
 
