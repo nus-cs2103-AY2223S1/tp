@@ -23,7 +23,7 @@ import seedu.address.model.tag.exceptions.TagNotFoundException;
  */
 public class DeleteTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteTag";
+    public static final String COMMAND_WORD = "deletetag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the tag of the person identified by the index number used in the displayed person list.\n"
@@ -91,7 +91,7 @@ public class DeleteTagCommand extends Command {
         updatedTags.removeTags(editPersonDescriptor.getOldTagTypeMap().get());
 
         return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), updatedTags);
+                personToEdit.getAddress(), updatedTags, personToEdit.getStatus(), personToEdit.getNote());
     }
 
     @Override

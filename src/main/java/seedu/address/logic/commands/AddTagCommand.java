@@ -22,7 +22,7 @@ import seedu.address.model.tag.exceptions.DuplicateTagException;
  * Adds a tag of a specific tag type to a person.
  */
 public class AddTagCommand extends Command {
-    public static final String COMMAND_WORD = "addTag";
+    public static final String COMMAND_WORD = "addtag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag of a specific tag type to a person.\n"
             + "Parameters: "
@@ -88,7 +88,7 @@ public class AddTagCommand extends Command {
         updatedTags.mergeTagTypeMap(editPersonDescriptor.getNewTagTypeMap().get());
 
         return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), updatedTags);
+                personToEdit.getAddress(), updatedTags, personToEdit.getStatus(), personToEdit.getNote());
     }
 
     @Override

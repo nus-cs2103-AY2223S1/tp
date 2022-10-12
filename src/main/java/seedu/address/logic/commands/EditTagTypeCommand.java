@@ -16,7 +16,7 @@ import seedu.address.model.tag.TagType;
  */
 public class EditTagTypeCommand extends Command {
 
-    public static final String COMMAND_WORD = "editTagType";
+    public static final String COMMAND_WORD = "edittagtype";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits an existing tag type and its tag alias.\n"
