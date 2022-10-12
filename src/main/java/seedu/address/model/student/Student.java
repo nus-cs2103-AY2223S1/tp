@@ -10,19 +10,22 @@ import java.util.Objects;
 public class Student {
 
     // Identity fields
-    private final Name name;
+    private final StuName name;
     private final Telegram telegram;
-    private final Email email;
+    private final StuEmail email;
 
     // Data fields
     private final Response response;
     private final Attendance attendance;
 //    private final HelpTag helpTag;
 
+
     /**
-     * Every field must be present and not null.
+     * Name, Telegram and Email field must not be null.
      */
-    public Student(Name name, Telegram telegram, Email email, Response response, Attendance attendance) {
+
+    public Student(StuName name, Telegram telegram, StuEmail email, Response response, Attendance attendance) {
+
         requireAllNonNull(name, telegram, email);
         this.name = name;
         this.telegram = telegram;
@@ -31,7 +34,7 @@ public class Student {
         this.attendance = attendance;
     }
 
-    public Name getName() {
+    public StuName getName() {
         return name;
     }
 
@@ -39,7 +42,7 @@ public class Student {
         return telegram;
     }
 
-    public Email getEmail() {
+    public StuEmail getEmail() {
         return email;
     }
 
@@ -50,7 +53,6 @@ public class Student {
     public Response getResponse() {
         return response;
     }
-
 
     /**
      * Returns true if both students have the same name.

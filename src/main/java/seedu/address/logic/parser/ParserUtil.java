@@ -14,6 +14,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.question.Description;
+import seedu.address.model.student.Attendance;
+import seedu.address.model.student.StuEmail;
+import seedu.address.model.student.StuName;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Content;
 import seedu.address.model.tutorial.Group;
@@ -183,5 +187,65 @@ public class ParserUtil {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         return new Time(trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code StuName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static StuName parseStuName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedStuName = name.trim();
+        if (!Name.isValidName(trimmedStuName)) {
+            throw new ParseException(StuName.MESSAGE_CONSTRAINTS);
+        }
+        return new StuName(trimmedStuName);
+    }
+
+    /**
+     * Parses a {@code String email} into an {@code StuEmail}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static StuEmail parseStuEmail(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedStuEmail = email.trim();
+        if (!Email.isValidEmail(trimmedStuEmail)) {
+            throw new ParseException(StuEmail.MESSAGE_CONSTRAINTS);
+        }
+        return new StuEmail(trimmedStuEmail);
+    }
+
+    /**
+     * Parses a {@code String telegram} into a {@code Telegram}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code telegram} is invalid.
+     */
+    public static Telegram parseTelegram(String telegram) throws ParseException {
+        requireNonNull(telegram);
+        String trimmedTelegram = telegram.trim();
+        if (!Telegram.isValidTelegram(trimmedTelegram)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        return new Telegram(telegram);
+    }
+
+    /**
+     * Parses a {@code String attendance} into a {@code Attendance}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code attendance} is invalid.
+     */
+    public static Attendance parseAttendance(String attendance) throws ParseException {
+        requireNonNull(attendance);
+        String trimmedAttendance = attendance.trim();
+        if (!Attendance.isValidAttendance(trimmedAttendance)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        return new Attendance(attendance);
     }
 }
