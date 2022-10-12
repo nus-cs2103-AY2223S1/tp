@@ -20,6 +20,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.StudentBuilder;
 
+
 public class AddCommandTest {
 
     @Test
@@ -117,5 +118,4 @@ public class AddCommandTest {
             return new TaAssist();
         }
     }
-
 }
