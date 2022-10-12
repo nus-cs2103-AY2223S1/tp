@@ -196,38 +196,31 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handlePocListUpdate(CommandResult commandResult) {
+    /**
+     * Handles changes to the UI whenever the POC or Transaction information is updated in a company
+     * @param commandResult the result of command executed
+     */
+    private void handleCompanyInfoUpdate(CommandResult commandResult) {
         ObservableList<Company> companies = logic.getFilteredCompanyList();
 
         if (companies.size() != 1) {
             // Empty poc list panel.
             pocListPanel.setPocList(FXCollections.observableArrayList());
+            transactionListPanel.setTransactionList(FXCollections.observableArrayList());
             return;
         }
 
         Company company = companies.get(0);
         ObservableList<Poc> pocs = company.getPocs().asUnmodifiableObservableList();
+        ObservableList<Transaction> transactions = company.getTransactions().asUnmodifiableObservableList();
         pocListPanel.setPocList(pocs);
+        transactionListPanel.setTransactionList(transactions);
     }
 
     @FXML
     private void landingPageUpdate() {
         backgroundImage.setVisible(false);
         jeepImage.setVisible(false);
-    }
-
-    private void handleTransactionListUpdate(CommandResult commandResult) {
-        ObservableList<Company> companies = logic.getFilteredCompanyList();
-
-        if (companies.size() != 1) {
-            // Empty transaction list panel.
-            transactionListPanel.setTransactionList(FXCollections.observableArrayList());
-            return;
-        }
-
-        Company company = companies.get(0);
-        ObservableList<Transaction> transactions = company.getTransactions().asUnmodifiableObservableList();
-        transactionListPanel.setTransactionList(transactions);
     }
 
     /**
@@ -249,8 +242,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            handlePocListUpdate(commandResult);
-            handleTransactionListUpdate(commandResult);
+            handleCompanyInfoUpdate(commandResult);
             landingPageUpdate();
 
             return commandResult;
