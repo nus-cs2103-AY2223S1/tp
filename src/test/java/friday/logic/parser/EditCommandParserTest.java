@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import friday.commons.core.index.Index;
 import friday.logic.commands.CommandTestUtil;
 import friday.logic.commands.EditCommand;
-import friday.logic.commands.EditCommand.EditPersonDescriptor;
 import friday.model.student.Name;
 import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
@@ -91,7 +90,8 @@ public class EditCommandParserTest {
                 + CommandTestUtil.MASTERYCHECK_DESC_AMY + CommandTestUtil.NAME_DESC_AMY
                 + CommandTestUtil.TAG_DESC_FRIEND;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
+        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withName(CommandTestUtil.VALID_NAME_AMY)
                 .withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_BOB)
                 .withConsultation(CommandTestUtil.VALID_CONSULTATION_AMY).withMasteryCheck(
                         CommandTestUtil.VALID_MASTERYCHECK_AMY)
@@ -107,7 +107,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + CommandTestUtil.TELEGRAMHANDLE_DESC_BOB
                 + CommandTestUtil.CONSULTATION_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_BOB)
                 .withConsultation(CommandTestUtil.VALID_CONSULTATION_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -120,7 +120,7 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(
+        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder().withName(
                 CommandTestUtil.VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
@@ -164,7 +164,7 @@ public class EditCommandParserTest {
                 + CommandTestUtil.CONSULTATION_DESC_BOB
                 + CommandTestUtil.TAG_DESC_HUSBAND;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_BOB)
                 .withConsultation(CommandTestUtil.VALID_CONSULTATION_BOB)
                 .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB).withTags(
@@ -181,7 +181,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.INVALID_TELEGRAMHANDLE_DESC
                 + CommandTestUtil.TELEGRAMHANDLE_DESC_BOB;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(
+        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(
                 CommandTestUtil.VALID_TELEGRAMHANDLE_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
@@ -203,7 +203,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);

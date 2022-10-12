@@ -5,7 +5,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import friday.logic.commands.EditCommand.EditPersonDescriptor;
+import friday.logic.commands.EditCommand;
+import friday.logic.commands.EditCommand.EditStudentDescriptor;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
@@ -14,25 +15,25 @@ import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditStudentDescriptor objects.
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditStudentDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditCommand.EditStudentDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditStudentDescriptor descriptor) {
+        this.descriptor = new EditStudentDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditStudentDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Student student) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditStudentDescriptor();
         descriptor.setName(student.getName());
         descriptor.setTelegramHandle(student.getTelegramHandle());
         descriptor.setConsultation(student.getConsultation());
@@ -41,7 +42,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -49,7 +50,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code TelegramHandle} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code TelegramHandle} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
         descriptor.setTelegramHandle(new TelegramHandle(phone));
@@ -57,7 +58,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Consultation} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Consultation} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withConsultation(LocalDate desiredDate) {
         descriptor.setConsultation(new Consultation(desiredDate));
@@ -65,7 +66,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code MasteryCheck} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code MasteryCheck} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withMasteryCheck(LocalDate desiredDate) {
         descriptor.setMasteryCheck(new MasteryCheck(desiredDate));
@@ -73,7 +74,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudentDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
@@ -82,7 +83,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditStudentDescriptor build() {
         return descriptor;
     }
 }

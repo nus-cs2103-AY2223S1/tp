@@ -38,29 +38,29 @@ public class EditCommandParser implements Parser<EditCommand> {
                     pe);
         }
 
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
+        EditCommand.EditStudentDescriptor editStudentDescriptor = new EditCommand.EditStudentDescriptor();
         if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
+            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_TELEGRAMHANDLE).isPresent()) {
-            editPersonDescriptor.setTelegramHandle(ParserUtil.parseTelegramHandle(argMultimap.getValue(CliSyntax
+            editStudentDescriptor.setTelegramHandle(ParserUtil.parseTelegramHandle(argMultimap.getValue(CliSyntax
                     .PREFIX_TELEGRAMHANDLE).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_CONSULTATION).isPresent()) {
-            editPersonDescriptor.setConsultation(ParserUtil.parseConsultation(
+            editStudentDescriptor.setConsultation(ParserUtil.parseConsultation(
                     argMultimap.getValue(CliSyntax.PREFIX_CONSULTATION).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_MASTERYCHECK).isPresent()) {
-            editPersonDescriptor.setMasteryCheck(ParserUtil.parseMasteryCheck(
+            editStudentDescriptor.setMasteryCheck(ParserUtil.parseMasteryCheck(
                     argMultimap.getValue(CliSyntax.PREFIX_MASTERYCHECK).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editStudentDescriptor);
     }
 
     /**
