@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static seedu.address.testutil.TypicalPoc.ALICE;
 import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
