@@ -5,9 +5,17 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.address.Address;
+import seedu.address.model.role.Buyer;
+import seedu.address.model.role.DesiredCharacteristics;
+import seedu.address.model.role.PriceRange;
+import seedu.address.model.role.Properties;
+import seedu.address.model.role.Seller;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Represents a Person in the address book.
@@ -23,6 +31,9 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Optional<Buyer> buyer = Optional.empty();
+
+    private Optional<Seller> seller = Optional.empty();
 
     /**
      * Every field must be present and not null.
@@ -34,6 +45,20 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Temporarily for UI Testing of Add Buyer Command
+     */
+    public boolean isBuyer() {
+        return buyer.isPresent();
+    }
+
+    /**
+     * Temporarily for UI Testing of Add Seller Command
+     */
+    public boolean isSeller() {
+        return seller.isPresent();
     }
 
     public Name getName() {
@@ -58,6 +83,36 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setBuyer(Buyer buyer) {
+        this.buyer = Optional.of(buyer);
+    }
+
+    public void setSeller(Seller seller) {
+        // TODO: tell using we are overriding seller if it is present
+        this.seller = Optional.of(seller);
+    }
+
+    public Properties getSellerProperties() {
+        Seller s = seller.orElseThrow();
+        return s.getSellerProperties();
+    }
+
+    /**
+     * Temporarily for UI Testing of Add Buyer Command
+     */
+    public PriceRange getBuyerRange() {
+        Buyer b = buyer.orElseThrow();
+        return b.getPriceRange();
+    }
+
+    /**
+     * Temporarily for UI Testing of Add Buyer Command
+     */
+    public DesiredCharacteristics getBuyerCharacteristics() {
+        Buyer b = buyer.orElseThrow();
+        return b.getDesiredCharacteristics();
     }
 
     /**
@@ -111,6 +166,10 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
+        if (seller.isPresent()) {
+            builder.append("; Selling: ")
+                    .append(getSellerProperties());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -2,17 +2,26 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.address.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.property.Description;
+import seedu.address.model.property.Price;
+import seedu.address.model.property.PropertyName;
+import seedu.address.model.role.DesiredCharacteristics;
+import seedu.address.model.role.PriceRange;
+import seedu.address.model.role.Properties;
 import seedu.address.model.tag.Tag;
 
 
@@ -122,4 +131,94 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses {@code String range} into a {@code PriceRange}.
+     */
+    public static PriceRange parsePriceRange(String range) throws ParseException {
+        requireNonNull(range);
+        String trimmedRange = range.trim();
+        if (!PriceRange.isValidPriceRange(trimmedRange)) {
+            throw new ParseException(PriceRange.MESSAGE_CONSTRAINTS);
+        }
+        return new PriceRange(trimmedRange);
+    }
+
+    /**
+     * Parses {@code String characteristics} into a {@code Characteristics}.
+     */
+    public static DesiredCharacteristics parseCharacteristics(String characteristics) throws ParseException {
+        if (characteristics.isEmpty()) {
+            return new DesiredCharacteristics("");
+        }
+        String trimmedCharacteristics = characteristics.trim();
+        if (!DesiredCharacteristics.isValidDesiredCharacteristics(trimmedCharacteristics)) {
+            throw new ParseException(DesiredCharacteristics.MESSAGE_CONSTRAINTS);
+        }
+        return new DesiredCharacteristics(characteristics);
+    }
+
+    /**
+     * Parses {@code String properties} into a {@code List<Integer>}.
+     */
+    // TODO: Actually parse properties here?
+    public static Properties parseProperties(String properties) throws ParseException {
+        if (properties.isEmpty()) {
+            return new Properties("");
+        }
+        String trimmedProperties = properties.trim();
+        List<Integer> propertyArray = Arrays.stream(trimmedProperties.split(";"))
+                .map(item -> Integer.parseInt(item.trim()))
+                .collect(Collectors.toList());
+
+        // TODO: should add a check that all values that are ; separated are integers
+
+        return new Properties("");
+    }
+
+    /**
+     * Parses a {@code String price} into a {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(trimmedPrice);
+    }
+
+    /**
+     * Parses a {@code String propertyName} into a {@code PropertyName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code propertyName} is invalid.
+     */
+    public static PropertyName parsePropertyName(String propertyName) throws ParseException {
+        requireNonNull(propertyName);
+        String trimmedPropertyName = propertyName.trim();
+        if (!PropertyName.isValidPropertyName(trimmedPropertyName)) {
+            throw new ParseException(PropertyName.MESSAGE_CONSTRAINTS);
+        }
+        return new PropertyName(trimmedPropertyName);
+    }
 }
+

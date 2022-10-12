@@ -6,11 +6,15 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
+import seedu.address.model.address.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.property.Description;
+import seedu.address.model.property.Price;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,10 +44,20 @@ public class SampleDataUtil {
         };
     }
 
+    public static Property[] getSampleProperties() {
+        return new Property[]{ new Property(new PropertyName("Residential College 4"), new Price("50000"),
+                new Address("6 College Avenue East"), new Description("A place for NUS students to stay."),
+                        getTagSet("istayhere"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Property sampleProperty : getSampleProperties()) {
+            sampleAb.addProperty(sampleProperty);
         }
         return sampleAb;
     }

@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.address.Address;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,7 +18,7 @@ import seedu.address.model.tag.Tag;
 public class Property {
 
     // Identity fields
-    private final Name name;
+    private final PropertyName propertyName;
     private final Price price;
 
     // Data fields
@@ -28,17 +29,18 @@ public class Property {
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name, Price price, Address address, Description description, Set<Tag> tags) {
-        requireAllNonNull(name, price, address, description, tags);
-        this.name = name;
+    public Property(PropertyName propertyName, Price price, Address address, Description description,
+                    Set<Tag> tags) {
+        requireAllNonNull(propertyName, price, address, description, tags);
+        this.propertyName = propertyName;
         this.price = price;
         this.address = address;
         this.description = description;
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    public PropertyName getName() {
+        return propertyName;
     }
 
     public Address getAddress() {
@@ -98,7 +100,7 @@ public class Property {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, price, address, description, tags);
+        return Objects.hash(propertyName, price, address, description, tags);
     }
 
     @Override

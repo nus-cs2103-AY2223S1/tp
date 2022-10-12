@@ -12,6 +12,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
+import seedu.address.model.role.Buyer;
+import seedu.address.model.role.Seller;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Property> filteredProperties;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredProperties = new FilteredList<>(this.addressBook.getPropertyList());
     }
 
     public ModelManager() {
@@ -107,10 +112,20 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void setBuyerRole(Person person, Buyer buyer) {
+        requireAllNonNull(person, buyer);
+        addressBook.setBuyerRole(person, buyer);
+    }
+
+    @Override
+    public void setSellerRole(Person person, Seller seller) {
+        requireAllNonNull(person, seller);
+        person.setSeller(seller);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -120,6 +135,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Property> getFilteredPropertyList() {
+        return filteredProperties;
     }
 
     @Override
