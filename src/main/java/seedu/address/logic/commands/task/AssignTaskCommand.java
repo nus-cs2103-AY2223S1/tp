@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -38,7 +39,7 @@ public class AssignTaskCommand extends TaskCommand {
     public static final String MESSAGE_RESET_SUCCESS = "Removed all assigned persons from task: %1$s";
 
     private final Index taskIndex;
-    private final Set<Index> personIndexes;
+    private final Set<Index> personIndexes = new HashSet<>();
 
     /**
      * Creates AssignTaskCommand to the specific task and persons.
@@ -49,7 +50,7 @@ public class AssignTaskCommand extends TaskCommand {
         requireNonNull(taskIndex);
         requireNonNull(personsIndexes);
         this.taskIndex = taskIndex;
-        this.personIndexes = personsIndexes;
+        this.personIndexes.addAll(personsIndexes);
     }
 
     @Override
@@ -96,7 +97,18 @@ public class AssignTaskCommand extends TaskCommand {
 
         // state check
         AssignTaskCommand e = (AssignTaskCommand) other;
-        return taskIndex.equals(e.taskIndex) && personIndexes.equals(e.personIndexes);
+        return taskIndex.equals(e.taskIndex) && setIndexEquals(personIndexes, e.personIndexes);
+    }
+
+    private boolean setIndexEquals(Set<Index> firstSet, Set<Index> secondSet) {
+        if (firstSet.size() != secondSet.size()) {
+            return false;
+        }
+
+        Set<Integer> firstSetValues = firstSet.stream().map(x -> x.getZeroBased()).collect(Collectors.toSet());
+        Set<Integer> secondSetValues = secondSet.stream().map(x -> x.getZeroBased()).collect(Collectors.toSet());
+
+        return firstSetValues.equals(secondSetValues);
     }
 
 }

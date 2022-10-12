@@ -19,6 +19,14 @@ public class AssignTaskCommandParserTest {
     private AssignTaskCommandParser parser = new AssignTaskCommandParser();
 
     @Test
+    public void parse_validArgs_returnsAssignTaskCommand() {
+        assertParseSuccess(parser, "1", new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>()));
+
+        assertParseSuccess(parser, "1 c/1 c/2", new AssignTaskCommand(INDEX_FIRST_TASK,
+                new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON))));
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
 
         // no task index specified
