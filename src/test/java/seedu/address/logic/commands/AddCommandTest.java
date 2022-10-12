@@ -193,6 +193,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Team getTeam(seedu.address.model.team.Name name) {
             throw new AssertionError("This method should not be called.");
         }
@@ -213,7 +218,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteTask(Index index, Task task) {
+        public void deleteTask(Index teamIndex, Index taskIndex) {
             throw new AssertionError("This method should not be called.");
         }
     }

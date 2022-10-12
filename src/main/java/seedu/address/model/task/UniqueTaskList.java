@@ -148,10 +148,10 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Deletes a task from this {@code TaskList}.
      *
-     * @param task The index of the {@code task} to be deleted.
+     * @param index The index of the {@code task} to be deleted.
      */
-    public void delete(Task task) {
-        internalList.remove(task);
+    public void delete(int index) {
+        internalList.remove(index);
     }
 
     /**

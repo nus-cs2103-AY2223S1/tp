@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 
 import java.util.List;
 
@@ -20,46 +21,52 @@ public class TaskDeleteCommand extends Command {
     public static final String COMMAND_WORD = "taskdelete";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the specified task to the team "
             + "by the index number used in the displayed team list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TASK_NAME + "TASK-NAME]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TASK_NAME + "Create GUI for AddressBook";
+            + "Parameters: " + PREFIX_TEAM_INDEX + "TEAM-INDEX (must be a positive integer), "
+            + PREFIX_TASK_INDEX + "TASK-INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_TEAM_INDEX + "1 "
+            + PREFIX_TASK_INDEX + "3";
     public static final String MESSAGE_SUCCESS = "Task deleted: %1$s";
 
-    private final Index index;
-    private final Task toDelete;
+    private final Index taskIndex;
+    private final Index teamIndex;
 
     /**
      * Creates a TaskDeleteCommand to delete the specified {@code Task}
      *
-     * @param index of the team in the filtered team list to edit.
-     * @param task task to be deleted.
+     * @param teamIndex of the team in the filtered team list to edit.
+     * @param taskIndex index of the task to be deleted.
      */
-    public TaskDeleteCommand(Index index, Task task) {
-        requireNonNull(index);
-        requireNonNull(task);
+    public TaskDeleteCommand(Index teamIndex, Index taskIndex) {
+        requireNonNull(taskIndex);
+        requireNonNull(teamIndex);
 
-        this.index = index;
-        this.toDelete = task;
+        this.teamIndex = teamIndex;
+        this.taskIndex = taskIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Team> lastShownTeamList = model.getFilteredTeamList();
+        List<Task> lastShownTaskList = model.getFilteredTaskList();
 
-        if (index.getZeroBased() >= lastShownTeamList.size()) {
+        if (teamIndex.getZeroBased() >= lastShownTeamList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
         }
 
-        model.deleteTask(index, toDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
+        if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        Task taskToDelete = lastShownTaskList.get(taskIndex.getZeroBased());
+        model.deleteTask(teamIndex, taskIndex);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, taskToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskDeleteCommand // instanceof handles nulls
-                && toDelete.equals(((TaskDeleteCommand) other).toDelete));
+                && taskIndex.equals(((TaskDeleteCommand) other).taskIndex));
     }
 }

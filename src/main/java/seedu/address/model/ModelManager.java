@@ -167,9 +167,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTask(Index index, Task task) {
-        requireAllNonNull(index, task);
-        addressBook.deleteTask(index, task);
+    public void deleteTask(Index teamIndex, Index taskIndex) {
+        requireAllNonNull(teamIndex, taskIndex);
+        addressBook.deleteTask(teamIndex, taskIndex);
     }
 
     //=========== Filtered Person List Accessors =============================================================
