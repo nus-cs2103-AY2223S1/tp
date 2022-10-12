@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.commons.core.GuiSettings;
 import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
-import eatwhere.foodguide.testutil.FoodGuideBuilder;
 import eatwhere.foodguide.testutil.Assert;
+import eatwhere.foodguide.testutil.FoodGuideBuilder;
 import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class ModelManagerTest {

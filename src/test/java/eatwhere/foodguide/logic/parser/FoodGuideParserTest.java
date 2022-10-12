@@ -24,8 +24,8 @@ import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.EateryBuilder;
-import eatwhere.foodguide.testutil.EditEateryDescriptorBuilder;
 import eatwhere.foodguide.testutil.EateryUtil;
+import eatwhere.foodguide.testutil.EditEateryDescriptorBuilder;
 import eatwhere.foodguide.testutil.TypicalIndexes;
 
 public class FoodGuideParserTest {
