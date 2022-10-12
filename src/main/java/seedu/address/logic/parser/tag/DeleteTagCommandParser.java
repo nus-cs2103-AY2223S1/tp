@@ -2,7 +2,8 @@ package seedu.address.logic.parser.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.Collection;
@@ -57,7 +58,8 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
             throw new ParseException(AddTagCommand.MESSAGE_TAG_NOT_ADDED);
         }
 
-        return new DeleteTagCommand(index, editPersonDescriptor, editTaskDescriptor, deleteTagFromContact, deleteTagFromTask);
+        return new DeleteTagCommand(index, editPersonDescriptor, editTaskDescriptor,
+            deleteTagFromContact, deleteTagFromTask);
     }
 
     /**
