@@ -47,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_DOB)) { //As dob is an optional field, need check if present
             dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
         } else {
-            dob = DateOfBirth.empty();
+            dob = DateOfBirth.getEmptyDateOfBirth();
         }
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());

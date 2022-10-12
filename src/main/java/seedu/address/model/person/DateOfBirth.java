@@ -29,7 +29,7 @@ public class DateOfBirth {
     /**
      * Constructs an empty {@code DateOfBirth}.
      */
-    public DateOfBirth() {
+    private DateOfBirth() {
         this.date = null;
         this.isEmpty = true;
     }
@@ -49,7 +49,7 @@ public class DateOfBirth {
     /**
      * Constructs an empty {@code DateOfBirth}.
      */
-    public static DateOfBirth empty() {
+    public static DateOfBirth getEmptyDateOfBirth() {
         return new DateOfBirth();
     }
 

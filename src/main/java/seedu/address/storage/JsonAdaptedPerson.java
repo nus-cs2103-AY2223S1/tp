@@ -111,7 +111,7 @@ class JsonAdaptedPerson {
 
         final DateOfBirth modelDob;
         if (dobIsEmpty) {
-            modelDob = new DateOfBirth(); //create empty DateOfBirth object
+            modelDob = DateOfBirth.getEmptyDateOfBirth(); //create empty DateOfBirth object
         } else {
             modelDob = new DateOfBirth(dob); //else create DateOfBirth object with the date
         }
