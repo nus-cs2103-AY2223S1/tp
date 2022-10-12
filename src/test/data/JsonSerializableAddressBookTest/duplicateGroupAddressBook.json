@@ -1,0 +1,22 @@
+{
+  "persons": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "hansmuster@email.com",
+    "address": "4th street",
+    "assignments": { }
+  }, {
+    "name": "Zack Shaw",
+    "phone": "91235430",
+    "email": "shawzack@email.com",
+    "address": "Marina Trench",
+    "assignments": { }
+  } ],
+  "groups" : [ {
+    "members": ["Hans Muster"],
+    "groupName": "Valid Group"
+  }, {
+    "members": ["Hans Muster"],
+    "groupName": "Valid Group"
+  } ]
+}
