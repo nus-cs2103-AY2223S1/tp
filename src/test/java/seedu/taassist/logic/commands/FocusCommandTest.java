@@ -51,7 +51,7 @@ class FocusCommandTest {
         assertTrue(focusCommand.equals(focusCommandCopy));
 
         // different types -> returns false
-        assertFalse(focusCommand.equals(new BackCommand()));
+        assertFalse(focusCommand.equals(new UnfocusCommand()));
 
         // null -> returns false
         assertFalse(focusCommand.equals(null));
