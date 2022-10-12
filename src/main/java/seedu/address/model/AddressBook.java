@@ -19,8 +19,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     // Internal Id counters
-    private int personIdCounter = 0;
-    private int internshipIdCounter = 0;
+    private int personIdCounter = -1; // updateNextPersonId() will increment it to 0
+    private int internshipIdCounter = -1; // updateNextInternshipId() will increment it to 0
 
     private final UniquePersonList persons;
     private final UniqueInternshipList internships;
