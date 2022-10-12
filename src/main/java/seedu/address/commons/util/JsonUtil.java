@@ -73,6 +73,7 @@ public class JsonUtil {
             throw new DataConversionException(e);
         }
 
+        objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         return Optional.of(jsonFile);
     }
 

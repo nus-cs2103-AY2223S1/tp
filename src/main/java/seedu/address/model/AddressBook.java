@@ -16,9 +16,9 @@ import seedu.address.model.person.user.User;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private User user = new EmptyUser();
     private final UniquePersonList persons;
     private final EmptyUser emptyUser = new EmptyUser();
+    private User user = emptyUser;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,7 +31,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -80,7 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Deletes the current user from the address book and replaces it with an EmptyUser.
      */
     public void deleteUser() {
-        user = new EmptyUser();
+        user = emptyUser;
     }
 
     //// person-level operations
@@ -119,7 +120,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         persons.remove(key);
     }
-
     //// util methods
 
     @Override
