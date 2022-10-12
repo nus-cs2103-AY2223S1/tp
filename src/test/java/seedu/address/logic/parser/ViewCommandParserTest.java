@@ -9,9 +9,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.model.student.Id;
+import seedu.address.model.student.IdPredicate;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 
-public class FindCommandParserTest {
+public class ViewCommandParserTest {
 
     private ViewCommandParser parser = new ViewCommandParser();
 
@@ -21,14 +23,23 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validNameArgs_returnsViewCommand() {
         // no leading and trailing whitespaces
         ViewCommand expectedViewCommand =
                 new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedViewCommand);
+        assertParseSuccess(parser, " nm/Alice Bob", expectedViewCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedViewCommand);
+        assertParseSuccess(parser, " nm/\n Alice \n \t Bob  \t", expectedViewCommand);
+    }
+
+    @Test
+    public void parse_validIdArgs_returnsViewCommand() {
+        ViewCommand expectedViewCommand =
+                new ViewCommand(new IdPredicate(new Id("123A")));
+        assertParseSuccess(parser, " id/123a", expectedViewCommand);
+
+        assertParseSuccess(parser, " id/ \t 123a \n", expectedViewCommand);
     }
 
 }

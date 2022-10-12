@@ -32,7 +32,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_NAME, PREFIX_ID);
 
         if (argMultiMap.getValue(PREFIX_STUDENT_NAME).isPresent()) {
-            String[] nameKeywords = argMultiMap.getValue(PREFIX_STUDENT_NAME).get().split("\\s");
+            String[] nameKeywords = argMultiMap.getValue(PREFIX_STUDENT_NAME).get().split("\\s+");
             return new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (argMultiMap.getValue(PREFIX_ID).isPresent()) {
             return new ViewCommand(new IdPredicate(new Id(argMultiMap.getValue(PREFIX_ID).get())));

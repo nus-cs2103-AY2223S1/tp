@@ -24,7 +24,7 @@ import seedu.address.model.student.NameContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code ViewCommand}.
  */
-public class FindCommandTest {
+public class ViewCommandTest {
     private Model model = new ModelManager(getTypicalStudentRecord(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalStudentRecord(), new UserPrefs());
 
