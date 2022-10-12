@@ -34,7 +34,8 @@ public class UpdateTaskCommandParser implements Parser<UpdateTaskCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateTaskCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateTaskCommand.MESSAGE_USAGE),
+                    pe);
         }
 
         UpdateTaskCommand.UpdateTaskDescriptor updateTaskDescriptor = new UpdateTaskCommand.UpdateTaskDescriptor();

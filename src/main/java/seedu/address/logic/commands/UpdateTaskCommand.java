@@ -70,7 +70,8 @@ public class UpdateTaskCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToUpdate}
      * updated with {@code updateTaskDescriptor}.
      */
-    private static Task createUpdatedTask(Task taskToUpdate, UpdateTaskCommand.UpdateTaskDescriptor updateTaskDescriptor) {
+    private static Task createUpdatedTask(Task taskToUpdate,
+                                          UpdateTaskCommand.UpdateTaskDescriptor updateTaskDescriptor) {
         assert taskToUpdate != null;
 
         String updatedTitle = updateTaskDescriptor.getTitle().orElse(taskToUpdate.getTitle());
