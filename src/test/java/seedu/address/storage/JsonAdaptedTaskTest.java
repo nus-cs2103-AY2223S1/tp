@@ -44,7 +44,6 @@ class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_invalidDeadline_throwsIllegalValueException() {
-        System.out.println(VALID_MODULE);
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TASKNAME, VALID_MODULE, INVALID_DEADLINE, VALID_STATUS);
         String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
