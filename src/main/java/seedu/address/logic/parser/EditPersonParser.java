@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -14,7 +15,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.EditUserByNameCommand;
+import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FullNamePredicate;
 import seedu.address.model.tag.Tag;
@@ -22,17 +23,22 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new EditByNameCommand object
  */
-public class EditByNameCommandParser implements Parser<EditUserByNameCommand> {
+public class EditPersonParser implements Parser<EditPersonCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditUserByNameCommand parse(String args) throws ParseException {
+    public EditPersonCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditPersonCommand.MESSAGE_USAGE));
+        }
 
         String name = argMultimap.getPreamble();
 
@@ -55,7 +61,7 @@ public class EditByNameCommandParser implements Parser<EditUserByNameCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditUserByNameCommand(new FullNamePredicate(name), editPersonDescriptor);
+        return new EditPersonCommand(new FullNamePredicate(name), editPersonDescriptor);
     }
 
     /**

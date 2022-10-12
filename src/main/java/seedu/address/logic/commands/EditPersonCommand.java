@@ -25,9 +25,9 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book when user provides a name.
  */
-public class EditUserByNameCommand extends Command {
+public class EditPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "editbyname";
+    public static final String COMMAND_WORD = "editperson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by their full name. "
@@ -38,7 +38,8 @@ public class EditUserByNameCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " John "
+            + PREFIX_NAME + "Alice "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -53,7 +54,7 @@ public class EditUserByNameCommand extends Command {
      * @param predicate condition to test if queried person has same name as that in the list
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditUserByNameCommand(FullNamePredicate predicate, EditCommand.EditPersonDescriptor editPersonDescriptor) {
+    public EditPersonCommand(FullNamePredicate predicate, EditCommand.EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
 
         this.editPersonDescriptor = new EditCommand.EditPersonDescriptor(editPersonDescriptor);
@@ -116,12 +117,12 @@ public class EditUserByNameCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditUserByNameCommand)) {
+        if (!(other instanceof EditPersonCommand)) {
             return false;
         }
 
         // state check
-        EditUserByNameCommand e = (EditUserByNameCommand) other;
+        EditPersonCommand e = (EditPersonCommand) other;
         return predicate.equals((e.predicate))
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }

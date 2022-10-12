@@ -14,8 +14,8 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a person identified using the displayed name from the address book.
  */
-public class DeleteUserByNameCommand extends Command {
-    public static final String COMMAND_WORD = "deletebyname";
+public class DeletePersonCommand extends Command {
+    public static final String COMMAND_WORD = "deleteperson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the person identified by name of the person in the displayed person list.\n"
@@ -26,7 +26,7 @@ public class DeleteUserByNameCommand extends Command {
 
     private final FullNamePredicate predicate;
 
-    public DeleteUserByNameCommand(FullNamePredicate predicate) {
+    public DeletePersonCommand(FullNamePredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -61,12 +61,12 @@ public class DeleteUserByNameCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteUserByNameCommand)) {
+        if (!(other instanceof DeletePersonCommand)) {
             return false;
         }
 
         // state check
-        DeleteUserByNameCommand e = (DeleteUserByNameCommand) other;
+        DeletePersonCommand e = (DeletePersonCommand) other;
         return predicate.equals((e.predicate));
 
     }
