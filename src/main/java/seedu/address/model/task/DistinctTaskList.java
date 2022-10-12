@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskIdentityModifiedException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
@@ -29,6 +30,14 @@ public class DistinctTaskList implements Iterable<Task> {
     public boolean contains(Task toCheck) {
         requireNonNull(toCheck);
         return taskList.stream().anyMatch(toCheck::isSameTask);
+    }
+
+    /**
+     * Returns true if the list contains a task with an equivalent module as the given argument.
+     */
+    public boolean containsModule(Module toCheck) {
+        requireNonNull(toCheck);
+        return taskList.stream().map(Task::getModule).anyMatch(toCheck::isSameModuleCode);
     }
 
     /**
@@ -64,6 +73,17 @@ public class DistinctTaskList implements Iterable<Task> {
         }
 
         taskList.set(index, editedTask);
+    }
+
+    /**
+     * Removes the equivalent task from the tasklist.
+     * The task must exist in the list.
+     */
+    public void remove(Task toRemove) {
+        requireNonNull(toRemove);
+        if (!taskList.remove(toRemove)) {
+            throw new TaskNotFoundException();
+        }
     }
 
     @Override

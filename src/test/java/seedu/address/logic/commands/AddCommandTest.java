@@ -162,6 +162,21 @@ public class AddCommandTest {
         public void setTask(Task task, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteModule(Module target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTaskWithModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
     /**
      * A Model stub that contains a single person.
