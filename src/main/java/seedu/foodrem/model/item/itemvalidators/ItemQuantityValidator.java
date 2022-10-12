@@ -1,4 +1,4 @@
-package seedu.foodrem.model.item.itemvalidator;
+package seedu.foodrem.model.item.itemvalidators;
 
 import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 
@@ -10,20 +10,20 @@ import seedu.foodrem.model.item.Item;
 public class ItemQuantityValidator implements Validator {
 
 
-    public static final String MESSAGE_FOR_NOT_A_NUMBER = "Quantities should be a number.";
+    public static final String MESSAGE_FOR_NOT_A_NUMBER = "The item quantity should be a number.";
     public static final String MESSAGE_FOR_QUANTITY_IS_NEGATIVE =
-            "Quantity should not be negative.";
+            "The item quantity should not be negative.";
 
     // Validation for quantity precision
     private static final int MAX_DECIMAL_PLACE = 4;
     public static final String MESSAGE_FOR_PRECISION_TOO_HIGH =
-            String.format("Quantity should not have more than %d decimal places", MAX_DECIMAL_PLACE);
+            String.format("The item quantity should not have more than %d decimal places.", MAX_DECIMAL_PLACE);
     private static final String DECIMAL_POINT = ".";
 
     // Validation for size of quantity
-    private static final int MAX_QUANTITY = 1000000;
+    private static final int MAX_QUANTITY = 1_000_000;
     private static final String MESSAGE_FOR_QUANTITY_TOO_LARGE =
-            String.format("Quantity should not be more than %d.", MAX_QUANTITY);
+            String.format("The item quantity should not be more than %,d.", MAX_QUANTITY);
 
     /**
      * Validates a given input String. This is to be used during construction.

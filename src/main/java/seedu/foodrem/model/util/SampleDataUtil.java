@@ -10,7 +10,7 @@ import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code FoodRem} with sample data.
  */
 public class SampleDataUtil {
     public static Item[] getSampleItems() {
@@ -28,12 +28,12 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyFoodRem getSampleAddressBook() {
-        FoodRem sampleAddressBook = new FoodRem();
+    public static ReadOnlyFoodRem getSampleFoodRem() {
+        FoodRem sampleFoodRem = new FoodRem();
         for (Item sampleItem : getSampleItems()) {
-            sampleAddressBook.addItem(sampleItem);
+            sampleFoodRem.addItem(sampleItem);
         }
-        return sampleAddressBook;
+        return sampleFoodRem;
     }
 
     // TODO: Implement with tags

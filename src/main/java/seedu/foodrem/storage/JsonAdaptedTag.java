@@ -39,7 +39,7 @@ class JsonAdaptedTag {
      */
     public Tag toModelType() throws IllegalArgumentException {
         if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalArgumentException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalArgumentException(Tag.EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS);
         }
         return new Tag(tagName);
     }
