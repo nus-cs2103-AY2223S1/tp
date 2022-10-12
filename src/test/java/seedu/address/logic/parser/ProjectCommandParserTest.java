@@ -1,13 +1,21 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_DEADLINE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_REPOSITORY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.REPOSITORY_DESC_REPOSITORY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.project.AddProjectCommand;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
@@ -37,8 +45,8 @@ class ProjectCommandParserTest {
                 AddProjectCommand.MESSAGE_ADD_PROJECT_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, AddProjectCommand.COMMAND_FLAG, VALID_NAME_BOB +
-                REPOSITORY_DESC_REPOSITORY + DEADLINE_DESC_DEADLINE, expectedMessage);
+        assertParseFailure(parser, AddProjectCommand.COMMAND_FLAG, VALID_NAME_BOB
+                + REPOSITORY_DESC_REPOSITORY + DEADLINE_DESC_DEADLINE, expectedMessage);
     }
 
     @Test

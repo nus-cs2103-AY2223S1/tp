@@ -16,20 +16,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.client.Person;
-<<<<<<< HEAD
-import seedu.address.model.issue.Issue;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-=======
->>>>>>> e759cb303b22f8efb0b2be99e1ae20fec47ea9a2
 import seedu.address.ui.Ui;
 
-//import seedu.address.testutil.EditPersonDescriptorBuilder;
 /**
  * Contains helper methods for testing commands.
  */
@@ -66,8 +59,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "20 October 2022"; // deadline in yyyy-mm-dd format
-    public static final String INVALID_REPOSITORY_DESC = " " + PREFIX_REPOSITORY + "Repo"; // repository in username/repository format
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "20 October 2022"; // yyyy-mm-dd format
+    public static final String INVALID_REPOSITORY_DESC = " " + PREFIX_REPOSITORY + "Repo"; // username/repository format
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
