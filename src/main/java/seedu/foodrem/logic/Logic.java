@@ -35,6 +35,8 @@ public interface Logic {
      */
     ObservableList<Item> getFilteredItemList();
 
+    ObservableList<Item> getFilteredSortedItemList();
+
     /**
      * Returns the user prefs' address book file path.
      */
