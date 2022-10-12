@@ -10,7 +10,7 @@ import seedu.address.model.transaction.BuyTransaction;
 import seedu.address.model.transaction.Transaction;
 
 /**
- * A UI component that displays information of a {@code Poc}.
+ * A UI component that displays information of a {@code Transaction}.
  */
 public class TransactionCard extends UiPart<Region> {
 
@@ -40,19 +40,16 @@ public class TransactionCard extends UiPart<Region> {
     private FlowPane transactionType;
 
     /**
-     * Creates a {@code PocCode} with the given {@code Poc} and index to display
+     * Creates a {@code TransactionCode} with the given {@code Transaction} and index to display
      */
     public TransactionCard(Transaction transaction, int displayedIndex) {
         super(FXML);
         this.transaction = transaction;
-        String typeOfTransaction = "Sell";
         id.setText(displayedIndex + ". ");
         good.setText(transaction.getGoods().toString());
         price.setText(transaction.getPrice().toString());
         quantity.setText(transaction.getQuantity().toString());
-        if (transaction instanceof BuyTransaction) {
-            typeOfTransaction = "Buy";
-        }
+        String typeOfTransaction = transaction instanceof BuyTransaction ? "Buy" : "Sell";
         transactionType.getChildren().add(new Label(typeOfTransaction));
     }
 

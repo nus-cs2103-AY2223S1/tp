@@ -30,10 +30,10 @@
             <Label fx:id="quantity" styleClass="cell_small_label" text="\$quantity" />
             <padding>
                 <Insets left="25.0" />
-            </padding>
-            <GridPane.margin>
-                <Insets />
-            </GridPane.margin>
+        </padding>
+        <GridPane.margin>
+            <Insets />
+        </GridPane.margin>
         </VBox>
         <rowConstraints>
             <RowConstraints />

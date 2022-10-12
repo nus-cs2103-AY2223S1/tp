@@ -63,10 +63,10 @@ public class TransactionLog {
      * Creates an observable list of transactions to be used by MainWindow
      * @return an unmodifiableObservableList of transactions
      */
-    public ObservableList<Transaction> listTransactions() {
+    public ObservableList<Transaction> asUnmodifiableObservableList() {
         ObservableList<Transaction> internalList = FXCollections.observableArrayList();
-        for (Transaction transation : transactionList) {
-            internalList.add(transation);
+        for (Transaction transaction : transactionList) {
+            internalList.add(transaction);
         }
         return FXCollections.unmodifiableObservableList(internalList);
     }

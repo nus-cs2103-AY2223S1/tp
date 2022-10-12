@@ -104,7 +104,7 @@
                               <Image url="@../images/background.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="jeepImage" fitHeight="213.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="jeepImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/logo.png" />
                            </image>

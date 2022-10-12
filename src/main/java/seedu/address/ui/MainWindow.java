@@ -151,10 +151,10 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        backgroundImage.fitWidthProperty().bind(pocListPanel.getRoot().widthProperty());
-        backgroundImage.fitHeightProperty().bind(landingArea.heightProperty());
-        jeepImage.fitWidthProperty().bind(backgroundImage.fitWidthProperty());
-        jeepImage.fitHeightProperty().bind(backgroundImage.fitHeightProperty());
+//        backgroundImage.fitWidthProperty().bind(pocListPanel.getRoot().widthProperty());
+//        backgroundImage.fitHeightProperty().bind(landingArea.heightProperty());
+//        jeepImage.fitWidthProperty().bind(backgroundImage.fitWidthProperty());
+//        jeepImage.fitHeightProperty().bind(backgroundImage.fitHeightProperty());
     }
 
     /**
@@ -167,7 +167,7 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
-        primaryStage.setMaximized(true);
+        //primaryStage.setMaximized(true);
     }
 
     /**
@@ -228,7 +228,7 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         Company company = companies.get(0);
-        ObservableList<Transaction> transactions = company.getTransactions().listTransactions();
+        ObservableList<Transaction> transactions = company.getTransactions().asUnmodifiableObservableList();
         transactionListPanel.setTransactionList(transactions);
     }
 

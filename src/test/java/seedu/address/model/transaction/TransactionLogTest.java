@@ -56,7 +56,7 @@ class TransactionLogTest {
     }
 
     @Test
-    public void testListTransactions() {
+    public void testAsUnmodifiableObservableList() {
         Goods goods = new Goods("Apple");
         Price price = new Price("0.8");
         Quantity quantity = new Quantity("10");
@@ -67,7 +67,7 @@ class TransactionLogTest {
 
         ObservableList<Transaction> internalList = FXCollections.observableArrayList();
         internalList.add(transaction);
-        assertEquals(log.listTransactions(), FXCollections.unmodifiableObservableList(internalList));
+        assertEquals(log.asUnmodifiableObservableList(), FXCollections.unmodifiableObservableList(internalList));
     }
 
 }

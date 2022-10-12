@@ -13,7 +13,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.transaction.Transaction;
 
 /**
- * Panel containing the list of pocs.
+ * Panel containing the list of transactions.
  */
 public class TransactionListPanel extends UiPart<Region> {
     private static final String FXML = "TransactionPanel.fxml";
@@ -23,14 +23,14 @@ public class TransactionListPanel extends UiPart<Region> {
     private ListView<Transaction> transactionListView;
 
     /**
-     * Creates a {@code PocListPanel} with an empty {@code ObservableList}.
+     * Creates a {@code TransactionListPanel} with an empty {@code ObservableList}.
      */
     public TransactionListPanel() {
         super(FXML);
     }
 
     /**
-     * Sets the {@code PocListPanel} with the pocs from {@code ObservableList}.
+     * Sets the {@code TransactionListPanel} with the transactions from {@code ObservableList}.
      */
     public void setTransactionList(ObservableList<Transaction> transactionList) {
         requireNonNull(transactionList);
@@ -40,7 +40,7 @@ public class TransactionListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Poc} using a {@code PocCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Transaction} using a {@code TransactionCard}.
      */
     class TransactionListViewCell extends ListCell<Transaction> {
         @Override
