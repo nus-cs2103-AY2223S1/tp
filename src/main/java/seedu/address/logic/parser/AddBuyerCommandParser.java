@@ -28,7 +28,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 /**
  * Parses input arguments and creates a new AddPersonCommand object
  */
-public class AddBuyerCommandParser extends AddCommandParser implements Parser<AddPersonCommand> {
+public class AddBuyerCommandParser extends AddPersonCommandParser implements Parser<AddPersonCommand> {
 
     public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + " c/Buyer";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to the address book. "

@@ -12,9 +12,9 @@ import seedu.address.model.person.*;
 /**
  * Parses input arguments and creates a new AddPersonCommand object
  */
-public class AddCommandParser implements Parser<AddPersonCommand> {
+public class AddPersonCommandParser implements Parser<AddPersonCommand> {
 
-    public AddCommandParser() {
+    public AddPersonCommandParser() {
     }
 
     /**

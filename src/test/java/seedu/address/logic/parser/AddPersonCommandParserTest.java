@@ -30,7 +30,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 public class AddPersonCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private AddPersonCommandParser parser = new AddPersonCommandParser();
 
     //TODO Redraft the test cases
 //    @Test

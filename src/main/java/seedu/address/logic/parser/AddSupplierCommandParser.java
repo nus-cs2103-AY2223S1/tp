@@ -27,7 +27,7 @@
 ///**
 // * Parses input arguments and creates a new AddPersonCommand object
 // */
-//public class AddSupplierCommandParser extends AddCommandParser implements Parser<AddSupplierCommand> {
+//public class AddSupplierCommandParser extends AddPersonCommandParser implements Parser<AddSupplierCommand> {
 //
 //    public AddSupplierCommandParser() {
 //
