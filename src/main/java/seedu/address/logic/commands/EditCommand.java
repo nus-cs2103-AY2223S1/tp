@@ -87,11 +87,12 @@ public class EditCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-
+        boolean isEditingClass = !editPersonDescriptor.getAClass().get().classDateTime.equals("");
         ClassStorage.saveClass(editedPerson, index.getOneBased());
-        ClassStorage.removeExistingClass(personToEdit);
-        if (editPersonDescriptor.getAClass().get().classDateTime.equals("")
-                && !personToEdit.getAClass().classDateTime.equals("")) {
+        if (isEditingClass) {
+            ClassStorage.removeExistingClass(personToEdit);
+        }
+        if (!isEditingClass && !personToEdit.getAClass().classDateTime.equals("")) {
             editedPerson.setClass(personToEdit.getAClass());
         }
 
