@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.image.ImageView?>
+<VBox alignment="CENTER" minHeight="40" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="5" right="5" bottom="5" left="15"/>
+    </padding>
+    <HBox spacing="20" alignment="CENTER_LEFT" styleClass="table_header" minHeight="30">
+        <padding>
+            <Insets left="10"/>
+        </padding>
+        <Label prefWidth="250" text="Task"/>
+        <Label prefWidth="150" maxWidth="200" text="Tags"/>
+        <Label prefWidth="150" text="Module"/>
+        <Label prefWidth="150" text="Deadline"/>
+        <Label prefWidth="150" text="Done"/>
+    </HBox>
+    <ListView fx:id="taskListView" VBox.vgrow="ALWAYS"/>
+</VBox>

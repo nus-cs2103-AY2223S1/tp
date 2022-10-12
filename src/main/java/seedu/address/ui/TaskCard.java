@@ -1,9 +1,14 @@
 package seedu.address.ui;
 
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -12,9 +17,9 @@ import seedu.address.model.task.Task;
 /**
  * An UI component that displays information of a {@code Task}.
  */
-public class PersonCard extends UiPart<Region> {
+public class TaskCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TaskListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -39,18 +44,27 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
+    private ImageView checkbox;
+    @FXML
     private FlowPane tags;
+
+    private Path checkedPngPath = Paths.get("src/main/resources/images/checkbox_checked.png");
+
+    private Path uncheckedPngPath = Paths.get("src/main/resources/images/checkbox_unchecked.png");
 
     /**
      * Creates a {@code PersonCode} with the given {@code Task} and index to display.
      */
-    public PersonCard(Task task, int displayedIndex) {
+    public TaskCard(Task task, int displayedIndex) throws MalformedURLException {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
         deadline.setText(task.getDeadline().date);
         module.setText(task.getModule().fullName);
+        Image checkBoxImage = new Image(task.isDone() ? checkedPngPath.toUri().toURL().toExternalForm()
+                : uncheckedPngPath.toUri().toURL().toExternalForm());
+        checkbox.setImage(checkBoxImage);
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -64,12 +78,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof TaskCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        TaskCard card = (TaskCard) other;
         return id.getText().equals(card.id.getText())
                 && task.equals(card.task);
     }
