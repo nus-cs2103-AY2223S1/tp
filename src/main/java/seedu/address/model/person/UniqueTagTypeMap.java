@@ -154,7 +154,6 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     public void setTagType(TagType target, TagType editedTagType) throws TagTypeNotFoundException,
             DuplicateTagTypeException {
         requireAllNonNull(target, editedTagType);
-
         if (!this.contains(target)) {
             throw new TagTypeNotFoundException();
         }

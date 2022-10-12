@@ -135,4 +135,11 @@ public class Person {
             this.tagTypeMap.removeTagType(tagType);
         }
     }
+
+    /**
+     * Sets tagTypeMap for the person.
+     */
+    public void setTagTypeMap(UniqueTagTypeMap tagTypeMap) throws TagTypeNotFoundException {
+        this.tagTypeMap.setTagTypeMap(tagTypeMap);
+    }
 }
