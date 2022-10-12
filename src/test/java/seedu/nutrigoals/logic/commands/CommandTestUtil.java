@@ -26,11 +26,11 @@ public class CommandTestUtil {
 
     public static final String VALID_APPLE_CALORIE = "50";
     public static final String VALID_APPLE_NAME = "Apple";
-    public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_BREAD_NAME = "Bread";
     public static final String VALID_BREAD_CALORIE = "150";
     public static final String VALID_SUSHI_NAME = "Sushi";
-    public static final String VALID_TAG_HUSBAND = "husband";
+    public static final String VALID_BISCUIT_NAME = "Biscuit";
+    public static final String VALID_BISCUIT_CALORIE = "200";
     public static final String VALID_TAG_BREAKFAST = "breakfast";
     public static final String VALID_TAG_LUNCH = "lunch";
 

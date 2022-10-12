@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.DESC_BREAKFAST;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.DESC_LUNCH;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_BISCUIT_NAME;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.showFoodAtIndex;
@@ -54,11 +54,11 @@ public class EditCommandTest {
         Food lastFood = model.getFilteredFoodList().get(indexLastFood.getZeroBased());
 
         FoodBuilder foodInList = new FoodBuilder(lastFood);
-        Food editedFood = foodInList.withName(VALID_NAME_BOB)
-                .withTag(VALID_TAG_HUSBAND).build();
+        Food editedFood = foodInList.withName(VALID_BISCUIT_NAME)
+                .withTag(VALID_TAG_BREAKFAST).build();
 
-        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_BISCUIT_NAME)
+                .withTags(VALID_TAG_BREAKFAST).build();
         EditCommand editCommand = new EditCommand(indexLastFood, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
@@ -86,9 +86,9 @@ public class EditCommandTest {
         showFoodAtIndex(model, INDEX_FIRST_MEAL);
 
         Food foodInFilteredList = model.getFilteredFoodList().get(INDEX_FIRST_MEAL.getZeroBased());
-        Food editedFood = new FoodBuilder(foodInFilteredList).withName(VALID_NAME_BOB).build();
+        Food editedFood = new FoodBuilder(foodInFilteredList).withName(VALID_BISCUIT_NAME).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_MEAL,
-                new EditFoodDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditFoodDescriptorBuilder().withName(VALID_BISCUIT_NAME).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
 
@@ -122,7 +122,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidFoodIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFoodList().size() + 1);
-        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_BISCUIT_NAME).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MEAL_DISPLAYED_INDEX);
@@ -140,7 +140,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getNutriGoals().getFoodList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditFoodDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditFoodDescriptorBuilder().withName(VALID_BISCUIT_NAME).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MEAL_DISPLAYED_INDEX);
     }

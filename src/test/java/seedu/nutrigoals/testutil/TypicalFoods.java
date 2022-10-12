@@ -1,8 +1,5 @@
 package seedu.nutrigoals.testutil;
 
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,10 +32,6 @@ public class TypicalFoods {
             .withTag("dinner").build();
     public static final Food PANCAKE = new FoodBuilder().withName("Pancake")
             .withTag("lunch").build();
-
-    public static final Food BOB = new FoodBuilder().withName(VALID_NAME_BOB)
-            .withTag(VALID_TAG_HUSBAND)
-            .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
