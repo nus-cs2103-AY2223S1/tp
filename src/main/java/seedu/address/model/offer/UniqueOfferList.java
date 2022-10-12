@@ -125,10 +125,10 @@ public class UniqueOfferList implements Iterable<Offer> {
     /**
      * Returns true if {@code persons} contains only unique Offers.
      */
-    private boolean OffersAreUnique(List<Offer> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSameOffer(persons.get(j))) {
+    private boolean OffersAreUnique(List<Offer> offers) {
+        for (int i = 0; i < offers.size() - 1; i++) {
+            for (int j = i + 1; j < offers.size(); j++) {
+                if (offers.get(i).isSameOffer(offers.get(j))) {
                     return false;
                 }
             }
