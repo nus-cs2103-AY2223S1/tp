@@ -1,9 +1,10 @@
-package seedu.address.model.item.validators;
+package seedu.foodrem.model.item.itemvalidators;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.foodrem.model.item.itemvalidators.ItemNameValidator.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME;
+import static seedu.foodrem.model.item.itemvalidators.ItemNameValidator.MESSAGE_FOR_NAME_IS_BLANK;
+import static seedu.foodrem.model.item.itemvalidators.ItemNameValidator.MESSAGE_FOR_NAME_TOO_LONG;
+import static seedu.foodrem.model.item.itemvalidators.ItemValidatorUtilTest.assertValidateFailure;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ItemNameValidatorTest {
@@ -11,44 +12,43 @@ public class ItemNameValidatorTest {
 
     @Test
     public void test_nameIsValidLength() {
-        Assertions.assertTrue(ItemNameValidator.isNameBlank(""));
-        assertFalse(ItemNameValidator.isNameBlank("a"));
-        assertFalse(ItemNameValidator.isNameLengthMoreThanMaxLength("Lorem ipsum dolor sit amet, "
-                + "consectetuer adipiscing elit. "
-                + "Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis "
-                + "parturient montes, "
-                + "nascetur ridiculus mus. Donec qu"));
-        assertTrue(ItemNameValidator.isNameLengthMoreThanMaxLength("Lorem ipsum dolor sit amet, consectetuer "
-                + "adipiscing elit. "
-                + "Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus "
-                + "et magnis dis parturient montes, "
-                + "nascetur ridiculus mus. Donec que"));
+        ItemNameValidator.validate("a");
+        ItemNameValidator.validate("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+        assertValidateFailure(() -> ItemNameValidator.validate(""), MESSAGE_FOR_NAME_IS_BLANK); // Blank
+        assertValidateFailure(() -> ItemNameValidator.validate(
+                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"),
+                MESSAGE_FOR_NAME_TOO_LONG); // 201 char
     }
 
     @Test
     public void test_nameHasValidSymbols() {
         // Invalid names - Spaces
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters(""));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters(" "));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("       "));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("    a"));
+        assertValidateFailure(() -> ItemNameValidator.validate(" "), MESSAGE_FOR_NAME_IS_BLANK);
+        assertValidateFailure(() -> ItemNameValidator.validate(" "), MESSAGE_FOR_NAME_IS_BLANK);
+        assertValidateFailure(() -> ItemNameValidator.validate("       "), MESSAGE_FOR_NAME_IS_BLANK);
+        assertValidateFailure(() -> ItemNameValidator.validate("    a"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
 
         // Invalid names - Wrong Symbols
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("\\"));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("\\/"));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("|"));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("á"));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("你"));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("あ"));
-        assertTrue(ItemNameValidator.doesNameContainInvalidCharacters("，")); // Chinese comma
-
+        assertValidateFailure(() -> ItemNameValidator.validate("\\"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("\\/"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("|"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("á"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("你"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("あ"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("，"),
+                MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME); // Chinese comma
 
         // Valid names
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("a"));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("peter jack"));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("12345"));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("peter the jack 2nd"));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("CAPITAL LETTERS"));
-        assertFalse(ItemNameValidator.doesNameContainInvalidCharacters("Peter Jack the Second 2nd"));
+        ItemNameValidator.validate("a");
+        ItemNameValidator.validate("peter jack");
+        ItemNameValidator.validate("12345");
+        ItemNameValidator.validate("peter the jack 2nd");
+        ItemNameValidator.validate("CAPITAL LETTERS");
+        ItemNameValidator.validate("Peter Jack the Second 2nd");
     }
 }
