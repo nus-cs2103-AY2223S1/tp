@@ -41,7 +41,7 @@ public class AddCommandIntegrationTest {
     public void execute_duplicateExpenditure_throwsCommandException() {
         Entry expenditureInList = model.getPennyWise().getExpenditureList().get(0);
         assertCommandFailure(
-                new AddCommand(expenditureInList, new EntryType("e")),
+                new AddCommand(expenditureInList, new EntryType(EntryType. ENTRY_TYPE_EXPENDITURE)),
                 model,
                 AddCommand.MESSAGE_DUPLICATE_ENTRY);
     }
