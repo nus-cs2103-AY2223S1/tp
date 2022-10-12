@@ -1,8 +1,18 @@
-#copyButton, #urlMessage, #addCommand, #clearCommand, #deleteCommand, #editCommand, #exitCommand {
+#copyButton, #urlMessage {
     -fx-text-fill: white;
 }
 
-#commandsHeader, #addCommandHeader, #clearCommandHeader, #deleteCommandHeader, #editCommandHeader, #exitCommandHeader {
+#topHeader {
+    -fx-text-fill: orange;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+.commandText {
+    -fx-text-fill: white;
+}
+
+.commandHeader {
     -fx-text-fill: orange;
 }
 
@@ -18,10 +28,10 @@
     -fx-background-color: darkgray;
 }
 
-#addCommandContainer, #clearCommandContainer, #deleteCommandContainer, #editCommandContainer, #exitCommandContainer {
+.commandContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-#urlMessageContainer, #commandsHeaderContainer {
+#urlMessageContainer, #topHeaderContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
 }

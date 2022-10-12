@@ -22,13 +22,9 @@
       </stylesheets>
       <VBox alignment="CENTER">
         <children>
-          <HBox fx:id="commandsHeaderContainer" alignment="CENTER">
+          <HBox fx:id="topHeaderContainer" styleClass="commandContainer" alignment="CENTER">
             <children>
-              <Label fx:id="commandsHeader" text="List of Commands">
-                <font>
-                    <Font name="System Bold" size="20.0" />
-                </font>
-              </Label>
+              <Label fx:id="topHeader" text="List of Commands" />
             </children>
             <opaqueInsets>
               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
@@ -37,54 +33,54 @@
               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </padding>
           </HBox>
-          <HBox fx:id="addCommandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="addCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
             <children>
-              <Label fx:id="addCommandHeader" minWidth="150.0" text="Add an Internship: ">
+              <Label fx:id="addCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Add an Internship: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
               </Label>
-              <Label fx:id="addCommand" text="Add" />
+              <Label fx:id="addCommand" styleClass="commandText" text="Add" />
             </children>
           </HBox>
-          <HBox fx:id="clearCommandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="clearCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
             <children>
-              <Label fx:id="clearCommandHeader" minWidth="150.0" text="Clear all Internships: ">
+              <Label fx:id="clearCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Clear all Internships: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
               </Label>
-              <Label fx:id="clearCommand" text="Clear" />
+              <Label fx:id="clearCommand" styleClass="commandText" text="Clear" />
             </children>
           </HBox>
-          <HBox fx:id="deleteCommandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="deleteCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
             <children>
-              <Label fx:id="deleteCommandHeader" minWidth="150.0" text="Delete an Internship: ">
+              <Label fx:id="deleteCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Delete an Internship: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
               </Label>
-              <Label fx:id="deleteCommand" text="Delete" />
+              <Label fx:id="deleteCommand" styleClass="commandText" text="Delete" />
             </children>
           </HBox>
-          <HBox fx:id="editCommandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="editCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
             <children>
-              <Label fx:id="editCommandHeader" minWidth="150.0" text="Edit an Internship: ">
+              <Label fx:id="editCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Edit an Internship: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
               </Label>
-              <Label fx:id="editCommand" text="Edit" />
+              <Label fx:id="editCommand" styleClass="commandText" text="Edit" />
             </children>
           </HBox>
-          <HBox fx:id="exitCommandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="exitCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
             <children>
-              <Label fx:id="exitCommandHeader" minWidth="150.0" text="Exit application: ">
+              <Label fx:id="exitCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Exit application: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
               </Label>
-              <Label fx:id="exitCommand" text="Exit" />
+              <Label fx:id="exitCommand" styleClass="commandText" text="Exit" />
             </children>
           </HBox>
           <HBox fx:id="urlMessageContainer" alignment="CENTER">
