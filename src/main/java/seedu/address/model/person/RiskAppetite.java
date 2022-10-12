@@ -1,4 +1,4 @@
-package seedu.address.model.client;
+package seedu.address.model.person;
 
 
 /**

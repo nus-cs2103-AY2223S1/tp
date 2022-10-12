@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POLICIES;
-import static seedu.address.model.Model.PREDICATE_SHOW_NO_CLIENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_NO_PERSONS;
 
 import seedu.address.model.Model;
@@ -22,7 +21,6 @@ public class PolicyCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPolicyList(PREDICATE_SHOW_ALL_POLICIES);
         model.updateFilteredPersonList(PREDICATE_SHOW_NO_PERSONS);
-        model.updateFilteredClientList(PREDICATE_SHOW_NO_CLIENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

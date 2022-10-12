@@ -1,7 +1,7 @@
-package seedu.address.model.client;
+package seedu.address.model.person;
 
 /**
- * Immutable representation of a Client's income
+ * Immutable representation of a Perosn's income
  */
 public class Income {
 

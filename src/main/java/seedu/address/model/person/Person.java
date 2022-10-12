@@ -37,29 +37,45 @@ public class Person {
     // indicate pinned client
     private Boolean pin = false;
 
+    //private ArrayList<Policy> policies;
+    private Birthday birthday;
+    //private ArrayList<Event> events; // TODO: EventList class
+    //private PersonNotes notes; //TODO: Just a string
+    private Income income;
+    private RiskAppetite ra;
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Birthday birthday, Income income, RiskAppetite ra) {
+        requireAllNonNull(name, phone, email, address, tags, birthday, income, ra);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.timeStamp = LocalDateTime.now();
         this.tags.addAll(tags);
+        this.birthday = birthday;
+        this.income = income;
+        this.ra = ra;
     }
     /**
      * Constructor for person with pin.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean pin) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Birthday birthday, Income income, RiskAppetite ra,
+                  boolean pin) {
+        requireAllNonNull(name, phone, email, address, tags, birthday, income, ra);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.timeStamp = LocalDateTime.now();
         this.tags.addAll(tags);
+        this.birthday = birthday;
+        this.income = income;
+        this.ra = ra;
         this.pin = pin;
     }
 
@@ -99,6 +115,18 @@ public class Person {
         return this.pin;
     }
 
+    public Birthday getBirthday() {
+        return this.birthday;
+    }
+
+    public RiskAppetite getRiskAppetite() {
+        return this.ra;
+    }
+
+    public Income getIncome() {
+        return this.income;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -131,13 +159,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getRiskAppetite().equals(getRiskAppetite())
+                && otherPerson.getIncome().equals(getIncome());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, birthday, income, ra);
     }
 
     @Override
@@ -149,7 +179,13 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append(", Birthday: ")
+                .append(getBirthday())
+                .append(", Income: ")
+                .append(getIncome())
+                .append(", RiskLevel: ")
+                .append(getRiskAppetite());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
