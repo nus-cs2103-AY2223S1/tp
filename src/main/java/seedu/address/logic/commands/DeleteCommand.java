@@ -40,7 +40,7 @@ public class DeleteCommand extends Command {
     private Entry getEntryToDelete(Index targetIndex, List<Entry> lastShownList)
             throws CommandException {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
         return lastShownList.get(targetIndex.getZeroBased());
     }
