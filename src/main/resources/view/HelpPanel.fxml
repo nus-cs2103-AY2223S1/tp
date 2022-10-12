@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Help Panel" />
+      <Label prefHeight="46.0" prefWidth="602.0" text="init &lt;my-github-username&gt; : Initialize contact book with Github integration" />
+      <Label prefHeight="46.0" prefWidth="602.0" text="add &lt;@github-username/real name&gt; : Add user to contact book" />
+      <Label prefHeight="46.0" prefWidth="602.0" text="delete &lt;@github-username/real-name&gt; :  Delete user from contact book" />
+      <Label prefHeight="46.0" prefWidth="602.0" text="search &lt;keyword&gt; : Searches for and displays the users/repos that match the keyword" />
+      <Label prefHeight="46.0" prefWidth="602.0" text="help : Show help page to the user" />
    </children>
-</StackPane>
+</VBox>

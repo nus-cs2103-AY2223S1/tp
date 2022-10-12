@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
 
-<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Detail Help Panel" />
+      <Label prefHeight="51.0" prefWidth="600.0" text="set &lt;field-name&gt; &lt;user-attribute&gt; : Changes attribute in User contact card" />
+      <Label prefHeight="51.0" prefWidth="600.0" text="add &lt;field-name&gt; &lt;user-attribute&gt; :  Creates a new attribute in User contact card" />
+      <Label prefHeight="51.0" prefWidth="600.0" text="delete &lt;field-name&gt; &lt;user-attribute&gt; :  Delete user attribute in User contact card" />
    </children>
-</StackPane>
+</VBox>
