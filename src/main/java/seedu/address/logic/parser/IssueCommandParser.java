@@ -6,12 +6,10 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECTID;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.issue.AddIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
@@ -58,7 +56,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
     private AddIssueCommand parseAddIssueCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_DESCRIPTION, PREFIX_DEADLINE,
-                        PREFIX_PRIORITY, PREFIX_STATUS, PREFIX_PROJECTID);
+                        PREFIX_PRIORITY, PREFIX_PROJECTID);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_PROJECTID)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -78,11 +76,6 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
 
         Status status = Status.EmptyStatus.EMPTY_STATUS;
-        if (arePrefixesPresent(argMultimap, PREFIX_STATUS)) {
-            status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        }
-
-
         Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECTID).get());
         IssueId issueId = new IssueId(UniqueIssueList.generateId());
 

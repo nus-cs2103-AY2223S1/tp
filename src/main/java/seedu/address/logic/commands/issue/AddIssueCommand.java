@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECTID;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,14 +25,12 @@ public class AddIssueCommand extends IssueCommand {
             + PREFIX_PROJECTID + "PROJECT_ID "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_PRIORITY + "PRIORITY(low, medium, high) "
-            + PREFIX_STATUS + "STATUS \n"
+            + PREFIX_PRIORITY + "PRIORITY(0, 1, 2) \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECTID + "1 "
             + PREFIX_DESCRIPTION + "to create a person class which stores all relevant person data "
             + PREFIX_DEADLINE + "2022-12-10 "
-            + PREFIX_PRIORITY + "low "
-            + PREFIX_STATUS + "false ";
+            + PREFIX_PRIORITY + "0 ";
 
 
     public static final String MESSAGE_SUCCESS = "New issue added: %1$s";

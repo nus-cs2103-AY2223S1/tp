@@ -3,19 +3,11 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.Deadline;
-import seedu.address.model.Name;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.ClientEmail;
-import seedu.address.model.client.ClientId;
-import seedu.address.model.client.ClientPhone;
-import seedu.address.model.issue.Issue;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
@@ -79,28 +71,13 @@ public class UniqueProjectList implements Iterable<Project> {
 
     // TODO: temporary getter for project, can be deleted when alt method to retrieve project is implemented
     public static Project getProject(int projectId) {
-        Name name = new Name("DevEnable");
-        Repository repository = new Repository("John/DevEnable");
-        Deadline deadline = new Deadline("2019-12-12");
-        Name clientName = new Name("John Doe");
-        ClientEmail email = new ClientEmail("john123@gmail.com");
-        ClientPhone phone = new ClientPhone("12345678");
-        List<Project> projects = new ArrayList<Project>();
-        ClientId clientId = new ClientId(9);
-        List<Issue> issues = new ArrayList<Issue>();
-        ProjectId Id = new ProjectId(1);
-        Client client = new Client(clientName, phone, email, projects, clientId);
-        Project p = new Project(name, repository, deadline, client, issues, Id);
-        return p;
-        /**
         for (Project p : internalList) {
             ProjectId id = new ProjectId(projectId);
-            if (p.getId() == id) {
+            if (p.getId().equals(id)) {
                 return p;
             }
         }
         return null;
-        */
     }
 
 

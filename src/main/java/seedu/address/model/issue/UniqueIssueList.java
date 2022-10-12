@@ -71,7 +71,7 @@ public class UniqueIssueList implements Iterable<Issue> {
     public Issue getIssue(IssueId id) {
         requireAllNonNull(id);
         for (Issue i: internalList) {
-            if (i.getIssueId() == id) {
+            if (i.getIssueId().equals(id)) {
                 return i;
             }
         }

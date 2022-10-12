@@ -25,6 +25,11 @@ public class Deadline {
         public boolean isEmpty() {
             return true;
         }
+
+        @Override
+        public String uiRepresentation() {
+            return "No Deadline Set";
+        }
     }
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -63,6 +68,10 @@ public class Deadline {
 
     public boolean isEmpty() {
         return false;
+    }
+
+    public String uiRepresentation() {
+        return deadline.toString();
     }
 
     @Override

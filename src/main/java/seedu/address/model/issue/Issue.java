@@ -71,6 +71,11 @@ public class Issue {
         return this.status;
     }
 
+    public String uiRepresentation() {
+        return "(#" + this.issueId + ") " + this.description;
+    }
+
+    //To modify based on format to be saved in json file
     @Override
     public String toString() {
         String returnString = "(#" + this.issueId + ") " + this.description;

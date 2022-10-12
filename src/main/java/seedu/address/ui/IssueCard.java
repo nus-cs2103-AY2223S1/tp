@@ -43,13 +43,9 @@ public class IssueCard extends UiPart<Region> {
         super(FXML);
         this.issue = issue;
         id.setText(displayedIndex + ". ");
-        description.setText(issue.getDescription().toString() + " " + issue.getIssueId().uiRepresentation());
-        if (issue.getDeadline().isEmpty()) {
-            deadline.setText("No Deadline Set");
-        } else {
-            deadline.setText(issue.getDeadline().toString());
-        }
-        priority.setText(issue.getPriority().toString());
+        description.setText(issue.getDescription().uiRepresentation() + " " + issue.getIssueId().uiRepresentation());
+        deadline.setText(issue.getDeadline().uiRepresentation());
+        priority.setText(issue.getPriority().uiRepresentation());
         project.setText("Project: " + issue.getProject().toString());
     }
 

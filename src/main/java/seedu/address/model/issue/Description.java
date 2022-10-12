@@ -58,6 +58,10 @@ public class Description {
         return false;
     }
 
+    public String uiRepresentation() {
+        return this.description;
+    }
+
     @Override
     public String toString() {
         return this.description;

@@ -16,7 +16,6 @@ import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Priority;
-import seedu.address.model.issue.Status;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.UniqueProjectList;
@@ -167,26 +166,20 @@ public class ParserUtil {
      */
     public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
-        String trimmedPriority = priority.trim().toUpperCase();
+        String trimmedPriority = priority.trim();
         if (!Priority.isValidPriority(trimmedPriority)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
-        return Priority.valueOf(trimmedPriority);
-    }
-
-    /**
-     * Parses a {@code String status} into a {@code Status}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code status} is invalid.
-     */
-    public static Status parseStatus(String status) throws ParseException {
-        requireNonNull(status);
-        String trimmedStatus = status.trim();
-        if (!Status.isValidStatus(trimmedStatus)) {
-            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        switch (trimmedPriority) {
+        case ("0"):
+            return Priority.LOW;
+        case ("1"):
+            return Priority.MEDIUM;
+        case ("2"):
+            return Priority.HIGH;
+        default:
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
-        return new Status(Boolean.getBoolean(status));
     }
 
     /**
