@@ -39,6 +39,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>} and returns it. Leading and
+     * trailing whitespaces will be trimmed.
+     *
+     * @param oneBasedIndexes Collection of String representing valid indexes (non-zero unsigned integer).
+     * @return {@code Set<Index>} of indexes parsed from given String.
+     * @throws ParseException if an index is invalid (not non-zero unsigned integer).
+     */
+    public static Set<Index> parseIndexes(Collection<String> oneBasedIndexes) throws ParseException {
+        requireNonNull(oneBasedIndexes);
+        final Set<Index> indexSet = new HashSet<>();
+        for (String index : oneBasedIndexes) {
+            indexSet.add(parseIndex(index));
+        }
+        return indexSet;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *

@@ -304,7 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. PayMeLah shows an error message.
 
-      Use case ends.  
+      Use case ends.
 
 **Use case: Add a debt**
 
@@ -372,7 +372,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. PayMeLah shows an error message
 
       Use case resumes at step 3.
-      
+
 **Use case: List persons with debts**
 
 **MSS**
