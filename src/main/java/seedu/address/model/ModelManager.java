@@ -136,6 +136,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void filterPersonListWithTag(Predicate<Person> predicate) {
+        requireAllNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
