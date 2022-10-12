@@ -18,15 +18,33 @@ public class Book {
     private boolean isLoaned = false;
     private Person loanee = null;
 
+    private final String loanStatus;
+
+
 
     /**
      * Every field must be present and not null.
      */
+    /*
     public Book(Title title, Author author) {
         CollectionUtil.requireAllNonNull(title, author);
         this.title = title;
         this.author = author;
     }
+    */
+
+
+    /**
+     * Every field must be present and not null.
+     */
+
+    public Book(Title title, Author author, String loanStatus) {
+        CollectionUtil.requireAllNonNull(title, author);
+        this.title = title;
+        this.author = author;
+        this.loanStatus = loanStatus;
+    }
+
 
     public Title getTitle() {
         return title;
@@ -39,6 +57,16 @@ public class Book {
     public boolean isLoaned() {
         return this.isLoaned;
     }
+
+    public String getLoanStatus() {
+        boolean temp = isLoaned;
+        if (temp) {
+            return "Loaned to " + loanee.getName();
+        } else {
+            return "Available";
+        }
+    }
+
 
 
 
@@ -56,7 +84,7 @@ public class Book {
      *
      * @param loanee the person borrowing this book
      */
-    public void loanTo(Person loanee) {
+    public void loanTo(Person loanee, Book book) {
         this.isLoaned = true;
         this.loanee = loanee;
     }

@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import bookface.commons.util.CollectionUtil;
+import bookface.model.book.Title;
 import bookface.model.tag.Tag;
 
 /**
@@ -19,19 +20,33 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
+    private final HashSet<Title> loanedBooks = new HashSet<>();
+
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Set<Title> loanedBook, Set<Tag> tags) {
         CollectionUtil.requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.loanedBooks.addAll(loanedBook);
         this.tags.addAll(tags);
     }
+
+    /*
+    public Person(Name name, Phone phone, Email email, ArrayList<Title> loanedBook, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(name, phone, email, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.loanedBook = loanedBook;
+        this.tags.addAll(tags);
+    }
+    */
 
     public Name getName() {
         return name;
@@ -43,6 +58,19 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+
+    public Set<Title> getLoanedTitlesSet() {
+        return loanedBooks;
+    }
+
+    public String getLoanedTitlesDisplayString() {
+        return loanedBooks.toString();
+    }
+
+    public void addLoanedBookTitle(Title title) {
+        loanedBooks.add(title);
     }
 
     /**
@@ -65,6 +93,16 @@ public class Person {
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
     }
+
+    /**
+     * Returns true if the person has already loaned the same book.
+     */
+    public boolean hasSameLoanedBook(Person person, Title title) {
+        return person.getLoanedTitlesSet().contains(title);
+    }
+
+
+
 
     /**
      * Returns true if both persons have the same identity and data fields.

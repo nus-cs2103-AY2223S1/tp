@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import bookface.commons.exceptions.IllegalValueException;
+import bookface.model.book.Title;
 import bookface.model.person.Email;
 import bookface.model.person.Name;
 import bookface.model.person.Person;
@@ -26,6 +27,8 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
+
+    private final List<JsonAdaptedTitle> title = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -34,10 +37,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
+            @JsonProperty("title") List<JsonAdaptedTitle> title,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        if (title != null) {
+            this.title.addAll(title);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,6 +57,9 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        title.addAll(source.getLoanedTitlesSet().stream()
+                .map(JsonAdaptedTitle::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -62,8 +72,13 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final ArrayList<Title> bookTitles = new ArrayList<>();
+
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        for (JsonAdaptedTitle title : title) {
+            bookTitles.add(title.toModelType());
         }
 
         if (name == null) {
@@ -90,8 +105,11 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelTags);
+        final Set<Title> modelTitle = new HashSet<>(bookTitles);
+        return new Person(modelName, modelPhone, modelEmail, modelTitle, modelTags);
     }
 
 }

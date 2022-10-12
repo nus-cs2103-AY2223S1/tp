@@ -31,6 +31,8 @@ public class BookCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label author;
+    @FXML
+    private Label loanStatus;
 
     /**
      * Creates a {@code BookCode} with the given {@code book} and index to display.
@@ -41,6 +43,7 @@ public class BookCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(book.getTitle().bookTitle);
         author.setText(book.getAuthor().bookAuthor);
+        loanStatus.setText(book.getLoanStatus());
     }
 
     @Override

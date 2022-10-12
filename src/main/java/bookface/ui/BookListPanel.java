@@ -30,7 +30,7 @@ public class BookListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Book} using a {@code BookCard}.
      */
     class BookListViewCell extends ListCell<Book> {
         @Override

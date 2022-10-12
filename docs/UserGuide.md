@@ -153,6 +153,7 @@ Format: `loan <user index> <book index>`
 * Loans the book to some user at their respective specified `INDEXES`.
 * The indexes refer to the index number shown in the displayed user and book list respectively.
 * The indexes **must be a positive integer** 1, 2, 3, …​
+* The respective specified `INDEXES` **must be present in their lists**. 
 
 Examples:
 * `loan 3 2` loans the second book in the book list to the third user in the user list.

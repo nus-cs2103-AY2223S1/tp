@@ -134,6 +134,8 @@ public class ModelManager implements Model {
     public void loan(Person person, Book book) {
         CollectionUtil.requireAllNonNull(person, book);
         bookFace.loan(person, book);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
