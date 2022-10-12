@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -34,8 +33,13 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
      */
     public AddPersonCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_TAG, PREFIX_LINK_INDEX);
+                ArgumentTokenizer.tokenize(
+                        args,
+                        PREFIX_NAME,
+                        PREFIX_PHONE,
+                        PREFIX_EMAIL,
+                        PREFIX_TAG,
+                        PREFIX_LINK_INDEX);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -49,8 +53,11 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
                 ParserUtil.parseInternshipId(argMultimap.getValue(PREFIX_INTERNSHIP_ID).orElse(null));
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Index linkIndex = ParserUtil.parseLinkIndex(Objects.requireNonNull(argMultimap
-                .getValue(PREFIX_LINK_INDEX)).orElse(null));
+        String linkIndexStr = argMultimap.getValue(PREFIX_LINK_INDEX).orElse(null);
+        Index linkIndex = null;
+        if (linkIndexStr != null) {
+            linkIndex = ParserUtil.parseIndex(linkIndexStr);
+        }
 
         return new AddPersonCommand(name, phone, email, internshipId, tagList, linkIndex);
     }
