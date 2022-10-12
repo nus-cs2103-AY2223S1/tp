@@ -91,7 +91,7 @@ public interface Model {
     void deleteEvent(Event event);
 
     /**
-     * Sorts all the persons in the addres book by the given {@code SortField}.
+     * Sorts all the persons in the address book by the given {@code SortField}.
      */
     void sortPersons(SortField sortField);
 

@@ -137,6 +137,7 @@ public class ModelManager implements Model {
         return filteredEvents;
     }
 
+    @Override
     public void sortPersons(SortField sortField) {
         requireNonNull(sortField);
         addressBook.sortPersons(sortField);
