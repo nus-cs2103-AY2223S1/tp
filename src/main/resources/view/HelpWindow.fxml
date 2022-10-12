@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minWidth="450" minHeight="300" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minWidth="500" minHeight="300" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -23,7 +23,26 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <VBox prefWidth="600" VBox.vgrow="NEVER" fx:id="helpContainer">
+      <VBox prefWidth="650" VBox.vgrow="NEVER" fx:id="helpContainer">
+
+        <ScrollPane fitToWidth="true">
+          <VBox styleClass="commands-panel">
+            <Label styleClass="help-label" text="Basic Functions"/>
+            <TableView fx:id="basicTableView">
+              <VBox.margin>
+                <Insets top="10.0"/>
+              </VBox.margin>
+            </TableView>
+            <!--Not implemented yet
+            <Label styleClass="help-label" text="Advanced Functions"/>
+            <TableView fx:id="advancedTableView">
+              <VBox.margin>
+                <Insets top="10.0"/>
+              </VBox.margin>
+            </TableView>
+            -->
+          </VBox>
+        </ScrollPane>
 
         <!--Container for User Guide reference and button-->
         <HBox alignment="CENTER">
@@ -46,23 +65,6 @@
             <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
           </padding>
         </HBox>
-
-        <ScrollPane fitToWidth="true">
-          <VBox styleClass="commands-panel">
-            <Label styleClass="help-label" text="Basic Functions"/>
-            <TableView fx:id="basicTableView">
-              <VBox.margin>
-                <Insets top="10.0"/>
-              </VBox.margin>
-            </TableView>
-            <Label styleClass="help-label" text="Advanced Functions"/>
-            <TableView fx:id="advancedTableView">
-              <VBox.margin>
-                <Insets top="10.0"/>
-              </VBox.margin>
-            </TableView>
-          </VBox>
-        </ScrollPane>
 
       </VBox>
     </Scene>

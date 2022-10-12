@@ -1,10 +1,53 @@
+.commands-panel {
+  -fx-background-color: derive(#1d1d1d, 20%);
+}
+
 .help-label {
-  -fx-font-size: 32pt;
-  -fx-font-family: "SF Mono Light";
+  -fx-padding: 2 6 2 6px;
+  -fx-font-size: 16pt;
   -fx-text-fill: white;
   -fx-opacity: 1;
-  -fs-background-color: derive(#1d1d1d, 20%);
-  background-color: #383838; /* Used in the default.html file */
+}
+
+.table-view {
+  -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.table-view .column-header {
+  -fx-background-color: derive(#373737, 20%);
+}
+
+.table-view .column-header-background {
+  -fx-background-color: derive(#373737, 20%);
+}
+
+.table-view .column-header-background .label {
+  -fx-background-color: transparent;
+  -fx-font-size: 11pt;
+  -fx-font-weight: bold;
+  -fx-text-fill: white;
+  -fx-opacity: 1;
+  -fx-padding: 2 0 2 2px;
+}
+
+.table-view .table-cell {
+  -fx-padding: 2 4 2 4px;
+  -fx-font-size: 10pt;
+  -fx-text-fill: white;
+  -fx-opacity: 1;
+}
+
+.table-row-cell {
+  -fx-background-color: dimgray;
+  -fx-background-insets: 0, 1 0 1 0;
+}
+
+.table-row-cell: hover {
+  -fx-background-color: gray;
+}
+
+#helpContainer {
+  -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 #openButton,
@@ -22,8 +65,4 @@
 
 #openButton:armed {
   -fx-background-color: darkgray;
-}
-
-#helpContainer {
-  -fx-background-color: derive(#1d1d1d, 20%);
 }

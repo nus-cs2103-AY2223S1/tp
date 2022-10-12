@@ -28,8 +28,8 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
-    private static final int ROW_HEIGHT = 30;
-    private static final int SAFETY_MARGIN = 35;
+    private static final int ROW_HEIGHT = 40; // Used to bind cell height
+    private static final int HEADER_HEIGHT = 45; // Accurate for current label content
 
     private static Application hostServicesApp = new Application() {
             @Override
@@ -113,16 +113,19 @@ public class HelpWindow extends UiPart<Stage> {
 
     private void initAllTableViews() {
         this.initTableView(this.basicTableView, CommandFormat.getBasicCommands());
-        this.initTableView(this.advancedTableView, CommandFormat.getAdvancedCommands());
+        // this.initTableView(this.advancedTableView, CommandFormat.getAdvancedCommands());
     }
 
     private void initTableView(TableView<CommandFormat> tableView, ObservableList<CommandFormat> commands) {
         tableView.setSelectionModel(null);
         tableView.setItems(commands);
+        tableView.setFixedCellSize(ROW_HEIGHT);
         tableView.prefHeightProperty().bind(
                 Bindings.size(tableView.getItems())
                 .multiply(ROW_HEIGHT)
-                .add(SAFETY_MARGIN));
+                .add(HEADER_HEIGHT));
+        tableView.minHeightProperty().bind(tableView.prefHeightProperty());
+        tableView.maxHeightProperty().bind(tableView.prefHeightProperty());
 
         TableColumn<CommandFormat, String> commandCol = new TableColumn<>("Command");
         commandCol.setCellValueFactory(new PropertyValueFactory<>("command"));
