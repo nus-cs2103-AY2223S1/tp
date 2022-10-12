@@ -26,21 +26,13 @@ import seedu.address.model.person.Person;
  * Contains integration tests (interaction with the model) for {@code FindByModuleCommand}.
  */
 public class FindByModuleCommandTest {
+    private List<Person> testTaList = Arrays.asList(IDA, HOON, JACKSON);
     private Model model = new ModelManager(getTestTaAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTestTaAddressBook(), new UserPrefs());
 
-    private List<Person> testTaList = Arrays.asList(IDA, HOON, JACKSON);
-
-    private AddressBook getTestTaAddressBook() {
-        AddressBook testTaAddressBook = new AddressBook();
-        for (Person person : testTaList) {
-            testTaAddressBook.addPerson(person);
-        }
-        return testTaAddressBook;
-    }
-
     @Test
     public void equals() {
+        System.out.println(getTestTaAddressBook());
         ModuleContainsKeywordPredicate firstPredicate =
                 new ModuleContainsKeywordPredicate(Collections.singletonList("first"));
         ModuleContainsKeywordPredicate secondPredicate =
@@ -91,5 +83,13 @@ public class FindByModuleCommandTest {
      */
     private ModuleContainsKeywordPredicate preparePredicate(String userInput) {
         return new ModuleContainsKeywordPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+    
+    private AddressBook getTestTaAddressBook() {
+        AddressBook testTaAddressBook = new AddressBook();
+        for (Person person : testTaList) {
+            testTaAddressBook.addPerson(person);
+        }
+        return testTaAddressBook;
     }
 }
