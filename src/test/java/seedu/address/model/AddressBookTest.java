@@ -104,6 +104,7 @@ public class AddressBookTest {
             this.persons.setAll(persons);
             this.projects.setAll(projects);
             this.issues.setAll(issues);
+            this.clients.setAll(clients);
         }
 
         @Override

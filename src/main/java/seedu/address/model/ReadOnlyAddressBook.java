@@ -29,11 +29,16 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Issue> getIssueList();
 
+<<<<<<< HEAD
     /**
      * Returns an unmodifiable view of the clients list.
      * This list will not contain any duplicate clients.
      */
     ObservableList<Client> getClientList();
+=======
+    ObservableList<Client> getClientList();
+
+>>>>>>> e759cb303b22f8efb0b2be99e1ae20fec47ea9a2
 
     /**
      * Returns the number of projects in project list.

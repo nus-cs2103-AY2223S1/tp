@@ -126,7 +126,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+<<<<<<< HEAD
      * Returns true if a client with the same identity as {@code client} exists in the address book.
+=======
+     * Returns true if an client with the same identity as {@code client} exists in the address book.
+>>>>>>> e759cb303b22f8efb0b2be99e1ae20fec47ea9a2
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
@@ -201,9 +205,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+<<<<<<< HEAD
      * Replaces the given issue {@code target} in the list with {@code editedClient}.
      * {@code target} must exist in the address book.
      * The issue identity of {@code editedClient} must not be the same as another
+=======
+     * Replaces the given client {@code target} in the list with {@code editedClient}.
+     * {@code target} must exist in the address book.
+     * The client identity of {@code editedClient} must not be the same as another
+>>>>>>> e759cb303b22f8efb0b2be99e1ae20fec47ea9a2
      * existing client in the address book.
      */
     public void setClient(Client target, Client editedClient) {
@@ -250,7 +260,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons\n"
                 + projects.asUnmodifiableObservableList().size() + " projects\n"
-                + issues.asUnmodifiableObservableList().size() + " issues\n";
+                + issues.asUnmodifiableObservableList().size() + " issues\n"
+                + clients.asUnmodifiableObservableList().size() + " clients\n";
     }
 
     @Override
@@ -301,6 +312,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
+<<<<<<< HEAD
+=======
+                && persons.equals(((AddressBook) other).persons)
+                && projects.equals(((AddressBook) other).projects)
+                && issues.equals(((AddressBook) other).issues)
+>>>>>>> e759cb303b22f8efb0b2be99e1ae20fec47ea9a2
                 && clients.equals(((AddressBook) other).clients));
     }
 

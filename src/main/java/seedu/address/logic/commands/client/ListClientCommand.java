@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -16,18 +16,12 @@ public class ListClientCommand extends ClientCommand {
 
     public static final String MESSAGE_SUCCESS = "Listed all clients";
 
-    /**
-     * Executes list client command.
-     * TODO: revise implementation
-     * @param model {@code Model} which the command should operate on.
-     * @param ui
-     * @return a CommandResult
-     */
+    // TODO: Revise implementation
     @Override
     public CommandResult execute(Model model, Ui ui) {
         requireNonNull(model);
         ui.showClients();
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
