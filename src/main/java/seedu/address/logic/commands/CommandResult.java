@@ -11,8 +11,8 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    /** User Guide information should be shown to the user. */
+    private final boolean showUserGuide;
 
     /** The application should exit. */
     private final boolean exit;
@@ -20,9 +20,9 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
+        this.showUserGuide = showUserGuide;
         this.exit = exit;
     }
 
@@ -38,14 +38,18 @@ public class CommandResult {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
+    public boolean isShowUserGuide() {
+        return showUserGuide;
     }
 
     public boolean isExit() {
         return exit;
     }
 
+    @Override
+    public String toString() {
+        return feedbackToUser;
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -59,13 +63,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
+                && showUserGuide == otherCommandResult.showUserGuide
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showUserGuide, exit);
     }
 
 }

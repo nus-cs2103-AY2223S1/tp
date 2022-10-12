@@ -9,6 +9,8 @@ import seedu.address.model.company.Name;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Transaction;
+import seedu.address.model.transaction.TransactionLog;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -23,6 +25,7 @@ public class CompanyBuilder {
     private Address address;
     private Set<Tag> tags;
     private UniquePocList pocs;
+    private TransactionLog transactions;
 
     /**
      * Creates a {@code CompanyBuilder} with the default details.
@@ -32,7 +35,7 @@ public class CompanyBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         pocs = new UniquePocList();
-
+        transactions = new TransactionLog();
     }
 
     /**
@@ -43,6 +46,7 @@ public class CompanyBuilder {
         address = companyToCopy.getAddress();
         tags = new HashSet<>(companyToCopy.getTags());
         pocs = companyToCopy.getPocs();
+        transactions = companyToCopy.getTransactions();
     }
 
     /**
@@ -78,6 +82,14 @@ public class CompanyBuilder {
     }
 
     /**
+     * Sets the {@code TransactionLog} of the {@code Company} that we are building.
+     */
+    public CompanyBuilder withTransactionLog(TransactionLog transactions) {
+        this.transactions = transactions;
+        return this;
+    }
+
+    /**
      * Adds poc to the {@code UniquePocList} of the {@code Company} that we are building.
      */
     public CompanyBuilder withAddedPoc(Poc poc) {
@@ -85,8 +97,16 @@ public class CompanyBuilder {
         return this;
     }
 
+    /**
+     * Adds transaction to the {@code Transactions} of the {@code Company} that we are building.
+     */
+    public CompanyBuilder withTransaction(Transaction transaction) {
+        this.transactions.addTransaction(transaction);
+        return this;
+    }
+
     public Company build() {
-        return new Company(name, address, tags, pocs);
+        return new Company(name, address, tags, pocs, transactions);
     }
 
 }

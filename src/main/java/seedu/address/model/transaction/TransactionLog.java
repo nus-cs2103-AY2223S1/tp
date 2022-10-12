@@ -48,4 +48,12 @@ public class TransactionLog {
         transactionList.add(transaction);
     }
 
+    /**
+     * Checks if the transaction list is empty.
+     * @return the boolean value true if the list is empty.
+     */
+    public boolean isEmpty() {
+        return transactionList.isEmpty();
+    }
+
 }

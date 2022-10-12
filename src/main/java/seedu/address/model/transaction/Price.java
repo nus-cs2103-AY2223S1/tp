@@ -37,7 +37,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return price;
+        return "$" + price;
     }
 
     public double value() {

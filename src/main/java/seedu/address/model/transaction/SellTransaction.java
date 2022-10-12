@@ -22,6 +22,6 @@ public class SellTransaction extends Transaction {
     @Override
     public String toString() {
         return "You sold " + quantity + " quantity of "
-                + goods + " at $" + price;
+                + goods + " at " + price + " each";
     }
 }

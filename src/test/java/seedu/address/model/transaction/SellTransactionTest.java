@@ -31,6 +31,6 @@ class SellTransactionTest {
         Quantity quantity = new Quantity("10");
 
         Transaction transaction = new SellTransaction(goods, price, quantity);
-        assertTrue(transaction.toString().equals("You sold 10 quantity of Apple at $0.8"));
+        assertTrue(transaction.toString().equals("You sold 10 quantity of Apple at $0.8 each"));
     }
 }
