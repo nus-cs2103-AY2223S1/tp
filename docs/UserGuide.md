@@ -53,7 +53,7 @@ Some example commands you can try:
 
 * **`liststu`** : Lists all students.
 
-* **`addstu`**`n/John Lim Jun Jie t/@johnlimjj e/johnlim@example.com` : Adds a student named `John Lim Jun Jie` to
+* **`addstu`**`n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com` : Adds a student named `John Lim Jun Jie` to
   the student list.
 
 * **`deletestu`**`3` : Deletes the 3rd student shown in the current list.
@@ -74,14 +74,14 @@ Some example commands you can try:
   e.g. in `addstu n/NAME`, `NAME` is a parameter which can be used as `addstu n/John Lim`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TELEGRAM_HANDLE]` can be used as `n/John Lim t/@johnlim` or as `n/John Lim`.
+  e.g. `n/NAME [h/TELEGRAM_HANDLE]` can be used as `n/John Lim h/@johnlim` or as `n/John Lim`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
   the parameter will be taken.<br>
-  e.g. if you specify `t/johnlim t/johnlimjj`, only `t/johnlimjj` will be taken.
+  e.g. if you specify `h/@johnlim h/@johnlimjj`, only `h/@johnlimjj` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `liststu` and `exit`) will be ignored.<br>
   e.g. if the command specifies `liststu 123`, it will be interpreted as `liststu`.
@@ -92,12 +92,14 @@ Some example commands you can try:
 
 Adds a student to the student list.
 
-Format: `addstu n/NAME t/TELEGRAM_HANDLE e/EMAIL`
+Format: `addstu n/NAME h/TELEGRAM_HANDLE e/EMAIL`
+
+* Telegram handle must start with a '@'.
 
 Examples:
 
-* `addstu n/John Lim Jun Jie t/@johnlimjj e/johnlim@example.com`
-* `addstu n/Mary Tan Xiao Li t/@marytxl e/marytxl@example.com`
+* `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com`
+* `addstu n/Mary Tan Xiao Li h/@marytxl e/marytxl@example.com`
 
 ![add student](images/userguide-screenshots/addstu.png)
 
@@ -105,7 +107,7 @@ Examples:
 
 Edits an existing student in the student list.
 
-Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [e/EMAIL]`
+Format: `edit INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
 
 * Edits the student at the specified INDEX. The index represents the index number of the student in the student list.
   The index must be a positive integer 0, 1, 2…
@@ -114,32 +116,27 @@ Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [e/EMAIL]`
 
 Examples:
 
-* `editstu 1 t/@johnlim e/jljj@example.com Edits the telegram handle and email of the person at index 1 to be @johnlim and jljj@example.com respectively.`
+* `editstu 1 h/@johnlim e/jljj@example.com Edits the telegram handle and email of the person at index 1 to be @johnlim and jljj@example.com respectively.`
 * `editstu 3 n/Mary Lee Jing Yi Edits the name of the person at index 3 to be Mary Lee Jing Yi.`
 
 ![edit student](images/userguide-screenshots/editstu.png)
-
-### Listing all students : `liststu`
-
-Shows a list of all the students in the student list.
-
-Format: `liststu`
-
-![list students](images/userguide-screenshots/liststu.png)
 
 ### Adding student's attendance : `attendance`
 
 Increases or decreases the number of times a student attended tutorials.
 
-Format: `attendance n/NAME s/SIGN v/VALUE`
+Format: `attendance INDEX s/SIGN v/VALUE`
 
+* Adds attendance to the student at the specified INDEX
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2. 3, …
 * decrease attendance value if `SIGN` is '-' and increase attendance value if `SIGN` is '+'
 * increase or decrease the specific student's attendance by `VALUE`
 
 Examples:
 
-* `attendance n/Lee Jun Jie s/- v/2`
-* `attendance n/John Lim Jun Jie s/+ v/1`
+* `attendance 1 s/- v/2`
+* `attendance 1 s/+ v/1`
 
 ![add attendance](images/userguide-screenshots/attendance.png)
 
@@ -241,14 +238,6 @@ Examples:
 
 ![](images/userguide-screenshots/deleteq.png)
 
-### Listing all questions : `listq`
-
-Lists all questions.
-
-Format: `listq`
-
-![](images/userguide-screenshots/listq.png)
-
 ### Adding a tutorial : `addtut`
 
 Adds a tutorial to the tutorial list.
@@ -293,14 +282,6 @@ Example:
 * `marktut 1` marks the first tutorial from the tutorial list as done.
 
 ![result for 'marktut 1'](images/userguide-screenshots/marktut.png)
-
-### Listing all tutorials: `listtut`
-
-Shows a list of all the added tutorials.
-
-Format: `listtut`
-
-![result for 'listtut'](images/userguide-screenshots/listtut.png)
 
 ### Exiting the program : `exit`
 
