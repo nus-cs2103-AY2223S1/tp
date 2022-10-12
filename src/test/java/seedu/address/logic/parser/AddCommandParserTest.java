@@ -6,11 +6,13 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MOD_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TELEGRAM_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MOD_DESC_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.MOD_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -23,6 +25,8 @@ import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -37,6 +41,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -71,7 +76,7 @@ public class AddCommandParserTest {
                 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB + TAG_DESC_FRIEND + MOD_DESC_CS2100,
                 new AddCommand(expectedPerson));
 
-        // multiple addresses - last address accepted
+        // multiple telegram - last telegram accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_AMY
                 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB + TAG_DESC_FRIEND + MOD_DESC_CS2100,
                 new AddCommand(expectedPerson));
@@ -82,6 +87,13 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB
                 + GITHUB_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MOD_DESC_CS2100,
                 new AddCommand(expectedPersonMultipleTags));
+
+        // multiple mods - all accepted
+        Person expectedPersonMultipleMods = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100, VALID_MOD_CS2103)
+                .build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB
+                        + GITHUB_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MOD_DESC_CS2100 + MOD_DESC_CS2103,
+                new AddCommand(expectedPersonMultipleMods));
     }
 
     @Test
@@ -128,6 +140,11 @@ public class AddCommandParserTest {
         // invalid telegram
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_TELEGRAM_DESC
                 + GITHUB_DESC_BOB + TAG_DESC_HUSBAND + VALID_TAG_FRIEND, Telegram.MESSAGE_CONSTRAINTS);
+
+        // invalid mod
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB
+                + GITHUB_DESC_BOB + TAG_DESC_HUSBAND + VALID_TAG_FRIEND
+                + INVALID_MOD_DESC_CS2103, Mod.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + INVALID_EMAIL_DESC

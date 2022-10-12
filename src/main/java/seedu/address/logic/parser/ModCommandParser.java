@@ -38,16 +38,15 @@ public class ModCommandParser implements Parser<ModCommand> {
     public ModCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
         String trimmedArgs = args.trim();
-        // check if empty
-        if (trimmedArgs.isEmpty()) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(trimmedArgs);
+
+        // check if empty and matches format
+        if (trimmedArgs.isEmpty() || !matcher.matches()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModCommand.MESSAGE_USAGE));
         }
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModCommand.MESSAGE_USAGE));
-        }
+
         // parse
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
@@ -63,9 +62,9 @@ public class ModCommandParser implements Parser<ModCommand> {
 
     private ModAddCommand parseAddCommand(String args) throws ParseException {
         Index index;
-        args = args.trim();
-        String indexFromCommand = getIndexFromCommand(args);
-        Set<String> modsFromCommand = getModsFromCommand(args);
+        String trimmedArgs = args.trim();
+        String indexFromCommand = getIndexFromCommand(trimmedArgs);
+        Set<String> modsFromCommand = getModsFromCommand(trimmedArgs);
         Optional<Set<Mod>> mods = parseMods(modsFromCommand);
         if (mods.isEmpty()) {
             throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
