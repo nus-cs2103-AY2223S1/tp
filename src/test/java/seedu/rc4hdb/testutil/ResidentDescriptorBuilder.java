@@ -4,8 +4,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Tags;
-
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.fields.Email;

@@ -7,7 +7,6 @@ import static seedu.rc4hdb.commons.core.Messages.MESSAGE_RESIDENTS_LISTED_OVERVI
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 import static seedu.rc4hdb.testutil.TypicalResidents.AMY;
-import static seedu.rc4hdb.testutil.TypicalResidents.BENSON;
 import static seedu.rc4hdb.testutil.TypicalResidents.DANIEL;
 import static seedu.rc4hdb.testutil.TypicalResidents.ELLE;
 import static seedu.rc4hdb.testutil.TypicalResidents.FIONA;
