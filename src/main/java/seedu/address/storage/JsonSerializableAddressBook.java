@@ -76,7 +76,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedTutorial jsonAdaptedTutorial : tutorials) {
             Tutorial tutorial = jsonAdaptedTutorial.toModelType();
             if (addressBook.hasTutorial(tutorial)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_QUESTION);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TUTORIAL);
             }
             addressBook.addTutorial(tutorial);
         }

@@ -64,6 +64,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.questions.setQuestions(questions);
     }
 
+    public void setTutorials(List<Tutorial> tutorials) {
+        this.tutorials.setTutorials(tutorials);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -72,6 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setQuestions(newData.getQuestionList());
+        setTutorials(newData.getTutorialList());
     }
 
     //// person-level operations
