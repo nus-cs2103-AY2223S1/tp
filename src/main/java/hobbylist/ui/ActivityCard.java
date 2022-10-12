@@ -8,8 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -40,7 +38,7 @@ public class ActivityCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private FlowPane tags;
+    private Label tags;
 
     /**
      * Creates a {@code ActivityCard} with the given {@code Activity} and index to display.
@@ -53,10 +51,10 @@ public class ActivityCard extends UiPart<Region> {
         description.setText(activity.getDescription().value);
         activity.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.setText(tag.tagName));
         activity.getTags().stream()
-                .forEach(Label -> tags.setBackground(new Background(
-                        new BackgroundFill(Color.web(intToHexColor(Label)), new CornerRadii(5), null))));
+                .forEach(tag -> tags.setBackground(new Background(
+                        new BackgroundFill(Color.web(intToHexColor(tag)), null, null))));
     }
 
     private String intToHexColor(Tag tag) {
