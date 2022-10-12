@@ -57,8 +57,6 @@ public class Deadline {
         return false;
     }
 
-    public Deadline() {}
-
     /**
      * Returns true if a given string is a valid deadline.
      */

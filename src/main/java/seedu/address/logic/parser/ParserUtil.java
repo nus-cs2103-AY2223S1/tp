@@ -17,11 +17,11 @@ import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.UniqueClientList;
-import seedu.address.model.project.Repository;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
+import seedu.address.model.project.Repository;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.tag.Tag;
 

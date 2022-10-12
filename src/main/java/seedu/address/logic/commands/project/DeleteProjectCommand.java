@@ -9,6 +9,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.UniqueIssueList;
 import seedu.address.model.project.Project;
 import seedu.address.ui.Ui;
 
@@ -44,7 +46,12 @@ public class DeleteProjectCommand extends ProjectCommand {
         }
 
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
+        List<Issue> listOfIssuesToDelete = projectToDelete.getIssueList();
+        for (Issue i : listOfIssuesToDelete) {
+            UniqueIssueList.remove(i);
+        }
         model.deleteProject(projectToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
     }
 
