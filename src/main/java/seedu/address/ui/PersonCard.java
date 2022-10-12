@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -52,6 +53,9 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         // update tags
+        person.getTags().keySet().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagType))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagType)));
     }
 
     @Override

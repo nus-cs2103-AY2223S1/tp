@@ -42,9 +42,9 @@ public class TagType {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TagType // instanceof handles nulls
-                && tagType.equals(((TagType) other).tagType)
-                && p.equals(((TagType) other).p)); // state check
+                || ((other instanceof TagType // instanceof handles nulls
+                && this.tagType.equals(((TagType) other).tagType)
+                && p.equals(((TagType) other).p))); // state check
     }
 
     @Override
