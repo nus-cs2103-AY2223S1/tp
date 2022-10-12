@@ -52,7 +52,7 @@ public class CommissionCard extends UiPart<Region> {
         this.commission = commission;
         id.setText(displayedIndex + ". ");
         title.setText(commission.getTitle().title);
-        description.setText(commission.getDescription().orElseGet(() -> Description.NO_DESCRIPTION).description);
+        description.setText(commission.getDescription().orElse(Description.NO_DESCRIPTION).description);
         deadline.setText(commission.getDeadline().deadline.toString());
         fee.setText("$" + String.format("%.2f", commission.getFee().fee));
         completionStatus.setText("completed: " + commission.getCompletionStatus().isCompleted);

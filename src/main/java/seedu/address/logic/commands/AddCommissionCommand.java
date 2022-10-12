@@ -12,6 +12,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
+import seedu.address.model.customer.Customer;
 
 /**
  * Adds a commission to the selected customer.
@@ -56,12 +57,13 @@ public class AddCommissionCommand extends Command {
         if (!model.hasSelectedCustomer()) {
             throw new CommandException(Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
         }
+        Customer selectedCustomer = model.getSelectedCustomer().getValue();
 
-        if (model.hasCommission(toAdd)) {
+        if (selectedCustomer.hasCommission(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_COMMISSION);
         }
+        selectedCustomer.addCommission(toAdd);
 
-        model.addCommission(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

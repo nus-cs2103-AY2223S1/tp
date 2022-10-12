@@ -121,8 +121,11 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Customer` objects (which are contained in a `UniqueCustomerList` object).
-* stores the currently 'selected' `Customer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the art buddy data i.e., all `Customer` objects (which are contained in a `UniqueCustomerList` object).
+* stores all `Commission` objects within the active `Customer` (which are contained in a `UniqueCommissionList` object).
+* stores the currently 'selected' `Customer` as an `ObservableObject<Customer>` which lets us listen to changes to the selected customer for performing UI updates.
+* stores the current 'filtered' `Customer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the current list of `Commission` objects belonging to the selected `Customer` (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Commission>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -510,10 +513,8 @@ Preconditions: AB currently has a commission opened.<br>**
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 500 customers, 2000 commissions and 8000 iterations without a noticeable sluggishness
-in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 500 customers, 2000 commissions and 8000 iterations without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The app should be designed for and used by a single user.
 5. The app data should be stored in a human-editable text file and not a DBMS.
 6. Images and other app assets should be stored locally and not in a remote server.

@@ -3,7 +3,9 @@ package seedu.address.ui;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -26,12 +28,19 @@ public class CommissionListPanel extends UiPart<Region> {
     /**
      * Creates a {@code CommissionListPanel} with the given {@code ObservableList}.
      */
-    public CommissionListPanel(ObservableList<Commission> commissionList,
+    public CommissionListPanel(ObservableValue<FilteredList<Commission>> observableCommissionList,
                                Consumer<Commission> selectCommission) {
         super(FXML);
+        this.updateUI(observableCommissionList.getValue());
+        this.selectCommission = selectCommission;
+
+        observableCommissionList.addListener((observable, oldValue, newValue) -> this.updateUI(newValue));
+    }
+
+
+    private void updateUI(ObservableList<Commission> commissionList) {
         commissionListView.setItems(commissionList);
         commissionListView.setCellFactory(listView -> new CommissionListViewCell());
-        this.selectCommission = selectCommission;
     }
 
     /**

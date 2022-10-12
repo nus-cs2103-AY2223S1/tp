@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.customer.Customer;
@@ -37,6 +36,7 @@ public class CustomerListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Customer} using a {@code CustomerCard}.
      */
     class CustomerListViewCell extends ListCell<Customer> {
+
         @Override
         protected void updateItem(Customer customer, boolean empty) {
             super.updateItem(customer, empty);
@@ -47,8 +47,7 @@ public class CustomerListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new CustomerCard(customer, getIndex() + 1).getRoot());
             }
-
-            addEventHandler(MouseEvent.MOUSE_PRESSED, e -> selectCustomer.accept(customer));
+            setOnMousePressed(e -> selectCustomer.accept(customer));
         }
     }
 

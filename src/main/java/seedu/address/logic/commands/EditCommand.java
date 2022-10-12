@@ -19,7 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
@@ -72,7 +72,7 @@ public class EditCommand extends Command {
      */
     private static Customer createEditedCustomer(Customer customerToEdit,
                                                  EditCustomerDescriptor editCustomerDescriptor) {
-        assert customerToEdit != null;
+        requireNonNull(customerToEdit);
 
         Name updatedName = editCustomerDescriptor.getName().orElse(customerToEdit.getName());
         Phone updatedPhone = editCustomerDescriptor.getPhone().orElse(customerToEdit.getPhone());
@@ -80,7 +80,7 @@ public class EditCommand extends Command {
         Optional<Address> updatedAddress = Optional.ofNullable(
                 editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress().orElse(null)));
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
-        Set<Commission> oldCommissions = customerToEdit.getCommissions();
+        UniqueCommissionList oldCommissions = customerToEdit.getCommissions();
 
         Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(updatedName, updatedPhone,
                 updatedEmail, updatedTags).setCommissions(oldCommissions);
