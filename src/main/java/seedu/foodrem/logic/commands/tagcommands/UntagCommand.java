@@ -55,7 +55,7 @@ public class UntagCommand extends Command {
     private static Item createUntaggedItem(Item itemToUntag, Tag tag) {
         assert itemToUntag != null;
 
-        itemToUntag.removeTag(tag);
+        itemToUntag.removeItemTag(tag);
         Set<Tag> newTagSet = itemToUntag.getTagSet();
 
         return new Item(itemToUntag.getName(),

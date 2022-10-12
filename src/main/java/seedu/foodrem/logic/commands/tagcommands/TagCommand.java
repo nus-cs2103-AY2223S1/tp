@@ -56,7 +56,7 @@ public class TagCommand extends Command {
     private static Item createTaggedItem(Item itemToTag, Tag tag) {
         assert itemToTag != null;
 
-        itemToTag.addTag(tag);
+        itemToTag.addItemTag(tag);
         Set<Tag> newTagSet = itemToTag.getTagSet();
 
         return new Item(itemToTag.getName(),
