@@ -3,12 +3,17 @@ package seedu.address.model.person;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+
 /**
  * Represents a Person's GradeProgress list in the address book.
  * Guarantees: Mutable
  */
 
 public class GradeProgressList {
+    public static final String MESSAGE_INVALID_GRADE_PROGRESS_INDEX = "The grade index provided is invalid!";
+
     public final List<GradeProgress> gradeProgressList;
 
     /**
@@ -34,6 +39,21 @@ public class GradeProgressList {
     public void clearList() {
         gradeProgressList.clear();
     }
+
+    /**
+     * Edits the homework at the given index with the new given homework.
+     *
+     * @param index of homework to be edited
+     * @param gradeProgress that replaces the old homework
+     */
+    public void editAtIndex(Index index, GradeProgress gradeProgress) throws CommandException {
+        int indexToEdit = index.getZeroBased();
+        if (indexToEdit >= gradeProgressList.size()) {
+            throw new CommandException(MESSAGE_INVALID_GRADE_PROGRESS_INDEX);
+        }
+        gradeProgressList.set(indexToEdit, gradeProgress);
+    }
+
     @Override
     public String toString() {
         StringBuilder description = new StringBuilder("Grade Progress:\n");

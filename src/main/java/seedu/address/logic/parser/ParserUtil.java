@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.Homework;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
@@ -96,6 +97,30 @@ public class ParserUtil {
      */
     public static String[] parseHomeworkInfo(String homeworkInfo) throws ParseException {
         String[] args = homeworkInfo.split(" ", 2);
+        if (args.length < 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+        return args;
+    }
+
+    /**
+     * Parses a {@code String gradeProgress} into an {@code GradeProgress}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static GradeProgress parseGradeProgress(String gradeProgress) {
+        requireNonNull(gradeProgress);
+        String trimmedGradeProgress = gradeProgress.trim();
+        return new GradeProgress(trimmedGradeProgress);
+    }
+
+    /**
+     * Parses a {@code String gradeProgressInfo} and disassembles it into index and grade progress.
+     *
+     * @param gradeProgressInfo index and description of grade progress.
+     * @return array containing index in position 0 and grade in position 1.
+     */
+    public static String[] parseGradeProgressInfo(String gradeProgressInfo) throws ParseException {
+        String[] args = gradeProgressInfo.split(" ", 2);
         if (args.length < 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }

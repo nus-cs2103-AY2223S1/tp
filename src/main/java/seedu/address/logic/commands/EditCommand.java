@@ -19,6 +19,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.GradeProgressList;
 import seedu.address.model.person.Homework;
 import seedu.address.model.person.HomeworkList;
@@ -107,8 +108,14 @@ public class EditCommand extends Command {
         }
 
         AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+
         GradeProgressList updatedGradeProgressList = personToEdit.getGradeProgressList();
+        Optional<GradeProgress> gradeProgress = editPersonDescriptor.getGradeProgress();
+        Optional<Index> gradeProgressIndex = editPersonDescriptor.getGradeProgressIndex();
+        if (gradeProgress.isPresent() && gradeProgressIndex.isPresent()) {
+            updatedGradeProgressList.editAtIndex(gradeProgressIndex.get(), gradeProgress.get());
+        }
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedLessonPlan,
                 updatedHomeworkList, updatedAttendanceList, updatedGradeProgressList, updatedTags);
@@ -142,6 +149,8 @@ public class EditCommand extends Command {
         private LessonPlan lessonPlan;
         private Index homeworkIndex;
         private Homework homework;
+        private Index gradeProgressIndex;
+        private GradeProgress gradeProgress;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -156,6 +165,8 @@ public class EditCommand extends Command {
             setLessonPlan(toCopy.lessonPlan);
             setHomeworkIndex(toCopy.homeworkIndex);
             setHomework(toCopy.homework);
+            setGradeProgressIndex(toCopy.gradeProgressIndex);
+            setGradeProgress(toCopy.gradeProgress);
             setTags(toCopy.tags);
         }
 
@@ -163,7 +174,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, lessonPlan, homework, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, lessonPlan, homework, gradeProgress, tags);
         }
 
         public void setName(Name name) {
@@ -204,6 +215,22 @@ public class EditCommand extends Command {
 
         public Optional<Index> getHomeworkIndex() {
             return Optional.ofNullable(homeworkIndex);
+        }
+
+        public void setGradeProgress(GradeProgress gradeProgress) {
+            this.gradeProgress = gradeProgress;
+        }
+
+        public Optional<GradeProgress> getGradeProgress() {
+            return Optional.ofNullable(gradeProgress);
+        }
+
+        public void setGradeProgressIndex(Index gradeProgressIndex) {
+            this.gradeProgressIndex = gradeProgressIndex;
+        }
+
+        public Optional<Index> getGradeProgressIndex() {
+            return Optional.ofNullable(gradeProgressIndex);
         }
 
         /**
