@@ -21,11 +21,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
+import seedu.address.model.project.UniqueProjectList;
 
 
 /**
@@ -100,7 +100,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
 
         List<Issue> issueList = new ArrayList<>();
-        ProjectId projectId = new ProjectId(UniqueClientList.generateId());
+        ProjectId projectId = new ProjectId(UniqueProjectList.generateId());
 
         Project project = new Project(name, repository, deadline, client, issueList, projectId);
 

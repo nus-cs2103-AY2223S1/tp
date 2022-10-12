@@ -25,9 +25,24 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
  */
 public class UniqueProjectList implements Iterable<Project> {
 
-    private final ObservableList<Project> internalList = FXCollections.observableArrayList();
+    private static final ObservableList<Project> internalList = FXCollections.observableArrayList();
     private final ObservableList<Project> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    /**
+     * Method to generate a project id temporarily
+     *
+     * @return project id
+     */
+    public static int generateId() {
+        int count = 0;
+        for (Project p : internalList) {
+            if (p.getId().getIdInt() > count) {
+                count = p.getId().getIdInt();
+            }
+        }
+        return count + 1;
+    }
 
     /**
      * Returns true if the list contains an equivalent project as the given argument.
@@ -68,6 +83,18 @@ public class UniqueProjectList implements Iterable<Project> {
 
         internalList.set(index, editedProject);
     }
+
+    // TODO: temporary getter for project, can be deleted when alt method to retrieve project is implemented
+    public static Project getProject(int projectId) {
+        for (Project p : internalList) {
+            ProjectId id = new ProjectId(projectId);
+            if (p.getId().equals(id)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
 
     /**
      * Removes the equivalent project from the list.

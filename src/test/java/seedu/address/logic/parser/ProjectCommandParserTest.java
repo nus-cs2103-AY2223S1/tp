@@ -20,11 +20,11 @@ import seedu.address.logic.commands.project.AddProjectCommand;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
+import seedu.address.model.project.UniqueProjectList;
 
 class ProjectCommandParserTest {
     private ProjectCommandParser parser = new ProjectCommandParser();
@@ -33,7 +33,7 @@ class ProjectCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         Project project = new Project(new Name(VALID_NAME_BOB), Repository.EmptyRepository.EMPTY_REPOSITORY,
                 Deadline.EmptyDeadline.EMPTY_DEADLINE, Client.EmptyClient.EMPTY_CLIENT, new ArrayList<Issue>(),
-                new ProjectId(UniqueClientList.generateId()));
+                new ProjectId(UniqueProjectList.generateId()));
         // only name
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_BOB,
                 new AddProjectCommand(project));

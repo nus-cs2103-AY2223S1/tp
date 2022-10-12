@@ -29,21 +29,6 @@ public class UniqueClientList implements Iterable<Client> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Method to generate a client id temporarily
-     *
-     * @return client id
-     */
-    public static int generateId() {
-        int count = 0;
-        for (Client c : internalList) {
-            if (c.getClientId().getIdInt() > count) {
-                count = c.getClientId().getIdInt();
-            }
-        }
-        return count + 1;
-    }
-
-    /**
      * Returns true if the list contains an equivalent client as the given argument.
      */
     public static boolean contains(Client toCheck) {

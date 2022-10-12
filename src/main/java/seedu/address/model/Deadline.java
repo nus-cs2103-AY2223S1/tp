@@ -25,6 +25,11 @@ public class Deadline {
         public boolean isEmpty() {
             return true;
         }
+
+        @Override
+        public String uiRepresentation() {
+            return "No Deadline Set";
+        }
     }
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -52,6 +57,8 @@ public class Deadline {
         return false;
     }
 
+    public Deadline() {}
+
     /**
      * Returns true if a given string is a valid deadline.
      */
@@ -61,6 +68,10 @@ public class Deadline {
 
     public String getFormattedDeadline() {
         return deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+    public String uiRepresentation() {
+        return deadline.toString();
     }
 
     @Override

@@ -118,6 +118,14 @@ public class Client {
     }
 
     /**
+     * Returns the list of projects under the client.
+     * @return String representing client's phone.
+     */
+    public List<Project> getProjects() {
+        return this.projects;
+    }
+
+    /**
      * Add A project to the client's project list.
      */
     public void addProjects(Project project) {

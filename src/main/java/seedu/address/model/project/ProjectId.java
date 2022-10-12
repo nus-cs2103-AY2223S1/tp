@@ -34,6 +34,10 @@ public class ProjectId {
         }
     }
 
+    public int getIdInt() {
+        return this.projectId;
+    }
+
     public String uiRepresentation() {
         return "(#" + toString() + ")";
     }
