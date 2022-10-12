@@ -1,35 +1,32 @@
 ---
 layout: page
-title: User Guide
+title: FoodRem User Guide
 ---
-
-# FoodRem User Guide
-
 ## About
 
-We want you to spend less time keeping track of perishable goods in your daily operations. 
+We want you to spend less time keeping track of perishable goods in your daily operations.
 FoodRem is a command line application that enables you to efficiently record, update and categorise food items.
 It is a convenient administrative tool that can answer the following questions in a flash:
 
-- What food items are about to expire?
-- How much of each condiment do I have? 
-- Which food items are newly purchases?
-- ...and many more!
+* What food items are about to expire?
+* How much of each condiment do I have?
+* Which food items are newly purchases?
+* ...and many more!
 
-With a few quick commands, you can have complete control of your perishable goods, so you can focus on what 
-is important: serving your customers, improving menu recipes, and transforming your business into the next 
+With a few quick commands, you can have complete control of your perishable goods, so you can focus on what
+is important: serving your customers, improving menu recipes, and transforming your business into the next
 success story.
 
 ## Key Features
 
 1. Add, update and delete inventory items
-2. Search and sort food items by:
-   - Name
-   - Quantity
-   - Bought date
-   - Expiry date
-   - Tags
-3. Tag items to group them into categories
+1. Search and sort food items by:
+   * Name
+   * Quantity
+   * Bought date
+   * Expiry date
+   * Tags
+1. Tag items to group them into categories
 
 ## Purpose, Scope and Audience
 
@@ -39,115 +36,53 @@ FoodRem helps small businesses to easily manage consumables and perishable goods
 
 ### Scope
 
-This app is targeted at small F&B businesses which may struggle in inventory management due to a lack of streamlined process and manpower. 
+This app is targeted at small F&B businesses which may struggle in inventory management due to a lack of streamlined process and manpower.
 
 ### Audience
 
-This guide is targeted at users using FoodRem who wants to find out more about the different commands to manage their inventory in a quicker and more efficient manner. 
+This guide is targeted at users using FoodRem who wants to find out more about the different commands to manage their inventory in a quicker and more efficient manner.
 
-Readers do not have to be familiar with the command line to use this guide effectively. 
+Readers do not have to be familiar with the command line to use this guide effectively.
 The only expectation we have of you is to carefully read through the different sections.
 
-<div style="page-break-after: always"></div> <! ---Testing line break-->
+{% include page-break.html %} <!-- Force a page break -->
 
-# Tables of Contents
-
-1. [How to use the user guide](#how-to-use-the-user-guide)
-
-2. [Quick Start](#quick-start)
-
-3. [Items and Tags](#items-and-tags)
-
-4. [Navigating around the application](#navigating-around-the-application)
-
-5. [Flags](#flags)
-
-6. [Placeholders](#placeholders)
-
-7. [Features](#features)
-
-   7.1. [Item Features](#item-features)
-
-   &emsp; 7.1.1. [Create a new item](#create-a-new-item)
-
-   &emsp; 7.1.2. [List all items](#list-all-items)
-
-   &emsp; 7.1.3. [Search for an item](#search-for-an-item)
-   
-   &emsp; 7.1.4. [Sort all items by an attribute](#sort-all-items-by-an-attribute)
-
-   &emsp; 7.1.5. [View the information of an item](#view-the-information-of-an-item)
-
-   &emsp; 7.1.6. [Increase the quantity of an item](#increase-the-quantity-of-an-item)
-
-   &emsp; 7.1.7. [Decrease the quantity of an item](#decrease-the-quantity-of-an-item)
-
-   &emsp; 7.1.8. [Update the information of an item](#update-the-information-of-an-item)
-
-   &emsp; 7.1.9. [Delete an item](#delete-an-item)
-
-   7.2. [Tag Features](#tag-features)
-
-   &emsp; 7.2.1. [Create a new tag](#create-a-new-tag)
-
-   &emsp; 7.2.2. [List all tags](#list-all-tags)
-
-   &emsp; 7.2.3. [Tag an item](#tag-an-item)
-
-   &emsp; 7.2.4. [Untag an item](#untag-an-item)
-
-   &emsp; 7.2.5. [Rename a tag](#rename-a-tag)
-
-   &emsp; 7.2.6. [Delete a tag](#delete-an-item)
-
-   7.3. [Receive help during usage](#receive-help-during-usage)
-
-   7.4. [Reset the application](#reset-the-application)
-
-   7.5. [Exit the application](#exit-the-application)
-
-8. [Command Summary](#command-summary)
-
-9. [Troubleshooting](#troubleshooting)
-
-10. [FAQ](#faq)
-
-11. [Future Extensions](#future-extensions)
-
-12. [Acknowledgements](#acknowledgements)
-
-13. [Glossary](#glossary)
+{% include toc.md header=true show-in-toc=true ordered=true %}
 
 ## How to use the User Guide
 
 Thank you for choosing FoodRem! We are delighted to have you as a user and aim to serve you well!
 
 To gain the most out from this User Guide, start off with the [Quick Start](#quick-start) section.
-This will give you a brief overview about how to use this application. 
+This will give you a brief overview about how to use this application.
 
 It is **highly recommended** that you read through the User Guide in a **sequential order** up until the section
-[Features](#features) where you can find all the information you need for each command. 
+[Features](#features) where you can find all the information you need for each command.
 
-[Items and Tags](#items-and-tags) : 
-- What FoodRem is capable of storing
+[Items and Tags](#items-and-tags) :
 
-[Navigating around the application](#navigating-around-the-application): 
-- Terminologies of different parts of the application
-- What you are expected to see.
+* What FoodRem is capable of storing
+
+[Navigating around the application](#navigating-around-the-application):
+
+* Terminologies of different parts of the application
+* What you are expected to see.
 
 [Flags](#flags) and [Placeholders](#placeholders):
-- Important syntax you will come across while reading the user
-guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`. 
+
+* Important syntax you will come across while reading the user
+  guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
 
 If you are confident, you can immediately refer to the [Command Summary](#command-summary)
 after completing the [Quick Start](#quick-start).
 
 Meaning of icons:
-- ℹ️ : additional info
-- ❗ : warning
+
+* ℹ️ : additional info
+* ❗ : warning
 
 If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq).
-There is also a [Glossary](#glossary) that contains definitions of what common words 
+There is also a [Glossary](#glossary) that contains definitions of what common words
 used in this application mean.
 
 It is time for you to unleash the potential of a command line application!
@@ -168,7 +103,7 @@ The first word of every command allows FoodRem to distinguish different commands
 `new` tells FoodRem that this is the command to create a new item.
 [Flags](#flags) such as `n/` and `qty/` are delimiters that enable FoodRem to distinguish different parameters
 supplied by you without ambiguity. [Placeholders](#placeholders) such as `ITEM_NAME` and `QUANTITY` shows you
-what you should place in each portion of the command. 
+what you should place in each portion of the command.
 
 Suppose you just bought 30 kg of potatoes, today is 5th September 22, and you do not feel the need to record
 an expiry date for the potatoes.
@@ -181,28 +116,31 @@ an expiry date for the potatoes.
 
 `BOUGHT_DATE`: 05-09-22
 
-Note: 
-- The [Placeholder](#placeholders) section covers the restrictions for respective placeholders.
-For example, the date format of BOUGHT_DATE, certain characters you cannot use and the limit and precision of numbers.
+Note:
+
+* The [Placeholder](#placeholders) section covers the restrictions for respective placeholders.
+  For example, the date format of BOUGHT_DATE, certain characters you cannot use and the limit and precision of numbers.
 
 The command you would like to enter into the command box would be:
 
 `new n/Potatoes qty/30 unit/kg bgt/05-09-22`
 
 Alternatively these commands would do the same thing:
-- `new n/Potatoesqty/30unit/kgbgt/05-09-22` (Omitting space between tags)
-- `new qty/30 n/Potatoes bgt/05-09-22 unit/kg` (Reordering the flags)
+
+* `new n/Potatoesqty/30unit/kgbgt/05-09-22` (Omitting space between tags)
+* `new qty/30 n/Potatoes bgt/05-09-22 unit/kg` (Reordering the flags)
 
 These commands are invalid:
-- `newn/Potatoesqty/30unit/kgbgt/05-09-22` (Removing space between command identifier and flag)
-- `new qty/-48 n/PÖtátÖes bgt/05/09/22 unit/|kg|` (Restrictions of placeholders not followed)
 
-Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and 
+* `newn/Potatoesqty/30unit/kgbgt/05-09-22` (Removing space between command identifier and flag)
+* `new qty/-48 n/PÖtátÖes bgt/05/09/22 unit/|kg|` (Restrictions of placeholders not followed)
+
+Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and
 [Features](#features).
 
-Notice that there is a pair of square brackets [] surrounding some parameters like `qty/QUANTITY` 
+Notice that there is a pair of square brackets [] surrounding some parameters like `qty/QUANTITY`
 in the format. This indicates that the parameter is optional. Each of these placeholders have a default value
-based on the commands. These are documented in the [Features](#features) section for each command. 
+based on the commands. These are documented in the [Features](#features) section for each command.
 
 Let us try another command!
 
@@ -217,32 +155,35 @@ would like to enter into the command box is `inc id/12 qty/30`.
 Note: `INDEX_LIST` can be an `INDEX` (More information in [Placeholders](#placeholders))
 
 Now you should have a general sensing of how commands are used and how to interpret formats. All commands are
-consolidated in [Command Summary](#command-summary). However, it is **highly recommended** that you read through 
-the User Guide in a  **sequential order** up until the section [Features](#features) where you can find all the
-information you need for each command. This covers more details on syntax and common errors. Before using any 
+consolidated in [Command Summary](#command-summary). However, it is **highly recommended** that you read through
+the User Guide in a **sequential order** up until the section [Features](#features) where you can find all the
+information you need for each command. This covers more details on syntax and common errors. Before using any
 command, take note of the behaviour when certain tags are not included and restrictions.
 
 Checklist before using a command:
-- [ ] I know the restrictions of the command
-- [ ] I know what flags are supplied to the command
-- [ ] I know the restrictions of each placeholder
-- [ ] I know the effects of not specifying each optional flag.
+
+* [ ] I know the restrictions of the command
+* [ ] I know what flags are supplied to the command
+* [ ] I know the restrictions of each placeholder
+* [ ] I know the effects of not specifying each optional flag.
 
 ## Items and Tags
 
 ### Item
+
 An item is a food item that you would like to include in FoodRem.
 The following are all the attributes store for each item:
-- Item name
-- Item quantity
-- Item unit (Unit of measurement e.g. `kg`, `packets`)
-- Item bought date
-- Item expiry date
+
+* Item name
+* Item quantity
+* Item unit (Unit of measurement e.g. `kg`, `packets`)
+* Item bought date
+* Item expiry date
 
 All items in FoodRem are unique. This means that no two items should have the same name.
 Uniqueness is not case-sensitive. "potato" and "POTATO" are treated as identical.
 
-FoodRem allows you to include an item that has an expiry date before a bought date. 
+FoodRem allows you to include an item that has an expiry date before a bought date.
 However, it will warn you that you are including an expired item into the inventory.
 
 Restrictions for other attributes can be found in [Placeholders](#placeholders).
@@ -252,14 +193,15 @@ Restrictions for other attributes can be found in [Placeholders](#placeholders).
 A tag serves as a means to categorise items. These tags are also unique and not case-sensitive.
 
 We can tag multiple items with the same tag and each item can have multiple tags. Tags are optional
-and serve as a means to easily categorise items. 
+and serve as a means to easily categorise items.
 
-Tags can be renamed and these changes would be reflected on all items immediately. 
+Tags can be renamed and these changes would be reflected on all items immediately.
 
 ## Navigating around the application
 
 {Image of entire application}
 
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -286,10 +228,13 @@ Tags can be renamed and these changes would be reflected on all items immediatel
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ## Flags
+
 Flags are delimiters that enable FoodRem to distinguish different parameters without ambiguity.
 
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -324,9 +269,13 @@ Flags are delimiters that enable FoodRem to distinguish different parameters wit
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ## Placeholders
+
 Placeholders are words in UPPER_CASE to show you what parameters you can supply to a command.
+
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -378,23 +327,24 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ## Features
 
-This section covers how to use each command in detail. 
+This section covers how to use each command in detail.
 Before continuing, ensure you have read the section on [Flags](#flags) and [Placeholders](#placeholders).
 
 What you should expect to find:
 
-- A description of the command
-- The expected behaviour for the command
-- A few valid and invalid examples of the command
-- Important points to note
+* A description of the command
+* The expected behaviour for the command
+* A few valid and invalid examples of the command
+* Important points to note
 
 **IMPORTANT:**
 
-- Square brackets indicate an optional parameter.
-- For each command, "Format" indicates the syntax of the command.
+* Square brackets indicate an optional parameter.
+* For each command, "Format" indicates the syntax of the command.
 
 ### Item Features
 
@@ -402,7 +352,7 @@ What you should expect to find:
 
 #### Create a new item
 
-<!--- Remember to warn users if expiry date < bought date-->
+<!--- TODO: emember to warn users if expiry date < bought date-->
 
 Command: `item new ITEM_NAME`
 
@@ -414,13 +364,13 @@ Example:
 
 Input
 
-```
+```text
 item new potato
 ```
 
 Output
 
-```
+```text
 Item  “potato” successfully created
 ```
 
@@ -436,13 +386,13 @@ Example:
 
 Input
 
-```
+```text
 list
 ```
 
 Output
 
-```
+```text
 Here are the items in your inventory:
 Onions
 Details about onions
@@ -469,13 +419,13 @@ Example:
 
 Input
 
-```
+```text
 find apple
 ```
 
 Output
 
-```
+```text
 Here are the results matching your search
 Green apple
 Rose apple
@@ -495,18 +445,21 @@ Rose apple
 
 Command: `[item] delete ITEM_INDEX`
 
-> Description: Deletes a specified item. Returns a warning if the item does not exist. 
+> Description: Deletes a specified item. Returns a warning if the item does not exist.
 
 ---
 
-Example: 
+Example:
 
 Input
-```
+
+```text
 delete 1
 ```
+
 Output
-```
+
+```text
 (Item exists): Item “potato” successfully deleted!
 (Item does not exist): No item to be found at index 1. Use “list items” or “find NAME” to find the index of the item to be deleted.
 ```
@@ -529,13 +482,13 @@ Example:
 
 Input
 
-```
+```text
 list tags
 ```
 
 Output
 
-```
+```text
 Here are the tags that are available:
 Fruits
 Vegetables
@@ -562,13 +515,13 @@ Example:
 
 Input
 
-```
+```text
 help
 ```
 
 Output:
 
-```
+```text
 list:
     Lists all the items/tags that the user has created.
 
@@ -612,7 +565,7 @@ tag:
         Delete:      "tag delete food"
 
 bye:
-    Exits Foodrem program.
+    Exits FoodRem program.
 
     Usage:
         Exit:       "bye"
@@ -632,7 +585,7 @@ Example:
 
 Input
 
-```
+```text
 bye
 ```
 
@@ -640,6 +593,7 @@ bye
 
 ### Item Commands
 
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -686,9 +640,11 @@ bye
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ### Tag Commands
 
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -723,9 +679,11 @@ bye
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ### Other Commands
 
+<!-- markdownlint-disable no-inline-html -->
 <table>
 <thead>
   <tr>
@@ -748,6 +706,7 @@ bye
   </tr>
 </tbody>
 </table>
+<!-- markdownlint-enable no-inline-html -->
 
 ## Troubleshooting
 
@@ -765,20 +724,99 @@ Something goes here...
    **Glorified search and sort**
    a. Upgrade sort and search b. Sort food items by quantity c. Sort food items by name d. Sort food items by expiry
    date e. Sort food items by purchase date
-
-2. Food buffer a. Rainbow UI / Dashboard b. Optional : Minimum acceptable quantity c. Optional : Percentage of stock
+1. Food buffer a. Rainbow UI / Dashboard b. Optional : Minimum acceptable quantity c. Optional : Percentage of stock
    expiring
-
-3. Purchasing (Hard -> Will not see benefit immediately)
+1. Purchasing (Hard -> Will not see benefit immediately)
    a. History + Statistics b. Inventory need a price of items
-
-4. (Last priority) Order management a. Grouping of items b. Creation of menu with specific items c. Record menu items
+1. (Last priority) Order management a. Grouping of items b. Creation of menu with specific items c. Record menu items
    bought d. Statistics
 
 ## Acknowledgements
 
-Something goes here...
+FoodREM is a brownfield software project based off [AddressBook3](https://se-education.org/addressbook-level3/), taken under the [CS2103T Software Engineering module](https://nus-cs2103-ay2223s1.github.io/website/index.html) held by the School of Computing at the National University of Singapore.
+
 
 ## Glossary
 
-Something goes here...
+### A
+
+#### Argument
+
+> A value that is passed into a command.
+
+Example:
+`tag create food`, where `food` is the argument to the command `tag create`
+
+### B
+
+#### Bought Date
+
+> Date where an item was purchased. Bought date is in the format "year-month-date", represented in the "yyyy-mm-dd" format.
+
+### C
+
+#### Command
+
+> A feature or function that FoodRem can perform.
+
+#### Command Line
+
+> The interface that you, the user, interacts with FoodREM with. The Command Line is the box where you type your commands into.
+
+
+### E
+
+#### Expiry Date
+
+> Date where an item spoils, expires, or becomes unusable. Expiry date is in the format "year-month-date", represented in the "yyyy-mm-dd" format.
+>
+
+### F
+
+#### Flag
+
+> A marker or delimiter signifying a potentially optional argument to a command.
+
+### I
+
+#### Input
+
+> The text that a user would enter into FoodRem.
+
+#### Item
+
+> Represents a thing that is stored and kept track by FoodRem.
+
+Example: Creating a `potato` item
+`[item] new n/potato`
+
+### O
+
+#### Output
+
+> The result of calling a Command.
+> Results are displayed in the GUI, here: (ADD SCREENSHOT)
+
+### P
+
+#### Parameter
+> Parameters identify values passed into your Commands. For example, when calling `add n/ItemName`, the parameter here is `n/ItemName`.
+### Q
+
+#### Quantity
+
+> The frequency of item(s) kept track by FoodRem.
+
+### S
+
+#### Syntax
+> The structure of statements you type into the Command Line. 
+### T
+
+#### Tag
+
+> The main method of categorizing items in FoodRem. A tag may be attached to zero or more items.
+
+Example:
+Tagging an item in the first index as the tag `ingredient`:
+`tag 1 ingredient`

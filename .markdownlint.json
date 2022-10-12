@@ -1,0 +1,33 @@
+{
+  "MD004": { // Unordered list style
+    "style": "asterisk"
+  },
+  "MD009": { // Trailing spaces
+    "br_spaces": 0
+  },
+  "MD013": false, // Line length
+  "MD029": { // Ordered list item prefix
+    "style": "one"
+  },
+  "MD033": { // Inline HTML
+    "allowed_elements": ["sub", "sup"]
+  },
+  "MD035": { // Horizontal rule style
+    "style": "---"
+  },
+  "MD044": { // Proper names should have the correct capitalization
+    "names": ["FoodRem"]
+  },
+  "MD046": { // Code block style
+    "style": "fenced"
+  },
+  "MD048": { // Code fence style
+    "style": "backtick"
+  },
+  "MD049": { //  Emphasis style should be consistent
+    "style": "underscore"
+  },
+  "MD050": { // Strong style should be consistent
+    "style": "asterisk"
+  }
+}

@@ -17,7 +17,7 @@ import seedu.foodrem.model.tag.exceptions.TagNotFoundException;
  * A tag is considered unique by comparing using {@code Tag#equals(Tag)}. As such, adding and updating of
  * tags uses Tag#equals(Tag) for equality so as to ensure that the tag being added or updated is
  * unique in terms of identity in the UniqueTagList.
- *
+ * <p>
  * Supports a minimal set of list operations.
  */
 public class UniqueTagList implements Iterable<Tag> {
@@ -27,7 +27,7 @@ public class UniqueTagList implements Iterable<Tag> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent tag as the given argument.
      */
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);

@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.logic.commands.generalcommands.ClearCommand;
+import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
@@ -142,7 +142,7 @@ public class EditCommandTest {
     public void execute_invalidItemIndexFilteredList_failure() {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
         Index outOfBoundIndex = INDEX_SECOND_ITEM;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of FoodRem list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodRem().getItemList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
@@ -167,7 +167,7 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ResetCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ITEM, DESC_POTATOES)));
