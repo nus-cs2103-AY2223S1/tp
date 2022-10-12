@@ -116,7 +116,7 @@ public class ModelManager implements Model {
     public Student getStudentByStudentId(StudentId studentId) {
         requireNonNull(studentId);
 
-        return fypManager.getStudent(studentId);
+        return fypManager.getStudentByStudentId(studentId);
     }
 
     //=========== Filtered Student List Accessors =============================================================
