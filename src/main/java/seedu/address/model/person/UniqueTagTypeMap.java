@@ -64,6 +64,9 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
     }
 
+    /**
+     * Removes tagType from list of tag types.
+     */
     public static void removeExistingTagType(TagType tagType) throws TagTypeNotFoundException {
         if (prefixMap.values().contains(tagType)) {
             Prefix prefix = prefixMap.keySet().stream().filter(key -> prefixMap.get(key).equals(tagType))
