@@ -3,8 +3,7 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+{% include toc.md header=true show-in-toc=false %}
 
 ---
 
@@ -259,10 +258,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:  
+**Target user profile**:
 Purchasing managers who are proficient with typing for small F&B businesses
 
-**Value proposition**:  
+**Value proposition**:
 This application will help small businesses to manage perishable goods within a single inventory
 (no support for multiple inventories).
 
@@ -275,26 +274,26 @@ Delete Inventory Item:
 Update inventory items:
 
 1. As a purchasing manager, I can rename my inventory items, so that I can update items with an incorrect name.
-2. As a purchasing manager, I can set the inventory quantity of my items.
-3. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items.
-4. As a purchasing manager, I can set the date my inventory will expire, so that I know when certain items need to be consumed or used.
-5. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.
-6. As a purchasing manager, I can decrease the inventory quantity of my items.
+1. As a purchasing manager, I can set the inventory quantity of my items.
+1. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items.
+1. As a purchasing manager, I can set the date my inventory will expire, so that I know when certain items need to be consumed or used.
+1. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.
+1. As a purchasing manager, I can decrease the inventory quantity of my items.
 
 View Inventory Items:
 
 1. As a purchasing manager, I can view all items in my inventory so that I can have an overview of all items and their details.
-2. As a purchasing manager, I can search for items by name, so that I can view a specific item and its associated details
-3. As a purchasing manager, I can search for items by tags, so that I can view all items that have the same tag.
+1. As a purchasing manager, I can search for items by name, so that I can view a specific item and its associated details
+1. As a purchasing manager, I can search for items by tags, so that I can view all items that have the same tag.
 
 Tag Management System
 
 1. As a purchasing manager, I can view a list of tags.
-2. As a purchasing manager, I can create tags to classify inventory items.
-3. As a purchasing manager, I can rename a tag.
-4. As a purchasing manager, I can delete a tag.
-5. As a purchasing manager, I can add a tag to an item.
-6. As a purchasing manager, I can remove a tag from an item.
+1. As a purchasing manager, I can create tags to classify inventory items.
+1. As a purchasing manager, I can rename a tag.
+1. As a purchasing manager, I can delete a tag.
+1. As a purchasing manager, I can add a tag to an item.
+1. As a purchasing manager, I can remove a tag from an item.
 
 Miscellaneous
 
@@ -310,7 +309,7 @@ Use Case: UC1 - Add Item to Inventory
 MSS:
 
 1. User adds an item to the inventory.
-2. FoodRem adds the item into the inventory list.
+1. FoodRem adds the item into the inventory list.
    Use Case ends.
 
 Extensions:
@@ -325,7 +324,7 @@ Use Case: UC2 - Update Item in Inventory
 MSS:
 
 1. User updates an inventory item's detail.
-2. FoodRem updates the detail of the inventory item.
+1. FoodRem updates the detail of the inventory item.
    Use case ends.
 
 Extensions:
@@ -340,7 +339,7 @@ Use Case: UC2 - Delete Item from Inventory
 MSS:
 
 1. User deletes an item from inventory.
-2. FoodRem removes item from inventory.
+1. FoodRem removes item from inventory.
    Use case ends.
 
 Extensions:
@@ -368,7 +367,7 @@ Use Case: UC5 - Find Item
 MSS:
 
 1. User searches for an Item using keywords.
-2. FoodRem displays all items in inventory which name matches the given keyword.
+1. FoodRem displays all items in inventory which name matches the given keyword.
    Use case ends.
 
 #### UC6: Add Tag to Item
@@ -377,9 +376,9 @@ Use Case: UC6 - Add Tag to an Item
 MSS:
 
 1. User enters the command to find the item of interest.
-2. FoodRem shows a list containing possible matching items.
-3. User enters command to add a specified tag from the desired items.
-4. FoodRem informs user that the tag has been updated successfully.
+1. FoodRem shows a list containing possible matching items.
+1. User enters command to add a specified tag from the desired items.
+1. FoodRem informs user that the tag has been updated successfully.
    Use case ends.
 
 Extensions:
@@ -402,9 +401,9 @@ Use Case: UC7 - Rename a tag
 MSS:
 
 1. User chooses to view all tags.
-2. FoodRem shows all tags.
-3. User enters the command to rename desired tag.
-4. FoodRem informs user that the tag has been updated successfully.
+1. FoodRem shows all tags.
+1. User enters the command to rename desired tag.
+1. FoodRem informs user that the tag has been updated successfully.
 
 Extensions:
 
@@ -429,9 +428,9 @@ Preconditions: User knows the name of the tag they are removing from an item.
 MSS:
 
 1. User enters the command to find the item of interest.
-2. FoodRem shows a list containing possible matching items.
-3. User enters command to remove the tag from the desired items.
-4. FoodRem informs user that the tag has been updated successfully.
+1. FoodRem shows a list containing possible matching items.
+1. User enters command to remove the tag from the desired items.
+1. FoodRem informs user that the tag has been updated successfully.
 
 Extensions:
 
@@ -465,22 +464,22 @@ Use Case: UC10 - Sorting List of Items by Criteria
 MSS:
 
 1. User lists items
-2. User selects a criteria to sort the list by
-3. The list items are reordered according to the chosen criterion
+1. User selects a criteria to sort the list by
+1. The list items are reordered according to the chosen criterion
 
 _{More to be added}_
 
 ### Non-Functional Requirements
 
 1. The product should work on any mainstream OS (Windows, macOS, Linux) that has Java 11 or above installed.
-2. The product should be able to hold up to 1000 items without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. A user should not experience excessive sluggishness when searching and sorting items.
-5. The product should be for a single user (i.e. not a multi-user product where different users can run the application at different times on a shared computer).
-6. The data of the application is stored locally.
-7. A user must be able to view at least 5 tags when an item is displayed.
-8. A user must be able to view at least 5 items with minimal scrolling if there are no tags added to each item.
-9. A user should be able to use the app after reading the help instructions.
+1. The product should be able to hold up to 1000 items without a noticeable sluggishness in performance for typical usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. A user should not experience excessive sluggishness when searching and sorting items.
+1. The product should be for a single user (i.e. not a multi-user product where different users can run the application at different times on a shared computer).
+1. The data of the application is stored locally.
+1. A user must be able to view at least 5 tags when an item is displayed.
+1. A user must be able to view at least 5 items with minimal scrolling if there are no tags added to each item.
+1. A user should be able to use the app after reading the help instructions.
 
 ### Glossary
 
