@@ -194,6 +194,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            outputPanelPlaceholder.getChildren().clear();
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -206,7 +207,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isViewTask()) {
+
+            if (logic.getTaskListFlagSupplier().get()) {
                 ObservableList<Patient> patientList = logic.getFilteredPersonList();
                 Patient patient = patientList.get(0);
                 handleViewTask(patient);
