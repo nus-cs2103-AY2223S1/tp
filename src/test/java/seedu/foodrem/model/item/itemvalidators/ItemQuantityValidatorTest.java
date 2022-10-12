@@ -1,64 +1,52 @@
-package seedu.address.model.item.validators;
+package seedu.foodrem.model.item.itemvalidators;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator.MESSAGE_FOR_NOT_A_NUMBER;
+import static seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator.MESSAGE_FOR_PRECISION_TOO_HIGH;
+import static seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator.MESSAGE_FOR_QUANTITY_IS_NEGATIVE;
+import static seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator.MESSAGE_FOR_QUANTITY_TOO_LARGE;
+import static seedu.foodrem.model.item.itemvalidators.ItemValidatorUtilTest.assertValidateFailure;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ItemQuantityValidatorTest {
     @Test
     public void test_quantityInValidRange() {
-        Assertions.assertFalse(ItemQuantityValidator.isQuantityMoreThanMaxQuantity(0));
-        assertFalse(ItemQuantityValidator.isQuantityMoreThanMaxQuantity(100000));
-        assertTrue(ItemQuantityValidator.isQuantityMoreThanMaxQuantity(100001));
+        ItemQuantityValidator.validate("0");
+        ItemQuantityValidator.validate("100000");
+        assertValidateFailure(() -> ItemQuantityValidator.validate("100001"),
+                MESSAGE_FOR_QUANTITY_TOO_LARGE);
+        assertValidateFailure(() -> ItemQuantityValidator.validate("-1"),
+                MESSAGE_FOR_QUANTITY_IS_NEGATIVE);
 
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0"));
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("10"));
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("100"));
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0.0"));
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0.00"));
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0.000"));
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("0.0000"));
-        assertTrue(ItemQuantityValidator.isQuantityTooPrecise("0.00000"));
+        ItemQuantityValidator.validate("0");
+        ItemQuantityValidator.validate("10");
+        ItemQuantityValidator.validate("100");
+        ItemQuantityValidator.validate("0.0");
+        ItemQuantityValidator.validate("0.00");
+        ItemQuantityValidator.validate("0.000");
+        ItemQuantityValidator.validate("0.0000");
+        assertValidateFailure(() -> ItemQuantityValidator.validate("0.00000"),
+                MESSAGE_FOR_PRECISION_TOO_HIGH);
 
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("1"));
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("1.1"));
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("1.01"));
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("1.001"));
-        assertFalse(ItemQuantityValidator.isQuantityTooPrecise("1.0001"));
-        assertTrue(ItemQuantityValidator.isQuantityTooPrecise("1.00001"));
-
-        assertTrue(ItemQuantityValidator.isQuantityNegative(-1));
-        assertTrue(ItemQuantityValidator.isQuantityNegative(-1.01));
-        assertFalse(ItemQuantityValidator.isQuantityNegative(0));
-        assertFalse(ItemQuantityValidator.isQuantityNegative(100000));
+        ItemQuantityValidator.validate("1");
+        ItemQuantityValidator.validate("1.1");
+        ItemQuantityValidator.validate("1.01");
+        ItemQuantityValidator.validate("1.001");
+        assertValidateFailure(() -> ItemQuantityValidator.validate("1.00001"),
+                MESSAGE_FOR_PRECISION_TOO_HIGH);
     }
 
     @Test
     public void test_isParsableQuantity() {
-        assertTrue(ItemQuantityValidator.isParsableQuantity("0"));
-        assertTrue(ItemQuantityValidator.isParsableQuantity("100000"));
-        assertTrue(ItemQuantityValidator.isParsableQuantity("-1"));
-        assertTrue(ItemQuantityValidator.isParsableQuantity("100001"));
-        assertTrue(ItemQuantityValidator.isParsableQuantity("0.1"));
-        assertTrue(ItemQuantityValidator.isParsableQuantity("0.01"));
-        assertTrue(ItemQuantityValidator.isParsableQuantity("0.001"));
-        assertTrue(ItemQuantityValidator.isParsableQuantity("0.0001"));
-        assertTrue(ItemQuantityValidator.isParsableQuantity("0.00001"));
-        assertTrue(ItemQuantityValidator.isParsableQuantity("0.000000000000001")); // 15dp
-        assertTrue(ItemQuantityValidator.isParsableQuantity("0.0000000000000001")); // 16dp
-        // Parsable, but causes integer overflow
-        assertTrue(ItemQuantityValidator.isParsableQuantity("0.99999999999999999")); // 17dp
-
-        assertFalse(ItemQuantityValidator.isParsableQuantity(""));
-        assertFalse(ItemQuantityValidator.isParsableQuantity(" "));
-        assertFalse(ItemQuantityValidator.isParsableQuantity("a"));
-        assertFalse(ItemQuantityValidator.isParsableQuantity("apple"));
-        assertFalse(ItemQuantityValidator.isParsableQuantity("1+1"));
-        assertFalse(ItemQuantityValidator.isParsableQuantity("1 + 1"));
-        assertFalse(ItemQuantityValidator.isParsableQuantity("π"));
-        assertFalse(ItemQuantityValidator.isParsableQuantity("1,234"));
-        assertFalse(ItemQuantityValidator.isParsableQuantity("1/2"));
+        assertValidateFailure(() -> ItemQuantityValidator.validate(""), MESSAGE_FOR_NOT_A_NUMBER);
+        assertValidateFailure(() -> ItemQuantityValidator.validate(" "), MESSAGE_FOR_NOT_A_NUMBER);
+        assertValidateFailure(() -> ItemQuantityValidator.validate("a"), MESSAGE_FOR_NOT_A_NUMBER);
+        assertValidateFailure(() -> ItemQuantityValidator.validate("apple"), MESSAGE_FOR_NOT_A_NUMBER);
+        assertValidateFailure(() -> ItemQuantityValidator.validate("1+1"), MESSAGE_FOR_NOT_A_NUMBER);
+        assertValidateFailure(() -> ItemQuantityValidator.validate("1+1"), MESSAGE_FOR_NOT_A_NUMBER);
+        assertValidateFailure(() -> ItemQuantityValidator.validate("1 + 1"), MESSAGE_FOR_NOT_A_NUMBER);
+        assertValidateFailure(() -> ItemQuantityValidator.validate("π"), MESSAGE_FOR_NOT_A_NUMBER);
+        assertValidateFailure(() -> ItemQuantityValidator.validate("1,234"), MESSAGE_FOR_NOT_A_NUMBER);
+        assertValidateFailure(() -> ItemQuantityValidator.validate("1/2"), MESSAGE_FOR_NOT_A_NUMBER);
     }
 }
