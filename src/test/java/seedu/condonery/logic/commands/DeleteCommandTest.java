@@ -2,6 +2,7 @@ package seedu.condonery.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_SECOND_PROPERTY;
 import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
@@ -21,7 +22,7 @@ import seedu.condonery.model.property.Property;
  */
 public class DeleteCommandTest {
 
-    private final Model model = new ModelManager(getTypicalPropertyDirectory(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalPropertyDirectory(), getTypicalClientDirectory(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -30,7 +31,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getPropertyDirectory(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPropertyDirectory(), model.getClientDirectory(), new UserPrefs());
         expectedModel.deleteProperty(propertyToDelete);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -53,7 +54,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
-        Model expectedModel = new ModelManager(model.getPropertyDirectory(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPropertyDirectory(), model.getClientDirectory(), new UserPrefs());
         expectedModel.deleteProperty(propertyToDelete);
         showNoProperty(expectedModel);
 

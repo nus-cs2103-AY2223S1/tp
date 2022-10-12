@@ -17,16 +17,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.condonery.logic.commands.AddCommand;
 import seedu.condonery.logic.commands.CommandResult;
+import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.parser.exceptions.ParseException;
-import seedu.condonery.model.Model;
-import seedu.condonery.model.ModelManager;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
-import seedu.condonery.model.UserPrefs;
+import seedu.condonery.model.*;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.storage.JsonClientDirectoryStorage;
 import seedu.condonery.storage.JsonPropertyDirectoryStorage;
 import seedu.condonery.storage.JsonUserPrefsStorage;
 import seedu.condonery.storage.StorageManager;
@@ -45,8 +43,10 @@ public class LogicManagerTest {
     public void setUp() {
         JsonPropertyDirectoryStorage propertyDirectoryStorage =
             new JsonPropertyDirectoryStorage(temporaryFolder.resolve("propertyDirectory.json"));
+        JsonClientDirectoryStorage clientDirectoryStorage =
+            new JsonClientDirectoryStorage(temporaryFolder.resolve("clientDirectory.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(propertyDirectoryStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(propertyDirectoryStorage, clientDirectoryStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -74,13 +74,16 @@ public class LogicManagerTest {
         JsonPropertyDirectoryStorage propertyDirectoryStorage =
             new JsonPropertyDirectoryIoExceptionThrowingStub(
                 temporaryFolder.resolve("ioExceptionPropertyDirectory.json"));
+        JsonClientDirectoryStorage clientDirectoryStorage =
+                new JsonClientDirectoryIoExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionClientDirectory.json"));
         JsonUserPrefsStorage userPrefsStorage =
             new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(propertyDirectoryStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(propertyDirectoryStorage, clientDirectoryStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddPropertyCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
             + ADDRESS_DESC_AMY;
         Property expectedProperty = new PropertyBuilder(PINNACLE).withTags().build();
         ModelManager expectedModel = new ModelManager();
@@ -134,7 +137,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getPropertyDirectory(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPropertyDirectory(), model.getClientDirectory(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -162,6 +165,21 @@ public class LogicManagerTest {
 
         @Override
         public void savePropertyDirectory(ReadOnlyPropertyDirectory propertyDirectory, Path filePath)
+                throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonClientDirectoryIoExceptionThrowingStub extends JsonClientDirectoryStorage {
+        private JsonClientDirectoryIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveClientDirectory(ReadOnlyClientDirectory clientDirectory, Path filePath)
                 throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }

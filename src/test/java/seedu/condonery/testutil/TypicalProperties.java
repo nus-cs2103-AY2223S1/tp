@@ -58,13 +58,13 @@ public class TypicalProperties {
      */
     public static PropertyDirectory getTypicalPropertyDirectory() {
         PropertyDirectory pd = new PropertyDirectory();
-        for (Property property: getTypicalPersons()) {
+        for (Property property: getTypicalProperties()) {
             pd.addProperty(property);
         }
         return pd;
     }
 
-    public static List<Property> getTypicalPersons() {
+    public static List<Property> getTypicalProperties() {
         return new ArrayList<>(Arrays.asList(PINNACLE, OASIS, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

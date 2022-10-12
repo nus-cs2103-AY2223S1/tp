@@ -39,9 +39,9 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateProperty_throwsCommandException() {
-        Property personInList = model.getPropertyDirectory().getPropertyList().get(0);
+        Property propertyInList = model.getPropertyDirectory().getPropertyList().get(0);
         CommandTestUtil.assertCommandFailure(
-                new AddPropertyCommand(personInList), model, AddPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
+                new AddPropertyCommand(propertyInList), model, AddPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
     }
 
 }
