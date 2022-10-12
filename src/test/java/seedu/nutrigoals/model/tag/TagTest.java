@@ -1,6 +1,7 @@
 package seedu.nutrigoals.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
 
@@ -29,10 +30,21 @@ public class TagTest {
     public void constructor_caseInsensitiveTagName_success() {
         String breakfast = "BrEakFast";
         String lunch = "LUNCH";
-        String dinner = "dinner";
+        String dinner = "Dinner";
+
+        Tag expectedBreakfast = new Tag("breakfast");
+        Tag expectedLunch = new Tag("lunch");
+        Tag expectedDinner = new Tag("dinner");
+
+        // no exception throw
         assertDoesNotThrow(() -> new Tag(breakfast));
         assertDoesNotThrow(() -> new Tag(lunch));
         assertDoesNotThrow(() -> new Tag(dinner));
+
+        // case-insensitive tag names
+        assertEquals(new Tag(breakfast), expectedBreakfast);
+        assertEquals(new Tag(lunch), expectedLunch);
+        assertEquals(new Tag(dinner), expectedDinner);
     }
 
     @Test
