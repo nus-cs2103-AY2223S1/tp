@@ -22,6 +22,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.function.Consumer;
 
+import nus.climods.model.module.Module;
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.ApiResponse;
