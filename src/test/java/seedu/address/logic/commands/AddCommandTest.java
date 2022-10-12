@@ -19,8 +19,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.student.Student;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.StudentBuilder;
 
 
@@ -158,6 +160,36 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTaskBook(ReadOnlyTaskBook taskBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyTaskBook getTaskBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 

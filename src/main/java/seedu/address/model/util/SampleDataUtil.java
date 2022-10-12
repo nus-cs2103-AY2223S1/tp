@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskBook;
+import seedu.address.model.TaskBook;
 import seedu.address.model.attendance.Attendance;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
@@ -14,6 +16,9 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskTitle;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -47,12 +52,30 @@ public class SampleDataUtil {
         };
     }
 
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+            new Task(new TaskTitle("Grade assignments"), new TaskDescription("Complete by tonight")),
+            new Task(new TaskTitle("Prepare slides for studio"), new TaskDescription("Topic Environment Model")),
+            new Task(new TaskTitle("Review CS1101S topics with Adam"), new TaskDescription("Essence of Recursion")),
+            new Task(new TaskTitle("Collect robot"), new TaskDescription("At MakersLab")),
+            new Task(new TaskTitle("Go through tutorial sheet"), new TaskDescription("By this friday"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyTaskBook getSampleTaskBook() {
+        TaskBook sampleTb = new TaskBook();
+        for (Task sampleTask : getSampleTasks()) {
+            sampleTb.addTask(sampleTask);
+        }
+        return sampleTb;
     }
 
     /**

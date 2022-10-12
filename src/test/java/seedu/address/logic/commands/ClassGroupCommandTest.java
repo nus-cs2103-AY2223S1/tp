@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +29,7 @@ class ClassGroupCommandTest {
 
     private static final String CLASS_GROUP_STUB = "Some class";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskBook(), new UserPrefs());
 
     @Test
     public void execute_addClassGroupUnfilteredList_success() {
@@ -40,7 +41,8 @@ class ClassGroupCommandTest {
 
         String expectedMessage = String.format(ClassGroupCommand.MESSAGE_ADD_CLASS_GROUP_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook(model.getAddressBook()), model.getTaskBook(), new UserPrefs());
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(classGroupCommand, model, expectedMessage, expectedModel);
@@ -56,7 +58,8 @@ class ClassGroupCommandTest {
 
         String expectedMessage = String.format(ClassGroupCommand.MESSAGE_DELETE_CLASS_GROUP_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook(model.getAddressBook()), model.getTaskBook(), new UserPrefs());
         expectedModel.setStudent(firstPerson, editedPerson);
 
         assertCommandSuccess(classGroupCommand, model, expectedMessage, expectedModel);
@@ -76,7 +79,8 @@ class ClassGroupCommandTest {
 
         String expectedMessage = String.format(ClassGroupCommand.MESSAGE_ADD_CLASS_GROUP_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook(model.getAddressBook()), model.getTaskBook(), new UserPrefs());
         expectedModel.setStudent(firstPerson, editedPerson);
 
         assertCommandSuccess(classGroupCommand, model, expectedMessage, expectedModel);

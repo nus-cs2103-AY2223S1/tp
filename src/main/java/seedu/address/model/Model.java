@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.student.Student;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -85,6 +86,36 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Replaces task book data with the data in {@code taskBook}.
+     */
+    void setTaskBook(ReadOnlyTaskBook taskBook);
+
+    /**
+     * Returns the task book.
+     */
+    ReadOnlyTaskBook getTaskBook();
+
+    /**
+     * Returns the task list.
+     */
+    ObservableList<Task> getTaskList();
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the task book.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Adds the given task.
+     */
+    void addTask(Task task);
+
+    /**
+     * Deletes the given task.
+     */
+    void deleteTask(Task target);
 
     /**
      * Returns whether the StudentId from the given {@code student} belongs to an existing student in

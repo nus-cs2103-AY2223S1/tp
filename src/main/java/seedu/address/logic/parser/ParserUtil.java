@@ -17,6 +17,8 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskTitle;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -147,5 +149,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String title} into a {@code TaskTitle}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code title} is invalid.
+     */
+    public static TaskTitle parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!TaskTitle.isValidTitle(trimmedTitle)) {
+            throw new ParseException(TaskTitle.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskTitle(trimmedTitle);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code TaskDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static TaskDescription parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!TaskDescription.isValidDescription(trimmedDescription)) {
+            throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskDescription(trimmedDescription);
     }
 }

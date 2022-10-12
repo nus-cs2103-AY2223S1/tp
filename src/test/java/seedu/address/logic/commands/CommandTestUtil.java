@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -68,6 +70,12 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
+
+    public static final String VALID_TASK_TITLE = "Grade assignments";
+    public static final String VALID_TASK_DESCRIPTION = "Complete by tonight";
+
+    public static final String TASK_TITLE_DESC = " " + PREFIX_TASK_TITLE + VALID_TASK_TITLE;
+    public static final String TASK_DESCRIPTION_DESC = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_DESCRIPTION;
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
