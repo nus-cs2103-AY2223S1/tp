@@ -17,14 +17,14 @@ import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
+import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.commands.tagcommands.AddTagCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
-import seedu.foodrem.logic.parser.itemcommandparser.AddCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.DeleteCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.EditCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.FindCommandParser;
+import seedu.foodrem.logic.parser.itemcommandparser.NewCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.AddTagCommandParser;
-
 
 /**
  * Parses user input.
@@ -54,8 +54,8 @@ public class FoodRemParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case NewCommand.COMMAND_WORD:
+            return new NewCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
