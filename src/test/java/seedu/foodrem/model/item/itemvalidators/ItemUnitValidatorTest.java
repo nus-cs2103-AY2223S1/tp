@@ -1,54 +1,47 @@
-package seedu.address.model.item.validators;
+package seedu.foodrem.model.item.itemvalidators;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.foodrem.model.item.itemvalidators.ItemUnitValidator.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT;
+import static seedu.foodrem.model.item.itemvalidators.ItemUnitValidator.MESSAGE_FOR_UNIT_IS_BLANK;
+import static seedu.foodrem.model.item.itemvalidators.ItemUnitValidator.MESSAGE_FOR_UNIT_TOO_LONG;
+import static seedu.foodrem.model.item.itemvalidators.ItemValidatorUtilTest.assertValidateFailure;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ItemUnitValidatorTest {
     // TODO: Test for uniqueness of Item Unit
 
     @Test
-    public void test_unitIsValidLength() {
-        Assertions.assertTrue(ItemUnitValidator.isUnitBlank(""));
-        assertFalse(ItemUnitValidator.isUnitBlank("a"));
-        assertFalse(ItemUnitValidator.isUnitLengthMoreThanMaxLength("Lorem ipsum dolor si"));
-        assertTrue(ItemUnitValidator.isUnitLengthMoreThanMaxLength("Lorem ipsum dolor sim"));
+    public void test_nameIsValidLength() {
+        ItemUnitValidator.validate("a");
+        ItemUnitValidator.validate("aaaaaaaaaa"); // 10 char
+
+        assertValidateFailure(() -> ItemUnitValidator.validate(""), MESSAGE_FOR_UNIT_IS_BLANK); // Blank
+        assertValidateFailure(() -> ItemUnitValidator.validate("aaaaaaaaaaa"),
+                MESSAGE_FOR_UNIT_TOO_LONG); // 11 char
     }
 
     @Test
-    public void test_unitHasValidSymbols() {
+    public void test_nameHasValidSymbols() {
         // Invalid names - Spaces
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("")); // Cannot have nothing
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters(" "));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("       "));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("    a"));
+        assertValidateFailure(() -> ItemUnitValidator.validate(" "), MESSAGE_FOR_UNIT_IS_BLANK);
+        assertValidateFailure(() -> ItemUnitValidator.validate(" "), MESSAGE_FOR_UNIT_IS_BLANK);
+        assertValidateFailure(() -> ItemUnitValidator.validate("       "), MESSAGE_FOR_UNIT_IS_BLANK);
+        assertValidateFailure(() -> ItemUnitValidator.validate("    a"), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
 
         // Invalid names - Wrong Symbols
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("\\"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("\\/"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("|"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("á"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("你"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("あ"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("，")); // Chinese comma
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("kilogram|container"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("kilogram/container"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("kilogram\\container"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("kilogram$container"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("kilogram*container"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("*"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("$"));
-        assertTrue(ItemUnitValidator.doesUnitContainInvalidCharacters("%"));
-
+        assertValidateFailure(() -> ItemUnitValidator.validate("\\"), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("\\/"), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("|"), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("á"), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("你"), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("あ"), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("kg|m"), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("kg/m"), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+        assertValidateFailure(() -> ItemUnitValidator.validate("，"),
+                MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT); // Chinese comma
 
         // Valid names
-        assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("a"));
-        assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("kg"));
-        assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("kilogram"));
-        assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("KG"));
-        assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("100"));
-        assertFalse(ItemUnitValidator.doesUnitContainInvalidCharacters("1234567891234567892")); // 20 characters
+        ItemUnitValidator.validate("a");
+        ItemUnitValidator.validate("kilogram");
     }
 }
