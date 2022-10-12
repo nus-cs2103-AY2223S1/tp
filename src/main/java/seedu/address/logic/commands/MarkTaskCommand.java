@@ -50,7 +50,7 @@ public class MarkTaskCommand extends Command {
         Task markedTask = new Task(
                 taskToMark.getName(), taskToMark.getModule(), taskToMark.getDeadline(), new Status(true));
         model.setTask(taskToMark, markedTask);
-        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask));
+        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask), true);
     }
 
     @Override

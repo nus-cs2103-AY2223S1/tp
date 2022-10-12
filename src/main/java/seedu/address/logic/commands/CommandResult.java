@@ -17,6 +17,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Flag between Task command [true] and Person command [false] */
+    private boolean isTaskCommand = false;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -34,6 +37,11 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    public CommandResult(String feedbackToUser, boolean isTaskCommand) {
+        this(feedbackToUser, false, false);
+        this.isTaskCommand = isTaskCommand;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
@@ -44,6 +52,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isTaskCommand() {
+        return isTaskCommand;
     }
 
     @Override

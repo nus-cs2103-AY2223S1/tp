@@ -5,6 +5,9 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -31,10 +34,11 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
-    private TaskListPanel taskListPanel;
-    private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    // Require to be initialized because they contain dynamic data.
+    private PersonListPanel personListPanel;    // Contacts
+    private TaskListPanel taskListPanel;        // Tasks
+    private ResultDisplay resultDisplay;        // Command Result
+    private HelpWindow helpWindow;              // Help Window
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,6 +58,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private TabPane tabPanePlaceholder;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -66,9 +73,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
-
         helpWindow = new HelpWindow();
     }
 
@@ -154,6 +159,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    public void focusTaskTab() {
+        SingleSelectionModel<Tab> selectionModel = tabPanePlaceholder.getSelectionModel();
+        selectionModel.select(1);
+
+    }
+
+    public void focusPersonTab() {
+        SingleSelectionModel<Tab> selectionModel = tabPanePlaceholder.getSelectionModel();
+        selectionModel.select(0);
+
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -191,6 +208,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if(commandResult.isTaskCommand()) {
+                focusTaskTab();
+            } else {
+                focusPersonTab();
             }
 
             return commandResult;

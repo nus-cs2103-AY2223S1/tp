@@ -46,7 +46,7 @@ public class AddTaskCommand extends Command {
         }
 
         model.addTask(toAdd);
-        return new CommandResult(String.format(TEMPLATE_SUCCESS, toAdd));
+        return new CommandResult(String.format(TEMPLATE_SUCCESS, toAdd), true);
     }
 
     @Override
