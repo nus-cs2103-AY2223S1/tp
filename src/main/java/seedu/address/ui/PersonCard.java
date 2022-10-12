@@ -71,7 +71,7 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
 
-        /*
+        /* Commented out since this will be moved to output panel
         if (taskListFlag) {
             cardPane.getChildren().add(new TaskListCard(person.getTasks().toString()).getRoot());
         }
