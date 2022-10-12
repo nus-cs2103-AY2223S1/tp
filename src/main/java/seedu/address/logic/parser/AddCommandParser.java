@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.category.Category.NURSE_SYMBOL;
+import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 
 import java.util.List;
 import java.util.Set;
@@ -16,11 +18,13 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -46,7 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        String category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
+        Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
         Uid id = new Uid();
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
@@ -56,13 +60,16 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         List<DateTime> dateTimeList = ParserUtil.parseDatesTimes(argMultimap.getAllValues(PREFIX_DATE_AND_TIME));
 
-        if (category.equals("P")) {
-            Person person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeList);
-            return new AddCommand(person);
+        String categorySymbol = category.toString();
+        Person person;
+
+        if (categorySymbol.equals(NURSE_SYMBOL)) {
+            person = new Nurse(id, name, gender, phone, email, address, tagList);
+        } else if (categorySymbol.equals(PATIENT_SYMBOL)) {
+            person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeList);
+        } else {
+            throw new ParseException("Illegal category detected!");
         }
-
-        Person person = new Person(id, name, gender, phone, email, address, tagList);
-
 
         return new AddCommand(person);
     }

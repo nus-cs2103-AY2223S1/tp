@@ -2,11 +2,14 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import static seedu.address.model.person.Gender.MALE_SYMBOL;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
@@ -17,6 +20,12 @@ public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
     private static final String NOT_APPLICABLE = "NA";
+    private static final String NURSE_LABEL_TEXT = "(Nurse)";
+    private static final String PATIENT_LABEL_TEXT = "(Patient)";
+    private static final String NAN_LABEL_TEXT = "(Unassigned)";
+    private static final String MALE_GENDER_LABEL_TEXT = "Male";
+    private static final String FEMALE_GENDER_LABEL_TEXT = "Female";
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -59,18 +68,26 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
 
-        if (person instanceof Patient) {
+        if (person instanceof Nurse) {
+            dateTimes.setText(NOT_APPLICABLE);
+            category.getChildren().add(new Label(NURSE_LABEL_TEXT));
+        } else if (person instanceof Patient) {
             dateTimes.setText(((Patient) person).getDatesTimesInString());
+            category.getChildren().add(new Label(PATIENT_LABEL_TEXT));
         } else {
             dateTimes.setText(NOT_APPLICABLE);
+            category.getChildren().add(new Label(NAN_LABEL_TEXT));
         }
-        uid.setText("[" + person.getUid().toString() + "]");
         name.setText(person.getName().fullName);
-        gender.setText(person.getGender().gender);
+        if (person.getGender().gender.equals(MALE_SYMBOL)) {
+            gender.setText(MALE_GENDER_LABEL_TEXT);
+        } else {
+            gender.setText(FEMALE_GENDER_LABEL_TEXT);
+        }
+        uid.setText("UID: [" + person.getUid().toString() + "]");
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        category.getChildren().add(new Label(person.getCategory()));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

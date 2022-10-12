@@ -31,8 +31,8 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_PATIENT_CATEGORY = "P";
-    public static final String VALID_NURSE_CATEGORY = "N";
+    public static final String VALID_CATEGORY_AMY = "P";
+    public static final String VALID_CATEGORY_BOB = "N";
     public static final String VALID_UID_AMY = "10";
     public static final String VALID_UID_BOB = "11";
     public static final String VALID_NAME_AMY = "Amy Bee";
@@ -50,8 +50,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String CATEGORY_DESC_PATIENT = " " + PREFIX_CATEGORY + VALID_PATIENT_CATEGORY;
-    public static final String CATEGORY_DESC_NURSE = " " + PREFIX_CATEGORY + VALID_NURSE_CATEGORY;
+    public static final String CATEGORY_DESC_AMY = " " + PREFIX_CATEGORY + VALID_CATEGORY_AMY;
+    public static final String CATEGORY_DESC_BOB = " " + PREFIX_CATEGORY + VALID_CATEGORY_BOB;
     public static final String UID_DESC_AMY = " " + PREFIX_UID + VALID_UID_AMY;
     public static final String UID_DESC_BOB = " " + PREFIX_UID + VALID_UID_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -68,12 +68,10 @@ public class CommandTestUtil {
     public static final String DATETIME_DESC_BOB = " " + PREFIX_DATE_AND_TIME + VALID_DATETIME_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
-    public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY
-            + PersonType.PATIENT.toString(); // only allowed P or N
-    public static final String INVALID_UID_DESC = " " + PREFIX_UID + "1+"; // '&' not allowed in names
+    public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "NP"; // only N or P is allowed.
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "FM"; // only allowed F or M, either one
+    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "FM";  // only allowed F or M, either one
+    public static final String INVALID_UID_DESC = " " + PREFIX_UID + "1+"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
@@ -88,13 +86,11 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withCategory(VALID_PATIENT_CATEGORY).withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPersonDescriptorBuilder().withCategory(VALID_CATEGORY_AMY).withName(VALID_NAME_AMY)
                 .withGender(VALID_GENDER_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withDatesTimes(VALID_DATETIME_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withCategory(VALID_PATIENT_CATEGORY)
-                .withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withDatesTimes(VALID_DATETIME_BOB)
+                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+        DESC_BOB = new EditPersonDescriptorBuilder().withCategory(VALID_CATEGORY_BOB).withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

@@ -5,12 +5,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
+import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
@@ -21,7 +24,6 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
-
     public static final String DEFAULT_CATEGORY = "P";
     public static final String DEFAULT_UID = "1";
     public static final String DEFAULT_NAME = "Amy Bee";
@@ -31,9 +33,9 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_DATE_AND_TIME = "2022-06-14T13:00";
 
+    private Category category;
     private Uid uid;
     private Name name;
-    private String category;
     private Gender gender;
     private Phone phone;
     private Email email;
@@ -45,7 +47,7 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        category = DEFAULT_CATEGORY;
+        category = new Category(DEFAULT_CATEGORY);
         uid = new Uid(DEFAULT_UID);
         name = new Name(DEFAULT_NAME);
         gender = new Gender(DEFAULT_GENDER);
@@ -69,7 +71,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
-        if (personToCopy.getCategory().equals("P")) {
+        if (personToCopy.getCategory().categoryName.equals("P")) {
             dateTimeList = new ArrayList<>(((Patient) personToCopy).getDatesTimes());
         }
     }
@@ -79,6 +81,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withUid(String id) {
         this.uid = new Uid(id);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Category} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCategory(String category) {
+        this.category = new Category(category);
         return this;
     }
 
@@ -132,14 +142,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Category} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withCategory(String category) {
-        this.category = category;
-        return this;
-    }
-
-    /**
      * Parses the {@code datesTimes} into a {@code Set<DateTime>} and
      * set it to the {@code Person} that we are building.
      * Applies only to Patient.
@@ -162,11 +164,13 @@ public class PersonBuilder {
      * Build a person for test.
      */
     public Person build() {
-
-        if (this.category.equals("P")) {
+        if (category.categoryName.equals("N")){
+            return new Nurse(uid, name, gender, phone, email, address, tags);
+        } else if (this.category.categoryName.equals("P")) {
             return new Patient(uid, name, gender, phone, email, address, tags, dateTimeList);
         }
         return new Person(uid, name, gender, phone, email, address, tags);
+
     }
 
 }
