@@ -44,7 +44,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Exercise expectedExercise = new ExerciseBuilder(BENCH_PRESS).withDates(VALID_DATE).build();
+        Exercise expectedExercise = new ExerciseBuilder(BENCH_PRESS).withDate(VALID_DATE).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BENCH_PRESS
@@ -73,7 +73,7 @@ public class AddCommandParserTest {
 
         // multiple tags - all accepted
         Exercise expectedExerciseMultipleTags = new ExerciseBuilder(BENCH_PRESS)
-                .withDates(VALID_DATE)
+                .withDate(VALID_DATE)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS
                 + SETS_DESC_BENCH_PRESS + REPS_DESC_BENCH_PRESS + DATE_DESC,
@@ -83,7 +83,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Exercise expectedExercise = new ExerciseBuilder(ARM_CURLS).withDates(VALID_DATE).build();
+        Exercise expectedExercise = new ExerciseBuilder(ARM_CURLS).withDate(VALID_DATE).build();
         assertParseSuccess(parser, NAME_DESC_ARM_CURLS + WEIGHT_DESC_ARM_CURLS
                         + SETS_DESC_ARM_CURLS + REPS_DESC_ARM_CURLS + DATE_DESC,
                 new AddCommand(expectedExercise));

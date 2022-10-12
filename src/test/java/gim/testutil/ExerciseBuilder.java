@@ -62,7 +62,7 @@ public class ExerciseBuilder {
     /**
      * Parses the {@code dates} and set it to the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withDates(String date) {
+    public ExerciseBuilder withDate(String date) {
         this.date = SampleDataUtil.getDate(date);
         return this;
     }

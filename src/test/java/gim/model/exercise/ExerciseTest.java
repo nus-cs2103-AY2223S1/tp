@@ -29,7 +29,7 @@ public class ExerciseTest {
         // same name, all other attributes different -> returns true
         Exercise editedAlice =
                 new ExerciseBuilder(ALICE).withWeight(VALID_WEIGHT_BENCH_PRESS).withSets(VALID_SETS_BENCH_PRESS)
-                        .withReps(VALID_REPS_BENCH_PRESS).withDates(VALID_DATE).build();
+                        .withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE).build();
 
         assertTrue(ALICE.isSameExercise(editedAlice));
 
@@ -83,7 +83,7 @@ public class ExerciseTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new ExerciseBuilder(ALICE).withDates(VALID_DATE_2).build();
+        editedAlice = new ExerciseBuilder(ALICE).withDate(VALID_DATE_2).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

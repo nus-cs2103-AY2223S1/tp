@@ -31,7 +31,7 @@ class JsonAdaptedExercise {
     @JsonCreator
     public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("weight") String weight,
             @JsonProperty("sets") String sets, @JsonProperty("reps") String reps,
-            @JsonProperty("tagged") JsonAdaptedTag date) {
+            @JsonProperty("date") JsonAdaptedTag date) {
         this.name = name;
         this.weight = weight;
         this.sets = sets;

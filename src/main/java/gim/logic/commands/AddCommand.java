@@ -20,8 +20,13 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Adds an exercise to Gim. " + "Parameters: " + PREFIX_NAME + "NAME " + PREFIX_WEIGHT
-                    + "WEIGHT " + PREFIX_SETS + "SETS " + PREFIX_REPS + "REPS " + PREFIX_DATE + "DATE...\n"
+            COMMAND_WORD + ": Adds an exercise to Gim. "
+                    + "Parameters: " + PREFIX_NAME
+                    + "NAME " + PREFIX_WEIGHT
+                    + "WEIGHT " + PREFIX_SETS
+                    + "SETS " + PREFIX_REPS
+                    + "REPS " + PREFIX_DATE
+                    + "DATE...\n"
                     + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Squat " + PREFIX_WEIGHT + "60 " + PREFIX_SETS
                     + "1 " + PREFIX_REPS + "5 " + PREFIX_DATE + "25/01/2022";
 

@@ -70,7 +70,7 @@ public class ExerciseTrackerTest {
     @Test
     public void hasExercise_exerciseWithSameIdentityFieldsInExerciseTracker_returnsTrue() {
         exerciseTracker.addExercise(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withDates(VALID_DATE)
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
                 .build();
         assertTrue(exerciseTracker.hasExercise(editedAlice));
     }

@@ -59,7 +59,7 @@ public class EditCommandTest {
         ExerciseBuilder exerciseInList = new ExerciseBuilder(lastExercise);
 
         Exercise editedExercise = exerciseInList.withName(VALID_NAME_BENCH_PRESS).withWeight(VALID_WEIGHT_BENCH_PRESS)
-                .withDates(VALID_DATE).build();
+                .withDate(VALID_DATE).build();
 
         EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BENCH_PRESS)
                 .withWeight(VALID_WEIGHT_BENCH_PRESS).withDates(VALID_DATE).build();

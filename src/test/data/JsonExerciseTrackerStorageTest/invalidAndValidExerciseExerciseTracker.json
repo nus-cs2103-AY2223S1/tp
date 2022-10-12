@@ -4,12 +4,12 @@
     "weight": "9482424",
     "sets": "hans@example.com",
     "reps": "1",
-    "tagged": "01/01/2022"
+    "date": "01/01/2022"
   }, {
     "name": "Exercise With Invalid Weight Field",
     "weight": "948asdf2424",
     "sets": "hans@example.com",
     "reps": "1",
-    "tagged": "01/01/2022"
+    "date": "01/01/2022"
   } ]
 }

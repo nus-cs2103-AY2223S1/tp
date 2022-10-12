@@ -86,7 +86,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_ARM_CURLS + WEIGHT_DESC_ARM_CURLS + SETS_DESC_ARM_CURLS
                 + REPS_DESC_ARM_CURLS + DATE_DESC;
-        Exercise expectedExercise = new ExerciseBuilder(ARM_CURLS).withDates(VALID_DATE).build();
+        Exercise expectedExercise = new ExerciseBuilder(ARM_CURLS).withDate(VALID_DATE).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addExercise(expectedExercise);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

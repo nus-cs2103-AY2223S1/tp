@@ -135,7 +135,7 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code dates} is used internally.
+         * A defensive copy of {@code date} is used internally.
          */
         public EditExerciseDescriptor(EditExerciseDescriptor toCopy) {
             setName(toCopy.name);
@@ -185,8 +185,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code dates} to this object's {@code dates}.
-         * A defensive copy of {@code dates} is used internally.
+         * Sets {@code date} to this object's {@code date}.
+         * A defensive copy of {@code date} is used internally.
          */
         public void setDate(Date date) {
             this.date = date;
@@ -195,7 +195,7 @@ public class EditCommand extends Command {
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code dates} is null.
+         * Returns {@code Optional#empty()} if {@code date} is null.
          */
         public Optional<Date> getDate() {
             return (date != null) ? Optional.of(date) : Optional.empty();
