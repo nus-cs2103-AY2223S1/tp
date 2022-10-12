@@ -118,13 +118,13 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero dateTimes
-        Person expectedPersonNoDatesTimes = new PersonBuilder(AMY).withDatesTimes().build();
+        Person expectedPersonNoDatesTimes = new PersonBuilder(AMY).withDatesTimes().withUniversalUid().build();
         assertParseSuccess(parser, CATEGORY_DESC_AMY + NAME_DESC_AMY + GENDER_DESC_AMY
                 + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonNoDatesTimes));
 
         // zero tags
-        Person expectedPersonNoTag = new PersonBuilder(AMY).withTags().build();
+        Person expectedPersonNoTag = new PersonBuilder(AMY).withTags().withUniversalUid().build();
         assertParseSuccess(parser, CATEGORY_DESC_AMY + NAME_DESC_AMY + GENDER_DESC_AMY
                 + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + DATETIME_DESC_AMY,
                 new AddCommand(expectedPersonNoTag));
@@ -134,10 +134,6 @@ public class AddCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing uid prefix
-
-        assertParseFailure(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB, expectedMessage);
         // missing category prefix
         assertParseFailure(parser, VALID_CATEGORY_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB, expectedMessage);
