@@ -8,8 +8,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
 import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
-import java.util.stream.Stream;
-
 import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.Item;

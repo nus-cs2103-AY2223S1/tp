@@ -6,8 +6,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
-import java.util.stream.Stream;
-
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;

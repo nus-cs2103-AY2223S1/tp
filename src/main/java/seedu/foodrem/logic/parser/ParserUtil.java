@@ -2,6 +2,8 @@ package seedu.foodrem.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.stream.Stream;
+
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
@@ -11,8 +13,6 @@ import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
 import seedu.foodrem.model.tag.TagName;
-
-import java.util.stream.Stream;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
