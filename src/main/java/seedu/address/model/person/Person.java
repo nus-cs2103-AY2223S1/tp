@@ -21,7 +21,7 @@ public class Person {
     private final Money moneyOwed;
     private final Money moneyPaid;
     private final AdditionalNotes additionalNotes;
-    private final Class aClass;
+    private Class aClass;
 
     /**
      * Constructs a {@code Person} class when first initialized with add command.
@@ -79,6 +79,10 @@ public class Person {
         return aClass;
     }
 
+    public void setClass(Class aClass) {
+        this.aClass = aClass;
+    }
+
     public Money getMoneyOwed() {
         return moneyOwed;
     }
@@ -101,7 +105,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getPhone().equals(getPhone());
     }
 
     /**
@@ -125,29 +129,6 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getAClass().toString().equals(getAClass().toString())
-                && otherPerson.getMoneyOwed().equals(getMoneyOwed())
-                && otherPerson.getMoneyPaid().equals(getMoneyPaid())
-                && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
-    }
-
-    /**
-     * Returns true if both persons have the same identity and data fields, excluding Class.
-     */
-    public boolean allEqualsExceptClass(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Person)) {
-            return false;
-        }
-
-        Person otherPerson = (Person) other;
-
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getMoneyOwed().equals(getMoneyOwed())
                 && otherPerson.getMoneyPaid().equals(getMoneyPaid())
                 && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
