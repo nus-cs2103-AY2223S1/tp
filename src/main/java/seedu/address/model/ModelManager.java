@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -159,12 +160,14 @@ public class ModelManager implements Model {
         List<Person> personList = addressBook.getPersonList();
         for (Person p: personList) {
             UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
-            if (tagTypeMap.contains(toEdit)) {
+            if (p.getTags().keySet().contains(toEdit)) {
                 tagTypeMap.setTagTypeMap(p.getTags());
                 tagTypeMap.setTagType(toEdit, editTo);
                 p.setTagTypeMap(tagTypeMap);
+                System.out.println("fmr" + p.getTags());
             }
         }
+        System.out.println(personList.get(0).getTags());
     }
 
     @Override
