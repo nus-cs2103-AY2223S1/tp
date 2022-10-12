@@ -86,6 +86,24 @@ public class Person {
     }
 
     /**
+     * Checks if the all mods provided can be found and deleted in the set of mods linked to this person.
+     *
+     * @param mods The set of mods to be deleted.
+     */
+    public boolean canDeleteMods(Set<Mod> mods) {
+        return this.mods.containsAll(mods);
+    }
+
+    /**
+     * Removes all mods in {@code mods} from the current set of mods linked to this person.
+     *
+     * @param mods The set of mods to be deleted.
+     */
+    public void deleteMods(Set<Mod> mods) {
+        this.mods.removeAll(mods);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */

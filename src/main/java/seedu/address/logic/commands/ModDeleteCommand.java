@@ -13,22 +13,23 @@ import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 
 /**
- * Appends new mods to the person.
+ * Deletes mods from the person specified.
  */
-public class ModAddCommand extends ModCommand {
+public class ModDeleteCommand extends ModCommand {
 
-    public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_SUCCESS = "Successfully added the specified mods.";
+    public static final String COMMAND_WORD = "delete";
+    public static final String MESSAGE_SUCCESS = "Successfully deleted the specified mods.";
+    public static final String MESSAGE_INVALID_MOD = "This person is not taking all of the modules specified."
+            + "\nPlease check your list of mods and try again.";
     private final Index targetIndex;
     private final Set<Mod> mods;
 
     /**
-     * Constructs a command that adds a set of mods to the person
-     * with the target index.
+     * Constructs a command that deletes all mods specified from the list of the person at the target index.
      * @param index The index of the person to add to.
-     * @param mods The set of mods to add to.
+     * @param mods The set of mods to be deleted.
      */
-    public ModAddCommand(Index index, Set<Mod> mods) {
+    public ModDeleteCommand(Index index, Set<Mod> mods) {
         requireNonNull(index);
         requireNonNull(mods);
 
@@ -53,7 +54,12 @@ public class ModAddCommand extends ModCommand {
         }
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
-        personToEdit.addMods(mods);
+
+        if (personToEdit.canDeleteMods(mods)) {
+            personToEdit.deleteMods(mods);
+        } else {
+            throw new CommandException(MESSAGE_INVALID_MOD);
+        }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit));
     }
@@ -66,12 +72,12 @@ public class ModAddCommand extends ModCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ModAddCommand)) {
+        if (!(other instanceof ModDeleteCommand)) {
             return false;
         }
 
         // state check
-        ModAddCommand e = (ModAddCommand) other;
+        ModDeleteCommand e = (ModDeleteCommand) other;
         return targetIndex.equals(e.targetIndex)
                 && mods.equals(e.mods);
     }
