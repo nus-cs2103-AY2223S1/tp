@@ -82,7 +82,7 @@ class JsonAdaptedPerson {
         final Map<TagType, UniqueTagList> personTags = new HashMap<>();
 
         for (List<JsonAdaptedTag> tags : tags) {
-            String tagType =tags.get(0).toModelType().toString();
+            String tagType = tags.get(0).toModelType().toString();
             tagType = tagType.substring(1, tagType.length() - 1);
             TagType t = new TagType(tagType, UniqueTagTypeMap.getPrefixFromTagType(tagType));
             List<Tag> tagList = new ArrayList<>();

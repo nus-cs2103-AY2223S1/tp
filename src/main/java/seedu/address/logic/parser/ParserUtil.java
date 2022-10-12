@@ -186,10 +186,12 @@ public class ParserUtil {
      * @throws ParseException If argument format incorrect.
      */
     public static String[] parseHyphen(String oldNew) throws ParseException {
-        String[] oldNewPair = oldNew.split("\\s+-\\s+", 2);
+        String[] oldNewPair = oldNew.split("-", 2);
         if (oldNewPair.length != 2) {
-            throw new ParseException("Invalid command format!");
+            throw new ParseException("Old and new tag types and tag prefixes must be separated by a hyphen!");
         }
+        oldNewPair[0] = oldNewPair[0].trim();
+        oldNewPair[1] = oldNewPair[1].trim();
         return oldNewPair;
     }
 }

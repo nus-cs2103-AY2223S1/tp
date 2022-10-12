@@ -159,9 +159,11 @@ public class ModelManager implements Model {
         List<Person> personList = addressBook.getPersonList();
         for (Person p: personList) {
             UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
-            tagTypeMap.setTagTypeMap(p.getTags());
-            tagTypeMap.setTagType(toEdit, editTo);
-
+            if (tagTypeMap.contains(toEdit)) {
+                tagTypeMap.setTagTypeMap(p.getTags());
+                tagTypeMap.setTagType(toEdit, editTo);
+                p.setTagTypeMap(tagTypeMap);
+            }
         }
     }
 
