@@ -17,20 +17,25 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Record;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
 
+    public static final Record RECORD1 = new Record("10-10-2011 1400", "Covid-19");
+    public static final Record RECORD2 = new Record("10-10-2010 1400", "Cold");
+    public static final Record RECORD3 = new Record("10-10-2020 1400", "SARS");
+    public static final Record EMPTY_RECORD = new Record("10-10-2020 1400", "SARS");
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends").withRecordList("").build();
+            .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").withRecordList("").build();
+            .withTags("owesMoney", "friends").withRecordList(RECORD1, RECORD2, RECORD3).build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")

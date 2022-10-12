@@ -21,7 +21,7 @@ class JsonAdaptedRecord {
      * Constructs a {@code JsonAdaptedRecord} with the given {@code Record details}.
      */
     @JsonCreator
-    public JsonAdaptedRecord(@JsonProperty("record") String record, @JsonProperty("recordDate") String recordDate) {
+    public JsonAdaptedRecord(@JsonProperty("recordDate") String recordDate, @JsonProperty("record") String record) {
         this.record = record;
         this.recordDate = recordDate;
     }
