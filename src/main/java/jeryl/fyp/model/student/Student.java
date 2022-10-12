@@ -10,7 +10,7 @@ import java.util.Set;
 import jeryl.fyp.model.tag.Tag;
 
 /**
- * Represents a Student in the address book.
+ * Represents a Student in the FYP manager.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {

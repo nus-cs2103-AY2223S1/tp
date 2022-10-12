@@ -21,7 +21,7 @@ import jeryl.fyp.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class FypManagerParser {
 
     /**
      * Used for initial separation of command word and args.

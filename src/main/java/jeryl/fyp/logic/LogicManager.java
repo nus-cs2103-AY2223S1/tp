@@ -10,10 +10,10 @@ import jeryl.fyp.commons.core.LogsCenter;
 import jeryl.fyp.logic.commands.Command;
 import jeryl.fyp.logic.commands.CommandResult;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
-import jeryl.fyp.logic.parser.AddressBookParser;
+import jeryl.fyp.logic.parser.FypManagerParser;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.Model;
-import jeryl.fyp.model.ReadOnlyAddressBook;
+import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.storage.Storage;
 
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final FypManagerParser fypManagerParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        fypManagerParser = new FypManagerParser();
     }
 
     @Override
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = fypManagerParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveFypManager(model.getFypManager());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyFypManager getFypManager() {
+        return model.getFypManager();
     }
 
     @Override
@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getFypManagerFilePath() {
+        return model.getFypManagerFilePath();
     }
 
     @Override

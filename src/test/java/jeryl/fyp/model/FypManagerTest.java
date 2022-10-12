@@ -4,7 +4,7 @@ import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static jeryl.fyp.testutil.TypicalStudents.ALICE;
-import static jeryl.fyp.testutil.TypicalStudents.getTypicalAddressBook;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,25 +22,25 @@ import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.exceptions.DuplicateStudentException;
 import jeryl.fyp.testutil.StudentBuilder;
 
-public class AddressBookTest {
+public class FypManagerTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final FypManager fypManager = new FypManager();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getStudentList());
+        assertEquals(Collections.emptyList(), fypManager.getStudentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> fypManager.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyFypManager_replacesData() {
+        FypManager newData = getTypicalFypManager();
+        fypManager.resetData(newData);
+        assertEquals(newData, fypManager);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class AddressBookTest {
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newStudents);
+        FypManagerStub newData = new FypManagerStub(newStudents);
 
-        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> fypManager.resetData(newData));
     }
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
+        assertThrows(NullPointerException.class, () -> fypManager.hasStudent(null));
     }
 
     @Test
-    public void hasStudent_studentNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasStudent(ALICE));
+    public void hasStudent_studentNotInFypManager_returnsFalse() {
+        assertFalse(fypManager.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentInAddressBook_returnsTrue() {
-        addressBook.addStudent(ALICE);
-        assertTrue(addressBook.hasStudent(ALICE));
+    public void hasStudent_studentInFypManager_returnsTrue() {
+        fypManager.addStudent(ALICE);
+        assertTrue(fypManager.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addStudent(ALICE);
+    public void hasStudent_studentWithSameIdentityFieldsInFypManager_returnsTrue() {
+        fypManager.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasStudent(editedAlice));
+        assertTrue(fypManager.hasStudent(editedAlice));
     }
 
     @Test
     public void getStudentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> fypManager.getStudentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
+     * A stub ReadOnlyFypManager whose students list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class FypManagerStub implements ReadOnlyFypManager {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Student> students) {
+        FypManagerStub(Collection<Student> students) {
             this.students.setAll(students);
         }
 

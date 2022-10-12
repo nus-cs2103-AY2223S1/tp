@@ -7,24 +7,24 @@ import java.util.logging.Logger;
 
 import jeryl.fyp.commons.core.LogsCenter;
 import jeryl.fyp.commons.exceptions.DataConversionException;
-import jeryl.fyp.model.ReadOnlyAddressBook;
+import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.ReadOnlyUserPrefs;
 import jeryl.fyp.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of FypManager data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private FypManagerStorage fypManagerStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code FypManagerStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(FypManagerStorage fypManagerStorage, UserPrefsStorage userPrefsStorage) {
+        this.fypManagerStorage = fypManagerStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,33 +46,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ FypManager methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getFypManagerFilePath() {
+        return fypManagerStorage.getFypManagerFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyFypManager> readFypManager() throws DataConversionException, IOException {
+        return readFypManager(fypManagerStorage.getFypManagerFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFypManager> readFypManager(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return fypManagerStorage.readFypManager(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveFypManager(ReadOnlyFypManager fypManager) throws IOException {
+        saveFypManager(fypManager, fypManagerStorage.getFypManagerFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveFypManager(ReadOnlyFypManager fypManager, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        fypManagerStorage.saveFypManager(fypManager, filePath);
     }
 
 }

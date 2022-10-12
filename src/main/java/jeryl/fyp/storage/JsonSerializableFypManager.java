@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import jeryl.fyp.commons.exceptions.IllegalValueException;
-import jeryl.fyp.model.AddressBook;
-import jeryl.fyp.model.ReadOnlyAddressBook;
+import jeryl.fyp.model.FypManager;
+import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.student.Student;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable FypManager that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "fypmanager")
+class JsonSerializableFypManager {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given students.
+     * Constructs a {@code JsonSerializableFypManager} with the given students.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> students) {
+    public JsonSerializableFypManager(@JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.students.addAll(students);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyFypManager} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableFypManager}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableFypManager(ReadOnlyFypManager source) {
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this FYP manager into the model's {@code FypManager} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public FypManager toModelType() throws IllegalValueException {
+        FypManager fypManager = new FypManager();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (addressBook.hasStudent(student)) {
+            if (fypManager.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            addressBook.addStudent(student);
+            fypManager.addStudent(student);
         }
-        return addressBook;
+        return fypManager;
     }
 
 }

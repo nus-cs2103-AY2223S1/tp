@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
-import jeryl.fyp.model.AddressBook;
+import jeryl.fyp.model.FypManager;
 import jeryl.fyp.model.Model;
-import jeryl.fyp.model.ReadOnlyAddressBook;
+import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.ReadOnlyUserPrefs;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.testutil.StudentBuilder;
@@ -99,12 +99,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getFypManagerFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setFypManagerFilePath(Path fypManagerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setFypManager(ReadOnlyFypManager newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyFypManager getFypManager() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,8 +186,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyFypManager getFypManager() {
+            return new FypManager();
         }
     }
 

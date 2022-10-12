@@ -5,7 +5,7 @@ import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jeryl.fyp.testutil.TypicalStudents.CARL;
 import static jeryl.fyp.testutil.TypicalStudents.ELLE;
 import static jeryl.fyp.testutil.TypicalStudents.FIONA;
-import static jeryl.fyp.testutil.TypicalStudents.getTypicalAddressBook;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,8 +24,8 @@ import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFypManager(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalFypManager(), new UserPrefs());
 
     @Test
     public void equals() {

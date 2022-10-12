@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import jeryl.fyp.model.AddressBook;
-import jeryl.fyp.model.ReadOnlyAddressBook;
+import jeryl.fyp.model.FypManager;
+import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
@@ -14,7 +14,7 @@ import jeryl.fyp.model.student.StudentID;
 import jeryl.fyp.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code FypManager} with sample data.
  */
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
@@ -40,8 +40,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyFypManager getSampleFypManager() {
+        FypManager sampleAb = new FypManager();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }

@@ -6,7 +6,7 @@ import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import jeryl.fyp.model.Model;
 
 /**
- * Lists all Students in the address book to the user.
+ * Lists all Students in the FYP manager to the user.
  */
 public class ListCommand extends Command {
 

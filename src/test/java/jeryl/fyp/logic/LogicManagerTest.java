@@ -24,10 +24,10 @@ import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ModelManager;
-import jeryl.fyp.model.ReadOnlyAddressBook;
+import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.UserPrefs;
 import jeryl.fyp.model.student.Student;
-import jeryl.fyp.storage.JsonAddressBookStorage;
+import jeryl.fyp.storage.JsonFypManagerStorage;
 import jeryl.fyp.storage.JsonUserPrefsStorage;
 import jeryl.fyp.storage.StorageManager;
 import jeryl.fyp.testutil.StudentBuilder;
@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonFypManagerStorage fypManagerStorage =
+                new JsonFypManagerStorage(temporaryFolder.resolve("fypManager.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(fypManagerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -70,12 +70,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonFypManagerIoExceptionThrowingStub
+        JsonFypManagerStorage fypManagerStorage =
+                new JsonFypManagerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFypManager.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(fypManagerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -129,7 +129,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +149,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonFypManagerIoExceptionThrowingStub extends JsonFypManagerStorage {
+        private JsonFypManagerIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveFypManager(ReadOnlyFypManager fypManager, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -29,9 +29,9 @@ import jeryl.fyp.testutil.EditStudentDescriptorBuilder;
 import jeryl.fyp.testutil.StudentBuilder;
 import jeryl.fyp.testutil.StudentUtil;
 
-public class AddressBookParserTest {
+public class FypManagerParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final FypManagerParser parser = new FypManagerParser();
 
     @Test
     public void parseCommand_add() throws Exception {

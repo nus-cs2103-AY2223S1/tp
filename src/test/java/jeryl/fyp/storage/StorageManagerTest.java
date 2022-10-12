@@ -1,6 +1,6 @@
 package jeryl.fyp.storage;
 
-import static jeryl.fyp.testutil.TypicalStudents.getTypicalAddressBook;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import jeryl.fyp.commons.core.GuiSettings;
-import jeryl.fyp.model.AddressBook;
-import jeryl.fyp.model.ReadOnlyAddressBook;
+import jeryl.fyp.model.FypManager;
+import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonFypManagerStorage fypManagerStorage = new JsonFypManagerStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(fypManagerStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void fypManagerReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonFypManagerStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonFypManagerStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        FypManager original = getTypicalFypManager();
+        storageManager.saveFypManager(original);
+        ReadOnlyFypManager retrieved = storageManager.readFypManager().get();
+        assertEquals(original, new FypManager(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getFypManagerFilePath() {
+        assertNotNull(storageManager.getFypManagerFilePath());
     }
 
 }
