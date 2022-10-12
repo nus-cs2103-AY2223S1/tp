@@ -9,14 +9,15 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.StackPane?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="400" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
+        <Insets top="5" right="5" bottom="5" left="5" />
       </padding>
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
@@ -26,24 +27,30 @@
           </minWidth>
         </Label>
         <Label fx:id="moduleCode" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="moduleTitle" text="\$moduleTitle"
+               styleClass="cell_small_label" />
       </HBox>
-      <Label fx:id="moduleTitle" text="\$moduleTitle"
-             styleClass="cell_small_label" />
       <HBox>
-        <VBox styleClass="pane-with-border" minWidth="170"
-              prefWidth="170" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+        <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="170"
+              prefWidth="200" HBox.hgrow="ALWAYS">
+          <Label alignment="CENTER" styleClass="underlined-text"
+                 prefWidth="200" maxWidth="Infinity">
+            Tasks
+          </Label>
           <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
+            <Insets top="0" right="0" bottom="0" left="0" />
           </padding>
-          <Label styleClass="underlined-text">Tasks</Label>
-          <!--  TODO: Add Ui components for individual tasks.-->
+          <StackPane fx:id="taskListPanelPlaceholder" />
         </VBox>
         <VBox styleClass="pane-with-border" minWidth="170"
-              prefWidth="170" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+              prefWidth="200" HBox.hgrow="ALWAYS">
           <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
+            <Insets top="0" right="0" bottom="0" left="0" />
           </padding>
-          <Label styleClass="underlined-text">Links</Label>
+          <Label alignment="CENTER" styleClass="underlined-text"
+                 prefWidth="200" maxWidth="Infinity">
+            Links
+          </Label>
           <FlowPane fx:id="links" />
         </VBox>
       </HBox>

@@ -12,7 +12,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 /**
- * A default model stub that have all of the methods failing.
+ * A default model stub where all the methods fail.
  */
 public class ModelStub implements Model {
     @Override

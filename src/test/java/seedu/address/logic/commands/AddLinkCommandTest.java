@@ -8,9 +8,10 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
-import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
-import seedu.address.model.task.Task;
+import seedu.address.model.module.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddLinkCommand.
@@ -41,7 +42,7 @@ public class AddLinkCommandTest {
         Module moduleToEdit = expectedModel.getFilteredModuleList().get(0);
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
-        Set<Task> moduleTasks = moduleToEdit.getTasks();
+        List<Task> moduleTasks = moduleToEdit.getTasks();
         Set<Link> moduleLinks = moduleToEdit.copyLinks();
         moduleLinks.addAll(linksToAdd);
         Module moduleToAddLink = new Module(moduleCode, moduleTitle, moduleTasks, moduleLinks);

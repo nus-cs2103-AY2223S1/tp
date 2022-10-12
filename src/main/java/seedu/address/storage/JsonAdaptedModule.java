@@ -14,6 +14,8 @@ import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.task.Task;
+import seedu.address.model.module.task.TaskList;
 
 /**
  * Jackson-friendly version of {@link Module}.
@@ -25,6 +27,7 @@ class JsonAdaptedModule {
     private final String moduleCode;
     private final String moduleTitle;
     private final List<JsonAdaptedLink> linked = new ArrayList<>();
+    private final List<JsonAdaptedTask> moduleTasks;
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
@@ -32,12 +35,14 @@ class JsonAdaptedModule {
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("moduleCode") String moduleCode,
                              @JsonProperty("moduleTitle") String moduleTitle,
-                             @JsonProperty("linked") List<JsonAdaptedLink> linked) {
+                             @JsonProperty("linked") List<JsonAdaptedLink> linked,
+                             @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         if (linked != null) {
             this.linked.addAll(linked);
         }
+        this.moduleTasks = tasks;
     }
 
     /**
@@ -49,6 +54,9 @@ class JsonAdaptedModule {
         linked.addAll(source.getLinks().stream()
                 .map(JsonAdaptedLink::new)
                 .collect(Collectors.toList()));
+        moduleTasks = source.getTasks().stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -57,10 +65,6 @@ class JsonAdaptedModule {
      * @throws IllegalValueException if there were any data constraints violated in the adapted module.
      */
     public Module toModelType() throws IllegalValueException {
-        final List<Link> moduleLinks = new ArrayList<>();
-        for (JsonAdaptedLink links : linked) {
-            moduleLinks.add(links.toModelType());
-        }
 
         if (moduleCode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -77,8 +81,22 @@ class JsonAdaptedModule {
         }
         final ModuleTitle modelModuleTitle = new ModuleTitle(moduleTitle);
 
+        final List<Link> moduleLinks = new ArrayList<>();
+        for (JsonAdaptedLink links : linked) {
+            moduleLinks.add(links.toModelType());
+        }
         final Set<Link> modelModuleLinks = new HashSet<>(moduleLinks);
-        return new Module(modelModuleCode, modelModuleTitle, modelModuleLinks);
+
+        if (moduleTasks == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskList.class.getSimpleName()));
+        }
+        final List<Task> modelTasks = new ArrayList<>();
+        for (JsonAdaptedTask task : moduleTasks) {
+            modelTasks.add(task.toModelType());
+        }
+
+        return new Module(modelModuleCode, modelModuleTitle, modelTasks, modelModuleLinks);
     }
 
 }

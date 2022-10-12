@@ -8,9 +8,10 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
-import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
-import seedu.address.model.task.Task;
+import seedu.address.model.module.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for DeleteLinkCommand.
@@ -41,7 +42,7 @@ public class DeleteLinkCommandTest {
         Module moduleToEdit = expectedModel.getFilteredModuleList().get(MODULE_INDEX_WITH_LINK_ZERO_BASED);
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
-        Set<Task> moduleTasks = moduleToEdit.getTasks();
+        List<Task> moduleTasks = moduleToEdit.getTasks();
         Set<Link> moduleLinksToDelete = moduleToEdit.copyLinks();
         Set<Link> moduleLinksEmpty = new HashSet<Link>();
         Module moduleToDeleteLink = new Module(moduleCode, moduleTitle, moduleTasks, moduleLinksEmpty);
@@ -55,7 +56,7 @@ public class DeleteLinkCommandTest {
     }
 
     @Test
-    public void execute_missingModuleLinkUnfilteredList_failure() {
+    public void execute_missingModuleLinkFilteredList_failure() {
         Module firstModule = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         Set<Link> link = firstModule.copyLinks();
         DeleteLinkCommand deleteLinkCommand = new DeleteLinkCommand(INDEX_FIRST_MODULE,
@@ -66,7 +67,7 @@ public class DeleteLinkCommandTest {
     }
 
     @Test
-    public void execute_nonExistentModuleUnfilteredList_failure() {
+    public void execute_nonExistentModuleFilteredList_failure() {
         Set<Link> links = new HashSet<Link>(Arrays.asList(new Link(VALID_MODULE_LINK)));
         DeleteLinkCommand deleteLinkCommand = new DeleteLinkCommand(
                 Index.fromOneBased(MODULE_INDEX_NONEXISTENT), links);
