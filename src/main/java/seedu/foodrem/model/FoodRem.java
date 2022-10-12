@@ -54,8 +54,8 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the item list with {@code items}.
+     * {@code items} must not contain duplicate items.
      */
     public void setTags(List<Tag> tags) {
         this.tags.setTags(tags);
@@ -109,6 +109,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     //// tag-level methods
+
     /**
      * Returns true if a tag with the same name as {@code tag} exists in the address book.
      */
@@ -126,7 +127,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedTag}.
+     * Replaces the given item {@code target} in the list with {@code editedTag}.
      * {@code target} must exist in the address book.
      * The tag in {@code editedTag} must not be the same as another existing tag in the address book.
      */

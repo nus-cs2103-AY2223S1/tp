@@ -60,7 +60,7 @@ public class JsonFoodRemStorageTest {
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveFoodRem_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempFoodRem.json");
         FoodRem original = getTypicalFoodRem();
         JsonFoodRemStorage jsonFoodRemStorage = new JsonFoodRemStorage(filePath);

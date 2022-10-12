@@ -142,7 +142,7 @@ public class EditCommandTest {
     public void execute_invalidItemIndexFilteredList_failure() {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
         Index outOfBoundIndex = INDEX_SECOND_ITEM;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of FoodRem list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodRem().getItemList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
