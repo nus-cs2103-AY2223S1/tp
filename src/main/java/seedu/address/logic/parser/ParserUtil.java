@@ -11,11 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.Attendance;
-import seedu.address.model.student.ClassGroup;
-import seedu.address.model.student.Email;
-import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
-import seedu.address.model.student.StudentId;
+import seedu.address.model.student.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskTitle;
@@ -179,5 +175,19 @@ public class ParserUtil {
             throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
         }
         return new TaskDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String filePath} into a {@code Picture}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code filePath} is invalid.
+     */
+    public static Picture parseFilePath(String filePath) throws ParseException {
+        requireNonNull(filePath);
+        if(!Picture.isValidFilePath(filePath)) {
+            throw new ParseException(Picture.MESSAGE_INVALID_FILE_PATH);
+        }
+        return new Picture(filePath);
     }
 }
