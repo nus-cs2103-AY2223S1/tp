@@ -27,55 +27,45 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withDob("23/7/1989")
             .withPhone("94351253")
-            .withTags("friends").withGender("NA").build();
+            .withTags("friends").withDob("1/1/2000").withGender("NA").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withDob("12/3/2010")
-            .withTags("owesMoney", "friends").withGender("NA").build();
+            .withTags("owesMoney", "friends").withDob("1/1/2000").withGender("NA").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com")
-            .withDob("24/1/1980")
-            .withAddress("wall street").withGender("NA").build();
+            .withAddress("wall street").withDob("1/1/2000").withGender("NA").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com")
-            .withDob("12/10/2003")
-            .withAddress("10th street").withTags("friends").withGender("NA").build();
+            .withAddress("10th street").withTags("friends").withDob("1/1/2000").withGender("NA").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com")
-            .withDob("8/9/1999")
+            .withDob("1/1/2000")
             .withAddress("michegan ave").withGender("NA").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com")
-            .withDob("26/6/1990")
-            .withAddress("little tokyo").withGender("NA").build();
+            .withAddress("little tokyo").withDob("1/1/2000").withGender("NA").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com")
-            .withDob("16/2/2000")
-            .withAddress("4th street").withGender("NA").build();
+            .withAddress("4th street").withDob("1/1/2000").withGender("NA").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com")
-            .withDob("12/3/2004")
-            .withAddress("little india").withGender("NA").build();
+            .withAddress("little india").withDob("1/1/2000").withGender("NA").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com")
-            .withDob("12/12/2004")
-            .withAddress("chicago ave").withGender("NA").build();
+            .withAddress("chicago ave").withDob("1/1/2000").withGender("NA").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)
-            .withDob(VALID_DOB_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).withDob(VALID_DOB_AMY).withGender("NA").build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB)
-            .withDob(VALID_DOB_BOB)
             .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+            .withDob(VALID_DOB_BOB).withGender("NA").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

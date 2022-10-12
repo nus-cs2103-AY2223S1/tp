@@ -17,7 +17,8 @@ public class DateOfBirth {
     private static final String MESSAGE_ARGUMENT_CONSTRAINTS =
         "compareTo() of DateOfBirth must take in argument of type LocalDate";
 
-    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+    private static final DateTimeFormatter checkFormatter = DateTimeFormatter.ofPattern("[d/M/yyyy][dd/M/yyyy][d/MM/yyyy][dd/MM/yyyy]");
+    private static final DateTimeFormatter logFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
 
     public final LocalDate date;
@@ -40,7 +41,7 @@ public class DateOfBirth {
     public DateOfBirth(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        this.date = LocalDate.parse(date, inputFormatter);
+        this.date = LocalDate.parse(date, logFormatter);
         this.isEmpty = false;
     }
 
@@ -62,7 +63,7 @@ public class DateOfBirth {
             return true;
         }
         try {
-            inputFormatter.parse(test);
+            LocalDate.parse(test, checkFormatter);
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -77,6 +78,9 @@ public class DateOfBirth {
      * @return int
      */
     public int compareTo(Object other) {
+        if (other == null) {
+            return -1;
+        }
         if (!(other instanceof DateOfBirth)) {
             throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
         }
@@ -102,7 +106,12 @@ public class DateOfBirth {
         if (this.isEmpty()) {
             return "";
         }
-        return this.date.format(inputFormatter);
+        return this.date.format(logFormatter);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return this.compareTo(other) == 0;
     }
 
     @Override
@@ -111,13 +120,6 @@ public class DateOfBirth {
             return "";
         }
         return this.date.format(outputFormatter);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof LocalDate // instanceof handles nulls
-                && date.equals((LocalDate) other)); // state check
     }
 
     @Override

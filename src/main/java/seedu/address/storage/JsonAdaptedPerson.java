@@ -110,7 +110,6 @@ class JsonAdaptedPerson {
         }
 
         final DateOfBirth modelDob;
-
         if (dobIsEmpty) {
             modelDob = new DateOfBirth(); //create empty DateOfBirth object
         } else {
