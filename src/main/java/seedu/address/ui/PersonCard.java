@@ -42,8 +42,7 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label header;
-    @FXML
-    private Label taskList;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Patient} and index to display.
@@ -71,11 +70,11 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
+
         if (taskListFlag) {
             cardPane.getChildren().add(new TaskListCard(person.getTasks().toString()).getRoot());
         }
-        header.setText("Tasks:");
-        taskList.setText("1. task1 \n 2. task2");
+
     }
 
     @Override
