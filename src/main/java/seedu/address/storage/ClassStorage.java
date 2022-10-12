@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 public class ClassStorage {
 
     private static HashMap<LocalDate, List<Person>> classes;
-    private ReadOnlyAddressBook addressBook;
+    private static ReadOnlyAddressBook addressBook;
 
     /**
      * Constructs a {@code ClassStorage} with the given addressBook.
@@ -39,14 +39,13 @@ public class ClassStorage {
     public HashMap<LocalDate, List<Person>> initialiseClass() {
         HashMap<LocalDate, List<Person>> map = new HashMap<>();
         ObservableList<Person> listOfPersons = addressBook.getPersonList();
-        for (int i = 0; i < listOfPersons.size(); i++) {
-            Person person = listOfPersons.get(i);
+        for (Person person : listOfPersons) {
             Class classOfPerson = person.getAClass();
             if (!classOfPerson.classDateTime.equals("")) {
                 if (!map.containsKey(classOfPerson.date)) {
-                    List<Person> ls = new ArrayList<>();
-                    ls.add(person);
-                    map.put(classOfPerson.date, ls);
+                    List<Person> newListOfPersons = new ArrayList<>();
+                    newListOfPersons.add(person);
+                    map.put(classOfPerson.date, newListOfPersons);
                 } else {
                     map.get(classOfPerson.date).add(person);
                 }
@@ -59,25 +58,25 @@ public class ClassStorage {
      * Saves added classes into storage if there is no conflict between the timings of the classes.
      *
      * @param editedPerson Person object.
+     * @param indexOfEditedPerson One-based index of the person in the list.
      * @throws CommandException if there is a conflict between the timings of the classes.
      */
-    public static void saveClass(Person editedPerson) throws CommandException {
+    public static void saveClass(Person editedPerson, int indexOfEditedPerson) throws CommandException {
         LocalDate date = editedPerson.getAClass().date;
         LocalTime start = editedPerson.getAClass().startTime;
         LocalTime end = editedPerson.getAClass().endTime;
         if (!classes.containsKey(date)) {
-            List<Person> ls = new ArrayList<>();
-            ls.add(editedPerson);
-            classes.put(date, ls);
+            List<Person> newListOfPersons = new ArrayList<>();
+            newListOfPersons.add(editedPerson);
+            classes.put(date, newListOfPersons);
         } else {
             // Gets the list of person who have classes with same date
             List<Person> listOfPerson = classes.get(date);
-            for (int i = 0; i < listOfPerson.size(); i++) {
-                Person currPerson = listOfPerson.get(i);
+            for (Person currPerson : listOfPerson) {
                 LocalTime startOfCurrClass = currPerson.getAClass().startTime;
                 LocalTime endOfCurrClass = currPerson.getAClass().endTime;
                 if (hasConflict(start, end, startOfCurrClass, endOfCurrClass)
-                        && !currPerson.allEqualsExceptClass(editedPerson)) {
+                        && indexOfEditedPerson != getIndex(currPerson)) {
                     throw new CommandException(EditCommand.MESSAGE_CLASS_CONFLICT);
                 }
             }
@@ -118,5 +117,20 @@ public class ClassStorage {
             ClassStorage.classes.get(date).remove(personToEdit);
         }
 
+    }
+
+    /**
+     * Returns the index of person in the list.
+     *
+     * @param person Person object.
+     * @return int.
+     */
+    public static int getIndex(Person person) {
+        for (int i = 0; i < addressBook.getPersonList().size(); i++) {
+            if (addressBook.getPersonList().get(i).isSamePerson(person)) {
+                return i + 1;
+            }
+        }
+        return 0;
     }
 }
