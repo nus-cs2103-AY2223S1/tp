@@ -5,10 +5,14 @@ import java.util.logging.Logger;
 import coydir.commons.core.LogsCenter;
 import javafx.application.Application;
 import javafx.application.HostServices;
+import javafx.beans.binding.Bindings;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -23,6 +27,9 @@ public class HelpWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
+    private static final int ROW_HEIGHT = 30;
+    private static final int SAFETY_MARGIN = 35;
 
     private static Application hostServicesApp = new Application() {
             @Override
@@ -109,8 +116,31 @@ public class HelpWindow extends UiPart<Stage> {
         this.initTableView(this.advancedTableView, CommandFormat.getAdvancedCommands());
     }
 
-    private void initTableView(TableView<Command> tableView, ObservableList<CommandFormat> commands) {
+    private void initTableView(TableView<CommandFormat> tableView, ObservableList<CommandFormat> commands) {
+        tableView.setSelectionModel(null);
+        tableView.setItems(commands);
+        tableView.prefHeightProperty().bind(
+                Bindings.size(tableView.getItems())
+                .multiply(ROW_HEIGHT)
+                .add(SAFETY_MARGIN));
 
+        TableColumn<CommandFormat, String> commandCol = new TableColumn<>("Command");
+        commandCol.setCellValueFactory(new PropertyValueFactory<>("command"));
+        commandCol.setSortable(false);
+        commandCol.setResizable(false);
+        commandCol.setReorderable(false);
+
+        TableColumn<CommandFormat, String> usageCol = new TableColumn<>("Usage");
+        usageCol.setCellValueFactory(new PropertyValueFactory<>("usage"));
+        usageCol.setSortable(false);
+        usageCol.setResizable(false);
+        usageCol.setReorderable(false);
+
+        commandCol.prefWidthProperty().bind(tableView.widthProperty().multiply(0.13));
+        usageCol.prefWidthProperty().bind(tableView.widthProperty().multiply(0.85));
+
+        tableView.getColumns().add(commandCol);
+        tableView.getColumns().add(usageCol);
     }
 
     /**

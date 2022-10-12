@@ -1,5 +1,7 @@
 package coydir.ui;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -7,9 +9,8 @@ import javafx.collections.ObservableList;
  * Used in {@code HelpWindow} for the help command.
  */
 public class CommandFormat {
-    private String command;
-    private String description;
-    private String format;
+    private SimpleStringProperty command;
+    private SimpleStringProperty usage;
 
     // All basic commands below
     private static final CommandFormat ADD_COMMAND_FORMAT = new CommandFormat(
@@ -47,9 +48,8 @@ public class CommandFormat {
      * @param format The corresponding format.
      */
     public CommandFormat(String command, String description, String format) {
-        this.command = command;
-        this.description = description;
-        this.format = format;
+        this.command = new SimpleStringProperty(command);
+        this.usage = new SimpleStringProperty(String.format("%s\nFormat: %s", description, format));
     }
 
     public static ObservableList<CommandFormat> getBasicCommands() {
@@ -69,10 +69,10 @@ public class CommandFormat {
     }
 
     public String getCommand() {
-        return this.command;
+        return this.command.get();
     }
 
-    public String getFormat() {
-        return this.format;
+    public String getUsage() {
+        return this.usage.get();
     }
 }

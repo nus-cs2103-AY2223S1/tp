@@ -49,13 +49,13 @@
 
         <ScrollPane fitToWidth="true">
           <VBox styleClass="commands-panel">
-            <Label styleClass="label-header" text="Basic Functions"/>
+            <Label styleClass="help-label" text="Basic Functions"/>
             <TableView fx:id="basicTableView">
               <VBox.margin>
                 <Insets top="10.0"/>
               </VBox.margin>
             </TableView>
-            <Label styleClass="label-header" text="Advanced Functions"/>
+            <Label styleClass="help-label" text="Advanced Functions"/>
             <TableView fx:id="advancedTableView">
               <VBox.margin>
                 <Insets top="10.0"/>
