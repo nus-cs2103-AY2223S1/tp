@@ -85,10 +85,7 @@ public interface Model {
 
 
     /** Updates module list after task removal */
-    void updateModuleRemoveTask(Task t);
-
-    /** Updates module list after adding task */
-    void updateModuleAddTask(Task t);
+    void updateModuleTask(Task t);
 
     /** Updates task list after module removal */
     void deleteTasksOfModule(Module target);

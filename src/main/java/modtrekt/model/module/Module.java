@@ -1,10 +1,6 @@
 package modtrekt.model.module;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-
-import modtrekt.model.task.Task;
 
 /**
  * Represents a module in the module list.
@@ -14,7 +10,7 @@ public class Module {
     private final ModCode code;
     private final ModName name;
     private final ModCredit credits;
-    private final ArrayList<Task> tasksList;
+    private ModTaskCount taskCount;
 
     /**
      * Creates a Module with the given code, name, credits and tasks.
@@ -23,11 +19,11 @@ public class Module {
      * @param name    the module name
      * @param credits the number of credits for the module
      */
-    public Module(ModCode code, ModName name, ModCredit credits) {
+    public Module(ModCode code, ModName name, ModCredit credits, ModTaskCount taskCount) {
         this.code = code;
         this.name = name;
         this.credits = credits;
-        this.tasksList = new ArrayList<>();
+        this.taskCount = taskCount;
     }
 
     /**
@@ -37,11 +33,11 @@ public class Module {
      * @param name    the module name
      * @param credits the number of credits for the module
      */
-    public Module(String code, String name, String credits) {
+    public Module(String code, String name, String credits, String taskCount) {
         this.code = new ModCode(code);
         this.name = new ModName(name);
         this.credits = new ModCredit(credits);
-        this.tasksList = new ArrayList<>();
+        this.taskCount = new ModTaskCount(taskCount);
     }
 
     public ModName getName() {
@@ -56,28 +52,17 @@ public class Module {
         return credits;
     }
 
-    public ArrayList<Task> getTasksList() {
-        return this.tasksList;
+    public String getTaskCountStr() {
+        return taskCount.toString();
     }
-    public int getTaskCount() {
-        return this.tasksList.size();
-    }
-
-
-    public void addTask(Task t) {
-        this.tasksList.add(t);
+    public int getTaskCountInt() {
+        return Integer.parseInt(taskCount.toString());
     }
 
-    public void removeTask(Task t) {
-        this.tasksList.remove(t);
+    public void updateTaskCount(int taskCount) {
+        String updatedCount = Integer.toString(taskCount);
+        this.taskCount = new ModTaskCount(updatedCount);
     }
-
-
-    public void addTasks(List<Task> t) {
-        this.tasksList.addAll(t);
-    }
-
-
     /**
      * Returns true if both modules have the same name.
      * This defines a weaker notion of equality between two modules.

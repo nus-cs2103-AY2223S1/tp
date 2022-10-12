@@ -48,7 +48,7 @@ public class ModuleParser {
                 .replaceAll("[^a-zA-Z0-9\\s]", " ")
                 .trim().replaceAll(" +", " ");
 
-        return new Module(code, moduleName, moduleCredit);
+        return new Module(code, moduleName, moduleCredit, "0");
     }
 
     public static Module fetchModule(ModCode code) throws IOException, InterruptedException {

@@ -5,6 +5,7 @@ import static modtrekt.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -109,34 +110,29 @@ public class ModelManager implements Model {
     @Override
     public void deleteTask(Task target) {
         taskBook.removeTask(target);
-        updateModuleRemoveTask(target);
+        updateModuleTask(target);
     }
 
     @Override
     public void addTask(Task t) {
         taskBook.addTask(t);
-        updateModuleAddTask(t);
+        updateModuleTask(t);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
-
         taskBook.setTask(target, editedTask);
     }
 
     @Override
-    public void updateModuleRemoveTask(Task t) {
+    public void updateModuleTask(Task t) {
         Module toUpdate = parseModuleFromCode(t.getModule());
-        toUpdate.removeTask(t);
-        setModule(toUpdate, toUpdate);
-    }
-
-    @Override
-    public void updateModuleAddTask(Task t) {
-        Module toUpdate = parseModuleFromCode(t.getModule());
-        toUpdate.addTask(t);
+        FilteredList<Task> tempList = new FilteredList<>(this.taskBook.getTaskList());
+        Predicate<Task> newPredicate = task -> task.getModule().equals(toUpdate.getCode());
+        tempList.setPredicate(newPredicate);
+        toUpdate.updateTaskCount(tempList.size());
         setModule(toUpdate, toUpdate);
     }
 
@@ -184,7 +180,6 @@ public class ModelManager implements Model {
     @Override
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
-
         moduleList.setModule(target, editedModule);
     }
 

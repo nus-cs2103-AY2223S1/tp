@@ -9,9 +9,7 @@ import modtrekt.logic.commands.AddCommand;
 import modtrekt.logic.commands.Command;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.logic.parser.module.ModuleParser;
-import modtrekt.model.module.ModCode;
-import modtrekt.model.module.ModCredit;
-import modtrekt.model.module.ModName;
+import modtrekt.model.module.*;
 import modtrekt.model.module.Module;
 
 /**
@@ -36,8 +34,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             ModName name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_MOD_NAME).get());
             ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
             ModCredit credit = ParserUtil.parseCredit(argMultimap.getValue(CliSyntax.PREFIX_MOD_CREDIT).get());
+            ModTaskCount taskCount = new ModTaskCount("0");
 
-            Module module = new Module(code, name, credit);
+            Module module = new Module(code, name, credit, taskCount);
 
             return new AddCommand(module);
         } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_CODE)) {
