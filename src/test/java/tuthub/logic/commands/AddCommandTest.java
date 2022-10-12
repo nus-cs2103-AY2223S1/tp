@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import tuthub.commons.core.GuiSettings;
 import tuthub.logic.commands.exceptions.CommandException;
-import tuthub.model.Tuthub;
 import tuthub.model.Model;
 import tuthub.model.ReadOnlyTuthub;
 import tuthub.model.ReadOnlyUserPrefs;
+import tuthub.model.Tuthub;
 import tuthub.model.tutor.Tutor;
 import tuthub.testutil.TutorBuilder;
 

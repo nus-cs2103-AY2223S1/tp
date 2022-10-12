@@ -5,15 +5,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import tuthub.logic.commands.EditCommand.EditTutorDescriptor;
-import tuthub.model.tutor.Address;
+import tuthub.model.tag.Tag;
 import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
-import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Phone;
 import tuthub.model.tutor.StudentId;
+import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Year;
-import tuthub.model.tag.Tag;
 
 /**
  * A utility class to help with building EditTutorDescriptor objects.
@@ -41,7 +40,6 @@ public class EditTutorDescriptorBuilder {
         descriptor.setModule(tutor.getModule());
         descriptor.setYear(tutor.getYear());
         descriptor.setStudentId(tutor.getStudentId());
-        descriptor.setAddress(tutor.getAddress());
         descriptor.setTags(tutor.getTags());
     }
 
@@ -90,14 +88,6 @@ public class EditTutorDescriptorBuilder {
      */
     public EditTutorDescriptorBuilder withStudentId(String studentId) {
         descriptor.setStudentId(new StudentId(studentId));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code EditTutorDescriptor} that we are building.
-     */
-    public EditTutorDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
         return this;
     }
 

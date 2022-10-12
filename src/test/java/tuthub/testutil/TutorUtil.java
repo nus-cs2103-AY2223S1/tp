@@ -1,6 +1,5 @@
 package tuthub.testutil;
 
-import static tuthub.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static tuthub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tuthub.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
@@ -13,8 +12,8 @@ import java.util.Set;
 
 import tuthub.logic.commands.AddCommand;
 import tuthub.logic.commands.EditCommand.EditTutorDescriptor;
-import tuthub.model.tutor.Tutor;
 import tuthub.model.tag.Tag;
+import tuthub.model.tutor.Tutor;
 
 /**
  * A utility class for Tutor.
@@ -39,7 +38,6 @@ public class TutorUtil {
         sb.append(PREFIX_MODULE + tutor.getModule().value + " ");
         sb.append(PREFIX_YEAR + tutor.getYear().value + " ");
         sb.append(PREFIX_STUDENTID + tutor.getStudentId().value + " ");
-        sb.append(PREFIX_ADDRESS + tutor.getAddress().value + " ");
         tutor.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -58,7 +56,6 @@ public class TutorUtil {
         descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.value).append(" "));
         descriptor.getStudentId().ifPresent(studentId -> sb.append(PREFIX_STUDENTID)
                 .append(studentId.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

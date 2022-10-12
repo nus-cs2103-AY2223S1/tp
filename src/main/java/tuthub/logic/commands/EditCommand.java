@@ -1,7 +1,6 @@
 package tuthub.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static tuthub.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static tuthub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tuthub.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
@@ -22,16 +21,15 @@ import tuthub.commons.core.index.Index;
 import tuthub.commons.util.CollectionUtil;
 import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.model.Model;
-import tuthub.model.tutor.Address;
+import tuthub.model.tag.Tag;
 import tuthub.model.tutor.Comment;
 import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
-import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Phone;
 import tuthub.model.tutor.StudentId;
+import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Year;
-import tuthub.model.tag.Tag;
 
 /**
  * Edits the details of an existing tutor in the address book.
@@ -50,7 +48,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_YEAR + "YEAR] "
             + "[" + PREFIX_STUDENTID + "STUDENT ID] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -109,12 +106,11 @@ public class EditCommand extends Command {
         Module updatedModule = editTutorDescriptor.getModule().orElse(tutorToEdit.getModule());
         Year updatedYear = editTutorDescriptor.getYear().orElse(tutorToEdit.getYear());
         StudentId updatedStudentId = editTutorDescriptor.getStudentId().orElse(tutorToEdit.getStudentId());
-        Address updatedAddress = editTutorDescriptor.getAddress().orElse(tutorToEdit.getAddress());
         Comment updatedComment = tutorToEdit.getComment();
         Set<Tag> updatedTags = editTutorDescriptor.getTags().orElse(tutorToEdit.getTags());
 
         return new Tutor(updatedName, updatedPhone, updatedEmail,
-            updatedModule, updatedYear, updatedStudentId, updatedAddress, updatedComment, updatedTags);
+            updatedModule, updatedYear, updatedStudentId, updatedComment, updatedTags);
     }
 
     @Override
@@ -146,7 +142,6 @@ public class EditCommand extends Command {
         private Module module;
         private Year year;
         private StudentId studentId;
-        private Address address;
         private Set<Tag> tags;
 
         public EditTutorDescriptor() {}
@@ -162,7 +157,6 @@ public class EditCommand extends Command {
             setModule(toCopy.module);
             setYear(toCopy.year);
             setStudentId(toCopy.studentId);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -170,7 +164,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, module, year, address, studentId, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, module, year, studentId, tags);
         }
 
         public void setName(Name name) {
@@ -221,14 +215,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(studentId);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -267,7 +253,6 @@ public class EditCommand extends Command {
                     && getModule().equals(e.getModule())
                     && getYear().equals(e.getYear())
                     && getStudentId().equals(e.getStudentId())
-                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }

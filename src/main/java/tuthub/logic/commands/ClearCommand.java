@@ -2,8 +2,8 @@ package tuthub.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import tuthub.model.Tuthub;
 import tuthub.model.Model;
+import tuthub.model.Tuthub;
 
 /**
  * Clears tuthub.

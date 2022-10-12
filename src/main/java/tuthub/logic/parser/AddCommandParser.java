@@ -1,7 +1,6 @@
 package tuthub.logic.parser;
 
 import static tuthub.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static tuthub.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static tuthub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tuthub.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
@@ -15,16 +14,15 @@ import java.util.stream.Stream;
 
 import tuthub.logic.commands.AddCommand;
 import tuthub.logic.parser.exceptions.ParseException;
-import tuthub.model.tutor.Address;
+import tuthub.model.tag.Tag;
 import tuthub.model.tutor.Comment;
 import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
-import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Phone;
 import tuthub.model.tutor.StudentId;
+import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Year;
-import tuthub.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -39,9 +37,9 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                    PREFIX_MODULE, PREFIX_YEAR, PREFIX_STUDENTID, PREFIX_ADDRESS, PREFIX_TAG);
+                    PREFIX_MODULE, PREFIX_YEAR, PREFIX_STUDENTID, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_STUDENTID,
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_STUDENTID,
             PREFIX_MODULE, PREFIX_YEAR, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -53,11 +51,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Comment comment = new Comment("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Tutor tutor = new Tutor(name, phone, email, module, year, studentId, address, comment, tagList);
+        Tutor tutor = new Tutor(name, phone, email, module, year, studentId, comment, tagList);
 
         return new AddCommand(tutor);
     }

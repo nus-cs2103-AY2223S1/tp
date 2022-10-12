@@ -2,7 +2,7 @@ package tuthub.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static tuthub.testutil.TypicalPersons.getTypicalTuthub;
+import static tuthub.testutil.TypicalTutors.getTypicalTuthub;
 
 import java.nio.file.Path;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import tuthub.commons.core.GuiSettings;
-import tuthub.model.Tuthub;
 import tuthub.model.ReadOnlyTuthub;
+import tuthub.model.Tuthub;
 import tuthub.model.UserPrefs;
 
 public class StorageManagerTest {

@@ -3,7 +3,6 @@ package tuthub.model.tutor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tuthub.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static tuthub.testutil.Assert.assertThrows;
 import static tuthub.testutil.TypicalTutors.ALICE;
@@ -42,7 +41,7 @@ public class UniqueTutorListTest {
     @Test
     public void contains_tutorWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTutorList.add(ALICE);
-        Tutor editedAlice = new TutorBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Tutor editedAlice = new TutorBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueTutorList.contains(editedAlice));
     }
@@ -85,7 +84,7 @@ public class UniqueTutorListTest {
     @Test
     public void setTutor_editedTutorHasSameIdentity_success() {
         uniqueTutorList.add(ALICE);
-        Tutor editedAlice = new TutorBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Tutor editedAlice = new TutorBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueTutorList.setTutor(ALICE, editedAlice);
         UniqueTutorList expectedUniqueTutorList = new UniqueTutorList();

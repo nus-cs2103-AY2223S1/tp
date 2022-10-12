@@ -8,7 +8,7 @@ import static tuthub.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tuthub.testutil.TypicalTutors.CARL;
 import static tuthub.testutil.TypicalTutors.ELLE;
 import static tuthub.testutil.TypicalTutors.FIONA;
-import static tuthub.testutil.TypicalTutors.getTypicalAddressBook;
+import static tuthub.testutil.TypicalTutors.getTypicalTuthub;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import tuthub.model.tutor.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTuthub(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTuthub(), new UserPrefs());
 
     @Test
     public void equals() {

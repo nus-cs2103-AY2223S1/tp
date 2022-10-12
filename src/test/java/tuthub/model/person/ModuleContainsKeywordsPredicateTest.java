@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package tuthub.model.tutor;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import tuthub.testutil.TutorBuilder;
 
 public class ModuleContainsKeywordsPredicateTest {
 
@@ -37,7 +37,7 @@ public class ModuleContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different tutor -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -46,11 +46,11 @@ public class ModuleContainsKeywordsPredicateTest {
         // One keyword
         ModuleContainsKeywordPredicate predicate =
                 new ModuleContainsKeywordPredicate(Collections.singletonList("cs2105"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice").withModule("cs2105").build()));
+        assertTrue(predicate.test(new TutorBuilder().withName("Alice").withModule("cs2105").build()));
 
         // Mixed case keywords
         predicate = new ModuleContainsKeywordPredicate(Collections.singletonList("cS2105"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice").withModule("cs2105").build()));
+        assertTrue(predicate.test(new TutorBuilder().withName("Alice").withModule("cs2105").build()));
     }
 
     @Test
@@ -58,15 +58,15 @@ public class ModuleContainsKeywordsPredicateTest {
         // Zero keywords
         ModuleContainsKeywordPredicate predicate =
                 new ModuleContainsKeywordPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new TutorBuilder().withName("Alice").build()));
 
         // Non-matching keyword
         predicate = new ModuleContainsKeywordPredicate(Arrays.asList("cs2100"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withModule("cs2105").build()));
+        assertFalse(predicate.test(new TutorBuilder().withName("Alice").withModule("cs2105").build()));
 
         // Keywords match phone, email and address, but does not match module
         predicate = new ModuleContainsKeywordPredicate(Arrays.asList("99999999", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("99999999")
-                .withEmail("alice@email.com").withAddress("Main Street").withModule("cs2105").build()));
+        assertFalse(predicate.test(new TutorBuilder().withName("Alice").withPhone("99999999")
+                .withEmail("alice@email.com").withModule("cs2105").build()));
     }
 }

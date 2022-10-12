@@ -3,11 +3,10 @@ package tuthub.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tuthub.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static tuthub.testutil.Assert.assertThrows;
-import static tuthub.testutil.TypicalPersons.ALICE;
-import static tuthub.testutil.TypicalPersons.getTypicalTuthub;
+import static tuthub.testutil.TypicalTutors.ALICE;
+import static tuthub.testutil.TypicalTutors.getTypicalTuthub;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,9 +17,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import tuthub.model.person.Person;
-import tuthub.model.person.exceptions.DuplicatePersonException;
-import tuthub.testutil.PersonBuilder;
+import tuthub.model.tutor.Tutor;
+import tuthub.model.tutor.exceptions.DuplicateTutorException;
+import tuthub.testutil.TutorBuilder;
 
 public class TuthubTest {
 
@@ -28,7 +27,7 @@ public class TuthubTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), tuthbu.getPersonList());
+        assertEquals(Collections.emptyList(), tuthub.getTutorList());
     }
 
     @Test
@@ -44,58 +43,58 @@ public class TuthubTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateTutors_throwsDuplicateTutorException() {
+        // Two tutors with the same identity fields
+        Tutor editedAlice = new TutorBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        TuthubStub newData = new TuthubStub(newPersons);
+        List<Tutor> newTutors = Arrays.asList(ALICE, editedAlice);
+        TuthubStub newData = new TuthubStub(newTutors);
 
-        assertThrows(DuplicatePersonException.class, () -> tuthub.resetData(newData));
+        assertThrows(DuplicateTutorException.class, () -> tuthub.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> tuthub.hasPerson(null));
+    public void hasTutor_nullTutor_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> tuthub.hasTutor(null));
     }
 
     @Test
-    public void hasPerson_personNotInTuthub_returnsFalse() {
-        assertFalse(tuthub.hasPerson(ALICE));
+    public void hasTutor_tutorNotInTuthub_returnsFalse() {
+        assertFalse(tuthub.hasTutor(ALICE));
     }
 
     @Test
-    public void hasPerson_personInTuthub_returnsTrue() {
-        tuthub.addPerson(ALICE);
-        assertTrue(tuthub.hasPerson(ALICE));
+    public void hasTutor_tutorInTuthub_returnsTrue() {
+        tuthub.addTutor(ALICE);
+        assertTrue(tuthub.hasTutor(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInTuthub_returnsTrue() {
-        tuthub.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasTutor_tutorWithSameIdentityFieldsInTuthub_returnsTrue() {
+        tuthub.addTutor(ALICE);
+        Tutor editedAlice = new TutorBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(tuthub.hasPerson(editedAlice));
+        assertTrue(tuthub.hasTutor(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> tuthub.getPersonList().remove(0));
+    public void getTutorList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> tuthub.getTutorList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyTuthub whose persons list can violate interface constraints.
+     * A stub ReadOnlyTuthub whose tutors list can violate interface constraints.
      */
     private static class TuthubStub implements ReadOnlyTuthub {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Tutor> tutors = FXCollections.observableArrayList();
 
-        TuthubStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        TuthubStub(Collection<Tutor> tutors) {
+            this.tutors.setAll(tutors);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Tutor> getTutorList() {
+            return tutors;
         }
     }
 

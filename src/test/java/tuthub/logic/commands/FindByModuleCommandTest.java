@@ -1,13 +1,13 @@
-package seedu.address.logic.commands;
+package tuthub.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.JACKSON;
+import static tuthub.commons.core.Messages.MESSAGE_TUTORS_LISTED_OVERVIEW;
+import static tuthub.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static tuthub.testutil.TypicalTutors.HOON;
+import static tuthub.testutil.TypicalTutors.IDA;
+import static tuthub.testutil.TypicalTutors.JACKSON;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,24 +15,24 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.ModuleContainsKeywordPredicate;
-import seedu.address.model.person.Person;
+import tuthub.model.Model;
+import tuthub.model.ModelManager;
+import tuthub.model.Tuthub;
+import tuthub.model.UserPrefs;
+import tuthub.model.tutor.ModuleContainsKeywordPredicate;
+import tuthub.model.tutor.Tutor;
 
 /**
  * Contains integration tests (interaction with the model) for {@code FindByModuleCommand}.
  */
 public class FindByModuleCommandTest {
-    private List<Person> testTaList = Arrays.asList(IDA, HOON, JACKSON);
-    private Model model = new ModelManager(getTestTaAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTestTaAddressBook(), new UserPrefs());
+    private List<Tutor> testTaList = Arrays.asList(IDA, HOON, JACKSON);
+    private Model model = new ModelManager(getTestTaTuthub(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTestTaTuthub(), new UserPrefs());
 
     @Test
     public void equals() {
-        System.out.println(getTestTaAddressBook());
+        System.out.println(getTestTaTuthub());
         ModuleContainsKeywordPredicate firstPredicate =
                 new ModuleContainsKeywordPredicate(Collections.singletonList("first"));
         ModuleContainsKeywordPredicate secondPredicate =
@@ -54,36 +54,36 @@ public class FindByModuleCommandTest {
         // null -> returns false
         assertFalse(findByModuleFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different tutor -> returns false
         assertFalse(findByModuleFirstCommand.equals(findByModuleSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noTutorFound() {
+        String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 0);
         ModuleContainsKeywordPredicate predicate = preparePredicate(" ");
         FindByModuleCommand command = new FindByModuleCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredTutorList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+    public void execute_multipleKeywords_multipleTutorsFound() {
+        String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 2);
         ModuleContainsKeywordPredicate predicate = preparePredicate("cs2105 cs2103t");
         FindByModuleCommand command = new FindByModuleCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(HOON, JACKSON), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(HOON, JACKSON), model.getFilteredTutorList());
     }
 
-    private AddressBook getTestTaAddressBook() {
-        AddressBook testTaAddressBook = new AddressBook();
-        for (Person person : testTaList) {
-            testTaAddressBook.addPerson(person);
+    private Tuthub getTestTaTuthub() {
+        Tuthub testTaTuthub = new Tuthub();
+        for (Tutor tutor : testTaList) {
+            testTaTuthub.addTutor(tutor);
         }
-        return testTaAddressBook;
+        return testTaTuthub;
     }
 
     /**

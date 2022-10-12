@@ -3,16 +3,15 @@ package tuthub.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import tuthub.model.tutor.Address;
+import tuthub.model.tag.Tag;
 import tuthub.model.tutor.Comment;
 import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
-import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Phone;
 import tuthub.model.tutor.StudentId;
+import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Year;
-import tuthub.model.tag.Tag;
 import tuthub.model.util.SampleDataUtil;
 
 /**
@@ -26,7 +25,6 @@ public class TutorBuilder {
     public static final String DEFAULT_MODULE = "cs2103t";
     public static final String DEFAULT_YEAR = "3";
     public static final String DEFAULT_STUDENTID = "A1234567X";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_COMMENT = "";
 
     private Name name;
@@ -35,7 +33,6 @@ public class TutorBuilder {
     private Module module;
     private Year year;
     private StudentId studentId;
-    private Address address;
     private Comment comment;
     private Set<Tag> tags;
 
@@ -49,7 +46,6 @@ public class TutorBuilder {
         module = new Module(DEFAULT_MODULE);
         year = new Year(DEFAULT_YEAR);
         studentId = new StudentId(DEFAULT_STUDENTID);
-        address = new Address(DEFAULT_ADDRESS);
         comment = new Comment(DEFAULT_COMMENT);
         tags = new HashSet<>();
     }
@@ -64,7 +60,6 @@ public class TutorBuilder {
         module = tutorToCopy.getModule();
         year = tutorToCopy.getYear();
         studentId = tutorToCopy.getStudentId();
-        address = tutorToCopy.getAddress();
         comment = tutorToCopy.getComment();
         tags = new HashSet<>(tutorToCopy.getTags());
     }
@@ -82,14 +77,6 @@ public class TutorBuilder {
      */
     public TutorBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Tutor} that we are building.
-     */
-    public TutorBuilder withAddress(String address) {
-        this.address = new Address(address);
         return this;
     }
 
@@ -125,7 +112,7 @@ public class TutorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Tutor} that we are building.
+     * Sets the {@code Year} of the {@code Tutor} that we are building.
      */
     public TutorBuilder withYear(String year) {
         this.year = new Year(year);
@@ -141,7 +128,7 @@ public class TutorBuilder {
     }
 
     public Tutor build() {
-        return new Tutor(name, phone, email, module, year, studentId, address, comment, tags);
+        return new Tutor(name, phone, email, module, year, studentId, comment, tags);
     }
 
 }

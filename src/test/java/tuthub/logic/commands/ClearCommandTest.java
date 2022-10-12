@@ -5,9 +5,9 @@ import static tuthub.testutil.TypicalTutors.getTypicalTuthub;
 
 import org.junit.jupiter.api.Test;
 
-import tuthub.model.Tuthub;
 import tuthub.model.Model;
 import tuthub.model.ModelManager;
+import tuthub.model.Tuthub;
 import tuthub.model.UserPrefs;
 
 public class ClearCommandTest {

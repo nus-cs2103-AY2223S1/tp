@@ -1,11 +1,10 @@
 {
-  "persons": [ {
+  "tutors": [ {
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
     "module": "c^1000",
     "year": "-1",
-    "studentId": "B1234567X",
-    "address": "4th street"
+    "studentId": "B1234567X"
   } ]
 }

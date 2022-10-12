@@ -22,7 +22,6 @@ public class Tutor {
     private final StudentId studentId;
 
     // Data fields
-    private final Address address;
     private final Module module;
     private final Year year;
     private final Comment comment;
@@ -32,15 +31,14 @@ public class Tutor {
      * Every field must be present and not null.
      */
     public Tutor(Name name, Phone phone, Email email, Module module, Year year,
-                  StudentId studentId, Address address, Comment comment, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, module, year, address, comment, tags);
+                  StudentId studentId, Comment comment, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, module, year, comment, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.module = module;
         this.year = year;
         this.studentId = studentId;
-        this.address = address;
         this.comment = comment;
         this.tags.addAll(tags);
     }
@@ -65,13 +63,9 @@ public class Tutor {
         return year;
     }
 
-    public Address getAddress() {
-        return address;
-    }
     public Comment getComment() {
         return comment;
     }
-
 
     public StudentId getStudentId() {
         return studentId;
@@ -119,7 +113,6 @@ public class Tutor {
                 && otherTutor.getModule().equals(getModule())
                 && otherTutor.getYear().equals(getYear())
                 && otherTutor.getStudentId().equals(getStudentId())
-                && otherTutor.getAddress().equals(getAddress())
                 && otherTutor.getComment().equals(getComment())
                 && otherTutor.getTags().equals(getTags());
     }
@@ -127,7 +120,7 @@ public class Tutor {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, module, year, address, comment, tags);
+        return Objects.hash(name, phone, email, module, year, comment, tags);
     }
 
     @Override
@@ -144,8 +137,6 @@ public class Tutor {
                 .append(getYear())
                 .append("; Student ID: ")
                 .append(getStudentId())
-                .append(" Address: ")
-                .append(getAddress())
                 .append(" Comment: ")
                 .append(getComment())
                 .append(" Tags: ");

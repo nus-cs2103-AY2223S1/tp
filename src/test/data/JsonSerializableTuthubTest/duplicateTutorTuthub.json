@@ -1,12 +1,11 @@
 {
-  "persons": [ {
+  "tutors": [ {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
     "module": "CS2103T",
     "year": "4",
     "studentId": "A1234567X",
-    "address": "123, Jurong West Ave 6, #08-111",
     "comment" : "",
     "tagged": [ "friends" ]
   }, {
@@ -16,7 +15,6 @@
     "module": "CS2100",
     "year": "3",
     "studentId": "A1234566P",
-    "address": "4th street",
     "comment" : ""
   } ]
 }

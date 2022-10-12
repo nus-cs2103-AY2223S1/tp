@@ -6,9 +6,9 @@ import static tuthub.testutil.TypicalTutors.getTypicalTuthub;
 
 import org.junit.jupiter.api.Test;
 
-import tuthub.model.Tuthub;
 import tuthub.model.Model;
 import tuthub.model.ModelManager;
+import tuthub.model.Tuthub;
 import tuthub.model.UserPrefs;
 import tuthub.model.tutor.Comment;
 import tuthub.model.tutor.Tutor;

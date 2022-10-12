@@ -3,7 +3,7 @@ package tuthub.logic.commands;
 import static tuthub.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tuthub.logic.commands.CommandTestUtil.showTutorAtIndex;
 import static tuthub.testutil.TypicalIndexes.INDEX_FIRST_TUTOR;
-import static tuthub.testutil.TypicalTutors.getTypicalAddressBook;
+import static tuthub.testutil.TypicalTutors.getTypicalTuthub;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalTuthub(), new UserPrefs());
+        expectedModel = new ModelManager(model.getTuthub(), new UserPrefs());
     }
 
     @Test

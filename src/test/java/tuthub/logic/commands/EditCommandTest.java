@@ -19,9 +19,9 @@ import org.junit.jupiter.api.Test;
 import tuthub.commons.core.Messages;
 import tuthub.commons.core.index.Index;
 import tuthub.logic.commands.EditCommand.EditTutorDescriptor;
-import tuthub.model.Tuthub;
 import tuthub.model.Model;
 import tuthub.model.ModelManager;
+import tuthub.model.Tuthub;
 import tuthub.model.UserPrefs;
 import tuthub.model.tutor.Tutor;
 import tuthub.testutil.EditTutorDescriptorBuilder;
@@ -114,7 +114,7 @@ public class EditCommandTest {
         // edit TUTOR in filtered list into a duplicate in tuthub
         Tutor tutorInList = model.getTuthub().getTutorList().get(INDEX_SECOND_TUTOR.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TUTOR,
-                new EditTutorDescriptorBuilder(TUTORInList).build());
+                new EditTutorDescriptorBuilder(tutorInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_TUTOR);
     }

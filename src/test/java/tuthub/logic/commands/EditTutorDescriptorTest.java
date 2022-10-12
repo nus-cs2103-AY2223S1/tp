@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tuthub.logic.commands.CommandTestUtil.DESC_AMY;
 import static tuthub.logic.commands.CommandTestUtil.DESC_BOB;
-import static tuthub.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static tuthub.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -55,10 +54,6 @@ public class EditTutorDescriptorTest {
 
         // different year -> returns false
         editedAmy = new EditTutorDescriptorBuilder(DESC_AMY).withYear(VALID_YEAR_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different address -> returns false
-        editedAmy = new EditTutorDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

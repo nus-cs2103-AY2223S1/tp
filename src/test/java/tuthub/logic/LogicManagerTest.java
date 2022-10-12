@@ -3,7 +3,6 @@ package tuthub.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static tuthub.commons.core.Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX;
 import static tuthub.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static tuthub.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static tuthub.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static tuthub.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static tuthub.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -27,10 +26,10 @@ import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.logic.parser.exceptions.ParseException;
 import tuthub.model.Model;
 import tuthub.model.ModelManager;
-import tuthub.model.ReadOnlyAddressBook;
+import tuthub.model.ReadOnlyTuthub;
 import tuthub.model.UserPrefs;
 import tuthub.model.tutor.Tutor;
-import tuthub.storage.JsonAddressBookStorage;
+import tuthub.storage.JsonTuthubStorage;
 import tuthub.storage.JsonUserPrefsStorage;
 import tuthub.storage.StorageManager;
 import tuthub.testutil.TutorBuilder;
@@ -46,10 +45,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonTuthubStorage tuthubStorage =
+                new JsonTuthubStorage(temporaryFolder.resolve("tuthub.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(tuthubStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -73,17 +72,17 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonTuthubIoExceptionThrowingStub
+        JsonTuthubStorage tuthubStorage =
+                new JsonTuthubIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTuthub.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(tuthubStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + MODULE_DESC_AMY + YEAR_DESC_AMY + STUDENTID_DESC_AMY + ADDRESS_DESC_AMY;
+                + MODULE_DESC_AMY + YEAR_DESC_AMY + STUDENTID_DESC_AMY;
         Tutor expectedTutor = new TutorBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTutor(expectedTutor);
@@ -132,7 +131,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTuthub(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -152,13 +151,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonTuthubIoExceptionThrowingStub extends JsonTuthubStorage {
+        private JsonTuthubIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveTuthub(ReadOnlyTuthub tuthub, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

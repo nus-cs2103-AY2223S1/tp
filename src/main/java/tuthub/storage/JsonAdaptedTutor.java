@@ -10,16 +10,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tuthub.commons.exceptions.IllegalValueException;
-import tuthub.model.tutor.Address;
+import tuthub.model.tag.Tag;
 import tuthub.model.tutor.Comment;
 import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
-import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Phone;
 import tuthub.model.tutor.StudentId;
+import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Year;
-import tuthub.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Tutor}.
@@ -34,7 +33,6 @@ class JsonAdaptedTutor {
     private final String module;
     private final String year;
     private final String studentId;
-    private final String address;
     private final String comment;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -45,7 +43,7 @@ class JsonAdaptedTutor {
     public JsonAdaptedTutor(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("module") String module,
             @JsonProperty("year") String year, @JsonProperty("studentId") String studentId,
-            @JsonProperty("address") String address, @JsonProperty("comment") String comment,
+            @JsonProperty("comment") String comment,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -53,7 +51,6 @@ class JsonAdaptedTutor {
         this.module = module;
         this.year = year;
         this.studentId = studentId;
-        this.address = address;
         this.comment = comment;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -70,7 +67,6 @@ class JsonAdaptedTutor {
         module = source.getModule().value;
         year = source.getYear().value;
         studentId = source.getStudentId().value;
-        address = source.getAddress().value;
         comment = source.getComment().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -137,14 +133,6 @@ class JsonAdaptedTutor {
         }
         final StudentId modelStudentId = new StudentId(studentId);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         if (comment == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Comment.class.getSimpleName()));
         }
@@ -153,7 +141,7 @@ class JsonAdaptedTutor {
         final Set<Tag> modelTags = new HashSet<>(tutorTags);
 
         return new Tutor(modelName, modelPhone, modelEmail, modelModule, modelYear,
-                modelStudentId, modelAddress, modelComment, modelTags);
+                modelStudentId, modelComment, modelTags);
     }
 
 }

@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import tuthub.commons.exceptions.DataConversionException;
-import tuthub.model.Tuthub;
 import tuthub.model.ReadOnlyTuthub;
+import tuthub.model.Tuthub;
 
 public class JsonTuthubStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTuthubStorageTest");

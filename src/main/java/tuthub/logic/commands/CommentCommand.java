@@ -77,7 +77,7 @@ public class CommentCommand extends Command {
         Tutor editedTutor = new Tutor(
                 tutorToEdit.getName(), tutorToEdit.getPhone(), tutorToEdit.getEmail(),
                 tutorToEdit.getModule(), tutorToEdit.getYear(), tutorToEdit.getStudentId(),
-                tutorToEdit.getAddress(), comment, tutorToEdit.getTags());
+                comment, tutorToEdit.getTags());
 
         model.setTutor(tutorToEdit, editedTutor);
         model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);

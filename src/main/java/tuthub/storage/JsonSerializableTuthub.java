@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import tuthub.commons.exceptions.IllegalValueException;
-import tuthub.model.Tuthub;
 import tuthub.model.ReadOnlyTuthub;
+import tuthub.model.Tuthub;
 import tuthub.model.tutor.Tutor;
 
 /**

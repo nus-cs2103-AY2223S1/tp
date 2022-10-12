@@ -90,7 +90,7 @@ public class UniqueTutorList implements Iterable<Tutor> {
      */
     public void setTutors(List<Tutor> tutors) {
         requireAllNonNull(tutors);
-        if (!TutorsAreUnique(tutors)) {
+        if (!tutorsAreUnique(tutors)) {
             throw new DuplicateTutorException();
         }
 
@@ -124,7 +124,7 @@ public class UniqueTutorList implements Iterable<Tutor> {
     /**
      * Returns true if {@code Tutors} contains only unique Tutors.
      */
-    private boolean TutorsAreUnique(List<Tutor> tutors) {
+    private boolean tutorsAreUnique(List<Tutor> tutors) {
         for (int i = 0; i < tutors.size() - 1; i++) {
             for (int j = i + 1; j < tutors.size(); j++) {
                 if (tutors.get(i).isSameTutor(tutors.get(j))) {
