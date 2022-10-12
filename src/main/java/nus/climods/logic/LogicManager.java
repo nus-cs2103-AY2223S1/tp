@@ -55,6 +55,7 @@ public class LogicManager implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
+        logger.info("LogicManager#execute finished");
 
         return commandResult;
     }
