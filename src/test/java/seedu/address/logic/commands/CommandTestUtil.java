@@ -27,6 +27,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -227,6 +230,48 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate<Person>(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showStudentAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
+
+        Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
+        final String[] splitName = student.getName().fullName.split("\\s+");
+        model.updateFilteredStudentList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredStudentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the tutor at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTutorAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorList().size());
+
+        Tutor tutor = model.getFilteredTutorList().get(targetIndex.getZeroBased());
+        final String[] splitName = tutor.getName().fullName.split("\\s+");
+        model.updateFilteredTutorList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredTutorList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the tuition class at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTuitionClassAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTuitionClassList().size());
+
+        TuitionClass tuitionClass = model.getFilteredTuitionClassList().get(targetIndex.getZeroBased());
+        final String[] splitName = tuitionClass.getName().name.split("\\s+");
+        model.updateFilteredTuitionClassList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredTuitionClassList().size());
     }
 
 }
