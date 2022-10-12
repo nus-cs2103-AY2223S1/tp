@@ -48,7 +48,6 @@ public class ModelManager implements Model {
         filteredDeliverers = new FilteredList<>(this.addressBook.getDelivererList());
         filteredPets = new FilteredList<>(this.addressBook.getPetList());
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
-
         filteredAll = new MasterList();
         collect();
     }
