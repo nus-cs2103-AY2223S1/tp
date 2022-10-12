@@ -12,8 +12,7 @@ import java.util.function.Predicate;
  * @author albertZhangTJ
  */
 public class NameSoundsSimilarToPredicate implements Predicate<Person> {
-    private final List<String> keywords;
-    private final static List<List<String>> SOUNDEX_MAPPING = List.of(
+    private final static List<List<String>> soundexMapping = List.of(
             List.of("a", "e", "i", "o", "u", "y", "h", "w"), //0
             List.of("b", "f", "p", "v"), //1
             List.of("c", "g", "j", "k", "q", "s", "x", "z"), //2
@@ -22,6 +21,7 @@ public class NameSoundsSimilarToPredicate implements Predicate<Person> {
             List.of("m", "n"), //5
             List.of("r") //6
     );
+    private final List<String> keywords;
 
     public NameSoundsSimilarToPredicate(List<String> keywords) {
         this.keywords = keywords;
@@ -45,7 +45,7 @@ public class NameSoundsSimilarToPredicate implements Predicate<Person> {
         return true;
     }
 
-    private static String dropHWY(String name) {
+    private static String dropHwy(String name) {
         if (name == null || name.length() < 2) {
             return name;
         }
@@ -65,8 +65,8 @@ public class NameSoundsSimilarToPredicate implements Predicate<Person> {
         }
         String ans = strippedName.substring(0, 1);
         for (int i = 1; i < strippedName.length(); i++) {
-            for (int j = 0; j < SOUNDEX_MAPPING.size(); j++) {
-                if (SOUNDEX_MAPPING.get(j).contains(strippedName.substring(i, i + 1))) {
+            for (int j = 0; j < soundexMapping.size(); j++) {
+                if (soundexMapping.get(j).contains(strippedName.substring(i, i + 1))) {
                     ans = ans + j;
                     break;
                 }
@@ -110,19 +110,19 @@ public class NameSoundsSimilarToPredicate implements Predicate<Person> {
         return ans;
     }
 
-    public static String soundexOfIfAlphabetical(String name) {
+    private static String soundexOfIfAlphabetical(String name) {
         name = name.toLowerCase();
         if (!isFullyAlphabetical(name)) {
             return name;
         }
-        name = dropHWY(name);
+        name = dropHwy(name);
         name = applySoundexMapping(name);
         name = combineAdjacentDigits(name);
         name = trimSoundexCode(name);
         return name;
     }
 
-    public boolean hasMatch(String name) {
+    private boolean hasMatch(String name) {
         String[] splitedName = name.split(" ");
         List<String> searchCode = new ArrayList<>();
         for (String part : splitedName) {
@@ -150,7 +150,9 @@ public class NameSoundsSimilarToPredicate implements Predicate<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.person.NameSoundsSimilarToPredicate // instanceof handles nulls
-                && keywords.equals(((seedu.address.model.person.NameSoundsSimilarToPredicate) other).keywords)); // state check
+                && keywords.equals(
+                        ((seedu.address.model.person.NameSoundsSimilarToPredicate) other).keywords
+                )); // state check
     }
 
 }
