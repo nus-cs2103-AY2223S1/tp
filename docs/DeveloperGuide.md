@@ -282,8 +282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Use cases
-
-(For all use cases below, the **System** is `MassLinkers` and the **Actor** is the `student`, unless specified otherwise)
+(For all use cases below, the System is MassLinkers and the Actor is the student, unless specified otherwise)
 
 **Use case 1: Add a batchmate’s information**
 
@@ -309,38 +308,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-* 2a. The list is empty. 
-\
-Use case ends.
+* 2a. The list is empty.
+  \
+  Use case ends.
 
 * 4a. The given index is invalid.
     * a1. MassLinkers prompts for another index.
     * Step a1 is repeated until a valid index is given. \
-  Use case resumes from step 3.
+      Use case resumes from step 3.
 
 * *a. At any time, Student chooses to close MassLinkers.
     * a1. MassLinkers updates the storage file.
       \
       Use case ends.
 
-**Use case 3: Search classmates via a tag**
+**Use case 3: Search classmates via tags**
 
 **MSS**
 
-1. Student requests the list of batchmates with a tag.
-2. MassLinkers searches through the list of added tags.
-3. MassLinkers returns the list of batchmates associated with the particular tag.
+1. Student requests the list of batchmates with tags.
+2. MassLinkers returns the list of batchmates associated with the particular tags.
    \
    Use case ends.
 
 **Extensions**
-* 2a. The list of tags is empty.
-  * a1. MassLinkers returns an empty list. 
-    \
-  Use case ends.
-* 2b. MassLinkers detects there is no such tag.
-  * b1. MassLinkers requests for another tag.
-  * Step b1 is repeated until a valid tag is found. \
+* 1a. MassLinkers detects no tags specified by the student or at least one of the tags specified is/are not associated with any batchmate (i.e invalid tags).
+* 1a1. MassLinkers requests for all tags specified to be valid.
+* 1a2. Student inputs new tags.
+* Steps 1a1-1a2 are repeated until all tags specified are valid.
+  \
   Use case resumes from step 2.
 * *a. At any time, Student chooses to close MassLinkers.
     * a1. MassLinkers updates the storage file.
@@ -352,7 +348,7 @@ Use case ends.
 
 **MSS**
 
-1. Student chooses to add a tag to a batchmate (could be himself or others).
+1. Student chooses to add a tag to a batchmate.
 2. MassLinkers searches through the list of batchmates for the selected batchmate.
 3. MassLinkers adds tag to the batchmate.
    \
@@ -360,11 +356,11 @@ Use case ends.
 
 **Extensions**
 * 2a. The list of batchmates is empty.
-  * a1. MassLinkers warns adding a tag is invalid.
-    \
-    Use case ends.
+* a1. MassLinkers warns adding a tag is invalid.
+  \
+  Use case ends.
 * 2b. MassLinkers is unable to find the batchmate.
-    * b1. MassLinkers prompts for new batchmate details. 
+    * b1. MassLinkers prompts for new batchmate details.
     * Step b1 is repeated until a batchmate is found.
       \
       Use case resumes from step 2.
@@ -374,6 +370,101 @@ Use case ends.
       \
       Use case ends.
     
+**Use case 5: Mark a module completed**
+
+**MSS**
+
+1. Student requests the list of modules for a batchmate.
+2. Student requests to mark a module complete.
+3. MassLinkers marks the module completed.
+   \
+   Use case ends.
+
+**Extensions**
+* 2a. The list of modules is empty.
+    * a1. MassLinkers warns marking a module is invalid.
+      \
+      Use case ends.
+* 2b. The module selected is out of range.
+    * b1. MassLinkers prompts for new module.
+    * Step b1 is repeated until a module is found.
+      \
+      Use case resumes from step 2.
+
+* *a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the storage file.
+      \
+      Use case ends.
+
+
+**Use case 6: Edit Batchmate**
+
+**MSS**
+
+1. Student requests the list of batchmates.
+2. MassLinkers displays list of batchmates.
+3. Student requests to edit a specific batchmate in the list with the new details.
+4. MassLinkers updates the details of said batchmate and displays a success message.
+   \
+   Use case ends.
+
+**Extensions**
+* 2a. The list of batchmates is empty.
+  \
+  Use case ends.
+* 3a. MassLinkers detects an error in the sequence or syntax of entered command.
+    * 3a1. MassLinkers prompts error message.
+    * 3a2. MassLinkers requests for the correct command.
+    * 3a3. Student enters new command.
+      Steps 3a1-3a3 are repeated until the command entered is correct.
+      \
+      Use case resumes from step 4.
+* 3b. MassLinkers could not find the batchmate specified.
+    * 3b1. MassLinkers prompts error message.
+    * 3b2. MassLinkers requests the user to input a valid batchmate.
+    * 3b3. Student enters new command.
+      Steps 3b1-3b3 are repeated until the command entered are correct.
+      \
+      Use case resumes from step 4.
+
+* *a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the storage file.
+      \
+      Use case ends.
+
+
+**Use case 7: Add module**
+
+**MSS**
+
+1. Student requests to add modules to a specific batchmate.
+2. MassLinkers add modules to said batchmate and displays a success message.
+   \
+   Use case ends.
+
+**Extensions**
+* 1a. The list of batchmates is empty.
+  \
+  Use case ends.
+* 2a. MassLinkers detects an error in the sequence or syntax of entered command.
+    * 2a1. MassLinkers prompts error message.
+    * 2a2. MassLinkers requests for the correct command.
+    * 2a3. Student enters new command.
+      Steps 2a1-2a3 are repeated until the command entered are correct.
+      \
+      Use case ends.
+* 2b. MassLinkers could not find the batchmate specified.
+    * 2b1. MassLinkers prompts error message.
+    * 2b2. MassLinkers requests the user to input a valid batchmate.
+    * 2b3. Student enters new command.
+      Steps 2b1-2b3 are repeated until the command entered are correct.
+      \
+      Use case ends.
+
+* *a. At any time, Student chooses to close MassLinkers.
+    * a1. MassLinkers updates the storage file.
+      \
+      Use case ends.
 
 ### Non-Functional Requirements
 
