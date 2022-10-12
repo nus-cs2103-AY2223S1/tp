@@ -1,6 +1,13 @@
 package seedu.address.model.task;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Task in the TaskList.
@@ -9,17 +16,32 @@ public class Task {
     private Description description;
     private Deadline deadline;
     private boolean isDone;
+    private final Set<Tag> tags = new HashSet<>();
 
 
     /**
      * A constructor that creates an instance of Task.
      * @param description The description of the task.
      */
-    public Task(Description description) {
-        this.isDone = false;
+    public Task(Description description, boolean isDone, Set<Tag> tags) {
+        requireAllNonNull(description, isDone, tags);
+        this.isDone = isDone;
         this.description = description;
+        this.tags.addAll(tags);
         // TODO: Edit after implementing Deadline class
         this.deadline = new Deadline("");
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
+    public boolean getIsDone() {
+        return this.isDone;
     }
 
     /**
@@ -58,6 +80,20 @@ public class Task {
      */
     public void unmarkTask() {
         isDone = false;
+    }
+
+    /**
+     * Returns true if both tasks have matching descriptions, false otherwise.
+     * @param otherTask Another task.
+     * @return boolean indicating whether tasks are the same.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getDescription().equals(getDescription());
     }
 
     /**
