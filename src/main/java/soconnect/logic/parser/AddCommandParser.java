@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import soconnect.commons.core.Messages;
 import soconnect.logic.commands.AddCommand;
 import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.person.Address;
@@ -18,7 +19,6 @@ import soconnect.model.person.Name;
 import soconnect.model.person.Person;
 import soconnect.model.person.Phone;
 import soconnect.model.tag.Tag;
-import soconnect.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new AddCommand object.

@@ -167,7 +167,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The sorting mechanism is facilitated by `SortCommand` and `SortCommandParser`. 
+The sorting mechanism is facilitated by `SortCommand` and `SortCommandParser`.
 Additionally, the mechanism utilises the following operations in `UniquePersonList`:
 
 * `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the contact list by name in alphabetical order.

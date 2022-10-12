@@ -1,9 +1,9 @@
 package soconnect.logic.parser;
 
+import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
 import soconnect.logic.commands.DeleteCommand;
 import soconnect.logic.parser.exceptions.ParseException;
-import soconnect.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object.

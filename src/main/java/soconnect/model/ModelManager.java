@@ -14,7 +14,6 @@ import soconnect.commons.core.GuiSettings;
 import soconnect.commons.core.LogsCenter;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;
-import soconnect.commons.util.CollectionUtil;
 
 /**
  * Represents the in-memory model of the SoConnect data.

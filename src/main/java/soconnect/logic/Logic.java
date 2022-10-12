@@ -8,9 +8,9 @@ import soconnect.logic.autocomplete.Autocomplete;
 import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.logic.parser.exceptions.ParseException;
+import soconnect.model.Model;
 import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.person.Person;
-import soconnect.model.Model;
 
 /**
  * API of the Logic component.

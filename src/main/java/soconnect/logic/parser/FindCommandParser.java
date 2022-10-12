@@ -2,10 +2,10 @@ package soconnect.logic.parser;
 
 import java.util.Arrays;
 
+import soconnect.commons.core.Messages;
 import soconnect.logic.commands.FindCommand;
 import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.person.NameContainsKeywordsPredicate;
-import soconnect.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new FindCommand object.

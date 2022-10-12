@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import soconnect.model.SoConnect;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.SoConnect;
 import soconnect.model.person.Address;
 import soconnect.model.person.Email;
 import soconnect.model.person.Name;

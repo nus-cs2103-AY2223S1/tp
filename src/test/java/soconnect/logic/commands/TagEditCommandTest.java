@@ -2,13 +2,15 @@ package soconnect.logic.commands;
 
 import static soconnect.logic.commands.CommandTestUtil.assertCommandFailure;
 import static soconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static soconnect.testutil.TypicalPersons.*;
+import static soconnect.testutil.TypicalPersons.FRIENDS;
+import static soconnect.testutil.TypicalPersons.OWESMONEY;
+import static soconnect.testutil.TypicalPersons.getTypicalSoConnect;
 
 import org.junit.jupiter.api.Test;
 
-import soconnect.model.SoConnect;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
+import soconnect.model.SoConnect;
 import soconnect.model.UserPrefs;
 import soconnect.model.tag.Tag;
 

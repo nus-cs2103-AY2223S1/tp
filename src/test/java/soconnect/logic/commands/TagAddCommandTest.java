@@ -12,9 +12,9 @@ import static soconnect.testutil.TypicalPersons.getTypicalSoConnect;
 
 import org.junit.jupiter.api.Test;
 
-import soconnect.model.SoConnect;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
+import soconnect.model.SoConnect;
 import soconnect.model.UserPrefs;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;

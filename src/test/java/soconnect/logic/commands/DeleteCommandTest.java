@@ -2,7 +2,9 @@ package soconnect.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static soconnect.logic.commands.CommandTestUtil.*;
+import static soconnect.logic.commands.CommandTestUtil.assertCommandFailure;
+import static soconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static soconnect.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static soconnect.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static soconnect.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static soconnect.testutil.TypicalPersons.getTypicalSoConnect;

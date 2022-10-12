@@ -3,6 +3,7 @@ package soconnect.logic.parser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import soconnect.commons.core.Messages;
 import soconnect.logic.commands.AddCommand;
 import soconnect.logic.commands.ClearCommand;
 import soconnect.logic.commands.Command;
@@ -17,7 +18,6 @@ import soconnect.logic.commands.SearchCommand;
 import soconnect.logic.commands.SortCommand;
 import soconnect.logic.commands.TagCommand;
 import soconnect.logic.parser.exceptions.ParseException;
-import soconnect.commons.core.Messages;
 
 /**
  * Parses user input.

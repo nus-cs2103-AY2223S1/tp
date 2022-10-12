@@ -3,7 +3,10 @@ package soconnect.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static soconnect.testutil.Assert.assertThrows;
-import static soconnect.testutil.TypicalPersons.*;
+import static soconnect.testutil.TypicalPersons.ALICE;
+import static soconnect.testutil.TypicalPersons.HOON;
+import static soconnect.testutil.TypicalPersons.IDA;
+import static soconnect.testutil.TypicalPersons.getTypicalSoConnect;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -13,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import soconnect.commons.exceptions.DataConversionException;
-import soconnect.model.SoConnect;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.SoConnect;
 
 public class JsonSoConnectStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSoConnectStorageTest");

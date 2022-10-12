@@ -92,7 +92,8 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
      * @param noOfMissing the number of attributes that have to be filled in.
      * @return the Attribute array order.
      */
-    private CustomiseCommand.Attribute[] fillMissingAttributes(CustomiseCommand.Attribute[] attributeArr, boolean[] isAttributeUsed, int noOfMissing) {
+    private CustomiseCommand.Attribute[] fillMissingAttributes(CustomiseCommand.Attribute[] attributeArr,
+                                                               boolean[] isAttributeUsed, int noOfMissing) {
         int indexOfLastAttribute = attributeArr.length - 1;
         for (int i = 0; i < noOfMissing; i++) {
             if (!isAttributeUsed[0]) {

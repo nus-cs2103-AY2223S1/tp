@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import soconnect.commons.util.CollectionUtil;
 import soconnect.model.person.exceptions.DuplicatePersonException;
 import soconnect.model.person.exceptions.PersonNotFoundException;
 import soconnect.model.tag.Tag;
-import soconnect.commons.util.CollectionUtil;
+
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.

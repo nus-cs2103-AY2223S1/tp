@@ -3,7 +3,6 @@ package soconnect.model.person;
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.AppUtil.checkArgument;
 
-import soconnect.commons.util.AppUtil;
 
 /**
  * Represents a Person's address in the SoConnect.
@@ -28,7 +27,7 @@ public class Address {
      */
     public Address(String address) {
         requireNonNull(address);
-        AppUtil.checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
 

@@ -15,11 +15,11 @@ import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import soconnect.logic.Logic;
 import soconnect.logic.autocomplete.Autocomplete;
 import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.logic.parser.exceptions.ParseException;
-import soconnect.logic.Logic;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

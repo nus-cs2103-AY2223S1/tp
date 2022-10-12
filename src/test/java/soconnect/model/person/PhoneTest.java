@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static soconnect.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import soconnect.testutil.Assert;
 
 public class PhoneTest {
 

@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import soconnect.commons.core.GuiSettings;
-import soconnect.model.SoConnect;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.SoConnect;
 import soconnect.model.UserPrefs;
 
 public class StorageManagerTest {

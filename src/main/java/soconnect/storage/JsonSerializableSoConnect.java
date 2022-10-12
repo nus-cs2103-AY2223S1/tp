@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import soconnect.commons.exceptions.IllegalValueException;
-import soconnect.model.SoConnect;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.SoConnect;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;
 

@@ -7,10 +7,10 @@ import static soconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static soconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
+import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
 import soconnect.logic.commands.EditCommand;
 import soconnect.logic.parser.exceptions.ParseException;
-import soconnect.commons.core.Messages;
 
 /**
  * Parses input arguments and creates a new EditCommand object.
@@ -33,7 +33,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
