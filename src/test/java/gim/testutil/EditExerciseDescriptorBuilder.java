@@ -6,7 +6,7 @@ import gim.model.exercise.Name;
 import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.tag.Date;
+import gim.model.date.Date;
 
 /**
  * A utility class to help with building EditExerciseDescriptor objects.

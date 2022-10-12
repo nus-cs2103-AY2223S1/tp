@@ -1,4 +1,4 @@
-package gim.model.tag;
+package gim.model.date;
 
 import static gim.testutil.Assert.assertThrows;
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import gim.commons.exceptions.IllegalValueException;
-import gim.model.tag.Date;
+import gim.model.date.Date;
 
 /**
  * Jackson-friendly version of {@link Date}.

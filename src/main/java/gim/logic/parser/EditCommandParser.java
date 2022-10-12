@@ -14,7 +14,7 @@ import gim.commons.core.index.Index;
 import gim.logic.commands.EditCommand;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
 import gim.logic.parser.exceptions.ParseException;
-import gim.model.tag.Date;
+import gim.model.date.Date;
 
 
 /**

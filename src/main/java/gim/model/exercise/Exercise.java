@@ -4,7 +4,7 @@ import static gim.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import gim.model.tag.Date;
+import gim.model.date.Date;
 
 /**
  * Represents an Exercise in the exercise tracker.
