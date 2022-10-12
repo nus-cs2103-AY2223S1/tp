@@ -726,7 +726,6 @@ A: Unfortunately, no. FoodRem is designed to run on your desktop/laptop such tha
 Q: How do I transfer my data to another Computer?<br>
 A: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FoodRem home folder.
 
-
 ## Future Extensions
 
 (NOT COMPLETED)
@@ -744,8 +743,7 @@ A: Install the app on the other computer and overwrite the empty data file it cr
 
 ## Acknowledgements
 
-FoodREM is a brownfield software project based off [AddressBook3](https://se-education.org/addressbook-level3/), taken under the [CS2103T Software Engineering module](https://nus-cs2103-ay2223s1.github.io/website/index.html) held by the School of Computing at the National University of Singapore.
-
+FoodRem is a brownfield software project based off [AddressBook3](https://se-education.org/addressbook-level3/), taken under the [CS2103T Software Engineering module](https://nus-cs2103-ay2223s1.github.io/website/index.html) held by the School of Computing at the National University of Singapore.
 
 ## Glossary
 
@@ -772,8 +770,7 @@ Example:
 
 #### Command Line
 
-> The interface that you, the user, interacts with FoodREM with. The Command Line is the box where you type your commands into.
-
+> The interface that you, the user, interacts with FoodRem with. The Command Line is the box where you type your commands into.
 
 ### E
 
@@ -811,7 +808,9 @@ Example: Creating a `potato` item
 ### P
 
 #### Parameter
+
 > Parameters identify values passed into your Commands. For example, when calling `add n/ItemName`, the parameter here is `n/ItemName`.
+
 ### Q
 
 #### Quantity
@@ -821,7 +820,9 @@ Example: Creating a `potato` item
 ### S
 
 #### Syntax
-> The structure of statements you type into the Command Line. 
+
+> The structure of statements you type into the Command Line.
+
 ### T
 
 #### Tag
