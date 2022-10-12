@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterLocCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.LocationContainsKeywordsPredicate;
@@ -17,11 +16,13 @@ public class FilterLocCommandParser {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterLocCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+", 2);
 
-        return new FilterLocCommand(new LocationContainsKeywordsPredicate(nameKeywords[0]));
+        return new FilterLocCommand(new LocationContainsKeywordsPredicate<>(nameKeywords[0]),
+                new LocationContainsKeywordsPredicate<>(nameKeywords[0]),
+                new LocationContainsKeywordsPredicate<>(nameKeywords[0]));
     }
 }
