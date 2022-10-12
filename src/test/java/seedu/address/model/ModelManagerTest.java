@@ -12,13 +12,22 @@ import static seedu.address.testutil.TypicalCustomers.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.CompletionStatus;
+import seedu.address.model.commission.Deadline;
+import seedu.address.model.commission.Fee;
+import seedu.address.model.commission.Title;
+import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.CustomerBuilder;
 
 public class ModelManagerTest {
 
@@ -114,6 +123,23 @@ public class ModelManagerTest {
     public void getFilteredCustomerList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCustomerList().remove(0));
     }
+
+    @Test
+    public void selectCustomer_newCustomer_resetsSelectedCommission() {
+        Customer testCustomer = new CustomerBuilder(ALICE).build();
+        modelManager.addCustomer(testCustomer);
+        Commission testCommission = new Commission.CommissionBuilder(
+                new Title("Commission"), new Fee(1.0), new Deadline(LocalDate.now()), new CompletionStatus(true),
+                new HashSet<>()).build();
+        ALICE.addCommission(testCommission);
+        modelManager.addCustomer(BENSON);
+        modelManager.selectCustomer(testCustomer);
+        modelManager.selectCommission(testCommission);
+        assertEquals(testCommission, modelManager.getSelectedCommission().getValue());
+        modelManager.selectCustomer(BENSON);
+        assertNull(modelManager.getSelectedCommission().getValue());
+    }
+
 
     @Test
     public void equals() {
