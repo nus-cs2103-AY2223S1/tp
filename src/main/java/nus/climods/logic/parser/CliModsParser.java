@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import nus.climods.logic.commands.Command;
 import nus.climods.logic.commands.FindCommand;
+import nus.climods.logic.commands.HelpCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 
 /**
@@ -39,6 +40,8 @@ public class CliModsParser {
         switch (commandWord) {
         case (FindCommand.COMMAND_WORD):
             return new FindCommandParser().parse(arguments);
+        case (HelpCommand.COMMAND_WORD):
+            return new HelpCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
