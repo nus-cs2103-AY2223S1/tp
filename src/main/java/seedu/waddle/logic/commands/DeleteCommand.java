@@ -18,7 +18,7 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the itinerary identified by the index number used in the displayed itinerary list.\n"
+            + ": Deletes the itinerary identified by the index number used in the displayed itinerary list. "
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
