@@ -237,12 +237,17 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isClientSpecific()) {
+            switch (commandResult.getCommandSpecific()) {
+            case CLIENT:
                 setListPanelToClient();
-            } else if (commandResult.isMeetingSpecific()) {
+                break;
+            case MEETING:
                 setListPanelToMeeting();
-            } else if (commandResult.isDetailedMeetingSpecific()) {
+                break;
+            case DETAILED_MEETING:
                 setListPanelToMeetingDetailed();
+                break;
+            default:
             }
 
             return commandResult;

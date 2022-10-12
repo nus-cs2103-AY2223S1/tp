@@ -66,16 +66,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isClientSpecific() {
-        return specific.equals(CommandSpecific.CLIENT);
-    }
-
-    public boolean isMeetingSpecific() {
-        return specific.equals(CommandSpecific.MEETING);
-    }
-
-    public boolean isDetailedMeetingSpecific() {
-        return specific.equals(CommandSpecific.DETAILED_MEETING);
+    public CommandSpecific getCommandSpecific() {
+        return specific;
     }
 
     @Override
