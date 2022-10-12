@@ -55,7 +55,7 @@ public class DeleteMeetingCommand extends Command {
         model.deleteMeeting(meeting);
         model.setClient(clientToEdit, editedClient);
 
-        return new CommandResult(generateSuccessMessage(editedClient), false, false, false, true);
+        return new CommandResult(generateSuccessMessage(editedClient), CommandSpecific.MEETING);
     }
 
     /**

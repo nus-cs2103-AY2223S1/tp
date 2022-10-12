@@ -55,7 +55,7 @@ public class AddClientCommand extends Command {
         }
 
         model.addClient(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, true, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandSpecific.CLIENT);
     }
     @Override
     public boolean equals(Object other) {

@@ -45,7 +45,9 @@ public class ViewMeetingCommand extends Command {
 
         Meeting meetingToView = lastShownList.get(targetIndex.getZeroBased());
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToView), false, false, false, true);
+        model.setDetailedMeeting(meetingToView);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToView), CommandSpecific.DETAILED_MEETING);
     }
 
     @Override

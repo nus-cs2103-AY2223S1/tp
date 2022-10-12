@@ -17,33 +17,33 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** Denotes whether the command is client specific. */
-    private final boolean isClient;
-
-    /** Denotes whether the command is meeting specific. */
-    private final boolean isMeeting;
-
+    /** Denotes what the command is specific to. */
+    private final CommandSpecific specific;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isClient, boolean isMeeting) {
-        if (isClient && isMeeting) {
-            throw new IllegalArgumentException("A command should not be both client and meeting specific.");
-        }
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, CommandSpecific specific) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.isClient = isClient;
-        this.isMeeting = isMeeting;
+        this.specific = specific;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code showHelp}, {@code exit}.
-     * Client/meeting specific fields are set to their default value.
+     * {@code specific} is set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, false, false);
+        this(feedbackToUser, showHelp, exit, null);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code specific}.
+     * {@code showHelp}, {@code exit} is set to their default value.
+     */
+    public CommandResult(String feedbackToUser, CommandSpecific specific) {
+        this(feedbackToUser, false, false, specific);
     }
 
     /**
@@ -51,7 +51,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, null);
     }
 
     public String getFeedbackToUser() {
@@ -67,11 +67,15 @@ public class CommandResult {
     }
 
     public boolean isClientSpecific() {
-        return isClient;
+        return specific.equals(CommandSpecific.CLIENT);
     }
 
     public boolean isMeetingSpecific() {
-        return isMeeting;
+        return specific.equals(CommandSpecific.MEETING);
+    }
+
+    public boolean isDetailedMeetingSpecific() {
+        return specific.equals(CommandSpecific.DETAILED_MEETING);
     }
 
     @Override

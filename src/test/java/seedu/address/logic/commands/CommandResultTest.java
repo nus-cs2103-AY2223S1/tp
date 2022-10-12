@@ -51,4 +51,29 @@ public class CommandResultTest {
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
     }
+
+    // -------------------------- Dependent ------------------------------------ //
+    @Test
+    public void isShowHelp_showHelpTrue_true() {
+        CommandResult cr = new CommandResult("", true, false);
+        assertTrue(cr.isShowHelp());
+    }
+
+    @Test
+    public void isShowHelp_listMeetingCommandExecute_false() {
+        CommandResult cr = new CommandResult("", false, false);
+        assertFalse(cr.isShowHelp());
+    }
+
+    @Test
+    public void isExit_exitCommandExecute_true() {
+        CommandResult cr = new CommandResult("", false, true);
+        assertTrue(cr.isExit());
+    }
+
+    @Test
+    public void isExit_exitCommandExecute_false() {
+        CommandResult cr = new CommandResult("", false, false);
+        assertFalse(cr.isExit());
+    }
 }
