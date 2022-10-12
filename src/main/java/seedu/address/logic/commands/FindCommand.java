@@ -8,9 +8,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -36,24 +38,44 @@ public class FindCommand extends Command {
             + PREFIX_PHONE + "9876 "
             + PREFIX_EMAIL + "johnd "
             + PREFIX_ADDRESS + "Clementi "
-            + PREFIX_TAG + "cough ";
+            + PREFIX_TAG + "cough "
+            + PREFIX_TAG + "tonsils";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final Predicate<Person> personPredicate;
+    private final Predicate<Appointment> appointmentPredicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindCommand(Predicate<Person> personPredicate, Predicate<Appointment> appointmentPredicate) {
+        this.personPredicate = personPredicate;
+        this.appointmentPredicate = appointmentPredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        model.updateFilteredPersonList(predicate);
+        /*
+        Finds all persons that satisfies the given personPredicate with at least one appointment that matches
+        the appointmentPredicate, and updates the model accordingly.
+         */
+        Predicate<Person> personFufillingBothPredicates =
+                personPredicate.and(person -> person.getAppointments().stream().anyMatch(appointmentPredicate));
+        model.updateFilteredPersonList(personFufillingBothPredicates);
 
+        /*
+        Creates a Predicate<Appointment> that returns true if an appointment's patient is one who satisfies
+        the above predicate.
+         */
         List<Person> validPersons = model.getFilteredPersonList();
-        AppointmentOfFilteredPersonsPredicate appointmentPredicate =
+        AppointmentOfFilteredPersonsPredicate appointmentOfFilteredPersonsPredicate =
                 new AppointmentOfFilteredPersonsPredicate(validPersons);
-        model.updateFilteredAppointmentList(appointmentPredicate);
+
+        /*
+        Finds all appointments that satisfies the given appointmentPredicate whose patient matches the personPredicate,
+        and updates the model accordingly.
+         */
+        Predicate<Appointment> appointmentFufillingBothPredicates =
+                appointmentOfFilteredPersonsPredicate.and(appointmentPredicate);
+        model.updateFilteredAppointmentList(appointmentFufillingBothPredicates);
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESULTS_LISTED_OVERVIEW,
@@ -63,8 +85,19 @@ public class FindCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FindCommand)) {
+            return false;
+        }
+
+        // state check
+        FindCommand otherFindCommand = (FindCommand) other;
+        return personPredicate.equals(otherFindCommand.personPredicate)
+                && appointmentPredicate.equals(otherFindCommand.appointmentPredicate);
     }
 }
