@@ -7,6 +7,7 @@ import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.ROLE_DESC_AMY;
+import static seedu.workbook.logic.commands.CommandTestUtil.STAGE_DESC_AMY;
 import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalInternships.AMY;
 
@@ -80,7 +81,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + COMPANY_DESC_AMY + ROLE_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY;
+                + EMAIL_DESC_AMY + STAGE_DESC_AMY;
 
         Internship expectedInternship = new InternshipBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

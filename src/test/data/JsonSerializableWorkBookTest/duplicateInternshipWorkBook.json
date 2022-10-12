@@ -4,11 +4,13 @@
     "role": "Software Engineer",
     "phone": "94351253",
     "email": "alice@example.com",
+    "stage": "HR interview",
     "tagged": [ "friends" ]
   }, {
     "company": "Alice Pauline",
     "role": "Software Engineer",
     "phone": "94351253",
-    "email": "pauline@example.com"
+    "email": "pauline@example.com",
+    "stage": "Rejected"
   } ]
 }

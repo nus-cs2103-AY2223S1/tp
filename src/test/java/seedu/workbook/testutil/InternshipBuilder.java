@@ -8,6 +8,7 @@ import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
+import seedu.workbook.model.internship.Stage;
 import seedu.workbook.model.tag.Tag;
 import seedu.workbook.model.util.SampleDataUtil;
 
@@ -20,12 +21,14 @@ public class InternshipBuilder {
     public static final String DEFAULT_ROLE = "God Developer";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_STAGE = "HR Interview";
 
 
     private Company company;
     private Role role;
     private Phone phone;
     private Email email;
+    private Stage stage;
     private Set<Tag> tags;
 
     /**
@@ -36,6 +39,7 @@ public class InternshipBuilder {
         role = new Role(DEFAULT_ROLE);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        stage = new Stage(DEFAULT_STAGE);
         tags = new HashSet<>();
     }
 
@@ -47,6 +51,7 @@ public class InternshipBuilder {
         role = internshipToCopy.getRole();
         phone = internshipToCopy.getPhone();
         email = internshipToCopy.getEmail();
+        stage = internshipToCopy.getStage();
         tags = new HashSet<>(internshipToCopy.getTags());
     }
 
@@ -91,8 +96,16 @@ public class InternshipBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Stage} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withStage(String stage) {
+        this.stage = new Stage(stage);
+        return this;
+    }
+
     public Internship build() {
-        return new Internship(company, role, phone, email, tags);
+        return new Internship(company, role, phone, email, stage, tags);
     }
 
 }

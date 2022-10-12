@@ -5,42 +5,49 @@
     "role" : "Software Engineer",
     "phone" : "94351253",
     "email" : "alice@example.com",
+    "stage" : "Technical Interview",
     "tagged" : [ "friends" ]
   }, {
     "company" : "Benson Meier",
     "role" : "Software Engineer",
     "phone" : "98765432",
     "email" : "johnd@example.com",
+    "stage" : "HR Interview",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "company" : "Carl Kurz",
     "role" : "Software Engineer",
     "phone" : "95352563",
     "email" : "heinz@example.com",
+    "stage" : "Rejected",
     "tagged" : [ ]
   }, {
     "company" : "Daniel Meier",
     "role" : "Software Engineer",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
+    "stage" : "Technical Interview",
     "tagged" : [ "friends" ]
   }, {
     "company" : "Elle Meyer",
     "role" : "Software Engineer",
     "phone" : "9482224",
     "email" : "werner@example.com",
+    "stage" : "Application Sent",
     "tagged" : [ ]
   }, {
     "company" : "Fiona Kunz",
     "role" : "Software Engineer",
     "phone" : "9482427",
     "email" : "lydia@example.com",
+    "stage" : "Online Assessment",
     "tagged" : [ ]
   }, {
     "company" : "George Best",
     "role" : "Software Engineer",
     "phone" : "9482442",
     "email" : "anna@example.com",
+    "stage" : "Team Lead Interview",
     "tagged" : [ ]
   } ]
 }
