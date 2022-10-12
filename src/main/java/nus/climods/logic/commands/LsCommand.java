@@ -1,6 +1,7 @@
 package nus.climods.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static nus.climods.commons.core.Messages.MESSAGE_MODULES_LISTED_OVERVIEW;
 
 import java.util.Optional;
 
@@ -37,6 +38,7 @@ public class LsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredModuleList(facultyCode, hasUser);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_MODULES_LISTED_OVERVIEW,
+                model.getFilteredModuleList().size()));
     }
 }
