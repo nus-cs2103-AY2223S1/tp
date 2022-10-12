@@ -1,6 +1,6 @@
 package seedu.travelr.testutil;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.travelr.logic.commands.AddCommand;
 import seedu.travelr.logic.commands.EditCommand.EditTripDescriptor;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;

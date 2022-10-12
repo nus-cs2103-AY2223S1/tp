@@ -3,11 +3,10 @@ package seedu.travelr.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.Trip;
+import seedu.travelr.model.trip.exceptions.DuplicateTripException;
+import seedu.travelr.testutil.TripBuilder;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,19 +16,19 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ANTARCTICA;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_SIGHTSEEING;
+import static seedu.travelr.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.TypicalTrips.SUN;
+import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
 
 public class AddressBookTest {
 
-    private final seedu.address.model.AddressBook addressBook = new seedu.address.model.AddressBook();
+    private final seedu.travelr.model.AddressBook addressBook = new seedu.travelr.model.AddressBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getTripList());
     }
 
     @Test
@@ -45,58 +44,63 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateTrips_throwsDuplicateTripException() {
+        // Two trips with the same identity fields
+        Trip editedAlice = new TripBuilder(SUN).withDescription(VALID_DESCRIPTION_ANTARCTICA).withEvents(VALID_EVENT_SIGHTSEEING)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<Trip> newTrips = Arrays.asList(SUN, editedAlice);
+        AddressBookStub newData = new AddressBookStub(newTrips);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateTripException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasTrip_nullTrip_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasTrip(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasTrip_tripNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasTrip(SUN));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasTrip_tripInAddressBook_returnsTrue() {
+        addressBook.addTrip(SUN);
+        assertTrue(addressBook.hasTrip(SUN));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasTrip_tripWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addTrip(SUN);
+        Trip editedAlice = new TripBuilder(SUN).withDescription(VALID_DESCRIPTION_ANTARCTICA).withEvents(VALID_EVENT_SIGHTSEEING)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasTrip(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void getTripList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTripList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose trips list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Trip> trips = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<Trip> trips) {
+            this.trips.setAll(trips);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Trip> getTripList() {
+            return trips;
+        }
+
+        @Override
+        public ObservableList<Event> getEventList() {
+            return null;
         }
     }
 

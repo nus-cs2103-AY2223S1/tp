@@ -3,35 +3,31 @@ package seedu.travelr.logic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
+import seedu.travelr.logic.commands.AddCommand;
+import seedu.travelr.logic.commands.CommandResult;
+import seedu.travelr.logic.commands.ListCommand;
+import seedu.travelr.logic.commands.exceptions.CommandException;
+import seedu.travelr.logic.parser.exceptions.ParseException;
+import seedu.travelr.model.Model;
+import seedu.travelr.model.ModelManager;
+import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.UserPrefs;
+import seedu.travelr.model.trip.Trip;
+import seedu.travelr.storage.JsonAddressBookStorage;
+import seedu.travelr.storage.JsonUserPrefsStorage;
+import seedu.travelr.storage.StorageManager;
+import seedu.travelr.testutil.TripBuilder;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_TRIP_DISPLAYED_INDEX;
+import static seedu.travelr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GERMANY;
+import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_GERMANY;
+import static seedu.travelr.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.TypicalTrips.GERMANY;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -48,7 +44,7 @@ public class LogicManagerTest {
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        logic = new seedu.address.logic.LogicManager(model, storage);
+        logic = new seedu.travelr.logic.LogicManager(model, storage);
     }
 
     @Test
@@ -60,7 +56,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_TRIP_DISPLAYED_INDEX);
     }
 
     @Test
@@ -77,21 +73,20 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        logic = new seedu.address.logic.LogicManager(model, storage);
+        logic = new seedu.travelr.logic.LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_GERMANY + DESCRIPTION_DESC_GERMANY;
+        Trip expectedTrip = new TripBuilder(GERMANY).withEvents().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addTrip(expectedTrip);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredTripList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTripList().remove(0));
     }
 
     /**

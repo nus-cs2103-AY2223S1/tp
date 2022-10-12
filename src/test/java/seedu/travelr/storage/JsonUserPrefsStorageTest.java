@@ -5,7 +5,6 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.commons.exceptions.DataConversionException;
 import seedu.travelr.model.UserPrefs;
-import seedu.travelr.storage.JsonUserPrefsStorage;
 
 import java.io.IOException;
 import java.nio.file.Path;
