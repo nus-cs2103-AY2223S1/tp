@@ -57,7 +57,7 @@ public class StudentRecordParser {
             return new ClearCommand();
 
         case ViewCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new ViewCommandParser().parse(arguments);
 
         case ViewAllCommand.COMMAND_WORD:
             return new ViewAllCommand();
