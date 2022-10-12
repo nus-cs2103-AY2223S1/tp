@@ -17,7 +17,8 @@ public class DateOfBirth {
     private static final String MESSAGE_ARGUMENT_CONSTRAINTS =
         "compareTo() of DateOfBirth must take in argument of type LocalDate";
 
-    private static final DateTimeFormatter checkFormatter = DateTimeFormatter.ofPattern("[d/M/yyyy][dd/M/yyyy][d/MM/yyyy][dd/MM/yyyy]");
+    private static final DateTimeFormatter checkFormatter = DateTimeFormatter
+            .ofPattern("[d/M/yyyy][dd/M/yyyy][d/MM/yyyy][dd/MM/yyyy]");
     private static final DateTimeFormatter logFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
 
