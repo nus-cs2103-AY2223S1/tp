@@ -30,6 +30,7 @@ public class DeleteLinkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a link from the module identified "
             + "by the index number used in the displayed module list. "
             + "Parameters: INDEX (must be a positive integer) "
+            + "The 'l/' flag should be appended to the front of each link"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE_LINK + "coursemology.org";
 
