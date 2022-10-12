@@ -148,6 +148,9 @@ public class Person implements DisplayItem {
 
     @Override
     public void setParent(DisplayItem o) throws ItemCannotBeParentException {
+        if (o == null) {
+            return;
+        }
         if (!(o instanceof AbstractContainerItem) || parents.contains(o)) {
             throw new ItemCannotBeParentException(o);
         }
@@ -157,6 +160,14 @@ public class Person implements DisplayItem {
 
     @Override
     public boolean isPartOfContext(DisplayItem o) {
-        return parents.contains(o);
+        if (o == null || parents.contains(o)) {
+            return true;
+        }
+        for (AbstractContainerItem parent: parents) {
+            if (parent.isPartOfContext(o)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
