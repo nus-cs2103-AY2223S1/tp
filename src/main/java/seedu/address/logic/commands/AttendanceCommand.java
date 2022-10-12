@@ -1,16 +1,20 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AttendanceCommandParser;
-import seedu.address.model.Model;
-import seedu.address.model.student.*;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.student.Attendance;
+import seedu.address.model.student.Response;
+import seedu.address.model.student.StuEmail;
+import seedu.address.model.student.StuName;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
 
 /**
  * Adds attendance of an existing student in SETA.

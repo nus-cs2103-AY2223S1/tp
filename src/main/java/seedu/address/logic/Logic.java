@@ -10,8 +10,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.question.Question;
-import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.student.Student;
+import seedu.address.model.tutorial.Tutorial;
 
 /**
  * API of the Logic component
