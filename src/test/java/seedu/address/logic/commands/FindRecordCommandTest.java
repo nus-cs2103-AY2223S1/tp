@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_RECORDS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.RECORD1;
 import static seedu.address.testutil.TypicalPersons.RECORD2;
 import static seedu.address.testutil.TypicalPersons.RECORD3;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,21 +15,16 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.person.RecordContainsKeywordsPredicate;
+import seedu.address.testutil.TestUtil;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindRecordCommand}.
  */
 public class FindRecordCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private void prepareModel() {
-        expectedModel.setFilteredRecordList(BENSON);
-        model.setFilteredRecordList(BENSON);
-        model.setRecordListDisplayed(true);
-    }
+    private Model model = TestUtil.prepareModel();
+    private Model expectedModel = TestUtil.prepareModel();
+
     @Test
     public void equals() {
         RecordContainsKeywordsPredicate firstPredicate =
@@ -61,7 +54,6 @@ public class FindRecordCommandTest {
 
     @Test
     public void execute_zeroKeywords_noRecordFound() {
-        prepareModel();
         String expectedMessage = String.format(MESSAGE_RECORDS_LISTED_OVERVIEW, 0);
         RecordContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindRecordCommand command = new FindRecordCommand(predicate);
@@ -73,9 +65,8 @@ public class FindRecordCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleRecordsFound() {
-        prepareModel();
         String expectedMessage = String.format(MESSAGE_RECORDS_LISTED_OVERVIEW, 3);
-        RecordContainsKeywordsPredicate predicate = preparePredicate("Cold Covid-19 SARS");
+        RecordContainsKeywordsPredicate predicate = preparePredicate("covid-19 sars cold");
         FindRecordCommand command = new FindRecordCommand(predicate);
         expectedModel.updateFilteredRecordList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
