@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -74,7 +73,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         try {
             index = ParserUtil.parseIndex(indexFromCommand);
         } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE), pe);
         }
         return new ModAddCommand(index, mods.get());
     }
