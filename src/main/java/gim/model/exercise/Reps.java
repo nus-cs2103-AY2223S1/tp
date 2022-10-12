@@ -9,13 +9,13 @@ import static java.util.Objects.requireNonNull;
  */
 public class Reps {
 
-    public static final String MESSAGE_CONSTRAINTS = "Reps can only take non negative integer values";
+    public static final String MESSAGE_CONSTRAINTS = "Reps can only take positive integer values, up to 3 digits";
 
     /*
      * The first character of the Reps must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
+    public static final String VALIDATION_REGEX = "^(?:([1-9])|([1-9][0-9])|([1-9][0-9][0-9]))$";
 
     public final String value;
 
