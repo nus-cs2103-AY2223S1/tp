@@ -53,6 +53,10 @@ public class Team {
         return tasks;
     }
 
+    public Task getTask(int n) {
+        return tasks.get(n);
+    }
+
     public void addMember(Person p) {
         members.add(p);
     }

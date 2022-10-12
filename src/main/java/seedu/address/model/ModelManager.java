@@ -198,6 +198,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
     public Person getPerson(seedu.address.model.person.Name name) {
         List<Person> persons = getFilteredPersonList();
         requireNonNull(name);

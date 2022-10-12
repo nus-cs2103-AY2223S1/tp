@@ -48,17 +48,16 @@ public class TaskDeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Team> lastShownTeamList = model.getFilteredTeamList();
-        List<Task> lastShownTaskList = model.getFilteredTaskList();
 
         if (teamIndex.getZeroBased() >= lastShownTeamList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
         }
 
-        if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
+        if (taskIndex.getZeroBased() >= lastShownTeamList.get(teamIndex.getZeroBased()).getTasks().getSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToDelete = lastShownTaskList.get(taskIndex.getZeroBased());
+        Task taskToDelete = lastShownTeamList.get(teamIndex.getZeroBased()).getTask(taskIndex.getZeroBased());
         model.deleteTask(teamIndex, taskIndex);
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskToDelete));
     }
@@ -67,6 +66,7 @@ public class TaskDeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskDeleteCommand // instanceof handles nulls
-                && taskIndex.equals(((TaskDeleteCommand) other).taskIndex));
+                && taskIndex.equals(((TaskDeleteCommand) other).taskIndex)
+                && teamIndex.equals(((TaskDeleteCommand) other).teamIndex));
     }
 }
