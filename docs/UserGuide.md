@@ -81,16 +81,22 @@ Format: `help`
 
 Adds an internship into the list.
 
-Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [web/WEBSITE]`
+Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​`
 
 * Possible options for `APPLICATION_PROCESS` : `APPLY`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
 * Case-insensitive: `Apply`, `APPLY`, and `apply` are all acceptable inputs.
+* `APPLICATION_PROCESS` will be set to `APPLY` by default.
 * `DATE` should be in dd-mm-yyyy format.
 * `DATE` will be set to today’s date by default.
-* `APPLICATION_PROCESS` will be set to `APPLY` by default.
+* `PHONE` will be set to "NA" by default.
+* `EMAIL` will be set to "NA" by default.
 * `WEBSITE` will be set to “NA” by default.
+* `REMARK` will be empty by default.
+
+💡 **Tip:** A person can have any number of tags (including 0)
 
 Examples:
+* `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLY d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
 * `add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`
 * `add n/Tiktok p/backend engineer`
 * `add n/Shopee p/frontend engineer pr/INTERVIEW d/14-09-2022`
@@ -213,7 +219,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`
 **Clear** | `clear`
 **Delete** | `delete INDEX...`<br> e.g., `delete 1 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
