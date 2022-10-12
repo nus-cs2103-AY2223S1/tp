@@ -37,7 +37,7 @@ Lists all items of specified type.
 
 - Examples:
     - List all suppliers the Salesy's address book
-        - `list /sup`
+        - `list`
     - List all tasks in Salesy.
         - `list /tasks`
 
@@ -46,7 +46,7 @@ Lists all items of specified type.
 
 Adds an item of a specified type with the given details
 
-- Format: `add /<item type> <item to be added>`
+- Format: `add n/NAME p/PHONE pr/PRICE i/ITEM a/ADDRESS t/Supplier` (supplier)
 
 - Things you can add:
     - Suppliers
@@ -56,14 +56,14 @@ Adds an item of a specified type with the given details
     - Add a task to Salesy
         - `add /task Pass ingredients to XXX Pte Ltd`
     - Add a supplier to Salesy’s address book
-        - `add /sup XXX Pte Ltd`
+        - `add n/ABC PTE LTD p/67009000 pr/$1.10 i/Egg a/Blk 140 Woodlands Ave 3 t/Supplier`
 
 
 ### Delete: `delete`
 
 Delete the specified item of the specified type from Salesy
 
-- Format: `delete /<item type> <index or unique_id>`
+- Format: `delete <index>` (supplier)
 
 - Things you can delete:
     - Suppliers
@@ -71,8 +71,7 @@ Delete the specified item of the specified type from Salesy
 
 - Examples:
     - Delete a supplier
-        - `delete /sup 1`
-        - `delete /sup alsdjfu80s0f0ssd90f` (might have uid based on timestamp for every supplier on top of just numbered lists)
+        - `delete 1`
     - Delete a task
         - `delete /task 2`
         - `delete /task sdjfklsdf89sd8fsd` (might have uid for every task based on timestamp)
@@ -111,31 +110,29 @@ Unmarks a previously marked task if necessary
 Edit a specified item's details
 
 - Format:
-    - Step 1: `edit /<item type to be edited> <item name>`
+    - Step 1: `edit /<index of item>`
     - Step 2: `/<what field to edit>`
     - Step 3: `<what you want to edit it to>`
 
 - Things you can edit:
-    - Supplier details (price, address and contact)
+    - Supplier details (name,phone,price,item,and address)
     - Tasks(type, time)
 
 - Examples:
     - Edit supplier details
-        - `edit /sup Mike Wazowski /address Monster, Inc.`
+        - `edit 3 pr/NEW PRICE`
 
 
-### Search: `search`
+### Find: `find`
 
-Search for items based on attribute name:value pair
+Find for items based on name
 
-- Format: `search /<attribute name> <attribute value>`
+- Format: `find <name value>`
 
 - Examples:
-    - Search suppliers with name John Cena
-        - `search /name John Cena`
-    - Search suppliers with address on Singapore
-        - `search /address Singapore` (will return all suppliers whose address contains “Singapore”)
-
+    - Find suppliers with name John Cena
+        - `find John Cena`
+   
 
 ### Sort: `sort`
 
@@ -158,13 +155,13 @@ Sorts and displays items based on sorting criteria
 
 ## Command summary
 
-| Action     | Format                                                                         | Examples                                                                              |
-|------------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| **list**   | `list /<item type>`                                                            | `list /sup`<br>`list /task`                                                           |
-| **add**    | `add /<item type> <index or unique_id>`                                        | `add /task Pass ingredients to XXX Pte Ltd`                                           |
-| **delete** | `delete /<item type> <index or unique_id>`                                     | `delete /sup 1`<br>`delete /task sdjfklsdf89sd8fsd` (uid for task based on timestamp) |
-| **mark**   | `mark <task to be marked>`                                                     | `mark restock cups`                                                                   |
-| **unmark** | `unmark <task to be unmarked>`                                                 | `unmark restock cups`                                                                 |
-| **edit**   | `edit /<item type to be edited> <item name> <br>/<attribute name> <new value>` | `edit /sup Mike Wazowski /address Monster, Inc.`                                      |
-| **search** | `search /<attribute name> <attribute value>`                                   | `search /name John Cena`                                                              |
-| **sort**   | `sort /<item type> <sort criteria> <ascending/descending>`                     | `sort /task time descending`                                                          |
+| Action                | Format                                                     | Examples                                                                         |
+|-----------------------|------------------------------------------------------------|----------------------------------------------------------------------------------|
+| **list** (supplier)   | `list `                                                    | `list `<br>`list /task`                                                       |
+| **add**  (supplier)   | `add n/NAME p/PHONE pr/PRICE i/ITEM a/ADDRESS t/Supplier`  | `add n/ABC PTE LTD p/67009000 pr/$1.10 i/Egg a/Blk 140 Woodlands Ave 3 t/Supplier` |
+| **delete** (supplier) | `delete <index>`                                           | `delete 1`                                                                    |
+| **mark**              | `mark <task to be marked>`                                 | `mark restock cups`                                                              |
+| **unmark**            | `unmark <task to be unmarked>`                             | `unmark restock cups`                                                            |
+| **edit**  (supplier)  | `edit <index of item> /<attribute name> <new value>`       | `edit 3 pr/NEW PRICE`                                                            |
+| **find**  (supplier)  | `find <name value>`                                        | `find John Cena`                                                                 |
+| **sort**              | `sort /<item type> <sort criteria> <ascending/descending>` | `sort /task time descending`                                                     |
