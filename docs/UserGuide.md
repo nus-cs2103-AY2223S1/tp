@@ -113,8 +113,19 @@ Format: `addStaff pn/PROJECT_NAME sn/STAFF_NAME si/INSURANCE_STATUS sd/STAFF_DEP
 * All fields for staff member are required
 
 Examples:
-* `addStaff DUKE sn/John Doe sp/98765432 si/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project DUKE.
-* `addStaff ROOFUS sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin si/false` Adds staff member named `Betsy Crown` to the project ROOFUS.
+* `addStaff pn/DUKE sn/John Doe sp/98765432 si/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project DUKE.
+* `addStaff pn/ROOFUS sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin si/false` Adds staff member named `Betsy Crown` to the project ROOFUS.
+
+### Deleting a staff member from Project : `delstaff`
+
+Deletes a staff member and all its info inside a project in the project list.
+
+Format: `delstaff pn/PROJECT_NAME sn/STAFF_NAME`
+
+Examples:
+
+* `delstaff pn/2103 sn/John` Delete staff member named `John` from project `2103`.
+* `delstaff pn/DUKE sn/Betty` Delete staff member named `Betty` from project `DUKE`.
 
 ### Locating Project by Name: `find`
 
