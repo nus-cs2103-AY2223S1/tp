@@ -117,7 +117,13 @@ public class DateOfBirth {
 
     @Override
     public boolean equals(Object other) {
-        return this.compareTo(other) == 0;
+        if (!(other instanceof DateOfBirth)) {
+            throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
+        }
+        if (this.isEmpty() & ((DateOfBirth) other).isEmpty()) {
+            return true;
+        }
+        return this.date.equals(((DateOfBirth)other).date);
     }
 
     @Override
