@@ -4,25 +4,18 @@ import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Represents a Group in the address book.
  */
 public class Group extends AbstractContainerItem {
 
-    private final String groupName;
-    private final Group parent;
-    private final UniqueTaskList taskList;
-
-    Group(String groupName) {
+    public Group(String groupName) {
         this(groupName, null);
     }
 
-    Group(String groupName, Group parent) {
-        this.groupName = groupName;
-        this.parent = parent;
-        taskList = new UniqueTaskList();
+    public Group(String groupName, Group parent) {
+        super(groupName, parent);
     }
 
     /**
@@ -31,7 +24,7 @@ public class Group extends AbstractContainerItem {
      * @return true if it exists in this Group, false otherwise
      */
     public boolean hasTask(Task task) {
-        return taskList.contains(task);
+        return contains(task);
     }
 
     /**
@@ -40,7 +33,7 @@ public class Group extends AbstractContainerItem {
      * @param task The task to add
      */
     public void addTask(Task task) {
-        taskList.add(task);
+        add(task);
     }
 
     /**
@@ -48,7 +41,7 @@ public class Group extends AbstractContainerItem {
      * @param task The task to remove
      */
     public void removeTask(Task task) {
-        taskList.remove(task);
+        remove(task);
     }
 
     @Override
@@ -73,7 +66,7 @@ public class Group extends AbstractContainerItem {
         if (!(o instanceof Group)) {
             return false;
         }
-        return ((Group) o).groupName.equals(groupName);
+        return ((Group) o).name.equals(name);
     }
 
     @Override
@@ -86,14 +79,17 @@ public class Group extends AbstractContainerItem {
 
     @Override
     public boolean isPartOfContext(DisplayItem o) {
-        if (parent != null) {
-            return parent.equals(o);
+        if (o == null) {
+            return true;
         }
-        return o == null;
-    }
 
-    @Override
-    public String toString() {
-        return groupName;
+        AbstractContainerItem tmp = parent;
+        while (tmp != null) {
+            if (tmp.equals(o)) {
+                return true;
+            }
+            tmp = tmp.getParent();
+        }
+        return false;
     }
 }
