@@ -68,9 +68,11 @@ class JsonAdaptedProject {
         deadline = source.getDeadline().toString();
         client = new JsonAdaptedClient(source.getClient());
         projectId = source.getId().toString();
+        /**
         issues.addAll(source.getIssueList().stream()
                 .map(JsonAdaptedIssue::new)
                 .collect(Collectors.toList()));
+         */
     }
 
     /**
@@ -111,9 +113,11 @@ class JsonAdaptedProject {
 
         final Client modelClient = client.toModelType();
         final List<Issue> modelIssues = new ArrayList<>();
+        /**
         for (JsonAdaptedIssue issue : issues) {
             modelIssues.add(issue.toModelType());
         }
+         */
 
         if (projectId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

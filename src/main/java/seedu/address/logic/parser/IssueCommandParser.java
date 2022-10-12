@@ -55,7 +55,6 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
     }
 
-    //TODO: implement
     private AddIssueCommand parseAddIssueCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_DESCRIPTION, PREFIX_DEADLINE,
@@ -96,7 +95,6 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         return null;
     }
 
-    //TODO: implement
     private DeleteIssueCommand parseDeleteIssueCommand(String arguments) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(arguments);

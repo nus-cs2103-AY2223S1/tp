@@ -25,7 +25,6 @@ public class DeleteIssueCommand extends IssueCommand {
             + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + "" + COMMAND_FLAG + " 1";
 
-    // TODO: Better message
     public static final String MESSAGE_SUCCESS = "Deleted Issue: %1$s";
 
     private final Index targetIndex;
@@ -34,7 +33,6 @@ public class DeleteIssueCommand extends IssueCommand {
         this.targetIndex = targetIndex;
     }
 
-    // TODO: implement
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
