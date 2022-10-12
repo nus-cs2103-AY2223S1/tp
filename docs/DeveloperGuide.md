@@ -279,7 +279,7 @@ Update inventory items:
 1. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items.
 1. As a purchasing manager, I can set the date my inventory will expire, so that I know when certain items need to be consumed or used.
 1. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.
-6. As a purchasing manager, I can decrease the inventory quantity of my items.
+1. As a purchasing manager, I can decrease the inventory quantity of my items.
 
 View Inventory Items:
 
