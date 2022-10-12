@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
+import seedu.address.model.person.field.Field;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,19 +30,21 @@ public class Person implements DisplayItem {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Fields fields = new Fields();
 
     private Set<AbstractContainerItem> parents = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Fields fields) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.fields.addAll(fields);
     }
 
     public Name getName() {
@@ -66,6 +70,10 @@ public class Person implements DisplayItem {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Fields getFields() {
+        return fields;
     }
 
     /**
@@ -125,6 +133,10 @@ public class Person implements DisplayItem {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+//        if (!fields.isEmpty()) {
+//            builder.append("; Fields: ")
+//                   .append(fields.toString());
+//        }
         return builder.toString();
     }
 
