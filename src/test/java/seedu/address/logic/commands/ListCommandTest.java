@@ -78,4 +78,23 @@ public class ListCommandTest {
         assertCommandSuccess(listCommand,
                 model, String.format(ListCommand.MESSAGE_SUCCESS, "NIL", "NIL", "NIL", "friends"), expectedModel);
     }
+
+    @Test
+    public void execute_allFiltersApplied_showsAlice() {
+        Predicate<Person> predicate = x -> {
+            boolean addressMatch = x.getAddress().value.contains("Jurong");
+            boolean categoryMatch = x.getCategory().categoryName.equals(Category.PATIENT_SYMBOL);
+            boolean genderMatch = x.getGender().gender.equals(Gender.FEMALE_SYMBOL);
+            boolean tagMatch = x.getTags().stream().anyMatch(y -> y.tagName == "friends");
+            return addressMatch && categoryMatch && genderMatch && tagMatch;
+        };
+        expectedModel.updateFilteredPersonList(predicate);
+
+        Command listCommand = new ListCommand(Optional.of(new Address("Jurong")),
+                Optional.of(new Category(Category.PATIENT_SYMBOL)),
+                Optional.of(new Gender(Gender.FEMALE_SYMBOL)),
+                Optional.of(new Tag("friends")));
+        assertCommandSuccess(listCommand,
+                model, String.format(ListCommand.MESSAGE_SUCCESS, "Jurong", "P", "F", "friends"), expectedModel);
+    }
 }
