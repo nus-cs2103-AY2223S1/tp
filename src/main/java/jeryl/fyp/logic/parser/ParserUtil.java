@@ -11,7 +11,6 @@ import jeryl.fyp.commons.util.StringUtil;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
-import jeryl.fyp.model.student.Phone;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.student.ProjectStatus;
@@ -53,18 +52,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses {@code String studentId} into an {@code StudentId} and returns it.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code StudentId} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static StudentId parseStudentId(String studentId) throws ParseException {
+        requireNonNull(studentId);
+        String trimmedId = studentId.trim();
+        if (!StudentId.isValidStudentId(trimmedId)) {
+            throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new StudentId(trimmedId);
     }
 
     /**
