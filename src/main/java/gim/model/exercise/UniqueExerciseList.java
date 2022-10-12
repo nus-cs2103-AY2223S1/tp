@@ -3,10 +3,11 @@ package gim.model.exercise;
 import static gim.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+//import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import gim.model.exercise.exceptions.DuplicateExerciseException;
+//import gim.model.exercise.exceptions.DuplicateExerciseException;
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,12 +28,18 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     private final ObservableList<Exercise> internalList = FXCollections.observableArrayList();
     private final ObservableList<Exercise> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    //     private final HashMap<Name, Exercise> test;
+
+    //     public UniqueExerciseList() {
+    //         test = new HashMap<>();
+    //     }
 
     /**
      * Returns true if the list contains an equivalent exercise as the given argument.
      */
     public boolean contains(Exercise toCheck) {
         requireNonNull(toCheck);
+        //        return test.containsKey(toCheck.getName());
         return internalList.stream().anyMatch(toCheck::isSameExercise);
     }
 
@@ -42,9 +49,12 @@ public class UniqueExerciseList implements Iterable<Exercise> {
      */
     public void add(Exercise toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateExerciseException();
-        }
+        //        if (!contains(toAdd)) {
+        //            test.put(toAdd.getName(), toAdd);
+        //        }
+        //        if (contains(toAdd)) {
+        //            throw new DuplicateExerciseException();
+        //        }
         internalList.add(toAdd);
     }
 
@@ -61,9 +71,9 @@ public class UniqueExerciseList implements Iterable<Exercise> {
             throw new ExerciseNotFoundException();
         }
 
-        if (!target.isSameExercise(editedExercise) && contains(editedExercise)) {
-            throw new DuplicateExerciseException();
-        }
+        //        if (!target.isSameExercise(editedExercise) && contains(editedExercise)) {
+        //            throw new DuplicateExerciseException();
+        //        }
 
         internalList.set(index, editedExercise);
     }
@@ -90,9 +100,9 @@ public class UniqueExerciseList implements Iterable<Exercise> {
      */
     public void setExercises(List<Exercise> exercises) {
         requireAllNonNull(exercises);
-        if (!exercisesAreUnique(exercises)) {
-            throw new DuplicateExerciseException();
-        }
+        //        if (!exercisesAreUnique(exercises)) {
+        //            throw new DuplicateExerciseException();
+        //        }
 
         internalList.setAll(exercises);
     }

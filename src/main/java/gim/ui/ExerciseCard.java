@@ -48,7 +48,7 @@ public class ExerciseCard extends UiPart<Region> {
         this.exercise = exercise;
         id.setText(displayedIndex + ". ");
         name.setText(exercise.getName().fullName);
-        weight.setText("Weight: " + exercise.getWeight().value);
+        weight.setText("Weight: " + exercise.getWeight().value + "kg");
         reps.setText("Reps: " + exercise.getReps().value);
         sets.setText("Sets: " + exercise.getSets().value);
         dates.getChildren().add(new Label(exercise.getDateString()));

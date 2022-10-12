@@ -76,9 +76,9 @@ public class EditCommand extends Command {
         Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
         Exercise editedExercise = createEditedExercise(exerciseToEdit, editExerciseDescriptor);
 
-        if (!exerciseToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
-        }
+        //        if (!exerciseToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {
+        //            throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
+        //        }
 
         model.setExercise(exerciseToEdit, editedExercise);
         model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);

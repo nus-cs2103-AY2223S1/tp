@@ -42,9 +42,9 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasExercise(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
-        }
+        //        if (model.hasExercise(toAdd)) {
+        //            throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
+        //        }
 
         model.addExercise(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

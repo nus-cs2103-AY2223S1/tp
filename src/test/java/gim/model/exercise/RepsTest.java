@@ -27,11 +27,15 @@ public class RepsTest {
         // invalid Reps
         assertFalse(Reps.isValidReps("")); // empty string
         assertFalse(Reps.isValidReps(" ")); // spaces only
-        assertFalse(Sets.isValidSets("abc")); // not an integer
-        assertFalse(Sets.isValidSets("-1")); // negative integer
+        assertFalse(Reps.isValidReps("abc")); // not an integer
+        assertFalse(Reps.isValidReps("-1")); // negative integer
+        assertFalse(Reps.isValidReps("-1.5")); // negative decimal
+        assertFalse(Reps.isValidReps("0")); // zero
+        assertFalse(Reps.isValidReps("1.5")); // positive decimal
+        assertFalse(Reps.isValidReps("1000")); // positive above 3 digits
 
         // valid Reps
-        assertTrue(Reps.isValidReps("0")); // single digit
+        assertTrue(Reps.isValidReps("1")); // single digit
         assertTrue(Reps.isValidReps("15")); // double digit
         assertTrue(Reps.isValidReps("123")); // triple digit
     }
