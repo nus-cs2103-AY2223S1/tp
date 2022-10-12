@@ -75,7 +75,7 @@ public class PersonBuilder {
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
-        this.address = address.isEmpty() ? new Address() : new Address(address);
+        this.address = new Address(address);
         return this;
     }
 
@@ -91,7 +91,7 @@ public class PersonBuilder {
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
-        this.email = email.isEmpty() ? new Email() : new Email(email);
+        this.email = new Email(email);
         return this;
     }
 

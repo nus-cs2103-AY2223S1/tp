@@ -4,7 +4,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.Person;
 
 /**
  * Marks an appointment for the given patient as complete.
@@ -33,7 +32,6 @@ public class MarkCommand extends SelectAppointmentCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Person personToMark = getTargetPerson(model);
         Appointment appointmentToMark = getTargetAppointment(model);
 
         if (appointmentToMark.isMarked()) {
@@ -41,8 +39,6 @@ public class MarkCommand extends SelectAppointmentCommand {
         }
 
         appointmentToMark.mark();
-        model.refreshPerson(personToMark);
-        model.refreshAppointment(appointmentToMark);
         return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS,
                 indexOfAppointment.getOneBased(),
                 getTargetPerson(model).getName()));

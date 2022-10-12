@@ -60,9 +60,8 @@ public class CancelCommand extends SelectAppointmentCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
         patientToCancelAppt.cancelAppointment(super.indexOfAppointment.getZeroBased());
-        model.refreshPerson(patientToCancelAppt);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.deleteAppointment(toBeCancelledAppt);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
         return new CommandResult(MESSAGE_CANCEL_APPOINTMENT_SUCCESS + patientToCancelAppt.getName());

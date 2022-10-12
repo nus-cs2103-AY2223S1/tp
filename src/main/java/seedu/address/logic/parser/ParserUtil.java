@@ -101,8 +101,8 @@ public class ParserUtil {
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
-        if (address == "") {
-            return new Address();
+        if (address.isEmpty()) {
+            return new Address("");
         }
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
@@ -118,8 +118,8 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
-        if (email == "") {
-            return new Email();
+        if (email.isEmpty()) {
+            return new Email("");
         }
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {

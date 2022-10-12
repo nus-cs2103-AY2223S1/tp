@@ -22,18 +22,13 @@ public class Address {
     /**
      * Constructs an {@code Address}.
      *
-     */
-    public Address() {
-        value = "";
-    }
-    /**
-     * Constructs an {@code Address}.
-     *
      * @param address A valid address.
      */
     public Address(String address) {
         requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        if (!address.isEmpty()) {
+            checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        }
         value = address;
     }
 

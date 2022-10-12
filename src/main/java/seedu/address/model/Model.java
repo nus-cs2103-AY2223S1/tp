@@ -78,8 +78,6 @@ public interface Model {
     void deleteAppointment(Appointment target);
     void deleteAppointments(List<Appointment> appointments);
     void setAppointment(Appointment target, Appointment editedAppointment);
-    void refreshAppointment(Appointment target);
-    void refreshAppointments(List<Appointment> appointments);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -87,12 +85,6 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
-
-    /**
-     * Refreshes the given person {@code target}, forcing the app to visually show any updated changes back to the user.
-     * {@code target} must exist in the address book.
-     */
-    void refreshPerson(Person target);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

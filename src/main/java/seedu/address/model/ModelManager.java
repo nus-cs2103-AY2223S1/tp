@@ -126,20 +126,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void refreshAppointment(Appointment target) {
-        requireNonNull(target);
-
-        addressBook.refreshAppointment(target);
-    }
-
-    @Override
-    public void refreshAppointments(List<Appointment> appointments) {
-        requireNonNull(appointments);
-
-        addressBook.refreshAppointments(appointments);
-    }
-
-    @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
@@ -150,13 +136,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
-    }
-
-    @Override
-    public void refreshPerson(Person target) {
-        requireNonNull(target);
-
-        addressBook.refreshPerson(target);
     }
 
     //=========== Filtered Person List Accessors =============================================================
