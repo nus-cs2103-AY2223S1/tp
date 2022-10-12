@@ -17,8 +17,8 @@ title: User Guide
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional.<br>
   e.g `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
-* Items with `...` after them can be used multiple times including zero times.<br>
-  e.g. `[c/CLASS_NAME]...` can be used as ` ` (i.e. 0 times), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
+* Items with `...` after them can be used multiple times.<br>
+  e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
@@ -34,8 +34,8 @@ title: User Guide
 | `delete`   | `delete INDEX`                           |
 | `find`     | `find KEYWORD [MORE_KEYWORDS...]`        |
 | `list`     | `list`                                   |
-| `addc`     | `addc c/CLASS_NAME`                      |
-| `deletec`  | `deletec c/CLASS_NAME`                   |
+| `addc`     | `addc c/CLASS_NAME...`                   |
+| `deletec`  | `deletec c/CLASS_NAME...`                |
 | `assign`   | `assign INDEX... c/CLASS_NAME`           |
 | `unassign` | `unassign INDEX... c/CLASS_NAME`         |
 | `listc`    | `listc`                                  |
@@ -147,37 +147,37 @@ Format: `list`
 - Note that `list` has different behavior in focus mode and outside focus mode.
 - In the focus mode, only students within the class will be listed.
 
-### Add a class: `addc`
+### Add classes: `addc`
 
 {% include note.html content="
 
-Adds a class.
+Adds the given classes to TA Assist.
 
 " %}
 
-Format: `addc c/CLASS_NAME`
+Format: `addc c/CLASS_NAME...`
 
-- Adds the class named `CLASS_NAME`
+- Adds the classes named `CLASS_NAME`.
 
 Examples:
 
-- `addc c/CS2103T` adds the class named **CS2103T**.
+- `addc c/CS2103T c/CS2100` adds the classes named **CS2103T** and **CS2100**.
 
-### Delete a class: `deletec`
+### Delete classes: `deletec`
 
 {% include note.html content="
 
-Deletes a class.
+Deletes the given classes from TA Assist.
 
 " %}
 
-Format: `deletec c/CLASS_NAME`
+Format: `deletec c/CLASS_NAME...`
 
-- Deletes the class named `CLASS_NAME`
+- Deletes the classes named `CLASS_NAME`.
 
 Examples:
 
-- `deletec c/CS2103T` deletes the class named **CS2103T**.
+- `deletec c/CS2103T c/CS2100` deletes the classes named **CS2103T** and **CS2100**.
 
 ### Assign students to class: `assign`
 
@@ -189,7 +189,7 @@ Assigns students to a class.
 
 Format: `assign INDEX... c/CLASS_NAME`
 
-- Assigns students at the given indices to an existing `CLASS_NAME` class
+- Assigns students at the given indices to an existing `CLASS_NAME` class.
 
 Example:
 
@@ -205,7 +205,7 @@ Unassigns students from a class.
 
 Format: `unassign INDEX... c/CLASS_NAME`
 
-- Unassigns students at the given indices from an existing `CLASS_NAME` class
+- Unassigns students at the given indices from an existing `CLASS_NAME` class.
 
 Example:
 
@@ -257,7 +257,7 @@ The following commands are only available in **focus mode.**
 | --------- | ------------------------------------ |
 | `list`    | `list`                               |
 | `session` | `session s/SESSION_NAME [d/DATE]`    |
-| `deletes` | `deletes s/SESSION_NAME`             |
+| `deletes` | `deletes s/SESSION_NAME...`          |
 | `grade`   | `grade INDEX v/VALUE s/SESSION_NAME` |
 | `view`    | `view INDEX s/SESSION_NAME`          |
 | `lists`   | `lists`                              |
@@ -293,21 +293,21 @@ Example:
 
 - `session s/Lab1 d/11-08-2022` will create a session `Lab1` on 11  August 2022.
 
-### Delete a session: `deletes`
+### Delete sessions: `deletes`
 
 {% include note.html content="
 
-Deletes a session.
+Deletes the given sessions from the focused class.
 
 " %}
 
-Format: `deletes s/SESSION_NAME`
+Format: `deletes s/SESSION_NAME...`
 
-- Deletes the session named `SESSION_NAME`
+- Deletes the sessions named `SESSION_NAME`
 
 Examples:
 
-- `deletes s/Lab1` deletes the session named **Lab1**.
+- `deletes s/Lab1 s/Assignment3` deletes the session named **Lab1** and **Assignment3**.
 
 ### Grade session: `grade`
 
