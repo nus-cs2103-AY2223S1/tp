@@ -4,7 +4,7 @@
     -border-color: #9B9A97;
     -cell-color-even: white;
     -cell-even-selected: #CECDCA;
-    -cell-color-odd: #EBECED;
+    -menu-bg: #EBECED;
     -cell-odd-selected: #9B9A97;
     -cell-label: #FBE4E4;
 }
@@ -84,7 +84,7 @@
 }
 
 .table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
+    -fx-background-color: -bg-color;
 }
 
 .split-pane:horizontal .split-pane-divider {
@@ -108,7 +108,7 @@
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
-    -fx-border-color: -border-color transparent transparent transparent;
+    -fx-border-color: transparent transparent -border-color transparent;
 }
 
 .list-cell:filled:even {
@@ -120,7 +120,7 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: -cell-even-selected;
+    -fx-background-color: -bg-color;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -139,9 +139,19 @@
 }
 
 .cell_small_label {
-    -fx-font-family: "Quicksand Light";
+    -fx-font-family: "Quicksand";
     -fx-font-size: 13px;
     -fx-text-fill: -font-color;
+}
+
+.cell_checkbox {
+    -fx-padding: 0 20 0 0;
+}
+
+.table_header {
+    -fx-border-color: transparent transparent -border-color transparent;
+    -fx-font-size: 13px;
+    -fx-font-family: "Quicksand Bold";
 }
 
 .stack-pane {
@@ -205,12 +215,12 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#FFFFFF, 20%);
+    -fx-background-color: -menu-bg;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Quicksand Light";
+    -fx-font-family: "Quicksand";
     -fx-text-fill: -font-color;
     -fx-opacity: 0.9;
 }
@@ -335,6 +345,7 @@
     -fx-border-color: -border-color -border-color -border-color -border-color;
     -fx-border-insets: 0;
     -fx-border-width: 1;
+    -fx-border-radius: 5;
     -fx-font-family: "Quicksand Bold";
     -fx-font-size: 13pt;
     -fx-text-fill: -font-color;
@@ -347,6 +358,7 @@
 #resultDisplay .content {
     -fx-background-color: transparent, transparent, transparent, transparent;
     -fx-background-radius: 0;
+    -fx-border-radius: 5;
 }
 
 #tags {
