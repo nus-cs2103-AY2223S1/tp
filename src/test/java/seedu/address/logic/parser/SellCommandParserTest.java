@@ -4,10 +4,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GOODS_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRICE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUANTITY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS_BUY_ORANGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS_SELL_PAPAYA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_SELL_PAPAYA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BUY_ORANGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SELL_PAPAYA;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
@@ -62,6 +65,31 @@ public class SellCommandParserTest {
         assertParseFailure(parser, "1" + VALID_GOODS_SELL_PAPAYA + VALID_PRICE_SELL_PAPAYA,
                MESSAGE_INVALID_FORMAT);
 
+
+    }
+
+    @Test
+    public void parse_invalidFormat_failure() {
+        assertParseFailure(parser, "1" + INVALID_QUANTITY + VALID_GOODS_SELL_PAPAYA + INVALID_PRICE,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_QUANTITY_SELL_PAPAYA + VALID_GOODS_SELL_PAPAYA + VALID_PRICE_SELL_PAPAYA,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_QUANTITY_BUY_ORANGE + VALID_GOODS_BUY_ORANGE
+                + VALID_PRICE_SELL_PAPAYA, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_QUANTITY_BUY_ORANGE,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_QUANTITY_SELL_PAPAYA + VALID_QUANTITY_SELL_PAPAYA
+                + VALID_QUANTITY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_QUANTITY + VALID_GOODS,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_GOODS + VALID_PRICE,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_QUANTITY_BUY_ORANGE + VALID_QUANTITY_BUY_ORANGE,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_GOODS_SELL_PAPAYA + VALID_GOODS_SELL_PAPAYA,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_GOODS + VALID_GOODS_SELL_PAPAYA + VALID_QUANTITY_SELL_PAPAYA,
+                MESSAGE_INVALID_FORMAT);
 
     }
 
