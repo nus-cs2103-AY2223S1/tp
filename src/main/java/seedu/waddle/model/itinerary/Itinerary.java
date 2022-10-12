@@ -5,7 +5,7 @@ import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.waddle.model.item.Item;
-import seedu.waddle.model.item.ItemList;
+import seedu.waddle.model.item.UniqueItemList;
 
 /**
  * Represents a Person in the address book.
@@ -20,14 +20,14 @@ public class Itinerary {
     private final Date endDate;
     private final People people;
 
-    private ItemList itemList;
+    private UniqueItemList uniqueItemList;
 
     /**
      * Every field must be present and not null.
      */
 
     // TODO
-    // Have to ensure startDate is < endDate
+    // Have to ensure startDate is < endDate.
     public Itinerary(Name name, Country country, Date startDate, Date endDate, People people) {
         requireAllNonNull(name, country, startDate, endDate, people);
         this.name = name;
@@ -35,7 +35,7 @@ public class Itinerary {
         this.startDate = startDate;
         this.endDate = endDate;
         this.people = people;
-        this.itemList = new ItemList();
+        this.uniqueItemList = new UniqueItemList();
     }
 
     public Name getName() {
@@ -58,6 +58,10 @@ public class Itinerary {
         return people;
     }
 
+    public UniqueItemList getItemList() {
+        return uniqueItemList;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -72,11 +76,19 @@ public class Itinerary {
     }
 
     public boolean hasItem(Item item) {
-        return this.itemList.contains(item);
+        return this.uniqueItemList.contains(item);
     }
 
     public void addItem(Item item) {
-        this.itemList.add(item);
+        this.uniqueItemList.add(item);
+    }
+
+    public Item removeItem(int index) {
+        return this.uniqueItemList.remove(index);
+    }
+
+    public int getItemSize() {
+        return this.uniqueItemList.getSize();
     }
 
     /**

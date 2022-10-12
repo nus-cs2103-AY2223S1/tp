@@ -6,14 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Region;
 import seedu.waddle.commons.core.LogsCenter;
 import seedu.waddle.model.item.Item;
 
 /**
  * Panel containing the list of Items.
  */
-public class ItemListPanel extends UiPart<Region> {
+public class ItemListPanel extends ListPanel {
     private static final String FXML = "ItemListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ItemListPanel.class);
 
@@ -27,7 +26,6 @@ public class ItemListPanel extends UiPart<Region> {
         super(FXML);
         itemListView.setItems(itemList);
         itemListView.setCellFactory(listView -> new ItemListPanel.ItemListViewCell());
-
     }
 
     /**

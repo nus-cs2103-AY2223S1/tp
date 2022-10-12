@@ -14,10 +14,24 @@ import seedu.waddle.model.itinerary.exceptions.ItemNotFoundException;
 /**
  * Represents the list of items in an itinerary.
  */
-public class ItemList implements Iterable<Item> {
+public class UniqueItemList implements Iterable<Item> {
     private final ObservableList<Item> internalList = FXCollections.observableArrayList();
     private final ObservableList<Item> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    /**
+     * Get an item in the list.
+     */
+    public Item get(int index) {
+        return internalList.get(index);
+    }
+
+    /**
+     * Returns number of items in the list.
+     */
+    public int getSize() {
+        return internalList.size();
+    }
 
     /**
      * Returns true if the list contains an equivalent item as the given argument.
@@ -63,14 +77,16 @@ public class ItemList implements Iterable<Item> {
      * Removes the equivalent item from the list.
      * The item must exist in the list.
      */
-    public void remove(Item toRemove) {
+    public Item remove(int index) {
+        Item toRemove = get(index);
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new ItemNotFoundException();
         }
+        return toRemove;
     }
 
-    public void setItemList(ItemList replacement) {
+    public void setItemList(UniqueItemList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -103,8 +119,8 @@ public class ItemList implements Iterable<Item> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ItemList // instanceof handles nulls
-                && internalList.equals(((ItemList) other).internalList));
+                || (other instanceof UniqueItemList // instanceof handles nulls
+                && internalList.equals(((UniqueItemList) other).internalList));
     }
 
     @Override

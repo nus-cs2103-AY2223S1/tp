@@ -37,7 +37,9 @@ public class StageCommand extends Command {
         // change to home stage in stage manager
         stageManager.switchStage(selectedStage);
 
-        return new CommandResult(String.format(MESSAGE_STAGE_SWITCH_SUCCESS, selectedStage.toString().toLowerCase()));
+        // return command result with stage change to selectedStage
+        return new CommandResult(String.format(MESSAGE_STAGE_SWITCH_SUCCESS, selectedStage.toString().toLowerCase()),
+                selectedStage);
     }
 
     @Override

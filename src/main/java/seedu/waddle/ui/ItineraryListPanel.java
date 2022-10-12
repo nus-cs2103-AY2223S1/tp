@@ -6,14 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Region;
 import seedu.waddle.commons.core.LogsCenter;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
  * Panel containing the list of Iineraries.
  */
-public class ItineraryListPanel extends UiPart<Region> {
+public class ItineraryListPanel extends ListPanel {
     private static final String FXML = "ItineraryListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ItineraryListPanel.class);
 
