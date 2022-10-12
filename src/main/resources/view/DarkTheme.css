@@ -242,7 +242,6 @@
     -fx-background-color: derive(#B1C5C3, 30%);
     -fx-font-family: "Courier New";
     -fx-font-size: 11pt;
-    -fx-text-fill: black;
 }
 
 .button:hover {

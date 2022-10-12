@@ -33,9 +33,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label module;
     @FXML
-    private Label studentId;
-    @FXML
     private Label year;
+    @FXML
+    private Label studentId;
     @FXML
     private Label phone;
     @FXML
@@ -54,7 +54,8 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         name.setText(person.getName().fullName);
         module.setText(person.getModule().value);
-        // studentId.setText(person.getStudentId().value);
+        year.setText("year " + person.getYear().value);
+        studentId.setText(person.getStudentId().value);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
         comment.setText(person.getComment().value);

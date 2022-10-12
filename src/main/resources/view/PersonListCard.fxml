@@ -22,6 +22,10 @@
         <Label fx:id="module" styleClass="cell_module_label" text="\$module" />
         <FlowPane fx:id="tags"/>
       </HBox>
+      <HBox spacing="15">
+        <Label fx:id="year" styleClass="cell_small_label" text="\$year" />
+        <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
+      </HBox>
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="comment" styleClass="cell_small_label" text="\$comment" />
