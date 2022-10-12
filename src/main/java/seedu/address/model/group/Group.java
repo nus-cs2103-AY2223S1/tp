@@ -1,8 +1,5 @@
 package seedu.address.model.group;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
@@ -13,22 +10,19 @@ import seedu.address.model.item.EntryType;
 public class Group extends AbstractContainerItem {
 
     public static final String MESSAGE_CONSTRAINTS = "A group name should only consist "
-            + "of alphanumeric characters and should not include whitespaces or "
-            + "slashes.\n";
+            + "of alphanumeric characters, underscores and hyphens only.\n";
 
-    public static final String VALIDATION_REGEX = "[{Alnum}]*";
+    public static final String VALIDATION_REGEX = "[a-zA-Z0-9_-]+";
 
     private final String groupName;
-    private final Group parent;
 
-    Group(String groupName) {
-        this(groupName, null);
+    public Group(String groupName) {
+        this(groupName, null, null);
     }
 
-    Group(String groupName, String fullPath, Group parent) {
-        super(parent);
+    public Group(String groupName, Group parent, String fullPath) {
+        super(parent, fullPath);
         this.groupName = groupName;
-        this.parent = parent;
     }
 
     /**
@@ -73,14 +67,6 @@ public class Group extends AbstractContainerItem {
             return false;
         }
         return stronglyEqual((Group) obj);
-    }
-
-    @Override
-    public boolean isPartOfContext(DisplayItem o) {
-        if (parent != null) {
-            return parent.equals(o);
-        }
-        return o == null;
     }
 
     @Override

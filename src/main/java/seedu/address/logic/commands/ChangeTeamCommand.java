@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.team.Path;
+import seedu.address.model.group.Path;
 
 /**
  * Change the scope of the team to a different team.
@@ -14,7 +14,8 @@ public class ChangeTeamCommand extends Command {
     public static final String COMMAND_WORD = "ct"; // "ct" stands for change team
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Change to a currently "
-            + "existing team. Team names should not have whitespaces or any \"/\" command.\n"
+            + "existing team. Team names should be alphanumeric and may contain hyphens and "
+            + "underscores.\n"
             + "Parameters: team_name/team_within_team_name\n"
             + "Example: " + COMMAND_WORD + " team_1/team_a";
 
@@ -38,9 +39,16 @@ public class ChangeTeamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        String newPath = path.getPath();
+        if (model.isInSamePath(newPath)) {
+            throw new CommandException(MESSAGE_IN_CURRENT_TEAM);
+        }
 
+        if (!model.canChangeContext(newPath)) {
+            throw new CommandException(MESSAGE_NO_TEAM_FOUND);
+        }
 
-        //TODO logic, check if team exists in path and if user is in current team path.
+        model.changeContext(newPath);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

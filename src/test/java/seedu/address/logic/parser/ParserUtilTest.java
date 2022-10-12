@@ -19,7 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.team.Path;
+import seedu.address.model.group.Path;
 import seedu.address.model.team.Team;
 
 public class ParserUtilTest {

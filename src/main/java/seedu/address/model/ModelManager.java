@@ -227,4 +227,40 @@ public class ModelManager implements Model {
         updateFilteredPersonList(List.of());
         updateFilteredTeamList(List.of());
     }
+
+    @Override
+    public boolean isInSamePath(String path) {
+        AbstractContainerItem currContext = currentContext.orElse(null);
+
+        if (currContext != null) {
+            return path == currContext.getFullPathName();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean canChangeContext(String path) {
+        ObservableList<Group> groupList = addressBook.getTeamsList();
+        for (Group group : groupList) {
+            if (path == group.getFullPathName()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public void changeContext(String path) {
+        ObservableList<Group> groupList = addressBook.getTeamsList();
+        for (Group group : groupList) {
+            if (path == group.getFullPathName()) {
+                updateContextContainer(group);
+            }
+        }
+    }
+
+    public AbstractContainerItem getCurrentContext() {
+        return currentContext.orElse(null);
+    }
 }

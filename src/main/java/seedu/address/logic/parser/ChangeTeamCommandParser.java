@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.ChangeTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.team.Path;
+import seedu.address.model.group.Path;
 
 /**
  * Parses input arguments and creates a new ChangeTeamCommand object

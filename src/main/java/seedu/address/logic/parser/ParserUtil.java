@@ -10,13 +10,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
+import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.team.Path;
-import seedu.address.model.team.Team;
+import seedu.address.model.group.Path;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -126,17 +126,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String path} into a {@code Path}.
+     * Parses {@code String path} into a {@code Group}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param path to the currently nested team.
-     * @return a Path object that specifies a potential path to a nested team.
-     * @throws ParseException if the given {@Code Path} is not valid.
+     * @param path to the currently nested group.
+     * @return a Path object that specifies a group based on that path.
+     * @throws ParseException if the given {@Code path} is not valid.
      */
     public static Path parsePath(String path) throws ParseException {
         requireNonNull(path);
         String trimmedPath = path.trim();
-        if (!Path.isValidPath(trimmedPath)) {
+        if (!AbstractContainerItem.isValidPath(trimmedPath)) {
             throw new ParseException(Path.MESSAGE_CONSTRAINTS);
         }
         return new Path(trimmedPath);
