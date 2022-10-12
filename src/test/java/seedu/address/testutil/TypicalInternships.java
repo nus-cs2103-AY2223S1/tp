@@ -25,35 +25,35 @@ import seedu.address.model.internship.Internship;
 public class TypicalInternships {
 
     public static final Internship ALIBABA = new InternshipBuilder().withName("Alibaba")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("careers@alibaba.com")
+            .withAddress("30 Oct 2022").withEmail("careers@alibaba.com")
             .withPhone("94351253").withApplicationStatus(ApplicationStatus.Applied)
             .withTags("friends").build();
     public static final Internship BINANCE = new InternshipBuilder().withName("Binance")
-            .withAddress("311, Clementi Ave 2, #02-25")
+            .withAddress("5 Oct 2022")
             .withEmail("careers@binance.com").withPhone("98765432").withApplicationStatus(ApplicationStatus.Applied)
             .withTags("owesMoney", "friends").build();
     public static final Internship CITADEL = new InternshipBuilder().withName("Citadel").withPhone("95352563")
-            .withEmail("careers@citadel.com").withAddress("wall street")
+            .withEmail("careers@citadel.com").withAddress("23 Oct 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
     public static final Internship DELL = new InternshipBuilder().withName("Dell").withPhone("87652533")
-            .withEmail("careers@dell.com").withAddress("10th street")
+            .withEmail("careers@dell.com").withAddress("30 Sep 2022")
             .withApplicationStatus(ApplicationStatus.Applied).withTags("friends").build();
     public static final Internship EBAY = new InternshipBuilder().withName("Ebay").withPhone("9482224")
-            .withEmail("careers@ebay.com").withAddress("michegan ave")
+            .withEmail("careers@ebay.com").withAddress("27 Oct 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
     public static final Internship FACEBOOK = new InternshipBuilder().withName("Facebook").withPhone("9482427")
-            .withEmail("careers@facebook.com").withAddress("little tokyo")
+            .withEmail("careers@facebook.com").withAddress("3 Nov 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
     public static final Internship GOLDMAN = new InternshipBuilder().withName("Goldman Sachs").withPhone("9482442")
-            .withEmail("careers@goldmansachs.com").withAddress("4th street")
+            .withEmail("careers@goldmansachs.com").withAddress("21 Oct 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
 
     // Manually added
     public static final Internship HUAWEI = new InternshipBuilder().withName("Huawei").withPhone("8482424")
-            .withEmail("careers@huawei.com").withAddress("little india")
+            .withEmail("careers@huawei.com").withAddress("15 Oct 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
     public static final Internship INDEED = new InternshipBuilder().withName("Indeed").withPhone("8482131")
-            .withEmail("careers@indeed.com").withAddress("chicago ave")
+            .withEmail("careers@indeed.com").withAddress("29 Sep 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
 
     // Manually added - Internship's details found in {@code CommandTestUtil}

@@ -34,8 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_TIKTOK = "careers@tiktok.com";
     public static final String VALID_APPLICATION_STATUS_GOOGLE = "applied";
     public static final String VALID_APPLICATION_STATUS_TIKTOK = "applied";
-    public static final String VALID_ADDRESS_GOOGLE = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_TIKTOK = "Block 123, Bobby Street 3";
+    public static final String VALID_ADDRESS_GOOGLE = "30 Oct 2022";
+    public static final String VALID_ADDRESS_TIKTOK = "2 Nov 2022";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
