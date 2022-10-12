@@ -274,10 +274,10 @@ Delete Inventory Item:
 
 Update inventory items:
 1. As a purchasing manager, I can rename my inventory items, so that I can update items with an incorrect name.
-2. As a purchasing manager, I can set the inventory quantity of my items.
-3. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items.
-4. As a purchasing manager, I can set the date my inventory will expire, so that I know when certain items need to be consumed or used. 
-5. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.
+1. As a purchasing manager, I can set the inventory quantity of my items.
+1. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items.
+1. As a purchasing manager, I can set the date my inventory will expire, so that I know when certain items need to be consumed or used.
+1. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.
 6. As a purchasing manager, I can decrease the inventory quantity of my items.
 
 View Inventory Items:
