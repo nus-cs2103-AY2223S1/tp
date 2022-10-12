@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.UniqueTagTypeMap;
+import seedu.address.model.person.exceptions.TagTypeNotFoundException;
 import seedu.address.model.tag.TagType;
 
 /**
@@ -33,7 +34,12 @@ public class DeleteTagTypeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        UniqueTagTypeMap.removeExistingTagType(toDelete);
+        try {
+            UniqueTagTypeMap.removeExistingTagType(toDelete);
+        } catch (TagTypeNotFoundException t) {
+            throw new CommandException(t.getMessage());
+        }
+
         model.deleteTagTypeForAllPerson(toDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_TYPE_SUCCESS, toDelete));
     }

@@ -5,8 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.address.model.Model;
 import seedu.address.model.person.UniqueTagTypeMap;
+import seedu.address.model.person.exceptions.TagTypeNotFoundException;
 import seedu.address.model.tag.TagType;
 
 /**
@@ -42,8 +44,12 @@ public class EditTagTypeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        UniqueTagTypeMap.setExistingTagType(toEditPrefix, editToPrefix, editToTagType);
-        model.editTagTypeForAllPerson(toEditTagType, editToTagType);
+        try {
+            UniqueTagTypeMap.setExistingTagType(toEditPrefix, editToPrefix, editToTagType);
+            model.editTagTypeForAllPerson(toEditTagType, editToTagType);
+        } catch (TagTypeNotFoundException | DuplicatePrefixException e) {
+            throw new CommandException(e.getMessage());
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_TAG_TYPE_SUCCESS, editToTagType));
     }
 

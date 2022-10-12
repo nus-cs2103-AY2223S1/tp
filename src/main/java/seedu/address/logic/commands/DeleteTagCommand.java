@@ -14,6 +14,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniqueTagTypeMap;
+import seedu.address.model.person.exceptions.TagTypeNotFoundException;
+import seedu.address.model.tag.exceptions.TagNotFoundException;
 
 
 /**
@@ -63,20 +65,26 @@ public class DeleteTagCommand extends Command {
 
         editPersonDescriptor.setOldTagTypeMap(toDelete);
 
-        Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        try {
+            Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
+            Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            }
+
+            model.setPerson(personToEdit, editedPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_DELETE_TAGS_SUCCESS, editedPerson));
+        } catch (TagTypeNotFoundException | TagNotFoundException t) {
+            throw new CommandException(t.getMessage());
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_DELETE_TAGS_SUCCESS, editedPerson));
     }
 
     private static Person createEditedPerson(Person personToEdit,
-                                             EditCommand.EditPersonDescriptor editPersonDescriptor) {
+                                             EditCommand.EditPersonDescriptor editPersonDescriptor)
+            throws TagTypeNotFoundException, TagNotFoundException {
         assert personToEdit != null;
         UniqueTagTypeMap updatedTags = new UniqueTagTypeMap();
         updatedTags.setTagTypeMap(personToEdit.getTags());
