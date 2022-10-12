@@ -6,15 +6,7 @@ import static seedu.workbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.workbook.logic.commands.AddCommand;
-import seedu.workbook.logic.commands.ClearCommand;
-import seedu.workbook.logic.commands.Command;
-import seedu.workbook.logic.commands.DeleteCommand;
-import seedu.workbook.logic.commands.EditCommand;
-import seedu.workbook.logic.commands.ExitCommand;
-import seedu.workbook.logic.commands.FindCommand;
-import seedu.workbook.logic.commands.HelpCommand;
-import seedu.workbook.logic.commands.ListCommand;
+import seedu.workbook.logic.commands.*;
 import seedu.workbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -61,6 +53,9 @@ public class WorkBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -133,4 +133,12 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredInternshipList().size());
     }
 
+    /**
+     * Deletes the first internship in {@code model}'s filtered list from {@code model}'s work book.
+     */
+    public static void deleteFirstInternship(Model model) {
+        Internship firstInternship = model.getFilteredInternshipList().get(0);
+        model.deleteInternship(firstInternship);
+        model.commitWorkBook();
+    }
 }

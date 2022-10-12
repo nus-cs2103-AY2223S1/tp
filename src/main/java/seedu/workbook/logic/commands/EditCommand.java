@@ -83,6 +83,7 @@ public class EditCommand extends Command {
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        model.commitWorkBook();
         return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
     }
 
