@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -116,6 +117,10 @@ public class ModelManager implements Model {
     @Override
     public Team getTeam() {
         return addressBook.getTeam();
+    }
+    @Override
+    public ObjectProperty<Team> getTeamAsProperty() {
+        return addressBook.getTeamAsProperty();
     }
 
     @Override

@@ -48,7 +48,37 @@ Some example commands you can try:
 ### Viewing help : `help`
 
 [Coming Soon]
+### Creating a new team `add_team`
 
+Add a new team to the user's list of teams. Will throw an error there is already an existing team with the same name.
+
+Format:
+* `add_team TEAM_NAME`
+
+Examples:
+* `add_team CS2103`
+
+### Set a new team `set_team`
+
+Sets the application to an existing team. Will throw an error if the team does not exist
+
+Format:
+* `set_team TEAM_NAME`
+
+Examples:
+* `set_team CS2103`
+
+### Delete an existing team `delete_team`
+
+Delete an existing team from the user's list of teams. Throws an error under these conditions.
+ - The target team does not exist.
+ - The target team is the only existing team.
+
+Format:
+* `delete_team TEAM_NAME`
+
+Examples:
+* `delete_team CS2103`
 
 ### Adding a new member to the team `add_member`
 
