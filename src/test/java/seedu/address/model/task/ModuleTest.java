@@ -1,6 +1,5 @@
 package seedu.address.model.task;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -38,11 +37,5 @@ public class ModuleTest {
         assertTrue(Module.isValidModule("CS2103T"));
         assertTrue(Module.isValidModule("CFG1003"));
 
-    }
-
-    @Test
-    public void toString_roundtrip_works() {
-        String sampleModuleCode = "CS2103T";
-        assertEquals(new Module(sampleModuleCode).toString(), sampleModuleCode);
     }
 }
