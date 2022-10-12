@@ -73,7 +73,7 @@ public class PennyWiseTest {
     }
 
     @Test
-    public void hasExpenditure_expoenditureNotInAddressBook_returnsFalse() {
+    public void hasExpenditure_expenditureNotInPennyWise_returnsFalse() {
         assertFalse(pennyWise.hasExpenditure(LUNCH));
     }
 
@@ -82,7 +82,7 @@ public class PennyWiseTest {
     //     assertFalse(pennyWise.hasIncome());
     // }
     @Test
-    public void hasExpenditure_expenditureInAddressBook_returnsTrue() {
+    public void hasExpenditure_expenditureInPennyWise_returnsTrue() {
         pennyWise.addExpenditure(LUNCH);
         assertTrue(pennyWise.hasExpenditure(LUNCH));
     }
