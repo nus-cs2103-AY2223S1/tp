@@ -23,6 +23,7 @@ import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
+import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
@@ -87,7 +88,8 @@ public class ResidentBookParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertThrows(ParseException.class, String.format(ListCommandParser.INTENDED_USAGE), ()
+                -> parser.parseCommand(ListCommand.COMMAND_WORD + " 3"));
     }
 
     @Test

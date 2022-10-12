@@ -7,7 +7,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  * Represents a Resident's matriculation number in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidMatricNumber(String)}
  */
-public class MatricNumber {
+public class MatricNumber extends Field {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Matriculation Number should begin with 'A', followed by "

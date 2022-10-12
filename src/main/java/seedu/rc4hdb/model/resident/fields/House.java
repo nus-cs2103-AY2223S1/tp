@@ -7,7 +7,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  * Represents a Resident's house in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidHouse(String)}
  */
-public class House {
+public class House extends Field {
 
     public static final String MESSAGE_CONSTRAINTS =
             "House should only contain the following characters: 'D', 'U', 'L', 'A' or 'N'";

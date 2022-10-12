@@ -99,9 +99,15 @@ Examples:
 
 ### Listing all residents : `list`
 
-Shows a list of all residents in the RC4HDB database.
+Shows a list of all residents in the RC4HDB database. Use the specifiers `/i` for include and `/e` for exclude, followed by the field names of the columns to show or hide. All field names entered are case-insensitive.
 
-Format: `list`
+Format:
+
+`list` to list all residents in the database with all fields visible
+
+`list /i [FIELD_1] [FIELD_2]...` to list all residents in the database with only `[FIELD_1] [FIELD_2]...` visible.
+
+`list /e [FIELD_1] [FIELD_2]...` to list all residents in the database with all fields visible except `[FIELD_1] [FIELD_2]...`
 
 ### Editing an existing resident : `edit`
 
@@ -279,7 +285,7 @@ Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com r/2-1 g/M h/D m/A9876543B`
-**List** | `list`
+**List** | `list`, `list /i [FIELD_1] [FIELD_2]...`, or `list /e [FIELD_1] [FIELD_2]...` e.g., `list /i name phone address`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter [/specifier] KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g., `filter /all h/D g/M`

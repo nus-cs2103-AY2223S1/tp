@@ -376,6 +376,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
+
+* 1a. The user wants to view only certain fields in the list.
+    
+  * 1a1. The user specifies which fields he wants to see or hide.
+    
+  Use case resumes at step 2.
+
+
 * 2a. The list is empty.
 
     Use case ends.

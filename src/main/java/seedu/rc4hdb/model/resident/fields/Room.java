@@ -7,7 +7,7 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
  * Represents a Resident's Room in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidRoom(String)}
  */
-public class Room {
+public class Room extends Field {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Room Number should be in the format FLOOR-UNIT, where FLOOR and UNIT are both non-negative integers";
