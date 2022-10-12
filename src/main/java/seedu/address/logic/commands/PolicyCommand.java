@@ -11,7 +11,7 @@ import seedu.address.model.Model;
  */
 public class PolicyCommand extends Command {
 
-    public static final String COMMAND_WORD = "policy";
+    public static final String COMMAND_WORD = "showPolicy";
 
     public static final String MESSAGE_SUCCESS = "Listed all policies";
 

@@ -65,7 +65,7 @@ public class SortCommand extends Command {
         }
         requireNonNull(comparator);
         model.sort(comparator);
-        return new CommandResult(MESSAGE_SUCCESS + this.toSort);
+        return new CommandResult(MESSAGE_SUCCESS + this.toSort, false, true);
     }
 
     @Override
