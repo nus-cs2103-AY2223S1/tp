@@ -11,9 +11,9 @@ import seedu.address.model.task.Task;
 /**
  * Adds a task to the task list.
  */
-public class TaskCommand extends Command {
+public class AddTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "task";
+    public static final String COMMAND_WORD = "addtask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task list. "
             + "Parameters: "
@@ -32,7 +32,7 @@ public class TaskCommand extends Command {
     /**
      * Creates a TaskCommand to add the specified {@code Task}
      */
-    public TaskCommand(Task task) {
+    public AddTaskCommand(Task task) {
         requireNonNull(task);
         toAdd = task;
     }
@@ -54,7 +54,7 @@ public class TaskCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TaskCommand // instanceof handles nulls
-                && toAdd.equals(((TaskCommand) other).toAdd));
+                || (other instanceof AddTaskCommand // instanceof handles nulls
+                && toAdd.equals(((AddTaskCommand) other).toAdd));
     }
 }
