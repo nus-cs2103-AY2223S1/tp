@@ -86,7 +86,9 @@ public class Fields {
     }
 
     public void addAll(Fields fields) {
-        this.fields.addAll(fields.toList());
+        if (fields != null && !fields.isEmpty()) {
+            this.fields.addAll(fields.toList());
+        }
     }
 
     public List<Field> toList() {
