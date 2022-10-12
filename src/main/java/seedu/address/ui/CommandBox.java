@@ -36,8 +36,12 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         // displays command parameters in ResultDisplay when a COMMAND_WORD is typed.
+        // clears ResultDisplay when a single character is in the CommandBox
         commandTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             setStyleToDefault();
+            if (newValue.length() == 1) {
+                resultDisplay.setFeedbackToUser("");
+            }
             switch (newValue) {
             case AddCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(AddCommand.MESSAGE_USAGE);
@@ -59,9 +63,6 @@ public class CommandBox extends UiPart<Region> {
                 break;
             case DeleteAppointmentCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(DeleteAppointmentCommand.MESSAGE_USAGE);
-                break;
-            case "":
-                resultDisplay.setFeedbackToUser("");
                 break;
             default:
                 break;
