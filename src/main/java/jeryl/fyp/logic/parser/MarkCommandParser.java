@@ -1,13 +1,14 @@
 package jeryl.fyp.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 
-import jeryl.fyp.commons.exceptions.IllegalValueException;
+import java.util.stream.Stream;
+
 import jeryl.fyp.logic.commands.MarkCommand;
-import jeryl.fyp.logic.commands.MarkCommand.Status;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.StudentId;
 
 /**
@@ -15,23 +16,30 @@ import jeryl.fyp.model.student.StudentId;
  */
 public class MarkCommandParser implements Parser<MarkCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code ,arkCommand}
-     * and returns a {@code MarkCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the MarkCommand
+     * and returns a MarkCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public MarkCommand parse(String args) throws ParseException {
-        requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STATUS);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_ID, PREFIX_STATUS);
 
-        StudentId studentId;
-        try {
-            studentId = ParserUtil.parseStudentId(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), ive);
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_STATUS)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
 
-        Status status = argMultimap.getStatus(PREFIX_STATUS);
+        StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
+        ProjectStatus projectStatus = ParserUtil.parseProjectStatus(argMultimap.getValue(PREFIX_STATUS).get());
 
-        return new MarkCommand(studentId, status);
+        return new MarkCommand(studentId, projectStatus);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

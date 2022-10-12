@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentId;
 
 /**
  * The API of the Model component.
@@ -76,6 +77,12 @@ public interface Model {
      * in the FYP manager.
      */
     void setStudent(Student target, Student editedStudent);
+
+    /**
+     * Gets the unique student with the specified StudentId
+     * {@code studentId} is unique so it should output 1 student only
+     */
+    Student getStudentByStudentId(StudentId studentId);
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();

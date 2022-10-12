@@ -15,6 +15,7 @@ import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
@@ -43,9 +44,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        ProjectStatus projectStatus = new ProjectStatus("YTS"); //add command does not allow adding status right away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, studentId, email, projectName, tagList);
+        Student student = new Student(name, studentId, email, projectName, projectStatus, tagList);
 
         return new AddCommand(student);
     }
