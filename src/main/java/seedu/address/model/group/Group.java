@@ -10,12 +10,27 @@ import seedu.address.model.task.Task;
  */
 public class Group extends AbstractContainerItem {
 
+    public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z0-9_-]*";
+    public static final String MESSAGE_CONSTRAINTS = "A group name should only consist "
+            + "of alphanumeric characters, underscores and hyphens only.\n";
+
     public Group(String groupName) {
         this(groupName, null);
     }
 
     public Group(String groupName, Group parent) {
         super(groupName, parent);
+    }
+
+    /**
+     * Checks if the group name is valid. A group name is valid
+     * if the group name is fully alphanumeric.
+     *
+     * @param groupName for a specific team.
+     * @return true if the group name is valid, false otherwise.
+     */
+    public static boolean isValidGroupName(String groupName) {
+        return groupName.matches(VALIDATION_REGEX);
     }
 
     /**

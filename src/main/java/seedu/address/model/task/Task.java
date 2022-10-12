@@ -21,23 +21,23 @@ public class Task implements DisplayItem {
     /**
      * Create a new task with no completed_time
      *
-     * @param title  The title of the task.
-     * @param status The status of the task.
+     * @param title       The title of the task.
+     * @param description The description of the task.
      */
-    public Task(String title, String status) {
-        this(title, status, null);
+    public Task(String title, String description) {
+        this(title, description, null);
     }
 
     /**
      * Create a new task with a completed_time.
      *
      * @param title         The title of the task.
-     * @param status        The status of the task.
+     * @param description   The description of the task.
      * @param completedTime The completed_time of the task.
      */
-    public Task(String title, String status, LocalDateTime completedTime) {
+    public Task(String title, String description, LocalDateTime completedTime) {
         this.title = title;
-        this.description = status;
+        this.description = description;
         this.completedTime = completedTime;
     }
 
@@ -171,5 +171,14 @@ public class Task implements DisplayItem {
     @Override
     public String toString() {
         return title;
+    }
+
+    /**
+     * Prints this class as a json txt
+     */
+    public String toJson() {
+        return "Task{" + "title: '" + title + '\'' + "; description: '" + description + '\'' + "; completedTime: "
+                + completedTime
+                + "; parent: " + parent + '}';
     }
 }

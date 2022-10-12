@@ -98,4 +98,18 @@ public abstract class AbstractContainerItem extends DisplayItemList<DisplayItem>
     public String toString() {
         return name;
     }
+
+    @Override
+    public boolean isPartOfContext(DisplayItem o) {
+        AbstractContainerItem temp = parent;
+        while (parent != null) {
+            if (parent.equals(o)) {
+                return true;
+            }
+
+            temp = temp.getParent();
+        }
+
+        return o == null;
+    }
 }

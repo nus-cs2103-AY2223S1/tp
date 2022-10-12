@@ -9,6 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.Path;
+import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -16,16 +19,21 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various *Parser
+ * classes.
  */
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final String PATH_VALIDATION_REGEX = "([a-zA-Z0-9_-]+\\/?)+([a-zA-Z0-9_-]+)";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
+     * and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * 
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -120,5 +128,49 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String path} into a {@code Group}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param path to the currently nested group.
+     * @return a Path object that specifies a group based on that path.
+     * @throws ParseException if the given {@Code path} is not valid.
+     */
+    public static Path parsePath(String path) throws ParseException {
+        requireNonNull(path);
+        String trimmedPath = path.trim();
+        if (!isValidPath(trimmedPath)) {
+            throw new ParseException(Path.MESSAGE_CONSTRAINTS);
+        }
+        return new Path(trimmedPath);
+    }
+
+    /**
+     * Parses {@code String group} into a {@code Group}.
+     *
+     * @param group name of group that is currently being accessed.
+     * @return a Group object that refers to a specified team.
+     * @throws ParseException if the given {@Code Group} is not valid.
+     */
+    public static Group parseGroup(String group) throws ParseException {
+        requireNonNull(group);
+        if (!Group.isValidGroupName(group)) {
+            throw new ParseException(Group.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Group(group);
+    }
+
+    /**
+     * Checks if the path is valid. Only alphanumeric, hyphen, underscore and slash
+     * are allowed.
+     *
+     * @param path to reach the current AbstractContainerItem.
+     * @return true if path is valid, false otherwise.
+     */
+    public static boolean isValidPath(String path) {
+        return path.matches(PATH_VALIDATION_REGEX);
     }
 }

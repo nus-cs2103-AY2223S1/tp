@@ -17,7 +17,7 @@ import seedu.address.model.item.AbstractContainerItem;
  * Changes a current working context of the team
  */
 public class ChangeTeamCommand extends Command {
-    public static final String COMMAND_WORD = "cd";
+    public static final String COMMAND_WORD = "cg";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Changes the current context to the index specified\n"
