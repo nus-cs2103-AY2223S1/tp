@@ -57,7 +57,6 @@
     "module": "CS2100",
     "year": "3",
     "studentId": "A9870921H",
-    "address" : "little tokyo",
     "comment" : "",
     "tagged" : [ ]
   }, {
@@ -67,7 +66,6 @@
     "module": "CS2100",
     "year": "3",
     "studentId": "A0673201Y",
-    "address" : "4th street",
     "comment" : "",
     "tagged" : [ ]
   } ]
