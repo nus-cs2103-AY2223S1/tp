@@ -6,14 +6,16 @@
       "quantity": "10.0",
       "unit": "kg",
       "boughtDate": "11-11-2022",
-      "expiryDate": "11-11-2022"
+      "expiryDate": "11-11-2022",
+      "tags": ["vegetables"]
     },
     {
       "name": "Cucumbers",
       "quantity": "2000.0",
       "unit": "grams",
       "boughtDate": "12-12-2022",
-      "expiryDate": "12-12-2022"
+      "expiryDate": "12-12-2022",
+      "tags": ["vegetables"]
     }
   ]
 }
