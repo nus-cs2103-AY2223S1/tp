@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -21,7 +20,6 @@ import seedu.address.model.transaction.Transaction;
 public class BuyCommand extends Command {
     public static final String COMMAND_WORD = "buy";
 
-    //Update here
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the company. "
             + "Parameters: "
             + "Index "
@@ -71,7 +69,7 @@ public class BuyCommand extends Command {
         editedCompany.addTransaction(transaction);
         model.setCompany(companyToEdit, editedCompany);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedCompany, transaction.getQuantity(),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedCompany.getName(), transaction.getQuantity(),
                 transaction.getGoods(), transaction.getPrice()));
     }
 
