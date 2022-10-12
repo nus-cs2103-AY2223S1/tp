@@ -120,8 +120,8 @@ public class UniqueTeamList implements Iterable<Team> {
      * Marks the {@code Task} from the {@code Team} at the specified index as not done.
      *
      */
-    public void unmarkTask(int index, Task task) {
-        internalList.get(index).unmarkTask(task);
+    public void unmarkTask(int teamIndex, int taskIndex) {
+        internalList.get(teamIndex).unmarkTask(taskIndex);
     }
 
     /**

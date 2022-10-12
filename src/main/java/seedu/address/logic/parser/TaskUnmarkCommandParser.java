@@ -2,15 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TaskUnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Name;
-import seedu.address.model.task.Task;
 
 /**
  * Parses input arguments and creates a new TaskUnmarkCommand object
@@ -24,22 +23,23 @@ public class TaskUnmarkCommandParser implements Parser<TaskUnmarkCommand> {
     public TaskUnmarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX);
 
-        Index index;
+        Index taskIndex;
+        Index teamIndex;
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskUnmarkCommand.MESSAGE_USAGE));
+        }
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            teamIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TEAM_INDEX).get());
+            taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK_INDEX).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     TaskUnmarkCommand.MESSAGE_USAGE), pe);
         }
-
-        Name taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
-
-        Task task = new Task(taskName);
-
-        return new TaskUnmarkCommand(index, task);
+        return new TaskUnmarkCommand(teamIndex, taskIndex);
     }
 
     /**
