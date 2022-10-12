@@ -2,6 +2,10 @@
     -fx-text-fill: white;
 }
 
+#commandsHeader, #addCommandHeader, #clearCommandHeader, #deleteCommandHeader, #editCommandHeader, #exitCommandHeader {
+    -fx-text-fill: orange;
+}
+
 #copyButton {
     -fx-background-color: dimgray;
 }
@@ -14,7 +18,10 @@
     -fx-background-color: darkgray;
 }
 
-#urlMessageContainer, #addCommandContainer, #clearCommandContainer, #deleteCommandContainer, 
-        #editCommandContainer, #exitCommandContainer {
+#addCommandContainer, #clearCommandContainer, #deleteCommandContainer, #editCommandContainer, #exitCommandContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+#urlMessageContainer, #commandsHeaderContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
 }

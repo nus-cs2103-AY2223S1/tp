@@ -5,13 +5,13 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -22,32 +22,72 @@
       </stylesheets>
       <VBox alignment="CENTER">
         <children>
-          <HBox alignment="CENTER" fx:id="addCommandContainer">
+          <HBox fx:id="commandsHeaderContainer" alignment="CENTER">
             <children>
-              <Label fx:id="addCommand" text="Add"/>
+              <Label fx:id="commandsHeader" text="List of Commands">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+              </Label>
+            </children>
+            <opaqueInsets>
+              <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+            </opaqueInsets>
+            <padding>
+              <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+            </padding>           
+          </HBox>
+          <HBox fx:id="addCommandContainer" alignment="CENTER_LEFT">
+            <children>
+              <Label fx:id="addCommandHeader" minWidth="150.0" text="Add an Internship: ">
+                <HBox.margin>
+                  <Insets left="5.0" />
+                </HBox.margin>
+              </Label>
+              <Label fx:id="addCommand" text="Add" />
             </children>
           </HBox>
-          <HBox alignment="CENTER" fx:id="clearCommandContainer">
+          <HBox fx:id="clearCommandContainer" alignment="CENTER_LEFT">
             <children>
-              <Label fx:id="clearCommand" text="Clear"/>
+              <Label fx:id="clearCommandHeader" minWidth="150.0" text="Clear all Internships: ">
+                <HBox.margin>
+                  <Insets left="5.0" />
+                </HBox.margin>
+              </Label>
+              <Label fx:id="clearCommand" text="Clear" />
             </children>
           </HBox>
-          <HBox alignment="CENTER" fx:id="deleteCommandContainer">
+          <HBox fx:id="deleteCommandContainer" alignment="CENTER_LEFT">
             <children>
-              <Label fx:id="deleteCommand" text="Delete"/>
+              <Label fx:id="deleteCommandHeader" minWidth="150.0" text="Delete an Internship: ">
+                <HBox.margin>
+                  <Insets left="5.0" />
+                </HBox.margin>
+              </Label>
+              <Label fx:id="deleteCommand" text="Delete" />
             </children>
           </HBox>
-          <HBox alignment="CENTER" fx:id="editCommandContainer">
+          <HBox fx:id="editCommandContainer" alignment="CENTER_LEFT">
             <children>
-              <Label fx:id="editCommand" text="Edit"/>
+              <Label fx:id="editCommandHeader" minWidth="150.0" text="Edit an Internship: ">
+                <HBox.margin>
+                  <Insets left="5.0" />
+                </HBox.margin>
+              </Label>
+              <Label fx:id="editCommand" text="Edit" />
             </children>
           </HBox>
-          <HBox alignment="CENTER" fx:id="exitCommandContainer">
+          <HBox fx:id="exitCommandContainer" alignment="CENTER_LEFT">
             <children>
-              <Label fx:id="exitCommand" text="Exit"/>
+              <Label fx:id="exitCommandHeader" minWidth="150.0" text="Exit application: ">
+                <HBox.margin>
+                  <Insets left="5.0" />
+                </HBox.margin>
+              </Label>
+              <Label fx:id="exitCommand" text="Exit" />
             </children>
           </HBox>
-          <HBox alignment="CENTER" fx:id="urlMessageContainer">
+          <HBox fx:id="urlMessageContainer" alignment="CENTER">
             <children>
               <Label fx:id="urlMessage" text="URL">
                 <HBox.margin>

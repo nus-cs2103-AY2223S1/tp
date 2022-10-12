@@ -9,8 +9,6 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.workbook.commons.core.LogsCenter;
-import seedu.workbook.logic.commands.ClearCommand;
-import seedu.workbook.logic.commands.DeleteCommand;
 
 /**
  * Controller for a help page
@@ -23,7 +21,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String CLEAR_COMMAND = "clear";
     public static final String EXIT_COMMAND = "exit";
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
-    public static final String URL_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String URL_MESSAGE = "Refer to the user guide for more information: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
