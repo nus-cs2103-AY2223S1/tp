@@ -19,34 +19,35 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
     public static final String MESSAGE_DELETE_MODULE_FAILED = "Module does not exist in your modules: %1$s";
 
-    private final UserModule target;
+    private final String targetCode;
 
     /**
      * Creates a DeleteCommand with the given UserModule
      * @param target UserModule to delete
      */
-    public DeleteCommand(UserModule target) {
-        requireNonNull(target);
-        this.target = target;
+    public DeleteCommand(String targetCode) {
+        requireNonNull(targetCode);
+        this.targetCode = targetCode;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        String msg = target.getUserModuleCode();
 
-        if (!model.filteredListhasUserModule(target)) {
-            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, msg));
+        UserModule toDelete = new UserModule(targetCode, model);
+
+        if (!model.filteredListhasUserModule(toDelete)) {
+            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, targetCode));
         }
 
-        model.deleteUserModule(target);
-        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, msg));
+        model.deleteUserModule(toDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, targetCode));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof DeleteCommand // instanceof handles nulls
-            && target.equals(((DeleteCommand) other).target)); // state check
+            && targetCode.equals(((DeleteCommand) other).targetCode)); // state check
     }
 }

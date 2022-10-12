@@ -18,11 +18,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         ModuleCodeParameter mcp = new ModuleCodeParameter(args);
-
         String mc = mcp.getArgValue();
-
-        UserModule module = new UserModule(mc);
-
-        return new DeleteCommand(module);
+        return new DeleteCommand(mc);
     }
 }
