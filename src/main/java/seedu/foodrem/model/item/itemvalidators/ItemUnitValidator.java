@@ -28,7 +28,6 @@ public class ItemUnitValidator implements Validator {
     public static Void validate(String unitString) {
         checkArgument(isUnitContainingOnlyValidCharacters(unitString), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
         checkArgument(isUnitLengthLessThanEqualMaxLength(unitString), MESSAGE_FOR_UNIT_TOO_LONG);
-        checkArgument(isUnitPresent(unitString), MESSAGE_FOR_UNIT_IS_BLANK);
         return null;
     }
 
