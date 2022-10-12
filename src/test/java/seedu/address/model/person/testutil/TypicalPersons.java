@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 
 /**
@@ -62,15 +61,6 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
-    public static final Group TEAM_PROJECT =
-            new GroupBuilder().withName("Team Project").withMembers(ALICE, BENSON, CARL).build();
-
-    public static final Group INDIVIDUAL_PROJECT =
-            new GroupBuilder().withName("Individual Project").withMembers(DANIEL).build();
-
-    public static final Group ORAL_PRESENTATION =
-            new GroupBuilder().withName("Oral Presentation").withMembers(ELLE, FIONA, GEORGE).build();
-
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
@@ -86,26 +76,7 @@ public class TypicalPersons {
         return ab;
     }
 
-    /**
-     * Returns an {@code AddressBook} with all the typical persons and sample groups.
-     * @return
-     */
-    public static AddressBook getTypicalAddressBookWithGroups() {
-        AddressBook ab = new AddressBook();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-        }
-        for (Group group : getTypicalGroups()) {
-            ab.addGroup(group);
-        }
-        return ab;
-    }
-
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
-    }
-
-    public static List<Group> getTypicalGroups() {
-        return new ArrayList<>(Arrays.asList(TEAM_PROJECT, INDIVIDUAL_PROJECT, ORAL_PRESENTATION));
     }
 }
