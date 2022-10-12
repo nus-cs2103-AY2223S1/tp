@@ -81,6 +81,10 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    void setTask(Task target, Task editedTask);
+
+    boolean hasTask(Task task);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

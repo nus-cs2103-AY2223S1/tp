@@ -1,7 +1,10 @@
 package seedu.address.model.task;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -11,16 +14,22 @@ import seedu.address.model.tag.Tag;
  */
 public class Task {
     private Description description;
+    private Deadline deadline;
     private boolean isDone;
     private final Set<Tag> tags = new HashSet<>();
+
 
     /**
      * A constructor that creates an instance of Task.
      * @param description The description of the task.
      */
-    public Task(Description description) {
-        this.isDone = false;
+    public Task(Description description, boolean isDone, Set<Tag> tags) {
+        requireAllNonNull(description, isDone, tags);
+        this.isDone = isDone;
         this.description = description;
+        this.tags.addAll(tags);
+        // TODO: Edit after implementing Deadline class
+        this.deadline = new Deadline("");
     }
 
     /**
@@ -31,8 +40,24 @@ public class Task {
         return Collections.unmodifiableSet(tags);
     }
 
+    public boolean getIsDone() {
+        return this.isDone;
+    }
+
+    /**
+     * Returns description of task.
+     * @return Description Details of task.
+     */
     public Description getDescription() {
-        return this.description;
+        return description;
+    }
+
+    /**
+     * Returns deadline of task.
+     * @return deadline Deadline of task.
+     */
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     /**
@@ -59,5 +84,32 @@ public class Task {
      */
     public void unmarkTask() {
         isDone = false;
+    }
+
+    /**
+     * Returns true if both tasks have matching descriptions, false otherwise.
+     * @param otherTask Another task.
+     * @return boolean indicating whether tasks are the same.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getDescription().equals(getDescription());
+    }
+
+    /**
+     * Returns true if task contains any of the description or deadline keywords.
+     * By default, empty lists will return true.
+     *
+     * @param descriptionKeywords Possibly empty list containing keywords for {@code Description}.
+     * @param deadlineKeywords Possibly empty list containing keywords for {@code Deadline}.
+     * @return boolean indicating if task contains supplied keywords.
+     */
+    public boolean containsKeywords(List<Description> descriptionKeywords, List<Deadline> deadlineKeywords) {
+        return (descriptionKeywords.isEmpty() || descriptionKeywords.contains(description))
+                && (deadlineKeywords.isEmpty() || deadlineKeywords.contains(deadline));
     }
 }
