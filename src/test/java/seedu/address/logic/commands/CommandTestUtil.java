@@ -73,6 +73,9 @@ public class CommandTestUtil {
     public static final String VALID_DATE_TUITION = "18-08-2022";
     public static final String VALID_TAG_MEAL = "meal";
     public static final String VALID_TAG_PERSONAL = "personal";
+    public static final String VALID_TAG_LUNCH = "Lunch";
+    public static final String VALID_TAG_DINNER = "Dinner";
+    public static final String VALID_TAG_MOVIE = "Movie";
 
     public static final String TYPE_INCOME = " " + PREFIX_TYPE + VALID_TYPE_INCOME;
     public static final String TYPE_EXPENDITURE = " " + PREFIX_TYPE + VALID_TYPE_EXPENDITURE;
@@ -89,6 +92,9 @@ public class CommandTestUtil {
     public static final String DATE_DINNER = " " + PREFIX_DATE + VALID_DATE_DINNER;
     public static final String DATE_TUITION = " " + PREFIX_DATE + VALID_DATE_TUITION;
 
+    public static final String TAG_LUNCH = " " + PREFIX_TAG + VALID_TAG_LUNCH;
+    public static final String TAG_MOVIE = " " + PREFIX_TAG + VALID_TAG_MOVIE;
+    public static final String TAG_DINNER = " " + PREFIX_TAG + VALID_TAG_DINNER;
     public static final String TAG_DESC_MEAL = " " + PREFIX_TAG + VALID_TAG_MEAL;
     public static final String TAG_DESC_PERSONAL = " " + PREFIX_TAG + VALID_TAG_PERSONAL;
 
@@ -97,8 +103,6 @@ public class CommandTestUtil {
     public static final String INVALID_AMT = " " + PREFIX_AMOUNT + "12.20a "; // 'a' not allowed in amount
     public static final String INVALID_DATE = " " + PREFIX_DATE + "32-32-3232 "; // only valid date strings allowed
     public static final String INVALID_TAG = " " + PREFIX_TAG + "tag* "; // '*' not allowed in tags
-
-
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -157,10 +161,24 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredExpenditureList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the entry at the given {@code targetIndex} in the
-     * {@code model}'s application.
+     * Updates {@code model}'s filtered list to show only the expenditure at the given {@code targetIndex} in the
+     * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showExpenditureAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredExpenditureList().size());
+
+        Entry entry = model.getFilteredExpenditureList().get(targetIndex.getZeroBased());
+        final String[] splitName = entry.toString().split("\\s+");
+        model.updateFilteredEntryList(
+                new NameContainsKeywordsPredicate(Arrays.asList(splitName[0].replace(";", ""))));
+        assertEquals(1, model.getFilteredExpenditureList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the income at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showIncomeeAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredExpenditureList().size());
 
         Entry entry = model.getFilteredExpenditureList().get(targetIndex.getZeroBased());

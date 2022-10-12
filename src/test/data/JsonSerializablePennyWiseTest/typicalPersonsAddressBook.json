@@ -1,0 +1,20 @@
+{
+  "_comment": "AddressBook save file which contains the same Entry values as in TypicalPersons#getTypicalPennyWise()",
+  "expenditures" : [ {
+    "description" : "Lunch",
+    "amount" : "5.20",
+    "date" : "20-08-2022",
+    "tagged" : [ "Lunch" ]
+  }, {
+    "description" : "Dinner",
+    "amount" : "4.80",
+    "date" : "24-08-2022",
+    "tagged" : [ "Dinner" ]
+  }, {
+    "description" : "Movie",
+    "amount" : "8.00",
+    "date" : "21-08-2022",
+    "tagged" : [ "Movie" ]
+  }],
+  "incomes" : []
+}
