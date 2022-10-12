@@ -21,6 +21,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
+import seedu.address.model.role.Buyer;
+import seedu.address.model.role.Seller;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddPersonCommandTest {
@@ -142,6 +145,11 @@ public class AddPersonCommandTest {
         @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Property> getFilteredPropertyList() {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
