@@ -3,10 +3,10 @@ package swift.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static swift.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 import static swift.logic.parser.CliSyntax.PREFIX_PHONE;
-import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_TAG;
 import static swift.testutil.Assert.assertThrows;
 
@@ -75,7 +75,7 @@ public class CommandTestUtil {
         .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
         .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
-    
+
     public static final String VALID_TASK_NAME_1 = "CS2103T";
     public static final String VALID_TASK_NAME_2 = "Buy Milk";
 
