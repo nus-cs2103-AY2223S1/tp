@@ -80,13 +80,13 @@ Adds a student to the Teacher’s Pet.
     - Student’s Name must not be empty.
     - Student’s Name must only contain alphanumeric characters.
 ```yaml
-Note: Duplicates students are not allowed!
+Note: Multiple students may share the same name.
 ```
 
 2. Student’s Contact Number:
    - Contact number must only contain numerical digits between `0` and `9`.
 ```yaml
-Note: Contact number cannot be empty. It must contain at least 3 digits.
+Note: Contact number must contain at least 3 digits. Contact number must be unique.
 ```
 
 3. Next of Kin’s Number:
@@ -147,20 +147,23 @@ Edits an existing student in the list.
 
 1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow 
 the same convention as [adding a student](#adding-a-student).
+
 2. Amount paid:
     - Amount paid can be an integer or a double.
     - Amount paid must be non-negative.
+
 3. Amount owed:
     - Amount owed can be an integer or a double.
     - Amount owed must be non-negative.
     - Amount owed and Amount paid are modified independent of each other.
+
 ```yaml
 Note: Amount paid, Amount owed can only be between $0 and $2147483647.
 ```
+
 4. Additional notes:
     - Additional notes can be left empty.
     - Additional notes can take in any types of character.
-
 ```yaml
 Important: Note **at least one** of these fields must exist in order to make the `edit` command valid.
 ```
