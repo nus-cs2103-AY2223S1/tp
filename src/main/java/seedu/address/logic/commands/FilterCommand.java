@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.TagContainsKeywordsPredicate;
+
 
 /**
  * Filters and list all persons in the address book
@@ -13,14 +14,14 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all persons whose tags contain any of "
             + "the specified alphabets (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alex";
+            + "Example: " + COMMAND_WORD + " friends";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final TagContainsKeywordsPredicate predicate;
 
-    public FilterCommand(NameContainsKeywordsPredicate predicate) {
+    public FilterCommand(TagContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -28,7 +29,7 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.filterPersonListWithTag(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }

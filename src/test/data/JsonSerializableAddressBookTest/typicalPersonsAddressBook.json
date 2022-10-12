@@ -11,7 +11,8 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "attended" : [ "T01:Present", "T03:Absent", "T02:Present" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",

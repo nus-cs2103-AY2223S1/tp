@@ -23,6 +23,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Attendance> attendances = new HashSet<>();
 
     /**
      * Constructor using a PersonData parameter object.
@@ -32,17 +33,23 @@ public class Person {
      */
     public Person(PersonData personData) {
         requireAllNonNull(personData.getName(), personData.getPhone(),
-                personData.getEmail(), personData.getAddress(), personData.getTags());
+                personData.getEmail(), personData.getAddress(),
+                personData.getTags(), personData.getAttendances());
 
         this.name = personData.getName();
         this.phone = personData.getPhone();
         this.email = personData.getEmail();
         this.address = personData.getAddress();
         this.tags.addAll(personData.getTags());
+        this.attendances.addAll(personData.getAttendances());
     }
 
     public Name getName() {
         return name;
+    }
+
+    public String getNameString() {
+        return name.toString();
     }
 
     public Phone getPhone() {
@@ -63,6 +70,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable Attendances set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Attendance> getAttendances() {
+        return Collections.unmodifiableSet(attendances);
     }
 
     /**
@@ -96,13 +111,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getAttendances().equals(getAttendances());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, attendances);
     }
 
     @Override
@@ -115,6 +131,12 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Set<Attendance> attendances = getAttendances();
+        if (!attendances.isEmpty()) {
+            builder.append("; Attendance: ");
+            attendances.forEach(builder::append);
         }
         return builder.toString();
     }

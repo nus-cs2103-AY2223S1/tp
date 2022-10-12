@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -12,7 +13,8 @@ public class PersonData {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<Tag> tags = new HashSet<>();
+    private Set<Attendance> attendances = new HashSet<>();
 
     public Name getName() {
         return name;
@@ -52,5 +54,17 @@ public class PersonData {
 
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
+    }
+
+    public void setAttendances(Set<Attendance> attendances) {
+        this.attendances = attendances;
+    }
+
+    public void addAttendances(Set<Attendance> attendances) {
+        this.attendances.addAll(attendances);
+    }
+
+    public Set<Attendance> getAttendances() {
+        return attendances;
     }
 }

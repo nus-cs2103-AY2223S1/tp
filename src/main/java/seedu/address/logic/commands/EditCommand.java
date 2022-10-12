@@ -125,6 +125,7 @@ public class EditCommand extends Command {
         personData.setEmail(editPersonDescriptor.getEmail().orElse(personToEdit.getEmail()));
         personData.setAddress(editPersonDescriptor.getAddress().orElse(personToEdit.getAddress()));
         personData.setTags(editPersonDescriptor.getTags().orElse(personToEdit.getTags()));
+        personData.setAttendances(personToEdit.getAttendances());
 
         return new Person(personData);
     }
