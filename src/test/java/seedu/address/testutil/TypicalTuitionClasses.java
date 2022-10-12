@@ -1,15 +1,15 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalStudents.STUDENT1;
-import static seedu.address.testutil.TypicalStudents.STUDENT2;
-import static seedu.address.testutil.TypicalTutors.TUTOR1;
-import static seedu.address.testutil.TypicalTutors.TUTOR2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LEVEL_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_CLASS1;
+import static seedu.address.testutil.TypicalStudents.STUDENT1;
+import static seedu.address.testutil.TypicalStudents.STUDENT2;
+import static seedu.address.testutil.TypicalTutors.TUTOR1;
+import static seedu.address.testutil.TypicalTutors.TUTOR2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
