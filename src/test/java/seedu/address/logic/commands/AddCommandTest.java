@@ -140,6 +140,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void markInternship(Internship target, Internship markedInternship) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Internship> getFilteredInternshipList() {
             throw new AssertionError("This method should not be called.");
         }

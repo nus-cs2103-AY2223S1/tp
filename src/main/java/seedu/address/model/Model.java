@@ -77,6 +77,14 @@ public interface Model {
      */
     void setInternship(Internship target, Internship editedInternship);
 
+    /**
+     * Replaces the given internship {@code target} with {@code markedInternship}.
+     * {@code target} must exist in the address book.
+     * The internship identity of {@code markInternship} must not be the same as
+     * another existing internship in the address book.
+     */
+    void markInternship(Internship target, Internship markedInternship);
+
     /** Returns an unmodifiable view of the filtered internship list */
     ObservableList<Internship> getFilteredInternshipList();
 

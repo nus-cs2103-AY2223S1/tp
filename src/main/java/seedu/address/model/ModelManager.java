@@ -111,6 +111,11 @@ public class ModelManager implements Model {
         addressBook.setInternship(target, editedInternship);
     }
 
+    @Override
+    public void markInternship(Internship target, Internship markInternship) {
+        setInternship(target, markInternship);
+    }
+
     //=========== Filtered Internship List Accessors =============================================================
 
     /**
