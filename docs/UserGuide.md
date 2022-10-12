@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-Condonery is a desktop app made for property agents primarily used for managing client contacts and condo listings. 
-It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+Condonery is a desktop app made for property agents primarily used for managing client contacts and condo listings.
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, Condonery can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -31,7 +31,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
     * **`add`**`n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 t/luxury` : Adds a listing named `Pinnacle@Duxton` to the property directory.
 
     * **`list -p delete`**`3` : Deletes the 3rd property shown in the current list.
-    
+
     * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -192,7 +192,7 @@ in the displayed person list. The index must be a positive integer 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the listing will be removed i.e. adding of tags is not cumulative.
-* You can remove all the listing's tags b 
+* You can remove all the listing's tags b
 Examples:
 * `edit -c 5 n/Bob p/91234567 e/bobthebuilder@gmail.com`
 

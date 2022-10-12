@@ -10,6 +10,7 @@ import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.ExitCommand;
+import seedu.condonery.logic.commands.property.FilterPropertyCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.client.AddClientCommand;
@@ -20,7 +21,9 @@ import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.parser.client.AddClientCommandParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.logic.parser.property.AddPropertyCommandParser;
+import seedu.condonery.logic.parser.property.FilterPropertyCommandParser;
 import seedu.condonery.logic.parser.property.DeletePropertyCommandParser;
+
 
 /**
  * Parses user input.
@@ -32,7 +35,6 @@ public class CondoneryParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern
             .compile("(?<commandWord>\\S+(\\s-[pc]{1})*)(?<arguments>.*)");
-
 
     /**
      * Parses user input into command for execution.
@@ -49,8 +51,7 @@ public class CondoneryParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        // TODO: find out why I keep getting Trailing Whitespace error here....
-        //CHECKSTYLE.OFF: Regexp
+        
         switch (commandWord) {
         //CHECKSTYLE.ON: Regexp
         case AddPropertyCommand.COMMAND_WORD:
@@ -82,6 +83,9 @@ public class CondoneryParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case FilterPropertyCommand.COMMAND_WORD:
+            return new FilterPropertyCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/misterpuffin.md)]
 
 * Role: Code Monkey
-* Responsibilities: Generate code  
+* Responsibilities: Generate code
 
 ### Zhao Yige
 
@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/frrramses)] [[portfolio](team/frrramses.md)]
 
-* Role: Code Crocodile 
+* Role: Code Crocodile
 * Responsibilities: Random Ideas & Random Codes
 
 ### Kang Yue Hern

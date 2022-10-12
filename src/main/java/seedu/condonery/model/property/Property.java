@@ -51,6 +51,17 @@ public class Property {
     }
 
     /**
+     * Returns an immutable set containing tag names, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<String> getTagNames() {
+        HashSet<String> stringTags = new HashSet<>(tags.size());
+        tags.forEach(tag -> stringTags.add(tag.tagName));
+        return Collections.unmodifiableSet(stringTags);
+    }
+
+
+    /**
      * Returns true if both properties have the same name.
      * This defines a weaker notion of equality between two properties.
      */
