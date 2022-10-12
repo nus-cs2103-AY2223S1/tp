@@ -48,6 +48,7 @@ public class LogicManager implements Logic {
     }
 
     public ObservableList<Module> getFilteredModuleList() { return model.getFilteredModuleList(); }
+
     @Override
     public ReadOnlyModuleList getModuleList() {
         return model.getModuleList();

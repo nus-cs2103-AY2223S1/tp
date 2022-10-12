@@ -7,10 +7,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.openapitools.client.ApiException;
+import org.openapitools.client.model.Module;
 import org.openapitools.client.model.ModuleCondensed;
 import org.openapitools.client.model.ModuleInformation;
-
-import nus.climods.model.module.Module;
 
 /**
  * API tests for ModulesApi
