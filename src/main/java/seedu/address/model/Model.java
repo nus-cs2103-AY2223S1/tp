@@ -87,6 +87,10 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    boolean hasTuitionClass(TuitionClass tuitionClass);
+
+    void addTuitionClass(TuitionClass tuitionClass);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
