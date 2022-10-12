@@ -9,9 +9,10 @@ import java.util.stream.Collectors;
 
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.ModulesApi;
-import org.openapitools.client.model.Module;
+
 
 import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.model.module.Module;
 
 /**
  * Class representing module a User has in their My Modules list
@@ -51,11 +52,7 @@ public class UserModule {
     }
 
     public String getUserModuleCode() {
-        return this.apiModule.getModuleCode();
-    }
-
-    public String getAcademicYear() {
-        return this.apiModule.getAcadYear();
+        return this.apiModule.getCode();
     }
 
     public String getUserModuleTitle() {
@@ -63,12 +60,12 @@ public class UserModule {
     }
 
     public String getDepartment() {
-        return "Computer Science";
+        return apiModule.getDepartment();
     }
 
     //TODO: fix getWorkload from API
     public String getWorkload() {
-        return "4 MC";
+        return apiModule.getModuleCredit();
     }
 
     //TODO: add Tutorial method
@@ -88,17 +85,8 @@ public class UserModule {
         this.lecture = lecture;
     }
 
-    public ArrayList<String> getSemesterData() {
-
-        return new ArrayList<String>(Arrays.asList("Semester 1", "Semester 2"));
-    }
-
     private List<Integer> getAvailableSemesters() {
-        return apiModule.getSemesterData()
-                .stream()
-                .map(semesterData -> semesterData.getSemester())
-                .map(BigDecimal::intValue)
-                .collect(Collectors.toList());
+        return apiModule.getSemesters();
     }
 
     // TODO: update with user's selected semester
