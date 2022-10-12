@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -72,6 +74,7 @@ public class HelpWindow extends UiPart<Stage> {
         super(FXML, root);
         helpMessageTitle.setText(HELP_MESSAGE_TITLE);
         helpMessageBody.setText(HELP_MESSAGE_BODY);
+        helpMessageBody.setBackground(Background.fill(Color.rgb(77, 77, 77)));
     }
 
     /**
