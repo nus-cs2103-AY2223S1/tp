@@ -52,8 +52,6 @@ public class CommandTestUtil {
     public static final String HEIGHT_VALID_HEIGHT = " " + PREFIX_HEIGHT + VALID_HEIGHT_AMOUNT;
     public static final String IDEAL_VALID_WEIGHT = " " + PREFIX_IDEAL_WEIGHT + VALID_WEIGHT_AMOUNT;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_WEIGHT_NEGATIVE = " " + PREFIX_WEIGHT + "-40"; //negative weights not allowed
     public static final String INVALID_WEIGHT_TOO_MUCH = " " + PREFIX_WEIGHT + "1000"; //number too large
     public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "abc"; //should only contain integers
@@ -65,19 +63,11 @@ public class CommandTestUtil {
     public static final String INVALID_HEIGHT_DESC = " " + PREFIX_HEIGHT + "abc"; //should only contain integers
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "man"; //should be a single char
 
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-
-
-
-    public static final EditCommand.EditFoodDescriptor DESC_AMY;
-    public static final EditCommand.EditFoodDescriptor DESC_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Sushi&"; // '&' not allowed in names
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "breakfast*"; // '*' not allowed in tags
 
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final EditCommand.EditFoodDescriptor DESC_BREAKFAST = new EditFoodDescriptorBuilder()
             .withName(VALID_BREAD_NAME)
             .withCalorie("150")

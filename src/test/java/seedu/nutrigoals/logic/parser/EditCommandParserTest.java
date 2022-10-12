@@ -3,10 +3,8 @@ package seedu.nutrigoals.logic.parser;
 import static seedu.nutrigoals.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.NAME_DESC_BREAD;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.TAG_DESC_LUNCH;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_BREAD_NAME;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -116,18 +114,6 @@ public class EditCommandParserTest {
         userInput = targetIndex.getOneBased() + VALID_CALORIE_DESC;
         descriptor = new EditFoodDescriptorBuilder().withCalorie(VALID_CALORIE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_MEAL;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-
-        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withTags().build();
-
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

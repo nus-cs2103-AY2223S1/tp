@@ -2,11 +2,9 @@ package seedu.nutrigoals.logic.parser;
 
 import static seedu.nutrigoals.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nutrigoals.commons.core.Messages.MESSAGE_MULTIPLE_TAGS_ERROR;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.CALORIE_DESC_APPLE;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.CALORIE_DESC_BREAD;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.NAME_DESC_BREAD;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.TAG_DESC_BREAKFAST;
@@ -14,10 +12,10 @@ import static seedu.nutrigoals.logic.commands.CommandTestUtil.TAG_DESC_LUNCH;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_APPLE_CALORIE;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_APPLE_NAME;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_BREAD_CALORIE;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
 import static seedu.nutrigoals.testutil.TypicalFoods.BREAD;
 
 import org.junit.jupiter.api.Test;
@@ -46,14 +44,6 @@ public class AddCommandParserTest {
         // multiple tags - should not be allowed to input multiple tags
         assertParseFailure(parser, NAME_DESC_BREAD + CALORIE_DESC_BREAD
                 + TAG_DESC_LUNCH + TAG_DESC_BREAKFAST, MESSAGE_MULTIPLE_TAGS_ERROR);
-    }
-
-    @Test
-    public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Food expectedFood = new FoodBuilder(APPLE).withCalorie(VALID_APPLE_CALORIE).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_APPLE + CALORIE_DESC_APPLE,
-                new AddCommand(expectedFood));
     }
 
     @Test
