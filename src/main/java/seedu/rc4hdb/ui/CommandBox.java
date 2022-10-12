@@ -69,6 +69,9 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
     }
 
+    /**
+     * Brings the text field into focus.
+     */
     public void focus() {
         commandTextField.requestFocus();
     }

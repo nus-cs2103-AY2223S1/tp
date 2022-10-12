@@ -156,7 +156,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    public void handleRedirect() {
+    /**
+     * Sets the text field of the command box to be in focus.
+     */
+    private void handleRedirect() {
         commandBoxRegion.focus();
     }
 
