@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROFILES;
 
 import java.util.Collections;
@@ -24,6 +25,7 @@ import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.profile.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,10 +43,12 @@ public class EditProfileCommand extends ProfileCommand {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM USERNAME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_TELEGRAM + "johndoe "
             + PREFIX_TAG + "CS2103T";
 
     public static final String MESSAGE_EDIT_PROFILE_SUCCESS = "Edited Profile: \n%1$s";
@@ -97,9 +101,10 @@ public class EditProfileCommand extends ProfileCommand {
         Name updatedName = editProfileDescriptor.getName().orElse(profileToEdit.getName());
         Phone updatedPhone = editProfileDescriptor.getPhone().orElse(profileToEdit.getPhone());
         Email updatedEmail = editProfileDescriptor.getEmail().orElse(profileToEdit.getEmail());
+        Telegram updatedTelegram = editProfileDescriptor.getTelegram().orElse(profileToEdit.getTelegram());
         Set<Tag> updatedTags = editProfileDescriptor.getTags().orElse(profileToEdit.getTags());
 
-        return new Profile(updatedName, updatedPhone, updatedEmail, updatedTags);
+        return new Profile(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedTags);
     }
 
     @Override
@@ -128,6 +133,7 @@ public class EditProfileCommand extends ProfileCommand {
         private Name name;
         private Phone phone;
         private Email email;
+        private Telegram telegram;
         private Set<Tag> tags;
 
         public EditProfileDescriptor() {}
@@ -140,6 +146,7 @@ public class EditProfileCommand extends ProfileCommand {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setTelegram(toCopy.telegram);
             setTags(toCopy.tags);
         }
 
@@ -147,7 +154,7 @@ public class EditProfileCommand extends ProfileCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, telegram, tags);
         }
 
         public void setName(Name name) {
@@ -172,6 +179,14 @@ public class EditProfileCommand extends ProfileCommand {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setTelegram(Telegram telegram) {
+            this.telegram = telegram;
+        }
+
+        public Optional<Telegram> getTelegram() {
+            return Optional.ofNullable(telegram);
         }
 
         /**
@@ -209,6 +224,7 @@ public class EditProfileCommand extends ProfileCommand {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getTelegram().equals(e.getTelegram())
                     && getTags().equals(e.getTags());
         }
     }

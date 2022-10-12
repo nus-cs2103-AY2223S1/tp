@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `profile -v` and `event -a` 
+        * Added documentation for the features `profile -v` and `event -a`
     * Developer Guide:
         * To be added
 

@@ -85,7 +85,7 @@ Examples:
 
 ### Viewing all profiles: `profile -v`
 
-Shows a list of all profiles in the NUScheduler. 
+Shows a list of all profiles in the NUScheduler.
 
 Format: `profile -v`
 
