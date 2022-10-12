@@ -174,7 +174,7 @@ public class AddPersonCommandTest {
 
         @Override
         public ObservableList<Internship> getFilteredInternshipList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -229,6 +229,11 @@ public class AddPersonCommandTest {
         public int getNextPersonId() {
             return 0;
         }
+
+        @Override
+        public ObservableList<Internship> getFilteredInternshipList() {
+            return null;
+        }
     }
 
     /**
@@ -267,6 +272,11 @@ public class AddPersonCommandTest {
         @Override
         public int getNextPersonId() {
             return nextPersonId;
+        }
+
+        @Override
+        public ObservableList<Internship> getFilteredInternshipList() {
+            return null;
         }
     }
 
