@@ -27,13 +27,13 @@ public class FilterPatientsCommandParser implements Parser<FilterPatientsCommand
         String trimmedArgs = args.trim();
         String[] keywords = trimmedArgs.split("\\s+");
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            return new FilterPatientsCommand(new TagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).orElse("")), false);
+            return new FilterPatientsCommand(new TagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).orElse("")));
         }
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterAppointmentsCommand.MESSAGE_USAGE));
         }
-        return new FilterPatientsCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)), true);
+        return new FilterPatientsCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
 }

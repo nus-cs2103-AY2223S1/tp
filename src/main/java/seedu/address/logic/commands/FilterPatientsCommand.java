@@ -8,9 +8,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.AppointmentOfFilteredPersonsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * Finds and lists all persons and their appointments in address book whose name contains any of the argument keywords.
@@ -28,11 +26,9 @@ public class FilterPatientsCommand extends Command {
             + "Example: " + COMMAND_WORD + DESCRIPTOR_WORD + " alice bob charlie";
 
     private Predicate<Person> predicate;
-    private static boolean filterByName;
 
-    public FilterPatientsCommand(Predicate<Person> predicate, boolean filterByName) {
+    public FilterPatientsCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
-        this.filterByName = filterByName;
     }
 
 
