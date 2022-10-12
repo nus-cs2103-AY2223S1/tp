@@ -21,7 +21,7 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         Set<Tag> tags = person.getTags();
         for (Tag t: tags) {
-            if (t.tagName.equals(keyword)) {
+            if (t.tagName.equalsIgnoreCase(keyword)) {
                 return true;
             }
         }

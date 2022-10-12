@@ -100,11 +100,12 @@ Examples:
 respectively.
 * `edit appts 1 1 r/Sore Throat` Edits the reason of the first patient's first appointment to be `Sore Throat`. Existing date will not be edited.
 
-### Locating persons by name: `find`
+### Locating patients by name or tag: `filter patients`
 
-Finds persons whose names contain any of the given keywords.
+####By name:
+Finds patients whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `filter patients KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -114,10 +115,21 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `filter patients John` returns `john` and `John Doe`
+* `filter patients alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+####By tag:
+
+Finds patients whose names contains the given tag.
+
+Format: `filter patients t/friends`
+
+* The search is case-insensitive. e.g `FRIENDS` will match `friends`
+* All tags of a patient are searched.
+
+Examples:
+* `filter patients t/friends` returns all patients with friends tag.
 ### Deleting a person : `delete`
 
 Deletes the specified person from idENTify.
@@ -214,6 +226,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Filter patients by name** | `filter patients KEYWORD [MORE_KEYWORDS]`<br> e.g., `filter James Jake`
+**Filter patients by tag** | `filter patients t/TAG`<br> e.g., `filter t/friends`
 **Book** | `book INDEX r/REASON d/DATE`<br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00`
 **Cancel** | `cancel PATIENT_INDEX APPOINTMENT_INDEX` <br> e.g., `cancel 3 2`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
