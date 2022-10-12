@@ -3,7 +3,7 @@ package seedu.foodrem.logic.commands.itemcommands;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_ITEM_NAME_CARROTS;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.foodrem.testutil.TypicalItems.getTypicalFoodRem;
+import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ import seedu.foodrem.testutil.ItemBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class NewCommandIntegrationTest {
 
     private Model model;
 
@@ -33,14 +33,14 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.addItem(validItem);
 
-        assertCommandSuccess(new AddCommand(validItem), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validItem), expectedModel);
+        assertCommandSuccess(new NewCommand(validItem), model,
+                String.format(NewCommand.MESSAGE_SUCCESS, validItem), expectedModel);
     }
 
     @Test
     public void execute_duplicateItem_throwsCommandException() {
         Item itemInList = model.getFoodRem().getItemList().get(0);
-        assertCommandFailure(new AddCommand(itemInList), model, AddCommand.MESSAGE_DUPLICATE_ITEM);
+        assertCommandFailure(new NewCommand(itemInList), model, NewCommand.MESSAGE_DUPLICATE_ITEM);
     }
 
 }
