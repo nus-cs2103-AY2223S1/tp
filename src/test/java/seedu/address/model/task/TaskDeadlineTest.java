@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.task.exceptions.DatePastException;
+import seedu.address.logic.task.TaskDeadline;
+import seedu.address.logic.task.exceptions.DatePastException;
 
 import java.time.LocalDate;
 

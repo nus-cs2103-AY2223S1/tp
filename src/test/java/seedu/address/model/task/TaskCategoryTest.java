@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.task.exceptions.LevelOutOfRangeException;
+import seedu.address.logic.task.TaskCategory;
+import seedu.address.logic.task.exceptions.LevelOutOfRangeException;
 
 
 public class TaskCategoryTest {

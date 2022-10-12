@@ -1,4 +1,4 @@
-package seedu.address.model.task.exceptions;
+package seedu.address.logic.task.exceptions;
 
 public class DatePastException extends RuntimeException {
     public DatePastException() {

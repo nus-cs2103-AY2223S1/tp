@@ -1,5 +1,5 @@
-package seedu.address.model.task;
-import seedu.address.model.task.exceptions.DatePastException;
+package seedu.address.logic.task;
+import seedu.address.logic.task.exceptions.DatePastException;
 
 import java.time.LocalDate;
 

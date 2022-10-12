@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.logic.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -156,6 +156,9 @@ public class Task {
     public Person getPerson() {
         return person;
     }
+    public boolean getStatus() {
+        return isDone;
+    }
 
     /**
      * Returns true if both tasks have the same name.
@@ -194,7 +197,7 @@ public class Task {
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getPerson().equals(getPerson())
                 && otherTask.getPriority().equals(getPriority())
-                && (otherTask.isDone() && this.isDone());
+                && (otherTask.isDone() == (this.isDone()));
     }
 
     /**

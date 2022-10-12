@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
@@ -21,12 +20,12 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Priority;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskCategory;
-import seedu.address.model.task.TaskDeadline;
-import seedu.address.model.task.TaskName;
+import seedu.address.logic.task.Description;
+import seedu.address.logic.task.Priority;
+import seedu.address.logic.task.Task;
+import seedu.address.logic.task.TaskCategory;
+import seedu.address.logic.task.TaskDeadline;
+import seedu.address.logic.task.TaskName;
 
 /**
  * Adds a Task in the address book.
@@ -116,7 +115,7 @@ public class EditTaskCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditTaskCommand)) {
             return false;
         }
 
@@ -219,6 +218,7 @@ public class EditTaskCommand extends Command {
             return ofNullable(isDone);
         }
 
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -227,7 +227,7 @@ public class EditTaskCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
+            if (!(other instanceof EditTaskCommand.EditTaskDescriptor)) {
                 return false;
             }
 

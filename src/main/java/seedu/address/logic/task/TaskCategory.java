@@ -1,7 +1,8 @@
-package seedu.address.model.task;
+package seedu.address.logic.task;
 
 
-import seedu.address.model.task.exceptions.LevelOutOfRangeException;
+import seedu.address.logic.task.exceptions.LevelOutOfRangeException;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -14,7 +15,7 @@ public class TaskCategory {
     /**
      * Constructor for TaskCategory
      */
-    public TaskCategory(int level, TaskCategoryType taskCategoryType) throws LevelOutOfRangeException{
+    public TaskCategory(int level, TaskCategoryType taskCategoryType) throws LevelOutOfRangeException {
         if(level < 0 || level > 5) {
             throw new LevelOutOfRangeException();
         }

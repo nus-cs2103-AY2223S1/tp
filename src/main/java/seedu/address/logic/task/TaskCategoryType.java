@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.logic.task;
 
 public enum TaskCategoryType {
         DATABASE,

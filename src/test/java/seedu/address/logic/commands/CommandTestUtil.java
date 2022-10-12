@@ -9,20 +9,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
+import java.time.LocalDate;
+import java.util.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.task.*;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskName;
+import seedu.address.model.person.*;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -57,11 +54,19 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    static TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
+    static Description testDisc = new Description("Test");
+    static Priority testPriority = new Priority(PriorityEnum.MEDIUM);
+    static TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
+    static Person testPerson = new Person(new Name("test"), new Phone("99999999"), new Email("test@gmail.com"),new Address("test"), new HashSet());
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_ONE;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_TWO;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -70,6 +75,12 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        Task ALICE = new Task(new TaskName("A"),testCat,testDisc,testPriority, testDeadline,testPerson,false);
+
+        DESC_ONE = new EditTaskDescriptorBuilder(ALICE).withName("A").build();
+        DESC_TWO = new EditTaskDescriptorBuilder(ALICE).withName("B").build();
+
     }
 
     /**
@@ -81,6 +92,10 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
+            System.out.println(expectedModel.getFilteredTaskList().toString().equals(actualModel.getFilteredTaskList().toString()));
+            System.out.println(expectedModel.getFilteredTaskList().toString());
+            System.out.println(actualModel.getFilteredTaskList().toString());
+
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -129,11 +144,11 @@ public class CommandTestUtil {
     }
 
     public static void showTaskAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
-        final TaskName splitName = task.getName();
-        // need to create NameContainsKeyWords for task
-        // model.updateFilteredTaskList(new NameContainsKeywordsPredicate(splitName));
+        final String[] name = new String[]{task.getName().toString()};
+        model.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(name)));
         assertEquals(1, model.getFilteredTaskList().size());
     }
 

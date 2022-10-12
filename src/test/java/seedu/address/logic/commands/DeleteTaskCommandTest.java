@@ -6,8 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.TypicalTasks;
+import seedu.address.logic.task.Task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,7 +19,6 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        //System.out.println(model.getFilteredTaskList());
         Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_TASK);
 
