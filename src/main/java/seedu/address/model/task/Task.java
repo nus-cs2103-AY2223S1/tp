@@ -20,7 +20,6 @@ public class Task {
     private Boolean isDone;
     private final Set<Tag> tags = new HashSet<>();
 
-
     /**
      * A constructor that creates an instance of Task.
      * @param description The description of the task.
@@ -31,6 +30,10 @@ public class Task {
         this.deadline = deadline;
         this.isDone = isDone;
         this.tags.addAll(tags);
+    }
+
+    public boolean getIsDone() {
+        return this.isDone;
     }
 
     /**
@@ -96,6 +99,9 @@ public class Task {
     /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.
+     *
+     * @param otherTask Another task.
+     * @return boolean indicating whether tasks are the same.
      */
     public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {
