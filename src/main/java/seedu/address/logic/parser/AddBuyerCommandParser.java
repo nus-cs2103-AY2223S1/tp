@@ -8,7 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.role.Buyer;
-import seedu.address.model.role.Characteristics;
+import seedu.address.model.role.DesiredCharacteristics;
 import seedu.address.model.role.PriceRange;
 
 /**
@@ -38,7 +38,7 @@ public class AddBuyerCommandParser extends Parser<AddBuyerCommand> {
         }
 
         PriceRange priceRange = ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).orElse(""));
-        Characteristics characteristics = ParserUtil
+        DesiredCharacteristics characteristics = ParserUtil
                 .parseCharacteristics(argMultimap
                         .getValue(PREFIX_CHARACTERISTICS)
                         .orElse(""));

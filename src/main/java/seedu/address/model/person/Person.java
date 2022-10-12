@@ -4,15 +4,18 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.address.Address;
 import seedu.address.model.role.Buyer;
+import seedu.address.model.role.DesiredCharacteristics;
+import seedu.address.model.role.PriceRange;
+import seedu.address.model.role.Properties;
 import seedu.address.model.role.Seller;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Represents a Person in the address book.
@@ -91,25 +94,25 @@ public class Person {
         this.seller = Optional.of(seller);
     }
 
-    public List<Integer> getSellerProperties() {
+    public Properties getSellerProperties() {
         Seller s = seller.orElseThrow();
-        return s.getProperties();
+        return s.getSellerProperties();
     }
 
     /**
      * Temporarily for UI Testing of Add Buyer Command
      */
-    public String getBuyerRange() {
+    public PriceRange getBuyerRange() {
         Buyer b = buyer.orElseThrow();
-        return b.getRange();
+        return b.getPriceRange();
     }
 
     /**
      * Temporarily for UI Testing of Add Buyer Command
      */
-    public String getBuyerCharacteristics() {
+    public DesiredCharacteristics getBuyerCharacteristics() {
         Buyer b = buyer.orElseThrow();
-        return b.getCharacteristics();
+        return b.getDesiredCharacteristics();
     }
 
     /**
