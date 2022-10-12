@@ -15,5 +15,18 @@
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#171923, 20%);
+}
+
+#helpMessageContainerVBox {
+    -fx-background-color: derive(#171923, 20%);
+}
+
+#commandList, #descriptionList {
+    -fx-background-color: derive(#171923, 20%);
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-family: "Segoe UI";
+    -fx-margin: 2px;
+    -fx-padding: 5px;
 }

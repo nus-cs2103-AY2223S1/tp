@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -20,8 +22,10 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.person.exceptions.TagTypeNotFoundException;
 import seedu.address.model.tag.TagType;
@@ -44,7 +48,9 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_STATUS + "STATUS] "
+            + "[" + PREFIX_NOTE + "NOTE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -114,7 +120,11 @@ public class EditCommand extends Command {
         original.removeTags(toEdit);
         original.mergeTagTypeMap(editTo);
         UniqueTagTypeMap updatedTags = original;
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Note updatednote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
+        Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedStatus,
+                updatednote);
     }
 
     @Override
@@ -146,6 +156,8 @@ public class EditCommand extends Command {
         private Address address;
         private UniqueTagTypeMap oldTagTypeMap;
         private UniqueTagTypeMap newTagTypeMap;
+        private Status status;
+        private Note note;
 
         public EditPersonDescriptor() {}
 
@@ -160,13 +172,15 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setOldTagTypeMap(toCopy.oldTagTypeMap);
             setNewTagTypeMap(toCopy.oldTagTypeMap);
+            setStatus(toCopy.status);
+            setNote(toCopy.note);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, newTagTypeMap);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, newTagTypeMap, status, note);
         }
 
         public void setName(Name name) {
@@ -199,6 +213,22 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
+        }
+
+        public void setNote(Note note) {
+            this.note = note;
+        }
+
+        public Optional<Note> getNote() {
+            return Optional.ofNullable(note);
         }
 
         /**
@@ -255,7 +285,9 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getOldTagTypeMap().equals(e.getOldTagTypeMap())
-                    && getNewTagTypeMap().equals(e.getNewTagTypeMap());
+                    && getNewTagTypeMap().equals(e.getNewTagTypeMap())
+                    && getStatus().equals(e.getStatus())
+                    && getNote().equals(e.getNote());
         }
     }
 }

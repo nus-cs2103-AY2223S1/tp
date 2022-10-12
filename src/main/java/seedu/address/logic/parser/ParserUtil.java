@@ -3,9 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -13,7 +16,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagType;
@@ -118,6 +123,80 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String status} into a {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+        return new Status(trimmedStatus);
+    }
+
+    /**
+     * Parses a {@code String note} into a {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        return new Note(note.trim());
+    }
+
+    /**
+     * Parses {@code Collection<String> names} into a {@code Set<Name>}.
+     */
+    public static Set<Name> parseNames(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final Set<Name> nameSet = new HashSet<>();
+        for (String nameName : names) {
+            nameSet.add(parseName(nameName));
+        }
+        return nameSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> phones} into a {@code Set<Phone>}.
+     */
+    public static Set<Phone> parsePhones(Collection<String> phones) throws ParseException {
+        requireNonNull(phones);
+        final Set<Phone> phoneSet = new HashSet<>();
+        for (String phoneName : phones) {
+            phoneSet.add(parsePhone(phoneName));
+        }
+        return phoneSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> emails} into a {@code Set<Email>}.
+     */
+    public static Set<Email> parseEmails(Collection<String> emails) throws ParseException {
+        requireNonNull(emails);
+        final Set<Email> emailSet = new HashSet<>();
+        for (String emailName : emails) {
+            emailSet.add(parseEmail(emailName));
+        }
+        return emailSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> addresss} into a {@code Set<Address>}.
+     */
+    public static Set<Address> parseAddresses(Collection<String> addresses) throws ParseException {
+        requireNonNull(addresses);
+        final Set<Address> addressSet = new HashSet<>();
+        for (String addressName : addresses) {
+            addressSet.add(parseAddress(addressName));
+        }
+        return addressSet;
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static UniqueTagTypeMap parseTags(Map<Prefix, List<String>> tags) throws ParseException {
@@ -194,4 +273,17 @@ public class ParserUtil {
         oldNewPair[1] = oldNewPair[1].trim();
         return oldNewPair;
     }
+
+    /**
+     * Parses {@code Collection<String> statuss} into a {@code Set<Status>}.
+     */
+    public static Set<Status> parseStatuses(Collection<String> statuses) throws ParseException {
+        requireNonNull(statuses);
+        final Set<Status> statusSet = new HashSet<>();
+        for (String statusName : statuses) {
+            statusSet.add(parseStatus(statusName));
+        }
+        return statusSet;
+    }
+
 }

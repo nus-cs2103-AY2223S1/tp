@@ -101,7 +101,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS [note/NOTE] [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can have any number and any kind of tags (including 0).
@@ -125,7 +125,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STATUS] [note/NOTE] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -164,23 +164,29 @@ Examples:
 * `deleteTag 3 st/Java` Deletes the **Skill** tag `Java` of the 3rd person.
 * `deleteTag 2 dt/Bachelors` Deletes the **Degree** tag `Bachelors` of the 2nd person.
 
-### Searching personal information and tags: `search`
+### Finding personal information and tags: `find`
 
-Searches persons whose personal information and tags contain any of the given keywords.
+Finds candidates whose personal information and tags contain any of the given keywords.
 
-Format: `search KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] 
+[MORE_TAGGED_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * The personal information and tags will be searched.  
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Partial words will be matched e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Search can be further refined by specifying the type of tag to search for.  
+  e.g. `find n/John p/867` will return `John Doe` with **Phone** number `8675309`
 
 Examples:
-* `search John` returns `john` and `John Doe`
-* `search Java` returns list of candidates with Java skills 
-* `search alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find John` returns `john` and `John Doe`
+* `find Java` returns list of candidates with Java skills 
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `John Doe`
+* `find n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
+* `find s/application pending` returns list of candidates with status `application pending`
 
 ### Deleting a person : `delete`
 
@@ -233,31 +239,11 @@ Examples: `deleteTagType GPA`
 
 - Deletes the `GPA` tag type.
 
-### Adding recruitment status: `status`
-
-Adds a recruitment status to the person. 
-
-<div markdown="span" class="alert alert-primary">:bulb: **Note:** Due to the subjectivity of recruitment statuses per job and per recruiter, there will be no categorisation of recruitment statuses and hence no type checking of valid/invalid statuses. All inputs by the user are assumed to be valid.
-</div>
-
-Format: `status INDEX STATUS`
-* The INDEX refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …​ 
-
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-A person can have a minimum of 0 recruitment statuses and a maximum of 1 recruitment status. Calling the `status` command on the same person will update their recruitment status to the latest input.
-</div>
-
-Examples:
-* `status 1 Rejected` adds a recruitment status of `Rejected` to the 1st person in the address book.
-* `status 2 Interviewed` adds a recruitment status of `Interviewed` to the 2nd person in the address book.
-* `status 2 Accepted` updates the recruitment status of the 2nd person in the address book from `Interviewed` to `Accepted`.
-
 ### Adding optional information: `note`
 
 Adds additional optional information (notes) to a person
 
-Format: `note INDEX n/NOTE`
+Format: `note INDEX note/NOTE`
 * The INDEX refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 
@@ -266,7 +252,7 @@ A person can have any number of notes (including 0)
 </div>
 
 Examples:
-* `note 4 n/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
+* `note 4 note/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
 
 ### Clearing all entries : `clear`
 
@@ -315,7 +301,7 @@ If your changes to the data file makes its format invalid, CLInkedIn will discar
 | **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                             |
 | **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                     |
 | **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                              |
-| **Search**        | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `search James Jake`                                                                                                                                                                                                       |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                           |
 | **List**          | `list`                                                                                                                                                                                                                                                               |
 | **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                               |
