@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -46,6 +48,9 @@ public class EditProfileDescriptorTest {
         editedAmy = new EditProfileDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // different telegram -> returns false
+        editedAmy = new EditProfileDescriptorBuilder(DESC_AMY).withTelegram(VALID_TELEGRAM_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
         editedAmy = new EditProfileDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();

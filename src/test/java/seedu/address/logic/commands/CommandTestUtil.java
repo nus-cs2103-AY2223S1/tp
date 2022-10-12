@@ -71,6 +71,7 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditProfileDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                .withTelegram(VALID_TELEGRAM_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
