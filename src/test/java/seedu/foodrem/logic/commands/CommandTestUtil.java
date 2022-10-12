@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.foodrem.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -40,7 +40,11 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_BOUGHT_DATE_CUCUMBERS = "12-12-2022";
     public static final String VALID_ITEM_EXPIRY_DATE_CUCUMBERS = "12-12-2022";
 
-    public static final String VALID_DESC_ITEM_NAME_POTATOES = " " + PREFIX_ITEM_NAME
+    public static final String VALID_TAG_NAME_FRUITS = "fruits";
+    public static final String VALID_TAG_NAME_FRUITS_WITH_WHITESPACES = "f r u i t s";
+    public static final String VALID_TAG_NAME_NUMBERS = "2 1 0 3 t";
+
+    public static final String VALID_DESC_ITEM_NAME_POTATOES = " " + PREFIX_NAME
             + VALID_ITEM_NAME_POTATOES;
     public static final String VALID_DESC_ITEM_QUANTITY_POTATOES = " " + PREFIX_ITEM_QUANTITY
             + VALID_ITEM_QUANTITY_POTATOES;
@@ -51,7 +55,7 @@ public class CommandTestUtil {
     public static final String VALID_DESC_ITEM_EXPIRY_DATE_POTATOES = " " + PREFIX_ITEM_EXPIRY_DATE
             + VALID_ITEM_EXPIRY_DATE_POTATOES;
 
-    public static final String VALID_DESC_ITEM_NAME_CUCUMBERS = " " + PREFIX_ITEM_NAME
+    public static final String VALID_DESC_ITEM_NAME_CUCUMBERS = " " + PREFIX_NAME
             + VALID_ITEM_NAME_CUCUMBERS;
     public static final String VALID_DESC_ITEM_QUANTITY_CUCUMBERS = " " + PREFIX_ITEM_QUANTITY
             + VALID_ITEM_QUANTITY_CUCUMBERS;
@@ -61,6 +65,15 @@ public class CommandTestUtil {
             + VALID_ITEM_BOUGHT_DATE_CUCUMBERS;
     public static final String VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = " " + PREFIX_ITEM_EXPIRY_DATE
             + VALID_ITEM_EXPIRY_DATE_CUCUMBERS;
+
+    public static final String VALID_DESC_TAG_NAME_FRUITS = " " + PREFIX_NAME
+            + VALID_TAG_NAME_FRUITS;
+
+    public static final String VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES = " " + PREFIX_NAME
+            + VALID_TAG_NAME_FRUITS_WITH_WHITESPACES;
+
+    public static final String VALID_DESC_TAG_NAME_NUMBERS = " " + PREFIX_NAME
+            + VALID_TAG_NAME_NUMBERS;
 
     public static final String INVALID_ITEM_NAME_POTATOES = "Potatoe@s";
     public static final String INVALID_ITEM_QUANTITY_POTATOES = "1@0";
@@ -74,7 +87,12 @@ public class CommandTestUtil {
     public static final String INVALID_ITEM_BOUGHT_DATE_CUCUMBERS = "12-12-202@2";
     public static final String INVALID_ITEM_EXPIRY_DATE_CUCUMBERS = "12-12-202@2";
 
-    public static final String INVALID_DESC_ITEM_NAME_CUCUMBERS = " " + PREFIX_ITEM_NAME
+    public static final String INVALID_TAG_NAME_DISALLOWED_PUNCTUATION = "Frui//ts";
+    public static final String INVALID_TAG_NAME_EXCEED_CHAR_LIMIT =
+            "vegetablesvegetablesvegetablesvegetablesvegetables";
+    public static final String INVALID_TAG_NAME_ILLEGAL_FIRST_CHAR = "@fruits";
+
+    public static final String INVALID_DESC_ITEM_NAME_CUCUMBERS = " " + PREFIX_NAME
             + INVALID_ITEM_NAME_CUCUMBERS;
     public static final String INVALID_DESC_ITEM_QUANTITY_CUCUMBERS = " " + PREFIX_ITEM_QUANTITY
             + INVALID_ITEM_QUANTITY_CUCUMBERS;
@@ -85,7 +103,7 @@ public class CommandTestUtil {
     public static final String INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = " " + PREFIX_ITEM_EXPIRY_DATE
             + INVALID_ITEM_EXPIRY_DATE_CUCUMBERS;
 
-    public static final String INVALID_DESC_ITEM_NAME_POTATOES = " " + PREFIX_ITEM_NAME
+    public static final String INVALID_DESC_ITEM_NAME_POTATOES = " " + PREFIX_NAME
             + INVALID_ITEM_NAME_POTATOES;
     public static final String INVALID_DESC_ITEM_QUANTITY_POTATOES = " " + PREFIX_ITEM_QUANTITY
             + INVALID_ITEM_QUANTITY_POTATOES;
@@ -95,6 +113,15 @@ public class CommandTestUtil {
             + INVALID_ITEM_BOUGHT_DATE_POTATOES;
     public static final String INVALID_DESC_ITEM_EXPIRY_DATE_POTATOES = " " + PREFIX_ITEM_EXPIRY_DATE
             + INVALID_ITEM_EXPIRY_DATE_POTATOES;
+
+    public static final String INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION = " " + PREFIX_NAME
+            + INVALID_TAG_NAME_DISALLOWED_PUNCTUATION;
+
+    public static final String INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT = " " + PREFIX_NAME
+            + INVALID_TAG_NAME_EXCEED_CHAR_LIMIT;
+
+    public static final String INVALID_DESC_TAG_NAME_ILLEGAL_FIRST_CHAR = " " + PREFIX_NAME
+            + INVALID_TAG_NAME_ILLEGAL_FIRST_CHAR;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
