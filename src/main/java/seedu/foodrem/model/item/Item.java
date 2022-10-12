@@ -2,8 +2,11 @@ package seedu.foodrem.model.item;
 
 import static seedu.foodrem.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import seedu.foodrem.model.tag.Tag;
 
 /**
  * Represents an Item in FoodREM.
@@ -19,7 +22,9 @@ public class Item {
     private final ItemUnit unit;
     private final ItemBoughtDate boughtDate;
     private final ItemExpiryDate expiryDate;
-    // TODO: Implement Item with Tags
+
+    private final Set<Tag> tagSet;
+
 
     /**
      * Constructs an item.
@@ -41,7 +46,33 @@ public class Item {
         this.unit = unit;
         this.boughtDate = boughtDate;
         this.expiryDate = expiryDate;
+        this.tagSet = new HashSet<>();
     }
+
+    /**
+     * Overloaded constructor in item.
+     *
+     * @param name       Name of the item.
+     * @param quantity   Quantity of the item.
+     * @param unit       Unit of the item.
+     * @param boughtDate Date when the item was purchased.
+     * @param expiryDate Date when the item will expire.
+     * @param tagSet The set of tags in item
+     */
+    public Item(ItemName name,
+                ItemQuantity quantity,
+                ItemUnit unit,
+                ItemBoughtDate boughtDate,
+                ItemExpiryDate expiryDate, Set<Tag> tagSet) {
+        requireAllNonNull(name, quantity, unit, boughtDate, expiryDate);
+        this.name = name;
+        this.quantity = quantity;
+        this.unit = unit;
+        this.boughtDate = boughtDate;
+        this.expiryDate = expiryDate;
+        this.tagSet = tagSet;
+    }
+
 
     public ItemName getName() {
         return name;
@@ -61,6 +92,34 @@ public class Item {
 
     public ItemExpiryDate getExpiryDate() {
         return expiryDate;
+    }
+
+    public Set<Tag> getTagSet() {
+        return tagSet;
+    }
+
+    /**
+     * Returns true if item contains a certain tag.
+     */
+    public boolean containsTag(Tag tag) {
+        if (tagSet.contains(tag)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Adds a tag to the item's tagSet
+     */
+    public void addItemTag(Tag tag) {
+        tagSet.add(tag);
+    }
+
+    /**
+     * Removes a tag from the item's tagSet
+     */
+    public void removeItemTag(Tag tag) {
+        tagSet.remove(tag);
     }
 
     /**
@@ -98,7 +157,8 @@ public class Item {
                 && otherItem.getQuantity().equals(quantity)
                 && otherItem.getUnit().equals(unit)
                 && otherItem.getBoughtDate().equals(boughtDate)
-                && otherItem.getExpiryDate().equals(expiryDate);
+                && otherItem.getExpiryDate().equals(expiryDate)
+                && otherItem.getTagSet().equals(tagSet);
     }
 
     /**
