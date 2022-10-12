@@ -205,12 +205,14 @@ public class MainWindow extends UiPart<Stage> {
         return clientListPanel;
     }
 
-    private void setListPanelToClient() {
+    @FXML
+    public void setListPanelToClient() {
         clientListPanelPlaceholder.getChildren().clear();
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
     }
 
-    private void setListPanelToMeeting() {
+    @FXML
+    public void setListPanelToMeeting() {
         clientListPanelPlaceholder.getChildren().clear();
         clientListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
     }

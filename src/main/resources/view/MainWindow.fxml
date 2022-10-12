@@ -6,7 +6,10 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
@@ -37,6 +40,22 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+            <HBox prefHeight="25.0" spacing="5.0" styleClass="status-bar">
+               <children>
+                  <ToggleButton mnemonicParsing="false" onAction="#setListPanelToClient" styleClass="button" text="Clients">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="panel" />
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" onAction="#setListPanelToMeeting" styleClass="button" text="Meetings">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="panel1" />
+                     </toggleGroup>
+                  </ToggleButton>
+               </children>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding></HBox>
 
         <VBox fx:id="clientList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
