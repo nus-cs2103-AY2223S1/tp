@@ -53,16 +53,15 @@ public class JsonPennyWiseStorageTest {
         assertThrows(DataConversionException.class, () -> readPennyWise("notJsonFormatPennyWise.json"));
     }
 
-        @Test
-        public void readPennyWise_invalidPersonPennyWise_throwDataConversionException() {
-            assertThrows(DataConversionException.class, () -> readPennyWise("invalidEntryPennyWise.json"));
-        }
+    @Test
+    public void readPennyWise_invalidPersonPennyWise_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readPennyWise("invalidEntryPennyWise.json"));
+    }
 
-        @Test
-        public void readPennyWise_invalidAndValidPersonPennyWise_throwDataConversionException() {
-            assertThrows(DataConversionException.class, () ->
-            readPennyWise("invalidAndValidEntryPennyWise.json"));
-        }
+    @Test
+    public void readPennyWise_invalidAndValidPersonPennyWise_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readPennyWise("invalidAndValidEntryPennyWise.json"));
+    }
 
     @Test
     public void readAndSavePennyWise_allInOrder_success() throws Exception {
@@ -99,10 +98,10 @@ public class JsonPennyWiseStorageTest {
     /**
      * Saves {@code PennyWise} at the specified {@code filePath}.
      */
-    private void savePennyWise(ReadOnlyPennyWise PennyWise, String filePath) {
+    private void savePennyWise(ReadOnlyPennyWise pennyWise, String filePath) {
         try {
             new JsonPennyWiseStorage(Paths.get(filePath))
-                    .savePennyWise(PennyWise, addToTestDataPathIfNotNull(filePath));
+                    .savePennyWise(pennyWise, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

@@ -1,14 +1,14 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+  "expenditures" : [ {
+    "description" : "Lunch",
+    "amount" : "5.20",
+    "date" : "20-08-2022",
+    "tagged" : [ "Lunch" ]
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
-  } ]
+    "description" : "Lunch",
+    "amount" : "5.20",
+    "date" : "20-08-2022",
+    "tagged" : [ "Lunch" ]
+  }],
+  "incomes" : []
 }

@@ -9,5 +9,6 @@
     "amount" : "30",
     "date" : "20-02-2022",
     "tagged" : [ "Dinner" ]
-  }]
+  }],
+  "incomes": []
 }

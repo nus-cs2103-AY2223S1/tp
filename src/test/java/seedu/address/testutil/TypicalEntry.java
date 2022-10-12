@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_MOVIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MOVIE;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
