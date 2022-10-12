@@ -215,7 +215,7 @@ public class AddCommandTest {
 
         @Override
         public AbstractContainerItem getContextContainer() {
-            throw new AssertionError("This method should not be called.");
+            return null;
         }
 
         @Override
