@@ -1,7 +1,6 @@
 package seedu.workbook.logic.parser;
 
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -13,7 +12,6 @@ import java.util.stream.Stream;
 
 import seedu.workbook.logic.commands.AddCommand;
 import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.internship.Address;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
@@ -34,9 +32,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_ROLE, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                PREFIX_EMAIL, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_ROLE, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_ROLE, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -45,10 +43,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Internship internship = new Internship(company, role, phone, email, address, tagList);
+        Internship internship = new Internship(company, role, phone, email, tagList);
 
         return new AddCommand(internship);
     }

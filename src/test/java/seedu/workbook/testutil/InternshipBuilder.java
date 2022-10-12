@@ -3,7 +3,6 @@ package seedu.workbook.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.workbook.model.internship.Address;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
@@ -21,13 +20,12 @@ public class InternshipBuilder {
     public static final String DEFAULT_ROLE = "God Developer";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+
 
     private Company company;
     private Role role;
     private Phone phone;
     private Email email;
-    private Address address;
     private Set<Tag> tags;
 
     /**
@@ -38,7 +36,6 @@ public class InternshipBuilder {
         role = new Role(DEFAULT_ROLE);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -50,7 +47,6 @@ public class InternshipBuilder {
         role = internshipToCopy.getRole();
         phone = internshipToCopy.getPhone();
         email = internshipToCopy.getEmail();
-        address = internshipToCopy.getAddress();
         tags = new HashSet<>(internshipToCopy.getTags());
     }
 
@@ -78,13 +74,6 @@ public class InternshipBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Address} of the {@code Internship} that we are building.
-     */
-    public InternshipBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
 
     /**
      * Sets the {@code Phone} of the {@code Internship} that we are building.
@@ -103,7 +92,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(company, role, phone, email, address, tags);
+        return new Internship(company, role, phone, email, tags);
     }
 
 }

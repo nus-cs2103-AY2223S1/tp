@@ -1,6 +1,6 @@
 package seedu.workbook.testutil;
 
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
+
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -35,7 +35,6 @@ public class InternshipUtil {
         sb.append(PREFIX_ROLE + internship.getRole().value + " ");
         sb.append(PREFIX_PHONE + internship.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + internship.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + internship.getAddress().value + " ");
         internship.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -51,7 +50,6 @@ public class InternshipUtil {
         descriptor.getRole().ifPresent(role -> sb.append(PREFIX_ROLE).append(role.value).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

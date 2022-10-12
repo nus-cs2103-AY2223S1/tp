@@ -2,7 +2,6 @@ package seedu.workbook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -34,7 +33,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_ROLE, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                PREFIX_EMAIL, PREFIX_TAG);
 
         Index index;
 
@@ -57,9 +56,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editInternshipDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editInternshipDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editInternshipDescriptor::setTags);
 
         if (!editInternshipDescriptor.isAnyFieldEdited()) {

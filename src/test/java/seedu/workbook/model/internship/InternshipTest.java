@@ -2,7 +2,6 @@ package seedu.workbook.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -33,7 +32,7 @@ public class InternshipTest {
 
         // same company, all other attributes different -> returns true
         Internship editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameInternship(editedAlice));
 
         // different company, all other attributes same -> returns false
@@ -80,9 +79,6 @@ public class InternshipTest {
         editedAlice = new InternshipBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
         editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();

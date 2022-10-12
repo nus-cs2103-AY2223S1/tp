@@ -3,7 +3,6 @@ package seedu.workbook.model.internship;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalInternships.ALICE;
@@ -42,7 +41,7 @@ public class UniqueInternshipListTest {
     @Test
     public void contains_internshipWithSameIdentityFieldsInList_returnsTrue() {
         uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Internship editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueInternshipList.contains(editedAlice));
     }
@@ -85,7 +84,7 @@ public class UniqueInternshipListTest {
     @Test
     public void setInternship_editedInternshipHasSameIdentity_success() {
         uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Internship editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueInternshipList.setInternship(ALICE, editedAlice);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();

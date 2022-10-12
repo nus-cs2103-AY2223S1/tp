@@ -3,7 +3,6 @@ package seedu.workbook.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalInternships.ALICE;
@@ -46,7 +45,7 @@ public class WorkBookTest {
     @Test
     public void resetData_withDuplicateInternships_throwsDuplicateInternshipException() {
         // Two internships with the same identity fields
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Internship editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Internship> newInternships = Arrays.asList(ALICE, editedAlice);
         WorkBookStub newData = new WorkBookStub(newInternships);
@@ -73,7 +72,7 @@ public class WorkBookTest {
     @Test
     public void hasInternship_internshipWithSameIdentityFieldsInWorkBook_returnsTrue() {
         workBook.addInternship(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Internship editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(workBook.hasInternship(editedAlice));
     }

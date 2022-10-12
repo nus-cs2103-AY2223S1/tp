@@ -22,19 +22,18 @@ public class Internship {
     private final Email email;
 
     // Data fields
-    private final Address address;
+
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Internship(Company company, Role role, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(company, role, phone, email, address, tags);
+    public Internship(Company company, Role role, Phone phone, Email email, Set<Tag> tags) {
+        requireAllNonNull(company, role, phone, email, tags);
         this.company = company;
         this.role = role;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.tags.addAll(tags);
     }
 
@@ -54,9 +53,6 @@ public class Internship {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
-    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -99,14 +95,13 @@ public class Internship {
                 && otherInternship.getRole().equals(getRole())
                 && otherInternship.getPhone().equals(getPhone())
                 && otherInternship.getEmail().equals(getEmail())
-                && otherInternship.getAddress().equals(getAddress())
                 && otherInternship.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, role, phone, email, address, tags);
+        return Objects.hash(company, role, phone, email, tags);
     }
 
     @Override
@@ -118,9 +113,8 @@ public class Internship {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(getEmail());
+
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

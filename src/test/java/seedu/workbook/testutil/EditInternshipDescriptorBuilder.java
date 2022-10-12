@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
-import seedu.workbook.model.internship.Address;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
@@ -37,7 +36,6 @@ public class EditInternshipDescriptorBuilder {
         descriptor.setRole(internship.getRole());
         descriptor.setPhone(internship.getPhone());
         descriptor.setEmail(internship.getEmail());
-        descriptor.setAddress(internship.getAddress());
         descriptor.setTags(internship.getTags());
     }
 
@@ -73,13 +71,6 @@ public class EditInternshipDescriptorBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Address} of the {@code EditInternshipDescriptor} that we are building.
-     */
-    public EditInternshipDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
-        return this;
-    }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditInternshipDescriptor}

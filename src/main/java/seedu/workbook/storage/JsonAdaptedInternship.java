@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.workbook.commons.exceptions.IllegalValueException;
-import seedu.workbook.model.internship.Address;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
@@ -29,7 +28,6 @@ class JsonAdaptedInternship {
     private final String role;
     private final String phone;
     private final String email;
-    private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,13 +36,12 @@ class JsonAdaptedInternship {
     @JsonCreator
     public JsonAdaptedInternship(@JsonProperty("company") String company, @JsonProperty("role") String role,
             @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("email") String email,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
         this.role = role;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -58,7 +55,6 @@ class JsonAdaptedInternship {
         role = source.getRole().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -109,16 +105,10 @@ class JsonAdaptedInternship {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
+
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelRole, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Internship(modelCompany, modelRole, modelPhone, modelEmail, modelTags);
     }
 
 }
