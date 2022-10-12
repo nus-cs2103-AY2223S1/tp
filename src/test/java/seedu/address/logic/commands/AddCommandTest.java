@@ -53,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Internship google = new InternshipBuilder().withName("Google").build();
-        Internship tiktok = new InternshipBuilder().withName("Tiktok").build();
+        Internship google = new InternshipBuilder().withCompany("Google").build();
+        Internship tiktok = new InternshipBuilder().withCompany("Tiktok").build();
         AddCommand addGoogleCommand = new AddCommand(google);
         AddCommand addTiktokCommand = new AddCommand(tiktok);
 

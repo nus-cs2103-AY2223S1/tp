@@ -1,15 +1,15 @@
 {
   "internships": [ {
-    "name": "Valid Internship",
-    "phone": "9482424",
-    "email": "hans@example.com",
+    "company": "Valid Internship",
+    "link": "https://careers.alibaba.com/positionDetail",
+    "description": "Software Engineering Intern",
     "applicationStatus" : "applied",
-    "address": "4th street"
+    "appliedDate": "01/10/2022"
   }, {
-    "name": "Internship With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
+    "company": "Internship With Invalid link Field",
+    "link": "948asdf2424",
+    "description": "Software Engineering Intern",
     "applicationStatus" : "applied",
-    "address": "4th street"
+    "appliedDate": "01/10/2022"
   } ]
 }

@@ -27,25 +27,25 @@ class JsonAdaptedInternship {
 
     private final String company;
     private final String link;
-    private final String email;
+    private final String description;
     private final String applicationStatus;
-    private final String address;
+    private final String appliedDate;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedInternship} with the given internship details.
      */
     @JsonCreator
-    public JsonAdaptedInternship(@JsonProperty("name") String company, @JsonProperty("phone") String link,
-                                 @JsonProperty("email") String email,
+    public JsonAdaptedInternship(@JsonProperty("name") String company, @JsonProperty("link") String link,
+                                 @JsonProperty("description") String description,
                                  @JsonProperty("applicationStatus") String applicationStatus,
-                                 @JsonProperty("address") String address,
+                                 @JsonProperty("appliedDate") String appliedDate,
                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
         this.link = link;
-        this.email = email;
+        this.description = description;
         this.applicationStatus = applicationStatus;
-        this.address = address;
+        this.appliedDate = appliedDate;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -57,9 +57,9 @@ class JsonAdaptedInternship {
     public JsonAdaptedInternship(Internship source) {
         company = source.getCompany().value;
         link = source.getLink().value;
-        email = source.getDescription().value;
+        description = source.getDescription().value;
         applicationStatus = source.getApplicationStatus().toString().toLowerCase();
-        address = source.getAppliedDate().value;
+        appliedDate = source.getAppliedDate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -94,14 +94,14 @@ class JsonAdaptedInternship {
         }
         final Link modelLink = new Link(link);
 
-        if (email == null) {
+        if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(email)) {
+        if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description(email);
+        final Description modelDescription = new Description(description);
 
         if (applicationStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -109,14 +109,14 @@ class JsonAdaptedInternship {
         }
         final ApplicationStatus modelApplicationStatus = ApplicationStatus.parse(applicationStatus);
 
-        if (address == null) {
+        if (appliedDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AppliedDate.class.getSimpleName()));
         }
-        if (!AppliedDate.isValidAppliedDate(address)) {
+        if (!AppliedDate.isValidAppliedDate(appliedDate)) {
             throw new IllegalValueException(AppliedDate.MESSAGE_CONSTRAINTS);
         }
-        final AppliedDate modelAppliedDate = new AppliedDate(address);
+        final AppliedDate modelAppliedDate = new AppliedDate(appliedDate);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
         return new Internship(modelCompany, modelLink, modelDescription,

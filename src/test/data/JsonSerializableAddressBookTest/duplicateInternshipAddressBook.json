@@ -1,16 +1,17 @@
 {
   "internships": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
+    "link" : "https://careers.tiktok.com/position/7132807469026117902/detail",
+    "description" : "Global E-commerce",
     "applicationStatus" : "applied",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "appliedDate" : "11/10/2022",
+    "tagged" : [ "Frontend" ],
+    "company" : "Tiktok"
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
+    "link" : "https://careers.tiktok.com/position/7132807469026117902/detail",
+    "description" : "Global E-commerce",
     "applicationStatus" : "applied",
-    "address": "4th street"
-  } ]
+    "appliedDate" : "11/10/2022",
+    "tagged" : [ "Frontend" ],
+    "company" : "Tiktok"
+  }]
 }

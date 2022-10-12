@@ -3,10 +3,10 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.APPLIED_DATE_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.LINK_DESC_GOOGLE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.GOOGLE;
 
@@ -79,8 +79,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_GOOGLE + PHONE_DESC_GOOGLE + EMAIL_DESC_GOOGLE
-                + ADDRESS_DESC_GOOGLE;
+        String addCommand = AddCommand.COMMAND_WORD + COMPANY_DESC_GOOGLE + LINK_DESC_GOOGLE + DESCRIPTION_DESC_GOOGLE
+                + APPLIED_DATE_DESC_GOOGLE;
         Internship expectedInternship = new InternshipBuilder(GOOGLE).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addInternship(expectedInternship);

@@ -1,29 +1,29 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_TIKTOK;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.APPLIED_DATE_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.APPLIED_DATE_DESC_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_TIKTOK;
+// import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPLIED_DATE_DESC;
+// import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+// import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_LINK_DESC;
 // import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.LINK_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.LINK_DESC_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BACKEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRONTEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONTEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -55,7 +55,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_GOOGLE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_COMPANY_GOOGLE, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -67,10 +67,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_GOOGLE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + COMPANY_DESC_GOOGLE, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_GOOGLE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + COMPANY_DESC_GOOGLE, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -83,28 +83,28 @@ public class EditCommandParserTest {
     // Removed for now as there are no constraints on inputs
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Company.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Link.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, "1" + INVALID_COMPANY_DESC, Company.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_LINK_DESC, Link.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Description.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, AppliedDate.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_APPLIED_DATE_DESC, AppliedDate.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_GOOGLE, Link.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_LINK_DESC + DESCRIPTION_DESC_GOOGLE, Link.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + PHONE_DESC_TIKTOK + INVALID_PHONE_DESC, Link.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + LINK_DESC_TIKTOK + INVALID_LINK_DESC, Link.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Internship} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRONTEND + TAG_DESC_BACKEND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRONTEND + TAG_EMPTY + TAG_DESC_BACKEND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRONTEND + TAG_DESC_BACKEND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC
-                        + INVALID_EMAIL_DESC + VALID_ADDRESS_GOOGLE + VALID_PHONE_GOOGLE,
+        assertParseFailure(parser, "1" + INVALID_COMPANY_DESC
+                        + INVALID_DESCRIPTION_DESC + VALID_APPLIED_DATE_GOOGLE + VALID_LINK_GOOGLE,
                         Company.MESSAGE_CONSTRAINTS);
     }
     */
@@ -112,13 +112,14 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_INTERNSHIP;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_TIKTOK + TAG_DESC_HUSBAND
-                + EMAIL_DESC_GOOGLE + ADDRESS_DESC_GOOGLE + NAME_DESC_GOOGLE + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + LINK_DESC_TIKTOK + TAG_DESC_BACKEND
+                + DESCRIPTION_DESC_GOOGLE + APPLIED_DATE_DESC_GOOGLE + COMPANY_DESC_GOOGLE + TAG_DESC_FRONTEND;
 
         EditCommand.EditInternshipDescriptor descriptor =
-                new EditInternshipDescriptorBuilder().withName(VALID_NAME_GOOGLE)
-                .withPhone(VALID_PHONE_TIKTOK).withEmail(VALID_EMAIL_GOOGLE).withAddress(VALID_ADDRESS_GOOGLE)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_GOOGLE)
+                .withLink(VALID_LINK_TIKTOK).withDescription(VALID_DESCRIPTION_GOOGLE)
+                        .withAppliedDate(VALID_APPLIED_DATE_GOOGLE)
+                .withTags(VALID_TAG_FRONTEND, VALID_TAG_BACKEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -127,10 +128,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_TIKTOK + EMAIL_DESC_GOOGLE;
+        String userInput = targetIndex.getOneBased() + LINK_DESC_TIKTOK + DESCRIPTION_DESC_GOOGLE;
 
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withPhone(VALID_PHONE_TIKTOK)
-                .withEmail(VALID_EMAIL_GOOGLE).build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withLink(VALID_LINK_TIKTOK)
+                .withDescription(VALID_DESCRIPTION_GOOGLE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -138,34 +139,35 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_oneFieldSpecified_success() {
-        // name
+        // company
         Index targetIndex = INDEX_THIRD_INTERNSHIP;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_GOOGLE;
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_GOOGLE).build();
+        String userInput = targetIndex.getOneBased() + COMPANY_DESC_GOOGLE;
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder()
+                .withCompany(VALID_COMPANY_GOOGLE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
-        userInput = targetIndex.getOneBased() + PHONE_DESC_GOOGLE;
-        descriptor = new EditInternshipDescriptorBuilder().withPhone(VALID_PHONE_GOOGLE).build();
+        // link
+        userInput = targetIndex.getOneBased() + LINK_DESC_GOOGLE;
+        descriptor = new EditInternshipDescriptorBuilder().withLink(VALID_LINK_GOOGLE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_GOOGLE;
-        descriptor = new EditInternshipDescriptorBuilder().withEmail(VALID_EMAIL_GOOGLE).build();
+        // description
+        userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_GOOGLE;
+        descriptor = new EditInternshipDescriptorBuilder().withDescription(VALID_DESCRIPTION_GOOGLE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_GOOGLE;
-        descriptor = new EditInternshipDescriptorBuilder().withAddress(VALID_ADDRESS_GOOGLE).build();
+        // applied date
+        userInput = targetIndex.getOneBased() + APPLIED_DATE_DESC_GOOGLE;
+        descriptor = new EditInternshipDescriptorBuilder().withAppliedDate(VALID_APPLIED_DATE_GOOGLE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditInternshipDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_BACKEND;
+        descriptor = new EditInternshipDescriptorBuilder().withTags(VALID_TAG_BACKEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -173,13 +175,14 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_GOOGLE + ADDRESS_DESC_GOOGLE + EMAIL_DESC_GOOGLE
-                + TAG_DESC_FRIEND + PHONE_DESC_GOOGLE + ADDRESS_DESC_GOOGLE + EMAIL_DESC_GOOGLE + TAG_DESC_FRIEND
-                + PHONE_DESC_TIKTOK + ADDRESS_DESC_TIKTOK + EMAIL_DESC_TIKTOK + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + LINK_DESC_GOOGLE + APPLIED_DATE_DESC_GOOGLE
+                + DESCRIPTION_DESC_GOOGLE + TAG_DESC_FRONTEND + LINK_DESC_GOOGLE + APPLIED_DATE_DESC_GOOGLE
+                + DESCRIPTION_DESC_GOOGLE + TAG_DESC_FRONTEND
+                + LINK_DESC_TIKTOK + APPLIED_DATE_DESC_TIKTOK + DESCRIPTION_DESC_TIKTOK + TAG_DESC_BACKEND;
 
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withPhone(VALID_PHONE_TIKTOK)
-                .withEmail(VALID_EMAIL_TIKTOK).withAddress(VALID_ADDRESS_TIKTOK)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withLink(VALID_LINK_TIKTOK)
+                .withDescription(VALID_DESCRIPTION_TIKTOK).withAppliedDate(VALID_APPLIED_DATE_TIKTOK)
+                .withTags(VALID_TAG_BACKEND, VALID_TAG_FRONTEND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -190,17 +193,17 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
-        String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_TIKTOK;
+        String userInput = targetIndex.getOneBased() + INVALID_LINK_DESC + LINK_DESC_TIKTOK;
         EditCommand.EditInternshipDescriptor descriptor =
-                new EditInternshipDescriptorBuilder().withPhone(VALID_PHONE_TIKTOK).build();
+                new EditInternshipDescriptorBuilder().withLink(VALID_LINK_TIKTOK).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_TIKTOK + INVALID_PHONE_DESC + ADDRESS_DESC_TIKTOK
-                + PHONE_DESC_TIKTOK;
-        descriptor = new EditInternshipDescriptorBuilder().withPhone(VALID_PHONE_TIKTOK).withEmail(VALID_EMAIL_TIKTOK)
-                .withAddress(VALID_ADDRESS_TIKTOK).build();
+        userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_TIKTOK + INVALID_LINK_DESC
+                + APPLIED_DATE_DESC_TIKTOK + LINK_DESC_TIKTOK;
+        descriptor = new EditInternshipDescriptorBuilder().withLink(VALID_LINK_TIKTOK)
+                .withDescription(VALID_DESCRIPTION_TIKTOK).withAppliedDate(VALID_APPLIED_DATE_TIKTOK).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

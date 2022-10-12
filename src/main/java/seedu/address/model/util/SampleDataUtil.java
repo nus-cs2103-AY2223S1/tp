@@ -21,23 +21,23 @@ public class SampleDataUtil {
     public static Internship[] getSampleInternships() {
         return new Internship[] {
             new Internship(new Company("Google"), new Link("https://careers.google.com/students"),
-                new Description("careers@google.com"), ApplicationStatus.Applied,
-                new AppliedDate("2022-10-30"), getTagSet("friends")),
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("03/09/2022"), getTagSet("Backend")),
             new Internship(new Company("Tiktok"), new Link("careers@tiktok.com"),
-                new Description("careers@tiktok.com"), ApplicationStatus.Applied,
-                new AppliedDate("2022-11-30"), getTagSet("colleagues", "friends")),
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("11/12/2022"), getTagSet("Frontend")),
             new Internship(new Company("Stripe"), new Link("https://stripe.com/en-sg/jobs/university"),
-                new Description("careers@stripe.com"), ApplicationStatus.Applied,
-                new AppliedDate("2022-12-30"), getTagSet("neighbours")),
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("03/10/2022"), getTagSet("Backend")),
             new Internship(new Company("Meta"), new Link("https://metacareers.com/careerprograms/students"),
-                new Description("careers@meta.com"), ApplicationStatus.Applied,
-                new AppliedDate("2022-11-05"), getTagSet("family")),
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("05/10/2022"), getTagSet("Frontend")),
             new Internship(new Company("Jane Street"), new Link("https://janestreet.com/join-jane-street"),
-                new Description("careers@janestreet.com"), ApplicationStatus.Applied,
-                new AppliedDate("2022-11-10"), getTagSet("classmates")),
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("11/11/2022"), getTagSet("Quant")),
             new Internship(new Company("Amazon"), new Link("https://amazon.jobs/en/business_categories"),
-                new Description("careers@amazon.com"), ApplicationStatus.Applied,
-                new AppliedDate("2022-11-15"), getTagSet("colleagues"))
+                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
+                new AppliedDate("22/07/2022"), getTagSet("Data"))
         };
     }
 

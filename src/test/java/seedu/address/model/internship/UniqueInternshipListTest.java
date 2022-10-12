@@ -3,8 +3,8 @@ package seedu.address.model.internship;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.APPLIED_DATE_DESC_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.ALIBABA;
 import static seedu.address.testutil.TypicalInternships.TIKTOK;
@@ -43,7 +43,8 @@ public class UniqueInternshipListTest {
     public void contains_internshipWithSameIdentityFieldsInList_returnsTrue() {
         uniqueInternshipList.add(ALIBABA);
         Internship editedAlibaba =
-                new InternshipBuilder(ALIBABA).withAddress(VALID_ADDRESS_TIKTOK).withTags(VALID_TAG_HUSBAND).build();
+                new InternshipBuilder(ALIBABA).withAppliedDate(APPLIED_DATE_DESC_TIKTOK)
+                        .withTags(VALID_TAG_BACKEND).build();
         assertTrue(uniqueInternshipList.contains(editedAlibaba));
     }
 
@@ -86,7 +87,8 @@ public class UniqueInternshipListTest {
     public void setInternship_editedInternshipHasSameIdentity_success() {
         uniqueInternshipList.add(ALIBABA);
         Internship editedAlibaba =
-                new InternshipBuilder(ALIBABA).withAddress(VALID_ADDRESS_TIKTOK).withTags(VALID_TAG_HUSBAND).build();
+                new InternshipBuilder(ALIBABA).withAppliedDate(APPLIED_DATE_DESC_TIKTOK)
+                        .withTags(VALID_TAG_BACKEND).build();
         uniqueInternshipList.setInternship(ALIBABA, editedAlibaba);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
         expectedUniqueInternshipList.add(editedAlibaba);

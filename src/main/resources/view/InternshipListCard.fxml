@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -26,12 +27,16 @@
           </minWidth>
         </Label>
         <Label fx:id="company" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="link" styleClass="cell_small_label" text="\$link" />
+        <Pane maxHeight="-Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
+        <Label fx:id="applicationStatus" styleClass="applicationStatus_label" text="\$applicationStatus" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="link" styleClass="cell_small_label" text="\$link" />
-      <Label fx:id="appliedDate" styleClass="cell_small_label" text="\$appliedDate" />
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-      <Label fx:id="applicationStatus" styleClass="cell_small_label" text="\$applicationStatus" />
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label styleClass="cell_small_label" text="Applied: " />
+        <Label fx:id="appliedDate" styleClass="cell_small_label" text="\$appliedDate" />
+      </HBox>
     </VBox>
   </GridPane>
 </HBox>

@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,23 +37,25 @@ public class EditInternshipDescriptorTest {
 
         // different name -> returns false
         EditCommand.EditInternshipDescriptor editedGoogle =
-                new EditInternshipDescriptorBuilder(DESC_GOOGLE).withName(VALID_NAME_TIKTOK).build();
+                new EditInternshipDescriptorBuilder(DESC_GOOGLE).withCompany(VALID_COMPANY_TIKTOK).build();
         assertFalse(DESC_GOOGLE.equals(editedGoogle));
 
         // different phone -> returns false
-        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE).withPhone(VALID_PHONE_TIKTOK).build();
+        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE).withLink(VALID_LINK_TIKTOK).build();
         assertFalse(DESC_GOOGLE.equals(editedGoogle));
 
         // different email -> returns false
-        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE).withEmail(VALID_EMAIL_TIKTOK).build();
+        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE)
+                .withDescription(VALID_DESCRIPTION_TIKTOK).build();
         assertFalse(DESC_GOOGLE.equals(editedGoogle));
 
         // different address -> returns false
-        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE).withAddress(VALID_ADDRESS_TIKTOK).build();
+        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE)
+                .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).build();
         assertFalse(DESC_GOOGLE.equals(editedGoogle));
 
         // different tags -> returns false
-        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE).withTags(VALID_TAG_HUSBAND).build();
+        editedGoogle = new EditInternshipDescriptorBuilder(DESC_GOOGLE).withTags(VALID_TAG_BACKEND).build();
         assertFalse(DESC_GOOGLE.equals(editedGoogle));
     }
 }

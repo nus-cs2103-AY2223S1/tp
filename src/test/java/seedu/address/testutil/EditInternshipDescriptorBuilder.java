@@ -32,7 +32,7 @@ public class EditInternshipDescriptorBuilder {
      */
     public EditInternshipDescriptorBuilder(Internship internship) {
         descriptor = new EditCommand.EditInternshipDescriptor();
-        descriptor.setName(internship.getCompany());
+        descriptor.setCompany(internship.getCompany());
         descriptor.setLink(internship.getLink());
         descriptor.setDescription(internship.getDescription());
         descriptor.setAppliedDate(internship.getAppliedDate());
@@ -42,23 +42,23 @@ public class EditInternshipDescriptorBuilder {
     /**
      * Sets the {@code Company} of the {@code EditInternshipDescriptor} that we are building.
      */
-    public EditInternshipDescriptorBuilder withName(String name) {
-        descriptor.setName(new Company(name));
+    public EditInternshipDescriptorBuilder withCompany(String company) {
+        descriptor.setCompany(new Company(company));
         return this;
     }
 
     /**
      * Sets the {@code Link} of the {@code EditInternshipDescriptor} that we are building.
      */
-    public EditInternshipDescriptorBuilder withPhone(String phone) {
-        descriptor.setLink(new Link(phone));
+    public EditInternshipDescriptorBuilder withLink(String link) {
+        descriptor.setLink(new Link(link));
         return this;
     }
 
     /**
      * Sets the {@code Description} of the {@code EditInternshipDescriptor} that we are building.
      */
-    public EditInternshipDescriptorBuilder withEmail(String email) {
+    public EditInternshipDescriptorBuilder withDescription(String email) {
         descriptor.setDescription(new Description(email));
         return this;
     }
@@ -66,8 +66,8 @@ public class EditInternshipDescriptorBuilder {
     /**
      * Sets the {@code AppliedDate} of the {@code EditInternshipDescriptor} that we are building.
      */
-    public EditInternshipDescriptorBuilder withAddress(String address) {
-        descriptor.setAppliedDate(new AppliedDate(address));
+    public EditInternshipDescriptorBuilder withAppliedDate(String appliedDate) {
+        descriptor.setAppliedDate(new AppliedDate(appliedDate));
         return this;
     }
 

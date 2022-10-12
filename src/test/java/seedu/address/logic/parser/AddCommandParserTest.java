@@ -1,29 +1,29 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.APPLIED_DATE_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.APPLIED_DATE_DESC_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_TIKTOK;
 // import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 // import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 // import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 // import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 // import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.LINK_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.LINK_DESC_TIKTOK;
 // import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BACKEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRONTEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONTEND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalInternships.GOOGLE;
@@ -45,40 +45,47 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Internship expectedInternship = new InternshipBuilder(TIKTOK).withTags(VALID_TAG_FRIEND).build();
+        Internship expectedInternship = new InternshipBuilder(TIKTOK).withTags(VALID_TAG_FRONTEND).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_TIKTOK + PHONE_DESC_TIKTOK + EMAIL_DESC_TIKTOK
-                + ADDRESS_DESC_TIKTOK + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK
+                + DESCRIPTION_DESC_TIKTOK + APPLIED_DATE_DESC_TIKTOK
+                + TAG_DESC_FRONTEND, new AddCommand(expectedInternship));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_GOOGLE + NAME_DESC_TIKTOK + PHONE_DESC_TIKTOK + EMAIL_DESC_TIKTOK
-                + ADDRESS_DESC_TIKTOK + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
+        assertParseSuccess(parser, COMPANY_DESC_GOOGLE + COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK
+                + DESCRIPTION_DESC_TIKTOK + APPLIED_DATE_DESC_TIKTOK
+                + TAG_DESC_FRONTEND, new AddCommand(expectedInternship));
 
         // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_TIKTOK + PHONE_DESC_GOOGLE + PHONE_DESC_TIKTOK + EMAIL_DESC_TIKTOK
-                + ADDRESS_DESC_TIKTOK + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
+        assertParseSuccess(parser, COMPANY_DESC_TIKTOK + LINK_DESC_GOOGLE + LINK_DESC_TIKTOK
+                + DESCRIPTION_DESC_TIKTOK + APPLIED_DATE_DESC_TIKTOK
+                + TAG_DESC_FRONTEND, new AddCommand(expectedInternship));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_TIKTOK + PHONE_DESC_TIKTOK + EMAIL_DESC_GOOGLE + EMAIL_DESC_TIKTOK
-                + ADDRESS_DESC_TIKTOK + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
+        assertParseSuccess(parser, COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK
+                + DESCRIPTION_DESC_GOOGLE + DESCRIPTION_DESC_TIKTOK
+                + APPLIED_DATE_DESC_TIKTOK + TAG_DESC_FRONTEND, new AddCommand(expectedInternship));
 
         // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_TIKTOK + PHONE_DESC_TIKTOK + EMAIL_DESC_TIKTOK + ADDRESS_DESC_GOOGLE
-                + ADDRESS_DESC_TIKTOK + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
+        assertParseSuccess(parser, COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK
+                + DESCRIPTION_DESC_TIKTOK + APPLIED_DATE_DESC_GOOGLE
+                + APPLIED_DATE_DESC_TIKTOK + TAG_DESC_FRONTEND, new AddCommand(expectedInternship));
 
         // multiple tags - all accepted
         Internship expectedInternshipMultipleTags =
-                new InternshipBuilder(TIKTOK).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
-        assertParseSuccess(parser, NAME_DESC_TIKTOK + PHONE_DESC_TIKTOK + EMAIL_DESC_TIKTOK + ADDRESS_DESC_TIKTOK
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedInternshipMultipleTags));
+                new InternshipBuilder(TIKTOK).withTags(VALID_TAG_FRONTEND, VALID_TAG_BACKEND).build();
+        assertParseSuccess(parser, COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK
+                + DESCRIPTION_DESC_TIKTOK + APPLIED_DATE_DESC_TIKTOK
+                + TAG_DESC_BACKEND + TAG_DESC_FRONTEND, new AddCommand(expectedInternshipMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Internship expectedInternship = new InternshipBuilder(GOOGLE).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_GOOGLE + PHONE_DESC_GOOGLE + EMAIL_DESC_GOOGLE + ADDRESS_DESC_GOOGLE,
+        assertParseSuccess(parser, COMPANY_DESC_GOOGLE + LINK_DESC_GOOGLE + DESCRIPTION_DESC_GOOGLE
+                        + APPLIED_DATE_DESC_GOOGLE,
                 new AddCommand(expectedInternship));
     }
 
@@ -86,24 +93,29 @@ public class AddCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing name prefix
-        assertParseFailure(parser, VALID_NAME_TIKTOK + PHONE_DESC_TIKTOK + EMAIL_DESC_TIKTOK + ADDRESS_DESC_TIKTOK,
+        // missing company prefix
+        assertParseFailure(parser, VALID_COMPANY_TIKTOK + LINK_DESC_TIKTOK + DESCRIPTION_DESC_TIKTOK
+                        + APPLIED_DATE_DESC_TIKTOK,
                 expectedMessage);
 
         // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_TIKTOK + VALID_PHONE_TIKTOK + EMAIL_DESC_TIKTOK + ADDRESS_DESC_TIKTOK,
+        assertParseFailure(parser, COMPANY_DESC_TIKTOK + VALID_LINK_TIKTOK + DESCRIPTION_DESC_TIKTOK
+                        + APPLIED_DATE_DESC_TIKTOK,
                 expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_TIKTOK + PHONE_DESC_TIKTOK + VALID_EMAIL_TIKTOK + ADDRESS_DESC_TIKTOK,
+        assertParseFailure(parser, COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK + VALID_DESCRIPTION_TIKTOK
+                        + APPLIED_DATE_DESC_TIKTOK,
                 expectedMessage);
 
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_TIKTOK + PHONE_DESC_TIKTOK + EMAIL_DESC_TIKTOK + VALID_ADDRESS_TIKTOK,
+        // missing applied date prefix
+        assertParseFailure(parser, COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK + DESCRIPTION_DESC_TIKTOK
+                        + VALID_APPLIED_DATE_TIKTOK,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_TIKTOK + VALID_PHONE_TIKTOK + VALID_EMAIL_TIKTOK + VALID_ADDRESS_TIKTOK,
+        assertParseFailure(parser, VALID_COMPANY_TIKTOK + VALID_LINK_TIKTOK + VALID_DESCRIPTION_TIKTOK
+                        + VALID_APPLIED_DATE_TIKTOK,
                 expectedMessage);
     }
 

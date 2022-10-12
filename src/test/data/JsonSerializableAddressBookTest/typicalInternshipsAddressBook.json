@@ -1,53 +1,53 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "internships" : [ {
-    "name" : "Alibaba",
-    "phone" : "94351253",
-    "email" : "careers@alibaba.com",
+    "company" : "Alibaba",
+    "link" : "https://careers.alibaba.com/positionDetail",
+    "description" : "Software Engineering Intern",
     "applicationStatus" : "applied",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "appliedDate" : "01/10/2022",
+    "tagged" : [ "Ecommerce" ]
   }, {
-    "name" : "Binance",
-    "phone" : "98765432",
-    "email" : "careers@binance.com",
+    "company" : "Binance",
+    "link" : "https://careers.binance.com/positionDetail",
+    "description" : "Software Engineering Internship (6 months)",
     "applicationStatus" : "applied",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "appliedDate" : "02/10/2022",
+    "tagged" : [ "Crypto" ]
   }, {
-    "name" : "Citadel",
-    "phone" : "95352563",
-    "email" : "careers@citadel.com",
+    "company": "Citadel",
+    "link": "https://careers.Citadel.com/positionDetail",
+    "description": "Software Engineer Intern",
     "applicationStatus" : "applied",
-    "address" : "wall street",
-    "tagged" : [ ]
+    "appliedDate" : "03/10/2022",
+    "tagged" : [ "Backend" ]
   }, {
-    "name" : "Dell",
-    "phone" : "87652533",
-    "email" : "careers@dell.com",
+    "company": "Dell",
+    "link": "https://careers.Dell.com/positionDetail",
+    "description": "Software Developer Intern",
     "applicationStatus" : "applied",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "appliedDate": "04/10/2022",
+    "tagged" : [ "Backend" ]
   }, {
-    "name" : "Ebay",
-    "phone" : "9482224",
-    "email" : "careers@ebay.com",
+    "company": "Ebay",
+    "link": "https://careers.Ebay.com/positionDetail",
+    "description": "Software Engineer Intern 2023",
     "applicationStatus" : "applied",
-    "address" : "michegan ave",
-    "tagged" : [ ]
+    "appliedDate": "05/10/2022",
+    "tagged" : [ "Ecommerce" ]
   }, {
-    "name" : "Facebook",
-    "phone" : "9482427",
-    "email" : "careers@facebook.com",
+    "company": "Facebook",
+    "link": "https://careers.Facebook.com/positionDetail",
+    "description": "Software Engineer Intern - Mobile (Flutter)",
     "applicationStatus" : "applied",
-    "address" : "little tokyo",
-    "tagged" : [ ]
+    "appliedDate": "06/10/2022",
+    "tagged" : [ "Frontend" ]
   }, {
-    "name" : "Goldman Sachs",
-    "phone" : "9482442",
-    "email" : "careers@goldmansachs.com",
+    "company": "Goldman Sachs",
+    "link": "https://careers.GoldmanSachs.com/positionDetail",
+    "description": "Software Engineer Program - Summer Analyst",
     "applicationStatus" : "applied",
-    "address" : "4th street",
-    "tagged" : [ ]
+    "appliedDate": "07/10/2022",
+    "tagged" : [ "Backend" ]
   } ]
 }
