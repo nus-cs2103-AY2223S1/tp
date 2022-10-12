@@ -1,0 +1,12 @@
+{
+  "properties": [
+    {
+      "name": "Valid Property",
+      "address": "4th street"
+    },
+    {
+      "name": "",
+      "address": "4th street"
+    }
+  ]
+}
