@@ -6,7 +6,7 @@ import static swift.logic.commands.CommandTestUtil.DESC_TASK_1;
 import static swift.logic.commands.CommandTestUtil.DESC_TASK_2;
 import static swift.logic.commands.CommandTestUtil.VALID_CONTACT_INDEX;
 import static swift.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static swift.logic.commands.CommandTestUtil.VALID_TASK_NAME_1;
+import static swift.logic.commands.CommandTestUtil.VALID_TASK_NAME_3;
 import static swift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static swift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static swift.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -55,9 +55,9 @@ public class EditTaskCommandTest {
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task editedTask = taskInList.withTaskName(VALID_TASK_NAME_1).withContactIndex(VALID_CONTACT_INDEX).build();
+        Task editedTask = taskInList.withTaskName(VALID_TASK_NAME_3).withContactIndex(VALID_CONTACT_INDEX).build();
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_1)
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_3)
                 .withContactIndex(VALID_CONTACT_INDEX).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
 
