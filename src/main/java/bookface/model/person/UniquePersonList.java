@@ -70,11 +70,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Removes the equivalent person from the list.
+     * Returns all books that are loaned by the user.
      * The person must exist in the list.
      */
     public void remove(Person toRemove) {
         requireNonNull(toRemove);
+        for (Book book : toRemove.getLoanedBooksSet()) {
+            book.markBookAsReturned();
+        }
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }

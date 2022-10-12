@@ -55,6 +55,19 @@ public class BookList implements Iterable<Book> {
         }
     }
 
+    /**
+     * Removes the equivalent person from the list.
+     * The person must exist in the list.
+     */
+    public void remove(Person toRemove) {
+        requireNonNull(toRemove);
+        for (Book book : toRemove.getLoanedBooksSet()) {
+            book.markBookAsReturned();
+            int index = internalList.indexOf(book);
+            internalList.set(index, book);
+        }
+    }
+
     public void setBooks(BookList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

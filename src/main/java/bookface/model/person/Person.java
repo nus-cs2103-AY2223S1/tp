@@ -68,6 +68,7 @@ public class Person {
         this.loanedBooks.remove(book);
     }
 
+
     public boolean hasPersonLoanedThisBook(Book book) {
         return this.loanedBooks.contains(book);
     }

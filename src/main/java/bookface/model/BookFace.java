@@ -163,6 +163,7 @@ public class BookFace implements ReadOnlyBookFace {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        books.remove(key);
     }
 
     //// util methods
