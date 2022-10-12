@@ -3,8 +3,7 @@ layout: page
 title: DevOps guide
 ---
 
-- Table of Contents
-  {:toc}
+{% include toc.md %}
 
 ---
 
