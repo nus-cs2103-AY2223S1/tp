@@ -174,7 +174,7 @@ public class AddPersonCommandTest {
 
         @Override
         public ObservableList<Internship> getFilteredInternshipList() {
-            throw new AssertionError("This method should not be called.");
+            return null;
         }
 
         @Override
