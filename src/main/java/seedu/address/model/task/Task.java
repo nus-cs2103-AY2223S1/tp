@@ -23,9 +23,10 @@ public class Task implements DisplayItem {
      *
      * @param title The title of the task.
      * @param status The status of the task.
+     * @param group The group the task belongs to.
      */
-    public Task(String title, String status) {
-        this(title, status, null);
+    public Task(String title, String status, Group group) {
+        this(title, status, group, null);
     }
 
     /**
@@ -33,11 +34,13 @@ public class Task implements DisplayItem {
      *
      * @param title The title of the task.
      * @param status The status of the task.
+     * @param group The group of the task.
      * @param completedTime The completed_time of the task.
      */
-    public Task(String title, String status, LocalDateTime completedTime) {
+    public Task(String title, String status, Group group, LocalDateTime completedTime) {
         this.title = title;
         this.status = status;
+        this.parent = group;
         this.completedTime = completedTime;
     }
 
@@ -111,5 +114,11 @@ public class Task implements DisplayItem {
     @Override
     public boolean isPartOfContext(DisplayItem o) {
         return parent.equals(o);
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" + "title: '" + title + '\'' + "; status: '" + status + '\'' + "; completedTime: " + completedTime
+                + "; parent: " + parent + '}';
     }
 }
