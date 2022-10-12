@@ -4,8 +4,6 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -21,8 +19,6 @@ public class CommissionCard extends UiPart<Region> {
     private static final String FXML = "CommissionListCard.fxml";
     private static final Color COMPLETED_COLOR = Color.rgb(50, 174, 70);
     private static final Color NOT_COMPLETED_COLOR = Color.rgb(84, 141, 225);
-    private static final Image CALENDAR_ICON = new Image("/images/calendar light.png");
-    private static final Image MONEY_ICON = new Image("/images/money bag medium.png");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -41,14 +37,6 @@ public class CommissionCard extends UiPart<Region> {
     @FXML
     private Label title;
     @FXML
-    private ImageView deadlineIcon;
-    @FXML
-    private Label deadline;
-    @FXML
-    private ImageView feeIcon;
-    @FXML
-    private Label fee;
-    @FXML
     private Circle completionStatusCircle;
     @FXML
     private Label completionStatus;
@@ -61,12 +49,8 @@ public class CommissionCard extends UiPart<Region> {
     public CommissionCard(Commission commission, int displayedIndex) {
         super(FXML);
         this.commission = commission;
-        deadlineIcon.setImage(CALENDAR_ICON);
-        feeIcon.setImage(MONEY_ICON);
         id.setText(displayedIndex + ". ");
         title.setText(commission.getTitle().title);
-        deadline.setText(commission.getDeadline().deadline.toString());
-        fee.setText("$" + String.format("%.2f", commission.getFee().fee));
 
         if (commission.getCompletionStatus().isCompleted) {
             completionStatusCircle.setFill(COMPLETED_COLOR);
