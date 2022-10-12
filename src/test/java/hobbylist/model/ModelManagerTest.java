@@ -14,8 +14,9 @@ import org.junit.jupiter.api.Test;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.testutil.Assert;
 import hobbylist.testutil.HobbyListBuilder;
-import hobbylist.testutil.TypicalActivities;
 import hobbylist.model.activity.NameContainsKeywordsPredicate;
+import hobbylist.testutil.TypicalActivities;
+
 
 public class ModelManagerTest {
 
