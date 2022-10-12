@@ -39,17 +39,7 @@ public class PersonInfo extends UiPart<Region> {
      */
     public PersonInfo(Person person) {
         super(FXML);
-        this.person = person;
-        name.setText(this.person.getName().fullName);
-        employeeId.setText("Employee ID:  " + String.format(
-                "%6s", this.person.getEmployeeId().value).replace(' ', '0'));
-        position.setText("Position:  " + this.person.getPosition().value);
-        phone.setText("Phone number:  " + this.person.getPhone().value);
-        address.setText("Address:  " + this.person.getAddress().value);
-        email.setText("Email address:  " + this.person.getEmail().value);
-        this.person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        update(person);
     }
 
     /**
@@ -64,6 +54,7 @@ public class PersonInfo extends UiPart<Region> {
         phone.setText("Phone number:  " + person.getPhone().value);
         address.setText("Address:  " + person.getAddress().value);
         email.setText("Email address:  " + person.getEmail().value);
+        tags.getChildren().clear();
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
