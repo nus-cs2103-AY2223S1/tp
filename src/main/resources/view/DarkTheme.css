@@ -115,25 +115,40 @@
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #707BE3;
-    -fx-border-width: 1;
-    -fx-font-family: "Poppins";
+    -fx-border-width: 0;
+    -fx-font-family: "Poppins"
 }
 
 .list-cell .label {
     -fx-text-fill: white;
 }
 
-.cell_big_label {
+.cell_big_label_item {
+    -fx-font-family: "Poppins";
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #FFEDEC !important;
+}
+
+.cell_small_label_item {
+    -fx-font-family: "Poppins";
+    -fx-font-size: 20px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #FFEDEC !important;
+}
+
+.cell_big_label_order {
     -fx-font-family: "Poppins";
     -fx-font-size: 24px;
     -fx-font-weight: 700;
     -fx-text-fill: #E9EBFF !important;
 }
 
-.cell_small_label {
+.cell_small_label_order {
     -fx-font-family: "Poppins";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-font-weight: MEDIUM; /* medium weight */
+    -fx-font-size: 20px;
+    -fx-text-fill: #E9EBFF !important;
 }
 
 /** color of the `Enter command here...`*/
@@ -355,6 +370,51 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
+}
+
+#itemListView {
+    -fx-background-insets: 0;
+    -fx-background-color: #FFDAD8;
+    -fx-background-radius: 15px;
+    -fx-padding: 20px 10px;
+    -fx-border-color: #FF6C64;
+    -fx-border-radius: 15px;
+    -fx-border-width: 2px;
+}
+
+
+#itemListView .list-cell {
+    -fx-background-insets: 0px, 5px;
+    -fx-padding: 2px;
+}
+
+#itemListView .list-cell:empty {
+    -fx-padding: 2px;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+
+#itemListView .list-cell:filled {
+    -fx-background-color: #FF6C64;
+    -fx-background-radius: 15px;
+    -fx-background-insets: 0px, 5px;
+}
+
+
+#itemListView .list-view {
+    -fx-padding: 3px;
+}
+
+#itemListView .list-cell {
+    -fx-padding: 2px ;
+    -fx-background-color: transparent, -fx-background ;
+    -fx-background-insets: 0px, 2px ;
+}
+
+#itemListView .list-cell:empty {
+    -fx-padding: 2px ;
+    -fx-background-color: transparent ;
+    -fx-background-insets: 0 ;
 }
 
 #orderListView {

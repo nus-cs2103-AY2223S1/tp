@@ -19,17 +19,17 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
+                <Label fx:id="id" styleClass="cell_big_label_item">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="itemName" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="itemName" text="\$first" styleClass="cell_big_label_item" />
             </HBox>
             <VBox>
-                <Label fx:id="quantity" styleClass="cell_small_label" text="\$quantity" />
-                <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+                <Label fx:id="quantity" styleClass="cell_small_label_item" text="\$quantity" />
+                <Label fx:id="description" styleClass="cell_small_label_item" text="\$description" />
             </VBox>
         </VBox>
     </GridPane>

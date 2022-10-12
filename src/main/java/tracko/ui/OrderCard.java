@@ -61,7 +61,7 @@ public class OrderCard extends UiPart<Region> {
      */
     public Label constructItemLabel(String text) {
         Label itemLabel = new Label(text);
-        itemLabel.getStyleClass().add("cell_small_label");
+        itemLabel.getStyleClass().add("cell_small_label_order");
         return itemLabel;
     }
 

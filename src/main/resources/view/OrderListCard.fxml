@@ -9,8 +9,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane prefWidth="150.0" HBox.hgrow="ALWAYS">
+<HBox id="cardPane" styleClass="card-pane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane prefWidth="150.0" HBox.hgrow="ALWAYS" vgap="10">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
@@ -19,20 +19,20 @@
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="id" styleClass="cell_big_label_order">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+        <Label fx:id="name" styleClass="cell_big_label_order" text="\$first" />
       </HBox>
       <VBox>
-        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-        <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        <Label fx:id="phone" styleClass="cell_small_label_order" text="\$phone" />
+        <Label fx:id="address" styleClass="cell_small_label_order" text="\$address" />
+        <Label fx:id="email" styleClass="cell_small_label_order" text="\$email" />
       </VBox>
-      <VBox fx:id="items" styleClass="cell_small_label"/>
+      <VBox fx:id="items" styleClass="cell_small_label_order"/>
     </VBox>
       <rowConstraints>
          <RowConstraints />
