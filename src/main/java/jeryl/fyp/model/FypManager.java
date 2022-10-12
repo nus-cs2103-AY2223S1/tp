@@ -98,10 +98,10 @@ public class FypManager implements ReadOnlyFypManager {
     /**
      * Returns unique Student if {@code students} contains the student with the specified studentId.
      */
-    public Student getStudent(StudentId studentId) {
+    public Student getStudentByStudentId(StudentId studentId) {
         requireNonNull(studentId);
 
-        return students.getStudent(studentId);
+        return students.getStudentByStudentId(studentId);
     }
 
     //// util methods

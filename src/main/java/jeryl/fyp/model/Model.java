@@ -82,7 +82,7 @@ public interface Model {
      * Gets the unique student with the specified StudentId
      * {@code studentId} is unique so it should output 1 student only
      */
-    Student getStudent(StudentId studentId);
+    Student getStudentByStudentId(StudentId studentId);
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();

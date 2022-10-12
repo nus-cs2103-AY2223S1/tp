@@ -8,18 +8,10 @@ import static jeryl.fyp.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidProjectStatus(String)}
  */
 public class ProjectStatus {
-
     public static final String MESSAGE_CONSTRAINTS =
             "Status should only be of the form YTS, IP OR DONE";
 
     public final String projectStatus;
-
-    //enum constants
-    enum Status {
-        YTS,
-        IP,
-        DONE;
-    }
 
     /**
      * Constructs a {@code ProjectStatus}.

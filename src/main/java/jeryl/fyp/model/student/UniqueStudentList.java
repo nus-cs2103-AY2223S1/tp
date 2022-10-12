@@ -138,7 +138,7 @@ public class UniqueStudentList implements Iterable<Student> {
     /**
      * Returns unique Student if {@code students} contains the student with the specified studentId.
      */
-    public Student getStudent(StudentId studentId) {
+    public Student getStudentByStudentId(StudentId studentId) {
         Student student = null;
         for (int i = 0; i < internalList.size() - 1; i++) {
             if (internalList.get(i).getStudentId().equals(studentId)) {

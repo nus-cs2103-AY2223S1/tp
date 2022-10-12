@@ -113,7 +113,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Student getStudent(StudentId studentId) {
+    public Student getStudentByStudentId(StudentId studentId) {
         requireNonNull(studentId);
 
         return fypManager.getStudent(studentId);

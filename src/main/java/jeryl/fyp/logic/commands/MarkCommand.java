@@ -47,10 +47,10 @@ public class MarkCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Student oldStudent = model.getStudent(studentId);
+        Student oldStudent = model.getStudentByStudentId(studentId);
 
         if (oldStudent == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_ID);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_ID_FORMAT);
         }
 
         Student editedStudent = new Student(oldStudent.getName(), oldStudent.getStudentId(),
@@ -65,7 +65,7 @@ public class MarkCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * {@code studentToEdit}.
      */
     private String generateSuccessMessage(Student studentToEdit) {
         String message = !status.projectStatus.isEmpty() ? MESSAGE_ADD_PROJECT_STATUS_SUCCESS
