@@ -24,12 +24,12 @@
           <VBox>
             <Label fx:id="helpMessageTitle" text="Label" textFill="WHITE">
               <VBox.margin>
-                <Insets right="5.0" />
+                <Insets right="5.0" left="10" bottom="10" top="10"/>
               </VBox.margin>
             </Label>
-            <Label fx:id="helpMessageBody" text="Label" textFill="WHITE">
+            <Label fx:id="helpMessageBody" text="Label" textFill="WHITE" style="-fx-background-color: #545454#545454; -fx-background-radius: 10;">
               <VBox.margin>
-                <Insets right="5.0" />
+                <Insets right="5.0" left="10" bottom="10"/>
               </VBox.margin>
                      <font>
                         <Font name="Space Mono" size="12.0" />
