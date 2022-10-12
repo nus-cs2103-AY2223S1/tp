@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        FoodGuideStorage foodGuideStorage = new JsonFoodGuideStorage(userPrefs.getAddressBookFilePath());
+        FoodGuideStorage foodGuideStorage = new JsonFoodGuideStorage(userPrefs.getFoodGuideFilePath());
         storage = new StorageManager(foodGuideStorage, userPrefsStorage);
 
         initLogging(config);
@@ -81,7 +81,7 @@ public class MainApp extends Application {
             if (!foodGuideOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample FoodGuide");
             }
-            initialData = foodGuideOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = foodGuideOptional.orElseGet(SampleDataUtil::getSampleFoodGuide);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty FoodGuide");
             initialData = new FoodGuide();

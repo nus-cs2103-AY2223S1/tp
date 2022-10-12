@@ -42,12 +42,12 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateEatery_throwsCommandException() {
         Eatery validEatery = new EateryBuilder().build();
         AddCommand addCommand = new AddCommand(validEatery);
         ModelStub modelStub = new ModelStubWithEatery(validEatery);
 
-        Assert.assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, ()
+        Assert.assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EATERY, ()
                 -> addCommand.execute(modelStub));
     }
 
@@ -105,7 +105,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setFoodGuideFilePath(Path addressBookFilePath) {
+        public void setFoodGuideFilePath(Path foodGuideFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -115,7 +115,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setFoodGuide(ReadOnlyFoodGuide newData) {
+        public void setFoodGuide(ReadOnlyFoodGuide foodGuide) {
             throw new AssertionError("This method should not be called.");
         }
 

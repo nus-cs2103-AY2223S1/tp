@@ -40,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyFoodGuide getSampleAddressBook() {
+    public static ReadOnlyFoodGuide getSampleFoodGuide() {
         FoodGuide sampleAb = new FoodGuide();
         for (Eatery sampleEatery : getSamplePersons()) {
             sampleAb.addEatery(sampleEatery);

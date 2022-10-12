@@ -16,19 +16,19 @@ import eatwhere.foodguide.model.tag.Tag;
 /**
  * A utility class for Eatery.
  */
-public class PersonUtil {
+public class EateryUtil {
 
     /**
      * Returns an add command string for adding the {@code eatery}.
      */
     public static String getAddCommand(Eatery eatery) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(eatery);
+        return AddCommand.COMMAND_WORD + " " + getEateryDetails(eatery);
     }
 
     /**
      * Returns the part of command string for the given {@code eatery}'s details.
      */
-    public static String getPersonDetails(Eatery eatery) {
+    public static String getEateryDetails(Eatery eatery) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + eatery.getName().fullName + " ");
         sb.append(PREFIX_PHONE + eatery.getPhone().value + " ");
@@ -41,9 +41,9 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditEateryDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditEateryDescriptor descriptor) {
+    public static String getEditEateryDescriptorDetails(EditEateryDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

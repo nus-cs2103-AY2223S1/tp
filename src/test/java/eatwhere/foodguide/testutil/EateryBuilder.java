@@ -28,7 +28,7 @@ public class EateryBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code EateryBuilder} with the default details.
      */
     public EateryBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -39,7 +39,7 @@ public class EateryBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code eateryToCopy}.
+     * Initializes the EateryBuilder with the data of {@code eateryToCopy}.
      */
     public EateryBuilder(Eatery eateryToCopy) {
         name = eateryToCopy.getName();

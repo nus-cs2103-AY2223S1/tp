@@ -60,17 +60,17 @@ public class TypicalEateries {
     private TypicalEateries() {} // prevents instantiation
 
     /**
-     * Returns an {@code FoodGuide} with all the typical persons.
+     * Returns an {@code FoodGuide} with all the typical eateries.
      */
     public static FoodGuide getTypicalFoodGuide() {
-        FoodGuide ab = new FoodGuide();
-        for (Eatery eatery : getTypicalPersons()) {
-            ab.addEatery(eatery);
+        FoodGuide fg = new FoodGuide();
+        for (Eatery eatery : getTypicalEateries()) {
+            fg.addEatery(eatery);
         }
-        return ab;
+        return fg;
     }
 
-    public static List<Eatery> getTypicalPersons() {
+    public static List<Eatery> getTypicalEateries() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
