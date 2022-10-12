@@ -50,7 +50,7 @@ public class ClientEmail {
     public static class EmptyEmail extends ClientEmail {
         public static final ClientEmail EMPTY_EMAIL = new EmptyEmail();
         public EmptyEmail() {
-            super("");
+            super("cs2103@nus.edu");
         }
 
     }

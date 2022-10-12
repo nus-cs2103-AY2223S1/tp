@@ -199,6 +199,10 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public ClientListPanel getClientListPanel() {
+        return clientListPanel;
+    }
+
     public ProjectListPanel getProjectListPanel() {
         return projectListPanel;
     }
