@@ -3,6 +3,7 @@ package bookface.logic.parser;
 import static bookface.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static bookface.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static bookface.testutil.Assert.assertThrows;
+import static bookface.testutil.TestUtil.preparePredicateToCheckPersonForPartialWordIgnoreCase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,17 +16,18 @@ import bookface.logic.commands.ClearCommand;
 import bookface.logic.commands.EditCommand;
 import bookface.logic.commands.EditCommand.EditPersonDescriptor;
 import bookface.logic.commands.ExitCommand;
-import bookface.logic.commands.FindCommand;
 import bookface.logic.commands.HelpCommand;
 import bookface.logic.commands.add.AddCommand;
 import bookface.logic.commands.add.AddUserCommand;
 import bookface.logic.commands.delete.DeleteCommand;
 import bookface.logic.commands.delete.DeleteUserCommand;
+import bookface.logic.commands.find.FindCommand;
+import bookface.logic.commands.find.FindUserCommand;
+import bookface.logic.commands.list.ListBooksCommand;
 import bookface.logic.commands.list.ListCommand;
 import bookface.logic.commands.list.ListUsersCommand;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.logic.parser.primary.PrimaryParser;
-import bookface.model.person.NameContainsKeywordsPredicate;
 import bookface.model.person.Person;
 import bookface.testutil.EditPersonDescriptorBuilder;
 import bookface.testutil.PersonBuilder;
@@ -76,9 +78,10 @@ public class PrimaryParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parse(
-                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindCommand command = (FindUserCommand) parser.parse(
+                FindCommand.COMMAND_WORD + " " + FindUserCommand.COMMAND_WORD + " "
+                        + String.join(" ", keywords));
+        assertEquals(new FindUserCommand(preparePredicateToCheckPersonForPartialWordIgnoreCase(keywords)), command);
     }
 
     @Test
@@ -93,6 +96,10 @@ public class PrimaryParserTest {
                 + ListUsersCommand.COMMAND_WORD) instanceof ListUsersCommand);
         assertTrue(parser.parse(ListCommand.COMMAND_WORD + " "
                 + ListUsersCommand.COMMAND_WORD + " 3") instanceof ListUsersCommand);
+        assertTrue(parser.parse(ListCommand.COMMAND_WORD + " "
+                + ListBooksCommand.COMMAND_WORD) instanceof ListBooksCommand);
+        assertTrue(parser.parse(ListCommand.COMMAND_WORD + " "
+                + ListBooksCommand.COMMAND_WORD + " 3") instanceof ListBooksCommand);
     }
 
     @Test

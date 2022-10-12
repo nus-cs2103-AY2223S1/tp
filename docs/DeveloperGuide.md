@@ -280,7 +280,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                               | delete patrons from my library |                                                        |
 | `* * *`  | user                               | add loans                      | mark books as unavailable                              |
 | `* * *`  | user                               | mark loans as returned         | mark books as available                                |
-| `* * *`  | person who likes to talk to others | type my commands to a CLI      | so I can work while interacting with my patrons        | 
+| `* * *`  | person who likes to talk to others | type my commands to a CLI      | so I can work while interacting with my patrons        |
 
 *{More to be added}*
 
@@ -345,11 +345,11 @@ Use case ends.
   * 3a1. BookFace notifies the librarian of the duplicate.
   * 3a2. BookFace creates this book as a separate object.
   * 3a3. BookFace saves this book to the list.
-  
+
     Use case ends.
 * 3b. The librarian did not specify all required fields.
   * 3b1. BookFace notifies the librarian of the correct usage of `add book`.
-    
+
     Use case ends.
 
 ### Non-Functional Requirements
@@ -357,19 +357,19 @@ Use case ends.
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Someone without coding background should find BookFace easy to use. 
+4. Someone without coding background should find BookFace easy to use.
 5. The system should respond in 1 second.
 6. The system should be backward compatible with data produced by earlier versions of the system.
-7. BookFace is not required to handle the displaying detailed reports about users (their loan history, statistics on 
+7. BookFace is not required to handle the displaying detailed reports about users (their loan history, statistics on
    their membership such as frequency of loans) yet.
 8. BookFace should work even without an active internet connection.
 9. The data stored in a BookFace instance should be recoverable even if the instance crashes.
 10. BookFace will need at least 50 MB of disk space to work.
-11. BookFace does not plan to improve its accessibility for blind, deaf, or otherwise disabled users according to 
+11. BookFace does not plan to improve its accessibility for blind, deaf, or otherwise disabled users according to
     the Web Content Accessibility Guidelines (WCAG 2.1)
-12. BookFace should be able to handle basic human mistakes, such as incorrect syntax for commands and prompt the 
+12. BookFace should be able to handle basic human mistakes, such as incorrect syntax for commands and prompt the
     user to retry
-13. BookFace should be extensible and sufficiently decoupled such that a separate GUI can be attached to the 
+13. BookFace should be extensible and sufficiently decoupled such that a separate GUI can be attached to the
     existing backend services and database
 
 ### Glossary

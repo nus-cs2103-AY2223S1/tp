@@ -114,6 +114,11 @@ public interface Model {
      */
     void addBook(Book book);
 
+    /**
+     * Deletes a book from BookFace records.
+     * @param book book to be deleted from BookFace
+     */
+    void deleteBook(Book book);
 
     void updateFilteredBookList(Predicate<Book> predicate);
 }

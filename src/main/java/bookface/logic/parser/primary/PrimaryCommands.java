@@ -6,12 +6,12 @@ import bookface.logic.commands.ExitCommand;
 import bookface.logic.commands.HelpCommand;
 import bookface.logic.parser.CommandReturnable;
 import bookface.logic.parser.EditCommandParser;
-import bookface.logic.parser.FindCommandParser;
 import bookface.logic.parser.LoanCommandParser;
 import bookface.logic.parser.ParserFunction;
 import bookface.logic.parser.add.AddCommandParser;
 import bookface.logic.parser.delete.DeleteCommandParser;
 import bookface.logic.parser.exceptions.ParseException;
+import bookface.logic.parser.find.FindCommandParser;
 import bookface.logic.parser.list.ListCommandParser;
 
 /**

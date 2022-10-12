@@ -16,6 +16,7 @@ import org.junit.jupiter.api.io.TempDir;
 import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.CommandTestUtil;
 import bookface.logic.commands.exceptions.CommandException;
+import bookface.logic.commands.list.ListBooksCommand;
 import bookface.logic.commands.list.ListUsersCommand;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.Model;
@@ -66,6 +67,12 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void execute_validBookCommand_success() throws Exception {
+        String listBookCommand = "list books";
+        assertCommandSuccess(listBookCommand, ListBooksCommand.MESSAGE_SUCCESS, model);
+    }
+
+    @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonAddressBookStorage addressBookStorage =
@@ -89,6 +96,11 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredBookList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredBookList().remove(0));
     }
 
     /**

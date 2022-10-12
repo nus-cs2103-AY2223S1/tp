@@ -44,15 +44,16 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
     * **`list`** :
 
-    * **`add`** : 
+    * **`add`** :
 
-    * **`delete`**`3` : 
+    * **`delete`**`3` :
 
-    * **`clear`** : 
+    * **`clear`** :
 
     * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -202,7 +203,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
-  
+
 
 **Q**: How do I clear the sample data on BookFace?<br>
 **A**: Simply use the `clear all` command.
@@ -210,8 +211,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-  
-  
+
 <div markdown="block" class="alert alert-info" name="commandsummary">
 
 | Action          | Format, Examples                                                                                          |
@@ -227,3 +227,4 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 | **List books**  | `list books`                                                                                              |
 | **List loans**  | `list loans`                                                                                              |
 | **Exit**        | `exit`                                                                                                    |
+</div>

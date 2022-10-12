@@ -17,7 +17,6 @@ public class ListCommandParser extends CommandParser<ListCommand> {
     protected ListCommand handleParsedCommand(String commandWord, String args) throws ParseException {
         ListSubcommand listType;
         try {
-            System.out.println(commandWord);
             listType = ListSubcommand.valueOf(commandWord.toUpperCase());
         } catch (IllegalArgumentException e) {
             //todo return Messages.UKNOWN COMMAND instead?
