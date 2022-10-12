@@ -1,4 +1,4 @@
-package seedu.address.model.role;
+package seedu.address.model.desiredcharacteristics;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -10,12 +10,12 @@ import java.util.Arrays;
  * Individual characteristics are separated by semicolons.
  */
 public class DesiredCharacteristics {
-    public static final String MESSAGE_CONSTRAINTS = "Desired characteristics can take any value, "
-            + "and can also be left blank.";
+    public static final String MESSAGE_CONSTRAINTS = "If -c flag is used, "
+            + "desired characteristics entry cannot be left blank.";
 
     /*
      * The first character of the desired characteristics must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input (when it should be a null wrapped in an Optional).
+     * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
@@ -30,15 +30,15 @@ public class DesiredCharacteristics {
     public DesiredCharacteristics(String desiredCharacteristics) {
         requireNonNull(desiredCharacteristics);
         checkArgument(isValidDesiredCharacteristics(desiredCharacteristics), MESSAGE_CONSTRAINTS);
-        characteristics = desiredCharacteristics.split(CHARACTERISTIC_DELIMITER);
 
-        for (String characteristic: characteristics) {
-            characteristic.strip();
+        characteristics = desiredCharacteristics.split(CHARACTERISTIC_DELIMITER);
+        for (int i = 0; i < characteristics.length; i++) {
+            characteristics[i] = characteristics[i].trim();
         }
     }
 
     /**
-     * Returns true if a given string is valid to be used in desired characteristics.
+     * Returns true if a given user-input string is valid to be used in desired characteristics.
      */
     public static boolean isValidDesiredCharacteristics(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -46,14 +46,23 @@ public class DesiredCharacteristics {
 
     @Override
     public String toString() {
-        return Arrays.toString(characteristics);
+        StringBuilder sb = new StringBuilder();
+        // string representation has to be exactly the same as in user input format
+        // so that when saved and then retrieved from storage, can be parsed back directly
+        for (int i = 0; i < characteristics.length; i++) {
+            sb.append(characteristics[i])
+                    .append("; ");
+        }
+        // remove last "; " as we don't want it to be repeatedly appended
+        // as we store the string and retrieve it repeatedly
+        return sb.substring(0, sb.length() - 2);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DesiredCharacteristics // instanceof handles nulls
-                && characteristics.equals(((DesiredCharacteristics) other).characteristics)); // state check
+                && Arrays.equals(characteristics, ((DesiredCharacteristics) other).characteristics)); // state check
     }
 
     @Override

@@ -31,11 +31,8 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="buyerRole" styleClass="cell_small_label" text="\$buyerRole" />
-      <Label fx:id="buyerRange" styleClass="cell_small_label" text="\$buyerRange" />
-      <Label fx:id="buyerCharacteristics" styleClass="cell_small_label" text="\$buyerCharacteristics" />
-      <Label fx:id="sellerRole" styleClass="cell_small_label" text="\$sellerRole" />
-      <FlowPane fx:id="sellerProperties"/>
+      <Label fx:id="priceRange" styleClass="cell_small_label" text="\$priceRange" />
+      <Label fx:id="desiredCharacteristics" styleClass="cell_small_label" text="\$desiredCharacteristics" />
     </VBox>
   </GridPane>
 </HBox>
