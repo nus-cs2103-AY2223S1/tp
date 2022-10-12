@@ -52,7 +52,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         name.setText(person.getName().fullName);
         module.setText(person.getModule().value);
-//        studentId.setText(person.getStudentId().value);
+        // studentId.setText(person.getStudentId().value);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
