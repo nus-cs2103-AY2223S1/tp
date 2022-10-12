@@ -57,7 +57,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (person.getInternshipId() == null) {
-            internship.setText("No internships linked.");
+            internship.setText(NO_INTERNSHIP);
         } else {
             internship.setText("Internship: " + person.getInternshipId().toString());
         }
