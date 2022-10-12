@@ -8,6 +8,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.UniquePropertyList;
 import seedu.address.model.role.Buyer;
 import seedu.address.model.role.Seller;
 
@@ -18,6 +20,7 @@ import seedu.address.model.role.Seller;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniquePropertyList properties;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,6 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        properties = new UniquePropertyList();
     }
 
     public AddressBook() {}
@@ -51,12 +55,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the property list with {@code properties}.
+     * {@code properties} must not contain duplicate properties.
+     */
+    public void setProperties(List<Property> properties) {
+        this.properties.setProperties(properties);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setProperties(newData.getPropertyList());
     }
 
     //// person-level operations
@@ -75,6 +88,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    /**
+     * Adds a property to the address book.
+     * The property must not already exist in the address book.
+     */
+    public void addProperty(Property p) {
+        properties.add(p);
     }
 
     /**
@@ -119,13 +140,19 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.asUnmodifiableObservableList().size() + " persons" + "\n"
+                + properties.asUnmodifiableObservableList().size() + " properties";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Property> getPropertyList() {
+        return properties.asUnmodifiableObservableList();
     }
 
     @Override
