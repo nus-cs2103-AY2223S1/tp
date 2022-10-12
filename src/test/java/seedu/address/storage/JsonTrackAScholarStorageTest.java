@@ -66,7 +66,7 @@ public class JsonTrackAScholarStorageTest {
 
     @Test
     public void readAndSaveTrackAScholar_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempTrackAScholar.json");
         TrackAScholar original = getTypicalTrackAScholar();
         JsonTrackAScholarStorage jsonTrackAScholarStorage = new JsonTrackAScholarStorage(filePath);
 
