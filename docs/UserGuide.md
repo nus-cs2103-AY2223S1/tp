@@ -95,6 +95,7 @@ Adds a student to the student list.
 Format: `addstu n/NAME h/TELEGRAM_HANDLE e/EMAIL`
 
 * Telegram handle must start with a '@'.
+* Email can only contain alphanumeric characters.
 
 Examples:
 
