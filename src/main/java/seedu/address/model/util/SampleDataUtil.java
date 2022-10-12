@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.PersonModel;
-import seedu.address.model.PropertyModel;
-import seedu.address.model.ReadOnlyPersonModel;
-import seedu.address.model.ReadOnlyPropertyModel;
+import seedu.address.model.PersonBook;
+import seedu.address.model.ProportyBook;
+import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.address.Address;
 import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
 import seedu.address.model.person.Email;
@@ -22,7 +22,7 @@ import seedu.address.model.property.PropertyName;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code PersonModel} with sample data.
+ * Contains utility methods for populating {@code PersonBook} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -65,20 +65,20 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyPersonModel getSamplePersonModel() {
-        PersonModel sampleAb = new PersonModel();
+    public static ReadOnlyPersonBook getSamplePersonModel() {
+        PersonBook sampleAb = new PersonBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
     }
 
-    public static ReadOnlyPropertyModel getSamplePropertyModel() {
-        PropertyModel propertyModel = new PropertyModel();
+    public static ReadOnlyPropertyBook getSamplePropertyModel() {
+        ProportyBook proportyBook = new ProportyBook();
         for (Property sampleProperty : getSampleProperties()) {
-            propertyModel.addProperty(sampleProperty);
+            proportyBook.addProperty(sampleProperty);
         }
-        return propertyModel;
+        return proportyBook;
     }
 
     /**

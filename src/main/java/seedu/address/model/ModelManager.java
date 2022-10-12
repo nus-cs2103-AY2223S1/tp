@@ -21,30 +21,30 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final UserPrefs userPrefs;
-    private final PersonModel personModel;
-    private final PropertyModel propertyModel;
+    private final PersonBook personBook;
+    private final ProportyBook proportyBook;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Property> filteredProperties;
 
     /**
-     * Initializes a ModelManager with the given personModel and userPrefs.
+     * Initializes a ModelManager with the given personBook and userPrefs.
      */
-    public ModelManager(ReadOnlyPersonModel personModel, ReadOnlyPropertyModel propertyModel,
+    public ModelManager(ReadOnlyPersonBook personModel, ReadOnlyPropertyBook propertyModel,
                         ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(personModel, propertyModel, userPrefs);
 
         logger.fine("Initializing with person model: " + personModel + " and property model: " + propertyModel
                 + " and user prefs " + userPrefs);
 
-        this.personModel = new PersonModel(personModel);
-        this.propertyModel = new PropertyModel(propertyModel);
+        this.personBook = new PersonBook(personModel);
+        this.proportyBook = new ProportyBook(propertyModel);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.personModel.getPersonList());
-        filteredProperties = new FilteredList<>(this.propertyModel.getPropertyList());
+        filteredPersons = new FilteredList<>(this.personBook.getPersonList());
+        filteredProperties = new FilteredList<>(this.proportyBook.getPropertyList());
     }
 
     public ModelManager() {
-        this(new PersonModel(), new PropertyModel(), new UserPrefs());
+        this(new PersonBook(), new ProportyBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -93,39 +93,39 @@ public class ModelManager implements Model {
         userPrefs.setPropertyBookFilePath(propertyModelFilePath);
     }
 
-    //=========== PersonModel ================================================================================
+    //=========== PersonBook ================================================================================
 
     @Override
-    public void setPersonModel(ReadOnlyPersonModel personModel) {
-        this.personModel.resetData(personModel);
+    public void setPersonModel(ReadOnlyPersonBook personModel) {
+        this.personBook.resetData(personModel);
     }
 
     @Override
-    public ReadOnlyPersonModel getPersonModel() {
-        return personModel;
+    public ReadOnlyPersonBook getPersonModel() {
+        return personBook;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return personModel.hasPerson(person);
+        return personBook.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        personModel.removePerson(target);
+        personBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        personModel.addPerson(person);
+        personBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-        personModel.setPerson(target, editedPerson);
+        personBook.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -145,46 +145,46 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== PropertyModel ================================================================================
+    //=========== ProportyBook ================================================================================
 
     @Override
-    public void setPropertyModel(ReadOnlyPropertyModel propertyModel) {
-        this.propertyModel.resetData(propertyModel);
+    public void setPropertyModel(ReadOnlyPropertyBook propertyModel) {
+        this.proportyBook.resetData(propertyModel);
     }
 
     @Override
-    public ReadOnlyPropertyModel getPropertyModel() {
-        return propertyModel;
+    public ReadOnlyPropertyBook getPropertyModel() {
+        return proportyBook;
     }
 
     @Override
     public boolean hasProperty(Property property) {
         requireNonNull(property);
-        return propertyModel.hasProperty(property);
+        return proportyBook.hasProperty(property);
     }
 
     @Override
     public void deleteProperty(Property target) {
-        propertyModel.removeProperty(target);
+        proportyBook.removeProperty(target);
     }
 
     @Override
     public void addProperty(Property property) {
-        propertyModel.addProperty(property);
+        proportyBook.addProperty(property);
         updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
     }
 
     @Override
     public void setProperty(Property target, Property editedProperty) {
         requireAllNonNull(target, editedProperty);
-        propertyModel.setProperty(target, editedProperty);
+        proportyBook.setProperty(target, editedProperty);
     }
 
     //=========== Filtered Property List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Property} backed by the internal list of
-     * {@code PropertyModel}
+     * {@code ProportyBook}
      */
     @Override
     public ObservableList<Property> getFilteredPropertyList() {
@@ -212,8 +212,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return userPrefs.equals(other.userPrefs)
-                && personModel.equals(other.personModel)
-                && propertyModel.equals(other.propertyModel)
+                && personBook.equals(other.personBook)
+                && proportyBook.equals(other.proportyBook)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredProperties.equals(other.filteredProperties);
     }

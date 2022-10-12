@@ -17,9 +17,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.PersonModel;
-import seedu.address.model.ReadOnlyPersonModel;
-import seedu.address.model.ReadOnlyPropertyModel;
+import seedu.address.model.PersonBook;
+import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
@@ -127,12 +127,12 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setPersonModel(ReadOnlyPersonModel newData) {
+        public void setPersonModel(ReadOnlyPersonBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyPersonModel getPersonModel() {
+        public ReadOnlyPersonBook getPersonModel() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -167,12 +167,12 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setPropertyModel(ReadOnlyPropertyModel newData) {
+        public void setPropertyModel(ReadOnlyPropertyBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyPropertyModel getPropertyModel() {
+        public ReadOnlyPropertyBook getPropertyModel() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -239,8 +239,8 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public ReadOnlyPersonModel getPersonModel() {
-            return new PersonModel();
+        public ReadOnlyPersonBook getPersonModel() {
+            return new PersonBook();
         }
     }
 

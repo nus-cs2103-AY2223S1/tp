@@ -5,11 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.PersonModel;
-import seedu.address.model.ReadOnlyPersonModel;
+import seedu.address.model.PersonBook;
+import seedu.address.model.ReadOnlyPersonBook;
 
 /**
- * Represents a storage for {@link PersonModel}.
+ * Represents a storage for {@link PersonBook}.
  */
 public interface AddressBookStorage {
 
@@ -19,28 +19,28 @@ public interface AddressBookStorage {
     Path getAddressBookFilePath();
 
     /**
-     * Returns PersonModel data as a {@link ReadOnlyPersonModel}.
+     * Returns PersonBook data as a {@link ReadOnlyPersonBook}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyPersonModel> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyPersonBook> readAddressBook() throws DataConversionException, IOException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyPersonModel> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyPersonBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyPersonModel} to the storage.
+     * Saves the given {@link ReadOnlyPersonBook} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyPersonModel addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyPersonBook addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyPersonModel)
+     * @see #saveAddressBook(ReadOnlyPersonBook)
      */
-    void saveAddressBook(ReadOnlyPersonModel addressBook, Path filePath) throws IOException;
+    void saveAddressBook(ReadOnlyPersonBook addressBook, Path filePath) throws IOException;
 
 }

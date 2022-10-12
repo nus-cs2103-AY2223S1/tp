@@ -13,8 +13,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyPersonModel;
-import seedu.address.model.ReadOnlyPropertyModel;
+import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 import seedu.address.storage.Storage;
@@ -58,7 +58,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyPersonModel getPersonModel() {
+    public ReadOnlyPersonBook getPersonModel() {
         return model.getPersonModel();
     }
 
@@ -68,7 +68,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyPropertyModel getPropertyModel() {
+    public ReadOnlyPropertyBook getPropertyModel() {
         return model.getPropertyModel();
     }
 

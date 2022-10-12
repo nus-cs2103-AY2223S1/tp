@@ -59,15 +59,15 @@ public interface Model {
      */
     void setPropertyModelFilePath(Path addressBookFilePath);
 
-    //=========== PersonModel ================================================================================
+    //=========== PersonBook ================================================================================
 
     /**
      * Replaces person model data with the data in {@code personModel}.
      */
-    void setPersonModel(ReadOnlyPersonModel personModel);
+    void setPersonModel(ReadOnlyPersonBook personModel);
 
-    /** Returns the PersonModel */
-    ReadOnlyPersonModel getPersonModel();
+    /** Returns the PersonBook */
+    ReadOnlyPersonBook getPersonModel();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -104,15 +104,15 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    //=========== PropertyModel ================================================================================
+    //=========== ProportyBook ================================================================================
 
     /**
      * Replaces property model data with the data in {@code propertyModel}.
      */
-    void setPropertyModel(ReadOnlyPropertyModel propertyModel);
+    void setPropertyModel(ReadOnlyPropertyBook propertyModel);
 
-    /** Returns the PropertyModel */
-    ReadOnlyPropertyModel getPropertyModel();
+    /** Returns the ProportyBook */
+    ReadOnlyPropertyBook getPropertyModel();
 
     /**
      * Returns true if a property with the same identity as {@code property} exists in the address book.

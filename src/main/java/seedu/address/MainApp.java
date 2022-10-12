@@ -17,10 +17,10 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.PersonModel;
-import seedu.address.model.PropertyModel;
-import seedu.address.model.ReadOnlyPersonModel;
-import seedu.address.model.ReadOnlyPropertyModel;
+import seedu.address.model.PersonBook;
+import seedu.address.model.ProportyBook;
+import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
@@ -50,7 +50,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing PersonModel ]===========================");
+        logger.info("=============================[ Initializing PersonBook ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -76,22 +76,22 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPersonModel> personModelOptional;
-        ReadOnlyPersonModel personModel;
-        ReadOnlyPropertyModel emptyPropertyModel = new PropertyModel(); // TODO: read property model from storage
+        Optional<ReadOnlyPersonBook> personModelOptional;
+        ReadOnlyPersonBook personModel;
+        ReadOnlyPropertyBook emptyPropertyModel = new ProportyBook(); // TODO: read property model from storage
 
         try {
             personModelOptional = storage.readAddressBook();
             if (!personModelOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample PersonModel");
+                logger.info("Data file not found. Will be starting with a sample PersonBook");
             }
             personModel = personModelOptional.orElseGet(SampleDataUtil::getSamplePersonModel);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty PersonModel");
-            personModel = new PersonModel();
+            logger.warning("Data file not in the correct format. Will be starting with an empty PersonBook");
+            personModel = new PersonBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty PersonModel");
-            personModel = new PersonModel();
+            logger.warning("Problem while reading from the file. Will be starting with an empty PersonBook");
+            personModel = new PersonBook();
         }
 
         return new ModelManager(personModel, emptyPropertyModel, userPrefs);
@@ -155,7 +155,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty PersonModel");
+            logger.warning("Problem while reading from the file. Will be starting with an empty PersonBook");
             initializedPrefs = new UserPrefs();
         }
 
@@ -171,7 +171,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting PersonModel " + MainApp.VERSION);
+        logger.info("Starting PersonBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

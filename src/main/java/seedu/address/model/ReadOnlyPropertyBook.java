@@ -6,7 +6,7 @@ import seedu.address.model.property.Property;
 /**
  * Unmodifiable view of a Property list
  */
-public interface ReadOnlyPropertyModel {
+public interface ReadOnlyPropertyBook {
 
     /**
      * Returns an unmodifiable view of the property list.

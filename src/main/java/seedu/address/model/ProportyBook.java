@@ -12,7 +12,7 @@ import seedu.address.model.property.UniquePropertyList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameProperty comparison)
  */
-public class PropertyModel implements ReadOnlyPropertyModel {
+public class ProportyBook implements ReadOnlyPropertyBook {
 
     private final UniquePropertyList properties;
 
@@ -27,12 +27,12 @@ public class PropertyModel implements ReadOnlyPropertyModel {
         properties = new UniquePropertyList();
     }
 
-    public PropertyModel() {}
+    public ProportyBook() {}
 
     /**
-     * Creates a PropertyModel using the Properties in the {@code propertyModel}
+     * Creates a ProportyBook using the Properties in the {@code propertyModel}
      */
-    public PropertyModel(ReadOnlyPropertyModel propertyModel) {
+    public ProportyBook(ReadOnlyPropertyBook propertyModel) {
         this();
         resetData(propertyModel);
     }
@@ -48,9 +48,9 @@ public class PropertyModel implements ReadOnlyPropertyModel {
     }
 
     /**
-     * Resets the existing data of this {@code PropertyModel} with {@code newData}.
+     * Resets the existing data of this {@code ProportyBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyPropertyModel newData) {
+    public void resetData(ReadOnlyPropertyBook newData) {
         requireNonNull(newData);
 
         setProperties(newData.getPropertyList());
@@ -87,7 +87,7 @@ public class PropertyModel implements ReadOnlyPropertyModel {
     }
 
     /**
-     * Removes {@code key} from this {@code PropertyModel}.
+     * Removes {@code key} from this {@code ProportyBook}.
      * {@code key} must exist in the property model.
      */
     public void removeProperty(Property key) {
@@ -110,8 +110,8 @@ public class PropertyModel implements ReadOnlyPropertyModel {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PropertyModel // instanceof handles nulls
-                && properties.equals(((PropertyModel) other).properties));
+                || (other instanceof ProportyBook // instanceof handles nulls
+                && properties.equals(((ProportyBook) other).properties));
     }
 
     @Override

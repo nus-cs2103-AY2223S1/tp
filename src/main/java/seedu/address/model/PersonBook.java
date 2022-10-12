@@ -12,7 +12,7 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class PersonModel implements ReadOnlyPersonModel {
+public class PersonBook implements ReadOnlyPersonBook {
 
     private final UniquePersonList persons;
 
@@ -27,12 +27,12 @@ public class PersonModel implements ReadOnlyPersonModel {
         persons = new UniquePersonList();
     }
 
-    public PersonModel() {}
+    public PersonBook() {}
 
     /**
-     * Creates an PersonModel using the Persons in the {@code toBeCopied}
+     * Creates an PersonBook using the Persons in the {@code toBeCopied}
      */
-    public PersonModel(ReadOnlyPersonModel toBeCopied) {
+    public PersonBook(ReadOnlyPersonBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class PersonModel implements ReadOnlyPersonModel {
     }
 
     /**
-     * Resets the existing data of this {@code PersonModel} with {@code newData}.
+     * Resets the existing data of this {@code PersonBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyPersonModel newData) {
+    public void resetData(ReadOnlyPersonBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -86,7 +86,7 @@ public class PersonModel implements ReadOnlyPersonModel {
     }
 
     /**
-     * Removes {@code key} from this {@code PersonModel}.
+     * Removes {@code key} from this {@code PersonBook}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
@@ -110,8 +110,8 @@ public class PersonModel implements ReadOnlyPersonModel {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PersonModel // instanceof handles nulls
-                && persons.equals(((PersonModel) other).persons));
+                || (other instanceof PersonBook // instanceof handles nulls
+                && persons.equals(((PersonBook) other).persons));
     }
 
     @Override

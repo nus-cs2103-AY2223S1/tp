@@ -1,32 +1,32 @@
 package seedu.address.testutil;
 
-import seedu.address.model.PropertyModel;
+import seedu.address.model.ProportyBook;
 import seedu.address.model.property.Property;
 
 /**
- * A utility class to help with building PropertyModel objects.
+ * A utility class to help with building ProportyBook objects.
  */
 public class PropertyModelBuilder {
 
-    private PropertyModel propertyModel;
+    private ProportyBook proportyBook;
 
     public PropertyModelBuilder() {
-        propertyModel = new PropertyModel();
+        proportyBook = new ProportyBook();
     }
 
-    public PropertyModelBuilder(PropertyModel propertyModel) {
-        this.propertyModel = propertyModel;
+    public PropertyModelBuilder(ProportyBook proportyBook) {
+        this.proportyBook = proportyBook;
     }
 
     /**
-     * Adds a new {@code Property} to the {@code PropertyModel} that we are building.
+     * Adds a new {@code Property} to the {@code ProportyBook} that we are building.
      */
     public PropertyModelBuilder withProperty(Property property) {
-        propertyModel.addProperty(property);
+        proportyBook.addProperty(property);
         return this;
     }
 
-    public PropertyModel build() {
-        return propertyModel;
+    public ProportyBook build() {
+        return proportyBook;
     }
 }
