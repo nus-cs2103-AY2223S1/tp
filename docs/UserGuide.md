@@ -16,6 +16,7 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
    * Deleting a person : delete
   * Clearing all entries : clear
   * Undoing last command : undo
+  * Sorting all entries by a specific field : sort
 * Command summary
 
 --------------------------------------------------------------------------------------------------------------------
@@ -43,6 +44,8 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
    * **`clear`** : Deletes all contacts.
 
    * **`undo`** : Undoes last modifying command.
+
+   * **`sort`** : Sorts entries.
 
    * **`exit`** : Exits the app.
 
@@ -155,6 +158,22 @@ Format: `undo`
 * Ignores modifying commands if they don't modify the address book.
 * Will cancel out when trying to undo an undo command.
 
+### Sort entries by field : `sort PREFIX/` e.g. `sort n/`
+
+Sorts entries in uNivUSal by specific field prefix in an ascending manner. Current fields implemented are:
+1. Name `n/`
+2. Email addres `e/`
+3. Phone `p/`
+
+Format: `sort PREFIX/`
+* Sorts the entries by the speicified `PREFIX/`.
+* Displays sorted list.
+
+Examples:
+* `sort n/` displays the entries sorted by name alphabetically.
+* `sort e/` displays the entires sorted by email address alphabetically.
+* `sort p/` displays the entires sorted by phone number in an ascending manner.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -199,4 +218,5 @@ _Details coming soon ..._
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
 | **Clear**  | `clear`                                                                                                                                                     |                                                                             |                                                                                                          |
 | **Undo**   | `undo`                                                                                                                                                      |
+| **Sort**   | `sort PREFIX/` <br> e.g., `sort n/`                                                                                                                                                     |
 | **Exit**   | `exit`                                                                                                                                                      |
