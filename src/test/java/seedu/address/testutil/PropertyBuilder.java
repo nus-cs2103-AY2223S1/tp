@@ -3,9 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.property.Address;
+import seedu.address.model.address.Address;
 import seedu.address.model.property.Description;
-import seedu.address.model.property.Name;
+import seedu.address.model.property.PropertyName;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
 import seedu.address.model.tag.Tag;
@@ -23,7 +23,7 @@ public class PropertyBuilder {
             + "Peak Residence offers you serenity away from the hustle and bustle with breathtaking views all around.";
 
 
-    private Name name;
+    private PropertyName name;
     private Price price;
     private Address address;
     private Description description;
@@ -33,7 +33,7 @@ public class PropertyBuilder {
      * Creates a {@code PropertyBuilder} with the default details.
      */
     public PropertyBuilder() {
-        name = new Name(DEFAULT_NAME);
+        name = new PropertyName(DEFAULT_NAME);
         price = new Price(DEFAULT_PRICE);
         description = new Description(DEFAULT_DESCRIPTION);
         address = new Address(DEFAULT_ADDRESS);
@@ -55,7 +55,7 @@ public class PropertyBuilder {
      * Sets the {@code Name} of the {@code Property} that we are building.
      */
     public PropertyBuilder withName(String name) {
-        this.name = new Name(name);
+        this.name = new PropertyName(name);
         return this;
     }
 

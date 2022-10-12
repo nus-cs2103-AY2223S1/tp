@@ -158,6 +158,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void updateFilteredPropertyList(Predicate<Property> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setBuyerRole(Person person, Buyer buyer) {
             throw new AssertionError("This method should not be called.");
         }

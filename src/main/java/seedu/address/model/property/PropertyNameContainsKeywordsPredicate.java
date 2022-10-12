@@ -4,14 +4,15 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Tests that a {@code Property}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Property> {
+public class PropertyNameContainsKeywordsPredicate implements Predicate<Property> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public PropertyNameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -24,8 +25,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Property> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof PropertyNameContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((PropertyNameContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }
