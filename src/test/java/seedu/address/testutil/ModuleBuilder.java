@@ -16,9 +16,9 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class ModuleBuilder {
 
-    public static final String DEFAULT_LECTURE_DETAILS = "Every friday";
-    public static final String DEFAULT_MODULE_CODE = "CS2103T";
-    public static final String DEFAULT_TUTORIAL_DETAILS = "Every wednesday";
+    public static final String DEFAULT_LECTURE_DETAILS = "lectureDetail";
+    public static final String DEFAULT_MODULE_CODE = "moduleCode";
+    public static final String DEFAULT_TUTORIAL_DETAILS = "tutorialDetail";
     public static final String DEFAULT_ZOOM_LINK = "https://nus-sg.zoom.us";
 
     private LectureDetails lectureDetails;
@@ -61,7 +61,7 @@ public class ModuleBuilder {
      * Parses the {@code AssignmentDetails} into a {@code Set<AssignmentDetails>} and set it to the
      * {@code Module} that we are building.
      */
-    public ModuleBuilder withAssignmentDetails(String ... assignmentDetails) {
+    public ModuleBuilder withAssignmentDetails(String... assignmentDetails) {
         this.assignmentDetails = SampleDataUtil.getAssignmentDetailsSet(assignmentDetails);
         return this;
     }

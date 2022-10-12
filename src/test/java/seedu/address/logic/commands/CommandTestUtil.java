@@ -51,10 +51,10 @@ public class CommandTestUtil {
     public static final String VALID_LECTURE_DETAILS_CS2100 = "Every tuesday";
     public static final String VALID_TUTORIAL_DETAILS_CS2103T = "Every wednesday";
     public static final String VALID_TUTORIAL_DETAILS_CS2100 = "Every friday";
-    public static final String VALID_ZOOM_LINK_CS2103T = "https://nus-sg.zoom.us";
-    public static final String VALID_ZOOM_LINK_CS2100 = "https://nus-sg.zoom.us";
-    public static final String VALID_ASSIGNMENT_DETAILS_CS2103T = "hard";
-    public static final String VALID_ASSIGNMENT_DETAILS_CS2100 = "normal";
+    public static final String VALID_ZOOM_LINK_CS2103T = "https://nus-sg.zoom.us/CS2103T";
+    public static final String VALID_ZOOM_LINK_CS2100 = "https://nus-sg.zoom.us/CS2100";
+    public static final String VALID_ASSIGNMENT_DETAILS_HARD = "hard";
+    public static final String VALID_ASSIGNMENT_DETAILS_NORMAL = "normal";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -75,21 +75,21 @@ public class CommandTestUtil {
     public static final String TUTORIAL_DETAILS_CS2100 = " " + PREFIX_TUTORIAL + VALID_TUTORIAL_DETAILS_CS2100;
     public static final String ZOOM_LINK_CS2103T = " " + PREFIX_ZOOM + VALID_ZOOM_LINK_CS2103T;
     public static final String ZOOM_LINK_CS2100 = " " + PREFIX_ZOOM + VALID_ZOOM_LINK_CS2100;
-    public static final String ASSIGNMENT_DETAILS_CS2103T = " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DETAILS_CS2103T;
-    public static final String ASSIGNMENT_DETAILS_CS2100 = " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DETAILS_CS2100;
+    public static final String ASSIGNMENT_DETAILS_HARD = " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DETAILS_HARD;
+    public static final String ASSIGNMENT_DETAILS_NORMAL = " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DETAILS_NORMAL;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // only alphanumerics allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // only alphanumerics allowed in tags
 
-    //TODO to update invalid module details
-    public static final String INVALID_MODULE_CODE_CS2103T = "CS2103T%"; // '%' not allowed in module codes
-    public static final String INVALID_LECTURE_DETAILS_CS2103T = " Every friday"; //must not start with whitespace
-    public static final String INVALID_TUTORIAL_DETAILS_CS2103T = " Every wednesday"; //must not start with whitespace
-    public static final String INVALID_ZOOM_LINK_CS2103T = "zoom.com"; // TODO add reason @yuting
-    public static final String INVALID_ASSIGNMENT_DETAILS_CS2103T = "hard&"; // '&' not allowed in assignments
+    //TODO to update invalid module details after parsing updated
+    public static final String INVALID_MODULE_CODE = " " + PREFIX_MODULE + "CS2103T%"; // only alphanumerics allowed
+    public static final String INVALID_LECTURE_DETAILS = " " + PREFIX_LECTURE + " "; //empty string not allowed
+    public static final String INVALID_TUTORIAL_DETAILS = " " + PREFIX_TUTORIAL + " "; //empty string not allowed
+    public static final String INVALID_ZOOM_LINK = " " + PREFIX_ZOOM + "zoom.com"; // TODO add reason
+    public static final String INVALID_ASSIGNMENT_DETAILS = " " + PREFIX_ASSIGNMENT + "hard&"; // only alphanumerics
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -99,11 +99,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

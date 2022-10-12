@@ -134,7 +134,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code module} is invalid.
      */
-    public static ModuleCode parseModule(String module) throws ParseException {
+    public static ModuleCode parseModuleCode(String module) throws ParseException {
         requireNonNull(module);
         String trimmedModule = module.trim();
         if (!ModuleCode.isValidModuleCode(trimmedModule)) {
@@ -149,7 +149,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code lecture} is invalid.
      */
-    public static LectureDetails parseLecture(String lecture) throws ParseException {
+    public static LectureDetails parseLectureDetails(String lecture) throws ParseException {
         requireNonNull(lecture);
         String trimmedLecture = lecture.trim();
         if (!LectureDetails.areValidLectureDetails(trimmedLecture)) {
@@ -164,7 +164,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tutorial} is invalid.
      */
-    public static TutorialDetails parseTutorial(String tutorial) throws ParseException {
+    public static TutorialDetails parseTutorialDetails(String tutorial) throws ParseException {
         requireNonNull(tutorial);
         String trimmedTutorial = tutorial.trim();
         if (!TutorialDetails.areValidTutorialDetails(trimmedTutorial)) {
@@ -179,7 +179,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code module} is invalid.
      */
-    public static ZoomLink parseZoom(String zoom) throws ParseException {
+    public static ZoomLink parseZoomLink(String zoom) throws ParseException {
         requireNonNull(zoom);
         String trimmedZoom = zoom.trim();
         if (!ZoomLink.isValidUrl(trimmedZoom)) {
@@ -194,11 +194,11 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code assignment} is invalid.
      */
-    public static AssignmentDetails parseAssignment(String assignment) throws ParseException {
+    public static AssignmentDetails parseAssignmentDetail(String assignment) throws ParseException {
         requireNonNull(assignment);
         String trimmedAssignment = assignment.trim();
         if (!AssignmentDetails.areValidAssignmentDetails(trimmedAssignment)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(AssignmentDetails.MESSAGE_CONSTRAINTS);
         }
         return new AssignmentDetails(trimmedAssignment);
     }
@@ -206,11 +206,11 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> assignment} into a {@code Set<Assignment>}.
      */
-    public static Set<AssignmentDetails> parseAssignments(Collection<String> assignment) throws ParseException {
+    public static Set<AssignmentDetails> parseAssignmentDetails(Collection<String> assignment) throws ParseException {
         requireNonNull(assignment);
         final Set<AssignmentDetails> assignmentSet = new HashSet<>();
         for (String assignmentName : assignment) {
-            assignmentSet.add(parseAssignment(assignmentName));
+            assignmentSet.add(parseAssignmentDetail(assignmentName));
         }
         return assignmentSet;
     }

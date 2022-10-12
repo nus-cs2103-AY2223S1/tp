@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
 /**
- * Adds a person to the address book.
+ * Adds a module to the module list.
  */
 public class AddModuleCommand extends Command {
 
@@ -36,7 +36,7 @@ public class AddModuleCommand extends Command {
         + PREFIX_ASSIGNMENT + "Lab1";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This module already exists in the module list";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
 
     private final Module toAdd;
 
@@ -53,7 +53,7 @@ public class AddModuleCommand extends Command {
         requireNonNull(model);
 
         if (model.hasModule(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
         model.addModule(toAdd);
