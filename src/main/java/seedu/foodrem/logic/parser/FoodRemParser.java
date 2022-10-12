@@ -64,9 +64,6 @@ public class FoodRemParser {
         case AddTagCommand.COMMAND_WORD:
             return new AddTagCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-            
         case ResetCommand.COMMAND_WORD:
             return new ResetCommand();
 
