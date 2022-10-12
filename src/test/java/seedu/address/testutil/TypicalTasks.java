@@ -5,8 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.TaskList;
+import seedu.address.model.module.Module;
 import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Module;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
 
@@ -17,20 +18,23 @@ public class TypicalTasks {
     public static final Task FINISH_TP = new Task(
             new TaskName("Finish TP"),
             new Module("CS2103T"),
-            new Deadline("2022-11-15 00:00")
+            new Deadline("2022-11-15 00:00"),
+            new Status(false)
     );
 
     /** Weakly but not strongly equivalent to FINISH_TP. */
     public static final Task FINISH_TP_ISH = new Task(
             new TaskName("Finish TP"),
             new Module("CS2103T"),
-            new Deadline("2022-12-12 12:00")
+            new Deadline("2022-12-12 12:00"),
+            new Status(false)
     );
 
     public static final Task LAB_2 = new Task(
             new TaskName("Lab 2"),
             new Module("CS2030S"),
-            new Deadline("2022-02-02 23:59")
+            new Deadline("2022-02-02 23:59"),
+            new Status(false)
     );
 
     // This one is not in typicalTasks so that it can be added without issues
@@ -38,7 +42,8 @@ public class TypicalTasks {
     public static final Task LAB_3 = new Task(
             new TaskName("Lab 3"),
             new Module("CS2030S"),
-            new Deadline("2022-03-15 23:59")
+            new Deadline("2022-03-15 23:59"),
+            new Status(true)
     );
 
     private TypicalTasks() {} // prevents instantiation

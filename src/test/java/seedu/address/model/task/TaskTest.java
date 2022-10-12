@@ -4,44 +4,53 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.model.module.Module;
 
 public class TaskTest {
     private final Task sampleA = new Task(
             new TaskName("A"),
             new Module("B"),
-            new Deadline("2006-01-15 15:04")
+            new Deadline("2006-01-15 15:04"),
+            new Status(false)
     );
 
     private final Task sampleB = new Task(
             new TaskName("A"),
             new Module("B"),
-            new Deadline("2006-01-15 15:04")
+            new Deadline("2006-01-15 15:04"),
+            new Status(false)
     );
 
     private final Task sampleC = new Task(
             new TaskName("A"),
             new Module("B"),
-            new Deadline("2010-04-15 08:30")
+            new Deadline("2010-04-15 08:30"),
+            new Status(false)
     );
 
     private final Task sampleD = new Task(
             new TaskName("Dugong"),
             new Module("B"),
-            new Deadline("2006-01-15 15:04")
+            new Deadline("2006-01-15 15:04"),
+            new Status(false)
     );
 
     private final Task sampleE = new Task(
             new TaskName("a"),
             new Module("B"),
-            new Deadline("2006-01-15 15:04")
+            new Deadline("2006-01-15 15:04"),
+            new Status(false)
     );
 
     private final Task sampleF = new Task(
             new TaskName("A "),
             new Module("B"),
-            new Deadline("2006-01-15 15:04")
+            new Deadline("2006-01-15 15:04"),
+            new Status(false)
     );
 
     @Test
@@ -78,5 +87,27 @@ public class TaskTest {
         assertNotEquals(sampleA, sampleE);
         // trailing space in name -> returns false
         assertNotEquals(sampleA, sampleF);
+    }
+
+    @Test
+    public void setStatusWithBooleanParameter() {
+        sampleA.setStatus(true);
+        sampleB.setStatus(false);
+        assertTrue(sampleA.getStatus().getIsComplete());
+        assertFalse(sampleB.getStatus().getIsComplete());
+    }
+
+    @Test
+    public void setStatusWithValidStringParameter() {
+        sampleA.setStatus("true");
+        sampleB.setStatus("false");
+        assertTrue(sampleA.getStatus().getIsComplete());
+        assertFalse(sampleB.getStatus().getIsComplete());
+    }
+
+    @Test
+    public void setStatusWithInvalidStringParameter_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> sampleA.setStatus(""));
+        assertThrows(IllegalArgumentException.class, () -> sampleA.setStatus("a"));
     }
 }

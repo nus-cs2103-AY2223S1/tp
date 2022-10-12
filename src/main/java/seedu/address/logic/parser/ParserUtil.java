@@ -9,13 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Module;
 import seedu.address.model.task.TaskName;
 
 /**
@@ -126,6 +126,36 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String module} into a {@code Module}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code module} is invalid.
+     */
+    public static Module parseModule(String module) throws ParseException {
+        requireNonNull(module);
+        String trimmedModule = module.trim();
+        if (!Module.isValidModule(trimmedModule)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        }
+        return new Module(trimmedModule);
+    }
+
+    /**
+     * Parses a {@code String mods} into an {@code Mods}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code mods} is invalid.
+     */
+    public static Set<Module> parseModules(Collection<String> mods) throws ParseException {
+        requireNonNull(mods);
+        final Set<Module> moduleSet = new HashSet<>();
+        for (String moduleName: mods) {
+            moduleSet.add(parseModule(moduleName));
+        }
+        return moduleSet;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code TaskName}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -153,20 +183,5 @@ public class ParserUtil {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
         return new Deadline(trimmedDeadline);
-    }
-
-    /**
-     * Parses a {@code String module} into a {@code Module}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code module} is invalid.
-     */
-    public static Module parseModule(String module) throws ParseException {
-        requireNonNull(module);
-        String trimmedModule = module.trim();
-        if (!Module.isValidModule(trimmedModule)) {
-            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
-        }
-        return new Module(trimmedModule);
     }
 }

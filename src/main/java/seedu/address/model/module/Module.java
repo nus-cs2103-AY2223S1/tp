@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -16,9 +16,9 @@ public class Module {
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\S+";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String module;
+    public final String moduleName;
 
     /**
      * Constructs a {@code Module}.
@@ -28,7 +28,7 @@ public class Module {
     public Module(String module) {
         requireNonNull(module);
         checkArgument(isValidModule(module), MESSAGE_CONSTRAINTS);
-        this.module = module;
+        this.moduleName = module;
     }
 
     /**
@@ -41,19 +41,19 @@ public class Module {
 
     @Override
     public String toString() {
-        return module;
+        return moduleName;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Module // instanceof handles nulls
-                && module.equals(((Module) other).module)); // state check
+                && moduleName.equalsIgnoreCase(((Module) other).moduleName)); // state check
     }
 
     @Override
     public int hashCode() {
-        return module.hashCode();
+        return moduleName.hashCode();
     }
 
 }
