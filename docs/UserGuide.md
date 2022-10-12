@@ -125,15 +125,18 @@ Examples:
 
 Increases or decreases the number of times a student attended tutorials.
 
-Format: `attendance n/NAME s/SIGN v/VALUE`
+Format: `attendance INDEX s/SIGN v/VALUE`
 
+* Adds attendance to the student at the specified INDEX
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2. 3, …
 * decrease attendance value if `SIGN` is '-' and increase attendance value if `SIGN` is '+'
 * increase or decrease the specific student's attendance by `VALUE`
 
 Examples:
 
-* `attendance n/Lee Jun Jie s/- v/2`
-* `attendance n/John Lim Jun Jie s/+ v/1`
+* `attendance 1 s/- v/2`
+* `attendance 1 s/+ v/1`
 
 ![add attendance](images/userguide-screenshots/attendance.png)
 

@@ -17,11 +17,15 @@ public class Student {
     // Data fields
     private final Response response;
     private final Attendance attendance;
+//    private final HelpTag helpTag;
+
 
     /**
      * Name, Telegram and Email field must not be null.
      */
+
     public Student(StuName name, Telegram telegram, StuEmail email, Response response, Attendance attendance) {
+
         requireAllNonNull(name, telegram, email);
         this.name = name;
         this.telegram = telegram;
