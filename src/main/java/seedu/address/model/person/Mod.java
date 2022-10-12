@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidModName(String)}
  */
 public class Mod {
-    public static final String MESSAGE_CONSTRAINTS = "Mod names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Mod names should not contain any special characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String modName;
