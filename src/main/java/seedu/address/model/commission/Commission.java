@@ -26,7 +26,7 @@ public class Commission {
     private final Fee fee;
     private final Deadline deadline;
     private final CompletionStatus completionStatus;
-    private Customer customer;
+    private final Customer customer;
 
     // Data field
     private final UniqueIterationList iterations;
@@ -66,7 +66,7 @@ public class Commission {
      * @param builder Instance of CommissionBuilder.
      */
 
-    public Commission(CommissionBuilder builder) {
+    public Commission(CommissionBuilder builder, Customer customer) {
         title = builder.title;
         fee = builder.fee;
         deadline = builder.deadline;
@@ -74,6 +74,7 @@ public class Commission {
         tags = builder.tags;
         description = builder.description;
         iterations = builder.iterations;
+        this.customer = customer;
     }
 
     public Title getTitle() {
@@ -136,10 +137,6 @@ public class Commission {
 
     public ObservableList<Iteration> getIterationList() {
         return iterations.asUnmodifiableObservableList();
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 
     /**
@@ -221,7 +218,7 @@ public class Commission {
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, fee, deadline, tags, iterations);
+        return Objects.hash(title, fee, deadline, tags, description, iterations, completionStatus, customer);
     }
 
     @Override
@@ -302,8 +299,32 @@ public class Commission {
             return this;
         }
 
-        public Commission build() {
-            return new Commission(this);
+        public Commission build(Customer customer) {
+            return new Commission(this, customer);
+        }
+
+
+        @Override
+        public String toString() {
+            final StringBuilder builder = new StringBuilder();
+            builder.append(title)
+                .append("; Fee: ")
+                .append(fee)
+                .append("; Deadline: ")
+                .append(deadline)
+                .append("; Completed: ")
+                .append(status);
+
+            if (description != null) {
+                builder.append("; Description: ")
+                    .append(description);
+            }
+
+            if (!tags.isEmpty()) {
+                builder.append("; Tags: ");
+                tags.forEach(builder::append);
+            }
+            return builder.toString();
         }
     }
 }

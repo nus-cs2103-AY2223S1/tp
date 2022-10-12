@@ -88,11 +88,6 @@ class JsonAdaptedCustomer {
             customerTags.add(tag.toModelType());
         }
 
-        final UniqueCommissionList customerCommissions = new UniqueCommissionList();
-        for (JsonAdaptedCommission commission : commissions) {
-            customerCommissions.add(commission.toModelType());
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -133,11 +128,16 @@ class JsonAdaptedCustomer {
 
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
+        final UniqueCommissionList customerCommissions = new UniqueCommissionList();
         Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(modelName, modelPhone, modelEmail,
                 modelTags).setCommissions(customerCommissions);
         modelAddress.ifPresent(customerBuilder::setAddress);
         Customer customer = customerBuilder.build();
-        customer.getCommissions().forEach(commission -> commission.setCustomer(customer));
+
+        // create commission entries
+        for (JsonAdaptedCommission commission : commissions) {
+            customer.addCommission(commission.toModelType(customer));
+        }
         return customer;
     }
 

@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalCustomers.AMY;
-
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,21 +18,16 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Customer objects.
  */
 public class CommissionBuilder {
-
-
     public static final String DEFAULT_TITLE = "Dog";
     public static final String DEFAULT_DESCRIPTION = "Picture of Dog";
     public static final Double DEFAULT_FEE = 10.0;
     public static final LocalDate DEFAULT_DEADLINE = LocalDate.of(2022, 1, 1);
     public static final Boolean DEFAULT_COMPLETION_STATUS = false;
-    public static final Customer DEFAULT_CUSTOMER = AMY;
-
+    private final Deadline deadline;
     private Title title;
     private Description description;
     private Fee fee;
-    private final Deadline deadline;
     private CompletionStatus completionStatus;
-    private Customer customer;
     private Set<Tag> tags;
 
     /**
@@ -47,7 +40,6 @@ public class CommissionBuilder {
         deadline = new Deadline(DEFAULT_DEADLINE);
         completionStatus = new CompletionStatus(DEFAULT_COMPLETION_STATUS);
         tags = new HashSet<>();
-        customer = DEFAULT_CUSTOMER;
     }
 
     /**
@@ -55,12 +47,11 @@ public class CommissionBuilder {
      */
     public CommissionBuilder(Commission commissionToCopy) {
         title = commissionToCopy.getTitle();
-        description = commissionToCopy.getDescription();
+        description = commissionToCopy.getDescription().orElse(null);
         fee = commissionToCopy.getFee();
         deadline = commissionToCopy.getDeadline();
         completionStatus = commissionToCopy.getCompletionStatus();
         tags = new HashSet<>(commissionToCopy.getTags());
-        customer = commissionToCopy.getCustomer();
     }
 
     /**
@@ -104,14 +95,6 @@ public class CommissionBuilder {
     }
 
     /**
-     * Sets the {@code Customer} of the {@code Commission} that we are building.
-     */
-    public CommissionBuilder withCustomer(Customer customer) {
-        this.customer = customer;
-        return this;
-    }
-
-    /**
      * Sets the {@code Email} of the {@code Customer} that we are building.
      */
     public CommissionBuilder withCompletionStatus(boolean status) {
@@ -120,12 +103,17 @@ public class CommissionBuilder {
     }
 
     /**
-     * Builds a customer with the given details.
+     * Builds a commission with the given details.
      *
-     * @return a customer with the given details.
+     * @return a commission with the given details.
      */
-    public Commission build() {
-        return new Commission(title, description, fee, deadline, tags, completionStatus, customer);
+    public Commission build(Customer customer) {
+        Commission.CommissionBuilder commissionBuilder =
+            new Commission.CommissionBuilder(title, fee, deadline, completionStatus, tags);
+        if (description != null) {
+            commissionBuilder.setDescription(description);
+        }
+        return commissionBuilder.build(customer);
     }
 
 }
