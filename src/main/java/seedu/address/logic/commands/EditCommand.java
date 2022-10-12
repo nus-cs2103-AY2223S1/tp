@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PAID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PER_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -46,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CLASS_DATE_TIME + "CLASS_DATE_TIME] "
             + "[" + PREFIX_MONEY_OWED + "MONEY_OWED] "
             + "[" + PREFIX_MONEY_PAID + "MONEY_PAID] "
+            + "[" + PREFIX_MONEY_PER_CLASS + "MONEY_PER_CLASS] "
             + "[" + PREFIX_ADDITIONAL_NOTES + "NOTES] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -106,11 +108,12 @@ public class EditCommand extends Command {
         Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
         Money updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
         Money updatedMoneyPaid = editPersonDescriptor.getMoneyPaid().orElse(personToEdit.getMoneyPaid());
+        Money updatedMoneyPerClass = editPersonDescriptor.getMoneyPerClass().orElse(personToEdit.getMoneyPerClass());
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedClassDateTime,
-                updatedMoneyOwed, updatedMoneyPaid, updatedNotes);
+                updatedMoneyOwed, updatedMoneyPaid, updatedMoneyPerClass, updatedNotes);
     }
 
     @Override
@@ -143,6 +146,7 @@ public class EditCommand extends Command {
         private Class aClass;
         private Money moneyOwed;
         private Money moneyPaid;
+        private Money moneyPerClass;
         private AdditionalNotes additionalNotes;
 
         public EditPersonDescriptor() {
@@ -159,6 +163,7 @@ public class EditCommand extends Command {
             setClass(toCopy.aClass);
             setMoneyOwed(toCopy.moneyOwed);
             setMoneyPaid(toCopy.moneyPaid);
+            setMoneyPerClass(toCopy.moneyPerClass);
             setAdditionalNotes(toCopy.additionalNotes);
         }
 
@@ -166,7 +171,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, aClass, moneyOwed, moneyPaid,
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, aClass, moneyOwed, moneyPaid, moneyPerClass,
                     additionalNotes);
         }
 
@@ -202,6 +207,18 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+
+        public void setClass(Class aClass) {
+            if (aClass == null) {
+                this.aClass = new Class();
+            } else {
+                this.aClass = aClass;
+            }
+        }
+
+        public Optional<Class> getAClass() {
+            return Optional.ofNullable(aClass);
+        }
         public void setMoneyOwed(Money moneyOwed) {
             this.moneyOwed = moneyOwed;
         }
@@ -218,24 +235,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(moneyPaid);
         }
 
+        public void setMoneyPerClass(Money moneyPerClass) {
+            this.moneyPerClass = moneyPerClass;
+        }
+
+        public Optional<Money> getMoneyPerClass() {
+            return Optional.ofNullable(moneyPerClass);
+        }
+
         public void setAdditionalNotes(AdditionalNotes additionalNotes) {
             this.additionalNotes = additionalNotes;
         }
 
         public Optional<AdditionalNotes> getAdditionalNotes() {
             return Optional.ofNullable(additionalNotes);
-        }
-
-        public void setClass(Class aClass) {
-            if (aClass == null) {
-                this.aClass = new Class();
-            } else {
-                this.aClass = aClass;
-            }
-        }
-
-        public Optional<Class> getAClass() {
-            return Optional.ofNullable(aClass);
         }
 
         @Override
@@ -260,6 +273,7 @@ public class EditCommand extends Command {
                     && getAClass().toString().equals(e.getAClass().toString())
                     && getMoneyOwed().equals(e.getMoneyOwed())
                     && getMoneyPaid().equals(e.getMoneyPaid())
+                    && getMoneyPerClass().equals(e.getMoneyPerClass())
                     && getAdditionalNotes().equals(e.getAdditionalNotes());
         }
     }

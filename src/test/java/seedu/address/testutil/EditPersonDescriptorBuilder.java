@@ -43,6 +43,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setClass(person.getAClass());
+        descriptor.setMoneyPerClass(person.getMoneyPerClass());
         descriptor.setMoneyOwed(person.getMoneyOwed());
         descriptor.setMoneyPaid(person.getMoneyPaid());
         descriptor.setAdditionalNotes(person.getAdditionalNotes());
@@ -81,14 +82,6 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code moneyOwed} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withMoneyOwed(Integer moneyOwed) {
-        descriptor.setMoneyOwed(new Money(moneyOwed));
-        return this;
-    }
-
-    /**
      * Sets the {@code Class} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withClass(String classDateTime) throws ParseException {
@@ -97,10 +90,26 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code moneyOwed} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMoneyOwed(Integer moneyOwed) {
+        descriptor.setMoneyOwed(new Money(moneyOwed));
+        return this;
+    }
+
+    /**
      * Sets the {@code moneyPaid} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withMoneyPaid(Integer moneyPaid) {
         descriptor.setMoneyPaid(new Money(moneyPaid));
+        return this;
+    }
+
+    /**
+     * Sets the {@code moneyPerClass} of the {@code EditPersonDescriptorBuilder} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMoneyPerClass(Integer moneyPerClass) {
+        descriptor.setMoneyPerClass(new Money(moneyPerClass));
         return this;
     }
 

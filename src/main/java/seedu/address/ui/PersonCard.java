@@ -44,6 +44,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label moneyPaid;
     @FXML
+    private Label moneyPerClass;
+    @FXML
     private Label additionalNotes;
 
     /**
@@ -61,6 +63,7 @@ public class PersonCard extends UiPart<Region> {
         classDetails.setText(person.getAClass().toString());
         moneyOwed.setText(person.getMoneyOwed().toString());
         moneyPaid.setText(person.getMoneyPaid().toString());
+        moneyPerClass.setText(person.getMoneyPerClass().toString());
         additionalNotes.setText(person.getAdditionalNotes().notes);
     }
 
