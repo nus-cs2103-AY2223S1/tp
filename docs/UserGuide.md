@@ -48,10 +48,11 @@ Notes about the command format:<br>
 
 ### Viewing help : `help`
 
-<aside>
-ℹ️ Shows a message explaining how to access the help page.
+{% include note.html content="
 
-</aside>
+Shows a message explaining how to access the help page.
+
+" %}
 
 ![help message](images/helpMessage.png)
 
@@ -60,10 +61,11 @@ Format: `help`
 
 ### Adding a student: `add`
 
-<aside>
-ℹ️ Add a student to TA Assist.
+{% include note.html content="
 
-</aside>
+Add a student to TA Assist.
+
+" %}
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/CLASS_NAME...]`
 
@@ -76,10 +78,11 @@ Examples:
 
 ### Edit a student: `edit`
 
-<aside>
-ℹ️ Edits an existing student in TA Assist.
+{% include note.html content="
 
-</aside>
+Edits an existing student in TA Assist.
+
+" %}
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/CLASS_NAME...]`
 
@@ -97,10 +100,11 @@ Examples:
 
 ### Delete a student: `delete`
 
-<aside>
-ℹ️ Deletes the specified student from TA Assist.
+{% include note.html content="
 
-</aside>
+Deletes the specified student from TA Assist.
+
+" %}
 
 Format: `delete INDEX`
 
@@ -116,10 +120,11 @@ Examples:
 
 ### Locate student by name: `find`
 
-<aside>
-ℹ️ Finds students whose names contain any of the given keywords.
+{% include note.html content="
 
-</aside>
+Finds students whose names contain any of the given keywords.
+
+" %}
 
 Format: `find KEYWORD [MORE_KEYWORDS...]`
 
@@ -135,10 +140,11 @@ Examples:
 
 ### Delete a class: `deletec`
 
-<aside>
-ℹ️ Deletes a class.
+{% include note.html content="
 
-</aside>
+Deletes a class.
+
+" %}
 
 Format: `deletec c/CLASS_NAME`
 
@@ -150,10 +156,11 @@ Examples:
 
 ### Assign students to class: `assign`
 
-<aside>
-ℹ️ Assigns students to a class.
+{% include note.html content="
 
-</aside>
+Assigns students to a class.
+
+" %}
 
 Format: `assign INDEX... c/CLASS_NAME`
 
@@ -165,10 +172,11 @@ Example:
 
 ### Unassign students from class: `unassign`
 
-<aside>
-ℹ️ Unassigns students from a class.
+{% include note.html content="
 
-</aside>
+Unassigns students from a class.
+
+" %}
 
 Format: `unassign INDEX... c/CLASS_NAME`
 
@@ -180,10 +188,11 @@ Example:
 
 ### List classes: `listc`
 
-<aside>
-ℹ️ List the classes that have been created.
+{% include note.html content="
 
-</aside>
+List the classes that have been created.
+
+" %}
 
 Format: `listc`
 
@@ -191,19 +200,21 @@ Format: `listc`
 
 ### Exit the program: `exit`
 
-<aside>
-ℹ️ Exits the program.
+{% include note.html content="
 
-</aside>
+Exits the program.
+
+" %}
 
 Format: `exit`
 
 ### Enter focus mode: `focus`
 
-<aside>
-ℹ️ Enter focus mode to manage a given class, enabling features that are only available under focus mode.
+{% include note.html content="
 
-</aside>
+Enter focus mode to manage a given class, enabling features that are only available under focus mode.
+
+" %}
 
 Format: `focus CLASS_NAME`
 
@@ -228,10 +239,11 @@ The following commands are only available in **focus mode.**
 
 ### List all students in the class: `list`
 
-<aside>
-ℹ️ Shows a list of all students in the class.
+{% include note.html content="
 
-</aside>
+Shows a list of all students in the class.
+
+" %}
 
 Format: `list`
 
@@ -240,10 +252,11 @@ Format: `list`
 
 ### Create session: `session`
 
-<aside>
-ℹ️ Creates a new session.
+{% include note.html content=".
 
-</aside>
+Creates a new session.
+
+" %}
 
 Format: `session s/SESSION_NAME [d/DATE]`
 
@@ -256,10 +269,11 @@ Example:
 
 ### Grade session: `grade`
 
-<aside>
-ℹ️ Grades the student for the session.
+{% include note.html content="
 
-</aside>
+Grades the student for the session.
+
+" %}
 
 Format: `grade INDEX v/VALUE s/SESSION_NAME`
 
@@ -271,10 +285,11 @@ Example:
 
 ### View session grade of student: `view`
 
-<aside>
-ℹ️ View the grade for a student on a given session.
+{% include note.html content="
 
-</aside>
+View the grade for a student on a given session.
+
+" %}
 
 Format: `view INDEX s/SESSION_NAME`
 
@@ -286,10 +301,11 @@ Example:
 
 ### List all sessions: `lists`
 
-<aside>
-ℹ️ List the sessions that have been created for the class.
+{% include note.html content="
 
-</aside>
+List the sessions that have been created for the class.
+
+" %}
 
 Format: `lists`
 
@@ -297,10 +313,11 @@ Format: `lists`
 
 ### Exit focus mode: `unfocus`
 
-<aside>
-ℹ️ Exits focus mode on a class.
+{% include note.html content="
 
-</aside>
+Exits focus mode on a class.
+
+" %}
 
 Format: `unfocus`
 
