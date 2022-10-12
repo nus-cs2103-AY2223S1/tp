@@ -2,28 +2,21 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_END;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -38,16 +31,16 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                PREFIX_REASON, PREFIX_DATE_START, PREFIX_DATE_END);
+                PREFIX_REASON, PREFIX_DATE_TIME_START, PREFIX_DATE_TIME_END);
 
         Optional<String> name = argMultimap.getValue(PREFIX_NAME);
         Optional<String> phone = argMultimap.getValue(PREFIX_PHONE);
         Optional<String> email = argMultimap.getValue(PREFIX_EMAIL);
         Optional<String> address = argMultimap.getValue(PREFIX_ADDRESS);
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        List<String> tagList = argMultimap.getAllValues(PREFIX_TAG);
         Optional<String> reason = argMultimap.getValue(PREFIX_EMAIL);
-        Optional<String> startDate = argMultimap.getValue(PREFIX_DATE_START);
-        Optional<String> endDate = argMultimap.getValue(PREFIX_DATE_END);
+        Optional<String> startDate = argMultimap.getValue(PREFIX_DATE_TIME_START);
+        Optional<String> endDate = argMultimap.getValue(PREFIX_DATE_TIME_END);
 
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {

@@ -40,18 +40,15 @@ public class StringUtil {
     }
 
     /**
+     * String.contains() method but with case-insensitive feature.
      *
-     *
-     * @param sentence cannot be null
-     * @param sequence cannot be null
+     * @param sentence cannot be null, but can be empty
+     * @param sequence cannot be null, but can be empty
      * @return
      */
-    public static boolean containsSequenceIgnoreCase(String sentence, String sequence) {
+    public static boolean containsIgnoreCase(String sentence, String sequence) {
         requireNonNull(sentence);
         requireNonNull(sequence);
-
-        String preppedSequence = sequence.trim();
-        checkArgument(!preppedSequence.isEmpty(), "Sequence parameter cannot be empty");
 
         // Solution below adapted from https://stackoverflow.com/a/86832
         return Pattern.compile(Pattern.quote(sequence), Pattern.CASE_INSENSITIVE).matcher(sentence).find();

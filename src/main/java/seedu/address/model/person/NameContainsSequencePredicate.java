@@ -1,12 +1,11 @@
 package seedu.address.model.person;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Name} contains the sequence given.
+ * Tests that a {@code Person}'s {@code Name} contains the sequence given; case-insensitive.
  */
 public class NameContainsSequencePredicate implements Predicate<Person> {
     private final String sequence;
@@ -17,7 +16,7 @@ public class NameContainsSequencePredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return StringUtil.containsWordIgnoreCase(person.getName().fullName, sequence);
+        return StringUtil.containsIgnoreCase(person.getName().fullName, sequence);
     }
 
     @Override
