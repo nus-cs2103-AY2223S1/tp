@@ -110,6 +110,12 @@
                         <Insets bottom="8.0" />
                     </VBox.margin>
                 </HBox>
+                <Label style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #D8D8D8;"
+                       text="Iterations">
+                    <VBox.margin>
+                        <Insets top="16" bottom="8" />
+                    </VBox.margin>
+                </Label>
                 <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS">
                     <placeholder>
                         <HBox alignment="TOP_CENTER">
