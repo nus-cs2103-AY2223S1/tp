@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.group.Group;
 import seedu.address.model.task.Task;
 
 /**
@@ -17,11 +16,13 @@ public class TaskCard extends UiPart<Region> {
     private static final String FXML = "TaskListCard.fxml";
 
     /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
+     * Note: Certain keywords such as "location" and "resources" are reserved
+     * keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The
+     *      issue on AddressBook level 4</a>
      */
 
     public final Task task;
@@ -36,9 +37,12 @@ public class TaskCard extends UiPart<Region> {
     private Label detail;
     @FXML
     private Label datetime;
+    @FXML
+    private Label path;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to
+     * display.
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
@@ -46,8 +50,9 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(task.toString());
         detail.setText(task.getStatus());
+        path.setText(String.format("Path: " + task.getParentPath()));
         if (task.getCompletedTime() != null) {
-            datetime.setText(task.getCompletedTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            datetime.setText("Completed on: " + task.getCompletedTime().format(DateTimeFormatter.BASIC_ISO_DATE));
         } else {
             datetime.setText("Incomplete!");
         }

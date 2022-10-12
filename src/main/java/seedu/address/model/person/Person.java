@@ -2,8 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -158,12 +160,16 @@ public class Person implements DisplayItem {
         parents.add((AbstractContainerItem) o);
     }
 
+    public void removeParent(AbstractContainerItem deletedParent) {
+        parents.removeIf(p -> (p.equals(deletedParent) || p.isPartOfContext(deletedParent)));
+    }
+
     @Override
     public boolean isPartOfContext(DisplayItem o) {
         if (o == null || parents.contains(o)) {
             return true;
         }
-        for (AbstractContainerItem parent: parents) {
+        for (AbstractContainerItem parent : parents) {
             if (parent.isPartOfContext(o)) {
                 return true;
             }

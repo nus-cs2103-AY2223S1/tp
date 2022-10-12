@@ -85,6 +85,7 @@ public interface Model {
     /**
      * Returns true if the task with the same identity as {@code task} exists in
      * the address book
+     * 
      * @param task The task to check identity against
      * @return true if the task exists, false otherwise
      */
@@ -93,6 +94,7 @@ public interface Model {
     /**
      * Deletes the given task.
      * The task must exist in the address book.
+     * 
      * @param task The task to delete.
      */
     void deleteTask(Task task);
@@ -100,11 +102,12 @@ public interface Model {
     /**
      * Adds the given task.
      * {@code task} must not already exist in the address book.
+     * 
      * @param task The task to add.
      */
     void addTask(Task task);
 
-        /** Returns an unmodifiable view of the filtered task list */
+    /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
     /** Returns an unmodifiable view of the filtered person list */
@@ -146,7 +149,24 @@ public interface Model {
 
     void updateFilteredTeamList(List<Predicate<Group>> predicates);
 
+    /**
+     * Updates the filter of the filtered task list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given
+     * {@code predicates}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(List<Predicate<Task>> predicates);
+
     ObservableList<Group> getFilteredTeamList();
 
-    
+    void setTask(Task target, Task editedTask);
+
 }

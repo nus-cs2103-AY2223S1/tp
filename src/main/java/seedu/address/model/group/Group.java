@@ -20,6 +20,7 @@ public class Group extends AbstractContainerItem {
 
     /**
      * Checks if a task exists in this group
+     * 
      * @param task The task to check if exists
      * @return true if it exists in this Group, false otherwise
      */
@@ -38,6 +39,7 @@ public class Group extends AbstractContainerItem {
 
     /**
      * Removes a task from this group. The task must already exist in this group
+     * 
      * @param task The task to remove
      */
     public void removeTask(Task task) {
@@ -56,7 +58,7 @@ public class Group extends AbstractContainerItem {
         }
         Group g = (Group) o;
         if (parent != null) {
-            return parent.equals(o);
+            return parent.equals(g.parent);
         }
         return g.parent == null;
     }
@@ -71,6 +73,9 @@ public class Group extends AbstractContainerItem {
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (!(obj instanceof Group)) {
             return false;
         }

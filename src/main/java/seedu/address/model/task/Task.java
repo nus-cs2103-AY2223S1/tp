@@ -2,7 +2,7 @@ package seedu.address.model.task;
 
 import java.time.LocalDateTime;
 
-import seedu.address.model.group.Group;
+import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
@@ -13,15 +13,15 @@ import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 public class Task implements DisplayItem {
 
     private final String title;
-    private final String status;
+    private final String description;
     private final LocalDateTime completedTime;
 
-    private Group parent;
+    private AbstractContainerItem parent;
 
     /**
      * Create a new task with no completed_time
      *
-     * @param title The title of the task.
+     * @param title  The title of the task.
      * @param status The status of the task.
      */
     public Task(String title, String status) {
@@ -31,18 +31,36 @@ public class Task implements DisplayItem {
     /**
      * Create a new task with a completed_time.
      *
-     * @param title The title of the task.
-     * @param status The status of the task.
+     * @param title         The title of the task.
+     * @param status        The status of the task.
      * @param completedTime The completed_time of the task.
      */
     public Task(String title, String status, LocalDateTime completedTime) {
         this.title = title;
-        this.status = status;
+        this.description = status;
         this.completedTime = completedTime;
     }
 
+    public Task mark() {
+        if (this.completedTime != null) {
+            return this;
+        }
+        Task ret = new Task(title, description, LocalDateTime.now());
+        ret.parent = parent;
+        return ret;
+    }
+
+    public Task unmark() {
+        if (this.completedTime == null) {
+            return this;
+        }
+        Task ret = new Task(title, description);
+        ret.parent = parent;
+        return ret;
+    }
+
     public String getStatus() {
-        return status;
+        return description;
     }
 
     public LocalDateTime getCompletedTime() {
@@ -54,20 +72,25 @@ public class Task implements DisplayItem {
      *
      * @return The parent Group.
      */
-    public Group getParentGroup() {
+    public AbstractContainerItem getParentGroup() {
         return parent;
     }
 
     /**
-     * Returns true if both tasks have the same name and group. This defines a weaker notion of equality between two
+     * Returns true if both tasks have the same name and group. This defines a
+     * weaker notion of equality between two
      * tasks.
      */
     public boolean isSameTask(Task t) {
-        return title.equals(t.title) && status.equals(t.status) && completedTime.equals(t.completedTime);
+        if (completedTime != null) {
+            return title.equals(t.title) && description.equals(t.description) && completedTime.equals(t.completedTime);
+        }
+        return title.equals(t.title) && description.equals(t.description) && (t.completedTime == null);
     }
 
     /**
-     * Returns the entry type of the displayable item to determine which fxml layout card will be used to display this
+     * Returns the entry type of the displayable item to determine which fxml layout
+     * card will be used to display this
      * item.
      */
     @Override
@@ -105,10 +128,18 @@ public class Task implements DisplayItem {
      */
     @Override
     public void setParent(DisplayItem o) throws ItemCannotBeParentException {
-        if (!(o instanceof Group)) {
+        if (o == null) {
+            parent = null;
+            return;
+        }
+        if (!(o instanceof AbstractContainerItem)) {
             throw new ItemCannotBeParentException(o);
         }
-        parent = (Group) o;
+        parent = (AbstractContainerItem) o;
+    }
+
+    public String getParentPath() {
+        return parent.getFullPathName();
     }
 
     /**
@@ -118,7 +149,17 @@ public class Task implements DisplayItem {
      */
     @Override
     public boolean isPartOfContext(DisplayItem o) {
-        return parent.equals(o);
+        if (o == null) {
+            return true;
+        }
+        AbstractContainerItem tmp = parent;
+        while (tmp != null) {
+            if (tmp.equals(o)) {
+                return true;
+            }
+            tmp = tmp.getParent();
+        }
+        return false;
     }
 
     @Override
