@@ -31,12 +31,14 @@ public class SampleDataUtil {
             new Person(new Name("David Li"), new ClientPhone("91031282"), new ClientEmail("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new ClientPhone("92492021"), new ClientEmail("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new ClientPhone("92624417"), new ClientEmail("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                //            new Person(new Name("Irfan Ibrahim"), new ClientPhone("92492021"),
+                //            new ClientEmail("irfan@example.com"),
+                //                new Address("Blk 47 Tampines Street 20, #17-35"),
+                //                getTagSet("classmates")),
+                //            new Person(new Name("Roy Balakrishnan"), new ClientPhone("92624417"),
+                //            new ClientEmail("royb@example.com"),
+                //                new Address("Blk 45 Aljunied Street 85, #11-31"),
+                //                getTagSet("colleagues"))
         };
     }
 

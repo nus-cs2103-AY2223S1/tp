@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Person;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
@@ -27,6 +28,8 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate issues.
      */
     ObservableList<Issue> getIssueList();
+
+    ObservableList<Client> getClientList();
 
 
     String getProjectCount();
