@@ -14,9 +14,9 @@ import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.client.AddClientCommand;
-import seedu.condonery.logic.commands.ListClientCommand;
-import seedu.condonery.logic.commands.ListPropertyCommand;
+import seedu.condonery.logic.commands.client.ListClientCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
+import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.parser.client.AddClientCommandParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.logic.parser.property.AddPropertyCommandParser;
@@ -48,8 +48,10 @@ public class CondoneryParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        
+        // TODO: find out why I keep getting Trailing Whitespace error here....
+        //CHECKSTYLE.OFF: Regexp
         switch (commandWord) {
+        //CHECKSTYLE.ON: Regexp
         case AddPropertyCommand.COMMAND_WORD:
             return new AddPropertyCommandParser().parse(arguments);
 

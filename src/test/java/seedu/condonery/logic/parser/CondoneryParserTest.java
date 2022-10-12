@@ -20,7 +20,7 @@ import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
-import seedu.condonery.logic.commands.ListPropertyCommand;
+import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.property.NameContainsKeywordsPredicate;

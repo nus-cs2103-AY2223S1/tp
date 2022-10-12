@@ -19,7 +19,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.condonery.logic.commands.AddCommand;
 import seedu.condonery.logic.commands.CommandResult;
-import seedu.condonery.logic.commands.ListPropertyCommand;
+import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.Model;

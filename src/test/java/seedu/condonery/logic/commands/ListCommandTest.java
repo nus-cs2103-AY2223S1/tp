@@ -7,6 +7,7 @@ import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirec
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
 import seedu.condonery.model.UserPrefs;

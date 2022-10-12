@@ -1,8 +1,10 @@
-package seedu.condonery.logic.commands;
+package seedu.condonery.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
+import seedu.condonery.logic.commands.Command;
+import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.model.Model;
 
 /**
