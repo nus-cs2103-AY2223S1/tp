@@ -161,7 +161,7 @@ Format: `exit`
 | Action     | Format, Examples                                                                                                                                    |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add id/A0987654X n/John Doe proj/Data Caching e/e09876567@u.nus.edu` |
-| **Delete** | `delete STUDENT_ID`<br> e.g., `delete A0123456G`                                                                                                    |
+| **Delete** | `delete id` <br> e.g., `delete id/A0987654X `                                                                                                       |
 | **Mark**   | `mark STUDENT_ID STATUS`<br> e.g.,`mark A0123456G IP`                                                                                               |
 | **Find**   | `find KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find neural network/tree`                                                                           |
 | **Help**   | `help [COMMAND]`<br> e.g., `help add`, `help`                                                                                                       |
