@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MA_MODULE_TITLE
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.HashSet;
+import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.link.Link;

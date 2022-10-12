@@ -1,20 +1,23 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteLinkCommand;
-import seedu.address.model.link.Link;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_LINK_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
+
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteLinkCommand;
+import seedu.address.model.link.Link;
+
 
 public class DeleteLinkCommandParserTest {
     private DeleteLinkCommandParser parser = new DeleteLinkCommandParser();

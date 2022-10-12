@@ -10,6 +10,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
 import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -23,17 +27,13 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.task.Task;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for DeleteLinkCommand.
  */
 public class DeleteLinkCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private static final int MODULE_INDEX_NONEXISTENT = 999999;
     private static final int MODULE_INDEX_WITH_LINK_ZERO_BASED = 3;
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_addLinkCommandFilteredList_success() {

@@ -3,21 +3,20 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_TITLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK;
-
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_TITLE;
 import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.GE3238;
+
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
-
-import java.util.Arrays;
 
 public class JsonAdaptedModuleTest {
 
