@@ -7,6 +7,8 @@ import static seedu.rc4hdb.commons.core.Messages.MESSAGE_RESIDENTS_LISTED_OVERVI
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 import static seedu.rc4hdb.testutil.TypicalResidents.AMY;
+import static seedu.rc4hdb.testutil.TypicalResidents.ELLE;
+import static seedu.rc4hdb.testutil.TypicalResidents.FIONA;
 import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 import java.util.Arrays;
@@ -84,6 +86,7 @@ public class FilterCommandTest {
         assertEquals(Arrays.asList(ALICE), model.getFilteredResidentList());
     }
 
+
     @Test
     public void execute_matricNumberSpecifiedUnfilteredList_success() {
         ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
@@ -95,6 +98,32 @@ public class FilterCommandTest {
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE), model.getFilteredResidentList());
+    }
+
+    @Test
+    public void execute_houseSpecifiedUnfilteredList_success() {
+        ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
+                .withHouse(ALICE.getHouse().toString()).build();
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 2);
+        AttributesMatchKeywordsPredicate predicate =
+                new AttributesMatchKeywordsPredicate(descriptor);
+        FilterCommand command = new FilterCommand(descriptor);
+        expectedModel.updateFilteredResidentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, FIONA), model.getFilteredResidentList());
+    }
+
+    @Test
+    public void execute_genderSpecifiedUnfilteredList_success() {
+        ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
+                .withGender(ALICE.getGender().toString()).build();
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 3);
+        AttributesMatchKeywordsPredicate predicate =
+                new AttributesMatchKeywordsPredicate(descriptor);
+        FilterCommand command = new FilterCommand(descriptor);
+        expectedModel.updateFilteredResidentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, ELLE, FIONA), model.getFilteredResidentList());
     }
 
 
