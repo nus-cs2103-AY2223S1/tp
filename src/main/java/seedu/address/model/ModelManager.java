@@ -112,6 +112,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasProperty(Property editedProperty) {
+        return false;
+    }
+
+    @Override
     public void deletePerson(Person target) {
         personBook.removePerson(target);
     }
@@ -128,6 +133,11 @@ public class ModelManager implements Model {
         personBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void setProperty(Property propertyToEdit, Property editedProperty) {
+
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -138,7 +148,6 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
-
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
