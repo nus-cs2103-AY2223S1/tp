@@ -216,7 +216,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isSwitchTab()) {
+            if (commandResult.useTaskTab()) {
                 focusTaskTab();
             } else {
                 focusPersonTab();

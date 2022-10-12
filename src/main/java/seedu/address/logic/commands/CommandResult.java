@@ -18,7 +18,7 @@ public class CommandResult {
     private final boolean exit;
 
     /** Flag between Task command [true] and Person command [false] */
-    private boolean switchTab = false;
+    private boolean useTaskTab = false;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -41,11 +41,11 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and tells the UI whether to switch to the task tab.
      * @param feedbackToUser
-     * @param switchTab
+     * @param useTaskTab
      */
-    public CommandResult(String feedbackToUser, boolean switchTab) {
+    public CommandResult(String feedbackToUser, boolean useTaskTab) {
         this(feedbackToUser, false, false);
-        this.switchTab = switchTab;
+        this.useTaskTab = useTaskTab;
     }
 
     public String getFeedbackToUser() {
@@ -60,8 +60,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isSwitchTab() {
-        return switchTab;
+    public boolean useTaskTab() {
+        return useTaskTab;
     }
 
     @Override
