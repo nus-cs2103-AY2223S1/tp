@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import modtrekt.model.module.Module;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a module list
  */
 public interface ReadOnlyModuleList {
 

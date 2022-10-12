@@ -40,32 +40,40 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' task book file path.
      */
     Path getTaskBookFilePath();
+
+    /**
+     * Returns the user prefs' module list file path.
+     */
     Path getModuleListFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' task book/module list file path.
      */
-    void setTaskBookFilePath(Path addressBookFilePath);
-    void setModuleListFilePath(Path addressBookFilePath);
+    void setTaskBookFilePath(Path taskBookFilePath);
+    void setModuleListFilePath(Path moduleListFilePath);
 
     /**
      * Replaces task book data with the data in {@code taskBook}.
      */
-    void setTaskBook(ReadOnlyTaskBook addressBook);
+    void setTaskBook(ReadOnlyTaskBook taskBook);
 
     /** Returns the taskBook */
     ReadOnlyTaskBook getTaskBook();
-    void setModuleList(ReadOnlyModuleList addressBook);
+
+    /**
+     * Replaces module list data with the data in {@code moduleList}.
+     */
+    void setModuleList(ReadOnlyModuleList moduleList);
 
     /** Returns the ModuleList */
     ReadOnlyModuleList getModuleList();
 
     /**
      * Deletes the given task.
-     * The task must exist in the address book.
+     * The task must exist in the task book.
      */
     void deleteTask(Task target);
 
@@ -100,7 +108,7 @@ public interface Model {
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task book.
-     * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task book.
      */
     void setTask(Task target, Task editedTask);
 
@@ -121,8 +129,8 @@ public interface Model {
 
     /**
      * Replaces the given person {@code target} with {@code editedModule}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedModule} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the module list.
+     * The person identity of {@code editedModule} must not be the same as another existing person in the module list.
      */
     void setModule(Module target, Module editedModule);
 

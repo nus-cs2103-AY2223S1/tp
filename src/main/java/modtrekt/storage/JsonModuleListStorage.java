@@ -60,8 +60,8 @@ public class JsonModuleListStorage implements ModuleListStorage {
     }
 
     @Override
-    public void saveModuleList(ReadOnlyModuleList addressBook) throws IOException {
-        saveModuleList(addressBook, filePath);
+    public void saveModuleList(ReadOnlyModuleList moduleList) throws IOException {
+        saveModuleList(moduleList, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonModuleListStorage implements ModuleListStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveModuleList(ReadOnlyModuleList addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveModuleList(ReadOnlyModuleList moduleList, Path filePath) throws IOException {
+        requireNonNull(moduleList);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableModuleList(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableModuleList(moduleList), filePath);
     }
 
 }

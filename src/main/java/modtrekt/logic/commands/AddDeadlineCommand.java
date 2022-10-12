@@ -22,7 +22,6 @@ public class AddDeadlineCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New deadline added: %1$s";
 
     private final Task toAdd;
-
     /**
      * Creates an AddDeadlineCommand to add the specified {@code Deadline}
      */

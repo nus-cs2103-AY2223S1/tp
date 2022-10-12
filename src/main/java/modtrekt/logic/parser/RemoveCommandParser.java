@@ -5,7 +5,7 @@ import static modtrekt.logic.parser.ParserUtil.arePrefixesPresent;
 
 import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.Command;
-import modtrekt.logic.commands.RemoveModuleCommand;
+import modtrekt.logic.commands.RemoveCommand;
 import modtrekt.logic.commands.RemoveTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
 
@@ -35,14 +35,14 @@ public class RemoveCommandParser implements Parser<RemoveTaskCommand> {
             // Remove module
             try {
                 Index index = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_MODULE).get());
-                return new RemoveModuleCommand(index);
+                return new RemoveCommand(index);
             } catch (ParseException pe) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveModuleCommand.MESSAGE_USAGE), pe);
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE), pe);
             }
         }
 
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveTaskCommand.MESSAGE_USAGE));
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE));
     }
 
 }

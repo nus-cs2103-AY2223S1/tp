@@ -8,17 +8,18 @@ import modtrekt.model.Model;
 import modtrekt.model.task.Task;
 
 /**
- * Adds a task to the address book.
+ * Adds a task to the task book.
  */
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
     public static final String COMMAND_IDENTIFIER = "-t";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task book. "
-            + "Parameters: "
-            + CliSyntax.PREFIX_TASK + "DESCRIPTION "
-            + CliSyntax.PREFIX_MOD_CODE + "MODULE CODE ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task book. \n"
+            + "Usage: " + COMMAND_WORD + " "
+            + CliSyntax.PREFIX_TASK + " <DESCRIPTION> "
+            + "[" + CliSyntax.PREFIX_DEADLINE + "<YYYY-MM-DD> ] "
+            + CliSyntax.PREFIX_MOD_CODE + " <MODULE CODE> ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
 

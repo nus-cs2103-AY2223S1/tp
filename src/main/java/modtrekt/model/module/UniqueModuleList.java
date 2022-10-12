@@ -12,11 +12,11 @@ import modtrekt.model.module.exceptions.DuplicateModuleException;
 import modtrekt.model.module.exceptions.ModuleNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Module#isSameModule(Module)}. As such, adding and updating of
- * persons uses Module#isSameModule(Module) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniqueModuleList. However, the removal of a person uses Module#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of modules that enforces uniqueness between its elements and does not allow nulls.
+ * A module is considered unique by comparing using {@code Module#isSameModule(Module)}. As such, adding and updating of
+ * modules uses Module#isSameModule(Module) for equality so as to ensure that the module being added or updated is
+ * unique in terms of identity in the UniqueModuleList. However, the removal of a module uses Module#equals(Object) so
+ * as to ensure that the module with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -29,7 +29,7 @@ public class UniqueModuleList implements Iterable<Module> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent module as the given argument.
      */
     public boolean contains(Module toCheck) {
         requireNonNull(toCheck);
@@ -37,7 +37,7 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent module as the given argument.
      */
     public boolean containsCode(ModCode toCheck) {
         requireNonNull(toCheck);
@@ -47,7 +47,7 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent module as the given argument.
      */
     public Module getModuleFromCode(ModCode toCheck) {
         requireNonNull(toCheck);
@@ -61,8 +61,8 @@ public class UniqueModuleList implements Iterable<Module> {
 
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a module to the list.
+     * The module must not already exist in the list.
      */
     public void add(Module toAdd) {
         requireNonNull(toAdd);
@@ -73,9 +73,9 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedModule}.
+     * Replaces the module {@code target} in the list with {@code editedModule}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedModule} must not be the same as another existing person in the list.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the list.
      */
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
@@ -93,8 +93,8 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent module from the list.
+     * The module must exist in the list.
      */
     public void remove(Module toRemove) {
         requireNonNull(toRemove);

@@ -11,5 +11,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_MOD_NAME = new Prefix("-n ");
     public static final Prefix PREFIX_MOD_CODE = new Prefix("-c ");
     public static final Prefix PREFIX_MOD_CREDIT = new Prefix("-cr ");
-    public static final Prefix FLAG_SHOW_ARCHIVED_TASKS = new Prefix("-A");
+    public static final Prefix FLAG_SHOW_ARCHIVED_TASKS = new Prefix("-a");
 }

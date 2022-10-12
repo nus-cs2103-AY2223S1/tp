@@ -33,14 +33,14 @@ public interface ModuleListStorage {
 
     /**
      * Saves the given {@link ReadOnlyModuleList} to the storage.
-     * @param addressBook cannot be null.
+     * @param moduleList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveModuleList(ReadOnlyModuleList addressBook) throws IOException;
+    void saveModuleList(ReadOnlyModuleList moduleList) throws IOException;
 
     /**
      * @see #saveModuleList(ReadOnlyModuleList)
      */
-    void saveModuleList(ReadOnlyModuleList addressBook, Path filePath) throws IOException;
+    void saveModuleList(ReadOnlyModuleList moduleList, Path filePath) throws IOException;
 
 }

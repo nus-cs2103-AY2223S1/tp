@@ -1,4 +1,4 @@
-package modtrekt.ui;
+package modtrekt.ui.tasks;
 
 import java.util.logging.Logger;
 
@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import modtrekt.commons.core.LogsCenter;
 import modtrekt.model.task.Task;
+import modtrekt.ui.UiPart;
 
 /**
  * Panel containing the list of tasks.

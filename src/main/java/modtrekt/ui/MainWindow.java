@@ -17,6 +17,7 @@ import modtrekt.logic.commands.CommandResult;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.ui.modules.ModuleListPanel;
+import modtrekt.ui.tasks.TaskListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing

@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import modtrekt.model.task.Task;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an task book
  */
 public interface ReadOnlyTaskBook {
 

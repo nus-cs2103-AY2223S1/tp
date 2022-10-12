@@ -129,6 +129,6 @@ public class Module {
 
     @Override
     public String toString() {
-        return getName() + "; Code: " + getCode() + "; Credits: " + getCredits();
+        return getName() + ", Code: " + getCode() + ", Credits: " + getCredits();
     }
 }

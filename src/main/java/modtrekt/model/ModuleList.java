@@ -41,8 +41,8 @@ public class ModuleList implements ReadOnlyModuleList {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the module list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
      */
     public void setModules(List<Module> modules) {
         this.modules.setModules(modules);
@@ -57,10 +57,10 @@ public class ModuleList implements ReadOnlyModuleList {
         setModules(newData.getModuleList());
     }
 
-    //// person-level operations
+    //// module-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a module with the same identity as {@code module} exists in the module list.
      */
     public boolean hasModule(Module module) {
         requireNonNull(module);
@@ -84,17 +84,17 @@ public class ModuleList implements ReadOnlyModuleList {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a module to the module list.
+     * The module must not already exist in the module list.
      */
     public void addModule(Module p) {
         modules.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedModule}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedModule} must not be the same as another existing person in the address book.
+     * Replaces the given module {@code target} in the list with {@code editedModule}.
+     * {@code target} must exist in the module list.
+     * The module identity of {@code editedModule} must not be the same as another existing person in the module list.
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);
@@ -104,7 +104,7 @@ public class ModuleList implements ReadOnlyModuleList {
 
     /**
      * Removes {@code key} from this {@code ModuleList}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the module list.
      */
     public void removeModule(Module key) {
         modules.remove(key);

@@ -1,4 +1,4 @@
-package modtrekt.logic.module;
+package modtrekt.logic.parser.module;
 
 import java.io.IOException;
 import java.net.URI;

@@ -15,7 +15,9 @@ import modtrekt.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL =
+            "https://docs.google.com/document/d/1yAc845x1GSmgdQieNrTRoMH0I3D7y-340qcbgo74euY/edit#heading=h"
+                    + ".1th177kwkkd6";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -46,21 +48,22 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
-     * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *
+     * @throws IllegalStateException <ul>
+     *                                       <li>
+     *                                           if this method is called on a thread other than the JavaFX
+     *                                           Application Thread.
+     *                                       </li>
+     *                                       <li>
+     *                                           if this method is called during animation or layout processing.
+     *                                       </li>
+     *                                       <li>
+     *                                           if this method is called on the primary stage.
+     *                                       </li>
+     *                                       <li>
+     *                                           if {@code dialogStage} is already showing.
+     *                                       </li>
+     *                                   </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");

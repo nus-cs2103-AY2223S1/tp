@@ -19,7 +19,7 @@ import modtrekt.model.task.Task;
 public class ArchiveTaskCommand extends Command {
     public static final String COMMAND_WORD = "archive";
     public static final String MESSAGE_COMMAND_USAGE =
-            String.format("Usage: %s %s <module code> %s <task index>", COMMAND_WORD, PREFIX_MOD_CODE, PREFIX_TASK);
+            String.format("Format: %s %s <module code> %s <task index>", COMMAND_WORD, PREFIX_MOD_CODE, PREFIX_TASK);
     public static final String MESSAGE_COMMAND_HELP = String.format(
             "%s: Archives a task in the task book belonging to a module.\n%s",
             COMMAND_WORD,

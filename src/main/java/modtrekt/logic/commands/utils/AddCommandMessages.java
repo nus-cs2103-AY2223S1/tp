@@ -1,6 +1,5 @@
 package modtrekt.logic.commands.utils;
 
-
 import modtrekt.logic.commands.AddCommand;
 import modtrekt.logic.commands.AddDeadlineCommand;
 import modtrekt.logic.commands.AddTaskCommand;
