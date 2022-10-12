@@ -3,7 +3,6 @@ package nus.climods.logic.parser;
 import nus.climods.logic.commands.DeleteCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.logic.parser.parameters.ModuleCodeParameter;
-import nus.climods.model.module.UserModule;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
