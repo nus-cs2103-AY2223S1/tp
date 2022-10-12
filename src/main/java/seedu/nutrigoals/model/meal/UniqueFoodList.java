@@ -106,19 +106,19 @@ public class UniqueFoodList implements Iterable<Food> {
 
     @Override
     public Iterator<Food> iterator() {
-        return internalList.iterator();
+        return sortedList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueFoodList // instanceof handles nulls
-                        && internalList.equals(((UniqueFoodList) other).internalList));
+                        && sortedList.equals(((UniqueFoodList) other).sortedList));
     }
 
     @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return sortedList.hashCode();
     }
 
     /**

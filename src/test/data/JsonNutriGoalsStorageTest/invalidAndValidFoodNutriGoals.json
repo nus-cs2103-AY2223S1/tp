@@ -1,11 +1,11 @@
 {
   "persons": [ {
     "name": "Bread",
-    "mealType": "Breakfast",
+    "tagged": "Breakfast",
     "calorie": "200"
   }, {
     "name": "Food With Invalid meal type",
-    "mealType": "Brunch",
+    "tagged": "Brunch",
     "calorie": "200"
   } ],
   "calorieTarget" : {

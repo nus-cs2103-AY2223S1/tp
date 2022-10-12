@@ -3,10 +3,11 @@ package seedu.nutrigoals.model.meal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
-import static seedu.nutrigoals.testutil.TypicalFoods.BOB;
+import static seedu.nutrigoals.testutil.TypicalFoods.PANCAKE;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -41,8 +42,8 @@ public class UniqueFoodListTest {
     @Test
     public void contains_foodWithSameIdentityFieldsInList_returnsTrue() {
         uniqueFoodList.add(APPLE);
-        Food editedAlice = new FoodBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(uniqueFoodList.contains(editedAlice));
+        Food editedApple = new FoodBuilder(APPLE).withTag(VALID_TAG_LUNCH).build();
+        assertTrue(uniqueFoodList.contains(editedApple));
     }
 
     @Test
@@ -83,7 +84,7 @@ public class UniqueFoodListTest {
     @Test
     public void setFood_editedFoodHasSameIdentity_success() {
         uniqueFoodList.add(APPLE);
-        Food editedAlice = new FoodBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
+        Food editedAlice = new FoodBuilder(APPLE).withTag(VALID_TAG_BREAKFAST).build();
         uniqueFoodList.setFood(APPLE, editedAlice);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
         expectedUniqueFoodList.add(editedAlice);
@@ -93,17 +94,17 @@ public class UniqueFoodListTest {
     @Test
     public void setFood_editedFoodHasDifferentIdentity_success() {
         uniqueFoodList.add(APPLE);
-        uniqueFoodList.setFood(APPLE, BOB);
+        uniqueFoodList.setFood(APPLE, PANCAKE);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
-        expectedUniqueFoodList.add(BOB);
+        expectedUniqueFoodList.add(PANCAKE);
         assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 
     @Test
     public void setFood_editedFoodHasNonUniqueIdentity_throwsDuplicateFoodException() {
         uniqueFoodList.add(APPLE);
-        uniqueFoodList.add(BOB);
-        assertThrows(DuplicateMealException.class, () -> uniqueFoodList.setFood(APPLE, BOB));
+        uniqueFoodList.add(PANCAKE);
+        assertThrows(DuplicateMealException.class, () -> uniqueFoodList.setFood(APPLE, PANCAKE));
     }
 
     @Test
@@ -133,7 +134,7 @@ public class UniqueFoodListTest {
     public void setFoods_uniqueFoodList_replacesOwnListWithProvidedUniqueFoodList() {
         uniqueFoodList.add(APPLE);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
-        expectedUniqueFoodList.add(BOB);
+        expectedUniqueFoodList.add(PANCAKE);
         uniqueFoodList.setFood(expectedUniqueFoodList);
         assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
@@ -146,10 +147,10 @@ public class UniqueFoodListTest {
     @Test
     public void setFoods_list_replacesOwnListWithProvidedList() {
         uniqueFoodList.add(APPLE);
-        List<Food> foodList = Collections.singletonList(BOB);
+        List<Food> foodList = Collections.singletonList(PANCAKE);
         uniqueFoodList.setFood(foodList);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
-        expectedUniqueFoodList.add(BOB);
+        expectedUniqueFoodList.add(PANCAKE);
         assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 

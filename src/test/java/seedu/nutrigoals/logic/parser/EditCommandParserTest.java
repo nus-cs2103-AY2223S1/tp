@@ -3,8 +3,10 @@ package seedu.nutrigoals.logic.parser;
 import static seedu.nutrigoals.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.NAME_DESC_BREAD;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.TAG_DESC_LUNCH;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_BREAD_NAME;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -26,12 +28,9 @@ public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
     private static final String TAG_DESC_BREAKFAST = " " + PREFIX_TAG + "breakfast";
-    private static final String TAG_DESC_QUANTITY = " " + PREFIX_TAG + "oneServing";
     private static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Bread&";
     private static final String VALID_CALORIE = "200";
     private static final String VALID_CALORIE_DESC = " " + EditCommand.PREFIX_CALORIE + VALID_CALORIE;
-    private static final String VALID_QUANTITY_TAG = "oneServing";
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
@@ -68,6 +67,7 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + " " + PREFIX_TAG + "breakfast*", Tag.MESSAGE_CONSTRAINTS); // invalid tag
     }
 
     @Test
@@ -125,6 +125,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withTags().build();
+
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
