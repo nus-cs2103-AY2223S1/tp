@@ -1,5 +1,7 @@
 package seedu.address.model.group;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a Path to the nested team in the address book.
  */
@@ -16,10 +18,16 @@ public class Path {
     private final String path;
 
     public Path(String path) {
+        requireNonNull(path);
         this.path = path;
     }
 
     public String getPath() {
+        return path;
+    }
+
+    @Override
+    public String toString() {
         return path;
     }
 }

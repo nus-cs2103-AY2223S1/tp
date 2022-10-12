@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -38,7 +39,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_TEAM_NAME = "validTeamName";
-    private static final String VALID_PATH = "team\\team1\\team2";
+    private static final String VALID_PATH = "team/team1/team2";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -205,7 +206,7 @@ public class ParserUtilTest {
         Path actualPath = ParserUtil.parsePath(VALID_PATH);
         Path expectedPath = new Path(VALID_PATH);
 
-        assertEquals(actualPath, expectedPath);
+        assertEquals(actualPath.toString(), expectedPath.toString());
     }
 
     @Test
@@ -214,15 +215,15 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTeam_validTeamName_returnsTeam() throws Exception {
-        Team actualTeam = ParserUtil.parseTeam(VALID_TEAM_NAME);
-        Team expectedTeam = new Team(new Name(VALID_TEAM_NAME));
+    public void parseTeam_validTeamName_returnsGroup() throws Exception {
+        Group actualGroup = ParserUtil.parseGroup(VALID_TEAM_NAME);
+        Group expectedGroup = new Group(VALID_TEAM_NAME);
 
-        assertEquals(actualTeam, expectedTeam);
+        assertEquals(actualGroup, expectedGroup);
     }
 
     @Test
-    public void parseTeam_invalidTeamNameHasWhitespace_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTeam(INVALID_TEAM_NAME));
+    public void parseGroup_invalidTeamNameHasWhitespace_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGroup(INVALID_TEAM_NAME));
     }
 }
