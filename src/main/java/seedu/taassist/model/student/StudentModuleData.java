@@ -2,6 +2,7 @@ package seedu.taassist.model.student;
 
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -28,10 +29,23 @@ public class StudentModuleData implements Identity<StudentModuleData> {
     /**
      * constructs a {@code studentmoduledata} with the given module class and session data list.
      */
-    public StudentModuleData(ModuleClass moduleClass, UniqueList<SessionData> sessionDataList) {
+    public StudentModuleData(ModuleClass moduleClass, List<SessionData> sessionDataList) {
         requireAllNonNull(moduleClass, sessionDataList);
         this.moduleClass = moduleClass;
-        this.sessionDataList = sessionDataList;
+        if (sessionDataList != null) {
+            this.sessionDataList.setElements(sessionDataList);
+        }
+    }
+
+    public ModuleClass getModuleClass() {
+        return moduleClass;
+    }
+
+    /**
+     * Returns an immutable session data list.
+     */
+    public List<SessionData> getSessionDataList() {
+        return sessionDataList.asUnmodifiableObservableList();
     }
 
     @Override

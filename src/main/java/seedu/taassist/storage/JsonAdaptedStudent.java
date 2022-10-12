@@ -16,6 +16,7 @@ import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
 import seedu.taassist.model.student.Phone;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentModuleData;
 
 /**
  * Json-friendly version of {@link Student}.
@@ -32,19 +33,26 @@ class JsonAdaptedStudent {
     @JsonProperty("classes")
     private final List<String> moduleClasses = new ArrayList<>();
 
+    @JsonProperty("moduleData")
+    private final List<JsonAdaptedStudentModuleData> moduleData = new ArrayList<>();
+
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("classes") List<String> moduleClasses) {
+                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                              @JsonProperty("classes") List<String> moduleClasses,
+                              @JsonProperty("moduleData") List<JsonAdaptedStudentModuleData> moduleData) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (moduleClasses != null) {
             this.moduleClasses.addAll(moduleClasses);
+        }
+        if (moduleData != null) {
+            this.moduleData.addAll(moduleData);
         }
     }
 
@@ -58,6 +66,9 @@ class JsonAdaptedStudent {
         address = source.getAddress().value;
         moduleClasses.addAll(source.getModuleClasses().stream()
                 .map(x -> x.getClassName())
+                .collect(Collectors.toList()));
+        moduleData.addAll(source.getModuleData().stream()
+                .map(JsonAdaptedStudentModuleData::new)
                 .collect(Collectors.toList()));
     }
 
@@ -112,7 +123,13 @@ class JsonAdaptedStudent {
         final Address modelAddress = new Address(address);
 
         final Set<ModuleClass> modelModuleClasses = new HashSet<>(studentModuleClasses);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelModuleClasses);
+
+        final List<StudentModuleData> studentModuleData = new ArrayList<>();
+        for (JsonAdaptedStudentModuleData moduleData : moduleData) {
+            studentModuleData.add(moduleData.toModelType());
+        }
+
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelModuleClasses, studentModuleData);
     }
 
 }

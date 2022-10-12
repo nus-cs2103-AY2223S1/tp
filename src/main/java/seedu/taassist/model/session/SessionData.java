@@ -24,6 +24,14 @@ public class SessionData implements Identity<SessionData> {
         this.data = data;
     }
 
+    public Session getSession() {
+        return session;
+    }
+
+    public StudentSessionData getData() {
+        return data;
+    }
+
     @Override
     public boolean isSame(SessionData other) {
         return other == this
