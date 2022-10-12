@@ -120,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         // replace this with getSchedule() method to be implemented
-        scheduleListPanel = new ScheduleListPanel(logic.getFilteredPersonList());
+        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

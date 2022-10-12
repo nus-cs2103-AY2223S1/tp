@@ -22,7 +22,7 @@ public class Person {
     private final Money moneyOwed;
     private final Money moneyPaid;
     private final AdditionalNotes additionalNotes;
-    private final Class aClass;
+    private Class aClass;
 
     /**
      * Constructs a {@code Person} class when first initialized with add command.
@@ -86,6 +86,10 @@ public class Person {
         return aClass;
     }
 
+    public void setClass(Class aClass) {
+        this.aClass = aClass;
+    }
+
     public Money getMoneyOwed() {
         return moneyOwed;
     }
@@ -108,7 +112,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getPhone().equals(getPhone());
     }
 
     /**
@@ -166,5 +170,9 @@ public class Person {
                 .append(getAdditionalNotes());
 
         return builder.toString();
+    }
+
+    public int compareTo(Person person) {
+        return this.aClass.startTime.compareTo(person.aClass.startTime);
     }
 }

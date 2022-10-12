@@ -1,0 +1,30 @@
+{
+  "persons" : [ {
+    "name" : "Alex Yeoh",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 16",
+    "classDateTime" : "2022-05-05 1200-1400",
+    "moneyOwed" : 2,
+    "moneyPaid" : 5,
+    "additionalNotes" : "to bring tb"
+  }, {
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "classDateTime" : "2022-05-05 1100-1200",
+    "moneyOwed" : 0,
+    "moneyPaid" : 0,
+    "additionalNotes" : "Bring textbook A"
+  }, {
+    "name" : "Daniel Tan",
+    "phone" : "81201230",
+    "email" : "cornelia@example.com",
+    "address" : "10th street",
+    "classDateTime" : "2022-05-05 1400-1430",
+    "moneyOwed" : 0,
+    "moneyPaid" : 0,
+    "additionalNotes" : "Remind student to submit homework"
+  } ]
+}
