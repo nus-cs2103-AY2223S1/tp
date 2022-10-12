@@ -64,6 +64,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.questions.setQuestions(questions);
     }
 
+    public void setTutorials(List<Tutorial> tutorials) {
+        this.tutorials.setTutorials(tutorials);
+
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
     }
@@ -76,6 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setQuestions(newData.getQuestionList());
+        setTutorials(newData.getTutorialList());
         setStudents(newData.getStudentList());
     }
 
