@@ -20,7 +20,7 @@ import seedu.address.model.PersonModel;
 import seedu.address.model.ReadOnlyPersonModel;
 
 public class JsonPersonModelStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonPersonModelStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
 
     @TempDir
     public Path testFolder;

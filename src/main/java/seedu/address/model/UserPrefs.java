@@ -14,8 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path personModelFilePath = Paths.get("data" , "personmodel.json");
-    private Path propertyModelFilePath = Paths.get("data", "propertymodel.json");
+    private Path personBookFilePath = Paths.get("data" , "personmodel.json");
+    private Path propertyBookFilePath = Paths.get("data", "propertymodel.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,8 +36,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setPersonModelFilePath(newUserPrefs.getPersonModelFilePath());
-        setPropertyModelFilePath(newUserPrefs.getPropertyModelFilePath());
+        setPersonBookFilePath(newUserPrefs.getPersonBookFilePath());
+        setPropertyBookFilePath(newUserPrefs.getPropertyBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -49,22 +49,22 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getPersonModelFilePath() {
-        return personModelFilePath;
+    public Path getPersonBookFilePath() {
+        return personBookFilePath;
     }
 
-    public void setPersonModelFilePath(Path personModelFilePath) {
-        requireNonNull(personModelFilePath);
-        this.personModelFilePath = personModelFilePath;
+    public void setPersonBookFilePath(Path personBookFilePath) {
+        requireNonNull(personBookFilePath);
+        this.personBookFilePath = personBookFilePath;
     }
 
-    public Path getPropertyModelFilePath() {
-        return propertyModelFilePath;
+    public Path getPropertyBookFilePath() {
+        return propertyBookFilePath;
     }
 
-    public void setPropertyModelFilePath(Path propertyModelFilePath) {
-        requireNonNull(propertyModelFilePath);
-        this.propertyModelFilePath = propertyModelFilePath;
+    public void setPropertyBookFilePath(Path propertyBookFilePath) {
+        requireNonNull(propertyBookFilePath);
+        this.propertyBookFilePath = propertyBookFilePath;
     }
 
     @Override
@@ -79,21 +79,21 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && personModelFilePath.equals(o.personModelFilePath)
-                && propertyModelFilePath.equals(o.propertyModelFilePath);
+                && personBookFilePath.equals(o.personBookFilePath)
+                && propertyBookFilePath.equals(o.propertyBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, personModelFilePath, propertyModelFilePath);
+        return Objects.hash(guiSettings, personBookFilePath, propertyBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nPersons data file location : " + personModelFilePath);
-        sb.append("\nProperty data file location : " + propertyModelFilePath);
+        sb.append("\nPersons data file location : " + personBookFilePath);
+        sb.append("\nProperty data file location : " + propertyBookFilePath);
         return sb.toString();
     }
 

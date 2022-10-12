@@ -73,24 +73,24 @@ public class ModelManager implements Model {
 
     @Override
     public Path getPersonModelFilePath() {
-        return userPrefs.getPersonModelFilePath();
+        return userPrefs.getPersonBookFilePath();
     }
 
     @Override
     public void setPersonModelFilePath(Path personModelFilePath) {
         requireNonNull(personModelFilePath);
-        userPrefs.setPersonModelFilePath(personModelFilePath);
+        userPrefs.setPersonBookFilePath(personModelFilePath);
     }
 
     @Override
     public Path getPropertyModelFilePath() {
-        return userPrefs.getPropertyModelFilePath();
+        return userPrefs.getPropertyBookFilePath();
     }
 
     @Override
     public void setPropertyModelFilePath(Path propertyModelFilePath) {
         requireNonNull(propertyModelFilePath);
-        userPrefs.setPropertyModelFilePath(propertyModelFilePath);
+        userPrefs.setPropertyBookFilePath(propertyModelFilePath);
     }
 
     //=========== PersonModel ================================================================================

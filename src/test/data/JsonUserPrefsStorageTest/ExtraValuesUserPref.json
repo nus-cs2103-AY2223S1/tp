@@ -9,5 +9,6 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "personmodel.json"
+  "personBookFilePath" : "personmodel.json",
+  "propertyBookFilePath": "propertymodel.json"
 }
