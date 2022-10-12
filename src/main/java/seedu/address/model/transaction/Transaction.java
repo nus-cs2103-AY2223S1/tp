@@ -35,4 +35,5 @@ public abstract class Transaction {
     public Quantity getQuantity() {
         return quantity;
     }
+    public abstract boolean isBuy();
 }

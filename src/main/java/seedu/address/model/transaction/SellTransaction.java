@@ -20,6 +20,10 @@ public class SellTransaction extends Transaction {
     }
 
     @Override
+    public boolean isBuy() {
+        return false;
+    }
+    @Override
     public String toString() {
         return "You sold " + quantity + " quantity of "
                 + goods + " at " + price + " each";

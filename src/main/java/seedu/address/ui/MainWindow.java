@@ -22,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Company;
 import seedu.address.model.poc.Poc;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -41,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private PocListPanel pocListPanel;
+    private TransactionListPanel transactionListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -61,7 +63,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane pocListPanelPlaceholder;
 
     @FXML
-    private StackPane companyTransactionPanelPlaceholder;
+    private StackPane transactionListPanelPlaceholder;
 
     @FXML
     private StackPane landingArea;
@@ -134,6 +136,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         companyListPanel = new CompanyListPanel(logic.getFilteredCompanyList());
         companyListPanelPlaceholder.getChildren().add(companyListPanel.getRoot());
+
+        transactionListPanel = new TransactionListPanel();
+        transactionListPanelPlaceholder.getChildren().add(transactionListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -211,6 +216,20 @@ public class MainWindow extends UiPart<Stage> {
     private void landingPageUpdate() {
         backgroundImage.setVisible(false);
         jeepImage.setVisible(false);
+    }
+
+    private void handleTransactionListUpdate(CommandResult commandResult) {
+        ObservableList<Company> companies = logic.getFilteredCompanyList();
+
+        if (companies.size() != 1) {
+            // Empty transaction list panel.
+            transactionListPanel.setTransactionList(FXCollections.observableArrayList());
+            return;
+        }
+
+        Company company = companies.get(0);
+        ObservableList<Transaction> transactions = company.getTransactions().listTransactions();
+        transactionListPanel.setTransactionList(transactions);
     }
 
     /**

@@ -21,6 +21,10 @@ public class BuyTransaction extends Transaction {
     }
 
     @Override
+    public boolean isBuy() {
+        return true;
+    }
+    @Override
     public String toString() {
         return "You bought " + quantity + " quantity of "
                 + goods + " at " + price + " each";
