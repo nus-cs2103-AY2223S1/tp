@@ -6,21 +6,20 @@ import java.util.Objects;
 import java.util.Set;
 
 import bookface.commons.util.CollectionUtil;
-import bookface.model.book.Title;
+import bookface.model.book.Book;
 import bookface.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in BookFace.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
 
-    private final HashSet<Title> loanedBooks = new HashSet<>();
+    private final HashSet<Book> loanedBooks = new HashSet<>();
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -28,25 +27,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Title> loanedBook, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Set<Book> loanedBooks, Set<Tag> tags) {
         CollectionUtil.requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.loanedBooks.addAll(loanedBook);
+        this.loanedBooks.addAll(loanedBooks);
         this.tags.addAll(tags);
     }
-
-    /*
-    public Person(Name name, Phone phone, Email email, ArrayList<Title> loanedBook, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, phone, email, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.loanedBook = loanedBook;
-        this.tags.addAll(tags);
-    }
-    */
 
     public Name getName() {
         return name;
@@ -60,17 +48,28 @@ public class Person {
         return email;
     }
 
+    public boolean hasBooksOnLoan() {
+        return loanedBooks.size() > 0;
+    }
 
-    public Set<Title> getLoanedTitlesSet() {
+    public Set<Book> getLoanedBooksSet() {
         return loanedBooks;
     }
 
-    public String getLoanedTitlesDisplayString() {
+    public String getLoanedBooksDisplayString() {
         return loanedBooks.toString();
     }
 
-    public void addLoanedBookTitle(Title title) {
-        loanedBooks.add(title);
+    public void addLoanedBook(Book book) {
+        loanedBooks.add(book);
+    }
+
+    public void returnLoanedBook(Book book) {
+        this.loanedBooks.remove(book);
+    }
+
+    public boolean hasPersonLoanedThisBook(Book book) {
+        return this.loanedBooks.contains(book);
     }
 
     /**
@@ -97,12 +96,9 @@ public class Person {
     /**
      * Returns true if the person has already loaned the same book.
      */
-    public boolean hasSameLoanedBook(Person person, Title title) {
-        return person.getLoanedTitlesSet().contains(title);
+    public boolean hasSameLoanedBook(Person person, Book book) {
+        return person.getLoanedBooksSet().contains(book);
     }
-
-
-
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -128,7 +124,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, phone, email, loanedBooks, tags);
     }
 
     @Override

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ public class AddUserCommandTest {
         CommandResult commandResult = new AddUserCommand(validPerson).execute(modelStub);
 
         assertEquals(String.format(AddUserCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(List.of(validPerson), modelStub.personsAdded);
     }
 
     @Test
@@ -175,8 +175,14 @@ public class AddUserCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
         public void loan(Person person, Book book) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void returnLoanedBook(Book book) {
+            throw new AssertionError("This method should not be called");
         }
     }
 
@@ -221,5 +227,4 @@ public class AddUserCommandTest {
             return new BookFace();
         }
     }
-
 }

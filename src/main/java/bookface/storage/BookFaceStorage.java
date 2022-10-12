@@ -11,36 +11,36 @@ import bookface.model.ReadOnlyBookFace;
 /**
  * Represents a storage for {@link BookFace}.
  */
-public interface AddressBookStorage {
+public interface BookFaceStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getBookFaceFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyBookFace}.
+     * Returns BookFace data as a {@link ReadOnlyBookFace}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyBookFace> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyBookFace> readBookFace() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getBookFaceFilePath()
      */
-    Optional<ReadOnlyBookFace> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyBookFace> readBookFace(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyBookFace} to the storage.
-     * @param addressBook cannot be null.
+     * @param bookFace cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyBookFace addressBook) throws IOException;
+    void saveBookFace(ReadOnlyBookFace bookFace) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyBookFace)
+     * @see #saveBookFace(ReadOnlyBookFace)
      */
-    void saveAddressBook(ReadOnlyBookFace addressBook, Path filePath) throws IOException;
+    void saveBookFace(ReadOnlyBookFace bookFace, Path filePath) throws IOException;
 
 }

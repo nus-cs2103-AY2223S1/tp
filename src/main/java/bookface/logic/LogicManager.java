@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getBookFace());
+            storage.saveBookFace(model.getBookFace());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,7 +56,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyBookFace getAddressBook() {
+    public ReadOnlyBookFace getBookFace() {
         return model.getBookFace();
     }
 
@@ -71,7 +71,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getBookFaceFilePath() {
         return model.getBookFaceFilePath();
     }
 

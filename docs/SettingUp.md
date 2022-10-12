@@ -45,11 +45,11 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Learn the design**
 
-   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [BookFace’s architecture](DeveloperGuide.md#architecture).
 
 1. **Do the tutorials**
    These tutorials will help you get acquainted with the codebase.
 
-   * [Tracing code](tutorials/TracingCode.md)
-   * [Adding a new command](tutorials/AddRemark.md)
-   * [Removing fields](tutorials/RemovingFields.md)
+   * [Tracing code](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/docs/tutorials/TracingCode.md)
+   * [Adding a new command](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/docs/tutorials/AddRemark.md)
+   * [Removing fields](https://github.com/nus-cs2103-AY2223S1/tp/blob/master/docs/tutorials/RemovingFields.md)

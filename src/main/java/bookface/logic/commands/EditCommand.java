@@ -17,7 +17,7 @@ import bookface.commons.core.index.Index;
 import bookface.commons.util.CollectionUtil;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.Model;
-import bookface.model.book.Title;
+import bookface.model.book.Book;
 import bookface.model.person.Email;
 import bookface.model.person.Name;
 import bookface.model.person.Person;
@@ -93,7 +93,7 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Set<Title> updatedLoanedBook = editPersonDescriptor.getTitle().orElse(personToEdit.getLoanedTitlesSet());
+        Set<Book> updatedLoanedBook = editPersonDescriptor.getBook().orElse(personToEdit.getLoanedBooksSet());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedLoanedBook, updatedTags);
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
 
-       private Set<Title> loanedBook;
+        private Set<Book> loanedBook;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setTitle(toCopy.loanedBook);
+            setBook(toCopy.loanedBook);
             setTags(toCopy.tags);
         }
 
@@ -172,20 +172,19 @@ public class EditCommand extends Command {
 
 
         /**
-         * Sets {@code title} to this object's {@code title}.
-         * A defensive copy of {@code title} is used internally.
+         * Sets {@code book} to this object's {@code book}.
+         * A defensive copy of {@code book} is used internally.
          */
-        public void setTitle(Set<Title> title) {
-            this.loanedBook = (title != null) ? new HashSet<>(title) : null;
+        public void setBook(Set<Book> book) {
+            this.loanedBook = (book != null) ? new HashSet<>(book) : null;
         }
 
         /**
-         * Returns an unmodifiable title arraylist, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable book arraylist, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code title} is null.
+         * Returns {@code Optional#empty()} if {@code book} is null.
          */
-
-        public Optional<Set<Title>> getTitle() {
+        public Optional<Set<Book>> getBook() {
             return (loanedBook != null) ? Optional.of(Collections.unmodifiableSet(loanedBook)) : Optional.empty();
         }
 

@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of BookFace data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -26,14 +26,14 @@ public class ModelManager implements Model {
     private final FilteredList<Book> filteredBooks;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given bookFace and userPrefs.
      */
-    public ModelManager(ReadOnlyBookFace addressBook, ReadOnlyUserPrefs userPrefs) {
-        CollectionUtil.requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyBookFace bookFace, ReadOnlyUserPrefs userPrefs) {
+        CollectionUtil.requireAllNonNull(bookFace, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with BookFace: " + bookFace + " and user prefs " + userPrefs);
 
-        this.bookFace = new BookFace(addressBook);
+        this.bookFace = new BookFace(bookFace);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.bookFace.getPersonList());
         filteredBooks = new FilteredList<>(this.bookFace.getBookList());
@@ -69,16 +69,16 @@ public class ModelManager implements Model {
 
     @Override
     public Path getBookFaceFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getBookFaceFilePath();
     }
 
     @Override
     public void setBookFaceFilePath(Path bookFaceFilePath) {
         requireNonNull(bookFaceFilePath);
-        userPrefs.setAddressBookFilePath(bookFaceFilePath);
+        userPrefs.setBookFaceFilePath(bookFaceFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== BookFace ================================================================================
 
     @Override
     public void setBookFace(ReadOnlyBookFace bookFace) {
@@ -138,11 +138,17 @@ public class ModelManager implements Model {
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
 
+    @Override
+    public void returnLoanedBook(Book book) {
+        CollectionUtil.requireAllNonNull(book);
+        bookFace.returnLoanedBook(book);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedBookFace}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -151,7 +157,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedBookFace}
      */
     @Override
     public ObservableList<Book> getFilteredBookList() {

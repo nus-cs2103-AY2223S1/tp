@@ -24,7 +24,7 @@ import bookface.model.ModelManager;
 import bookface.model.ReadOnlyBookFace;
 import bookface.model.UserPrefs;
 import bookface.model.person.Person;
-import bookface.storage.JsonAddressBookStorage;
+import bookface.storage.JsonBookFaceStorage;
 import bookface.storage.JsonUserPrefsStorage;
 import bookface.storage.StorageManager;
 import bookface.testutil.PersonBuilder;
@@ -40,11 +40,11 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonBookFaceStorage bookFaceStorage =
+                new JsonBookFaceStorage(temporaryFolder.resolve("bookFace.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(bookFaceStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -74,13 +74,13 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder
-                        .resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonBookFaceIoExceptionThrowingStub
+        JsonBookFaceStorage bookFaceStorage =
+                new JsonBookFaceIoExceptionThrowingStub(temporaryFolder
+                        .resolve("ioExceptionBookFace.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(bookFaceStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -159,13 +159,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonBookFaceIoExceptionThrowingStub extends JsonBookFaceStorage {
+        private JsonBookFaceIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyBookFace addressBook, Path filePath) throws IOException {
+        public void saveBookFace(ReadOnlyBookFace bookFace, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

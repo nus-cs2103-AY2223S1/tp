@@ -12,19 +12,19 @@ import bookface.model.ReadOnlyUserPrefs;
 import bookface.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of BookFace data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final BookFaceStorage bookFaceStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code BookFaceStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(BookFaceStorage bookFaceStorage, UserPrefsStorage userPrefsStorage) {
+        this.bookFaceStorage = bookFaceStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,33 +46,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ BookFace methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getBookFaceFilePath() {
+        return bookFaceStorage.getBookFaceFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyBookFace> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyBookFace> readBookFace() throws DataConversionException, IOException {
+        return readBookFace(bookFaceStorage.getBookFaceFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyBookFace> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyBookFace> readBookFace(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return bookFaceStorage.readBookFace(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyBookFace addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveBookFace(ReadOnlyBookFace bookFace) throws IOException {
+        saveBookFace(bookFace, bookFaceStorage.getBookFaceFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyBookFace addressBook, Path filePath) throws IOException {
+    public void saveBookFace(ReadOnlyBookFace bookFace, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        bookFaceStorage.saveBookFace(bookFace, filePath);
     }
 
 }

@@ -20,8 +20,8 @@ import bookface.model.ReadOnlyBookFace;
 import bookface.model.ReadOnlyUserPrefs;
 import bookface.model.UserPrefs;
 import bookface.model.util.SampleDataUtil;
-import bookface.storage.AddressBookStorage;
-import bookface.storage.JsonAddressBookStorage;
+import bookface.storage.BookFaceStorage;
+import bookface.storage.JsonBookFaceStorage;
 import bookface.storage.JsonUserPrefsStorage;
 import bookface.storage.Storage;
 import bookface.storage.StorageManager;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing BookFace ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        BookFaceStorage bookFaceStorage = new JsonBookFaceStorage(userPrefs.getBookFaceFilePath());
+        storage = new StorageManager(bookFaceStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,19 +74,19 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyBookFace> addressBookOptional;
+        Optional<ReadOnlyBookFace> bookFaceOptional;
         ReadOnlyBookFace initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            bookFaceOptional = storage.readBookFace();
+            if (bookFaceOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample BookFace");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = bookFaceOptional.orElseGet(SampleDataUtil::getSampleBookFace);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty BookFace");
             initialData = new BookFace();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty BookFace");
             initialData = new BookFace();
         }
 
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty BookFace");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting BookFace " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

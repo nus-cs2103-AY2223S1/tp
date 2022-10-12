@@ -15,7 +15,6 @@ import javafx.collections.ObservableList;
 /**
  * The BookList class represents the list of books managed by BookFace.
  */
-
 public class BookList implements Iterable<Book> {
     private final ObservableList<Book> internalList = FXCollections.observableArrayList();
     //private final ObservableList<Book> internalList = FXCollections.observableArrayList(bookList); //doesnt work?
@@ -113,13 +112,20 @@ public class BookList implements Iterable<Book> {
      */
     public void loan(Person person, Book book) {
         CollectionUtil.requireAllNonNull(person, book);
-        book.loanTo(person, book);
-        //Book loanedBook = new Book(book.getTitle(), book.getAuthor(), "Loaned to " + person.getName());
+        book.loanTo(person);
         int index = internalList.indexOf(book);
         internalList.set(index, book);
-        //internalList.set(index, loanedBook);
     }
 
+    /**
+     * Returns loan of a book {@code book} .
+     */
+    public void returnLoanedBook(Book book) {
+        CollectionUtil.requireAllNonNull(book);
+        book.markBookAsReturned();
+        int index = internalList.indexOf(book);
+        internalList.set(index, book);
+    }
 
     /**
      * TODO: Empties the BookList.

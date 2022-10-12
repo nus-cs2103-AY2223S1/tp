@@ -11,40 +11,18 @@ import bookface.model.person.Person;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Book {
-
-    // Identity fields
     private final Title title;
     private final Author author;
-    private boolean isLoaned = false;
     private Person loanee = null;
-
-    private final String loanStatus;
-
-
 
     /**
      * Every field must be present and not null.
      */
-    /*
     public Book(Title title, Author author) {
         CollectionUtil.requireAllNonNull(title, author);
         this.title = title;
         this.author = author;
     }
-    */
-
-
-    /**
-     * Every field must be present and not null.
-     */
-
-    public Book(Title title, Author author, String loanStatus) {
-        CollectionUtil.requireAllNonNull(title, author);
-        this.title = title;
-        this.author = author;
-        this.loanStatus = loanStatus;
-    }
-
 
     public Title getTitle() {
         return title;
@@ -54,29 +32,20 @@ public class Book {
         return author;
     }
 
+    public Person getLoanee() {
+        return loanee;
+    }
+
     public boolean isLoaned() {
-        return this.isLoaned;
+        return this.loanee != null;
     }
 
     public String getLoanStatus() {
-        boolean temp = isLoaned;
-        if (temp) {
+        if (isLoaned()) {
             return "Loaned to " + loanee.getName();
         } else {
             return "Available";
         }
-    }
-
-
-
-
-    /**
-     * Sets the book's isLoaned status to false and loanee to null.
-     * i.e. Collects a loaned book.
-     */
-    public void collect() {
-        this.isLoaned = false;
-        this.loanee = null;
     }
 
     /**
@@ -84,9 +53,15 @@ public class Book {
      *
      * @param loanee the person borrowing this book
      */
-    public void loanTo(Person loanee, Book book) {
-        this.isLoaned = true;
+    public void loanTo(Person loanee) {
         this.loanee = loanee;
+    }
+
+    /**
+     * Return this loaned book .
+     */
+    public void markBookAsReturned() {
+        this.loanee = null;
     }
 
     /**
