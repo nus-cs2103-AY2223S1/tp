@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 
 import java.util.List;
 
@@ -72,7 +71,6 @@ public class SellCommand extends Command {
         Company editedCompany = companyToEdit;
         editedCompany.addTransaction(transaction);
         model.setCompany(companyToEdit, editedCompany);
-        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedCompany, transaction.getQuantity(),
                 transaction.getGoods(), transaction.getPrice()));
