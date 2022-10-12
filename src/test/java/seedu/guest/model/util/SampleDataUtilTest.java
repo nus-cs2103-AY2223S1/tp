@@ -42,6 +42,9 @@ public class SampleDataUtilTest {
 
         // null -> returns false
         assertNotEquals(SampleDataUtil.getSampleGuests(), null);
+
+        // empty Guest[] -> returns false
+        assertNotEquals(SampleDataUtil.getSampleGuests(), new Guest[] {});
     }
 
     @Test
