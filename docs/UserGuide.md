@@ -50,7 +50,7 @@ Format: `:help`
 
 Adds an exercise that we have done for the day.
 
-Format: `:a <exercise name> <weight(kg)> <sets> <reps>`
+Format: `:a n/<exercise name> w/<weight(kg)> s/<sets> r/<reps>`
 
 ##### Parameter constraints:
 * The weight **must be a positive decimal number**
@@ -103,17 +103,18 @@ Format: `:wq`
 
 ## Command Summary
 
-| Action              | Format                                   | Examples        |
-|---------------------|------------------------------------------|-----------------|
-| **Add exercise**    | :a <exercise> <weight(kg)> <sets> <reps> | :a squat 60 5 5 |
-| **Delete exercise** | :d <index>                               | :d 3            |
-| **List exercises**  | :ls                                      | :ls             |
-| **Help menu**       | :help                                    | :help           |
-| **Exit program**    | :wq                                      | :wq             |
+| Action              | Format                                           | Examples                |
+|---------------------|--------------------------------------------------|-------------------------|
+| **Add exercise**    | :a n/<exercise> w/<weight(kg)> s/<sets> r/<reps> | :a n/Squat w/60 s/5 r/5 |
+| **Delete exercise** | :d <index>                                       | :d 3                    |
+| **List exercises**  | :ls                                              | :ls                     |
+| **Help menu**       | :help                                            | :help                   |
+| **Exit program**    | :wq                                              | :wq                     |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary of Terminologies 
-* **Exercise** : Activity requiring physical effort, carried out to sustain or improve health and fitness
+* **Exercise** : Physical activity done in a regular gym that is planned, structured, and repetitive and has as a final 
+or an intermediate objective to the improvement or maintenance of physical fitness
 * **Reps** : Number of times you perform a specific exercise 
 * **Sets** : Number of cycles of reps that you complete 
