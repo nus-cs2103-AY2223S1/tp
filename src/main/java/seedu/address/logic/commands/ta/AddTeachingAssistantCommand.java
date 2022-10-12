@@ -8,7 +8,6 @@ import seedu.address.model.ta.TeachingAssistant;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
 public class AddTeachingAssistantCommand extends Command {
     public static final String COMMAND_WORD = "add ta";
@@ -16,14 +15,10 @@ public class AddTeachingAssistantCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Teaching Assistant to the ModQuik. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_MODULE + "MODULE "
-            + PREFIX_VENUE + "VENUE "
-            + PREFIX_TIMESLOT + "TIMESLOT "
+            + PREFIX_ID + "ID "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "CS2103T W17 "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_VENUE + "COM1-0203 "
-            + PREFIX_TIMESLOT + "1500-1800 ";
+            + PREFIX_NAME + "JOHN "
+            + PREFIX_ID + "A0123456B ";
 
     public static final String MESSAGE_SUCCESS = "New Teaching Assistant added: %1$s";
     public static final String MESSAGE_DUPLICATE_TA = "This Teaching Assistant already exists in the ModQuik";
