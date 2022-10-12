@@ -10,7 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_21_
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -70,24 +69,27 @@ public class AddressBookParserTest {
     public void parseCommand_addAppointment() throws Exception {
         EditPersonDescriptor descriptor = new EditPersonDescriptor(DESC_APPOINTMENT);
         AddAppointmentCommand command = (AddAppointmentCommand) parser.parseCommand(AddAppointmentCommand.COMMAND_WORD
-        + " " + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_DATE + VALID_APPOINTMENT_21_JAN_2023);
+            + " " + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_DATE + VALID_APPOINTMENT_21_JAN_2023);
         assertEquals(new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
     @Test
     public void parseCommand_editAppointment() throws Exception {
         EditPersonDescriptor descriptor = new EditPersonDescriptor(DESC_APPOINTMENT);
-        EditAppointmentCommand command = (EditAppointmentCommand) parser.parseCommand(EditAppointmentCommand.COMMAND_WORD
-                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_DATE + VALID_APPOINTMENT_21_JAN_2023);
+        EditAppointmentCommand command = (EditAppointmentCommand) parser.parseCommand(
+                EditAppointmentCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + PREFIX_DATE + VALID_APPOINTMENT_21_JAN_2023);
         assertEquals(new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
     public void parseCommand_deleteAppointment() throws Exception {
-        DeleteAppointmentCommand command = (DeleteAppointmentCommand) parser.parseCommand(DeleteAppointmentCommand.COMMAND_WORD
-                + " " + INDEX_FIRST_PERSON.getOneBased());
+        DeleteAppointmentCommand command = (DeleteAppointmentCommand) parser.parseCommand(
+                DeleteAppointmentCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteAppointmentCommand(INDEX_FIRST_PERSON), command);
     }
-    
+
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
