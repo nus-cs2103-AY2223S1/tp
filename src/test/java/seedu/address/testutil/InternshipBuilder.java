@@ -74,7 +74,6 @@ public class InternshipBuilder {
      * Sets the {@code AppliedDate} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withAppliedDate(String appliedDate) {
-        System.out.println(appliedDate);
         this.appliedDate = new AppliedDate(appliedDate);
         return this;
     }
