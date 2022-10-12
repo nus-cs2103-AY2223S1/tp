@@ -38,10 +38,10 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         person.getCurrModules().stream().forEach(
-            m -> sb.append(PREFIX_CURRENTMOD + m.moduleName + " ")
+                m -> sb.append(PREFIX_CURRENTMOD + m.moduleName + " ")
         );
         person.getPrevModules().stream().forEach(
                 m -> sb.append(PREFIX_PREVIOUSMOD + m.moduleName + " ")

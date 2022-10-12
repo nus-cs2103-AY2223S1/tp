@@ -5,19 +5,25 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "currModules" : [ "CS2103T" ],
+    "prevModules" : [ "CS2040S" ],
+    "planModules" : [ "CS2109S" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "currModules" : [ "CS2103T" ],
+    "prevModules" : [ "CS2040S" ],
+    "planModules" : [ "CS2109S" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tagged" : [ ]
+    "tagged": [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -42,5 +48,15 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "tagged" : [ ]
-  } ]
+  } ],
+  "jsonAdaptedUser" : {
+    "name" : "",
+    "phone" : "empty",
+    "email" : "",
+    "address" : "",
+    "currModules" : [ ],
+    "prevModules" : [ ],
+    "planModules" : [ ],
+    "emptyUser" : { }
+  }
 }

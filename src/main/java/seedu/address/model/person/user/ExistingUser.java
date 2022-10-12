@@ -104,6 +104,24 @@ public class ExistingUser extends User {
                 .append("; Address: ")
                 .append(getAddress());
 
+        Set<CurrentModule> currModules = getCurrModules();
+        if (!currModules.isEmpty()) {
+            builder.append("; Current Modules: ");
+            currModules.forEach(builder::append);
+        }
+
+        Set<PreviousModule> prevModules = getPrevModules();
+        if (!prevModules.isEmpty()) {
+            builder.append("; Previous Modules: ");
+            prevModules.forEach(builder::append);
+        }
+
+        Set<PlannedModule> planModules = getPlanModules();
+        if (!currModules.isEmpty()) {
+            builder.append("; Planned Modules: ");
+            planModules.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 

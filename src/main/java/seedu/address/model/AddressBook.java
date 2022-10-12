@@ -53,11 +53,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the user with {@code user}.
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        setUser(newData.getUser());
         setPersons(newData.getPersonList());
     }
 
@@ -124,7 +131,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.toString();
         // TODO: refine later
     }
 
