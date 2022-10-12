@@ -8,7 +8,6 @@ import jeryl.fyp.model.FypManager;
 import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
-import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;

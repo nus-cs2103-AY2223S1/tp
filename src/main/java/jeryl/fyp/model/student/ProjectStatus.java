@@ -9,6 +9,9 @@ import static jeryl.fyp.commons.util.AppUtil.checkArgument;
  */
 public class ProjectStatus {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Status should only be of the form YTS, IP OR DONE";
+
     public final String projectStatus;
 
     //enum constants
@@ -18,11 +21,10 @@ public class ProjectStatus {
         DONE;
     }
 
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Status should only be of the form YTS, IP OR DONE";
-
-
+    /**
+     * Constructs a {@code ProjectStatus}.
+     * @param status A valid project status
+     */
     public ProjectStatus(String status) {
         requireNonNull(status);
         checkArgument(isValidProjectStatus(status), MESSAGE_CONSTRAINTS);
@@ -43,4 +45,12 @@ public class ProjectStatus {
             return false;
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ProjectStatus // instanceof handles nulls
+                && projectStatus.equals(((ProjectStatus) other).projectStatus)); // state check
+    }
+
 }

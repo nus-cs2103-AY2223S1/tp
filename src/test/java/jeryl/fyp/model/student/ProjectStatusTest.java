@@ -9,7 +9,7 @@ public class ProjectStatusTest {
 
     @Test
     public void equals() {
-        ProjectStatus status = new ProjectStatus ("IP");
+        ProjectStatus status = new ProjectStatus("IP");
 
         // same object -> returns true
         assertTrue(status.equals(status));

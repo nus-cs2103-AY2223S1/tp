@@ -94,7 +94,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_invalidProjectName_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_STUDENT_ID, VALID_EMAIL, INVALID_PROJECT_NAME,
-                        VALID_TAGS);
+                        VALID_PROJECT_STATUS, VALID_TAGS);
         String expectedMessage = ProjectName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -102,7 +102,7 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_nullProjectName_throwsIllegalValueException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_STUDENT_ID, VALID_EMAIL,
-                null, VALID_TAGS);
+                null, VALID_PROJECT_STATUS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }

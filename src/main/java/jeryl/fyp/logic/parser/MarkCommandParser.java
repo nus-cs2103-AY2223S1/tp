@@ -1,17 +1,15 @@
 package jeryl.fyp.logic.parser;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jeryl.fyp.logic.parser.CliSyntax.*;
-
-import jeryl.fyp.model.student.ProjectStatus;
-import jeryl.fyp.model.student.StudentId;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 
 import java.util.stream.Stream;
 
 import jeryl.fyp.logic.commands.MarkCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.commons.exceptions.IllegalValueException;
-import jeryl.fyp.model.tag.Tag;
+import jeryl.fyp.model.student.ProjectStatus;
+import jeryl.fyp.model.student.StudentId;
 
 /**
  * Parses input arguments and creates a new {@code MarkCommand} object

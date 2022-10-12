@@ -21,6 +21,7 @@ import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.ReadOnlyUserPrefs;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.testutil.StudentBuilder;
 
 public class AddCommandTest {
@@ -145,6 +146,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Student getStudent(StudentId studentId) {
             throw new AssertionError("This method should not be called.");
         }
     }

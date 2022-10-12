@@ -13,8 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import jeryl.fyp.model.student.ProjectStatus;
-import jeryl.fyp.model.student.StudentId;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.logic.commands.AddCommand;
@@ -29,8 +27,8 @@ import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.commands.MarkCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
-import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.ProjectStatus;
+import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.testutil.EditStudentDescriptorBuilder;
 import jeryl.fyp.testutil.StudentBuilder;
@@ -106,7 +104,7 @@ public class FypManagerParserTest {
         final StudentId studentId = new StudentId("A0123456G");
         final ProjectStatus projectStatus = new ProjectStatus("DONE");
         MarkCommand command = (MarkCommand) parser.parseCommand(MarkCommand.COMMAND_WORD + " "
-                + PREFIX_STATUS + studentId + " " + PREFIX_STATUS + projectStatus);
+                + PREFIX_STUDENT_ID + studentId + " " + PREFIX_STATUS + projectStatus);
         assertEquals(new MarkCommand(studentId, projectStatus), command);
     }
 

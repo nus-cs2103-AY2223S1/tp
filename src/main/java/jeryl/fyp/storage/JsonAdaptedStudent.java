@@ -16,7 +16,6 @@ import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
-
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -111,8 +110,8 @@ class JsonAdaptedStudent {
         final ProjectName modelProjectName = new ProjectName(projectName);
 
         if (projectStatus == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT
-                    , ProjectStatus.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ProjectStatus.class.getSimpleName()));
         }
 
         final ProjectStatus modelProjectStatus = new ProjectStatus(projectStatus);

@@ -18,7 +18,6 @@ import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.FypManager;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.student.NameContainsKeywordsPredicate;
-import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.testutil.EditStudentDescriptorBuilder;
 

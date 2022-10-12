@@ -1,12 +1,12 @@
 package jeryl.fyp.logic.commands;
 
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
-import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandFailure;
-import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
+import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ModelManager;
@@ -14,16 +14,15 @@ import jeryl.fyp.model.UserPrefs;
 import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.StudentId;
 
-import org.junit.jupiter.api.Test;
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
  */
 public class MarkCommandTest {
 
+    final StudentId studentId = new StudentId("A0123456G");
+
     private Model model = new ModelManager(getTypicalFypManager(), new UserPrefs());
 
-    final StudentId studentId = new StudentId("A0123456G");
 
     //TODO - add more test for MarkCommand
 

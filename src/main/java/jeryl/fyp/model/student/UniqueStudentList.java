@@ -142,7 +142,7 @@ public class UniqueStudentList implements Iterable<Student> {
         Student student = null;
         for (int i = 0; i < internalList.size() - 1; i++) {
             if (internalList.get(i).getStudentId().equals(studentId)) {
-               student = internalList.get(i);
+                student = internalList.get(i);
             }
         }
         return student;
