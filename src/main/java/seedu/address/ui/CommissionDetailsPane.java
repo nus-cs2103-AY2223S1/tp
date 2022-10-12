@@ -31,7 +31,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private static final Color IN_PROGRESS_COLOR = Color.rgb(84, 141, 225);
     private static final Color NOT_STARTED_COLOR = Color.rgb(184, 184, 184);
 
-    private final Commission commission;
+    private final ObservableObject<Commission> commission;
 
     @FXML
     private HBox detailsPane;
@@ -65,8 +65,8 @@ public class CommissionDetailsPane extends UiPart<Region> {
      */
     public CommissionDetailsPane(ObservableObject<Commission> commission) {
         super(FXML);
-        this.commission = commission.getValue();
-        updateUI(this.commission);
+        this.commission = commission;
+        updateUI(commission.getValue());
         commission.addListener((observable, oldValue, newValue) -> updateUI(newValue));
         iterationListView.setCellFactory(listView -> new IterationListViewCell());
     }
@@ -124,6 +124,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
 
         Commission.CompletionStatusString completionStatusString = commission.getCompletionStatusString();
         completionStatus.setText(completionStatusString.toString());
+
         switch (completionStatusString) {
         case COMPLETED:
             completionStatusCircle.setFill(COMPLETED_COLOR);
@@ -160,7 +161,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new IterationListItem(iteration, getIndex() + 1).getRoot());
-                updateProgressComponents(commission);
+                updateProgressComponents(commission.getValue());
             }
         }
     }
