@@ -26,7 +26,7 @@ public class NoteCommand extends Command {
             + "Parameters: INDEX (must be a positve integer) "
             + "note INDEX note/NOTE\n\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "note/Strong in Java.\n\n"
+            + "note/Strong in Java\n\n"
             + " will add a note 'Strong in Java' to the first person in the address book.";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
