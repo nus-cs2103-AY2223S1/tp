@@ -15,17 +15,37 @@ import seedu.workbook.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String ADD_COMMAND = "add c/COMPANY r/ROLE d/YYYY-MM-DD e/EMAIL [t/TAG]…";
+    public static final String EDIT_COMMAND = "edit INDEX [c/COMPANY] [r/ROLE] [d/YYYY-MM-DD] [e/EMAIL] [t/TAG]";
+    public static final String DELETE_COMMAND = "delete INDEX";
+    public static final String CLEAR_COMMAND = "clear";
+    public static final String EXIT_COMMAND = "exit";
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
+    public static final String URL_MESSAGE = "Refer to the user guide for more information: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
+    private Label addCommand;
+
+    @FXML
+    private Label clearCommand;
+
+    @FXML
+    private Label deleteCommand;
+
+    @FXML
+    private Label editCommand;
+
+    @FXML
+    private Label exitCommand;
+
+    @FXML
     private Button copyButton;
 
     @FXML
-    private Label helpMessage;
+    private Label urlMessage;
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +54,13 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+
+        addCommand.setText(ADD_COMMAND);
+        editCommand.setText(EDIT_COMMAND);
+        deleteCommand.setText(DELETE_COMMAND);
+        clearCommand.setText(CLEAR_COMMAND);
+        exitCommand.setText(EXIT_COMMAND);
+        urlMessage.setText(URL_MESSAGE);
     }
 
     /**
