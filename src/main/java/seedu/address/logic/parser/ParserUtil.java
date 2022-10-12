@@ -43,6 +43,23 @@ public class ParserUtil {
 
     // TODO: Remove this method.
     /**
+     * Parses {@code zeroBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseLinkIndex(String zeroBasedIndex) throws ParseException {
+        if (zeroBasedIndex == null) {
+            return null;
+        }
+        String trimmedIndex = zeroBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromZeroBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
      * Parses a {@code String personId} into a {@code PersonId}.
      * Leading and trailing whitespaces will be trimmed.
      *

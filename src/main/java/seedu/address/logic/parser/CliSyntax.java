@@ -13,6 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
+
     /* Prefix definitions (Internship) */
     public static final Prefix PREFIX_INTERNSHIP_ID = new Prefix("iid/");
     public static final Prefix PREFIX_COMPANY_NAME = new Prefix("c/");

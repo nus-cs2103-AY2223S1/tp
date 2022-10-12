@@ -3,16 +3,20 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.InternshipId;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -39,7 +43,8 @@ public class AddPersonCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney"
+            + PREFIX_LINK_INDEX + "1 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
@@ -49,6 +54,7 @@ public class AddPersonCommand extends Command {
     private final Email email;
     private final InternshipId internshipId;
     private final Set<Tag> tags = new HashSet<>();
+    private final Index linkIndex;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -60,6 +66,7 @@ public class AddPersonCommand extends Command {
         this.email = person.getEmail();
         this.internshipId = person.getInternshipId();
         this.tags.addAll(person.getTags());
+        this.linkIndex = null;
     }
 
     /**
@@ -71,40 +78,39 @@ public class AddPersonCommand extends Command {
             Name name,
             Phone phone,
             Email email,
-            InternshipId internshipId,
-            Set<Tag> tags) {
+            Set<Tag> tags,
+            Index linkIndex) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.internshipId = internshipId;
+        this.internshipId = null;
         this.tags.addAll(tags);
+        this.linkIndex = linkIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Person toAdd;
-
-        if (model.findInternshipById(internshipId) == null) {
-            toAdd = new Person(
-                    new PersonId(model.getNextPersonId()),
-                    name,
-                    phone,
-                    email,
-                    null,
-                    tags
-            );
-        } else {
-            toAdd = new Person(
-                    new PersonId(model.getNextPersonId()),
-                    name,
-                    phone,
-                    email,
-                    internshipId,
-                    tags
-            );
+        // By default, use the internshipId field in the command
+        InternshipId idToLink = internshipId;
+        List<Internship> lastShownList = model.getFilteredInternshipList();
+        if (linkIndex != null && linkIndex.getZeroBased() < lastShownList.size()) {
+            Internship internship = lastShownList.get(linkIndex.getZeroBased());
+            if (internship.getContactPersonId() == null) {
+                idToLink = internship.getInternshipId();
+            }
         }
+
+
+        Person toAdd = new Person(
+                new PersonId(model.getNextPersonId()),
+                name,
+                phone,
+                email,
+                idToLink,
+                tags
+        );
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

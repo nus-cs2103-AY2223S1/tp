@@ -65,7 +65,7 @@ public class SampleDataUtil {
                     new Name("Roy Balakrishnan"),
                     new Phone("92624417"),
                     new Email("royb@example.com"),
-                    new InternshipId(1),
+                    new InternshipId(0),
                     getTagSet("colleagues"))
         };
     }
