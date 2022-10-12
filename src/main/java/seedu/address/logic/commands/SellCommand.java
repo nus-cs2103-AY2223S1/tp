@@ -6,13 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 
-
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.SellCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;
 import seedu.address.model.transaction.Transaction;
@@ -23,8 +21,8 @@ import seedu.address.model.transaction.Transaction;
 public class SellCommand extends Command {
     public static final String COMMAND_WORD = "sell";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the company. "+ "Parameters: "
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the company. "
+            + "Parameters: "
             + "Index "
             + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_GOODS + "GOODS "
