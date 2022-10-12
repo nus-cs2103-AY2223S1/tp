@@ -1,44 +1,44 @@
 package nus.climods.model.module;
 
 import nus.climods.logic.parser.exceptions.ParseException;
-import nus.climods.model.module.exceptions.UserModuleNotFoundException;
-import nus.climods.model.tag.Tag;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.ModulesApi;
 import org.openapitools.client.model.Module;
-import org.openapitools.client.api.VenuesApi;
+import org.openapitools.client.model.ModuleInformationSemesterDataInner;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 public class UserModule {
     private final ModulesApi api = new ModulesApi();
 
     // Identity fields
-    private final Module userModule;
+    private final Module apiModule;
     private final String acadYear = "2022-2023";
     private String tutorial = "Tutorial: Monday, 1400-1500";
     private String lecture = "Lecture: Friday, 1600-1800";
 
     public UserModule(String moduleCode) throws ParseException{
         try {
-            this.userModule = api.acadYearModulesModuleCodeJsonGet(acadYear, moduleCode);
+            this.apiModule = api.acadYearModulesModuleCodeJsonGet(acadYear, moduleCode);
         } catch (ApiException e) {
             throw new ParseException("Module not in current NUS curriculum");
         }
     }
 
-    public Module getUserModule() {return this.userModule;}
+    public Module getApiModule() {return this.apiModule;}
 
     public String getUserModuleCode() {
-        return this.userModule.getModuleCode();
+        return this.apiModule.getModuleCode();
     }
 
-    public String getAcademicYear() { return this.userModule.getAcadYear();}
+    public String getAcademicYear() { return this.apiModule.getAcadYear();}
 
-    public String getUserModuleTitle() { return this.userModule.getTitle();}
+    public String getUserModuleTitle() { return this.apiModule.getTitle();}
 
     public String getDepartment() {
         return "Computer Science";
@@ -67,7 +67,21 @@ public class UserModule {
     }
 
     public ArrayList<String> getSemesterData() {
+
         return new ArrayList<String>(Arrays.asList("Semester 1", "Semester 2"));
+    }
+
+    private List<Integer> getAvailableSemesters() {
+        return apiModule.getSemesterData()
+                .stream()
+                .map(semesterData -> semesterData.getSemester())
+                .map(BigDecimal::intValue)
+                .collect(Collectors.toList());
+    }
+
+    // TODO: update with user's selected semester
+    public String getSelectedSemester() {
+        return getAvailableSemesters().contains(1) ? "Semester 1" : "Semester 2";
     }
 
     /**
@@ -103,7 +117,7 @@ public class UserModule {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(userModule);
+        return Objects.hash(apiModule);
     }
 
     @Override

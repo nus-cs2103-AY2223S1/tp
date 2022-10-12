@@ -5,13 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import nus.climods.model.module.Module;
-import nus.climods.model.module.ReadOnlyModuleSummaryList;
 import nus.climods.model.module.UserModule;
 import nus.climods.model.person.Person;
 import nus.climods.model.person.UniquePersonList;
 import nus.climods.model.module.UniqueUserModuleList;
-import org.openapitools.client.model.ModuleCondensed;
 
 /**
  * Wraps all data at the address-book level Duplicates are not allowed (by .isSamePerson comparison)

@@ -2,6 +2,7 @@ package nus.climods.model;
 
 import java.util.function.Predicate;
 
+import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UserModule;
@@ -36,4 +37,33 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
     ReadOnlyModuleList getModuleList();
+
+    /* USER MODULE */
+
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     */
+    boolean hasUserModule(UserModule module);
+
+
+    /**
+     * Deletes the given module. The module must exist in the address book.
+     */
+    void deleteUserModule(UserModule target);
+
+    /**
+     * Adds the given module. {@code module} must not already exist in the address book.
+     */
+    void addUserModule(UserModule module);
+
+    /**
+     * Returns an unmodifiable view of the filtered module list
+     */
+    ObservableList<UserModule> getFilteredUserModuleList();
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredUserModuleList(Predicate<UserModule> predicate);
 }
