@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -18,14 +20,25 @@
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
+      <HBox fx:id="textBox" fillHeight="false" prefWidth="200.0">
+      <children>
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="title" text="\$first" styleClass="cell_big_label" />
+        <AnchorPane HBox.hgrow="SOMETIMES">
+          <children>
+            <Label fx:id="title" text="\$first" styleClass="cell_big_label" />
+          </children>
+        </AnchorPane>
+        <AnchorPane HBox.hgrow="NEVER">
+          <children>
+            <CheckBox fx:id="isCompleted" mnemonicParsing="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+          </children>
+        </AnchorPane>
+      </children>
       </HBox>
       <FlowPane fx:id="assignedPersons" />
     </VBox>
