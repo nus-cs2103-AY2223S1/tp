@@ -1,4 +1,4 @@
-package seedu.foodrem.model.item.itemvalidator;
+package seedu.foodrem.model.item.itemvalidators;
 
 /**
  * Interface for validation classes
