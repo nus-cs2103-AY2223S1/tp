@@ -15,11 +15,22 @@ public class Group extends AbstractContainerItem {
     private final Group parent;
     private final UniqueTaskList taskList;
 
-    Group(String groupName) {
+    /**
+     * Create a new group with given name.
+     *
+     * @param groupName The name of the group
+     */
+    public Group(String groupName) {
         this(groupName, null);
     }
 
-    Group(String groupName, Group parent) {
+    /**
+     * Create a new group with given name and parent.
+     *
+     * @param groupName The name of the group
+     * @param parent The parent of the group
+     */
+    public Group(String groupName, Group parent) {
         this.groupName = groupName;
         this.parent = parent;
         taskList = new UniqueTaskList();
@@ -27,6 +38,7 @@ public class Group extends AbstractContainerItem {
 
     /**
      * Checks if a task exists in this group
+     *
      * @param task The task to check if exists
      * @return true if it exists in this Group, false otherwise
      */
@@ -45,6 +57,7 @@ public class Group extends AbstractContainerItem {
 
     /**
      * Removes a task from this group. The task must already exist in this group
+     *
      * @param task The task to remove
      */
     public void removeTask(Task task) {
