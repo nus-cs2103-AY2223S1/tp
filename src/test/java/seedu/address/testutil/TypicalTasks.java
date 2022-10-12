@@ -27,7 +27,7 @@ public class TypicalTasks {
             new TaskName("Finish TP"),
             new Module("CS2103T"),
             new Deadline("2022-12-12 12:00"),
-            new Status(false)
+            new Status(true)
     );
 
     public static final Task LAB_2 = new Task(
@@ -35,6 +35,15 @@ public class TypicalTasks {
             new Module("CS2030S"),
             new Deadline("2022-02-02 23:59"),
             new Status(false)
+    );
+
+    // This one is not in typicalTasks so that it can be added without issues
+
+    public static final Task LAB_3 = new Task(
+            new TaskName("Lab 3"),
+            new Module("CS2030S"),
+            new Deadline("2022-03-15 23:59"),
+            new Status(true)
     );
 
     private TypicalTasks() {} // prevents instantiation

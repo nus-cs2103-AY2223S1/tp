@@ -3,8 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LONG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -20,6 +22,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -59,6 +63,23 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_MODS_DESC = " " + PREFIX_MODULE + "cs****"; // space not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String VALID_TASK_NAME_FINISH_TP = "Finish TP";
+    public static final String VALID_DEADLINE_FINISH_TP = "2022-11-15 00:00";
+    public static final String VALID_MODULE_FINISH_TP = "CS2103T";
+    public static final String VALID_TASK_NAME_LAB_2 = "Lab 2";
+    public static final String VALID_DEADLINE_LAB_2 = "2022-02-02 23:59";
+    public static final String VALID_MODULE_LAB_2 = "CS2030S";
+
+    public static final String TASK_NAME_DESC_FINISH_TP = VALID_TASK_NAME_FINISH_TP;
+    public static final String MODULE_DESC_FINISH_TP = " " + PREFIX_MODULE_LONG + VALID_MODULE_FINISH_TP;
+    public static final String DEADLINE_DESC_FINISH_TP = " " + PREFIX_DEADLINE + VALID_DEADLINE_FINISH_TP;
+    public static final String TASK_NAME_DESC_LAB_2 = VALID_TASK_NAME_LAB_2;
+    public static final String MODULE_DESC_LAB_2 = " " + PREFIX_MODULE_LONG + VALID_MODULE_LAB_2;
+    public static final String DEADLINE_DESC_LAB_2 = " " + PREFIX_DEADLINE + VALID_DEADLINE_LAB_2;
+    public static final String INVALID_TASK_NAME_DESC = "John\nEvelyn\tTan";
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE_LONG + "Software Engineering";
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "foobar";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -117,6 +138,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -131,4 +153,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s task list.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        final String[] splitName = task.getName().fullName.split("\\s+");
+        model.updateFilteredTaskList(new TaskContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredTaskList().size());
+    }
 }

@@ -23,13 +23,17 @@ import seedu.address.model.task.Task;
  */
 public class MarkTaskCommandTest {
 
-    //should be getTypicalTaskList()
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
+
+    // To make things easier to test, task 0 will be unmarked and task 1 will be marked
+    public MarkTaskCommandTest() {
+        model.setTask(model.getFilteredTaskList().get(0), model.getFilteredTaskList().get(0).withCompletion(false));
+        model.setTask(model.getFilteredTaskList().get(1), model.getFilteredTaskList().get(1).withCompletion(true));
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Task taskToMark = model.getFilteredTaskList().get(0);
-        taskToMark.setStatus(false);
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(Index.fromZeroBased(0));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
@@ -53,7 +57,6 @@ public class MarkTaskCommandTest {
     @Test
     public void excecute_markUnmarkedTask_success() {
         Task taskToMark = model.getFilteredTaskList().get(0);
-        taskToMark.setStatus(false);
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(Index.fromZeroBased(0));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
@@ -68,8 +71,7 @@ public class MarkTaskCommandTest {
 
     @Test
     public void execute_markMarkedTask_throwsCommandException() {
-        model.getFilteredTaskList().get(0).setStatus(true);
-        MarkTaskCommand markTaskCommand = new MarkTaskCommand(Index.fromZeroBased(0));
+        MarkTaskCommand markTaskCommand = new MarkTaskCommand(Index.fromZeroBased(1));
 
         assertCommandFailure(markTaskCommand, model, MarkTaskCommand.MESSAGE_TASK_ALREADY_COMPLETED);
     }
