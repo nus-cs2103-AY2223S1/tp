@@ -34,7 +34,7 @@ public class DeleteCommandParserTest {
     public void parse_validName_returnsDeleteCommand() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Name studentNameToDelete = studentToDelete.getStudentName();
-        assertParseSuccess(parser, " n/Alice Pauline",
+        assertParseSuccess(parser, " nm/Alice Pauline",
                 new DeleteCommand(studentNameToDelete, new NamePredicate(studentNameToDelete)));
     }
 
@@ -50,7 +50,7 @@ public class DeleteCommandParserTest {
     public void parse_invalidName_throwsParseException() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Name studentNameToDelete = studentToDelete.getStudentName();
-        assertParseFailure(parser, " n/", Messages.MESSAGE_INVALID_STUDENT_NAME);
+        assertParseFailure(parser, " nm/", Messages.MESSAGE_INVALID_STUDENT_NAME);
     }
 
     @Test

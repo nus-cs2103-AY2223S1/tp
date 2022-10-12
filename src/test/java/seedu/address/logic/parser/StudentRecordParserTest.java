@@ -61,7 +61,7 @@ public class StudentRecordParserTest {
         assertEquals(new DeleteCommand(studentId, new IdPredicate(studentId)), idCommand);
 
         DeleteCommand nameCommand = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " n/" + studentName);
+                DeleteCommand.COMMAND_WORD + " nm/" + studentName);
         assertEquals(new DeleteCommand(studentName, new NamePredicate(studentName)), nameCommand);
     }
 
