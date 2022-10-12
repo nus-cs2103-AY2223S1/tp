@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,8 +27,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.UniqueCompanyList;
 import seedu.address.testutil.CompanyBuilder;
-
-
 
 class BuyCommandTest {
 
@@ -71,7 +68,6 @@ class BuyCommandTest {
         buyCommand.execute(modelStub);
         assertEquals(-10101.00, modelStub.getFilteredCompanyList().get(0).getTotalTransacted());
     }
-
 
     @Test
     public void equals() {
@@ -166,7 +162,7 @@ class BuyCommandTest {
 
         @Override
         public void setCompany(Company target, Company editedCompany) {
-
+            // method body is left empty intentionally
         }
 
         @Override
@@ -176,7 +172,7 @@ class BuyCommandTest {
 
         @Override
         public void updateFilteredCompanyList(Predicate<Company> predicate) {
-
+            // method body is left empty intentionally
         }
     }
 }

@@ -165,7 +165,7 @@ class SellCommandTest {
 
         @Override
         public void setCompany(Company target, Company editedCompany) {
-
+            // method body is left empty intentionally
         }
 
         @Override
@@ -175,7 +175,7 @@ class SellCommandTest {
 
         @Override
         public void updateFilteredCompanyList(Predicate<Company> predicate) {
-
+            // method body is left empty intentionally
         }
     }
 }

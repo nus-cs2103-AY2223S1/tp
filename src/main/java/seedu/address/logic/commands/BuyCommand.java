@@ -52,10 +52,8 @@ public class BuyCommand extends Command {
     public BuyCommand(Index index, Transaction transaction) {
         requireNonNull(index);
         requireNonNull(transaction);
-
         this.index = index;
         this.transaction = transaction;
-
     }
 
     @Override
