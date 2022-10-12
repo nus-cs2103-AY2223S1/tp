@@ -8,6 +8,8 @@ import java.time.Period;
 
 public class Age {
 
+    public static final String MESSAGE_USAGE =
+            "Age should be a non-negative integer, such as 0, 5, and 10";
     private final int age;
 
     public Age(int age) {

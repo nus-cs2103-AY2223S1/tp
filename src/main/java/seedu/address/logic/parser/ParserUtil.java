@@ -5,18 +5,24 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.ModelManager.ACCEPTABLE_DATE_FORMATS;
+import static seedu.address.model.ModelManager.PREFERRED_DATE_FORMAT;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,12 +32,26 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.AdditionalRequests;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.Price;
+import seedu.address.model.order.PriceRange;
+import seedu.address.model.order.Request;
 import seedu.address.model.person.*;
+import seedu.address.model.pet.Age;
+import seedu.address.model.pet.Color;
+import seedu.address.model.pet.ColorPattern;
+import seedu.address.model.pet.DateOfBirth;
+import seedu.address.model.pet.Height;
+import seedu.address.model.pet.PetCertificate;
+import seedu.address.model.pet.Species;
+import seedu.address.model.pet.VaccinationStatus;
+import seedu.address.model.pet.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,7 +61,6 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_PERSON_CATEGORY = PersonCategory.MESSAGE_CONSTRAINTS;
-    public static final String MESSAGE_ORDER_USAGE = AddOrderCommand.MESSAGE_USAGE;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -154,7 +173,7 @@ public class ParserUtil {
                 PREFIX_ORDER_PRICE,
                 PREFIX_ORDER_PRICE_RANGE,
                 PREFIX_ORDER_DATE)) {
-            throw new ParseException(MESSAGE_ORDER_USAGE);
+            throw new ParseException(AddOrderCommand.MESSAGE_USAGE);
         }
 
         OrderStatus orderStatus =
@@ -182,7 +201,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> orders} into a {@code Set<Order>}.
+     * Parses {@code Collection<String> orders} into a {@code List<Order>}.
      */
     public static List<Order> parseOrders(Collection<String> orders, Buyer buyer) throws ParseException {
         requireNonNull(orders);
@@ -233,9 +252,241 @@ public class ParserUtil {
                 .orElse(OrderStatus.PENDING);
     }
 
-    PREFIX_ORDER_REQUESTS,
-    PREFIX_ORDER_PRICE,
-    PREFIX_ORDER_PRICE_RANGE,
-    PREFIX_ORDER_ADDITIONAL_REQUESTS,
-    PREFIX_ORDER_DATE
+    /**
+     * Parses a {@code String request} into an {@code Request}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code request} is invalid.
+     */
+    public static Request parseRequest(String orderStatus) throws ParseException {
+        requireNonNull(orderStatus);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(orderStatus,
+                        PREFIX_PET_SPECIES,
+                        PREFIX_PET_AGE,
+                        PREFIX_PET_COLOR,
+                        PREFIX_PET_COLOR_PATTERN);
+        if (!arePrefixesPresent(argMultimap,
+                PREFIX_PET_SPECIES,
+                PREFIX_PET_AGE,
+                PREFIX_PET_COLOR,
+                PREFIX_PET_COLOR_PATTERN)) {
+            throw new ParseException(Request.MESSAGE_USAGE);
+        }
+
+        Age age = parseAge(argMultimap.getValue(PREFIX_PET_AGE).orElse(""));
+        Color color = parseColor(argMultimap.getValue(PREFIX_PET_COLOR).orElse(""));
+        ColorPattern colorPattern = parseColorPattern(argMultimap.getValue(PREFIX_PET_COLOR_PATTERN).orElse(""));
+        Species species = parseSpecies(argMultimap.getValue(PREFIX_PET_SPECIES).orElse(""));
+        return new Request(age, color, colorPattern, species);
+    }
+
+    /**
+     * Parses a {@code String price} into an {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+
+        double doublePrice;
+        try {
+            doublePrice = Double.parseDouble(trimmedPrice);
+        } catch (NumberFormatException ex) {
+            throw new ParseException(Price.MESSAGE_USAGE);
+        }
+
+        Price toReturn = new Price(doublePrice);
+        if ((!toReturn.isNotApplicablePrice()) && toReturn.compareTo(new Price(0)) < 0) {
+            throw new ParseException(Price.MESSAGE_USAGE);
+        }
+        return toReturn;
+    }
+
+    /**
+     * Parses a {@code String priceRange} into an {@code PriceRange}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code priceRange} is invalid.
+     */
+    public static PriceRange parsePriceRange(String priceRange) throws ParseException {
+        requireNonNull(priceRange);
+        String[] splitPrices = priceRange.split(PriceRange.DELIMITER);
+        if (splitPrices.length != 2) throw new ParseException(PriceRange.MESSAGE_USAGE);
+
+        Price lower = parsePrice(splitPrices[0]);
+        Price upper = parsePrice(splitPrices[1]);
+
+        if ((!upper.isNotApplicablePrice()) && upper.compareTo(lower) < 0) {
+            throw new ParseException(PriceRange.MESSAGE_USAGE);
+        }
+
+        return new PriceRange(lower, upper);
+    }
+
+    /**
+     * Parses {@code Collection<String> requests} into a {@code AdditionalRequests}.
+     */
+    public static AdditionalRequests parseAdditionalRequests(Collection<String> requests) {
+        requireNonNull(requests);
+        return new AdditionalRequests(requests);
+    }
+
+    /**
+     * Parses a {@code String date} into an {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalValueException if the given {@code date} cannot be parsed in all acceptable formats.
+     */
+    public static LocalDate parseDate(String date) throws IllegalValueException {
+        LocalDate output;
+        for (String format: ACCEPTABLE_DATE_FORMATS) {
+            try {
+                output = LocalDate.parse(date, DateTimeFormatter.ofPattern(format));
+                return output;
+            } catch (DateTimeParseException exception) {
+                //Do nothing because it will eventually throw an exception if no formats match
+            }
+        }
+        throw new IllegalValueException("The date should be in this format: " + PREFERRED_DATE_FORMAT);
+    }
+
+    /**
+     * Parses a {@code String age} into an {@code Age}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code age} is invalid.
+     */
+    public static Age parseAge(String age) throws ParseException {
+        requireNonNull(age);
+        int intAge;
+        try {
+            intAge = Integer.parseInt(age);
+        } catch (NumberFormatException ex) {
+            throw new ParseException(Age.MESSAGE_USAGE);
+        }
+        return new Age(intAge);
+    }
+
+    /**
+     * Parses a {@code String color} into an {@code Color}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Color parseColor(String color) {
+        requireNonNull(color);
+        String trimmedColor = color.trim();
+        return new Color(trimmedColor);
+    }
+
+    /**
+     * Parses a {@code String colorPattern} into an {@code ColorcolorPattern}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ColorPattern parseColorPattern(String colorPattern) {
+        requireNonNull(colorPattern);
+        String trimmedColorPattern = colorPattern.trim();
+        return new ColorPattern(trimmedColorPattern);
+    }
+
+    /**
+     * Parses a {@code String species} into an {@code species}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Species parseSpecies(String species) {
+        requireNonNull(species);
+        String trimmedSpecies = species.trim();
+        return new Species(trimmedSpecies);
+    }
+
+    /**
+     * Parses a {@code String birthday} into an {@code DateOfBirth}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalValueException if the given {@code birthday} cannot be parsed in all acceptable formats.
+     */
+    public static DateOfBirth parseDateOfBirth(String date) throws IllegalValueException {
+        LocalDate output;
+        for (String format: ACCEPTABLE_DATE_FORMATS) {
+            try {
+                output = LocalDate.parse(date, DateTimeFormatter.ofPattern(format));
+                return new DateOfBirth(output);
+            } catch (DateTimeParseException exception) {
+                //Do nothing because it will eventually throw an exception if no formats match
+            }
+        }
+        throw new IllegalValueException(DateOfBirth.MESSAGE_USAGE);
+    }
+
+    /**
+     * Parses a {@code String height} into an {@code Height}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code height} is invalid.
+     */
+    public static Height parseHeight(String height) throws ParseException {
+        requireNonNull(height);
+
+        double doubleHeight;
+        try {
+            doubleHeight = Double.parseDouble(height);
+        } catch (NumberFormatException ex) {
+            throw new ParseException(Height.MESSAGE_USAGE);
+        }
+        if (doubleHeight < 0) {
+            throw new ParseException(Height.MESSAGE_USAGE);
+        }
+
+        return new Height(doubleHeight);
+    }
+
+    /**
+     * Parses a {@code String petCertificate} into an {@code PetCertificate}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static PetCertificate parsePetCertificate(String certificate) {
+        requireNonNull(certificate);
+        String trimmedCertificate = certificate.trim();
+        return new PetCertificate(trimmedCertificate);
+    }
+
+    /**
+     * Parses a {@code String vaccinationStatus} into an {@code VaccinationStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weight} is invalid.
+     */
+    public static VaccinationStatus parseVaccinationStatus(String vaccinationStatus) throws ParseException {
+        requireNonNull(vaccinationStatus);
+        if ("true".equals(vaccinationStatus)) {
+            return new VaccinationStatus(true);
+        } else if ("false".equals(vaccinationStatus)) {
+            return new VaccinationStatus(false);
+        } else {
+            throw new ParseException(VaccinationStatus.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Parses a {@code String weight} into an {@code Weight}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weight} is invalid.
+     */
+    public static Weight parseWeight(String weight) throws ParseException {
+        requireNonNull(weight);
+
+        double doubleWeight;
+        try {
+            doubleWeight = Double.parseDouble(weight);
+        } catch (NumberFormatException ex) {
+            throw new ParseException(Weight.MESSAGE_USAGE);
+        }
+        if (doubleWeight < 0) {
+            throw new ParseException(Weight.MESSAGE_USAGE);
+        }
+
+        return new Weight(doubleWeight);
+    }
 }
