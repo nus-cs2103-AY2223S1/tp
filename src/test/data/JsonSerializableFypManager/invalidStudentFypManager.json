@@ -1,8 +1,8 @@
 {
   "students": [ {
     "name": "Hans Muster",
-    "phone": "A1482424H",
+    "studentId": "A1482424H",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "projectName": "fluid mechanicS"
   } ]
 }

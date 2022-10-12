@@ -8,6 +8,7 @@ import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
+import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
@@ -73,10 +74,10 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Project} of the {@code EditStudentDescriptor} that we are building.
+     * Sets the {@code ProjectName} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withProjectName(String projectName) {
-        descriptor.setProjectName(projectName);
+        descriptor.setProjectName(new ProjectName(projectName));
         return this;
     }
 
