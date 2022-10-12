@@ -61,6 +61,9 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withModule("cs2100").withYear("4").withStudentId("A0965302K")
             .withAddress("chicago ave").build();
+    public static final Person JACKSON = new PersonBuilder().withName("Jackson Tan").withPhone("98765432")
+            .withEmail("jackson@example.com").withModule("cs2105").withYear("2").withStudentId("A2345678Y")
+            .withAddress("Kent Ridge").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
