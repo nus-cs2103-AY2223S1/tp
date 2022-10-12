@@ -350,15 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * a1. MassLinkers updates the storage file.
       \
       Use case ends.
-
-<<<<<<< HEAD
-=======
-
-* 2a. The list is empty.
-\
-Use case ends.
-
->>>>>>> 8050db7c092d22b0767d27a660bf4b9d337e9ee1
+    
 **Use case 4: Add a tag to a batchmate**
 
 **MSS**
