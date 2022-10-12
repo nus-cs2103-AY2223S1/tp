@@ -10,12 +10,11 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be either breakfast, lunch or dinner";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String BREAKFAST_REGEX = "\\s*((?i)breakfast)\\s*";
+    public static final String LUNCH_REGEX = "\\s*((?i)lunch)\\s*";
+    public static final String DINNER_REGEX = "\\s*((?i)dinner)\\s*";
 
     public final String tagName;
-    private enum Tags {
-        BREAKFAST, LUNCH, DINNER
-    }
 
     /**
      * Constructs a {@code Tag}.
@@ -32,11 +31,10 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        // return test.matches(VALIDATION_REGEX);
-        String trimmed = test.trim();
-        boolean isValidTag = trimmed.equalsIgnoreCase("breakfast")
-                || trimmed.equalsIgnoreCase("lunch")
-                || trimmed.equalsIgnoreCase("dinner");
+        boolean isValidTag = test.matches(BREAKFAST_REGEX)
+                || test.matches(LUNCH_REGEX)
+                || test.matches(DINNER_REGEX);
+
         return isValidTag;
     }
 
@@ -59,6 +57,13 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    /**
+     * Test if the tag name can be edited
+     * Since a new tag is created if the user wants to edit a tag, the tag name should
+     * be final and the user should not be able to modify it
+     * @param editedName New tag name
+     * @throws UnsupportedOperationException as the tag name is not modifiable
+     */
     public void edit(String editedName) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
