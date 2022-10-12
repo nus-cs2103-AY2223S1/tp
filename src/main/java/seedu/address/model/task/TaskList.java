@@ -30,6 +30,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Returns true if the list contains an equivalent task as the given argument.
+     *
      * @param toCheck Task to check against
      * @return true if the list contains an equivalent task as the given argument
      */
@@ -41,6 +42,7 @@ public class TaskList implements Iterable<Task> {
     /**
      * Adds a task to the list.
      * The task must not already exist in the list.
+     *
      * @param toAdd Task to be added to the list
      */
     public void add(Task toAdd) {
@@ -54,6 +56,7 @@ public class TaskList implements Iterable<Task> {
     /**
      * Removes the equivalent task from the list.
      * The task must exist in the list.
+     *
      * @param toDelete Task to be deleted from the list
      */
     public void delete(Task toDelete) {
@@ -67,7 +70,8 @@ public class TaskList implements Iterable<Task> {
      * Replaces the task {@code toEdit} in the list with {@code editedTask}.
      * {@code toEdit} must exist in the list.
      * The task fields of {@code editedTask} must not be the same as another existing task in the list.
-     * @param toEdit Task to be replaced by the task {@code editedTask}
+     *
+     * @param toEdit     Task to be replaced by the task {@code editedTask}
      * @param editedTask Task to replace the task {@code toEdit}
      */
     public void edit(Task toEdit, Task editedTask) {
@@ -88,6 +92,7 @@ public class TaskList implements Iterable<Task> {
     /**
      * Returns a Task from the list which corresponds with {@code toFind}.
      * {@code toFind} must exist in the list.
+     *
      * @param toFind the Task to find in the list
      * @return a Task from the list which corresponds with {@code toFind}
      */
@@ -136,6 +141,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Filters the task list based on the given Priority {@code toFilter}.
+     *
      * @param toFilter Priority to filter the task list by
      */
     public void filter(Priority toFilter) {
@@ -146,6 +152,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Filters the task list based on the given Category {@code toFilter}.
+     *
      * @param toFilter Category to filter the task list by
      */
     public void filter(TaskCategory toFilter) {
@@ -156,6 +163,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Filters the task list based on the given Deadline {@code toFilter}.
+     *
      * @param toFilter Deadline to filter the task list by
      */
     public void filter(TaskDeadline toFilter) {
@@ -166,6 +174,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Filters the task list based on the given assigned Person {@code toFilter}.
+     *
      * @param toFilter Person to filter the task list by
      */
     public void filter(Person toFilter) {
@@ -176,6 +185,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Filters the task list based on the given Status {@code toFilter}.
+     *
      * @param toFilter Status to filter the task list by
      */
     public void filter(boolean toFilter) {
@@ -192,6 +202,7 @@ public class TaskList implements Iterable<Task> {
     /**
      * Replaces the contents of this list with {@code tasks}.
      * {@code tasks} must not contain duplicate tasks.
+     *
      * @param tasks new list of tasks to replace the current list of tasks
      */
     public void setTasks(List<Task> tasks) {
@@ -205,6 +216,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
      * @return the backing list as an unmodifiable {@code ObservableList}
      */
     public ObservableList<Task> asUnmodifiableObservableList() {
@@ -228,6 +240,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Returns true if {@code tasks} contains only unique tasks.
+     *
      * @param tasks List of tasks to check
      * @return true if {@code tasks} contains only unique tasks.
      */
@@ -240,5 +253,14 @@ public class TaskList implements Iterable<Task> {
             }
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        for (Task t : internalList) {
+            str.append("\n" + t);
+        }
+        return str.toString();
     }
 }

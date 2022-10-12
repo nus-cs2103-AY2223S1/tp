@@ -7,10 +7,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
+import java.util.List;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 /**
@@ -19,40 +23,47 @@ import seedu.address.model.task.Task;
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addTask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. \n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_PRIORITY + "PRIORITY "
-            + PREFIX_CATEGORY + "CATEGORY "
-            + PREFIX_DEADLINE + "DEADLINE"
-            + PREFIX_PERSON + "PERSON "
-            + PREFIX_STATUS + "STATUS...\n"
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_PRIORITY + "PRIORITY (low/medium/high)] "
+            + "[" + PREFIX_CATEGORY + "CATEGORY (database/frontend/backend/uiux/presentation/others)] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_PERSON + "PERSON INDEX (must be a positive integer)]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Create Initial UI/UX Design"
-            + PREFIX_DESCRIPTION + "Use FIGMA to create initial UI/UX Design"
-            + PREFIX_PRIORITY + "Medium"
-            + PREFIX_CATEGORY + "UI/UX"
-            + PREFIX_DEADLINE + "2022-01-01"
-            + PREFIX_PERSON + "Bob"
-            + PREFIX_STATUS + "Not Done\n";
+            + PREFIX_NAME + "Create Initial UIUX Design "
+            + PREFIX_DESCRIPTION + "Use FIGMA to create initial UIUX Design "
+            + PREFIX_PRIORITY + "medium "
+            + PREFIX_CATEGORY + "uiux "
+            + PREFIX_DEADLINE + "2022-01-01 "
+            + PREFIX_PERSON + "1 ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
 
     private final Task toAdd;
+    private final Index personIndex;
 
     /**
      * Creates an AddTaskCommand to add the specified {@code Task}
      */
-    public AddTaskCommand(Task task) {
+    public AddTaskCommand(Task task, Index personIndex) {
         requireNonNull(task);
         toAdd = task;
+        this.personIndex = personIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (personIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+        Person person = lastShownList.get(personIndex.getZeroBased());
+        toAdd.assignPerson(person);
 
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
