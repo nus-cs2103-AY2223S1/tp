@@ -87,8 +87,6 @@ public class FindCommand extends Command {
                 return this.tutorPredicate.equals(otherFind.tutorPredicate);
             } else if (this.classPredicate != null || otherFind.classPredicate != null) {
                 return this.classPredicate.equals(otherFind.classPredicate);
-            } else if (this.personPredicate != null || otherFind.personPredicate != null) {
-                return this.personPredicate.equals(otherFind.personPredicate);
             } else {
                 return this.keywords.equals(otherFind.keywords);
             }

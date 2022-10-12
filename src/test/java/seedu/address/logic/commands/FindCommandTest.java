@@ -53,7 +53,7 @@ public class FindCommandTest {
     private Model expectedTuitionClassModel = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
 
     @Test
-    public void equals() throws CommandException {
+    public void equalsForStudentListType() throws CommandException {
         List<String> firstKeywords = Collections.singletonList("first");
         List<String> secondKeywords = Collections.singletonList("second");
 
@@ -63,7 +63,76 @@ public class FindCommandTest {
         // unexecuted FindCommand -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
+        // FindCommand test for Student List
         model.updateCurrentListType(Model.ListType.STUDENT_LIST);
+        findFirstCommand.execute(model);
+        findSecondCommand.execute(model);
+
+        // same object -> returns true
+        assertTrue(findFirstCommand.equals(findFirstCommand));
+
+        // same values -> returns true
+        FindCommand findFirstCommandCopy = new FindCommand(firstKeywords);
+        findFirstCommandCopy.execute(model);
+        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(findFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(findFirstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(findFirstCommand.equals(findSecondCommand));
+    }
+
+    @Test
+    public void equalsForTutorListType() throws CommandException {
+        List<String> firstKeywords = Collections.singletonList("first");
+        List<String> secondKeywords = Collections.singletonList("second");
+
+        FindCommand findFirstCommand = new FindCommand(firstKeywords);
+        FindCommand findSecondCommand = new FindCommand(secondKeywords);
+
+        // unexecuted FindCommand -> returns true
+        assertTrue(findFirstCommand.equals(findFirstCommand));
+
+        // FindCommand test for Student List
+        model.updateCurrentListType(Model.ListType.TUTOR_LIST);
+        findFirstCommand.execute(model);
+        findSecondCommand.execute(model);
+
+        // same object -> returns true
+        assertTrue(findFirstCommand.equals(findFirstCommand));
+
+        // same values -> returns true
+        FindCommand findFirstCommandCopy = new FindCommand(firstKeywords);
+        findFirstCommandCopy.execute(model);
+        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(findFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(findFirstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(findFirstCommand.equals(findSecondCommand));
+    }
+
+    @Test
+    public void equalsForTuitionClassListType() throws CommandException {
+        List<String> firstKeywords = Collections.singletonList("first");
+        List<String> secondKeywords = Collections.singletonList("second");
+
+        FindCommand findFirstCommand = new FindCommand(firstKeywords);
+        FindCommand findSecondCommand = new FindCommand(secondKeywords);
+
+        // unexecuted FindCommand -> returns true
+        assertTrue(findFirstCommand.equals(findFirstCommand));
+
+        // FindCommand test for Student List
+        model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         findFirstCommand.execute(model);
         findSecondCommand.execute(model);
 
