@@ -38,8 +38,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private MeetingListPanel meetingListPanel;
-    private MeetingDetailedViewPanel meetingDetailedViewPanel;
     private ClientDetailedViewPanel clientDetailedViewPanel;
+    private MeetingDetailedViewPanel meetingDetailedViewPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -129,6 +129,8 @@ public class MainWindow extends UiPart<Stage> {
         // However, we will start with clientListPanel.
 
         meetingDetailedViewPanel = new MeetingDetailedViewPanel(logic.getDetailedMeetingList());
+        clientDetailedViewPanel = new ClientDetailedViewPanel(logic.getDetailedClientList());
+
         clientDetailedViewPanel = new ClientDetailedViewPanel(logic.getDetailedClientList());
 
         resultDisplay = new ResultDisplay();

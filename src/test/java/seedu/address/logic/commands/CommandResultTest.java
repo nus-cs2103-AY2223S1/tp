@@ -60,20 +60,21 @@ public class CommandResultTest {
     }
 
     @Test
-    public void isShowHelp_listMeetingCommandExecute_false() {
+    public void isShowHelp_showHelpFalse_false() {
         CommandResult cr = new CommandResult("", false, false);
         assertFalse(cr.isShowHelp());
     }
 
     @Test
-    public void isExit_exitCommandExecute_true() {
+    public void isExit_exitTrue_true() {
         CommandResult cr = new CommandResult("", false, true);
         assertTrue(cr.isExit());
     }
 
     @Test
-    public void isExit_exitCommandExecute_false() {
+    public void isExit_exitFalse_false() {
         CommandResult cr = new CommandResult("", false, false);
         assertFalse(cr.isExit());
     }
+
 }

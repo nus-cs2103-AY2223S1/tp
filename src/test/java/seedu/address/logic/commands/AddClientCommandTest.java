@@ -171,22 +171,22 @@ public class AddClientCommandTest {
         }
 
         @Override
-        public ObservableList<Meeting> getDetailedMeetingList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setDetailedMeeting(Meeting meeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Client> getDetailedClientList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setDetailedClient(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meeting> getDetailedMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDetailedMeeting(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }
 

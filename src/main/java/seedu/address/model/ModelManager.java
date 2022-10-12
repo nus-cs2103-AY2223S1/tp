@@ -43,7 +43,6 @@ public class ModelManager implements Model {
 
         detailedMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
         detailedClients = new FilteredList<>(this.myInsuRec.getClientList());
-        this.setDetailedMeeting(null);
     }
 
     public ModelManager() {

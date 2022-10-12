@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
 
 /**
- * Panel containing the list of clients.
+ * Panel containing the detailed view of a single client.
  */
 public class ClientDetailedViewPanel extends UiPart<Region> {
     private static final String FXML = "ClientDetailedViewPanel.fxml";
@@ -21,7 +21,7 @@ public class ClientDetailedViewPanel extends UiPart<Region> {
     private ListView<Client> detailedClientListView;
 
     /**
-     * Creates a {@code MeetingListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ClientDetailedViewPanel} with the given {@code ObservableList}.
      */
     public ClientDetailedViewPanel(ObservableList<Client> detailedClientList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class ClientDetailedViewPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Meeting} using a {@code MeetingDetailedView}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Client} using a {@code ClientDetailedView}.
      */
     class ClientDetailedViewCell extends ListCell<Client> {
         @Override

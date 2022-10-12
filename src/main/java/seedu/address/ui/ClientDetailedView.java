@@ -14,7 +14,9 @@ import seedu.address.model.client.Client;
  */
 public class ClientDetailedView extends UiPart<Region> {
     private static final String FXML = "ClientDetailedView.fxml";
+
     public final Client client;
+
     private final Logger logger = LogsCenter.getLogger(ClientDetailedView.class);
 
     @FXML
