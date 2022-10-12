@@ -7,11 +7,11 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
 
 - [`Quick start`](#quick-start)
 - [`Features`](#features)
-  - Adding a person: [`adduser`](#adding-a-person-adduser)
-  - Listing all persons: [`list`](#listing-all-persons--list)
-  - Edit a person: [`edituser`](#editing-a-person--edituser)
-  - Locating persons by name: [`finduser`](#locating-persons-by-name-finduser)
-  - Deleting a person : [`deleteuser`](#deleting-a-person--deleteuser)
+  - Adding a person: [`addpeson`](#adding-a-person-adduser)
+  - Listing all persons: [`listpersons`](#listing-all-persons--list)
+  - Edit a person: [`editperson`](#editing-a-person--edituser)
+  - Locating persons by name: [`findperson`](#locating-persons-by-name-finduser)
+  - Deleting a person : [`deleteperson`](#deleting-a-person--deleteuser)
   - Adding a group: [`addgroup`](#creating-a-group--addgroup)
   - Add member to  group: [`addmember`](#adding-a-member--addmember)
   - Assign member a task: [`assigntask`](#assigning-a-task-to-a-person-assigntask)
@@ -45,7 +45,7 @@ Note how the app contains some sample data.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `adduser n/NAME`, `NAME` is a parameter which can be used as `adduser n/John Doe`.
+  e.g. in `addperson n/NAME`, `NAME` is a parameter which can be used as `addperson n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -59,36 +59,36 @@ Note how the app contains some sample data.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+* Extraneous parameters for commands that do not take in parameters (such as `listpersons`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `listpersons 123`, it will be interpreted as `listpersons`.
 
 </div>
 
-### Adding a person: `adduser`
+### Adding a person: `addperson`
 
 Adds a person to the address book.
 
-Format: `adduser n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addperson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb:
 <b>Tip:</b> A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `adduser n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `adduser n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addperson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addperson n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all persons : `listpersons`
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+Format: `listpersons`
 
-### Editing a person : `edituser`
+### Editing a person : `editperson`
 
 Edits an existing person in the address book.
 
-Format: `edituser NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editperson NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person with the specified `NAME`. The person with this `NAME` must already exist in the app.
 * At least one of the optional fields must be provided.
@@ -98,14 +98,14 @@ Format: `edituser NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edituser John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of `John Doe` to be `91234567` and `johndoe@example.com` respectively.
-*  `edituser BetsyCrower n/Betsy Crower t/` Edits the name of `BetsyCrower` to be `Betsy Crower` and clears all existing tags.
+*  `editperson John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of `John Doe` to be `91234567` and `johndoe@example.com` respectively.
+*  `editperson BetsyCrower n/Betsy Crower t/` Edits the name of `BetsyCrower` to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `finduser`
+### Locating persons by name: `findperson`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `finduser KEYWORD [MORE_KEYWORDS]`
+Format: `findperson KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -115,23 +115,23 @@ Format: `finduser KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `finduser John` returns `john` and `John Doe`
-* `finduser alex david` returns `Alex Yeoh`, `David Li`
+* `findperson John` returns `john` and `John Doe`
+* `findperson alex david` returns `Alex Yeoh`, `David Li`
 <br>
 <br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `deleteuser`
+### Deleting a person : `deleteperson`
 
 Deletes the specified person from the address book.
 
-Format: `deleteuser NAME`
+Format: `deleteperson NAME`
 
 * Deletes the person with the specified `NAME`. The person with this `NAME` must already exist in the app.
 
 Examples:
-* `deleteuser Betsy` deletes the person with the username `Betsy`.
-* `deleteuser Betsy Hoover` deletes the person with the username `Betsy Hoover`.
+* `deleteperson Betsy` deletes the person with the username `Betsy`.
+* `deleteperson Betsy Hoover` deletes the person with the username `Betsy Hoover`.
 
 ### Creating a group : `addgroup`
 

@@ -27,7 +27,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditUserByNameCommand;
+import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FullNamePredicate;
@@ -36,14 +36,14 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.testutil.EditPersonDescriptorBuilder;
 import seedu.address.model.tag.Tag;
 
-public class EditByNameCommandParserTest {
+public class EditPersonParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditByNameCommandParser parser = new EditByNameCommandParser();
+    private EditPersonParser parser = new EditPersonParser();
 
 
     @Test
@@ -54,7 +54,7 @@ public class EditByNameCommandParserTest {
         EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        EditUserByNameCommand expectedCommand = new EditUserByNameCommand(new FullNamePredicate(VALID_NAME_BOB),
+        EditPersonCommand expectedCommand = new EditPersonCommand(new FullNamePredicate(VALID_NAME_BOB),
                 descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -103,7 +103,7 @@ public class EditByNameCommandParserTest {
 
         EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
-        EditUserByNameCommand expectedCommand = new EditUserByNameCommand(new FullNamePredicate(VALID_NAME_BOB),
+        EditPersonCommand expectedCommand = new EditPersonCommand(new FullNamePredicate(VALID_NAME_BOB),
                 descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
