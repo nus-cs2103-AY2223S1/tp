@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
+
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+
 
 import java.util.List;
 
@@ -45,9 +47,8 @@ public class BuyCommand extends Command {
     private final Transaction transaction;
 
 
-
     /**
-     * @param index       of the company in the company list to add the POC to
+     * @param index of the company in the company list to add the POC to
      * @param transaction to be added
      */
     public BuyCommand(Index index, Transaction transaction) {
@@ -86,3 +87,4 @@ public class BuyCommand extends Command {
     }
 
 }
+

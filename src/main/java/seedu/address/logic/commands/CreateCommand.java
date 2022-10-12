@@ -26,7 +26,7 @@ public class CreateCommand extends Command {
     //Update here
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a Point-Of-Contact and links to Company. "
             + "Parameters: "
-            + "Index "
+            + "INDEX (must be a positive integer) "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "HP "
             + PREFIX_EMAIL + "EMAIL "

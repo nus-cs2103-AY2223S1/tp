@@ -12,7 +12,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 * [Features](#features)
   * [Adding a company: `add`](#adding-a-company-add)
   * [Clearing all entries: `clear`](#clearing-all-entries--clear)
-  * [Creating a point-of-contact: `create`](#creating-a-point-of-contact-create)
+  * [Creating a point-of-contact: `create`](#creating-a-person-create)
   * [Deleting a company: `delete`](#deleting-a-company--delete)
   * [Editing a company: `edit`](#editing-a-company--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
@@ -20,7 +20,8 @@ interactions recorded faster and simpler than traditional GUI applications.
   * [Listing all companies: `list`](#listing-all-companies--list)
   * [Locating companies by name: `find`](#locating-companies-by-name-find)
   * [Viewing help: `help`](#viewing-help--help)
-  * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user-guide)
+  * [Viewing a company: `view`](#viewing-a-company--view)
+  * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
   * [Sorting the address book: `sort`](#sorting-the-address-book-sort)
   * [Creating a transaction: `transaction`](#creating-a-transaction-transaction)
   * [Saving the data](#saving-the-data)
@@ -47,13 +48,13 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`list`** : Lists all companies.
 
-   * **`create`**`n/James coy/MacDonalds p/98765432 e/jamesho@example.com` : Creates a point-of-contact named `James` linked to the Company `MacDonalds`.
+   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainPoc t/owesMoney` : Creates a point-of-contact named `James` linked to the company at index 2.
 
-   * **`delete`**`coy/MacDonalds` : Deletes MacDonalds (Company) together with all their contacts in the current list.
+   * **`delete`**`delete 1` : Deletes the company at the first index together with all their contacts and transactions in the current list.
 
-   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (point-of-contact, Transactions).
+   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (point-of-contact, transactions).
 
-  * **`clear`** : Deletes all companies and points of contact.
+  * **`clear`** : Deletes all companies with all their contacts and transactions.
 
   * **`exit`** : Exits the app.
 
@@ -91,13 +92,15 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 Adds an empty company to the list without any POC (Point-Of-Contact) and transactions.
 
-Format: `add n/NAME a/ADDRESS`
+Format: `add n/NAME a/ADDRESS [t/TAG]...`
 
+* Tags are optional.
+* Multiple tags can be tagged to the company.
 * Use `create` command to add POC to the company.
 
 Examples:
 * `add n/MacDonalds a/West Coast Park`
-* `add n/KFC a/Yishun Street 81`
+* `add n/KFC a/Yishun Street 81 t/FriedChicken`
 
 ### Clearing all entries : `clear`
 
@@ -116,10 +119,16 @@ Example:
 
 Creates a new person (point-of-contact) for a specific company.
 
-Format: `create n/NAME coy/COMPANY_NAME p/NUMBER e/EMAIL`
+Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]...`
+
+* Tags are optional.
+* Multiple tags can be tagged to the point-of-contact.
+* The index refers to the index number shown in the displayed company list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `create n/James coy/MCDONALDS p/82692192 e/JamesSho@example.com` adds James as a point-of-contact for MCDONALDS.
+* `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a point-of-contact for the company at index 1.
+* `create 5 n/John p/95692192 e/John123@ColdStorage.com t/Manager t/MainPoc` tags can also be added.
 
 ### Deleting a company : `delete`
 
@@ -200,6 +209,16 @@ Examples:
 * `find Mac` returns `MacDonald`
 * `find fairprice` returns `NTUC Fairprice` <br>
 
+### Viewing a company : `view`
+
+`view` displays the points of contact and transaction log of the specified company.
+
+Format: `view INDEX`
+
+* Views the company at the specified `INDEX`.
+* The index refers to the index number shown in the displayed company list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
 ### Sorting the address book: `sort`
 
 Coming soon.
@@ -243,6 +262,7 @@ _Details coming soon ..._
 
 ## Command summary
 
+<<<<<<< HEAD
 | Action         | Format, Examples                                                                                                           |
 |----------------|----------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add n/COMPANY a/ADDRESS`<br> e.g., `add n/KFC a/Yishun Street 81`                                                         |
@@ -259,4 +279,22 @@ _Details coming soon ..._
 | **Buy**        | `buy INDEX g/GOODS q/QUANTITY price/PRICE` <br/> e.g `buy 2 g/apples q/100 price/1.5`                                      |
 | **Sell**       | `sell INDEX g/GOODS q/QUANTITY price/PRICE` <br/> e.g `sell 2 g/apples q/100 price/1.5`                                    |
 | **User Guide** | `user_guide`                                                                                                               |
+=======
+| Action          | Format, Examples                                                                                                                                                                                                                                                           |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/COMPANY a/ADDRESS [t/TAG] `<br> e.g., `add n/KFC a/Yishun Street 81 t/FavouriteFood`                                                                                                                                                                                |
+| **Clear**       | `clear` followed by `confirm`                                                                                                                                                                                                                                              |
+ | **Create**      | `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]`<br> e.g., `create 1 n/James p/82692192 e/JamesSho@example.com t/MainPoc`                                                                                                                                                    |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                        |
+| **Edit**        | Coming Soon                                                                                                                                                                                                                                                                |
+| **Exit**        | `exit`                                                                                                                                                                                                                                                                     |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                                                                                                                                                                 |
+| **Filter**      | Coming Soon                                                                                                                                                                                                                                                                |
+| **List**        | `list`                                                                                                                                                                                                                                                                     |
+| **Help**        | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                                                                                                                                   |
+| **View**        | `view INDEX`<br> e.g., `view 3`                                                                                                                                                                                                                                            |
+| **Sort**        | Coming Soon                                                                                                                                                                                                                                                                |
+| **Transaction** | `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/BUY` <br/> e.g `transaction coy/McDonalds g/apples q/100 pr/1.5 d/buy` <br/> `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/SELL` <br/> e.g. `transaction coy/KFC g/Chickens q/50 pr/2.55 d/SELL` |
+| **User Guide**  | `user_guide`                                                                                                                                                                                                                                                               |
+>>>>>>> 78b6ac43588d9cbbfef5505a01a268dd1c451564
 

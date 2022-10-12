@@ -38,6 +38,13 @@ public class CommandTestUtil {
     public static final String VALID_CREATE_BOB = "BOB KFC 98881231 test2@test.com";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_GOODS_BUY_ORANGE = "orange";
+    public static final String VALID_GOODS_SELL_PAPAYA = "papaya";
+    public static final String VALID_PRICE_BUY_ORANGE = "1";
+    public static final String VALID_PRICE_SELL_PAPAYA = "2.5";
+    public static final String VALID_QUANTITY_BUY_ORANGE = "10101";
+    public static final String VALID_QUANTITY_SELL_PAPAYA = "11";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -49,7 +56,6 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags

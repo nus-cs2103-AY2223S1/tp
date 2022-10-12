@@ -46,6 +46,7 @@ public class Company implements ReadOnlyCompany {
      * @param address address of company.
      * @param tags tags of company.
      * @param pocs list of unique pocs.
+     * @param transactions list of transactions.
      */
     public Company(Name name, Address address, Set<Tag> tags, UniquePocList pocs, TransactionLog transactions) {
         requireAllNonNull(name, address, tags, pocs);
@@ -98,6 +99,10 @@ public class Company implements ReadOnlyCompany {
     public boolean hasPoc(Poc poc) {
         requireNonNull(poc);
         return pocs.contains(poc);
+    }
+
+    public double getTotalTransacted() {
+        return transactions.calculateNetTransacted();
     }
 
     /**
@@ -176,8 +181,6 @@ public class Company implements ReadOnlyCompany {
             System.out.println(transactions.calculateNetTransacted());
             builder.append("; Total transactions: $").append(transactions.calculateNetTransacted());
         }
-
-
         return builder.toString();
     }
 
