@@ -14,6 +14,8 @@ import seedu.address.model.issue.Issue;
  */
 public class Project {
 
+    //todo: refine message
+    public static final String MESSAGE_INVALID = "Project does not exist.";
     // Components of a project
     private Name name;
     private Repository repository;
@@ -21,9 +23,6 @@ public class Project {
     private Client client;
     private ProjectId projectId;
     private List<Issue> issueList;
-
-    //todo: refine message
-    public static final String MESSAGE_INVALID = "Project does not exist.";
 
     /**
      * Name field must be present and not null and other fields may be optional.

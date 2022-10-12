@@ -25,7 +25,7 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
  */
 public class UniqueProjectList implements Iterable<Project> {
 
-    private final static ObservableList<Project> internalList = FXCollections.observableArrayList();
+    private static final ObservableList<Project> internalList = FXCollections.observableArrayList();
     private final ObservableList<Project> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 

@@ -3,9 +3,9 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,6 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
-import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.project.Project;
 
 /**
