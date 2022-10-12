@@ -23,15 +23,18 @@ public class CliSyntax {
     public static final Prefix PREFIX_ORDER_ADDITIONAL_REQUESTS = new Prefix("o_ar/");
     public static final Prefix PREFIX_ORDER_DATE = new Prefix("o_d/");
     public static final Prefix PREFIX_ORDER_PET = new Prefix("o_pt/");
+    public static final Prefix PREFIX_ORDER_AGE = new Prefix("o_a/");
 
     // Prefixes for pets
+    public static final Prefix PREFIX_PET_OWNER = new Prefix("p_o/");
+    public static final Prefix PREFIX_PET_NAME = new Prefix("p_n/");
     public static final Prefix PREFIX_PET_DATE_OF_BIRTH = new Prefix("p_d/");
-    public static final Prefix PREFIX_PET_AGE = new Prefix("p_a/");
     public static final Prefix PREFIX_PET_COLOR = new Prefix("p_c/");
     public static final Prefix PREFIX_PET_COLOR_PATTERN = new Prefix("p_cp/");
     public static final Prefix PREFIX_PET_HEIGHT = new Prefix("p_h/");
     public static final Prefix PREFIX_PET_CERTIFICATE = new Prefix("p_cert/");
+    public static final Prefix PREFIX_PET_TAG = new Prefix("p_t/");
     public static final Prefix PREFIX_PET_SPECIES = new Prefix("p_s/");
     public static final Prefix PREFIX_PET_VACCINATION_STATUS = new Prefix("p_v/");
-    public static final Prefix PREFIX_PET_VACCINATION_WEIGHT = new Prefix("p_w/");
+    public static final Prefix PREFIX_PET_WEIGHT = new Prefix("p_w/");
 }

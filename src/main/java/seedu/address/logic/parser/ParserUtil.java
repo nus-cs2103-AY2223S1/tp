@@ -2,21 +2,25 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_CERTIFICATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_DATE_OF_BIRTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_HEIGHT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_OWNER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_WEIGHT;
 import static seedu.address.model.ModelManager.ACCEPTABLE_DATE_FORMATS;
 import static seedu.address.model.ModelManager.PREFERRED_DATE_FORMAT;
 
@@ -35,6 +39,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddOrderCommand;
+import seedu.address.logic.commands.AddPetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.AdditionalRequests;
 import seedu.address.model.order.Order;
@@ -48,6 +53,7 @@ import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.DateOfBirth;
 import seedu.address.model.pet.Height;
+import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.PetCertificate;
 import seedu.address.model.pet.Species;
 import seedu.address.model.pet.VaccinationStatus;
@@ -156,11 +162,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code orderString} is invalid.
      */
-    public static Order parseOrder(String orderString, Buyer buyer) throws IllegalValueException {
+    public static Order parseOrder(String orderString, Buyer buyer) throws ParseException {
         requireNonNull(orderString);
         String trimmedOrderString = orderString.trim();
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(orderString,
+                ArgumentTokenizer.tokenize(trimmedOrderString,
+                        PREFIX_ORDER_PET,
                         PREFIX_ORDER_STATUS,
                         PREFIX_ORDER_REQUESTS,
                         PREFIX_ORDER_PRICE,
@@ -184,7 +191,12 @@ public class ParserUtil {
         Price price = parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).orElse(""));
         OrderStatus orderStatus = parseOrderStatus(argMultimap.getValue(PREFIX_ORDER_STATUS).orElse(""));
 
-        return new Order(buyer, priceRange, request, additionalRequests, byDate, price, orderStatus);
+        Pet pet = null;
+        if (argMultimap.getValue(PREFIX_ORDER_PET).isPresent()) {
+            pet = parsePet(argMultimap.getValue(PREFIX_ORDER_PET).orElse(""));
+        }
+
+        return new Order(pet, buyer, priceRange, request, additionalRequests, byDate, price, orderStatus);
     }
 
     /**
@@ -202,7 +214,7 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> orders} into a {@code List<Order>}.
      */
-    public static List<Order> parseOrders(Collection<String> orders, Buyer buyer) throws IllegalValueException {
+    public static List<Order> parseOrders(Collection<String> orders, Buyer buyer) throws ParseException {
         requireNonNull(orders);
         final List<Order> orderList = new ArrayList<>();
         for (String order : orders) {
@@ -257,27 +269,94 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code request} is invalid.
      */
-    public static Request parseRequest(String orderStatus) throws ParseException {
-        requireNonNull(orderStatus);
+    public static Request parseRequest(String request) throws ParseException {
+        requireNonNull(request);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(orderStatus,
+                ArgumentTokenizer.tokenize(request,
                         PREFIX_PET_SPECIES,
-                        PREFIX_PET_AGE,
+                        PREFIX_ORDER_AGE,
                         PREFIX_PET_COLOR,
                         PREFIX_PET_COLOR_PATTERN);
         if (!arePrefixesPresent(argMultimap,
                 PREFIX_PET_SPECIES,
-                PREFIX_PET_AGE,
+                PREFIX_ORDER_AGE,
                 PREFIX_PET_COLOR,
                 PREFIX_PET_COLOR_PATTERN)) {
             throw new ParseException(Request.MESSAGE_USAGE);
         }
 
-        Age age = parseAge(argMultimap.getValue(PREFIX_PET_AGE).orElse(""));
+        Age age = parseAge(argMultimap.getValue(PREFIX_ORDER_AGE).orElse(""));
         Color color = parseColor(argMultimap.getValue(PREFIX_PET_COLOR).orElse(""));
         ColorPattern colorPattern = parseColorPattern(argMultimap.getValue(PREFIX_PET_COLOR_PATTERN).orElse(""));
         Species species = parseSpecies(argMultimap.getValue(PREFIX_PET_SPECIES).orElse(""));
         return new Request(age, color, colorPattern, species);
+    }
+
+    /**
+     * Parses a {@code String petString} into an {@code Pet}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code petString} is invalid.
+     */
+    public static Pet parsePet(String petString) throws ParseException {
+
+        requireNonNull(petString);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(petString,
+                        PREFIX_PET_OWNER,
+                        PREFIX_PET_NAME,
+                        PREFIX_PET_DATE_OF_BIRTH,
+                        PREFIX_PET_COLOR,
+                        PREFIX_PET_COLOR_PATTERN,
+                        PREFIX_PET_HEIGHT,
+                        PREFIX_PET_CERTIFICATE,
+                        PREFIX_PET_SPECIES,
+                        PREFIX_PET_VACCINATION_STATUS,
+                        PREFIX_PET_WEIGHT,
+                        PREFIX_PET_TAG);
+        if (!arePrefixesPresent(argMultimap,
+                PREFIX_PET_NAME,
+                PREFIX_PET_DATE_OF_BIRTH,
+                PREFIX_PET_COLOR,
+                PREFIX_PET_COLOR_PATTERN,
+                PREFIX_PET_HEIGHT,
+                PREFIX_PET_SPECIES,
+                PREFIX_PET_WEIGHT)) {
+            throw new ParseException(AddPetCommand.MESSAGE_USAGE);
+        }
+
+
+        Person owner = null;
+//        TODO Parse the owner
+//        if (argMultimap.getValue(PREFIX_PET_OWNER).isPresent()) {
+//            owner = parseOwner(argMultimap.getValue(PREFIX_PET_OWNER));
+//        }
+
+        Name name = parseName(argMultimap.getValue(PREFIX_PET_NAME).orElse(""));
+        DateOfBirth dateOfBirth = parseDateOfBirth(argMultimap.getValue(PREFIX_PET_DATE_OF_BIRTH).orElse(""));
+        Color color = parseColor(argMultimap.getValue(PREFIX_PET_COLOR).orElse(""));
+        ColorPattern colorPattern = parseColorPattern(argMultimap.getValue(PREFIX_PET_COLOR_PATTERN).orElse(""));
+        Height height = parseHeight(argMultimap.getValue(PREFIX_PET_HEIGHT).orElse(""));
+        Set<PetCertificate> certificates = parseCertificates(argMultimap.getAllValues(PREFIX_PET_CERTIFICATE));
+        Species species = parseSpecies(argMultimap.getValue(PREFIX_PET_SPECIES).orElse(""));
+        Weight weight = parseWeight(argMultimap.getValue(PREFIX_PET_WEIGHT).orElse(""));
+        VaccinationStatus vaccinationStatus =
+                parseVaccinationStatus(argMultimap.getValue(PREFIX_PET_VACCINATION_STATUS).orElse("false"));
+        Set<Tag> tags = parseTags(argMultimap.getAllValues(PREFIX_PET_TAG));
+
+        Pet pet = new Pet(name,
+                owner,
+                color,
+                colorPattern,
+                dateOfBirth,
+                species,
+                weight,
+                height,
+                vaccinationStatus,
+                tags,
+                certificates);
+
+        return pet;
     }
 
     /**
@@ -313,7 +392,9 @@ public class ParserUtil {
     public static PriceRange parsePriceRange(String priceRange) throws ParseException {
         requireNonNull(priceRange);
         String[] splitPrices = priceRange.split(PriceRange.DELIMITER);
-        if (splitPrices.length != 2) throw new ParseException(PriceRange.MESSAGE_USAGE);
+        if (splitPrices.length != 2) {
+            throw new ParseException(PriceRange.MESSAGE_USAGE);
+        }
 
         Price lower = parsePrice(splitPrices[0]);
         Price upper = parsePrice(splitPrices[1]);
@@ -339,7 +420,7 @@ public class ParserUtil {
      *
      * @throws IllegalValueException if the given {@code date} cannot be parsed in all acceptable formats.
      */
-    public static LocalDate parseDate(String date) throws IllegalValueException {
+    public static LocalDate parseDate(String date) throws ParseException {
         LocalDate output;
         for (String format: ACCEPTABLE_DATE_FORMATS) {
             try {
@@ -349,7 +430,7 @@ public class ParserUtil {
                 //Do nothing because it will eventually throw an exception if no formats match
             }
         }
-        throw new IllegalValueException("The date should be in this format: " + PREFERRED_DATE_FORMAT);
+        throw new ParseException("The date should be in this format: " + PREFERRED_DATE_FORMAT);
     }
 
     /**
@@ -405,7 +486,7 @@ public class ParserUtil {
      *
      * @throws IllegalValueException if the given {@code birthday} cannot be parsed in all acceptable formats.
      */
-    public static DateOfBirth parseDateOfBirth(String date) throws IllegalValueException {
+    public static DateOfBirth parseDateOfBirth(String date) throws ParseException {
         LocalDate output;
         for (String format: ACCEPTABLE_DATE_FORMATS) {
             try {
@@ -415,7 +496,7 @@ public class ParserUtil {
                 //Do nothing because it will eventually throw an exception if no formats match
             }
         }
-        throw new IllegalValueException(DateOfBirth.MESSAGE_USAGE);
+        throw new ParseException(DateOfBirth.MESSAGE_USAGE);
     }
 
     /**
@@ -438,6 +519,18 @@ public class ParserUtil {
         }
 
         return new Height(doubleHeight);
+    }
+
+    /**
+     * Parses {@code Collection<String> certificates} into a {@code Set<PetCertificate>}.
+     */
+    public static Set<PetCertificate> parseCertificates(Collection<String> certificates) throws ParseException {
+        requireNonNull(certificates);
+        final Set<PetCertificate> certificateSet = new HashSet<>();
+        for (String cert : certificates) {
+            certificateSet.add(parsePetCertificate(cert));
+        }
+        return certificateSet;
     }
 
     /**
