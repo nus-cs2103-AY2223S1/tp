@@ -14,6 +14,8 @@ import seedu.address.model.issue.Issue;
  */
 public class Project {
 
+    //todo: refine message
+    public static final String MESSAGE_INVALID = "Project does not exist.";
     // Components of a project
     private Name name;
     private Repository repository;
@@ -34,6 +36,35 @@ public class Project {
         this.client = client;
         this.issueList = issueList;
         this.projectId = projectId;
+    }
+
+    /**
+     * Name field must be present and not null .
+     */
+    public Project(Name name) {
+        requireAllNonNull(name);
+        this.name = name;
+        //todo: set other fields to emptyOptionals post-merge
+    }
+
+    /**
+     * Represents an Empty Project.
+     */
+    public static class EmptyProject extends Project {
+        public static final Project EMPTY_PROJECT = new EmptyProject();
+        private EmptyProject() {
+            super(Name.EmptyName.EMPTY_NAME);
+        }
+
+        /**
+         * Checks if this Project is empty.
+         * @return true if the Project is empty.
+         */
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+
     }
 
     public ProjectId getId() {
@@ -59,6 +90,18 @@ public class Project {
         return issueList;
     }
 
+    /**
+     * Checks if this Project is empty.
+     * @return true if the Project is empty.
+     */
+    public boolean isEmpty() {
+        return false;
+    }
+
+    //todo: create and replace with emptyProject inner class
+    public static boolean isValidProject(Project p) {
+        return !p.equals(null);
+    }
     /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.

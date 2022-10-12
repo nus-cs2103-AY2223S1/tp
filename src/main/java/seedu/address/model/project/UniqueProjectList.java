@@ -32,9 +32,24 @@ public class UniqueProjectList implements Iterable<Project> {
     /**
      * Returns true if the list contains an equivalent project as the given argument.
      */
-    public boolean contains(Project toCheck) {
+    public static boolean contains(Project toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameProject);
+    }
+
+    /**
+     * Method to generate a project id temporarily
+     *
+     * @return project id
+     */
+    public static int generateId() {
+        int count = 0;
+        for (Project p : internalList) {
+            if (p.getId().getIdInt() > count) {
+                count = p.getId().getIdInt();
+            }
+        }
+        return count + 1;
     }
 
     /**
@@ -108,6 +123,15 @@ public class UniqueProjectList implements Iterable<Project> {
         }
 
         internalList.setAll(projects);
+    }
+
+    public static Project getProject(ProjectId id) {
+        for (Project p: internalList) {
+            if (p.getId().equals(id)) {
+                return p;
+            }
+        }
+        return Project.EmptyProject.EMPTY_PROJECT;
     }
 
     /**
