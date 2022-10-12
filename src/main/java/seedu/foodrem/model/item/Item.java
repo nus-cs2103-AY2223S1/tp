@@ -94,23 +94,6 @@ public class Item {
         return expiryDate;
     }
 
-    public String getNameToListView() {
-        return name.toListView();
-    }
-
-    public String getQuantityAndUnitToListView() {
-        String unitString = unit.isBlank() ? "" : " " + unit.toListView();
-        return quantity.toString() + unitString;
-    }
-
-    public String getBoughtDateToListView() {
-        return boughtDate.toListView();
-    }
-
-    public String getExpiryDateToListView() {
-        return expiryDate.toListView();
-    }
-
     public Set<Tag> getTagSet() {
         return tagSet;
     }
@@ -192,7 +175,11 @@ public class Item {
      */
     @Override
     public String toString() {
-        return String.format("%s; Quantity: %s %s; Bought Date: %s, Expiry Date: %s;",
-                name, quantity, unit, boughtDate, expiryDate);
+        return String.format("Name: %s; Quantity: %s%s; Bought Date: %s; Expiry Date: %s;",
+                name,
+                quantity,
+                String.valueOf(unit).isBlank() ? "" : " " + unit,
+                String.valueOf(boughtDate).isBlank() ? "Not Set" : boughtDate,
+                String.valueOf(expiryDate).isBlank() ? "Not Set" : expiryDate);
     }
 }
