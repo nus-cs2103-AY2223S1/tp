@@ -157,6 +157,17 @@ public class Person implements DisplayItem {
 
     @Override
     public boolean isPartOfContext(DisplayItem o) {
-        return parents.contains(o);
+
+        if (parents.contains(o)) {
+            return true;
+        }
+
+        for (AbstractContainerItem item : parents) {
+            if (item.isPartOfContext(o)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
