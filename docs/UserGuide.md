@@ -131,15 +131,23 @@ Examples:
 
 ### Listing all patients: `list`
 
-Shows a list of all patients in the patients database.
+Shows a list of all patients in the patient database.
 
 Format: `list`
 
 ### Listing all record(s) for the specified patient : `listR`
 
-Shows a list of all records for the specific patient in the records database.
+Shows a list of all records for the specified patient.
 
 Format: `listR PATIENT_INDEX`
+
+* The command is only valid after using `list`.
+* Lists all records of the patient at the specified `PATIENT_INDEX`. 
+* The index refers to the index number shown in the displayed patient list. 
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listR 1` displays all records of the 1st patient in the displayed patient list.
 
 ### Editing a person : `edit`
 
