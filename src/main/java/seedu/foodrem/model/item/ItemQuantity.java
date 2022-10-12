@@ -2,6 +2,8 @@ package seedu.foodrem.model.item;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.BiFunction;
+
 import seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator;
 
 
@@ -26,6 +28,16 @@ public class ItemQuantity {
         }
         ItemQuantityValidator.validate(itemQuantityString);
         itemQuantity = Double.parseDouble(itemQuantityString);
+    }
+
+    /**
+     * Returns an itemQuantity after performing an arithmetic operation on them.
+     */
+    public static ItemQuantity performArithmeticOperation(ItemQuantity itemQuantity1,
+                                                          ItemQuantity itemQuantity2,
+                                                          BiFunction<Double, Double, Double> op) {
+        double newQuantity = op.apply(itemQuantity1.itemQuantity, itemQuantity2.itemQuantity);
+        return new ItemQuantity(String.valueOf(newQuantity));
     }
 
     /**
