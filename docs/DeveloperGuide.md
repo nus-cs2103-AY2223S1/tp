@@ -378,7 +378,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. User inputs the wrong word for confirmation.
     * 3a1. JeeqTracker shows an error message.
- 
+
       Use case resumes at 2.
 
 
