@@ -10,6 +10,9 @@ import java.util.function.Predicate;
  * any of the keywords given.
  */
 public class DebtContainsKeywordsPredicate implements Predicate<Person> {
+
+    public static final String MESSAGE_CONSTRAINTS = "Keyword should not be blank";
+
     private final List<String> keywords;
 
     public DebtContainsKeywordsPredicate(List<String> keywords) {
