@@ -42,6 +42,7 @@ public class DeleteIssueCommand extends IssueCommand {
             if (i.getIssueId().getIdInt() == targetIndex.getOneBased()) {
                 Issue issueToDelete = i;
                 model.deleteIssue(issueToDelete);
+                issueToDelete.getProject().getIssueList().remove(this);
                 return new CommandResult(String.format(MESSAGE_SUCCESS, issueToDelete));
             }
         }
