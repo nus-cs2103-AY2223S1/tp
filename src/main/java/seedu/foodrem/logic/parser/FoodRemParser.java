@@ -8,15 +8,22 @@ import java.util.regex.Pattern;
 
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.SortCommand;
-import seedu.foodrem.logic.commands.generalcommands.ClearCommand;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
+import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
 import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
+import seedu.foodrem.logic.commands.tagcommands.AddTagCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
+import seedu.foodrem.logic.parser.itemcommandparser.AddCommandParser;
+import seedu.foodrem.logic.parser.itemcommandparser.DeleteCommandParser;
+import seedu.foodrem.logic.parser.itemcommandparser.EditCommandParser;
+import seedu.foodrem.logic.parser.itemcommandparser.FindCommandParser;
+import seedu.foodrem.logic.parser.tagcommandparser.AddTagCommandParser;
+
 
 /**
  * Parses user input.
@@ -55,8 +62,11 @@ public class FoodRemParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case AddTagCommand.COMMAND_WORD:
+            return new AddTagCommandParser().parse(arguments);
+
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);

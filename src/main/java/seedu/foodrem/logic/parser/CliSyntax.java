@@ -6,7 +6,7 @@ package seedu.foodrem.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_ITEM_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_ITEM_QUANTITY = new Prefix("qty/");
     public static final Prefix PREFIX_ITEM_UNIT = new Prefix("u/");
     public static final Prefix PREFIX_ITEM_BOUGHT_DATE = new Prefix("bgt/");

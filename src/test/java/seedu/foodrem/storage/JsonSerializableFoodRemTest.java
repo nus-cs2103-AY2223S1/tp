@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.commons.util.JsonUtil;
 import seedu.foodrem.model.FoodRem;
-import seedu.foodrem.testutil.TypicalItems;
+import seedu.foodrem.testutil.TypicalFoodRem;
 
 public class JsonSerializableFoodRemTest {
 
@@ -28,7 +28,7 @@ public class JsonSerializableFoodRemTest {
         JsonSerializableFoodRem dataFromFile = JsonUtil.readJsonFile(TYPICAL_ITEMS_FILE,
                 JsonSerializableFoodRem.class).get();
         FoodRem foodRemFromFile = dataFromFile.toModelType();
-        FoodRem typicalItemsFoodRem = TypicalItems.getTypicalFoodRem();
+        FoodRem typicalItemsFoodRem = TypicalFoodRem.getFoodRemWithTypicalItems();
         assertEquals(foodRemFromFile, typicalItemsFoodRem);
     }
 
