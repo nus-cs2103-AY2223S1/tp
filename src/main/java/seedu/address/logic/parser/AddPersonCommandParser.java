@@ -49,9 +49,6 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        InternshipId internshipId =
-                ParserUtil.parseInternshipId(argMultimap.getValue(PREFIX_INTERNSHIP_ID).orElse(null));
-
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         String linkIndexStr = argMultimap.getValue(PREFIX_LINK_INDEX).orElse(null);
         Index linkIndex = null;
@@ -59,7 +56,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
             linkIndex = ParserUtil.parseIndex(linkIndexStr);
         }
 
-        return new AddPersonCommand(name, phone, email, internshipId, tagList, linkIndex);
+        return new AddPersonCommand(name, phone, email, tagList, linkIndex);
     }
 
     /**

@@ -78,7 +78,6 @@ public class AddPersonCommand extends Command {
             Name name,
             Phone phone,
             Email email,
-            InternshipId internshipId,
             Set<Tag> tags,
             Index linkIndex) {
         requireAllNonNull(name, phone, email, tags);
