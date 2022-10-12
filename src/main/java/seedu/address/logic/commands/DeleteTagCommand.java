@@ -49,6 +49,7 @@ public class DeleteTagCommand extends Command {
         requireNonNull(toDelete);
         this.targetIndex = targetIndex;
         this.toDelete = toDelete;
+        editPersonDescriptor = new EditCommand.EditPersonDescriptor();
     }
 
     @Override
