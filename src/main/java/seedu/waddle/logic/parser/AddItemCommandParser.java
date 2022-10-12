@@ -5,7 +5,6 @@ import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.util.stream.Stream;
 
-import seedu.waddle.logic.commands.AddCommand;
 import seedu.waddle.logic.commands.AddItemCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.item.Item;
