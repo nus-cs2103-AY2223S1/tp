@@ -1,11 +1,12 @@
 package seedu.address.model.desiredcharacteristics;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Name;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.person.Name;
 
 public class DesiredCharacteristicsTest {
 
@@ -29,9 +30,9 @@ public class DesiredCharacteristicsTest {
         assertFalse(DesiredCharacteristics.isValidDesiredCharacteristics("")); // empty string
         assertFalse(DesiredCharacteristics.isValidDesiredCharacteristics(" ")); // spaces only
 
-        // valid desired characteristics 
+        // valid desired characteristics
         assertTrue(DesiredCharacteristics.isValidDesiredCharacteristics("Bright"));
-        assertTrue(DesiredCharacteristics.isValidDesiredCharacteristics("Multiple words")); 
-        assertTrue(DesiredCharacteristics.isValidDesiredCharacteristics("Words; Separated; ")); 
+        assertTrue(DesiredCharacteristics.isValidDesiredCharacteristics("Multiple words"));
+        assertTrue(DesiredCharacteristics.isValidDesiredCharacteristics("Words; Separated; "));
     }
 }

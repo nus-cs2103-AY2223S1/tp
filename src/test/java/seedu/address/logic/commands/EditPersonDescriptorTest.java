@@ -58,7 +58,8 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different desired characteristics -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

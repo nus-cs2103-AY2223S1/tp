@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.address.Address;
@@ -14,7 +13,6 @@ import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * A utility class to help with building Person objects.
@@ -46,7 +44,7 @@ public class PersonBuilder {
         desiredCharacteristics = null;
         tags = new HashSet<>();
     }
-    
+
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
@@ -131,7 +129,7 @@ public class PersonBuilder {
         this.desiredCharacteristics = null;
         return this;
     }
-    
+
     public Person build() {
         return new Person(name, phone, email, address, priceRange, desiredCharacteristics, tags);
     }

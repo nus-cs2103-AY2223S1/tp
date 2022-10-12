@@ -195,7 +195,8 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1),
+                new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
     }
@@ -234,15 +235,21 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseCharacteristics_validCharacteristicsWithoutWhitespace_returnsDesiredCharacteristics() throws Exception {
-        DesiredCharacteristics expectedDesiredCharacteristics = new DesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS);
-        assertEquals(expectedDesiredCharacteristics, ParserUtil.parseCharacteristics(VALID_DESIRED_CHARACTERISTICS));
+    public void parseCharacteristics_validCharacteristicsWithoutWhitespace_returnsDesiredCharacteristics()
+            throws Exception {
+        DesiredCharacteristics expectedDesiredCharacteristics =
+                new DesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS);
+        assertEquals(expectedDesiredCharacteristics,
+                ParserUtil.parseCharacteristics(VALID_DESIRED_CHARACTERISTICS));
     }
 
     @Test
-    public void parseCharacteristics_validCharacteristicsWithWhitespace_returnsTrimmedCharacteristics() throws Exception {
+    public void parseCharacteristics_validCharacteristicsWithWhitespace_returnsTrimmedCharacteristics()
+            throws Exception {
         String desiredCharacteristicsWithWhitespace = WHITESPACE + VALID_DESIRED_CHARACTERISTICS + WHITESPACE;
-        DesiredCharacteristics expectedDesiredCharacteristics = new DesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS);
-        assertEquals(expectedDesiredCharacteristics, ParserUtil.parseCharacteristics(desiredCharacteristicsWithWhitespace));
+        DesiredCharacteristics expectedDesiredCharacteristics =
+                new DesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS);
+        assertEquals(expectedDesiredCharacteristics,
+                ParserUtil.parseCharacteristics(desiredCharacteristicsWithWhitespace));
     }
 }

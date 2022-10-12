@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -13,10 +12,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
 import seedu.address.model.person.Person;
-import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.property.Price;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -61,8 +57,10 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        descriptor.getPriceRange().ifPresent(priceRange -> sb.append(PREFIX_PRICE_RANGE).append(priceRange).append(" "));
-        descriptor.getDesiredCharacteristics().ifPresent(desiredCharacteristics -> sb.append(PREFIX_CHARACTERISTICS).append(desiredCharacteristics).append(" "));
+        descriptor.getPriceRange().ifPresent(priceRange -> sb.append(PREFIX_PRICE_RANGE)
+                .append(priceRange).append(" "));
+        descriptor.getDesiredCharacteristics().ifPresent(desiredCharacteristics -> sb.append(PREFIX_CHARACTERISTICS)
+                .append(desiredCharacteristics).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

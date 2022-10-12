@@ -1,11 +1,12 @@
 package seedu.address.model.pricerange;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Name;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.person.Name;
 
 public class PriceRangeTest {
 
@@ -35,7 +36,7 @@ public class PriceRangeTest {
         assertFalse(PriceRange.isValidPriceRange("200;300")); // wrong separator
 
         // valid price range
-        assertTrue(PriceRange.isValidPriceRange("200 - 500")); 
+        assertTrue(PriceRange.isValidPriceRange("200 - 500"));
         assertTrue(PriceRange.isValidPriceRange("200-500")); // no spacing
     }
 }
