@@ -71,6 +71,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Client> getDetailedClientList() {
+        return model.getDetailedClientList();
+    }
+
+    @Override
     public ObservableList<Meeting> getDetailedMeetingList() {
         return model.getDetailedMeetingList();
     }

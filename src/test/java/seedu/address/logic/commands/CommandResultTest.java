@@ -60,20 +60,60 @@ public class CommandResultTest {
     }
 
     @Test
-    public void isShowHelp_listMeetingCommandExecute_false() {
+    public void isShowHelp_showHelpFalse_false() {
         CommandResult cr = new CommandResult("", false, false);
         assertFalse(cr.isShowHelp());
     }
 
     @Test
-    public void isExit_exitCommandExecute_true() {
+    public void isExit_exitTrue_true() {
         CommandResult cr = new CommandResult("", false, true);
         assertTrue(cr.isExit());
     }
 
     @Test
-    public void isExit_exitCommandExecute_false() {
+    public void isExit_exitFalse_false() {
         CommandResult cr = new CommandResult("", false, false);
         assertFalse(cr.isExit());
+    }
+
+    @Test
+    public void isClientSpecific() {
+        CommandResult cr = new CommandResult("", CommandSpecific.CLIENT);
+        assertTrue(cr.isClientSpecific());
+        CommandResult cr2 = new CommandResult("", CommandSpecific.DETAILED_CLIENT);
+        assertFalse(cr2.isClientSpecific());
+        CommandResult cr3 = new CommandResult("");
+        assertFalse(cr3.isClientSpecific());
+    }
+
+    @Test
+    public void isDetailedClientSpecific() {
+        CommandResult cr = new CommandResult("", CommandSpecific.DETAILED_CLIENT);
+        assertTrue(cr.isDetailedClientSpecific());
+        CommandResult cr2 = new CommandResult("", CommandSpecific.DETAILED_MEETING);
+        assertFalse(cr2.isDetailedClientSpecific());
+        CommandResult cr3 = new CommandResult("");
+        assertFalse(cr3.isDetailedClientSpecific());
+    }
+
+    @Test
+    public void isMeetingSpecific() {
+        CommandResult cr = new CommandResult("", CommandSpecific.MEETING);
+        assertTrue(cr.isMeetingSpecific());
+        CommandResult cr2 = new CommandResult("", CommandSpecific.DETAILED_MEETING);
+        assertFalse(cr2.isDetailedClientSpecific());
+        CommandResult cr3 = new CommandResult("");
+        assertFalse(cr3.isDetailedClientSpecific());
+    }
+
+    @Test
+    public void isDetailedMeetingSpecific() {
+        CommandResult cr = new CommandResult("", CommandSpecific.DETAILED_MEETING);
+        assertTrue(cr.isDetailedMeetingSpecific());
+        CommandResult cr2 = new CommandResult("", CommandSpecific.DETAILED_CLIENT);
+        assertFalse(cr2.isDetailedMeetingSpecific());
+        CommandResult cr3 = new CommandResult("");
+        assertFalse(cr3.isDetailedMeetingSpecific());
     }
 }

@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private MeetingListPanel meetingListPanel;
+    private ClientDetailedViewPanel clientDetailedViewPanel;
     private MeetingDetailedViewPanel meetingDetailedViewPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -121,6 +122,8 @@ public class MainWindow extends UiPart<Stage> {
 
         meetingDetailedViewPanel = new MeetingDetailedViewPanel(logic.getDetailedMeetingList());
 
+        clientDetailedViewPanel = new ClientDetailedViewPanel(logic.getDetailedClientList());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -185,6 +188,11 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
     }
 
+    private void setListPanelToClientDetailed() {
+        clientListPanelPlaceholder.getChildren().clear();
+        clientListPanelPlaceholder.getChildren().add(clientDetailedViewPanel.getRoot());
+    }
+
     private void setListPanelToMeetingDetailed() {
         clientListPanelPlaceholder.getChildren().clear();
         clientListPanelPlaceholder.getChildren().add(meetingDetailedViewPanel.getRoot());
@@ -213,6 +221,8 @@ public class MainWindow extends UiPart<Stage> {
                 setListPanelToClient();
             } else if (commandResult.isMeetingSpecific()) {
                 setListPanelToMeeting();
+            } else if (commandResult.isDetailedClientSpecific()) {
+                setListPanelToClientDetailed();
             } else if (commandResult.isDetailedMeetingSpecific()) {
                 setListPanelToMeetingDetailed();
             }
