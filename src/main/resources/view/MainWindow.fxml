@@ -8,13 +8,14 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="680.0" minWidth="530.0" onCloseRequest="#handleExit" title="JeeqTracker" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="680.0" minWidth="530.0" onCloseRequest="#handleExit" title="JeeqTracker" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -55,42 +56,56 @@
                 </padding>
                 <StackPane fx:id="companyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-                  <VBox prefWidth="100.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                  <StackPane fx:id="landingArea" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label alignment="CENTER" styleClass="header-text" stylesheets="@Label.css" text="Points Of Contact">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </Label>
-                        <VBox fx:id="pocList" prefWidth="100.0" style="-fx-border-style: solid hidden solid hidden; -fx-border-color: white;">
+                        <VBox prefWidth="100.0" styleClass="pane-with-border">
                            <children>
-                              <StackPane fx:id="pocListPanelPlaceholder" prefHeight="250.0" prefWidth="200.0" />
+                              <Label alignment="CENTER" styleClass="header-text" stylesheets="@Label.css" text="Points Of Contact">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </Label>
+                              <VBox fx:id="pocList" prefWidth="100.0" style="-fx-border-style: solid hidden solid hidden; -fx-border-color: white;">
+                                 <children>
+                                    <StackPane fx:id="pocListPanelPlaceholder" prefHeight="250.0" prefWidth="200.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <Label alignment="CENTER" styleClass="header-text" stylesheets="@Label.css" text="Transactions">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </Label>
+                              <VBox fx:id="companyTransactions" minWidth="-Infinity" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                 <padding>
+                                    <Insets bottom="10" left="10" right="10" top="10" />
+                                 </padding>
+                                 <children>
+                                    <StackPane fx:id="companyTransactionPanelPlaceholder" prefHeight="250.0" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
                            </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
                         </VBox>
-                        <Label alignment="CENTER" styleClass="header-text" stylesheets="@Label.css" text="Transactions">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </Label>
-                        <VBox fx:id="companyTransactions" minWidth="-Infinity" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                           <padding>
-                              <Insets bottom="10" left="10" right="10" top="10" />
-                           </padding>
-                           <children>
-                              <StackPane fx:id="companyTransactionPanelPlaceholder" prefHeight="250.0" VBox.vgrow="ALWAYS" />
-                           </children>
-                        </VBox>
+                        <ImageView fx:id="backgroundImage" fitHeight="644.0" fitWidth="344.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/background.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="jeepImage" fitHeight="213.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/logo.png" />
+                           </image>
+                        </ImageView>
                      </children>
-                  </VBox>
+                  </StackPane>
                </children>
             </HBox>
 
