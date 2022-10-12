@@ -10,7 +10,7 @@ public class StudentIdTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Phone(null));
+        assertThrows(NullPointerException.class, () -> new StudentId(null));
     }
 
     @Test
