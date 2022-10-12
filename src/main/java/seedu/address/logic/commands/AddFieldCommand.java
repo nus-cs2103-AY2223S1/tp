@@ -8,7 +8,6 @@ import seedu.address.logic.parser.Prefix;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 
 /**
  * Adds a person to the address book.
@@ -25,6 +24,12 @@ public class AddFieldCommand extends Command {
     private final Prefix prefix;
     private final String fieldName;
 
+    /**
+     * Constructs a new AddFieldCommand instance.
+     *
+     * @param prefix The Prefix for the field.
+     * @param fieldName The name of the field.
+     */
     public AddFieldCommand(Prefix prefix, String fieldName) {
         requireAllNonNull(prefix, fieldName);
         this.prefix = prefix;
@@ -35,7 +40,7 @@ public class AddFieldCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            PREFIX_FIELD.addPrefix(prefix, fieldName);
+            PREFIX_FIELD.addPrefix(prefix, fieldName, model);
         } catch (ParseException err) {
             throw new CommandException(err.getMessage());
         }

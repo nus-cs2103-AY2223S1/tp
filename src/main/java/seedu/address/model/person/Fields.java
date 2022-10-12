@@ -15,7 +15,7 @@ public class Fields {
     public List<Field> fields;
 
     /**
-     * Constructs a new Fields instance
+     * Constructs a new Fields instance.
      */
     public Fields() {
         fields = new ArrayList<>();
@@ -27,6 +27,16 @@ public class Fields {
      * @param field A Field instance to be added to the list.
      */
     public void addField(Field field) {
+        fields.add(field);
+    }
+
+    /**
+     * Adds a field to the list of fields by a given field name.
+     *
+     * @param fieldName the name of the Field instance to be added to the list.
+     */
+    public void addField(String fieldName) {
+        Field field = new Field(fieldName);
         fields.add(field);
     }
 
@@ -68,9 +78,9 @@ public class Fields {
 
     /**
      * Adds all items from a given list of fields to the list stored in the
-     * Fields object
+     * Fields object.
      *
-     * @param fields A list of fields to add
+     * @param fields A list of fields to add.
      */
     public void addAll(List<Field> fields) {
         this.fields.addAll(fields);

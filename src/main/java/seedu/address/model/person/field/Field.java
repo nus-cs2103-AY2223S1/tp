@@ -91,6 +91,13 @@ public class Field {
         return "[" + name + "," + value + "]";
     }
 
+    public String toStringDisplay() {
+        if (value == null) {
+            return "";
+        }
+        return value.toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
