@@ -131,7 +131,7 @@ public class ModelManagerTest {
         Commission testCommission = new Commission.CommissionBuilder(
                 new Title("Commission"), new Fee(1.0), new Deadline(LocalDate.now()), new CompletionStatus(true),
                 new HashSet<>()).build();
-        ALICE.addCommission(testCommission);
+        testCustomer.addCommission(testCommission);
         modelManager.addCustomer(BENSON);
         modelManager.selectCustomer(testCustomer);
         modelManager.selectCommission(testCommission);
