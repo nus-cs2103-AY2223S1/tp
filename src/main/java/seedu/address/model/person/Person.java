@@ -19,21 +19,23 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final GitHub gitHub;
 
     // Data fields
-    private final Address address;
+    private final Telegram handle;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags) {
+        requireAllNonNull(name, handle);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.handle = handle;
         this.tags.addAll(tags);
+        this.gitHub = gitHub;
     }
 
     public Name getName() {
@@ -48,8 +50,12 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Telegram getTelegram() {
+        return handle;
+    }
+
+    public GitHub getGitHub() {
+        return gitHub;
     }
 
     /**
@@ -91,26 +97,28 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTelegram().equals(getTelegram())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, handle, gitHub, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Telegram: ")
+                .append(getTelegram())
+                .append("; GitHub: ")
+                .append(getGitHub())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append(getEmail());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
