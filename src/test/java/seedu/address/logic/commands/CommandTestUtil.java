@@ -19,6 +19,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Record;
+import seedu.address.model.person.RecordContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -125,4 +127,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered record list to show only the record at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showRecordAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredRecordList().size());
+
+        Record record = model.getFilteredRecordList().get(targetIndex.getZeroBased());
+        final String[] splitRecord = record.record.split(" ");
+        model.updateFilteredRecordList(new RecordContainsKeywordsPredicate(Arrays.asList(splitRecord[0])));
+
+        assertEquals(1, model.getFilteredRecordList().size());
+    }
 }

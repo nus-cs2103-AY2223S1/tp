@@ -22,7 +22,7 @@ public class DeleteRecordCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Record: %1$s";
+    public static final String MESSAGE_DELETE_RECORD_SUCCESS = "Deleted Record: %1$s";
 
     private final Index targetIndex;
 
@@ -40,13 +40,13 @@ public class DeleteRecordCommand extends Command {
         }
 
         if (targetIndex.getZeroBased() >= lastShownRecordList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_RECORD_DISPLAYED_INDEX);
         }
 
         Record recordToDelete = lastShownRecordList.get(targetIndex.getZeroBased());
         model.deleteRecord(recordToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, recordToDelete),
+        return new CommandResult(String.format(MESSAGE_DELETE_RECORD_SUCCESS, recordToDelete),
                 false, false, true);
     }
 
