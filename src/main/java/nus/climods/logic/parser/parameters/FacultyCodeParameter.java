@@ -7,7 +7,7 @@ import nus.climods.logic.parser.ParserUtil;
  */
 
 public class FacultyCodeParameter extends OptionalPositionalParameter<String> {
-    public static final int FACULTY_CODE_INDX = 0;
+    public static final int FACULTY_CODE_INDEX = 0;
 
     public static final String PARSE_EXCEPTION_MESSAGE = "Invalid faculty code: %s";
 
@@ -16,6 +16,6 @@ public class FacultyCodeParameter extends OptionalPositionalParameter<String> {
      * @param argumentString
      */
     public FacultyCodeParameter(String argumentString) {
-        super(FACULTY_CODE_INDX, argumentString, ParserUtil::parseFacultyCode, PARSE_EXCEPTION_MESSAGE);
+        super(FACULTY_CODE_INDEX, argumentString, ParserUtil::parseFacultyCode, PARSE_EXCEPTION_MESSAGE);
     }
 }
