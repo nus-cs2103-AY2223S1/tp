@@ -1,17 +1,18 @@
 package seedu.address.logic.parser.task;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.task.AssignTaskCommand;
-
-import java.util.Arrays;
-import java.util.HashSet;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+
+import java.util.Arrays;
+import java.util.HashSet;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.task.AssignTaskCommand;
 
 public class AssignTaskCommandParserTest {
 
