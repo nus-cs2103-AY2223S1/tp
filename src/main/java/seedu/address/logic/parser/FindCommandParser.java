@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AllInfoContainsKeywordsPredicate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MultiSearchPredicate;
 import seedu.address.model.person.Phone;
 
 /**
@@ -41,7 +41,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
                 }
                 String[] nameKeywords = trimmedArgs.split("\\s+");
-                return new FindCommand(new AllInfoContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+                return new FindCommand(new MultiSearchPredicate((Arrays.asList(nameKeywords))));
             } else if (isBothFilled || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             } else if (arePrefixesPresent(argMultimap, PREFIX_PHONE)
