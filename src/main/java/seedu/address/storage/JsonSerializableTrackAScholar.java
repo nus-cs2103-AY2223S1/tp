@@ -16,7 +16,7 @@ import seedu.address.model.applicant.Applicant;
 /**
  * An Immutable TrackAScholar that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "trackAScholar")
 class JsonSerializableTrackAScholar {
 
     public static final String MESSAGE_DUPLICATE_APPLICANT = "Appplicants list contains duplicate applicant(s).";
