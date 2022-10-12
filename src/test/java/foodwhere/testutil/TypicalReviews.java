@@ -23,27 +23,29 @@ public class TypicalReviews {
     public static final Review ALICE = new ReviewBuilder().withName("Alice Pauline")
             .withDate("1/1/2020")
             .withContent("123, Jurong West Ave 6, #08-111")
+            .withRating(3)
             .withTags("friends").build();
     public static final Review BENSON = new ReviewBuilder().withName("Benson Meier")
             .withDate("31/12/2021")
             .withContent("311, Clementi Ave 2, #02-25")
+            .withRating(3)
             .withTags("owesMoney", "friends").build();
     public static final Review CARL = new ReviewBuilder().withName("Carl Kurz")
-            .withDate("1/4/2020").withContent("wall street").build();
+            .withDate("1/4/2020").withRating(3).withContent("wall street").build();
     public static final Review DANIEL = new ReviewBuilder().withName("Daniel Meier")
-            .withDate("29/2/2020").withContent("10th street").withTags("friends").build();
+            .withDate("29/2/2020").withRating(3).withContent("10th street").withTags("friends").build();
     public static final Review ELLE = new ReviewBuilder().withName("Elle Meyer")
-            .withDate("29/9/2003").withContent("michegan ave").build();
+            .withDate("29/9/2003").withRating(3).withContent("michegan ave").build();
     public static final Review FIONA = new ReviewBuilder().withName("Fiona Kunz")
-            .withDate("6/6/2007").withContent("little tokyo").build();
+            .withDate("6/6/2007").withRating(3).withContent("little tokyo").build();
     public static final Review GEORGE = new ReviewBuilder().withName("George Best")
-            .withDate("20/7/2017").withContent("4th street").build();
+            .withDate("20/7/2017").withRating(3).withContent("4th street").build();
 
     // Manually added
     public static final Review HOON = new ReviewBuilder().withName("Hoon Meier")
-            .withDate("25/12/2020").withContent("little india").build();
+            .withDate("25/12/2020").withRating(3).withContent("little india").build();
     public static final Review IDA = new ReviewBuilder().withName("Ida Mueller")
-            .withDate("9/9/2022").withContent("chicago ave").build();
+            .withDate("9/9/2022").withRating(3).withContent("chicago ave").build();
 
     // Manually added - Review's details found in {@code CommandTestUtil}
     public static final Review AMY = new ReviewBuilder().withName(VALID_NAME_AMY)

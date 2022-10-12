@@ -14,6 +14,7 @@ import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
+import foodwhere.model.review.Rating;
 import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 
@@ -34,9 +35,9 @@ public class RAddCommand extends Command {
             + CliSyntax.PREFIX_STALL_INDEX + "3 "
             + CliSyntax.PREFIX_DATE + "2022-09-20 "
             + CliSyntax.PREFIX_CONTENT + "The food was good, the chicken rice was fresh.\n"
+            + CliSyntax.PREFIX_RATING + "4\n"
             + CliSyntax.PREFIX_TAG + "opensDaily "
             + CliSyntax.PREFIX_TAG + "worthyTrip";
-
 
     public static final String MESSAGE_SUCCESS = "New review added: %1$s";
     public static final String MESSAGE_DUPLICATE_REVIEW = "This review already exists in the address book";
@@ -44,16 +45,18 @@ public class RAddCommand extends Command {
     private final Index stallIndex;
     private final Date date;
     private final Content content;
+    private final Rating rating;
     private final Set<Tag> tagList;
 
     /**
      * Creates an RAddCommand to add the specified {@code Review}
      */
-    public RAddCommand(Index stallIndex, Date date, Content content, Set<Tag> tagList) {
+    public RAddCommand(Index stallIndex, Date date, Content content, Rating rating, Set<Tag> tagList) {
         requireNonNull(stallIndex);
         this.stallIndex = stallIndex;
         this.date = date;
         this.content = content;
+        this.rating = rating;
         this.tagList = tagList;
     }
 
@@ -68,7 +71,7 @@ public class RAddCommand extends Command {
 
         Name name = stall.getName();
 
-        Review toAdd = new Review(name, date, content, tagList);
+        Review toAdd = new Review(name, date, content, rating, tagList);
 
         if (model.hasReview(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_REVIEW);
