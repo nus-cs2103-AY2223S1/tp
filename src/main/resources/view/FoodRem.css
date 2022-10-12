@@ -12,6 +12,15 @@
   -fx-padding: 16;
 }
 
+/* JavaFX CSS does not support `+` selector, so 
+ * we cannot use `column > * + *` here */
+.margin-top {
+  /* Workaround nonexistent -fx-margin */
+  -fx-padding: 12 0 0 0;
+  -fx-border-insets: 12 0 0 0;
+  -fx-background-insets: 12 0 0 0;
+}
+
 .command-placeholder,
 .command-placeholder * {
   -fx-focus-color: transparent;
@@ -19,16 +28,27 @@
   -fx-background-color: transparent;
 }
 
-.command-placeholder {
-  -fx-background-color: #eee;
+.command-placeholder,
+.list-placeholder {
   -fx-border-color: black;
   -fx-border-radius: 5;
   -fx-border-width: 1;
   -fx-padding: 6 4;
 }
 
-.command-box {
-  -fx-pref-width: 400;
+.command-placeholder {
+  -fx-background-color: #eee;
+}
+
+.list-placeholder {
+  -fx-background-color: white;
+}
+
+.command-placeholder,
+.command-box,
+.list-placeholder {
+  -fx-min-width: 340;
+  -fx-pref-width: 340;
 }
 
 .command-box > TextField {
