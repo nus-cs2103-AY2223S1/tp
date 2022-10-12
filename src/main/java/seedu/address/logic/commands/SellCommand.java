@@ -72,7 +72,6 @@ public class SellCommand extends Command {
         Company editedCompany = companyToEdit;
         editedCompany.addTransaction(transaction);
         model.setCompany(companyToEdit, editedCompany);
-        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedCompany, transaction.getQuantity(),
                 transaction.getGoods(), transaction.getPrice()));
