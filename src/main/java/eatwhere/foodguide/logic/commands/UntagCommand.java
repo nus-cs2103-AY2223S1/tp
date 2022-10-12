@@ -70,7 +70,7 @@ public class UntagCommand extends Command {
 
         model.setEatery(eateryToUntag, untaggedEatery);
         model.updateFilteredEateryList(Model.PREDICATE_SHOW_ALL_EATERIES);
-        return new CommandResult(String.format(MESSAGE_UNTAG_EATERY_SUCCESS, untaggedEatery));
+        return new CommandResult(String.format(MESSAGE_UNTAG_EATERY_SUCCESS, untaggedEatery.getName()));
     }
 
     /**

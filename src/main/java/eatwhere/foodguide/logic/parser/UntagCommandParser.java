@@ -4,7 +4,6 @@ import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
@@ -55,12 +54,7 @@ public class UntagCommandParser implements Parser<UntagCommand> {
      */
     private Optional<Set<Tag>> parseTags(Collection<String> tags) throws ParseException {
         assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        return tags.isEmpty() ? Optional.empty() : Optional.of(ParserUtil.parseTags(tags));
     }
 
 }
