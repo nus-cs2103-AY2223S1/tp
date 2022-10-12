@@ -1,5 +1,7 @@
 package nus.climods.logic.commands;
 
+import static nus.climods.commons.core.Messages.MESSAGE_SHOW_HELP;
+
 import nus.climods.model.Model;
 
 /**
@@ -12,10 +14,14 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
         + "Example: " + COMMAND_WORD;
 
-    public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        return new CommandResult(MESSAGE_SHOW_HELP, true, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof HelpCommand;
     }
 }
