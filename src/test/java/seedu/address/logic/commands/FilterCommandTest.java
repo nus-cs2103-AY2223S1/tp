@@ -10,15 +10,28 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
+import seedu.address.testutil.PersonBuilder;
 
 
 public class FilterCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    public Model mock_Database() {
+        Person john = new PersonBuilder().withName("John").withTags("friends").build();
+        Person cena = new PersonBuilder().withName("Cena").withTags("friends").build();
+        AddressBook ab = new AddressBook();
+        ab.addPerson(john);
+        ab.addPerson(cena);
+        Model model = new ModelManager(ab, new UserPrefs());
+        return model;
+    }
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
@@ -30,17 +43,21 @@ public class FilterCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
-    /*@Test
+    @Test
     public void execute_singleKeyword_multiplePersonsFound() {
+        Model initialModel = mock_Database();
+        Model outputModel = mock_Database();
+        Person john = outputModel.getAddressBook().getPersonList().get(0);
+        Person cena = outputModel.getAddressBook().getPersonList().get(1);
         String expected_Message = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        TagContainsKeywordsPredicate predicate = preparePredicate("owesMoney");
+        TagContainsKeywordsPredicate predicate = preparePredicate("friends");
         FilterCommand command = new FilterCommand(predicate);
-        expectedModel.filterPersonListWithTag(predicate);
-        assertCommandSuccess(command, model, expected_Message, expectedModel);
-        assertEquals(Arrays.asList(BENSON), model.getFilteredPersonList());
+        outputModel.filterPersonListWithTag(predicate);
+        assertCommandSuccess(command, initialModel, expected_Message, outputModel);
+        assertEquals(Arrays.asList(john, cena), outputModel.getFilteredPersonList());
 
 
-    }*/
+    }
 
     private TagContainsKeywordsPredicate preparePredicate(String userInput) {
         return new TagContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
