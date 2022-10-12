@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.project.AddProjectCommand;
 import seedu.address.logic.commands.project.DeleteProjectCommand;
 import seedu.address.logic.commands.project.EditProjectCommand;
@@ -111,9 +112,14 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         return null;
     }
 
-    //TODO: implement
-    private DeleteProjectCommand parseDeleteProjectCommand(String arguments) {
-        return null;
+    private DeleteProjectCommand parseDeleteProjectCommand(String arguments) throws ParseException {
+        try {
+            Index index = ParserUtil.parseIndex(arguments);
+            return new DeleteProjectCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE), pe);
+        }
     }
 
     //TODO: implement
