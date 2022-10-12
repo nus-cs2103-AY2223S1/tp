@@ -15,15 +15,15 @@ import jeryl.fyp.commons.util.ConfigUtil;
 import jeryl.fyp.commons.util.StringUtil;
 import jeryl.fyp.logic.Logic;
 import jeryl.fyp.logic.LogicManager;
-import jeryl.fyp.model.AddressBook;
+import jeryl.fyp.model.FypManager;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ModelManager;
-import jeryl.fyp.model.ReadOnlyAddressBook;
+import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.ReadOnlyUserPrefs;
 import jeryl.fyp.model.UserPrefs;
 import jeryl.fyp.model.util.SampleDataUtil;
-import jeryl.fyp.storage.AddressBookStorage;
-import jeryl.fyp.storage.JsonAddressBookStorage;
+import jeryl.fyp.storage.FypManagerStorage;
+import jeryl.fyp.storage.JsonFypManagerStorage;
 import jeryl.fyp.storage.JsonUserPrefsStorage;
 import jeryl.fyp.storage.Storage;
 import jeryl.fyp.storage.StorageManager;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing FypManager ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        FypManagerStorage fypManagerStorage = new JsonFypManagerStorage(userPrefs.getFypManagerFilePath());
+        storage = new StorageManager(fypManagerStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +69,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s FYP manager and {@code userPrefs}. <br>
+     * The data from the sample FYP manager will be used instead if {@code storage}'s FYP manager is not found,
+     * or an empty FYP manager will be used instead if errors occur when reading {@code storage}'s FYP manager.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyFypManager> fypManagerOptional;
+        ReadOnlyFypManager initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            fypManagerOptional = storage.readFypManager();
+            if (!fypManagerOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample FypManager");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = fypManagerOptional.orElseGet(SampleDataUtil::getSampleFypManager);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty FypManager");
+            initialData = new FypManager();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty FypManager");
+            initialData = new FypManager();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty FypManager");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting FypManager " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

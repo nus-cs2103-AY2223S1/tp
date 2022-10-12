@@ -5,9 +5,9 @@ import static jeryl.fyp.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Student's student ID in the FYP manager.
- * Guarantees: immutable; is valid as declared in {@link #isValidStudentID(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStudentId(String)}
  */
-public class StudentID {
+public class StudentId {
 
     public static final String MESSAGE_CONSTRAINTS =
             "ID should be of the format 'A' + (7 digits) + (1 letter) , and it should not be blank";
@@ -21,20 +21,20 @@ public class StudentID {
     public final String id;
 
     /**
-     * Constructs a {@code StudentID}.
+     * Constructs a {@code StudentId}.
      *
-     * @param studentID A valid studentID.
+     * @param studentId A valid studentId.
      */
-    public StudentID(String studentID) {
-        requireNonNull(studentID);
-        checkArgument(isValidStudentID(studentID), MESSAGE_CONSTRAINTS);
-        id = studentID;
+    public StudentId(String studentId) {
+        requireNonNull(studentId);
+        checkArgument(isValidStudentId(studentId), MESSAGE_CONSTRAINTS);
+        id = studentId;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidStudentID(String test) {
+    public static boolean isValidStudentId(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -47,8 +47,8 @@ public class StudentID {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof StudentID // instanceof handles nulls
-                && id.equals(((StudentID) other).id)); // state check
+                || (other instanceof StudentId // instanceof handles nulls
+                && id.equals(((StudentId) other).id)); // state check
     }
 
     @Override

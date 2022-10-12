@@ -2,7 +2,7 @@ package jeryl.fyp.logic.commands;
 
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static jeryl.fyp.testutil.TypicalStudents.getTypicalAddressBook;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalFypManager(), new UserPrefs());
     }
 
     @Test
     public void execute_newStudent_success() {
         Student validStudent = new StudentBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.addStudent(validStudent);
 
         assertCommandSuccess(new AddCommand(validStudent), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
-        Student studentInList = model.getAddressBook().getStudentList().get(0);
+        Student studentInList = model.getFypManager().getStudentList().get(0);
         assertCommandFailure(new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 

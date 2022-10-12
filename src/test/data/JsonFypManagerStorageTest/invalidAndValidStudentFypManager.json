@@ -1,0 +1,13 @@
+{
+  "students": [ {
+    "name": "Valid Student",
+    "studentId": "A9482424X",
+    "email": "hans@example.com",
+    "projectName": "chemical process"
+  }, {
+    "name": "Student With Invalid StudentId Field",
+    "studentId": "948asdf2424",
+    "email": "hans@example.com",
+    "projectName": "chemical process"
+  } ]
+}

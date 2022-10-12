@@ -5,7 +5,7 @@ import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
-import jeryl.fyp.model.student.StudentID;
+import jeryl.fyp.model.student.StudentId;
 
 /**
  * Marks the status of a FYP as "DONE", "IP" or "YTS"
@@ -23,7 +23,7 @@ public class MarkCommand extends Command {
             + "Example: " + COMMAND_WORD + " A0123456G "
             + PREFIX_STATUS + "DONE";
 
-    public static final String MESSAGE_ARGUMENTS = "studentID: %1$s, Status: %2$s";
+    public static final String MESSAGE_ARGUMENTS = "studentId: %1$s, Status: %2$s";
 
     /**
      * Stores all possible statuses as an enumeration.
@@ -34,22 +34,22 @@ public class MarkCommand extends Command {
         DONE
     }
 
-    private final StudentID studentID;
+    private final StudentId studentId;
     private final Status status;
 
     /**
-     * @param studentID of the student doing a particular FYP project
+     * @param studentId of the student doing a particular FYP project
      * @param status of the FYP project
      */
-    public MarkCommand(StudentID studentID, Status status) {
-        requireAllNonNull(studentID, status);
-        this.studentID = studentID;
+    public MarkCommand(StudentId studentId, Status status) {
+        requireAllNonNull(studentId, status);
+        this.studentId = studentId;
         this.status = status;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(String.format(MESSAGE_ARGUMENTS, studentID, status));
+        throw new CommandException(String.format(MESSAGE_ARGUMENTS, studentId, status));
     }
 
     @Override
@@ -66,7 +66,7 @@ public class MarkCommand extends Command {
 
         // state check
         MarkCommand e = (MarkCommand) other;
-        return studentID.equals(e.studentID)
+        return studentId.equals(e.studentId)
                 && status.equals(e.status);
     }
 }

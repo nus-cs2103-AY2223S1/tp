@@ -1,0 +1,14 @@
+{
+  "students": [ {
+    "name": "Alice Pauline",
+    "studentId": "A1351253P",
+    "email": "pauline@example.com",
+    "projectName": "fluid mechanicS",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "studentId": "A1351253P",
+    "email": "pauline@example.com",
+    "projectName": "fluid mechanicS"
+  } ]
+}

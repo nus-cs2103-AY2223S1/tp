@@ -1,27 +1,22 @@
 package jeryl.fyp.logic.parser;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jeryl.fyp.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static jeryl.fyp.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static jeryl.fyp.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static jeryl.fyp.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static jeryl.fyp.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static jeryl.fyp.logic.commands.CommandTestUtil.INVALID_STUDENTID_DESC;
+import static jeryl.fyp.logic.commands.CommandTestUtil.INVALID_STUDENT_ID_DESC;
 import static jeryl.fyp.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static jeryl.fyp.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENTID_DESC_AMY;
-import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENTID_DESC_BOB;
+import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENT_ID_DESC_AMY;
+import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENT_ID_DESC_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static jeryl.fyp.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENTID_AMY;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
@@ -36,10 +31,9 @@ import org.junit.jupiter.api.Test;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
-import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
-import jeryl.fyp.model.student.StudentID;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.testutil.EditStudentDescriptorBuilder;
 
@@ -82,17 +76,17 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_STUDENTID_DESC, StudentID.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, "1" + INVALID_STUDENT_ID_DESC, StudentId.MESSAGE_CONSTRAINTS); // invalid student ID
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid phone followed by valid email
-        assertParseFailure(parser, "1" + INVALID_STUDENTID_DESC + EMAIL_DESC_AMY, StudentID.MESSAGE_CONSTRAINTS);
+        // invalid student ID followed by valid email
+        assertParseFailure(parser, "1" + INVALID_STUDENT_ID_DESC + EMAIL_DESC_AMY, StudentId.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
+        // valid student ID followed by invalid student ID.
+        // The test case for invalid student ID followed by valid student ID
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + STUDENTID_DESC_BOB + INVALID_STUDENTID_DESC, StudentID.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + STUDENT_ID_DESC_BOB + INVALID_STUDENT_ID_DESC, StudentId.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Student} being edited,
         // parsing it together with a valid tag results in error
@@ -102,17 +96,17 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
-                + VALID_ADDRESS_AMY + VALID_STUDENTID_AMY, Name.MESSAGE_CONSTRAINTS);
+                + VALID_STUDENT_ID_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_STUDENT;
-        String userInput = targetIndex.getOneBased() + STUDENTID_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + STUDENT_ID_DESC_BOB + TAG_DESC_HUSBAND
+                + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withStudentID(VALID_STUDENTID_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -122,9 +116,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_STUDENT;
-        String userInput = targetIndex.getOneBased() + STUDENTID_DESC_BOB + EMAIL_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + STUDENT_ID_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withStudentID(VALID_STUDENTID_BOB)
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withStudentId(VALID_STUDENT_ID_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -140,21 +134,15 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
-        userInput = targetIndex.getOneBased() + STUDENTID_DESC_AMY;
-        descriptor = new EditStudentDescriptorBuilder().withStudentID(VALID_STUDENTID_AMY).build();
+        // student ID
+        userInput = targetIndex.getOneBased() + STUDENT_ID_DESC_AMY;
+        descriptor = new EditStudentDescriptorBuilder().withStudentId(VALID_STUDENT_ID_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
         descriptor = new EditStudentDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditStudentDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -168,12 +156,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_STUDENT;
-        String userInput = targetIndex.getOneBased() + STUDENTID_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + STUDENTID_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + STUDENTID_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + STUDENT_ID_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND + STUDENT_ID_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
+                + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withStudentID(VALID_STUDENTID_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withStudentId(VALID_STUDENT_ID_BOB)
+                .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -184,17 +172,16 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_STUDENT;
-        String userInput = targetIndex.getOneBased() + INVALID_STUDENTID_DESC + STUDENTID_DESC_BOB;
+        String userInput = targetIndex.getOneBased() + INVALID_STUDENT_ID_DESC + STUDENT_ID_DESC_BOB;
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
-                .withStudentID(VALID_STUDENTID_BOB).build();
+                .withStudentId(VALID_STUDENT_ID_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_STUDENTID_DESC + ADDRESS_DESC_BOB
-                + STUDENTID_DESC_BOB;
-        descriptor = new EditStudentDescriptorBuilder().withStudentID(VALID_STUDENTID_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).build();
+        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_STUDENT_ID_DESC + STUDENT_ID_DESC_BOB;
+        descriptor = new EditStudentDescriptorBuilder().withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_BOB)
+                .build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

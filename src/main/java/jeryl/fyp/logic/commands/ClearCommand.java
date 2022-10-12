@@ -2,11 +2,11 @@ package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import jeryl.fyp.model.AddressBook;
+import jeryl.fyp.model.FypManager;
 import jeryl.fyp.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the FYP manager.
  */
 public class ClearCommand extends Command {
 
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setFypManager(new FypManager());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

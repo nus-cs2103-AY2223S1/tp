@@ -1,46 +1,46 @@
 {
-  "_comment": "AddressBook save file which contains the same Student values as in TypicalStudents#getTypicalAddressBook()",
+  "_comment": "FypManager save file which contains the same Student values as in TypicalStudents#getTypicalAddressBook()",
   "students" : [ {
     "name" : "Alice Pauline",
-    "studentID" : "A1351253P",
+    "studentId": "A1351253P",
     "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
+    "projectName": "Using CRISP to generate crisps",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
-    "studentID" : "A1765432B",
+    "studentId": "A1765432B",
     "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
+    "projectName": "Neural Networks and ML",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
-    "studentID" : "A1352563C",
+    "studentId": "A1352563C",
     "email" : "heinz@example.com",
-    "address" : "wall street",
+    "projectName": "About Decision Trees",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
-    "studentID" : "A1652533D",
+    "studentId": "A1652533D",
     "email" : "cornelia@example.com",
-    "address" : "10th street",
+    "projectName": "Mathematics in Games",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
-    "studentID" : "A1482224E",
+    "studentId": "A1482224E",
     "email" : "werner@example.com",
-    "address" : "michegan ave",
+    "projectName": "AB3 in a Nutshell",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "studentID" : "A1482427F",
+    "studentId": "A1482427F",
     "email" : "lydia@example.com",
-    "address" : "little tokyo",
+    "projectName": "Hello World in 42 Languages",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
-    "studentID" : "A1482442G",
+    "studentId": "A1482442G",
     "email" : "anna@example.com",
-    "address" : "4th street",
+    "projectName": "Why George Best is the Best",
     "tagged" : [ ]
   } ]
 }

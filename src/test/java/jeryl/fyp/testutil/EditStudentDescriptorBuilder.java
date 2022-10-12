@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
-import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
+import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.Student;
-import jeryl.fyp.model.student.StudentID;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -33,9 +33,8 @@ public class EditStudentDescriptorBuilder {
     public EditStudentDescriptorBuilder(Student student) {
         descriptor = new EditStudentDescriptor();
         descriptor.setName(student.getName());
-        descriptor.setStudentID(student.getStudentID());
+        descriptor.setStudentId(student.getStudentId());
         descriptor.setEmail(student.getEmail());
-        descriptor.setAddress(student.getAddress());
         descriptor.setProjectName(student.getProjectName());
         descriptor.setTags(student.getTags());
     }
@@ -49,10 +48,10 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code StudentID} of the {@code EditStudentDescriptor} that we are building.
+     * Sets the {@code StudentId} of the {@code EditStudentDescriptor} that we are building.
      */
-    public EditStudentDescriptorBuilder withStudentID(String id) {
-        descriptor.setStudentID(new StudentID(id));
+    public EditStudentDescriptorBuilder withStudentId(String id) {
+        descriptor.setStudentId(new StudentId(id));
         return this;
     }
 
@@ -65,18 +64,10 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditStudentDescriptor} that we are building.
-     */
-    public EditStudentDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Project} of the {@code EditStudentDescriptor} that we are building.
+     * Sets the {@code ProjectName} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withProjectName(String projectName) {
-        descriptor.setProjectName(projectName);
+        descriptor.setProjectName(new ProjectName(projectName));
         return this;
     }
 

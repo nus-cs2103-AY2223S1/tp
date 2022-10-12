@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import jeryl.fyp.model.student.Student;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a FYP manager
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyFypManager {
 
     /**
      * Returns an unmodifiable view of the students list.

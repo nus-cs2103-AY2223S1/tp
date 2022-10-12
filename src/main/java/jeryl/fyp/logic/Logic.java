@@ -7,7 +7,7 @@ import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.logic.commands.CommandResult;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.ReadOnlyAddressBook;
+import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.student.Student;
 
 /**
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the FypManager.
      *
-     * @see jeryl.fyp.model.Model#getAddressBook()
+     * @see jeryl.fyp.model.Model#getFypManager()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyFypManager getFypManager();
 
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' FYP manager file path.
      */
-    Path getAddressBookFilePath();
+    Path getFypManagerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
