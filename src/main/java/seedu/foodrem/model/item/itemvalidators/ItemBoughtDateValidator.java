@@ -35,8 +35,8 @@ public class ItemBoughtDateValidator implements Validator {
     public static Void validate(String dateString) {
         checkArgument(isParsableItemBoughtDate(dateString), MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
         LocalDate date = LocalDate.parse(dateString, BOUGHT_DATE_FORMATTER);
-        checkArgument(isYearLessThanMaxYear(date), MESSAGE_FOR_YEAR_TOO_LARGE);
-        checkArgument(isYearMoreThanMinYear(date), MESSAGE_FOR_YEAR_TOO_SMALL);
+        checkArgument(isYearLessThanEqualToMaxYear(date), MESSAGE_FOR_YEAR_TOO_LARGE);
+        checkArgument(isYearMoreThanEqualToMinYear(date), MESSAGE_FOR_YEAR_TOO_SMALL);
         return null;
     }
 
@@ -55,8 +55,8 @@ public class ItemBoughtDateValidator implements Validator {
      *
      * @param date a local date that represents the date of the {@link Item}.
      */
-    private static boolean isYearMoreThanMinYear(LocalDate date) {
-        return date.getYear() > MIN_YEAR;
+    private static boolean isYearMoreThanEqualToMinYear(LocalDate date) {
+        return date.getYear() >= MIN_YEAR;
     }
 
     /**
@@ -64,7 +64,7 @@ public class ItemBoughtDateValidator implements Validator {
      *
      * @param date a LocalDate that represents the date of the {@link Item}.
      */
-    private static boolean isYearLessThanMaxYear(LocalDate date) {
-        return date.getYear() < MAX_YEAR;
+    private static boolean isYearLessThanEqualToMaxYear(LocalDate date) {
+        return date.getYear() <= MAX_YEAR;
     }
 }
