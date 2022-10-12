@@ -18,10 +18,10 @@ import seedu.address.model.transaction.Goods;
 
 
 public class BuyCommandParserTest {
-    private BuyCommandParser parser = new BuyCommandParser();
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, BuyCommand.MESSAGE_TRANSACTION_INVALID);
+    private BuyCommandParser parser = new BuyCommandParser();
 
     @Test
     public void parse_invalidIndexPreamble_failure() {

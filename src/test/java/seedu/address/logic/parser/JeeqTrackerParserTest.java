@@ -7,10 +7,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static seedu.address.testutil.TypicalPoc.ALICE;
+import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,6 @@ import seedu.address.logic.commands.SellCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
 import seedu.address.model.company.Company;
 import seedu.address.model.company.NameContainsKeywordsPredicate;
 import seedu.address.model.transaction.Goods;
@@ -41,7 +41,6 @@ import seedu.address.model.transaction.Price;
 import seedu.address.model.transaction.Quantity;
 import seedu.address.model.transaction.SellTransaction;
 import seedu.address.model.transaction.Transaction;
-
 import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.CompanyUtil;
 import seedu.address.testutil.EditCompanyDescriptorBuilder;
