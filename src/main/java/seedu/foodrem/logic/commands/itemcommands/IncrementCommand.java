@@ -22,14 +22,15 @@ public class IncrementCommand extends Command {
     public static final String COMMAND_WORD = "inc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Increments the quantity of the item identified "
-            + "by the index number used in the displayed item list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
-            + "Example: " + COMMAND_WORD + " 10 ";
+            + ": Increments the quantity of the item identified by the index number used in the displayed item list.\n"
+            + "If a quantity is not provided, the item quantity will be incremented by 1. \n"
+            + "Parameters:\n"
+            + "INDEX (must be a positive integer) [" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
+            + "Example:\n"
+            + COMMAND_WORD + " 10\n"
+            + COMMAND_WORD + " 10 " + PREFIX_ITEM_QUANTITY + "100";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Incremented Item: %1$s";
-    public static final String MESSAGE_NOT_INCREMENTED = "Quantity to increment by must be provided.";
     private final Index index;
     private final ItemQuantity quantity;
 

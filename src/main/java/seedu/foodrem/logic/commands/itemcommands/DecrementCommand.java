@@ -15,21 +15,22 @@ import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemQuantity;
 
-
 /**
  * Increments the quantity of an item by a specified amount.
  */
 public class DecrementCommand extends Command {
     public static final String COMMAND_WORD = "dec";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Decrements the quantity of the item identified"
-            + "by the index number used in the displayed item list. "
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
-            + "Example: " + COMMAND_WORD + " 10 ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Decrements the quantity of the item identified by the index number used in the displayed item list.\n"
+            + "If a quantity is not provided, the item quantity will be decremented by 1. \n"
+            + "Parameters:\n"
+            + "INDEX (must be a positive integer) [" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
+            + "Example:\n"
+            + COMMAND_WORD + " 10\n"
+            + COMMAND_WORD + " 10 " + PREFIX_ITEM_QUANTITY + "100";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Decremented Item: %1$s";
-    public static final String MESSAGE_NOT_INCREMENTED = "Quantity to decrement by must be provided.";
     private final Index index;
     private final ItemQuantity quantity;
 
