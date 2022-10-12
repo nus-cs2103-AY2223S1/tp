@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GLOBAL_PERSON_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
@@ -18,9 +20,13 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
+
+        requireNonNull(args);
+
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteCommand(index);
+            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GLOBAL_PERSON_INDEX);
+            Index personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_GLOBAL_PERSON_INDEX).get());
+            return new DeleteCommand(personIndex);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTeamCommand.MESSAGE_USAGE), pe);

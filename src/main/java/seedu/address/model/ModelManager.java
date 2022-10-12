@@ -203,6 +203,11 @@ public class ModelManager implements Model {
         filteredTasks.setPredicate(predicate);
     }
 
+    /**
+     * Returns person object which has given name.
+     * @param name Name of person.
+     * @return Person object.
+     */
     @Override
     public Person getPerson(seedu.address.model.person.Name name) {
         List<Person> persons = getFilteredPersonList();
@@ -216,6 +221,11 @@ public class ModelManager implements Model {
         throw new PersonNotFoundException();
     }
 
+    /**
+     * Returns person name from given person index.
+     * @param personIndex Index of person.
+     * @return Name of person.
+     */
     @Override
     public seedu.address.model.person.Name getPersonName(Index personIndex) {
         requireNonNull(personIndex);
@@ -223,6 +233,11 @@ public class ModelManager implements Model {
         return person.getName();
     }
 
+    /**
+     * Returns person object which has given index.
+     * @param personIndex Index of person.
+     * @return Person object.
+     */
     @Override
     public Person getPersonUsingIndex(Index personIndex) {
         List<Person> persons = getFilteredPersonList();
@@ -246,6 +261,12 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
+    /**
+     * Returns the team object which has the given team name.
+     * @param name Name of team.
+     * @return Team object.
+     */
+    @Override
     public Team getTeam(seedu.address.model.team.Name name) {
         List<Team> teams = getFilteredTeamList();
         requireNonNull(name);
@@ -258,17 +279,50 @@ public class ModelManager implements Model {
         throw new TeamNotFoundException();
     }
 
+    /**
+     * Returns team name from given team index.
+     * @param teamIndex Index of team.
+     * @return Name of team.
+     */
+    @Override
     public Name getTeamName(Index teamIndex) {
         requireNonNull(teamIndex);
         Team team = getTeamUsingIndex(teamIndex);
         return team.getName();
     }
 
+    /**
+     * Returns team object which has given index.
+     * @param teamIndex Index of team.
+     * @return Team object.
+     */
     @Override
     public Team getTeamUsingIndex(Index teamIndex) {
         List<Team> teams = getFilteredTeamList();
         requireNonNull(teamIndex);
         return teams.get(teamIndex.getZeroBased());
+    }
+
+    /**
+     * Return Team Object that the given person is a member in.
+     * @param p Person object.
+     * @return Team object.
+     */
+    @Override
+    public Team hasMember(Person p) {
+        List<Team> teams = getFilteredTeamList();
+        requireNonNull(p);
+        ObservableList<Person> memberList = null;
+        for (int i = 0; i < teams.size(); i++) {
+            Team team = teams.get(i);
+            memberList = team.getMemberList();
+            for (int j = 0; j < memberList.size(); j++) {
+                if (memberList.contains(p)) {
+                    return team;
+                }
+            }
+        }
+        return null;
     }
 
     // todo implementation of updateFilteredTeamList
