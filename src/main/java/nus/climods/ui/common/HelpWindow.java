@@ -1,12 +1,22 @@
 package nus.climods.ui.common;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import nus.climods.commons.core.LogsCenter;
 import nus.climods.ui.UiPart;
@@ -16,7 +26,7 @@ import nus.climods.ui.UiPart;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103-f14-1.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -27,6 +37,11 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Label helpMessage;
+
+    @FXML
+    private WebView webView;
+
+    private WebEngine webEngine;
 
     /**
      * Creates a new HelpWindow.
@@ -67,6 +82,31 @@ public class HelpWindow extends UiPart<Stage> {
         logger.fine("Showing help page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
+        displayUserManual();
+    }
+
+    /**
+     * Displays the UserManual that is hosted on the github website.
+     * If the connection is down, render the backup html file.
+     */
+    private void displayUserManual() {
+        WebEngine webEngine = webView.getEngine();
+
+        try {
+            URL url = new URL(USERGUIDE_URL);
+            URLConnection urlConnection = url.openConnection();
+            urlConnection.connect();
+            webEngine.load(USERGUIDE_URL);
+        } catch (IOException ioException) {
+            try {
+                Stream<String> lines = Files.lines(
+                    Paths.get(ClassLoader.getSystemResource("html/UserManual.html").toURI())
+                );
+                webEngine.loadContent(lines.collect(Collectors.joining("\n")));
+            } catch (URISyntaxException | IOException e) {
+                logger.warning("User Manual not found!");
+            }
+        }
     }
 
     /**
