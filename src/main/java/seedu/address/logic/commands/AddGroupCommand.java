@@ -27,6 +27,8 @@ public class AddGroupCommand extends Command {
 
     /**
      * Creates a AddGroupCommand to add the specified {@Code group}
+     *
+     * @param group that is being added to the AddressBook.
      */
     public AddGroupCommand(Group group) {
         requireNonNull(group);
