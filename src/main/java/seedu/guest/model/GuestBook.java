@@ -56,7 +56,7 @@ public class GuestBook implements ReadOnlyGuestBook {
         setGuests(newData.getGuestList());
     }
 
-    //// guest-level operations
+    // guest-level operations
 
     /**
      * Returns true if a guest with the same identity as {@code guest} exists in the guest book.
