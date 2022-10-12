@@ -37,7 +37,7 @@ public class PersonGroupTest {
         PersonGroup personGroup1 = new PersonGroup("CS2103");
         PersonGroup personGroup2 = new PersonGroup("CS2103");
         PersonGroup personGroup3 = new PersonGroup("NTU");
-        assertTrue(personGroup1 == personGroup1);
+        assertFalse(personGroup1 == personGroup2);
         assertTrue(personGroup1.equals(personGroup2));
         assertFalse(personGroup3.equals(personGroup2));
         assertTrue(personGroup1.toString().equals(personGroup2.getGroupName()));
