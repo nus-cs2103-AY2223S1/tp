@@ -3,8 +3,6 @@ package seedu.address.model.category;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.Gender;
-
 /**
  * Represents a Category in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidCategoryName(String)}

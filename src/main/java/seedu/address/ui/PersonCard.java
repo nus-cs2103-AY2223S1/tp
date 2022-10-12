@@ -2,8 +2,6 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
-import static seedu.address.model.person.Gender.MALE_SYMBOL;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -12,6 +10,8 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
+
+import static seedu.address.model.person.Gender.MALE_SYMBOL;
 
 /**
  * An UI component that displays information of a {@code Person}.
