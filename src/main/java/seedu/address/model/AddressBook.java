@@ -105,9 +105,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         if (person instanceof Student) {
-            return students.contains(person);
+            return students.contains((Student) person);
         } else if (person instanceof Tutor) {
-            return tutors.contains(person);
+            return tutors.contains((Tutor) person);
         } else {
             // To be removed
             return persons.contains(person);
@@ -120,9 +120,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         if (p instanceof Student) {
-            students.add(p);
+            students.add((Student) p);
         } else if (p instanceof Tutor) {
-            tutors.add(p);
+            tutors.add((Tutor) p);
         } else {
             // To be removed
             persons.add(p);
@@ -137,9 +137,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
         if (target instanceof Student && editedPerson instanceof Student) {
-            students.setPerson(target, editedPerson);
+            students.setStudent((Student) target, (Student) editedPerson);
         } else if (target instanceof Tutor && editedPerson instanceof Tutor) {
-            tutors.setPerson(target, editedPerson);
+            tutors.setTutor((Tutor) target, (Tutor) editedPerson);
         } else {
             // To be removed
             persons.setPerson(target, editedPerson);
@@ -152,9 +152,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         if (key instanceof Student) {
-            students.remove(key);
+            students.remove((Student) key);
         } else if (key instanceof Tutor) {
-            tutors.remove(key);
+            tutors.remove((Tutor) key);
         } else {
             // To be removed
             persons.remove(key);
@@ -203,8 +203,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return students.asUnmodifiableObservableList().size() + " students, "
-                + tutors.asUnmodifiableObservableList().size() + " tutors and "
+        return students.asUnmodifiableObservableStudentList().size() + " students, "
+                + tutors.asUnmodifiableObservableTutorList().size() + " tutors and "
                 + tuitionClasses.asUnmodifiableObservableList().size() + " tuition classes.";
         // TODO: refine later
     }

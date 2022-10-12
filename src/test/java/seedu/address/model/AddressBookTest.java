@@ -23,9 +23,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.exceptions.DuplicateStudentException;
 import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.person.tutor.exceptions.DuplicateTutorException;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.exceptions.DuplicateTuitionClassException;
 import seedu.address.testutil.StudentBuilder;
@@ -62,7 +63,7 @@ public class AddressBookTest {
         List<TuitionClass> newTuitionClasses = Arrays.asList();
         AddressBookStub newData = new AddressBookStub(newStudents, newTutors, newTuitionClasses);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -73,7 +74,7 @@ public class AddressBookTest {
         List<TuitionClass> newTuitionClasses = Arrays.asList();
         AddressBookStub newData = new AddressBookStub(newStudents, newTutors, newTuitionClasses);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateTutorException.class, () -> addressBook.resetData(newData));
     }
 
     @Test

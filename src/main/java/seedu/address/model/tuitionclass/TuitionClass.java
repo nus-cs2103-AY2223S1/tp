@@ -115,13 +115,15 @@ public class TuitionClass {
                 && otherClass.getLevel().equals(getLevel())
                 && otherClass.getDay().equals(getDay())
                 && otherClass.getTime().equals(getTime())
-                && otherClass.getTags().equals(getTags());
+                && otherClass.getTags().equals(getTags())
+                && otherClass.getStudents().equals(getStudents())
+                && otherClass.getTutors().equals(getTutors());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, subject, level, day, time);
+        return Objects.hash(name, subject, level, day, time, tags, students, tutors);
     }
 
     @Override

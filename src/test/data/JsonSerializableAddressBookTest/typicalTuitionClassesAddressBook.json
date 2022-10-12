@@ -1,0 +1,91 @@
+{
+  "tuitionClasses" : [ {
+    "name" : "P2MATH",
+    "subject" : "MATHEMATICS",
+    "level" : "PRIMARY2",
+    "day" : "MONDAY",
+    "startTime" : "10:00",
+    "endTime" : "12:00",
+    "tagged" : [ "tough" ],
+    "students" : [ {
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "school" : "Keming Primary School",
+      "level" : "PRIMARY3",
+      "nextOfKin" : "Teresa Lim",
+      "tagged" : [ "friends" ]
+    }, {
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25",
+      "school" : "Zheng Hua Secondary School",
+      "level" : "SECONDARY2",
+      "nextOfKin" : "Aries Toh",
+      "tagged" : [ "owesMoney", "friends" ]
+    } ],
+    "tutors" : [ {
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "qualification": "Bachelor of Computing",
+      "institution": "National University of Singapore",
+      "tagged" : [ "friends" ]
+    }, {
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25",
+      "qualification" : "Bachelor of Engineering",
+      "institution" : "Nanyang Technological University",
+      "tagged" : [ "owesMoney", "friends" ]
+    } ]
+  }, {
+    "name" : "P5ENG",
+    "subject" : "ENGLISH",
+    "level" : "PRIMARY5",
+    "day" : "FRIDAY",
+    "startTime" : "18:00",
+    "endTime" : "20:00",
+    "tagged" : [ "easy" ],
+    "students" : [ {
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "school" : "Keming Primary School",
+      "level" : "PRIMARY3",
+      "nextOfKin" : "Teresa Lim",
+      "tagged" : [ "friends" ]
+    }, {
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25",
+      "school" : "Zheng Hua Secondary School",
+      "level" : "SECONDARY2",
+      "nextOfKin" : "Aries Toh",
+      "tagged" : [ "owesMoney", "friends" ]
+    } ],
+    "tutors" : [ {
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "qualification": "Bachelor of Computing",
+      "institution": "National University of Singapore",
+      "tagged" : [ "friends" ]
+    }, {
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25",
+      "qualification" : "Bachelor of Engineering",
+      "institution" : "Nanyang Technological University",
+      "tagged" : [ "owesMoney", "friends" ]
+    } ]
+  } ]
+}

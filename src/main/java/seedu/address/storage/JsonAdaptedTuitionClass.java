@@ -163,5 +163,4 @@ class JsonAdaptedTuitionClass {
         return new TuitionClass(modelName, modelSubject, modelLevel, modelDay, modelTime,
                 modelTags, modelStudents, modelTutors);
     }
-
 }
