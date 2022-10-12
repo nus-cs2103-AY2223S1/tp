@@ -10,30 +10,31 @@ import java.util.Objects;
 public class Student {
 
     // Identity fields
-    private final Name name;
+    private final StuName name;
     private final Telegram telegram;
-    private final Email email;
+    private final StuEmail email;
 
     // Data fields
     private final Response response;
     private final Attendance attendance;
-    private final HelpTag helpTag;
+//    private final HelpTag helpTag;
+
 
     /**
-     * Every field must be present and not null.
+     * Name, Telegram and Email field must not be null.
      */
-    public Student(Name name, Telegram telegram, Email email, Response response, Attendance attendance,
-                   HelpTag helpTag) {
+
+    public Student(StuName name, Telegram telegram, StuEmail email, Response response, Attendance attendance) {
+
         requireAllNonNull(name, telegram, email);
         this.name = name;
         this.telegram = telegram;
         this.email = email;
         this.response = response;
         this.attendance = attendance;
-        this.helpTag = helpTag;
     }
 
-    public Name getName() {
+    public StuName getName() {
         return name;
     }
 
@@ -41,7 +42,7 @@ public class Student {
         return telegram;
     }
 
-    public Email getEmail() {
+    public StuEmail getEmail() {
         return email;
     }
 
@@ -51,10 +52,6 @@ public class Student {
 
     public Response getResponse() {
         return response;
-    }
-
-    public HelpTag getHelpTag() {
-        return helpTag;
     }
 
     /**
@@ -89,14 +86,13 @@ public class Student {
                 && otherStudent.getTelegram().equals(getTelegram())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAttendance().equals(getAttendance())
-                && otherStudent.getResponse().equals(getResponse())
-                && otherStudent.getHelpTag().equals(getHelpTag());
+                && otherStudent.getResponse().equals(getResponse());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, telegram, email, response, attendance, helpTag);
+        return Objects.hash(name, telegram, email, response, attendance);
     }
 
     @Override

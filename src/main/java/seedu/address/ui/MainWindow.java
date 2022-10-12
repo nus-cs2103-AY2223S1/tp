@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private QuestionListPanel questionListPanel;
     private TutorialListPanel tutorialListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane tutorialListPanelPlaceholder;
+
+    @FXML
+    private StackPane studentListPanelPlaceHolder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -127,6 +131,9 @@ public class MainWindow extends UiPart<Stage> {
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
         tutorialListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
 
+        //studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        //studentListPanelPlaceHolder.getChildren().add(studentListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -183,6 +190,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public QuestionListPanel getQuestionListPanel() {
         return questionListPanel;
+    }
+
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
     }
 
     /**

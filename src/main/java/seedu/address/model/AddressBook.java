@@ -66,6 +66,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void setTutorials(List<Tutorial> tutorials) {
         this.tutorials.setTutorials(tutorials);
+
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
     }
 
     /**
@@ -77,6 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setQuestions(newData.getQuestionList());
         setTutorials(newData.getTutorialList());
+        setStudents(newData.getStudentList());
     }
 
     //// person-level operations
@@ -235,7 +239,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons)
-                && questions.equals(((AddressBook) other).questions));
+                && questions.equals(((AddressBook) other).questions)
+                && students.equals(((AddressBook) other).students));
     }
 
     @Override

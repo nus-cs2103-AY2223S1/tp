@@ -13,10 +13,11 @@ import seedu.address.model.student.exceptions.StudentNotFoundException;
 
 /**
  * A list of students that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A student is considered unique by comparing using {@code Student#isSameStudent(Student)}.
+ * As such, adding and updating of students uses Student#isSameStudent(Student) for equality
+ * so as to ensure that the student being added or updated is unique in terms of identity in the UniqueStudentList.
+ * However, the removal of a student uses Student#equals(Object) so as to ensure that
+ * the student with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -30,7 +31,7 @@ public class UniqueStudentList implements Iterable<Student> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent student as the given argument.
      */
     public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
@@ -38,8 +39,8 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a student to the list.
+     * The student must not already exist in the list.
      */
     public void add(Student toAdd) {
         requireNonNull(toAdd);
@@ -50,9 +51,9 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedStudent}.
+     * Replaces the student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedStudent} must not be the same as another existing person in the list.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the list.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
@@ -86,10 +87,10 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Student> students) {
+    public void setStudents(List<Student> students) {
         requireAllNonNull(students);
         if (!studentsAreUnique(students)) {
             throw new DuplicateStudentException();
