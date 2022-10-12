@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.question.Question;
 
 /**
- * Deletes a question identified using it's displayed index from the address book.
+ * Deletes a question identified using it's displayed index from the question list.
  */
 public class DeleteQCommand extends Command {
 

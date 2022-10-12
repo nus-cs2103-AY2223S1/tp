@@ -73,6 +73,6 @@ public class MarkTutorialCommand extends Command {
         model.setTutorial(tutorialToEdit, editedTutorial);
         model.updateFilteredTutorialList(Model.PREDICATE_SHOW_ALL_TUTORIALS);
 
-        return new CommandResult(MESSAGE_MARKTUT_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_MARKTUT_SUCCESS, editedTutorial));
     }
 }
