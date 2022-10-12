@@ -41,10 +41,10 @@ public class GradeProgressList {
     }
 
     /**
-     * Edits the homework at the given index with the new given homework.
+     * Edits the grade at the given index with the new given grade.
      *
-     * @param index of homework to be edited
-     * @param gradeProgress that replaces the old homework
+     * @param index of grade to be edited
+     * @param gradeProgress that replaces the old grade
      */
     public void editAtIndex(Index index, GradeProgress gradeProgress) throws CommandException {
         int indexToEdit = index.getZeroBased();
