@@ -1,16 +1,12 @@
 package gim.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
+import gim.model.date.Date;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
 import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.tag.Tag;
 
 /**
  * A utility class to help with building EditExerciseDescriptor objects.
@@ -36,7 +32,7 @@ public class EditExerciseDescriptorBuilder {
         descriptor.setWeight(exercise.getWeight());
         descriptor.setSets(exercise.getSets());
         descriptor.setReps(exercise.getReps());
-        descriptor.setTags(exercise.getTags());
+        descriptor.setDate(exercise.getDate());
     }
 
     /**
@@ -72,12 +68,11 @@ public class EditExerciseDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditExerciseDescriptor}
+     * Parses the {@code dates} into a {@code Set<Tag>} and set it to the {@code EditExerciseDescriptor}
      * that we are building.
      */
-    public EditExerciseDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditExerciseDescriptorBuilder withDates(String date) {
+        descriptor.setDate(new Date(date));
         return this;
     }
 

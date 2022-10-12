@@ -1,21 +1,15 @@
 package gim.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import gim.commons.exceptions.IllegalValueException;
+import gim.model.date.Date;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
 import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.tag.Tag;
 
 
 /**
@@ -29,7 +23,7 @@ class JsonAdaptedExercise {
     private final String weight;
     private final String sets;
     private final String reps;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final JsonAdaptedTag date;
 
     /**
      * Constructs a {@code JsonAdaptedExercise} with the given exercise details.
@@ -37,14 +31,12 @@ class JsonAdaptedExercise {
     @JsonCreator
     public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("weight") String weight,
             @JsonProperty("sets") String sets, @JsonProperty("reps") String reps,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("date") JsonAdaptedTag date) {
         this.name = name;
         this.weight = weight;
         this.sets = sets;
         this.reps = reps;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.date = date;
     }
 
     /**
@@ -55,9 +47,7 @@ class JsonAdaptedExercise {
         weight = source.getWeight().value;
         sets = source.getSets().value;
         reps = source.getReps().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        date = new JsonAdaptedTag(source.getDate());
     }
 
     /**
@@ -66,11 +56,6 @@ class JsonAdaptedExercise {
      * @throws IllegalValueException if there were any data constraints violated in the adapted exercise.
      */
     public Exercise toModelType() throws IllegalValueException {
-        final List<Tag> exerciseTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            exerciseTags.add(tag.toModelType());
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -103,8 +88,14 @@ class JsonAdaptedExercise {
         }
         final Reps modelReps = new Reps(reps);
 
-        final Set<Tag> modelTags = new HashSet<>(exerciseTags);
-        return new Exercise(modelName, modelWeight, modelSets, modelReps, modelTags);
+        if (date == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+        }
+        if (!Date.isValidDate(date.toModelType().toString())) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        }
+        final Date modelDates = date.toModelType();
+        return new Exercise(modelName, modelWeight, modelSets, modelReps, modelDates);
     }
 
 }

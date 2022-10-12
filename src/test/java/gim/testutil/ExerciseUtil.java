@@ -1,18 +1,15 @@
 package gim.testutil;
 
+import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_REPS;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
-import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
-
-import java.util.Set;
 
 import gim.logic.commands.AddCommand;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
+import gim.model.date.Date;
 import gim.model.exercise.Exercise;
-import gim.model.tag.Tag;
-
 
 
 /**
@@ -36,9 +33,7 @@ public class ExerciseUtil {
         sb.append(PREFIX_WEIGHT + exercise.getWeight().value + " ");
         sb.append(PREFIX_SETS + exercise.getSets().value + " ");
         sb.append(PREFIX_REPS + exercise.getReps().value + " ");
-        exercise.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+        sb.append(PREFIX_DATE + exercise.getDateString() + " ");
         return sb.toString();
     }
 
@@ -51,13 +46,9 @@ public class ExerciseUtil {
         descriptor.getWeight().ifPresent(weight -> sb.append(PREFIX_WEIGHT).append(weight.value).append(" "));
         descriptor.getSets().ifPresent(sets -> sb.append(PREFIX_SETS).append(sets.value).append(" "));
         descriptor.getReps().ifPresent(reps -> sb.append(PREFIX_REPS).append(reps.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
+        if (descriptor.getDate().isPresent()) {
+            Date date = descriptor.getDate().get();
+            sb.append(PREFIX_DATE).append(date.toString()).append(" ");
         }
         return sb.toString();
     }

@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import gim.commons.exceptions.IllegalValueException;
-import gim.model.tag.Tag;
+import gim.model.date.Date;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link Date}.
  */
 class JsonAdaptedTag {
 
@@ -24,8 +24,8 @@ class JsonAdaptedTag {
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
-    public JsonAdaptedTag(Tag source) {
-        tagName = source.tagName;
+    public JsonAdaptedTag(Date source) {
+        tagName = source.toString();
     }
 
     @JsonValue
@@ -38,11 +38,11 @@ class JsonAdaptedTag {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
-    public Tag toModelType() throws IllegalValueException {
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+    public Date toModelType() throws IllegalValueException {
+        if (!Date.isValidDate(tagName)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(tagName);
+        return new Date(tagName);
     }
 
 }

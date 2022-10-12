@@ -2,10 +2,10 @@ package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.DESC_BENCH_PRESS;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE_2;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
-import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,8 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
 import gim.testutil.EditExerciseDescriptorBuilder;
-
-
 
 
 public class EditExerciseDescriptorTest {
@@ -56,7 +54,7 @@ public class EditExerciseDescriptorTest {
         assertFalse(DESC_ARM_CURLS.equals(editedArmCurls));
 
         // different tags -> returns false
-        editedArmCurls = new EditExerciseDescriptorBuilder(DESC_ARM_CURLS).withTags(VALID_TAG_HUSBAND).build();
+        editedArmCurls = new EditExerciseDescriptorBuilder(DESC_ARM_CURLS).withDates(VALID_DATE_2).build();
         assertFalse(DESC_ARM_CURLS.equals(editedArmCurls));
     }
 }

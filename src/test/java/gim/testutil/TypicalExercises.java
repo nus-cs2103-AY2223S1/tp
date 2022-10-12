@@ -1,13 +1,12 @@
 package gim.testutil;
 
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
-import static gim.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
 
@@ -27,21 +26,21 @@ public class TypicalExercises {
     public static final Exercise ALICE = new ExerciseBuilder().withName("Alice Pauline")
             .withReps("1").withSets("1")
             .withWeight("10")
-            .withTags("friends").build();
+            .withDate(VALID_DATE).build();
     public static final Exercise BENSON = new ExerciseBuilder().withName("Benson Meier")
             .withReps("1")
             .withSets("1").withWeight("20")
-            .withTags("owesMoney", "friends").build();
+            .withDate(VALID_DATE).build();
     public static final Exercise CARL = new ExerciseBuilder().withName("Carl Kurz").withWeight("30")
-            .withSets("1").withReps("1").build();
+            .withSets("1").withReps("1").withDate(VALID_DATE).build();
     public static final Exercise DANIEL = new ExerciseBuilder().withName("Daniel Meier").withWeight("40")
-            .withSets("1").withReps("1").withTags("friends").build();
+            .withSets("1").withReps("1").withDate(VALID_DATE).build();
     public static final Exercise ELLE = new ExerciseBuilder().withName("Elle Meyer").withWeight("50")
-            .withSets("1").withReps("1").build();
+            .withSets("1").withReps("1").withDate(VALID_DATE).build();
     public static final Exercise FIONA = new ExerciseBuilder().withName("Fiona Kunz").withWeight("60")
-            .withSets("1").withReps("1").build();
+            .withSets("1").withReps("1").withDate(VALID_DATE).build();
     public static final Exercise GEORGE = new ExerciseBuilder().withName("George Best").withWeight("70")
-            .withSets("1").withReps("1").build();
+            .withSets("1").withReps("1").withDate(VALID_DATE).build();
 
     // Manually added
     public static final Exercise HOON = new ExerciseBuilder().withName("Hoon Meier").withWeight("80")
@@ -52,10 +51,10 @@ public class TypicalExercises {
     // Manually added - Exercise's details found in {@code CommandTestUtil}
     public static final Exercise ARM_CURLS = new ExerciseBuilder()
             .withName(VALID_NAME_ARM_CURLS).withWeight(VALID_WEIGHT_ARM_CURLS).withSets(VALID_SETS_ARM_CURLS)
-            .withReps(VALID_REPS_ARM_CURLS).withTags(VALID_TAG_FRIEND).build();
+            .withReps(VALID_REPS_ARM_CURLS).withDate(VALID_DATE).build();
     public static final Exercise BENCH_PRESS = new ExerciseBuilder()
             .withName(VALID_NAME_BENCH_PRESS).withWeight(VALID_WEIGHT_BENCH_PRESS).withSets(VALID_SETS_BENCH_PRESS)
-            .withReps(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

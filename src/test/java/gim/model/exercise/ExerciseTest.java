@@ -1,11 +1,11 @@
 package gim.model.exercise;
 
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE_2;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
-import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
-import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
 import static gim.testutil.TypicalExercises.BENCH_PRESS;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -16,14 +16,7 @@ import org.junit.jupiter.api.Test;
 import gim.testutil.ExerciseBuilder;
 
 
-
 public class ExerciseTest {
-
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Exercise exercise = new ExerciseBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> exercise.getTags().remove(0));
-    }
 
     @Test
     public void isSameExercise() {
@@ -34,8 +27,10 @@ public class ExerciseTest {
         assertFalse(ALICE.isSameExercise(null));
 
         // same name, all other attributes different -> returns true
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withWeight(VALID_WEIGHT_BENCH_PRESS)
-                .withSets(VALID_SETS_BENCH_PRESS).withReps(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND).build();
+        Exercise editedAlice =
+                new ExerciseBuilder(ALICE).withWeight(VALID_WEIGHT_BENCH_PRESS).withSets(VALID_SETS_BENCH_PRESS)
+                        .withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE).build();
+
         assertTrue(ALICE.isSameExercise(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -43,8 +38,8 @@ public class ExerciseTest {
         assertFalse(ALICE.isSameExercise(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Exercise editedBenchPress = new ExerciseBuilder(BENCH_PRESS)
-                .withName(VALID_NAME_BENCH_PRESS.toLowerCase()).build();
+        Exercise editedBenchPress =
+                new ExerciseBuilder(BENCH_PRESS).withName(VALID_NAME_BENCH_PRESS.toLowerCase()).build();
         assertFalse(BENCH_PRESS.isSameExercise(editedBenchPress));
 
         // name has trailing spaces, all other attributes same -> returns false
@@ -88,7 +83,7 @@ public class ExerciseTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new ExerciseBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new ExerciseBuilder(ALICE).withDate(VALID_DATE_2).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

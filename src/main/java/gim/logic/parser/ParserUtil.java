@@ -2,18 +2,14 @@ package gim.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import gim.commons.core.index.Index;
 import gim.commons.util.StringUtil;
 import gim.logic.parser.exceptions.ParseException;
+import gim.model.date.Date;
 import gim.model.exercise.Name;
 import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -25,6 +21,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -96,29 +93,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String date} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedTag = date.trim();
+        if (!Date.isValidDate(trimmedTag)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Date(trimmedTag);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
 }

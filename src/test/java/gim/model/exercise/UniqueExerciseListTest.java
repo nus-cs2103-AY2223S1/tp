@@ -1,7 +1,7 @@
 package gim.model.exercise;
 
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
-import static gim.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
 import static gim.testutil.TypicalExercises.BENCH_PRESS;
@@ -9,13 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-//import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-//import gim.model.exercise.exceptions.DuplicateExerciseException;
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
 import gim.testutil.ExerciseBuilder;
 
@@ -42,7 +40,7 @@ public class UniqueExerciseListTest {
     @Test
     public void contains_exerciseWithSameIdentityFieldsInList_returnsTrue() {
         uniqueExerciseList.add(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
                 .build();
         assertTrue(uniqueExerciseList.contains(editedAlice));
     }
@@ -85,7 +83,7 @@ public class UniqueExerciseListTest {
     @Test
     public void setExercise_editedExerciseHasSameIdentity_success() {
         uniqueExerciseList.add(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
+        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
                 .build();
         uniqueExerciseList.setExercise(ALICE, editedAlice);
         UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
@@ -165,7 +163,7 @@ public class UniqueExerciseListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueExerciseList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> uniqueExerciseList.asUnmodifiableObservableList()
+                .remove(0));
     }
 }

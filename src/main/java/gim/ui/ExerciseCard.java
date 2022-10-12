@@ -1,7 +1,5 @@
 package gim.ui;
 
-import java.util.Comparator;
-
 import gim.model.exercise.Exercise;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -40,7 +38,7 @@ public class ExerciseCard extends UiPart<Region> {
     @FXML
     private Label sets;
     @FXML
-    private FlowPane tags;
+    private FlowPane dates;
 
     /**
      * Creates a {@code ExerciseCode} with the given {@code Exercise} and index to display.
@@ -53,9 +51,7 @@ public class ExerciseCard extends UiPart<Region> {
         weight.setText("Weight: " + exercise.getWeight().value + "kg");
         reps.setText("Reps: " + exercise.getReps().value);
         sets.setText("Sets: " + exercise.getSets().value);
-        exercise.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        dates.getChildren().add(new Label(exercise.getDateString()));
     }
 
     @Override

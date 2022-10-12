@@ -4,11 +4,12 @@
     "weight": "10",
     "sets": "1",
     "reps": "1",
-    "tagged": [ "friends" ]
+    "date": "11/01/2010"
   }, {
     "name": "Alice Pauline",
-    "weight": "20",
-    "sets": "2",
-    "reps": "2"
+    "weight": "10",
+    "sets": "1",
+    "reps": "1",
+    "date": "11/01/2010"
   } ]
 }

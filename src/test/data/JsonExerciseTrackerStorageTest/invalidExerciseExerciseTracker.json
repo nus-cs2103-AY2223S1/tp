@@ -3,6 +3,7 @@
     "name": "Exercise with invalid name field: Ha!ns Mu@ster",
     "weight": "20",
     "sets": "1",
-    "reps": "1"
+    "reps": "1",
+    "date": "01/01/2022"
   } ]
 }

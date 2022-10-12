@@ -1,30 +1,27 @@
 package gim.logic.commands;
 
+import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_REPS;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
-import static gim.logic.parser.CliSyntax.PREFIX_TAG;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static gim.model.Model.PREDICATE_SHOW_ALL_EXERCISES;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import gim.commons.core.Messages;
 import gim.commons.core.index.Index;
 import gim.commons.util.CollectionUtil;
 import gim.logic.commands.exceptions.CommandException;
 import gim.model.Model;
+import gim.model.date.Date;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
 import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.tag.Tag;
 
 
 
@@ -42,8 +39,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_SETS + "SETS] "
-            + "[" + PREFIX_REPS + "REPS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_REPS + "REP] "
+            + "[" + PREFIX_DATE + "DATE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_WEIGHT + "91234567 "
             + PREFIX_SETS + "johndoe@example.com";
@@ -100,9 +97,9 @@ public class EditCommand extends Command {
         Weight updatedWeight = editExerciseDescriptor.getWeight().orElse(exerciseToEdit.getWeight());
         Sets updatedSets = editExerciseDescriptor.getSets().orElse(exerciseToEdit.getSets());
         Reps updatedReps = editExerciseDescriptor.getReps().orElse(exerciseToEdit.getReps());
-        Set<Tag> updatedTags = editExerciseDescriptor.getTags().orElse(exerciseToEdit.getTags());
+        Date updatedDate = editExerciseDescriptor.getDate().orElse(exerciseToEdit.getDate());
 
-        return new Exercise(updatedName, updatedWeight, updatedSets, updatedReps, updatedTags);
+        return new Exercise(updatedName, updatedWeight, updatedSets, updatedReps, updatedDate);
     }
 
     @Override
@@ -132,27 +129,27 @@ public class EditCommand extends Command {
         private Weight weight;
         private Sets sets;
         private Reps reps;
-        private Set<Tag> tags;
+        private Date date;
 
         public EditExerciseDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code date} is used internally.
          */
         public EditExerciseDescriptor(EditExerciseDescriptor toCopy) {
             setName(toCopy.name);
             setWeight(toCopy.weight);
             setSets(toCopy.sets);
             setReps(toCopy.reps);
-            setTags(toCopy.tags);
+            setDate(toCopy.date);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, weight, sets, reps, tags);
+            return CollectionUtil.isAnyNonNull(name, weight, sets, reps, date);
         }
 
         public void setName(Name name) {
@@ -188,20 +185,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code date} to this object's {@code date}.
+         * A defensive copy of {@code date} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setDate(Date date) {
+            this.date = date;
         }
 
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code date} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Date> getDate() {
+            return (date != null) ? Optional.of(date) : Optional.empty();
         }
 
         @Override
@@ -223,7 +220,7 @@ public class EditCommand extends Command {
                     && getWeight().equals(e.getWeight())
                     && getSets().equals(e.getSets())
                     && getReps().equals(e.getReps())
-                    && getTags().equals(e.getTags());
+                    && getDate().equals(e.getDate());
         }
     }
 }
