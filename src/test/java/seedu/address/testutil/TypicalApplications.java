@@ -1,15 +1,15 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_FACEBOOK;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_CONTACT_FACEBOOK;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_CONTACT_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DATE_FACEBOOK;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DATE_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_EMAIL_FACEBOOK;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_EMAIL_GOOGLE;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_POSITION_FACEBOOK;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_POSITION_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACT_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACT_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_FACEBOOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +35,7 @@ public class TypicalApplications {
             .withContact("91420834").withDate("2022-01-01")
             .withEmail("janestreet@example.com").withPosition("Software Engineer").build();
 
-    // Manually added - Application's details found in {@code ApplicationCommandTestUtil}
+    // Manually added - Application's details found in {@code CommandTestUtil}
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)
             .withContact(VALID_CONTACT_GOOGLE).withDate(VALID_DATE_GOOGLE)
             .withEmail(VALID_EMAIL_GOOGLE).withPosition(VALID_POSITION_GOOGLE).build();

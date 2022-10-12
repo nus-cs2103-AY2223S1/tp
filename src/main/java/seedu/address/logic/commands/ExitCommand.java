@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
-
 /**
  * Terminates the program.
  */
@@ -9,7 +8,7 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting address book as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting CinternS as requested ...";
 
     @Override
     public CommandResult execute(Model model) {

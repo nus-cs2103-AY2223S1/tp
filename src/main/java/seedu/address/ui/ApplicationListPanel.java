@@ -13,7 +13,7 @@ import seedu.address.model.application.Application;
 /**
  * Panel containing the list of applications.
  */
-public class ApplicationListPanel extends ApplicationUiPart<Region> {
+public class ApplicationListPanel extends UiPart<Region> {
     private static final String FXML = "ApplicationListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ApplicationListPanel.class);
 
@@ -21,7 +21,7 @@ public class ApplicationListPanel extends ApplicationUiPart<Region> {
     private ListView<Application> applicationListView;
 
     /**
-     * Creates a {@code ApplicationListPanel} with the given {@code ObservableList}.
+     * Creates an {@code ApplicationListPanel} with the given {@code ObservableList}.
      */
     public ApplicationListPanel(ObservableList<Application> applicationList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class ApplicationListPanel extends ApplicationUiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Application} using a {@code ApplicationCard}.
+     * Custom {@code ListCell} that displays the graphics of an {@code Application} using an {@code ApplicationCard}.
      */
     class ApplicationListViewCell extends ListCell<Application> {
         @Override

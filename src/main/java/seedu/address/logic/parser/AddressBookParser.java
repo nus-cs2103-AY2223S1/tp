@@ -6,15 +6,15 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.OldAddCommand;
+import seedu.address.logic.commands.OldClearCommand;
+import seedu.address.logic.commands.OldCommand;
+import seedu.address.logic.commands.OldDeleteCommand;
+import seedu.address.logic.commands.OldEditCommand;
+import seedu.address.logic.commands.OldExitCommand;
+import seedu.address.logic.commands.OldFindCommand;
+import seedu.address.logic.commands.OldHelpCommand;
+import seedu.address.logic.commands.OldListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -34,39 +34,39 @@ public class AddressBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public OldCommand parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OldHelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case OldAddCommand.COMMAND_WORD:
+            return new OldAddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case OldEditCommand.COMMAND_WORD:
+            return new OldEditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case OldDeleteCommand.COMMAND_WORD:
+            return new OldDeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case OldClearCommand.COMMAND_WORD:
+            return new OldClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case OldFindCommand.COMMAND_WORD:
+            return new OldFindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case OldListCommand.COMMAND_WORD:
+            return new OldListCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+        case OldExitCommand.COMMAND_WORD:
+            return new OldExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+        case OldHelpCommand.COMMAND_WORD:
+            return new OldHelpCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
