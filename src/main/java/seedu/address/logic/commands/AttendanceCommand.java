@@ -61,12 +61,12 @@ public class AttendanceCommand extends Command {
         Telegram telegram = studentToMarkAttendance.getTelegram();
         Email email = studentToMarkAttendance.getEmail();
         Response response = studentToMarkAttendance.getResponse();
-        HelpTag helptag = studentToMarkAttendance.getHelpTag();
+
 
         String updatedAttendanceString = String.valueOf(Integer.parseInt(attendance.toString()) + 1);
         Attendance updatedAttendance = new Attendance(updatedAttendanceString);
 
-        return new Student(name, telegram, email, response, updatedAttendance, helptag);
+        return new Student(name, telegram, email, response, updatedAttendance);
     }
 
     @Override

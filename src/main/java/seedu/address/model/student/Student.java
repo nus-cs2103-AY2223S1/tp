@@ -17,20 +17,18 @@ public class Student {
     // Data fields
     private final Response response;
     private final Attendance attendance;
-    private final HelpTag helpTag;
+//    private final HelpTag helpTag;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Telegram telegram, Email email, Response response, Attendance attendance,
-                   HelpTag helpTag) {
+    public Student(Name name, Telegram telegram, Email email, Response response, Attendance attendance) {
         requireAllNonNull(name, telegram, email);
         this.name = name;
         this.telegram = telegram;
         this.email = email;
         this.response = response;
         this.attendance = attendance;
-        this.helpTag = helpTag;
     }
 
     public Name getName() {
@@ -53,9 +51,6 @@ public class Student {
         return response;
     }
 
-    public HelpTag getHelpTag() {
-        return helpTag;
-    }
 
     /**
      * Returns true if both students have the same name.
@@ -89,14 +84,13 @@ public class Student {
                 && otherStudent.getTelegram().equals(getTelegram())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAttendance().equals(getAttendance())
-                && otherStudent.getResponse().equals(getResponse())
-                && otherStudent.getHelpTag().equals(getHelpTag());
+                && otherStudent.getResponse().equals(getResponse());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, telegram, email, response, attendance, helpTag);
+        return Objects.hash(name, telegram, email, response, attendance);
     }
 
     @Override
