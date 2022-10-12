@@ -24,6 +24,12 @@ public abstract class AbstractContainerItem extends DisplayItemList<DisplayItem>
         this(parent, null);
     }
 
+    /**
+     * Constructs an AbstractContainerItem.
+     *
+     * @param parent reference that will be containing this current AbstractContainerItem.
+     * @param fullPath that includes all parents from root to this AbstractContainerItem.
+     */
     public AbstractContainerItem(AbstractContainerItem parent, String fullPath) {
         this.parent = parent;
         this.fullPath = fullPath;

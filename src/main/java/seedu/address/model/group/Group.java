@@ -19,10 +19,22 @@ public class Group extends AbstractContainerItem {
     private final String groupName;
     private final UniqueTaskList taskList;
 
+    /**
+     * Constructs a group.
+     *
+     * @param groupName that will be displayed for this group.
+     */
     public Group(String groupName) {
         this(groupName, null, null);
     }
 
+    /**
+     * Constructs a group.
+     *
+     * @param groupName that will be displayed for this group.
+     * @param parent that this group will be nested under.
+     * @param fullPath that leads to this group through the nesting of parent groups.
+     */
     public Group(String groupName, Group parent, String fullPath) {
         super(parent, fullPath);
         this.groupName = groupName;
