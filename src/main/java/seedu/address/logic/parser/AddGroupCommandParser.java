@@ -29,8 +29,7 @@ public class AddGroupCommandParser implements Parser<AddGroupCommand> {
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(
-                            MESSAGE_INVALID_COMMAND_FORMAT,
-                            AddGroupCommand.MESSAGE_USAGE), pe);
+                            MESSAGE_INVALID_COMMAND_FORMAT, AddGroupCommand.MESSAGE_USAGE), pe);
         }
     }
 }

@@ -7,6 +7,6 @@ package seedu.address.model.item.exceptions;
  */
 public class DuplicateItemException extends RuntimeException {
     public DuplicateItemException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate items");
     }
 }

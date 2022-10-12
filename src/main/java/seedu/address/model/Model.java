@@ -10,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -81,6 +82,28 @@ public interface Model {
      * existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Returns true if the task with the same identity as {@code task} exists in
+     * the address book
+     * @param task The task to check identity against
+     * @return true if the task exists, false otherwise
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the address book.
+     * @param task The task to delete.
+     */
+    void deleteTask(Task task);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the address book.
+     * @param task The task to add.
+     */
+    void addTask(Task task);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

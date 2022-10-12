@@ -3,6 +3,8 @@ package seedu.address.model.group;
 import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Represents a Group in the address book.
@@ -15,6 +17,7 @@ public class Group extends AbstractContainerItem {
     public static final String VALIDATION_REGEX = "[a-zA-Z0-9_-]+";
 
     private final String groupName;
+    private final UniqueTaskList taskList;
 
     public Group(String groupName) {
         this(groupName, null, null);
@@ -23,6 +26,7 @@ public class Group extends AbstractContainerItem {
     public Group(String groupName, Group parent, String fullPath) {
         super(parent, fullPath);
         this.groupName = groupName;
+        taskList = new UniqueTaskList();
     }
 
     /**
@@ -48,6 +52,32 @@ public class Group extends AbstractContainerItem {
         }
 
         return String.format("%s/%s", fullPathExclusive, groupName);
+    }
+
+    /**
+     * Checks if a task exists in this group
+     * @param task The task to check if exists
+     * @return true if it exists in this Group, false otherwise
+     */
+    public boolean hasTask(Task task) {
+        return taskList.contains(task);
+    }
+
+    /**
+     * Adds a task to this group. The task must not already exist in this group.
+     *
+     * @param task The task to add
+     */
+    public void addTask(Task task) {
+        taskList.add(task);
+    }
+
+    /**
+     * Removes a task from this group. The task must already exist in this group
+     * @param task The task to remove
+     */
+    public void removeTask(Task task) {
+        taskList.remove(task);
     }
 
     @Override
