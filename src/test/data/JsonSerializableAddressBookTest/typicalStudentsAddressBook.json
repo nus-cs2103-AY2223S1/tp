@@ -35,5 +35,6 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "tagged" : [ ]
-  } ]
+  } ],
+  "tasks": []
 }

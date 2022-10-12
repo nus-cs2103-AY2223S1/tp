@@ -1,8 +1,8 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.task;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.TaskAddCommand.MESSAGE_INVALID_STUDENT;
+import static seedu.address.logic.commands.task.TaskAddCommand.MESSAGE_INVALID_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -18,6 +18,8 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
@@ -31,7 +33,7 @@ import seedu.address.model.task.TaskName;
  */
 public class TaskEditCommand extends Command {
 
-    public static final String COMMAND_WORD = "task edit";
+    public static final String COMMAND_WORD = "taskEdit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the displayed person list. "

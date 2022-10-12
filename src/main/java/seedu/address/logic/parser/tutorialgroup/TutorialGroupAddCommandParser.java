@@ -1,14 +1,18 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.tutorialgroup;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.TutorialGroupAddCommand;
+import seedu.address.logic.commands.tutorialgroup.TutorialGroupAddCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.TutorialGroup;
-
 
 /**
  * Parses input arguments and creates a new AddCommand object

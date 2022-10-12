@@ -15,16 +15,23 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.StudentAddCommand;
-import seedu.address.logic.commands.StudentDeleteCommand;
-import seedu.address.logic.commands.StudentEditCommand;
-import seedu.address.logic.commands.StudentListCommand;
-import seedu.address.logic.commands.TaskAddCommand;
-import seedu.address.logic.commands.TaskEditCommand;
-import seedu.address.logic.commands.TutorialGroupAddCommand;
-import seedu.address.logic.commands.TutorialGroupDeleteCommand;
-import seedu.address.logic.commands.TutorialGroupListCommand;
+import seedu.address.logic.commands.student.StudentAddCommand;
+import seedu.address.logic.commands.student.StudentDeleteCommand;
+import seedu.address.logic.commands.student.StudentEditCommand;
+import seedu.address.logic.commands.student.StudentListCommand;
+import seedu.address.logic.commands.task.TaskAddCommand;
+import seedu.address.logic.commands.task.TaskEditCommand;
+import seedu.address.logic.commands.tutorialgroup.TutorialGroupAddCommand;
+import seedu.address.logic.commands.tutorialgroup.TutorialGroupDeleteCommand;
+import seedu.address.logic.commands.tutorialgroup.TutorialGroupListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.student.StudentAddCommandParser;
+import seedu.address.logic.parser.student.StudentDeleteCommandParser;
+import seedu.address.logic.parser.student.StudentEditCommandParser;
+import seedu.address.logic.parser.task.TaskAddCommandParser;
+import seedu.address.logic.parser.task.TaskEditCommandParser;
+import seedu.address.logic.parser.tutorialgroup.TutorialGroupAddCommandParser;
+import seedu.address.logic.parser.tutorialgroup.TutorialGroupDeleteCommandParser;
 
 /**
  * Parses user input.

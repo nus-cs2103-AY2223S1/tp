@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -15,8 +15,12 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.StudentEditCommand;
-import seedu.address.logic.commands.StudentEditCommand.EditStudentDescriptor;
+import seedu.address.logic.commands.student.StudentEditCommand;
+import seedu.address.logic.commands.student.StudentEditCommand.EditStudentDescriptor;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -37,7 +41,8 @@ public class StudentEditCommandParser implements Parser<StudentEditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
-                        .tokenize(args, PREFIX_NAME, PREFIX_TUTORIAL_GROUP, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+                        .tokenize(args, PREFIX_NAME, PREFIX_TUTORIAL_GROUP, PREFIX_PHONE,
+                                PREFIX_EMAIL, PREFIX_TAG, PREFIX_TUTORIAL_GROUP);
 
         Index index;
 
