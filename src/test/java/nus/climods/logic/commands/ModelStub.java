@@ -15,7 +15,6 @@ import nus.climods.model.module.UserModule;
  */
 class ModelStub implements Model {
     private boolean hasModule;
-    private boolean deleteInvoked;
 
     public ModelStub(boolean hasModule) {
         this.hasModule = hasModule;

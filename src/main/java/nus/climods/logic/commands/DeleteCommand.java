@@ -2,8 +2,6 @@ package nus.climods.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.module.UserModule;
@@ -23,6 +21,10 @@ public class DeleteCommand extends Command {
 
     private final UserModule target;
 
+    /**
+     * Creates a DeleteCommand with the given UserModule
+     * @param target UserModule to delete
+     */
     public DeleteCommand(UserModule target) {
         requireNonNull(target);
         this.target = target;
@@ -31,7 +33,6 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-//        List<UserModule> lastShownList = model.getFilteredUserModuleList();
         String msg = target.getUserModuleCode();
 
         if (!model.filteredListhasUserModule(target)) {

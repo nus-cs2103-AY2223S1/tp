@@ -1,11 +1,5 @@
 package nus.climods.model.module;
 
-import nus.climods.logic.parser.exceptions.ParseException;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.api.ModulesApi;
-import org.openapitools.client.model.Module;
-import org.openapitools.client.model.ModuleInformationSemesterDataInner;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +7,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.openapitools.client.ApiException;
+import org.openapitools.client.api.ModulesApi;
+import org.openapitools.client.model.Module;
+
+import nus.climods.logic.parser.exceptions.ParseException;
+
+/**
+ * Class representing module a User has in their My Modules list
+ */
 public class UserModule {
     public static final String MESSAGE_MODULE_NOT_FOUND = "Module not in current NUS curriculum";
     private final ModulesApi api = new ModulesApi();
@@ -23,7 +26,12 @@ public class UserModule {
     private String tutorial = "Tutorial: Monday, 1400-1500";
     private String lecture = "Lecture: Friday, 1600-1800";
 
-    public UserModule(String moduleCode) throws ParseException{
+    /**
+     * Creates a UserModule
+     * @param moduleCode String for the module code
+     * @throws ParseException if module code is not a valid module in current NUS curriculum
+     */
+    public UserModule(String moduleCode) throws ParseException {
         try {
             this.apiModule = api.acadYearModulesModuleCodeJsonGet(acadYear, moduleCode);
         } catch (ApiException e) {
@@ -38,15 +46,21 @@ public class UserModule {
         this.apiModule = null;
     }
 
-    public Module getApiModule() {return this.apiModule;}
+    public Module getApiModule() {
+        return this.apiModule;
+    }
 
     public String getUserModuleCode() {
         return this.apiModule.getModuleCode();
     }
 
-    public String getAcademicYear() { return this.apiModule.getAcadYear();}
+    public String getAcademicYear() {
+        return this.apiModule.getAcadYear();
+    }
 
-    public String getUserModuleTitle() { return this.apiModule.getTitle();}
+    public String getUserModuleTitle() {
+        return this.apiModule.getTitle();
+    }
 
     public String getDepartment() {
         return "Computer Science";

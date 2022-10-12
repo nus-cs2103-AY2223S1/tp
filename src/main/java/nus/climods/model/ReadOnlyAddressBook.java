@@ -1,8 +1,9 @@
 package nus.climods.model;
 
 import javafx.collections.ObservableList;
-import nus.climods.model.person.Person;
 import nus.climods.model.module.UserModule;
+import nus.climods.model.person.Person;
+
 
 /**
  * Unmodifiable view of an address book

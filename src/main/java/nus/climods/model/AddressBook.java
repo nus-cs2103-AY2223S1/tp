@@ -5,10 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
 import nus.climods.model.person.Person;
 import nus.climods.model.person.UniquePersonList;
-import nus.climods.model.module.UniqueUserModuleList;
+
 
 /**
  * Wraps all data at the address-book level Duplicates are not allowed (by .isSamePerson comparison)
@@ -120,9 +121,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given module {@code target} in the list with {@code editedUserModule}. {@code target} must exist in the
-     * address book. The module identity of {@code editedUserModule} must not be the same as another existing module in the
-     * address book.
+     * Replaces the given module {@code target} in the list with {@code editedUserModule}. {@code target} must exist
+     * in the address book. The module identity of {@code editedUserModule} must not be the same as another existing
+     * module in the address book.
      */
     public void setUserModule(UserModule target, UserModule editedUserModule) {
         requireNonNull(editedUserModule);
