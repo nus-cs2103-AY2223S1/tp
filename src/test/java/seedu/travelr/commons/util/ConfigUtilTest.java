@@ -2,9 +2,8 @@ package seedu.travelr.commons.util;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import seedu.address.commons.core.Config;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.util.ConfigUtil;
+import seedu.travelr.commons.core.Config;
+import seedu.travelr.commons.exceptions.DataConversionException;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -14,7 +13,7 @@ import java.util.logging.Level;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.Assert.assertThrows;
 
 public class ConfigUtilTest {
 

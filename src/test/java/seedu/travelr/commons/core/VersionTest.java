@@ -1,11 +1,10 @@
 package seedu.travelr.commons.core;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Version;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.Assert.assertThrows;
 
 public class VersionTest {
 

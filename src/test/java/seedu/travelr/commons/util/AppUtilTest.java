@@ -1,10 +1,9 @@
 package seedu.travelr.commons.util;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.util.AppUtil;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.Assert.assertThrows;
 
 public class AppUtilTest {
 

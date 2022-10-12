@@ -1,8 +1,6 @@
 package seedu.travelr.commons.util;
 
 import org.junit.jupiter.api.Test;
-import seedu.travelr.commons.util.FileUtil;
-import seedu.travelr.commons.util.JsonUtil;
 import seedu.travelr.testutil.SerializableTestClass;
 import seedu.travelr.testutil.TestUtil;
 

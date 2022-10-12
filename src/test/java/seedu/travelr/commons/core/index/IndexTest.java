@@ -1,12 +1,11 @@
 package seedu.travelr.commons.core.index;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.Assert.assertThrows;
 
 public class IndexTest {
 

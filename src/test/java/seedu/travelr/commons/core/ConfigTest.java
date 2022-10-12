@@ -1,7 +1,6 @@
 package seedu.travelr.commons.core;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Config;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

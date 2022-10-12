@@ -1,14 +1,13 @@
 package seedu.travelr.logic.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.travelr.model.AddressBook;
+import seedu.travelr.model.Model;
+import seedu.travelr.model.ModelManager;
+import seedu.travelr.model.UserPrefs;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
 
 public class ClearCommandTest {
 

@@ -1,12 +1,9 @@
 package seedu.travelr.model;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.travelr.commons.core.GuiSettings;
+import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
+import seedu.travelr.testutil.AddressBookBuilder;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,20 +12,19 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.travelr.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.TypicalTrips.PLUTO;
+import static seedu.travelr.testutil.TypicalTrips.SUN;
 
 public class ModelManagerTest {
 
-    private seedu.address.model.ModelManager modelManager = new seedu.address.model.ModelManager();
+    private ModelManager modelManager = new ModelManager();
 
     @Test
     public void constructor() {
-        assertEquals(new seedu.address.model.UserPrefs(), modelManager.getUserPrefs());
+        assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new seedu.address.model.AddressBook(), new seedu.address.model.AddressBook(modelManager.getAddressBook()));
+        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
     }
 
     @Test
@@ -38,14 +34,14 @@ public class ModelManagerTest {
 
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
-        seedu.address.model.UserPrefs userPrefs = new seedu.address.model.UserPrefs();
+        UserPrefs userPrefs = new UserPrefs();
         userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
-        seedu.address.model.UserPrefs oldUserPrefs = new seedu.address.model.UserPrefs(userPrefs);
+        UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
         userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
@@ -75,35 +71,35 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasTrip_nullTrip_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTrip(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasTrip_personNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTrip(PLUTO));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasTrip_personInAddressBook_returnsTrue() {
+        modelManager.addTrip(PLUTO);
+        assertTrue(modelManager.hasTrip(PLUTO));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredTripList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTripList().remove(0));
     }
 
     @Test
     public void equals() {
-        seedu.address.model.AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        seedu.address.model.AddressBook differentAddressBook = new AddressBook();
-        seedu.address.model.UserPrefs userPrefs = new seedu.address.model.UserPrefs();
+        AddressBook addressBook = new AddressBookBuilder().withTrip(PLUTO).withTrip(SUN).build();
+        AddressBook differentAddressBook = new AddressBook();
+        UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new seedu.address.model.ModelManager(addressBook, userPrefs);
-        seedu.address.model.ModelManager modelManagerCopy = new seedu.address.model.ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(addressBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -116,18 +112,18 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new seedu.address.model.ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new seedu.address.model.ModelManager(addressBook, userPrefs)));
+        String[] keywords = PLUTO.getTitle().fullTitle.split("\\s+");
+        modelManager.updateFilteredTripList(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredTripList(Model.PREDICATE_SHOW_ALL_TRIPS);
 
         // different userPrefs -> returns false
-        seedu.address.model.UserPrefs differentUserPrefs = new UserPrefs();
+        UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }

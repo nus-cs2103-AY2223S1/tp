@@ -1,13 +1,11 @@
 package seedu.travelr.logic.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
+import seedu.travelr.model.Model;
+import seedu.travelr.model.ModelManager;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.travelr.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 public class ExitCommandTest {
     private Model model = new ModelManager();

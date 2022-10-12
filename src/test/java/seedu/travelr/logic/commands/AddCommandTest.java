@@ -2,16 +2,15 @@ package seedu.travelr.logic.commands;
 
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.travelr.commons.core.GuiSettings;
+import seedu.travelr.logic.commands.exceptions.CommandException;
+import seedu.travelr.model.AddressBook;
+import seedu.travelr.model.Model;
+import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.ReadOnlyUserPrefs;
+import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.Trip;
+import seedu.travelr.testutil.TripBuilder;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -22,39 +21,39 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.Assert.assertThrows;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullTrip_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_tripAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTripAdded modelStub = new ModelStubAcceptingTripAdded();
+        Trip validTrip = new TripBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validTrip).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTrip), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTrip), modelStub.tripsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateTrip_throwsCommandException() {
+        Trip validTrip = new TripBuilder().build();
+        AddCommand addCommand = new AddCommand(validTrip);
+        ModelStub modelStub = new ModelStubWithTrip(validTrip);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_TRIP, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Trip alice = new TripBuilder().withTitle("Alice").build();
+        Trip bob = new TripBuilder().withTitle("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -71,7 +70,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different trip -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -110,7 +109,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addTrip(Trip trip) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,65 +129,100 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasTrip(Trip trip) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public boolean hasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+        
+        @Override
+        public void deleteEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public Event getEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public Trip getTrip(Trip trip) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void deleteTrip(Trip target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTrip(Trip target, Trip editedTrip) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEvent(Event target, Event editedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Trip> getFilteredTripList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTripList(Predicate<Trip> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single trip.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithTrip extends ModelStub {
+        private final Trip trip;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithTrip(Trip trip) {
+            requireNonNull(trip);
+            this.trip = trip;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasTrip(Trip trip) {
+            requireNonNull(trip);
+            return this.trip.isSameTrip(trip);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the trip being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTripAdded extends ModelStub {
+        final ArrayList<Trip> tripsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasTrip(Trip trip) {
+            requireNonNull(trip);
+            return tripsAdded.stream().anyMatch(trip::isSameTrip);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTrip(Trip trip) {
+            requireNonNull(trip);
+            tripsAdded.add(trip);
         }
 
         @Override

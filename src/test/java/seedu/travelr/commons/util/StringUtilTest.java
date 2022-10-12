@@ -1,13 +1,12 @@
 package seedu.travelr.commons.util;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.util.StringUtil;
 
 import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.Assert.assertThrows;
 
 public class StringUtilTest {
 

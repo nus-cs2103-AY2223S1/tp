@@ -27,6 +27,7 @@ public class TripBuilder {
     public TripBuilder() {
         title = new Title(DEFAULT_TITLE);
         description = new Description(DEFAULT_DESCRIPTION);
+        events = new HashSet<>();
     }
 
     /**

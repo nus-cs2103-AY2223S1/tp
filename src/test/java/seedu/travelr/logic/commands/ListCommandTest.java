@@ -2,15 +2,14 @@ package seedu.travelr.logic.commands;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.travelr.model.Model;
+import seedu.travelr.model.ModelManager;
+import seedu.travelr.model.UserPrefs;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.travelr.logic.commands.CommandTestUtil.showTripAtIndex;
+import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
+import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -33,7 +32,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showTripAtIndex(model, INDEX_FIRST_TRIP);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
