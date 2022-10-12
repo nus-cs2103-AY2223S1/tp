@@ -3,6 +3,7 @@ package seedu.foodrem.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
@@ -29,6 +30,11 @@ public class IncrementCommandParser implements Parser<IncrementCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_QUANTITY)
+                || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
         ItemQuantity incrementQuantity = ParserUtil.parseQuantity(argMultimap.getPresentValue(PREFIX_ITEM_QUANTITY));
