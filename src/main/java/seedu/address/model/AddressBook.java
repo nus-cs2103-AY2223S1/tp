@@ -9,8 +9,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.UniquePropertyList;
-import seedu.address.model.role.Buyer;
-import seedu.address.model.role.Seller;
 
 /**
  * Wraps all data at the address-book level
