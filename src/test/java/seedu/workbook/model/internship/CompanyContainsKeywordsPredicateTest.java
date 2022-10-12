@@ -72,7 +72,7 @@ public class CompanyContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new InternshipBuilder().withCompany("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match company
-        predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com"));
         assertFalse(predicate.test(new InternshipBuilder().withCompany("Alice").withPhone("12345")
                 .withEmail("alice@email.com").build()));
     }
