@@ -13,12 +13,12 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 
 /**
- * Parses arguments to create a new TaskCommand Object.
+ * Parses arguments to create a new AddTaskCommand Object.
  */
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the TaskCommand
-     * and returns an TaskCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddTaskCommand
+     * and returns an AddTaskCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTaskCommand parse(String args) throws ParseException {
