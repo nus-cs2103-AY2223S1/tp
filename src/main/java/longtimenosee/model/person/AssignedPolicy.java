@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/main/java/longtimenosee/model/person/AssignedPolicy.java
-package seedu.address.model.person;
-========
-package longtimenosee.model.client;
->>>>>>>> master:src/main/java/longtimenosee/model/client/AssignedPolicy.java
+package longtimenosee.model.person;
 
 import java.time.LocalDate;
 import java.util.Objects;

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import longtimenosee.commons.exceptions.IllegalValueException;
 import longtimenosee.model.AddressBook;
 import longtimenosee.model.ReadOnlyAddressBook;
-import longtimenosee.model.client.Client;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.Policy;
 

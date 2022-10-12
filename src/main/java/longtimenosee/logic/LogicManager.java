@@ -14,7 +14,6 @@ import longtimenosee.logic.parser.AddressBookParser;
 import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.Model;
 import longtimenosee.model.ReadOnlyAddressBook;
-import longtimenosee.model.client.Client;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.Policy;
 import longtimenosee.storage.Storage;

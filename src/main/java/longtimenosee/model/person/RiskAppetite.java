@@ -1,10 +1,4 @@
-<<<<<<<< HEAD:src/main/java/longtimenosee/model/person/RiskAppetite.java
-package seedu.address.model.person;
-========
-package longtimenosee.model.client;
->>>>>>>> master:src/main/java/longtimenosee/model/client/RiskAppetite.java
-
-
+package longtimenosee.model.person;
 /**
  *  Encapsulation for a client's RiskAppetite
  */

@@ -4,10 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import longtimenosee.model.person.Address;
+import longtimenosee.model.person.Birthday;
 import longtimenosee.model.person.Email;
+import longtimenosee.model.person.Income;
 import longtimenosee.model.person.Name;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.Phone;
+import longtimenosee.model.person.RiskAppetite;
 import longtimenosee.model.tag.Tag;
 import longtimenosee.model.util.SampleDataUtil;
 

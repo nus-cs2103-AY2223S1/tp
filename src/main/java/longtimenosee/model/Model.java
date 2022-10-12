@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import longtimenosee.commons.core.GuiSettings;
-import longtimenosee.model.client.Client;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.Policy;
 

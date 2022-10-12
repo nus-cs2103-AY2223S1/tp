@@ -6,8 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import longtimenosee.model.client.Client;
-import longtimenosee.model.client.UniqueClientList;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.UniquePersonList;
 import longtimenosee.model.policy.Policy;

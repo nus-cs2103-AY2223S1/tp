@@ -1,7 +1,6 @@
 package longtimenosee.model;
 
 import javafx.collections.ObservableList;
-import longtimenosee.model.client.Client;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.Policy;
 

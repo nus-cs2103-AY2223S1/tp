@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/main/java/longtimenosee/model/person/Income.java
-package seedu.address.model.person;
-========
-package longtimenosee.model.client;
->>>>>>>> master:src/main/java/longtimenosee/model/client/Income.java
+package longtimenosee.model.person;
 
 /**
  * Immutable representation of a Perosn's income

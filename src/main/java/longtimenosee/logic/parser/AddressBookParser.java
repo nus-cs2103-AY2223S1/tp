@@ -6,12 +6,10 @@ import static longtimenosee.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import longtimenosee.logic.commands.AddClientCommand;
 import longtimenosee.logic.commands.AddCommand;
 import longtimenosee.logic.commands.AddPolicyCommand;
 import longtimenosee.logic.commands.ClearCommand;
 import longtimenosee.logic.commands.Command;
-import longtimenosee.logic.commands.DeleteClientCommand;
 import longtimenosee.logic.commands.DeleteCommand;
 import longtimenosee.logic.commands.EditCommand;
 import longtimenosee.logic.commands.ExitCommand;
