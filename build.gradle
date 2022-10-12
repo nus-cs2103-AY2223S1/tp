@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id ' yle'
+    id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'application'
     id 'jacoco'
