@@ -8,7 +8,7 @@ import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
 
 /**
- * Clears FoodRem.
+ * Resets FoodRem.
  */
 public class ResetCommand extends Command {
 
