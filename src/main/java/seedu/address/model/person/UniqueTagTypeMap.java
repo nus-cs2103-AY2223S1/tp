@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.address.model.person.exceptions.DuplicateTagTypeException;
 import seedu.address.model.person.exceptions.TagTypeNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -42,8 +43,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             CliSyntax.PREFIX_DEGREETAG, new TagType("Degree", CliSyntax.PREFIX_DEGREETAG),
             CliSyntax.PREFIX_JOBTYPETAG, new TagType("Job Type", CliSyntax.PREFIX_JOBTYPETAG)
     );
-    private static final ObservableMap<Prefix, TagType> prefixMap = FXCollections.observableMap(initialTagTypeMap);
-
+    private static final Map<Prefix, TagType> prefixMap = new HashMap<>(initialTagTypeMap);
     private final ObservableMap<TagType, UniqueTagList> internalMap = FXCollections.observableMap(new HashMap<>());
     private final ObservableMap<TagType, UniqueTagList> internalUnmodifiableMap = FXCollections
             .unmodifiableObservableMap(internalMap);
@@ -52,7 +52,13 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
      * Adds a new tag type to the existing TAG_TYPES.
      */
     public static void createTagType(Prefix prefix, TagType tagType) {
-        prefixMap.put(prefix, tagType);
+        if (prefixMap.keySet().contains(prefix)) {
+            throw new DuplicatePrefixException();
+        } else if (prefixMap.values().contains(tagType)) {
+            throw new DuplicateTagTypeException();
+        } else {
+            prefixMap.put(prefix, tagType);
+        }
     }
 
     public static void removeExistingTagType(TagType tagType) {
