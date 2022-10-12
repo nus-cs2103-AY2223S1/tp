@@ -49,7 +49,7 @@ public class ClassStorageTest {
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         ClassStorage classStorage = new ClassStorage(addressBookFromFile);
         // Throws an exception because Alex Yeoh in personsAddressBook has class timing conflict with Daniel Tan.
-        assertThrows(CommandException.class, () -> classStorage.saveClass(person));
+        assertThrows(CommandException.class, () -> classStorage.saveClass(person, 3));
     }
 
 }

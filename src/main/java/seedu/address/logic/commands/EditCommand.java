@@ -88,8 +88,12 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        ClassStorage.saveClass(editedPerson);
+        ClassStorage.saveClass(editedPerson, index.getOneBased());
         ClassStorage.removeExistingClass(personToEdit);
+        if (editPersonDescriptor.getAClass().get().classDateTime.equals("") &&
+                !personToEdit.getAClass().classDateTime.equals("")) {
+            editedPerson.setClass(personToEdit.getAClass());
+        }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
