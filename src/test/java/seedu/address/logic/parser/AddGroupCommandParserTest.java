@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_GROUP_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.AddGroupCommand;
 
 public class AddGroupCommandParserTest {
