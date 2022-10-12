@@ -29,7 +29,7 @@ import friday.model.student.NameContainsKeywordsPredicate;
 import friday.model.student.Remark;
 /*
 import friday.model.student.Student;
-import friday.testutil.EditPersonDescriptorBuilder;
+import friday.testutil.EditStudentDescriptorBuilder;
 import friday.testutil.PersonBuilder;
 import friday.testutil.PersonUtil;
 */
@@ -65,7 +65,7 @@ public class MasteryCheckBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Student student = new PersonBuilder().build();
-        EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);

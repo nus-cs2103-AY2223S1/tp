@@ -14,7 +14,7 @@ import friday.logic.commands.EditCommand;
 import friday.model.student.Name;
 import friday.model.student.TelegramHandle;
 import friday.model.tag.Tag;
-import friday.testutil.EditPersonDescriptorBuilder;
+import friday.testutil.EditStudentDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -90,7 +90,7 @@ public class EditCommandParserTest {
                 + CommandTestUtil.MASTERYCHECK_DESC_AMY + CommandTestUtil.NAME_DESC_AMY
                 + CommandTestUtil.TAG_DESC_FRIEND;
 
-        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
                 .withName(CommandTestUtil.VALID_NAME_AMY)
                 .withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_BOB)
                 .withConsultation(CommandTestUtil.VALID_CONSULTATION_AMY).withMasteryCheck(
@@ -107,7 +107,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + CommandTestUtil.TELEGRAMHANDLE_DESC_BOB
                 + CommandTestUtil.CONSULTATION_DESC_AMY;
 
-        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
                 .withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_BOB)
                 .withConsultation(CommandTestUtil.VALID_CONSULTATION_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -120,32 +120,34 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.NAME_DESC_AMY;
-        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder().withName(
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(
                 CommandTestUtil.VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + CommandTestUtil.TELEGRAMHANDLE_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_AMY).build();
+        descriptor = new EditStudentDescriptorBuilder().withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + CommandTestUtil.CONSULTATION_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withConsultation(CommandTestUtil.VALID_CONSULTATION_AMY).build();
+        descriptor = new EditStudentDescriptorBuilder()
+                .withConsultation(CommandTestUtil.VALID_CONSULTATION_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
         userInput = targetIndex.getOneBased() + CommandTestUtil.MASTERYCHECK_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_AMY).build();
+        descriptor = new EditStudentDescriptorBuilder()
+                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + CommandTestUtil.TAG_DESC_FRIEND;
-        descriptor = new EditPersonDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
+        descriptor = new EditStudentDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -164,7 +166,7 @@ public class EditCommandParserTest {
                 + CommandTestUtil.CONSULTATION_DESC_BOB
                 + CommandTestUtil.TAG_DESC_HUSBAND;
 
-        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
                 .withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_BOB)
                 .withConsultation(CommandTestUtil.VALID_CONSULTATION_BOB)
                 .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB).withTags(
@@ -181,7 +183,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.INVALID_TELEGRAMHANDLE_DESC
                 + CommandTestUtil.TELEGRAMHANDLE_DESC_BOB;
-        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(
                 CommandTestUtil.VALID_TELEGRAMHANDLE_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
@@ -191,7 +193,7 @@ public class EditCommandParserTest {
                 + CommandTestUtil.INVALID_TELEGRAMHANDLE_DESC
                 + CommandTestUtil.MASTERYCHECK_DESC_BOB
                 + CommandTestUtil.TELEGRAMHANDLE_DESC_BOB;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_BOB)
+        descriptor = new EditStudentDescriptorBuilder().withPhone(CommandTestUtil.VALID_TELEGRAMHANDLE_BOB)
                 .withConsultation(CommandTestUtil.VALID_CONSULTATION_BOB)
                 .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -203,7 +205,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);

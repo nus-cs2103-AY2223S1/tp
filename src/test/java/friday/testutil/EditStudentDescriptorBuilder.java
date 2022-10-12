@@ -17,22 +17,22 @@ import friday.model.tag.Tag;
 /**
  * A utility class to help with building EditStudentDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditStudentDescriptorBuilder {
 
     private EditStudentDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
+    public EditStudentDescriptorBuilder() {
         descriptor = new EditCommand.EditStudentDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditStudentDescriptor descriptor) {
+    public EditStudentDescriptorBuilder(EditStudentDescriptor descriptor) {
         this.descriptor = new EditStudentDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditStudentDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Student student) {
+    public EditStudentDescriptorBuilder(Student student) {
         descriptor = new EditStudentDescriptor();
         descriptor.setName(student.getName());
         descriptor.setTelegramHandle(student.getTelegramHandle());
@@ -44,7 +44,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditStudentDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
+    public EditStudentDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
         return this;
     }
@@ -52,7 +52,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code TelegramHandle} of the {@code EditStudentDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
+    public EditStudentDescriptorBuilder withPhone(String phone) {
         descriptor.setTelegramHandle(new TelegramHandle(phone));
         return this;
     }
@@ -60,7 +60,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Consultation} of the {@code EditStudentDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withConsultation(LocalDate desiredDate) {
+    public EditStudentDescriptorBuilder withConsultation(LocalDate desiredDate) {
         descriptor.setConsultation(new Consultation(desiredDate));
         return this;
     }
@@ -68,7 +68,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code MasteryCheck} of the {@code EditStudentDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withMasteryCheck(LocalDate desiredDate) {
+    public EditStudentDescriptorBuilder withMasteryCheck(LocalDate desiredDate) {
         descriptor.setMasteryCheck(new MasteryCheck(desiredDate));
         return this;
     }
@@ -77,7 +77,7 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudentDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
+    public EditStudentDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;

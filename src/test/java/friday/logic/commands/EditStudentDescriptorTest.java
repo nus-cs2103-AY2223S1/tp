@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import friday.logic.commands.EditCommand.EditStudentDescriptor;
-import friday.testutil.EditPersonDescriptorBuilder;
+import friday.testutil.EditStudentDescriptorBuilder;
 
 public class EditStudentDescriptorTest {
 
@@ -36,24 +36,24 @@ public class EditStudentDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditCommand.EditStudentDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY)
+        EditCommand.EditStudentDescriptor editedAmy = new EditStudentDescriptorBuilder(DESC_AMY)
                 .withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_TELEGRAMHANDLE_BOB).build();
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withPhone(VALID_TELEGRAMHANDLE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withConsultation(VALID_CONSULTATION_BOB).build();
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withConsultation(VALID_CONSULTATION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMasteryCheck(VALID_MASTERYCHECK_BOB).build();
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withMasteryCheck(VALID_MASTERYCHECK_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
