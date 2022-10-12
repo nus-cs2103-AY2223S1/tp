@@ -782,3 +782,76 @@ Something goes here...
 ## Glossary
 
 Something goes here...
+
+## Glossary
+
+### A
+
+#### Argument
+
+> A value that is passed into a command.
+
+Example:
+`tag create food`, where food is the argument to the command `tag create`
+
+### B
+
+#### Bought Date
+
+> Date where an item was purchased. Bought date is in the format "year-month-date", represented in the "yyyy-mm-dd" format.
+
+### C
+
+#### Command
+
+> A feature or function that FoodRem can perform.
+>
+
+### E
+
+#### Expiry Date
+
+> Date where an item spoils, expires, or becomes unusable. Expiry date is in the format "year-month-date", represented in the "yyyy-mm-dd" format.
+>
+
+### F
+
+#### Flag
+
+> A marker or delimiter signifying a potentially optional argument to a command.
+
+### I
+
+#### Input
+
+> The text that a user would enter into FoodRem.
+
+#### Item
+
+> Represents a thing that is stored and kept track by FoodRem.
+
+Example: Creating a `potato` item
+`[item] new n/potato`
+
+### O
+
+#### Output
+
+> The result of calling a Command.
+> Results are displayed in the GUI, here: (ADD SCREENSHOT)
+
+### Q
+
+#### Quantity
+
+> The frequency of item(s) kept track by FoodRem.
+
+### T
+
+#### Tag
+
+> The main method of categorizing items in FoodRem. A tag may be attached to zero or more items.
+
+Example:
+Tagging an item in the first index as the tag `ingredient`:
+`tag 1 ingredient`
