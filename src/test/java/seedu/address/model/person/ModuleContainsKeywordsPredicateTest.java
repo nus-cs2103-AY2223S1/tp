@@ -63,8 +63,8 @@ public class ModuleContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withModule("cs2100").build()));
 
         // Keywords match name, deadline, tags and isDone, but does not match module
-        predicate = new ModuleContainsKeywordsPredicate(Arrays.asList("tp", "2022-10-07", "1 important", "false"));
+        predicate = new ModuleContainsKeywordsPredicate(Arrays.asList("tp", "2022-10-07", "highPriority", "false"));
         assertFalse(predicate.test(new PersonBuilder().withName("tp").withModule("cs2103t")
-                .withDeadline("2022-10-07").withTags("1 important").withIsDone(false).build()));
+                .withDeadline("2022-10-07").withTags("highPriority").withIsDone(false).build()));
     }
 }
