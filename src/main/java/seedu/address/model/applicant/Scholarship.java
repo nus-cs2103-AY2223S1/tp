@@ -3,10 +3,6 @@ package seedu.address.model.applicant;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.function.Predicate;
-
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Represents an Applicant's Scholarship name in TrackAScholar.
  * Guarantees: immutable; is valid as declared in {@link #isValidScholarship(String)}
@@ -58,28 +54,4 @@ public class Scholarship {
         return value.hashCode();
     }
 
-    /**
-     * Tests that a {@code Applicant}'s {@code Status} matches the keyword given.
-     */
-    public static class StatusContainsKeywordPredicate implements Predicate<Applicant> {
-        private final String keyword;
-
-        public StatusContainsKeywordPredicate(String keyword) {
-            this.keyword = keyword;
-        }
-
-        @Override
-        public boolean test(Applicant applicant) {
-            return StringUtil.containsWordIgnoreCase(applicant.getApplicationStatus().applicationStatus, keyword);
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            return other == this // short circuit if same object
-                    || (other instanceof StatusContainsKeywordPredicate // instanceof handles nulls
-                    && keyword.equals(((StatusContainsKeywordPredicate) other).keyword)); // state check
-        }
-
-
-    }
 }
