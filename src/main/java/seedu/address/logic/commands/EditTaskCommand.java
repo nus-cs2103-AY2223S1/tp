@@ -71,7 +71,7 @@ public class EditTaskCommand extends EditGenericCommand {
     }
 
     /**
-     * creates an edited person with the updated Task.
+     * Creates an edited person with the updated Task.
      *
      * @param patientToEdit the patient associated with the task to edit.
      * @param indexOfTask the index of the task to be edited.
