@@ -27,13 +27,20 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    // Check fields
+    private final int similarityThreshold = 5;
+
     /**
      * Every field must be present and not null.
      */
 
     public Person(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(uid, name, phone, email, address, tags);
-        this.uid = uid;
+        requireAllNonNull(name, phone, email, address, tags);
+        if (Objects.isNull(uid)) {
+            this.uid = new Uid();
+        } else {
+            this.uid = uid;
+        }
         this.name = name;
         this.gender = gender;
         this.phone = phone;
@@ -52,6 +59,7 @@ public class Person {
     public Name getName() {
         return name;
     }
+
     public Gender getGender() {
         return gender;
     }
@@ -67,9 +75,11 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
     public String getCategory() {
         return null;
     }
+
     public String getCategoryIndicator() {
         return "person";
     }
@@ -151,4 +161,38 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Returns true if both persons are similar to each other.
+     */
+    public boolean isSimilarPerson(Person otherPerson) {
+        int counter = 0;
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (otherPerson.getName().equals(getName())) {
+            counter++;
+        }
+
+        if (otherPerson.getGender().equals(getGender())) {
+            counter++;
+        }
+
+        if (otherPerson.getPhone().equals(getPhone())) {
+            counter++;
+        }
+
+        if (otherPerson.getEmail().equals(getEmail())) {
+            counter++;
+        }
+
+        if (otherPerson.getAddress().equals(getAddress())) {
+            counter++;
+        }
+
+        if (otherPerson.getTags().equals(getTags())) {
+            counter++;
+        }
+        return counter >= similarityThreshold;
+    }
 }

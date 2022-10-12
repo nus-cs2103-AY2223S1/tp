@@ -62,10 +62,9 @@ public class Patient extends Person {
         DateTimeComparator comp = new DateTimeComparator();
         Collections.sort(this.dateTimes, comp);
 
-        for (DateTime datetime: this.dateTimes) {
+        for (DateTime datetime : this.dateTimes) {
             dateTimeList = dateTimeList + datetime.toString() + " , ";
         }
-
 
         return dateTimeList;
     }

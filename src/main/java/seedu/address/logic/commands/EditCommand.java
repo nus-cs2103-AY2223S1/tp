@@ -66,7 +66,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param targetUid               of the person in the filtered person list to edit
+     * @param targetUid            of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Uid targetUid, EditPersonDescriptor editPersonDescriptor) {
@@ -122,7 +122,7 @@ public class EditCommand extends Command {
             List<DateTime> updatedDateTime = editPersonDescriptor.getDatesTimes()
                     .orElse(((Patient) personToEdit).getDatesTimes());
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                        updatedAddress, updatedTags, updatedDateTime);
+                    updatedAddress, updatedTags, updatedDateTime);
         }
 
         return new Person(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags);
@@ -220,6 +220,7 @@ public class EditCommand extends Command {
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
+
         public void setGender(Gender gender) {
             this.gender = gender;
         }
@@ -261,7 +262,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */

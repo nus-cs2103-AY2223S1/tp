@@ -28,9 +28,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        Uid id = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get());
+        Uid uid = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get());
 
-        return new DeleteCommand(id);
+        return new DeleteCommand(uid);
     }
 
     /**

@@ -1,12 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Uid;
 
 /**
  * The API of the Model component.
@@ -54,9 +54,22 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a person is similar to a {@code person} that exists in the
+     * address book.
+     */
+    boolean hasSimilarPerson(Person person);
+
+    /**
+     * Returns an optional of a person that is similar to a {@code person} that
+     * exists in the address book.
+     */
+    Optional<Person> findSimilarPerson(Person person);
 
     /**
      * Deletes the given person.
@@ -73,7 +86,8 @@ public interface Model {
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -81,13 +95,11 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given
+     * {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**
-     * Get the next uid for the next person to be added.
-     */
-    Uid getNextUid();
 }

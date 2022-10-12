@@ -56,7 +56,8 @@ public class ParserUtil {
         if (!Uid.isValidUid(trimmedId)) {
             throw new ParseException(Uid.MESSAGE_CONSTRAINTS);
         }
-        return new Uid(trimmedId);
+        Long parsedId = Long.parseLong(trimmedId);
+        return new Uid(parsedId);
     }
 
     /**

@@ -22,9 +22,8 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
-
     public static final String DEFAULT_CATEGORY = "P";
-    public static final String DEFAULT_UID = "100";
+    public static final String DEFAULT_UID = "1";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_PHONE = "85355255";
@@ -100,9 +99,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -144,8 +144,17 @@ public class PersonBuilder {
      * set it to the {@code Person} that we are building.
      * Applies only to Patient.
      */
-    public PersonBuilder withDatesTimes(String ... datesTimes) {
+    public PersonBuilder withDatesTimes(String... datesTimes) {
         this.dateTimeList = SampleDataUtil.getDatesTimesList(datesTimes);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Uid} of the {@code Person} that we are building to the
+     * universal Uid.
+     */
+    public PersonBuilder withUniversalUid() {
+        this.uid = Uid.generateUniversalUid();
         return this;
     }
 

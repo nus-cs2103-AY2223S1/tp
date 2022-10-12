@@ -38,7 +38,6 @@ public class PersonUtil {
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_CATEGORY + person.getCategory() + " ");
-        sb.append(PREFIX_UID + person.getUid().uid.toString() + " ");
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_GENDER + person.getGender().gender + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");

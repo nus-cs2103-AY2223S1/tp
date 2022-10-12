@@ -30,11 +30,13 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * EditCommand.
  */
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Uid outOfBoundsUid = new Uid(99998L);
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -155,39 +157,47 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, expectedMessage);
     }
 
-    /*public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+    /*
+     * public void execute_invalidPersonIndexUnfilteredList_failure() {
+     * Index outOfBoundIndex =
+     * Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+     * EditPersonDescriptor descriptor = new
+     * EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+     * EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+     *
+     * assertCommandFailure(editCommand, model,
+     * Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+     * }
+     */
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }*/
     @Test
     public void execute_invalidUidUnfilteredList_throwsCommandException() {
-        Uid outOfBoundUid = new Uid(99999L);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand deleteCommand = new EditCommand(outOfBoundUid, descriptor);
+        EditCommand deleteCommand = new EditCommand(outOfBoundsUid, descriptor);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
     }
-
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
      * but smaller than size of address book
      */
     @Test
-    /*public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
-
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }*/
+    /*
+     * public void execute_invalidPersonIndexFilteredList_failure() {
+     * showPersonAtIndex(model, INDEX_FIRST_PERSON);
+     * Index outOfBoundIndex = INDEX_SECOND_PERSON;
+     * // ensures that outOfBoundIndex is still in bounds of address book list
+     * assertTrue(outOfBoundIndex.getZeroBased() <
+     * model.getAddressBook().getPersonList().size());
+     *
+     * EditCommand editCommand = new EditCommand(outOfBoundIndex,
+     * new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+     *
+     * assertCommandFailure(editCommand, model,
+     * Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+     * }
+     */
     public void execute_invalidUidFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
