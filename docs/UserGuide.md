@@ -38,8 +38,8 @@ contains some sample data.<br>
 |-----------------------------------------------------|----------------------------------------------------------------|---------------------------------------------------------------------------------|
 | [`add-module`](#211-add-module)                     | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`               | Add module with a module code and optional module title                         |
 | [`delete-module`](#212-delete-module)               | `delete-module   m/MODULE_CODE`                                | Delete module by module code                                                    |
-| [`add task`](#221-add-task)                         | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`             | Add task with specified module code and task description                        |
-| [`delete task`](#222-delete-task)                   | `delete task     m/MODULE_CODE n/TASK_NUMBER`                  | Delete task corresponding to specified task number of specified module code     |
+| [`add-task`](#221-add-task)                         | `add-task        m/MODULE_CODE d/TASK_DESCRIPTION`             | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task)                   | `delete-task     m/MODULE_CODE n/TASK_NUMBER`                  | Delete task corresponding to specified task number of specified module code     |
 | [`add link`](#231-add-link)                         | `add    link     m/MODULE_CODE l/LINK_URL`                     | Add link to a specified module code by its URL                                  |
 | [`delete link`](#232-delete-link)                   | `delete link     m/MODULE_CODE l/LINK_URL`                     | Delete link from a specified module code by its URL                             |
 | [`add-contact`](#241-add-contact)                   | `add-contact     n/NAME    e/EMAIL    p/PHONE_NUMBER`          | Add contact with specified name, email, and phone number                        |
@@ -130,41 +130,41 @@ In the above example, we are deleting module CS2103T from Plannit.
 
 ### 2.2. Adding and deleting tasks
 #### 2.2.1. Add task
-You may add a task using the `add task` command.
+You may add a task using the `add-task` command.
 
 This command will require two flags:
 * `m/`: To be followed by the module code of the
   module which the task is associated with.
 * `d/`: To be followed by the task description.
 
-Format: `add task m/MODULE_CODE d/TASK_DESCRIPTION`
+Format: `add-task m/MODULE_CODE d/TASK_DESCRIPTION`
 * Each task **must** belong to a specific module.
 * You should provide a module code of an existing module in Plannit.
 
 Example:
 ```
-add task m/CS2103T d/Complete tP tasks for W07
+add-task m/CS2103T d/Complete tP tasks for W07
 ```
 In the above example, we are adding the task `Complete tP tasks for W07` to the 
 module with module code `CS2103T`.
 
 #### 2.2.2. Delete task
-You may delete a task belonging to a particular module using the `delete
-task` command.
+You may delete a task belonging to a particular module using the 
+`delete-task` command.
 
 This command will require two flags:
 * `m/`: To be followed by the module code of the module which assigned the 
   task.
 * `n/`: To be followed by the task number in the module.
 
-Format: `delete task m/MODULE_CODE n/TASK_NUMBER`
+Format: `delete-task m/MODULE_CODE n/TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
 * You should provide a task number corresponding to that of an existing task in 
   the module.
 
 Example:
 ```
-delete task m/CS2103T n/3
+delete-task m/CS2103T n/3
 ```
 In the above example, we are deleting task number **3** from the module 
 with the module code `CS2103T`.
@@ -246,7 +246,7 @@ Format: `delete-contact n/NAME`
 
 Example:  
 ```
-delete-contact n/Dinosaur Lim  
+delete contact n/Dinosaur Lim  
 ```
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 

@@ -101,6 +101,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setModule(Module moduleA, Module moduleB) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         throw new AssertionError("This method should not be called.");
     }

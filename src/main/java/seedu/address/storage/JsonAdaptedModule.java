@@ -1,12 +1,21 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.task.Task;
+import seedu.address.model.module.task.TaskList;
 
 /**
  * Jackson-friendly version of {@link Module}.
@@ -17,15 +26,18 @@ class JsonAdaptedModule {
 
     private final String moduleCode;
     private final String moduleTitle;
+    private final List<JsonAdaptedTask> moduleTasks;
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
      */
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("moduleCode") String moduleCode,
-                             @JsonProperty("moduleTitle") String moduleTitle) {
+                             @JsonProperty("moduleTitle") String moduleTitle,
+                             @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
+        this.moduleTasks = tasks;
     }
 
     /**
@@ -34,6 +46,9 @@ class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         moduleCode = source.getModuleCode().value;
         moduleTitle = source.getModuleTitle().value;
+        moduleTasks = source.getTasks().stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -57,7 +72,17 @@ class JsonAdaptedModule {
         }
         final ModuleTitle modelModuleTitle = new ModuleTitle(moduleTitle);
 
-        return new Module(modelModuleCode, modelModuleTitle);
+        if (moduleTasks == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskList.class.getSimpleName()));
+        }
+        final List<Task> modelTasks = new ArrayList<>();
+        for (JsonAdaptedTask task : moduleTasks) {
+            modelTasks.add(task.toModelType());
+        }
+        final Set<Link> links = new HashSet<>();
+
+        return new Module(modelModuleCode, modelModuleTitle, modelTasks, links);
     }
 
 }
