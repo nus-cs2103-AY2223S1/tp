@@ -2,7 +2,14 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -39,7 +46,7 @@ public class CommandTestUtil {
 
     public static final String VALID_GOODS_SELL_PAPAYA = "papaya";
     public static final String VALID_PRICE_BUY_ORANGE = "1";
-    public static final String VALID_PRICE  = " " + PREFIX_PRICE + VALID_PRICE_BUY_ORANGE;
+    public static final String VALID_PRICE = " " + PREFIX_PRICE + VALID_PRICE_BUY_ORANGE;
 
     public static final String VALID_PRICE_SELL_PAPAYA = "2.5";
     public static final String VALID_QUANTITY_BUY_ORANGE = "10101";

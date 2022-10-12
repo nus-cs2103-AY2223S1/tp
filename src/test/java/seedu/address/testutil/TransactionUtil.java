@@ -1,12 +1,14 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.BuyCommand;
 import seedu.address.logic.commands.SellCommand;
 import seedu.address.model.transaction.Transaction;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
+
 
 /**
  * A utility class for Transaction.

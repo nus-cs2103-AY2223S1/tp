@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BUY_ORANGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BUY_ORANGE;
-
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
@@ -21,8 +20,8 @@ import seedu.address.model.transaction.Goods;
 public class BuyCommandParserTest {
     private BuyCommandParser parser = new BuyCommandParser();
 
-    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            BuyCommand.MESSAGE_TRANSACTION_INVALID);
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, BuyCommand.MESSAGE_TRANSACTION_INVALID);
 
     @Test
     public void parse_invalidIndexPreamble_failure() {
@@ -56,7 +55,7 @@ public class BuyCommandParserTest {
         // only price
         assertParseFailure(parser, "1" + VALID_PRICE_BUY_ORANGE, MESSAGE_INVALID_FORMAT);
         // only quantity
-        assertParseFailure(parser, "1" +  VALID_QUANTITY_BUY_ORANGE,
+        assertParseFailure(parser, "1" + VALID_QUANTITY_BUY_ORANGE,
                 MESSAGE_INVALID_FORMAT);
         // only goods
         assertParseFailure(parser, "1" + VALID_GOODS_BUY_ORANGE, MESSAGE_INVALID_FORMAT);
