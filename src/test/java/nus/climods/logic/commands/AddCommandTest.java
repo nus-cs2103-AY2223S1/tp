@@ -4,16 +4,10 @@ import static nus.climods.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import javafx.collections.ObservableList;
-import nus.climods.commons.core.GuiSettings;
-import nus.climods.logic.commands.exceptions.CommandException;
-import nus.climods.model.Model;
-import nus.climods.model.ReadOnlyUserPrefs;
-import nus.climods.model.module.ReadOnlyModuleList;
-import nus.climods.model.module.UserModule;
 import org.junit.jupiter.api.Test;
 
-import java.util.function.Predicate;
+import nus.climods.logic.commands.exceptions.CommandException;
+import nus.climods.model.module.UserModule;
 
 public class AddCommandTest {
     @Test
@@ -23,9 +17,9 @@ public class AddCommandTest {
 
     @Test
     public void execute_hasModule_throwsCommandException() {
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_MODULE,
-                () -> new AddCommand(new UserModuleStub()).execute(new ModelStub(true))
-        );
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_MODULE, ()
+                        -> new AddCommand(new UserModuleStub()).execute(new ModelStub(true)));
     }
 
     @Test
