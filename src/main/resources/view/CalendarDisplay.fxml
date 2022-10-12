@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane fx:id="placeHolder" style="-fx-background-color: #fff;" styleClass="pane-with-border" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+         <content>
+            <GridPane fx:id="calendarDisplay" alignment="TOP_CENTER" gridLinesVisible="true">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+                <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints vgrow="ALWAYS" />
+                  <RowConstraints vgrow="ALWAYS" />
+                  <RowConstraints vgrow="ALWAYS" />
+                <RowConstraints vgrow="ALWAYS" />
+                  <RowConstraints vgrow="ALWAYS" />
+                  <RowConstraints vgrow="ALWAYS" />
+              </rowConstraints>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</StackPane>
