@@ -12,9 +12,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import hobbylist.commons.core.GuiSettings;
+import hobbylist.model.activity.NameContainsKeywordsPredicate;
 import hobbylist.testutil.Assert;
 import hobbylist.testutil.HobbyListBuilder;
-import hobbylist.model.activity.NameContainsKeywordsPredicate;
 import hobbylist.testutil.TypicalActivities;
 
 
