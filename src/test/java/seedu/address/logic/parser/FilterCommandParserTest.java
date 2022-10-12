@@ -36,7 +36,7 @@ public class FilterCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, "    clear 123",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterClearCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, PREFIX_NAME.toString(),
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT,
