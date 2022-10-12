@@ -11,16 +11,16 @@ import jeryl.fyp.model.Model;
 import jeryl.fyp.model.student.Student;
 
 /**
- * Deletes a student identified using it's displayed index from the FYP manager.
+ * Deletes a student identified using it's unique StudentID.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student identified by the index number used in the displayed student list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the student identified by it's unique student id.\n"
+            + "Parameters: STUDENT_ID (must be a valid student id that is already in the FYP manager)\n"
+            + "Example: " + COMMAND_WORD + " A0123456G";
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
 
