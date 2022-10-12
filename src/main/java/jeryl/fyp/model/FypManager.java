@@ -9,10 +9,10 @@ import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.UniqueStudentList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the FYP-manager level
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class FypManager implements ReadOnlyFypManager {
 
     private final UniqueStudentList students;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         students = new UniqueStudentList();
     }
 
-    public AddressBook() {}
+    public FypManager() {}
 
     /**
-     * Creates an AddressBook using the Students in the {@code toBeCopied}
+     * Creates a FypManager using the Students in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public FypManager(ReadOnlyFypManager toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code FypManager} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyFypManager newData) {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the FYP manager.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -67,8 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a student to the address book.
-     * The student must not already exist in the address book.
+     * Adds a student to the FYP manager.
+     * The student must not already exist in the FYP manager.
      */
     public void addStudent(Student p) {
         students.add(p);
@@ -76,9 +76,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the FYP manager.
      * The student identity of {@code editedStudent} must not be the same as another existing student
-     * in the address book.
+     * in the FYP manager.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
@@ -87,8 +87,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code FypManager}.
+     * {@code key} must exist in the FYP manager.
      */
     public void removeStudent(Student key) {
         students.remove(key);
@@ -110,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && students.equals(((AddressBook) other).students));
+                || (other instanceof FypManager // instanceof handles nulls
+                && students.equals(((FypManager) other).students));
     }
 
     @Override

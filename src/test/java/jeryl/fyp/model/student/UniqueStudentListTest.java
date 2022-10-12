@@ -1,6 +1,5 @@
 package jeryl.fyp.model.student;
 
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static jeryl.fyp.testutil.TypicalStudents.ALICE;
@@ -42,7 +41,7 @@ public class UniqueStudentListTest {
     @Test
     public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueStudentList.contains(editedAlice));
     }
@@ -85,7 +84,7 @@ public class UniqueStudentListTest {
     @Test
     public void setStudent_editedStudentHasSameIdentity_success() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueStudentList.setStudent(ALICE, editedAlice);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();

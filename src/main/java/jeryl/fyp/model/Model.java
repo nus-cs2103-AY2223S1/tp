@@ -35,45 +35,45 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' FYP manager file path.
      */
-    Path getAddressBookFilePath();
+    Path getFypManagerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' FYP manager file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFypManagerFilePath(Path fypManagerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces FYP manager data with the data in {@code fypManager}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setFypManager(ReadOnlyFypManager fypManager);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the FypManager */
+    ReadOnlyFypManager getFypManager();
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the FYP manager.
      */
     boolean hasStudent(Student student);
 
     /**
      * Deletes the given student.
-     * The student must exist in the address book.
+     * The student must exist in the FYP manager.
      */
     void deleteStudent(Student target);
 
     /**
      * Adds the given student.
-     * {@code student} must not already exist in the address book.
+     * {@code student} must not already exist in the FYP manager.
      */
     void addStudent(Student student);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the FYP manager.
      * The student identity of {@code editedStudent} must not be the same as another existing student
-     * in the address book.
+     * in the FYP manager.
      */
     void setStudent(Student target, Student editedStudent);
 

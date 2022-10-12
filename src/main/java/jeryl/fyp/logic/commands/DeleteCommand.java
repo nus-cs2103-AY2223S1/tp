@@ -11,7 +11,7 @@ import jeryl.fyp.model.Model;
 import jeryl.fyp.model.student.Student;
 
 /**
- * Deletes a student identified using it's displayed index from the address book.
+ * Deletes a student identified using it's displayed index from the FYP manager.
  */
 public class DeleteCommand extends Command {
 

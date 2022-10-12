@@ -5,7 +5,7 @@ import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jeryl.fyp.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static jeryl.fyp.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static jeryl.fyp.testutil.TypicalStudents.getTypicalAddressBook;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -24,7 +24,7 @@ import jeryl.fyp.model.student.Student;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFypManager(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
         showNoStudent(expectedModel);
 
@@ -68,8 +68,8 @@ public class DeleteCommandTest {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
+        // ensures that outOfBoundIndex is still in bounds of FYP manager list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getFypManager().getStudentList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

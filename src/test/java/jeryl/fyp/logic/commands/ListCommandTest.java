@@ -3,7 +3,7 @@ package jeryl.fyp.logic.commands;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jeryl.fyp.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static jeryl.fyp.testutil.TypicalStudents.getTypicalAddressBook;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalFypManager(), new UserPrefs());
+        expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
     }
 
     @Test

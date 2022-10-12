@@ -29,9 +29,9 @@ import jeryl.fyp.testutil.EditStudentDescriptorBuilder;
 import jeryl.fyp.testutil.StudentBuilder;
 import jeryl.fyp.testutil.StudentUtil;
 
-public class AddressBookParserTest {
+public class FypManagerParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final FypManagerParser parser = new FypManagerParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -72,7 +72,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining("/")));
         assertEquals(new FindCommand(new ProjectNameContainsKeywordsPredicate(keywords)), command);
     }
 

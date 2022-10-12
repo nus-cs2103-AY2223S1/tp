@@ -14,30 +14,30 @@ import jeryl.fyp.commons.core.LogsCenter;
 import jeryl.fyp.model.student.Student;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the FYP manager data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final FypManager fypManager;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given fypManager and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyFypManager fypManager, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(fypManager, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with FYP manager: " + fypManager + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.fypManager = new FypManager(fypManager);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredStudents = new FilteredList<>(this.fypManager.getStudentList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new FypManager(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,42 +65,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getFypManagerFilePath() {
+        return userPrefs.getFypManagerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setFypManagerFilePath(Path fypManagerFilePath) {
+        requireNonNull(fypManagerFilePath);
+        userPrefs.setFypManagerFilePath(fypManagerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== FypManager ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setFypManager(ReadOnlyFypManager fypManager) {
+        this.fypManager.resetData(fypManager);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyFypManager getFypManager() {
+        return fypManager;
     }
 
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return addressBook.hasStudent(student);
+        return fypManager.hasStudent(student);
     }
 
     @Override
     public void deleteStudent(Student target) {
-        addressBook.removeStudent(target);
+        fypManager.removeStudent(target);
     }
 
     @Override
     public void addStudent(Student student) {
-        addressBook.addStudent(student);
+        fypManager.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
@@ -108,14 +108,14 @@ public class ModelManager implements Model {
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 
-        addressBook.setStudent(target, editedStudent);
+        fypManager.setStudent(target, editedStudent);
     }
 
     //=========== Filtered Student List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFypManager}
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
@@ -142,7 +142,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return fypManager.equals(other.fypManager)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents);
     }

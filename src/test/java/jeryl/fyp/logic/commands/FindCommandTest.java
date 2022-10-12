@@ -3,9 +3,8 @@ package jeryl.fyp.logic.commands;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jeryl.fyp.testutil.TypicalStudents.CARL;
-import static jeryl.fyp.testutil.TypicalStudents.ELLE;
 import static jeryl.fyp.testutil.TypicalStudents.FIONA;
-import static jeryl.fyp.testutil.TypicalStudents.getTypicalAddressBook;
+import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,8 +23,8 @@ import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFypManager(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalFypManager(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -57,7 +56,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noStudentFound() {
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 0);
-        ProjectNameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("abc");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -66,18 +65,18 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleStudentsFound() {
-        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 3);
-        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("de/ Tree/ de ");
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 2);
+        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("de/ woRld/ de ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredStudentList());
+        assertEquals(Arrays.asList(CARL, FIONA), model.getFilteredStudentList());
     }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private ProjectNameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new ProjectNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s*\\\\\\s*")));
+        return new ProjectNameContainsKeywordsPredicate(Arrays.asList(userInput.split("/")));
     }
 }

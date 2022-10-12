@@ -9,11 +9,11 @@ import java.util.Set;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.commons.util.StringUtil;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.Phone;
-import jeryl.fyp.model.student.StudentID;
+import jeryl.fyp.model.student.ProjectName;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -67,35 +67,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String projectName} into an {@code Project}.
+     * Parses a {@code String projectName} into a {@code ProjectName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code projectName} is invalid.
      */
-    public static String parseProjectName(String projectName) throws ParseException {
+    public static ProjectName parseProjectName(String projectName) throws ParseException {
         requireNonNull(projectName);
         String trimmedProjectName = projectName.trim();
-        /*
-        if (!Project.isValidProject(trimmedProjectName)) {
-            throw new ParseException("Projects can take any values, and it should not be blank");
+        if (!ProjectName.isValidProjectName(trimmedProjectName)) {
+            throw new ParseException(ProjectName.MESSAGE_CONSTRAINTS);
         }
-        */
-        return trimmedProjectName;
+        return new ProjectName(trimmedProjectName);
     }
 
     /**
@@ -145,12 +128,12 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static StudentID parseStudentID(String studentID) throws ParseException {
-        requireNonNull(studentID);
-        String trimmedID = studentID.trim();
-        if (!StudentID.isValidStudentID(trimmedID)) {
-            throw new ParseException(StudentID.MESSAGE_CONSTRAINTS);
+    public static StudentId parseStudentId(String studentId) throws ParseException {
+        requireNonNull(studentId);
+        String trimmedId = studentId.trim();
+        if (!StudentId.isValidStudentId(trimmedId)) {
+            throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        return new StudentID(trimmedID);
+        return new StudentId(trimmedId);
     }
 }
