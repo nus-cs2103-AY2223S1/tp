@@ -1,6 +1,5 @@
 package jeryl.fyp.testutil;
 
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
@@ -34,8 +33,7 @@ public class StudentUtil {
         sb.append(PREFIX_NAME + student.getName().fullName + " ");
         sb.append(PREFIX_STUDENT_ID + student.getStudentId().id + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
-        sb.append(PREFIX_PROJECT_NAME + student.getProjectName() + " ");
+        sb.append(PREFIX_PROJECT_NAME + student.getProjectName().fullProjectName + " ");
         student.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -50,8 +48,8 @@ public class StudentUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getStudentId().ifPresent(studentId -> sb.append(PREFIX_STUDENT_ID).append(studentId.id).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        descriptor.getProjectName().ifPresent(projectName -> sb.append(PREFIX_PROJECT_NAME).append(projectName)
+        descriptor.getProjectName().ifPresent(projectName -> sb.append(PREFIX_PROJECT_NAME)
+                .append(projectName.fullProjectName)
                 .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

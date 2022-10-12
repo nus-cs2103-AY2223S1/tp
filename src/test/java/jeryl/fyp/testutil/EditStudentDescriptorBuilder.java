@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
-import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
@@ -36,7 +35,6 @@ public class EditStudentDescriptorBuilder {
         descriptor.setName(student.getName());
         descriptor.setStudentId(student.getStudentId());
         descriptor.setEmail(student.getEmail());
-        descriptor.setAddress(student.getAddress());
         descriptor.setProjectName(student.getProjectName());
         descriptor.setTags(student.getTags());
     }
@@ -62,14 +60,6 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code EditStudentDescriptor} that we are building.
-     */
-    public EditStudentDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
         return this;
     }
 

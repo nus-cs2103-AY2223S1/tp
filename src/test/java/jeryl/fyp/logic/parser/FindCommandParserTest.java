@@ -1,7 +1,7 @@
 package jeryl.fyp.logic.parser;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_PROJECTNAME_BOB;
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOB;
 import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -26,11 +26,11 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList("neural network",
-                        VALID_PROJECTNAME_BOB)));
-        assertParseSuccess(parser, "neural network \\" + VALID_PROJECTNAME_BOB, expectedFindCommand);
+                        VALID_PROJECT_NAME_BOB)));
+        assertParseSuccess(parser, "neural network \\" + VALID_PROJECT_NAME_BOB, expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n neural network \n \\ \t " + VALID_PROJECTNAME_BOB + "  \t",
+        assertParseSuccess(parser, " \n neural network \n \\ \t " + VALID_PROJECT_NAME_BOB + "  \t",
                 expectedFindCommand);
     }
 

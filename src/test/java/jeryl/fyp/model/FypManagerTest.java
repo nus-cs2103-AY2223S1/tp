@@ -1,6 +1,5 @@
 package jeryl.fyp.model;
 
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static jeryl.fyp.testutil.TypicalStudents.ALICE;
@@ -46,7 +45,7 @@ public class FypManagerTest {
     @Test
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two students with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         FypManagerStub newData = new FypManagerStub(newStudents);
@@ -73,7 +72,7 @@ public class FypManagerTest {
     @Test
     public void hasStudent_studentWithSameIdentityFieldsInFypManager_returnsTrue() {
         fypManager.addStudent(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(fypManager.hasStudent(editedAlice));
     }
