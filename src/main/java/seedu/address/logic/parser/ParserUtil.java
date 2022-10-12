@@ -3,9 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -15,11 +18,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
-<<<<<<< HEAD
-import seedu.address.model.person.UniqueTagTypeMap;
-=======
 import seedu.address.model.person.Status;
->>>>>>> master
+import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagType;
 import seedu.address.model.tag.UniqueTagList;

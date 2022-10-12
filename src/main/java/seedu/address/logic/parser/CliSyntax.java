@@ -27,9 +27,9 @@ public class CliSyntax {
     private static ArrayList<Prefix> prefixTags = new ArrayList<>(Arrays.asList(PREFIX_SKILLTAG, PREFIX_DEGREETAG,
             PREFIX_JOBTYPETAG));
     private static ArrayList<Prefix> prefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-            PREFIX_ADDRESS, PREFIX_SKILLTAG, PREFIX_DEGREETAG, PREFIX_JOBTYPETAG));
+            PREFIX_ADDRESS, PREFIX_SKILLTAG, PREFIX_DEGREETAG, PREFIX_JOBTYPETAG, PREFIX_STATUS, PREFIX_NOTE));
     private static ArrayList<Prefix> uniquePrefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE,
-            PREFIX_EMAIL, PREFIX_ADDRESS));
+            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STATUS));
 
     /**
      * Adds a tag prefix to the list of prefixes.
