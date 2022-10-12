@@ -11,7 +11,6 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -24,22 +23,26 @@ public class PersonTest {
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, all other attributes different -> returns false
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
-
-        // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
+
+        // different name, all other attributes same -> returns true
+        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertTrue(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns true
         Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertTrue(BOB.isSamePerson(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
+        // name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        assertTrue(BOB.isSamePerson(editedBob));
+
+        // different phone number -> returns false
+        editedBob = new PersonBuilder(BOB).withPhone("90008000").build();
         assertFalse(BOB.isSamePerson(editedBob));
     }
 
@@ -77,31 +80,6 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-    }
-
-    @Test
-    public void allEqualsExceptClass() throws ParseException {
-        Person billy = new PersonBuilder().withName("Billy").withPhone("81234567")
-                .withEmail("Billy@gmail.com").withAddress("Street 20 Building A").withClass("2022-05-05 1200-1400")
-                .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("").build();
-        Person billyWithDifferentClass = new PersonBuilder().withName("Billy").withPhone("81234567")
-                .withEmail("Billy@gmail.com").withAddress("Street 20 Building A").withClass("2022-05-04 1100-1200")
-                .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("").build();
-        Person billyWithDifferentPhone = new PersonBuilder().withName("Billy").withPhone("91234567")
-                .withEmail("Billy@gmail.com").withAddress("Street 20 Building A").withClass("2022-05-04 1100-1200")
-                .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("").build();
-
-        // same object -> returns true
-        assertTrue(billy.allEqualsExceptClass(billy));
-
-        // different class -> returns true
-        assertTrue(billy.allEqualsExceptClass(billyWithDifferentClass));
-
-        // different phone -> returns false
-        assertFalse(billy.allEqualsExceptClass(billyWithDifferentPhone));
-
-        // compared with null -> returns false
-        assertFalse(billy.allEqualsExceptClass(null));
     }
 
 }

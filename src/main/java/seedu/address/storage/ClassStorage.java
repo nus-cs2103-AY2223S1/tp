@@ -58,6 +58,7 @@ public class ClassStorage {
      * Saves added classes into storage if there is no conflict between the timings of the classes.
      *
      * @param editedPerson Person object.
+     * @param indexOfEditedPerson One-based index of the person in the list.
      * @throws CommandException if there is a conflict between the timings of the classes.
      */
     public static void saveClass(Person editedPerson, int indexOfEditedPerson) throws CommandException {
@@ -74,8 +75,8 @@ public class ClassStorage {
             for (Person currPerson : listOfPerson) {
                 LocalTime startOfCurrClass = currPerson.getAClass().startTime;
                 LocalTime endOfCurrClass = currPerson.getAClass().endTime;
-                if (hasConflict(start, end, startOfCurrClass, endOfCurrClass) &&
-                        indexOfEditedPerson != getIndex(currPerson)) {
+                if (hasConflict(start, end, startOfCurrClass, endOfCurrClass)
+                        && indexOfEditedPerson != getIndex(currPerson)) {
                     throw new CommandException(EditCommand.MESSAGE_CLASS_CONFLICT);
                 }
             }

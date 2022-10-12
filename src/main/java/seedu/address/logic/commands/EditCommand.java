@@ -90,8 +90,8 @@ public class EditCommand extends Command {
 
         ClassStorage.saveClass(editedPerson, index.getOneBased());
         ClassStorage.removeExistingClass(personToEdit);
-        if (editPersonDescriptor.getAClass().get().classDateTime.equals("") &&
-                !personToEdit.getAClass().classDateTime.equals("")) {
+        if (editPersonDescriptor.getAClass().get().classDateTime.equals("")
+                && !personToEdit.getAClass().classDateTime.equals("")) {
             editedPerson.setClass(personToEdit.getAClass());
         }
 
