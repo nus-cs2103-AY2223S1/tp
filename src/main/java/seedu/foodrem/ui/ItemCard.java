@@ -1,7 +1,10 @@
 package seedu.foodrem.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.foodrem.model.item.Item;
@@ -35,8 +38,8 @@ public class ItemCard extends UiPart<Region> {
     private Label bought;
     @FXML
     private Label expiry;
-    //    @FXML
-    //    private FlowPane tags;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code ItemCode} with the given {@link Item} and index to display.
@@ -51,12 +54,10 @@ public class ItemCard extends UiPart<Region> {
                 String.valueOf(item.getBoughtDate()).isBlank() ? "Not Set" : item.getBoughtDate()));
         expiry.setText(String.format("(Expiry Date: %s)",
                 String.valueOf(item.getExpiryDate()).isBlank() ? "Not Set" : item.getExpiryDate()));
-        // TODO: Add tags into card once tags in item
-        //item.getTags().stream()
-        //        .sorted(Comparator.comparing(tag -> tag.tagName))
-        //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        //        .sorted(Comparator.comparing(Tag::getName))
-        //        .forEach(tag -> tags.getChildren().add(new Label(tag.getName())));
+        item.getTagSet().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName.fullName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName.fullName)));
+
     }
 
     @Override
