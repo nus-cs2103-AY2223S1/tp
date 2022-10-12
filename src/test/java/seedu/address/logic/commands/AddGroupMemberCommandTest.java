@@ -11,12 +11,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.group.Group;
-import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.testutil.PersonBuilder;
-
-import java.util.HashSet;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
