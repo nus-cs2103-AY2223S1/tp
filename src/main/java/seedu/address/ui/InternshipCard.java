@@ -57,7 +57,7 @@ public class InternshipCard extends UiPart<Region> {
         phone.setText(internship.getPhone().value);
         address.setText(internship.getAddress().value);
         email.setText(internship.getEmail().value);
-        status.setText(internship.getStatus().value);
+        status.setText(internship.getStatus().status);
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

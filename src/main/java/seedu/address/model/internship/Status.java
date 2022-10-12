@@ -1,5 +1,7 @@
 package seedu.address.model.internship;
 
+import java.util.Objects;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -8,9 +10,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: details are present and not null
  */
 public class Status {
-    enum StatusType {
-        PROGRESS, OFFERED, REJECTED
-    }
     public static final String MESSAGE_CONSTRAINTS = "Status can be of 3 types: Progress, Offered, Rejected";
 
     /*
@@ -19,40 +18,55 @@ public class Status {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public String status;
 
     /**
      * Constructs an {@code Status}.
      *
-     * @param status A valid address.
+     * @param status A valid status.
      */
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
-        value = status;
+        switch (status.toUpperCase()) {
+        case "OFFERED":
+            this.status = "Offered";
+            break;
+        case "PROGRESS":
+            this.status = "Progress";
+            break;
+        case "REJECTED":
+            this.status = "Rejected";
+            break;
+        default:
+            this.status = "Progress";
+        }
     }
 
     /**
      * Returns true if a given string is a valid status.
      */
     public static boolean isValidStatus(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX)
+                && (Objects.equals(test.toUpperCase(), "OFFERED")
+                || Objects.equals(test.toUpperCase(), "PROGRESS")
+                || Objects.equals(test.toUpperCase(), "REJECTED"));
     }
 
     @Override
     public String toString() {
-        return value.toString();
+        return status.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Status // instanceof handles nulls
-                && value.equals(((Status) other).value)); // state check
+                && status.equals(((Status) other).status)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return status.hashCode();
     }
 }
