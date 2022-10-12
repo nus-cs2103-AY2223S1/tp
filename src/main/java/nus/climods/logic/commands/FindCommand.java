@@ -25,6 +25,11 @@ public class FindCommand extends Command {
     private final List<String> searchTokens;
     private final List<Pattern> searchRegexes;
 
+    /**
+     * Constructor for FindCommand class
+     *
+     * @param searchTokens search tokens
+     */
     public FindCommand(List<String> searchTokens) {
         this.searchTokens = searchTokens;
         this.searchRegexes = generateSearchRegexes(searchTokens);

@@ -7,6 +7,9 @@ import java.util.Arrays;
 import nus.climods.logic.commands.FindCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new FindCommand object
+ */
 public class FindCommandParser implements Parser<FindCommand> {
 
     @Override

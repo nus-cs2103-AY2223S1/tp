@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
 
 import nus.climods.model.module.Module;
 
+/**
+ * Tests that a {@code Module}'s given information matches any of the keywords given.
+ */
 public class ModuleContainsKeywordsPredicate implements Predicate<Module> {
 
     private final List<Pattern> searchRegexes;

@@ -71,6 +71,15 @@ public class Module {
             .map(BigDecimal::intValue).collect(Collectors.toList());
     }
 
+    /**
+     * Check if module contains keyword
+     * <p>
+     * A keyword is searched against a search range which includes the module's title and code
+     * </p>
+     *
+     * @param keywordPattern keyword regex pattern
+     * @return whether module contains keyword in its stated information
+     */
     public boolean containsKeyword(Pattern keywordPattern) {
         List<String> searchRange = Arrays.asList(getCode(), getTitle());
 
