@@ -6,10 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FilterTasksCommand;
-import seedu.address.logic.commands.FindTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCode;
 import seedu.address.model.task.TaskBelongsToModulePredicate;
 
 /**

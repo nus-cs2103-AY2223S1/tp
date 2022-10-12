@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.module.Module;
 import seedu.address.model.task.TaskBelongsToModulePredicate;
 
 /**
@@ -23,7 +22,7 @@ public class FilterTasksCommand extends Command {
 
     public static final String MESSAGE_NO_RESULTS = "No tasks found for module: %1$s";
 
-//    public static final String MODULE_NOT_FOUND = "This module does not exist";
+    public static final String MODULE_NOT_FOUND = "This module does not exist";
 
     private final TaskBelongsToModulePredicate predicate;
 
@@ -40,6 +39,10 @@ public class FilterTasksCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
+
+        if (!model.hasModule(predicate.getToCheck())) {
+            throw new CommandException(MODULE_NOT_FOUND);
+        }
 
         if (model.getFilteredTaskList().isEmpty()) {
             return new CommandResult(String.format(MESSAGE_NO_RESULTS, predicate.getToCheck()));

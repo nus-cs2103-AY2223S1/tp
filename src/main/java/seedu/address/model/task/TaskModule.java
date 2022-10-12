@@ -8,13 +8,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TaskModule {
     public static final String MESSAGE_CONSTRAINTS =
-            "Modules should only contain alphanumeric characters, and it should not be blank";
+            "Module code should be at least 6 "
+                    + "characters long, with first two characters "
+                    + "being alphabetic characters";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^[A-Za-z]{2}[A-Za-z0-9]*";
 
     public final String moduleCode;
 
