@@ -115,7 +115,7 @@ Edit a specified item's details
     - Step 3: `<what you want to edit it to>`
 
 - Things you can edit:
-    - Supplier details (name,phone,price,item,and address)
+    - Supplier details (name, phone, price, item and address)
     - Tasks(type, time)
 
 - Examples:
