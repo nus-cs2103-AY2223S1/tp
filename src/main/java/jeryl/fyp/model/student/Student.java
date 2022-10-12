@@ -17,23 +17,21 @@ public class Student {
 
     // Identity fields
     private final Name name;
-    private final StudentId id;
+    private final StudentId studentId;
     private final Email email;
-    private final String projectName;
+    private final ProjectName projectName;
 
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, StudentId id, Email email, Address address, String projectName, Set<Tag> tags) {
-        requireAllNonNull(name, id, email, address, projectName, tags);
+    public Student(Name name, StudentId studentId, Email email, ProjectName projectName, Set<Tag> tags) {
+        requireAllNonNull(name, studentId, email, projectName, tags);
         this.name = name;
-        this.id = id;
+        this.studentId = studentId;
         this.email = email;
-        this.address = address;
         this.projectName = projectName;
         this.tags.addAll(tags);
     }
@@ -43,18 +41,14 @@ public class Student {
     }
 
     public StudentId getStudentId() {
-        return id;
+        return studentId;
     }
 
     public Email getEmail() {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public String getProjectName() {
+    public ProjectName getProjectName() {
         return projectName;
     }
 
@@ -97,7 +91,6 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getStudentId().equals(getStudentId())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getProjectName().equals(getProjectName())
                 && otherStudent.getTags().equals(getTags());
     }
@@ -105,7 +98,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, id, email, address, projectName, tags);
+        return Objects.hash(name, studentId, email, projectName, tags);
     }
 
     @Override
@@ -116,8 +109,6 @@ public class Student {
                 .append(getStudentId())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
                 .append("; ProjectName: ")
                 .append(getProjectName());
 

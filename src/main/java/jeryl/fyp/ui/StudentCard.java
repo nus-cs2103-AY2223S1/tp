@@ -52,9 +52,8 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         studentId.setText(student.getStudentId().id);
-        address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
-        projectName.setText(student.getProjectName());
+        projectName.setText(student.getProjectName().fullProjectName);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

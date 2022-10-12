@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jeryl.fyp.commons.exceptions.IllegalValueException;
-import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
+import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
@@ -25,9 +25,8 @@ class JsonAdaptedStudent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
-    private final String id;
+    private final String studentId;
     private final String email;
-    private final String address;
     private final String projectName;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,14 +34,12 @@ class JsonAdaptedStudent {
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("studentId") String id,
-                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("projectName") String projectName,
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("studentId") String studentId,
+                              @JsonProperty("email") String email, @JsonProperty("projectName") String projectName,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.id = id;
+        this.studentId = studentId;
         this.email = email;
-        this.address = address;
         this.projectName = projectName;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -54,10 +51,9 @@ class JsonAdaptedStudent {
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
-        id = source.getStudentId().id;
+        studentId = source.getStudentId().id;
         email = source.getEmail().value;
-        address = source.getAddress().value;
-        projectName = source.getProjectName();
+        projectName = source.getProjectName().fullProjectName;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -82,14 +78,14 @@ class JsonAdaptedStudent {
         }
         final Name modelName = new Name(name);
 
-        if (id == null) {
+        if (studentId == null) {
             throw new IllegalValueException(String.format(
                     MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
         }
-        if (!StudentId.isValidStudentId(id)) {
+        if (!StudentId.isValidStudentId(studentId)) {
             throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        final StudentId modelStudentId = new StudentId(id);
+        final StudentId modelStudentId = new StudentId(studentId);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -99,28 +95,17 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         if (projectName == null) {
-            // tentatively I put "Project" here -- Yuhao
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Project"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectName.class.getSimpleName()));
         }
-        /*
-        if (!Project.isValidProject(projectName)) {
-            throw new IllegalValueException("Projects can take any values, and it should not be blank");
+        if (!ProjectName.isValidProjectName(projectName)) {
+            throw new IllegalValueException(ProjectName.MESSAGE_CONSTRAINTS);
         }
-         */
-        final String modelProjectName = projectName;
+        final ProjectName modelProjectName = new ProjectName(projectName);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
-        return new Student(modelName, modelStudentId, modelEmail, modelAddress, modelProjectName, modelTags);
+        return new Student(modelName, modelStudentId, modelEmail, modelProjectName, modelTags);
     }
 
 }

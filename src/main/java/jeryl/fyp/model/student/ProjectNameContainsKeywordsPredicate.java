@@ -23,7 +23,7 @@ public class ProjectNameContainsKeywordsPredicate implements Predicate<Student> 
     @Override
     public boolean test(Student student) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(student.getProjectName(), keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(student.getProjectName().fullProjectName, keyword));
     }
 
     @Override

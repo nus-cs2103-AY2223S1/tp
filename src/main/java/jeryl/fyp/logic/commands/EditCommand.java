@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_NAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECTNAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
@@ -23,6 +23,7 @@ import jeryl.fyp.model.Model;
 import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
+import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
@@ -39,13 +40,13 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_STUDENTID + "STUDENT_ID] "
+            + "[" + PREFIX_STUDENT_ID + "STUDENT_ID] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_PROJECTNAME + "PROJECTNAME] "
+            + "[" + PREFIX_PROJECT_NAME + "PROJECTNAME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_STUDENTID + "A91234567H "
+            + PREFIX_STUDENT_ID + "A91234567H "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
@@ -99,7 +100,7 @@ public class EditCommand extends Command {
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        String updatedProjectName = editStudentDescriptor.getProjectName().orElse(studentToEdit.getProjectName());
+        ProjectName updatedProjectName = editStudentDescriptor.getProjectName().orElse(studentToEdit.getProjectName());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedName, updatedStudentId, updatedEmail, updatedAddress,
@@ -133,7 +134,7 @@ public class EditCommand extends Command {
         private StudentId id;
         private Email email;
         private Address address;
-        private String projectName;
+        private ProjectName projectName;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -190,11 +191,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setProjectName(String projectName) {
+        public void setProjectName(ProjectName projectName) {
             this.projectName = projectName;
         }
 
-        public Optional<String> getProjectName() {
+        public Optional<ProjectName> getProjectName() {
             return Optional.ofNullable(projectName);
         }
 

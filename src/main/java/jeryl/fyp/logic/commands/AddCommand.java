@@ -1,10 +1,10 @@
 package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_NAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PHONE;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 
 import jeryl.fyp.logic.commands.exceptions.CommandException;
@@ -20,18 +20,18 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the FYP manager. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
+            + PREFIX_STUDENT_ID + "STUDENT_ID "
+            + PREFIX_NAME + "STUDENT_NAME "
+            + PREFIX_PROJECT_NAME + "FYP_NAME "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
+            + PREFIX_STUDENT_ID + "A0123456G "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
+            + PREFIX_PROJECT_NAME + "Neural Network "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "smart "
+            + PREFIX_TAG + "isWorking";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the FYP manager";

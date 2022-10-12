@@ -4,8 +4,8 @@ import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_NAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECTNAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -16,6 +16,7 @@ import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
+import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
@@ -32,22 +33,21 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_PROJECTNAME, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_ID, PREFIX_NAME, PREFIX_PROJECT_NAME,
+                        PREFIX_EMAIL, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_STUDENTID, PREFIX_EMAIL,
-                PREFIX_PROJECTNAME) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_NAME, PREFIX_PROJECT_NAME,
+                PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        StudentId id = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());
+        ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        String projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECTNAME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, id, email, address, projectName, tagList);
+        Student student = new Student(name, studentId, email, projectName, tagList);
 
         return new AddCommand(student);
     }
