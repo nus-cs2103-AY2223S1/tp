@@ -2,7 +2,7 @@ package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_TAG_NAME;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 import java.util.Set;
@@ -25,8 +25,8 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the item identified by the index number used in the displayed item list with a valid Tag.\n"
-            + "Parameters: " + PREFIX_ID + " INDEX (must be a positive integer) " + PREFIX_TAG_NAME + "TAG_NAME\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_TAG_NAME + "Condiments " + PREFIX_ID + "1";
+            + "Parameters: " + PREFIX_ID + " INDEX (must be a positive integer) " + PREFIX_NAME + "TAG_NAME\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Condiments " + PREFIX_ID + "1";
 
     public static final String MESSAGE_SUCCESS = "Item tagged successfully";
 

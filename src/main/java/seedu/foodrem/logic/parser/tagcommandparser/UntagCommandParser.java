@@ -3,7 +3,7 @@ package seedu.foodrem.logic.parser.tagcommandparser;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_TAG_NAME;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.foodrem.commons.core.index.Index;
@@ -28,13 +28,13 @@ public class UntagCommandParser implements Parser<UntagCommand> {
     public UntagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TAG_NAME, PREFIX_ID);
-        if (!arePrefixesPresent(argMultimap, PREFIX_TAG_NAME, PREFIX_ID)
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID);
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UntagCommand.MESSAGE_USAGE));
         }
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ID).get());
-        String name = ParserUtil.parseTagName(argMultimap.getValue(PREFIX_TAG_NAME).get()).toString();
+        String name = ParserUtil.parseTagName(argMultimap.getValue(PREFIX_NAME).get()).toString();
 
         return new UntagCommand(name, index);
     }
