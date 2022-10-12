@@ -63,6 +63,7 @@ public class AddcCommand extends Command {
                     .collect(Collectors.joining(" "));
             outputString.append(String.format(MESSAGE_DUPLICATE_MODULE_CLASS, duplicateClaasesStr)).append('\n');
         }
+        outputString.setLength(outputString.length() - 1);
         return new CommandResult(outputString.toString());
     }
 
