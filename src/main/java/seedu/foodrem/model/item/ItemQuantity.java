@@ -2,6 +2,8 @@ package seedu.foodrem.model.item;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.BiFunction;
+
 import seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator;
 
 
