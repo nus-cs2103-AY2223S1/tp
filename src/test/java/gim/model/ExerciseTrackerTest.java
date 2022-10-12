@@ -9,15 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+//import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import gim.model.exercise.Exercise;
-import gim.model.exercise.exceptions.DuplicateExerciseException;
+//import gim.model.exercise.exceptions.DuplicateExerciseException;
 import gim.testutil.ExerciseBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,16 +43,16 @@ public class ExerciseTrackerTest {
         assertEquals(newData, exerciseTracker);
     }
 
-    @Test
-    public void resetData_withDuplicateExercises_throwsDuplicateExerciseException() {
-        // Two exercises with the same identity fields
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Exercise> newExercises = Arrays.asList(ALICE, editedAlice);
-        ExerciseTrackerStub newData = new ExerciseTrackerStub(newExercises);
-
-        assertThrows(DuplicateExerciseException.class, () -> exerciseTracker.resetData(newData));
-    }
+    //        @Test
+    //        public void resetData_withDuplicateExercises_throwsDuplicateExerciseException() {
+    //            // Two exercises with the same identity fields
+    //            Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS)
+    //                    .withTags(VALID_TAG_HUSBAND).build();
+    //            List<Exercise> newExercises = Arrays.asList(ALICE, editedAlice);
+    //            ExerciseTrackerStub newData = new ExerciseTrackerStub(newExercises);
+    //
+    //            assertThrows(DuplicateExerciseException.class, () -> exerciseTracker.resetData(newData));
+    //        }
 
     @Test
     public void hasExercise_nullExercise_throwsNullPointerException() {

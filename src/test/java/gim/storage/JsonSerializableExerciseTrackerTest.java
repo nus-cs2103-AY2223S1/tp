@@ -38,12 +38,12 @@ public class JsonSerializableExerciseTrackerTest {
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
-    @Test
-    public void toModelType_duplicateExercises_throwsIllegalValueException() throws Exception {
-        JsonSerializableExerciseTracker dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EXERCISE_FILE,
-                JsonSerializableExerciseTracker.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableExerciseTracker.MESSAGE_DUPLICATE_EXERCISE,
-                dataFromFile::toModelType);
-    }
+    //    @Test
+    //    public void toModelType_duplicateExercises_throwsIllegalValueException() throws Exception {
+    //        JsonSerializableExerciseTracker dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EXERCISE_FILE,
+    //                JsonSerializableExerciseTracker.class).get();
+    //        assertThrows(IllegalValueException.class, JsonSerializableExerciseTracker.MESSAGE_DUPLICATE_EXERCISE,
+    //                dataFromFile::toModelType);
+    //    }
 
 }

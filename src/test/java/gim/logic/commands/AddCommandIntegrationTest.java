@@ -1,6 +1,6 @@
 package gim.logic.commands;
 
-import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
+//import static gim.logic.commands.CommandTestUtil.assertCommandFailure;
 import static gim.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 
@@ -36,10 +36,10 @@ public class AddCommandIntegrationTest {
                 String.format(AddCommand.MESSAGE_SUCCESS, validExercise), expectedModel);
     }
 
-    @Test
-    public void execute_duplicateExercise_throwsCommandException() {
-        Exercise exerciseInList = model.getExerciseTracker().getExerciseList().get(0);
-        assertCommandFailure(new AddCommand(exerciseInList), model, AddCommand.MESSAGE_DUPLICATE_EXERCISE);
-    }
+    //    @Test
+    //    public void execute_duplicateExercise_throwsCommandException() {
+    //        Exercise exerciseInList = model.getExerciseTracker().getExerciseList().get(0);
+    //        assertCommandFailure(new AddCommand(exerciseInList), model, AddCommand.MESSAGE_DUPLICATE_EXERCISE);
+    //    }
 
 }

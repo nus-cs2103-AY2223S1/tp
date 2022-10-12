@@ -49,10 +49,13 @@ public class Name {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
                 && fullName.equals(((Name) other).fullName)); // state check
+        //                && fullName.toLowerCase().replaceAll("\\s", "").equals(((Name) other).fullName
+        //                .toLowerCase().replaceAll("\\s", ""))); // compare after spaces removed & set lowercase
     }
 
     @Override
     public int hashCode() {
+        //        return fullName.toLowerCase().replaceAll("\\s", "").hashCode();
         return fullName.hashCode();
     }
 
