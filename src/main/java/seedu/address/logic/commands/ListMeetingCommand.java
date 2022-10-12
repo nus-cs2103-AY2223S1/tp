@@ -25,7 +25,7 @@ public class ListMeetingCommand extends Command {
 
         StringBuilder str = new StringBuilder();
         List<Meeting> list = model.getFilteredMeetingList().stream()
-                                    .collect(Collectors.toList());
+                .collect(Collectors.toList());
         list.forEach(str::append);
 
         return new CommandResult(MESSAGE_SUCCESS + "\n" + str);
