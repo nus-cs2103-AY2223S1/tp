@@ -2,12 +2,14 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.commission.Commission;
+import seedu.address.model.iteration.Iteration;
 
 /**
  * An UI component that displays information of a {@code Commission}.
@@ -16,7 +18,8 @@ public class CommissionCard extends UiPart<Region> {
 
     private static final String FXML = "CommissionListCard.fxml";
     private static final String COMPLETED_COLOR_STYLE = "-fx-background-color: #32AE46;";
-    private static final String NOT_COMPLETED_COLOR_STYLE = "-fx-background-color: #CAB232";
+    private static final String IN_PROGRESS_COLOR_STYLE = "-fx-background-color: #548DE1";
+    private static final String NOT_STARTED_COLOR_STYLE = "-fx-background-color: B8B8B8";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -46,7 +49,7 @@ public class CommissionCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code CustomerCode} with the given {@code Customer} and index to display.
+     * Creates a {@code CommissionCard} with the given {@code Commission} and index to display.
      */
     public CommissionCard(Commission commission, int displayedIndex) {
         super(FXML);
@@ -55,20 +58,35 @@ public class CommissionCard extends UiPart<Region> {
         title.setText(commission.getTitle().title);
         deadline.setText("Due " + commission.getDeadline().toString());
 
-        if (commission.getCompletionStatus().isCompleted) {
-            completionStatusCircle.setStyle(COMPLETED_COLOR_STYLE);
-            completionStatus.setText("Completed");
-        } else {
-            completionStatusCircle.setStyle(NOT_COMPLETED_COLOR_STYLE);
-            completionStatus.setText("Not Completed");
-        }
-
         commission.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> {
                     Label tagLabel = new Label(tag.tagName);
                     tags.getChildren().add(tagLabel);
                 });
+
+        updateProgress();
+        // Because the progress depends also on the number of iterations in the commission list,
+        // we might need to update the progress when the iteration list changes
+        commission.getIterationList().addListener((ListChangeListener.Change<? extends Iteration> c) ->
+                updateProgress());
+    }
+
+    private void updateProgress() {
+        switch(commission.getCompletionStatusString()) {
+        case COMPLETED:
+            completionStatusCircle.setStyle(COMPLETED_COLOR_STYLE);
+            completionStatus.setText("Completed");
+            break;
+        case IN_PROGRESS:
+            completionStatusCircle.setStyle(IN_PROGRESS_COLOR_STYLE);
+            completionStatus.setText("In Progress");
+            break;
+        default:
+            completionStatusCircle.setStyle(NOT_STARTED_COLOR_STYLE);
+            completionStatus.setText("Not Started");
+            break;
+        }
     }
 
     @Override

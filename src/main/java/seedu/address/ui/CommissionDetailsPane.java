@@ -161,8 +161,8 @@ public class CommissionDetailsPane extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new IterationListItem(iteration, getIndex() + 1).getRoot());
-                updateProgressComponents(commission.getValue());
             }
+            updateProgressComponents(commission.getValue());
         }
     }
 
