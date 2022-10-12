@@ -132,6 +132,14 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        Map<ContactType, Contact> contacts = getContacts();
+        if (!contacts.isEmpty()) {
+            for (ContactType contactType: contacts.keySet()) {
+                builder.append("; " + contactType + ": ");
+                builder.append(contacts.get(contactType));
+            }
+        }
         return builder.toString();
     }
 
