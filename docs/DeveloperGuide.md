@@ -3,14 +3,13 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
-  {:toc}
+{% include toc.md header=true show-in-toc=false %}
 
 ---
 
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ---
 
@@ -40,17 +39,17 @@ Given below is a quick overview of main components and how they interact with ea
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
-- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-- At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-- [**`UI`**](#ui-component): The UI of the App.
-- [**`Logic`**](#logic-component): The command executor.
-- [**`Model`**](#model-component): Holds the data of the App in memory.
-- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
@@ -60,8 +59,8 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
-- defines its _API_ in an `interface` with the same name as the Component.
-- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* defines its _API_ in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -81,10 +80,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-- executes user commands using the `Logic` component.
-- listens for changes to `Model` data so that the UI can be updated with the modified data.
-- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -96,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `FoodRemParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -114,8 +113,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `FoodRemParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FoodRemParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -125,12 +124,12 @@ How the parsing works:
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FoodRem`, which `Person` references. This allows `FoodRem` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -144,9 +143,9 @@ The `Model` component,
 
 The `Storage` component,
 
-- can save both address book data and user preference data in json format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `FoodRemStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
@@ -162,37 +161,37 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedFoodRem`. It extends `FoodRem` with an undo/redo history, stored internally as an `foodRemStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+*`VersionedFoodRem#commit()` — Saves the current address book state in its history.
+* `VersionedFoodRem#undo()` — Restores the previous address book state from its history.
+* `VersionedFoodRem#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitFoodRem()`, `Model#undoFoodRem()` and `Model#redoFoodRem()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedFoodRem` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitFoodRem()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `foodRemStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitFoodRem()`, causing another modified address book state to be saved into the `foodRemStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFoodRem()`, so the address book state will not be saved into the `foodRemStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFoodRem()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial FoodRem state, then there are no previous FoodRem states to restore. The `undo` command uses `Model#canUndoFoodRem()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -205,17 +204,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoFoodRem()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `foodRemStateList.size() - 1`, pointing to the latest address book state, then there are no undone FoodRem states to restore. The `redo` command uses `Model#canRedoFoodRem()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitFoodRem()`, `Model#undoFoodRem()` or `Model#redoFoodRem()`. Thus, the `foodRemStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitFoodRem()`. Since the `currentStatePointer` is not pointing at the end of the `foodRemStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -227,15 +226,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-- **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire address book.
 
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
 
-- **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -247,11 +246,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-- [Documentation guide](Documentation.md)
-- [Testing guide](Testing.md)
-- [Logging guide](Logging.md)
-- [Configuration guide](Configuration.md)
-- [DevOps guide](DevOps.md)
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
 
 ---
 
@@ -259,7 +258,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:  
+**Target user profile**:
 Purchasing managers who are proficient with typing for small F&B businesses
 
 
@@ -274,25 +273,28 @@ Add Inventory Item:
 Delete Inventory Item:
 
 Update inventory items:
+
 1. As a purchasing manager, I can rename my inventory items, so that I can update items with an incorrect name.
-2. As a purchasing manager, I can set the inventory quantity of my items.
-3. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items.
-4. As a purchasing manager, I can set the date my inventory will expire, so that I know when certain items need to be consumed or used. 
-5. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.
-6. As a purchasing manager, I can decrease the inventory quantity of my items.
+1. As a purchasing manager, I can set the inventory quantity of my items.
+1. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items.
+1. As a purchasing manager, I can set the date my inventory will expire, so that I know when certain items need to be consumed or used.
+1. As a purchasing manager, I can increase the inventory quantity of my items, so that I can keep my stock updated when I purchase new items.
+1. As a purchasing manager, I can decrease the inventory quantity of my items.
 
 View Inventory Items:
+
 1. As a purchasing manager, I can view all items in my inventory so that I can have an overview of all items and their details.
-2. As a purchasing manager, I can search for items by name, so that I can view a specific item and its associated details
-3. As a purchasing manager, I can search for items by tags, so that I can view all items that have the same tag.
+1. As a purchasing manager, I can search for items by name, so that I can view a specific item and its associated details
+1. As a purchasing manager, I can search for items by tags, so that I can view all items that have the same tag.
 
 Tag Management System
+
 1. As a purchasing manager, I can view a list of tags.
-2. As a purchasing manager, I can create tags to classify inventory items.
-3. As a purchasing manager, I can rename a tag.
-4. As a purchasing manager, I can delete a tag.
-5. As a purchasing manager, I can add a tag to an item.
-6. As a purchasing manager, I can remove a tag from an item.
+1. As a purchasing manager, I can create tags to classify inventory items.
+1. As a purchasing manager, I can rename a tag.
+1. As a purchasing manager, I can delete a tag.
+1. As a purchasing manager, I can add a tag to an item.
+1. As a purchasing manager, I can remove a tag from an item.
 
 Miscellaneous
 
@@ -308,13 +310,13 @@ Use Case: UC1 - Add Item to Inventory
 MSS:
 
 1. User adds an item to the inventory.
-2. FoodRem adds the item into the inventory list.
+1. FoodRem adds the item into the inventory list.
    Use Case ends.
 
 Extensions:
 
-- 1a. If the item name already exists in the inventory, FoodRem will throw an error.
-  - 1a1. User will re-enter command until the new item is correct.
+* 1a. If the item name already exists in the inventory, FoodRem will throw an error.
+  * 1a1. User will re-enter command until the new item is correct.
     Use case resumes from Step 2.
 
 #### UC2: Update Item in Inventory
@@ -323,13 +325,13 @@ Use Case: UC2 - Update Item in Inventory
 MSS:
 
 1. User updates an inventory item's detail.
-2. FoodRem updates the detail of the inventory item.
+1. FoodRem updates the detail of the inventory item.
    Use case ends.
 
 Extensions:
 
-- 1a. If the item does not exist in the inventory, FoodRem will throw an error.
-  - 1a1. User will re-enter command until the correct item is given (i.e item exists in inventory).
+* 1a. If the item does not exist in the inventory, FoodRem will throw an error.
+  * 1a1. User will re-enter command until the correct item is given (i.e item exists in inventory).
     Use case resumes from Step 2.
 
 #### UC3: Delete Item from Inventory
@@ -338,13 +340,13 @@ Use Case: UC2 - Delete Item from Inventory
 MSS:
 
 1. User deletes an item from inventory.
-2. FoodRem removes item from inventory.
+1. FoodRem removes item from inventory.
    Use case ends.
 
 Extensions:
 
-- 1a. Item does not exist in inventory.
-  - 1a1. FoodRem displays error to user that item does not exist in inventory.
+* 1a. Item does not exist in inventory.
+  * 1a1. FoodRem displays error to user that item does not exist in inventory.
     Use case resumes from step 1.
 
 #### UC4: Create Tag
@@ -356,8 +358,8 @@ MSS:
 
 Extensions:
 
-- 1a. Tag already exists.
-  - 1a1. FoodRem displays error warning to user.
+* 1a. Tag already exists.
+  * 1a1. FoodRem displays error warning to user.
     Use case resumes from step 1.
 
 #### UC5: Find Item
@@ -366,7 +368,7 @@ Use Case: UC5 - Find Item
 MSS:
 
 1. User searches for an Item using keywords.
-2. FoodRem displays all items in inventory which name matches the given keyword.
+1. FoodRem displays all items in inventory which name matches the given keyword.
    Use case ends.
 
 #### UC6: Add Tag to Item
@@ -375,22 +377,24 @@ Use Case: UC6 - Add Tag to an Item
 MSS:
 
 1. User enters the command to find the item of interest.
-2. FoodRem shows a list containing possible matching items.
-3. User enters command to add a specified tag from the desired items.
-4. FoodRem informs user that the tag has been updated successfully.
+1. FoodRem shows a list containing possible matching items.
+1. User enters command to add a specified tag from the desired items.
+1. FoodRem informs user that the tag has been updated successfully.
    Use case ends.
 
 Extensions:
-- 1a. FoodRem detects that there is an issue with the command entered.
-    - 1a1. FoodRem requests for the command to be entered again.
-    - 1a2. User re-enters the command.
-    - Steps 1a1-1a2 are repeated until the command entered is correct. Use case resumes from step 2.
 
-- 3a. FoodRem detects that there is an issue with the command entered.
-    - 3a1. FoodRem requests for the command to be entered again.
-    - 3a2. User re-enters the command.
-    - Steps 3a1-3a2 are repeated until the command entered is correct.
-      Use case resumes from step 4.
+* 1a. FoodRem detects that there is an issue with the command entered.
+
+  * 1a1. FoodRem requests for the command to be entered again.
+  * 1a2. User re-enters the command.
+  * Steps 1a1-1a2 are repeated until the command entered is correct. Use case resumes from step 2.
+
+* 3a. FoodRem detects that there is an issue with the command entered.
+  * 3a1. FoodRem requests for the command to be entered again.
+  * 3a2. User re-enters the command.
+  * Steps 3a1-3a2 are repeated until the command entered is correct.
+    Use case resumes from step 4.
 
 #### UC7: Rename a tag
 
@@ -398,22 +402,23 @@ Use Case: UC7 - Rename a tag
 MSS:
 
 1. User chooses to view all tags.
-2. FoodRem shows all tags.
-3. User enters the command to rename desired tag.
-4. FoodRem informs user that the tag has been updated successfully.
+1. FoodRem shows all tags.
+1. User enters the command to rename desired tag.
+1. FoodRem informs user that the tag has been updated successfully.
 
 Extensions:
-- 3a. FoodRem detects that the new tag name already exist.
-  - 3a1. FoodRem requests for a new tag name that does not exist.
-  - 3a2. User re-enters the command to rename the desired tag.
-  - Steps 3a1-3a2 are repeated until the data entered are correct.
+
+* 3a. FoodRem detects that the new tag name already exist.
+
+  * 3a1. FoodRem requests for a new tag name that does not exist.
+  * 3a2. User re-enters the command to rename the desired tag.
+  * Steps 3a1-3a2 are repeated until the data entered are correct.
     Use case resumes from step 4.
 
-
-- 3b. FoodRem detects that the name is in an incorrect format.
-  - 3b1. FoodRem requests for a new tag name that follows an acceptable format.
-  - 3b2. User re-enters the command to rename the desired tag.
-  - Steps 3b1-3b2 are repeated until the command entered is correct.
+* 3b. FoodRem detects that the name is in an incorrect format.
+  * 3b1. FoodRem requests for a new tag name that follows an acceptable format.
+  * 3b2. User re-enters the command to rename the desired tag.
+  * Steps 3b1-3b2 are repeated until the command entered is correct.
     Use case resumes from step 4.
 
 #### UC8: Removing a tag from an item
@@ -422,23 +427,25 @@ Use Case: UC8 - Removing a tag from an item
 Preconditions: User knows the name of the tag they are removing from an item.
 
 MSS:
+
 1. User enters the command to find the item of interest.
-2. FoodRem shows a list containing possible matching items.
-3. User enters command to remove the tag from the desired items.
-4. FoodRem informs user that the tag has been updated successfully.
+1. FoodRem shows a list containing possible matching items.
+1. User enters command to remove the tag from the desired items.
+1. FoodRem informs user that the tag has been updated successfully.
 
 Extensions:
-- 1a. FoodRem detects that there is an issue with the command entered.
-  - 1a1. FoodRem requests for the command to be entered again.
-  - 1a2. User re-enters the command.
-  - Steps 1a1-1a2 are repeated until the command entered is correct. Use case resumes from step 2.
 
+* 1a. FoodRem detects that there is an issue with the command entered.
 
-- 3a. FoodRem detects that there is an issue with the command entered.
-  - 3a1. FoodRem requests for the command to be entered again.
-  - 3a2. User re-enters the command.
-  - Steps 3a1-3a2 are repeated until the command entered is correct.
-  Use case resumes from step 4.
+  * 1a1. FoodRem requests for the command to be entered again.
+  * 1a2. User re-enters the command.
+  * Steps 1a1-1a2 are repeated until the command entered is correct. Use case resumes from step 2.
+
+* 3a. FoodRem detects that there is an issue with the command entered.
+  * 3a1. FoodRem requests for the command to be entered again.
+  * 3a2. User re-enters the command.
+  * Steps 3a1-3a2 are repeated until the command entered is correct.
+    Use case resumes from step 4.
 
 #### UC9: Increment/Decrement Quantity of Item
 
@@ -448,9 +455,9 @@ MSS:
 1. User increases/decreases the amount of the item in the inventory
    Extensions:
 
-- 1a. Item does not exist
-  - 1a1. FoodRem displays an error.
-  - 1a2. FoodRem asks the user if they want to try again
+* 1a. Item does not exist
+  * 1a1. FoodRem displays an error.
+  * 1a2. FoodRem asks the user if they want to try again
 
 #### UC10: Sorting List of Items by Criteria
 
@@ -458,24 +465,24 @@ Use Case: UC10 - Sorting List of Items by Criteria
 MSS:
 
 1. User lists items
-2. User selects a criteria to sort the list by
-3. The list items are reordered according to the chosen criterion
+1. User selects a criteria to sort the list by
+1. The list items are reordered according to the chosen criterion
 
-*{More to be added}*
+_{More to be added}_
 
 ### Non-Functional Requirements
 
 1. The product should work on any mainstream OS (Windows, macOS, Linux) that has Java 11 or above installed.
-2. The product should be able to hold up to 1000 items without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. A user should not experience excessive sluggishness when searching and sorting items.
-5. The product should be for a single user (i.e. not a multi-user product where different users can run the application at different times on a shared computer).
-6. The data of the application is stored locally.
-7. A user must be able to view at least 5 tags when an item is displayed.
-8. A user must be able to view at least 5 items with minimal scrolling if there are no tags added to each item.
-9. A user should be able to use the app after reading the help instructions.
+1. The product should be able to hold up to 1000 items without a noticeable sluggishness in performance for typical usage.
+1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. A user should not experience excessive sluggishness when searching and sorting items.
+1. The product should be for a single user (i.e. not a multi-user product where different users can run the application at different times on a shared computer).
+1. The data of the application is stored locally.
+1. A user must be able to view at least 5 tags when an item is displayed.
+1. A user must be able to view at least 5 items with minimal scrolling if there are no tags added to each item.
+1. A user should be able to use the app after reading the help instructions.
 
-### Glossary
+## Glossary
 
 ### A
 
@@ -484,15 +491,13 @@ MSS:
 > A value that is passed into a command.
 
 Example:
-`tag create food`, where food is the argument to the command `tag create`
+`tag create food`, where `food` is the argument to the command `tag create`
 
 ### B
 
 #### Bought Date
 
-> Date where an item was purchased. Usually in the format dd/mm/yyyy.
-
-_TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS._
+> Date where an item was purchased. Bought date is in the format "year-month-date", represented in the "yyyy-mm-dd" format.
 
 ### C
 
@@ -500,21 +505,22 @@ _TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS._
 
 > A feature or function that FoodRem can perform.
 
+#### Command Line
+
+> The interface that the user interacts FoodREM with. It is represented as the box where the user types in commands into.
+
 ### E
 
 #### Expiry Date
 
-> Date where an item spoils, expires, or becomes unusable. Usually in the format dd/mm/yyyy.
+> Date where an item spoils, expires, or becomes unusable. Expiry date is in the format "year-month-date", represented in the "yyyy-mm-dd" format.
 >
-> _TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS._
 
 ### F
 
 #### Flag
 
 > A marker or delimiter signifying a potentially optional argument to a command.
-
-MISSING EXAMPLE
 
 ### I
 
@@ -529,6 +535,12 @@ MISSING EXAMPLE
 Example: Creating a `potato` item
 `[item] new n/potato`
 
+### M
+
+#### MSS (Main Success Scenario)
+
+> The Main Success Scenario (MSS) describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong.
+
 ### O
 
 #### Output
@@ -536,11 +548,27 @@ Example: Creating a `potato` item
 > The result of calling a Command.
 > Results are displayed in the GUI, here: (ADD SCREENSHOT)
 
+### P
+
+#### Parameter
+
+> Parameters identify values passed into your Commands. For example, when calling `add n/ItemName`, the parameter here is `n/ItemName`.
+
+#### Purchasing Manager
+
+> A purchasing manager, also known as a purchasing director or supply manager, heads a team responsible for procuring goods and services for resale or company use.
+
 ### Q
 
 #### Quantity
 
 > The frequency of item(s) kept track by FoodRem.
+
+### S
+
+#### Syntax
+
+> The structure of statements users type into the Command Line.
 
 ### T
 
@@ -551,6 +579,16 @@ Example: Creating a `potato` item
 Example:
 Tagging an item in the first index as the tag `ingredient`:
 `tag 1 ingredient`
+
+### U
+
+#### Use Case
+
+> A use case describes an interaction between the user and the system for a specific functionality of the system.
+
+#### User Story
+
+> User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system. Typically in the format "As a {user type/role} I can {function} so that {benefit}".
 
 ---
 
