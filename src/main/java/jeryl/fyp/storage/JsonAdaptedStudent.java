@@ -15,6 +15,7 @@ import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -28,6 +29,7 @@ class JsonAdaptedStudent {
     private final String studentId;
     private final String email;
     private final String projectName;
+    private final String projectStatus;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,11 +38,12 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("studentId") String studentId,
                               @JsonProperty("email") String email, @JsonProperty("projectName") String projectName,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("projectStatus") String projectStatus, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.studentId = studentId;
         this.email = email;
         this.projectName = projectName;
+        this.projectStatus = projectStatus;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +57,7 @@ class JsonAdaptedStudent {
         studentId = source.getStudentId().id;
         email = source.getEmail().value;
         projectName = source.getProjectName().fullProjectName;
+        projectStatus = source.getProjectStatus().projectStatus;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -104,9 +108,15 @@ class JsonAdaptedStudent {
         }
         final ProjectName modelProjectName = new ProjectName(projectName);
 
+        if (projectStatus == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectStatus.class.getSimpleName()));
+        }
+
+        final ProjectStatus modelProjectStatus = new ProjectStatus(projectStatus);
+
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
-        return new Student(modelName, modelStudentId, modelEmail, modelProjectName, modelTags);
+        return new Student(modelName, modelStudentId, modelEmail, modelProjectName, modelProjectStatus, modelTags);
     }
 
 }

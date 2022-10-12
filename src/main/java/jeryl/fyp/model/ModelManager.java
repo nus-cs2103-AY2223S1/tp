@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.LogsCenter;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentId;
 
 /**
  * Represents the in-memory model of the FYP manager data.
@@ -109,6 +110,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedStudent);
 
         fypManager.setStudent(target, editedStudent);
+    }
+
+    @Override
+    public Student getStudent(StudentId studentId) {
+        requireNonNull(studentId);
+
+        return fypManager.getStudent(studentId);
     }
 
     //=========== Filtered Student List Accessors =============================================================

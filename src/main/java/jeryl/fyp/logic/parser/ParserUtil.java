@@ -14,6 +14,7 @@ import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.Phone;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -124,9 +125,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code String studentId} into an {@code StudentId} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified studentId is invalid (not of the correct format "A" + 7 numbers + 1 letter).
      */
     public static StudentId parseStudentId(String studentId) throws ParseException {
         requireNonNull(studentId);
@@ -135,5 +136,19 @@ public class ParserUtil {
             throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
         }
         return new StudentId(trimmedId);
+    }
+
+    /**
+     * Parses {@code String studentId} into an {@code StudentId} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified studentId is invalid (not of the correct format "A" + 7 numbers + 1 letter).
+     */
+    public static ProjectStatus parseProjectStatus(String projectStatus) throws ParseException {
+        requireNonNull(projectStatus);
+        String trimmedProjectStatus = projectStatus.trim();
+        if (!ProjectStatus.isValidProjectStatus(trimmedProjectStatus)) {
+            throw new ParseException(ProjectStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new ProjectStatus(trimmedProjectStatus);
     }
 }

@@ -8,6 +8,7 @@ import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.model.util.SampleDataUtil;
 
@@ -20,11 +21,13 @@ public class StudentBuilder {
     public static final String DEFAULT_STUDENT_ID = "A1355255B";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_PROJECT_NAME = "CS2103 SE";
+    public static final String DEFAULT_PROJECT_STATUS = "YTS";
 
     private Name name;
     private StudentId id;
     private Email email;
     private ProjectName projectName;
+    private ProjectStatus projectStatus;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class StudentBuilder {
         id = new StudentId(DEFAULT_STUDENT_ID);
         email = new Email(DEFAULT_EMAIL);
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
+        projectStatus = new ProjectStatus(DEFAULT_PROJECT_STATUS);
         tags = new HashSet<>();
     }
 
@@ -46,6 +50,7 @@ public class StudentBuilder {
         id = studentToCopy.getStudentId();
         email = studentToCopy.getEmail();
         projectName = studentToCopy.getProjectName();
+        projectStatus = studentToCopy.getProjectStatus();
         tags = new HashSet<>(studentToCopy.getTags());
     }
 
@@ -82,6 +87,15 @@ public class StudentBuilder {
     }
 
     /**
+     * Sets the {@code ProjectStatus} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withProjectStatus(String projectStatus) {
+        this.projectStatus = new ProjectStatus(projectStatus);
+        return this;
+    }
+
+
+    /**
      * Sets the {@code ProjectName} of the {@code Student} that we are building.
      */
     public StudentBuilder withProjectName(String projectName) {
@@ -90,7 +104,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, id, email, projectName, tags);
+        return new Student(name, id, email, projectName, projectStatus, tags);
     }
 
 }

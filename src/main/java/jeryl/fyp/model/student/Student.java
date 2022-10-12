@@ -20,6 +20,7 @@ public class Student {
     private final StudentId studentId;
     private final Email email;
     private final ProjectName projectName;
+    private final ProjectStatus projectStatus;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -27,12 +28,14 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, StudentId studentId, Email email, ProjectName projectName, Set<Tag> tags) {
-        requireAllNonNull(name, studentId, email, projectName, tags);
+    public Student(Name name, StudentId studentId, Email email, ProjectName projectName,
+                   ProjectStatus projectStatus, Set<Tag> tags) {
+        requireAllNonNull(name, studentId, email, projectName, projectStatus, tags);
         this.name = name;
         this.studentId = studentId;
         this.email = email;
         this.projectName = projectName;
+        this.projectStatus = projectStatus;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +53,10 @@ public class Student {
 
     public ProjectName getProjectName() {
         return projectName;
+    }
+
+    public ProjectStatus getProjectStatus() {
+        return projectStatus;
     }
 
     /**
@@ -110,7 +117,9 @@ public class Student {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; ProjectName: ")
-                .append(getProjectName());
+                .append(getProjectName())
+                .append("; ProjectStatus: ")
+                .append(getProjectStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

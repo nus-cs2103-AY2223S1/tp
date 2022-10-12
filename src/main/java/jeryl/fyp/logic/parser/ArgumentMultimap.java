@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import jeryl.fyp.logic.commands.MarkCommand.Status;
-
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -40,31 +38,6 @@ public class ArgumentMultimap {
     public Optional<String> getValue(Prefix prefix) {
         List<String> values = getAllValues(prefix);
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
-    }
-
-
-    /**
-     * Returns the last value of {@code prefix}.
-     */
-    public Status getStatus(Prefix prefix) {
-        List<String> values = getAllValues(prefix);
-
-        Status status = null;
-
-        switch (values.get(0)) {
-        case "YTS":
-            status = Status.YTS;
-            break;
-        case "IP":
-            status = Status.IP;
-            break;
-        case "DONE":
-            status = Status.DONE;
-            break;
-        default:
-            break;
-        }
-        return status;
     }
 
     /**

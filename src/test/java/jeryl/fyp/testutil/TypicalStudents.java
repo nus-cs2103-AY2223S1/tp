@@ -26,10 +26,12 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withStudentId("A1351253P")
             .withProjectName("Using CRISP to generate crisps")
+            .withProjectStatus("YTS")
             .withTags("friends").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withStudentId("A1765432B")
             .withProjectName("Neural Networks and ML")
+            .withProjectStatus("IP")
             .withTags("owesMoney", "friends").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withStudentId("A1352563C")
             .withEmail("heinz@example.com").withProjectName("About Decision Trees").build();
