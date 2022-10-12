@@ -35,22 +35,22 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
-            + "by the index number used in the displayed person list. "
+            + "by the index number used in the displayed list of students. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_TELEGRAMHANDLE + "TELEGRAM HANDLE] "
             + "[" + PREFIX_CONSULTATION + "CONSULTATION] "
-            + "[" + PREFIX_MASTERYCHECK + "MASTERY CHECK]...\n"
+            + "[" + PREFIX_MASTERYCHECK + "MASTERY CHECK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TELEGRAMHANDLE + "johndoe "
             + PREFIX_CONSULTATION + "2022-09-01 "
             + PREFIX_MASTERYCHECK + "2022-08-24 ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in FRIDAY.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in FRIDAY.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -80,12 +80,12 @@ public class EditCommand extends Command {
         Student editedStudent = createEditedPerson(studentToEdit, editPersonDescriptor);
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+        return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
     /**
