@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -46,13 +47,26 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane entityListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Pane studentLabelPanel;
+
+    @FXML
+    private Pane tutorLabelPanel;
+
+    @FXML
+    private Pane tuitionClassLabelPanel;
+
+    private String selectedLabelStyle;
+
+    private String unselectedLabelStyle;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -116,12 +130,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
         tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
-        //personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -132,6 +145,23 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Gets the selectedlabelStyle and unselectedLabelStyle
+     * from studentLabelPanel and tutorLabelPanel accordingly,
+     * assuming that the .fxml file sets them to selected and
+     * unselected style correctly.
+     */
+    public void initializeStyleClass() {
+        // Get the value of the style of a selected label
+        // from studentLabelPanel since it is set to the
+        // selected color by default.
+        // Refer to studentLabelPanel and tutorLabelPanel
+        // for more details about the difference of their
+        // style.
+        selectedLabelStyle = studentLabelPanel.getStyleClass().get(0);
+        unselectedLabelStyle = tutorLabelPanel.getStyleClass().get(0);
     }
 
     /**
@@ -180,19 +210,46 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleList() {
         Model.ListType type = logic.getCurrentListType();
-        personListPanelPlaceholder.getChildren().clear();
+        entityListPanelPlaceholder.getChildren().clear();
         switch (type) {
         case STUDENT_LIST:
-            personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
         case TUTOR_LIST:
-            personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+            entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
             break;
         case TUITIONCLASS_LIST:
-            personListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+            entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
             break;
         case PERSON_LIST:
-            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            entityListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            break;
+        default:
+            break;
+        }
+
+        setLabelStyle(type);
+    }
+
+    private void setLabelStyle(Model.ListType type) {
+        studentLabelPanel.getStyleClass().clear();
+        tutorLabelPanel.getStyleClass().clear();
+        tuitionClassLabelPanel.getStyleClass().clear();
+        switch (type) {
+        case STUDENT_LIST:
+            tutorLabelPanel.getStyleClass().add(unselectedLabelStyle);
+            tuitionClassLabelPanel.getStyleClass().add(unselectedLabelStyle);
+            studentLabelPanel.getStyleClass().add(selectedLabelStyle);
+            break;
+        case TUTOR_LIST:
+            studentLabelPanel.getStyleClass().add(unselectedLabelStyle);
+            tuitionClassLabelPanel.getStyleClass().add(unselectedLabelStyle);
+            tutorLabelPanel.getStyleClass().add(selectedLabelStyle);
+            break;
+        case TUITIONCLASS_LIST:
+            studentLabelPanel.getStyleClass().add(unselectedLabelStyle);
+            tutorLabelPanel.getStyleClass().add(unselectedLabelStyle);
+            tuitionClassLabelPanel.getStyleClass().add(selectedLabelStyle);
             break;
         default:
             break;

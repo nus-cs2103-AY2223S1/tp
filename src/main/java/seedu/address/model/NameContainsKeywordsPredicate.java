@@ -30,7 +30,7 @@ public class NameContainsKeywordsPredicate<T> implements Predicate<T> {
             return keywords.stream()
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tuitionClass.getName().name, keyword));
         }
-        throw new ClassCastException();
+        throw new ClassCastException("NameContainsKeyword predicate can only be applied to Person and TuitionClass.");
     }
 
     @Override

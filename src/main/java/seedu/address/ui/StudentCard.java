@@ -1,14 +1,16 @@
 package seedu.address.ui;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import seedu.address.model.person.student.Student;
+
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
 public class StudentCard extends PersonCard {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "StudentCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -19,9 +21,11 @@ public class StudentCard extends PersonCard {
      */
 
     public final Student student;
-
+    @FXML
     protected Label level;
+    @FXML
     protected Label nextOfKin;
+    @FXML
     protected Label school;
 
     /**
@@ -30,9 +34,9 @@ public class StudentCard extends PersonCard {
     public StudentCard(Student student, int displayedIndex) {
         super(student, displayedIndex, FXML);
         this.student = student;
-        level.setText(student.getLevel().name());
-        nextOfKin.setText(student.getNextOfKin().nextOfKin);
-        school.setText(student.getSchool().school);
+        level.setText("Level: " + student.getLevel().level);
+        nextOfKin.setText("Next of Kin: " + student.getNextOfKin().nextOfKin);
+        school.setText("School: " + student.getSchool().school);
     }
 
     @Override

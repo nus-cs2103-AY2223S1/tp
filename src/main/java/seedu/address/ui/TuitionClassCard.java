@@ -11,7 +11,7 @@ import seedu.address.model.tuitionclass.TuitionClass;
  */
 public class TuitionClassCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TuitionClassCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -46,10 +46,10 @@ public class TuitionClassCard extends UiPart<Region> {
         this.tuitionClass = tuitionClass;
         id.setText(displayedIndex + ". ");
         name.setText(tuitionClass.getName().name);
-        day.setText(tuitionClass.getDay().toString());
-        level.setText(tuitionClass.getLevel().toString());
-        subject.setText(tuitionClass.getSubject().toString());
-        time.setText(tuitionClass.getTime().toString());
+        day.setText("Day: " + tuitionClass.getDay().day);
+        time.setText("Time: " + tuitionClass.getTime().toString());
+        level.setText("Level: " + tuitionClass.getLevel().level);
+        subject.setText("Subject: " + tuitionClass.getSubject().subject);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class Time {
      * The constructor for a Time object.
      *
      * @param startTime A string representing the start time of the timeslot of a tuition class.
-     * @param endTime A string representing the end time of the timeslot of a tuition class.
+     * @param endTime   A string representing the end time of the timeslot of a tuition class.
      */
     public Time(String startTime, String endTime) throws ParseException {
         this.timeFrame = startTime + "-" + endTime;
