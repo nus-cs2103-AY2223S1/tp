@@ -1,15 +1,10 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.commission.Commission;
-import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.UniqueCustomerList;
 
@@ -20,7 +15,6 @@ import seedu.address.model.customer.UniqueCustomerList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueCustomerList customers;
-    private final UniqueCommissionList commissions;
 
 
     /*
@@ -32,7 +26,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         customers = new UniqueCustomerList();
-        commissions = new UniqueCommissionList();
     }
 
     public AddressBook() {
@@ -56,17 +49,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.customers.setCustomers(customers);
     }
 
-    public void setCommissions(List<Commission> commissions) {
-        this.commissions.setCommissions(commissions);
-    }
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setCustomers(newData.getCustomerList());
-        setCommissions(newData.getCommissionList());
     }
 
     //// customer-level operations
@@ -85,9 +73,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addCustomer(Customer p) {
         customers.add(p);
-        // Assumption: addCommission is NOT CALLED before adding the customer to the list
-        // Otherwise, there will be duplicates in commissions
-        p.getCommissions().forEach(commissions::add);
     }
 
     /**
@@ -98,8 +83,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireNonNull(editedCustomer);
-        // Assumption: edits to commissions should already call the commission-level operations.
-        // Otherwise, combined commission list will not be updated correctly.
         customers.setCustomer(target, editedCustomer);
     }
 
@@ -108,79 +91,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeCustomer(Customer key) {
-        key.getCommissions().forEach(commissions::remove);
         customers.remove(key);
     }
 
-    // commission-level operations
-
-    /**
-     * Returns true if a commission with the same identity as {@code commission} exists in the customer's
-     * commission list.
-     */
-    public boolean hasCommission(Customer customer, Commission commission) {
-        requireAllNonNull(customer, commission);
-        return getCustomerCommissions(customer).contains(commission);
-    }
-
-    /**
-     * Adds a commission to the address book.
-     * The commission must not already exist in the customer's commission list.
-     */
-    public Customer addCommission(Customer customer, Commission commission) {
-        requireAllNonNull(customer, commission);
-        // Hashset would cause the commissions to be out of order
-        HashSet<Commission> customerCommissions = new HashSet<>(getCustomerCommissions(customer));
-        customerCommissions.add(commission);
-        commission.setCustomer(customer);
-        commissions.add(commission);
-
-        Customer newCustomer = customer.copyWithCommissions(customerCommissions);
-        // Not efficient but ensures all commissions have reference to the new customer who replaced the old one
-        // More ideal to keep same customer reference and update the object instead @Amar suggestion to add counter
-        // to observable list
-        // Also means I must update the selected customer in ModelManager though from user sense the selected customer
-        // is the same. Else subsequent adding during indexOf command of setCustomer due to the equals criteria
-        // customerNotFoundException will be thrown as the selectedCustomer is still referencing old customer version
-        customerCommissions.forEach(comm -> comm.setCustomer(newCustomer));
-        setCustomer(customer, newCustomer);
-        return newCustomer;
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedCommission}.
-     * {@code target} must exist in the address book.
-     * The commission identity of {@code editedCommission} must not be the same as another existing commission in the
-     * customer's commission list.
-     */
-    public void setCommission(Customer customer, Commission target, Commission editedCommission) {
-        requireAllNonNull(customer, editedCommission);
-        assert hasCommission(customer, target);
-        HashSet<Commission> customerCommissions = new HashSet<>(getCustomerCommissions(customer));
-        customerCommissions.remove(target);
-        customerCommissions.add(editedCommission);
-        commissions.setCommission(target, editedCommission);
-        Customer newCustomer = customer.copyWithCommissions(customerCommissions);
-        setCustomer(customer, newCustomer);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the customer's commission list.
-     */
-    public void removeCommission(Customer customer, Commission key) {
-        requireAllNonNull(customer, key);
-        assert hasCommission(customer, key);
-        // make a copy of customer's commissions with key removed.
-        //Set<Commission> filteredCommissions = getCustomerCommissions(customer).stream()
-        //        .filter(commission -> !commission.equals(key)).collect(Collectors.toSet());
-        commissions.remove(key);
-        // make a copy of customer with the updated commissions.
-        // Customer newCustomer = customer.copyWithCommissions(filteredCommissions);
-        // replace original customer with updated customer to trigger customer list UI updates
-        // setCustomer(customer, newCustomer);
-        customer.getCommissionsMutable().remove(key);
-    }
 
     //// util methods
 
@@ -193,15 +106,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Customer> getCustomerList() {
         return customers.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Commission> getCommissionList() {
-        return commissions.asUnmodifiableObservableList();
-    }
-
-    public Set<Commission> getCustomerCommissions(Customer customer) {
-        return customer.getCommissions();
     }
 
     @Override

@@ -66,7 +66,7 @@ public class JsonAdaptedCommission {
      */
     public JsonAdaptedCommission(Commission source) {
         title = source.getTitle().title;
-        description = source.getDescription().orElseGet(() -> Description.NO_DESCRIPTION).description;
+        description = source.getDescription().orElse(Description.NO_DESCRIPTION).description;
         fee = source.getFee().fee;
         deadline = source.getDeadline().deadline;
         tagged.addAll(source.getTags().stream()
@@ -81,7 +81,7 @@ public class JsonAdaptedCommission {
     /**
      * Converts this Jackson-friendly adapted commission object into the model's {@code Commission} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted commission.
      */
     public Commission toModelType() throws IllegalValueException {
         if (title == null) {

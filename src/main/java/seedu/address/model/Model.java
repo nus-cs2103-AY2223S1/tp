@@ -3,7 +3,9 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
@@ -17,6 +19,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Commission> PREDICATE_SHOW_ALL_COMMISSIONS = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -83,14 +90,6 @@ public interface Model {
      */
     void setCustomer(Customer target, Customer editedCustomer);
 
-    boolean hasCommission(Commission commission);
-
-    void deleteCommission(Commission target);
-
-    void addCommission(Commission commission);
-
-    void setCommission(Commission target, Commission editedCommission);
-
     /** Specifies the given customer as the selected customer. */
     void selectCustomer(Customer customer);
 
@@ -108,8 +107,22 @@ public interface Model {
     void updateFilteredCustomerList(Predicate<Customer> predicate);
 
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Commission} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     ObservableList<Commission> getFilteredCommissionList();
 
+    /**
+     * Returns an observable instance of the current filtered list of {@code Commission}
+     */
+    ObservableValue<FilteredList<Commission>> getObservableFilteredCommissionList();
+
+    /**
+     * Updates the filter of the current filtered commission list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredCommissionList(Predicate<Commission> predicate);
 
     boolean hasSelectedCustomer();

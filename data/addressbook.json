@@ -1,130 +1,187 @@
 {
-  "customers" : [ {
-    "name" : "Trixx",
-    "phone" : "12345678",
-    "email" : "Trixx@gmail.com",
-    "address" : "",
-    "tagged" : [ ],
-    "commissions" : [ {
-      "title" : "Trixx Sunshine",
-      "description" : "Paint forest with blinding sunlight",
-      "fee" : 0.5,
-      "deadline" : "2022-04-04",
-      "tagged" : [ "test2", "test" ],
-      "iterations" : [ {
-        "date" : "2022-10-10",
-        "description" : "abc",
-        "feedback" : "def"
-      }, {
-        "date" : "2022-10-10",
-        "description" : "Changed the colour scheme.",
-        "feedback" : "Updated colour scheme is much better."
-      }, {
-        "date" : "2022-10-10",
-        "description" : "Changing the colour scheme.",
-        "feedback" : "Updated colour scheme is much bette"
-      }, {
-        "date" : "2022-01-01",
-        "description" : "ab",
-        "feedback" : "aa"
-      } ],
-      "isCompleted" : true
-    }, {
-      "title" : "Berserk",
-      "description" : "",
-      "fee" : 100.0,
-      "deadline" : "2022-10-10",
-      "tagged" : [ "inking" ],
-      "isCompleted" : true
-    }, {
-      "title" : "Trixx Trixx",
-      "description" : "Paint Trixx portrait",
-      "fee" : 0.5,
-      "deadline" : "2022-04-04",
-      "tagged" : [ "test2", "test" ],
-      "iterations" : [ {
-        "date" : "2022-10-09",
-        "description" : "test",
-        "feedback" : "feedback test"
-      }, {
-        "date" : "2022-11-01",
-        "description" : "abc",
-        "feedback" : "aaa"
-      } ],
-      "isCompleted" : true
-    }, {
-      "title" : "Reg",
-      "description" : "House",
-      "fee" : 20.0,
-      "deadline" : "2022-10-10",
-      "tagged" : [ "chibi" ],
-      "isCompleted" : true
-    }, {
-      "title" : "Joker",
-      "description" : "Arkham background",
-      "fee" : 40.5,
-      "deadline" : "2022-10-20",
-      "tagged" : [ ],
-      "isCompleted" : false
-    }, {
-      "title" : "Trixx Moonshine",
-      "description" : "Paint the alcoholic drink",
-      "fee" : 0.5,
-      "deadline" : "2022-04-04",
-      "tagged" : [ "test2", "test" ],
-      "iterations" : [ ],
-      "isCompleted" : true
-    } ]
-  }, {
-    "name" : "Meg",
-    "phone" : "123",
-    "email" : "test@gmail.com",
-    "address" : "",
-    "tagged" : [ "test" ],
-    "commissions" : [ {
-      "title" : "Fate Archer",
-      "description" : "Archery",
-      "fee" : 60.0,
-      "deadline" : "2022-10-15",
-      "tagged" : [ "city", "night" ],
-      "isCompleted" : true
-    }, {
-      "title" : "Meg Shark",
-      "description" : "Shark swallowing a boat",
-      "fee" : 0.5,
-      "deadline" : "2022-04-04",
-      "tagged" : [ "test2", "test" ],
-      "iterations" : [ ],
-      "isCompleted" : true
-    }, {
-      "title" : "Chainsaw man",
-      "description" : "Fight scene",
-      "fee" : 60.0,
-      "deadline" : "2022-10-30",
-      "tagged" : [ "poster" ],
-      "isCompleted" : false
-    }, {
-      "title" : "test 4",
-      "description" : "desc",
-      "fee" : 0.5,
-      "deadline" : "2022-04-04",
-      "tagged" : [ "test2", "test" ],
-      "isCompleted" : true
-    }, {
-      "title" : "doodle",
-      "description" : "",
-      "fee" : 10.0,
-      "deadline" : "2022-10-15",
-      "tagged" : [ ],
-      "isCompleted" : false
-    }, {
-      "title" : "Meg Casino",
-      "description" : "Painting of high end casino",
-      "fee" : 0.5,
-      "deadline" : "2022-04-04",
-      "tagged" : [ "test2", "test" ],
-      "iterations" : [ ],
-      "isCompleted" : true
-    } ]
-  } ]
+  "customers": [
+    {
+      "name": "Trixx",
+      "phone": "12345678",
+      "email": "Trixx@gmail.com",
+      "address": "",
+      "tagged": [],
+      "commissions": [
+        {
+          "title": "Trixx Sunshine",
+          "description": "Paint forest with blinding sunlight",
+          "fee": 0.5,
+          "deadline": "2022-04-04",
+          "tagged": [
+            "test2",
+            "test"
+          ],
+          "iterations": [
+            {
+              "date": "2022-10-10",
+              "description": "abc",
+              "feedback": "def"
+            },
+            {
+              "date": "2022-10-10",
+              "description": "Changing the colour scheme.",
+              "feedback": "Updated colour scheme is much bette"
+            }
+          ],
+          "isCompleted": true
+        },
+        {
+          "title": "Berserk",
+          "description": "",
+          "fee": 100.0,
+          "deadline": "2022-10-10",
+          "tagged": [
+            "inking"
+          ],
+          "iterations": [],
+          "isCompleted": true
+        },
+        {
+          "title": "Trixx Trixx",
+          "description": "Paint Trixx portrait",
+          "fee": 0.5,
+          "deadline": "2022-04-04",
+          "tagged": [
+            "test2",
+            "test"
+          ],
+          "iterations": [
+            {
+              "date": "2022-10-09",
+              "description": "test",
+              "feedback": "feedback test"
+            },
+            {
+              "date": "2022-11-01",
+              "description": "abc",
+              "feedback": "aaa"
+            }
+          ],
+          "isCompleted": true
+        },
+        {
+          "title": "Reg",
+          "description": "House",
+          "fee": 20.0,
+          "deadline": "2022-10-10",
+          "tagged": [
+            "chibi"
+          ],
+          "iterations": [],
+          "isCompleted": true
+        },
+        {
+          "title": "Joker",
+          "description": "Arkham background",
+          "fee": 40.5,
+          "deadline": "2022-10-20",
+          "tagged": [],
+          "iterations": [],
+          "isCompleted": false
+        },
+        {
+          "title": "Trixx Moonshine",
+          "description": "Paint the alcoholic drink",
+          "fee": 0.5,
+          "deadline": "2022-04-04",
+          "tagged": [
+            "test2",
+            "test"
+          ],
+          "iterations": [],
+          "isCompleted": true
+        }
+      ]
+    },
+    {
+      "name": "Meg",
+      "phone": "123",
+      "email": "test@gmail.com",
+      "address": "",
+      "tagged": [
+        "test"
+      ],
+      "commissions": [
+        {
+          "title": "Fate Archer",
+          "description": "Archery",
+          "fee": 60.0,
+          "deadline": "2022-10-15",
+          "tagged": [
+            "city",
+            "night"
+          ],
+          "iterations": [],
+          "isCompleted": true
+        },
+        {
+          "title": "Meg Shark",
+          "description": "Shark swallowing a boat",
+          "fee": 0.5,
+          "deadline": "2022-04-04",
+          "tagged": [
+            "test2",
+            "test"
+          ],
+          "iterations": [],
+          "isCompleted": true
+        },
+        {
+          "title": "Chainsaw man",
+          "description": "Fight scene",
+          "fee": 60.0,
+          "deadline": "2022-10-30",
+          "tagged": [
+            "poster"
+          ],
+          "iterations": [
+            {
+              "date": "2022-10-10",
+              "description": "iter1",
+              "feedback": "do this"
+            }
+          ],
+          "isCompleted": false
+        },
+        {
+          "title": "test 4",
+          "description": "desc",
+          "fee": 0.5,
+          "deadline": "2022-04-04",
+          "tagged": [
+            "test2",
+            "test"
+          ],
+          "iterations": [],
+          "isCompleted": true
+        },
+        {
+          "title": "doodle",
+          "description": "",
+          "fee": 10.0,
+          "deadline": "2022-10-15",
+          "tagged": [],
+          "iterations": [],
+          "isCompleted": false
+        },
+        {
+          "title": "Meg Casino",
+          "description": "Painting of high end casino",
+          "fee": 0.5,
+          "deadline": "2022-04-04",
+          "tagged": [
+            "test2",
+            "test"
+          ],
+          "iterations": [],
+          "isCompleted": true
+        }
+      ]
+    }
+  ]
 }
