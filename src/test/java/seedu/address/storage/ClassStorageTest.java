@@ -64,4 +64,16 @@ public class ClassStorageTest {
         assertEquals(1, ClassStorage.getIndex(person));
     }
 
+    @Test
+    public void execute_getIndexZero() throws Exception {
+        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("999")
+                .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
+                JsonSerializableAddressBook.class).get();
+        AddressBook addressBookFromFile = dataFromFile.toModelType();
+        ClassStorage classStorage = new ClassStorage(addressBookFromFile);
+        // returns 0 since there is no same person found
+        assertEquals(0, ClassStorage.getIndex(person));
+    }
+
 }
