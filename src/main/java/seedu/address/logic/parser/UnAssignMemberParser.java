@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UnAssignMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Name;
 
 /**
  * Parses input arguments and creates a new UnAssignMemberCommand object
@@ -19,12 +19,13 @@ public class UnAssignMemberParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnAssignMemberCommand parse(String args) throws ParseException {
+
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TEAM_NAME);
 
-        Name memberName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        seedu.address.model.team.Name teamName = ParserUtil.parseTeamName(argMultimap.getValue(PREFIX_TEAM_NAME).get());
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MEMBER_INDEX, PREFIX_TEAM_INDEX);
+        Index memberIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MEMBER_INDEX).get());
+        Index teamIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TEAM_INDEX).get());
 
-        return new UnAssignMemberCommand(memberName, teamName);
+        return new UnAssignMemberCommand(memberIndex, teamIndex);
     }
 }
