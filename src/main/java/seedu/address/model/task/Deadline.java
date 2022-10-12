@@ -34,7 +34,7 @@ public class Deadline {
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
         // TODO: Try-catch used as control flow, refactor
