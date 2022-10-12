@@ -21,14 +21,14 @@
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
-            <HBox spacing="5" alignment="TOP_LEFT" id="cell_id_title_container">
+            <HBox spacing="5" alignment="TOP_LEFT" id="cell_id_title_container" HBox.hgrow="ALWAYS">
                 <Label fx:id="id" id="cell_id_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <VBox alignment="TOP_LEFT">
+                <VBox alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
                     <BorderPane>
                         <center>
                             <HBox alignment="CENTER_LEFT">
