@@ -101,7 +101,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS [note/NOTE] [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can have any number and any kind of tags (including 0).
@@ -125,7 +125,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STATUS] [note/NOTE] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -239,31 +239,11 @@ Examples: `deleteTagType GPA`
 
 - Deletes the `GPA` tag type.
 
-### Adding recruitment status: `status`
-
-Adds a recruitment status to the person. 
-
-<div markdown="span" class="alert alert-primary">:bulb: **Note:** Due to the subjectivity of recruitment statuses per job and per recruiter, there will be no categorisation of recruitment statuses and hence no type checking of valid/invalid statuses. All inputs by the user are assumed to be valid.
-</div>
-
-Format: `status INDEX STATUS`
-* The INDEX refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …​ 
-
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-A person can have a minimum of 0 recruitment statuses and a maximum of 1 recruitment status. Calling the `status` command on the same person will update their recruitment status to the latest input.
-</div>
-
-Examples:
-* `status 1 Rejected` adds a recruitment status of `Rejected` to the 1st person in the address book.
-* `status 2 Interviewed` adds a recruitment status of `Interviewed` to the 2nd person in the address book.
-* `status 2 Accepted` updates the recruitment status of the 2nd person in the address book from `Interviewed` to `Accepted`.
-
 ### Adding optional information: `note`
 
 Adds additional optional information (notes) to a person
 
-Format: `note INDEX n/NOTE`
+Format: `note INDEX note/NOTE`
 * The INDEX refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 
@@ -272,7 +252,7 @@ A person can have any number of notes (including 0)
 </div>
 
 Examples:
-* `note 4 n/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
+* `note 4 note/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
 
 ### Clearing all entries : `clear`
 

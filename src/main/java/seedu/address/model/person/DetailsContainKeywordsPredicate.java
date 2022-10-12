@@ -59,7 +59,6 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        System.out.println(person.getDetailsAsString());
         if (!keywords.isEmpty()) {
             return keywords.stream()
                     .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getDetailsAsString(), keyword));
