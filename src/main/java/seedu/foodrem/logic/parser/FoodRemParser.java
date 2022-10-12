@@ -7,9 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.foodrem.logic.commands.Command;
-import seedu.foodrem.logic.commands.generalcommands.ClearCommand;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
+import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
 import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
@@ -22,6 +22,7 @@ import seedu.foodrem.logic.parser.itemcommandparser.DeleteCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.EditCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.FindCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.AddTagCommandParser;
+
 
 /**
  * Parses user input.
@@ -65,6 +66,9 @@ public class FoodRemParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+            
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
