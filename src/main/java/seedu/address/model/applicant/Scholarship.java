@@ -3,10 +3,6 @@ package seedu.address.model.applicant;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.function.Predicate;
-
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Represents an Applicant's Scholarship name in TrackAScholar.
  * Guarantees: immutable; is valid as declared in {@link #isValidScholarship(String)}
