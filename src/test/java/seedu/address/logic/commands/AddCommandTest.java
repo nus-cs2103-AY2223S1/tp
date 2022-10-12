@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonType;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -38,7 +39,7 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, "patient", validPerson),
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, PersonType.PATIENT.toString(), validPerson),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
@@ -51,7 +52,7 @@ public class AddCommandTest {
 
         assertThrows(CommandException.class, String.format(
                 AddCommand.MESSAGE_DUPLICATE_PERSON,
-                "patient"), () -> addCommand.execute(modelStub));
+                PersonType.PATIENT.toString()), () -> addCommand.execute(modelStub));
     }
 
     @Test

@@ -25,6 +25,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Uid;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -46,7 +47,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(firstPerson.getUid(), descriptor);
         String expectedMessage = "";
         if (editedPerson instanceof Patient) {
-            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "patient", editedPerson);
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, PersonType.PATIENT.toString(),
+                    editedPerson);
         } else {
             expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "person", editedPerson);
         }
@@ -71,7 +73,8 @@ public class EditCommandTest {
 
         String expectedMessage = "";
         if (editedPerson instanceof Patient) {
-            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "patient", editedPerson);
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, PersonType.PATIENT.toString(),
+                    editedPerson);
         } else {
             expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "person", editedPerson);
         }
@@ -89,7 +92,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(editedPerson.getUid(), new EditPersonDescriptor());
         String expectedMessage = "";
         if (editedPerson instanceof Patient) {
-            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "patient", editedPerson);
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, PersonType.PATIENT.toString(),
+                    editedPerson);
         } else {
             expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "person", editedPerson);
         }
@@ -110,7 +114,8 @@ public class EditCommandTest {
 
         String expectedMessage = "";
         if (editedPerson instanceof Patient) {
-            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "patient", editedPerson);
+            expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, PersonType.PATIENT.toString(),
+                    editedPerson);
         } else {
             expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, "person", editedPerson);
         }
@@ -130,7 +135,7 @@ public class EditCommandTest {
 
         String expectedMessage = "";
         if (firstPerson instanceof Patient) {
-            expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, "patient");
+            expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, PersonType.PATIENT.toString());
         } else {
             expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, "person");
         }
@@ -149,7 +154,7 @@ public class EditCommandTest {
 
         String expectedMessage = "";
         if (personInList instanceof Patient) {
-            expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, "patient");
+            expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, PersonType.PATIENT.toString());
         } else {
             expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, "person");
         }
