@@ -36,9 +36,9 @@
         <!-- Main Body -->
         <HBox styleClass="main-body">
           <!-- Left Column -->
-          <VBox>
+          <VBox spacing="12">
             <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="command-placeholder"/>
-            <VBox fx:id="personList" styleClass="list-placeholder, margin-top" VBox.vgrow="ALWAYS">
+            <VBox fx:id="personList" styleClass="list-placeholder" VBox.vgrow="ALWAYS">
               <StackPane fx:id="itemListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
           </VBox>

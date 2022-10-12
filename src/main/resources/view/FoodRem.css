@@ -12,6 +12,7 @@
   -fx-padding: 16;
 }
 
+// Unused as of now. TODO: Delete
 /* JavaFX CSS does not support `+` selector, so 
  * we cannot use `column > * + *` here */
 .margin-top {
