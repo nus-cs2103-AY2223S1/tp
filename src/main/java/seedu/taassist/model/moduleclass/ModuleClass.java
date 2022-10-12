@@ -99,7 +99,7 @@ public class ModuleClass implements Identity<ModuleClass> {
     }
 
     public boolean hasSession(Session toCheck) {
-        return sessions.stream().anyMatch(toCheck::isSameSession);
+        return sessions.stream().anyMatch(toCheck::isSame);
     }
 
     @Override

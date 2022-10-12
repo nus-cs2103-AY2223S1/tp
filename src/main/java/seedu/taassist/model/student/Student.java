@@ -70,6 +70,13 @@ public class Student implements Identity<Student> {
     }
 
     /**
+     * Returns the {@code StudentModuleData} of the student for the given {@code ModuleClass}.
+     */
+    public StudentModuleData findStudentModuleData(ModuleClass focusedClass) {
+        return moduleData.findElement(new StudentModuleData(focusedClass));
+    }
+
+    /**
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
      */

@@ -30,11 +30,11 @@ public class SessionTest {
     @Test
     public void isSameSession_sameSessionName_returnsTrue() {
         // same object -> returns true
-        assertTrue(ASSIGNMENT_1.isSameSession(ASSIGNMENT_1));
+        assertTrue(ASSIGNMENT_1.isSame(ASSIGNMENT_1));
 
         // same name -> returns true
         Session assignment1Copy = new Session(ASSIGNMENT_1.getSessionName());
-        assertTrue(assignment1Copy.isSameSession(ASSIGNMENT_1));
+        assertTrue(assignment1Copy.isSame(ASSIGNMENT_1));
     }
 
     @Test

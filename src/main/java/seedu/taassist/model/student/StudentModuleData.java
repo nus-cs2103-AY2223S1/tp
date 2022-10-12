@@ -48,6 +48,8 @@ public class StudentModuleData implements Identity<StudentModuleData> {
         return sessionDataList.asUnmodifiableObservableList();
     }
 
+
+
     @Override
     public boolean isSame(StudentModuleData other) {
         return this == other

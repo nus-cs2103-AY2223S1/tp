@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.TaAssist;
