@@ -22,7 +22,7 @@ public class ItemQuantityValidator implements Validator {
 
     // Validation for size of quantity
     private static final int MAX_QUANTITY = 1_000_000;
-    private static final String MESSAGE_FOR_QUANTITY_TOO_LARGE =
+    public static final String MESSAGE_FOR_QUANTITY_TOO_LARGE =
             String.format("The item quantity should not be more than %,d.", MAX_QUANTITY);
 
     /**
@@ -30,12 +30,13 @@ public class ItemQuantityValidator implements Validator {
      *
      * @param itemQuantityString String representation of item quantity to validate against.
      */
-    public static void validate(String itemQuantityString) {
+    public static Void validate(String itemQuantityString) {
         checkArgument(isParsableQuantity(itemQuantityString), MESSAGE_FOR_NOT_A_NUMBER);
         checkArgument(!isQuantityTooPrecise(itemQuantityString), MESSAGE_FOR_PRECISION_TOO_HIGH);
         double quantity = Double.parseDouble(itemQuantityString);
         checkArgument(isQuantityLessThanEqualMaxQuantity(quantity), MESSAGE_FOR_QUANTITY_TOO_LARGE);
         checkArgument(isQuantityNotNegative(quantity), MESSAGE_FOR_QUANTITY_IS_NEGATIVE);
+        return null;
     }
 
     /**
