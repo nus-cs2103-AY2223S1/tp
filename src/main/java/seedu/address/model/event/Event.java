@@ -6,10 +6,12 @@ package seedu.address.model.event;
 public class Event {
     //Temporary representation with String
     //TODO: create Data Structure for each field; Single DateTime object for Date & Time?
+
     private final String eventTitle;
     private final String date;
     private final String time;
     private final String purpose;
+
 
     /**
      * Constructor to create new Event object
