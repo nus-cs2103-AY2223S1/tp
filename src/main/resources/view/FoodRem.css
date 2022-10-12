@@ -30,7 +30,8 @@
 }
 
 .command-placeholder,
-.list-placeholder {
+.list-placeholder,
+.result-placeholder {
   -fx-border-color: black;
   -fx-border-radius: 5;
   -fx-border-width: 1;
@@ -41,14 +42,21 @@
   -fx-background-color: #eee;
 }
 
-.list-placeholder {
+.list-placeholder,
+.result-placeholder {
   -fx-background-color: white;
 }
 
 .command-placeholder,
-.list-placeholder {
+.list-placeholder,
+.result-placeholder {
   -fx-min-width: 340;
   -fx-pref-width: 340;
+}
+
+.result-placeholder {
+  -fx-min-height: 100;
+  -fx-pref-height: 100;
 }
 
 .command-box > TextField {

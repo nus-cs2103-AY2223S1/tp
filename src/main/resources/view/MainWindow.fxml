@@ -43,7 +43,7 @@
 
           <!-- Right Column -->
           <VBox spacing="12">
-            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" minHeight="100" prefHeight="100" maxHeight="100" />
+            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="result-placeholder" />
           </VBox>
         </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
