@@ -8,6 +8,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Record;
 import seedu.address.model.person.RecordList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -70,10 +71,12 @@ public class PersonBuilder {
     }
 
     /**
-     *
+     * Sets the {@code RecordList} of the {@code Person} that we are building.
      */
-    public PersonBuilder withRecordList(String records) {
-        this.recordList = new RecordList();
+    public PersonBuilder withRecordList(Record ... records) {
+        for (Record record : records) {
+            this.recordList.add(record);
+        }
         return this;
     }
 
