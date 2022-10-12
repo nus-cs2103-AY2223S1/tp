@@ -10,6 +10,8 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
@@ -48,7 +50,7 @@ public class TaskList implements Iterable<Task> {
     public void add(Task toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            //throw new DuplicateTaskException();
+            throw new DuplicateTaskException();
         }
         internalList.add(toAdd);
     }
@@ -62,7 +64,7 @@ public class TaskList implements Iterable<Task> {
     public void delete(Task toDelete) {
         requireNonNull(toDelete);
         if (!internalList.remove(toDelete)) {
-            //throw new TaskNotFoundException();
+            throw new TaskNotFoundException();
         }
     }
 
@@ -79,11 +81,11 @@ public class TaskList implements Iterable<Task> {
 
         int index = internalList.indexOf(toEdit);
         if (index == -1) {
-            //throw new TaskNotFoundException();
+            throw new TaskNotFoundException();
         }
 
         if (!toEdit.isSameTask(editedTask) && contains(editedTask)) {
-            //throw new DuplicateTaskException();
+            throw new DuplicateTaskException();
         }
 
         internalList.set(index, editedTask);
@@ -99,7 +101,7 @@ public class TaskList implements Iterable<Task> {
     public Task find(Task toFind) {
         requireNonNull(toFind);
         if (!contains(toFind)) {
-            //throw new TaskNotFoundException();
+            throw new TaskNotFoundException();
         }
         return internalList.get(internalList.indexOf(toFind));
     }
@@ -208,7 +210,7 @@ public class TaskList implements Iterable<Task> {
     public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);
         if (!tasksAreUnique(tasks)) {
-            //throw new DuplicateTaskException();
+            throw new DuplicateTaskException();
         }
 
         internalList.setAll(tasks);
