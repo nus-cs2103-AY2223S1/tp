@@ -2,10 +2,6 @@ package gim.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import gim.commons.core.index.Index;
 import gim.commons.util.StringUtil;
 import gim.logic.parser.exceptions.ParseException;
@@ -96,29 +92,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String date} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Date parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedTag = date.trim();
         if (!Date.isValidDate(trimmedTag)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         return new Date(trimmedTag);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Date> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Date> dateSet = new HashSet<>();
-        for (String tagName : tags) {
-            dateSet.add(parseTag(tagName));
-        }
-        return dateSet;
-    }
 }

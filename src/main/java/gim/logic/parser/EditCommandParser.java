@@ -8,10 +8,7 @@ import static gim.logic.parser.CliSyntax.PREFIX_SETS;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
-import java.util.Set;
 
 import gim.commons.core.index.Index;
 import gim.logic.commands.EditCommand;
@@ -57,7 +54,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_REPS).isPresent()) {
             editExerciseDescriptor.setReps(ParserUtil.parseRep(argMultimap.getValue(PREFIX_REPS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_DATE)).ifPresent(editExerciseDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            editExerciseDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
+            parseDateForEdit(argMultimap.getValue(PREFIX_DATE)).ifPresent(editExerciseDescriptor::setDate);
+        }
 
         if (!editExerciseDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -67,18 +67,18 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> date} into a {@code Set<Tag>} if {@code date} is non-empty.
+     * If {@code date} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero date.
      */
-    private Optional<Set<Date>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Date> parseDateForEdit(Optional<String> date) throws ParseException {
+        assert date != null;
 
-        if (tags.isEmpty()) {
+        if (date.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+
+        return Optional.of(new Date(date.get()));
     }
 
 }

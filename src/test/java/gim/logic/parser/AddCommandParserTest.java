@@ -1,6 +1,7 @@
 package gim.logic.parser;
 
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static gim.logic.commands.CommandTestUtil.DATE_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_REPS_DESC;
@@ -49,42 +50,42 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BENCH_PRESS
                 + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
-                + REPS_DESC_BENCH_PRESS, new AddCommand(expectedExercise));
+                + REPS_DESC_BENCH_PRESS + DATE_DESC, new AddCommand(expectedExercise));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_ARM_CURLS + NAME_DESC_BENCH_PRESS
                 + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
-                + REPS_DESC_BENCH_PRESS, new AddCommand(expectedExercise));
+                + REPS_DESC_BENCH_PRESS + DATE_DESC, new AddCommand(expectedExercise));
 
         // multiple weights - last weight accepted
         assertParseSuccess(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_ARM_CURLS
                 + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
-                + REPS_DESC_BENCH_PRESS, new AddCommand(expectedExercise));
+                + REPS_DESC_BENCH_PRESS + DATE_DESC, new AddCommand(expectedExercise));
 
         // multiple sets - last sets accepted
         assertParseSuccess(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS
                 + SETS_DESC_ARM_CURLS + SETS_DESC_BENCH_PRESS
-                + REPS_DESC_BENCH_PRESS, new AddCommand(expectedExercise));
+                + REPS_DESC_BENCH_PRESS + DATE_DESC, new AddCommand(expectedExercise));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS
                 + SETS_DESC_BENCH_PRESS + REPS_DESC_ARM_CURLS
-                + REPS_DESC_BENCH_PRESS, new AddCommand(expectedExercise));
+                + REPS_DESC_BENCH_PRESS + DATE_DESC, new AddCommand(expectedExercise));
 
         // multiple tags - all accepted
         Exercise expectedExerciseMultipleTags = new ExerciseBuilder(BENCH_PRESS)
                 .withDates(VALID_DATE)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS
-                + SETS_DESC_BENCH_PRESS + REPS_DESC_BENCH_PRESS, new AddCommand(expectedExerciseMultipleTags));
+                + SETS_DESC_BENCH_PRESS + REPS_DESC_BENCH_PRESS + DATE_DESC, new AddCommand(expectedExerciseMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Exercise expectedExercise = new ExerciseBuilder(ARM_CURLS).withDates().build();
+        Exercise expectedExercise = new ExerciseBuilder(ARM_CURLS).withDates(VALID_DATE).build();
         assertParseSuccess(parser, NAME_DESC_ARM_CURLS + WEIGHT_DESC_ARM_CURLS
-                        + SETS_DESC_ARM_CURLS + REPS_DESC_ARM_CURLS,
+                        + SETS_DESC_ARM_CURLS + REPS_DESC_ARM_CURLS + DATE_DESC,
                 new AddCommand(expectedExercise));
     }
 

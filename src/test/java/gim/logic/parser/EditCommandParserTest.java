@@ -7,18 +7,17 @@ import static gim.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_REPS_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_SETS_DESC;
 import static gim.logic.commands.CommandTestUtil.INVALID_WEIGHT_DESC;
-
 import static gim.logic.commands.CommandTestUtil.NAME_DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.REPS_DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.REPS_DESC_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.SETS_DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.SETS_DESC_BENCH_PRESS;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
-import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.WEIGHT_DESC_ARM_CURLS;
@@ -45,7 +44,7 @@ import gim.testutil.EditExerciseDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_DATE;
+    private static final String DATE_EMPTY = " " + PREFIX_DATE;
 
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             EditCommand.MESSAGE_USAGE);
@@ -86,7 +85,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_SETS_DESC, Sets.MESSAGE_CONSTRAINTS); // invalid sets
 
         assertParseFailure(parser, "1" + INVALID_REPS_DESC, Reps.MESSAGE_CONSTRAINTS); // invalid reps
-        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
 
         // invalid weight followed by valid sets
         assertParseFailure(parser, "1" + INVALID_WEIGHT_DESC + SETS_DESC_ARM_CURLS, Weight.MESSAGE_CONSTRAINTS);
@@ -94,12 +93,6 @@ public class EditCommandParserTest {
         // valid weight followed by invalid weight. The test case for invalid weight followed by valid weight
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + WEIGHT_DESC_BENCH_PRESS + INVALID_WEIGHT_DESC, Weight.MESSAGE_CONSTRAINTS);
-
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Exercise} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + DATE_DESC + DATE_DESC + TAG_EMPTY, Date.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + DATE_DESC + TAG_EMPTY + DATE_DESC, Date.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + DATE_DESC + DATE_DESC, Date.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_SETS_DESC + VALID_REPS_ARM_CURLS
@@ -204,9 +197,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_resetTags_success() {
         Index targetIndex = INDEX_THIRD_EXERCISE;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+        String userInput = targetIndex.getOneBased() + DATE_DESC;
 
-        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withDates().build();
+        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withDates(VALID_DATE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

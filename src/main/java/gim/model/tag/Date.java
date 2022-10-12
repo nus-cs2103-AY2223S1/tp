@@ -3,6 +3,9 @@ package gim.model.tag;
 import static gim.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a Date of an Exercise in Gim.
  * Guarantees: immutable; name is valid as declared in {@link #isValidDate(String)}
@@ -13,7 +16,8 @@ public class Date {
     // Input string format for the date should be DD/MM/YYYY (e.g. 25/01/2022)
     public static final String VALIDATION_REGEX = "^([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9])?[0-9][0-9]$";
 
-    public final String date;
+    public final LocalDate date;
+    public final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /**
      * Constructs a {@code Date}.
@@ -23,7 +27,16 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        this.date = date;
+        this.date = LocalDate.parse(date, formatter);
+    }
+
+    /**
+     * Constructs a Date object that is initialized to today's date.
+     *
+     * This is used when the user did not input any date.
+     */
+    public Date() {
+        this.date = LocalDate.parse(LocalDate.now().toString(), formatter);
     }
 
     /**
@@ -49,7 +62,7 @@ public class Date {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + date + ']';
+        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
 }

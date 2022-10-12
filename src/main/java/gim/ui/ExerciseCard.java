@@ -1,7 +1,5 @@
 package gim.ui;
 
-import java.util.Comparator;
-
 import gim.model.exercise.Exercise;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -53,9 +51,7 @@ public class ExerciseCard extends UiPart<Region> {
         weight.setText("Weight: " + exercise.getWeight().value);
         reps.setText("Reps: " + exercise.getReps().value);
         sets.setText("Sets: " + exercise.getSets().value);
-        exercise.getDates().stream()
-                .sorted(Comparator.comparing(tag -> tag.date))
-                .forEach(tag -> dates.getChildren().add(new Label(tag.date)));
+        dates.getChildren().add(new Label(exercise.getDateString()));
     }
 
     @Override

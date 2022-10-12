@@ -2,9 +2,11 @@ package gim.logic;
 
 import static gim.commons.core.Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX;
 import static gim.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static gim.logic.commands.CommandTestUtil.DATE_DESC;
 import static gim.logic.commands.CommandTestUtil.NAME_DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.REPS_DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.SETS_DESC_ARM_CURLS;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.WEIGHT_DESC_ARM_CURLS;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ARM_CURLS;
@@ -83,8 +85,8 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_ARM_CURLS + WEIGHT_DESC_ARM_CURLS + SETS_DESC_ARM_CURLS
-                + REPS_DESC_ARM_CURLS;
-        Exercise expectedExercise = new ExerciseBuilder(ARM_CURLS).withDates().build();
+                + REPS_DESC_ARM_CURLS + DATE_DESC;
+        Exercise expectedExercise = new ExerciseBuilder(ARM_CURLS).withDates(VALID_DATE).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addExercise(expectedExercise);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

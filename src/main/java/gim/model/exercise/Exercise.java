@@ -2,10 +2,7 @@ package gim.model.exercise;
 
 import static gim.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import gim.model.tag.Date;
 
@@ -22,18 +19,18 @@ public class Exercise {
 
     // Data fields
     private final Reps reps;
-    private final Set<Date> dates = new HashSet<>();
+    private final Date date;
 
     /**
      * Every field must be present and not null.
      */
-    public Exercise(Name name, Weight weight, Sets sets, Reps reps, Set<Date> dates) {
-        requireAllNonNull(name, weight, sets, reps, dates);
+    public Exercise(Name name, Weight weight, Sets sets, Reps reps, Date date) {
+        requireAllNonNull(name, weight, sets, reps, date);
         this.name = name;
         this.weight = weight;
         this.sets = sets;
         this.reps = reps;
-        this.dates.addAll(dates);
+        this.date = date;
     }
 
     public Name getName() {
@@ -53,11 +50,19 @@ public class Exercise {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable date object, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Date> getDates() {
-        return Collections.unmodifiableSet(dates);
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * Returns the string representation of the date object.
+     * @return date string
+     */
+    public String getDateString() {
+        return date.toString();
     }
 
     /**
@@ -92,13 +97,13 @@ public class Exercise {
                 && otherExercise.getWeight().equals(getWeight())
                 && otherExercise.getSets().equals(getSets())
                 && otherExercise.getReps().equals(getReps())
-                && otherExercise.getDates().equals(getDates());
+                && otherExercise.getDate().equals(getDate());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, weight, sets, reps, dates);
+        return Objects.hash(name, weight, sets, reps, date);
     }
 
     @Override
@@ -112,10 +117,10 @@ public class Exercise {
                 .append("; Reps: ")
                 .append(getReps());
 
-        Set<Date> dates = getDates();
-        if (!dates.isEmpty()) {
+        Date date = getDate();
+        if (!(date == null)) {
             builder.append("; Dates: ");
-            dates.forEach(builder::append);
+            builder.append(date);
         }
         return builder.toString();
     }

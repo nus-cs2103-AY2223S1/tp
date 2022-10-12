@@ -1,11 +1,11 @@
 package gim.model.exercise;
 
 import static gim.logic.commands.CommandTestUtil.VALID_DATE;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE_2;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
-import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
 import static gim.testutil.TypicalExercises.BENCH_PRESS;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,12 +17,6 @@ import gim.testutil.ExerciseBuilder;
 
 
 public class ExerciseTest {
-
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Exercise exercise = new ExerciseBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> exercise.getDates().remove(0));
-    }
 
     @Test
     public void isSameExercise() {
@@ -89,7 +83,7 @@ public class ExerciseTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new ExerciseBuilder(ALICE).withDates(VALID_DATE).build();
+        editedAlice = new ExerciseBuilder(ALICE).withDates(VALID_DATE_2).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

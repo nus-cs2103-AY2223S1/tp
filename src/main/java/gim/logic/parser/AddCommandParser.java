@@ -7,7 +7,6 @@ import static gim.logic.parser.CliSyntax.PREFIX_REPS;
 import static gim.logic.parser.CliSyntax.PREFIX_SETS;
 import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import gim.logic.commands.AddCommand;
@@ -44,9 +43,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         Weight weight = ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get());
         Sets sets = ParserUtil.parseSets(argMultimap.getValue(PREFIX_SETS).get());
         Reps reps = ParserUtil.parseRep(argMultimap.getValue(PREFIX_REPS).get());
-        Set<Date> dateList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_DATE));
-
-        Exercise exercise = new Exercise(name, weight, sets, reps, dateList);
+        Date date;
+        Exercise exercise;
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+            exercise = new Exercise(name, weight, sets, reps, date);
+        } else {
+            exercise = new Exercise(name, weight, sets, reps, new Date());
+        }
 
         return new AddCommand(exercise);
     }

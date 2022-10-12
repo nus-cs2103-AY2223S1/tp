@@ -1,7 +1,7 @@
 package gim.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
@@ -21,12 +21,13 @@ public class ExerciseBuilder {
     public static final String DEFAULT_WEIGHT = "50";
     public static final String DEFAULT_SETS = "5";
     public static final String DEFAULT_REPS = "5";
+    public static final String DEFAULT_DATE = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
     private Name name;
     private Weight weight;
     private Sets sets;
     private Reps reps;
-    private Set<Date> dates;
+    private Date date;
 
     /**
      * Creates a {@code ExerciseBuilder} with the default details.
@@ -36,7 +37,7 @@ public class ExerciseBuilder {
         weight = new Weight(DEFAULT_WEIGHT);
         sets = new Sets(DEFAULT_SETS);
         reps = new Reps(DEFAULT_REPS);
-        dates = new HashSet<>();
+        date = new Date(DEFAULT_DATE);
     }
 
     /**
@@ -47,7 +48,7 @@ public class ExerciseBuilder {
         weight = exerciseToCopy.getWeight();
         sets = exerciseToCopy.getSets();
         reps = exerciseToCopy.getReps();
-        dates = new HashSet<>(exerciseToCopy.getDates());
+        date = exerciseToCopy.getDate();
     }
 
     /**
@@ -59,10 +60,10 @@ public class ExerciseBuilder {
     }
 
     /**
-     * Parses the {@code dates} into a {@code Set<Tag>} and set it to the {@code Exercise} that we are building.
+     * Parses the {@code dates} and set it to the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withDates(String ... dates) {
-        this.dates = SampleDataUtil.getDateSet(dates);
+    public ExerciseBuilder withDates(String date) {
+        this.date = SampleDataUtil.getDate(date);
         return this;
     }
 
@@ -91,7 +92,7 @@ public class ExerciseBuilder {
     }
 
     public Exercise build() {
-        return new Exercise(name, weight, sets, reps, dates);
+        return new Exercise(name, weight, sets, reps, date);
     }
 
 }
