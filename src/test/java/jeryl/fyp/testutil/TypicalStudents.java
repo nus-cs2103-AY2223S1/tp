@@ -24,17 +24,18 @@ import jeryl.fyp.model.student.Student;
 public class TypicalStudents {
 
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
-            .withEmail("alice@example.com").withStudentId("A1351253H")
+            .withEmail("alice@example.com").withStudentId("A1351253P")
             .withProjectName("Using CRISP to generate crisps")
             .withTags("friends").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
-            .withEmail("johnd@example.com").withStudentId("A1765432D")
+            .withEmail("johnd@example.com").withStudentId("A1765432B")
             .withProjectName("Neural Networks and ML")
             .withTags("owesMoney", "friends").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withStudentId("A1352563C")
             .withEmail("heinz@example.com").withProjectName("About Decision Trees").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withStudentId("A1652533D")
-            .withEmail("cornelia@example.com").withProjectName("Mathematics in Games").build();
+            .withEmail("cornelia@example.com").withProjectName("Mathematics in Games")
+            .withTags("friends").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withStudentId("A1482224E")
             .withEmail("werner@example.com").withProjectName("AB3 in a Nutshell").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withStudentId("A1482427F")

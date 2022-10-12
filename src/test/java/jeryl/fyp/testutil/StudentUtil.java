@@ -49,8 +49,7 @@ public class StudentUtil {
         descriptor.getStudentId().ifPresent(studentId -> sb.append(PREFIX_STUDENT_ID).append(studentId.id).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getProjectName().ifPresent(projectName -> sb.append(PREFIX_PROJECT_NAME)
-                .append(projectName.fullProjectName)
-                .append(" "));
+                .append(projectName.fullProjectName).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

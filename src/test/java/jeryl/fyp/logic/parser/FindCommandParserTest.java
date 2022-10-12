@@ -27,10 +27,10 @@ public class FindCommandParserTest {
         FindCommand expectedFindCommand =
                 new FindCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList("neural network",
                         VALID_PROJECT_NAME_BOB)));
-        assertParseSuccess(parser, "neural network \\" + VALID_PROJECT_NAME_BOB, expectedFindCommand);
+        assertParseSuccess(parser, "neural network/" + VALID_PROJECT_NAME_BOB, expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n neural network \n \\ \t " + VALID_PROJECT_NAME_BOB + "  \t",
+        assertParseSuccess(parser, " \n neural network \n / \t " + VALID_PROJECT_NAME_BOB + "  \t",
                 expectedFindCommand);
     }
 

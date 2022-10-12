@@ -34,7 +34,7 @@ public class StringUtil {
 
         String preppedSentence = sentence.toLowerCase();
 
-        return preppedSentence.toLowerCase().contains(preppedWord);
+        return preppedSentence.contains(preppedWord);
     }
 
     /**
