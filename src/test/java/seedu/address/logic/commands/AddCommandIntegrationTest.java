@@ -33,7 +33,7 @@ public class AddCommandIntegrationTest {
         Entry validExpenditure = new ExpenditureBuilder().build();
         Model expectedModel = new ModelManager(model.getPennyWise(), new UserPrefs());
         expectedModel.addExpenditure(validExpenditure);
-        assertCommandSuccess(new AddCommand(validExpenditure, new EntryType("e")), model,
+        assertCommandSuccess(new AddCommand(validExpenditure, new EntryType(EntryType. ENTRY_TYPE_EXPENDITURE)), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validExpenditure), expectedModel);
     }
 
