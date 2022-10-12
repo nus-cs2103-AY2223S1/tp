@@ -20,8 +20,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
-import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
+import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;
@@ -58,7 +58,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "del 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
     }
 
@@ -70,16 +70,16 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonFoodRemIoExceptionThrowingStub
         JsonFoodRemStorage foodRemStorage =
-                new JsonFoodRemIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonFoodRemIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFoodRem.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(foodRemStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD
+        String addCommand = NewCommand.COMMAND_WORD
                 + VALID_DESC_ITEM_NAME_POTATOES
                 + VALID_DESC_ITEM_QUANTITY_POTATOES
                 + VALID_DESC_ITEM_UNIT_POTATOES

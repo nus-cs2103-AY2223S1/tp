@@ -48,13 +48,16 @@ public class ItemCard extends UiPart<Region> {
         super(FXML);
         this.item = item;
         id.setText(displayedIndex + ". ");
-        name.setText(item.getNameToListView());
-        quantityAndUnit.setText(item.getQuantityAndUnitToListView());
-        bought.setText(item.getBoughtDateToListView());
-        expiry.setText(item.getExpiryDateToListView());
+        name.setText(String.valueOf(item.getName()));
+        quantityAndUnit.setText(item.getQuantity() + " " + item.getUnit());
+        bought.setText(String.format("(Bought Date: %s)",
+                String.valueOf(item.getBoughtDate()).isBlank() ? "Not Set" : item.getBoughtDate()));
+        expiry.setText(String.format("(Expiry Date: %s)",
+                String.valueOf(item.getExpiryDate()).isBlank() ? "Not Set" : item.getExpiryDate()));
         item.getTagSet().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName.fullName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName.fullName)));
+
     }
 
     @Override

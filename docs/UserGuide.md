@@ -714,7 +714,18 @@ Something goes here...
 
 ## FAQ
 
-Something goes here...
+Q: If I don’t have Java 11, how do I install it on my computer? <br>
+A: You can navigate to this site [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A) and download Java 11 according to your system’s specifications.
+
+Q: Do I need internet connection to run FoodRem? <br>
+A: No, FoodRem can boot up and run all functionalities without an internet connection.
+
+Q: Can I use FooRem on my mobile device?<br>
+A: Unfortunately, no. FoodRem is designed to run on your desktop/laptop such that you can use the command line interface.
+
+Q: How do I transfer my data to another Computer?<br>
+A: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FoodRem home folder.
+
 
 ## Future Extensions
 
@@ -733,8 +744,90 @@ Something goes here...
 
 ## Acknowledgements
 
-Something goes here...
+FoodREM is a brownfield software project based off [AddressBook3](https://se-education.org/addressbook-level3/), taken under the [CS2103T Software Engineering module](https://nus-cs2103-ay2223s1.github.io/website/index.html) held by the School of Computing at the National University of Singapore.
+
 
 ## Glossary
 
-Something goes here...
+### A
+
+#### Argument
+
+> A value that is passed into a command.
+
+Example:
+`tag create food`, where `food` is the argument to the command `tag create`
+
+### B
+
+#### Bought Date
+
+> Date where an item was purchased. Bought date is in the format "year-month-date", represented in the "yyyy-mm-dd" format.
+
+### C
+
+#### Command
+
+> A feature or function that FoodRem can perform.
+
+#### Command Line
+
+> The interface that you, the user, interacts with FoodREM with. The Command Line is the box where you type your commands into.
+
+
+### E
+
+#### Expiry Date
+
+> Date where an item spoils, expires, or becomes unusable. Expiry date is in the format "year-month-date", represented in the "yyyy-mm-dd" format.
+>
+
+### F
+
+#### Flag
+
+> A marker or delimiter signifying a potentially optional argument to a command.
+
+### I
+
+#### Input
+
+> The text that a user would enter into FoodRem.
+
+#### Item
+
+> Represents a thing that is stored and kept track by FoodRem.
+
+Example: Creating a `potato` item
+`[item] new n/potato`
+
+### O
+
+#### Output
+
+> The result of calling a Command.
+> Results are displayed in the GUI, here: (ADD SCREENSHOT)
+
+### P
+
+#### Parameter
+> Parameters identify values passed into your Commands. For example, when calling `add n/ItemName`, the parameter here is `n/ItemName`.
+### Q
+
+#### Quantity
+
+> The frequency of item(s) kept track by FoodRem.
+
+### S
+
+#### Syntax
+> The structure of statements you type into the Command Line. 
+### T
+
+#### Tag
+
+> The main method of categorizing items in FoodRem. A tag may be attached to zero or more items.
+
+Example:
+Tagging an item in the first index as the tag `ingredient`:
+`tag 1 ingredient`

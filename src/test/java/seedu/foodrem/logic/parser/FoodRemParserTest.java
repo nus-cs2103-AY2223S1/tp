@@ -12,15 +12,15 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.foodrem.logic.commands.generalcommands.ClearCommand;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
-import seedu.foodrem.logic.commands.itemcommands.AddCommand;
+import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
 import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
+import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
@@ -36,14 +36,14 @@ public class FoodRemParserTest {
     @Test
     public void parseCommand_add() {
         Item item = new ItemBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(ItemUtil.getAddCommand(item));
-        assertEquals(new AddCommand(item), command);
+        NewCommand command = (NewCommand) parser.parseCommand(ItemUtil.getAddCommand(item));
+        assertEquals(new NewCommand(item), command);
     }
 
     @Test
     public void parseCommand_clear() {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD) instanceof ResetCommand);
+        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD + " 3") instanceof ResetCommand);
     }
 
     @Test

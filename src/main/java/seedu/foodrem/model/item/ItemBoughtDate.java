@@ -4,9 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
-import seedu.foodrem.model.item.itemvalidator.ItemBoughtDateValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator;
 
 /**
  * Represents an item date in an {@link Item}.
@@ -17,7 +16,6 @@ public class ItemBoughtDate {
     public static final String BOUGHT_DATE_PATTERN_REGEX = "dd-MM-yyyy";
     public static final DateTimeFormatter BOUGHT_DATE_FORMATTER = DateTimeFormatter
             .ofPattern(BOUGHT_DATE_PATTERN_REGEX);
-    private static final String BOUGHT_DATE_NOT_SET_PLACEHOLDER = "Not Set";
     private final LocalDate boughtDate;
 
     /**
@@ -60,6 +58,18 @@ public class ItemBoughtDate {
     }
 
     /**
+     * Compares two item bought dates. The method returns 0 if the bought date is equal to the other
+     * bought date.
+     * A value less than 0 is returned if the bought date is less than the other bought date (earlier) and
+     * a value greater than 0 if the bought date is greater than the other bought date (later).
+     *
+     * @param other The ItemBoughtDate to compare this ItemBoughtDate against.
+     */
+    public int compareTo(ItemBoughtDate other) {
+        return boughtDate.compareTo(other.boughtDate);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -73,13 +83,5 @@ public class ItemBoughtDate {
     @Override
     public String toString() {
         return boughtDate == null ? "" : boughtDate.format(BOUGHT_DATE_FORMATTER);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toListView() {
-        String date = Objects.toString(boughtDate, BOUGHT_DATE_NOT_SET_PLACEHOLDER);
-        return String.format("(Bought Date: %s)", date);
     }
 }

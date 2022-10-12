@@ -2,9 +2,10 @@ package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_TAG_NAME;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.Command;
@@ -24,8 +25,8 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the item identified by the index number used in the displayed item list with a valid Tag.\n"
-            + "Parameters: " + PREFIX_ID + " INDEX (must be a positive integer) " + PREFIX_TAG_NAME + "TAG_NAME\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_TAG_NAME + "Condiments " + PREFIX_ID + "1";
+            + "Parameters: " + PREFIX_ID + " INDEX (must be a positive integer) " + PREFIX_NAME + "TAG_NAME\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Condiments " + PREFIX_ID + "1";
 
     public static final String MESSAGE_SUCCESS = "Item tagged successfully";
 
@@ -48,6 +49,25 @@ public class TagCommand extends Command {
         this.tag = new Tag(tagName);
     }
 
+    /**
+     * Creates and returns a {@code Item} with the tagSet of {@code itemToEdit}
+     * edited
+     */
+    private static Item createTaggedItem(Item itemToTag, Tag tag) {
+        assert itemToTag != null;
+
+        itemToTag.addItemTag(tag);
+        Set<Tag> newTagSet = itemToTag.getTagSet();
+
+        return new Item(itemToTag.getName(),
+                itemToTag.getQuantity(),
+                itemToTag.getUnit(),
+                itemToTag.getBoughtDate(),
+                itemToTag.getExpiryDate(),
+                newTagSet
+                );
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -68,7 +88,11 @@ public class TagCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TAG);
         }
 
-        itemToTag.addTag(tag);
+        Item newTagSetItem = createTaggedItem(itemToTag, tag);
+
+        model.setItem(itemToTag, newTagSetItem);
+
+        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
         return new CommandResult(MESSAGE_SUCCESS);
 

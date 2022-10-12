@@ -2,7 +2,7 @@ package seedu.foodrem.model.item;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.foodrem.model.item.itemvalidator.ItemUnitValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemUnitValidator;
 
 
 /**
@@ -35,6 +35,17 @@ public class ItemUnit {
     }
 
     /**
+     * Compares two item unit lexicographically. The method returns 0 if the string is equal to the other string.
+     * A value less than 0 is returned if the string is less than the other string (less characters) and
+     * a value greater than 0 if the string is greater than the other string (more characters).
+     *
+     * @param other The ItemUnit to compare this ItemUnit against.
+     */
+    public int compareTo(ItemUnit other) {
+        return itemUnit.compareTo(other.itemUnit);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -47,14 +58,6 @@ public class ItemUnit {
      */
     @Override
     public String toString() {
-        return itemUnit;
-    }
-
-    public boolean isBlank() {
-        return itemUnit.isBlank();
-    }
-
-    public String toListView() {
         return itemUnit;
     }
 }

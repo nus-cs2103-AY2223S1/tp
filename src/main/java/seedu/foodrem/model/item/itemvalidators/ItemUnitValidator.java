@@ -1,4 +1,4 @@
-package seedu.foodrem.model.item.itemvalidator;
+package seedu.foodrem.model.item.itemvalidators;
 
 import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 
@@ -10,13 +10,13 @@ import seedu.foodrem.model.item.Item;
 public class ItemUnitValidator implements Validator {
 
     public static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT =
-            "Item unit should only contain alphanumeric characters and spaces";
+            "The item unit should only contain alphanumeric characters and spaces.";
     // Validation for characters used in unit
     private static final String VALIDATION_REGEX = "[A-Za-z0-9 ]*";
     // Validation for unit length
     private static final int MAX_LENGTH = 10;
     private static final String MESSAGE_FOR_NAME_TOO_LONG =
-            String.format("Item unit should not exceed %d characters", MAX_LENGTH);
+            String.format("The item unit should not exceed %d characters.", MAX_LENGTH);
 
     /**
      * Validates a given input String.

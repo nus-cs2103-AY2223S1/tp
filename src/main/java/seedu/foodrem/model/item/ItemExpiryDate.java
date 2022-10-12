@@ -4,9 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
-import seedu.foodrem.model.item.itemvalidator.ItemExpiryDateValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemExpiryDateValidator;
 
 /**
  * Represents an item date in an {@link Item}.
@@ -17,7 +16,6 @@ public class ItemExpiryDate {
     public static final String EXPIRY_DATE_PATTERN_REGEX = "dd-MM-yyyy";
     public static final DateTimeFormatter EXPIRY_DATE_FORMATTER = DateTimeFormatter
             .ofPattern(EXPIRY_DATE_PATTERN_REGEX);
-    private static final String EXPIRY_DATE_NOT_SET_PLACEHOLDER = "Not Set";
     private final LocalDate expiryDate;
 
     /**
@@ -59,6 +57,19 @@ public class ItemExpiryDate {
         return expiryDate.equals(((ItemExpiryDate) other).expiryDate);
     }
 
+
+    /**
+     * Compares two item expiry dates. The method returns 0 if the bought date is equal to the other
+     * bought date.
+     * A value less than 0 is returned if the bought date is less than the other bought date (earlier) and
+     * a value greater than 0 if the bought date is greater than the other bought date (later).
+     *
+     * @param other The ItemExpiryDate to compare this ItemExpiryDate against.
+     */
+    public int compareTo(ItemExpiryDate other) {
+        return expiryDate.compareTo(other.expiryDate);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -73,13 +84,5 @@ public class ItemExpiryDate {
     @Override
     public String toString() {
         return expiryDate == null ? "" : expiryDate.format(EXPIRY_DATE_FORMATTER);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toListView() {
-        String date = Objects.toString(expiryDate, EXPIRY_DATE_NOT_SET_PLACEHOLDER);
-        return String.format("(Expiry Date: %s)", date);
     }
 }

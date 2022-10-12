@@ -49,6 +49,31 @@ public class Item {
         this.tagSet = new HashSet<>();
     }
 
+    /**
+     * Overloaded constructor in item.
+     *
+     * @param name       Name of the item.
+     * @param quantity   Quantity of the item.
+     * @param unit       Unit of the item.
+     * @param boughtDate Date when the item was purchased.
+     * @param expiryDate Date when the item will expire.
+     * @param tagSet The set of tags in item
+     */
+    public Item(ItemName name,
+                ItemQuantity quantity,
+                ItemUnit unit,
+                ItemBoughtDate boughtDate,
+                ItemExpiryDate expiryDate, Set<Tag> tagSet) {
+        requireAllNonNull(name, quantity, unit, boughtDate, expiryDate);
+        this.name = name;
+        this.quantity = quantity;
+        this.unit = unit;
+        this.boughtDate = boughtDate;
+        this.expiryDate = expiryDate;
+        this.tagSet = tagSet;
+    }
+
+
     public ItemName getName() {
         return name;
     }
@@ -69,23 +94,6 @@ public class Item {
         return expiryDate;
     }
 
-    public String getNameToListView() {
-        return name.toListView();
-    }
-
-    public String getQuantityAndUnitToListView() {
-        String unitString = unit.isBlank() ? "" : " " + unit.toListView();
-        return quantity.toString() + unitString;
-    }
-
-    public String getBoughtDateToListView() {
-        return boughtDate.toListView();
-    }
-
-    public String getExpiryDateToListView() {
-        return expiryDate.toListView();
-    }
-
     public Set<Tag> getTagSet() {
         return tagSet;
     }
@@ -103,8 +111,15 @@ public class Item {
     /**
      * Adds a tag to the item's tagSet
      */
-    public void addTag(Tag tag) {
+    public void addItemTag(Tag tag) {
         tagSet.add(tag);
+    }
+
+    /**
+     * Removes a tag from the item's tagSet
+     */
+    public void removeItemTag(Tag tag) {
+        tagSet.remove(tag);
     }
 
     /**
@@ -160,7 +175,11 @@ public class Item {
      */
     @Override
     public String toString() {
-        return String.format("%s; Quantity: %s %s; Bought Date: %s, Expiry Date: %s;",
-                name, quantity, unit, boughtDate, expiryDate);
+        return String.format("Name: %s; Quantity: %s%s; Bought Date: %s; Expiry Date: %s;",
+                name,
+                quantity,
+                String.valueOf(unit).isBlank() ? "" : " " + unit,
+                String.valueOf(boughtDate).isBlank() ? "Not Set" : boughtDate,
+                String.valueOf(expiryDate).isBlank() ? "Not Set" : expiryDate);
     }
 }
