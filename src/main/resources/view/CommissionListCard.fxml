@@ -27,7 +27,7 @@
                 </Label>
                 <Label fx:id="title" text="\$title" styleClass="cell_big_label" />
             </HBox>
-            <FlowPane fx:id="tags" />
+            <FlowPane fx:id="tags" styleClass="commissionTags" />
             <Label fx:id="description" text="\$description" styleClass="cell_small_label" />
             <Label fx:id="deadline" text="\$deadline" styleClass="cell_small_label" />
             <Label fx:id="fee" text="\$fee" styleClass="cell_small_label" />

@@ -40,7 +40,7 @@
                         <Insets bottom="8.0" />
                     </VBox.margin>
                 </HBox>
-                <FlowPane fx:id="tags">
+                <FlowPane fx:id="tags" styleClass="commissionTags">
                     <VBox.margin>
                         <Insets bottom="8.0" />
                     </VBox.margin>

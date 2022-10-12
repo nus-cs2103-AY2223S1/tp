@@ -60,7 +60,6 @@ public class CommissionCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> {
                     Label tagLabel = new Label(tag.tagName);
-                    tagLabel.setStyle(tagLabel.getStyle() + " -fx-background-color: #F26417;");
                     tags.getChildren().add(tagLabel);
                 });
     }
