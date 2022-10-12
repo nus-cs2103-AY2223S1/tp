@@ -129,13 +129,13 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         modulesPane = new SplitPane();
 
-        ModuleListPanel moduleListPanel = new ModuleListPanel(logic.getModuleList().getModules());
+        ModuleListPanel moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        savedModuleListPanel = new SavedModuleListPanel(logic.getUserModuleList());
+        savedModuleListPanel = new SavedModuleListPanel(logic.getFilteredUserModuleList());
         savedModuleListPanelPlaceholder.getChildren().add(savedModuleListPanel.getRoot());
 
         modulesPane.getItems().addAll(moduleListPanelPlaceholder, savedModuleListPanelPlaceholder);
