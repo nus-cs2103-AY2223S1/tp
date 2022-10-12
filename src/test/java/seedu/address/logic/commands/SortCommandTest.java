@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 //import java.util.Comparator;
-
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 //import seedu.address.model.person.Person;
@@ -33,5 +32,4 @@ public class SortCommandTest {
 
     @Test
     public void execute_nameSortedList_showsNameSortedList() {};
-
 }
