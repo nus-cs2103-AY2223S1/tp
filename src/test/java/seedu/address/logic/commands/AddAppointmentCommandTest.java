@@ -43,7 +43,6 @@ import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TypicalPersons;
 
 public class AddAppointmentCommandTest {
 

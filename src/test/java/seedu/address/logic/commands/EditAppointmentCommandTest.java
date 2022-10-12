@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.MUSAB;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.EditPersonDescriptor;
@@ -29,8 +30,10 @@ public class EditAppointmentCommandTest {
     public void execute_overwriteAppointmentsWithOneAppointment_success() {
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
-        actualModel.addPerson(new PersonBuilder(MUSAB).withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
-        expectedModel.addPerson(new PersonBuilder(MUSAB).withAppointments(VALID_APPOINTMENT_21_JAN_2023).buildWithAppointments());
+        actualModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
+                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
+        expectedModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
+                VALID_APPOINTMENT_21_JAN_2023).buildWithAppointments());
 
         Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
 
@@ -46,8 +49,10 @@ public class EditAppointmentCommandTest {
     public void execute_overwriteExistingAppointmentsWithMultipleAppointments_success() {
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
-        actualModel.addPerson(new PersonBuilder(MUSAB).withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_23_JAN_2023).buildWithAppointments());
-        expectedModel.addPerson(new PersonBuilder(MUSAB).withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
+        actualModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
+                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_23_JAN_2023).buildWithAppointments());
+        expectedModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
+                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
 
         Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
 
@@ -65,7 +70,8 @@ public class EditAppointmentCommandTest {
         Person testPerson = new PersonBuilder(MUSAB).buildWithoutAppointments();
         testModel.addPerson(testPerson);
 
-        Person expectedPerson = new PersonBuilder(MUSAB).withAppointments(VALID_APPOINTMENT_23_JAN_2023).buildWithAppointments();
+        Person expectedPerson = new PersonBuilder(MUSAB).withAppointments(
+                VALID_APPOINTMENT_23_JAN_2023).buildWithAppointments();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(expectedPerson).build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
 
@@ -77,7 +83,8 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_overwriteUsingAppointmentsWithInvalidIndex_failure() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        Person testPerson = new PersonBuilder(MUSAB).withAppointments(VALID_APPOINTMENT_22_JAN_2023, VALID_APPOINTMENT_23_JAN_2023).buildWithAppointments();
+        Person testPerson = new PersonBuilder(MUSAB).withAppointments(
+                VALID_APPOINTMENT_22_JAN_2023, VALID_APPOINTMENT_23_JAN_2023).buildWithAppointments();
 
         Index outOfBoundIndex = Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(testPerson).build();
@@ -91,11 +98,12 @@ public class EditAppointmentCommandTest {
     @Test
     public void equals() {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(new PersonBuilder(MUSAB).build()).build();
-        final EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,descriptor);
+        final EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(
+                INDEX_FIRST_PERSON, descriptor);
 
         // same values -> returns true
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
-        EditAppointmentCommand commandWithSameValues = new EditAppointmentCommand(INDEX_FIRST_PERSON,descriptor);
+        EditAppointmentCommand commandWithSameValues = new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
         assertTrue(editAppointmentCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -108,8 +116,9 @@ public class EditAppointmentCommandTest {
         assertFalse(editAppointmentCommand.equals(new ClearCommand()));
 
         // different descriptor -> returns false
-        EditPersonDescriptor differentDescriptor = new EditPersonDescriptorBuilder(new PersonBuilder(BENSON).build()).build();
-        assertFalse(editAppointmentCommand.equals(new EditAppointmentCommand(INDEX_FIRST_PERSON,differentDescriptor)));
+        EditPersonDescriptor differentDescriptor = new EditPersonDescriptorBuilder(
+                new PersonBuilder(BENSON).build()).build();
+        assertFalse(editAppointmentCommand.equals(new EditAppointmentCommand(INDEX_FIRST_PERSON, differentDescriptor)));
     }
 
 }

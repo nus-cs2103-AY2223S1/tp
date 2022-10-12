@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FIRST_APPOINTMENT_DESC;
@@ -16,6 +15,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -77,7 +77,8 @@ public class EditAppointmentCommandParserTest {
         assertParseFailure(parser, targetIndex + "", MESSAGE_INVALID_FORMAT);
 
         // edit multiple appointments with invalid field in one of them
-        assertParseFailure(parser, targetIndex + FIRST_APPOINTMENT_DESC + INVALID_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser,
+                targetIndex + FIRST_APPOINTMENT_DESC + INVALID_APPOINTMENT_DESC, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -96,7 +97,8 @@ public class EditAppointmentCommandParserTest {
     public void parse_validMultipleAppointmentField_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + FIRST_APPOINTMENT_DESC + SECOND_APPOINTMENT_DESC;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withAppointments(
+                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).build();
         EditAppointmentCommand expectedCommand = new EditAppointmentCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

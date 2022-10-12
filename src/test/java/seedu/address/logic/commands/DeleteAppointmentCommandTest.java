@@ -7,24 +7,18 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_22_
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.DeleteAppointmentCommand.MESSAGE_NO_APPOINTMENT_TO_DELETE;
-import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPerson;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.MUSAB;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.parser.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -34,7 +28,8 @@ public class DeleteAppointmentCommandTest {
     public void execute_validIndex_throwsCommandException() {
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
-        actualModel.addPerson(new PersonBuilder(MUSAB).withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
+        actualModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
+                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
         expectedModel.addPerson(new PersonBuilder(MUSAB).buildWithAppointments());
 
         Person editedPerson = expectedModel.getAddressBook().getPersonList().get(0);
@@ -50,7 +45,8 @@ public class DeleteAppointmentCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        testModel.addPerson(new PersonBuilder(MUSAB).withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
+        testModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
+                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
         Index outOfBoundIndex = Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(outOfBoundIndex);
