@@ -1,4 +1,4 @@
-package seedu.address.model.util;
+package seedu.address.commons.util.util;
 
 import java.util.Arrays;
 import java.util.Set;

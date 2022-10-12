@@ -12,7 +12,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.commons.util.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
