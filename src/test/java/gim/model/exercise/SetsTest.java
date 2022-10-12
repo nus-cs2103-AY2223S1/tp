@@ -29,6 +29,11 @@ public class SetsTest {
         assertFalse(Sets.isValidSets(" ")); // spaces only
         assertFalse(Sets.isValidSets("abc")); // not an integer
         assertFalse(Sets.isValidSets("-1")); // negative integer
+        assertFalse(Sets.isValidSets("0")); // zero
+        assertFalse(Sets.isValidSets("3.5")); // positive decimal
+        assertFalse(Sets.isValidSets("-1.5")); // negative decimal
+        assertFalse(Sets.isValidSets("01")); // leading zeros
+        assertFalse(Sets.isValidSets("10000")); // positive integer above 3 digits
 
         // valid sets
         assertTrue(Sets.isValidSets("3")); // single digit
