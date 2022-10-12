@@ -11,45 +11,40 @@ title: User Guide
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+{% include note.html content="
 
-**:information_source: Notes about the command format:**<br>
+Notes about the command format:<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
 * Items in square brackets are optional.<br>
   e.g `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
-
 * ​Items with `...` after them can be used multiple times including zero times.<br>
   e.g. `[c/CLASS_NAME]...` can be used as ` ` (i.e. 0 times), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
-
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-</div>
+" %}
 
-| Command    | Format                                                                       |
-|------------|------------------------------------------------------------------------------|
-| `help`     | `help`                                                                       |
-| `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL] [a/ADDRESS][c/CLASS_NAME...]`          |
+| Command    | Format                                   |
+| ---------- | ---------------------------------------- |
+| `help`     | `help`                                   |
+| `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL] [a/ADDRESS][c/CLASS_NAME...]` |
 | `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER] [e/EMAIL][a/ADDRESS] [c/CLASS_NAME...]` |
-| `delete`   | `delete INDEX`                                                               |
-| `find`     | `find KEYWORD [MORE_KEYWORDS...]`                                            |
-| `list`     | `list`                                                                       |
-| `addc`     | `addc c/CLASS_NAME`                                                          |
-| `deletec`  | `deletec c/CLASS_NAME`                                                       |
-| `assign`   | `assign INDEX... c/CLASS_NAME`                                               |
-| `unassign` | `unassign INDEX... c/CLASS_NAME`                                             |
-| `listc`    | `listc`                                                                      |
-| `exit`     | `exit`                                                                       |
-| `focus`    | `focus c/CLASS_NAME`                                                         |
+| `delete`   | `delete INDEX`                           |
+| `find`     | `find KEYWORD [MORE_KEYWORDS...]`        |
+| `list`     | `list`                                   |
+| `addc`     | `addc c/CLASS_NAME`                      |
+| `deletec`  | `deletec c/CLASS_NAME`                   |
+| `assign`   | `assign INDEX... c/CLASS_NAME`           |
+| `unassign` | `unassign INDEX... c/CLASS_NAME`         |
+| `listc`    | `listc`                                  |
+| `exit`     | `exit`                                   |
+| `focus`    | `focus c/CLASS_NAME`                     |
 
 ### Viewing help : `help`
 
@@ -223,7 +218,7 @@ Example:
 The following commands are only available in **focus mode.**
 
 | Command   | Format                               |
-|-----------|--------------------------------------|
+| --------- | ------------------------------------ |
 | `list`    | `list`                               |
 | `session` | `session s/SESSION_NAME [d/DATE]`    |
 | `grade`   | `grade INDEX v/VALUE s/SESSION_NAME` |
