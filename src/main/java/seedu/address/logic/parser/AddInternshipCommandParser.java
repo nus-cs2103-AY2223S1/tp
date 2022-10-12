@@ -5,17 +5,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK_INDEX;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddInternshipCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.InternshipRole;
 import seedu.address.model.internship.InternshipStatus;
 import seedu.address.model.internship.InterviewDate;
-import seedu.address.model.person.PersonId;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -35,8 +35,8 @@ public class AddInternshipCommandParser implements Parser<AddInternshipCommand> 
                         PREFIX_COMPANY_NAME,
                         PREFIX_INTERNSHIP_ROLE,
                         PREFIX_INTERNSHIP_STATUS,
-                        PREFIX_PERSON_ID,
-                        PREFIX_INTERVIEW_DATE);
+                        PREFIX_INTERVIEW_DATE,
+                        PREFIX_LINK_INDEX);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY_NAME, PREFIX_INTERNSHIP_ROLE, PREFIX_INTERNSHIP_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -49,11 +49,20 @@ public class AddInternshipCommandParser implements Parser<AddInternshipCommand> 
                 ParserUtil.parseInternshipRole(argMultimap.getValue(PREFIX_INTERNSHIP_ROLE).get());
         InternshipStatus internshipStatus =
                 ParserUtil.parseInternshipStatus(argMultimap.getValue(PREFIX_INTERNSHIP_STATUS).get());
-        PersonId contactPersonId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_PERSON_ID).orElse(null));
-        InterviewDate interviewDate =
-                ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_INTERVIEW_DATE).orElse(null));
 
-        return new AddInternshipCommand(companyName, internshipRole, internshipStatus, contactPersonId, interviewDate);
+        String interviewDateStr = argMultimap.getValue(PREFIX_INTERVIEW_DATE).orElse(null);
+        InterviewDate interviewDate = null;
+        if (interviewDateStr != null) {
+            interviewDate = ParserUtil.parseInterviewDate(interviewDateStr);
+        }
+
+        String linkIndexStr = argMultimap.getValue(PREFIX_LINK_INDEX).orElse(null);
+        Index linkIndex = null;
+        if (linkIndexStr != null) {
+            linkIndex = ParserUtil.parseIndex(linkIndexStr);
+        }
+
+        return new AddInternshipCommand(companyName, internshipRole, internshipStatus, interviewDate, linkIndex);
     }
 
     /**

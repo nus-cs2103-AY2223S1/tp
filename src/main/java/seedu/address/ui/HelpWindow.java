@@ -20,7 +20,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-f11-1.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide for full details: " + USERGUIDE_URL
             + "\nA summary of the command is provided below for convenience.";
-    public static final Image helpSummary = new Image("/images/help_summary.png");
+    public static final Image HELP_SUMMARY = new Image("/images/help_summary.png");
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -41,7 +41,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
-        helpImage.setImage(helpSummary);
+        helpImage.setImage(HELP_SUMMARY);
     }
 
     /**

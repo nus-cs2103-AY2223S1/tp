@@ -30,7 +30,7 @@ public class SampleDataUtil {
                     new Name("Alex Yeoh"),
                     new Phone("87438807"),
                     new Email("alexyeoh@example.com"),
-                    null,
+                    new InternshipId(0),
                     getTagSet("friends")),
             new Person(
                     new PersonId(1),
@@ -65,7 +65,7 @@ public class SampleDataUtil {
                     new Name("Roy Balakrishnan"),
                     new Phone("92624417"),
                     new Email("royb@example.com"),
-                    new InternshipId(0),
+                    new InternshipId(1),
                     getTagSet("colleagues"))
         };
     }
@@ -77,7 +77,7 @@ public class SampleDataUtil {
                     new CompanyName("company ABC123"),
                     new InternshipRole("frontend engineer"),
                     new InternshipStatus(InternshipStatus.State.ACCEPTED),
-                    new PersonId(5),
+                    new PersonId(0),
                     null),
             new Internship(
                     new InternshipId(1),

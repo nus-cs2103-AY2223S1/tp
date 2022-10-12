@@ -41,6 +41,7 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    // TODO: Remove this method.
     /**
      * Parses a {@code String personId} into a {@code PersonId}.
      * Leading and trailing whitespaces will be trimmed.
@@ -131,6 +132,7 @@ public class ParserUtil {
         return tagSet;
     }
 
+    // TODO: Remove this method.
     /**
      * Parses a {@code String internshipId} into a {@code InternshipId}.
      * Leading and trailing whitespaces will be trimmed.
