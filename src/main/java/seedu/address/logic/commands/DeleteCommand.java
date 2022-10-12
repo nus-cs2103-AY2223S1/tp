@@ -25,9 +25,12 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Entry: %1$s";
 
-    private final Index targetIndex;
     final EntryType entryType;
+    private final Index targetIndex;
 
+    /**
+     * Creates a DeleteCommand to with the {@code targetIndex} and {@code entryType}
+     */
     public DeleteCommand(Index targetIndex, EntryType entryType) {
         this.targetIndex = targetIndex;
         this.entryType = entryType;
@@ -39,27 +42,27 @@ public class DeleteCommand extends Command {
         List<Entry> lastShownList;
         Entry entryToDelete;
         switch (entryType.getEntryType()) {
-            case EXPENDITURE:
-                lastShownList = model.getFilteredExpenditureList();
-                if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-                }
+        case EXPENDITURE:
+            lastShownList = model.getFilteredExpenditureList();
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
 
-                entryToDelete = lastShownList.get(targetIndex.getZeroBased());
-                model.deleteExpenditure(entryToDelete);
-                break;
-            case INCOME:
-                lastShownList = model.getFilteredIncomeList();
-                if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-                }
+            entryToDelete = lastShownList.get(targetIndex.getZeroBased());
+            model.deleteExpenditure(entryToDelete);
+            break;
+        case INCOME:
+            lastShownList = model.getFilteredIncomeList();
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
 
-                entryToDelete = lastShownList.get(targetIndex.getZeroBased());
-                model.deleteIncome(entryToDelete);
-                break;
-            default:
-                // should never reach here
-                return null;
+            entryToDelete = lastShownList.get(targetIndex.getZeroBased());
+            model.deleteIncome(entryToDelete);
+            break;
+        default:
+            // should never reach here
+            return null;
         }
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, entryToDelete));
     }
