@@ -1,19 +1,17 @@
 package jeryl.fyp.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.logic.parser.CliSyntax.*;
 
+import jeryl.fyp.model.student.ProjectStatus;
+import jeryl.fyp.model.student.StudentId;
 
-import jeryl.fyp.commons.exceptions.IllegalValueException;
-import jeryl.fyp.logic.commands.AddCommand;
+import java.util.stream.Stream;
+
 import jeryl.fyp.logic.commands.MarkCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.student.*;
+import jeryl.fyp.commons.exceptions.IllegalValueException;
 import jeryl.fyp.model.tag.Tag;
-
-import java.util.Set;
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new {@code MarkCommand} object
@@ -28,7 +26,8 @@ public class MarkCommandParser implements Parser<MarkCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_ID, PREFIX_STATUS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_STATUS) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_STATUS)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
 

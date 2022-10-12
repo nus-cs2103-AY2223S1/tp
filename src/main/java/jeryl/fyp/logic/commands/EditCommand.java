@@ -22,9 +22,9 @@ import jeryl.fyp.model.Model;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
-import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -98,7 +98,8 @@ public class EditCommand extends Command {
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         ProjectName updatedProjectName = editStudentDescriptor.getProjectName().orElse(studentToEdit.getProjectName());
-        ProjectStatus updatedProjectStatus = studentToEdit.getProjectStatus(); //edit does not allow editing of project status
+        ProjectStatus updatedProjectStatus =
+                studentToEdit.getProjectStatus(); //edit does not allow editing of project status
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedName, updatedStudentId, updatedEmail,

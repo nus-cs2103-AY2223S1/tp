@@ -12,8 +12,8 @@ import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
-import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.student.ProjectStatus;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -123,9 +123,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String studentId} into an {@code StudentId} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified studentId is invalid (not of the correct format "A" + 7 numbers + 1 letter).
+     * Parses {@code String studentId} into an {@code StudentId} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified studentId is invalid
+     * (not of the correct format "A" + 7 numbers + 1 letter).
      */
     public static ProjectStatus parseProjectStatus(String projectStatus) throws ParseException {
         requireNonNull(projectStatus);

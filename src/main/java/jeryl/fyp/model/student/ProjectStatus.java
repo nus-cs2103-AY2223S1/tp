@@ -3,6 +3,10 @@ package jeryl.fyp.model.student;
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Student's project status in the FYP manager.
+ * Guarantees: immutable; is valid as declared in {@link #isValidProjectStatus(String)}
+ */
 public class ProjectStatus {
 
     public final String projectStatus;

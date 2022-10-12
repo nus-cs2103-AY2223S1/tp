@@ -5,14 +5,13 @@ import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.List;
-
 import jeryl.fyp.commons.core.Messages;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
-import jeryl.fyp.model.student.ProjectStatus;
+
 
 /**
  * Updates the status of an existing FYP to "DONE", "IP" or "YTS"
@@ -69,8 +68,8 @@ public class MarkCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Student studentToEdit) {
-        String message = !status.projectStatus.isEmpty() ? MESSAGE_ADD_PROJECT_STATUS_SUCCESS :
-                MESSAGE_DELETE_PROJECT_STATUS_SUCCESS;
+        String message = !status.projectStatus.isEmpty() ? MESSAGE_ADD_PROJECT_STATUS_SUCCESS
+                : MESSAGE_DELETE_PROJECT_STATUS_SUCCESS;
         return String.format(message, studentToEdit);
     }
 

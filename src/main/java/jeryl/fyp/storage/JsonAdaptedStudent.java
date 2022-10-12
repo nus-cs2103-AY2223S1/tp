@@ -13,9 +13,10 @@ import jeryl.fyp.commons.exceptions.IllegalValueException;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
-import jeryl.fyp.model.student.ProjectStatus;
+
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -38,7 +39,8 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("studentId") String studentId,
                               @JsonProperty("email") String email, @JsonProperty("projectName") String projectName,
-                              @JsonProperty("projectStatus") String projectStatus, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("projectStatus") String projectStatus,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.studentId = studentId;
         this.email = email;
@@ -109,7 +111,8 @@ class JsonAdaptedStudent {
         final ProjectName modelProjectName = new ProjectName(projectName);
 
         if (projectStatus == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectStatus.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT
+                    , ProjectStatus.class.getSimpleName()));
         }
 
         final ProjectStatus modelProjectStatus = new ProjectStatus(projectStatus);

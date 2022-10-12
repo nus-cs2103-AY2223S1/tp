@@ -12,7 +12,13 @@ import java.util.stream.Stream;
 
 import jeryl.fyp.logic.commands.AddCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.student.*;
+import jeryl.fyp.model.student.Email;
+import jeryl.fyp.model.student.Name;
+import jeryl.fyp.model.student.ProjectName;
+import jeryl.fyp.model.student.ProjectStatus;
+import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentId;
+
 import jeryl.fyp.model.tag.Tag;
 
 /**
