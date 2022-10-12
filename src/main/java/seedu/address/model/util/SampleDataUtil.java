@@ -67,5 +67,4 @@ public class SampleDataUtil {
         sampleRecordList.add(new Record("20-02-2002 0200", "tested positive for SARS"));
         return sampleRecordList;
     }
-
 }

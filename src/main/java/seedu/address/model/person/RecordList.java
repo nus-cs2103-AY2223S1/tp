@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
  */
 public class RecordList {
     /* Record List variables */
-    // todo: have the commands update the record list through an additional add record command.
     // count of the record list should be accessed through the ArrayList#size() method.
     private final ObservableList<Record> recordList = FXCollections.observableArrayList();
     private final ObservableList<Record> internalUnmodifiableRecordList =
@@ -64,7 +63,6 @@ public class RecordList {
         this.recordList.clear();
     }
 
-    // TODO IMPLEMENT THIS
     @Override
     public String toString() {
         return "Number of Records: " + recordList.size();
