@@ -8,7 +8,7 @@ import seedu.address.model.person.PersonContainsTagPredicate;
 
 /**
  * Lists batchmates that match all tags specified by the user.
- * Keyword matching is case-sensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindTagCommand extends Command {
 
@@ -28,5 +28,12 @@ public class FindTagCommand extends Command {
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindTagCommand // instanceof handles nulls
+                && predicate.equals(((FindTagCommand) other).predicate)); // state check
     }
 }
