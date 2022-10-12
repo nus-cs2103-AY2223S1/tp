@@ -3,8 +3,6 @@ package seedu.address.model.pricerange;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.address.Address;
-
 /**
  * Represents a Price Range for a property that a buyer can accept.
  * Guarantees: immutable; is valid as declared.
@@ -43,7 +41,7 @@ public class PriceRange {
     public static boolean isValidPriceRange(String test) {
 
         boolean isValid = test.matches(VALIDATION_REGEX);
-        
+
         // to prevent out of bounds error below
         if (!isValid) {
             return false;

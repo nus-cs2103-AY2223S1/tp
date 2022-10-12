@@ -63,8 +63,11 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        priceRange.setText("Budget: " + person.getPriceRange().map(PriceRange::toString).orElse("Budgt: Not Specified"));
-        desiredCharacteristics.setText("Desired Characteristics: " + person.getDesiredCharacteristics().map(DesiredCharacteristics::toString).orElse("Desired Characteristics: Not Specified"));
+        priceRange.setText("Budget: " + person.getPriceRange()
+                .map(PriceRange::toString).orElse("Budgt: Not Specified"));
+        desiredCharacteristics.setText("Desired Characteristics: " + person
+                .getDesiredCharacteristics().map(DesiredCharacteristics::toString)
+                .orElse("Desired Characteristics: Not Specified"));
     }
 
     @Override

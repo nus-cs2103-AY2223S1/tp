@@ -35,7 +35,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, PriceRange priceRange, DesiredCharacteristics desiredCharacteristics, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  PriceRange priceRange, DesiredCharacteristics desiredCharacteristics, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -134,7 +135,9 @@ public class Person {
                 .append("; Budget: ")
                 .append(getPriceRange().map(PriceRange::toString).orElse("Budget: Not Specified"))
                 .append("; Desired Characteristics: ")
-                .append(getDesiredCharacteristics().map(DesiredCharacteristics::toString).orElse("Desired Characteristics: Not Specified"));
+                .append(getDesiredCharacteristics()
+                        .map(DesiredCharacteristics::toString)
+                        .orElse("Desired Characteristics: Not Specified"));
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append(" Tags: ");

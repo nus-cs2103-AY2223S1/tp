@@ -17,8 +17,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.property.Description;
-import seedu.address.model.property.Price;
 import seedu.address.model.tag.Tag;
 
 
@@ -44,7 +42,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("priceRange") String priceRange, @JsonProperty("desiredCharacteristics") String desiredCharacteristics,
+            @JsonProperty("priceRange") String priceRange,
+         @JsonProperty("desiredCharacteristics") String desiredCharacteristics,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -66,7 +65,9 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         priceRange = source.getPriceRange().map(PriceRange::toString).orElse("");
-        desiredCharacteristics = source.getDesiredCharacteristics().map(DesiredCharacteristics::toString).orElse("");
+        desiredCharacteristics = source.getDesiredCharacteristics()
+                .map(DesiredCharacteristics::toString)
+                .orElse("");
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -116,7 +117,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         if (priceRange == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PriceRange.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PriceRange.class.getSimpleName()));
         }
         if (!priceRange.isEmpty() && !PriceRange.isValidPriceRange(priceRange)) {
             throw new IllegalValueException(PriceRange.MESSAGE_CONSTRAINTS);
@@ -124,14 +126,19 @@ class JsonAdaptedPerson {
         final PriceRange modelPriceRange = priceRange.isEmpty() ? null : new PriceRange(priceRange);
 
         if (desiredCharacteristics == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DesiredCharacteristics.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DesiredCharacteristics.class.getSimpleName()));
         }
-        if (!desiredCharacteristics.isEmpty() && !DesiredCharacteristics.isValidDesiredCharacteristics(desiredCharacteristics)) {
+        if (!desiredCharacteristics.isEmpty()
+                && !DesiredCharacteristics.isValidDesiredCharacteristics(desiredCharacteristics)) {
             throw new IllegalValueException(DesiredCharacteristics.MESSAGE_CONSTRAINTS);
         }
-        final DesiredCharacteristics modelDesiredCharacteristics = desiredCharacteristics.isEmpty() ? null : new DesiredCharacteristics(desiredCharacteristics);
+        final DesiredCharacteristics modelDesiredCharacteristics = desiredCharacteristics.isEmpty()
+                ? null
+                : new DesiredCharacteristics(desiredCharacteristics);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelPriceRange, modelDesiredCharacteristics, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelPriceRange, modelDesiredCharacteristics, modelTags);
     }
 }

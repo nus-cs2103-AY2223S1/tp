@@ -22,11 +22,11 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.address.Address;
+import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
 import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.tag.Tag;
 
@@ -103,11 +103,16 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        PriceRange updatedPriceRange = editPersonDescriptor.getPriceRange().orElse(personToEdit.getPriceRange().orElse(null));
-        DesiredCharacteristics updatedDesiredCharacteristics = editPersonDescriptor.getDesiredCharacteristics().orElse(personToEdit.getDesiredCharacteristics().orElse(null));
+        PriceRange updatedPriceRange = editPersonDescriptor
+                .getPriceRange()
+                .orElse(personToEdit.getPriceRange().orElse(null));
+        DesiredCharacteristics updatedDesiredCharacteristics = editPersonDescriptor
+                .getDesiredCharacteristics()
+                .orElse(personToEdit.getDesiredCharacteristics().orElse(null));
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        Person newPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedPriceRange, updatedDesiredCharacteristics, updatedTags);
+        Person newPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedPriceRange, updatedDesiredCharacteristics, updatedTags);
 
         return newPerson;
     }

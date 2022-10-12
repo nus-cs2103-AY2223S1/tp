@@ -13,15 +13,15 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
+import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Price;
-import seedu.address.model.property.PropertyName;
-import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
-import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.property.Properties;
+import seedu.address.model.property.PropertyName;
 import seedu.address.model.tag.Tag;
 
 

@@ -34,7 +34,8 @@ public class EditCommandParser extends Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_TAG);
 
         Index index;
 
@@ -58,10 +59,12 @@ public class EditCommandParser extends Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
-            editPersonDescriptor.setPriceRange(ParserUtil.parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get()));
+            editPersonDescriptor.setPriceRange(ParserUtil
+                    .parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get()));
         }
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
-            editPersonDescriptor.setDesiredCharacteristics(ParserUtil.parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get()));
+            editPersonDescriptor.setDesiredCharacteristics(ParserUtil
+                    .parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

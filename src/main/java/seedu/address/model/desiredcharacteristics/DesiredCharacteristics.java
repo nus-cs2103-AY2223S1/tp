@@ -10,7 +10,8 @@ import java.util.Arrays;
  * Individual characteristics are separated by semicolons.
  */
 public class DesiredCharacteristics {
-    public static final String MESSAGE_CONSTRAINTS = "If -c flag is used, desired characteristics entry cannot be left blank.";
+    public static final String MESSAGE_CONSTRAINTS = "If -c flag is used, "
+            + "desired characteristics entry cannot be left blank.";
 
     /*
      * The first character of the desired characteristics must not be a whitespace,
@@ -29,7 +30,7 @@ public class DesiredCharacteristics {
     public DesiredCharacteristics(String desiredCharacteristics) {
         requireNonNull(desiredCharacteristics);
         checkArgument(isValidDesiredCharacteristics(desiredCharacteristics), MESSAGE_CONSTRAINTS);
-        
+
         characteristics = desiredCharacteristics.split(CHARACTERISTIC_DELIMITER);
         for (int i = 0; i < characteristics.length; i++) {
             characteristics[i] = characteristics[i].trim();
@@ -47,13 +48,13 @@ public class DesiredCharacteristics {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         // string representation has to be exactly the same as in user input format
-        // so that when saved and then retrieved from storage, can be parsed back directly 
+        // so that when saved and then retrieved from storage, can be parsed back directly
         for (int i = 0; i < characteristics.length; i++) {
             sb.append(characteristics[i])
                     .append("; ");
         }
         // remove last "; " as we don't want it to be repeatedly appended
-        // as we store the string and retrieve it repeatedly 
+        // as we store the string and retrieve it repeatedly
         return sb.substring(0, sb.length() - 2);
     }
 
