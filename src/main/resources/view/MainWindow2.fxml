@@ -35,69 +35,42 @@
 <!--                    </Menu>-->
 <!--                </MenuBar>-->
 
+                <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+                    <padding>
+                        <Insets top="5" right="10" bottom="5" left="10" />
+                    </padding>
+                </StackPane>
+
+                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                           minHeight="100" prefHeight="100" maxHeight="100">
+                    <padding>
+                        <Insets top="5" right="10" bottom="5" left="10" />
+                    </padding>
+                </StackPane>
 
                 <TabPane fx:id="tabPane">
                     <tabs>
                         <Tab text="Contacts" fx:id="tab1">
-                            <VBox>
-                                <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-                                    <padding>
-                                        <Insets top="5" right="10" bottom="5" left="10" />
-                                    </padding>
-                                </StackPane>
-
-                                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                                           minHeight="100" prefHeight="100" maxHeight="100">
-                                    <padding>
-                                        <Insets top="5" right="10" bottom="5" left="10" />
-                                    </padding>
-                                </StackPane>
-
-                                <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-                                    <padding>
-                                        <Insets top="10" right="10" bottom="10" left="10" />
-                                    </padding>
-                                    <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                                </VBox>
-
-                                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+                            <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                                <padding>
+                                    <Insets top="10" right="10" bottom="10" left="10" />
+                                </padding>
+                                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                             </VBox>
                         </Tab>
 
                         <Tab text="tasks" fx:id="tab2">
-                            <VBox>
-                                <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder2" styleClass="pane-with-border">
-                                    <padding>
-                                        <Insets top="5" right="10" bottom="5" left="10" />
-                                    </padding>
-                                </StackPane>
-
-
-                                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder2" styleClass="pane-with-border"
-                                           minHeight="100" prefHeight="100" maxHeight="100">
-                                    <padding>
-                                        <Insets top="5" right="10" bottom="5" left="10" />
-                                    </padding>
-                                </StackPane>
-
-                                <VBox fx:id="personList2" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-                                    <padding>
-                                        <Insets top="10" right="10" bottom="10" left="10" />
-                                    </padding>
-                                    <StackPane fx:id="personListPanelPlaceholder2" VBox.vgrow="ALWAYS"/>
-                                </VBox>
-
-                                <StackPane fx:id="statusbarPlaceholder2" VBox.vgrow="NEVER" />
-
-
-
+                            <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                                <padding>
+                                    <Insets top="10" right="10" bottom="10" left="10" />
+                                </padding>
+                                <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                             </VBox>
-
-
                         </Tab>
                     </tabs>
                 </TabPane>
 
+                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
             </VBox>
         </Scene>
     </scene>

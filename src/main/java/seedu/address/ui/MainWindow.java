@@ -55,16 +55,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder2;
-
-    @FXML
-    private StackPane commandBoxPlaceholder2;
-
-    @FXML
-    private StackPane statusbarPlaceholder2;
-
-    @FXML
-    private StackPane personListPanelPlaceholder2;
+    private StackPane taskListPanelPlaceholder;
 
     @FXML
     private TabPane tabPane;
@@ -137,23 +128,18 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        taskListPanel = new TaskListPanel(logic.getFilteredPersonList());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        personListPanelPlaceholder2.getChildren().add(taskListPanel.getRoot());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-        ;
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        StatusBarFooter statusBarFooter2 = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-        statusbarPlaceholder2.getChildren().add(statusBarFooter2.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
-        CommandBox commandBox2 = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-        commandBoxPlaceholder2.getChildren().add(commandBox2.getRoot());
     }
 
     /**
