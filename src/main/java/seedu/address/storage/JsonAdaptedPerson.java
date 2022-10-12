@@ -132,7 +132,7 @@ class JsonAdaptedPerson {
         if (meetingDate != null) {
             modelMeetingDate = new MeetingDate(meetingDate);
         } else {
-            modelMeetingDate = new MeetingDate(null);
+            modelMeetingDate = new MeetingDate("TBC");
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
