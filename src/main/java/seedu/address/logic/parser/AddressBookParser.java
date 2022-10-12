@@ -71,7 +71,7 @@ public class AddressBookParser {
             return new HelpCommand();
         
         case TeamCommand.COMMAND_WORD:
-            return new TeamParser().parse(arguments);
+            return new TeamCommandParser().parse(arguments);
 
         case ChangeTeamCommand.COMMAND_WORD:
             return new ChangeTeamCommandParser().parse(arguments);
