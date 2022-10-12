@@ -79,10 +79,10 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case AddPropertyCommand.COMMAND_WORD:
-            return new AddPropertyParser().parse(arguments);
+            return new AddPropertyCommandParser().parse(arguments);
 
         case EditPropertyCommand.COMMAND_WORD:
-            return new EditPropertyParser().parse(arguments);
+            return new EditPropertyCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
