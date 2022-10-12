@@ -1,12 +1,14 @@
 package seedu.address.model.item.validators;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import static seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE;
+import static seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator.MESSAGE_FOR_YEAR_TOO_LARGE;
+import static seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator.MESSAGE_FOR_YEAR_TOO_SMALL;
+import static seedu.foodrem.model.item.itemvalidators.ItemValidatorUtilTest.assertValidateFailure;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator;
 
 public class ItemBoughtDateValidatorTest {
 
@@ -15,43 +17,75 @@ public class ItemBoughtDateValidatorTest {
      */
     @Test
     public void isValidFormat() {
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-01"));
+        ItemBoughtDateValidator.validate("01-01-2000");
 
-        // Delimiters
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000/01/01")); // Wrong delimiter 1
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000.01.01")); // Wrong delimiter 2
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("20000101")); // Missing delimiter 1
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("200001-01")); // Missing delimiter 2
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-0101")); // Missing delimiter 3
+        // Wrong Delimiters
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01/01/2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01.01.2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01012000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-012000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("0101-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
 
         // Whitespace
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000 01 01"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime(" 2000-01-01"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-01 "));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime(" 2000-01-01 "));
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01 01 2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate(" 01-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("2000-01-01 "),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate(" 01-01-2000 "),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
 
-        // Wrong Datetime Format
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-1")); // Wrong Day
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-1-01")); // Wrong Month
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("200-01-01")); // Wrong Year
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("00-01-01"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("0-01-01"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-")); // Missing Day
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000--01")); // Missing Month
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("-01-01")); // Missing Year
+        // Wrong Datetime Formats
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("1-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // Wrong Day
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-1-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // Wrong Month
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-01-200"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // Wrong Year
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-01-00"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-01-0"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-01-0"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // Missing Day
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01--2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // Missing Month
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-01-"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // Missing Year
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("2000-01-01"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // Reversed Datetime Format
 
         // Wrong characters
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime(""));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("a"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("a-01-01"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-a-01"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-a"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("á-01-01"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-á-01"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-á"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("你-01-01"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-你-01"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-你"));
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate(""),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("a"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-01-a"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-a-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-01-a"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-01-á"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-á-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("á-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-01-你"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-你-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("你-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
     }
 
 
@@ -60,78 +94,105 @@ public class ItemBoughtDateValidatorTest {
      */
     @Test
     public void isDateWithinValidBounds() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-
         // Test Year
-        assertFalse(ItemBoughtDateValidator.isYearLessThanMinYear(LocalDate.parse("1900-01-01", formatter)));
-        assertFalse(ItemBoughtDateValidator.isYearMoreThanMaxYear(LocalDate.parse("2300-01-01", formatter)));
-        assertTrue(ItemBoughtDateValidator.isYearLessThanMinYear(LocalDate.parse("1899-01-01", formatter)));
-        assertTrue(ItemBoughtDateValidator.isYearMoreThanMaxYear(LocalDate.parse("2301-01-01", formatter)));
+        ItemBoughtDateValidator.validate("01-01-1900"); // Lower Bound
+        ItemBoughtDateValidator.validate("01-01-2300"); // Upper Bound
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-01-1899"),
+                MESSAGE_FOR_YEAR_TOO_SMALL); // Below Lower Bound
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-01-2301"),
+                MESSAGE_FOR_YEAR_TOO_LARGE); // Above Upper Bound
 
         // Test Month
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-01")); // Lower Bound
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-12-01")); // Upper Bound
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-06-01")); // Middle
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-00-01")); // Below Lower Bound
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-13-01")); // Above Upper Bound
+        ItemBoughtDateValidator.validate("01-01-2000"); // Lower Bound
+        ItemBoughtDateValidator.validate("01-12-2000"); // Upper Bound
+        ItemBoughtDateValidator.validate("01-06-2000"); // Middle
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-00-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // Below Lower Bound
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-13-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // Above Upper Bound
 
         // Test Days - Lower Bound
         // Positive Cases
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-01"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-02-01"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-03-01"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-04-01"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-05-01"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-06-01"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-07-01"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-08-01"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-09-01"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-10-01"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-11-01"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-12-01"));
+        ItemBoughtDateValidator.validate("01-01-2000");
+        ItemBoughtDateValidator.validate("01-02-2000");
+        ItemBoughtDateValidator.validate("01-03-2000");
+        ItemBoughtDateValidator.validate("01-04-2000");
+        ItemBoughtDateValidator.validate("01-05-2000");
+        ItemBoughtDateValidator.validate("01-06-2000");
+        ItemBoughtDateValidator.validate("01-07-2000");
+        ItemBoughtDateValidator.validate("01-08-2000");
+        ItemBoughtDateValidator.validate("01-09-2000");
+        ItemBoughtDateValidator.validate("01-10-2000");
+        ItemBoughtDateValidator.validate("01-11-2000");
+        ItemBoughtDateValidator.validate("01-12-2000");
 
         // Negative Cases
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-02-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-03-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-04-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-05-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-06-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-07-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-08-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-09-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-10-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-11-00"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-12-00"));
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-02-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-03-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-04-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-05-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-06-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-07-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-08-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-09-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-10-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-11-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-12-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
 
         // Test Days - Upper Bound
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-31"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2001-02-28")); // February Non-Leap Year
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2004-02-29")); // February Leap Year
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-03-31"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-04-30"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-05-31"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-06-30"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-07-31"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-08-31"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-09-30"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-10-31"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-11-30"));
-        assertTrue(ItemBoughtDateValidator.isParsableItemDatetime("2000-12-31"));
+        ItemBoughtDateValidator.validate("31-01-2000");
+        ItemBoughtDateValidator.validate("28-02-2001"); // February Non-Leap Year
+        ItemBoughtDateValidator.validate("29-02-2004"); // February Leap Year
+        ItemBoughtDateValidator.validate("31-03-2000");
+        ItemBoughtDateValidator.validate("30-04-2000");
+        ItemBoughtDateValidator.validate("31-05-2000");
+        ItemBoughtDateValidator.validate("30-06-2000");
+        ItemBoughtDateValidator.validate("31-07-2000");
+        ItemBoughtDateValidator.validate("31-08-2000");
+        ItemBoughtDateValidator.validate("30-09-2000");
+        ItemBoughtDateValidator.validate("31-10-2000");
+        ItemBoughtDateValidator.validate("30-11-2000");
+        ItemBoughtDateValidator.validate("31-12-2000");
 
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-01-32"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2001-02-29")); // February Non-Leap Year
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2004-02-30")); // February Leap Year
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-03-32"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-04-31"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-05-32"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-06-31"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-07-32"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-08-32"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-09-31"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-10-32"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-11-31"));
-        assertFalse(ItemBoughtDateValidator.isParsableItemDatetime("2000-12-32"));
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("29-02-2001"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // February Non-Leap Year
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("30-02-2004"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // February Leap Year
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-03-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("31-04-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-05-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("31-06-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-07-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-08-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("31-09-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-10-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("31-11-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+        assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-12-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
 
     }
 }
