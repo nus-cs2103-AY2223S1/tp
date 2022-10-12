@@ -84,6 +84,21 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Stores the current state of the address book.
+     */
+    void commitAddressBook();
+
+    /**
+     * Undoes changes to the address book.
+     */
+    void undoAddressBook();
+
+    /**
+     * Returns a boolean that indicates whether the address book can be undone.
+     */
+    boolean canUndoAddressBook();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
