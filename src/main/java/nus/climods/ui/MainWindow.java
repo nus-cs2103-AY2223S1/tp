@@ -126,16 +126,15 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() throws ParseException{
+    void fillInnerParts() throws ParseException {
         modulesPane = new SplitPane();
-
         ModuleListPanel moduleListPanel = new ModuleListPanel(logic.getModuleList().getModules());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        savedModuleListPanel = new SavedModuleListPanel(logic.getUserModuleList());
+        savedModuleListPanel = new SavedModuleListPanel(logic.getFilteredUserModuleList());
         savedModuleListPanelPlaceholder.getChildren().add(savedModuleListPanel.getRoot());
 
         modulesPane.getItems().addAll(moduleListPanelPlaceholder, savedModuleListPanelPlaceholder);
