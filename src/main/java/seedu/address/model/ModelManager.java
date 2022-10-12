@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final MeetingList meetingList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Meeting> filteredMeetings;
@@ -30,20 +31,21 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingList meetingList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, meetingList, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.meetingList = new MeetingList(meetingList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
+        filteredMeetings = new FilteredList<>(this.meetingList.getMeetingList());
 
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new MeetingList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -136,6 +138,16 @@ public class ModelManager implements Model {
     //=========== Meetings ================================================================================
 
     @Override
+    public void setMeetingList(ReadOnlyMeetingList meetingList) {
+        this.meetingList.resetData(meetingList);
+    }
+
+    @Override
+    public ReadOnlyMeetingList getMeetingList() {
+        return meetingList;
+    }
+
+    @Override
     public Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
                                     String meetingDateAndTime, String meetingLocation) throws ParseException {
         return new Meeting(peopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
@@ -143,7 +155,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addMeeting(Meeting newMeeting) {
-        addressBook.addMeeting(newMeeting);
+        meetingList.addMeeting(newMeeting);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -154,7 +166,7 @@ public class ModelManager implements Model {
     }
 
     public void deleteMeeting(Meeting target) {
-        addressBook.removeMeeting(target);
+        meetingList.removeMeeting(target);
     }
 
     @Override
@@ -179,8 +191,10 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
+                && meetingList.equals(other.meetingList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredMeetings.equals(other.filteredMeetings);
     }
 
 }

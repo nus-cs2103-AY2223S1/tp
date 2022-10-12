@@ -150,10 +150,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    @Override
-    public ObservableList<Meeting> getMeetingList() {
-        return meetings.asUnmodifiableObservableList();
-    }
+//    @Override
+//    public ObservableList<Meeting> getMeetingList() {
+//        return meetings.asUnmodifiableObservableList();
+//    }
 
     @Override
     public boolean equals(Object other) {

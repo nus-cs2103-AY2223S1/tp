@@ -128,4 +128,8 @@ public interface Model {
 
     void deleteMeeting(Meeting target);
 
+    void setMeetingList(ReadOnlyMeetingList meetingList);
+
+    ReadOnlyMeetingList getMeetingList();
+
 }

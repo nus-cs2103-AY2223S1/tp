@@ -40,7 +40,7 @@ public class Meeting {
      * @param meetingLocation the location of the meeting
      */
     public Meeting(ArrayList<Person> peopleToMeet, String meetingTitle,
-        String meetingDateAndTime, String meetingLocation) throws ParseException {
+            String meetingDateAndTime, String meetingLocation) throws ParseException {
         this.peopleToMeet.setPersons(peopleToMeet);
         this.meetingDescription = meetingTitle;
         this.meetingDateAndTime = validator.processDateTime(meetingDateAndTime);
@@ -123,6 +123,10 @@ public class Meeting {
 
     public String getDescription() {
         return meetingDescription;
+    }
+
+    public String getLocation() {
+        return meetingLocation;
     }
     /**
      * Returns true if both meetings include the same person to meet
