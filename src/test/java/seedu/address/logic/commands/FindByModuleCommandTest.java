@@ -26,6 +26,9 @@ import seedu.address.model.person.Person;
  * Contains integration tests (interaction with the model) for {@code FindByModuleCommand}.
  */
 public class FindByModuleCommandTest {
+    private Model model = new ModelManager(getTestTaAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTestTaAddressBook(), new UserPrefs());
+
     private List<Person> testTaList = Arrays.asList(IDA, HOON, JACKSON);
 
     private AddressBook getTestTaAddressBook() {
@@ -35,9 +38,6 @@ public class FindByModuleCommandTest {
         }
         return testTaAddressBook;
     }
-
-    private Model model = new ModelManager(getTestTaAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTestTaAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
