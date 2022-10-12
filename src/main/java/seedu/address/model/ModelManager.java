@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -158,16 +159,17 @@ public class ModelManager implements Model {
      */
     public void editTagTypeForAllPerson(TagType toEdit, TagType editTo) {
         List<Person> personList = addressBook.getPersonList();
+        List<Person> updatedPersonList = new ArrayList<>();
         for (Person p: personList) {
             UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
             if (p.getTags().keySet().contains(toEdit)) {
                 tagTypeMap.setTagTypeMap(p.getTags());
                 tagTypeMap.setTagType(toEdit, editTo);
                 p.setTagTypeMap(tagTypeMap);
-                System.out.println("fmr" + p.getTags());
             }
+            updatedPersonList.add(p);
         }
-        System.out.println(personList.get(0).getTags());
+        addressBook.setPersons(updatedPersonList);
     }
 
     @Override
