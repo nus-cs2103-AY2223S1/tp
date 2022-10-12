@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.student.exceptions.DuplicateStudentException;
 import seedu.address.model.person.student.exceptions.StudentNotFoundException;
 
@@ -55,7 +54,7 @@ public class UniqueStudentList implements Iterable<Student> {
         }
 
         if (!target.isSamePerson(editedStudent) && contains(editedStudent)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateStudentException();
         }
 
         internalList.set(index, editedStudent);
