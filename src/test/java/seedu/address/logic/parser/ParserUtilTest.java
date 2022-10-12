@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Record;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,6 +27,8 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_RECORD_DATE = "99-99-99";
+    private static final String INVALID_RECORD_DATA = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +36,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_RECORD_DATE = "02-03-2024 1230";
+    private static final String VALID_RECORD_DATA = "fever";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +197,39 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseRecord_nullRecordDate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRecord((String) null, VALID_RECORD_DATA));
+    }
+
+    @Test
+    public void parseRecord_nullRecordData_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRecord(VALID_RECORD_DATE, (String) null));
+    }
+
+    @Test
+    public void parseRecord_invalidRecordDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRecord(INVALID_RECORD_DATE, VALID_RECORD_DATA));
+    }
+
+    @Test
+    public void parseRecord_invalidRecordData_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRecord(VALID_RECORD_DATE, INVALID_RECORD_DATA));
+    }
+
+    @Test
+    public void parseRecord_validValuesWithoutWhitespace_returnsRecord() throws Exception {
+        Record expectedRecord = new Record(VALID_RECORD_DATE, VALID_RECORD_DATA);
+        assertEquals(expectedRecord, ParserUtil.parseRecord(VALID_RECORD_DATE, VALID_RECORD_DATA));
+    }
+
+    @Test
+    public void parseRecord_validValuesWithWhitespace_returnsTrimmedRecord() throws Exception {
+        String recordDateWithWhitespace = WHITESPACE + VALID_RECORD_DATE + WHITESPACE;
+        String recordDataWithWhitespace = WHITESPACE + VALID_RECORD_DATA + WHITESPACE;
+        Record expectedRecord = new Record(VALID_RECORD_DATE, VALID_RECORD_DATA);
+        assertEquals(expectedRecord, ParserUtil.parseRecord(recordDateWithWhitespace, recordDataWithWhitespace));
     }
 }

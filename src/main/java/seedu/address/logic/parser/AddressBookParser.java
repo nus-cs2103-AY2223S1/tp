@@ -82,7 +82,6 @@ public class AddressBookParser {
         case FindRecordCommand.COMMAND_WORD:
             return new FindRecordCommandParser().parse(arguments);
 
-
         case ClearRecordCommand.COMMAND_WORD:
             return new ClearRecordCommand();
 
