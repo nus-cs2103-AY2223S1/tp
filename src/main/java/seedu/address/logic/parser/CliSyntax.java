@@ -14,7 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_TEAM_NAME = new Prefix("teamname/");
     public static final Prefix PREFIX_TEAM_INDEX = new Prefix("t/");
-    public static final Prefix PREFIX_TASK_NAME = new Prefix("taskname/");
+    public static final Prefix PREFIX_TASK_NAME = new Prefix("n/");
     public static final Prefix PREFIX_TASK_INDEX = new Prefix("task/");
 
 }
