@@ -112,6 +112,12 @@ Returns a link to FRIDAY's User Guide.
 
 Format: `guide`
 
+### Getting help: `help`
+
+Shows a summary of commands along with their command word. Also includes a link to FRIDAY's user guide.
+
+Format: `help`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -122,9 +128,10 @@ Format: `guide`
 
 | Action                           | Format                                                                                                        |
 |----------------------------------|---------------------------------------------------------------------------------------------------------------|
-| **Add a student**                | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`                                 |
+| **Add a student**                | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`                    |
 | **Delete a student**             | `delete i/INDEX`                                                                                              |
 | **Edit a student's details**     | `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]` |
 | **View all students**            | `list`                                                                                                        |
 | **Find a student's details**     | `find s/STUDENT_NAME`                                                                                         |
 | **Get a link to the User Guide** | `guide`                                                                                                       |
+| **Getting Help**                 | `help`                                                                                                        |
