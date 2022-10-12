@@ -1,10 +1,10 @@
-package seedu.address.model.item.validators;
+package seedu.foodrem.model.item.itemvalidators;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import static seedu.foodrem.model.item.itemvalidators.ItemExpiryDateValidator.MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE;
+import static seedu.foodrem.model.item.itemvalidators.ItemExpiryDateValidator.MESSAGE_FOR_YEAR_TOO_LARGE;
+import static seedu.foodrem.model.item.itemvalidators.ItemExpiryDateValidator.MESSAGE_FOR_YEAR_TOO_SMALL;
+import static seedu.foodrem.model.item.itemvalidators.ItemValidatorUtilTest.assertValidateFailure;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,43 +15,75 @@ public class ItemExpiryDateValidatorTest {
      */
     @Test
     public void isValidFormat() {
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-01"));
+        ItemExpiryDateValidator.validate("01-01-2000");
 
-        // Delimiters
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000/01/01")); // Wrong delimiter 1
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000.01.01")); // Wrong delimiter 2
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("20000101")); // Missing delimiter 1
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("200001-01")); // Missing delimiter 2
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-0101")); // Missing delimiter 3
+        // Wrong Delimiters
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01/01/2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01.01.2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01012000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-012000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("0101-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
 
         // Whitespace
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000 01 01"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime(" 2000-01-01"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-01 "));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime(" 2000-01-01 "));
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01 01 2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate(" 01-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("2000-01-01 "),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate(" 01-01-2000 "),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
 
-        // Wrong Datetime Format
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-1")); // Wrong Day
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-1-01")); // Wrong Month
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("200-01-01")); // Wrong Year
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("00-01-01"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("0-01-01"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-")); // Missing Day
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000--01")); // Missing Month
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("-01-01")); // Missing Year
+        // Wrong Datetime Formats
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("1-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE); // Wrong Day
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-1-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE); // Wrong Month
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-01-200"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE); // Wrong Year
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-01-00"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-01-0"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-01-0"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE); // Missing Day
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01--2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE); // Missing Month
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-01-"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE); // Missing Year
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("2000-01-01"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE); // Reversed Datetime Format
 
         // Wrong characters
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime(""));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("a"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("a-01-01"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-a-01"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-a"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("á-01-01"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-á-01"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-á"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("你-01-01"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-你-01"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-你"));
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate(""),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("a"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-01-a"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-a-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-01-a"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-01-á"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-á-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("á-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-01-你"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-你-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("你-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
     }
 
 
@@ -60,79 +92,105 @@ public class ItemExpiryDateValidatorTest {
      */
     @Test
     public void isDateWithinValidBounds() {
-        // Year Format: dd-MM-YYYY
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-
         // Test Year
-        assertFalse(ItemExpiryDateValidator.isYearLessThanMinYear(LocalDate.parse("1900-01-01", formatter)));
-        assertFalse(ItemExpiryDateValidator.isYearMoreThanMaxYear(LocalDate.parse("2300-01-01", formatter)));
-        assertTrue(ItemExpiryDateValidator.isYearLessThanMinYear(LocalDate.parse("1899-01-01", formatter)));
-        assertTrue(ItemExpiryDateValidator.isYearMoreThanMaxYear(LocalDate.parse("2301-01-01", formatter)));
+        ItemExpiryDateValidator.validate("01-01-1900"); // Lower Bound
+        ItemExpiryDateValidator.validate("01-01-2300"); // Upper Bound
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-01-1899"),
+                MESSAGE_FOR_YEAR_TOO_SMALL); // Below Lower Bound
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-01-2301"),
+                MESSAGE_FOR_YEAR_TOO_LARGE); // Above Upper Bound
 
         // Test Month
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-01")); // Lower Bound
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-12-01")); // Upper Bound
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-06-01")); // Middle
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-00-01")); // Below Lower Bound
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-13-01")); // Above Upper Bound
+        ItemExpiryDateValidator.validate("01-01-2000"); // Lower Bound
+        ItemExpiryDateValidator.validate("01-12-2000"); // Upper Bound
+        ItemExpiryDateValidator.validate("01-06-2000"); // Middle
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-00-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE); // Below Lower Bound
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("01-13-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE); // Above Upper Bound
 
         // Test Days - Lower Bound
         // Positive Cases
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-01"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-02-01"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-03-01"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-04-01"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-05-01"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-06-01"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-07-01"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-08-01"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-09-01"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-10-01"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-11-01"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-12-01"));
+        ItemExpiryDateValidator.validate("01-01-2000");
+        ItemExpiryDateValidator.validate("01-02-2000");
+        ItemExpiryDateValidator.validate("01-03-2000");
+        ItemExpiryDateValidator.validate("01-04-2000");
+        ItemExpiryDateValidator.validate("01-05-2000");
+        ItemExpiryDateValidator.validate("01-06-2000");
+        ItemExpiryDateValidator.validate("01-07-2000");
+        ItemExpiryDateValidator.validate("01-08-2000");
+        ItemExpiryDateValidator.validate("01-09-2000");
+        ItemExpiryDateValidator.validate("01-10-2000");
+        ItemExpiryDateValidator.validate("01-11-2000");
+        ItemExpiryDateValidator.validate("01-12-2000");
 
         // Negative Cases
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-00"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-02-00"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-03-00"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-04-00"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-05-00"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-06-00"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-07-00"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-08-00"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-09-00"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-10-00"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-11-00"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-12-00"));
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-02-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-03-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-04-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-05-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-06-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-07-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-08-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-09-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-10-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-11-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("00-12-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
 
         // Test Days - Upper Bound
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-31"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2001-02-28")); // February Non-Leap Year
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2004-02-29")); // February Leap Year
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-03-31"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-04-30"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-05-31"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-06-30"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-07-31"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-08-31"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-09-30"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-10-31"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-11-30"));
-        assertTrue(ItemExpiryDateValidator.isParsableItemDatetime("2000-12-31"));
+        ItemExpiryDateValidator.validate("31-01-2000");
+        ItemExpiryDateValidator.validate("28-02-2001"); // February Non-Leap Year
+        ItemExpiryDateValidator.validate("29-02-2004"); // February Leap Year
+        ItemExpiryDateValidator.validate("31-03-2000");
+        ItemExpiryDateValidator.validate("30-04-2000");
+        ItemExpiryDateValidator.validate("31-05-2000");
+        ItemExpiryDateValidator.validate("30-06-2000");
+        ItemExpiryDateValidator.validate("31-07-2000");
+        ItemExpiryDateValidator.validate("31-08-2000");
+        ItemExpiryDateValidator.validate("30-09-2000");
+        ItemExpiryDateValidator.validate("31-10-2000");
+        ItemExpiryDateValidator.validate("30-11-2000");
+        ItemExpiryDateValidator.validate("31-12-2000");
 
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-01-32"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2001-02-29")); // February Non-Leap Year
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2004-02-30")); // February Leap Year
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-03-32"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-04-31"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-05-32"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-06-31"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-07-32"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-08-32"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-09-31"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-10-32"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-11-31"));
-        assertFalse(ItemExpiryDateValidator.isParsableItemDatetime("2000-12-32"));
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("32-01-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("29-02-2001"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE); // February Non-Leap Year
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("30-02-2004"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE); // February Leap Year
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("32-03-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("31-04-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("32-05-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("31-06-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("32-07-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("32-08-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("31-09-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("32-10-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("31-11-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertValidateFailure(() -> ItemExpiryDateValidator.validate("32-12-2000"),
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
 
     }
 }
