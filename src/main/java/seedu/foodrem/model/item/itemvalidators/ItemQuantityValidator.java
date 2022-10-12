@@ -61,7 +61,7 @@ public class ItemQuantityValidator implements Validator {
         if (!itemQuantityString.contains(DECIMAL_POINT)) {
             return false;
         }
-        int numberOfDecimalPoints = itemQuantityString.length() - itemQuantityString.indexOf(DECIMAL_POINT);
+        int numberOfDecimalPoints = itemQuantityString.length() - itemQuantityString.indexOf(DECIMAL_POINT) - 1;
         return numberOfDecimalPoints > MAX_DECIMAL_PLACE;
     }
 

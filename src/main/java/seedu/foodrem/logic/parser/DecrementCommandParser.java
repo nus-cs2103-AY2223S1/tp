@@ -31,12 +31,16 @@ public class DecrementCommandParser implements Parser<DecrementCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecrementCommand.MESSAGE_USAGE), pe);
         }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_QUANTITY)
-                || argMultimap.getPreamble().isEmpty()) {
+        // Default decrement by 1 if PREFIX_ITEM_QUANTITY not provided
+        ItemQuantity decrementQuantity = ParserUtil.parseQuantity("1");
+
+        if (argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecrementCommand.MESSAGE_USAGE));
         }
 
-        ItemQuantity decrementQuantity = ParserUtil.parseQuantity(argMultimap.getPresentValue(PREFIX_ITEM_QUANTITY));
+        if (arePrefixesPresent(argMultimap, PREFIX_ITEM_QUANTITY)) {
+            decrementQuantity = ParserUtil.parseQuantity(argMultimap.getPresentValue(PREFIX_ITEM_QUANTITY));
+        }
 
         return new DecrementCommand(index, decrementQuantity);
     }
