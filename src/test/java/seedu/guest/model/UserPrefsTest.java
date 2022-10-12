@@ -60,7 +60,7 @@ public class UserPrefsTest {
     }
 
     @Test
-    public void hashCodeTest() {
+    public void hashcode() {
         UserPrefs userPref = new UserPrefs();
 
         // same object -> returns true
