@@ -16,20 +16,21 @@ import org.junit.jupiter.api.Test;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
-import jeryl.fyp.model.student.Phone;
+import jeryl.fyp.model.student.ProjectName;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_STUDENT_ID = "A012T456X";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_PROJECT_NAME = "@CSSE$";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_STUDENT_ID = "A0123456X";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_PROJECT_NAME = "CSSE test";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -79,26 +80,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseStudentId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStudentId((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseStudentId_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudentId(INVALID_STUDENT_ID));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseStudentId_validValueWithoutWhitespace_returnsStudentId() throws Exception {
+        StudentId expectedStudentId = new StudentId(VALID_STUDENT_ID);
+        assertEquals(expectedStudentId, ParserUtil.parseStudentId(VALID_STUDENT_ID));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseStudentId_validValueWithWhitespace_returnsTrimmedStudentId() throws Exception {
+        String studentIdWithWhitespace = WHITESPACE + VALID_STUDENT_ID + WHITESPACE;
+        StudentId expectedStudentId = new StudentId(VALID_STUDENT_ID);
+        assertEquals(expectedStudentId, ParserUtil.parseStudentId(studentIdWithWhitespace));
     }
 
     @Test
@@ -122,6 +123,29 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseProjectName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseProjectName((String) null));
+    }
+
+    @Test
+    public void parseProjectName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseProjectName(INVALID_PROJECT_NAME));
+    }
+
+    @Test
+    public void parseProjectName_validValueWithoutWhitespace_returnsProjectName() throws Exception {
+        ProjectName expectedProjectName = new ProjectName(VALID_PROJECT_NAME);
+        assertEquals(expectedProjectName, ParserUtil.parseProjectName(VALID_PROJECT_NAME));
+    }
+
+    @Test
+    public void parseProjectName_validValueWithWhitespace_returnsTrimmedProjectName() throws Exception {
+        String projectNameWithWhitespace = WHITESPACE + VALID_PROJECT_NAME + WHITESPACE;
+        ProjectName expectedProjectName = new ProjectName(VALID_PROJECT_NAME);
+        assertEquals(expectedProjectName, ParserUtil.parseProjectName(projectNameWithWhitespace));
     }
 
     @Test

@@ -2,6 +2,7 @@ package jeryl.fyp.model.student;
 
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jeryl.fyp.testutil.Assert.assertThrows;
@@ -32,7 +33,7 @@ public class StudentTest {
 
         // same name, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withProjectName(VALID_PROJECT_NAME_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -77,6 +78,10 @@ public class StudentTest {
 
         // different email -> returns false
         editedAlice = new StudentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different project name -> returns false
+        editedAlice = new StudentBuilder(ALICE).withProjectName(VALID_PROJECT_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
