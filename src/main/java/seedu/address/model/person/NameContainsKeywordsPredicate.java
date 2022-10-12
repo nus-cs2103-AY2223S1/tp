@@ -17,16 +17,29 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
+
+        boolean isPerson = false;
+
+        if (person.getPhone() != null) {
+            isPerson = isPerson || keywords.stream().anyMatch
+                    (keyword -> StringUtil.containsPartialWordIgnoreCase(person.getPhone().toString(), keyword));
+        }
+
+        if (person.getEmail() != null) {
+            isPerson = isPerson || keywords.stream().anyMatch
+                    (keyword -> StringUtil.containsPartialWordIgnoreCase(person.getEmail().toString(), keyword));
+        }
+
+        if (person.getGitHub() != null) {
+            isPerson = isPerson || keywords.stream().anyMatch
+                    (keyword -> StringUtil.containsPartialWordIgnoreCase(person.getGitHub().username, keyword));
+        }
+
+        return isPerson
+                || keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword))
                 || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(person.getPhone().toString(), keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(person.getEmail().toString(), keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(person.getTelegram().toString(), keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(person.getGitHub().username, keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(person.getTelegram().toString(), keyword));
     }
 
     @Override
