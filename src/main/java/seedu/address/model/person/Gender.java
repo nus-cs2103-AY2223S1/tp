@@ -12,7 +12,7 @@ import java.util.Set;
  * Represents a Person's gender in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
-public class Gender {
+public class Gender implements Comparable<Gender> {
 
     public static final String MESSAGE_CONSTRAINTS = "Gender is an optional field, it should be one of the following"
         + " format: m, f, M, F, male, female, Male, Female";
@@ -43,9 +43,11 @@ public class Gender {
     public static boolean isValidGender(String test) {
         return VALID_GENDERS.contains(test);
     }
+
     /**
      * Returns if a given string is a valid gender.
      * This method is an overloaded gender validity check method.
+     *
      * @param test string containing gender.
      * @param isNaAllowed boolean value, true represents NA value is considered a valid gender, false otherwise.
      */
@@ -56,9 +58,11 @@ public class Gender {
             return VALID_GENDERS.contains(test) && !test.equals(NO_GENDER.toString());
         }
     }
+
     /**
      * Returns if a given gender is a valid gender.
      * This method is an overloaded gender validity check method.
+     *
      * @param test a gender object.
      * @param isNaAllowed boolean value, true represents NA value is considered a valid gender, false otherwise.
      */
@@ -69,9 +73,21 @@ public class Gender {
             return !test.equals(Gender.getNoGender());
         }
     }
+
     public static Gender getNoGender() {
         return new Gender(NO_GENDER);
     }
+
+    /**
+     * Compares this object with the given object for order.
+     * Genders are ordered in the following manner:
+     * NO_GENDER, FEMALE, MALE
+     */
+    @Override
+    public int compareTo(Gender g) {
+        return this.value.compareTo(g.value);
+    }
+
     @Override
     public String toString() {
         return value.toString();

@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SortField;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,6 +35,25 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String sortFieldLetter} into a {@code SortField}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param sortFieldLetter A valid sort field letter.
+     * @return {@code SortField} representing the sort field letter.
+     * @throws ParseException if the given {@code sortFieldLetter} is invalid.
+     */
+    public static SortField parseSortField(String sortFieldLetter) throws ParseException {
+        requireNonNull(sortFieldLetter);
+        String trimmedSortFieldLetter = sortFieldLetter.trim();
+
+        if (!SortField.isValidSortField(trimmedSortFieldLetter)) {
+            throw new ParseException(SortField.MESSAGE_CONSTRAINTS);
+        }
+
+        return SortField.createSortField(trimmedSortFieldLetter);
     }
 
     /**
