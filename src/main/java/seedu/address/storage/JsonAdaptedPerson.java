@@ -46,10 +46,11 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address, @JsonProperty("clazz") String clazz,
-            @JsonProperty("personality") String personality, @JsonProperty("attendance") String attendance,
-            @JsonProperty("subject") String subject, @JsonProperty("grade") String grade,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("clazz") String clazz, @JsonProperty("personality") String personality,
+                             @JsonProperty("attendance") String attendance,
+                             @JsonProperty("subject") String subject, @JsonProperty("grade") String grade,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -132,7 +133,8 @@ class JsonAdaptedPerson {
 
 
         if (personality == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Personality.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Personality.class.getSimpleName()));
         }
 
 
@@ -142,7 +144,8 @@ class JsonAdaptedPerson {
         final Personality modelPersonality = new Personality(personality);
 
         if (attendance == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Attendance.class.getSimpleName()));
         }
         final Attendance modelAttendance = new Attendance(attendance);
 
@@ -155,13 +158,14 @@ class JsonAdaptedPerson {
         final Subject modelSubject = new Subject(subject);
 
         if (grade == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Grade.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Grade.class.getSimpleName()));
         }
         final Grade modelGrade = new Grade(grade);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClazz, modelPersonality, modelAttendance,
-                modelSubject, modelGrade, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClazz,
+                modelPersonality, modelAttendance, modelSubject, modelGrade, modelTags);
     }
 
 }

@@ -1,10 +1,15 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
+
+
+
+/**
+ * Represents a subject taken by the student
+ */
 public class Subject {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -18,9 +23,9 @@ public class Subject {
 
     public final String subjectName;
 
-    public ArrayList<String> allSubjectsTaken;
+    private ArrayList<String> allSubjectsTaken;
 
-    public Grade grades;
+    private Grade grades;
 
     /**
      * Constructs a {@code Subject}.
@@ -42,6 +47,10 @@ public class Subject {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Adds a subject to the list of subjects taken by the student
+     * @param subject the subject to be added
+     */
     public void add(String subject) {
         if (!allSubjectsTaken.contains(subject)) {
             allSubjectsTaken.add(subject);

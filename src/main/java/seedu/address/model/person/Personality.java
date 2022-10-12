@@ -1,10 +1,13 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
+
+/**
+ * Represents a word describing the personality of the student
+ */
 public class Personality {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -15,11 +18,11 @@ public class Personality {
      * otherwise " " (a blank string) becomes a valid input.
      */
 
-    public static final String VALIDATION_REGEX = "^[a-zA-Z]*$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z][a-zA-Z\\s]+$";
 
     public final String personPersonality;
 
-    public ArrayList<String> arrayOfPersonalities;
+    private ArrayList<String> arrayOfPersonalities;
 
     /**
      * Constructs a {@code Personality}.
@@ -41,6 +44,10 @@ public class Personality {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Adds a personality to the student's personality list
+     * @param personality a word or phrase describing the student's personality
+     */
     public void add(String personality) {
         if (!arrayOfPersonalities.contains(personality)) {
             arrayOfPersonalities.add(personality);

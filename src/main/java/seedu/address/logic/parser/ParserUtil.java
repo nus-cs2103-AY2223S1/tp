@@ -109,6 +109,9 @@ public class ParserUtil {
     public static Clazz parseClazz(String clazz) throws ParseException {
         requireNonNull(clazz);
         String trimmedClazz = clazz.trim();
+        if (!Clazz.isValidClazz(trimmedClazz)) {
+            throw new ParseException(Clazz.MESSAGE_CONSTRAINTS);
+        }
         return new Clazz(trimmedClazz);
     }
 
@@ -121,7 +124,7 @@ public class ParserUtil {
     public static Personality parsePersonality(String personality) throws ParseException {
         requireNonNull(personality);
         String trimmedPersonality = personality.trim();
-        if (!Email.isValidEmail(trimmedPersonality)) {
+        if (!Personality.isValidPersonality(trimmedPersonality)) {
             throw new ParseException(Personality.MESSAGE_CONSTRAINTS);
         }
         return new Personality(trimmedPersonality);
@@ -136,7 +139,7 @@ public class ParserUtil {
     public static Attendance parseAttendance(String attendanceCommand) throws ParseException {
         requireNonNull(attendanceCommand);
         String trimmedAttendance = attendanceCommand.trim();
-        if (!Email.isValidEmail(trimmedAttendance)) {
+        if (!Attendance.isValidAttendance(trimmedAttendance)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
         return new Attendance(attendanceCommand);
@@ -151,7 +154,7 @@ public class ParserUtil {
     public static Subject parseSubject(String subject) throws ParseException {
         requireNonNull(subject);
         String trimmedSubject = subject.trim();
-        if (!Email.isValidEmail(trimmedSubject)) {
+        if (!Subject.isValidSubject(trimmedSubject)) {
             throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
         }
         return new Subject(trimmedSubject);
@@ -166,7 +169,7 @@ public class ParserUtil {
     public static Grade parseGrade(String gradeCommand) throws ParseException {
         requireNonNull(gradeCommand);
         String trimmedGrade = gradeCommand.trim();
-        if (!Email.isValidEmail(trimmedGrade)) {
+        if (!Grade.isValidGrade(trimmedGrade)) {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
         return new Grade(gradeCommand);

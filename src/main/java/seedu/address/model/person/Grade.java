@@ -1,18 +1,21 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Represents the grades of a student stored by subject
+ */
 public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Grades should only contain an alphabet, and it should not be blank";
 
-    public HashMap<String, double[]> marks;
+    private HashMap<String, double[]> marks;
 
-    public String todoCommand;
+    private String todoCommand;
 
     /**
      * Constructs a {@code Grade}.
@@ -34,6 +37,10 @@ public class Grade {
             totalWeightage += totalMarksArray.get(i)[1];
         }
         return (totalMarks / totalWeightage);
+    }
+
+    public static boolean isValidGrade(String test) {
+        return true;
     }
 
     @Override
