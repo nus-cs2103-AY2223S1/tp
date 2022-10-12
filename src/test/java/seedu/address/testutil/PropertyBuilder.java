@@ -5,9 +5,9 @@ import java.util.Set;
 
 import seedu.address.model.address.Address;
 import seedu.address.model.property.Description;
-import seedu.address.model.property.PropertyName;
 import seedu.address.model.property.Price;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,7 +21,6 @@ public class PropertyBuilder {
     public static final String DEFAULT_ADDRESS = "333 Thompson Road";
     public static final String DEFAULT_DESCRIPTION = "A 5-storey condo on top of a hill - "
             + "Peak Residence offers you serenity away from the hustle and bustle with breathtaking views all around.";
-
 
     private PropertyName name;
     private Price price;
