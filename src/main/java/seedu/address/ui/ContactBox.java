@@ -7,9 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.contact.Contact;
-import seedu.address.model.person.contact.ContactType;
-
-import java.util.Locale;
 
 /**
  * Container for all the contact addresses of the Contact.
