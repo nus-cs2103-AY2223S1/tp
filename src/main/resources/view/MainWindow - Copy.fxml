@@ -28,7 +28,7 @@
             <URL value="@Fonts.css" />
       </stylesheets>
 
-            <VBox prefHeight="600.0" prefWidth="600.0">
+      <VBox prefHeight="600.0" prefWidth="600.0">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -70,7 +70,7 @@
               </rowConstraints>
                <children>
       
-                                <VBox fx:id="personList" alignment="CENTER" minHeight="215.0" prefHeight="215.0" prefWidth="278.0" styleClass="pane-with-border">
+                          <VBox fx:id="personList" alignment="CENTER" minHeight="215.0" prefHeight="215.0" prefWidth="278.0" styleClass="pane-with-border">
                 <padding>
                   <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
                 </padding>
@@ -79,22 +79,12 @@
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
-                           <stylesheets>
-                              <URL value="@Fonts.css" />
-                              <URL value="@DarkTheme.css" />
-                              <URL value="@Extensions.css" />
-                           </stylesheets>
                         </StackPane>
                      </children>
               </VBox>
                   <VBox fx:id="outputList" prefHeight="398.0" prefWidth="296.0" styleClass="pane-with-border" GridPane.columnIndex="1">
                      <children>
-                        <StackPane fx:id="outputPanelPlaceholder" prefHeight="379.0" prefWidth="250.0">
-                           <stylesheets>
-                              <URL value="@DarkTheme.css" />
-                              <URL value="@Extensions.css" />
-                              <URL value="@Fonts.css" />
-                           </stylesheets></StackPane>
+                        <StackPane fx:id="outputPanelPlaceholder" prefHeight="379.0" prefWidth="250.0" />
                      </children>
                   </VBox>
                </children>
@@ -103,23 +93,22 @@
                </padding>
             </GridPane>
 
-                    <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-                          <StackPane fx:id="resultDisplayPlaceholder">
+                    <StackPane fx:id="resultDisplayPlaceholder">
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
         </StackPane>
 
-                          <StackPane fx:id="statusbarPlaceholder">
+                    <StackPane fx:id="statusbarPlaceholder">
                <padding>
                   <Insets top="5.0" />
-               </padding>
-            </StackPane>
+               </padding></StackPane>
       </VBox>
     </Scene>
   </scene>

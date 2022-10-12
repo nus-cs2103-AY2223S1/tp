@@ -56,10 +56,10 @@ public class PersonCard extends UiPart<Region> {
      */
     public PersonCard(Patient person, int displayedIndex, boolean taskListFlag) {
         super(FXML);
-        cardPane.setSpacing(10);
-        cardPane.setStyle("-fx-padding: 10;" + "-fx-border-style: solid inside;"
-                + "-fx-border-width: 2;" + "-fx-border-insets: 5;"
-                + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+        cardPane.setSpacing(2);
+        cardPane.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
+                + "-fx-border-width: 2;" + "-fx-border-insets: 2;"
+                + "-fx-border-radius: 2;" + "-fx-border-color: black;");
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
@@ -71,10 +71,11 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
 
+        /*
         if (taskListFlag) {
             cardPane.getChildren().add(new TaskListCard(person.getTasks().toString()).getRoot());
         }
-
+        */
     }
 
     @Override
