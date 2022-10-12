@@ -72,8 +72,6 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
 
         appointmentList.set(indexOfAppointment.getZeroBased(), editedAppointment);
         model.setAppointment(targetAppointment, editedAppointment);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, targetPerson.getName(),
                 editedAppointment));

@@ -61,7 +61,6 @@ public class BookCommand extends Command {
         bookAppointment(appointments, appointment);
         appointment.setPatient(personToBookFor);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.addAppointment(appointment);
         return new CommandResult(String.format(MESSAGE_BOOK_APPOINTMENT_SUCCESS, personToBookFor));
     }
