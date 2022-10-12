@@ -1,4 +1,7 @@
 package seedu.address.logic.commands.ta;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -6,9 +9,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ta.TeachingAssistant;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Adds a teaching assistant to ModQuik.
+ */
 public class AddTeachingAssistantCommand extends Command {
     public static final String COMMAND_WORD = "add ta";
 

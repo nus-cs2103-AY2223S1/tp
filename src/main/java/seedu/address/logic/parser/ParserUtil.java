@@ -214,6 +214,12 @@ public class ParserUtil {
         return new TutorialTimeslot(trimmedName);
     }
 
+    /**
+     * Parses a {@code String name} into a {@code TeachingAssistantName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static TeachingAssistantName parseTeachingAssistantName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
@@ -223,6 +229,12 @@ public class ParserUtil {
         return new TeachingAssistantName(trimmedName);
     }
 
+    /**
+     * Parses a {@code String id} into a {@code TeachingAssistantId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code id} is invalid.
+     */
     public static TeachingAssistantId parseTeachingAssistantId(String id) throws ParseException {
         requireNonNull(id);
         String trimmedName = id.trim();

@@ -61,9 +61,9 @@ public class SampleDataUtil {
 
     public static TeachingAssistant[] getSampleTeachingAssistants() {
         return new TeachingAssistant[] {
-                new TeachingAssistant(new TeachingAssistantName("John"), new TeachingAssistantId("A0000000A")),
-                new TeachingAssistant(new TeachingAssistantName("Mary"), new TeachingAssistantId("A0123456B")),
-                new TeachingAssistant(new TeachingAssistantName("Tom"), new TeachingAssistantId("A0987654C")),
+            new TeachingAssistant(new TeachingAssistantName("John"), new TeachingAssistantId("A0000000A")),
+            new TeachingAssistant(new TeachingAssistantName("Mary"), new TeachingAssistantId("A0123456B")),
+            new TeachingAssistant(new TeachingAssistantName("Tom"), new TeachingAssistantId("A0987654C")),
         };
     }
 

@@ -6,6 +6,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.ta.TeachingAssistant;
 
+/**
+ * An UI component that displays information of a {@code TeachingAssistant}.
+ */
 public class TeachingAssistantCard extends UiPart<Region> {
 
     private static final String FXML = "TeachingAssistantListCard.fxml";

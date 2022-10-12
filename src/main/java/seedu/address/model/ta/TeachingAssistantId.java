@@ -3,6 +3,10 @@ package seedu.address.model.ta;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Teaching Assistant's student ID in the ModQuik.
+ * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
+ */
 public class TeachingAssistantId {
 
     public static final String MESSAGE_CONSTRAINTS =

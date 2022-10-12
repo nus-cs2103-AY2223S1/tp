@@ -1,10 +1,13 @@
 package seedu.address.model.ta;
-
-import seedu.address.model.tutorial.TutorialName;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.tutorial.TutorialName;
+
+/**
+ * Represents a Teaching Assistant's name in the ModQuik.
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ */
 public class TeachingAssistantName {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";

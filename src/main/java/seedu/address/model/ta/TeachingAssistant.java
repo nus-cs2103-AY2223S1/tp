@@ -1,9 +1,12 @@
 package seedu.address.model.ta;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+/**
+ * Represents a Teaching Assistant in the ModQuik.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class TeachingAssistant {
 
     // Identity fields

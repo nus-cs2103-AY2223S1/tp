@@ -236,7 +236,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<TeachingAssistant> getTeachingAssistantList() { return teachingAssistants.asUnmodifiableObservableList(); }
+    public ObservableList<TeachingAssistant> getTeachingAssistantList() {
+        return teachingAssistants.asUnmodifiableObservableList();
+    }
 
     @Override
     public ObservableList<Consultation> getConsultationList() {

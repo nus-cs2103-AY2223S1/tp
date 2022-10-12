@@ -10,6 +10,9 @@ import seedu.address.model.ta.TeachingAssistant;
 
 import java.util.logging.Logger;
 
+/**
+ * Panel containing the list of teaching assistants.
+ */
 public class TeachingAssistantListPanel extends UiPart<Region> {
 
     private static final String FXML = "TeachingAssistantListPanel.fxml";
