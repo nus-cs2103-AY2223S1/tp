@@ -9,9 +9,6 @@ import javafx.collections.ObservableList;
  * Used in {@code HelpWindow} for the help command.
  */
 public class CommandFormat {
-    private SimpleStringProperty command;
-    private SimpleStringProperty usage;
-
     // All basic commands below
     private static final CommandFormat ADD_COMMAND_FORMAT = new CommandFormat(
             "add",
@@ -38,7 +35,10 @@ public class CommandFormat {
             "Exits the program.",
             "exit");
 
-    // All advanced commands below
+    // All advanced commands below (currently none)
+
+    private SimpleStringProperty command;
+    private SimpleStringProperty usage;
 
     /**
      * Creates a {@code CommandFormat} object with a specified command and corresponding description, format.
