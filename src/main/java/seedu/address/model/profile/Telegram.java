@@ -20,7 +20,7 @@ public class Telegram {
     public static final String VALIDATION_REGEX = "^@[a-zA-Z](?:[a-zA-Z0-9]|_(?=[a-zA-Z0-9])){4,39}$";
     public static final Telegram EMPTY_TELEGRAM = new Telegram("");
 
-    public final String username;
+    public final String value;
 
     /**
      * Constructs a {@code Telegram}.
@@ -30,7 +30,7 @@ public class Telegram {
     public Telegram(String username) {
         requireNonNull(username);
         checkArgument(isValidTelegram(username), MESSAGE_CONSTRAINTS);
-        this.username = username;
+        value = username;
     }
 
     /**
@@ -49,19 +49,19 @@ public class Telegram {
 
     @Override
     public String toString() {
-        return this.username;
+        return this.value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Telegram // instanceof handles nulls
-                && username.toLowerCase().equals(((Telegram) other).username.toLowerCase())); // state check
+                && value.toLowerCase().equals(((Telegram) other).value.toLowerCase())); // state check
     }
 
     @Override
     public int hashCode() {
-        return username.hashCode();
+        return value.hashCode();
     }
 
 }

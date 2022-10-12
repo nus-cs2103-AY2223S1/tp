@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,11 +24,9 @@ import seedu.address.model.profile.Profile;
 public class TypicalProfiles {
 
     public static final Profile ALICE = new ProfileBuilder().withName("Alice Pauline")
-            .withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withTags("friends").build();
+            .withEmail("alice@example.com").withPhone("94351253").withTags("friends").build();
     public static final Profile BENSON = new ProfileBuilder().withName("Benson Meier")
-            .withEmail("johnd@example.com").withPhone("98765432")
+            .withEmail("johnd@example.com").withPhone("98765432").withTelegram("@benson_meier")
             .withTags("owesMoney", "friends").build();
     public static final Profile CARL = new ProfileBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").build();
@@ -47,9 +47,9 @@ public class TypicalProfiles {
 
     // Manually added - Profile's details found in {@code CommandTestUtil}
     public static final Profile AMY = new ProfileBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withEmail(VALID_EMAIL_AMY).withTelegram(VALID_TELEGRAM_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Profile BOB = new ProfileBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
