@@ -23,17 +23,35 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Status status;
+    private final Note note;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Status status) {
+        requireAllNonNull(name, phone, email, address, tags, status);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.status = status;
+        this.note = new Note("");
+    }
+
+    /**
+     * Overloaded constructor for Person when note is provided.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Status status, Note note) {
+        requireAllNonNull(name, phone, email, address, tags, status);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.status = status;
+        this.note = note;
     }
 
     public Name getName() {
@@ -52,8 +70,8 @@ public class Person {
         return address;
     }
 
-    public String getDetailsAsString() {
-        return String.format("%s %s %s %s %s", name, phone, email, address, tags);
+    public Note getNote() {
+        return note;
     }
 
     /**
@@ -62,6 +80,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     /**
@@ -96,13 +118,20 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getNote().equals(getNote())
+                && otherPerson.getStatus().equals(getStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, status, note);
+    }
+
+    public String getDetailsAsString() {
+        return String.format("%s %s %s %s %s %s %s", name, phone, email, address, status,
+                tags, note);
     }
 
     @Override
@@ -121,6 +150,13 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append("; Status: ")
+                .append(getStatus());
+
+        builder.append("; Note: ")
+                .append(getNote());
+
         return builder.toString();
     }
 

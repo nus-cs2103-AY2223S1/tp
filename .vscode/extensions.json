@@ -1,0 +1,22 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+	// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+
+	// List of extensions which should be recommended for users of this workspace.
+	"recommendations": [
+		"eamodio.gitlens",
+		"redhat.java",
+		"vscjava.vscode-gradle",
+		"vscjava.vscode-java-debug",
+		"vscjava.vscode-java-dependency",
+		"vscjava.vscode-java-pack",
+		"vscjava.vscode-java-test",
+		"vscjava.vscode-maven",
+		"vscjava.vscode-spring-boot-dashboard",
+		"georgewfraser.vscode-javac",
+		"GitHub.copilot",
+		"GitHub.vscode-pull-request-github"
+	],
+	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+	"unwantedRecommendations": []
+}
