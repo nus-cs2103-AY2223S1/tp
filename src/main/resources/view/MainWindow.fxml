@@ -24,12 +24,12 @@
       </stylesheets>
 
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" style="-fx-padding: 10 0 0 0">
+          <Menu mnemonicParsing="false" text="File" style="-fx-background-color: #F4E9E3">
+            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" styleClass="secondary-button"/>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+          <Menu mnemonicParsing="false" text="Help" style="-fx-background-color: derive(#DBC4B2, 30%); -fx-background-radius: 0 10 0 0;">
+            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" styleClass="secondary-button"/>
           </Menu>
         </MenuBar>
 
@@ -46,11 +46,11 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+        <VBox fx:id="personList" styleClass="tutor-list-pane" minWidth="200" prefWidth="200" VBox.vgrow="NEVER">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="NEVER"/>
         </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
