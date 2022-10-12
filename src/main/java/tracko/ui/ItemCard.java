@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import tracko.model.items.Item;
 
@@ -53,6 +54,7 @@ public class ItemCard extends UiPart<Region> {
         id.setAlignment(Pos.TOP_LEFT);
 
         quantity.setText(item.getQuantity().toString());
+        
         description.setText(item.getDescription().value);
         description.setWrapText(true);
         description.setTextAlignment(TextAlignment.JUSTIFY);

@@ -246,6 +246,11 @@
     -fx-text-fill: #707BE3 !important;
 }
 
+.description-container {
+    -fx-background-color: #D9DCFF;
+    -fx-background-radius: 10px;
+}
+
 /**
  * Icons from SVG file format
  */
@@ -358,6 +363,11 @@
     -fx-border-width: 2px;
 }
 
+#resultDisplay .scroll-bar > .thumb{
+    -fx-background-color: #878787 !important;
+    -fx-background-insets: 6px;
+}
+
 #itemListView .scroll-bar > .thumb{
     -fx-background-color: #FF6C64 !important;
     -fx-background-insets: 6px;
@@ -409,6 +419,20 @@
     -fx-font-family: "Poppins";
     -fx-font-size: 13pt;
     -fx-text-fill: #878787;
+}
+
+#descriptionBox {
+    -fx-background-color: #FFDAD8;
+    -fx-padding: 5px;
+    -fx-background-insets: 5 10 10 0;
+    -fx-background-radius: 10px;
+}
+
+#description {
+    -fx-text-fill: #FF6C64;
+    -fx-background-insets: 0 5 0 5 ;
+    -fx-padding: 10 15 15 5 ;
+    -fx-font-size: 18 !important;
 }
 
 #itemListView {
@@ -472,6 +496,10 @@
 
 #placeHolder {
     -fx-background-color: #FFF2E7;
+}
+
+#quantity {
+    -fx-font-weight: 700;
 }
 
 #resultDisplay .content {

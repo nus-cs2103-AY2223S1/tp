@@ -28,8 +28,13 @@
                 <Label fx:id="itemName" text="\$first" styleClass="cell_big_label_item" />
             </HBox>
             <VBox>
-                <Label fx:id="quantity" styleClass="cell_small_label_item" text="\$quantity" />
-                <Label fx:id="description" styleClass="cell_small_label_item" text="\$description" />
+                <HBox>
+                    <Label fx:id="quantity" styleClass="cell_small_label_item" text="\$quantity" />
+                    <Label styleClass="cell_small_label_item" text=" in stock" />
+                </HBox>
+                <VBox id="descriptionBox">
+                    <Label fx:id="description" styleClass="cell_small_label_item" text="\$description" />
+                </VBox>
             </VBox>
         </VBox>
     </GridPane>
