@@ -3,12 +3,14 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "dob" : "1/1/2000",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "dob" : "1/1/2000",
     "address": "4th street"
   } ],
   "events" : [ {

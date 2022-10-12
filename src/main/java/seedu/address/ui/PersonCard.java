@@ -40,6 +40,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label dob;
+    @FXML
     private FlowPane tags;
 
     @FXML
@@ -56,6 +58,12 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        if (!person.getDob().isEmpty()) { //if DateOfBirth is not empty
+            dob.setManaged(true); //Show label
+            dob.setText(person.getDob().toString());
+        } else {
+            dob.setManaged(false); //Hide and minimises label
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
