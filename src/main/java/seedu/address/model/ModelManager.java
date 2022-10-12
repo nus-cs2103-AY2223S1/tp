@@ -283,7 +283,7 @@ public class ModelManager implements Model {
         currentContext = Optional.ofNullable(container);
         updateFilteredPersonList(List.of());
         updateFilteredTeamList(List.of());
-        // updateFilteredTaskList(List.of());
+        updateFilteredTaskList(List.of());
     }
 
     @Override

@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
  * Removes a task from Contactmation
  */
 public class RmTaskCommand extends Command {
-    public static final String COMMAND_WORD = "rm";
+    public static final String COMMAND_WORD = "rmTask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Delete the selected task\n"
