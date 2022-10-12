@@ -133,6 +133,13 @@ public class Item {
     }
 
     /**
+     * Removes a tag from the item's tagSet
+     */
+    public void removeTag(Tag tag) {
+        tagSet.remove(tag);
+    }
+
+    /**
      * Returns true if both items have the same name.
      * This defines a weaker notion of equality between two items.
      */
