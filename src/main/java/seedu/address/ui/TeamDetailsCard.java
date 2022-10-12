@@ -18,6 +18,7 @@ public class TeamDetailsCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label teamNameDisplay;
+
     /**
      * Creates a {@code TeamDetailsCard} with the given {@code Team}.
      */
