@@ -19,15 +19,15 @@ public class TaskListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Person> TaskListView;
+    private ListView<Person> taskListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public TaskListPanel(ObservableList<Person> personList) {
         super(FXML);
-        TaskListView.setItems(personList);
-        TaskListView.setCellFactory(listView -> new TaskListViewCell());
+        taskListView.setItems(personList);
+        taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
     /**

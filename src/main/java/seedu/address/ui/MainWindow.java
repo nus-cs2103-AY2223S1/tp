@@ -97,12 +97,13 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
-        //    private void setAccelerators() {
-        //        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    //    private void setAccelerators() {
+    //        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     //    }
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -141,7 +142,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder2.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());;
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        ;
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         StatusBarFooter statusBarFooter2 = new StatusBarFooter(logic.getAddressBookFilePath());
