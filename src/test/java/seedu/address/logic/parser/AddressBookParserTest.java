@@ -27,9 +27,15 @@ import seedu.address.logic.commands.ListTuitionClassCommand;
 import seedu.address.logic.commands.ListTutorCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TuitionClassBuilder;
+import seedu.address.testutil.TutorBuilder;
 
 public class AddressBookParserTest {
 
@@ -37,9 +43,17 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Student student = new StudentBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
+        assertEquals(AddCommand.of(student), command);
+
+        Tutor tutor = new TutorBuilder().build();
+        command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(tutor));
+        assertEquals(AddCommand.of(tutor), command);
+
+        TuitionClass tuitionClass = new TuitionClassBuilder().build();
+        command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(tuitionClass));
+        assertEquals(AddCommand.of(tuitionClass), command);
     }
 
     @Test
