@@ -47,8 +47,23 @@ public class BookList implements Iterable<Book> {
      */
     public void delete(Book book) {
         requireNonNull(book);
+        if (book.isLoaned()) {
+            book.getLoanee().returnLoanedBook(book);
+        }
         if (!internalList.remove(book)) {
             throw new BookNotFoundException();
+        }
+    }
+
+    /**
+     * Refreshes the book list after deleting user {@code person} that has loaned books.
+     */
+    public void refreshBookListAfterDeletingUser(Person person) {
+        requireNonNull(person);
+        for (Book book : person.getLoanedBooksSet()) {
+            book.markBookAsReturned();
+            int index = internalList.indexOf(book);
+            internalList.set(index, book);
         }
     }
 
@@ -59,7 +74,7 @@ public class BookList implements Iterable<Book> {
 
     /**
      * Replaces the contents of this list with {@code books}
-     * {@code books} must not contain duplicate persons.
+     * {@code books} must not contain duplicate books.
      */
     public void setBooks(List<Book> books) {
         CollectionUtil.requireAllNonNull(books);
@@ -94,7 +109,7 @@ public class BookList implements Iterable<Book> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code books} contains only unique books.
      */
     private boolean booksAreUnique(List<Book> books) {
         for (int i = 0; i < books.size() - 1; i++) {
