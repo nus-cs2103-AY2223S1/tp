@@ -62,7 +62,7 @@ public class AddcCommandTest {
     public void equals() {
         AddcCommand addCs1101sCommand = new AddcCommand(CS1101S);
         AddcCommand addCs1101sCommandCopy = new AddcCommand(CS1101S);
-        AddcCommand addCS1231SCommand = new AddcCommand(CS1231S);
+        AddcCommand addCs1231sCommand = new AddcCommand(CS1231S);
 
         // same object -> returns true
         assertTrue(addCs1101sCommand.equals(addCs1101sCommand));
@@ -77,7 +77,7 @@ public class AddcCommandTest {
         assertFalse(addCs1101sCommand.equals(null));
 
         // different module class -> returns false
-        assertFalse(addCs1101sCommand.equals(addCS1231SCommand));
+        assertFalse(addCs1101sCommand.equals(addCs1231sCommand));
     }
 
     //==================================== Integration Tests =========================================================
