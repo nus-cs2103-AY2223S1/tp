@@ -55,4 +55,9 @@ public class AddTaskCommand extends Command {
                 || (other instanceof AddTaskCommand // instanceof handles nulls
                 && toAdd.equals(((AddTaskCommand) other).toAdd));
     }
+
+    @Override
+    public String toString() {
+        return "Command: Add task " + this.toAdd;
+    }
 }
