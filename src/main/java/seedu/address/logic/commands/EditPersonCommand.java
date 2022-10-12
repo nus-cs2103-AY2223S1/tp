@@ -103,7 +103,6 @@ public class EditPersonCommand extends Command {
         InternshipId updatedInternshipId =
                 editPersonDescriptor.getInternshipId().orElse(personToEdit.getInternshipId());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Index updateLinkIndex = editPersonDescriptor.getLinkIndex().orElse(personToEdit.getLinkIndex());
 
         return new Person(
                 personId,
@@ -111,8 +110,7 @@ public class EditPersonCommand extends Command {
                 updatedPhone,
                 updatedEmail,
                 updatedInternshipId,
-                updatedTags,
-                updateLinkIndex);
+                updatedTags);
     }
 
     @Override

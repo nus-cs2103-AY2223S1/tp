@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.internship.InternshipId;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -29,7 +28,6 @@ public class PersonBuilder {
     private Email email;
     private InternshipId internshipId;
     private Set<Tag> tags;
-    private Index linkIndex;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,7 +39,6 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         internshipId = null;
         tags = new HashSet<>();
-        linkIndex = null;
     }
 
     /**
@@ -54,7 +51,6 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         internshipId = personToCopy.getInternshipId();
         tags = new HashSet<>(personToCopy.getTags());
-        linkIndex = personToCopy.getLinkIndex();
     }
 
     /**
@@ -106,16 +102,8 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code LinkIndex} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withLinkIndex(Integer index) {
-        this.linkIndex = Index.fromZeroBased(index);
-        return this;
-    }
-
     public Person build() {
-        return new Person(personId, name, phone, email, internshipId, tags, linkIndex);
+        return new Person(personId, name, phone, email, internshipId, tags);
     }
 
 }

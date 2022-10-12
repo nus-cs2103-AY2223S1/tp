@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.internship.InternshipId;
 import seedu.address.model.person.Email;
@@ -32,7 +31,6 @@ class JsonAdaptedPerson {
     private final String email;
     private final Integer internshipId;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final Integer linkIndex;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -54,7 +52,6 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.linkIndex = linkIndex;
     }
 
     /**
@@ -69,7 +66,6 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        linkIndex = source.getLinkIndex().getZeroBased();
     }
 
     /**
@@ -122,16 +118,8 @@ class JsonAdaptedPerson {
         }
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-
-        final Index modelLinkIndex;
-        if (linkIndex == null ) {
-            modelLinkIndex = null;
-        } else {
-            modelLinkIndex = Index.fromZeroBased(linkIndex);
-        }
-
         return new Person(modelPersonId, modelName, modelPhone, modelEmail, modelInternshipId,
-                modelTags, modelLinkIndex);
+                modelTags);
     }
 }
 

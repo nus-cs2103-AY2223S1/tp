@@ -31,48 +31,42 @@ public class SampleDataUtil {
                     new Phone("87438807"),
                     new Email("alexyeoh@example.com"),
                     new InternshipId(0),
-                    getTagSet("friends"),
-                    null),
+                    getTagSet("friends")),
             new Person(
                     new PersonId(1),
                     new Name("Bernice Yu"),
                     new Phone("99272758"),
                     new Email("berniceyu@example.com"),
                     null,
-                    getTagSet("colleagues", "friends"),
-                    null),
+                    getTagSet("colleagues", "friends")),
             new Person(
                     new PersonId(2),
                     new Name("Charlotte Oliveiro"),
                     new Phone("93210283"),
                     new Email("charlotte@example.com"),
                     null,
-                    getTagSet("neighbours"),
-                    null),
+                    getTagSet("neighbours")),
             new Person(
                     new PersonId(3),
                     new Name("David Li"),
                     new Phone("91031282"),
                     new Email("lidavid@example.com"),
                     new InternshipId(1),
-                    getTagSet("family"),
-                    null),
+                    getTagSet("family")),
             new Person(
                     new PersonId(4),
                     new Name("Irfan Ibrahim"),
                     new Phone("92492021"),
                     new Email("irfan@example.com"),
                     null,
-                    getTagSet("classmates"),
-                    null),
+                    getTagSet("classmates")),
             new Person(
                     new PersonId(5),
                     new Name("Roy Balakrishnan"),
                     new Phone("92624417"),
                     new Email("royb@example.com"),
                     new InternshipId(0),
-                    getTagSet("colleagues"),
-                    null)
+                    getTagSet("colleagues"))
         };
     }
 

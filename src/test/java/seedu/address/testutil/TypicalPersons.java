@@ -27,7 +27,6 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends")
-            .withLinkIndex(0)
             .build();
     public static final Person BENSON = new PersonBuilder()
             .withPersonId(1)
@@ -35,7 +34,6 @@ public class TypicalPersons {
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withTags("owesMoney", "friends")
-            .withLinkIndex(1)
             .build();
     public static final Person CARL = new PersonBuilder()
             .withPersonId(2)

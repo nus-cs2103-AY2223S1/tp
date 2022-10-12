@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.PersonCommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.PersonCommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.PersonCommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.PersonCommandTestUtil.VALID_LINK_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -82,7 +81,7 @@ public class LogicManagerTest {
         String addCommand = AddPersonCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags()
-                .withLinkIndex(Integer.parseInt(VALID_LINK_INDEX)).build();
+                .build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
