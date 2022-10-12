@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
 
-<GridPane maxHeight="Infinity" maxWidth="Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <StackPane styleClass="stack-pane" GridPane.columnIndex="0" GridPane.hgrow="always" GridPane.vgrow="always" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..." />
-    <padding>
-      <Insets bottom="1" left="10" right="10" top="1" />
-    </padding>
-  </StackPane>
-  <Button onAction="#handleCommandEntered" prefHeight="25.0" prefWidth="200.0" text="Send" GridPane.columnIndex="1" GridPane.hgrow="always" GridPane.vgrow="always" />
-  <columnConstraints>
-    <ColumnConstraints percentWidth="100.0" />
-    <ColumnConstraints percentWidth="20.0" />
-  </columnConstraints>
-</GridPane>
+<HBox fx:id="commandInput" maxWidth="Infinity" spacing="10" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <TextField fx:id="commandTextField" maxWidth="Infinity" onAction="#handleCommandEntered" promptText="Enter command here..." HBox.hgrow="ALWAYS" />
+   <Button alignment="CENTER" minWidth="100" onAction="#handleCommandEntered" prefHeight="25.0" text="Send" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+</HBox>

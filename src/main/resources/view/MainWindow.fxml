@@ -3,25 +3,27 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.control.Button?>
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.HBox?>
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
+        <URL value="@BrightTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
       <VBox>
@@ -34,34 +36,45 @@
           </Menu>
         </MenuBar>
         <GridPane VBox.vgrow="ALWAYS">
-          <VBox fx:id="menuPanel" prefHeight="100" spacing="5" styleClass="pane-with-border" maxWidth="Infinity"
-                GridPane.columnIndex="0" GridPane.hgrow="always" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <Button fx:id="studentsButton" text="Students" onAction="#handleClickStudentsButton" maxWidth="Infinity" VBox.vgrow="ALWAYS"/>
-            <Button fx:id="tasksButton" text="Tasks" onAction="#handleClickTasksButton" maxWidth="Infinity" VBox.vgrow="ALWAYS"/>
+          <VBox fx:id="menuPanel" maxWidth="Infinity" prefHeight="100" spacing="5.0" styleClass="pane-with-border" GridPane.columnIndex="0" GridPane.hgrow="always" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <Button fx:id="studentsButton" maxWidth="Infinity" onAction="#handleClickStudentsButton" text="Students" VBox.vgrow="ALWAYS" />
+            <Button fx:id="tasksButton" maxWidth="Infinity" onAction="#handleClickTasksButton" text="Tasks" VBox.vgrow="ALWAYS" />
+                  <GridPane.margin>
+                     <Insets />
+                  </GridPane.margin>
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
           </VBox>
-          <VBox fx:id="studentList" minWidth="340" styleClass="pane-with-border"
-                GridPane.columnIndex="1" GridPane.hgrow="always" GridPane.vgrow="always" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
-            </padding>
+          <VBox fx:id="studentList" minWidth="340" styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.hgrow="always" GridPane.vgrow="always" VBox.vgrow="ALWAYS">
             <StackPane fx:id="resultListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
           </VBox>
           <columnConstraints>
             <ColumnConstraints percentWidth="20.0" />
             <ColumnConstraints percentWidth="80.0" />
           </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
         </GridPane>
-        <VBox styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <VBox styleClass="pane-with-border" VBox.vgrow="SOMETIMES">
           <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
           </padding>
-          <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-          <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          </StackPane>
-          <StackPane fx:id="commandOutputPlaceholder" prefHeight="100" styleClass="pane-with-border"
-                     GridPane.columnIndex="0" GridPane.hgrow="always" GridPane.vgrow="always" VBox.vgrow="ALWAYS">
+          <HBox fx:id="commandInputPlaceholder" prefWidth="Infinity" HBox.hgrow="ALWAYS">
+              <padding>
+                  <Insets bottom="5" left="5" right="5" top="5" />
+              </padding>
+          </HBox>
+          <StackPane fx:id="commandOutputPlaceholder" prefHeight="100" minHeight="100" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <padding>
-              <Insets bottom="5" left="10" right="10" top="5" />
+              <Insets bottom="5" left="5" right="5" top="5" />
             </padding>
           </StackPane>
         </VBox>
