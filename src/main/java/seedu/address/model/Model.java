@@ -128,6 +128,11 @@ public interface Model {
      */
     void updateContextContainer(AbstractContainerItem container);
 
+    /**
+     * Receives the current scope
+     */
+    AbstractContainerItem getContextContainer();
+
     boolean hasTeam(Group grp);
 
     void deleteTeam(Group grp);

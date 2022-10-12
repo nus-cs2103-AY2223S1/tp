@@ -248,4 +248,9 @@ public class ModelManager implements Model {
         updateFilteredPersonList(List.of());
         updateFilteredTeamList(List.of());
     }
+
+    @Override
+    public AbstractContainerItem getContextContainer() {
+        return currentContext.orElse(null);
+    }
 }
