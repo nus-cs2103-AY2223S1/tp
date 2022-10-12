@@ -14,7 +14,6 @@ import static seedu.address.logic.commands.CommandTestUtil.MODULE_LINK_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
 
 public class AddLinkCommandParserTest {
@@ -30,7 +29,7 @@ public class AddLinkCommandParserTest {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLinkCommand.MESSAGE_USAGE));
     }
 
-    //Specific testing of link compatability performed at ParserUtilTest
+    //Specific testing of link compatability performed at ParserUtilTest and LinkTest
     //Integration testing of AddLinkCommandParser with ParserUtil
     @Test
     public void parse_links_success() {

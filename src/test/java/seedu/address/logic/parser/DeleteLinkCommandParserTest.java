@@ -29,7 +29,7 @@ public class DeleteLinkCommandParserTest {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLinkCommand.MESSAGE_USAGE));
     }
 
-    //Specific testing of link compatability performed at ParserUtilTest
+    //Specific testing of link compatability performed at ParserUtilTest and LinkTest
     //Integration testing of AddLinkCommandParser with ParserUtil
     @Test
     public void parse_links_success() {
