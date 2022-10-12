@@ -18,7 +18,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -58,9 +62,9 @@ public class ModelManager implements Model {
                 getTagSet("colleagues", "friends")));
 
         try {
-            internalList.add(new Meeting(myArray,"Study Session" , "06-10-2022 2015", "UTown"));
-            internalList.add(new Meeting(myArray,"Ice Skating" , "12-10-2022 2015", "Jurong East"));
-        } catch(Exception e) {
+            internalList.add(new Meeting(myArray, "Study Session", "06-10-2022 2015", "UTown"));
+            internalList.add(new Meeting(myArray, "Ice Skating", "12-10-2022 2015", "Jurong East"));
+        } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
 

@@ -1,0 +1,29 @@
+Searching 277 files for "person.*"
+
+/Users/ming/Desktop/tp/src/main/java/seedu/address/model/ModelManager.java:
+   19  import seedu.address.commons.core.LogsCenter;
+   20  import seedu.address.model.meeting.Meeting;
+   21: import seedu.address.model.person.*;
+   22  import seedu.address.model.tag.Tag;
+   23  
+
+/Users/ming/Desktop/tp/src/main/java/seedu/address/ui/MainWindow.java:
+   24  import seedu.address.logic.parser.exceptions.ParseException;
+   25  import seedu.address.model.meeting.Meeting;
+   26: import seedu.address.model.person.*;
+   27  import seedu.address.model.tag.Tag;
+   28  
+
+2 matches across 2 files
+
+
+Searching 277 files for "person.*"
+
+/Users/ming/Desktop/tp/src/main/java/seedu/address/ui/MainWindow.java:
+   24  import seedu.address.logic.parser.exceptions.ParseException;
+   25  import seedu.address.model.meeting.Meeting;
+   26: import seedu.address.model.person.*;
+   27  import seedu.address.model.tag.Tag;
+   28  
+
+1 match in 1 file
