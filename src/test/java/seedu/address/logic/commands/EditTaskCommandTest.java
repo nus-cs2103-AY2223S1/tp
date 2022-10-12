@@ -153,10 +153,4 @@ public class EditTaskCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_FIRST_PERSON, DESC_TWO)));
     }
-
-
-
-
-
-
 }
