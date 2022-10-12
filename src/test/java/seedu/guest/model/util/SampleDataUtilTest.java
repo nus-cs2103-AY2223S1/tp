@@ -39,6 +39,9 @@ public class SampleDataUtilTest {
             };
 
         assertNotEquals(SampleDataUtil.getSampleGuests(), testGuests);
+
+        // null -> returns false
+        assertNotEquals(SampleDataUtil.getSampleGuests(), null);
     }
 
     @Test
