@@ -112,7 +112,7 @@ public class GuestTest {
         editedAlice = new GuestBuilder(ALICE).withDateRange(VALID_DATE_RANGE_BOB).build();
         assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
 
-        // different email -> returns false
+        // different number of guests -> returns false
         editedAlice = new GuestBuilder(ALICE).withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB).build();
         assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
     }
