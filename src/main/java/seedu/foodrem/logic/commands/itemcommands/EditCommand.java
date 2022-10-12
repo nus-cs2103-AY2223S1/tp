@@ -10,6 +10,7 @@ import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
@@ -24,6 +25,7 @@ import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
+import seedu.foodrem.model.tag.Tag;
 
 /**
  * Edits the details of an existing item in FoodRem.
@@ -75,8 +77,9 @@ public class EditCommand extends Command {
         ItemUnit updatedUnit = editItemDescriptor.getItemUnit().orElse(itemToEdit.getUnit());
         ItemBoughtDate updatedBoughtDate = editItemDescriptor.getItemBoughtDate().orElse(itemToEdit.getBoughtDate());
         ItemExpiryDate updatedExpiryDate = editItemDescriptor.getItemExpiryDate().orElse(itemToEdit.getExpiryDate());
+        Set<Tag> tagSet = itemToEdit.getTagSet();
 
-        return new Item(updatedName, updatedQuantity, updatedUnit, updatedBoughtDate, updatedExpiryDate);
+        return new Item(updatedName, updatedQuantity, updatedUnit, updatedBoughtDate, updatedExpiryDate, tagSet);
     }
 
     @Override
@@ -190,23 +193,6 @@ public class EditCommand extends Command {
         public void setItemExpiryDate(ItemExpiryDate expiryDate) {
             this.expiryDate = expiryDate;
         }
-
-        ///**
-        // * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-        // * if modification is attempted.
-        // * Returns {@code Optional#empty()} if {@code tags} is null.
-        // */
-        //public Optional<Set<Tag>> getTags() {
-        //    return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        //}
-
-        ///**
-        // * Sets {@code tags} to this object's {@code tags}.
-        // * A defensive copy of {@code tags} is used internally.
-        // */
-        //public void setTags(Set<Tag> tags) {
-        //    this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        //}
 
         @Override
         public boolean equals(Object other) {

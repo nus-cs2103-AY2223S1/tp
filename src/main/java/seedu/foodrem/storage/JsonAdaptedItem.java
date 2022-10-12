@@ -1,6 +1,11 @@
 package seedu.foodrem.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,6 +16,7 @@ import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
+import seedu.foodrem.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Item}.
@@ -24,7 +30,7 @@ class JsonAdaptedItem {
     private final String unit;
     private final String boughtDate;
     private final String expiryDate;
-    // private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedItem} with the given item details.
@@ -34,12 +40,14 @@ class JsonAdaptedItem {
                            @JsonProperty("quantity") String quantity,
                            @JsonProperty("unit") String unit,
                            @JsonProperty("bought") String boughtDate,
-                           @JsonProperty("expiry") String expiryDate) {
+                           @JsonProperty("expiry") String expiryDate,
+                           @JsonProperty("tags") List<JsonAdaptedTag> tagSet) {
         this.name = name;
         this.quantity = quantity;
         this.unit = unit;
         this.boughtDate = boughtDate;
         this.expiryDate = expiryDate;
+        this.tags.addAll(tagSet);
     }
 
     /**
@@ -51,6 +59,7 @@ class JsonAdaptedItem {
         unit = Objects.toString(source.getUnit(), "");
         boughtDate = Objects.toString(source.getBoughtDate(), "");
         expiryDate = Objects.toString(source.getExpiryDate(), "");
+        tags.addAll(source.getTagSet().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
     }
 
     /**
@@ -90,12 +99,14 @@ class JsonAdaptedItem {
         }
         final ItemExpiryDate modelItemExpiryDate = new ItemExpiryDate(expiryDate);
 
-        //final List<Tag> itemTags = new ArrayList<>();
-        //for (JsonAdaptedTag tag : tagged) {
-        //    itemTags.add(tag.toModelType());
-        //}
-        //final Set<Tag> modelTags = new HashSet<>(itemTags);
-        return new Item(modelItemName, modelItemQuantity, modelItemUnit, modelItemBoughtDate, modelItemExpiryDate);
+        final List<Tag> itemTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tags) {
+            itemTags.add(tag.toModelType());
+        }
+
+        final Set<Tag> modelTags = new HashSet<>(itemTags);
+        return new Item(modelItemName, modelItemQuantity, modelItemUnit, modelItemBoughtDate,
+                modelItemExpiryDate, modelTags);
     }
 
 }
