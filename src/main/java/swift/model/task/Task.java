@@ -28,6 +28,10 @@ public class Task {
         return taskName;
     }
 
+    public Index getContactIndex() {
+        return contactIndex;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this
