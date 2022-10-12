@@ -39,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private ClientListPanel clientListPanel;
     private MeetingListPanel meetingListPanel;
     private MeetingDetailedViewPanel meetingDetailedViewPanel;
+    private ClientDetailedViewPanel clientDetailedViewPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -128,6 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         // However, we will start with clientListPanel.
 
         meetingDetailedViewPanel = new MeetingDetailedViewPanel(logic.getDetailedMeetingList());
+        clientDetailedViewPanel = new ClientDetailedViewPanel(logic.getDetailedClientList());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -218,6 +220,11 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanelPlaceholder.getChildren().add(meetingDetailedViewPanel.getRoot());
     }
 
+    private void setListPanelToClientDetailed() {
+        clientListPanelPlaceholder.getChildren().clear();
+        clientListPanelPlaceholder.getChildren().add(clientDetailedViewPanel.getRoot());
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -246,6 +253,9 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             case DETAILED_MEETING:
                 setListPanelToMeetingDetailed();
+                break;
+            case DETAILED_CLIENT:
+                setListPanelToClientDetailed();
                 break;
             default:
             }

@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Meeting> filteredMeetings;
+    private final FilteredList<Client> detailedClients;
     private final FilteredList<Meeting> detailedMeetings;
 
     /**
@@ -41,6 +42,7 @@ public class ModelManager implements Model {
         filteredMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
 
         detailedMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
+        detailedClients = new FilteredList<>(this.myInsuRec.getClientList());
         this.setDetailedMeeting(null);
     }
 
@@ -152,6 +154,18 @@ public class ModelManager implements Model {
     public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
+    }
+
+    //=========== Detailed Client List Accessors ==============================================================
+
+    @Override
+    public ObservableList<Client> getDetailedClientList() {
+        return detailedClients;
+    }
+
+    @Override
+    public void setDetailedClient(Client client) {
+        detailedClients.setPredicate(x -> x.equals(client));
     }
 
     //=========== Filtered Meeting List Accessors =============================================================
