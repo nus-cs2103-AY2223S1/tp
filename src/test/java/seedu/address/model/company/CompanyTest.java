@@ -32,19 +32,19 @@ public class CompanyTest {
     @Test
     public void constructor_nullName_throwsNullPointerException() {
         UniquePocList pocs = new UniquePocList();
-        Set<Tag> tags = new HashSet<>();
         TransactionLog transactions = new TransactionLog();
-        assertThrows(NullPointerException.class, () -> new Company(null, new Address(VALID_ADDRESS_BOB),
-                tags, pocs, transactions));
+        Set<Tag> tags = new HashSet<>();
+        assertThrows(NullPointerException.class, () ->
+                new Company(null, new Address(VALID_ADDRESS_BOB), tags, pocs, transactions));
     }
 
     @Test
     public void constructor_nullAddress_throwsNullPointerException() {
         UniquePocList pocs = new UniquePocList();
-        Set<Tag> tags = new HashSet<>();
         TransactionLog transactions = new TransactionLog();
-        assertThrows(NullPointerException.class, () -> new Company(new Name(VALID_NAME_BOB),
-                null, tags, pocs, transactions));
+        Set<Tag> tags = new HashSet<>();
+        assertThrows(NullPointerException.class, () ->
+                new Company(new Name(VALID_NAME_BOB), null, tags, pocs, transactions));
     }
 
     @Test

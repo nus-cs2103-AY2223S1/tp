@@ -36,7 +36,6 @@ public class CompanyBuilder {
         tags = new HashSet<>();
         pocs = new UniquePocList();
         transactions = new TransactionLog();
-
     }
 
     /**
@@ -47,6 +46,7 @@ public class CompanyBuilder {
         address = companyToCopy.getAddress();
         tags = new HashSet<>(companyToCopy.getTags());
         pocs = companyToCopy.getPocs();
+        transactions = companyToCopy.getTransactions();
     }
 
     /**
@@ -78,6 +78,14 @@ public class CompanyBuilder {
      */
     public CompanyBuilder withUniquePocList(UniquePocList pocs) {
         this.pocs = pocs;
+        return this;
+    }
+
+    /**
+     * Sets the {@code TransactionLog} of the {@code Company} that we are building.
+     */
+    public CompanyBuilder withTransactionLog(TransactionLog transactions) {
+        this.transactions = transactions;
         return this;
     }
 
