@@ -39,7 +39,7 @@ public class EventCard extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code EventCode} with the given {@code Event} and index to display.
+     * Creates a {@code EventCard} with the given {@code Event} and index to display.
      */
     public EventCard(Event event, int displayedIndex) {
         super(FXML);
