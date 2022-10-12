@@ -5,8 +5,10 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
 <fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
@@ -18,27 +20,55 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <VBox alignment="CENTER">
         <children>
-          <Label fx:id="helpMessage" text="Label">
-            <HBox.margin>
-              <Insets right="5.0" />
-            </HBox.margin>
-          </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-            <HBox.margin>
-              <Insets left="5.0" />
-            </HBox.margin>
-          </Button>
+          <HBox alignment="CENTER" fx:id="addCommandContainer">
+            <children>
+              <Label fx:id="addCommand" text="Add"/>
+            </children>
+          </HBox>
+          <HBox alignment="CENTER" fx:id="clearCommandContainer">
+            <children>
+              <Label fx:id="clearCommand" text="Clear"/>
+            </children>
+          </HBox>
+          <HBox alignment="CENTER" fx:id="deleteCommandContainer">
+            <children>
+              <Label fx:id="deleteCommand" text="Delete"/>
+            </children>
+          </HBox>
+          <HBox alignment="CENTER" fx:id="editCommandContainer">
+            <children>
+              <Label fx:id="editCommand" text="Edit"/>
+            </children>
+          </HBox>
+          <HBox alignment="CENTER" fx:id="exitCommandContainer">
+            <children>
+              <Label fx:id="exitCommand" text="Exit"/>
+            </children>
+          </HBox>
+          <HBox alignment="CENTER" fx:id="urlMessageContainer">
+            <children>
+              <Label fx:id="urlMessage" text="URL">
+                <HBox.margin>
+                  <Insets right="5.0" />
+                </HBox.margin>
+              </Label>
+              <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+                <HBox.margin>
+                  <Insets left="5.0" />
+                </HBox.margin>
+              </Button>
+            </children>
+            <opaqueInsets>
+              <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+            </opaqueInsets>
+            <padding>
+              <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+            </padding>
+          </HBox>
         </children>
-        <opaqueInsets>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </opaqueInsets>
-        <padding>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </padding>
-      </HBox>
+      </VBox>
     </Scene>
   </scene>
 </fx:root>
