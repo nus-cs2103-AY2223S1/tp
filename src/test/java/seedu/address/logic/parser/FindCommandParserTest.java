@@ -76,5 +76,4 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, "n/ John p/ 1234 e/abcd   a/clementi  r/  cough t/  throat "
                 + "ds/  2022-12-13 12:12 de/2025-12-13  12:12 ", expectedFindCommand);
     }
-
 }

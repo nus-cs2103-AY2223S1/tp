@@ -12,21 +12,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 
-import java.security.cert.CertPathValidatorException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +28,8 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BookCommand;
 import seedu.address.logic.commands.CancelCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CombinedAppointmentPredicate;
+import seedu.address.logic.commands.CombinedPersonPredicate;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
@@ -46,16 +42,8 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AddressContainsSequencePredicate;
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.DateTimeWithinRangePredicate;
-import seedu.address.model.person.EmailContainsSequencePredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsSequencePredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonContainsTagsPredicate;
-import seedu.address.model.person.PhoneContainsSequencePredicate;
-import seedu.address.model.person.ReasonContainsSequencePredicate;
 import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -156,7 +144,9 @@ public class AddressBookParserTest {
         String reason = "cough";
         String tag = "throat";
         String dateTimeStart = "2022-12-13 12:12";
+        String dateTimeStartToParse = "2022-12-13T12:12";
         String dateTimeEnd = "2025-12-13 12:12";
+        String dateTimeEndToParse = "2025-12-13T12:12";
         searchString.add(PREFIX_NAME + name);
         searchString.add(PREFIX_PHONE + phone);
         searchString.add(PREFIX_EMAIL + email);
@@ -169,18 +159,10 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + String.join(" ", searchString));
 
-        Predicate<Person> expectedPersonPredicate = PREDICATE_SHOW_ALL_PERSONS
-                .and(new NameContainsSequencePredicate(name)).and(new PhoneContainsSequencePredicate(phone))
-                .and(new EmailContainsSequencePredicate(email)).and(new AddressContainsSequencePredicate(address))
-                .and(new PersonContainsTagsPredicate(Collections.singletonList(tag)));
-        Predicate<Person> expectedPersonPredicate2 = PREDICATE_SHOW_ALL_PERSONS
-                .and(new NameContainsSequencePredicate(name)).and(new PhoneContainsSequencePredicate(phone))
-                .and(new EmailContainsSequencePredicate(email)).and(new AddressContainsSequencePredicate(address))
-                .and(new PersonContainsTagsPredicate(Collections.singletonList(tag)));
-        Predicate<Appointment> expectedAppointmentPredicate = PREDICATE_SHOW_ALL_APPOINTMENTS
-                .and(new ReasonContainsSequencePredicate(reason))
-                .and(new DateTimeWithinRangePredicate(
-                        LocalDateTime.parse("2022-12-13T12:12"), LocalDateTime.parse("2025-12-13T12:12")));
+        CombinedPersonPredicate expectedPersonPredicate =
+                new CombinedPersonPredicate(name, phone, email, address, Collections.singletonList(tag));
+        CombinedAppointmentPredicate expectedAppointmentPredicate = new CombinedAppointmentPredicate(reason,
+                LocalDateTime.parse(dateTimeStartToParse), LocalDateTime.parse(dateTimeEndToParse));
         boolean isAnyAppointmentFieldSpecified = true;
         assertEquals(new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate,
                         isAnyAppointmentFieldSpecified), command);
