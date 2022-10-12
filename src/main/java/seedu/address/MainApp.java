@@ -85,7 +85,7 @@ public class MainApp extends Application {
             if (!personModelOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PersonModel");
             }
-            personModel = personModelOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            personModel = personModelOptional.orElseGet(SampleDataUtil::getSamplePersonModel);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PersonModel");
             personModel = new PersonModel();

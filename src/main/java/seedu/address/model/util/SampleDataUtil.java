@@ -5,12 +5,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.PersonModel;
+import seedu.address.model.PropertyModel;
 import seedu.address.model.ReadOnlyPersonModel;
+import seedu.address.model.ReadOnlyPropertyModel;
 import seedu.address.model.address.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.property.Description;
+import seedu.address.model.property.Price;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,12 +46,31 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyPersonModel getSampleAddressBook() {
+    public static Property[] getSampleProperties() {
+        return new Property[]{
+            new Property(new PropertyName("Residential College 4"), new Price("50000"),
+                new Address("6 College Avenue East"), new Description("A place for NUS students to stay."),
+                getTagSet("istayhere")),
+            new Property(new PropertyName("Ridge View Residential College"), new Price("100"),
+                new Address("25 Lower Kent Ridge Road"), new Description("A place in the middle of the forest."),
+                getTagSet("iloveithere"))
+        };
+    }
+
+    public static ReadOnlyPersonModel getSamplePersonModel() {
         PersonModel sampleAb = new PersonModel();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyPropertyModel getSamplePropertyModel() {
+        PropertyModel propertyModel = new PropertyModel();
+        for (Property sampleProperty : getSampleProperties()) {
+            propertyModel.addProperty(sampleProperty);
+        }
+        return propertyModel;
     }
 
     /**

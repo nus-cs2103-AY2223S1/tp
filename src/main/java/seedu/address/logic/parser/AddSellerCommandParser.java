@@ -5,11 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTIES;
 
-import java.util.List;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddSellerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.role.Properties;
 import seedu.address.model.role.Seller;
 
 /**
@@ -38,7 +37,7 @@ public class AddSellerCommandParser extends Parser<AddSellerCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSellerCommand.MESSAGE_USAGE), pe);
         }
 
-        List<Integer> propertyIndices = ParserUtil.parseProperties(argMultimap.getValue(PREFIX_PROPERTIES).orElse(""));
+        Properties propertyIndices = ParserUtil.parseProperties(argMultimap.getValue(PREFIX_PROPERTIES).orElse(""));
 
         Seller seller = new Seller(propertyIndices);
 
