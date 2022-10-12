@@ -96,6 +96,7 @@ public class Task {
                 && otherTask.getDescription().equals(getDescription());
     }
 
+    /**
      * Returns true if task contains any of the description or deadline keywords.
      * By default, empty lists will return true.
      *

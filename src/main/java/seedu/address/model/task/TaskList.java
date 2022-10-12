@@ -44,9 +44,9 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedTask}.
+     * Replaces the task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedTask} must not be the same as another existing person in the list.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the list.
      */
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
@@ -64,7 +64,7 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent task as the given argument.
      */
     public boolean contains(Task toCheck) {
         requireNonNull(toCheck);
