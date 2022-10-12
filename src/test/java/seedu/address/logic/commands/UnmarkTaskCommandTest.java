@@ -22,14 +22,17 @@ import seedu.address.model.task.Task;
  * {@code UnmarkTaskCommand}.
  */
 public class UnmarkTaskCommandTest {
-
-    //should be getTypicalTaskList()
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
+
+    // To make things easier to test, task 0 will be marked and task 1 will be unmarked
+    public UnmarkTaskCommandTest() {
+        model.setTask(model.getFilteredTaskList().get(0), model.getFilteredTaskList().get(0).withCompletion(true));
+        model.setTask(model.getFilteredTaskList().get(1), model.getFilteredTaskList().get(1).withCompletion(false));
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Task taskToUnmark = model.getFilteredTaskList().get(0);
-        taskToUnmark.setStatus(true);
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
@@ -53,7 +56,6 @@ public class UnmarkTaskCommandTest {
     @Test
     public void excecute_unmarkMarkedTask_success() {
         Task taskToMark = model.getFilteredTaskList().get(0);
-        taskToMark.setStatus(true);
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
@@ -68,8 +70,7 @@ public class UnmarkTaskCommandTest {
 
     @Test
     public void execute_unmarkUnmarkedTask_throwsCommandException() {
-        model.getFilteredTaskList().get(0).setStatus(false);
-        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
+        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(1));
 
         assertCommandFailure(unmarkTaskCommand, model, UnmarkTaskCommand.MESSAGE_TASK_ALREADY_NOT_COMPLETED);
     }

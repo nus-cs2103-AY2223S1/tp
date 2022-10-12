@@ -44,12 +44,19 @@ public class Task {
         return status;
     }
 
-    public void setStatus(boolean isComplete) {
-        this.status = new Status(isComplete);
-    }
-
-    public void setStatus(String status) {
-        this.status = new Status(status);
+    /**
+     * Returns a copy of this Task with the status modified.
+     *
+     * @param isComplete The new completion status.
+     * @return The new Task.
+     */
+    public Task withCompletion(boolean isComplete) {
+        return new Task(
+                this.name,
+                this.module,
+                this.deadline,
+                new Status(isComplete)
+        );
     }
 
     /**

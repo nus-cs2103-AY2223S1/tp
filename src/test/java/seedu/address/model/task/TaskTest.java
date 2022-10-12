@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -90,24 +89,13 @@ public class TaskTest {
     }
 
     @Test
-    public void setStatusWithBooleanParameter() {
-        sampleA.setStatus(true);
-        sampleB.setStatus(false);
-        assertTrue(sampleA.getStatus().getIsComplete());
-        assertFalse(sampleB.getStatus().getIsComplete());
+    public void withCompletion_smokeTest() {
+        Task a = sampleA.withCompletion(true);
+        Task b = sampleB.withCompletion(false);
+        Task c = sampleA.withCompletion(true).withCompletion(false);
+        assertTrue(a.getStatus().getIsComplete());
+        assertFalse(b.getStatus().getIsComplete());
+        assertFalse(c.getStatus().getIsComplete());
     }
 
-    @Test
-    public void setStatusWithValidStringParameter() {
-        sampleA.setStatus("true");
-        sampleB.setStatus("false");
-        assertTrue(sampleA.getStatus().getIsComplete());
-        assertFalse(sampleB.getStatus().getIsComplete());
-    }
-
-    @Test
-    public void setStatusWithInvalidStringParameter_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> sampleA.setStatus(""));
-        assertThrows(IllegalArgumentException.class, () -> sampleA.setStatus("a"));
-    }
 }

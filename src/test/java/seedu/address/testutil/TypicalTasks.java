@@ -27,7 +27,7 @@ public class TypicalTasks {
             new TaskName("Finish TP"),
             new Module("CS2103T"),
             new Deadline("2022-12-12 12:00"),
-            new Status(false)
+            new Status(true)
     );
 
     public static final Task LAB_2 = new Task(
