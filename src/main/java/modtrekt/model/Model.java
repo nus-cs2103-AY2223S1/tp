@@ -105,6 +105,12 @@ public interface Model {
     /** Parses module within module list from a given module code */
     Module parseModuleFromCode(ModCode code);
 
+    /** Gets the current module code, if any */
+    ModCode getCurrentModule();
+
+    /** Sets the current module code */
+    void setCurrentModule(ModCode code);
+
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task book.

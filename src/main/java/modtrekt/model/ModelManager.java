@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Module> filteredModules;
+    private ModCode currentModule;
 
     /**
      * Initializes a ModelManager with the given taskBook and userPrefs.
@@ -40,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.taskBook.getTaskList());
         filteredModules = new FilteredList<>(this.moduleList.getModuleList());
+        currentModule = null;
     }
 
     public ModelManager() {
@@ -192,6 +194,23 @@ public class ModelManager implements Model {
         taskBook.removeTasksWithModCode(target.getCode());
     }
 
+    @Override
+    public ModCode getCurrentModule() {
+        return currentModule;
+    }
+
+    @Override
+    public void setCurrentModule(ModCode code) {
+        currentModule = code;
+        if (currentModule == null) {
+            updateFilteredModuleList(Model.PREDICATE_SHOW_ALL_MODULES);
+            updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
+        } else {
+            updateFilteredModuleList(model -> model.getCode().equals(code));
+            updateFilteredTaskList(task -> task.getModule().equals(code));
+        }
+    }
+
     //=========== Filtered Task List Accessors =============================================================
 
     /**
@@ -206,7 +225,13 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
+        if (currentModule == null) {
+            filteredTasks.setPredicate(predicate);
+        } else {
+            Predicate<Task> newPredicate = task -> predicate.test(task)
+                    && task.getModule().equals(currentModule);
+            filteredTasks.setPredicate(newPredicate);
+        }
     }
 
     @Override
@@ -242,7 +267,13 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        filteredModules.setPredicate(predicate);
+        if (currentModule == null) {
+            filteredModules.setPredicate(predicate);
+        } else {
+            Predicate<Module> newPredicate = module -> predicate.test(module)
+                    && module.getCode().equals(currentModule);
+            filteredModules.setPredicate(newPredicate);
+        }
     }
 
 }
