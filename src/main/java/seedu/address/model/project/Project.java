@@ -60,6 +60,10 @@ public class Project {
         return issueList;
     }
 
+    public boolean hasValidClientId() {
+        return !this.getClient().getClientId().isEmpty();
+    }
+
     /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.

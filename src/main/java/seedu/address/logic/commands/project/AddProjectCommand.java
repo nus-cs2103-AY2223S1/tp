@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.client.Client;
 import seedu.address.model.project.Project;
 import seedu.address.ui.Ui;
 
@@ -36,6 +37,7 @@ public class AddProjectCommand extends ProjectCommand {
     public static final String MESSAGE_ADD_PROJECT_SUCCESS = "New project added to the address book";
 
     private final Project toAddProject;
+    private final Client projectClient;
 
     /**
      * Creates an AddProjectCommand to add the specified {@code Project}
@@ -43,6 +45,7 @@ public class AddProjectCommand extends ProjectCommand {
     public AddProjectCommand(Project project) {
         requireNonNull(project);
         toAddProject = project;
+        projectClient = project.getClient();
     }
 
     @Override
@@ -51,6 +54,11 @@ public class AddProjectCommand extends ProjectCommand {
 
         if (model.hasProject(toAddProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
+        }
+
+        if (toAddProject.hasValidClientId()) {
+            projectClient.addProjects(toAddProject);
+            model.setClient(projectClient, projectClient);
         }
 
         model.addProject(toAddProject);

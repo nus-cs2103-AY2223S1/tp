@@ -117,8 +117,8 @@ public class Client {
         return this.phone;
     }
 
-    public List<Project> getProjects() {
-        return projects;
+    public void addProjects(Project project) {
+        projects.add(project);
     }
 
 
