@@ -1,11 +1,13 @@
 package seedu.address.ui;
 
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.task.Task;
 
 /**
@@ -14,6 +16,18 @@ import seedu.address.model.task.Task;
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
+    private static final String INCOMPLETE_TAG = "-fx-text-fill: white;"
+            + "-fx-background-color: #e84118;"
+            + "-fx-padding: 1 3 1 3;"
+            + "-fx-border-radius: 2;"
+            + "-fx-background-radius: 2;"
+            + "-fx-font-size: 11;";
+    private static final String COMPLETE_TAG = "-fx-text-fill: white;"
+            + "-fx-background-color: #4cd137;"
+            + "-fx-padding: 1 3 1 3;"
+            + "-fx-border-radius: 2;"
+            + "-fx-background-radius: 2;"
+            + "-fx-font-size: 11;";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved
@@ -52,9 +66,13 @@ public class TaskCard extends UiPart<Region> {
         detail.setText(task.getStatus());
         path.setText(String.format("Path: " + task.getParentPath()));
         if (task.getCompletedTime() != null) {
-            datetime.setText("Completed on: " + task.getCompletedTime().format(DateTimeFormatter.BASIC_ISO_DATE));
+            datetime.setText(
+                    "Completed on: " + task.getCompletedTime()
+                            .format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
+            datetime.setStyle(COMPLETE_TAG);
         } else {
             datetime.setText("Incomplete!");
+            datetime.setStyle(INCOMPLETE_TAG);
         }
     }
 
