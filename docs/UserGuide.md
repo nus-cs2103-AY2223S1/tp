@@ -5,9 +5,9 @@ title: User Guide
 
 <div align="center">
 
-<h1>rapportbook.io User Guide</h1>
+<h1>Rapportbook User Guide</h1>
 
-Welcome to the rapportbook.io user guide! (Mockup done in Balsamiq mockups.)
+Welcome to the Rapportbook user guide! (Mockup done in Balsamiq mockups.)
 
 </div>
 
@@ -15,7 +15,7 @@ Welcome to the rapportbook.io user guide! (Mockup done in Balsamiq mockups.)
 ![Mockup](images/mockup1.png)
 {: refdef}
 
-rapportbook.io is a **desktop app for managing client information for your financial advising needs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+Rapportbook is a **desktop app for managing client information for your financial advising needs, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 * Table of Contents
 {:toc}
@@ -29,7 +29,7 @@ rapportbook.io is a **desktop app for managing client information for your finan
 
 1. Download the latest `rapportbook.jar` from [here](https://github.com/AY2223S1-CS2103T-T13-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your copy of rapportbook.
+1. Copy the file to the folder you want to use as the _home folder_ for your copy of Rapportbook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -72,7 +72,7 @@ Format: `help`
 
 ### Adding a client: `add`
 
-Adds the information of a client to rapportbook.io.
+Adds the information of a client to Rapportbook.
 
 Format: `add n=NAME p=PHONE_NUMBER e=EMAIL a=ADDRESS po=POSTAL_CODE dob=DATE_OF_BIRTH [r=REMARKS]​`
 
@@ -86,7 +86,7 @@ Examples:
 
 ### Deleting of a client: `delete`
 
-Deletes a client from rapportbook.io.
+Deletes a client from Rapportbook.
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -99,7 +99,7 @@ Examples:
 
 ### Viewing the information of a client : `show`
 
-Displays a client's information stored in rapportbook.io by index.
+Displays a client's information stored in Rapportbook by index.
 
 Format: `show INDEX​`
 
@@ -108,7 +108,7 @@ Examples:
 
 ### Editing of client information : `edit`
 
-Edits the information of a client within rapportbook.io.
+Edits the information of a client within Rapportbook.
 
 Format: `edit INDEX [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [po=POSTAL_CODE] [dob=DATE_OF_BIRTH] [r=REMARKS]`
 
@@ -204,14 +204,14 @@ Format: `exit`
 
 ### Saving the data
 
-rapportbook.io data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Rapportbook data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-rapportbook.io data are saved as a JSON file `[JAR file location]/data/rapportbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Rapportbook data is saved as a JSON file `[JAR file location]/data/rapportbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, rapportbook.io will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Rapportbook will discard all data and start with an empty data file at the next run.
 </div>
 
 <!-- ### Archiving data files `[coming in v2.0]`
@@ -223,7 +223,7 @@ _Details coming soon ..._ -->
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous rapportbook.io home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Rapportbook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 

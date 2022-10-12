@@ -3,7 +3,7 @@ layout: page
 title: John Doe's Project Portfolio Page
 ---
 
-# Rapportbook.io
+# Rapportbook
 
 Financial advisors (FA) rely on a large client base for their job. Rapportbook helps new FAs be effective in managing and engaging their clients, by solving the folllowing problems:
 

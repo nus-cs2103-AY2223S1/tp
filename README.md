@@ -1,6 +1,6 @@
 
 <h1 align="center">
-  rapportbook.io
+  Rapportbook
 </h1>
 
 <div align="center">
@@ -11,7 +11,7 @@
 
 </div>
 
-rapportbook.io aims to be the ideal client management application for new and tech-savy financial advisors.
+Rapportbook aims to be the ideal client management application for new and tech-savy financial advisors.
 
 ## Promises
 
