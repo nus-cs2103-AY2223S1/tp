@@ -2,7 +2,7 @@ package seedu.foodrem.model.item;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.foodrem.model.item.itemvalidator.ItemNameValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemNameValidator;
 
 /**
  * Represents an item name in an {@link Item}.
@@ -31,6 +31,17 @@ public class ItemName {
         return other == this // short circuit if same object
                 || (other instanceof ItemName // instanceof handles nulls
                 && itemName.equals(((ItemName) other).itemName)); // state check
+    }
+
+    /**
+     * Compares two item names lexicographically. The method returns 0 if the string is equal to the other string.
+     * A value less than 0 is returned if the string is less than the other string (less characters) and
+     * a value greater than 0 if the string is greater than the other string (more characters).
+     *
+     * @param other The ItemName to compare this ItemName against.
+     */
+    public int compareTo(ItemName other) {
+        return itemName.compareTo(other.itemName);
     }
 
     /**
