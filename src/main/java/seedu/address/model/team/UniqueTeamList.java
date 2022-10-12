@@ -128,8 +128,8 @@ public class UniqueTeamList implements Iterable<Team> {
      * Deletes the {@code Task} from the {@code Team} at the specified index.
      *
      */
-    public void deleteTask(int team_index, int task_index) {
-        internalList.get(team_index).deleteTask(task_index);
+    public void deleteTask(int teamIndex, int taskIndex) {
+        internalList.get(teamIndex).deleteTask(taskIndex);
     }
 
     /**
