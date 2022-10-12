@@ -15,7 +15,7 @@ public class TypicalFoods {
     public static final Food APPLE = new FoodBuilder().withName("Apple")
             .withTag("breakfast").build();
     public static final Food BREAD = new FoodBuilder().withName("Bread")
-            .withTag("breakfast").build();
+            .withTag("lunch").build();
     public static final Food CARBONARA = new FoodBuilder().withName("Carbonara")
             .withTag("lunch").build();
     public static final Food DRAGON_FRUIT = new FoodBuilder().withName("Dragon fruit")

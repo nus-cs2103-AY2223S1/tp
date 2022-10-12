@@ -22,7 +22,7 @@ public class FoodComparatorTest {
         // lunch after breakfast
         assertEquals(1, foodComparator.compare(BREAD, APPLE));
 
-        // tagged meal before untagged
+        // breakfast before dinner
         assertEquals(-1, foodComparator.compare(APPLE, GRAPES));
 
         // same tag, food recorded earlier before food recorded later
