@@ -242,6 +242,12 @@ public class AddCommandTest {
         public ObservableList<Group> getFilteredTeamList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void addField(String fieldName) {
+            throw new AssertionError("This method should not be called.");
+
+        }
     }
 
     /**
