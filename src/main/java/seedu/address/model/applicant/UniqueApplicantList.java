@@ -37,7 +37,7 @@ public class UniqueApplicantList implements Iterable<Applicant> {
     }
 
     /**
-     * Adds a applicant to the list.
+     * Adds an applicant to the list.
      * The applicant must not already exist in the list.
      */
     public void add(Applicant toAdd) {

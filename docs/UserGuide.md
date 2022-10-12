@@ -86,7 +86,7 @@ Adds a scholarship application to the TrackAScholar.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A applicant can have any number of tags (including 0)
+An applicant can have any number of tags (including 0)
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -131,7 +131,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Applicant matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -163,7 +163,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd applicant in the address book.
+* `list` followed by `delete 2` deletes the 2nd applicant in TrackAScholar.
 
 ### Clearing all entries : `clear`
 
@@ -182,14 +182,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TrackAScholar data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TrackAScholar data are saved as a JSON file `[JAR file location]/data/trackAScholar.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, TrackAScholar will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -201,14 +201,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME e/EMAIL [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG] …`
-**Clear** | `clear`
-**Delete** | `delete INDEX`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`
-**filter** | `filter KEYWORD`
-**List** | `list`
-**Help** | `help`
-**Exit** | `exit`
+| Action     | Format, Examples                                                |
+|------------|-----------------------------------------------------------------|
+| **Add**    | `add n/NAME e/EMAIL [p/PHONE_NUMBER] [s/SCHOLARSHIP] [t/TAG] …` |
+| **Clear**  | `clear`                                                         |
+| **Delete** | `delete INDEX`                                                  |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`      |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`                                  |
+| **filter** | `filter KEYWORD`                                                |
+| **List**   | `list`                                                          |
+| **Help**   | `help`                                                          |
+| **Exit**   | `exit`                                                          |
