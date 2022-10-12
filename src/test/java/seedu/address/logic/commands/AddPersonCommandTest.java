@@ -22,8 +22,6 @@ import seedu.address.model.ReadOnlyPersonModel;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
-import seedu.address.model.role.Buyer;
-import seedu.address.model.role.Seller;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddPersonCommandTest {
@@ -154,16 +152,6 @@ public class AddPersonCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setBuyerRole(Person person, Buyer buyer) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setSellerRole(Person person, Seller seller) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -1,15 +1,12 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.role.Buyer;
-import seedu.address.model.role.Seller;
 
 /**
  * Wraps all data at the address-book level
@@ -96,24 +93,6 @@ public class PersonModel implements ReadOnlyPersonModel {
         persons.remove(key);
     }
 
-    /**
-     * Sets the given {@code person} in the list as a {@code buyer}.
-     * {@code person} exists uniquely in the address book.
-     */
-    public void setBuyerRole(Person person, Buyer buyer) {
-        requireAllNonNull(person, buyer);
-        persons.setBuyerRole(person, buyer);
-    }
-
-    /**
-     * Sets the given {@code person} in the list as a {@code seller}.
-     * {@code person} exists uniquely in the address book.
-     */
-    public void setSellerRole(Person person, Seller seller) {
-        requireAllNonNull(person, seller);
-        person.setSeller(seller);
-        // TODO: consider adding the new seller into a UniqueSellerList
-    }
 
     //// util methods
 

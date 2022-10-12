@@ -4,12 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.address.Address;
+import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
+
 
 /**
  * A utility class to help with building Person objects.
@@ -25,6 +28,8 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private PriceRange priceRange;
+    private DesiredCharacteristics desiredCharacteristics;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +40,8 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        priceRange = null;
+        desiredCharacteristics = null;
         tags = new HashSet<>();
     }
 
@@ -46,6 +53,8 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        priceRange = personToCopy.getPriceRange().orElse(null);
+        desiredCharacteristics = personToCopy.getDesiredCharacteristics().orElse(null);
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -89,8 +98,40 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Price Range} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPriceRange(String priceRange) {
+        this.priceRange = new PriceRange(priceRange);
+        return this;
+    }
+
+    /**
+     * Removes the {@code Price Range} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNoPriceRange() {
+        this.priceRange = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code DesiredCharacteristics} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDesiredCharacteristics(String desiredCharacteristics) {
+        this.desiredCharacteristics = new DesiredCharacteristics(desiredCharacteristics);
+        return this;
+    }
+
+    /**
+     * Removes the {@code DesiredCharacteristics} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNoDesiredCharacteristics() {
+        this.desiredCharacteristics = null;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, priceRange, desiredCharacteristics, tags);
     }
 
 }

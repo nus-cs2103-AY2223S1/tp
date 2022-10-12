@@ -7,8 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
-import seedu.address.model.role.Buyer;
-import seedu.address.model.role.Seller;
 
 /**
  * The API of the Model component.
@@ -94,18 +92,6 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
-
-    /**
-     * Sets the given {@code person} in the list as a {@code buyer}.
-     * {@code person} exists uniquely in the address book.
-     */
-    void setBuyerRole(Person person, Buyer buyer);
-
-    /**
-     * Sets the given {@code person} in the list as a {@code seller}.
-     * {@code person} exists uniquely in the address book.
-     */
-    void setSellerRole(Person person, Seller seller);
 
     //=========== Filtered Person List Accessors =============================================================
 
