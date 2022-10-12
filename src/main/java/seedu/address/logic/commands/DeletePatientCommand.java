@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
  */
 public class DeletePatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletepatient";
+    public static final CommandWord COMMAND_WORD = new CommandWord("deletepatient", "dp");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the patient identified by the index number used in the displayed patient list.\n"

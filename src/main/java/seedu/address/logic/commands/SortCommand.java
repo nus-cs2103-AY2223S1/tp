@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
  * Sorts data in Address Book.
  */
 public class SortCommand extends Command {
-    public static final String COMMAND_WORD = "sort";
+    public static final CommandWord COMMAND_WORD = new CommandWord("sort");
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Sorts the list of people according to the specified field."
             + "by alphabetical order.\n"

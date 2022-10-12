@@ -12,7 +12,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  */
 public class FilterNameCommand extends Command {
 
-    public static final String COMMAND_WORD = "filtername";
+    public static final CommandWord COMMAND_WORD = new CommandWord("filtername", "fn");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all patients whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
