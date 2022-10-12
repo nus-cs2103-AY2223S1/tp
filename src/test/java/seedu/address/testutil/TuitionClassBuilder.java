@@ -1,10 +1,15 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.level.Level;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.Day;
 import seedu.address.model.tuitionclass.Name;
@@ -31,6 +36,8 @@ public class TuitionClassBuilder {
     private Day day;
     private Time time;
     private Set<Tag> tags;
+    private List<Student> students;
+    private List<Tutor> tutors;
 
     /**
      * Creates a {@code TuitionClassBuilder} with the default details.
@@ -46,6 +53,8 @@ public class TuitionClassBuilder {
             throw new RuntimeException(e);
         }
         tags = new HashSet<>();
+        students = new ArrayList<>();
+        tutors = new ArrayList<>();
     }
 
     /**
@@ -58,6 +67,8 @@ public class TuitionClassBuilder {
         day = tuitionClassToCopy.getDay();
         time = tuitionClassToCopy.getTime();
         tags = new HashSet<>(tuitionClassToCopy.getTags());
+        students = tuitionClassToCopy.getStudents();
+        tutors = tuitionClassToCopy.getTutors();
     }
 
     /**
@@ -112,7 +123,23 @@ public class TuitionClassBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Students} of the {@code TuitionClass} that we are building.
+     */
+    public TuitionClassBuilder withStudents(Student ... stu) {
+        this.students = new ArrayList<>(Arrays.asList(stu));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Tutors} of the {@code TuitionClass} that we are building.
+     */
+    public TuitionClassBuilder withTutors(Tutor ... tut) {
+        this.tutors = new ArrayList<>(Arrays.asList(tut));
+        return this;
+    }
+
     public TuitionClass build() {
-        return new TuitionClass(name, subject, level, day, time, tags);
+        return new TuitionClass(name, subject, level, day, time, tags, students, tutors);
     }
 }
