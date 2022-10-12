@@ -1,5 +1,7 @@
 package seedu.foodrem.storage;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -44,11 +46,11 @@ class JsonAdaptedItem {
      * Converts a given {@code Item} into this class for Jackson use.
      */
     public JsonAdaptedItem(Item source) {
-        name = source.getNameToListView();
-        quantity = source.getQuantity().toString();
-        unit = source.getUnit().toString();
-        boughtDate = source.getBoughtDate().toString();
-        expiryDate = source.getExpiryDate().toString();
+        name = Objects.toString(source.getName());
+        quantity = Objects.toString(source.getQuantity());
+        unit = Objects.toString(source.getUnit(), "");
+        boughtDate = Objects.toString(source.getBoughtDate(), "");
+        expiryDate = Objects.toString(source.getExpiryDate(), "");
     }
 
     /**
