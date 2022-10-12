@@ -6,8 +6,6 @@ import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.logic.parser.parameters.FacultyCodeParameter;
 import nus.climods.logic.parser.parameters.UserFlagParameter;
 
-import java.util.regex.Pattern;
-
 /**
  * Parses input arguments and creates a new ListCommand object
  */

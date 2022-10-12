@@ -3,7 +3,6 @@ package nus.climods.model.module;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.openapitools.client.ApiException;

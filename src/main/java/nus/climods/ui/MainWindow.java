@@ -130,7 +130,6 @@ public class MainWindow extends UiPart<Stage> {
         modulesPane = new SplitPane();
 
         ModuleListPanel moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
-//        ModuleListPanel moduleListPanel = new ModuleListPanel(logic.getModuleList().getModules());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

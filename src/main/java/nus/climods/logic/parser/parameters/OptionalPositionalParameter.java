@@ -1,10 +1,5 @@
 package nus.climods.logic.parser.parameters;
 
-import nus.climods.logic.parser.ParserUtil;
-import nus.climods.logic.parser.exceptions.ParseException;
-
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -22,7 +17,8 @@ public class OptionalPositionalParameter<T> extends PositionalParameter {
      * @param conversionFunction    A function to convert the argument string into an Optional of type T
      * @param parseExceptionMessage ParseException message to show upon unsuccessful parse
      */
-    public OptionalPositionalParameter(int index, String argumentsString, Function<String, Optional<T>> conversionFunction, String parseExceptionMessage) {
+    public OptionalPositionalParameter(int index, String argumentsString, Function<String,
+            Optional<T>> conversionFunction, String parseExceptionMessage) {
         super(index, argumentsString, conversionFunction, parseExceptionMessage);
     }
 
