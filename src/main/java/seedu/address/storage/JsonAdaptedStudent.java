@@ -40,7 +40,7 @@ public class JsonAdaptedStudent {
         name = source.getName().fullName;
         telegram = source.getTelegram().telegram;
         email = source.getEmail().value;
-        response = source.getResponse().response;
+        response = source.getResponse().value;
         attendance = source.getAttendance().attendance;
     }
 
@@ -52,12 +52,12 @@ public class JsonAdaptedStudent {
     public Student toModelType() throws IllegalValueException {
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StuName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!StuName.isValidStuName(name)) {
+            throw new IllegalValueException(StuName.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final StuName modelName = new StuName(name);
 
         if (telegram == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Telegram.class.getSimpleName()));
@@ -68,12 +68,12 @@ public class JsonAdaptedStudent {
         final Telegram modelTelegram = new Telegram(telegram);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StuEmail.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!StuEmail.isValidEmail(email)) {
+            throw new IllegalValueException(StuEmail.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final StuEmail modelEmail = new StuEmail(email);
 
         if (response == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Response.class.getSimpleName()));
