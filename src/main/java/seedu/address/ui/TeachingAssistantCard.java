@@ -32,6 +32,9 @@ public class TeachingAssistantCard extends UiPart<Region> {
     @FXML
     private Label id;
 
+    /**
+     * Creates a {@code PersonCode} with the given {@code TeachingAssistant} and index to display.
+     */
     public TeachingAssistantCard(TeachingAssistant teachingAssistant, int displayedIndex) {
         super(FXML);
         this.teachingAssistant = teachingAssistant;

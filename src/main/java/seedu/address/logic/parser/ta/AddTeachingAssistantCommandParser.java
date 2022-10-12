@@ -1,7 +1,8 @@
 package seedu.address.logic.parser.ta;
+
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.ta.AddTeachingAssistantCommand;
 import seedu.address.logic.parser.ArgumentMultimap;

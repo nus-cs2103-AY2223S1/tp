@@ -9,15 +9,17 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.ta.exceptions.DuplicateTeachingAssistantException;
-import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.exceptions.DuplicateTutorialException;
 
 /**
  * A list of teaching assistants that enforces uniqueness between its elements and does not allow nulls.
- * A teaching assistants is considered unique by comparing using {@code TeachingAssistant#isSameTeachingAssistant(TeachingAssistant)}.
- * As such, adding and updating of teaching assistants uses TeachingAssistant#isSameTeachingAssistant(TeachingAssistant) for equality so as to
- * ensure that the teaching assistants being added or updated is unique in terms of identity in the UniqueTeachingAssistantList.
- * However, the removal of a teaching assistant uses TeachingAssistant#equals(Object) so as to ensure that the teaching assistant with exactly
+ * A teaching assistants is considered unique by comparing using
+ * {@code TeachingAssistant#isSameTeachingAssistant(TeachingAssistant)}.
+ * As such, adding and updating of teaching assistants uses
+ * TeachingAssistant#isSameTeachingAssistant(TeachingAssistant) for equality to
+ * ensure that the teaching assistants being added or updated is unique in terms of identity in the
+ * UniqueTeachingAssistantList.
+ * However, the removal of a teaching assistant uses TeachingAssistant#equals(Object) to ensure
+ * that the teaching assistant with exactly
  * the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -57,7 +59,7 @@ public class UniqueTeachingAssistantList implements Iterable<TeachingAssistant> 
     public void setTeachingAssistants(List<TeachingAssistant> teachingAssistants) {
         requireAllNonNull(teachingAssistants);
         if (!teachingAssistantsAreUnique(teachingAssistants)) {
-            throw new DuplicateTutorialException();
+            throw new DuplicateTeachingAssistantException();
         }
 
         internalList.setAll(teachingAssistants);
