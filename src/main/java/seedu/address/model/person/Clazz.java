@@ -17,7 +17,7 @@ public class Clazz {
     public static final String VALIDATION_REGEX = "^[a-zA-Z]*$";
 
     public final String className;
-  
+
     private ArrayList<Person> personsInClass;
 
     /**
