@@ -4,6 +4,12 @@ import static seedu.address.testutil.TypicalStudents.STUDENT1;
 import static seedu.address.testutil.TypicalStudents.STUDENT2;
 import static seedu.address.testutil.TypicalTutors.TUTOR1;
 import static seedu.address.testutil.TypicalTutors.TUTOR2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CLASS1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_CLASS1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LEVEL_CLASS1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CLASS1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_CLASS1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_CLASS1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +44,11 @@ public class TypicalTuitionClasses {
                     .withStudents(STUDENT1, STUDENT2)
                     .withTutors(TUTOR1, TUTOR2)
                     .build();
+
+    public static final TuitionClass CHEMISTRY_CLASS = new TuitionClassBuilder().withName(VALID_NAME_CLASS1)
+            .withSubject(VALID_SUBJECT_CLASS1).withLevel(VALID_LEVEL_CLASS1).withDay(VALID_DAY_CLASS1)
+            .withTime(VALID_STARTTIME_CLASS1, VALID_ENDTIME_CLASS1).build();
+
 
     private TypicalTuitionClasses() {} // prevents instantiation
 
