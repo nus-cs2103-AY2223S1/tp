@@ -42,30 +42,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String projectId} into a {@code Project}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @param projectId in string format from user input
-     * @return Project of the project id
-     * @throws ParseException if the fiven {@code project} is invalid.
-     */
-    public static Project parseProject(String projectId) throws ParseException, NumberFormatException {
-        requireNonNull(projectId);
-        String trimmedProjectId = projectId.trim();
-        try {
-            Integer.parseInt(trimmedProjectId);
-        } catch (NumberFormatException e) {
-            throw new ParseException(ProjectId.MESSAGE_INVALID);
-        }
-        ProjectId projectIdRes = new ProjectId(Integer.parseInt(trimmedProjectId));
-        Project project = UniqueProjectList.getProject(projectIdRes);
-        if (!Project.isValidProject(project)) {
-            throw new ParseException(Project.MESSAGE_INVALID);
-        }
-        return project;
-    }
-
-    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
