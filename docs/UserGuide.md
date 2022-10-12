@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-**Duke The Market** is a one-stop marketing tool that allows department stores to keep track of their upcoming 
+**Duke The Market** is a one-stop marketing tool that allows department stores to keep track of their upcoming
 marketing plan roll-outs, monitor its impact, and to target the appropriate subsegment of its customer base for each of those plans.
-Also, it is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User 
+Also, it is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User
 Interface (GUI). If you can type fast, Duke The Market can help you organise your marketing events and reach out to your target customer base much faster than a traditional GUI app.
 
 * Table of Contents
@@ -68,11 +68,11 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 </div>
 
 ### Instantaneous launching
-Users that have Java 11 or above installed in their computers can launch the Duke The Market program 
+Users that have Java 11 or above installed in their computers can launch the Duke The Market program
 by double-clicking on the file.
 
 ### Saving the data
-Duke The Market data are saved in the hard disk automatically after any command that changes the data. 
+Duke The Market data are saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
 ### Viewing help : `help`
@@ -130,17 +130,25 @@ Shows a list of all persons in the application.
 Format: `list [s/FIELD]`
 
 * Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one the following values:
-  * `n` sort by name
-  * `d` Sort by date of birth
-  * `g` Sort by gender
+  * `n` or `N` sort by name ignoring case differences
+  * `d` or `D` Sort by date of birth
+  * `g` or `G` Sort by gender
 
-* It is optional to specify the field to sort by. If no field is specified, persons are listed in the order they were inserted.
+* It is optional to specify the field to sort by. If no field is specified, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 * Persons with an empty field that is being used to sort will be placed at the top of the list.
+
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The sorted result is persistent on the underlying contacts list.<br><br>
+
+For example, if `list s/n` and `list` are executed back-to-back, the result of the second `list` command will still display the sorted results from the first `list s/n` command since the sorted result is persistent.
+</div>
 
 Examples:
 * `list` Lists all persons in the order they were inserted.
 * `list s/n` Lists all persons sorted by their names.
+
 
 ### Editing a contact : `edit`
 
@@ -159,7 +167,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
    `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`, 
+*  `edit 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`,
 edits gender to be `Female` and edits date of birth to be `3.4.1998`.
 
 __Optional Parameter 1: Gender__
@@ -239,8 +247,8 @@ Deletes an existing event in the application.
 
 Format: `deleteEvent INDEX`
 
-* Removes the event at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed event list 
+* Removes the event at the specified `INDEX`.
+* The index refers to the index number shown in the displayed event list
 * The index must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
 
 Examples:
