@@ -193,6 +193,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
         public boolean hasStudentWithMatchingId(Student student) {
             throw new AssertionError("This method should not be called.");
         }
