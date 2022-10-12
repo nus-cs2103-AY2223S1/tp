@@ -21,6 +21,8 @@ public class FilterLocCommandParser {
 
         String[] nameKeywords = trimmedArgs.split("\\s+", 2);
 
-        return new FilterLocCommand(new LocationContainsKeywordsPredicate(nameKeywords[0]));
+        return new FilterLocCommand(new LocationContainsKeywordsPredicate<>(nameKeywords[0]),
+                new LocationContainsKeywordsPredicate<>(nameKeywords[0]),
+                new LocationContainsKeywordsPredicate<>(nameKeywords[0]));
     }
 }
