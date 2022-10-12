@@ -1,10 +1,10 @@
 package seedu.travelr.commons.util;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.util.FileUtil;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.testutil.SerializableTestClass;
-import seedu.address.testutil.TestUtil;
+import seedu.travelr.commons.util.FileUtil;
+import seedu.travelr.commons.util.JsonUtil;
+import seedu.travelr.testutil.SerializableTestClass;
+import seedu.travelr.testutil.TestUtil;
 
 import java.io.IOException;
 import java.nio.file.Path;

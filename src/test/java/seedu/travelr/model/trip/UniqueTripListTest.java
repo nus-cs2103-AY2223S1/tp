@@ -1,4 +1,4 @@
-package seedu.travelr.model.person;
+package seedu.travelr.model.trip;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.model.person.Person;
@@ -20,7 +20,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
-public class UniquePersonListTest {
+public class UniqueTripListTest {
 
     private final UniquePersonList uniquePersonList = new UniquePersonList();
 

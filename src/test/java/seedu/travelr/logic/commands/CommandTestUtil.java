@@ -4,7 +4,7 @@ import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
-import seedu.travelr.model.trip.NameContainsKeywordsPredicate;
+import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.EditTripDescriptorBuilder;
 
@@ -108,7 +108,7 @@ public class CommandTestUtil {
 
         Trip trip = model.getFilteredTripList().get(targetIndex.getZeroBased());
         final String[] splitTitle = trip.getTitle().fullTitle.split("\\s+");
-        model.updateFilteredTripList(new NameContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+        model.updateFilteredTripList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(1, model.getFilteredTripList().size());
     }

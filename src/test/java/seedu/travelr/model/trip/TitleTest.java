@@ -1,4 +1,4 @@
-package seedu.travelr.model.person;
+package seedu.travelr.model.trip;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.model.person.Name;
