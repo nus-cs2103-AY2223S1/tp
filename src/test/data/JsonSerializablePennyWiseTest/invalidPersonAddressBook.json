@@ -1,0 +1,14 @@
+{
+  "expenditures" : [ {
+    "description" : "",
+    "amount" : "20",
+    "date" : "20-01-2022",
+    "tagged" : [ "Lunch" ]
+  }, {
+    "description" : "Dinner",
+    "amount" : "30",
+    "date" : "20-02-2022",
+    "tagged" : [ "Dinner" ]
+  }],
+  "incomes": []
+}

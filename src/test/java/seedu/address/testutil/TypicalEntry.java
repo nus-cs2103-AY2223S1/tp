@@ -10,6 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MOVIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_MOVIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DINNER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MOVIE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,16 +30,19 @@ public class TypicalEntry {
             .withDescription(VALID_DESC_LUNCH)
             .withAmount(VALID_AMT_LUNCH)
             .withDate(VALID_DATE_LUNCH)
+            .withTags(VALID_TAG_LUNCH)
             .build();
     public static final Expenditure DINNER = new ExpenditureBuilder()
             .withDescription(VALID_DESC_DINNER)
             .withAmount(VALID_AMT_DINNER)
             .withDate(VALID_DATE_DINNER)
+            .withTags(VALID_TAG_DINNER)
             .build();
     public static final Expenditure MOVIE = new ExpenditureBuilder()
             .withDescription(VALID_DESC_MOVIE)
             .withAmount(VALID_AMT_MOVIE)
             .withDate(VALID_DATE_MOVIE)
+            .withTags(VALID_TAG_MOVIE)
             .build();
     public static final Expenditure GROCERIES = new ExpenditureBuilder()
             .withDescription("groceries")
@@ -51,7 +57,7 @@ public class TypicalEntry {
             .build();
     // add typical income
 
-    public static PennyWise getTypicalAddressBook() {
+    public static PennyWise getTypicalPennyWise() {
         PennyWise ab = new PennyWise();
 
         for (Expenditure expenditure : getTypicalExpenditure()) {

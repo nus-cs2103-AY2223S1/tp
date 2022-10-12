@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalEntry.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 
 import java.nio.file.Path;
 
@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonPennyWiseStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonPennyWiseStorageTest} class.
          */
-        PennyWise original = getTypicalAddressBook();
+        PennyWise original = getTypicalPennyWise();
         storageManager.savePennyWise(original);
         ReadOnlyPennyWise retrieved = storageManager.readPennyWise().get();
         assertEquals(original, new PennyWise(retrieved));
