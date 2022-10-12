@@ -1,28 +1,27 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
-
-
-import java.util.Set;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.link.Link;
 import seedu.address.model.Model;
+import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.task.Task;
 
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
+
 /**
  * Deletes a link to an existing module in Plannit.
  */
-public class DeleteLinkCommand extends Command{
+public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "delete-link";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Link: %2$s";
@@ -40,6 +39,11 @@ public class DeleteLinkCommand extends Command{
     private final Index index;
     private final Set<Link> links;
 
+    /**
+     * Creates a DeleteLinkCommand for the deletion of links from a module
+     * @param index index of the module based on the filtered module list
+     * @param links links to delete from the module
+     */
     public DeleteLinkCommand(Index index, Set<Link> links) {
         requireAllNonNull(index, links);
         this.index = index;

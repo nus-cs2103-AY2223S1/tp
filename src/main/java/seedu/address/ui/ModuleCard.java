@@ -7,12 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.link.Link;
-import seedu.address.model.module.Module;
-
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
+import seedu.address.model.module.Module;
 
 /**
  * A UI component that displays information of a {@code Module}.
@@ -62,16 +60,16 @@ public class ModuleCard extends UiPart<Region> {
         // ToDo: Add Ui components for tasks and links.
     }
 
-    private static Hyperlink createHyperLinkNode(String linkURL) {
-        Hyperlink node =  new Hyperlink(linkURL);
+    private static Hyperlink createHyperLinkNode(String linkUrl) {
+        Hyperlink node = new Hyperlink(linkUrl);
         node.setStyle("-fx-text-fill: #FFCC66");
-        if (!linkURL.substring(0, 4).equals("http")) {
-            linkURL = "https://" + linkURL;
+        if (!linkUrl.substring(0, 4).equals("http")) {
+            linkUrl = "https://" + linkUrl;
         }
-        final String finalLinkURL = linkURL;
+        final String finalLinkUrl = linkUrl;
         node.setOnAction(e -> {
             try {
-                desktop.browse(URI.create(finalLinkURL));
+                desktop.browse(URI.create(finalLinkUrl));
             } catch (IOException ex) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Error: Link cannot be launched by your desktop");

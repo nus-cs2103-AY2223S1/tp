@@ -128,8 +128,8 @@ public class ParserUtil {
     public static Set<Link> parseLinks(Collection<String> links) throws ParseException {
         requireNonNull(links);
         final Set<Link> linkSet = new HashSet<>();
-        for (String linkURL : links) {
-            linkSet.add(parseLink(linkURL));
+        for (String link : links) {
+            linkSet.add(parseLink(link));
         }
         return linkSet;
     }

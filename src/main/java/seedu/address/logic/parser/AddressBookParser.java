@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.AddLinkCommand;
-import seedu.address.logic.commands.DeleteLinkCommand;
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteLinkCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.commands.ExitCommand;

@@ -40,8 +40,8 @@ contains some sample data.<br>
 | [`delete-module`](#212-delete-module)               | `delete-module   m/MODULE_CODE`                                | Delete module by module code                                                    |
 | [`add task`](#221-add-task)                         | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`             | Add task with specified module code and task description                        |
 | [`delete task`](#222-delete-task)                   | `delete task     m/MODULE_CODE n/TASK_NUMBER`                  | Delete task corresponding to specified task number of specified module code     |
-| [`add-link`](#231-add-link)                         | `add    link     INDEX l/LINK_URL`                             | Add link URL to a module by its displayed index                                 |
-| [`delete-link`](#232-delete-link)                   | `delete link     INDEX l/LINK_URL`                             | Delete link URL from a module by its displayed index                            |
+| [`add-link`](#231-add-link)                         | `add-link        INDEX l/LINK_URL`                             | Add link URL to a module by its displayed index                                 |
+| [`delete-link`](#232-delete-link)                   | `delete-link     INDEX l/LINK_URL`                             | Delete link URL from a module by its displayed index                            |
 | [`add-contact`](#241-add-contact)                   | `add-contact     n/NAME    e/EMAIL    p/PHONE_NUMBER`          | Add contact with specified name, email, and phone number                        |
 | [`delete-contact`](#242-delete-contact-coming-soon) | `delete-contact  n/NAME`                                       | Delete contact belonging to the specified name                                  |
 | [`edit-contact`](#243-edit-contact)                 | `edit-contact    INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])` | Edit contact belonging to the specified index currently displayed on the screen |

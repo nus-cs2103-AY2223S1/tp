@@ -5,17 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_2;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
 import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.task.Task;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,6 +32,27 @@ import java.util.Set;
  */
 public class DeleteLinkCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private static final int MODULE_INDEX_NONEXISTENT = 999999;
+    private static final int MODULE_INDEX_WITH_LINK_ZERO_BASED = 3;
+
+    @Test
+    public void execute_addLinkCommandFilteredList_success() {
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Module moduleToEdit = expectedModel.getFilteredModuleList().get(MODULE_INDEX_WITH_LINK_ZERO_BASED);
+        ModuleCode moduleCode = moduleToEdit.getModuleCode();
+        ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
+        Set<Task> moduleTasks = moduleToEdit.getTasks();
+        Set<Link> moduleLinksToDelete = moduleToEdit.copyLinks();
+        Set<Link> moduleLinksEmpty = new HashSet<Link>();
+        Module moduleToDeleteLink = new Module(moduleCode, moduleTitle, moduleTasks, moduleLinksEmpty);
+
+        DeleteLinkCommand deleteLinkCommand = new DeleteLinkCommand(
+                Index.fromZeroBased(MODULE_INDEX_WITH_LINK_ZERO_BASED), moduleLinksToDelete);
+        expectedModel.setModule(moduleToEdit, moduleToDeleteLink);
+        String expectedMessage = String.format(DeleteLinkCommand.MESSAGE_DELETE_LINK_SUCCESS, moduleToDeleteLink);
+
+        assertCommandSuccess(deleteLinkCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_missingModuleLinkUnfilteredList_failure() {
@@ -36,6 +63,15 @@ public class DeleteLinkCommandTest {
         assertCommandFailure(deleteLinkCommand, model,
                 DeleteLinkCommand.MESSAGE_MISSING_LINK + INDEX_FIRST_MODULE.getOneBased()
                         + " [" + VALID_MODULE_LINK_2 + "]");
+    }
+
+    @Test
+    public void execute_nonExistentModuleUnfilteredList_failure() {
+        Set<Link> links = new HashSet<Link>(Arrays.asList(new Link(VALID_MODULE_LINK)));
+        DeleteLinkCommand deleteLinkCommand = new DeleteLinkCommand(
+                Index.fromOneBased(MODULE_INDEX_NONEXISTENT), links);
+        assertCommandFailure(deleteLinkCommand, model,
+                Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
     }
 
     @Test
