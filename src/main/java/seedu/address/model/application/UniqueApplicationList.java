@@ -43,7 +43,20 @@ public class UniqueApplicationList implements Iterable<Application> {
      */
     public boolean hasSameInterviewTimeAs(Application toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().map(Application::getInterview).anyMatch(toCheck.getInterview()::isOnSameTime);
+        for (int i = 0; i < internalList.size() - 1; i++) {
+            if (internalList.get(i).getInterview().isEmpty()) {
+                continue;
+            }
+            for (int j = i + 1; j < internalList.size(); j++) {
+                if (internalList.get(j).getInterview().isEmpty()) {
+                    continue;
+                }
+                if (internalList.get(i).getInterview().get().isOnSameTime(internalList.get(j).getInterview().get())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -156,8 +169,14 @@ public class UniqueApplicationList implements Iterable<Application> {
      */
     private boolean interviewsAreUnique(List<Application> applications) {
         for (int i = 0; i < applications.size() - 1; i++) {
+            if (applications.get(i).getInterview().isEmpty()) {
+                continue;
+            }
             for (int j = i + 1; j < applications.size(); j++) {
-                if (applications.get(i).getInterview().isOnSameTime(applications.get(j).getInterview())) {
+                if (applications.get(j).getInterview().isEmpty()) {
+                    continue;
+                }
+                if (applications.get(i).getInterview().get().isOnSameTime(applications.get(j).getInterview().get())) {
                     return false;
                 }
             }
