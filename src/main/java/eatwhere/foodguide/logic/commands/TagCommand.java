@@ -35,9 +35,9 @@ public class TagCommand extends Command {
     public static final String MESSAGE_TAG_EATERY_SUCCESS = "Tagged Eatery: %1$s";
     public static final String MESSAGE_NOT_TAGGED = "At least one tag must be provided.";
     public static final String MESSAGE_DUPLICATE_EATERY = "This eatery already exists in the food guide.";
-
+    public static final String MESSAGE_DUPLICATE_TAGS_HEADER = "Duplicate tags not allowed:";
     private final Index index;
-    private Set<Tag> tagsToAdd;
+    private final Set<Tag> tagsToAdd;
 
     /**
      * @param index of the eatery in the filtered eatery list to tag
@@ -69,14 +69,14 @@ public class TagCommand extends Command {
 
         model.setEatery(eateryToTag, taggedEatery);
         model.updateFilteredEateryList(Model.PREDICATE_SHOW_ALL_EATERIES);
-        return new CommandResult(String.format(MESSAGE_TAG_EATERY_SUCCESS, taggedEatery));
+        return new CommandResult(String.format(MESSAGE_TAG_EATERY_SUCCESS, taggedEatery.getName()));
     }
 
     /**
      * Creates and returns an {@code Eatery} that's a copy of {@code eateryToTag}
      * with {@code tagsToAdd} included.
      */
-    private static Eatery createTaggedEatery(Eatery eateryToTag, Set<Tag> tagsToAdd) {
+    private static Eatery createTaggedEatery(Eatery eateryToTag, Set<Tag> tagsToAdd) throws CommandException {
         assert eateryToTag != null;
 
         Name name = eateryToTag.getName();
@@ -84,8 +84,18 @@ public class TagCommand extends Command {
         Email email = eateryToTag.getEmail();
         Location location = eateryToTag.getLocation();
         Set<Tag> tags = new HashSet<>(eateryToTag.getTags()); //hashset supports addAll()
-        tags.addAll(tagsToAdd);
 
+        Set<Tag> duplicateTags = new HashSet<>(Set.copyOf(tagsToAdd));
+        duplicateTags.retainAll(tags);
+        if (!duplicateTags.isEmpty()) {
+            StringBuilder errorMessage = new StringBuilder(MESSAGE_DUPLICATE_TAGS_HEADER);
+            for (Tag tag : duplicateTags) {
+                errorMessage.append(" ").append(tag);
+            }
+            throw new CommandException(errorMessage.toString());
+        }
+
+        tags.addAll(tagsToAdd);
         return new Eatery(name, phone, email, location, tags);
     }
 

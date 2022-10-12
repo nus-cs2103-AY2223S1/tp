@@ -4,7 +4,6 @@ import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
@@ -39,7 +38,7 @@ public class TagCommandParser implements Parser<TagCommand> {
                     pe);
         }
 
-        Optional<Set<Tag>> newTags = parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG));
+        Optional<Set<Tag>> newTags = parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         if (newTags.isEmpty()) {
             throw new ParseException(TagCommand.MESSAGE_NOT_TAGGED);
@@ -53,14 +52,9 @@ public class TagCommandParser implements Parser<TagCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    private Optional<Set<Tag>> parseTags(Collection<String> tags) throws ParseException {
         assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        return tags.isEmpty() ? Optional.empty() : Optional.of(ParserUtil.parseTags(tags));
     }
 
 }
