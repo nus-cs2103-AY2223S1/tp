@@ -41,7 +41,7 @@ public class ParserUtil {
      *
      * @throws IllegalArgumentException if the given {@code name} is invalid.
      */
-    public static ItemName parseName(String name) throws IllegalArgumentException {
+    public static ItemName parseItemName(String name) throws IllegalArgumentException {
         requireNonNull(name);
         String trimmedName = name.trim();
         return new ItemName(trimmedName);
@@ -117,4 +117,5 @@ public class ParserUtil {
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 }

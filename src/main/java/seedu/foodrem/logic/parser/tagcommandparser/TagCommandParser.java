@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.parser;
+package seedu.foodrem.logic.parser.tagcommandparser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -9,6 +9,11 @@ import java.util.stream.Stream;
 
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.tagcommands.TagCommand;
+import seedu.foodrem.logic.parser.ArgumentMultimap;
+import seedu.foodrem.logic.parser.ArgumentTokenizer;
+import seedu.foodrem.logic.parser.Parser;
+import seedu.foodrem.logic.parser.ParserUtil;
+import seedu.foodrem.logic.parser.Prefix;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**

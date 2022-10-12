@@ -50,25 +50,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseItemName(null));
     }
 
     @Test
     public void parseName_invalidValue_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseName(INVALID_ITEM_NAME));
+        assertThrows(IllegalArgumentException.class, () -> ParserUtil.parseItemName(INVALID_ITEM_NAME));
     }
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() {
         ItemName expectedName = new ItemName(VALID_ITEM_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_ITEM_NAME));
+        assertEquals(expectedName, ParserUtil.parseItemName(VALID_ITEM_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() {
         String nameWithWhitespace = WHITESPACE + VALID_ITEM_NAME + WHITESPACE;
         ItemName expectedName = new ItemName(VALID_ITEM_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        assertEquals(expectedName, ParserUtil.parseItemName(nameWithWhitespace));
     }
 
     @Test
