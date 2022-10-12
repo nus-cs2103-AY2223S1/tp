@@ -16,7 +16,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.field.Field;
 import seedu.address.model.task.Task;
 
 /**

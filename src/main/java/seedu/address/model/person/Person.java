@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -12,7 +11,6 @@ import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
-import seedu.address.model.person.field.Field;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -137,10 +135,10 @@ public class Person implements DisplayItem {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
-//        if (!fields.isEmpty()) {
-//            builder.append("; Fields: ")
-//                   .append(fields.toString());
-//        }
+        //        if (!fields.isEmpty()) {
+        //            builder.append("; Fields: ")
+        //                   .append(fields.toString());
+        //        }
         return builder.toString();
     }
 

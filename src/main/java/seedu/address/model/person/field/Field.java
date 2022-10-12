@@ -63,6 +63,9 @@ public class Field {
      *
      * @return true if the value of the field is not null, false otherwise
      */
+    public boolean isValueSet() {
+        return value == null;
+    }
 
     /**
      * Returns true if a given string is a valid name argument.
@@ -91,6 +94,11 @@ public class Field {
         return "[" + name + "," + value + "]";
     }
 
+    /**
+     * Returns a string representation to be displayed in the {@code PersonCard}
+     *
+     * @return the string representation for display
+     */
     public String toStringDisplay() {
         if (value == null) {
             return "";

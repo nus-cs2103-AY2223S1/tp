@@ -5,8 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Stream;
-import java.util.stream.Collectors;
 
 import seedu.address.model.item.DisplayItemList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;

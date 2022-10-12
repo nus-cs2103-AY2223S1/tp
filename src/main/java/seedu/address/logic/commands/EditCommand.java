@@ -188,9 +188,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setFields(Fields fields) { this.fields = fields; }
+        public void setFields(Fields fields) {
+            this.fields = fields;
+        }
 
-        public Optional<Fields> getFields() { return Optional.ofNullable(fields); }
+        public Optional<Fields> getFields() {
+            return Optional.ofNullable(fields);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.

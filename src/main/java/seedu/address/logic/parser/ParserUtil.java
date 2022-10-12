@@ -159,6 +159,13 @@ public class ParserUtil {
         return new Group(group);
     }
 
+    /**
+     * Parses {@code String field} into a {@code Field}.
+     *
+     * @param fieldName the name of the field that is to be created.
+     * @return A Field instance containing the name of the field.
+     * @throws ParseException if the field name is invalid.
+     */
     public static Field parseField(String fieldName) throws ParseException {
         requireNonNull(fieldName);
         if (!Field.isValidField(fieldName)) {
