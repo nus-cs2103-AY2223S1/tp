@@ -21,10 +21,10 @@
         </minWidth>
       </Label>
       <Label fx:id="name" text="\$first"/>
-      </HBox>
       <Label fx:id="quantityAndUnit" text="\$quantityAndUnit"/>
       <Label fx:id="bought" text="\$bought"/>
       <Label fx:id="expiry" text="\$expiry"/>
+    </HBox>
     <FlowPane fx:id="tags" />
   </VBox>
 </HBox>
