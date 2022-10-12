@@ -25,7 +25,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
         }
 
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
