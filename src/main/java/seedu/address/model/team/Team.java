@@ -102,10 +102,10 @@ public class Team {
 
     /**
      * Marks a task of the team as not done.
-     * @param t
+     * @param index The index of the {@code task} to be marked as not done.
      */
-    public void unmarkTask(Task t) {
-        tasks.unmark(t);
+    public void unmarkTask(int index) {
+        tasks.unmark(index);
     }
 
     /**

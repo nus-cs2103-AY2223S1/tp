@@ -126,7 +126,7 @@ public interface Model {
 
     void markTask(Index teamIndex, Index taskIndex);
 
-    void unmarkTask(Index index, Task task);
+    void unmarkTask(Index teamIndex, Index taskIndex);
 
     void deleteTask(Index teamIndex, Index taskIndex);
 

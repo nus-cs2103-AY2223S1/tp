@@ -238,7 +238,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void unmarkTask(Index index, Task task) {
+        public void unmarkTask(Index teamIndex, Index taskIndex) {
             throw new AssertionError("This method should not be called.");
         }
 

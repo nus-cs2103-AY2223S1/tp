@@ -163,9 +163,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void unmarkTask(Index index, Task task) {
-        requireAllNonNull(index, task);
-        addressBook.unmarkTask(index, task);
+    public void unmarkTask(Index teamIndex, Index taskIndex) {
+        requireAllNonNull(teamIndex, taskIndex);
+        addressBook.unmarkTask(teamIndex, taskIndex);
     }
 
     @Override
