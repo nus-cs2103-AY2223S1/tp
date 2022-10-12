@@ -9,6 +9,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.model.team.Team;
 
+/**
+ * Placeholder UI panel to show the full details of team.
+ */
 public class TeamDetailsPanel extends UiPart<Region> {
 
     private static final String FXML = "TeamDetailsPanel.fxml";
@@ -17,6 +20,9 @@ public class TeamDetailsPanel extends UiPart<Region> {
     @FXML
     private StackPane teamDetailsView;
 
+    /**
+     * Creates a {@code TeamDetailsPanel} with the given {@code ObjectProperty}.
+     */
     public TeamDetailsPanel(ObjectProperty<Team> currentTeam) {
         super(FXML);
         teamProperty = currentTeam;
@@ -26,7 +32,7 @@ public class TeamDetailsPanel extends UiPart<Region> {
             @Override
             public void changed(ObservableValue<? extends Team> observable, Team oldValue, Team newValue) {
                 TeamDetailsCard newCard = new TeamDetailsCard(newValue);
-                teamDetailsView.getChildren().set(0,newCard.getRoot());
+                teamDetailsView.getChildren().set(0, newCard.getRoot());
             }
         });
     }

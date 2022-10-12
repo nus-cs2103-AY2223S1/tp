@@ -6,6 +6,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.team.Team;
 
+/**
+ * A UI Component that displays the truncated information of a {@code Team}.
+ */
 public class TeamCard extends UiPart<Region> {
 
     private static final String FXML = "TeamListCard.fxml";
@@ -21,7 +24,7 @@ public class TeamCard extends UiPart<Region> {
     private Label teamName;
 
     /**
-     * Creates a {@code TeamCode} with the given {@code Team} and index to display.
+     * Creates a {@code TeamCard} with the given {@code Team} and index to display.
      */
     public TeamCard(Team team, int displayedIndex) {
         super(FXML);

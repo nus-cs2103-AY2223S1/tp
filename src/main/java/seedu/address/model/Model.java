@@ -4,8 +4,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
