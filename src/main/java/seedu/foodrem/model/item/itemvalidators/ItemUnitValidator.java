@@ -1,4 +1,4 @@
-package seedu.foodrem.model.item.itemvalidator;
+package seedu.foodrem.model.item.itemvalidators;
 
 import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 
