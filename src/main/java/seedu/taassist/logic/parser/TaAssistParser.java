@@ -13,6 +13,7 @@ import seedu.taassist.logic.commands.ClearCommand;
 import seedu.taassist.logic.commands.Command;
 import seedu.taassist.logic.commands.DeleteCommand;
 import seedu.taassist.logic.commands.DeletecCommand;
+import seedu.taassist.logic.commands.DeletesCommand;
 import seedu.taassist.logic.commands.EditCommand;
 import seedu.taassist.logic.commands.ExitCommand;
 import seedu.taassist.logic.commands.FindCommand;
@@ -85,6 +86,9 @@ public class TaAssistParser {
 
         case SessionCommand.COMMAND_WORD:
             return new SessionCommandParser().parse(arguments);
+
+        case DeletesCommand.COMMAND_WORD:
+            return new DeletesCommandParser().parse(arguments);
 
         case ListcCommand.COMMAND_WORD:
             return new ListcCommand();
