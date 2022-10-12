@@ -7,6 +7,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.task.ModuleIsDonePredicate;
 
+/**
+ * List all unmarked tasks in NotioNUS.
+ */
 public class ListUnmarkedCommand extends ListCommand {
 
     public static final String COMMAND_WORD = "-u";

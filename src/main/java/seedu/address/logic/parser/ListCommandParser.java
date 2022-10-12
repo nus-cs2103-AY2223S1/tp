@@ -1,17 +1,17 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.list.ListCommand;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+import java.util.List;
+
 import seedu.address.logic.commands.list.ListAllCommand;
+import seedu.address.logic.commands.list.ListCommand;
 import seedu.address.logic.commands.list.ListModuleCommand;
 import seedu.address.logic.commands.list.ListUnmarkedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 import seedu.address.model.task.ModuleIsDonePredicate;
-
-import java.util.List;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses input arguments and creates a matching new List command
@@ -30,7 +30,7 @@ public class ListCommandParser implements Parser<ListCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        String[] listTypes = trimmedArgs.split(" ",2);
+        String[] listTypes = trimmedArgs.split(" ", 2);
 
         switch (listTypes[0]) {
         case ListAllCommand.COMMAND_WORD:

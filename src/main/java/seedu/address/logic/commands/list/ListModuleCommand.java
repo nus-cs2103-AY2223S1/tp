@@ -7,6 +7,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 
+/**
+ * List all tasks in module inputted by user.
+ */
 public class ListModuleCommand extends ListCommand {
 
     public static final String COMMAND_WORD = "--module";
