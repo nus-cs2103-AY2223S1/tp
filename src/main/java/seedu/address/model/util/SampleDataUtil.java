@@ -4,14 +4,12 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.order.*;
 import seedu.address.model.person.*;
-import seedu.address.model.pet.Age;
-import seedu.address.model.pet.Color;
-import seedu.address.model.pet.ColorPattern;
-import seedu.address.model.pet.Species;
+import seedu.address.model.pet.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -117,6 +115,26 @@ public class SampleDataUtil {
         };
     }
 
+    public static Pet[] getSamplePets() {
+        Supplier elizabeth = new Supplier(PersonCategory.SUPPLIER, new Name("Bernice Yu"), new Phone("99272758"),
+                new Email("berniceyu@example.com"), new Address("somewhere in choa chu kang"),
+                getTagSet("colleagues", "friends"), null);
+
+        DateOfBirth standard;
+
+        try {
+            standard = DateOfBirth.parseString("2020-10-10");
+        } catch (IllegalValueException e) {
+            return null;
+        }
+        return new Pet[] {
+                new Pet(new Name("Ashy"), elizabeth, new Color("white"), new ColorPattern("white and brown"),
+                        standard, new Species("cat"), new Weight(10.05),
+                        new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
+                        new HashSet<>())
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
 
@@ -139,6 +157,10 @@ public class SampleDataUtil {
         }
         for (Order sampleOrder : orders) {
             sampleAb.addOrder(sampleOrder);
+        }
+
+        for (Pet pet : getSamplePets()) {
+            sampleAb.addPet(pet);
         }
 
         return sampleAb;

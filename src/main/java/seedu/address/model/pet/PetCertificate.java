@@ -3,7 +3,7 @@ package seedu.address.model.pet;
 public class PetCertificate {
     private final String certificate;
 
-    PetCertificate(String certificate) {
+    public PetCertificate(String certificate) {
         if (certificate == null) {
             this.certificate = "";
         } else {
