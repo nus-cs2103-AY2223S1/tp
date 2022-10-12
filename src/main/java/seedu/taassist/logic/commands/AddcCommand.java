@@ -3,13 +3,13 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
-import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.model.Model;
-import seedu.taassist.model.moduleclass.ModuleClass;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import seedu.taassist.logic.commands.exceptions.CommandException;
+import seedu.taassist.model.Model;
+import seedu.taassist.model.moduleclass.ModuleClass;
 
 /**
  * Adds one or more classes to TA-Assist.
@@ -32,7 +32,7 @@ public class AddcCommand extends Command {
     private final Set<ModuleClass> moduleClasses;
 
     /**
-     * Creates an AddCommand to add the specified {@code ModuleClass}.
+     * Creates an AddCommand to add the specified {@code Set&gt;ModuleClass&lt;}.
      */
     public AddcCommand(Set<ModuleClass> moduleClasses) {
         requireNonNull(moduleClasses);
@@ -54,12 +54,13 @@ public class AddcCommand extends Command {
             }
         }
         StringBuilder outputString = new StringBuilder();
-        if (!newClasses.isEmpty()){
+        if (!newClasses.isEmpty()) {
             String newClassesStr = newClasses.stream().map(Object::toString).collect(Collectors.joining(", "));
-            outputString.append(String.format(MESSAGE_SUCCESS,newClassesStr)).append('\n');
+            outputString.append(String.format(MESSAGE_SUCCESS, newClassesStr)).append('\n');
         }
         if (!duplicateClasses.isEmpty()) {
-            String duplicateClaasesStr = duplicateClasses.stream().map(Object::toString).collect(Collectors.joining(", "));
+            String duplicateClaasesStr = duplicateClasses.stream().map(Object::toString)
+                    .collect(Collectors.joining(", "));
             outputString.append(String.format(MESSAGE_DUPLICATE_MODULE_CLASS, duplicateClaasesStr)).append('\n');
         }
         return new CommandResult(outputString.toString());

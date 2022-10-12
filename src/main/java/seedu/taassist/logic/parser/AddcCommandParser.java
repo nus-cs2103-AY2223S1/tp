@@ -3,12 +3,12 @@ package seedu.taassist.logic.parser;
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
+import java.util.List;
+import java.util.Set;
+
 import seedu.taassist.logic.commands.AddcCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * Parses input arguments and creates a new AddcCommand object.
