@@ -84,10 +84,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void updateNextPersonId() {
         for (Person p : persons) {
-            if (p.getPersonId().id >= personIdCounter) {
-                personIdCounter = p.getPersonId().id + 1;
+            if (p.getPersonId().id > personIdCounter) {
+                personIdCounter = p.getPersonId().id;
             }
         }
+        personIdCounter++;
     }
 
     /**
@@ -95,10 +96,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void updateNextInternshipId() {
         for (Internship i : internships) {
-            if (i.getInternshipId().id >= internshipIdCounter) {
-                internshipIdCounter = i.getInternshipId().id + 1;
+            if (i.getInternshipId().id > internshipIdCounter) {
+                internshipIdCounter = i.getInternshipId().id;
             }
         }
+        internshipIdCounter++;
     }
 
     /**
