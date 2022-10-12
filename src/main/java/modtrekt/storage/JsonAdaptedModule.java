@@ -82,7 +82,6 @@ class JsonAdaptedModule {
         final ModTaskCount modelTaskCount = new ModTaskCount(taskCount);
 
         Module created = new Module(modelCode, modelName, modelCredit, modelTaskCount);
-//        created.addTasks(moduleTasks);
         return created;
     }
 

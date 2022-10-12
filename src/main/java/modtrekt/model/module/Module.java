@@ -59,6 +59,11 @@ public class Module {
         return Integer.parseInt(taskCount.toString());
     }
 
+    /**
+     * Updates the number of tasks the module has.
+     *
+     * @param taskCount the updated number of tasks.
+     */
     public void updateTaskCount(int taskCount) {
         String updatedCount = Integer.toString(taskCount);
         this.taskCount = new ModTaskCount(updatedCount);

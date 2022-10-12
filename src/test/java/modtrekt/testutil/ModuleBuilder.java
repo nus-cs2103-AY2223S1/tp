@@ -1,6 +1,9 @@
 package modtrekt.testutil;
 
-import modtrekt.model.module.*;
+import modtrekt.model.module.ModCode;
+import modtrekt.model.module.ModCredit;
+import modtrekt.model.module.ModName;
+import modtrekt.model.module.ModTaskCount;
 import modtrekt.model.module.Module;
 
 /**
