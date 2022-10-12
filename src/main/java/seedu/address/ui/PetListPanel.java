@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class PetListPanel extends UiPart<Region> {
     private static final String FXML = "PetListPanel.fxml";
 
-    private final Logger logger = LogsCenter.getLogger(BuyerListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(PetListPanel.class);
 
     @FXML
     private ListView<Pet> petListView;

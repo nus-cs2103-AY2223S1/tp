@@ -127,8 +127,17 @@ public class SampleDataUtil {
         } catch (IllegalValueException e) {
             return null;
         }
+
         return new Pet[] {
+                new Pet(new Name("This is sample Pet List"), elizabeth, new Color("white"), new ColorPattern("white and brown"),
+                        standard, new Species("cat"), new Weight(10.05),
+                        new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
+                        new HashSet<>()),
                 new Pet(new Name("Ashy"), elizabeth, new Color("white"), new ColorPattern("white and brown"),
+                        standard, new Species("cat"), new Weight(10.05),
+                        new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
+                        new HashSet<>()),
+                new Pet(new Name("Plum"), elizabeth, new Color("white"), new ColorPattern("white and brown"),
                         standard, new Species("cat"), new Weight(10.05),
                         new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
                         new HashSet<>())
@@ -156,11 +165,13 @@ public class SampleDataUtil {
             sampleAb.addDeliverer(sampleDeliverer);
         }
         for (Order sampleOrder : orders) {
+            System.out.println("order " + sampleOrder);
             sampleAb.addOrder(sampleOrder);
         }
 
-        for (Pet pet : getSamplePets()) {
-            sampleAb.addPet(pet);
+        for (Pet samplePet : getSamplePets()) {
+            System.out.println("pet " + samplePet);
+            sampleAb.addPet(samplePet);
         }
 
         return sampleAb;
