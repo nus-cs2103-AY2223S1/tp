@@ -78,6 +78,7 @@ public class NameOrDescContainsKeywordsPredicateTest {
 
         // Non-matching keyword in name and description
         predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new ActivityBuilder().withName("Alice Bob").withDescription("Charlie David").build()));
+        assertFalse(predicate.test(new ActivityBuilder().withName("Alice Bob")
+                .withDescription("Charlie David").build()));
     }
 }
