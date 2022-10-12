@@ -33,7 +33,7 @@
   -fx-border-color: black;
   -fx-border-radius: 5;
   -fx-border-width: 1;
-  -fx-padding: 6 4;
+  -fx-padding: 12;
 }
 
 .command-placeholder {
@@ -45,7 +45,6 @@
 }
 
 .command-placeholder,
-.command-box,
 .list-placeholder {
   -fx-min-width: 340;
   -fx-pref-width: 340;
@@ -58,4 +57,6 @@
   -fx-prompt-text-fill: #363636;
   -fx-highlight-fill: brown; // TODO
   -fx-highlight-text-fill: pink; // TODO
+
+  -fx-padding: 0;
 }
