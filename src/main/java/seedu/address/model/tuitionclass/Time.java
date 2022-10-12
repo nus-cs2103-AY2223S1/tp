@@ -1,6 +1,7 @@
 package seedu.address.model.tuitionclass;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -17,8 +18,6 @@ public class Time {
 
     private final LocalTime startTime;
     private final LocalTime endTime;
-
-
 
     /**
      * The constructor for a Time object.
@@ -70,5 +69,11 @@ public class Time {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+        return startTime.format(dtf) + " - " + endTime.format(dtf);
     }
 }

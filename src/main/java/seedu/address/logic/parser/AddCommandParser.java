@@ -15,6 +15,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -125,8 +127,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Day day = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get());
         Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        List<Student> students = new ArrayList<>();
+        List<Tutor> tutors = new ArrayList<>();
 
-        return new TuitionClass(name, subject, level, day, time, tagList);
+        return new TuitionClass(name, subject, level, day, time, tagList, students, tutors);
     }
 
     /**
