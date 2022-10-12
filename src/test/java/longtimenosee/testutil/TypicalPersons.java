@@ -2,12 +2,18 @@ package longtimenosee.testutil;
 
 import static longtimenosee.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static longtimenosee.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static longtimenosee.logic.commands.CommandTestUtil.VALID_BIRTHDAY_AMY;
+import static longtimenosee.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
 import static longtimenosee.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static longtimenosee.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static longtimenosee.logic.commands.CommandTestUtil.VALID_INCOME_AMY;
+import static longtimenosee.logic.commands.CommandTestUtil.VALID_INCOME_BOB;
 import static longtimenosee.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static longtimenosee.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static longtimenosee.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static longtimenosee.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static longtimenosee.logic.commands.CommandTestUtil.VALID_RISK_APPETITE_AMY;
+import static longtimenosee.logic.commands.CommandTestUtil.VALID_RISK_APPETITE_BOB;
 import static longtimenosee.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static longtimenosee.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 

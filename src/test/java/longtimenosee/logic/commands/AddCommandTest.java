@@ -21,7 +21,6 @@ import longtimenosee.model.AddressBook;
 import longtimenosee.model.Model;
 import longtimenosee.model.ReadOnlyAddressBook;
 import longtimenosee.model.ReadOnlyUserPrefs;
-import longtimenosee.model.client.Client;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.Policy;
 import longtimenosee.testutil.PersonBuilder;
@@ -111,11 +110,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void addClient(Client client) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -140,24 +134,9 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public boolean hasClient(Client client) {
-            throw new AssertionError("This method should not be called.");
-        }
-        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void deleteClient(Client target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setClient(Client target, Client editedClient) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
@@ -167,17 +146,6 @@ public class AddCommandTest {
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public ObservableList<Client> getFilteredClientList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredClientList(Predicate<Client> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
