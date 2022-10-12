@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+//import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -68,9 +68,9 @@ class JsonAdaptedProject {
         deadline = source.getDeadline().toString();
         client = new JsonAdaptedClient(source.getClient());
         projectId = source.getId().toString();
-        issues.addAll(source.getIssueList().stream()
-                .map(JsonAdaptedIssue::new)
-                .collect(Collectors.toList()));
+        //issues.addAll(source.getIssueList().stream()
+        //        .map(JsonAdaptedIssue::new)
+        //        .collect(Collectors.toList()));
     }
 
     /**
@@ -111,9 +111,9 @@ class JsonAdaptedProject {
 
         final Client modelClient = client.toModelType();
         final List<Issue> modelIssues = new ArrayList<>();
-        for (JsonAdaptedIssue issue : issues) {
-            modelIssues.add(issue.toModelType());
-        }
+        //for (JsonAdaptedIssue issue : issues) {
+        //    modelIssues.add(issue.toModelType());
+        //}
 
         if (projectId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

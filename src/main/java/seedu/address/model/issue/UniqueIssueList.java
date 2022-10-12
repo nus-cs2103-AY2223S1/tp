@@ -24,7 +24,7 @@ import seedu.address.model.issue.exceptions.IssueNotFoundException;
  */
 public class UniqueIssueList implements Iterable<Issue> {
 
-    private final ObservableList<Issue> internalList = FXCollections.observableArrayList();
+    private static final ObservableList<Issue> internalList = FXCollections.observableArrayList();
     private final ObservableList<Issue> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -67,6 +67,34 @@ public class UniqueIssueList implements Iterable<Issue> {
 
         internalList.set(index, editedIssue);
     }
+
+    public Issue getIssue(IssueId id) {
+        requireAllNonNull(id);
+        for (Issue i: internalList) {
+            if (i.getIssueId().equals(id)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Generates an object id based on the current highest object id
+     */
+    public static int generateId() {
+        if (internalList.size() == 0) {
+            return 1;
+        } else {
+            int count = 0;
+            for (Issue i: internalList) {
+                if (i.getIssueId().getIdInt() > count) {
+                    count = i.getIssueId().getIdInt();
+                }
+            }
+            return count + 1;
+        }
+    }
+
 
     /**
      * Removes the equivalent issue from the list.

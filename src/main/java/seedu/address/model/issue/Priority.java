@@ -1,10 +1,12 @@
 package seedu.address.model.issue;
 
+import java.util.ArrayList;
+
 /**
  * Represents the various priority levels of an issue.
  */
 public enum Priority {
-    LOW, MEDIUM, HIGH;
+    NONE, LOW, MEDIUM, HIGH;
 
     public static final String MESSAGE_CONSTRAINTS = "PRIORITY NOT IMPLEMENTED";
 
@@ -15,14 +17,20 @@ public enum Priority {
      */
     public static boolean isValidPriority(String priority) {
 
-        // adapted from https://stackoverflow.com/questions/4936819/java-check-if-enum-contains-a-given-string
-        for (Priority p : Priority.values()) {
-            if (p.name().equals(priority)) {
+        ArrayList<Integer> priorities = new ArrayList<Integer>();
+        priorities.add(0);
+        priorities.add(1);
+        priorities.add(2);
+        for (Integer i: priorities) {
+            if (Integer.valueOf(i).equals(Integer.valueOf(priority))) {
                 return true;
             }
         }
-
         return false;
+    }
+
+    public String uiRepresentation() {
+        return "Priority: " + super.toString();
     }
 
     @Override
