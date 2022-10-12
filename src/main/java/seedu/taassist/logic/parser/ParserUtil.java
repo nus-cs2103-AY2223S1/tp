@@ -157,4 +157,15 @@ public class ParserUtil {
         return new Session(session);
     }
 
+    /**
+     * Parses {@code Collection<String> sessions} into a {@code Set<Session>}.
+     */
+    public static Set<Session> parseSessions(Collection<String> sessions) throws ParseException {
+        requireNonNull(sessions);
+        final Set<Session> sessionSet = new HashSet<>();
+        for (String sessionName : sessions) {
+            sessionSet.add(parseSession(sessionName));
+        }
+        return sessionSet;
+    }
 }
