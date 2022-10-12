@@ -54,8 +54,21 @@ public class Offer {
      * Getter for offer price.
      * @return int
      */
-    public int getOfferPrice() {
+    public Integer getOfferPrice() {
         return offerPrice;
+    }
+
+    /**
+     * Returns true if both listings have the same address.
+     * This defines a weaker notion of equality between two listings.
+     */
+    public boolean isSameOffer(Offer otherOffer) {
+        if (otherOffer == this) {
+            return true;
+        }
+
+        return otherOffer != null
+                && otherOffer.getOfferPrice().equals(getOfferPrice());
     }
 
     /**
@@ -64,7 +77,7 @@ public class Offer {
      */
     @Override
     public String toString() {
-        return String.format("%s is offering $%s for %s",
+        return String.format("%s is offering $%d for %s",
                 this.person.getName(), this.offerPrice, this.listing.getAddress());
     }
 }
