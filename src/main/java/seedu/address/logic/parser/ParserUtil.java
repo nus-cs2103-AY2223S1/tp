@@ -6,6 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PET;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -16,6 +23,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -31,6 +39,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_PERSON_CATEGORY = PersonCategory.MESSAGE_CONSTRAINTS;
+    public static final String MESSAGE_ORDER_PARSE_ERROR = "The order should have the fol" //TODO
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -130,9 +139,17 @@ public class ParserUtil {
         requireNonNull(orderString);
         String trimmedOrderString = orderString.trim();
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(orderString, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ORDER);
-
+                ArgumentTokenizer.tokenize(orderString,
+                        PREFIX_ORDER_STATUS,
+                        PREFIX_ORDER_REQUESTS,
+                        PREFIX_ORDER_PRICE,
+                        PREFIX_ORDER_PRICE_RANGE,
+                        PREFIX_ORDER_ADDITIONAL_REQUESTS,
+                        PREFIX_ORDER_DATE);
+        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_ADDRESS,
+                PREFIX_PHONE, PREFIX_EMAIL)) {
+            throw new ParseException(MESSAGE_ORDER_PARSE_ERROR)
+        }
 
         return new Order(trimmedOrderString);
     }
@@ -172,5 +189,13 @@ public class ParserUtil {
         return Arrays.stream(PersonCategory.class.getEnumConstants())
                 .filter(x -> x.toString().equals(trimmed))
                 .findFirst().orElse(PersonCategory.BUYER);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

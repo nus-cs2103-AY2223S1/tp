@@ -2,7 +2,7 @@
 //package seedu.address.logic.parser;
 //
 //import seedu.address.logic.commands.AddBuyerCommand;
-//import seedu.address.logic.commands.AddCommand;
+//import seedu.address.logic.commands.AddPersonCommand;
 //import seedu.address.logic.commands.AddSupplierCommand;
 //import seedu.address.logic.parser.exceptions.ParseException;
 //import seedu.address.model.person.Address;
@@ -25,7 +25,7 @@
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 //
 ///**
-// * Parses input arguments and creates a new AddCommand object
+// * Parses input arguments and creates a new AddPersonCommand object
 // */
 //public class AddSupplierCommandParser extends AddCommandParser implements Parser<AddSupplierCommand> {
 //
@@ -34,18 +34,18 @@
 //    }
 //
 //    /**
-//     * Parses the given {@code String} of arguments in the context of the AddCommand
-//     * and returns an AddCommand object for execution.
+//     * Parses the given {@code String} of arguments in the context of the AddPersonCommand
+//     * and returns an AddPersonCommand object for execution.
 //     * @throws ParseException if the user input does not conform the expected format
 //     */
-//    public AddCommand parse(String args) throws ParseException {
+//    public AddPersonCommand parse(String args) throws ParseException {
 //
 //        ArgumentMultimap argMultimap =
 //                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CATEGORY);
 //
 //        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CATEGORY)
 //                || !argMultimap.getPreamble().isEmpty()) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE)); //TODO Replace the MESSAGE_USAGE
+//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE)); //TODO Replace the MESSAGE_USAGE
 //        }
 //
 //        PersonCategory personCategory =
@@ -66,7 +66,7 @@
 //
 //        Person person = new Person(personCategory, name, phone, email, address, tagList);
 //
-//        return new AddCommand(person);
+//        return new AddPersonCommand(person);
 //    }
 //
 //    /**

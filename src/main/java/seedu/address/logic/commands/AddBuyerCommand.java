@@ -17,7 +17,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 /**
  * Adds a person to the address book.
  */
-public class AddBuyerCommand extends AddCommand {
+public class AddBuyerCommand extends AddPersonCommand {
 
     public static final String COMMAND_WORD = "add";
 
@@ -45,7 +45,7 @@ public class AddBuyerCommand extends AddCommand {
     private final Buyer toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddBuyerCommand to add the specified {@code Buyer}
      */
     public AddBuyerCommand(Buyer buyer) {
         requireNonNull(buyer);
