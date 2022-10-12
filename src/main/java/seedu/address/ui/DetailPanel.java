@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.contact.ContactType;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -53,14 +55,15 @@ public class DetailPanel extends MainPanel {
         roleLabel.setText("DevOps Engineer");
         timezoneLabel.setText("Local Time: 10.00 am (UTC+8)");
 
-        List<ContactBox> contactBoxList = new ArrayList<>();
-        contactBoxList.add(new ContactBox("telegram", "hello-world"));
-        contactBoxList.add(new ContactBox("email", "hello-world@gmail.com"));
-        contactBoxList.add(new ContactBox("slack", "hello-world"));
+        List<ContactBox> contactBoxList = new ArrayList<ContactBox>(
+                person.getContacts()
+                        .values().stream()
+                        .map(ContactBox::new)
+                        .collect(Collectors.toList()));
 
-        for (ContactBox contact : contactBoxList) {
-            contactBoxContainer.getChildren().add(contact.getRoot());
-        }
+        contactBoxContainer.getChildren().addAll(contactBoxList.stream()
+                .map(ContactBox::getRoot)
+                .collect(Collectors.toList()));
     }
 
     @Override

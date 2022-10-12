@@ -6,6 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.contact.Contact;
+import seedu.address.model.person.contact.ContactType;
+
+import java.util.Locale;
 
 /**
  * Container for all the contact addresses of the Contact.
@@ -22,13 +26,13 @@ public class ContactBox extends UiPart<Region> {
     /**
      * Initialises a ContactListBox.
      *
-     * @param type The type of contact
-     * @param name The name of the contact
+     * @param contact Contact
      */
-    public ContactBox(String type, String name) {
+    public ContactBox(Contact contact) {
         super(FXML);
 
+        String type = contact.getContactType().toString().toLowerCase();
         contactLogo.setImage(new Image(this.getClass().getResourceAsStream("/images/contact/" + type + ".png")));
-        contactLabel.setText(name);
+        contactLabel.setText(contact.toString());
     }
 }
