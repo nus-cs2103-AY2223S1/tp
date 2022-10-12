@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
-public class LocationContainsKeywordsPredicate implements Predicate<Person> {
+public class LocationContainsKeywordsPredicate<T extends Person> implements Predicate<T> {
     private final String keyword;
 
     public LocationContainsKeywordsPredicate(String keyword) {
