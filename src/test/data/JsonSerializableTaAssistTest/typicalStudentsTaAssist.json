@@ -5,13 +5,13 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "classes" : [ "friends" ]
+    "classes" : [ "CS1231S" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "classes" : [ "owesMoney", "friends" ]
+    "classes" : [ "CS1101S", "CS1231S" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -23,7 +23,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "classes" : [ "friends" ]
+    "classes" : [ "CS1231S" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -43,11 +43,11 @@
     "address" : "4th street",
     "classes" : [ ]
   } ],
-  "moduleClasses" : [ {
-    "name" : "friends",
-    "sessions" : [ ]
+  "moduleClasses" : [{
+    "name": "CS1101S",
+    "sessions": []
   }, {
-    "name" : "owesMoney",
-    "sessions" : [ ]
-  } ]
+    "name": "CS1231S",
+    "sessions": []
+  }]
 }

@@ -3,7 +3,7 @@ package seedu.taassist.model.student;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_HUSBAND;
+import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_CS1101S;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -33,7 +33,7 @@ public class StudentTest {
 
         // same name, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withModuleClasses(VALID_CLASS_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_BOB).withModuleClasses(VALID_CLASS_CS1101S).build();
         assertTrue(ALICE.isSame(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -85,7 +85,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different classes -> returns false
-        editedAlice = new StudentBuilder(ALICE).withModuleClasses(VALID_CLASS_HUSBAND).build();
+        editedAlice = new StudentBuilder(ALICE).withModuleClasses(VALID_CLASS_CS1101S).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

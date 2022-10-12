@@ -11,10 +11,9 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 
 /**
- * A default model stub that have all of the methods failing.
+ * A default model stub that has all the methods failing.
  */
 public class ModelStub implements Model {
-
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         throw new AssertionError("This method should not be called.");
@@ -101,6 +100,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setModuleClass(ModuleClass target, ModuleClass editedModuleClass) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteModuleClasses(Collection<ModuleClass> moduleClass) {
         throw new AssertionError("This method should not be called.");
     }
@@ -111,10 +115,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setModuleClass(ModuleClass target, ModuleClass editedModuleClass) {
-        throw new AssertionError("This method should not be called.");
-    }
-
     public ObservableList<ModuleClass> getModuleClassList() {
         throw new AssertionError("This method should not be called.");
     }
