@@ -130,10 +130,10 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Mark a task from this {@code TaskList} as done.
      *
-     * @param task The {@code task} to be marked as done.
+     * @param index The {@code task} of the task to be marked as done.
      */
-    public void mark(Task task) {
-        getTask(task.getName()).markAsDone();
+    public void mark(int index) {
+        internalList.get(index).markAsDone();
     }
 
     /**

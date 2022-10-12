@@ -148,8 +148,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// task-level operations
 
-    public void markTask(Index index, Task task) {
-        teams.markTask(index.getZeroBased(), task);
+    public void markTask(Index teamIndex, Index taskIndex) {
+        teams.markTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
     }
 
     //// task-level operations

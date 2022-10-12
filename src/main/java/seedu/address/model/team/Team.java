@@ -94,10 +94,10 @@ public class Team {
 
     /**
      * Marks a task of the team as done.
-     * @param t
+     * @param index The index of the {@code task} to be marked as done.
      */
-    public void markTask(Task t) {
-        tasks.mark(t);
+    public void markTask(int index) {
+        tasks.mark(index);
     }
 
     /**
