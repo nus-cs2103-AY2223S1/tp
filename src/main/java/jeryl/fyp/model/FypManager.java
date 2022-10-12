@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.student.UniqueStudentList;
 
 /**
@@ -92,6 +93,15 @@ public class FypManager implements ReadOnlyFypManager {
      */
     public void removeStudent(Student key) {
         students.remove(key);
+    }
+
+    /**
+     * Returns unique Student if {@code students} contains the student with the specified studentId.
+     */
+    public Student getStudentByStudentId(StudentId studentId) {
+        requireNonNull(studentId);
+
+        return students.getStudentByStudentId(studentId);
     }
 
     //// util methods

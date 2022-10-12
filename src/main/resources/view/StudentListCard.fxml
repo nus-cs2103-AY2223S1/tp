@@ -41,6 +41,7 @@
             </font></Label>
          <Region prefHeight="5.0" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        <Label fx:id="projectStatus" styleClass="cell_small_label" text="\$projectStatus" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

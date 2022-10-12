@@ -4,11 +4,13 @@
     "studentId": "A1351253P",
     "email": "pauline@example.com",
     "projectName": "fluid mechanicS",
+    "projectStatus": "YTS",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "studentId": "A1351253P",
     "email": "pauline@example.com",
-    "projectName": "fluid mechanicS"
+    "projectName": "fluid mechanicS",
+    "projectStatus": "YTS"
   } ]
 }

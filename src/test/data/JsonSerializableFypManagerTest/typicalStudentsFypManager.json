@@ -5,42 +5,49 @@
     "studentId": "A1351253P",
     "email" : "alice@example.com",
     "projectName": "Using CRISP to generate crisps",
+    "projectStatus": "YTS",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "studentId": "A1765432B",
     "email" : "johnd@example.com",
     "projectName": "Neural Networks and ML",
+    "projectStatus": "YTS",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "studentId": "A1352563C",
     "email" : "heinz@example.com",
     "projectName": "About Decision Trees",
+    "projectStatus": "YTS",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "studentId": "A1652533D",
     "email" : "cornelia@example.com",
     "projectName": "Mathematics in Games",
+    "projectStatus": "YTS",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "studentId": "A1482224E",
     "email" : "werner@example.com",
     "projectName": "AB3 in a Nutshell",
+    "projectStatus": "YTS",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "studentId": "A1482427F",
     "email" : "lydia@example.com",
     "projectName": "Hello World in 42 Languages",
+    "projectStatus": "YTS",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "studentId": "A1482442G",
     "email" : "anna@example.com",
     "projectName": "Why George Best is the Best",
+    "projectStatus": "YTS",
     "tagged" : [ ]
   } ]
 }

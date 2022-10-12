@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import jeryl.fyp.commons.core.index.Index;
-import jeryl.fyp.logic.commands.MarkCommand.Status;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.FypManager;
 import jeryl.fyp.model.Model;
@@ -33,8 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_STUDENT_ID_BOB = "A2222222O";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final Status VALID_STATUS_AMY = Status.IP;
-    public static final Status VALID_STATUS_BOB = Status.DONE;
+    public static final String VALID_STATUS_AMY = "IP";
+    public static final String VALID_STATUS_BOB = "YTS";
     public static final String VALID_PROJECT_NAME_AMY = "random CS proj 1";
     public static final String VALID_PROJECT_NAME_BOB = "random CS proj 2";
     public static final String VALID_TAG_HUSBAND = "husband";
