@@ -50,10 +50,10 @@ public abstract class Contact {
         if (!(other instanceof Contact)) {
             return false;
         }
-        
+
         Contact contact = (Contact) other;
-        return contactType == contact.contactType 
-                && Objects.equals(link, contact.link) 
+        return contactType == contact.contactType
+                && Objects.equals(link, contact.link)
                 && Objects.equals(value, contact.value);
     }
 
