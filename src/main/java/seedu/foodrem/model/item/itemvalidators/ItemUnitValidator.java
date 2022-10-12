@@ -17,7 +17,7 @@ public class ItemUnitValidator implements Validator {
     private static final String VALIDATION_REGEX = "[A-Za-z0-9 ]*";
     // Validation for unit length
     private static final int MAX_LENGTH = 10;
-    private static final String MESSAGE_FOR_NAME_TOO_LONG =
+    public static final String MESSAGE_FOR_UNIT_TOO_LONG =
             String.format("The item unit should not exceed %d characters.", MAX_LENGTH);
 
     /**
@@ -27,7 +27,7 @@ public class ItemUnitValidator implements Validator {
      */
     public static Void validate(String unitString) {
         checkArgument(isUnitContainingOnlyValidCharacters(unitString), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
-        checkArgument(isUnitLengthLessThanEqualMaxLength(unitString), MESSAGE_FOR_NAME_TOO_LONG);
+        checkArgument(isUnitLengthLessThanEqualMaxLength(unitString), MESSAGE_FOR_UNIT_TOO_LONG);
         checkArgument(isUnitPresent(unitString), MESSAGE_FOR_UNIT_IS_BLANK);
         return null;
     }
