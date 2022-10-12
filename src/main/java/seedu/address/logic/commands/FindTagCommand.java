@@ -8,7 +8,7 @@ import seedu.address.model.person.PersonContainsTagPredicate;
 
 /**
  * Lists batchmates that match all tags specified by the user.
- * Keyword matching is case-sensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindTagCommand extends Command {
 
