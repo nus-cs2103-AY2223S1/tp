@@ -29,6 +29,16 @@ public class ItemQuantity {
     }
 
     /**
+     * Returns an itemQuantity after performing an arithmetic operation on them.
+     */
+    public static ItemQuantity performArithmeticOperation(ItemQuantity itemQuantity1,
+                                                          ItemQuantity itemQuantity2,
+                                                          BiFunction<Double, Double, Double> op) {
+        double newQuantity = op.apply(itemQuantity1.itemQuantity, itemQuantity2.itemQuantity);
+        return new ItemQuantity(String.valueOf(newQuantity));
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
