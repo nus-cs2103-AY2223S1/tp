@@ -63,9 +63,14 @@ public class ParserUtil {
      * @return Client of the client id
      * @throws ParseException if the fiven {@code client} is invalid.
      */
-    public static Client parseClient(String clientId) throws ParseException {
+    public static Client parseClient(String clientId) throws ParseException, NumberFormatException {
         requireNonNull(clientId);
         String trimmedClientId = clientId.trim();
+        try {
+            Integer.parseInt(trimmedClientId);
+        } catch(NumberFormatException e) {
+            throw new ParseException(ClientId.MESSAGE_INVALID);
+        }
         ClientId clientIdRes = new ClientId(Integer.parseInt(trimmedClientId));
         Client client = UniqueClientList.getClient(clientIdRes);
         if (!Client.isValidClient(client)) {

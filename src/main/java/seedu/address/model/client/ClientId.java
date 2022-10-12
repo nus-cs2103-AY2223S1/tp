@@ -7,7 +7,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class ClientId {
 
-    public static final String MESSAGE_CONSTRAINTS = "Client ID must be a valid integer";
+    public static final String MESSAGE_CONSTRAINTS = "Client ID must exist in Client list";
+    public static final String MESSAGE_INVALID = "Client ID must be an integer";
     private int clientId;
 
     /**

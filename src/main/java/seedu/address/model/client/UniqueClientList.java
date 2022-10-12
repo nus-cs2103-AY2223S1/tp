@@ -34,17 +34,13 @@ public class UniqueClientList implements Iterable<Client> {
      * @return client id
      */
     public static int generateId() {
-        if (internalList.size() == 0) {
-            return 1;
-        } else {
-            int count = 0;
-            for (Client c : internalList) {
-                if (c.getClientId().getIdInt() > count) {
-                    count = c.getClientId().getIdInt();
-                }
+        int count = 0;
+        for (Client c : internalList) {
+            if (c.getClientId().getIdInt() > count) {
+                count = c.getClientId().getIdInt();
             }
-            return count + 1;
         }
+        return count + 1;
     }
 
     /**

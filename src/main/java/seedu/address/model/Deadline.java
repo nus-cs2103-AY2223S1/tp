@@ -18,7 +18,7 @@ public class Deadline {
         public static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
 
         private EmptyDeadline() {
-            super("2022-05-03");
+            super("0001-01-01");
         }
 
         @Override
