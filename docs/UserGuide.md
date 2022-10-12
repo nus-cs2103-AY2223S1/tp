@@ -25,7 +25,7 @@ If you can type fast, and struggle with managing all your students' information,
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all student records.
+   * **`viewAll`** : Lists all student records.
 
    * **`addstud`**`nm/John Doe id/928C pn/Bob Doe hp/98765432 ad/311, Clementi Ave 2, #02-25` : Adds a new student named `Jonathan Tan` with his details to *Class-ify*.
 
@@ -61,7 +61,7 @@ Examples:
 * `addstud nm/John Doe id/928C pn/Bob Doe hp/98765432 ad/311, Clementi Ave 2, #02-25 t/Peanut-Allergy t/No-Seafood`
 * `addstud nm/Alex Yeoh id/123A pn/Bernice Yu hp/99272758 ad/Blk 30 Lorong 3 Serangoon Gardens, #07-18`
 
-### Listing all students : `view all`
+### Listing all students : `viewAll`
 
 Shows a list of all students in the class.
 For each student in the list, only the Student's Name and Student's ID are displayed.
@@ -69,7 +69,7 @@ For each student in the list, only the Student's Name and Student's ID are displ
 :bulb: Note: The other details of a student are hidden to reduce cluttering.
 To view the full record of a student, use the `view` command instead.   
 
-Format: `view all`
+Format: `viewAll`
 
 ### Editing a student : `edit`
 
@@ -144,13 +144,13 @@ Class-ify will discard all data and start with an empty data file at the next ru
 
 ## Command summary
 
-|                 Action                | Format                                                                                                                          | Example                                                                                               |  
-|:-------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------|
-|         Add individual student        | `addstud nm/[name of student] id/[id of student] pn/[name of parent] hp/[mobile number of parent] ad/[home address] [t/[tags]]` | _addstud nm/Alex Yeoh id/123A pn/Bernice Yu hp/99272758 ad/Blk 30 Lorong 3 Serangoon Gardens, #07-18_ |
-|      View all student information     | `view all`                                                                                                                      | _view all_                                                                                            |
-|  View individual student information  | `view nm/[name]` or `view id/[id]`                                                                                              | _view nm/Jonathan Tan_                                                                                |
-| Update individual student information | `update [index] n/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                             | _update 1 a/Kent Ridge View_                                                                          |
-|       Delete individual student       | `delete nm/[name]` or `delete id/[id]`                                                                                          | _delete nm/Jonathan Tan or delete id/123A_                                                            |
-|                  Exit                 | `exit`                                                                                                                          | _exit_                                                                                                |
+|                 Action                | Format                                                                                                                          | Example                                                                                                |  
+|:-------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------|
+|         Add individual student        | `addstud nm/[name of student] id/[id of student] pn/[name of parent] hp/[mobile number of parent] ad/[home address] [t/[tags]]` | _addstud nm/Alex Yeoh id/123A pn/Bernice Yu hp/99272758 ad/Blk 30 Lorong 3 Serangoon Gardens, #07-18_  |
+|      View all student information     | `viewAll`                                                                                                                       | _viewAll_                                                                                              |
+|  View individual student information  | `view nm/[name]` or `view id/[id]`                                                                                              | _view nm/Jonathan Tan_                                                                                  |
+| Update individual student information | `update [index] nm/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                            | _update 1 a/Kent Ridge View_                                                                           |
+|       Delete individual student       | `delete nm/[name]` or `delete id/[id]`                                                                                           | _delete nm/Jonathan Tan or delete id/123A_                                                            |
+|                  Exit                 | `exit`                                                                                                                          | _exit_                                                                                                 |
 
                                                                                                                               
