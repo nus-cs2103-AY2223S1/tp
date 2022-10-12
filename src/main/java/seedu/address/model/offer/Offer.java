@@ -1,7 +1,7 @@
 package seedu.address.model.offer;
 
-import seedu.address.model.listing.Listing;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Name;
 
 /**
  * Offer Class represents a clients offer for a listing, containing an offer price.
@@ -11,11 +11,11 @@ public class Offer {
     /**
      * Client making the offer.
      */
-    private final Person person;
+    private final Name client;
     /**
      * Listing the offer is for.
      */
-    private final Listing listing;
+    private final Address listing;
     /**
      * Price client is offering.
      */
@@ -28,8 +28,8 @@ public class Offer {
      * @param listing Listing
      * @param offerPrice int
      */
-    public Offer(Person client, Listing listing, int offerPrice) {
-        this.person = client;
+    public Offer(Name client, Address listing, int offerPrice) {
+        this.client = client;
         this.listing = listing;
         this.offerPrice = offerPrice;
     }
@@ -38,15 +38,15 @@ public class Offer {
      * Getter for client.
      * @return Person
      */
-    public Person getClient() {
-        return person;
+    public Name getClient() {
+        return client;
     }
 
     /**
      * Getter for listing.
      * @return Listing
      */
-    public Listing getListing() {
+    public Address getListing() {
         return listing;
     }
 
@@ -54,8 +54,21 @@ public class Offer {
      * Getter for offer price.
      * @return int
      */
-    public int getOfferPrice() {
+    public Integer getOfferPrice() {
         return offerPrice;
+    }
+
+    /**
+     * Returns true if both listings have the same address.
+     * This defines a weaker notion of equality between two listings.
+     */
+    public boolean isSameOffer(Offer otherOffer) {
+        if (otherOffer == this) {
+            return true;
+        }
+
+        return otherOffer != null
+                && otherOffer.getOfferPrice().equals(getOfferPrice());
     }
 
     /**
@@ -64,7 +77,13 @@ public class Offer {
      */
     @Override
     public String toString() {
-        return String.format("%s is offering $%s for %s",
-                this.person.getName(), this.offerPrice, this.listing.getAddress());
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Listing address: ")
+                .append(getListing())
+                .append("; Client: ")
+                .append(getClient())
+                .append("; Offer Price: ")
+                .append(getOfferPrice());
+        return builder.toString();
     }
 }

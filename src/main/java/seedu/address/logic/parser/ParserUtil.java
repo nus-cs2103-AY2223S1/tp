@@ -132,4 +132,15 @@ public class ParserUtil {
         }
         return askingPrice;
     }
+
+    /**
+     * Parses {@code int askingPrice} into a {@code Integer}.
+     */
+    public static Integer parseOfferPrice(int offerPrice) throws ParseException {
+        requireNonNull(offerPrice);
+        if (offerPrice < 0) {
+            throw new ParseException("Offer Price can't be negative");
+        }
+        return offerPrice;
+    }
 }
