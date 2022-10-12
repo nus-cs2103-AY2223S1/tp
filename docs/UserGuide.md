@@ -118,11 +118,11 @@ Examples:
 
 Deletes an existing student record from the class list, using the student’s name or the student’s ID.
 
-Format: `delete n/[name of student]` or `delete id/[id of student]`
+Format: `delete nm/[name of student]` or `delete id/[id of student]`
 
 Examples:
-* `delete n/Jonathan Tan` deletes student record with student's name as 'Jonathan Tan'.
-* `delete id/123A` deletes student record with students' ID as '123A'.
+* `delete nm/Jonathan Tan` deletes student record with student name as 'Jonathan Tan'.
+* `delete id/123A` deletes student record with student ID as '123A'.
 
 ### Clearing all student records : `clear`
 
@@ -163,7 +163,6 @@ Class-ify will discard all data and start with an empty data file at the next ru
 |       View students in a class        | `viewClass [class name]`                                                                                                        | _viewClass 1A_                                                                                        |
 |  View individual student information  | `view nm/[name]` or `view id/[id]`                                                                                              | _view n/Jonathan Tan_                                                                                 |
 | Update individual student information | `update [index] nm/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                            | _update 1 a/Kent Ridge View_                                                                          |
-|       Delete individual student       | `delete n/[name]` or `delete id/[id]`                                                                                           | _delete n/Jonathan Tan *or* delete id/123A_                                                           |
+|       Delete individual student       | `delete nm/[name]` or `delete id/[id]`                                                                                           | _delete nm/Jonathan Tan or delete id/123A_                                                           |
 |                 Exit                  | `exit`                                                                                                                          | _exit_                                                                                                |
-
                                                                                                                               

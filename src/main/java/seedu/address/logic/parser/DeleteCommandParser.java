@@ -30,9 +30,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_STUDENT_ID, DeleteCommand.MESSAGE_USAGE), idPE);
             }
-        } else if (args.startsWith(" n/")) {
+        } else if (args.startsWith(" nm/")) {
             try {
-                Name name = ParserUtil.parseName(args.substring(3));
+                Name name = ParserUtil.parseName(args.substring(4));
                 return new DeleteCommand(name, new NamePredicate(name));
             } catch (ParseException namePE) {
                 throw new ParseException(
