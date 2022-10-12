@@ -23,7 +23,8 @@ public class ClearCommandTest {
     @Test
     public void execute_nonEmptyPropertyDirectory_success() {
         Model model = new ModelManager(getTypicalPropertyDirectory(), getTypicalClientDirectory(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalPropertyDirectory(), getTypicalClientDirectory(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalPropertyDirectory(),
+                getTypicalClientDirectory(), new UserPrefs());
         expectedModel.setPropertyDirectory(new PropertyDirectory());
 
         CommandTestUtil.assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
