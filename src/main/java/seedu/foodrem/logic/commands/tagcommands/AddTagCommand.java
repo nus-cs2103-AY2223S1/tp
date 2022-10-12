@@ -30,9 +30,9 @@ public class AddTagCommand extends Command {
     /**
      * Creates an AddTagCommand to add the specified {@code Tag}
      */
-    public AddTagCommand(Tag item) {
-        requireNonNull(item);
-        toAdd = item;
+    public AddTagCommand(Tag tag) {
+        requireNonNull(tag);
+        toAdd = tag;
     }
 
     @Override
