@@ -1,11 +1,11 @@
 package nus.climods.model;
 
+import java.util.Optional;
+
 import javafx.collections.transformation.FilteredList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
-
-import java.util.Optional;
 
 /**
  * The API of the Model component.

@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
 import nus.climods.logic.commands.Command;
@@ -49,6 +48,7 @@ public class LogicManager implements Logic {
     }
 
     public ObservableList<Module> getFilteredModuleList() { return model.getFilteredModuleList(); }
+
     @Override
     public ReadOnlyModuleList getModuleList() {
         return model.getModuleList();

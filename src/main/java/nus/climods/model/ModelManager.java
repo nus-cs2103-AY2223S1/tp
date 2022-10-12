@@ -6,7 +6,6 @@ import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-
 import javafx.collections.transformation.FilteredList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
