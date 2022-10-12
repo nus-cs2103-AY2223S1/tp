@@ -98,7 +98,7 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 3px;
+    -fx-padding: 10px;
 }
 
 .list-cell:filled:even {
@@ -116,7 +116,7 @@
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #707BE3;
     -fx-border-width: 0;
-    -fx-font-family: "Poppins"
+    -fx-font-family: "Poppins";
 }
 
 .list-cell .label {
@@ -218,18 +218,36 @@
 }
 
 .menu-bar {
-    -fx-background-color: #FFF2E7;
+    -fx-background-color: #3C3C3C;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Poppins";
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .menu .left-container {
     -fx-background-color: #FFF2E7;
+}
+
+.inventory-heading {
+    -fx-font-size: 28pt;
+    -fx-font-family: "Poppins";
+    -fx-text-fill: #FF6C64;
+    -fx-font-weight: 900;
+    -fx-opacity: 1;
+    -fx-padding: 2px;
+}
+
+.order-heading {
+    -fx-font-size: 28pt;
+    -fx-font-family: "Poppins";
+    -fx-text-fill: #707BE3;
+    -fx-font-weight: 900;
+    -fx-opacity: 1;
+    -fx-padding: 2px;
 }
 
 /*
@@ -318,8 +336,12 @@
     -fx-border-width: 2px;
 }
 
+#itemListView .scroll-bar > .thumb{
+    -fx-background-color: #FF6C64 !important;
+    -fx-background-insets: 6px;
+}
+
 #orderListView .scroll-pane > .viewport {
-    -fx-background-color: #6930c3;
     -fx-background-radius: 15px;
 }
 

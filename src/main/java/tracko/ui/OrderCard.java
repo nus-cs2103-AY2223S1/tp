@@ -47,9 +47,13 @@ public class OrderCard extends UiPart<Region> {
         this.order = order;
         id.setText(displayedIndex + ". ");
         name.setText(order.getName().fullName);
+        name.setWrapText(true);
         phone.setText(order.getPhone().value);
+        phone.setWrapText(true);
         address.setText(order.getAddress().value);
+        address.setWrapText(true);
         email.setText(order.getEmail().value);
+        email.setWrapText(true);
         order.getItemList().stream()
                 .forEach(item -> items.getChildren().add(
                         constructItemLabel("\u2022 " + item.getQuantity() + " * " + item.getItem())));
@@ -62,6 +66,7 @@ public class OrderCard extends UiPart<Region> {
     public Label constructItemLabel(String text) {
         Label itemLabel = new Label(text);
         itemLabel.getStyleClass().add("cell_small_label_order");
+        itemLabel.setWrapText(true);
         return itemLabel;
     }
 

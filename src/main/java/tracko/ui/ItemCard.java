@@ -1,9 +1,11 @@
 package tracko.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.TextAlignment;
 import tracko.model.items.Item;
 
 /**
@@ -42,8 +44,14 @@ public class ItemCard extends UiPart<Region> {
         this.item = item;
         id.setText(displayedIndex + ". ");
         itemName.setText(item.getItemName().itemName);
+        itemName.setWrapText(true);
+        itemName.setStyle("fx-line-spacing: 1em;");
+        itemName.setPadding(new Insets(0,10,0,0));
         quantity.setText(item.getQuantity().toString());
         description.setText(item.getDescription().value);
+        description.setWrapText(true);
+        description.setTextAlignment(TextAlignment.JUSTIFY);
+        description.setPadding(new Insets(0,10,0,0));
     }
 
     @Override
