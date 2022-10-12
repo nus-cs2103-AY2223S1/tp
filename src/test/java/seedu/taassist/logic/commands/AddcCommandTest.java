@@ -60,24 +60,24 @@ public class AddcCommandTest {
 
     @Test
     public void equals() {
-        AddcCommand addCS1101SCommand = new AddcCommand(CS1101S);
-        AddcCommand addCS1101SCommandCopy = new AddcCommand(CS1101S);
+        AddcCommand addCs1101sCommand = new AddcCommand(CS1101S);
+        AddcCommand addCs1101sCommandCopy = new AddcCommand(CS1101S);
         AddcCommand addCS1231SCommand = new AddcCommand(CS1231S);
 
         // same object -> returns true
-        assertTrue(addCS1101SCommand.equals(addCS1101SCommand));
+        assertTrue(addCs1101sCommand.equals(addCs1101sCommand));
 
         // same values -> returns true
-        assertTrue(addCS1101SCommand.equals(addCS1101SCommandCopy));
+        assertTrue(addCs1101sCommand.equals(addCs1101sCommandCopy));
 
         // different types -> returns false
-        assertFalse(addCS1101SCommand.equals(1));
+        assertFalse(addCs1101sCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addCS1101SCommand.equals(null));
+        assertFalse(addCs1101sCommand.equals(null));
 
         // different module class -> returns false
-        assertFalse(addCS1101SCommand.equals(addCS1231SCommand));
+        assertFalse(addCs1101sCommand.equals(addCS1231SCommand));
     }
 
     //==================================== Integration Tests =========================================================
