@@ -15,6 +15,7 @@ import javafx.collections.ObservableMap;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.DuplicatePrefixException;
+import seedu.address.logic.parser.exceptions.PrefixNotFoundException;
 import seedu.address.model.person.exceptions.DuplicateTagTypeException;
 import seedu.address.model.person.exceptions.TagTypeNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -60,6 +61,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             throw new DuplicateTagTypeException();
         } else {
             prefixMap.put(prefix, tagType);
+            System.out.println("create method" + prefixMap);
             CliSyntax.addTagPrefix(prefix);
         }
     }
@@ -76,11 +78,10 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     }
 
     public static void setExistingTagType(Prefix toRemovePrefix, Prefix prefix, TagType tagType)
-            throws TagTypeNotFoundException, DuplicatePrefixException {
+            throws PrefixNotFoundException, TagTypeNotFoundException, DuplicatePrefixException {
         prefixMap.remove(toRemovePrefix);
-        UniqueTagTypeMap.createTagType(prefix, tagType);
         CliSyntax.removeTagPrefix(toRemovePrefix);
-        CliSyntax.addTagPrefix(prefix);
+        UniqueTagTypeMap.createTagType(prefix, tagType);
     }
 
     /**
@@ -248,6 +249,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     }
 
     public static Prefix getPrefixFromTagType(String tagType) throws TagTypeNotFoundException {
+        System.out.println(prefixMap);
         for (Prefix pref: prefixMap.keySet()) {
             if (prefixMap.get(pref).getTagTypeName().equals(tagType)) {
                 return pref;
