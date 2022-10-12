@@ -2,11 +2,10 @@ package seedu.address.model.group;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.person.testutil.Assert.assertThrows;
-
-import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+
+import org.junit.jupiter.api.Test;
 
 public class FullGroupNamePredicateTest {
     @Test
