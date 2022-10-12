@@ -131,8 +131,8 @@ public class JsonAdaptedItemTest {
                 new JsonAdaptedItem(VALID_NAME,
                         VALID_QUANTITY,
                         VALID_UNIT,
-                        INVALID_BOUGHT_DATE,
-                        VALID_EXPIRY_DATE);
+                        VALID_BOUGHT_DATE,
+                        INVALID_EXPIRY_DATE);
         assertThrows(IllegalArgumentException.class, MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE, item::toModelType);
     }
 

@@ -18,12 +18,12 @@ import org.junit.jupiter.api.Test;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
-import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
+import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.commands.tagcommands.AddTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
@@ -43,8 +43,8 @@ public class FoodRemParserTest {
     @Test
     public void parseCommand_add() {
         Item item = new ItemBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(ItemUtil.getAddCommand(item));
-        assertEquals(new AddCommand(item), command);
+        NewCommand command = (NewCommand) parser.parseCommand(ItemUtil.getAddCommand(item));
+        assertEquals(new NewCommand(item), command);
     }
 
     @Test
