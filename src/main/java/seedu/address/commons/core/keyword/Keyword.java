@@ -19,7 +19,12 @@ public class Keyword {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ContainsKeywordsPredicate // instanceof handles nulls
+                || (other instanceof Keyword // instanceof handles nulls
                 && keyword.equals(((Keyword) other).keyword)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return keyword.hashCode();
     }
 }
