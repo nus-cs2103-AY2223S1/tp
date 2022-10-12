@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -130,13 +131,18 @@ public class AddTagCommand extends Command {
     public CommandResult executeSingle(
                 Model model, Index index, Person personToEdit) throws CommandException {
         Set<Tag> existingTags = personToEdit.getTags();
+        Set<Tag> toBeAddedTags = new HashSet<Tag>();
         for (Tag tag : existingTags) {
             if (!this.tags.contains(tag)) {
-                this.tags.add(tag);
+                toBeAddedTags.add(tag);
             }
         }
+        for (Tag tag : this.tags) {
+            toBeAddedTags.add(tag);
+        }
+        System.out.println(toBeAddedTags);
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        editPersonDescriptor.setTags(this.tags);
+        editPersonDescriptor.setTags(toBeAddedTags);
         CommandResult editPersonResult = (new EditCommand(index, editPersonDescriptor)).executeNoRefresh(model);
         LOGGER.info(editPersonResult.getFeedbackToUser());
 
