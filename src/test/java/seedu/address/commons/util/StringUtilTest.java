@@ -140,4 +140,24 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+    //--------------Tests for containsPartialWordIgnoreCase-------------------------
+
+    @Test
+    public void  containsPartialWordIgnoreCase() {
+        //matching partial words
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("AlbertEinstein", "bertein"));
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("Naruto", "ru"));
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("JayChou", "ayc"));
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("Conan", " nan"));
+        assertTrue(StringUtil.containsPartialWordIgnoreCase("32688274698979", "69"));
+
+
+        //not matching any partial words
+        assertFalse(StringUtil.containsPartialWordIgnoreCase("Naruto", "ruru"));
+        assertFalse(StringUtil.containsPartialWordIgnoreCase("Conan", "mingZhengTanKeNan"));
+        assertFalse(StringUtil.containsPartialWordIgnoreCase("Australia", "Perth"));
+        assertFalse(StringUtil.containsPartialWordIgnoreCase("678463421", "999"));
+
+    }
+
 }
