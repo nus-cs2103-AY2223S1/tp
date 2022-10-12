@@ -9,27 +9,30 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.AddressContainsSequencePredicate;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTimeWithinRangePredicate;
 import seedu.address.model.person.EmailContainsSequencePredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsSequencePredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonContainsTagsPredicate;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.PhoneContainsSequencePredicate;
 import seedu.address.model.person.ReasonContainsSequencePredicate;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -46,42 +49,98 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                 PREFIX_REASON, PREFIX_DATE_TIME_START, PREFIX_DATE_TIME_END);
 
-
-        Optional<String> startDateTime = argMultimap.getValue(PREFIX_DATE_TIME_START).orElse("");
-        Optional<String> endDateTime = argMultimap.getValue(PREFIX_DATE_TIME_END).orElse("");
-
-        Optional<String name = argMultimap.getValue(PREFIX_NAME).orElse("");
-        Optional<String phone = argMultimap.getValue(PREFIX_PHONE).orElse("");
-        Optional<String email = argMultimap.getValue(PREFIX_EMAIL).orElse("");
-        Optional<String address = argMultimap.getValue(PREFIX_ADDRESS).orElse("");
+        String name = argMultimap.getValue(PREFIX_NAME).orElse("");
+        String phone = argMultimap.getValue(PREFIX_PHONE).orElse("");
+        String email = argMultimap.getValue(PREFIX_EMAIL).orElse("");
+        String address = argMultimap.getValue(PREFIX_ADDRESS).orElse("");
         List<String> tagList = argMultimap.getAllValues(PREFIX_TAG);
-        String reason = argMultimap.getValue(PREFIX_EMAIL).orElse("");
-        LocalDateTime startDateTime;
-        LocalDateTime endDateTime;
+        String reason = argMultimap.getValue(PREFIX_REASON).orElse("");
+        String startDateTime = argMultimap.getValue(PREFIX_DATE_TIME_START).orElse("");
+        String endDateTime = argMultimap.getValue(PREFIX_DATE_TIME_END).orElse("");
+
+        checkIfInputsValid(name, phone, address, tagList, reason, startDateTime, endDateTime);
+
+        LocalDateTime parsedStartDateTime = startDateTime.isEmpty()
+                ? LocalDateTime.MIN
+                : LocalDateTime.parse(startDateTime, Appointment.DATE_FORMATTER);
+        LocalDateTime parsedEndDateTime = endDateTime.isEmpty()
+                ? LocalDateTime.MAX
+                : LocalDateTime.parse(endDateTime, Appointment.DATE_FORMATTER);
+
+        checkIfStartDateIsBeforeEndDate(parsedStartDateTime, parsedEndDateTime);
 
         Predicate<Person> personPredicate = generatePersonPredicate(name, phone, email, address, tagList);
-        Predicate<Appointment> appointmentPredicate = generateAppointmentPredicate(reason, startDateTime, endDateTime);
+        Predicate<Appointment> appointmentPredicate =
+                generateAppointmentPredicate(reason, parsedStartDateTime, parsedEndDateTime);
 
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
+        boolean isFindingAppointment = !reason.isEmpty() || !startDateTime.isEmpty() || !endDateTime.isEmpty();
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new FindCommand(personPredicate, appointmentPredicate);
+        return new FindCommand(personPredicate, appointmentPredicate, isFindingAppointment);
     }
 
-    private Predicate<Person> generatePersonPredicate(Optional<String> name, Optional<String> phone,
-                                                      Optional<String> email, Optional<String> address,
+    private void checkIfInputsValid(String name, String phone, String address, List<String> tagList, String reason,
+                                    String startDateTime, String endDateTime) throws ParseException {
+
+        boolean areAllFieldsEmpty = name.isEmpty() && phone.isEmpty() && tagList.isEmpty()
+                && reason.isEmpty() && startDateTime.isEmpty() && endDateTime.isEmpty();
+        if (areAllFieldsEmpty) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        if (!name.isEmpty() && !Name.isValidName(name)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        String containsOnlyNumbersRegex = "\\d+";
+        if (!phone.isEmpty() && !phone.matches(containsOnlyNumbersRegex)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!address.isEmpty() && !Address.isValidAddress(address)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+
+        for (String tag : tagList) {
+            if (!Tag.isValidTagName(tag)) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+        }
+
+        if (!reason.isEmpty() && !Appointment.isValidReason(reason)) {
+            throw new ParseException(Appointment.REASON_MESSAGE_CONSTRAINTS);
+        }
+
+        boolean areBothDatesValid = (startDateTime.isEmpty() || Appointment.isValidDateTime(startDateTime))
+                && (endDateTime.isEmpty() || Appointment.isValidDateTime(endDateTime));
+        if (!areBothDatesValid) {
+            throw new ParseException(Appointment.DATE_MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    private void checkIfStartDateIsBeforeEndDate(LocalDateTime parsedStartDateTime,
+                                                 LocalDateTime parsedEndDateTime) throws ParseException {
+        if (parsedStartDateTime.isAfter(parsedEndDateTime)) {
+            throw new ParseException(Messages.START_DATE_AFTER_END_DATE);
+        }
+    }
+
+    private Predicate<Person> generatePersonPredicate(String name, String phone,
+                                                      String email, String address,
                                                       List<String> tagList) {
         List<Predicate<Person>> personPredicates = new ArrayList<>();
 
-        name.ifPresent(s -> personPredicates.add(new NameContainsSequencePredicate(s)));
-        phone.ifPresent(s -> personPredicates.add(new PhoneContainsSequencePredicate(s)));
-        email.ifPresent(s -> personPredicates.add(new EmailContainsSequencePredicate(s)));
-        address.ifPresent(s -> personPredicates.add(new AddressContainsSequencePredicate(s)));
+        if (!name.isEmpty()) {
+            personPredicates.add(new NameContainsSequencePredicate(name));
+        }
+        if (!phone.isEmpty()) {
+            personPredicates.add(new PhoneContainsSequencePredicate(phone));
+        }
+        if (!email.isEmpty()) {
+            personPredicates.add(new EmailContainsSequencePredicate(email));
+        }
+        if (!address.isEmpty()) {
+            personPredicates.add(new AddressContainsSequencePredicate(address));
+        }
         if (!tagList.isEmpty()) {
             personPredicates.add(new PersonContainsTagsPredicate(tagList));
         }
@@ -89,11 +148,16 @@ public class FindCommandParser implements Parser<FindCommand> {
         return personPredicates.stream().reduce(PREDICATE_SHOW_ALL_PERSONS, Predicate::and);
     }
 
-    private Predicate<Appointment> generateAppointmentPredicate(Optional<String> reason,
-                                                                Optional<String> startDateTime,
-                                                                Optional<String> endDateTime) {
+    private Predicate<Appointment> generateAppointmentPredicate(String reason,
+                                                                LocalDateTime parsedStartDateTime,
+                                                                LocalDateTime parsedEndDateTime) {
         List<Predicate<Appointment>> appointmentPredicates = new ArrayList<>();
-        reason.ifPresent(s -> appointmentPredicates.add(new ReasonContainsSequencePredicate(s)));
-        startDateTime.ifPresent(s -> appointmentPredicates.add(new DateTimeWithinRangePredicate(startDateTime, endDateTime)));
+
+        if (!reason.isEmpty()) {
+            appointmentPredicates.add(new ReasonContainsSequencePredicate(reason));
+        }
+        appointmentPredicates.add(new DateTimeWithinRangePredicate(parsedStartDateTime, parsedEndDateTime));
+
+        return appointmentPredicates.stream().reduce(PREDICATE_SHOW_ALL_APPOINTMENTS, Predicate::and);
     }
 }

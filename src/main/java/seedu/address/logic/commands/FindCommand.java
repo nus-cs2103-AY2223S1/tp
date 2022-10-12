@@ -43,10 +43,13 @@ public class FindCommand extends Command {
 
     private final Predicate<Person> personPredicate;
     private final Predicate<Appointment> appointmentPredicate;
+    private final boolean isFindingAppointment;
 
-    public FindCommand(Predicate<Person> personPredicate, Predicate<Appointment> appointmentPredicate) {
+    public FindCommand(Predicate<Person> personPredicate, Predicate<Appointment> appointmentPredicate,
+                       boolean isFindingAppointment) {
         this.personPredicate = personPredicate;
         this.appointmentPredicate = appointmentPredicate;
+        this.isFindingAppointment = isFindingAppointment;
     }
 
     @Override
@@ -55,10 +58,12 @@ public class FindCommand extends Command {
 
         /*
         Finds all persons that satisfies the given personPredicate with at least one appointment that matches
-        the appointmentPredicate, and updates the model accordingly.
+        the appointmentPredicate if any input related to appointments are present (Reason, date),
+        and updates the model accordingly.
          */
-        Predicate<Person> personFufillingBothPredicates =
-                personPredicate.and(person -> person.getAppointments().stream().anyMatch(appointmentPredicate));
+        Predicate<Person> personFufillingBothPredicates = !isFindingAppointment
+                ? personPredicate
+                : personPredicate.and(person -> person.getAppointments().stream().anyMatch(appointmentPredicate));
         model.updateFilteredPersonList(personFufillingBothPredicates);
 
         /*
