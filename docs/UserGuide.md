@@ -84,7 +84,7 @@ Use student name as user is looking for details and doesn't have them.
 
 Deletes the student at the given index from FRIDAY.
 
-Format: `delete i/INDEX`
+Format: `delete INDEX`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The index of the student can be seen from the student list.
@@ -94,10 +94,11 @@ The index of the student can be seen from the student list.
 
 Edits a student's details in FRIDAY.
 
-Format: `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]`
+Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The Telegram handle, student number, mastery check, consultation, grade, and remark are optional
+The index of the student can be seen from the student list.
+The name, Telegram handle, consultation, mastery check, and tag are optional, but there should be at least one parameter.
 </div>
 
 ### Viewing all students: `list`
@@ -126,12 +127,12 @@ Format: `help`
 
 ## Command Summary
 
-| Action                           | Format                                                                                                        |
-|----------------------------------|---------------------------------------------------------------------------------------------------------------|
-| **Add a student**                | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`                    |
-| **Delete a student**             | `delete i/INDEX`                                                                                              |
-| **Edit a student's details**     | `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]` |
-| **View all students**            | `list`                                                                                                        |
-| **Find a student's details**     | `find s/STUDENT_NAME`                                                                                         |
-| **Get a link to the User Guide** | `guide`                                                                                                       |
-| **Getting Help**                 | `help`                                                                                                        |
+| Action                           | Format                                                                                     |
+|----------------------------------|--------------------------------------------------------------------------------------------|
+| **Add a student**                | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...` |
+| **Delete a student**             | `delete i/INDEX`                                                                           |
+| **Edit a student's details**     | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]`     |
+| **View all students**            | `list`                                                                                     |
+| **Find a student's details**     | `find s/STUDENT_NAME`                                                                      |
+| **Get a link to the User Guide** | `guide`                                                                                    |
+| **Getting Help**                 | `help`                                                                                     |

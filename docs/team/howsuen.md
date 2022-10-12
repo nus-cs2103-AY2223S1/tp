@@ -18,15 +18,16 @@ Given below are my contributions to the project.
   * Added user stories
 
 * **Enhancements to existing features**:
-  * Refactored code to improve maintainability and readability [\#80](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/80)
+  * Refactored code to improve maintainability and readability [\#80](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/80) [\#101](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/101)
   * Fixed ordering and naming of imports to pass checkstyle
   * Added and updated `edit` command for FRIDAY to edit a student's details [\#80](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/89)
   * Added tests for `edit` command
+  * Updated GUI's logo and title [\#101](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/101)
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the feature `edit`
-    * Reformatted table of Command Summary
+    * Reformatted Command Summary
   * Developer Guide:
     * Added Non-functional requirements
   * README:
