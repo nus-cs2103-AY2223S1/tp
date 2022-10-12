@@ -85,6 +85,11 @@ public class Fields {
         this.fields.addAll(fields);
     }
 
+    /**
+     * Adds all items from a given Fields instance.
+     *
+     * @param fields A Fields object containing field information to be added from.
+     */
     public void addAll(Fields fields) {
         if (fields != null && !fields.isEmpty()) {
             this.fields.addAll(fields.toList());
