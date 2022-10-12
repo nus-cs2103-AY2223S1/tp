@@ -4,14 +4,12 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.order.*;
 import seedu.address.model.person.*;
-import seedu.address.model.pet.Age;
-import seedu.address.model.pet.Color;
-import seedu.address.model.pet.ColorPattern;
-import seedu.address.model.pet.Species;
+import seedu.address.model.pet.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -91,29 +89,58 @@ public class SampleDataUtil {
         return new Order[] {
                 getOrder(10.0, 15.0,
                         getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1","2","3"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus()),
+                        getAdditionalRequests("1", "2", "3"),
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
                 getOrder(12.0, 15.0,
                         getRequest(3, "white", "black", "monster"),
-                        getAdditionalRequests("1","2","3"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus()),
+                        getAdditionalRequests("1", "2", "3"),
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
                 getOrder(10.2, 15.0,
                         getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1","2","3"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus()),
+                        getAdditionalRequests("1", "2", "3"),
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
                 getOrder(10.3, 15.0,
                         getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1","2","3"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus()),
+                        getAdditionalRequests("1", "2", "3"),
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
                 getOrder(10.1, 15.0,
                         getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1","2","3"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus()),
+                        getAdditionalRequests("1", "2", "3"),
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
                 getOrder(11110.0, 15.0,
                         getRequest(2, "white", "black", "pokemon"),
                         getAdditionalRequests("i need it now"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus())
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString())
 
+        };
+    }
+
+    public static Pet[] getSamplePets() {
+        Supplier elizabeth = new Supplier(PersonCategory.SUPPLIER, new Name("Bernice Yu"), new Phone("99272758"),
+                new Email("berniceyu@example.com"), new Address("somewhere in choa chu kang"),
+                getTagSet("colleagues", "friends"), null);
+
+        DateOfBirth standard;
+
+        try {
+            standard = DateOfBirth.parseString("2020-10-10");
+        } catch (IllegalValueException e) {
+            return null;
+        }
+
+        return new Pet[] {
+                new Pet(new Name("This is sample Pet List"), elizabeth, new Color("white"), new ColorPattern("white and brown"),
+                        standard, new Species("cat"), new Weight(10.05),
+                        new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
+                        new HashSet<>()),
+                new Pet(new Name("Ashy"), elizabeth, new Color("white"), new ColorPattern("white and brown"),
+                        standard, new Species("cat"), new Weight(10.05),
+                        new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
+                        new HashSet<>()),
+                new Pet(new Name("Plum"), elizabeth, new Color("white"), new ColorPattern("white and brown"),
+                        standard, new Species("cat"), new Weight(10.05),
+                        new Height(100.5), new VaccinationStatus(true), getTagSet("cat"),
+                        new HashSet<>())
         };
     }
 
@@ -138,7 +165,13 @@ public class SampleDataUtil {
             sampleAb.addDeliverer(sampleDeliverer);
         }
         for (Order sampleOrder : orders) {
+            System.out.println("order " + sampleOrder);
             sampleAb.addOrder(sampleOrder);
+        }
+
+        for (Pet samplePet : getSamplePets()) {
+            System.out.println("pet " + samplePet);
+            sampleAb.addPet(samplePet);
         }
 
         return sampleAb;
@@ -161,7 +194,10 @@ public class SampleDataUtil {
         AdditionalRequests orderAdditionalRequests = additionalRequests;
         LocalDate orderDate = LocalDate.parse(byDate);
         Price orderSettledPrice = new Price(settledPrice);
-        OrderStatus orderStatus = new OrderStatus(status);
+        OrderStatus orderStatus = Arrays.stream(OrderStatus.class.getEnumConstants())
+                .filter(x -> x.toString().equals(status))
+                .findFirst()
+                .orElse(OrderStatus.PENDING);
         return new Order(null, priceRange, orderRequest, orderAdditionalRequests, orderDate, orderSettledPrice,
                     orderStatus);
     }

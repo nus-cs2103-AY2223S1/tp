@@ -1,20 +1,18 @@
 package seedu.address.logic.parser;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddBuyerCommand;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -29,17 +27,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddPersonCommand object
  */
-public class AddBuyerCommandParser extends AddCommandParser implements Parser<AddCommand> {
+public class AddBuyerCommandParser extends AddPersonCommandParser implements Parser<AddPersonCommand> {
 
     public AddBuyerCommandParser() {
-
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddPersonCommand
+     * and returns an AddPersonCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddBuyerCommand parse(String args) throws ParseException {
@@ -54,14 +51,15 @@ public class AddBuyerCommandParser extends AddCommandParser implements Parser<Ad
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBuyerCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        List<Order> orders = ParserUtil.parseOrders(argMultimap.getAllValues(PREFIX_ORDER));
+        Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, tagList, null);
 
-        Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, tagList, orders);
+        List<Order> orders = ParserUtil.parseOrders(argMultimap.getAllValues(PREFIX_ORDER), buyer);
+        buyer.addOrder(orders);
 
         return new AddBuyerCommand(buyer);
     }

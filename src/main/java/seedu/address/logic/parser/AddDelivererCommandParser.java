@@ -3,7 +3,7 @@
 //package seedu.address.logic.parser;
 //
 //import seedu.address.logic.commands.AddBuyerCommand;
-//import seedu.address.logic.commands.AddCommand;
+//import seedu.address.logic.commands.AddPersonCommand;
 //import seedu.address.logic.commands.AddDelivererCommand;
 //import seedu.address.logic.parser.exceptions.ParseException;
 //import seedu.address.model.person.Address;
@@ -26,16 +26,16 @@
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 //
 ///**
-// * Parses input arguments and creates a new AddCommand object
+// * Parses input arguments and creates a new AddPersonCommand object
 // */
-//public class AddDelivererCommandParser extends AddCommandParser implements Parser<AddDelivererCommand> {
+//public class AddDelivererCommandParser extends AddPersonCommandParser implements Parser<AddDelivererCommand> {
 //
 //    public AddDelivererCommandParser() {
 //    }
 //
 //    /**
-//     * Parses the given {@code String} of arguments in the context of the AddCommand
-//     * and returns an AddCommand object for execution.
+//     * Parses the given {@code String} of arguments in the context of the AddPersonCommand
+//     * and returns an AddPersonCommand object for execution.
 //     * @throws ParseException if the user input does not conform the expected format
 //     */
 //    public AddDelivererCommand parse(String args) throws ParseException {
@@ -45,7 +45,7 @@
 //
 //        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CATEGORY)
 //                || !argMultimap.getPreamble().isEmpty()) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE)); //TODO Replace the MESSAGE_USAGE
+//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE)); //TODO Replace the MESSAGE_USAGE
 //        }
 //
 //        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

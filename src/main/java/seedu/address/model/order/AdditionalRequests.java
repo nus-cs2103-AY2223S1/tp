@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 public class AdditionalRequests {
 
@@ -12,6 +14,10 @@ public class AdditionalRequests {
     public AdditionalRequests(String... descriptions) {
         requireNonNull(descriptions);
         additionalRequests.addAll(Arrays.asList(descriptions));
+    }
+
+    public AdditionalRequests(Collection<String> descriptions) {
+        additionalRequests.addAll(descriptions);
     }
 
     public ArrayList<String> getAdditionalRequests() {

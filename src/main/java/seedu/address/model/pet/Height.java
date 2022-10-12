@@ -3,6 +3,8 @@ package seedu.address.model.pet;
 public class Height {
 
     public static final String UNIT = "cm";
+    public static final String MESSAGE_USAGE =
+            "The height should be in " + UNIT + " and be a non-negative decimal number, such as 22.8";
 
     private final double value;
 

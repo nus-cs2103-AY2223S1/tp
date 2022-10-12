@@ -1,8 +1,14 @@
 package seedu.address.model.order;
 
-public class Price {
+public class Price implements Comparable<Price> {
 
-    private static final double NOT_APPLICABLE_PRICE = -1;
+    public static final double NOT_APPLICABLE_PRICE = -1;
+    public static final String MESSAGE_USAGE =
+            "The price should be a non-negative decimal number, such as 0.3, 9.8 etc.\n"
+                    + "If you have not decided the price yet, enter "
+                    + NOT_APPLICABLE_PRICE
+                    + " to indicate a non-applicable price";
+
     private double price;
 
     public Price(double price) {
@@ -11,6 +17,14 @@ public class Price {
 
     public static Price getNotApplicablePrice() {
         return new Price(NOT_APPLICABLE_PRICE);
+    }
+
+    public boolean isNotApplicablePrice() {
+        return this.price == NOT_APPLICABLE_PRICE;
+    }
+
+    public static boolean isNotApplicablePrice(Price price) {
+        return price.price == NOT_APPLICABLE_PRICE;
     }
 
     public double getPrice() {
@@ -43,4 +57,8 @@ public class Price {
         return Double.toString(price);
     }
 
+    @Override
+    public int compareTo(Price other) {
+        return Double.compare(this.price, other.price);
+    }
 }

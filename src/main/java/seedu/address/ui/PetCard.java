@@ -1,21 +1,14 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.order.Order;
-import seedu.address.model.person.Buyer;
+import seedu.address.model.pet.Pet;
 
-/**
- * An UI component that displays information of a {@code Buyer}.
- */
-public class OrderCard extends UiPart<Region> {
-
-    private static final String FXML = "OrderListCard.fxml";
+public class PetCard extends UiPart<Region> {
+    private static final String FXML = "PetListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -25,7 +18,7 @@ public class OrderCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Order order;
+    public final Pet pet;
 
     @FXML
     private HBox cardPane;
@@ -34,24 +27,19 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
     private FlowPane tags;
     @FXML
-    private Label orders;
+    private Label pets;
+
 
     /**
      * Creates a {@code BuyerCode} with the given {@code Buyer} and index to display.
      */
-    public OrderCard(Order order, int displayedIndex) {
+    public PetCard(Pet pet, int displayedIndex) {
         super(FXML);
-        this.order = order;
+        this.pet = pet;
         id.setText(displayedIndex + ". ");
-        name.setText(order.toString());
+        name.setText(pet.toString());
     }
 
     @Override
@@ -62,13 +50,13 @@ public class OrderCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof OrderCard)) {
+        if (!(other instanceof PetCard)) {
             return false;
         }
 
         // state check
-        OrderCard card = (OrderCard) other;
+        PetCard card = (PetCard) other;
         return id.getText().equals(card.id.getText())
-                && order.equals(card.order);
+                && pet.equals(card.pet);
     }
 }

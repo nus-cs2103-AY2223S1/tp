@@ -5,38 +5,32 @@ import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.*;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddPersonCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddPersonCommandParser implements Parser<AddPersonCommand> {
 
-    private final AddBuyerCommandParser addBuyerCommandParser;
-    // private final AddDelivererCommandParser addDelivererCommandParser; //TODO Uncomment
-    // private final AddSupplierCommandParser addSupplierCommandParser;
-
-    public AddCommandParser() {
-        addBuyerCommandParser = new AddBuyerCommandParser();
-        //addDelivererCommandParser = new AddDelivererCommandParser(); //TODO Uncomment
-        //addSupplierCommandParser = new AddSupplierCommandParser();
+    public AddPersonCommandParser() {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddPersonCommand
+     * and returns an AddPersonCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddPersonCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CATEGORY);
+                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ORDER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CATEGORY)
+        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE)); //TODO Replace the MESSAGE_USAGE
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE)); //TODO Replace the MESSAGE_USAGE
         }
 
         PersonCategory personCategory =
@@ -44,11 +38,14 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         switch (personCategory) {
         case BUYER:
+            AddBuyerCommandParser addBuyerCommandParser = new AddBuyerCommandParser();
             return addBuyerCommandParser.parse(args);
         //TODO Uncomment
 //        case DELIVERER:
+//        AddDelivererCommandParser addDelivererCommandParser = new AddDelivererCommandParser();
 //            return addDelivererCommandParser.parse(args);
 //        case SUPPLIER:
+//        AddSupplierCommandParser addSupplierCommandParser = new AddSupplierCommandParser();
 //            return addSupplierCommandParser.parse(args);
         default:
             throw new ParseException(PersonCategory.MESSAGE_CONSTRAINTS);

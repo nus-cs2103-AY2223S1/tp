@@ -5,29 +5,21 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ModelManager;
 
 public class DateOfBirth {
-    //@@author Hongyi6328-reused
-    //Reused from https://github.com/RussellDash332/ip/blob/master/src/main/java/stashy/parser/Parser.java
-    //with minor modification, it is a pretty good way to organise and extend the acceptable date formats.
-    private static final String[] ACCEPTABLE_DATE_FORMATS = new String[]{
-        "MMM dd yyyy",
-        "dd/MM/yyyy",
-        "yyyy/MM/dd",
-        "yyyy-MM-dd",
-        "dd MMM yyyy",
-        "dd MMM yyyy",
-        "MMM dd, yyyy",
-        "MMM dd, yyyy"
-    };
 
-    private static final String PREFERRED_DATE_FORMAT = "yyyy-MM-dd";
+    public static final String MESSAGE_USAGE = "The date of birth should be in this format preferably: "
+            + ModelManager.PREFERRED_DATE_FORMAT;
+    private static final String[] ACCEPTABLE_DATE_FORMATS = ModelManager.ACCEPTABLE_DATE_FORMATS;
 
-    private static final DateTimeFormatter PREFERRED_FORMATTER = DateTimeFormatter.ofPattern(PREFERRED_DATE_FORMAT);
+    private static final String PREFERRED_DATE_FORMAT = ModelManager.PREFERRED_DATE_FORMAT;
+
+    private static final DateTimeFormatter PREFERRED_FORMATTER = ModelManager.PREFERRED_FORMATTER;
 
     private final LocalDate date;
 
-    DateOfBirth(LocalDate date) {
+    public DateOfBirth(LocalDate date) {
         this.date = date;
     }
 
@@ -41,7 +33,7 @@ public class DateOfBirth {
                 //Do nothing because it will eventually throw an exception if no formats match
             }
         }
-        throw new IllegalValueException("The date of birth should be in format: " + PREFERRED_DATE_FORMAT);
+        throw new IllegalValueException(MESSAGE_USAGE);
     }
 
     @Override
