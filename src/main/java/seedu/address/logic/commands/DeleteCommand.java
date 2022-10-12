@@ -27,7 +27,7 @@ public class DeleteCommand extends Command {
             + "student ID used in the displayed student list.\n"
             + "Parameters: NAME (should only contain alphanumeric characters and spaces) or"
             + "\n ID (should only contain 3 digits and 1 character)"
-            + "Example: " + COMMAND_WORD + " n/Jonathan Tan" + " or " + COMMAND_WORD + " id/123A";
+            + "Example: " + COMMAND_WORD + " nm/Jonathan Tan" + " or " + COMMAND_WORD + " id/123A";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
 
