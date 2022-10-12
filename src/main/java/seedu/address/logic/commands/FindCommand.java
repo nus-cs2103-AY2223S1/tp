@@ -27,14 +27,9 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
-        try {
-            model.updateFilteredPersonList(predicate);
-        } catch (IllegalArgumentException e) {
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-            throw new CommandException(Messages.MESSAGE_NUMBER_TOO_SHORT);
-        }
+        model.updateFilteredPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
