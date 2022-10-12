@@ -49,12 +49,4 @@ public class ItemUnit {
     public String toString() {
         return itemUnit;
     }
-
-    public boolean isBlank() {
-        return itemUnit.isBlank();
-    }
-
-    public String toListView() {
-        return itemUnit;
-    }
 }

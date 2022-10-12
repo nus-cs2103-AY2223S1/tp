@@ -17,16 +17,16 @@ public class ItemExpiryDateValidator implements Validator {
 
     // Validation for parsing
     public static final String MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE =
-            String.format("Dates must follow the format %s.", EXPIRY_DATE_PATTERN_REGEX);
+            String.format("The item expiry date must follow the format %s.", EXPIRY_DATE_PATTERN_REGEX);
 
     // Validation for year
     private static final int MIN_YEAR = 1000;
     private static final String MESSAGE_FOR_YEAR_TOO_SMALL =
-            String.format("Year should be larger than %d.", MIN_YEAR);
+            String.format("The year for item expiry date should be larger than %d.", MIN_YEAR);
 
     private static final int MAX_YEAR = 2100;
     private static final String MESSAGE_FOR_YEAR_TOO_LARGE =
-            String.format("Year should be less than %d.", MAX_YEAR);
+            String.format("The year for item expiry date should be less than %d.", MAX_YEAR);
 
     /**
      * Validates a given input String.
