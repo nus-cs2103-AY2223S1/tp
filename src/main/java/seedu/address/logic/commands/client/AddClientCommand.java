@@ -2,7 +2,7 @@ package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_ID;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 
@@ -24,15 +24,15 @@ public class AddClientCommand extends ClientCommand {
             + PREFIX_CLIENT_NAME + "NAME "
             + PREFIX_CLIENT_PHONE + "PHONE "
             + PREFIX_CLIENT_EMAIL + "EMAIL "
-            + PREFIX_CLIENT_ID + "CLIENT ID: "
+            + PREFIX_PROJECT_ID + "CLIENT ID: "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT_NAME + "John Doe "
             + PREFIX_CLIENT_PHONE + "98765432 "
             + PREFIX_CLIENT_EMAIL + "johnd@example.com "
-            + PREFIX_CLIENT_ID + "1";
+            + PREFIX_PROJECT_ID + "1";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
 
     private final Client toAddClient;
 
@@ -50,7 +50,7 @@ public class AddClientCommand extends ClientCommand {
         requireNonNull(model);
 
         if (model.hasClient(toAddClient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
         model.addClient(toAddClient);
