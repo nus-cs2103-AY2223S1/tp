@@ -148,7 +148,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteTagTypeForAllPerson(TagType toDelete) {
         List<Person> personList = addressBook.getPersonList();
-        personList.stream().forEach(x -> x.getTags().remove(toDelete));
+        personList.stream().forEach(x -> x.deleteTagType(toDelete));
         addressBook.setPersons(personList);
     }
 

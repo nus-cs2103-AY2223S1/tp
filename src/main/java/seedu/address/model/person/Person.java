@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import javafx.collections.ObservableMap;
+import seedu.address.model.person.exceptions.TagTypeNotFoundException;
 import seedu.address.model.tag.TagType;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -126,4 +127,12 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Deletes tagType for the person if present.
+     */
+    public void deleteTagType(TagType tagType) throws TagTypeNotFoundException {
+        if (this.tagTypeMap.contains(tagType)) {
+            this.tagTypeMap.removeTagType(tagType);
+        }
+    }
 }
