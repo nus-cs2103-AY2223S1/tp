@@ -12,6 +12,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.SellCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.company.Company;
 import seedu.address.model.transaction.Transaction;
@@ -83,7 +84,7 @@ public class SellCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CreateCommand // instanceof handles nulls
+                || (other instanceof SellCommand // instanceof handles nulls
                 && index.equals(((SellCommand) other).index)
                 && transaction.equals(((SellCommand) other).transaction));
     }

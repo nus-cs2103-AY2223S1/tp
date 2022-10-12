@@ -1,12 +1,10 @@
 package seedu.address.logic.commands;
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
-
 
 import java.util.List;
 
@@ -46,7 +44,6 @@ public class BuyCommand extends Command {
     private final Index index;
     private final Transaction transaction;
 
-
     /**
      * @param index of the company in the company list to add the POC to
      * @param transaction to be added
@@ -62,6 +59,7 @@ public class BuyCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Company> lastShownList = model.getFilteredCompanyList();
+
         // if index of company not valid
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
@@ -72,19 +70,17 @@ public class BuyCommand extends Command {
         Company editedCompany = companyToEdit;
         editedCompany.addTransaction(transaction);
         model.setCompany(companyToEdit, editedCompany);
-        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedCompany, transaction.getQuantity(),
                 transaction.getGoods(), transaction.getPrice()));
-
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CreateCommand // instanceof handles nulls
+                || (other instanceof BuyCommand // instanceof handles nulls
                 && index.equals(((BuyCommand) other).index)
                 && transaction.equals(((BuyCommand) other).transaction));
     }
 
 }
-
