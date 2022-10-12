@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import hobbylist.model.activity.NameContainsKeywordsPredicate;
 import org.junit.jupiter.api.Test;
 
 import hobbylist.commons.core.GuiSettings;
@@ -119,7 +120,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = TypicalActivities.ACTIVITY_A.getName().fullName.split("\\s+");
-        modelManager.updateFilteredActivityList(new NameOrDescContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredActivityList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(hobbyList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
