@@ -31,6 +31,7 @@ class BuyTransactionTest {
         Quantity quantity = new Quantity("10");
 
         Transaction transaction = new BuyTransaction(goods, price, quantity);
+        System.out.println(transaction.toString());
         assertTrue(transaction.toString().equals("You bought 10 quantity of Apple at $0.8 each"));
     }
 }
