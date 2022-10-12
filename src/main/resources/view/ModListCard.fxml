@@ -27,7 +27,6 @@
                 </Label>
                 <Label fx:id="modName" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="isTaking" styleClass="cell_small_label" />
         </VBox>
     </GridPane>
 </HBox>

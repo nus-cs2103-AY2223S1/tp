@@ -1,14 +1,15 @@
 package seedu.address.ui;
 
+import java.util.Set;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.module.SubjectModule;
+import seedu.address.model.person.Mod;
+import seedu.address.model.person.Person;
 
 /**
  * Panel containing the list of persons.
@@ -18,23 +19,30 @@ public class ModListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ModListPanel.class);
 
     @FXML
-    private ListView<SubjectModule> modListView;
+    private ListView<Mod> modListView;
 
     /**
      * Creates a {@code ModListPanel} with the given {@code ObservableList}.
      */
-    public ModListPanel(ObservableList<SubjectModule> moduleList) {
+    public ModListPanel() {
         super(FXML);
-        modListView.setItems(moduleList);
+    }
+
+    public void setPersonModList(Person person) {
+        modListView.getItems().clear();
+        Set<Mod> moduleList = person.getMods();
+        for (Mod m: moduleList) {
+            modListView.getItems().add(m);
+        }
         modListView.setCellFactory(listView -> new ModListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class ModListViewCell extends ListCell<SubjectModule> {
+    class ModListViewCell extends ListCell<Mod> {
         @Override
-        protected void updateItem(SubjectModule module, boolean empty) {
+        protected void updateItem(Mod module, boolean empty) {
             super.updateItem(module, empty);
 
             if (empty || module == null) {
