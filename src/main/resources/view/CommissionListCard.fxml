@@ -29,28 +29,30 @@
                 <VBox alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
                     <BorderPane>
                         <center>
-                            <HBox alignment="CENTER_LEFT">
-                                <Label fx:id="title" text="\$title" id="cell_title_label" />
-                            </HBox>
+                            <VBox alignment="CENTER_LEFT" spacing="8">
+                                <Label fx:id="title" text="\$title" id="cell_title_label">
+                                </Label>
+                                <FlowPane fx:id="tags" styleClass="commissionTags"/>
+                                <BorderPane.margin>
+                                    <Insets right="16"/>
+                                </BorderPane.margin>
+                            </VBox>
                         </center>
                         <right>
-                            <HBox alignment="CENTER_LEFT">
-                                <!-- workaround to buggy ui when using a shape node: use an empty rounded label -->
-                                <Label fx:id="completionStatusCircle" id="completionStatusCircle"
-                                    minWidth="8" minHeight="8" maxWidth="8" maxHeight="8" >
-                                    <HBox.margin>
-                                        <Insets right="8"/>
-                                    </HBox.margin>
-                                </Label>
-                                <Label fx:id="completionStatus" id="cell_completion_label"
-                                       text="\$completionStatus" />
-                            </HBox>
+                            <VBox spacing="4">
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <!-- workaround to buggy ui when using a shape node: use an empty rounded label -->
+                                    <Label fx:id="completionStatusCircle" id="completionStatusCircle"
+                                           minWidth="8" minHeight="8" maxWidth="8" maxHeight="8" />
+                                    <Label fx:id="completionStatus" id="cell_completion_label"
+                                           text="\$completionStatus" />
+                                </HBox>
+                                <HBox alignment="CENTER_RIGHT">
+                                    <Label fx:id="deadline" id="cell_secondary_field_label" text="\$deadline"/>
+                                </HBox>
+                            </VBox>
                         </right>
-                        <VBox.margin>
-                            <Insets bottom="8.0" />
-                        </VBox.margin>
                     </BorderPane>
-                    <FlowPane fx:id="tags" styleClass="commissionTags"/>
                 </VBox>
             </HBox>
         </VBox>

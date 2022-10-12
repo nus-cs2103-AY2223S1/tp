@@ -16,7 +16,7 @@ public class CommissionCard extends UiPart<Region> {
 
     private static final String FXML = "CommissionListCard.fxml";
     private static final String COMPLETED_COLOR_STYLE = "-fx-background-color: #32AE46;";
-    private static final String NOT_COMPLETED_COLOR_STYLE = "-fx-background-color: #548DE1";
+    private static final String NOT_COMPLETED_COLOR_STYLE = "-fx-background-color: #CAB232";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -41,6 +41,8 @@ public class CommissionCard extends UiPart<Region> {
     @FXML
     private Label completionStatus;
     @FXML
+    private Label deadline;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -51,6 +53,7 @@ public class CommissionCard extends UiPart<Region> {
         this.commission = commission;
         id.setText(displayedIndex + ". ");
         title.setText(commission.getTitle().title);
+        deadline.setText("Due " + commission.getDeadline().toString());
 
         if (commission.getCompletionStatus().isCompleted) {
             completionStatusCircle.setStyle(COMPLETED_COLOR_STYLE);
