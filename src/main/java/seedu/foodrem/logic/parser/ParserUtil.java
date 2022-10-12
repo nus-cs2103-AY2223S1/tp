@@ -40,7 +40,7 @@ public class ParserUtil {
      *
      * @throws IllegalArgumentException if the given {@code name} is invalid.
      */
-    public static ItemName parseName(String name) throws IllegalArgumentException {
+    public static ItemName parseItemName(String name) throws IllegalArgumentException {
         requireNonNull(name);
         String trimmedName = name.trim();
         return new ItemName(trimmedName);

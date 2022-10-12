@@ -1,16 +1,20 @@
-package seedu.foodrem.logic.parser;
+package seedu.foodrem.logic.parser.itemcommandparser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
+import seedu.foodrem.logic.parser.ArgumentMultimap;
+import seedu.foodrem.logic.parser.ArgumentTokenizer;
+import seedu.foodrem.logic.parser.Parser;
+import seedu.foodrem.logic.parser.ParserUtil;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**
@@ -28,7 +32,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_ITEM_NAME,
+                        PREFIX_NAME,
                         PREFIX_ITEM_QUANTITY,
                         PREFIX_ITEM_UNIT,
                         PREFIX_ITEM_BOUGHT_DATE,
@@ -42,8 +46,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
-        if (argMultimap.isValuePresent(PREFIX_ITEM_NAME)) {
-            editItemDescriptor.setItemName(ParserUtil.parseName(argMultimap.getPresentValue(PREFIX_ITEM_NAME)));
+        if (argMultimap.isValuePresent(PREFIX_NAME)) {
+            editItemDescriptor.setItemName(ParserUtil.parseItemName(argMultimap.getPresentValue(PREFIX_NAME)));
         }
         if (argMultimap.isValuePresent(PREFIX_ITEM_QUANTITY)) {
             editItemDescriptor.setItemQuantity(

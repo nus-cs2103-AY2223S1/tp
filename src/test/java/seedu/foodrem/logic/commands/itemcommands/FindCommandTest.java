@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS;
 import static seedu.foodrem.testutil.TypicalItems.POTATOES;
-import static seedu.foodrem.testutil.TypicalItems.getTypicalFoodRem;
 
 import java.util.Arrays;
 import java.util.Collections;

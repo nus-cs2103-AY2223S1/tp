@@ -2,8 +2,8 @@ package seedu.foodrem.logic.commands.itemcommands;
 
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.logic.commands.CommandTestUtil.showItemAtIndex;
+import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
-import static seedu.foodrem.testutil.TypicalItems.getTypicalFoodRem;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
