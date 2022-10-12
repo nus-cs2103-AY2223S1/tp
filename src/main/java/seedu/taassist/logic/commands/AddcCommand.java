@@ -55,12 +55,12 @@ public class AddcCommand extends Command {
         }
         StringBuilder outputString = new StringBuilder();
         if (!newClasses.isEmpty()) {
-            String newClassesStr = newClasses.stream().map(Object::toString).collect(Collectors.joining(", "));
+            String newClassesStr = newClasses.stream().map(Object::toString).collect(Collectors.joining(" "));
             outputString.append(String.format(MESSAGE_SUCCESS, newClassesStr)).append('\n');
         }
         if (!duplicateClasses.isEmpty()) {
             String duplicateClaasesStr = duplicateClasses.stream().map(Object::toString)
-                    .collect(Collectors.joining(", "));
+                    .collect(Collectors.joining(" "));
             outputString.append(String.format(MESSAGE_DUPLICATE_MODULE_CLASS, duplicateClaasesStr)).append('\n');
         }
         return new CommandResult(outputString.toString());
