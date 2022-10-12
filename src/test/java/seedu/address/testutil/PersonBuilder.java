@@ -14,6 +14,8 @@ import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * A utility class to help with building Person objects.
  */
@@ -23,15 +25,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_PRICE_RANGE = "200000 - 250000";
-    public static final String DEFAULT_DESIRED_CHARACTERISTICS = "NEAR SCHOOL; NEAR MRT";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Optional<PriceRange> priceRange;
-    private Optional<DesiredCharacteristics> desiredCharacteristics;
+    private PriceRange priceRange;
+    private DesiredCharacteristics desiredCharacteristics;
     private Set<Tag> tags;
 
     /**
@@ -42,11 +42,11 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        priceRange = Optional.of(new PriceRange(DEFAULT_PRICE_RANGE));
-        desiredCharacteristics = Optional.of(new DesiredCharacteristics(DEFAULT_DESIRED_CHARACTERISTICS));
+        priceRange = null;
+        desiredCharacteristics = null;
         tags = new HashSet<>();
     }
-
+    
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
@@ -55,8 +55,8 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        priceRange = personToCopy.getPriceRange();
-        desiredCharacteristics = personToCopy.getDesiredCharacteristics();
+        priceRange = personToCopy.getPriceRange().orElse(null);
+        desiredCharacteristics = personToCopy.getDesiredCharacteristics().orElse(null);
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -101,23 +101,39 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Price Range} of the {@code Person} that we are building.
      */
     public PersonBuilder withPriceRange(String priceRange) {
-        
+        this.priceRange = new PriceRange(priceRange);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Removes the {@code Price Range} of the {@code Person} that we are building.
      */
-    public PersonBuilder withDesiredCharacteristics(String desiredCharacteristics) {
-        
+    public PersonBuilder withNoPriceRange() {
+        this.priceRange = null;
         return this;
     }
 
+    /**
+     * Sets the {@code DesiredCharacteristics} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDesiredCharacteristics(String desiredCharacteristics) {
+        this.desiredCharacteristics = new DesiredCharacteristics(desiredCharacteristics);
+        return this;
+    }
+
+    /**
+     * Removes the {@code DesiredCharacteristics} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNoDesiredCharacteristics() {
+        this.desiredCharacteristics = null;
+        return this;
+    }
+    
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, priceRange, desiredCharacteristics, tags);
     }
 
 }

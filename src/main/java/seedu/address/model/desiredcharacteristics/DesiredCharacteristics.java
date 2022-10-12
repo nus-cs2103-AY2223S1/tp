@@ -61,7 +61,7 @@ public class DesiredCharacteristics {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DesiredCharacteristics // instanceof handles nulls
-                && characteristics.equals(((DesiredCharacteristics) other).characteristics)); // state check
+                && Arrays.equals(characteristics, ((DesiredCharacteristics) other).characteristics)); // state check
     }
 
     @Override

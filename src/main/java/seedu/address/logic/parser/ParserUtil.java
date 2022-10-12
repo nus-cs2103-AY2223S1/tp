@@ -168,7 +168,7 @@ public class ParserUtil {
         if (!DesiredCharacteristics.isValidDesiredCharacteristics(trimmedCharacteristics)) {
             throw new ParseException(DesiredCharacteristics.MESSAGE_CONSTRAINTS);
         }
-        return new DesiredCharacteristics(characteristics);
+        return new DesiredCharacteristics(trimmedCharacteristics);
     }
 
     /**

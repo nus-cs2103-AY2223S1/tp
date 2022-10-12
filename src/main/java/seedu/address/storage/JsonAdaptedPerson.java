@@ -33,6 +33,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    // priceRange and desiredCharacteristics cannot be null; converted to "" for saving to storage if null
     private final String priceRange;
     private final String desiredCharacteristics;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -114,11 +115,17 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (priceRange == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PriceRange.class.getSimpleName()));
+        }
         if (!priceRange.isEmpty() && !PriceRange.isValidPriceRange(priceRange)) {
             throw new IllegalValueException(PriceRange.MESSAGE_CONSTRAINTS);
         }
         final PriceRange modelPriceRange = priceRange.isEmpty() ? null : new PriceRange(priceRange);
 
+        if (desiredCharacteristics == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DesiredCharacteristics.class.getSimpleName()));
+        }
         if (!desiredCharacteristics.isEmpty() && !DesiredCharacteristics.isValidDesiredCharacteristics(desiredCharacteristics)) {
             throw new IllegalValueException(DesiredCharacteristics.MESSAGE_CONSTRAINTS);
         }

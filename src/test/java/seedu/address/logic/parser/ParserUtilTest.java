@@ -15,9 +15,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
+import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -25,12 +27,16 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_PRICE_RANGE = "200";
+    private static final String INVALID_DESIRED_CHARACTERISTICS = "";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_PRICE_RANGE = "200 - 500";
+    private static final String VALID_DESIRED_CHARACTERISTICS = "Bright; Large";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -192,5 +198,51 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parsePriceRange_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePriceRange(null));
+    }
+
+    @Test
+    public void parsePriceRange_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePriceRange(INVALID_PRICE_RANGE));
+    }
+
+    @Test
+    public void parseName_validPriceRangeWithoutWhitespace_returnsPriceRange() throws Exception {
+        PriceRange expectedPriceRange = new PriceRange(VALID_PRICE_RANGE);
+        assertEquals(expectedPriceRange, ParserUtil.parsePriceRange(VALID_PRICE_RANGE));
+    }
+
+    @Test
+    public void parseName_validPriceRangeWithWhitespace_returnsTrimmedPriceRange() throws Exception {
+        String priceRangeWithWhitespace = WHITESPACE + VALID_PRICE_RANGE + WHITESPACE;
+        PriceRange expectedPriceRange = new PriceRange(VALID_PRICE_RANGE);
+        assertEquals(expectedPriceRange, ParserUtil.parsePriceRange(priceRangeWithWhitespace));
+    }
+
+    @Test
+    public void parseCharacteristics_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCharacteristics(null));
+    }
+
+    @Test
+    public void parseCharacteristics_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePriceRange(INVALID_DESIRED_CHARACTERISTICS));
+    }
+
+    @Test
+    public void parseCharacteristics_validCharacteristicsWithoutWhitespace_returnsDesiredCharacteristics() throws Exception {
+        DesiredCharacteristics expectedDesiredCharacteristics = new DesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS);
+        assertEquals(expectedDesiredCharacteristics, ParserUtil.parseCharacteristics(VALID_DESIRED_CHARACTERISTICS));
+    }
+
+    @Test
+    public void parseCharacteristics_validCharacteristicsWithWhitespace_returnsTrimmedCharacteristics() throws Exception {
+        String desiredCharacteristicsWithWhitespace = WHITESPACE + VALID_DESIRED_CHARACTERISTICS + WHITESPACE;
+        DesiredCharacteristics expectedDesiredCharacteristics = new DesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS);
+        assertEquals(expectedDesiredCharacteristics, ParserUtil.parseCharacteristics(desiredCharacteristicsWithWhitespace));
     }
 }
