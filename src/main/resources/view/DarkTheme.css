@@ -347,7 +347,7 @@
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
-    -fx-padding: 6px 4px;
+    -fx-padding: 6px 12px;
 }
 
 #commandTypeLabel {
@@ -433,4 +433,10 @@
 #cell_field_label {
     -fx-font-size: 13px;
     -fx-text-fill: #D8D8D8;
+}
+
+#cell_completion_label {
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
 }

@@ -8,6 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.BorderPane?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
@@ -18,26 +21,60 @@
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT" id="cell_id_title_container">
+            <HBox spacing="5" alignment="TOP_LEFT" id="cell_id_title_container">
                 <Label fx:id="id" id="cell_id_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="title" text="\$title" id="cell_title_label" />
-                <VBox.margin>
-                    <Insets bottom="4"/>
-                </VBox.margin>
+                <VBox alignment="TOP_LEFT">
+                    <BorderPane>
+                        <center>
+                            <HBox alignment="CENTER_LEFT">
+                                <Label fx:id="title" text="\$title" id="cell_title_label" />
+                            </HBox>
+                        </center>
+                        <right>
+                            <HBox alignment="CENTER_LEFT">
+                                <Circle fx:id="completionStatusCircle" radius="4">
+                                    <HBox.margin>
+                                        <Insets right="8"/>
+                                    </HBox.margin>
+                                </Circle>
+                                <Label fx:id="completionStatus" id="cell_completion_label"
+                                       text="\$completionStatus" />
+                            </HBox>
+                        </right>
+                        <VBox.margin>
+                            <Insets bottom="8.0" />
+                        </VBox.margin>
+                    </BorderPane>
+                    <FlowPane fx:id="tags" styleClass="commissionTags">
+                        <VBox.margin>
+                            <Insets bottom="8" />
+                        </VBox.margin>
+                    </FlowPane>
+                    <HBox spacing="12">
+                        <HBox>
+                            <ImageView fx:id="deadlineIcon" fitWidth="14" fitHeight="14">
+                                <HBox.margin>
+                                    <Insets right="4"/>
+                                </HBox.margin>
+                            </ImageView>
+                            <Label fx:id="deadline" text="\$deadline" id="cell_field_label" />
+                        </HBox>
+                        <HBox>
+                            <ImageView fx:id="feeIcon" fitWidth="14" fitHeight="16">
+                                <HBox.margin>
+                                    <Insets right="4"/>
+                                </HBox.margin>
+                            </ImageView>
+                            <Label fx:id="fee" text="\$fee" id="cell_field_label" />
+                        </HBox>
+                    </HBox>
+                </VBox>
             </HBox>
-            <FlowPane fx:id="tags" styleClass="commissionTags">
-                <VBox.margin>
-                    <Insets bottom="4" />
-                </VBox.margin>
-            </FlowPane>
-            <Label fx:id="deadline" text="\$deadline" id="cell_field_label" />
-            <Label fx:id="fee" text="\$fee" id="cell_field_label" />
-            <Label fx:id="completionStatus" text="\$completionStatus" id="cell_field_label" />
         </VBox>
     </GridPane>
 </HBox>
