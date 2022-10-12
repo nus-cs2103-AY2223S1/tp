@@ -4,10 +4,13 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.address.model.person.Buyer;
+import seedu.address.model.pet.Pet;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Order {
 
-    private String description; //TODO Remove this temp stub
+    private Pet pet;
     private Buyer buyer;
     private final PriceRange requestedPriceRange;
     private final Request request;
@@ -16,20 +19,24 @@ public class Order {
     private final Price settledPrice;
     private final OrderStatus status;
 
-    public Order(String description) { // TODO Remove this stub
-        this.buyer = null;
-        this.requestedPriceRange = null;
-        this.request = null;
-        this.additionalRequests = null;
-        this.byDate = null;
-        this.settledPrice = null;
-        this.status = null;
-        this.description = description;
+    public Order(Pet pet, Buyer buyer, PriceRange requestedPriceRange,
+                 Request request, AdditionalRequests additionalRequests,
+                 LocalDate byDate, Price settledPrice, OrderStatus status) {
+        requireAllNonNull(status);
+        this.pet = pet;
+        this.buyer = buyer;
+        this.requestedPriceRange = requestedPriceRange;
+        this.request = request;
+        this.additionalRequests = additionalRequests;
+        this.byDate = byDate;
+        this.settledPrice = settledPrice;
+        this.status = status;
     }
 
     public Order(Buyer buyer, PriceRange requestedPriceRange,
                  Request request, AdditionalRequests additionalRequests,
                  LocalDate byDate, Price settledPrice, OrderStatus status) {
+        requireAllNonNull(status);
         this.buyer = buyer;
         this.requestedPriceRange = requestedPriceRange;
         this.request = request;
@@ -48,7 +55,7 @@ public class Order {
         this.additionalRequests = additionalRequests;
         this.byDate = byDate;
         this.settledPrice = settledPrice;
-        status = OrderStatus.getPendingStatus();
+        status = OrderStatus.PENDING;
     }
 
     public void setBuyer(Buyer buyer) {

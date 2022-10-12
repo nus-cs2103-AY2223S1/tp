@@ -89,28 +89,28 @@ public class SampleDataUtil {
         return new Order[] {
                 getOrder(10.0, 15.0,
                         getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1","2","3"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus()),
+                        getAdditionalRequests("1", "2", "3"),
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
                 getOrder(12.0, 15.0,
                         getRequest(3, "white", "black", "monster"),
-                        getAdditionalRequests("1","2","3"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus()),
+                        getAdditionalRequests("1", "2", "3"),
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
                 getOrder(10.2, 15.0,
                         getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1","2","3"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus()),
+                        getAdditionalRequests("1", "2", "3"),
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
                 getOrder(10.3, 15.0,
                         getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1","2","3"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus()),
+                        getAdditionalRequests("1", "2", "3"),
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
                 getOrder(10.1, 15.0,
                         getRequest(2, "white", "black", "pokemon"),
-                        getAdditionalRequests("1","2","3"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus()),
+                        getAdditionalRequests("1", "2", "3"),
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString()),
                 getOrder(11110.0, 15.0,
                         getRequest(2, "white", "black", "pokemon"),
                         getAdditionalRequests("i need it now"),
-                        "2022-12-21", 12.5, OrderStatus.getPendingStatus().getStatus())
+                        "2022-12-21", 12.5, OrderStatus.PENDING.toString())
 
         };
     }
@@ -194,7 +194,10 @@ public class SampleDataUtil {
         AdditionalRequests orderAdditionalRequests = additionalRequests;
         LocalDate orderDate = LocalDate.parse(byDate);
         Price orderSettledPrice = new Price(settledPrice);
-        OrderStatus orderStatus = new OrderStatus(status);
+        OrderStatus orderStatus = Arrays.stream(OrderStatus.class.getEnumConstants())
+                .filter(x -> x.toString().equals(status))
+                .findFirst()
+                .orElse(OrderStatus.PENDING);
         return new Order(null, priceRange, orderRequest, orderAdditionalRequests, orderDate, orderSettledPrice,
                     orderStatus);
     }

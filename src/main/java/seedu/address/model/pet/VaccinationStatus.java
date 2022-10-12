@@ -2,6 +2,7 @@ package seedu.address.model.pet;
 
 public class VaccinationStatus {
 
+    public static final String MESSAGE_USAGE = "The vaccination status should be either 'true' or 'false'";
     private final boolean isVaccinated;
 
     public VaccinationStatus(boolean isVaccinated) {

@@ -1,27 +1,18 @@
 package seedu.address.model.order;
 
-public class OrderStatus {
+import java.util.Arrays;
 
-    private static final String PENDING = "pending";
-    private static final String NEGOTIATING = "negotiating";
-    private static final String DELIVERING = "delivering";
+public enum OrderStatus {
+    PENDING("Pending"),
+    NEGOTIATING("Negotiating"),
+    DELIVERING("Delivering");
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Order status should be either 'Pending', 'Negotiating', or 'Delivering'.";
     private final String status;
 
-    public OrderStatus(String status) {
+    OrderStatus(String status) {
         this.status = status;
-    }
-
-    public static OrderStatus getPendingStatus() {
-        return new OrderStatus(PENDING);
-    }
-
-    public static OrderStatus getNegotiatingStatus() {
-        return new OrderStatus(NEGOTIATING);
-    }
-
-    public static OrderStatus getDeliveringStatus() {
-        return new OrderStatus(DELIVERING);
     }
 
     public String getStatus() {
@@ -29,25 +20,14 @@ public class OrderStatus {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        } else if (other instanceof OrderStatus) {
-            OrderStatus otherStatus = (OrderStatus) other;
-            return status.equals(otherStatus.status);
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    public int hashCode() {
-        return status.hashCode();
-    }
-
-    @Override
     public String toString() {
         return status;
+    }
+
+    public static boolean isValidOrderStatus(String input) {
+        return Arrays
+                .stream(OrderStatus.class.getEnumConstants())
+                .anyMatch(x -> x.toString().equals(input));
     }
 
 }

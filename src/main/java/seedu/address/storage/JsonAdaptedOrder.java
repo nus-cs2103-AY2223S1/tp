@@ -10,6 +10,7 @@ import seedu.address.model.person.Buyer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -75,7 +76,10 @@ class JsonAdaptedOrder {
         AdditionalRequests modelAdditionalRequest = new AdditionalRequests(additionalRequests.toArray(new String[0]));
         LocalDate modelByDate = LocalDate.parse(byDate);
         Price modelPrice = new Price(settledPrice);
-        OrderStatus modelOrderStatus = new OrderStatus(status);
+        OrderStatus modelOrderStatus = Arrays.stream(OrderStatus.class.getEnumConstants())
+                .filter(x -> x.toString().equals(status))
+                .findFirst()
+                .orElse(OrderStatus.PENDING);
         return new Order(modelBuyer, modelPriceRange, modelRequest, modelAdditionalRequest, modelByDate, modelPrice,
                 modelOrderStatus);
     }

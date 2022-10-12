@@ -8,8 +8,8 @@ import seedu.address.model.person.LocationContainsKeywordsPredicate;
 
 public class FilterLocCommandParser {
     /**
-     * Parses the given {@code String} of arguments in the context of the FilterCommand
-     * and returns a FilterCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FilterLocCommand
+     * and returns a FilterLocCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterLocCommand parse(String args) throws ParseException {

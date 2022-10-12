@@ -9,14 +9,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 
 /**
- * The abstract base class of all AddCommand variations, including AddBuyerCommand, AddOrderCommand, AddPetCommand etc.
+ * The abstract base class of all AddPersonCommand variations, including AddBuyerCommand, AddOrderCommand, AddPetCommand etc.
  */
-public abstract class AddCommand extends Command {
+public abstract class AddPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add-p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
@@ -37,9 +36,9 @@ public abstract class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     /**
-     * Construct a default base AddCommand
+     * Construct a default base AddPersonCommand
      */
-    public AddCommand() {}
+    public AddPersonCommand() {}
 
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;

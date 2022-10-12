@@ -3,6 +3,8 @@ package seedu.address.model.pet;
 public class Weight {
 
     public static final String UNIT = "kg";
+    public static final String MESSAGE_USAGE =
+            "The weight should be in " + UNIT + " and be a non-negative decimal number, such as 23.8";
 
     private final double value;
 

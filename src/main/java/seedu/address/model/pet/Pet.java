@@ -37,7 +37,7 @@ public class Pet {
                VaccinationStatus vaccinationStatus,
                Set<Tag> tags,
                Set<PetCertificate> certificates) {
-        requireAllNonNull(name, owner, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus);
+        requireAllNonNull(name, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus);
         this.name = name;
         this.owner = owner;
         this.color = color;

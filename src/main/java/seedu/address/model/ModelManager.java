@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.format.DateTimeFormatter;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -22,6 +23,24 @@ import seedu.address.model.pet.Pet;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+
+    //@@author Russel-reused
+    //Reused from https://github.com/RussellDash332/ip/blob/master/src/main/java/stashy/parser/Parser.java
+    //with minor modification, it is a pretty good way to organise and extend the acceptable date formats.
+    public static final String[] ACCEPTABLE_DATE_FORMATS = new String[]{
+        "MMM dd yyyy",
+        "dd/MM/yyyy",
+        "yyyy/MM/dd",
+        "yyyy-MM-dd",
+        "dd MMM yyyy",
+        "dd MMM yyyy",
+        "MMM dd, yyyy",
+        "MMM dd, yyyy"
+    };
+
+    public static final String PREFERRED_DATE_FORMAT = "yyyy-MM-dd";
+
+    public static final DateTimeFormatter PREFERRED_FORMATTER = DateTimeFormatter.ofPattern(PREFERRED_DATE_FORMAT);
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;

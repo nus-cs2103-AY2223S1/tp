@@ -193,4 +193,9 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseOrder_null_throws() throws Exception {
+        assertThrows(NullPointerException.class, "", () -> ParserUtil.parseOrder(null, null));
+    }
 }
