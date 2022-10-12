@@ -17,10 +17,11 @@ import org.junit.jupiter.api.Test;
 import paymelah.model.Model;
 import paymelah.model.ModelManager;
 import paymelah.model.UserPrefs;
-import paymelah.model.person.DebtsContainsKeywordsPredicate;
+import paymelah.model.person.DebtContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindDebtCommand}.
+ * Contains integration tests (interaction with the Model) for
+ * {@code FindDebtCommand}.
  */
 public class FindDebtCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -28,10 +29,10 @@ public class FindDebtCommandTest {
 
     @Test
     public void equals() {
-        DebtsContainsKeywordsPredicate firstPredicate =
-                new DebtsContainsKeywordsPredicate(Collections.singletonList("first"));
-        DebtsContainsKeywordsPredicate secondPredicate =
-                new DebtsContainsKeywordsPredicate(Collections.singletonList("second"));
+        DebtContainsKeywordsPredicate firstPredicate = new DebtContainsKeywordsPredicate(
+                Collections.singletonList("first"));
+        DebtContainsKeywordsPredicate secondPredicate = new DebtContainsKeywordsPredicate(
+                Collections.singletonList("second"));
 
         FindDebtCommand findDebtFirstCommand = new FindDebtCommand(firstPredicate);
         FindDebtCommand findDebtSecondCommand = new FindDebtCommand(secondPredicate);
@@ -56,7 +57,7 @@ public class FindDebtCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        DebtsContainsKeywordsPredicate predicate = preparePredicate(" ");
+        DebtContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindDebtCommand command = new FindDebtCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -66,7 +67,7 @@ public class FindDebtCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        DebtsContainsKeywordsPredicate predicate = preparePredicate("burger");
+        DebtContainsKeywordsPredicate predicate = preparePredicate("burger");
         FindDebtCommand command = new FindDebtCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -76,7 +77,7 @@ public class FindDebtCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private DebtsContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new DebtsContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private DebtContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new DebtContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

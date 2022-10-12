@@ -4,10 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import paymelah.commons.core.Messages;
 import paymelah.model.Model;
-import paymelah.model.person.DebtsContainsKeywordsPredicate;
+import paymelah.model.person.DebtContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book associated with a debt that contains any of the argument keywords.
+ * Finds and lists all persons in address book associated with a debt that
+ * contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindDebtCommand extends Command {
@@ -18,9 +19,9 @@ public class FindDebtCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " burger meal";
 
-    private final DebtsContainsKeywordsPredicate predicate;
+    private final DebtContainsKeywordsPredicate predicate;
 
-    public FindDebtCommand(DebtsContainsKeywordsPredicate predicate) {
+    public FindDebtCommand(DebtContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,6 +37,6 @@ public class FindDebtCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindDebtCommand // instanceof handles nulls
-                && predicate.equals(((FindDebtCommand) other).predicate)); // state check
+                        && predicate.equals(((FindDebtCommand) other).predicate)); // state check
     }
 }

@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import paymelah.logic.commands.FindDebtCommand;
 import paymelah.logic.parser.exceptions.ParseException;
-import paymelah.model.person.DebtsContainsKeywordsPredicate;
+import paymelah.model.person.DebtContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new {@link FindDebtCommand} object
@@ -14,8 +14,10 @@ import paymelah.model.person.DebtsContainsKeywordsPredicate;
 public class FindDebtCommandParser implements Parser<FindDebtCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the {@link FindDebtCommand}
+     * Parses the given {@code String} of arguments in the context of the
+     * {@link FindDebtCommand}
      * and returns a {@link FindDebtCommand} object for execution.
+     * 
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindDebtCommand parse(String args) throws ParseException {
@@ -27,7 +29,7 @@ public class FindDebtCommandParser implements Parser<FindDebtCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindDebtCommand(new DebtsContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindDebtCommand(new DebtContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
