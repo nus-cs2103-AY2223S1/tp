@@ -14,9 +14,10 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
    * Listing all persons : list
    * Editing a person : edit
    * Deleting a person : delete
-  * Clearing all entries : clear
-  * Undoing last command : undo
-  * Sorting all entries by a specific field : sort
+   * Find a person: find
+   * Clearing all entries : clear
+   * Undoing last command : undo
+   * Sorting all entries by a specific field : sort
 * Command summary
 
 --------------------------------------------------------------------------------------------------------------------
@@ -25,14 +26,14 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `univusal.jar` (in progress).
+2. Download the latest `univusal.jar` (in progress).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your uNivUSal.
+3. Copy the file to the folder you want to use as the _home folder_ for your uNivUSal.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all CS2103T personnels.
@@ -47,9 +48,11 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
 
    * **`sort`** : Sorts entries.
 
-   * **`exit`** : Exits the app.
+   * **`find`** : Finds a contact based on partial name/phone number
 
-1. Refer to the [Features](#features) below for details of each command.
+  * **`exit`** : Exits the app.
+
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -162,17 +165,32 @@ Format: `undo`
 
 Sorts entries in uNivUSal by specific field prefix in an ascending manner. Current fields implemented are:
 1. Name `n/`
-2. Email addres `e/`
+2. Email address `e/`
 3. Phone `p/`
 
 Format: `sort PREFIX/`
-* Sorts the entries by the speicified `PREFIX/`.
+* Sorts the entries by the specified `PREFIX/`.
 * Displays sorted list.
 
 Examples:
 * `sort n/` displays the entries sorted by name alphabetically.
-* `sort e/` displays the entires sorted by email address alphabetically.
-* `sort p/` displays the entires sorted by phone number in an ascending manner.
+* `sort e/` displays the entries sorted by email address alphabetically.
+* `sort p/` displays the entries sorted by phone number in an ascending manner.
+
+### Find entries by keywords of fields : `find KEYWORD` e.g. `find John`
+
+Finds entries in uNivUSal that match or contain case-insensitive keyword. Current fields searchable are:
+1. Name
+2. Phone Number
+
+Format: `find KEYWORD`
+* Filters the entries by the specified `KEYWORD`.
+* Displays filtered list.
+
+Examples:
+* `find John` displays the entries filtered by names that contain the case-insensitive KEYWORD `John`.
+* `find J` displays the entries filtered by names that contain the case-insensitive KEYWORD `J`.
+* `find 123456` displays the entries filtered by phone numbers that contain the case-insensitive KEYWORD `123456`.
 
 ### Exiting the program : `exit`
 
