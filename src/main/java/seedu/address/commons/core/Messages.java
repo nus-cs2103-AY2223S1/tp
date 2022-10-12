@@ -10,5 +10,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The client index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
-
+    public static final String MESSAGE_INVALID_ISSUE_DISPLAYED_ID = "The issue id provided is invalid";
 }

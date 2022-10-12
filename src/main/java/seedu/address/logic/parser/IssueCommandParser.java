@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.issue.AddIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
@@ -64,25 +66,25 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIssueCommand.MESSAGE_USAGE));
         }
 
-        Description description = IssueParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         Deadline deadline = Deadline.EmptyDeadline.EMPTY_DEADLINE;
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
-            deadline = IssueParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+            deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         }
 
         Priority priority = Priority.NONE;
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
-            priority = IssueParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+            priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         }
 
         Status status = Status.EmptyStatus.EMPTY_STATUS;
         if (arePrefixesPresent(argMultimap, PREFIX_STATUS)) {
-            status = IssueParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+            status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         }
 
 
-        Project project = IssueParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECTID).get());
+        Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECTID).get());
         IssueId issueId = new IssueId(UniqueIssueList.generateId());
 
         Issue issue = new Issue(description, deadline, priority, status, project, issueId);
@@ -95,8 +97,14 @@ public class IssueCommandParser implements Parser<IssueCommand> {
     }
 
     //TODO: implement
-    private DeleteIssueCommand parseDeleteIssueCommand(String arguments) {
-        return null;
+    private DeleteIssueCommand parseDeleteIssueCommand(String arguments) throws ParseException {
+        try {
+            Index index = ParserUtil.parseIndex(arguments);
+            return new DeleteIssueCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteIssueCommand.MESSAGE_USAGE), pe);
+        }
     }
 
     //TODO: implement
