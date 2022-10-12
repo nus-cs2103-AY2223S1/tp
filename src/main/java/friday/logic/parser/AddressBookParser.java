@@ -16,6 +16,7 @@ import friday.logic.commands.FindCommand;
 import friday.logic.commands.HelpCommand;
 import friday.logic.commands.ListCommand;
 import friday.logic.commands.RemarkCommand;
+import friday.logic.commands.UgCommand;
 import friday.logic.parser.exceptions.ParseException;
 
 /**
@@ -71,6 +72,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case UgCommand.COMMAND_WORD:
+            return new UgCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -29,7 +29,7 @@ import friday.model.ModelManager;
 import friday.model.ReadOnlyFriday;
 import friday.model.UserPrefs;
 // import friday.model.student.Student;
-import friday.storage.JsonAddressBookStorage;
+import friday.storage.JsonFridayStorage;
 import friday.storage.JsonUserPrefsStorage;
 import friday.storage.StorageManager;
 // import friday.testutil.PersonBuilder;
@@ -45,8 +45,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonFridayStorage addressBookStorage =
+                new JsonFridayStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -153,13 +153,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonFridayIoExceptionThrowingStub extends JsonFridayStorage {
+        private JsonFridayIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyFriday addressBook, Path filePath) throws IOException {
+        public void saveFriday(ReadOnlyFriday friday, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

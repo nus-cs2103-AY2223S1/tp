@@ -72,7 +72,7 @@ public class MasteryCheck {
     @Override
     public String toString() {
         String str = isEmpty() ? "" : value.toString();
-        return String.format("Mastery Check: %s", str);
+        return str;
     }
 
     @Override

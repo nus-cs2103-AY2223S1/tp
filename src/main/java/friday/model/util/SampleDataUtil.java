@@ -26,27 +26,27 @@ public class SampleDataUtil {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new TelegramHandle("al3xx"), new Consultation(LocalDate.now()),
                 new MasteryCheck(LocalDate.of(2022, 8, 16)), EMPTY_REMARK,
-                getTagSet("friends")),
+                getTagSet("Colour blind")),
             new Student(new Name("Bernice Yu"), new TelegramHandle("bernice123"),
                     new Consultation(LocalDate.of(2022, 9, 1)),
                     new MasteryCheck(LocalDate.of(2022, 7, 30)), new Remark("Weak at recursion"),
-                    getTagSet("colleagues", "friends")),
+                    getTagSet("Fast learner")),
             new Student(new Name("Charlotte Oliveiro"), new TelegramHandle("char_oli"),
                     new Consultation(LocalDate.of(2021, 10, 21)),
                     new MasteryCheck(LocalDate.of(2022, 12, 27)), new Remark("Smart"),
-                    getTagSet("neighbours")),
+                    getTagSet("Dyslexic")),
             new Student(new Name("David Li"), new TelegramHandle("d4vid"),
                     new Consultation(LocalDate.of(2022, 6, 17)),
                     new MasteryCheck(LocalDate.of(2022, 11, 11)), EMPTY_REMARK,
-                    getTagSet("family")),
+                    getTagSet("Needs more help")),
             new Student(new Name("Irfan Ibrahim"), new TelegramHandle("irfan72345"),
                     new Consultation(LocalDate.of(2025, 2, 20)),
                     new MasteryCheck(LocalDate.of(2020, 9, 1)), EMPTY_REMARK,
-                    getTagSet("classmates")),
+                    getTagSet("Cool guy")),
             new Student(new Name("Roy Balakrishnan"), new TelegramHandle("i_am_roy"),
                     new Consultation(LocalDate.of(2022, 7, 12)),
                     new MasteryCheck(LocalDate.of(2029, 9, 26)), EMPTY_REMARK,
-                    getTagSet("colleagues"))
+                    getTagSet("Fast learner"))
         };
     }
 
