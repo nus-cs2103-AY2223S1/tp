@@ -132,6 +132,10 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. Han will not match Hans
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
+Examples:
+* `find John` returns all tutors with names that contains `John`.
+* `find alex david` returns all tutors with names that contain `Alex` or `David`.
+
 ### Locating tutors of modules: `findbymodule`
 
 Finds tutor whose teaches the given keyword.
@@ -140,6 +144,10 @@ Format: `findbymodule KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g cs2103 will match CS2103
 * Only the module code is searched.
 * Only full words will be matched e.g. CS210 will not match CS2103
+
+Examples:
+* `findbymodule CS2103` returns all tutors teaching `CS2103`.
+* `findbymodule CS2103 CS2100` returns all tutors teaching `CS2103` or `CS2100`.
 
 ### Deleting a tutor : `delete`
 
