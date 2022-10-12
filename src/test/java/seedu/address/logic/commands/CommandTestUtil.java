@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -81,7 +82,9 @@ public class CommandTestUtil {
     public static final String DATE_LUNCH = " " + PREFIX_DATE + VALID_DATE_LUNCH;
     public static final String DATE_MOVIE = " " + PREFIX_DATE + VALID_DATE_MOVIE;
     public static final String DATE_DINNER = " " + PREFIX_DATE + VALID_DATE_DINNER;
-
+    public static final String TAG_LUNCH = " " + PREFIX_TAG + VALID_TAG_LUNCH;
+    public static final String TAG_MOVIE = " " + PREFIX_TAG + VALID_TAG_MOVIE;
+    public static final String TAG_DINNER = " " + PREFIX_TAG + VALID_TAG_DINNER;
     public static final String INVALID_DESC = " " + PREFIX_DESCRIPTION + " ";
     public static final String INVALID_AMT = " " + PREFIX_AMOUNT + " ";
     public static final String INVALID_DATE = " " + PREFIX_DATE + " ";

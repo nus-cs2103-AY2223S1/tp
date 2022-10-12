@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.AMT_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_LUNCH;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_EXPENDITURE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
@@ -85,7 +86,12 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + TYPE_EXPENDITURE + DESC_LUNCH + AMT_LUNCH + DATE_LUNCH;
+        String addCommand = AddCommand.COMMAND_WORD
+                + TYPE_EXPENDITURE
+                + DESC_LUNCH
+                + AMT_LUNCH
+                + DATE_LUNCH
+                + TAG_LUNCH;
         Entry expectedExpenditure = new ExpenditureBuilder(LUNCH).build();
         // Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
