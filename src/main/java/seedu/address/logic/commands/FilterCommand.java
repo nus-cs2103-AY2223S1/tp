@@ -45,12 +45,14 @@ public class FilterCommand extends Command {
     }
 
     private void applySpecifiedFilters(Model model) {
-        assert isAnyNonNull(predicate.getNamePredicate(), predicate.getTagsPredicate());
+        assert isAnyNonNull(predicate.getNamePredicate(), predicate.getTagPredicate());
         if (predicate.getNamePredicate() != null) {
-            model.addNewFilterToFilteredPersonList(predicate.getNamePredicate());
+            predicate.getNamePredicate()
+                    .forEach((namePredicate) -> model.addNewFilterToFilteredPersonList(namePredicate));
         }
-        if (predicate.getTagsPredicate() != null) {
-            model.addNewFilterToFilteredPersonList(predicate.getTagsPredicate());
+        if (predicate.getTagPredicate() != null) {
+            predicate.getTagPredicate()
+                    .forEach((tagPredicate) -> model.addNewFilterToFilteredPersonList(tagPredicate));
         }
     }
 
@@ -58,6 +60,6 @@ public class FilterCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FilterCommand // instanceof handles nulls
-                && predicate.equals(((FilterCommand) other).predicate)); // state check
+                        && predicate.equals(((FilterCommand) other).predicate)); // state check
     }
 }

@@ -181,8 +181,9 @@ public class ModelManager implements Model {
     }
 
     private void updateFilteredPersonList() {
-        Predicate<Person> predicate =
-                personPredicates.stream().reduce(PREDICATE_SHOW_ALL_PERSONS, (pred1, pred2) -> pred1.and(pred2));
+        Predicate<Person> predicate = personPredicates.size() == 0 ? PREDICATE_SHOW_ALL_PERSONS
+                : personPredicates.stream()
+                        .reduce(notused -> false, (pred1, pred2) -> pred1.or(pred2));
         filteredPersons.setPredicate(predicate);
     }
 

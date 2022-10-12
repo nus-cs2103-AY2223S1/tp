@@ -5,20 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
-public class NameContainsKeywordsPredicateTest {
+public class TagMatchesQueryPredicateTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate("first");
-        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate("second");
+        Tag firstTag = new Tag("first");
+        Tag secondTag = new Tag("second");
+        TagMatchesQueryPredicate firstPredicate = new TagMatchesQueryPredicate(firstTag);
+        TagMatchesQueryPredicate secondPredicate = new TagMatchesQueryPredicate(secondTag);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate("first");
+        TagMatchesQueryPredicate firstPredicateCopy = new TagMatchesQueryPredicate(firstTag);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -34,31 +37,31 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate("Alice");
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        TagMatchesQueryPredicate predicate = new TagMatchesQueryPredicate(new Tag("first"));
+        assertTrue(predicate.test(new PersonBuilder().withTags("first").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate("aLIce");
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
+        predicate = new TagMatchesQueryPredicate(new Tag("FiRst"));
+        assertFalse(predicate.test(new PersonBuilder().withName("first").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate("Carol");
+        TagMatchesQueryPredicate predicate = new TagMatchesQueryPredicate(new Tag("first"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
-        // Keywords match phone, email and address, but does not match name
+        // Keywords match name, phone, email and address, but does not match tag
         Person testPerson = new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build();
+                .withEmail("alice@email.com").withAddress("Main Street").withTags("second").build();
 
-        predicate = new NameContainsKeywordsPredicate("12345");
+        predicate = new TagMatchesQueryPredicate(new Tag("Alice"));
         assertFalse(predicate.test(testPerson));
 
-        predicate = new NameContainsKeywordsPredicate("alice@email.com");
+        predicate = new TagMatchesQueryPredicate(new Tag("email"));
         assertFalse(predicate.test(testPerson));
 
-        predicate = new NameContainsKeywordsPredicate("Street");
+        predicate = new TagMatchesQueryPredicate(new Tag("Street"));
         assertFalse(predicate.test(testPerson));
     }
 }

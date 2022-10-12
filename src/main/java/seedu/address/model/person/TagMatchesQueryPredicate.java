@@ -1,39 +1,33 @@
 package seedu.address.model.person;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.model.tag.Tag;
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches the set of tags given.
+ * Tests that a {@code Person}'s {@code Tag} matches the tag given.
  */
 public class TagMatchesQueryPredicate implements Predicate<Person> {
-    private final Set<Tag> queries;
+    private final Tag tag;
 
-    public TagMatchesQueryPredicate(Set<Tag> queries) {
-        this.queries = queries;
+    public TagMatchesQueryPredicate(Tag tag) {
+        this.tag = tag;
     }
-
 
     @Override
     public boolean test(Person person) {
-        Set<Tag> intersection = new HashSet<>(queries);
-        intersection.retainAll(person.getTags());
-        return !intersection.isEmpty();
+        return person.getTags().contains(tag);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TagMatchesQueryPredicate // instanceof handles nulls
-                        && queries.containsAll(((TagMatchesQueryPredicate) other).queries)); // state check
+                && tag.equals(((TagMatchesQueryPredicate) other).tag)); // state check
     }
 
     @Override
     public int hashCode() {
-        return queries.stream().map(str -> str.hashCode()).reduce(0, (code1, code2) -> code1 + code2);
+        return tag.hashCode();
     }
-
 }

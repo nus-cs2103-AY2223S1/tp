@@ -147,26 +147,30 @@ public class ParserUtil {
      * Parses {@code Collection<String> names} to into {@code NameContainsKeywordsPredicate}.
      *
      * @param names Collection of names to parse into {@code NameContainsKeywordsPredicate}.
-     * @return {@code NameContainsKeywordPredicate} that filters based on {@code names}.
+     * @return Set of {@code NameContainsKeywordPredicate} that filters based on {@code names}.
      * @throws ParseException If an error occurs during parsing.
      */
-    public static NameContainsKeywordsPredicate parseNameQueryPredicate(Collection<String> names)
+    public static Set<NameContainsKeywordsPredicate> parseNameQueryPredicate(Collection<String> names)
             throws ParseException {
         requireNonNull(names);
-        return new NameContainsKeywordsPredicate(names);
+        return names.stream()
+                .map(name -> new NameContainsKeywordsPredicate(name))
+                .collect(Collectors.toSet());
     }
 
     /**
      * Parses {@code Collection<String> names} to into {@code TagMatchesQueryPredicate}.
      *
      * @param tags Collection of tags to parse into {@code TagMatchesKeywordsPredicate}.
-     * @return {@code TagMatchesQueryPredicate} that filters based on {@code tags}.
+     * @return Set of {@code TagMatchesQueryPredicate} that filters based on {@code tags}.
      * @throws ParseException If an error occurs during parsing.
      */
-    public static TagMatchesQueryPredicate parseTagsQueryPredicate(Collection<String> tags) throws ParseException {
+    public static Set<TagMatchesQueryPredicate> parseTagsQueryPredicate(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         Set<Tag> tagSetQuery = parseTags(tags);
-        return new TagMatchesQueryPredicate(tagSetQuery);
+        return tagSetQuery.stream()
+                .map(tag -> new TagMatchesQueryPredicate(tag))
+                .collect(Collectors.toSet());
     }
 
     /**

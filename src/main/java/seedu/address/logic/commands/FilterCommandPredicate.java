@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
 
+import java.util.Set;
+
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.TagMatchesQueryPredicate;
 
@@ -10,8 +12,22 @@ import seedu.address.model.person.TagMatchesQueryPredicate;
  * Combination of {@code NameContainsKeywordsPredicate} and {@code TagMatchesQueryPredicate}.
  */
 public class FilterCommandPredicate {
-    private final NameContainsKeywordsPredicate namePredicate;
-    private final TagMatchesQueryPredicate tagsPredicate;
+    private final Set<NameContainsKeywordsPredicate> namePredicate;
+    private final Set<TagMatchesQueryPredicate> tagsPredicate;
+
+    /**
+     * Creates a FilterCommandPredicate consisting of {@code NameContainsKeywordsPredicate}
+     * and {@code TagMatchesQueryPredicate}.
+     *
+     * @param namePredicate Set of predicates for name filtering.
+     * @param tagsPredicate Set of predicates for tags filtering.
+     */
+    public FilterCommandPredicate(Set<NameContainsKeywordsPredicate> namePredicate,
+            Set<TagMatchesQueryPredicate> tagsPredicate) {
+        assert isAnyNonNull(namePredicate, tagsPredicate);
+        this.namePredicate = namePredicate;
+        this.tagsPredicate = tagsPredicate;
+    }
 
     /**
      * Creates a FilterCommandPredicate consisting of {@code NameContainsKeywordsPredicate}
@@ -22,16 +38,16 @@ public class FilterCommandPredicate {
      */
     public FilterCommandPredicate(NameContainsKeywordsPredicate namePredicate,
             TagMatchesQueryPredicate tagsPredicate) {
-        assert isAnyNonNull(namePredicate, tagsPredicate);
-        this.namePredicate = namePredicate;
-        this.tagsPredicate = tagsPredicate;
+        this(namePredicate == null ? null : Set.of(namePredicate),
+                tagsPredicate == null ? null : Set.of(tagsPredicate));
     }
 
-    public NameContainsKeywordsPredicate getNamePredicate() {
+
+    public Set<NameContainsKeywordsPredicate> getNamePredicate() {
         return namePredicate;
     }
 
-    public TagMatchesQueryPredicate getTagsPredicate() {
+    public Set<TagMatchesQueryPredicate> getTagPredicate() {
         return tagsPredicate;
     }
 

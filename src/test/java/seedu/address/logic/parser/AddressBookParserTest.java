@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -76,7 +77,9 @@ public class AddressBookParserTest {
                 .parseCommand(FilterCommand.COMMAND_WORD + " " + PREFIX_NAME
                         + keywords.stream().collect(Collectors.joining(",")));
 
-        NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(keywords);
+        Set<NameContainsKeywordsPredicate> namePredicate = keywords.stream()
+                .map(keyword -> new NameContainsKeywordsPredicate(keyword))
+                .collect(Collectors.toSet());
         assertEquals(new FilterCommand(new FilterCommandPredicate(namePredicate, null)), command);
     }
 

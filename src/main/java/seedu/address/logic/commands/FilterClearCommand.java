@@ -47,19 +47,28 @@ public class FilterClearCommand extends FilterCommand {
             model.clearFiltersInFilteredPersonList();
             return;
         }
-        assert isAnyNonNull(predicate.getNamePredicate(), predicate.getTagsPredicate());
+        assert isAnyNonNull(predicate.getNamePredicate(), predicate.getTagPredicate());
         if (predicate.getNamePredicate() != null) {
-            model.removeFilterFromFilteredPersonList(predicate.getNamePredicate());
+            predicate.getNamePredicate()
+                    .forEach((namePredicate) -> model.removeFilterFromFilteredPersonList(namePredicate));
         }
-        if (predicate.getTagsPredicate() != null) {
-            model.removeFilterFromFilteredPersonList(predicate.getTagsPredicate());
+        if (predicate.getTagPredicate() != null) {
+            predicate.getTagPredicate()
+                    .forEach((tagPredicate) -> model.removeFilterFromFilteredPersonList(tagPredicate));
         }
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FilterClearCommand // instanceof handles nulls
-                && predicate.equals(((FilterClearCommand) other).predicate)); // state check
+        if (other == this) {
+            return true;
+        }
+        // instanceof handles nulls
+        if (!(other instanceof FilterClearCommand)) {
+            return false;
+        }
+        FilterClearCommand otherCommand = (FilterClearCommand) other;
+        return (predicate == null && otherCommand.predicate == null)
+                || predicate.equals(otherCommand.predicate);
     }
 }

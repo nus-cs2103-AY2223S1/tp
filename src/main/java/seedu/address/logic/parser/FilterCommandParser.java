@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_ARGUMENTS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -9,6 +10,7 @@ import static seedu.address.logic.parser.ParserUtil.parseNameQueryPredicate;
 import static seedu.address.logic.parser.ParserUtil.parseTagsQueryPredicate;
 
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -65,13 +67,13 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     private FilterCommandPredicate parseSearchKeywords(String args) throws ParseException {
         ArgumentMultimap argMultimap = parseNameAndTagsTokens(args);
-        NameContainsKeywordsPredicate nameQueryPredicate = constructNameQueryPredicate(argMultimap);
-        TagMatchesQueryPredicate tagsQueryPredicate = constructTagsQueryPredicate(argMultimap);
+        Set<NameContainsKeywordsPredicate> nameQueryPredicates = constructNameQueryPredicate(argMultimap);
+        Set<TagMatchesQueryPredicate> tagsQueryPredicates = constructTagsQueryPredicate(argMultimap);
 
-        if (!isAnyNonNull(nameQueryPredicate, tagsQueryPredicate)) {
+        if (!isAnyNonNull(nameQueryPredicates, tagsQueryPredicates)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
-        return new FilterCommandPredicate(nameQueryPredicate, tagsQueryPredicate);
+        return new FilterCommandPredicate(nameQueryPredicates, tagsQueryPredicates);
     }
 
     /**
@@ -92,33 +94,27 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * Creates a name filtering predicate based on tokens in ArgumentMultimap.
      *
      * @param argMultimap ArgumentMultimap of tokens.
-     * @return Name filtering predicate.
+     * @return Set of Name filtering predicate.
      * @throws ParseException If an error occurs during parsing.
      */
-    private NameContainsKeywordsPredicate constructNameQueryPredicate(ArgumentMultimap argMultimap)
+    private Set<NameContainsKeywordsPredicate> constructNameQueryPredicate(ArgumentMultimap argMultimap)
             throws ParseException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
-            return null;
-        }
-        List<String> nameKeywords = parseCommaSeparatedKeywords(argMultimap.getAllValues(PREFIX_NAME));
-        return parseNameQueryPredicate(nameKeywords);
+        List<String> nameKeywords = extractPrefixValues(argMultimap, PREFIX_NAME);
+        return nameKeywords == null ? null : parseNameQueryPredicate(nameKeywords);
     }
 
     /**
      * Creates a tag filtering predicate based on tokens in ArgumentMultimap.
      *
      * @param argMultimap ArgumentMultimap of tokens.
-     * @return Tag filtering predicate.
+     * @return Set of Tag filtering predicate.
      * @throws ParseException If an error occurs during parsing.
      */
-    private TagMatchesQueryPredicate constructTagsQueryPredicate(ArgumentMultimap argMultimap) throws ParseException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_TAG) || !argMultimap.getPreamble().isEmpty()) {
-            return null;
-        }
-        List<String> tagKeywords = parseCommaSeparatedKeywords(argMultimap.getAllValues(PREFIX_TAG));
-        return parseTagsQueryPredicate(tagKeywords);
+    private Set<TagMatchesQueryPredicate> constructTagsQueryPredicate(ArgumentMultimap argMultimap)
+            throws ParseException {
+        List<String> tagKeywords = extractPrefixValues(argMultimap, PREFIX_TAG);
+        return tagKeywords == null ? null : parseTagsQueryPredicate(tagKeywords);
     }
-
 
     private boolean hasArguments(String arguments) {
         return arguments.length() != 0;
@@ -129,8 +125,27 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+        return Stream.of(prefixes)
+                .allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
+    private static boolean hasEmptyStrings(List<String> values) {
+        return values.stream()
+                .anyMatch((value) -> value.equals(""));
+    }
+
+    private List<String> extractPrefixValues(ArgumentMultimap argMultimap, Prefix prefix) throws ParseException {
+        if (!arePrefixesPresent(argMultimap, prefix) || !argMultimap.getPreamble().isEmpty()) {
+            return null;
+        }
+        List<String> values = argMultimap.getAllValues(prefix);
+        if (hasEmptyStrings(values)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, String.format(MESSAGE_EMPTY_ARGUMENTS, prefix)));
+        }
+        return parseCommaSeparatedKeywords(values);
+    }
+
 }
 
 
