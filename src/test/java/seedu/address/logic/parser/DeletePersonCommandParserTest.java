@@ -6,22 +6,22 @@ import static seedu.address.model.person.testutil.TypicalPersons.getTypicalAddre
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteUserByNameCommand;
+import seedu.address.logic.commands.DeletePersonCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.FullNamePredicate;
 import seedu.address.model.person.Person;
 
-public class DeleteUserByNameCommandParserTest {
-    private DeleteUserByNameCommandParser parser = new DeleteUserByNameCommandParser();
+public class DeletePersonCommandParserTest {
+    private DeletePersonCommandParser parser = new DeletePersonCommandParser();
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void parse_validArgs_returnsDeleteUserByNameCommand() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         FullNamePredicate predicate = new FullNamePredicate(personToDelete.getName().toString());
-        assertParseSuccess(parser, personToDelete.getName().toString(), new DeleteUserByNameCommand(predicate));
+        assertParseSuccess(parser, personToDelete.getName().toString(), new DeletePersonCommand(predicate));
     }
 
 }

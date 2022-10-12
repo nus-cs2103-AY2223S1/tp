@@ -16,21 +16,21 @@ import seedu.address.model.person.Person;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteUserByNameCommand}.
  */
-public class DeleteUserByNameCommandTest {
+public class DeletePersonCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validNameUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         FullNamePredicate predicate = new FullNamePredicate(personToDelete.getName().toString());
-        DeleteUserByNameCommand deleteUserByNameCommand = new DeleteUserByNameCommand(predicate);
+        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(predicate);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
-        assertCommandSuccess(deleteUserByNameCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deletePersonCommand, model, expectedMessage, expectedModel);
     }
 
 }

@@ -51,9 +51,6 @@ public class PersonGroup extends ArrayList<PersonGroup> {
         return value;
     }
 
-    public boolean isEmpty() {
-        return value == null;
-    }
     @Override
     public String toString() {
         return value;
