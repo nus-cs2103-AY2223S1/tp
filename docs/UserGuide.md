@@ -26,7 +26,7 @@ TutHub is a **desktop app for NUS School of Computing professors who have to kee
 
    * **`list`** : Lists all tutors.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2103T y/3` : Adds a tutor named `John Doe` to Tuthub.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2103T y/3 s/A1234567X` : Adds a tutor named `John Doe` to Tuthub.
 
    * **`delete`**`3` : Deletes the 3rd tutor shown in the current list.
    
