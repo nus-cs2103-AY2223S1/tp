@@ -12,12 +12,12 @@ import seedu.address.model.project.Project;
 public class Issue {
 
     // Components of an issue
-    private IssueId issueId;
     private Description description;
     private Deadline deadline;
     private Priority priority;
     private Status status;
     private Project project;
+    private IssueId issueId;
 
     /**
      * Description field must be present and not null, but all other fields are optional.
@@ -31,10 +31,10 @@ public class Issue {
         this.status = status;
         this.project = project;
         this.issueId = issueId;
+        this.project.getIssueList().add(this);
     }
 
-
-    public IssueId getId() {
+    public IssueId getIssueId() {
         return this.issueId;
     }
 
@@ -71,6 +71,17 @@ public class Issue {
         return this.status;
     }
 
+    public String uiRepresentation() {
+        return "(#" + this.issueId + ") " + this.description;
+    }
+
+    //To modify based on format to be saved in json file
+    @Override
+    public String toString() {
+        String returnString = "(#" + this.issueId + ") " + this.description;
+        return returnString;
+    }
+
     /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.
@@ -91,6 +102,6 @@ public class Issue {
                 && otherIssue.getDeadline().equals(getDeadline())
                 && otherIssue.getStatus().equals(getStatus())
                 && otherIssue.getPriority().equals(getPriority())
-                && otherIssue.getId().equals(getId());
+                && otherIssue.getIssueId().equals(getIssueId());
     }
 }

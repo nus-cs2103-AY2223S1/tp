@@ -14,11 +14,21 @@ public class Deadline {
     /**
      * Represents an empty deadline.
      */
-    private static class EmptyDeadline extends Deadline {
-        private static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
+    public static class EmptyDeadline extends Deadline {
+        public static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
 
         private EmptyDeadline() {
-            super("");
+            super("1970-01-01");
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+
+        @Override
+        public String uiRepresentation() {
+            return "No Deadline Set";
         }
     }
 
@@ -43,6 +53,8 @@ public class Deadline {
         this.deadline = LocalDate.parse(deadline);
     }
 
+    public Deadline() {}
+
     /**
      * Returns true if a given string is a valid deadline.
      */
@@ -52,6 +64,14 @@ public class Deadline {
 
     public String getFormattedDeadline() {
         return deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+    public boolean isEmpty() {
+        return false;
+    }
+
+    public String uiRepresentation() {
+        return deadline.toString();
     }
 
     @Override

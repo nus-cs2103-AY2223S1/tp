@@ -25,7 +25,7 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
  */
 public class UniqueProjectList implements Iterable<Project> {
 
-    private final ObservableList<Project> internalList = FXCollections.observableArrayList();
+    private static final ObservableList<Project> internalList = FXCollections.observableArrayList();
     private final ObservableList<Project> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -68,6 +68,18 @@ public class UniqueProjectList implements Iterable<Project> {
 
         internalList.set(index, editedProject);
     }
+
+    // TODO: temporary getter for project, can be deleted when alt method to retrieve project is implemented
+    public static Project getProject(int projectId) {
+        for (Project p : internalList) {
+            ProjectId id = new ProjectId(projectId);
+            if (p.getId().equals(id)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
 
     /**
      * Removes the equivalent project from the list.
