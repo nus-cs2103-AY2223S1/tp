@@ -54,6 +54,10 @@ public class Personality {
         }
     }
 
+    public ArrayList<String> getArrayOfPersonalities() {
+        return arrayOfPersonalities;
+    }
+
     @Override
     public String toString() {
         return "Personalities: " + arrayOfPersonalities.toString();
