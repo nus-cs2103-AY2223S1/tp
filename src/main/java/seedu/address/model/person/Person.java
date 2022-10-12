@@ -53,6 +53,8 @@ public class Person {
             cap,
             university,
             major,
+            id,
+            title,
             tags);
         this.name = name;
         this.phone = phone;
