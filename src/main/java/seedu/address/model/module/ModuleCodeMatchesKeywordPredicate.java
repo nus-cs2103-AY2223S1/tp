@@ -2,8 +2,6 @@ package seedu.address.model.module;
 
 import java.util.function.Predicate;
 
-
-
 /**
  * Tests that a {@code Module}'s {@code ModuleCode} matches exactly with the keywords given (case-insensitive).
  */

@@ -48,7 +48,7 @@ public class ModuleCodeMatchesKeywordsPredicateTest {
     }
 
     @Test
-    public void test_moduleCodeDoesNotMatchesKeywords_returnsFalse() {
+    public void test_moduleCodeDoesNotMatchKeywords_returnsFalse() {
         // Zero keywords
         ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate(" ");
         assertFalse(predicate.test(new ModuleBuilder().withModuleCode(MODULECODESTR_CS2106).build()));
