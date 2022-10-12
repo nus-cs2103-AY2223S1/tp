@@ -39,7 +39,7 @@ public class AddModuleCommandParserTest {
         assertParseSuccess(parser, MODULE_CODE_DESC_CS2106 + MODULE_CODE_DESC_MA2001
                 + MODULE_TITLE_DESC_MA2001, new AddModuleCommand(expectedModule));
 
-        // multiple module titles - last phone accepted
+        // multiple module titles - last module title accepted
         assertParseSuccess(parser, MODULE_TITLE_DESC_CS2106 + MODULE_CODE_DESC_MA2001
                 + MODULE_TITLE_DESC_MA2001, new AddModuleCommand(expectedModule));
 
