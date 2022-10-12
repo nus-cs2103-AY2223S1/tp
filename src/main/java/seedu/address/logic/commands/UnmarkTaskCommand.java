@@ -50,7 +50,7 @@ public class UnmarkTaskCommand extends Command {
         Task unmarkedTask = new Task(
                 taskToUnmark.getName(), taskToUnmark.getModule(), taskToUnmark.getDeadline(), new Status(false));
         model.setTask(taskToUnmark, unmarkedTask);
-        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask));
+        return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask), true);
     }
 
     @Override

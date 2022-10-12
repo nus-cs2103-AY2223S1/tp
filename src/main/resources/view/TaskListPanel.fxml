@@ -7,9 +7,5 @@
 <?import javafx.scene.text.Font?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks">
-        <font>
-            <Font size="15.0" />
-        </font></Text>
     <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
 </VBox>
