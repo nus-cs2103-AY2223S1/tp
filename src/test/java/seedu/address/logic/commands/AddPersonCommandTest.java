@@ -194,7 +194,7 @@ public class AddPersonCommandTest {
 
         @Override
         public void deleteRelativeAppointments(Person patient) {
-            //to be implemented
+            //TODO
         }
     }
 
