@@ -16,7 +16,6 @@ import taskbook.model.task.enums.Assignment;
 class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
-    public static final String MISSING_PERSON_MESSAGE_FORMAT = "Task cannot be created as %s does not exist!";
 
     private final String name;
     private final String assignment;
