@@ -737,10 +737,6 @@ Something goes here...
 
 ## Glossary
 
-Something goes here...
-
-## Glossary
-
 ### A
 
 #### Argument
