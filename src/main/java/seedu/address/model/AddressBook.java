@@ -56,7 +56,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the property list with {@code properties}.
-     * {@code persons} must not contain duplicate persons.
+     * {@code properties} must not contain duplicate properties.
      */
     public void setProperties(List<Property> properties) {
         this.properties.setProperties(properties);
@@ -91,8 +91,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a property to the address book.
+     * The property must not already exist in the address book.
      */
     public void addProperty(Property p) {
         properties.add(p);
@@ -152,7 +152,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Property> getPropertyList() {
-        System.out.println(properties.asUnmodifiableObservableList().size());
         return properties.asUnmodifiableObservableList();
     }
 

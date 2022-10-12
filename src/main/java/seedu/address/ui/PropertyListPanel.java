@@ -12,7 +12,7 @@ import seedu.address.model.property.Property;
 
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of properties.
  */
 public class PropertyListPanel extends UiPart<Region> {
     private static final String FXML = "PropertyListPanel.fxml";
@@ -22,7 +22,7 @@ public class PropertyListPanel extends UiPart<Region> {
     private ListView<Property> propertyListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code PropertyListPanel} with the given {@code ObservableList}.
      */
     public PropertyListPanel(ObservableList<Property> propertyList) {
         super(FXML);
@@ -31,7 +31,7 @@ public class PropertyListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Property} using a {@code PropertyCard}.
      */
     class PropertyListViewCell extends ListCell<Property> {
         @Override
