@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,7 @@ class FindCommandTest {
     public void execute_multipleKeywords_multipleModulesFound() {
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 3);
 
-        FindCommand command = new FindCommand(prepareSearchTokens("CS2103"));
+        FindCommand command = new FindCommand(prepareSearchRegexes("CS2103"));
         CommandResult commandResult = command.execute(model);
 
         assertEquals(commandResult.getFeedbackToUser(), expectedMessage);
@@ -44,10 +45,23 @@ class FindCommandTest {
             Arrays.asList("CS2103", "CS2103R", "CS2103T"));
     }
 
+    @Test
+    public void execute_regexKeywords_multipleModulesFound() {
+        String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 4);
+
+        FindCommand command = new FindCommand(prepareSearchRegexes("^CS210[0-3]$"));
+        CommandResult commandResult = command.execute(model);
+
+        assertEquals(commandResult.getFeedbackToUser(), expectedMessage);
+        assertEquals(model.getFilteredModuleList().stream().map(Module::getCode).collect(Collectors.toList()),
+            Arrays.asList("CS2100", "CS2101", "CS2102", "CS2103"));
+    }
+
     /**
-     * Parses {@code userInput} into a search tokens.
+     * Parses {@code userInput} into a search regexes.
      */
-    private List<String> prepareSearchTokens(String userInput) {
-        return Arrays.asList(userInput.trim().split("\\s+"));
+    private List<Pattern> prepareSearchRegexes(String userInput) {
+        return Arrays.stream(userInput.trim().split("\\s+"))
+            .map(token -> Pattern.compile(token, Pattern.CASE_INSENSITIVE)).collect(Collectors.toList());
     }
 }

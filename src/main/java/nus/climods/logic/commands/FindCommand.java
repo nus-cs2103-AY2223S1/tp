@@ -17,27 +17,18 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Find a module using a search phrase. "
-        + "Parameters: "
-        + "KEYWORD [KEYWORD...]"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Find a module using a search phrase.\n"
+        + "Parameters: KEYWORD [KEYWORD...]\n"
+        + "KEYWORD can be a String or a valid RegEx\n"
         + "Example: " + COMMAND_WORD + " " + "Software Engineering";
 
-    private final List<String> searchTokens;
     private final List<Pattern> searchRegexes;
 
     /**
      * Constructor for FindCommand class
-     *
-     * @param searchTokens search tokens
      */
-    public FindCommand(List<String> searchTokens) {
-        this.searchTokens = searchTokens;
-        this.searchRegexes = generateSearchRegexes(searchTokens);
-    }
-
-    private static List<Pattern> generateSearchRegexes(List<String> searchTokens) {
-        return searchTokens.stream().map(token -> Pattern.compile(token, Pattern.CASE_INSENSITIVE))
-            .collect(Collectors.toList());
+    public FindCommand(List<Pattern> searchRegexes) {
+        this.searchRegexes = searchRegexes;
     }
 
     @Override
@@ -53,6 +44,7 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this
             || (other instanceof FindCommand
-            && searchTokens.equals(((FindCommand) other).searchTokens));
+            && searchRegexes.stream().map(Pattern::toString).collect(Collectors.toList())
+            .equals(((FindCommand) other).searchRegexes.stream().map(Pattern::toString).collect(Collectors.toList())));
     }
 }
