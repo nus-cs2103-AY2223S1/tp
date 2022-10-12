@@ -9,9 +9,9 @@ import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_C
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.logic.commands.CommandTestUtil.showItemAtIndex;
+import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
-import static seedu.foodrem.testutil.TypicalItems.getTypicalFoodRem;
 
 import org.junit.jupiter.api.Test;
 

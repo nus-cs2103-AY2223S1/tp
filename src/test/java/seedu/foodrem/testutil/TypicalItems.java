@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.item.Item;
 
 /**
@@ -32,17 +31,6 @@ public class TypicalItems {
 
     private TypicalItems() {
     } // prevents instantiation
-
-    /**
-     * Returns a {@code FoodRem} with all the typical items.
-     */
-    public static FoodRem getTypicalFoodRem() {
-        FoodRem foodRem = new FoodRem();
-        for (Item item : getTypicalItems()) {
-            foodRem.addItem(item);
-        }
-        return foodRem;
-    }
 
     public static List<Item> getTypicalItems() {
         return new ArrayList<>(Arrays.asList(POTATOES, CUCUMBERS));

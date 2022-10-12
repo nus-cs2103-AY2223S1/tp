@@ -3,9 +3,9 @@ package seedu.foodrem.logic.commands.itemcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed item list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_ITEM_NAME + "NAME] "
+            + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
             + "[" + PREFIX_ITEM_UNIT + "UNIT] "
             + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE] "
