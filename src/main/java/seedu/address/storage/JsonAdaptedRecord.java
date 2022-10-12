@@ -3,6 +3,7 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Record;
 import seedu.address.model.tag.Tag;
@@ -41,7 +42,11 @@ class JsonAdaptedRecord {
      */
     public Record toModelType() throws IllegalValueException {
         if (!Record.isValidDate(recordDate)) {
-            throw new IllegalValueException(Record.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Messages.MESSAGE_INVALID_DATE_FORMAT);
+        }
+
+        if (!Record.isValidRecordData(record)) {
+            throw new IllegalValueException(Messages.MESSAGE_INVALID_RECORD_DATA_FORMAT);
         }
         return new Record(recordDate, record);
     }
