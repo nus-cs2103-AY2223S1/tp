@@ -23,6 +23,8 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CombinedAppointmentPredicate;
+import seedu.address.logic.commands.CombinedPersonPredicate;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.AddressContainsSequencePredicate;
 import seedu.address.model.person.Appointment;
@@ -46,34 +48,29 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
-        List<String> searchString = new ArrayList<>();
         String name = "John";
         String phone = "1234";
         String email = "abcd";
         String address = "clementi";
-        String reason = "cough";
         String tag = "throat";
-        String dateTimeStart = "2022-12-13 12:12";
-        String dateTimeEnd = "2025-12-13 12:12";
+        String reason = "cough";
+        String dateTimeStart = "2022-12-13T12:12";
+        String dateTimeEnd = "2025-12-13T12:12";
 
-        Predicate<Person> expectedPersonPredicate = PREDICATE_SHOW_ALL_PERSONS
-                .and(new NameContainsSequencePredicate(name)).and(new PhoneContainsSequencePredicate(phone))
-                .and(new EmailContainsSequencePredicate(email)).and(new AddressContainsSequencePredicate(address))
-                .and(new PersonContainsTagsPredicate(Collections.singletonList(tag)));
-        Predicate<Appointment> expectedAppointmentPredicate = PREDICATE_SHOW_ALL_APPOINTMENTS
-                .and(new ReasonContainsSequencePredicate(reason))
-                .and(new DateTimeWithinRangePredicate(
-                        LocalDateTime.parse(dateTimeStart), LocalDateTime.parse(dateTimeEnd)));
+        CombinedPersonPredicate expectedPersonPredicate =
+                new CombinedPersonPredicate(name, phone, email, address, Collections.singletonList(tag));
+        CombinedAppointmentPredicate expectedAppointmentPredicate = new CombinedAppointmentPredicate(reason,
+                LocalDateTime.parse(dateTimeStart), LocalDateTime.parse(dateTimeEnd));
         boolean isAnyAppointmentFieldSpecified = true;
 
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, true);
-        assertParseSuccess(parser, "n/John p/1234 e/abcd a/clementi r/cough t/throat "
+        assertParseSuccess(parser, " n/John p/1234 e/abcd a/clementi t/throat r/cough "
                 + "ds/2022-12-13 12:12 de/2025-12-13 12:12", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "n/ John p/ 1234 e/abcd   a/clementi  r/  cough t/  throat "
+        assertParseSuccess(parser, " n/ John p/ 1234 e/abcd   a/clementi  t/  throat r/  cough  "
                 + "ds/  2022-12-13 12:12 de/2025-12-13  12:12 ", expectedFindCommand);
     }
 }

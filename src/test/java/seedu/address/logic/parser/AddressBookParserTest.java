@@ -141,8 +141,8 @@ public class AddressBookParserTest {
         String phone = "1234";
         String email = "abcd";
         String address = "clementi";
-        String reason = "cough";
         String tag = "throat";
+        String reason = "cough";
         String dateTimeStart = "2022-12-13 12:12";
         String dateTimeStartToParse = "2022-12-13T12:12";
         String dateTimeEnd = "2025-12-13 12:12";

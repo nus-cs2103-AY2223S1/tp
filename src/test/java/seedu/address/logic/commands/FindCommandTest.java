@@ -30,7 +30,7 @@ import seedu.address.model.person.Person;
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
+    
     @Test
     public void equals() {
         NameContainsKeywordsPredicate firstPredicate =
