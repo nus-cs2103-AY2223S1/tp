@@ -128,20 +128,20 @@ public class CommissionDetailsPane extends UiPart<Region> {
         if (commission == null) {
             completionStatusCircle.setFill(null);
             completionStatus.setText("");
-        }
+        } else {
+            Commission.CompletionStatusString completionStatusString = commission.getCompletionStatusString();
+            completionStatus.setText(completionStatusString.toString());
 
-        Commission.CompletionStatusString completionStatusString = commission.getCompletionStatusString();
-        completionStatus.setText(completionStatusString.toString());
-
-        switch (completionStatusString) {
-        case COMPLETED:
-            completionStatusCircle.setFill(COMPLETED_COLOR);
-            break;
-        case IN_PROGRESS:
-            completionStatusCircle.setFill(IN_PROGRESS_COLOR);
-            break;
-        default:
-            completionStatusCircle.setFill(NOT_STARTED_COLOR);
+            switch (completionStatusString) {
+            case COMPLETED:
+                completionStatusCircle.setFill(COMPLETED_COLOR);
+                break;
+            case IN_PROGRESS:
+                completionStatusCircle.setFill(IN_PROGRESS_COLOR);
+                break;
+            default:
+                completionStatusCircle.setFill(NOT_STARTED_COLOR);
+            }
         }
     }
 
