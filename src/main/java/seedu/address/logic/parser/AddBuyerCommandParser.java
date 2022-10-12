@@ -30,23 +30,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
  */
 public class AddBuyerCommandParser extends AddPersonCommandParser implements Parser<AddPersonCommand> {
 
-    public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + " c/Buyer";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to the address book. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
-            + PREFIX_ORDER + "(...Order fields)";
-
     public AddBuyerCommandParser() {
     }
 
@@ -75,6 +58,7 @@ public class AddBuyerCommandParser extends AddPersonCommandParser implements Par
         Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, tagList, null);
 
         List<Order> orders = ParserUtil.parseOrders(argMultimap.getAllValues(PREFIX_ORDER), buyer);
+        buyer.addOrder(orders);
 
         return new AddBuyerCommand(buyer);
     }

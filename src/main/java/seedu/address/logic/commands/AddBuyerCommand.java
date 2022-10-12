@@ -19,11 +19,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
  */
 public class AddBuyerCommand extends AddPersonCommand {
 
-    public static final String COMMAND_WORD = "add";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + " c/Buyer";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to the address book. "
             + "Parameters: "
-            + PREFIX_PERSON_CATEGORY + PersonCategory.BUYER
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
@@ -36,8 +34,8 @@ public class AddBuyerCommand extends AddPersonCommand {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney"
-            + PREFIX_ORDER + "Order1"
-            + PREFIX_ORDER + "Order2"; //TODO Change the representation of order
+            + PREFIX_ORDER + "(...Order1 fields)"
+            + PREFIX_ORDER + "(...Order1 fields)";
 
     public static final String MESSAGE_SUCCESS = "New buyer added: %1$s";
     public static final String MESSAGE_DUPLICATE_BUYER = "This buyer already exists in the buyer list";

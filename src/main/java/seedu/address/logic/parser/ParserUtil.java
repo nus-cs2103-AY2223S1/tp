@@ -27,6 +27,7 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.*;
@@ -39,7 +40,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_PERSON_CATEGORY = PersonCategory.MESSAGE_CONSTRAINTS;
-    public static final String MESSAGE_ORDER_PARSE_ERROR = "The order should have the fol" //TODO
+    public static final String MESSAGE_ORDER_USAGE = AddOrderCommand.MESSAGE_USAGE;
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -148,7 +149,7 @@ public class ParserUtil {
                         PREFIX_ORDER_DATE);
         if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_ADDRESS,
                 PREFIX_PHONE, PREFIX_EMAIL)) {
-            throw new ParseException(MESSAGE_ORDER_PARSE_ERROR)
+            throw new ParseException(MESSAGE_ORDER_PARSE_ERROR);
         }
 
         return new Order(trimmedOrderString);
