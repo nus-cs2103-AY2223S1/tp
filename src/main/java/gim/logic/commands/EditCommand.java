@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_SETS + "SETS] "
             + "[" + PREFIX_REPS + "REP] "
-            + "[" + PREFIX_DATE + "TAG]...\n"
+            + "[" + PREFIX_DATE + "DATE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_WEIGHT + "91234567 "
             + PREFIX_SETS + "johndoe@example.com";
