@@ -63,6 +63,12 @@ public class CreateMeetingCommand extends Command {
         return output;
     }
 
+    /**
+     * Converts an ArrayList of Persons to a string of the Persons' names and tags
+     *
+     * @param arrayOfPeopleToMeet ArrayList of Persons to meet in the Meeting
+     * @return a String of all the Persons' names and tags, with every person separated by a line break
+     */
     public static String peopleToNameAndTagList(ArrayList<Person> arrayOfPeopleToMeet) {
         String output = "";
         for (Person personToMeet : arrayOfPeopleToMeet) {
