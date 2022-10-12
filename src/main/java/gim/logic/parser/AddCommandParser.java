@@ -11,12 +11,12 @@ import java.util.stream.Stream;
 
 import gim.logic.commands.AddCommand;
 import gim.logic.parser.exceptions.ParseException;
+import gim.model.date.Date;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
 import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.date.Date;
 
 
 /**

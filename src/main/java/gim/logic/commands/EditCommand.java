@@ -16,12 +16,12 @@ import gim.commons.core.index.Index;
 import gim.commons.util.CollectionUtil;
 import gim.logic.commands.exceptions.CommandException;
 import gim.model.Model;
+import gim.model.date.Date;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
 import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.date.Date;
 
 
 

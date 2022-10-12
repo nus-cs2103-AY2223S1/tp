@@ -2,12 +2,12 @@ package gim.model.util;
 
 import gim.model.ExerciseTracker;
 import gim.model.ReadOnlyExerciseTracker;
+import gim.model.date.Date;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
 import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.date.Date;
 
 /**
  * Contains utility methods for populating {@code ExerciseTracker} with sample data.

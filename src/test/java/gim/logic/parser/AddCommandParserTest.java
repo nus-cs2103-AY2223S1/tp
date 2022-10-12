@@ -11,15 +11,14 @@ import static gim.logic.commands.CommandTestUtil.NAME_DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.NAME_DESC_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static gim.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-
 import static gim.logic.commands.CommandTestUtil.REPS_DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.REPS_DESC_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.SETS_DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.SETS_DESC_BENCH_PRESS;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
-import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.WEIGHT_DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.WEIGHT_DESC_BENCH_PRESS;
@@ -31,12 +30,12 @@ import static gim.testutil.TypicalExercises.BENCH_PRESS;
 import org.junit.jupiter.api.Test;
 
 import gim.logic.commands.AddCommand;
+import gim.model.date.Date;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
 import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.date.Date;
 import gim.testutil.ExerciseBuilder;
 
 
@@ -77,7 +76,8 @@ public class AddCommandParserTest {
                 .withDates(VALID_DATE)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS
-                + SETS_DESC_BENCH_PRESS + REPS_DESC_BENCH_PRESS + DATE_DESC, new AddCommand(expectedExerciseMultipleTags));
+                + SETS_DESC_BENCH_PRESS + REPS_DESC_BENCH_PRESS + DATE_DESC,
+                new AddCommand(expectedExerciseMultipleTags));
     }
 
     @Test

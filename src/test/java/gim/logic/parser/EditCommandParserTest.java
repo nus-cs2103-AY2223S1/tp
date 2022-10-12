@@ -34,11 +34,11 @@ import org.junit.jupiter.api.Test;
 import gim.commons.core.index.Index;
 import gim.logic.commands.EditCommand;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
+import gim.model.date.Date;
 import gim.model.exercise.Name;
 import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.date.Date;
 import gim.testutil.EditExerciseDescriptorBuilder;
 
 

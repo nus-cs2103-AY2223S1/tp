@@ -2,12 +2,11 @@ package gim.logic.commands;
 
 import static gim.logic.commands.CommandTestUtil.DESC_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.DESC_BENCH_PRESS;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE_2;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_SETS_BENCH_PRESS;
-import static gim.logic.commands.CommandTestUtil.VALID_DATE_2;
 import static gim.logic.commands.CommandTestUtil.VALID_WEIGHT_BENCH_PRESS;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

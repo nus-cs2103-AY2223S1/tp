@@ -8,8 +8,8 @@ import static gim.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import gim.logic.commands.AddCommand;
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
-import gim.model.exercise.Exercise;
 import gim.model.date.Date;
+import gim.model.exercise.Exercise;
 
 
 /**

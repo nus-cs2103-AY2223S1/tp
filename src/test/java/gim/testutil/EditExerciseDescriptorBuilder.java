@@ -1,12 +1,12 @@
 package gim.testutil;
 
 import gim.logic.commands.EditCommand.EditExerciseDescriptor;
+import gim.model.date.Date;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
 import gim.model.exercise.Reps;
 import gim.model.exercise.Sets;
 import gim.model.exercise.Weight;
-import gim.model.date.Date;
 
 /**
  * A utility class to help with building EditExerciseDescriptor objects.

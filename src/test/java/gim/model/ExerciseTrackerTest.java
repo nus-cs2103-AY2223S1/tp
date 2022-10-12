@@ -1,7 +1,7 @@
 package gim.model;
 
-import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_DATE;
+import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
 import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
@@ -9,15 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-//import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-//import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import gim.model.exercise.Exercise;
-//import gim.model.exercise.exceptions.DuplicateExerciseException;
 import gim.testutil.ExerciseBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
