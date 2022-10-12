@@ -12,17 +12,17 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLASS_DATE_TI
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MONEY_OWED_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MONEY_PAID_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MONEY_PER_CLASS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RATES_PER_CLASS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MONEY_OWED_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MONEY_OWED_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.MONEY_PAID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MONEY_PAID_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.MONEY_PER_CLASS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.RATES_PER_CLASS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_NOTES_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -33,10 +33,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_PAID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_PAID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_PER_CLASS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATES_PER_CLASS_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -102,7 +102,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_MONEY_OWED_DESC, Money.MESSAGE_CONSTRAINTS); // invalid money owed
         assertParseFailure(parser, "1" + INVALID_MONEY_PAID_DESC, Money.MESSAGE_CONSTRAINTS); // invalid money paid
         assertParseFailure(parser,
-                "1" + INVALID_MONEY_PER_CLASS_DESC, Money.MESSAGE_CONSTRAINTS); // invalid money per class
+                "1" + INVALID_RATES_PER_CLASS_DESC, Money.MESSAGE_CONSTRAINTS); // invalid money per class
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -122,7 +122,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + CLASS_DESC_AMY
                 + MONEY_OWED_DESC_BOB + MONEY_PAID_DESC_BOB
-                + MONEY_PER_CLASS_DESC_AMY + ADDITIONAL_NOTE_DESC_AMY;
+                + RATES_PER_CLASS_DESC_AMY + ADDITIONAL_NOTE_DESC_AMY;
 
         EditPersonDescriptor descriptor;
         try {
@@ -130,7 +130,7 @@ public class EditCommandParserTest {
                     .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                     .withClass(VALID_CLASS_AMY)
                     .withMoneyOwed(VALID_MONEY_OWED_BOB).withMoneyPaid(VALID_MONEY_PAID_BOB)
-                    .withMoneyPerClass(VALID_MONEY_PER_CLASS_AMY)
+                    .withRatesPerClass(VALID_RATES_PER_CLASS_AMY)
                     .withAdditionalNotes(VALID_ADDITIONAL_NOTES_AMY).build();
         } catch (ParseException e) {
             throw new RuntimeException(e);

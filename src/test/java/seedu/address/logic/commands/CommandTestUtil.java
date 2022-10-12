@@ -8,9 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PAID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PER_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATES_PER_CLASS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -44,8 +44,8 @@ public class CommandTestUtil {
     public static final Integer VALID_MONEY_OWED_BOB = 20;
     public static final Integer VALID_MONEY_PAID_AMY = 234;
     public static final Integer VALID_MONEY_PAID_BOB = 345;
-    public static final Integer VALID_MONEY_PER_CLASS_AMY = 50;
-    public static final Integer VALID_MONEY_PER_CLASS_BOB = 50;
+    public static final Integer VALID_RATES_PER_CLASS_AMY = 50;
+    public static final Integer VALID_RATES_PER_CLASS_BOB = 50;
     public static final String VALID_ADDITIONAL_NOTES_AMY = "alive person";
     public static final String VALID_ADDITIONAL_NOTES_BOB = "alive person";
 
@@ -63,10 +63,10 @@ public class CommandTestUtil {
     public static final String MONEY_OWED_DESC_BOB = " " + PREFIX_MONEY_OWED + VALID_MONEY_OWED_BOB.toString();
     public static final String MONEY_PAID_DESC_AMY = " " + PREFIX_MONEY_PAID + VALID_MONEY_PAID_AMY.toString();
     public static final String MONEY_PAID_DESC_BOB = " " + PREFIX_MONEY_PAID + VALID_MONEY_PAID_BOB.toString();
-    public static final String MONEY_PER_CLASS_DESC_AMY =
-            " " + PREFIX_MONEY_PER_CLASS + VALID_MONEY_PER_CLASS_AMY.toString();
-    public static final String MONEY_PER_CLASS_DESC_BOB =
-            " " + PREFIX_MONEY_PER_CLASS + VALID_MONEY_PER_CLASS_BOB.toString();
+    public static final String RATES_PER_CLASS_DESC_AMY =
+            " " + PREFIX_RATES_PER_CLASS + VALID_RATES_PER_CLASS_AMY.toString();
+    public static final String RATES_PER_CLASS_DESC_BOB =
+            " " + PREFIX_RATES_PER_CLASS + VALID_RATES_PER_CLASS_BOB.toString();
     public static final String ADDITIONAL_NOTE_DESC_AMY =
             " " + PREFIX_ADDITIONAL_NOTES + VALID_ADDITIONAL_NOTES_AMY.toString();
     public static final String ADDITIONAL_NOTE_DESC_BOB =
@@ -80,8 +80,8 @@ public class CommandTestUtil {
             " " + PREFIX_CLASS_DATE_TIME + "2134"; // '2134' not valid class format
     public static final String INVALID_MONEY_OWED_DESC = " " + PREFIX_MONEY_OWED + "-1"; // money cannot be negative
     public static final String INVALID_MONEY_PAID_DESC = " " + PREFIX_MONEY_PAID + "-10"; // money cannot be negative
-    public static final String INVALID_MONEY_PER_CLASS_DESC =
-            " " + PREFIX_MONEY_PER_CLASS + "-200"; // money cannot be negative
+    public static final String INVALID_RATES_PER_CLASS_DESC =
+            " " + PREFIX_RATES_PER_CLASS + "-200"; // money cannot be negative
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -93,7 +93,7 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                     .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                     .withMoneyOwed(VALID_MONEY_OWED_AMY).withMoneyPaid(VALID_MONEY_PAID_AMY)
-                    .withMoneyPerClass(VALID_MONEY_PER_CLASS_AMY)
+                    .withRatesPerClass(VALID_RATES_PER_CLASS_AMY)
                     .withAdditionalNotes(VALID_ADDITIONAL_NOTES_AMY).build();
 
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)

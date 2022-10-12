@@ -7,9 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PAID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PER_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATES_PER_CLASS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -48,7 +48,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CLASS_DATE_TIME + "CLASS_DATE_TIME] "
             + "[" + PREFIX_MONEY_OWED + "MONEY_OWED] "
             + "[" + PREFIX_MONEY_PAID + "MONEY_PAID] "
-            + "[" + PREFIX_MONEY_PER_CLASS + "MONEY_PER_CLASS] "
+            + "[" + PREFIX_RATES_PER_CLASS + "RATES_PER_CLASS] "
             + "[" + PREFIX_ADDITIONAL_NOTES + "NOTES] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -118,12 +118,12 @@ public class EditCommand extends Command {
         Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
         Money updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
         Money updatedMoneyPaid = editPersonDescriptor.getMoneyPaid().orElse(personToEdit.getMoneyPaid());
-        Money updatedMoneyPerClass = editPersonDescriptor.getMoneyPerClass().orElse(personToEdit.getMoneyPerClass());
+        Money updatedRatesPerClass = editPersonDescriptor.getRatesPerClass().orElse(personToEdit.getRatesPerClass());
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedClassDateTime,
-                updatedMoneyOwed, updatedMoneyPaid, updatedMoneyPerClass, updatedNotes);
+                updatedMoneyOwed, updatedMoneyPaid, updatedRatesPerClass, updatedNotes);
     }
 
     @Override
@@ -156,7 +156,7 @@ public class EditCommand extends Command {
         private Class aClass;
         private Money moneyOwed;
         private Money moneyPaid;
-        private Money moneyPerClass;
+        private Money ratesPerClass;
         private AdditionalNotes additionalNotes;
 
         public EditPersonDescriptor() {
@@ -173,7 +173,7 @@ public class EditCommand extends Command {
             setClass(toCopy.aClass);
             setMoneyOwed(toCopy.moneyOwed);
             setMoneyPaid(toCopy.moneyPaid);
-            setMoneyPerClass(toCopy.moneyPerClass);
+            setRatesPerClass(toCopy.ratesPerClass);
             setAdditionalNotes(toCopy.additionalNotes);
         }
 
@@ -181,7 +181,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, aClass, moneyOwed, moneyPaid, moneyPerClass,
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
                     additionalNotes);
         }
 
@@ -245,12 +245,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(moneyPaid);
         }
 
-        public void setMoneyPerClass(Money moneyPerClass) {
-            this.moneyPerClass = moneyPerClass;
+        public void setRatesPerClass(Money ratesPerClass) {
+            this.ratesPerClass = ratesPerClass;
         }
 
-        public Optional<Money> getMoneyPerClass() {
-            return Optional.ofNullable(moneyPerClass);
+        public Optional<Money> getRatesPerClass() {
+            return Optional.ofNullable(ratesPerClass);
         }
 
         public void setAdditionalNotes(AdditionalNotes additionalNotes) {
@@ -283,7 +283,7 @@ public class EditCommand extends Command {
                     && getAClass().toString().equals(e.getAClass().toString())
                     && getMoneyOwed().equals(e.getMoneyOwed())
                     && getMoneyPaid().equals(e.getMoneyPaid())
-                    && getMoneyPerClass().equals(e.getMoneyPerClass())
+                    && getRatesPerClass().equals(e.getRatesPerClass())
                     && getAdditionalNotes().equals(e.getAdditionalNotes());
         }
     }

@@ -43,7 +43,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setClass(person.getAClass());
-        descriptor.setMoneyPerClass(person.getMoneyPerClass());
+        descriptor.setRatesPerClass(person.getRatesPerClass());
         descriptor.setMoneyOwed(person.getMoneyOwed());
         descriptor.setMoneyPaid(person.getMoneyPaid());
         descriptor.setAdditionalNotes(person.getAdditionalNotes());
@@ -106,10 +106,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code moneyPerClass} of the {@code EditPersonDescriptorBuilder} that we are building.
+     * Sets the {@code ratesPerClass} of the {@code EditPersonDescriptorBuilder} that we are building.
      */
-    public EditPersonDescriptorBuilder withMoneyPerClass(Integer moneyPerClass) {
-        descriptor.setMoneyPerClass(new Money(moneyPerClass));
+    public EditPersonDescriptorBuilder withRatesPerClass(Integer ratesPerClass) {
+        descriptor.setRatesPerClass(new Money(ratesPerClass));
         return this;
     }
 

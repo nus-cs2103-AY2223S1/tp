@@ -55,8 +55,8 @@
         <Label fx:id="moneyPaid" styleClass="cell_small_label" text="\$moneyPaid" />
       </HBox>
       <HBox>
-        <Label styleClass="cell_small_label" text="Amount per class: " />
-        <Label fx:id="moneyPerClass" styleClass="cell_small_label" text="\$moneyPerClass" />
+        <Label styleClass="cell_small_label" text="Rates per Class: " />
+        <Label fx:id="ratesPerClass" styleClass="cell_small_label" text="\$ratesPerClass" />
       </HBox>
       <HBox>
         <Label styleClass="cell_small_label" text="Additional Notes: " minWidth="105"/>

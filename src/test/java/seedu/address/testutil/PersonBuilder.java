@@ -22,7 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Integer DEFAULT_MONEY_OWED = 0;
     public static final Integer DEFAULT_MONEY_PAID = 0;
-    public static final Integer DEFAULT_MONEY_PER_CLASS = 40;
+    public static final Integer DEFAULT_RATES_PER_CLASS = 40;
     public static final String DEFAULT_ADDITIONAL_NOTES = "";
 
     private Name name;
@@ -31,7 +31,7 @@ public class PersonBuilder {
     private Address address;
     private Money moneyOwed;
     private Money moneyPaid;
-    private Money moneyPerClass;
+    private Money ratesPerClass;
     private AdditionalNotes additionalNotes;
     private Class aClass;
 
@@ -46,7 +46,7 @@ public class PersonBuilder {
         aClass = new Class();
         moneyOwed = new Money(DEFAULT_MONEY_OWED);
         moneyPaid = new Money(DEFAULT_MONEY_PAID);
-        moneyPerClass = new Money(DEFAULT_MONEY_PER_CLASS);
+        ratesPerClass = new Money(DEFAULT_RATES_PER_CLASS);
         additionalNotes = new AdditionalNotes(DEFAULT_ADDITIONAL_NOTES);
     }
 
@@ -61,7 +61,7 @@ public class PersonBuilder {
         aClass = personToCopy.getAClass();
         moneyOwed = personToCopy.getMoneyOwed();
         moneyPaid = personToCopy.getMoneyPaid();
-        moneyPerClass = personToCopy.getMoneyPerClass();
+        ratesPerClass = personToCopy.getRatesPerClass();
         additionalNotes = personToCopy.getAdditionalNotes();
     }
 
@@ -122,10 +122,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code MoneyPerClass} of the {@code Person} that we are building.
+     * Sets the {@code ratesPerClass} of the {@code Person} that we are building.
      */
-    public PersonBuilder withMoneyPerClass(Integer moneyPerClass) {
-        this.moneyPerClass = new Money(moneyPerClass);
+    public PersonBuilder withRatesPerClass(Integer ratesPerClass) {
+        this.ratesPerClass = new Money(ratesPerClass);
         return this;
     }
 
@@ -142,6 +142,6 @@ public class PersonBuilder {
      * @return Person object.
      */
     public Person build() {
-        return new Person(name, phone, email, address, aClass, moneyOwed, moneyPaid, moneyPerClass, additionalNotes);
+        return new Person(name, phone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass, additionalNotes);
     }
 }

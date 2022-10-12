@@ -6,9 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PAID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PER_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATES_PER_CLASS;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -52,8 +52,8 @@ public class PersonUtil {
                 sb.append(PREFIX_CLASS_DATE_TIME).append(aClass.classDateTime).append(" ");
             }
         });
-        descriptor.getMoneyPerClass().ifPresent(
-                moneyPerClass -> sb.append(PREFIX_MONEY_PER_CLASS).append(moneyPerClass.value.toString()).append(" "));
+        descriptor.getRatesPerClass().ifPresent(
+                ratesPerClass -> sb.append(PREFIX_RATES_PER_CLASS).append(ratesPerClass.value.toString()).append(" "));
         descriptor.getMoneyOwed().ifPresent(
                 moneyOwed -> sb.append(PREFIX_MONEY_OWED).append(moneyOwed.value.toString()).append(" "));
         descriptor.getMoneyPaid().ifPresent(

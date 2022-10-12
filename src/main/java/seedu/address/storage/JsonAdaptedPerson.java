@@ -28,7 +28,7 @@ class JsonAdaptedPerson {
     private final String classDateTime;
     private final Integer moneyOwed;
     private final Integer moneyPaid;
-    private final Integer moneyPerClass;
+    private final Integer ratesPerClass;
     private final String additionalNotes;
 
     /**
@@ -40,7 +40,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("classDateTime") String classDateTime,
                              @JsonProperty("moneyOwed") Integer moneyOwed,
                              @JsonProperty("moneyPaid") Integer moneyPaid,
-                             @JsonProperty("moneyPerClass") Integer moneyPerClass,
+                             @JsonProperty("ratesPerClass") Integer ratesPerClass,
                              @JsonProperty("additionalNotes") String additionalNotes) {
         this.name = name;
         this.phone = phone;
@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
         this.classDateTime = classDateTime;
         this.moneyOwed = moneyOwed;
         this.moneyPaid = moneyPaid;
-        this.moneyPerClass = moneyPerClass;
+        this.ratesPerClass = ratesPerClass;
         this.additionalNotes = additionalNotes;
     }
 
@@ -64,7 +64,7 @@ class JsonAdaptedPerson {
         classDateTime = source.getAClass().classDateTime;
         moneyOwed = source.getMoneyOwed().value;
         moneyPaid = source.getMoneyPaid().value;
-        moneyPerClass = source.getMoneyPerClass().value;
+        ratesPerClass = source.getRatesPerClass().value;
         additionalNotes = source.getAdditionalNotes().notes;
     }
 
@@ -137,14 +137,14 @@ class JsonAdaptedPerson {
             modelMoneyPaid = new Money(0);
         }
 
-        final Money modelMoneyPerClass;
-        if (moneyPerClass != null) {
-            if (!Money.isValidMoney(moneyPerClass)) {
+        final Money modelRatesPerClass;
+        if (ratesPerClass != null) {
+            if (!Money.isValidMoney(ratesPerClass)) {
                 throw new IllegalValueException(Money.MESSAGE_CONSTRAINTS);
             }
-            modelMoneyPerClass = new Money(moneyPerClass);
+            modelRatesPerClass = new Money(ratesPerClass);
         } else {
-            modelMoneyPerClass = new Money(Person.DEFAULT_MONEY_PER_CLASS);
+            modelRatesPerClass = new Money(Person.DEFAULT_RATES_PER_CLASS);
         }
 
         final AdditionalNotes modelAdditionalNotes;
@@ -155,7 +155,7 @@ class JsonAdaptedPerson {
         }
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClassDateTime,
-                modelMoneyOwed, modelMoneyPaid, modelMoneyPerClass, modelAdditionalNotes);
+                modelMoneyOwed, modelMoneyPaid, modelRatesPerClass, modelAdditionalNotes);
     }
 
 }

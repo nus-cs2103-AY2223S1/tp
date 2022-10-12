@@ -8,9 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_OWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PAID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY_PER_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATES_PER_CLASS;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -31,7 +31,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_CLASS_DATE_TIME, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID,
-                PREFIX_MONEY_PER_CLASS, PREFIX_ADDITIONAL_NOTES);
+                PREFIX_RATES_PER_CLASS, PREFIX_ADDITIONAL_NOTES);
 
         Index index;
 
@@ -63,9 +63,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_MONEY_PAID).isPresent()) {
             editPersonDescriptor.setMoneyPaid(ParserUtil.parseMoney(argMultimap.getValue(PREFIX_MONEY_PAID).get()));
         }
-        if (argMultimap.getValue(PREFIX_MONEY_PER_CLASS).isPresent()) {
-            editPersonDescriptor.setMoneyPerClass(
-                    ParserUtil.parseMoney(argMultimap.getValue(PREFIX_MONEY_PER_CLASS).get()));
+        if (argMultimap.getValue(PREFIX_RATES_PER_CLASS).isPresent()) {
+            editPersonDescriptor.setRatesPerClass(
+                    ParserUtil.parseMoney(argMultimap.getValue(PREFIX_RATES_PER_CLASS).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDITIONAL_NOTES).isPresent()) {
             editPersonDescriptor.setAdditionalNotes(
