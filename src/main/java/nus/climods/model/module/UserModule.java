@@ -1,18 +1,15 @@
 package nus.climods.model.module;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
+import nus.climods.logic.commands.exceptions.CommandException;
+import nus.climods.model.Model;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.ModulesApi;
 
-
 import nus.climods.logic.parser.exceptions.ParseException;
-import nus.climods.model.module.Module;
 
 /**
  * Class representing module a User has in their My Modules list
@@ -32,12 +29,27 @@ public class UserModule {
      * @param moduleCode String for the module code
      * @throws ParseException if module code is not a valid module in current NUS curriculum
      */
-    public UserModule(String moduleCode) throws ParseException {
-        try {
-            this.apiModule = api.acadYearModulesModuleCodeJsonGet(acadYear, moduleCode);
-        } catch (ApiException e) {
-            throw new ParseException("Module not in current NUS curriculum");
+//    public UserModule(String moduleCode) throws ParseException {
+//        try {
+//            this.apiModule = api.acadYearModulesModuleCodeJsonGet(acadYear, moduleCode);
+//        } catch (ApiException e) {
+//            throw new ParseException("Module not in current NUS curriculum");
+//        }
+//    }
+
+    /**
+     * Creates a UserModule
+     * @param moduleCode String for the module code
+     * @throws ParseException if module code is not a valid module in current NUS curriculum
+     */
+    public UserModule(String moduleCode, Model model) throws CommandException {
+        Optional<Module> optionalModule = model.getModuleList().getListModule(moduleCode);
+
+        if (optionalModule.isEmpty()) {
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         }
+
+        apiModule = optionalModule.get();
     }
 
     /**
