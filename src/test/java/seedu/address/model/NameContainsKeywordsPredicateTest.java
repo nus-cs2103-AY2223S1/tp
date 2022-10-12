@@ -26,14 +26,17 @@ public class NameContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        NameContainsKeywordsPredicate<Person> firstPredicate = new NameContainsKeywordsPredicate<>(firstPredicateKeywordList);
-        NameContainsKeywordsPredicate<Person> secondPredicate = new NameContainsKeywordsPredicate<>(secondPredicateKeywordList);
+        NameContainsKeywordsPredicate<Person> firstPredicate =
+                new NameContainsKeywordsPredicate<>(firstPredicateKeywordList);
+        NameContainsKeywordsPredicate<Person> secondPredicate =
+                new NameContainsKeywordsPredicate<>(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPredicate<Person> firstPredicateCopy = new NameContainsKeywordsPredicate<>(firstPredicateKeywordList);
+        NameContainsKeywordsPredicate<Person> firstPredicateCopy =
+                new NameContainsKeywordsPredicate<>(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -49,14 +52,16 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_invalidType_throwsClassCastException() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        NameContainsKeywordsPredicate<String> firstPredicate = new NameContainsKeywordsPredicate<>(firstPredicateKeywordList);
+        NameContainsKeywordsPredicate<String> firstPredicate =
+                new NameContainsKeywordsPredicate<>(firstPredicateKeywordList);
         assertThrows(ClassCastException.class, () -> firstPredicate.test("Invalid type"));
     }
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate<Person> predicate = new NameContainsKeywordsPredicate<>(Collections.singletonList("Alice"));
+        NameContainsKeywordsPredicate<Person> predicate =
+                new NameContainsKeywordsPredicate<>(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -75,7 +80,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_studentNameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate<Student> predicate = new NameContainsKeywordsPredicate<>(Collections.singletonList("Alice"));
+        NameContainsKeywordsPredicate<Student> predicate =
+                new NameContainsKeywordsPredicate<>(Collections.singletonList("Alice"));
         assertTrue(predicate.test(STUDENT1));
 
         // Multiple keywords
@@ -94,7 +100,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_tutorNameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate<Tutor> predicate = new NameContainsKeywordsPredicate<>(Collections.singletonList("Alice"));
+        NameContainsKeywordsPredicate<Tutor> predicate =
+                new NameContainsKeywordsPredicate<>(Collections.singletonList("Alice"));
         assertTrue(predicate.test(TUTOR1));
 
         // Multiple keywords
@@ -171,7 +178,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_tuitionClassNameNameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        NameContainsKeywordsPredicate<TuitionClass> predicate = new NameContainsKeywordsPredicate<>(Collections.emptyList());
+        NameContainsKeywordsPredicate<TuitionClass> predicate =
+                new NameContainsKeywordsPredicate<>(Collections.emptyList());
         assertFalse(predicate.test(TUITIONCLASS1));
 
         // Non-matching keyword

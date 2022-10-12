@@ -46,10 +46,10 @@ public class TuitionClassCard extends UiPart<Region> {
         this.tuitionClass = tuitionClass;
         id.setText(displayedIndex + ". ");
         name.setText(tuitionClass.getName().name);
-        day.setText(tuitionClass.getDay().day);
-        level.setText(tuitionClass.getLevel().level);
-        subject.setText(tuitionClass.getSubject().subject);
-        time.setText(tuitionClass.getTime().toString());
+        day.setText("Day: " + tuitionClass.getDay().day);
+        time.setText("Time: " + tuitionClass.getTime().toString());
+        level.setText("Level: " + tuitionClass.getLevel().level);
+        subject.setText("Subject: " + tuitionClass.getSubject().subject);
     }
 
     @Override

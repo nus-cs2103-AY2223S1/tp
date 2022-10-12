@@ -34,9 +34,9 @@ public class StudentCard extends PersonCard {
     public StudentCard(Student student, int displayedIndex) {
         super(student, displayedIndex, FXML);
         this.student = student;
-        level.setText(student.getLevel().level);
-        nextOfKin.setText(student.getNextOfKin().nextOfKin);
-        school.setText(student.getSchool().school);
+        level.setText("Level: " + student.getLevel().level);
+        nextOfKin.setText("Next of Kin: " + student.getNextOfKin().nextOfKin);
+        school.setText("School: " + student.getSchool().school);
     }
 
     @Override

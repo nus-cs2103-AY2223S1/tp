@@ -58,12 +58,15 @@ public class FindCommand extends Command {
             this.classPredicate = new NameContainsKeywordsPredicate<>(keywords);
             model.updateFilteredTuitionClassList(classPredicate);
             return new CommandResult(
-                    String.format(Messages.MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW, model.getFilteredTuitionClassList().size()));
+                    String.format(Messages.MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW,
+                            model.getFilteredTuitionClassList().size()));
         case PERSON_LIST:
             this.personPredicate = new NameContainsKeywordsPredicate<>(keywords);
             model.updateFilteredPersonList(personPredicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        default:
+            break;
         }
 
         throw new CommandException("Current list type is not valid");

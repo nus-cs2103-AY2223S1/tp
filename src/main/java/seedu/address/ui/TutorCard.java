@@ -31,8 +31,8 @@ public class TutorCard extends PersonCard {
     public TutorCard(Tutor tutor, int displayedIndex) {
         super(tutor, displayedIndex, FXML);
         this.tutor = tutor;
-        institution.setText(tutor.getInstitution().institution);
-        qualification.setText(tutor.getQualification().qualification);
+        institution.setText("Institution: " + tutor.getInstitution().institution);
+        qualification.setText("Qualification: " + tutor.getQualification().qualification);
     }
 
     @Override
