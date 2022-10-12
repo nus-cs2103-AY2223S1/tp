@@ -5,6 +5,9 @@ package seedu.address.model.task;
  * Represents the category of a task.
  */
 public class TaskCategory {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Category must be one of the following: " + TaskCategoryType.getValidTaskCategories();
+
     private int level;
     private TaskCategoryType taskCategoryType;
 

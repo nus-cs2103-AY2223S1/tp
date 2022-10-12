@@ -25,17 +25,18 @@ public class Task {
 
     /**
      * Constructor method to instantiate a Task object. Every field must be present and not null.
-     * @param name Name of task
+     *
+     * @param name     Name of task
      * @param category Category of task
-     * @param desc Description of task
+     * @param desc     Description of task
      * @param priority Priority of task
      * @param deadline Deadline of task
-     * @param person Person assigned to task
-     * @param status status of task
+     * @param person   Person assigned to task
+     * @param status   status of task
      */
-    public Task(TaskName name, TaskCategory category, Description desc, Priority priority,
+    public Task(TaskName name, Description desc, Priority priority, TaskCategory category,
                 TaskDeadline deadline, Person person, boolean status) {
-        requireAllNonNull(name, category, desc, priority, deadline, person, status);
+        requireAllNonNull(name, category, desc, priority, deadline, status);
         this.name = name;
         this.category = category;
         description = desc;
@@ -47,6 +48,7 @@ public class Task {
 
     /**
      * Setter method for Name field.
+     *
      * @param newName new Name for this Task object
      */
     public void setName(TaskName newName) {
@@ -55,6 +57,7 @@ public class Task {
 
     /**
      * Setter method for Description field.
+     *
      * @param newDesc new Description for this Task object
      */
     public void setDescription(Description newDesc) {
@@ -63,6 +66,7 @@ public class Task {
 
     /**
      * Setter method for Priority field.
+     *
      * @param newPriority new Priority for this Task object
      */
     public void setPriority(Priority newPriority) {
@@ -71,6 +75,7 @@ public class Task {
 
     /**
      * Setter method for Category field.
+     *
      * @param newCategory new Category for this Task
      */
     public void setCategory(TaskCategory newCategory) {
@@ -79,6 +84,7 @@ public class Task {
 
     /**
      * Setter method for Deadline field.
+     *
      * @param newDeadline new Deadline for this Task
      */
     public void setDeadline(TaskDeadline newDeadline) {
@@ -87,6 +93,7 @@ public class Task {
 
     /**
      * Setter method for Person field.
+     *
      * @param person new Person assigned to this Task
      */
     public void assignPerson(Person person) {
@@ -95,6 +102,7 @@ public class Task {
 
     /**
      * Setter method for whether this Task has been completed.
+     *
      * @param isDone true if this Task is done, and false otherwise
      */
     public void isDone(boolean isDone) {
@@ -103,6 +111,7 @@ public class Task {
 
     /**
      * Returns true if this Task is done, and false otherwise.
+     *
      * @return true if this Task is done, and false otherwise
      */
     public boolean isDone() {
@@ -111,6 +120,7 @@ public class Task {
 
     /**
      * Returns the Name of this Task.
+     *
      * @return Name of this Task
      */
     public TaskName getName() {
@@ -119,6 +129,7 @@ public class Task {
 
     /**
      * Returns the Description of this Task.
+     *
      * @return Description of this Task
      */
     public Description getDescription() {
@@ -127,6 +138,7 @@ public class Task {
 
     /**
      * Returns the Priority of this Task.
+     *
      * @return Priority of this Task
      */
     public Priority getPriority() {
@@ -135,6 +147,7 @@ public class Task {
 
     /**
      * Returns the Category of this Task.
+     *
      * @return Category of this Task
      */
     public TaskCategory getCategory() {
@@ -143,6 +156,7 @@ public class Task {
 
     /**
      * Returns the Deadline of this Task.
+     *
      * @return Deadline of this Task
      */
     public TaskDeadline getDeadline() {
@@ -151,6 +165,7 @@ public class Task {
 
     /**
      * Returns the Person assigned to this Task.
+     *
      * @return Person assigned to this Task
      */
     public Person getPerson() {
@@ -160,6 +175,7 @@ public class Task {
     /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.
+     *
      * @param otherTask Task of comparison
      * @return true if both tasks are the same, and false otherwise
      */
@@ -174,6 +190,7 @@ public class Task {
     /**
      * Returns true if both tasks have the same fields.
      * This defines a stronger notion of equality between two tasks.
+     *
      * @param other Object of comparison
      * @return true if both tasks have the same fields, and false otherwise
      */
@@ -199,6 +216,7 @@ public class Task {
 
     /**
      * Method for custom fields hashing.
+     *
      * @return a hash code value for the object
      */
     @Override
