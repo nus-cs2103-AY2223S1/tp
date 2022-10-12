@@ -1,12 +1,18 @@
 package seedu.address.model.person;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 import seedu.address.model.listing.Listing;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.tag.Tag;
 
-import java.util.ArrayList;
-import java.util.Set;
+/**
+ * Represents a Client in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable
+ * except meetinglist, listinglist and offerlist.
+ */
 
 public class Client extends Person {
 
