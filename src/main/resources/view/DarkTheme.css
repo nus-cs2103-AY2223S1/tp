@@ -6,7 +6,6 @@
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
@@ -133,8 +132,17 @@
 }
 
 .cell_title_label {
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
     -fx-font-size: 24px;
     -fx-text-fill: #E8E8E8;
+}
+
+.cell_h2_label {
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: #D8D8D8;
 }
 
 .stack-pane {
@@ -414,8 +422,6 @@
 }
 
 #cell_id_label {
-    /* Seems like there's a bug in JavaFX with setting the text-fill for labels
-    using a class selector, a workaround is to use id selector instead */
     -fx-text-fill: #D8D8D8;
     -fx-font-family: "Arial";
     -fx-font-weight: bolder;
@@ -448,4 +454,10 @@
 #completionStatusCircle {
     -fx-background-color: red;
     -fx-background-radius: 8px;
+}
+
+#descriptionField {
+    -fx-background-color: #1E2128;
+    -fx-background-radius: 4px;
+    -fx-padding: 16px;
 }

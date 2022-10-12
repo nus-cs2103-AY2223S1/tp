@@ -12,10 +12,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
-import seedu.address.model.commission.Description;
 import seedu.address.model.iteration.Iteration;
 
 /**
@@ -92,7 +92,8 @@ public class CommissionDetailsPane extends UiPart<Region> {
 
     private void resetAllFields() {
         title.setText("No commission selected");
-        description.setText("");
+        description.setText("No commission selected");
+        description.setTextFill(Paint.valueOf("#6F747E"));
         fee.setText("");
         deadline.setText("");
         completionStatusCircle.setFill(null);
@@ -110,10 +111,17 @@ public class CommissionDetailsPane extends UiPart<Region> {
 
     private void updateFieldAttributeComponents(Commission commission) {
         title.setText(commission.getTitle().title);
-        description.setText(commission.getDescription().orElse(Description.NO_DESCRIPTION).description);
         fee.setText("$" + String.format("%.2f", commission.getFee().fee));
         deadline.setText(commission.getDeadline().toString());
         customerName.setText(commission.getCustomer().getName().fullName);
+
+        if (commission.getDescription().isEmpty()) {
+            description.setText("No description found");
+            description.setTextFill(Paint.valueOf("#6F747E"));
+        } else {
+            description.setText(commission.getDescription().get().description);
+            description.setTextFill(Paint.valueOf("#E8E8E8"));
+        }
     }
 
     private void updateProgressComponents(Commission commission) {

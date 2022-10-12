@@ -57,17 +57,6 @@
                     </VBox.margin>
                 </HBox>
                 <HBox>
-                    <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true">
-                        <minHeight>
-                            <!-- Ensures that the label text is never truncated -->
-                            <Region fx:constant="USE_PREF_SIZE" />
-                        </minHeight>
-                    </Label>
-                    <VBox.margin>
-                        <Insets bottom="8" />
-                    </VBox.margin>
-                </HBox>
-                <HBox>
                     <ImageView fx:id="feeIcon" fitWidth="14" fitHeight="16">
                         <HBox.margin>
                             <Insets right="8"/>
@@ -110,8 +99,24 @@
                         <Insets bottom="8.0" />
                     </VBox.margin>
                 </HBox>
-                <Label style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #D8D8D8;"
-                       text="Iterations">
+                <Label styleClass="cell_h2_label" text="Description">
+                    <VBox.margin>
+                        <Insets top="16" bottom="8" />
+                    </VBox.margin>
+                </Label>
+                <HBox id="descriptionField">
+                    <Label fx:id="description" text="\$description" wrapText="true"
+                           HBox.hgrow="ALWAYS" minWidth="300" VBox.vgrow="ALWAYS" prefWidth="0">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minHeight>
+                    </Label>
+                    <VBox.margin>
+                        <Insets bottom="8" />
+                    </VBox.margin>
+                </HBox>
+                <Label styleClass="cell_h2_label" text="Iterations">
                     <VBox.margin>
                         <Insets top="16" bottom="8" />
                     </VBox.margin>
