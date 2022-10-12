@@ -1,13 +1,17 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
+import seedu.address.model.task.exceptions.TaskIdentityModifiedException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * This class represents a list which contains Tasks objects which are distinct from
@@ -29,6 +33,14 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
+     * Returns true if the list contains a task with an equivalent module as the given argument.
+     */
+    public boolean containsModule(Module toCheck) {
+        requireNonNull(toCheck);
+        return taskList.stream().map(Task::getModule).anyMatch(toCheck::isSameModuleCode);
+    }
+
+    /**
      * Adds the task to the taskList.
      * The task must not already exist in the list.
      *
@@ -41,6 +53,37 @@ public class DistinctTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         taskList.add(taskAdded);
+    }
+
+    /**
+     * Replaces the task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the list.
+     * The task identity of {@code editedTask} should be the same as task identity of {@code target}.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        int index = taskList.indexOf(target);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        if (!target.isSameTask(editedTask)) {
+            throw new TaskIdentityModifiedException();
+        }
+
+        taskList.set(index, editedTask);
+    }
+
+    /**
+     * Removes the equivalent task from the tasklist.
+     * The task must exist in the list.
+     */
+    public void remove(Task toRemove) {
+        requireNonNull(toRemove);
+        if (!taskList.remove(toRemove)) {
+            throw new TaskNotFoundException();
+        }
     }
 
     @Override

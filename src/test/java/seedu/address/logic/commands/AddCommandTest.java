@@ -65,6 +65,7 @@ public class AddCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
+
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -154,6 +155,26 @@ public class AddCommandTest {
 
         @Override
         public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTask(Task task, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTask(Task target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteModule(Module target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTaskWithModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
     }

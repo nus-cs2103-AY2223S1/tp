@@ -11,6 +11,7 @@ import seedu.address.model.module.Module;
 public class Task {
     private final Module module;
     private final TaskDescription description;
+    private TaskStatus status;
 
     /**
      * The constructor of the Task class. Sets the module and
@@ -22,16 +23,32 @@ public class Task {
     public Task(Module module, TaskDescription description) {
         this.module = module;
         this.description = description;
+        this.status = TaskStatus.INCOMPLETE;
     }
 
+    /**
+     * The constructor of the Task class. Sets the module and
+     * description of the task.
+     *
+     * @param module The module being added.
+     * @param description The description of the task.
+     */
+    public Task(Module module, TaskDescription description, TaskStatus status) {
+        this.module = module;
+        this.description = description;
+        this.status = status;
+    }
 
     public TaskDescription getDescription() {
         return description;
     }
 
-
     public Module getModule() {
         return module;
+    }
+
+    public TaskStatus getStatus() {
+        return status;
     }
 
     /**
@@ -39,6 +56,21 @@ public class Task {
      */
     public boolean isSameTask(Task otherTask) {
         return this.equals(otherTask);
+    }
+
+    /**
+     * Returns true if task is complete.
+     */
+    public boolean isComplete() {
+        return this.status.isComplete();
+    }
+
+    /**
+     * Marks the task as complete
+     * and returns the task.
+     */
+    public Task mark() {
+        return new Task(module, description, TaskStatus.COMPLETE);
     }
 
     @Override
