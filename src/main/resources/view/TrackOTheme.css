@@ -27,8 +27,8 @@
 }
 
 .text-field {
-    -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13pt;
+    -fx-font-family: "Poppins";
 }
 
 .tab-pane {
@@ -98,7 +98,6 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 10px;
 }
 
 .list-cell:filled:even {
@@ -119,36 +118,32 @@
     -fx-font-family: "Poppins";
 }
 
-.list-cell .label {
-    -fx-text-fill: white;
-}
-
 .cell_big_label_item {
     -fx-font-family: "Poppins";
     -fx-font-size: 24px;
     -fx-font-weight: 700;
-    -fx-text-fill: #FFEDEC !important;
+    -fx-text-fill: #FFEDEC;
 }
 
 .cell_small_label_item {
     -fx-font-family: "Poppins";
     -fx-font-size: 20px;
     -fx-font-weight: 600;
-    -fx-text-fill: #FFEDEC !important;
+    -fx-text-fill: #FFEDEC;
 }
 
 .cell_big_label_order {
     -fx-font-family: "Poppins";
     -fx-font-size: 24px;
     -fx-font-weight: 700;
-    -fx-text-fill: #E9EBFF !important;
+    -fx-text-fill: #E9EBFF;
 }
 
 .cell_small_label_order {
     -fx-font-family: "Poppins";
     -fx-font-weight: 600; /* medium weight */
     -fx-font-size: 20px;
-    -fx-text-fill: #E9EBFF !important;
+    -fx-text-fill: #E9EBFF;
 }
 
 /** color of the `Enter command here...`*/
@@ -169,17 +164,6 @@
 
 .status-bar {
     -fx-background-color: #FFF2E7;
-}
-
-.result-display {
-    -fx-background-color: #FFF2E7;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: black;
-}
-
-.result-display .label {
-    -fx-text-fill: black !important;
 }
 
 .status-bar .label {
@@ -250,8 +234,16 @@
     -fx-padding: 2px;
 }
 
-.order-item-list {
+.ordered-items-container {
+    -fx-background-color: #D9DCFF;
+    -fx-background-radius: 10px;
+}
 
+.ordered-items-content {
+    -fx-font-family: "Poppins";
+    -fx-font-weight: 700; /* medium weight */
+    -fx-font-size: 18px;
+    -fx-text-fill: #707BE3 !important;
 }
 
 /**
@@ -414,9 +406,9 @@
     -fx-border-insets: 0;
     -fx-border-radius: 10px;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Poppins";
     -fx-font-size: 13pt;
-    -fx-text-fill: black;
+    -fx-text-fill: #878787;
 }
 
 #itemListView {
@@ -427,12 +419,6 @@
     -fx-border-color: #FF6C64;
     -fx-border-radius: 15px;
     -fx-border-width: 2px;
-}
-
-
-#itemListView .list-cell {
-    -fx-background-insets: 0px, 5px;
-    -fx-padding: 2px;
 }
 
 #itemListView .list-cell:empty {
@@ -477,23 +463,11 @@
 #orderListView .list-cell:filled {
     -fx-background-color: #707BE3;
     -fx-background-radius: 15px;
-    -fx-background-insets: 0px, 5px;
+    -fx-background-insets: 0;
 }
 
 #orderListView .list-view {
     -fx-padding: 3px;
-}
-
-#orderListView .list-cell {
-    -fx-padding: 2px ;
-    -fx-background-color: transparent, -fx-background ;
-    -fx-background-insets: 0px, 2px ;
-}
-
-#orderListView .list-cell:empty {
-    -fx-padding: 2px ;
-    -fx-background-color: transparent ;
-    -fx-background-insets: 0 ;
 }
 
 #placeHolder {
@@ -506,7 +480,8 @@
     -fx-border-color: #878787;
     -fx-background-radius: 10px;
     -fx-border-width: 2px;
-    -fx-text-fill: black;
+    -fx-font-family: Poppins;
+    -fx-wrap-text: true;
 }
 
 #tags {

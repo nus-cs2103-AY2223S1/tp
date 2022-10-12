@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -23,6 +24,11 @@ public class ResultDisplay extends UiPart<Region> {
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
+        resultDisplay.setStyle(
+                "-fx-font-family: \"Poppins\"; " +
+                "-fx-font-size: 13pt; " +
+                "-fx-text-fill: #878787;"
+        );
     }
 
 }

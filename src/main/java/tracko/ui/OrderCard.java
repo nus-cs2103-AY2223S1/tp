@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import tracko.model.order.Order;
 
 /**
@@ -68,7 +69,9 @@ public class OrderCard extends UiPart<Region> {
         email.setWrapText(true);
         email.setPadding(new Insets(0,10,0,0));
 
-        items.setPadding(new Insets(10,10,10,10));
+        items.setPadding(new Insets(15,10,15,10));
+        items.setStyle("-fx-background-insets: 10, 10, 0, 0;");
+        items.getStyleClass().add("ordered-items-container");
         order.getItemList().stream()
                 .forEach(item -> items.getChildren().add(
                         constructItemLabel("\u2022 " + item.getQuantity() + " * " + item.getItem())));
@@ -80,9 +83,9 @@ public class OrderCard extends UiPart<Region> {
      */
     public Label constructItemLabel(String text) {
         Label itemLabel = new Label(text);
-        itemLabel.getStyleClass().add("order-item-list");
+        itemLabel.getStyleClass().add("ordered-items-content");
         itemLabel.setWrapText(true);
-        itemLabel.setPadding(new Insets(0,10,0,0));
+        itemLabel.setPadding(new Insets(0,10,0,10));
         return itemLabel;
     }
 
