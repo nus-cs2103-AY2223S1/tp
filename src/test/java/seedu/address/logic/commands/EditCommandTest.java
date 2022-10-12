@@ -10,7 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_PERSONAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_EXPENDITURE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showExpenditureAtIndex;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -74,6 +74,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditEntryDescriptor descriptor = new EditEntryDescriptor();
+        descriptor.setTags(null);
         descriptor.setType(new EntryType("e"));
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
         Entry editedEntry = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -87,10 +88,11 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showExpenditureAtIndex(model, INDEX_FIRST_PERSON);
 
         Entry entryInFilteredList = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Entry editedEntry = new ExpenditureBuilder(entryInFilteredList).withDescription(VALID_DESC_TUITION).build();
+        Entry editedEntry = new ExpenditureBuilder(entryInFilteredList)
+                .withDescription(VALID_DESC_TUITION).withTags().build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditEntryDescriptorBuilder().withType(VALID_TYPE_EXPENDITURE)
                         .withDescription(VALID_DESC_TUITION).build());
@@ -114,7 +116,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showExpenditureAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
         Entry entryInList = model.getPennyWise().getExpenditureList().get(INDEX_SECOND_PERSON.getZeroBased());
@@ -140,7 +142,7 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showExpenditureAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPennyWise().getExpenditureList().size());

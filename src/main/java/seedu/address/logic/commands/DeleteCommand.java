@@ -47,7 +47,6 @@ public class DeleteCommand extends Command {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
             }
-            
             entryToDelete = lastShownList.get(targetIndex.getZeroBased());
             model.deleteExpenditure(entryToDelete);
             break;
