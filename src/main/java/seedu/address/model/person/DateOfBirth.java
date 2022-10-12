@@ -17,9 +17,14 @@ public class DateOfBirth {
     private static final String MESSAGE_ARGUMENT_CONSTRAINTS =
         "compareTo() of DateOfBirth must take in argument of type LocalDate";
 
+    //for checking if valid input date format
     private static final DateTimeFormatter checkFormatter = DateTimeFormatter
             .ofPattern("[d/M/yyyy][dd/M/yyyy][d/MM/yyyy][dd/MM/yyyy]");
+
+    //for changing to storage friendly format
     private static final DateTimeFormatter logFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+
+    //for changing to user-readable format
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
 
     public final LocalDate date;
@@ -41,7 +46,7 @@ public class DateOfBirth {
      */
     public DateOfBirth(String date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDateOfBirth(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date, logFormatter);
         this.isEmpty = false;
     }
@@ -59,8 +64,8 @@ public class DateOfBirth {
      */
 
     //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
-    public static boolean isValidDate(String test) {
-        if (test == "") {
+    public static boolean isValidDateOfBirth(String test) {
+        if (test == null) {
             return true;
         }
         try {
@@ -105,7 +110,7 @@ public class DateOfBirth {
      */
     public String toLogFormat() {
         if (this.isEmpty()) {
-            return "";
+            return null;
         }
         return this.date.format(logFormatter);
     }
