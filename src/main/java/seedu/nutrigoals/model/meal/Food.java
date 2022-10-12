@@ -2,10 +2,7 @@ package seedu.nutrigoals.model.meal;
 
 import static seedu.nutrigoals.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.tag.Tag;
@@ -24,28 +21,28 @@ public class Food {
     // Identity fields
     private final Name name;
     private final Calorie calorie;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Tag tag;
     private final DateTime dateTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Food(Name name, Calorie calorie, Set<Tag> tags) {
-        requireAllNonNull(name, calorie, tags);
+    public Food(Name name, Calorie calorie, Tag tag) {
+        requireAllNonNull(name, calorie, tag);
         this.name = name;
         this.calorie = calorie;
-        this.tags.addAll(tags);
+        this.tag = tag;
         this.dateTime = new DateTime();
     }
 
     /**
      * Constructor for an edited Food.
      */
-    public Food(Name name, Calorie calorie, Set<Tag> tags, DateTime dateTime) {
-        requireAllNonNull(name, calorie, tags, dateTime);
+    public Food(Name name, Calorie calorie, Tag tag, DateTime dateTime) {
+        requireAllNonNull(name, calorie, tag, dateTime);
         this.name = name;
         this.calorie = calorie;
-        this.tags.addAll(tags);
+        this.tag = tag;
         this.dateTime = dateTime;
     }
 
@@ -61,8 +58,8 @@ public class Food {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tag getTag() {
+        return tag;
     }
 
     public DateTime getDateTime() {
@@ -83,7 +80,7 @@ public class Food {
     }
 
     private boolean hasTag(String tagName) {
-        return tags.stream().anyMatch(tag -> tag.tagName.equals(tagName));
+        return tag.tagName.equals(tagName);
     }
 
     /**
@@ -127,14 +124,14 @@ public class Food {
 
         Food otherFood = (Food) other;
         return otherFood.getName().equals(getName())
-                && otherFood.getTags().equals(getTags())
+                && otherFood.getTag().equals(getTag())
                 && otherFood.getCalorie().equals(getCalorie());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, calorie, tags, dateTime);
+        return Objects.hash(name, calorie, tag, dateTime);
     }
 
     @Override
@@ -142,13 +139,10 @@ public class Food {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Calories: ")
-                .append(getCalorie());
+                .append(getCalorie())
+                .append("; Tag")
+                .append(getTag());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 

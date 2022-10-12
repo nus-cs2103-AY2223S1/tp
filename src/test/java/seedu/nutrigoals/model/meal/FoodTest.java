@@ -3,14 +3,16 @@ package seedu.nutrigoals.model.meal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_APPLE_NAME;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_BISCUIT_NAME;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import static seedu.nutrigoals.testutil.FoodBuilder.DEFAULT_EARLIER_TIME;
 import static seedu.nutrigoals.testutil.FoodBuilder.DEFAULT_LATER_TIME;
 import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
-import static seedu.nutrigoals.testutil.TypicalFoods.BOB;
 import static seedu.nutrigoals.testutil.TypicalFoods.GRAPES;
+import static seedu.nutrigoals.testutil.TypicalFoods.PANCAKE;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +23,7 @@ public class FoodTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Food food = new FoodBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> food.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> food.getTag().edit("breakfast"));
     }
 
     @Test
@@ -34,40 +36,36 @@ public class FoodTest {
 
         // same name, all other attributes different -> returns true
         Food editedApple = new FoodBuilder(APPLE)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTag(VALID_TAG_BREAKFAST).build();
         assertTrue(APPLE.isSameFood(editedApple));
 
         // different name, all other attributes same -> returns false
-        editedApple = new FoodBuilder(APPLE).withName(VALID_NAME_BOB).build();
+        editedApple = new FoodBuilder(APPLE).withName(VALID_BISCUIT_NAME).build();
         assertFalse(APPLE.isSameFood(editedApple));
 
         // name differs in case, all other attributes same -> returns false
-        Food editedBob = new FoodBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameFood(editedBob));
+        editedApple = new FoodBuilder(APPLE).withName(VALID_APPLE_NAME.toLowerCase()).build();
+        assertFalse(APPLE.isSameFood(editedApple));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new FoodBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameFood(editedBob));
+        String nameWithTrailingSpaces = VALID_APPLE_NAME + " ";
+        editedApple = new FoodBuilder(APPLE).withName(nameWithTrailingSpaces).build();
+        assertFalse(APPLE.isSameFood(editedApple));
     }
 
     @Test
     public void getEarliestMealTag() {
         // breakfast
-        Food editedGrapes = new FoodBuilder(GRAPES).withTags("breakfast").build();
+        Food editedGrapes = new FoodBuilder(GRAPES).withTag("breakfast").build();
         assertEquals("B", editedGrapes.getEarliestMealTag());
 
         // lunch
-        editedGrapes = new FoodBuilder(GRAPES).withTags("lunch").build();
+        editedGrapes = new FoodBuilder(GRAPES).withTag("lunch").build();
         assertEquals("L", editedGrapes.getEarliestMealTag());
 
         // dinner
-        editedGrapes = new FoodBuilder(GRAPES).withTags("dinner").build();
+        editedGrapes = new FoodBuilder(GRAPES).withTag("dinner").build();
         assertEquals("D", editedGrapes.getEarliestMealTag());
-
-        // no tag
-        editedGrapes = new FoodBuilder(GRAPES).build();
-        assertEquals("X", editedGrapes.getEarliestMealTag());
     }
 
     @Test
@@ -93,14 +91,14 @@ public class FoodTest {
         assertFalse(APPLE.equals(5));
 
         // different food -> returns false
-        assertFalse(APPLE.equals(BOB));
+        assertFalse(APPLE.equals(PANCAKE));
 
         // different name -> returns false
-        Food editedApple = new FoodBuilder(APPLE).withName(VALID_NAME_BOB).build();
+        Food editedApple = new FoodBuilder(APPLE).withName(VALID_BISCUIT_NAME).build();
         assertFalse(APPLE.equals(editedApple));
 
         // different tags -> returns false
-        editedApple = new FoodBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
+        editedApple = new FoodBuilder(APPLE).withTag(VALID_TAG_LUNCH).build();
         assertFalse(APPLE.equals(editedApple));
     }
 }

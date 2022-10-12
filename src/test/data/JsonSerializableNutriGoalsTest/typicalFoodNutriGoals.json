@@ -2,37 +2,37 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "foods" : [ {
     "calorie" : "2000",
-    "tagged" : [ "breakfast" ],
+    "tagged" : "breakfast",
     "dateTime" : "2022-10-04T13:05:29.586882100",
     "name" : "Apple"
   }, {
     "calorie" : "2000",
-    "tagged" : [ "lunch" ],
+    "tagged" : "lunch",
     "dateTime" : "2022-10-04T13:05:29.586882100",
     "name" : "Bread"
   }, {
     "calorie" : "2000",
-    "tagged" : [ "dinner" ],
+    "tagged" : "lunch",
     "dateTime" : "2022-10-04T13:05:29.586882100",
     "name" : "Carbonara"
   }, {
     "calorie" : "2000",
-    "tagged" : [ ],
+    "tagged" : "lunch",
     "dateTime" : "2022-10-04T13:05:29.586882100",
     "name" : "Dragon fruit"
   }, {
     "calorie" : "2000",
-    "tagged" : [ ],
+    "tagged" : "dinner",
     "dateTime" : "2022-10-04T13:05:29.586882100",
     "name" : "Egg soup"
   }, {
     "calorie" : "2000",
-    "tagged" : [ ],
+    "tagged" : "dinner",
     "dateTime" : "2022-10-04T13:05:29.586882100",
     "name" : "Fishcake"
   }, {
     "calorie" : "2000",
-    "tagged" : [ ],
+    "tagged" : "dinner",
     "dateTime" : "2022-10-04T13:05:29.586882100",
     "name" : "Grapes"
   } ],

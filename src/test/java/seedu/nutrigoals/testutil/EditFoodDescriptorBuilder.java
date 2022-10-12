@@ -1,9 +1,5 @@
 package seedu.nutrigoals.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.nutrigoals.logic.commands.EditCommand.EditFoodDescriptor;
 import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.meal.Food;
@@ -31,7 +27,7 @@ public class EditFoodDescriptorBuilder {
     public EditFoodDescriptorBuilder(Food food) {
         descriptor = new EditFoodDescriptor();
         descriptor.setName(food.getName());
-        descriptor.setTags(food.getTags());
+        descriptor.setTag(food.getTag());
         descriptor.setCalorie(food.getCalorie());
         descriptor.setDateTime(food.getDateTime());
     }
@@ -49,8 +45,9 @@ public class EditFoodDescriptorBuilder {
      * that we are building.
      */
     public EditFoodDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+        // Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        String tagName = tags[tags.length - 1];
+        descriptor.setTag(new Tag(tagName));
         return this;
     }
 

@@ -3,8 +3,10 @@ package seedu.nutrigoals.logic.parser;
 import static seedu.nutrigoals.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.NAME_DESC_BREAD;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.TAG_DESC_LUNCH;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_BREAD_NAME;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -26,12 +28,9 @@ public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
     private static final String TAG_DESC_BREAKFAST = " " + PREFIX_TAG + "breakfast";
-    private static final String TAG_DESC_QUANTITY = " " + PREFIX_TAG + "oneServing";
     private static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Bread&";
     private static final String VALID_CALORIE = "200";
     private static final String VALID_CALORIE_DESC = " " + EditCommand.PREFIX_CALORIE + VALID_CALORIE;
-    private static final String VALID_QUANTITY_TAG = "oneServing";
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
@@ -67,16 +66,14 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + " " + PREFIX_TAG + "breakfast*", Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Food} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_BREAKFAST + TAG_DESC_QUANTITY + TAG_EMPTY,
+        // as long as the last tag provided is valid, i.e. not {@code PREFIX_TAG} alone or tags with
+        // invalid tag names, no error will be thrown
+        assertParseFailure(parser, "1" + TAG_DESC_BREAKFAST + TAG_EMPTY,
                 Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_BREAKFAST + TAG_EMPTY + TAG_DESC_QUANTITY,
-                Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_BREAKFAST + TAG_DESC_QUANTITY,
-                Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_CALORIE_DESC, Name.MESSAGE_CONSTRAINTS);
@@ -86,11 +83,11 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_MEAL;
         String userInput = targetIndex.getOneBased() + TAG_DESC_BREAKFAST
-                + NAME_DESC_BREAD + TAG_DESC_QUANTITY + VALID_CALORIE_DESC;
+                + NAME_DESC_BREAD + VALID_CALORIE_DESC;
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder()
                 .withName(VALID_BREAD_NAME)
-                .withTags(VALID_TAG_BREAKFAST, VALID_QUANTITY_TAG)
+                .withTags(VALID_TAG_BREAKFAST)
                 .withCalorie(VALID_CALORIE)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -136,22 +133,11 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_MEAL;
         String userInput = targetIndex.getOneBased()
                 + TAG_DESC_BREAKFAST + TAG_DESC_BREAKFAST
-                + TAG_DESC_QUANTITY;
+                + TAG_DESC_LUNCH;
 
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder()
-                .withTags(VALID_QUANTITY_TAG, VALID_TAG_BREAKFAST)
+                .withTags(VALID_TAG_BREAKFAST, VALID_TAG_BREAKFAST, VALID_TAG_LUNCH)
                 .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_MEAL;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-
-        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
