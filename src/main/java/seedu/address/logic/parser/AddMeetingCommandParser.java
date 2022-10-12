@@ -1,9 +1,13 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
+import java.util.stream.Stream;
+
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.MeetingDate;
@@ -17,13 +21,21 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     @Override
     public AddMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_TIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_DATE, PREFIX_TIME);
 
-        String clientName = argMultimap.getValue(PREFIX_NAME).get();
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX, PREFIX_DATE, PREFIX_TIME)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
+        }
+
+        Index clientIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
         MeetingDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        MeetingTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());;
+        MeetingTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
+        return new AddMeetingCommand(clientIndex, date, time);
+    }
 
-        return new AddMeetingCommand(clientName, date, time);
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

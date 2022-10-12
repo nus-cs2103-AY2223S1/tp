@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -131,8 +133,13 @@ public class ParserUtil {
      */
     public static MeetingDate parseDate(String date) throws ParseException {
         requireNonNull(date);
-        LocalDate parsedDate = LocalDate.parse(date);
-        return new MeetingDate(parsedDate);
+
+        try {
+            LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMyyyy"));
+            return new MeetingDate(parsedDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
@@ -140,7 +147,12 @@ public class ParserUtil {
      */
     public static MeetingTime parseTime(String time) throws ParseException {
         requireNonNull(time);
-        LocalTime parsedTime = LocalTime.parse(time);
-        return new MeetingTime(parsedTime);
+
+        try {
+            LocalTime parsedTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HHmm"));
+            return new MeetingTime(parsedTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
+        }
     }
 }

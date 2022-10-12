@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Lists all persons in MyInsuRec to the user.
  */
-public class ListCommand extends Command {
+public class ListClientCommand extends Command {
 
     public static final String COMMAND_WORD = "listClient";
 
