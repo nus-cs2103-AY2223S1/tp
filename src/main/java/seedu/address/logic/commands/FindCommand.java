@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Model.ListType;
 import seedu.address.model.NameContainsKeywordsPredicate;
@@ -39,7 +38,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         ListType type = model.getCurrentListType();
 
@@ -54,22 +53,19 @@ public class FindCommand extends Command {
             model.updateFilteredTutorList(tutorPredicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_TUTORS_LISTED_OVERVIEW, model.getFilteredTutorList().size()));
-        case TUITIONCLASS_LIST:
-            this.classPredicate = new NameContainsKeywordsPredicate<>(keywords);
-            model.updateFilteredTuitionClassList(classPredicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW,
-                            model.getFilteredTuitionClassList().size()));
         case PERSON_LIST:
             this.personPredicate = new NameContainsKeywordsPredicate<>(keywords);
             model.updateFilteredPersonList(personPredicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
         default:
-            break;
+            assert (type == ListType.TUITIONCLASS_LIST);
+            this.classPredicate = new NameContainsKeywordsPredicate<>(keywords);
+            model.updateFilteredTuitionClassList(classPredicate);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW,
+                            model.getFilteredTuitionClassList().size()));
         }
-
-        throw new CommandException("Current list type is not valid");
     }
 
     @Override
@@ -81,7 +77,7 @@ public class FindCommand extends Command {
         if (other instanceof FindCommand) {
             FindCommand otherFind = (FindCommand) other;
 
-            if (this.studentPredicate != null && otherFind.studentPredicate != null) {
+            if (this.studentPredicate != null) {
                 if (otherFind.studentPredicate != null) {
                     return this.studentPredicate.equals(((FindCommand) other).studentPredicate);
                 }

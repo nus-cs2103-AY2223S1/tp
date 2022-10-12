@@ -28,7 +28,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.NameContainsKeywordsPredicate;
@@ -53,7 +52,7 @@ public class FindCommandTest {
     private Model expectedTuitionClassModel = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
 
     @Test
-    public void equalsForStudentListType() throws CommandException {
+    public void equalsForStudentListType() {
         List<String> firstKeywords = Collections.singletonList("first");
         List<String> secondKeywords = Collections.singletonList("second");
 
@@ -92,7 +91,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void equalsForTutorListType() throws CommandException {
+    public void equalsForTutorListType() {
         List<String> firstKeywords = Collections.singletonList("first");
         List<String> secondKeywords = Collections.singletonList("second");
 
@@ -131,7 +130,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void equalsForTuitionClassListType() throws CommandException {
+    public void equalsForTuitionClassListType() {
         List<String> firstKeywords = Collections.singletonList("first");
         List<String> secondKeywords = Collections.singletonList("second");
 
@@ -170,7 +169,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() throws CommandException {
+    public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         List<String> keywords = prepareKeywords(" ");
         NameContainsKeywordsPredicate<Person> predicate = new NameContainsKeywordsPredicate<>(keywords);
