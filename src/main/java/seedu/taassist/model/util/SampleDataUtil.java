@@ -33,10 +33,10 @@ public class SampleDataUtil {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getModuleClassSet("friends"), DEFAULT_STUDENT_MODULE_DATA),
+                getModuleClassSet("CS1231S")),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getModuleClassSet("colleagues", "friends"), DEFAULT_STUDENT_MODULE_DATA),
+                getModuleClassSet("CS1101S", "CS1231S")),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getModuleClassSet("neighbours")),
@@ -48,7 +48,7 @@ public class SampleDataUtil {
                 getModuleClassSet("classmates")),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getModuleClassSet("colleagues"))
+                getModuleClassSet("CS1101S"))
         };
     }
 
