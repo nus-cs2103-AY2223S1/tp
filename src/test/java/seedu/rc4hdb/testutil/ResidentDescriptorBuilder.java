@@ -54,10 +54,27 @@ public class ResidentDescriptorBuilder {
     }
 
     /**
+     * Convenience method for {@code withName} method.
+     */
+    public ResidentDescriptorBuilder withName(Name name) {
+        descriptor.setName(name);
+        return this;
+    }
+
+
+    /**
      * Sets the {@code Phone} of the {@code ResidentDescriptor} that we are building.
      */
     public ResidentDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
+        return this;
+    }
+
+    /**
+     * Convenience method for {@code withPhone} method.
+     */
+    public ResidentDescriptorBuilder withPhone(Phone phone) {
+        descriptor.setPhone(phone);
         return this;
     }
 
@@ -70,10 +87,26 @@ public class ResidentDescriptorBuilder {
     }
 
     /**
+     * Convenience method for {@code withEmail} method.
+     */
+    public ResidentDescriptorBuilder withEmail(Email email) {
+        descriptor.setEmail(email);
+        return this;
+    }
+
+    /**
      * Sets the {@code Room} of the {@code ResidentDescriptor} that we are building.
      */
     public ResidentDescriptorBuilder withRoom(String room) {
         descriptor.setRoom(new Room(room));
+        return this;
+    }
+
+    /**
+     * Convenience method for {@code withRoom} method.
+     */
+    public ResidentDescriptorBuilder withRoom(Room room) {
+        descriptor.setRoom(room);
         return this;
     }
 
@@ -86,6 +119,15 @@ public class ResidentDescriptorBuilder {
     }
 
     /**
+     * Convenience method for {@code withGender} method.
+     */
+    public ResidentDescriptorBuilder withGender(Gender gender) {
+        descriptor.setGender(gender);
+        return this;
+    }
+
+
+    /**
      * Sets the {@code House} of the {@code ResidentDescriptor} that we are building.
      */
     public ResidentDescriptorBuilder withHouse(String house) {
@@ -94,10 +136,25 @@ public class ResidentDescriptorBuilder {
     }
 
     /**
+     * Convenience method for {@code withHouse} method.
+     */
+    public ResidentDescriptorBuilder withHouse(House house) {
+        descriptor.setHouse(house);
+        return this;
+    }
+
+    /**
      * Sets the {@code MatricNumber} of the {@code ResidentDescriptor} that we are building.
      */
     public ResidentDescriptorBuilder withMatricNumber(String matricNumber) {
         descriptor.setMatricNumber(new MatricNumber(matricNumber));
+        return this;
+    }
+    /**
+     * Convenience method for {@code withMatricNumber} method.
+     */
+    public ResidentDescriptorBuilder withMatricNumber(MatricNumber matricNumber) {
+        descriptor.setMatricNumber(matricNumber);
         return this;
     }
 
@@ -110,6 +167,15 @@ public class ResidentDescriptorBuilder {
         descriptor.setTags(tagSet);
         return this;
     }
+
+    /**
+     * Convenience method for {@code withTags} method.
+     */
+    public ResidentDescriptorBuilder withTags(Set<Tag> tags) {
+        descriptor.setTags(tags);
+        return this;
+    }
+
 
     public ResidentDescriptor build() {
         return descriptor;
