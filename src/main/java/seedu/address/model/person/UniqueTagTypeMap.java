@@ -113,7 +113,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     }
 
     /**
-     * Adds a tag to the given tagType.
+     * Adds a tag for the given tagType.
      */
     public void addTag(TagType tagType, Tag tagName) throws TagTypeNotFoundException, DuplicateTagException {
         requireAllNonNull(tagType, tagName);
