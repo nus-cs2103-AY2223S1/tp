@@ -24,7 +24,8 @@ public class ListMeetingCommand extends Command {
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
 
         StringBuilder str = new StringBuilder();
-        List<Meeting> list = model.getFilteredMeetingList().stream().collect(Collectors.toList());
+        List<Meeting> list = model.getFilteredMeetingList().stream()
+                                    .collect(Collectors.toList());
         list.forEach(str::append);
 
         return new CommandResult(MESSAGE_SUCCESS + "\n" + str);
