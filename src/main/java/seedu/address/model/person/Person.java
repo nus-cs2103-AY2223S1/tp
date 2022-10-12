@@ -24,11 +24,12 @@ public class Person {
     // Data fields
     private final Telegram handle;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Mod> mods = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags, Set<Mod> mods) {
         requireAllNonNull(name, handle);
         this.name = name;
         this.phone = phone;
@@ -36,6 +37,7 @@ public class Person {
         this.handle = handle;
         this.tags.addAll(tags);
         this.gitHub = gitHub;
+        this.mods.addAll(mods);
     }
 
     public Name getName() {
@@ -64,6 +66,23 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable mods set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Mod> getMods() {
+        return Collections.unmodifiableSet(mods);
+    }
+
+    /**
+     * Appends a set of mods to the current mods linked to this person.
+     *
+     * @param mods The set of mods to add in.
+     */
+    public void addMods(Set<Mod> mods) {
+        this.mods.addAll(mods);
     }
 
     /**
@@ -98,32 +117,37 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getTelegram().equals(getTelegram())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getMods().equals(getMods());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, handle, gitHub, tags);
+        return Objects.hash(name, phone, email, handle, gitHub, tags, mods);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
                 .append("; Telegram: ")
                 .append(getTelegram())
                 .append("; GitHub: ")
-                .append(getGitHub());
+                .append(getGitHub())
+                .append("; Phone: ")
+                .append(getPhone())
+                .append("; Email: ")
+                .append(getEmail());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        if (!mods.isEmpty()) {
+            builder.append("; Mods: ");
+            mods.forEach(builder::append);
         }
         return builder.toString();
     }
