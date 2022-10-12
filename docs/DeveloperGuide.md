@@ -332,17 +332,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-* 1a. MassLinkers detects no tags specified by the student or at least one of the tags specified is/are not associated with any batchmate (i.e invalid tags).
-* 1a1. MassLinkers requests for all tags specified to be valid.
+* 1a. MassLinkers detects an invalid input. (No tags specified by the student)
+* 1a1. MassLinkers requests for at least one tag to be specified.
 * 1a2. Student inputs new tags.
-* Steps 1a1-1a2 are repeated until all tags specified are valid.
+* Steps 1a1-1a2 are repeated until input is valid.
   \
   Use case resumes from step 2.
 * *a. At any time, Student chooses to close MassLinkers.
     * a1. MassLinkers updates the storage file.
       \
       Use case ends.
-
 
 **Use case 4: Add a tag to a batchmate**
 
