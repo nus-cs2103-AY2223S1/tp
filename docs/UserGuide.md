@@ -73,7 +73,7 @@ Format: `help`
 
 Adds a profile to NUScheduler.
 
-Format: `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…`
+Format: `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A profile can have 0 or more tags
@@ -81,6 +81,7 @@ A profile can have 0 or more tags
 
 Examples:
 * `profile -a n/John Doe p/98765432 e/johnd@example.com t/friend`
+* `profile -a n/Jane Smith e/jane_s@example.com p/91234580 tg/jane_s`
 * `profile -a n/Betsy Crowe e/betsycrowe@example.com p/1234567 t/professor t/lecturer`
 
 ### Viewing all profiles: `profile -v`
@@ -93,18 +94,19 @@ Format: `profile -v`
 
 Edits an existing profile in NUScheduler.
 
-Format: `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…`
+Format: `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…`
 
 * Edits the profile at the specified `INDEX`. The index refers to the index number shown in the displayed profile list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* You can remove the profile's telegram username by typing `tg/` without specifying any username after it.
 * When editing tags, the existing tags of the profile will be removed i.e adding of tags is not cumulative.
-* You can remove all the profile’s tags by typing `t/` without
-  specifying any tags after it.
+* You can remove all the profile’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `profile -e 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st profile to be `91234567` and `johndoe@example.com` respectively.
-*  `profile -e 2 n/Betsy Crower t/` Edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
+* `profile -e 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st profile to be `91234567` and `johndoe@example.com` respectively.
+* `profile -e 2 n/Betsy Crower t/` Edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
+* `profile -e 3 tg/ t/` Clears the telegram username and tags of the 3rd profile. 
 
 ### Finding profiles by name: `profile -f KEYWORD [MORE_KEYWORDS]`
 
@@ -145,7 +147,6 @@ Format: `event -a n/NAME s/START e/END [p/PROFILE]…`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An event can have 0 or more profiles
 </div>
-
 
 ### Viewing upcoming events: `event -u`
 
@@ -205,15 +206,15 @@ No FAQ Yet.
 
 ## Command summary
 
-| Action                     | Format, Examples                                         |
-|----------------------------|----------------------------------------------------------|
-| **Add Profile**            | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…`      |
-| **Delete Profile**         | `profile -d INDEX`                                       |
-| **Edit Profile**           | `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…` |
-| **View Profiles**          | `profile -v`                                             |
-| **Find Profile**           | `profile -f KEYWORD [MORE_KEYWORDS]`                     |
-| **Add Event**              | `event -a n/NAME s/START e/END [p/PROFILE]…`             |
-| **Delete Event**           | `event -d INDEX`                                         |
-| **View Events**            | `event -v`                                               |
-| **View Upcoming Event(s)** | `event -u DAYS`                                          |
-| **Find Event**             | `event -f KEYWORD [MORE_KEYWORDS]`                       |
+| Action                     | Format, Examples                                                                |
+|----------------------------|---------------------------------------------------------------------------------|
+| **Add Profile**            | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`      |
+| **Delete Profile**         | `profile -d INDEX`                                                              |
+| **Edit Profile**           | `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…` |
+| **View Profiles**          | `profile -v`                                                                    |
+| **Find Profile**           | `profile -f KEYWORD [MORE_KEYWORDS]`                                            |
+| **Add Event**              | `event -a n/NAME s/START e/END [p/PROFILE]…`                                    |
+| **Delete Event**           | `event -d INDEX`                                                                |
+| **View Events**            | `event -v`                                                                      |
+| **View Upcoming Event(s)** | `event -u DAYS`                                                                 |
+| **Find Event**             | `event -f KEYWORD [MORE_KEYWORDS]`                                              |
