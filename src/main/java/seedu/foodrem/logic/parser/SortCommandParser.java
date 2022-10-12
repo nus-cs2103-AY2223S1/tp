@@ -10,7 +10,7 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_SORT_BY_UNIT;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.foodrem.logic.commands.SortCommand;
+import seedu.foodrem.logic.commands.itemcommands.SortCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.itemcomparators.ItemBoughtDateComparator;

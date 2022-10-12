@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.commands;
+package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
@@ -8,6 +8,8 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.foodrem.commons.core.Messages;
+import seedu.foodrem.logic.commands.Command;
+import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.util.ChainComparator;
