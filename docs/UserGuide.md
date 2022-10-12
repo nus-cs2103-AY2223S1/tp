@@ -95,7 +95,7 @@ Adds a comment on the specified tutor.
 
 Format: `comment INDEX c/COMMENT`
 
-* Comments on the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+* Comments on the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * Only 1 comment can be made on the tutor.
 * To edit an existing comment, doing the comment command on the INDEX of the specified tutor updates the comment on the tutor.
 * You can remove the tutor's comments by typing c/ without specifying any tags after it.
@@ -110,7 +110,7 @@ Edits an existing tutor in Tuthub.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [t/TAG]…​`
 
-* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed tutor list. The index must be a positive integer 1, 2, 3, …​
+* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed tutor list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the tutor will be removed i.e adding of tags is not cumulative.
