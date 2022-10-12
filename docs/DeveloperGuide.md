@@ -163,7 +163,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedFoodRem`. It extends `FoodRem` with an undo/redo history, stored internally as an `foodRemStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-*`VersionedFoodRem#commit()` — Saves the current address book state in its history.
+* `VersionedFoodRem#commit()` — Saves the current address book state in its history.
 * `VersionedFoodRem#undo()` — Restores the previous address book state from its history.
 * `VersionedFoodRem#redo()` — Restores a previously undone address book state from its history.
 
@@ -222,7 +222,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -261,13 +261,12 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 Purchasing managers who are proficient with typing for small F&B businesses
 
-
-**Value proposition**:  
+**Value proposition**:
 This application will help small businesses to manage perishable goods within a single inventory
 (no support for multiple inventories).
 
-
 ### User stories
+
 Add Inventory Item:
 
 Delete Inventory Item:
@@ -507,7 +506,7 @@ Example:
 
 #### Command Line
 
-> The interface that the user interacts FoodREM with. It is represented as the box where the user types in commands into.
+> The interface that the user interacts FoodRem with. It is represented as the box where the user types in commands into.
 
 ### E
 
