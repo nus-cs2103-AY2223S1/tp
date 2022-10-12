@@ -127,20 +127,6 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified studentId is invalid (not of the correct format "A" + 7 numbers + 1 letter).
      */
-    public static StudentId parseStudentId(String studentId) throws ParseException {
-        requireNonNull(studentId);
-        String trimmedId = studentId.trim();
-        if (!StudentId.isValidStudentId(trimmedId)) {
-            throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
-        }
-        return new StudentId(trimmedId);
-    }
-
-    /**
-     * Parses {@code String studentId} into an {@code StudentId} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified studentId is invalid (not of the correct format "A" + 7 numbers + 1 letter).
-     */
     public static ProjectStatus parseProjectStatus(String projectStatus) throws ParseException {
         requireNonNull(projectStatus);
         String trimmedProjectStatus = projectStatus.trim();
