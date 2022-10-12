@@ -1,10 +1,12 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.testutil.TypicalTeams;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class JsonAdaptedTeamTest {
 
