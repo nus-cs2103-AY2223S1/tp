@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalProperties.HUT;
+import static seedu.address.testutil.TypicalProperties.PEAKRESIDENCE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,7 +19,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.address.testutil.PersonModelBuilder;
+import seedu.address.testutil.PropertyModelBuilder;
 
 public class ModelManagerTest {
 
@@ -27,6 +32,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new PersonModel(), new PersonModel(modelManager.getPersonModel()));
+        assertEquals(new PropertyModel(), new PropertyModel(modelManager.getPropertyModel()));
     }
 
     @Test
@@ -94,14 +100,49 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setPropertyModelFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPropertyModelFilePath(null));
+    }
+
+    @Test
+    public void setPropertyModelFilePath_validPath_setsPropertyModelFilePath() {
+        Path path = Paths.get("address/book/file/path");
+        modelManager.setPropertyModelFilePath(path);
+        assertEquals(path, modelManager.getPropertyModelFilePath());
+    }
+
+    @Test
+    public void hasProperty_nullProperty_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasProperty(null));
+    }
+
+    @Test
+    public void hasProperty_propertyNotInPropertyModel_returnsFalse() {
+        assertFalse(modelManager.hasProperty(PEAKRESIDENCE));
+    }
+
+    @Test
+    public void hasProperty_propertyInPropertyModel_returnsTrue() {
+        modelManager.addProperty(PEAKRESIDENCE);
+        assertTrue(modelManager.hasProperty(PEAKRESIDENCE));
+    }
+
+    @Test
+    public void getFilteredPropertyList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPropertyList().remove(0));
+    }
+
+    @Test
     public void equals() {
         PersonModel personModel = new PersonModelBuilder().withPerson(ALICE).withPerson(BENSON).build();
         PersonModel differentPersonModel = new PersonModel();
+        PropertyModel propertyModel = new PropertyModelBuilder().withProperty(PEAKRESIDENCE).withProperty(HUT).build();
+        PropertyModel differentPropertyModel = new PropertyModel();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(personModel, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(personModel, userPrefs);
+        modelManager = new ModelManager(personModel, propertyModel, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(personModel, propertyModel, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,19 +155,34 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different personModel -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentPersonModel, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentPersonModel, propertyModel, userPrefs)));
 
-        // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(personModel, userPrefs)));
+        // different propertyModel -> returns false
+        assertFalse(modelManager.equals(new ModelManager(personModel, differentPropertyModel, userPrefs)));
 
-        // resets modelManager to initial state for upcoming tests
+        // different personModel and propertyModel -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentPersonModel, differentPropertyModel, userPrefs)));
+
+        // different filteredPersonList -> returns false
+        String[] keywordsForAlice = ALICE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywordsForAlice)));
+        assertFalse(modelManager.equals(new ModelManager(personModel, propertyModel, userPrefs)));
+
+        // resets filteredPersonList in modelManager for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // different filteredPropertyList -> returns false
+        String[] keywordsForPeak = PEAKRESIDENCE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredPropertyList(
+                new PropertyNameContainsKeywordsPredicate(Arrays.asList(keywordsForPeak)));
+        assertFalse(modelManager.equals(new ModelManager(personModel, propertyModel, userPrefs)));
+
+        // resets filteredPropertyList in modelManager for upcoming tests
+        modelManager.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setPersonModelFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(personModel, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(personModel, propertyModel, differentUserPrefs)));
     }
 }
