@@ -2,6 +2,8 @@ package jeryl.fyp.logic.parser;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,9 +24,12 @@ import jeryl.fyp.logic.commands.ExitCommand;
 import jeryl.fyp.logic.commands.FindCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
+import jeryl.fyp.logic.commands.MarkCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.testutil.EditStudentDescriptorBuilder;
 import jeryl.fyp.testutil.StudentBuilder;
 import jeryl.fyp.testutil.StudentUtil;
@@ -96,11 +101,11 @@ public class FypManagerParserTest {
 
     @Test
     public void parseCommand_mark() throws Exception {
-        // assertTrue(parser.parseCommand(MarkCommand.COMMAND_WORD) instanceof MarkCommand);
-        // final String remark = "Some remark.";
-        // RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
-        //     + INDEX_FIRST_STUDENT.getOneBased() + " " + PREFIX_REMARK + remark);
-        // assertEquals(new RemarkCommand(INDEX_FIRST_STUDENT, remark), command);
+        final StudentId studentId = new StudentId("A0123456G");
+        final ProjectStatus projectStatus = new ProjectStatus("DONE");
+        MarkCommand command = (MarkCommand) parser.parseCommand(MarkCommand.COMMAND_WORD + " "
+                + PREFIX_STUDENT_ID + studentId + " " + PREFIX_STATUS + projectStatus);
+        assertEquals(new MarkCommand(studentId, projectStatus), command);
     }
 
     @Test

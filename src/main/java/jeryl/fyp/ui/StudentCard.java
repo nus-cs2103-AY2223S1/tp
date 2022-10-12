@@ -39,7 +39,10 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label projectName;
     @FXML
+    private Label projectStatus;
+    @FXML
     private FlowPane tags;
+
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -52,6 +55,7 @@ public class StudentCard extends UiPart<Region> {
         studentId.setText(student.getStudentId().id);
         email.setText(student.getEmail().value);
         projectName.setText(student.getProjectName().fullProjectName);
+        projectStatus.setText(student.getProjectStatus().projectStatus);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

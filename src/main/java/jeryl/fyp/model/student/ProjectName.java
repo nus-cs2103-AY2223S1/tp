@@ -5,7 +5,7 @@ import static jeryl.fyp.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Student's project name in the FYP manager.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidProjectName(String)}
  */
 public class ProjectName {
 
