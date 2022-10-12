@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Person;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
@@ -39,6 +40,7 @@ public interface Logic {
     ObservableList<Project> getFilteredProjectList();
 
     ObservableList<Issue> getFilteredIssueList();
+    ObservableList<Client> getFilteredClientList();
 
     /**
      * Returns the user prefs' address book file path.
