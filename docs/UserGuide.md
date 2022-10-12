@@ -155,13 +155,13 @@ Sorts and displays items based on sorting criteria
 
 ## Command summary
 
-| Action                | Format                                                     | Examples                                                                         |
-|-----------------------|------------------------------------------------------------|----------------------------------------------------------------------------------|
-| **list** (supplier)   | `list `                                                    | `list `<br>`list /task`                                                       |
+| Action                | Format                                                     | Examples                                                                           |
+|-----------------------|------------------------------------------------------------|------------------------------------------------------------------------------------|
+| **list** (supplier)   | `list `                                                    | `list `<br>`list /task`                                                            |
 | **add**  (supplier)   | `add n/NAME p/PHONE pr/PRICE i/ITEM a/ADDRESS t/Supplier`  | `add n/ABC PTE LTD p/67009000 pr/$1.10 i/Egg a/Blk 140 Woodlands Ave 3 t/Supplier` |
-| **delete** (supplier) | `delete <index>`                                           | `delete 1`                                                                    |
-| **mark**              | `mark <task to be marked>`                                 | `mark restock cups`                                                              |
-| **unmark**            | `unmark <task to be unmarked>`                             | `unmark restock cups`                                                            |
-| **edit**  (supplier)  | `edit <index of item> /<attribute name> <new value>`       | `edit 3 pr/NEW PRICE`                                                            |
-| **find**  (supplier)  | `find <name value>`                                        | `find John Cena`                                                                 |
-| **sort**              | `sort /<item type> <sort criteria> <ascending/descending>` | `sort /task time descending`                                                     |
+| **delete** (supplier) | `delete <index>`                                           | `delete 1`                                                                         |
+| **mark**              | `mark <task to be marked>`                                 | `mark restock cups`                                                                |
+| **unmark**            | `unmark <task to be unmarked>`                             | `unmark restock cups`                                                              |
+| **edit**  (supplier)  | `edit <index of item> /<attribute name> <new value>`       | `edit 3 pr/NEW PRICE`                                                              |
+| **find**  (supplier)  | `find <name value>`                                        | `find John Cena`                                                                   |
+| **sort**              | `sort /<item type> <sort criteria> <ascending/descending>` | `sort /task time descending`                                                       |
