@@ -11,21 +11,24 @@ import org.junit.jupiter.api.Test;
 
 import hobbylist.testutil.ActivityBuilder;
 
-public class NameContainsKeywordsPredicateTest {
+public class NameOrDescContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        NameOrDescContainsKeywordsPredicate firstPredicate = new NameOrDescContainsKeywordsPredicate(firstPredicateKeywordList);
-        NameOrDescContainsKeywordsPredicate secondPredicate = new NameOrDescContainsKeywordsPredicate(secondPredicateKeywordList);
+        NameOrDescContainsKeywordsPredicate firstPredicate = 
+                new NameOrDescContainsKeywordsPredicate(firstPredicateKeywordList);
+        NameOrDescContainsKeywordsPredicate secondPredicate = 
+                new NameOrDescContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameOrDescContainsKeywordsPredicate firstPredicateCopy = new NameOrDescContainsKeywordsPredicate(firstPredicateKeywordList);
+        NameOrDescContainsKeywordsPredicate firstPredicateCopy = 
+                new NameOrDescContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +44,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameOrDescContainsKeywordsPredicate predicate = new NameOrDescContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        NameOrDescContainsKeywordsPredicate predicate = 
+                new NameOrDescContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new ActivityBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -55,20 +59,25 @@ public class NameContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new ActivityBuilder().withName("Alice Bob").build()));
+
+        // Matching description
+        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Main", "Street"));
+        assertTrue(predicate.test(new ActivityBuilder().withName("Alice").withDescription("Main Street").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        NameOrDescContainsKeywordsPredicate predicate = new NameOrDescContainsKeywordsPredicate(Collections.emptyList());
+        NameOrDescContainsKeywordsPredicate predicate = 
+                new NameOrDescContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ActivityBuilder().withName("Alice").build()));
 
         // Non-matching keyword
         predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new ActivityBuilder().withName("Alice Bob").build()));
-
-        // Keywords match description, but does not match name
-        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Main", "Street"));
-        assertFalse(predicate.test(new ActivityBuilder().withName("Alice").withDescription("Main Street").build()));
+        
+        // Non-matching keyword in name and description
+        predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Carol"));
+        assertFalse(predicate.test(new ActivityBuilder().withName("Alice Bob").withDescription("Charlie David").build()));
     }
 }
