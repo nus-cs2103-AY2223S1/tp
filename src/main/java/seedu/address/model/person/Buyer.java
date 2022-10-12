@@ -20,7 +20,9 @@ public class Buyer extends Person {
                  Set<Tag> tags,
                  List<Order> orders) {
         super(personCategory, name, phone, email, address, tags);
-        this.orders.addAll(orders);
+        if (orders != null) {
+            this.orders.addAll(orders);
+        }
     }
 
     public List<Order> getOrders() {
@@ -32,7 +34,9 @@ public class Buyer extends Person {
     }
 
     public void addOrder(List<Order> orders) {
-        this.orders.addAll(orders);
+        if (orders != null) {
+            this.orders.addAll(orders);
+        }
     }
 
     public void deleteOrder(Order order) {

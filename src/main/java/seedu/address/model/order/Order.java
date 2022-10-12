@@ -89,6 +89,10 @@ public class Order {
         return status;
     }
 
+    public Pet getPet() {
+        return pet;
+    }
+
     public void updateRequestedPriceRange(Price upperBound, Price lowerBound) {
         requestedPriceRange.updatePriceRange(upperBound, lowerBound);
     }

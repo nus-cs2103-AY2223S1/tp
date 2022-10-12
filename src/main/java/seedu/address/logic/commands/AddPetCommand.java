@@ -20,7 +20,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_WEIGHT;
 
 public class AddPetCommand {
-    public static final String COMMAND_WORD = "add-p";
+    public static final String COMMAND_WORD = "add-pt";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a standalone pet or an order affiliated to an order or a person. "
             + "Parameters: "
@@ -46,8 +46,8 @@ public class AddPetCommand {
             + PREFIX_PET_SPECIES + "chihuahua "
             + PREFIX_PET_VACCINATION_STATUS + "true "
             + PREFIX_PET_WEIGHT + "15.3 "
-            + PREFIX_PET_CERTIFICATE + "Good-Dog Cert."
-            + PREFIX_PET_CERTIFICATE + "Royal Blood Cert."
-            + PREFIX_PET_TAG + "naughty"
+            + PREFIX_PET_CERTIFICATE + "Good-Dog Cert. "
+            + PREFIX_PET_CERTIFICATE + "Royal Blood Cert. "
+            + PREFIX_PET_TAG + "naughty "
             + PREFIX_PET_TAG + "sold\n";
 }
