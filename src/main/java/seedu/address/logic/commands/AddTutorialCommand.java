@@ -12,7 +12,7 @@ import seedu.address.model.tutorial.Tutorial;
 
 
 /**
- * Adds a tutorial in the address book.
+ * Adds a tutorial in the tutorial list.
  */
 public class AddTutorialCommand extends Command {
 
