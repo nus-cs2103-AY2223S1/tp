@@ -123,9 +123,9 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void getUserPrefsFilePath() {
-        Path pefsFilePath = testFolder.resolve("TempPrefs.json");
-        JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
-        assertEquals(jsonUserPrefsStorage.getUserPrefsFilePath(), pefsFilePath);
+        Path prefsFilePath = testFolder.resolve("TempPrefs.json");
+        JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(prefsFilePath);
+        assertEquals(jsonUserPrefsStorage.getUserPrefsFilePath(), prefsFilePath);
         assertNotEquals(jsonUserPrefsStorage.getUserPrefsFilePath(), testFolder.resolve(""));
     }
 }
