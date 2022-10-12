@@ -78,18 +78,18 @@ public class FindByModuleCommandTest {
         assertEquals(Arrays.asList(HOON, JACKSON), model.getFilteredPersonList());
     }
 
-    /**
-     * Parses {@code userInput} into a {@code ModuleContainsKeywordsPredicate}.
-     */
-    private ModuleContainsKeywordPredicate preparePredicate(String userInput) {
-        return new ModuleContainsKeywordPredicate(Arrays.asList(userInput.split("\\s+")));
-    }
-    
     private AddressBook getTestTaAddressBook() {
         AddressBook testTaAddressBook = new AddressBook();
         for (Person person : testTaList) {
             testTaAddressBook.addPerson(person);
         }
         return testTaAddressBook;
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code ModuleContainsKeywordsPredicate}.
+     */
+    private ModuleContainsKeywordPredicate preparePredicate(String userInput) {
+        return new ModuleContainsKeywordPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
