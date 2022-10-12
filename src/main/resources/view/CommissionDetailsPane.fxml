@@ -112,7 +112,7 @@
                 </HBox>
                 <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS">
                     <placeholder>
-                        <HBox>
+                        <HBox alignment="TOP_CENTER">
                             <Label styleClass="noSuchData" text="No iterations found"
                                    VBox.vgrow="ALWAYS" minHeight="80" minWidth="300" textAlignment="CENTER"
                                    alignment="CENTER" style="-fx-text-fill: #6F747E;">
