@@ -6,7 +6,7 @@ public class Weight {
 
     private final double value;
 
-    Weight(double value) {
+    public Weight(double value) {
         this.value = value;
     }
 

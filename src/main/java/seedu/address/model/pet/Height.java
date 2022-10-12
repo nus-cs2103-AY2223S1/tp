@@ -6,7 +6,7 @@ public class Height {
 
     private final double value;
 
-    Height(double value) {
+    public Height(double value) {
         this.value = value;
     }
 
