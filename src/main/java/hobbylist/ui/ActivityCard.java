@@ -3,11 +3,16 @@ package hobbylist.ui;
 import java.util.Comparator;
 
 import hobbylist.model.activity.Activity;
+import hobbylist.model.tag.Tag;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 
 /**
  * An UI component that displays information of a {@code Activity}.
@@ -49,6 +54,13 @@ public class ActivityCard extends UiPart<Region> {
         activity.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        activity.getTags().stream()
+                .forEach(Label -> tags.setBackground(new Background(
+                        new BackgroundFill(Color.web(intToHexColor(Label)), new CornerRadii(5), null))));
+    }
+
+    private String intToHexColor(Tag tag) {
+        return String.format("#%06X", (0xFFFFFF & tag.hashCode() ));
     }
 
     @Override
