@@ -140,6 +140,19 @@ public class FilterCommandTest {
         assertEquals(Arrays.asList(ALICE, DANIEL), model.getFilteredResidentList());
     }
 
+    @Test
+    public void execute_roomSpecifiedUnfilteredList_success() {
+        ResidentDescriptor descriptor = new ResidentDescriptorBuilder()
+                .withRoom(ALICE.getRoom()).build();
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
+        AttributesMatchKeywordsPredicate predicate =
+                new AttributesMatchKeywordsPredicate(descriptor);
+        FilterCommand command = new FilterCommand(descriptor);
+        expectedModel.updateFilteredResidentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE), model.getFilteredResidentList());
+    }
+
 
     @Test
     public void equals() {
