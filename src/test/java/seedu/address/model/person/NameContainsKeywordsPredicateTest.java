@@ -55,6 +55,38 @@ public class NameContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Keywords match phone, email, address and github username
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street",
+                "AliceInTheWonderLand"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+                .withEmail("alice@email.com").withTelegram("Main Street")
+                .withGitHub("AliceInTheWonderLand").build()));
+
+        // Keywords matching github username
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aliceinthewonderland"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+                .withEmail("alice@email.com").withTelegram("Main Street")
+                .withGitHub("AliceInTheWonderLand").build()));
+
+        // Keywords containing partially-matching github username
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("wonderland"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+                .withEmail("alice@email.com").withTelegram("Main Street")
+                .withGitHub("AliceInTheWonderLand").build()));
+
+        // Keywords containing partially-matching telegram handle
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("shuai"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Handsome").withPhone("999769")
+                .withEmail("lengzai@email.com").withTelegram("woShiDaShuaiGe")
+                .withGitHub("handsomelengzai888").build()));
+
+        // Keywords containing partially-matching telegram handle
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("999"));
+        assertTrue(predicate.test(new PersonBuilder().withName("mata").withPhone("180099969")
+                .withEmail("polis@email.com").withTelegram("polis")
+                .withGitHub("iamPolis").build()));
+
     }
 
     @Test
@@ -67,9 +99,17 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
-        // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        // Array containing no matching keyword
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("jonasGoh"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withTelegram("Main Street").build()));
+                .withEmail("alice@email.com").withTelegram("Main Street")
+                .withGitHub("AliceInTheWonderLand").build()));
+
+        // Array containing no matching keyword
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("999"));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+                .withEmail("alice@email.com").withTelegram("Main Street")
+                .withGitHub("AliceInTheWonderLand").build()));
+
     }
 }

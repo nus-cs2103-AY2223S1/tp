@@ -283,7 +283,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student          | delete a classmate                       | remove unneeded entries                                                    |
 | `* * *`  | student          | find a classmate by name/Github username | locate their details to review and give feedback on their iP and tP easily |
 | `* * *`  | student          | tag a classmate with a tag               | find them easily                                                           |
-| `* * *`  | student          | sort classmates using a specified tag    | locate classmates with the specified tag easily                            |
+| `* * *`  | student          | find classmates using specified tags     | locate classmates with the specified tag easily                            |
 | `* *`    | student          | save my data to a file                   | access the data on different devices                                       |
 | `* *`    | technical person | close the App using a command            | close the App easily                                                       |
 
