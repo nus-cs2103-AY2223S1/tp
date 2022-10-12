@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -32,7 +33,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_LESSON_PLAN, PREFIX_TAG);
+                        PREFIX_LESSON_PLAN, PREFIX_HOMEWORK, PREFIX_TAG);
 
         Index index;
 
@@ -52,6 +53,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_LESSON_PLAN).isPresent()) {
             editPersonDescriptor.setLessonPlan(ParserUtil.parseLessonPlan(
                     argMultimap.getValue(PREFIX_LESSON_PLAN).get()));
+        }
+        if (argMultimap.getValue(PREFIX_HOMEWORK).isPresent()) {
+            String[] homeworkArgs = ParserUtil.parseHomeworkInfo(argMultimap.getValue(PREFIX_HOMEWORK).get());
+            Index homeworkIndex = ParserUtil.parseIndex(homeworkArgs[0]);
+            editPersonDescriptor.setHomeworkIndex(homeworkIndex);
+            editPersonDescriptor.setHomework(ParserUtil.parseHomework(homeworkArgs[1]));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

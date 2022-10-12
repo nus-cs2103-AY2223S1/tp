@@ -5,12 +5,17 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+
 /**
  * Represents a Person's homework list in the address book.
  * Guarantees: list is present, and list and objects list are not null.
  */
 
 public class HomeworkList {
+    public static final String MESSAGE_INVALID_HOMEWORK_INDEX = "The homework index provided is invalid!";
+
     public final List<Homework> homeworkList;
 
     /**
@@ -39,6 +44,27 @@ public class HomeworkList {
     }
 
     /**
+     * Clears the homework list.
+     */
+    public void clearList() {
+        homeworkList.clear();
+    }
+
+    /**
+     * Edits the homework at the given index with the new given homework.
+     *
+     * @param index of homework to be edited
+     * @param homework that replaces the old homework
+     */
+    public void editAtIndex(Index index, Homework homework) throws CommandException {
+        int indexToEdit = index.getZeroBased();
+        if (indexToEdit >= homeworkList.size()) {
+            throw new CommandException(MESSAGE_INVALID_HOMEWORK_INDEX);
+        }
+        homeworkList.set(indexToEdit, homework);
+    }
+
+    /**
      * Returns a String description of the homework list. If homework list size is greater than two,
      * only the first two are shown.
      *
@@ -55,13 +81,6 @@ public class HomeworkList {
         }
         description.append("...\n");
         return description.toString();
-    }
-
-    /**
-     * Clears the homework list.
-     */
-    public void clearList() {
-        homeworkList.clear();
     }
 
     @Override

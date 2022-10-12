@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,7 +9,9 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Homework;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -73,6 +76,30 @@ public class ParserUtil {
         requireNonNull(lessonPlan);
         String trimmedLessonPlan = lessonPlan.trim();
         return new LessonPlan(trimmedLessonPlan);
+    }
+
+    /**
+     * Parses a {@code String homework} into an {@code Homework}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Homework parseHomework(String homework) {
+        requireNonNull(homework);
+        String trimmedHomework = homework.trim();
+        return new Homework(trimmedHomework);
+    }
+
+    /**
+     * Parses a {@code String homeworkInfo} and disassembles it into index and homework.
+     *
+     * @param homeworkInfo index and description of homework.
+     * @return array containing index in position 0 and homework description in position 1.
+     */
+    public static String[] parseHomeworkInfo(String homeworkInfo) throws ParseException {
+        String[] args = homeworkInfo.split(" ", 2);
+        if (args.length < 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+        return args;
     }
 
     /**

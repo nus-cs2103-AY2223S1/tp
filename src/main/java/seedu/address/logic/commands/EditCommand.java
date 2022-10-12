@@ -20,6 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.AttendanceList;
 import seedu.address.model.person.GradeProgressList;
+import seedu.address.model.person.Homework;
 import seedu.address.model.person.HomeworkList;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
@@ -89,14 +90,22 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         LessonPlan updatedLessonPlan = editPersonDescriptor.getLessonPlan()
                                         .orElse(personToEdit.getLessonPlan());
+
         HomeworkList updatedHomeworkList = personToEdit.getHomeworkList();
+        Optional<Homework> homework = editPersonDescriptor.getHomework();
+        Optional<Index> homeworkIndex = editPersonDescriptor.getHomeworkIndex();
+        if (homework.isPresent() && homeworkIndex.isPresent()) {
+            updatedHomeworkList.editAtIndex(homeworkIndex.get(), homework.get());
+        }
+
         AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         GradeProgressList updatedGradeProgressList = personToEdit.getGradeProgressList();
@@ -131,6 +140,8 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private LessonPlan lessonPlan;
+        private Index homeworkIndex;
+        private Homework homework;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -143,6 +154,8 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setLessonPlan(toCopy.lessonPlan);
+            setHomeworkIndex(toCopy.homeworkIndex);
+            setHomework(toCopy.homework);
             setTags(toCopy.tags);
         }
 
@@ -150,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, lessonPlan, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, lessonPlan, homework, tags);
         }
 
         public void setName(Name name) {
@@ -175,6 +188,22 @@ public class EditCommand extends Command {
 
         public Optional<LessonPlan> getLessonPlan() {
             return Optional.ofNullable(lessonPlan);
+        }
+
+        public void setHomework(Homework homework) {
+            this.homework = homework;
+        }
+
+        public Optional<Homework> getHomework() {
+            return Optional.ofNullable(homework);
+        }
+
+        public void setHomeworkIndex(Index homeworkIndex) {
+            this.homeworkIndex = homeworkIndex;
+        }
+
+        public Optional<Index> getHomeworkIndex() {
+            return Optional.ofNullable(homeworkIndex);
         }
 
         /**
