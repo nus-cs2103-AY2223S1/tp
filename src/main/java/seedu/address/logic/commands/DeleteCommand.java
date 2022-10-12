@@ -40,7 +40,7 @@ public class DeleteCommand extends Command {
     private Entry getEntryToDelete(Index targetIndex, List<Entry> lastShownList)
             throws CommandException {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
         return lastShownList.get(targetIndex.getZeroBased());
     }
@@ -53,12 +53,27 @@ public class DeleteCommand extends Command {
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             lastShownList = model.getFilteredExpenditureList();
+
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+            }
+            entryToDelete = lastShownList.get(targetIndex.getZeroBased());
+
             entryToDelete = getEntryToDelete(targetIndex, lastShownList);
+
             model.deleteExpenditure(entryToDelete);
             break;
         case INCOME:
             lastShownList = model.getFilteredIncomeList();
+
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+            }
+
+            entryToDelete = lastShownList.get(targetIndex.getZeroBased());
+
             entryToDelete = getEntryToDelete(targetIndex, lastShownList);
+
             model.deleteIncome(entryToDelete);
             break;
         default:

@@ -183,6 +183,16 @@ public class AddCommandTest {
         public void updateFilteredEntryList(Predicate<Entry> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredExpenditureList(Predicate<Entry> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredIncomeList(Predicate<Entry> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

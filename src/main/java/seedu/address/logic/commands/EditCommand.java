@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,6 +22,7 @@ import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,21 +36,22 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed entry list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TYPE + "TYPE] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_AMOUNT + "AMOUNT] "
+            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_TYPE + "e "
+            + PREFIX_DESCRIPTION + "Lunch@Deck";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Entry: %1$s";
+    public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited Entry: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This entry already exists in the penny wise application.";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the penny wise application.";
 
     private final Index index;
     private final EditEntryDescriptor editEntryDescriptor;
+    private final EntryType entryType;
 
     /**
      * @param index               of the entry in the filtered entry list to edit
@@ -61,28 +63,52 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editEntryDescriptor = new EditEntryDescriptor(editEntryDescriptor);
+        this.entryType = editEntryDescriptor.getType().get();
     }
 
     // TODO: Might have to edit
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Entry> lastShownList = model.getFilteredExpenditureList();
+        List<Entry> lastShownList;
+        switch (entryType.getEntryType()) {
+        case EXPENDITURE:
+            lastShownList = model.getFilteredExpenditureList();
+            break;
+        case INCOME:
+            lastShownList = model.getFilteredIncomeList();
+            break;
+        default:
+            // should never reach here
+            return null;
+        }
+
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
         Entry entryToEdit = lastShownList.get(index.getZeroBased());
         Entry editedEntry = createdEditedEntry(entryToEdit, editEntryDescriptor);
 
         if (!entryToEdit.isSameEntry(editedEntry) && model.hasExpenditure(editedEntry)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }
 
-        model.setExpenditure(entryToEdit, editedEntry);
-        model.updateFilteredEntryList(Model.PREDICATE_SHOW_ALL_ENTRIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedEntry));
+        switch (entryType.getEntryType()) {
+        case EXPENDITURE:
+            model.setExpenditure(entryToEdit, editedEntry);
+            model.updateFilteredExpenditureList(Model.PREDICATE_SHOW_ALL_ENTRIES);
+            break;
+        case INCOME:
+            model.setIncome(entryToEdit, editedEntry);
+            model.updateFilteredIncomeList(Model.PREDICATE_SHOW_ALL_ENTRIES);
+            break;
+        default:
+            // should never reach here
+            return null;
+        }
+        return new CommandResult(String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry));
     }
 
     /**
@@ -123,6 +149,7 @@ public class EditCommand extends Command {
      * corresponding field value of the entry.
      */
     public static class EditEntryDescriptor {
+        private EntryType entryType;
         private Description description;
         private Date date;
         private Amount amount;
@@ -138,6 +165,7 @@ public class EditCommand extends Command {
          */
         public EditEntryDescriptor(EditEntryDescriptor toCopy) {
             setDescription(toCopy.description);
+            setType(toCopy.entryType);
             setAmount(toCopy.amount);
             setDate(toCopy.date);
             setTags(toCopy.tags);
@@ -148,6 +176,14 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(description, amount, date, tags);
+        }
+
+        public void setType(EntryType entryType) {
+            this.entryType = entryType;
+        }
+
+        public Optional<EntryType> getType() {
+            return Optional.ofNullable(entryType);
         }
 
         public void setDescription(Description description) {
@@ -207,6 +243,7 @@ public class EditCommand extends Command {
             EditEntryDescriptor e = (EditEntryDescriptor) other;
 
             return getDescription().equals(e.getDescription())
+                    && getType().equals(e.getType())
                     && getAmount().equals(e.getAmount())
                     && getDate().equals(e.getDate())
                     && getTags().equals(e.getTags());

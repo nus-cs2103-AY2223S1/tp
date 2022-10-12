@@ -93,4 +93,21 @@ public class Entry {
                 && otherEntry.getAmount().equals(getAmount())
                 && otherEntry.getTags().equals(getTags());
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription())
+                .append("; Date: ")
+                .append(getDate())
+                .append("; Amount: ")
+                .append(getAmount());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
+        return builder.toString();
+    }
 }
