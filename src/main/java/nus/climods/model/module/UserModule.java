@@ -14,6 +14,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UserModule {
+    public static final String MESSAGE_MODULE_NOT_FOUND = "Module not in current NUS curriculum";
     private final ModulesApi api = new ModulesApi();
 
     // Identity fields
@@ -28,6 +29,13 @@ public class UserModule {
         } catch (ApiException e) {
             throw new ParseException("Module not in current NUS curriculum");
         }
+    }
+
+    /**
+     * Constructor for use purely in testing stub classes.
+     */
+    protected UserModule() {
+        this.apiModule = null;
     }
 
     public Module getApiModule() {return this.apiModule;}
