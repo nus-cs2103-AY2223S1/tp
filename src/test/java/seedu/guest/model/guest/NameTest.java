@@ -43,7 +43,11 @@ public class NameTest {
     @Test
     public void hashcode() {
         Name tempName = new Name("peter jack");
+
+        // same values -> return true
         assertEquals(tempName, new Name("peter jack"));
+
+        // different values -> return false
         assertNotEquals(tempName, new Name("peter the 2nd"));
     }
 }

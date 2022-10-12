@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_DATE_RANGE_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_NUMBER_OF_GUESTS_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.guest.testutil.TypicalGuests.ALICE;
 import static seedu.guest.testutil.TypicalGuests.BOB;
@@ -72,6 +74,14 @@ public class GuestTest {
         // different email -> returns false
         editedAlice = new GuestBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different date range -> returns false
+        editedAlice = new GuestBuilder(ALICE).withDateRange(VALID_DATE_RANGE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different number of guests -> returns false
+        editedAlice = new GuestBuilder(ALICE).withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
@@ -96,6 +106,14 @@ public class GuestTest {
 
         // different email -> returns false
         editedAlice = new GuestBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different date range -> returns false
+        editedAlice = new GuestBuilder(ALICE).withDateRange(VALID_DATE_RANGE_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different email -> returns false
+        editedAlice = new GuestBuilder(ALICE).withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB).build();
         assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
     }
 }

@@ -71,7 +71,11 @@ public class EmailTest {
     @Test
     public void hashcode() {
         Email tempEmail = new Email("test@localhost");
+
+        // same values -> return true
         assertEquals(tempEmail, new Email("test@localhost"));
+
+        // different values -> return false
         assertNotEquals(tempEmail, new Email("test@localhost1"));
     }
 }

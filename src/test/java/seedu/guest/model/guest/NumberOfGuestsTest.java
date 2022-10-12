@@ -42,7 +42,11 @@ public class NumberOfGuestsTest {
     @Test
     public void hashcode() {
         NumberOfGuests tempNumberOfGuests = new NumberOfGuests("4");
+
+        // same values -> return true
         assertEquals(tempNumberOfGuests, new NumberOfGuests("4"));
+
+        // different values -> return false
         assertNotEquals(tempNumberOfGuests, new NumberOfGuests("3"));
     }
 }

@@ -98,7 +98,10 @@ public class GuestBookTest {
 
     @Test
     public void hashcode() {
+        // same values -> return true
         assertEquals(guestBook.hashCode(), new GuestBook().hashCode());
+
+        // different values -> return false
         guestBook.addGuest(ALICE);
         assertNotEquals(guestBook.hashCode(), new GuestBook().hashCode());
     }

@@ -43,7 +43,11 @@ public class PhoneTest {
     @Test
     public void hashcode() {
         Phone tempPhone = new Phone("93121534");
+
+        // same values -> return true
         assertEquals(tempPhone, new Phone("93121534"));
-        assertNotEquals(tempPhone, new Phone("93121535"));
+
+        // different values -> return false
+        assertNotEquals(tempPhone, new Phone("99999999"));
     }
 }

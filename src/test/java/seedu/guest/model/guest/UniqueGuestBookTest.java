@@ -167,7 +167,10 @@ public class UniqueGuestBookTest {
 
     @Test
     public void hashcode() {
+        // same values -> return true
         assertEquals(uniqueGuestList.hashCode(), new UniqueGuestList().hashCode());
+
+        // different values -> return false
         uniqueGuestList.add(ALICE);
         assertNotEquals(uniqueGuestList.hashCode(), new UniqueGuestList().hashCode());
     }

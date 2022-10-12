@@ -48,7 +48,11 @@ public class DateRangeTest {
     @Test
     public void hashcode() {
         DateRange tempDateRange = new DateRange("13/09/22 - 14/09/22");
+
+        // same values -> return true
         assertEquals(tempDateRange, new DateRange("13/09/22 - 14/09/22"));
+
+        // different values -> return false
         assertNotEquals(tempDateRange, new DateRange("13/09/22 - 15/09/22"));
     }
 }
