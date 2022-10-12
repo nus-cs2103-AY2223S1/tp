@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 
@@ -16,7 +15,13 @@ import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 public abstract class AbstractContainerItem extends DisplayItemList<DisplayItem> implements DisplayItem {
 
     protected AbstractContainerItem parent = null;
+    protected String name;
     protected String fullPath = null;
+
+    protected AbstractContainerItem(String name, AbstractContainerItem parent) {
+        this.name = name;
+        this.parent = parent;
+    }
 
     @Override
     public void add(DisplayItem toAdd) {
@@ -48,31 +53,49 @@ public abstract class AbstractContainerItem extends DisplayItemList<DisplayItem>
         setItems(replacement.internalList);
     }
 
-    private String getTitle(List<String> sb) {
+    private String getTitle(List<String> sb, AbstractContainerItem o) {
         sb.add(toString());
-        if (parent == null) {
+        if (parent == null || parent.equals(o)) {
             Collections.reverse(sb);
-            return sb.stream().collect(Collectors.joining("/"));
+            return "/"+String.join("/", sb);    
         }
-        return parent.getTitle(sb);
+        return parent.getTitle(sb,o);
     }
 
     protected void regenerateFullPathName() {
-        fullPath = getTitle(new ArrayList<String>());
+        fullPath = getTitle(new ArrayList<String>(), null);
     }
 
     public String getFullPathName() {
         if (fullPath != null) {
             regenerateFullPathName();
         }
-        return fullPath;
+        return getTitle(new ArrayList<String>(), null);
     }
+
+    public String getRelativePathName(AbstractContainerItem o) {
+        return getTitle(new ArrayList<String>(), o);
+    } 
 
     @Override
     public void setParent(DisplayItem o) {
+        if (o == null) {
+            parent = null;
+            return;
+        }
         if (!(o instanceof AbstractContainerItem)) {
             throw new ItemCannotBeParentException(o);
         }
         parent = (AbstractContainerItem) o;
+        regenerateFullPathName();
+    }
+
+    public AbstractContainerItem getParent() {
+        return parent;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
