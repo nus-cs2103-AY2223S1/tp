@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class MeetingTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting times should be in the format HH:MM";
+            "Meeting times should be in the format HHMM";
     private final LocalTime time;
 
     /**
