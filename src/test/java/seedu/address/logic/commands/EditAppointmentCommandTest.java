@@ -67,7 +67,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_overwriteNoExistingAppointmentsWithAppointment_failure() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        Person testPerson = new PersonBuilder(MUSAB).buildWithoutAppointments();
+        Person testPerson = new PersonBuilder(MUSAB).build();
         testModel.addPerson(testPerson);
 
         Person expectedPerson = new PersonBuilder(MUSAB).withAppointments(

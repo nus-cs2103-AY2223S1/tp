@@ -101,16 +101,17 @@ public class PersonBuilder {
         return this;
     }
 
+
+    /**
+     * Returns a Person with the respective arguments as fields
+     * By default, the set of appointments field is created but is empty
+     */
     public Person build() {
         return new Person(name, phone, email, address, tags);
     }
 
     public Person buildWithAppointments() {
         return new Person(name, phone, email, address, tags, appointments);
-    }
-
-    public Person buildWithoutAppointments() {
-        return new Person(name, phone, email, address, tags, null);
     }
 
 

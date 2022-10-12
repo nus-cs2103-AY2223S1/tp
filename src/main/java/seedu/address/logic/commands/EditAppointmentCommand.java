@@ -66,7 +66,7 @@ public class EditAppointmentCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        if (personToEdit.getAppointments() == null) {
+        if (personToEdit.getAppointments().isEmpty()) {
             throw new CommandException(MESSAGE_NO_APPOINTMENT_TO_EDIT);
         }
 
