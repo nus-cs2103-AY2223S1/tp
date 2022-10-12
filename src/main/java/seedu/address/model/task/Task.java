@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Task {
 
     private final Name name;
-    private Boolean isDone;
+    private boolean isDone;
 
     /**
      * Constructs an unfinished {@code Task}.

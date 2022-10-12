@@ -41,8 +41,8 @@ public class Team {
      */
     public Team(Name name, List<Task> tasks, List<Person> members) {
         this.name = name;
-        tasks.addAll(tasks);
-        members.addAll(members);
+        this.tasks.addAll(tasks);
+        this.members.addAll(members);
     }
 
     public Name getName() {

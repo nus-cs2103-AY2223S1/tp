@@ -39,6 +39,7 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.
+     * @param toAdd person to add to team.
      */
     public void add(Person toAdd) {
         requireNonNull(toAdd);
@@ -46,6 +47,21 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Add a list of person to the list
+     * Every person must not already exist in the list.
+     * @param toAdd list of person to add to team.
+     */
+    public void addAll(List<Person> toAdd) {
+        requireNonNull(toAdd);
+        for (Person p : toAdd) {
+            if (contains(p)) {
+                throw  new DuplicatePersonException();
+            }
+            internalList.add(p);
+        }
     }
 
     /**
