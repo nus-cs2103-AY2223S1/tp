@@ -211,6 +211,11 @@ public class AddCommandTest {
         public ObservableList<Group> getFilteredTeamList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public AbstractContainerItem getContextContainer() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

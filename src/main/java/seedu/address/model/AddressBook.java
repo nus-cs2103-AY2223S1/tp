@@ -7,10 +7,10 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
-import seedu.address.model.item.exceptions.ItemNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at the address-book level Duplicates are not allowed (by .weakEquality comparison)
@@ -19,6 +19,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueGroupList teams;
+    private final UniqueTaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -33,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         teams = new UniqueGroupList();
+        tasks = new UniqueTaskList();
     }
 
     public AddressBook() {
@@ -119,7 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds a person to the address book. The person must not already exist in the address book.
      */
-    public void addGroup(Group g) {
+    public void addTeam(Group g) {
         teams.add(g);
     }
 
@@ -135,8 +137,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
-        Group parent = task.getParentGroup();
-        return hasGroup(parent) && parent.hasTask(task);
+        return tasks.contains(task);
     }
 
     /**
@@ -144,14 +145,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTask(Task task) {
         requireNonNull(task);
-        Group parent = task.getParentGroup();
-        if (hasGroup(parent)) {
-            Group myGroup = teams.get(parent);
-            task.setParent(myGroup);
-            myGroup.addTask(task);
-        } else {
-            throw new ItemNotFoundException();
-        }
+        tasks.add(task);
     }
 
     /**
@@ -159,20 +153,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeTask(Task task) {
         requireNonNull(task);
-        Group parent = task.getParentGroup();
-        if (hasGroup(parent)) {
-            Group myGroup = teams.get(parent);
-            myGroup.removeTask(task);
-        } else {
-            throw new ItemNotFoundException();
-        }
+        tasks.remove(task);
     }
     //// util methods
 
     @Override
     public String toString() {
-        return String.format("%d persons, %d task", persons.asUnmodifiableObservableList().size(),
-                teams.asUnmodifiableObservableList().size());
+        return String.format("%d persons, %d teams, %d task", persons.asUnmodifiableObservableList().size(),
+                teams.asUnmodifiableObservableList().size(), tasks.asUnmodifiableObservableList().size());
         // TODO: refine later
     }
 
@@ -190,11 +178,16 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        return persons.hashCode() ^ teams.hashCode();
+        return persons.hashCode() ^ teams.hashCode() ^ tasks.hashCode();
     }
 
     @Override
     public ObservableList<Group> getTeamsList() {
         return teams.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Task> getTasksList() {
+        return tasks.asUnmodifiableObservableList();
     }
 }

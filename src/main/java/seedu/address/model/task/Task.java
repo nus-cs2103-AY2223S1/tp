@@ -41,6 +41,14 @@ public class Task implements DisplayItem {
         this.completedTime = completedTime;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getCompletedTime() {
+        return completedTime;
+    }
+
     /**
      * Returns the parent {@code Group} of this Task.
      *
@@ -111,5 +119,10 @@ public class Task implements DisplayItem {
     @Override
     public boolean isPartOfContext(DisplayItem o) {
         return parent.equals(o);
+    }
+
+    @Override
+    public String toString() {
+        return title;
     }
 }

@@ -26,6 +26,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<Task> filteredTasks;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Group> filteredTeams;
     private Optional<AbstractContainerItem> currentContext = Optional.empty();
@@ -42,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTeams = new FilteredList<>(this.addressBook.getTeamsList());
+        filteredTasks = new FilteredList<>(this.addressBook.getTasksList());
     }
 
     public ModelManager() {
@@ -138,7 +140,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addTeam(Group grp) {
-        addressBook.addGroup(grp);
+        addressBook.addTeam(grp);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -160,6 +162,11 @@ public class ModelManager implements Model {
     public void addTask(Task task) {
         addressBook.addTask(task);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
     }
 
     // =========== Filtered Person List Accessors

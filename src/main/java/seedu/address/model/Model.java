@@ -104,6 +104,9 @@ public interface Model {
      */
     void addTask(Task task);
 
+        /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -144,4 +147,6 @@ public interface Model {
     void updateFilteredTeamList(List<Predicate<Group>> predicates);
 
     ObservableList<Group> getFilteredTeamList();
+
+    
 }
