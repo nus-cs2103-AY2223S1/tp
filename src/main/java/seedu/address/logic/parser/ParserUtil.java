@@ -16,6 +16,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.field.Field;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -156,5 +157,13 @@ public class ParserUtil {
         }
 
         return new Group(group);
+    }
+
+    public static Field parseField(String fieldName) throws ParseException {
+        requireNonNull(fieldName);
+        if (!Field.isValidField(fieldName)) {
+            throw new ParseException(Field.MESSAGE_CONSTRAINTS);
+        }
+        return new Field(fieldName);
     }
 }
