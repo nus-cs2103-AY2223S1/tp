@@ -94,6 +94,11 @@
     -fx-background-color: derive(#e6e6e6, 20%);
 }
 
+.meeting-condensed {
+    -fx-background-color: #e6e6e6;
+    -fx-border-color: black;
+}
+
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;

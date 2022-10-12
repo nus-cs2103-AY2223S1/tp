@@ -55,9 +55,6 @@
               </rowConstraints>
                <children>
                   <Label fx:id="phoneNumber" prefHeight="20.0" prefWidth="263.0" text="\$phoneNumber" GridPane.columnSpan="2">
-                     <GridPane.margin>
-                        <Insets left="5.0" />
-                     </GridPane.margin>
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -70,6 +67,9 @@
                      </padding>
                   </Label>
                </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </GridPane>
          </children>
          <GridPane.margin>
@@ -90,7 +90,7 @@
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label styleClass="label-subheader" text="Upcoming meetings:" GridPane.columnSpan="2" />
+                  <Label styleClass="label-subheader" text="Meeting Details:" GridPane.columnSpan="2" />
                   <Label styleClass="label-subheader" text="Description:" GridPane.columnSpan="2" GridPane.rowIndex="2" />
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
                      <children>
