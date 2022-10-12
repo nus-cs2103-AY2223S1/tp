@@ -128,14 +128,14 @@ public class Item {
     /**
      * Adds a tag to the item's tagSet
      */
-    public void addTag(Tag tag) {
+    public void addItemTag(Tag tag) {
         tagSet.add(tag);
     }
 
     /**
      * Removes a tag from the item's tagSet
      */
-    public void removeTag(Tag tag) {
+    public void removeItemTag(Tag tag) {
         tagSet.remove(tag);
     }
 
