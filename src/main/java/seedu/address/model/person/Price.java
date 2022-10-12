@@ -11,8 +11,9 @@ public class Price {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Price numbers should only contain numbers, and it should be in the $xx..x.xx format";
-    public static final String VALIDATION_REGEX = "\\$" + "\\d" + "\\." + "\\d{2}";
+            "Price numbers should only contain numbers, and it should be in 2 decimal places starting "
+                    + "starting with a $ sign";
+    public static final String VALIDATION_REGEX = "\\$" + "\\d+" + "\\." + "\\d{2}";
     public final String value;
 
     /**

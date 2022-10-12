@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: Salesy
 ---
 
 [![CI Status](https://github.com/AY2223S1-CS2103T-W08-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-W08-4/tp/actions)
