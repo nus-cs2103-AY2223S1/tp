@@ -13,6 +13,9 @@ import seedu.address.model.Name;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
+import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,6 +36,30 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String projectId} into a {@code Project}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param projectId in string format from user input
+     * @return Project of the project id
+     * @throws ParseException if the fiven {@code project} is invalid.
+     */
+    public static Project parseProject(String projectId) throws ParseException, NumberFormatException {
+        requireNonNull(projectId);
+        String trimmedProjectId = projectId.trim();
+        try {
+            Integer.parseInt(trimmedProjectId);
+        } catch (NumberFormatException e) {
+            throw new ParseException(ProjectId.MESSAGE_INVALID);
+        }
+        ProjectId projectIdRes = new ProjectId(Integer.parseInt(trimmedProjectId));
+        Project project = UniqueProjectList.getProject(projectIdRes);
+        if (!Project.isValidProject(project)) {
+            throw new ParseException(Project.MESSAGE_INVALID);
+        }
+        return project;
     }
 
     /**
