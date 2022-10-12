@@ -1,18 +1,24 @@
 # Gradle build files
-/.gradle/
-/build/
+.gradle/
+build/
 src/main/resources/docs/
 
+# VSCode build files
+bin/
+
+# Jekyll libraries
+docs/.bundle/ruby
+
 # IDEA files
-/.idea/
-/out/
-/*.iml
+.idea/
+out/
+*.iml
 
 # Storage/log files
-/data/
-/config.json
-/preferences.json
-/*.log.*
+data/
+config.json
+preferences.json
+*.log.*
 
 # Test sandbox files
 src/test/data/sandbox/
