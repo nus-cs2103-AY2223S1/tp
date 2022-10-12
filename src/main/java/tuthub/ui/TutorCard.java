@@ -31,11 +31,13 @@ public class TutorCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label id;
+    private Label module;
+    @FXML
+    private Label year;
+    @FXML
+    private Label studentId;
     @FXML
     private Label phone;
-    @FXML
-    private Label address;
     @FXML
     private Label email;
     @FXML
@@ -43,16 +45,18 @@ public class TutorCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+
     /**
      * Creates a {@code TutorCode} with the given {@code Tutor} and index to display.
      */
     public TutorCard(Tutor tutor, int displayedIndex) {
         super(FXML);
         this.tutor = tutor;
-        id.setText(displayedIndex + ". ");
+        studentId.setText(tutor.getStudentId().value);
         name.setText(tutor.getName().fullName);
+        module.setText(tutor.getModule().value);
+        year.setText("year " + tutor.getYear().value);
         phone.setText(tutor.getPhone().value);
-        address.setText(tutor.getAddress().value);
         email.setText(tutor.getEmail().value);
         comment.setText(tutor.getComment().value);
         tutor.getTags().stream()
@@ -74,7 +78,7 @@ public class TutorCard extends UiPart<Region> {
 
         // state check
         TutorCard card = (TutorCard) other;
-        return id.getText().equals(card.id.getText())
+        return studentId.getText().equals(card.studentId.getText())
                 && tutor.equals(card.tutor);
     }
 }

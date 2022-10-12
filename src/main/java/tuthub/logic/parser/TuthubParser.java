@@ -13,6 +13,7 @@ import tuthub.logic.commands.CommentCommand;
 import tuthub.logic.commands.DeleteCommand;
 import tuthub.logic.commands.EditCommand;
 import tuthub.logic.commands.ExitCommand;
+import tuthub.logic.commands.FindByModuleCommand;
 import tuthub.logic.commands.FindCommand;
 import tuthub.logic.commands.HelpCommand;
 import tuthub.logic.commands.ListCommand;
@@ -62,6 +63,9 @@ public class TuthubParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FindByModuleCommand.COMMAND_WORD:
+            return new FindByModuleCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
