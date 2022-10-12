@@ -4,12 +4,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import nus.climods.logic.commands.exceptions.CommandException;
-import nus.climods.model.Model;
-import org.openapitools.client.ApiException;
 import org.openapitools.client.api.ModulesApi;
 
+import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.model.Model;
 
 /**
  * Class representing module a User has in their My Modules list
@@ -23,19 +22,6 @@ public class UserModule {
     private final String acadYear = "2022-2023";
     private String tutorial = "Tutorial: Monday, 1400-1500";
     private String lecture = "Lecture: Friday, 1600-1800";
-
-    /**
-     * Creates a UserModule
-     * @param moduleCode String for the module code
-     * @throws ParseException if module code is not a valid module in current NUS curriculum
-     */
-//    public UserModule(String moduleCode) throws ParseException {
-//        try {
-//            this.apiModule = api.acadYearModulesModuleCodeJsonGet(acadYear, moduleCode);
-//        } catch (ApiException e) {
-//            throw new ParseException("Module not in current NUS curriculum");
-//        }
-//    }
 
     /**
      * Creates a UserModule
