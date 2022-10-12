@@ -1,5 +1,8 @@
 package seedu.workbook.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
@@ -7,9 +10,6 @@ import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.tag.Tag;
 import seedu.workbook.model.util.SampleDataUtil;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A utility class to help with building Internship objects.

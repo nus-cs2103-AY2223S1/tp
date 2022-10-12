@@ -1,8 +1,5 @@
 package seedu.workbook.model.internship;
 
-import org.junit.jupiter.api.Test;
-import seedu.workbook.testutil.InternshipBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
@@ -12,6 +9,10 @@ import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalInternships.ALICE;
 import static seedu.workbook.testutil.TypicalInternships.BOB;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.workbook.testutil.InternshipBuilder;
 
 public class InternshipTest {
 

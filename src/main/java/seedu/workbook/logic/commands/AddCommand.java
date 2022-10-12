@@ -1,15 +1,15 @@
 package seedu.workbook.logic.commands;
 
-import seedu.workbook.logic.commands.exceptions.CommandException;
-import seedu.workbook.model.Model;
-import seedu.workbook.model.internship.Internship;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
+
+import seedu.workbook.logic.commands.exceptions.CommandException;
+import seedu.workbook.model.Model;
+import seedu.workbook.model.internship.Internship;
 
 /**
  * Adds a Internship to WorkBook.

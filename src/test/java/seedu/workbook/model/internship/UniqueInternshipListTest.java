@@ -1,14 +1,5 @@
 package seedu.workbook.model.internship;
 
-import org.junit.jupiter.api.Test;
-import seedu.workbook.model.internship.exceptions.DuplicateInternshipException;
-import seedu.workbook.model.internship.exceptions.InternshipNotFoundException;
-import seedu.workbook.testutil.InternshipBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,6 +7,16 @@ import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalInternships.ALICE;
 import static seedu.workbook.testutil.TypicalInternships.BOB;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.workbook.model.internship.exceptions.DuplicateInternshipException;
+import seedu.workbook.model.internship.exceptions.InternshipNotFoundException;
+import seedu.workbook.testutil.InternshipBuilder;
 
 public class UniqueInternshipListTest {
 

@@ -1,15 +1,5 @@
 package seedu.workbook.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.workbook.logic.commands.AddCommand;
-import seedu.workbook.model.internship.Company;
-import seedu.workbook.model.internship.Email;
-import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.Phone;
-import seedu.workbook.model.internship.Role;
-import seedu.workbook.model.tag.Tag;
-import seedu.workbook.testutil.InternshipBuilder;
-
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
@@ -38,6 +28,17 @@ import static seedu.workbook.logic.parser.CommandParserTestUtil.assertParseFailu
 import static seedu.workbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.workbook.testutil.TypicalInternships.AMY;
 import static seedu.workbook.testutil.TypicalInternships.BOB;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.workbook.logic.commands.AddCommand;
+import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.Email;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.model.internship.Phone;
+import seedu.workbook.model.internship.Role;
+import seedu.workbook.model.tag.Tag;
+import seedu.workbook.testutil.InternshipBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();

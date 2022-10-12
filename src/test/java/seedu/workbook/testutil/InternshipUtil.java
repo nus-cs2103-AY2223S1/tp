@@ -1,18 +1,18 @@
 package seedu.workbook.testutil;
 
 
-import seedu.workbook.logic.commands.AddCommand;
-import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
-import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.tag.Tag;
-
-import java.util.Set;
-
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Set;
+
+import seedu.workbook.logic.commands.AddCommand;
+import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.model.tag.Tag;
 
 /**
  * A utility class for Internship.

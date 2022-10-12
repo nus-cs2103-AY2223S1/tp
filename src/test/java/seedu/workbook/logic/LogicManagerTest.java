@@ -1,8 +1,22 @@
 package seedu.workbook.logic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
+import static seedu.workbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
+import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.workbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.workbook.logic.commands.CommandTestUtil.ROLE_DESC_AMY;
+import static seedu.workbook.testutil.Assert.assertThrows;
+import static seedu.workbook.testutil.TypicalInternships.AMY;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.workbook.logic.commands.AddCommand;
 import seedu.workbook.logic.commands.CommandResult;
 import seedu.workbook.logic.commands.ListCommand;
@@ -17,19 +31,6 @@ import seedu.workbook.storage.JsonUserPrefsStorage;
 import seedu.workbook.storage.JsonWorkBookStorage;
 import seedu.workbook.storage.StorageManager;
 import seedu.workbook.testutil.InternshipBuilder;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
-import static seedu.workbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
-import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.workbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.workbook.logic.commands.CommandTestUtil.ROLE_DESC_AMY;
-import static seedu.workbook.testutil.Assert.assertThrows;
-import static seedu.workbook.testutil.TypicalInternships.AMY;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -78,7 +79,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + COMPANY_DESC_AMY + ROLE_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + COMPANY_DESC_AMY + ROLE_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY;
 
         Internship expectedInternship = new InternshipBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

@@ -1,16 +1,5 @@
 package seedu.workbook.logic.parser;
 
-import seedu.workbook.commons.core.index.Index;
-import seedu.workbook.logic.commands.EditCommand;
-import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
-import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.tag.Tag;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
@@ -18,6 +7,17 @@ import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
+
+import seedu.workbook.commons.core.index.Index;
+import seedu.workbook.logic.commands.EditCommand;
+import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
+import seedu.workbook.logic.parser.exceptions.ParseException;
+import seedu.workbook.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object

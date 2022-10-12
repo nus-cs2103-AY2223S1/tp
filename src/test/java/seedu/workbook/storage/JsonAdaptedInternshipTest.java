@@ -1,20 +1,21 @@
 package seedu.workbook.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.workbook.commons.exceptions.IllegalValueException;
-import seedu.workbook.model.internship.Company;
-import seedu.workbook.model.internship.Email;
-import seedu.workbook.model.internship.Phone;
-import seedu.workbook.model.internship.Role;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.workbook.storage.JsonAdaptedInternship.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.workbook.testutil.Assert.assertThrows;
+import static seedu.workbook.testutil.TypicalInternships.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.workbook.storage.JsonAdaptedInternship.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.workbook.testutil.Assert.assertThrows;
-import static seedu.workbook.testutil.TypicalInternships.BENSON;
+import org.junit.jupiter.api.Test;
+
+import seedu.workbook.commons.exceptions.IllegalValueException;
+import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.Email;
+import seedu.workbook.model.internship.Phone;
+import seedu.workbook.model.internship.Role;
 
 public class JsonAdaptedInternshipTest {
     private static final String INVALID_COMPANY = "R@chel";

@@ -1,7 +1,14 @@
 package seedu.workbook.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.workbook.commons.exceptions.IllegalValueException;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
@@ -9,12 +16,6 @@ import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Internship}.

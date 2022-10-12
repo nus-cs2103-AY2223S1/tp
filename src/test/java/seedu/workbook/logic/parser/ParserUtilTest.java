@@ -1,22 +1,23 @@
 package seedu.workbook.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.internship.Company;
-import seedu.workbook.model.internship.Email;
-import seedu.workbook.model.internship.Phone;
-import seedu.workbook.model.tag.Tag;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.workbook.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.workbook.testutil.Assert.assertThrows;
+import static seedu.workbook.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.workbook.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.workbook.testutil.Assert.assertThrows;
-import static seedu.workbook.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
+import org.junit.jupiter.api.Test;
+
+import seedu.workbook.logic.parser.exceptions.ParseException;
+import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.Email;
+import seedu.workbook.model.internship.Phone;
+import seedu.workbook.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_COMPANY = "R@chel";

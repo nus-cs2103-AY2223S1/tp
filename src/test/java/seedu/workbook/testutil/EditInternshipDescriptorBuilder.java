@@ -1,5 +1,9 @@
 package seedu.workbook.testutil;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
@@ -7,10 +11,6 @@ import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.tag.Tag;
-
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * A utility class to help with building EditInternshipDescriptor objects.

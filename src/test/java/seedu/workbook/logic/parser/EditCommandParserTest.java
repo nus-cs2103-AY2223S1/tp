@@ -1,15 +1,5 @@
 package seedu.workbook.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.workbook.commons.core.index.Index;
-import seedu.workbook.logic.commands.EditCommand;
-import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
-import seedu.workbook.model.internship.Company;
-import seedu.workbook.model.internship.Email;
-import seedu.workbook.model.internship.Phone;
-import seedu.workbook.model.tag.Tag;
-import seedu.workbook.testutil.EditInternshipDescriptorBuilder;
-
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -35,6 +25,17 @@ import static seedu.workbook.logic.parser.CommandParserTestUtil.assertParseSucce
 import static seedu.workbook.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.workbook.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
 import static seedu.workbook.testutil.TypicalIndexes.INDEX_THIRD_INTERNSHIP;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.workbook.commons.core.index.Index;
+import seedu.workbook.logic.commands.EditCommand;
+import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
+import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.Email;
+import seedu.workbook.model.internship.Phone;
+import seedu.workbook.model.tag.Tag;
+import seedu.workbook.testutil.EditInternshipDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -96,7 +97,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser,
-                "1" + INVALID_COMPANY_DESC + INVALID_EMAIL_DESC +  VALID_PHONE_AMY,
+                "1" + INVALID_COMPANY_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
                 Company.MESSAGE_CONSTRAINTS);
     }
 
@@ -104,7 +105,7 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY +  COMPANY_DESC_AMY + TAG_DESC_FRIEND;
+                + EMAIL_DESC_AMY + COMPANY_DESC_AMY + TAG_DESC_FRIEND;
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
@@ -159,9 +160,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY  + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY  + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB  + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND + PHONE_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)

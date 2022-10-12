@@ -1,17 +1,5 @@
 package seedu.workbook.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.exceptions.DuplicateInternshipException;
-import seedu.workbook.testutil.InternshipBuilder;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +7,19 @@ import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalInternships.ALICE;
 import static seedu.workbook.testutil.TypicalInternships.getTypicalWorkBook;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.model.internship.exceptions.DuplicateInternshipException;
+import seedu.workbook.testutil.InternshipBuilder;
 
 public class WorkBookTest {
 

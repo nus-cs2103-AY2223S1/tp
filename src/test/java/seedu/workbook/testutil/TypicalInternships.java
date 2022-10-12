@@ -1,12 +1,5 @@
 package seedu.workbook.testutil;
 
-import seedu.workbook.model.WorkBook;
-import seedu.workbook.model.internship.Internship;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -17,6 +10,13 @@ import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ROLE_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ROLE_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.workbook.model.WorkBook;
+import seedu.workbook.model.internship.Internship;
 
 /**
  * A utility class containing a list of {@code Internship} objects to be used in tests.

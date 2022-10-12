@@ -1,5 +1,19 @@
 package seedu.workbook.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.workbook.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.workbook.commons.core.Messages;
 import seedu.workbook.commons.core.index.Index;
 import seedu.workbook.commons.util.CollectionUtil;
@@ -11,20 +25,6 @@ import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.tag.Tag;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.workbook.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 /**
  * Edits the details of an existing internship in the work book.
@@ -100,7 +100,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedCompany, updatedRole, updatedPhone, updatedEmail,  updatedTags);
+        return new Internship(updatedCompany, updatedRole, updatedPhone, updatedEmail, updatedTags);
     }
 
     @Override

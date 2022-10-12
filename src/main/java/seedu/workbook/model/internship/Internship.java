@@ -1,13 +1,13 @@
 package seedu.workbook.model.internship;
 
-import seedu.workbook.model.tag.Tag;
+import static seedu.workbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.workbook.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.workbook.model.tag.Tag;
 
 /**
  * Represents an Internship Application in WorkBook.
@@ -28,7 +28,7 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Company company, Role role, Phone phone, Email email,  Set<Tag> tags) {
+    public Internship(Company company, Role role, Phone phone, Email email, Set<Tag> tags) {
         requireAllNonNull(company, role, phone, email, tags);
         this.company = company;
         this.role = role;

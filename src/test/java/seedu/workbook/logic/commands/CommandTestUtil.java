@@ -1,17 +1,5 @@
 package seedu.workbook.logic.commands;
 
-import seedu.workbook.commons.core.index.Index;
-import seedu.workbook.logic.commands.exceptions.CommandException;
-import seedu.workbook.model.Model;
-import seedu.workbook.model.WorkBook;
-import seedu.workbook.model.internship.CompanyContainsKeywordsPredicate;
-import seedu.workbook.model.internship.Internship;
-import seedu.workbook.testutil.EditInternshipDescriptorBuilder;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
@@ -20,6 +8,18 @@ import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.workbook.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.workbook.commons.core.index.Index;
+import seedu.workbook.logic.commands.exceptions.CommandException;
+import seedu.workbook.model.Model;
+import seedu.workbook.model.WorkBook;
+import seedu.workbook.model.internship.CompanyContainsKeywordsPredicate;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.testutil.EditInternshipDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

@@ -1,5 +1,9 @@
 package seedu.workbook.model.util;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import seedu.workbook.model.ReadOnlyWorkBook;
 import seedu.workbook.model.WorkBook;
 import seedu.workbook.model.internship.Company;
@@ -8,10 +12,6 @@ import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.tag.Tag;
-
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Contains utility methods for populating {@code WorkBook} with sample data.

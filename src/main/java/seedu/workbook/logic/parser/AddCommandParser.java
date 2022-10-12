@@ -1,5 +1,15 @@
 package seedu.workbook.logic.parser;
 
+import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Set;
+import java.util.stream.Stream;
+
 import seedu.workbook.logic.commands.AddCommand;
 import seedu.workbook.logic.parser.exceptions.ParseException;
 import seedu.workbook.model.internship.Company;
@@ -8,16 +18,6 @@ import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.tag.Tag;
-
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * Parses input arguments and creates a new AddCommand object
