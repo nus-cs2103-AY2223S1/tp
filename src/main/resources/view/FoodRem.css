@@ -1,3 +1,32 @@
 .main-body {
   -fx-background-color: #fdf6e3;
+  -fx-padding: 16;
+}
+
+.command-placeholder,
+.command-placeholder * {
+  -fx-focus-color: transparent;
+  -fx-text-box-border: transparent;
+  -fx-background-color: transparent;
+}
+
+.command-placeholder {
+  -fx-background-color: #eee;
+  -fx-border-color: black;
+  -fx-border-radius: 5;
+  -fx-border-width: 1;
+  -fx-padding: 6 4;
+}
+
+.command-box {
+  -fx-pref-width: 400;
+}
+
+.command-box > TextField {
+  /* TODO: Mono font */
+  -fx-font-family: Menlo;
+  -fx-text-fill: black;
+  -fx-prompt-text-fill: #363636;
+  -fx-highlight-fill: brown; // TODO
+  -fx-highlight-text-fill: pink; // TODO
 }
