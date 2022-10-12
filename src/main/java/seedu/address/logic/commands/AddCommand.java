@@ -46,7 +46,7 @@ public class AddCommand extends Command {
             + PREFIX_CAP + "3.50/4.00 "
             + PREFIX_GENDER + "male "
             + PREFIX_UNIVERSITY + "Nanyang Polytechnic "
-            + PREFIX_GRADUATION_DATE + "05-2024"
+            + PREFIX_GRADUATION_DATE + "05-2024 "
             + PREFIX_MAJOR + "Computer Science "
             + PREFIX_JOB_ID + "173296 "
             + PREFIX_JOB_TITLE + "Software Engineer Intern "
