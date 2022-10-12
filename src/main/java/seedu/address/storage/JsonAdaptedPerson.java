@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String status;
+    private final String note;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,11 +40,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("status") String status) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("status") String status,
+            @JsonProperty("note") String note) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.note = note;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -61,6 +65,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         status = source.getStatus().status;
+        note = source.getNote().value;
     }
 
     /**
@@ -116,7 +121,12 @@ class JsonAdaptedPerson {
         }
         final Status modelStatus = new Status(status);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus);
+        if (note == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName()));
+        }
+        final Note modelNote = new Note(note);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus, modelNote);
     }
 
 }
