@@ -71,7 +71,7 @@ public class PersonBuilder {
     }
 
     /**
-     *
+     * Sets the {@code RecordList} of the {@code Person} that we are building.
      */
     public PersonBuilder withRecordList(Record ... records) {
         for (Record record : records) {
