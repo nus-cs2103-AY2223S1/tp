@@ -117,7 +117,7 @@ public class BookFace implements ReadOnlyBookFace {
      */
     public void deleteBook(Book book) {
         books.delete(book);
-        persons.delete(book);
+        persons.refreshUserListAfterDeletingBook(book);
     }
 
     /**
@@ -163,7 +163,7 @@ public class BookFace implements ReadOnlyBookFace {
      */
     public void removePerson(Person key) {
         persons.remove(key);
-        books.remove(key);
+        books.refreshBookListAfterDeletingUser(key);
     }
 
     //// util methods

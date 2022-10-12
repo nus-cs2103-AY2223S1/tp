@@ -150,9 +150,9 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Deletes a book {@code book} from the person set of loanedBooks.
+     * Refreshes the user list after deleting book {@code book} that has been loaned to a user.
      */
-    public void delete(Book book) {
+    public void refreshUserListAfterDeletingBook(Book book) {
         CollectionUtil.requireAllNonNull(book);
         Person person = book.getLoanee();
         int index = internalList.indexOf(person);
