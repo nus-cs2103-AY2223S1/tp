@@ -13,7 +13,7 @@ import seedu.taassist.model.session.Session;
 public class SessionCommandParser implements Parser<SessionCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SessionCommand
-     * and returns an AssignCommand object for execution.
+     * and returns a SessionCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
     public SessionCommand parse(String args) throws ParseException {
