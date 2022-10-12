@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import modtrekt.logic.commands.AddCommand;
 import modtrekt.logic.commands.AddTaskCommand;
+import modtrekt.logic.commands.CdModuleCommand;
 import modtrekt.logic.commands.Command;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
@@ -67,6 +68,9 @@ public class TaskBookParser {
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case CdModuleCommand.COMMAND_WORD:
+            return new CdCommandParser().parse(arguments);
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
