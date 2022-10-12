@@ -163,11 +163,17 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         persons.add(p);
 
-        InternshipId internshipId = p.getInternshipId();
-        if (internshipId != null) {
-            // TODO: Find the associated Internship via Id,
-            //  then set the contactPersonId of the Internship to p.getPersonId().
-            //  Requires new Set method.
+        Internship i = findInternshipById(p.getInternshipId());
+        if (i != null) {
+            Internship linkedI = new Internship(
+                    i.getInternshipId(),
+                    i.getCompanyName(),
+                    i.getInternshipRole(),
+                    i.getInternshipStatus(),
+                    p.getPersonId(),
+                    i.getInterviewDate()
+            );
+            setInternship(i, linkedI);
         }
     }
 
@@ -181,11 +187,17 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         internships.add(i);
 
-        PersonId contactPersonId = i.getContactPersonId();
-        if (contactPersonId != null) {
-            // TODO: Find the associated Person via Id,
-            //  then set internshipId of the Person to i.getInternshipId().
-            //  Requires new Set method.
+        Person p = findPersonById(i.getContactPersonId());
+        if (p != null) {
+            Person linkedP = new Person(
+                    p.getPersonId(),
+                    p.getName(),
+                    p.getPhone(),
+                    p.getEmail(),
+                    i.getInternshipId(),
+                    p.getTags()
+            );
+            setPerson(p, linkedP);
         }
     }
 
@@ -212,6 +224,21 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+
+        updateNextPersonId();
+
+        Internship i = findInternshipById(key.getInternshipId());
+        if (i != null) {
+            Internship linkedI = new Internship(
+                    i.getInternshipId(),
+                    i.getCompanyName(),
+                    i.getInternshipRole(),
+                    i.getInternshipStatus(),
+                    null,
+                    i.getInterviewDate()
+            );
+            setInternship(i, linkedI);
+        }
     }
 
     /**
@@ -220,6 +247,21 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeInternship(Internship key) {
         internships.remove(key);
+
+        updateNextInternshipId();
+
+        Person p = findPersonById(key.getContactPersonId());
+        if (p != null) {
+            Person linkedP = new Person(
+                    p.getPersonId(),
+                    p.getName(),
+                    p.getPhone(),
+                    p.getEmail(),
+                    null,
+                    p.getTags()
+            );
+            setPerson(p, linkedP);
+        }
     }
 
     //// util methods

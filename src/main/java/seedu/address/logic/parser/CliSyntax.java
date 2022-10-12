@@ -12,13 +12,15 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
-    public static final Prefix PREFIX_LINK_INDEX = new Prefix("l/");
+
 
     /* Prefix definitions (Internship) */
     public static final Prefix PREFIX_INTERNSHIP_ID = new Prefix("iid/");
-    public static final Prefix PREFIX_COMPANY_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_COMPANY_NAME = new Prefix("c/");
     public static final Prefix PREFIX_INTERNSHIP_ROLE = new Prefix("r/");
     public static final Prefix PREFIX_INTERNSHIP_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_INTERVIEW_DATE = new Prefix("d/");
 
+    /* Prefix definitions (Common) */
+    public static final Prefix PREFIX_LINK_INDEX = new Prefix("l/");
 }
