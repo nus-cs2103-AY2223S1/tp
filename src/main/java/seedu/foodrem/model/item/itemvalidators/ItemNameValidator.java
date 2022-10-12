@@ -11,9 +11,9 @@ public class ItemNameValidator implements Validator {
 
     // Validation for characters in name
     public static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME =
-            "Item name should only contain alphanumeric characters and spaces, and it should not be blank";
+            "The item name should only contain alphanumeric characters and spaces.";
     public static final String MESSAGE_FOR_NAME_IS_BLANK =
-            "Item name should not be blank";
+            "The item name should not be blank.";
     private static final String VALIDATION_REGEX = "[A-Za-z0-9 ]*";
 
     // Validation for name length

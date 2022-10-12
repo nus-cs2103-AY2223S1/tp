@@ -31,13 +31,13 @@ import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.foodrem.logic.commands.itemcommands.AddCommand;
-import seedu.foodrem.logic.parser.itemcommandparser.AddCommandParser;
+import seedu.foodrem.logic.commands.itemcommands.NewCommand;
+import seedu.foodrem.logic.parser.itemcommandparser.NewCommandParser;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.testutil.ItemBuilder;
 
-public class AddCommandParserTest {
-    private final AddCommandParser parser = new AddCommandParser();
+public class NewCommandParserTest {
+    private final NewCommandParser parser = new NewCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -49,7 +49,7 @@ public class AddCommandParserTest {
                         + VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new AddCommand(expectedItem));
+                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
 
         // multiple names - last name accepted
         assertParseSuccess(parser,
@@ -58,7 +58,7 @@ public class AddCommandParserTest {
                         + VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new AddCommand(expectedItem));
+                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
 
         // multiple quantities - last quantity accepted
         assertParseSuccess(parser,
@@ -67,7 +67,7 @@ public class AddCommandParserTest {
                         + VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new AddCommand(expectedItem));
+                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
 
         // multiple units - last unit accepted
         assertParseSuccess(parser,
@@ -76,7 +76,7 @@ public class AddCommandParserTest {
                         + VALID_DESC_ITEM_UNIT_POTATOES
                         + VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new AddCommand(expectedItem));
+                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
 
         // multiple bought dates - last bought date accepted
         assertParseSuccess(parser,
@@ -85,7 +85,7 @@ public class AddCommandParserTest {
                         + VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
                         + VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new AddCommand(expectedItem));
+                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
 
 
         // multiple expiry dates - last expiry date accepted
@@ -95,7 +95,7 @@ public class AddCommandParserTest {
                         + VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
                         + VALID_DESC_ITEM_EXPIRY_DATE_POTATOES
-                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new AddCommand(expectedItem));
+                        + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
 
     }
 
@@ -111,12 +111,12 @@ public class AddCommandParserTest {
                 VALID_DESC_ITEM_NAME_POTATOES
                         + VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
                         + VALID_DESC_ITEM_EXPIRY_DATE_POTATOES,
-                new AddCommand(expectedItem));
+                new NewCommand(expectedItem));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser,
@@ -190,6 +190,6 @@ public class AddCommandParserTest {
                         + VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
                         + VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.MESSAGE_USAGE));
     }
 }

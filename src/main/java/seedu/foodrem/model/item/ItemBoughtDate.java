@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
 import seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator;
 
@@ -17,7 +16,6 @@ public class ItemBoughtDate {
     public static final String BOUGHT_DATE_PATTERN_REGEX = "dd-MM-yyyy";
     public static final DateTimeFormatter BOUGHT_DATE_FORMATTER = DateTimeFormatter
             .ofPattern(BOUGHT_DATE_PATTERN_REGEX);
-    private static final String BOUGHT_DATE_NOT_SET_PLACEHOLDER = "Not Set";
     private final LocalDate boughtDate;
 
     /**
@@ -85,13 +83,5 @@ public class ItemBoughtDate {
     @Override
     public String toString() {
         return boughtDate == null ? "" : boughtDate.format(BOUGHT_DATE_FORMATTER);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toListView() {
-        String date = Objects.toString(boughtDate, BOUGHT_DATE_NOT_SET_PLACEHOLDER);
-        return String.format("(Bought Date: %s)", date);
     }
 }

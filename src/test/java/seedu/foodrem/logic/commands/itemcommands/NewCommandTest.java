@@ -26,12 +26,11 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.ItemBuilder;
 
-
-public class AddCommandTest {
+public class NewCommandTest {
 
     @Test
     public void constructor_nullItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new NewCommand(null));
     }
 
     @Test
@@ -39,33 +38,33 @@ public class AddCommandTest {
         ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
         Item validItem = new ItemBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validItem).execute(modelStub);
+        CommandResult commandResult = new NewCommand(validItem).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
+        assertEquals(String.format(NewCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
         assertEquals(List.of(validItem), modelStub.itemsAdded);
     }
 
     @Test
     public void execute_duplicateItem_throwsCommandException() {
         Item validItem = new ItemBuilder().build();
-        AddCommand addCommand = new AddCommand(validItem);
+        NewCommand newCommand = new NewCommand(validItem);
         ModelStub modelStub = new ModelStubWithItem(validItem);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ITEM, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, NewCommand.MESSAGE_DUPLICATE_ITEM, () -> newCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Item potatoes = new ItemBuilder().withItemName("Potatoes").build();
         Item cucumbers = new ItemBuilder().withItemName("Cucumbers").build();
-        AddCommand addPotatoCommand = new AddCommand(potatoes);
-        AddCommand addCucumberCommand = new AddCommand(cucumbers);
+        NewCommand addPotatoCommand = new NewCommand(potatoes);
+        NewCommand addCucumberCommand = new NewCommand(cucumbers);
 
         // same object -> returns true
         assertTrue(addPotatoCommand.equals(addPotatoCommand));
 
         // same values -> returns true
-        AddCommand addPotatoCommandCopy = new AddCommand(potatoes);
+        NewCommand addPotatoCommandCopy = new NewCommand(potatoes);
         assertTrue(addPotatoCommand.equals(addPotatoCommandCopy));
 
         // different types -> returns false

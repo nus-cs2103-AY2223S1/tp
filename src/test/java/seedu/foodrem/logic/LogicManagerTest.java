@@ -20,8 +20,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
-import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
+import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;
@@ -79,7 +79,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD
+        String addCommand = NewCommand.COMMAND_WORD
                 + VALID_DESC_ITEM_NAME_POTATOES
                 + VALID_DESC_ITEM_QUANTITY_POTATOES
                 + VALID_DESC_ITEM_UNIT_POTATOES
