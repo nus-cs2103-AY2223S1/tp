@@ -20,11 +20,11 @@ public class SampleDataUtil {
     public static Profile[] getSampleProfiles() {
         return new Profile[] {
             new Profile(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Telegram("@lexyeoh"), getTagSet("friends")),
+                new Telegram("lexyeoh"), getTagSet("friends")),
             new Profile(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 Telegram.EMPTY_TELEGRAM, getTagSet("colleagues", "friends")),
             new Profile(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Telegram("@charlotte_ol1"), getTagSet("neighbours")),
+                new Telegram("charlotte_ol1"), getTagSet("neighbours")),
             new Profile(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 Telegram.EMPTY_TELEGRAM, getTagSet("family")),
             new Profile(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),

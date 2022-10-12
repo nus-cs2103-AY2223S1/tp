@@ -26,7 +26,7 @@ public class TypicalProfiles {
     public static final Profile ALICE = new ProfileBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withPhone("94351253").withTags("friends").build();
     public static final Profile BENSON = new ProfileBuilder().withName("Benson Meier")
-            .withEmail("johnd@example.com").withPhone("98765432").withTelegram("@benson_meier")
+            .withEmail("johnd@example.com").withPhone("98765432").withTelegram("benson_meier")
             .withTags("owesMoney", "friends").build();
     public static final Profile CARL = new ProfileBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").build();

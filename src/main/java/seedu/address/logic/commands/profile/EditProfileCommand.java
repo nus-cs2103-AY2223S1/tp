@@ -48,7 +48,7 @@ public class EditProfileCommand extends ProfileCommand {
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
-            + PREFIX_TELEGRAM + "@johndoe "
+            + PREFIX_TELEGRAM + "johndoe "
             + PREFIX_TAG + "CS2103T";
 
     public static final String MESSAGE_EDIT_PROFILE_SUCCESS = "Edited Profile: \n%1$s";

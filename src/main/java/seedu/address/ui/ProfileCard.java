@@ -9,6 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.profile.Telegram;
 
 /**
  * An UI component that displays information of a {@code Profile}.
@@ -58,7 +59,7 @@ public class ProfileCard extends UiPart<Region> {
         email.setText(profile.getEmail().value);
         if (!profile.getTelegram().isEmpty()) {
             telegram.getChildren().add(telegramIcon);
-            Label telegramLabel = new Label(profile.getTelegram().value);
+            Label telegramLabel = new Label(Telegram.PREFIX + profile.getTelegram().value);
             telegram.getChildren().add(telegramLabel);
         }
         profile.getTags().stream()
