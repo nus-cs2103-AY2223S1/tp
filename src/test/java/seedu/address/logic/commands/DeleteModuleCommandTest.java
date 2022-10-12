@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyModules;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import seedu.address.model.module.ModuleCode;
 public class DeleteModuleCommandTest {
 
     private static final String NON_EXISTENT_MODULE_CODE = "CS2109S";
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBookWithOnlyModules(), new UserPrefs());
 
     @Test
     public void execute_validModuleUnfilteredList_success() {
