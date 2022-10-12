@@ -20,7 +20,7 @@ public class Group extends AbstractContainerItem {
 
     /**
      * Checks if a task exists in this group
-     * 
+     *
      * @param task The task to check if exists
      * @return true if it exists in this Group, false otherwise
      */
@@ -39,7 +39,7 @@ public class Group extends AbstractContainerItem {
 
     /**
      * Removes a task from this group. The task must already exist in this group
-     * 
+     *
      * @param task The task to remove
      */
     public void removeTask(Task task) {

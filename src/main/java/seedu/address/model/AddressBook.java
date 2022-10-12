@@ -120,7 +120,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes all person that satisfies the predicate
-     * 
+     *
      * @param predicate
      */
     public void removePersonIf(Predicate<Person> predicate) {
@@ -163,7 +163,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes all teams that satisfies the predicate
-     * 
+     *
      * @param predicate
      */
     public void removeTeamIf(Predicate<Group> predicate) {
@@ -202,7 +202,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes all tasks that satisfies the predicate
-     * 
+     *
      * @param predicate
      */
     public void removeTaskIf(Predicate<Task> predicate) {

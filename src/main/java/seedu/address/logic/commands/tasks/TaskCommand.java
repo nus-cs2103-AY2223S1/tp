@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
+/**
+ * Create a task and assign it to a group
+ */
 public class TaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
 

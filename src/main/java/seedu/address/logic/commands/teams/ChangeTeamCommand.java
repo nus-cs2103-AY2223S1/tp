@@ -13,6 +13,9 @@ import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractContainerItem;
 
+/**
+ * Changes a current working context of the team
+ */
 public class ChangeTeamCommand extends Command {
     public static final String COMMAND_WORD = "cd";
 
@@ -26,7 +29,7 @@ public class ChangeTeamCommand extends Command {
     public static final String SWITCH_SUCCESS = " switched %s%n";
 
     private final Index targetIndex;
-    
+
     public ChangeTeamCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -36,7 +39,7 @@ public class ChangeTeamCommand extends Command {
         requireNonNull(model);
         AbstractContainerItem toSwitch;
         if (targetIndex == null) {
-            if (model.getContextContainer()!=null) {
+            if (model.getContextContainer() != null) {
                 toSwitch = model.getContextContainer().getParent();
             } else {
                 return new CommandResult("No more parent!");

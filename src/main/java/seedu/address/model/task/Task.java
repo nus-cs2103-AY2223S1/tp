@@ -41,6 +41,9 @@ public class Task implements DisplayItem {
         this.completedTime = completedTime;
     }
 
+    /**
+     * Marks the task if it is unmarked
+     */
     public Task mark() {
         if (this.completedTime != null) {
             return this;
@@ -50,6 +53,9 @@ public class Task implements DisplayItem {
         return ret;
     }
 
+    /**
+     * Unmarks the task if it is marked
+     */
     public Task unmark() {
         if (this.completedTime == null) {
             return this;

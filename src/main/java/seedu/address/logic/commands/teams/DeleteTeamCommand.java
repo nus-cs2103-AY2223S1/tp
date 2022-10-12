@@ -12,6 +12,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 
+/**
+ * Deletes a team from Contactmation
+ */
 public class DeleteTeamCommand extends Command {
     public static final String COMMAND_WORD = "rmTeam";
 

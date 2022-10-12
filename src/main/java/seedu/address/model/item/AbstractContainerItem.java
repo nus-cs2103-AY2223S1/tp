@@ -57,9 +57,9 @@ public abstract class AbstractContainerItem extends DisplayItemList<DisplayItem>
         sb.add(toString());
         if (parent == null || parent.equals(o)) {
             Collections.reverse(sb);
-            return "/"+String.join("/", sb);    
+            return "/" + String.join("/", sb);
         }
-        return parent.getTitle(sb,o);
+        return parent.getTitle(sb, o);
     }
 
     protected void regenerateFullPathName() {
@@ -75,7 +75,7 @@ public abstract class AbstractContainerItem extends DisplayItemList<DisplayItem>
 
     public String getRelativePathName(AbstractContainerItem o) {
         return getTitle(new ArrayList<String>(), o);
-    } 
+    }
 
     @Override
     public void setParent(DisplayItem o) {

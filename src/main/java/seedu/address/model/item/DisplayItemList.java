@@ -45,7 +45,7 @@ public class DisplayItemList<T extends DisplayItem> implements Iterable<T> {
     /**
      * Returns the item in the list that is equal (but no necessarily the same
      * object) as the given item.
-     * 
+     *
      * @param item The item to compare equality against.
      * @return The item in the list which is equal to the given item
      */
@@ -104,7 +104,7 @@ public class DisplayItemList<T extends DisplayItem> implements Iterable<T> {
 
     /**
      * removes the element if predicate evals to true.
-     * 
+     *
      * @param predicate
      */
     public void removeIf(Predicate<T> predicate) {

@@ -30,6 +30,9 @@ public class StatusBarFooter extends UiPart<Region> {
         updateFooter(null);
     }
 
+    /**
+     * Updates the footer so it represent the current working container
+     */
     public void updateFooter(AbstractContainerItem o) {
         if (o == null) {
             currGroupStatus.setText("/");

@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -215,6 +216,30 @@ public class AddCommandTest {
         @Override
         public AbstractContainerItem getContextContainer() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void updateFilteredTaskList(List<Predicate<Task>> predicates) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void setTask(Task target, Task editedTask) {
+            // TODO Auto-generated method stub
+
         }
     }
 
