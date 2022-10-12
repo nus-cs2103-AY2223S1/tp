@@ -76,10 +76,10 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER [h/HOMEWORK a/ATTENDANCE g/GRADE_PROGRESS lp/LESSON_PLAN]`
+Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN[h/HOMEWORK a/ATTENDANCE g/GRADE_PROGRESS]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person must minimally have 2 tags, NAME and PHONE_NUMBER.
+A person must minimally have 3 tags, NAME, PHONE_NUMBER, and LESSON_PLAN.
 </div>
 
 Examples:
@@ -109,6 +109,20 @@ Examples:
 * `view 1` returns person in first index <br>
   `edit h/2 math not done` updates 2nd field of *person at first index's* HOMEWORK to `math not done`
 
+### Removing specific field in person: `remove`
+
+Edits a specific field of a person in the address book, accessed by View method.<br>
+It requires one field:
+- h/: To be followed by INDEX of homework to be removed
+- a/: To be followed by INDEX of attendance to be removed
+- g/: To be followed by INDEX of grade book to be removed
+
+Format: `remove [h/ a/ g/] INDEX`
+
+Examples:
+* `view 1` returns person in first index <br>
+  `remove h/2` removes person at first index's *homework at second index*
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -133,9 +147,9 @@ Examples:
 
 View details of a person.
 
-Format: `view INDEX` 
+Format: `view NAME` 
 
-* The command requires the `INDEX` of a person.
+* The command requires the full `NAME` of a person.
 
 
 ### Deleting a person : `delete`
@@ -147,13 +161,79 @@ Format: `delete INDEX`
 * Deletes the person with the specified `INDEX`.
 
 Examples:
-* `delete 1` removes the first person in the address book.
+* `delete 1` removes the first student in the address book.
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+### Adding Homework to student: `homework`
+
+Adds a string description of homework to student in address book.
+
+Format: `homework INDEX h/HOMEWORK`
+
+*Adds homework to student with the specified `INDEX`.
+
+Examples:
+*`homework 1 h/math assignment` adds math assignment to first student in address book.
+
+### Adding Grade Progress to student: `gradeprogress`
+
+Adds a string description of grade progress to student in address book.
+
+Format: `gradeprogress INDEX h/GRADE_PROGRESS`
+
+*Adds grade progress to student with the specified `INDEX`.
+
+Examples:
+*`gradeprogress 1 h/math D+` adds math D+ grade to first student in address book.
+
+### Adding Attendance to student : `attendance`
+
+Adds a formatted description of dates students attended class in address book.
+
+Format: `attendance INDEX h/ATTENDACE`
+
+*Adds grade progress to student with the specified `INDEX`.</br>
+*Attendance must be in `YYYY-MM-DD` format
+
+Examples:
+*`attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in address book.
+
+### Adding Tuition Timing to student: `tuitiontiming`
+
+Adds a formatted tuition timing to student, expected to repeat weekly.
+
+Format: `tuitiontime INDEX h/TUITION_TIME`
+
+*Adds tuition time to student with the specified `INDEX`.</br>
+*Tuition time must be in `DDD HH-MM-SS` format
+
+Examples:
+*`tuitiontime 1 tt/MON 12:00:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
+
+### Editing Lesson Plan for student: `lessonplan`
+
+Changes students lesson plan.
+
+Format: `lessonplan INDEX lp/LESSON_PLAN`
+
+*Edits lesson plan of student with the specified `INDEX`.</br>
+
+Examples:
+*`lessonplan 1 lp/science` changes lesson plan of first student to science.
+
+### Seeing daily schedule: `show`
+
+See all classes to be had on a certain day of the week
+
+Format: `show [DDD]`
+
+Examples:
+*`show [MON]` lists all tuition timings scheduled for Monday.
 
 ### Exiting the program : `exit`
 
