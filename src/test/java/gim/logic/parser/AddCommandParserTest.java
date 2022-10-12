@@ -123,19 +123,19 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
-                + REPS_DESC_BENCH_PRESS, Name.MESSAGE_CONSTRAINTS);
+                + REPS_DESC_BENCH_PRESS + DATE_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // invalid weight
         assertParseFailure(parser, NAME_DESC_BENCH_PRESS + INVALID_WEIGHT_DESC + SETS_DESC_BENCH_PRESS
-                + REPS_DESC_BENCH_PRESS, Weight.MESSAGE_CONSTRAINTS);
+                + REPS_DESC_BENCH_PRESS + DATE_DESC, Weight.MESSAGE_CONSTRAINTS);
 
         // invalid sets
         assertParseFailure(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS + INVALID_SETS_DESC
-                + REPS_DESC_BENCH_PRESS, Sets.MESSAGE_CONSTRAINTS);
+                + REPS_DESC_BENCH_PRESS + DATE_DESC, Sets.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
-                + INVALID_REPS_DESC, Reps.MESSAGE_CONSTRAINTS);
+                + INVALID_REPS_DESC + DATE_DESC, Reps.MESSAGE_CONSTRAINTS);
 
         // invalid date
         assertParseFailure(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
@@ -143,7 +143,7 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
-                + INVALID_REPS_DESC, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_REPS_DESC + DATE_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS
