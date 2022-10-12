@@ -1,10 +1,10 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -17,13 +17,15 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import java.util.logging.Logger;
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "MainWindow2.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -50,6 +52,27 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane resultDisplayPlaceholder2;
+
+    @FXML
+    private StackPane commandBoxPlaceholder2;
+
+    @FXML
+    private StackPane statusbarPlaceholder2;
+
+    @FXML
+    private StackPane personListPanelPlaceholder2;
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Tab tab1;
+
+    @FXML
+    private Tab tab2;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -63,7 +86,7 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
+//        setAccelerators();
 
         helpWindow = new HelpWindow();
     }
@@ -72,9 +95,9 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-    }
+//    private void setAccelerators() {
+//        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+//    }
 
     /**
      * Sets the accelerator of a MenuItem.
@@ -117,10 +140,14 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter2 = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusbarPlaceholder2.getChildren().add(statusBarFooter2.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox2 = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBoxPlaceholder2.getChildren().add(commandBox2.getRoot());
     }
 
     /**
