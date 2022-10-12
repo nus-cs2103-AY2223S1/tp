@@ -1,8 +1,7 @@
 package seedu.taassist.model.session;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.AppUtil.checkArgument;
-
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 /**
  * Represents a Session for a {@code ModuleClass} in TA-Assist.
  * Guarantees: immutable; name is valid as declared in {@link #isValidSessionName(String)}
@@ -17,16 +16,18 @@ public class Session {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     private final String sessionName;
+    private final Date date;
 
     /**
      * Constructs a {@code Session}.
      *
      * @param sessionName A valid session name.
      */
-    public Session(String sessionName) {
-        requireNonNull(sessionName);
+    public Session(String sessionName, Date date) {
+        requireAllNonNull(sessionName, date);
         checkArgument(isValidSessionName(sessionName), MESSAGE_CONSTRAINTS);
         this.sessionName = sessionName;
+        this.date = date;
     }
 
     /**
@@ -40,11 +41,16 @@ public class Session {
         return sessionName;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Session // instanceof handles nulls
-                && sessionName.equals(((Session) other).sessionName)); // state check
+                && sessionName.equals(((Session) other).sessionName) // state check
+                && date.equals(((Session) other).date));
     }
 
     /**
@@ -68,6 +74,6 @@ public class Session {
      * Formats state as text for viewing.
      */
     public String toString() {
-        return sessionName;
+        return String.format("%s; Date: %s", getSessionName(), getDate());
     }
 }
