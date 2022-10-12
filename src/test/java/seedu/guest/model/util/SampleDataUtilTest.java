@@ -50,23 +50,23 @@ public class SampleDataUtilTest {
     @Test
     public void getSampleGuestBook() {
         GuestBook exceptedGb = new GuestBook();
-        exceptedGb.addGuest(new Guest(new Name("James Oliver"), new Phone("98345344"), new Email("jamesoliver@example.com"),
-                new DateRange("15/09/22 - 19/09/22"),
+        exceptedGb.addGuest(new Guest(new Name("James Oliver"), new Phone("98345344"),
+                new Email("jamesoliver@example.com"), new DateRange("15/09/22 - 19/09/22"),
                 new NumberOfGuests("2")));
-        exceptedGb.addGuest(new Guest(new Name("Kayla Smith"), new Phone("91823471"), new Email("kaylasmith@example.com"),
-                new DateRange("22/01/23 - 25/01/23"),
+        exceptedGb.addGuest(new Guest(new Name("Kayla Smith"), new Phone("91823471"),
+                new Email("kaylasmith@example.com"), new DateRange("22/01/23 - 25/01/23"),
                 new NumberOfGuests("3")));
         exceptedGb.addGuest(new Guest(new Name("Charlie Lim"), new Phone("88237126"),
                 new Email("charlie@example.com"), new DateRange("21/02/22 - 22/03/22"),
                 new NumberOfGuests("2")));
-        exceptedGb.addGuest(new Guest(new Name("Ryan Wong"), new Phone("82831111"), new Email("wongryan@example.com"),
-                new DateRange("28/04/23 - 29/04/23"),
+        exceptedGb.addGuest(new Guest(new Name("Ryan Wong"), new Phone("82831111"),
+                new Email("wongryan@example.com"), new DateRange("28/04/23 - 29/04/23"),
                 new NumberOfGuests("2")));
-        exceptedGb.addGuest(new Guest(new Name("Ibrahim Irfan"), new Phone("84912293"), new Email("irfan@example.com"),
-                new DateRange("23/05/23 - 03/06/23"),
+        exceptedGb.addGuest(new Guest(new Name("Ibrahim Irfan"), new Phone("84912293"),
+                new Email("irfan@example.com"), new DateRange("23/05/23 - 03/06/23"),
                 new NumberOfGuests("1")));
-        exceptedGb.addGuest(new Guest(new Name("Dave Balakrishnan"), new Phone("92821374"), new Email("daveb@example.com"),
-                new DateRange("30/12/22 - 02/01/23"),
+        exceptedGb.addGuest(new Guest(new Name("Dave Balakrishnan"), new Phone("92821374"),
+                new Email("daveb@example.com"), new DateRange("30/12/22 - 02/01/23"),
                 new NumberOfGuests("3")));
 
         // different values -> return false
