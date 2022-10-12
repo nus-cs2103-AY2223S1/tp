@@ -14,21 +14,24 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
+    private static final String INVALID_CATEGORY = "NP";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_GENDER = "W";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-
+    private static final String VALID_CATEGORY = "N";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_GENDER = "F";
     private static final String VALID_PHONE = "123456";
@@ -219,4 +222,28 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseCategory_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCategory((String) null));
+    }
+
+    @Test
+    public void parseCategory_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCategory(INVALID_CATEGORY));
+    }
+
+    @Test
+    public void parseCategory_validValueWithoutWhitespace_returnsCategory() throws Exception {
+        Category expectedCategory = new Category(VALID_CATEGORY);
+        assertEquals(expectedCategory, ParserUtil.parseCategory(VALID_CATEGORY));
+    }
+
+    @Test
+    public void parseCategory_validValueWithWhitespace_returnsTrimmedCategory() throws Exception {
+        String categoryWithWhitespace = WHITESPACE + VALID_CATEGORY + WHITESPACE;
+        Category expectedCategory = new Category(VALID_CATEGORY);
+        assertEquals(expectedCategory, ParserUtil.parseCategory(categoryWithWhitespace));
+    }
+
 }

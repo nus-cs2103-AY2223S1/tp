@@ -39,15 +39,15 @@ public class PatientTest {
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // id same, name differs in case, all other attributes same -> returns true
-        Person editedBob = new PatientBuilder(BOB)
+        Person editedAlice2 = new PatientBuilder(ALICE)
                 .withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertTrue(BOB.isSamePerson(editedBob));
+        assertTrue(ALICE.isSamePerson(editedAlice2));
 
         // id same, name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PatientBuilder(BOB)
+        editedAlice2 = new PatientBuilder(ALICE)
                 .withName(nameWithTrailingSpaces).build();
-        assertTrue(BOB.isSamePerson(editedBob));
+        assertTrue(ALICE.isSamePerson(editedAlice2));
     }
 
     @Test

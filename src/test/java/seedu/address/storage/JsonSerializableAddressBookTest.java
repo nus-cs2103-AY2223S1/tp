@@ -41,7 +41,7 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
                 JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class,
-                String.format(JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON, "patient(s)"),
+                String.format(JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON, "person(s)"),
                 dataFromFile::toModelType);
     }
 

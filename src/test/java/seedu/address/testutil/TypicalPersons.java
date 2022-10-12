@@ -10,7 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_CATEGORY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -32,7 +33,7 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder()
             .withUid("1").withCategory("P")
-            .withName("Alice Pauline").withGender("M")
+            .withName("Alice Pauline").withGender("F")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEmail("alice@example.com")
             .withPhone("94351253")
@@ -63,7 +64,7 @@ public class TypicalPersons {
             .withAddress("10th street")
             .withTags("friends").build();
     public static final Person ELLE = new PersonBuilder()
-            .withUid("5").withCategory("P")
+            .withUid("5").withCategory("N")
             .withName("Elle Meyer").withGender("F")
             .withPhone("9482224")
             .withEmail("werner@example.com")
@@ -107,16 +108,14 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder()
-            .withUid(VALID_UID_AMY).withCategory(VALID_PATIENT_CATEGORY).withName(VALID_NAME_AMY)
+            .withUid(VALID_UID_AMY).withCategory(VALID_CATEGORY_AMY).withName(VALID_NAME_AMY)
             .withGender(VALID_GENDER_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
             .withAddress(VALID_ADDRESS_AMY).withDatesTimes((VALID_DATETIME_AMY)).withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder()
-            .withUid(VALID_UID_BOB).withCategory(VALID_PATIENT_CATEGORY).withName(VALID_NAME_BOB)
+            .withUid(VALID_UID_BOB).withCategory(VALID_CATEGORY_BOB).withName(VALID_NAME_BOB)
             .withGender(VALID_GENDER_BOB).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB).withDatesTimes(VALID_DATETIME_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-
-
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {

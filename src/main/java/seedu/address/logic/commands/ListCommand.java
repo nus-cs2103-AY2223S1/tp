@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.model.Model;
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Person;
@@ -32,7 +33,7 @@ public class ListCommand extends Command {
             + "c/ nurse";
 
     private final Optional<Address> address;
-    private final Optional<String> category;
+    private final Optional<Category> category;
     private final Optional<Gender> gender;
     private final Optional<Tag> tag;
 
@@ -42,7 +43,7 @@ public class ListCommand extends Command {
      * @param g gender to be filtered
      * @param t tag to be filtered
      */
-    public ListCommand(Optional<Address> a, Optional<String> c, Optional<Gender> g, Optional<Tag> t) {
+    public ListCommand(Optional<Address> a, Optional<Category> c, Optional<Gender> g, Optional<Tag> t) {
         address = a;
         category = c;
         gender = g;
@@ -73,8 +74,10 @@ public class ListCommand extends Command {
 
         final String[] filteredGender = new String[1];
         gender.ifPresentOrElse(x -> filteredGender[0] = x.gender, () -> filteredGender[0] = "NIL");
+        final String[] filteredCategory = new String[1];
+        category.ifPresentOrElse(x -> filteredCategory[0] = x.categoryName, () -> filteredCategory[0] = "NIL");
         return new CommandResult(String.format(MESSAGE_SUCCESS, address.orElse(new Address("NIL")).value,
-                category.orElse("NIL"),
+                filteredCategory[0],
                 filteredGender[0],
                 tag.orElse(new Tag("NIL")).tagName));
     }
