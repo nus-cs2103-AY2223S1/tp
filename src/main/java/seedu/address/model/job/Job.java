@@ -36,7 +36,7 @@ public class Job {
     /**
      * Returns true if both jobs have the same id.
      */
-    public boolean isSameJob(seedu.address.model.job.Job otherJob) {
+    public boolean isSameJob(Job otherJob) {
         if (otherJob == this) {
             return true;
         }
@@ -55,11 +55,11 @@ public class Job {
             return true;
         }
 
-        if (!(other instanceof seedu.address.model.job.Job)) {
+        if (!(other instanceof Job)) {
             return false;
         }
 
-        seedu.address.model.job.Job otherJob = (seedu.address.model.job.Job) other;
+        Job otherJob = (Job) other;
         return otherJob.getId().equals(getId())
                 && otherJob.getTitle().equals(getTitle());
     }
