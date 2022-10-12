@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,6 +39,20 @@ public class DisplayItemList<T extends DisplayItem> implements Iterable<T> {
     public boolean contains(T toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::weaklyEqual);
+    }
+
+    /**
+     * Returns the item in the list that is equal (but no necessarily the same object) as the given item.
+     * @param item The item to compare equality against.
+     * @return The item in the list which is equal to the given item
+     */
+    public T get(T item) throws ItemNotFoundException {
+        requireNonNull(item);
+        List<T> matchingItems = internalList.stream().filter(item::weaklyEqual).collect(Collectors.toList());
+        if (matchingItems.size() == 0) {
+            throw new ItemNotFoundException();
+        }
+        return matchingItems.get(0);
     }
 
     /**
