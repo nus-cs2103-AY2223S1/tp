@@ -18,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.AttendanceList;
 import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.GradeProgressList;
@@ -108,6 +109,11 @@ public class EditCommand extends Command {
         }
 
         AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
+        Optional<Attendance> attendance = editPersonDescriptor.getAttendance();
+        Optional<Index> attendanceIndex = editPersonDescriptor.getAttendanceIndex();
+        if (attendance.isPresent() && attendanceIndex.isPresent()) {
+            updatedAttendanceList.editAtIndex(attendanceIndex.get(), attendance.get());
+        }
 
         GradeProgressList updatedGradeProgressList = personToEdit.getGradeProgressList();
         Optional<GradeProgress> gradeProgress = editPersonDescriptor.getGradeProgress();
@@ -151,6 +157,8 @@ public class EditCommand extends Command {
         private Homework homework;
         private Index gradeProgressIndex;
         private GradeProgress gradeProgress;
+        private Index attendanceIndex;
+        private Attendance attendance;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -167,6 +175,8 @@ public class EditCommand extends Command {
             setHomework(toCopy.homework);
             setGradeProgressIndex(toCopy.gradeProgressIndex);
             setGradeProgress(toCopy.gradeProgress);
+            setAttendanceIndex(toCopy.attendanceIndex);
+            setAttendance(toCopy.attendance);
             setTags(toCopy.tags);
         }
 
@@ -174,7 +184,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, lessonPlan, homework, gradeProgress, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, lessonPlan, homework, gradeProgress, attendance, tags);
         }
 
         public void setName(Name name) {
@@ -231,6 +241,22 @@ public class EditCommand extends Command {
 
         public Optional<Index> getGradeProgressIndex() {
             return Optional.ofNullable(gradeProgressIndex);
+        }
+
+        public void setAttendance(Attendance attendance) {
+            this.attendance = attendance;
+        }
+
+        public Optional<Attendance> getAttendance() {
+            return Optional.ofNullable(attendance);
+        }
+
+        public void setAttendanceIndex(Index attendanceIndex) {
+            this.attendanceIndex = attendanceIndex;
+        }
+
+        public Optional<Index> getAttendanceIndex() {
+            return Optional.ofNullable(attendanceIndex);
         }
 
         /**

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
@@ -33,8 +34,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_LESSON_PLAN, PREFIX_HOMEWORK, PREFIX_GRADEPROGRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_LESSON_PLAN,
+                        PREFIX_HOMEWORK, PREFIX_GRADEPROGRESS, PREFIX_ATTENDANCE, PREFIX_TAG);
 
         Index index;
 
@@ -61,9 +62,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setHomework(ParserUtil.parseHomework(homeworkArgs[1]));
         }
         if (argMultimap.getValue(PREFIX_GRADEPROGRESS).isPresent()) {
-            String[] gradeProgressArgs = ParserUtil.parseGradeProgressInfo(argMultimap.getValue(PREFIX_GRADEPROGRESS).get());
+            String[] gradeProgressArgs = ParserUtil
+                .parseGradeProgressInfo(argMultimap.getValue(PREFIX_GRADEPROGRESS).get());
             editPersonDescriptor.setGradeProgressIndex(ParserUtil.parseIndex(gradeProgressArgs[0]));
             editPersonDescriptor.setGradeProgress(ParserUtil.parseGradeProgress(gradeProgressArgs[1]));
+        }
+        if (argMultimap.getValue(PREFIX_ATTENDANCE).isPresent()) {
+            String[] attendanceArgs = ParserUtil.parseAttendanceInfo(argMultimap.getValue(PREFIX_ATTENDANCE).get());
+            editPersonDescriptor.setAttendanceIndex(ParserUtil.parseIndex(attendanceArgs[0]));
+            editPersonDescriptor.setAttendance(ParserUtil.parseAttendance(attendanceArgs[1]));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

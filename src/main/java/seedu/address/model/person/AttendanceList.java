@@ -3,10 +3,15 @@ package seedu.address.model.person;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+
 /**
  * Represents an Person's attendance list in the address book.
  */
 public class AttendanceList {
+    public static final String MESSAGE_INVALID_HOMEWORK_INDEX = "The homework index provided is invalid!";
+
     public final List<Attendance> attendanceList;
 
     /**
@@ -51,6 +56,21 @@ public class AttendanceList {
     public void clearList() {
         attendanceList.clear();
     }
+
+    /**
+     * Edits the homework at the given index with the new given homework.
+     *
+     * @param index of attendance to be edited
+     * @param attendance that replaces the old attendance
+     */
+    public void editAtIndex(Index index, Attendance attendance) throws CommandException {
+        int indexToEdit = index.getZeroBased();
+        if (indexToEdit >= attendanceList.size()) {
+            throw new CommandException(MESSAGE_INVALID_HOMEWORK_INDEX);
+        }
+        attendanceList.set(indexToEdit, attendance);
+    }
+
     @Override
     public String toString() {
         StringBuilder description = new StringBuilder("Attendance: \n");
