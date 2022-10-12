@@ -63,11 +63,13 @@ Rapportbook is a **desktop app for managing client information for your financia
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaning how to access the help page. Can also be acessed with the `F1` hotkey.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+You can then either click on the link to open it in your default browser, or click on the `Copy URL` button to copy the link to your clipboard.
 
 
 ### Adding a client: `add`
@@ -162,7 +164,7 @@ Example:
 * `tag remove 5 potential` Removes the `potential` tag from the client entry at index 5.
 * `tag remove 5 potential high-priority` Removes the `potential` and `high-priority` tags from the client entry at index 5.
 
-### Filtering client entries: `find`
+### Filtering client entries: `filter`
 
 Filter clients by their name or the tags assigned to client entries.
 
