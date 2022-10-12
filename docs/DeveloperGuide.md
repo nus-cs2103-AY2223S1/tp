@@ -333,22 +333,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Add a supplier**
-
-**MSS**
-
-1. Vendor enters the command to add supplier
-2. Salesy shows that command is successful and displays the supplier added
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. Salesy detects that the command entered is in an invalid format.
-    * 2a1. Salesy shows an error message as well as a guide on the add supplier command.
-
-      Use case resumes at step 1.
-
 **Use case: Mark a task as done**
 
 **MSS**
@@ -417,29 +401,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a supplier**
-
-**MSS**
-
-1.  Vendor requests to list suppliers
-2.  Salesy shows a list of suppliers
-3.  Vendor requests to delete a specific supplier in the list
-4.  Salesy deletes the supplier
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Salesy shows an error message.
-
-      Use case resumes at step 2.
-
 **Use case: View pending tasks**
 
 **MSS**
@@ -455,6 +416,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Add a supplier**
+
+**MSS**
+
+1. Vendor requests to add supplier.
+2. Salesy adds the supplier and displays the details of the added supplier
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The command entered is in an invalid format.
+    * 2a1. Salesy shows an error message as well as a guide on the add supplier command.
+* 2b. A supplier with the same name/phone already exists.
+    * 2b1. Salesy shows an error message that the supplier already exists.
+
+    Use case resumes at step 1.
+
+**Use case: Delete a supplier**
+
+**MSS**
+
+1. Vendor requests to delete supplier
+2. Salesy deletes the supplier and displays the details of the deleted supplier
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The command entered is in an invalid format.
+    * 2a1. Salesy shows an error message as well as a guide on the delete supplier command.
+* 2b. The index number specified is invalid.
+    * 2b1. Salesy shows an error message that the index provided is invalid.
+
+    Use case resumes at step 1.
+
+**Use case: List all existing suppliers**
+
+**MSS**
+
+1. Vendor requests list suppliers
+2. Salesy displays all existing suppliers
+
+   Use case ends.
+
 **Use case: Find a supplier**
 
 **MSS**
@@ -467,8 +473,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-
+  * 2a1. Salesy displays an empty list.
+* 2b. No existing suppliers match the vendor's query.
+  * 2b1. Salesy displays an empty list.
+  
   Use case ends.
+
+**Use case: Edit a supplier**
+
+**MSS**
+
+1. Vendor requests to edit a supplier
+2. Salesy edits the supplier and displays the updated details of the edited supplier
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The command entered is in an invalid format.
+    * 2a1. Salesy shows an error message as well as a guide on the edit supplier command.
+* 2b. The index number to specify a supplier to edit is invalid.
+    * 2b1. Salesy shows an error message that the index provided is invalid.
+* 2c. The new name/phone for the edited supplier conflicts with an existing supplier's name/phone.
+    * 2c1. Salesy shows an error message that there is already an existing supplier with the provided details.
+
+  Use case resumes at step 1.
 
 *{More to be added}*
 
