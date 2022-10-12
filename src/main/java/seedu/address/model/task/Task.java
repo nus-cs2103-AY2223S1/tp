@@ -60,6 +60,10 @@ public class Task {
         return isDone;
     }
 
+    /**
+     * Returns an icon representing if the task is done.
+     * @return String representation of an icon.
+     */
     public String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]");
     }
