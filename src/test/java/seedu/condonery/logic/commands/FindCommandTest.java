@@ -24,8 +24,10 @@ import seedu.condonery.model.property.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private final Model model = new ModelManager(getTypicalPropertyDirectory(), getTypicalClientDirectory(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalPropertyDirectory(), getTypicalClientDirectory(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalPropertyDirectory(),
+            getTypicalClientDirectory(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalPropertyDirectory(),
+            getTypicalClientDirectory(), new UserPrefs());
 
     @Test
     public void equals() {

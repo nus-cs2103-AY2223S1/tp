@@ -4,11 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX;
 import static seedu.condonery.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.condonery.testutil.Assert.assertThrows;
-import static seedu.condonery.testutil.TypicalProperties.PINNACLE;
+import static seedu.condonery.testutil.TypicalProperties.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,11 +16,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.condonery.logic.commands.CommandResult;
+import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.commands.property.ListPropertyCommand;
-import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.parser.exceptions.ParseException;
-import seedu.condonery.model.*;
+import seedu.condonery.model.Model;
+import seedu.condonery.model.ModelManager;
+import seedu.condonery.model.ReadOnlyClientDirectory;
+import seedu.condonery.model.ReadOnlyPropertyDirectory;
+import seedu.condonery.model.UserPrefs;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.storage.JsonClientDirectoryStorage;
 import seedu.condonery.storage.JsonPropertyDirectoryStorage;
@@ -58,7 +60,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "delete -p 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
     }
 
@@ -83,9 +85,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddPropertyCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-            + ADDRESS_DESC_AMY;
-        Property expectedProperty = new PropertyBuilder(PINNACLE).withTags().build();
+        String addCommand = AddPropertyCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
+        Property expectedProperty = new PropertyBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addProperty(expectedProperty);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -137,7 +138,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getPropertyDirectory(), model.getClientDirectory(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPropertyDirectory(),
+                model.getClientDirectory(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

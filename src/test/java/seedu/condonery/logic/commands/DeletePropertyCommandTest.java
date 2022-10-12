@@ -6,7 +6,6 @@ import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_SECOND_PROPERTY;
 import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
-import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +22,8 @@ import seedu.condonery.model.property.Property;
  */
 public class DeletePropertyCommandTest {
 
-    private final Model model = new ModelManager(getTypicalPropertyDirectory(),getTypicalClientDirectory(),  new UserPrefs());
+    private final Model model = new ModelManager(getTypicalPropertyDirectory(),
+            getTypicalClientDirectory(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -32,7 +32,8 @@ public class DeletePropertyCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getPropertyDirectory(), model.getClientDirectory(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPropertyDirectory(),
+                model.getClientDirectory(), new UserPrefs());
         expectedModel.deleteProperty(propertyToDelete);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -55,7 +56,8 @@ public class DeletePropertyCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
-        Model expectedModel = new ModelManager(model.getPropertyDirectory(), model.getClientDirectory(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPropertyDirectory(),
+                model.getClientDirectory(), new UserPrefs());
         expectedModel.deleteProperty(propertyToDelete);
         showNoProperty(expectedModel);
 

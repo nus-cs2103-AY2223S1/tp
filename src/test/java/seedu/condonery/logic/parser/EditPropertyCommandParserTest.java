@@ -1,26 +1,8 @@
 package seedu.condonery.logic.parser;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
+import static seedu.condonery.logic.commands.CommandTestUtil.*;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -33,14 +15,12 @@ import org.junit.jupiter.api.Test;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
-import seedu.condonery.model.person.Address;
-import seedu.condonery.model.person.Email;
-import seedu.condonery.model.person.Name;
-import seedu.condonery.model.person.Phone;
+import seedu.condonery.model.fields.Address;
+import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.tag.Tag;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class EditPropertyCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
@@ -79,17 +59,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-
-        // invalid phone followed by valid email
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
-
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
-        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
@@ -98,15 +69,15 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_ADDRESS_DESC,
             Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PROPERTY;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-            + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + TAG_DESC_HUSBAND
+                + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withName(VALID_NAME_AMY)
             .withAddress(VALID_ADDRESS_AMY)
@@ -119,9 +90,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PROPERTY;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + NAME_DESC_BOB;
 
-        EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().build();
+        EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -134,18 +105,6 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // phone
-        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditPropertyDescriptorBuilder().build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // email
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditPropertyDescriptorBuilder().build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
@@ -164,9 +123,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PROPERTY;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-            + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-            + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY
+            + TAG_DESC_FRIEND + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
+            + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder()
             .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
@@ -180,15 +139,14 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PROPERTY;
-        String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().build();
+        String userInput = targetIndex.getOneBased() + INVALID_NAME_DESC + NAME_DESC_BOB;
+        EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
-            + PHONE_DESC_BOB;
-        descriptor = new EditPropertyDescriptorBuilder()
+        userInput = targetIndex.getOneBased() + INVALID_NAME_DESC + ADDRESS_DESC_BOB + NAME_DESC_BOB;
+        descriptor = new EditPropertyDescriptorBuilder().withName(VALID_NAME_BOB)
             .withAddress(VALID_ADDRESS_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

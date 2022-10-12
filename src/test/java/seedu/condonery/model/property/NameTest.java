@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.condonery.model.fields.Name;
 
 public class NameTest {
@@ -37,5 +38,6 @@ public class NameTest {
         assertTrue(Name.isValidName("water the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Water Front")); // with capital letters
         assertTrue(Name.isValidName("Water Front the condo near the sea")); // long names
+        assertTrue(Name.isValidName("Pinnacle@Duxton")); // with @
     }
 }

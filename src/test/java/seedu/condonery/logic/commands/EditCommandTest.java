@@ -12,7 +12,12 @@ import org.junit.jupiter.api.Test;
 import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
-import seedu.condonery.model.*;
+import seedu.condonery.model.Model;
+import seedu.condonery.model.ModelManager;
+import seedu.condonery.model.ClientDirectory;
+import seedu.condonery.model.PropertyDirectory;
+import seedu.condonery.model.UserPrefs;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 import seedu.condonery.testutil.PropertyBuilder;
@@ -22,7 +27,8 @@ import seedu.condonery.testutil.PropertyBuilder;
  */
 public class EditCommandTest {
 
-    private final Model model = new ModelManager(getTypicalPropertyDirectory(), getTypicalClientDirectory(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalPropertyDirectory(),
+            getTypicalClientDirectory(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -32,7 +38,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()), new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
+                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
         expectedModel.setProperty(model.getFilteredPropertyList().get(0), editedProperty);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -53,7 +60,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()), new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
+                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
         expectedModel.setProperty(lastProperty, editedPerson);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -66,7 +74,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()), new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
+                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -83,7 +92,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()), new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
+                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
         expectedModel.setProperty(model.getFilteredPropertyList().get(0), editedPerson);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
