@@ -58,7 +58,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = "del 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
     }
 
@@ -70,9 +70,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonFoodRemIoExceptionThrowingStub
         JsonFoodRemStorage foodRemStorage =
-                new JsonFoodRemIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonFoodRemIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFoodRem.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(foodRemStorage, userPrefsStorage);

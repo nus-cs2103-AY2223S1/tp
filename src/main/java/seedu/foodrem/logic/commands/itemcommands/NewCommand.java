@@ -3,9 +3,9 @@ package seedu.foodrem.logic.commands.itemcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
@@ -24,14 +24,18 @@ public class NewCommand extends Command {
             + ": Creates a new item in FoodRem. "
             + "\n"
             + "Parameters: "
-            + PREFIX_ITEM_NAME + "NAME "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_ITEM_QUANTITY + "QUANTITY "
+            + PREFIX_ITEM_UNIT + "UNIT "
+            + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE "
+            + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE "
             + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY" + "] "
             + "[" + PREFIX_ITEM_UNIT + "UNIT" + "] "
             + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT_DATE" + "] "
             + "[" + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY_DATE" + "] "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ITEM_NAME + "Potatoes "
+            + PREFIX_NAME + "Potatoes "
             + PREFIX_ITEM_QUANTITY + "10 "
             + PREFIX_ITEM_UNIT + "kg "
             + PREFIX_ITEM_BOUGHT_DATE + "11-11-2022 "

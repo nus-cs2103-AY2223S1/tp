@@ -1,9 +1,9 @@
-package seedu.foodrem.logic.commands.itemcommands;
+package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.foodrem.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -23,57 +23,58 @@ import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.model.ReadOnlyUserPrefs;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
-import seedu.foodrem.testutil.ItemBuilder;
+import seedu.foodrem.testutil.TagBuilder;
 
-public class NewCommandTest {
-
+public class AddTagCommandTest {
     @Test
-    public void constructor_nullItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new NewCommand(null));
+    public void constructor_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddTagCommand(null));
     }
 
     @Test
-    public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
-        Item validItem = new ItemBuilder().build();
+    public void execute_tagAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
+        Tag validTag = new TagBuilder().build();
 
-        CommandResult commandResult = new NewCommand(validItem).execute(modelStub);
+        CommandResult commandResult = new AddTagCommand(validTag).execute(modelStub);
 
-        assertEquals(String.format(NewCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
-        assertEquals(List.of(validItem), modelStub.itemsAdded);
+        assertEquals(String.format(AddTagCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
+        assertEquals(List.of(validTag), modelStub.tagsAdded);
     }
 
     @Test
     public void execute_duplicateItem_throwsCommandException() {
-        Item validItem = new ItemBuilder().build();
-        NewCommand newCommand = new NewCommand(validItem);
-        ModelStub modelStub = new ModelStubWithItem(validItem);
+        Tag validTag = new TagBuilder().build();
+        AddTagCommand addTagCommand = new AddTagCommand(validTag);
+        ModelStub modelStub = new ModelStubWithTag(validTag);
 
-        assertThrows(CommandException.class, NewCommand.MESSAGE_DUPLICATE_ITEM, () -> newCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddTagCommand.MESSAGE_DUPLICATE_TAG, () -> addTagCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Item potatoes = new ItemBuilder().withItemName("Potatoes").build();
-        Item cucumbers = new ItemBuilder().withItemName("Cucumbers").build();
-        NewCommand addPotatoCommand = new NewCommand(potatoes);
-        NewCommand addCucumberCommand = new NewCommand(cucumbers);
+        Tag fruitsTag = new TagBuilder().withTagName("fruits").build();
+        Tag vegetableTag = new TagBuilder().withTagName("vegetable").build();
+
+        AddTagCommand addFruitsTag = new AddTagCommand(fruitsTag);
+        AddTagCommand addVegetableTag = new AddTagCommand(vegetableTag);
 
         // same object -> returns true
-        assertTrue(addPotatoCommand.equals(addPotatoCommand));
+        assertEquals(addFruitsTag, addFruitsTag);
 
         // same values -> returns true
-        NewCommand addPotatoCommandCopy = new NewCommand(potatoes);
-        assertTrue(addPotatoCommand.equals(addPotatoCommandCopy));
+        AddTagCommand addFruitsTagCopy = new AddTagCommand(fruitsTag);
+        assertEquals(addFruitsTag, addFruitsTagCopy);
 
         // different types -> returns false
-        assertFalse(addPotatoCommand.equals(1));
+        assertFalse(addFruitsTag.equals(1));
 
         // null -> returns false
-        assertFalse(addPotatoCommand.equals(null));
+        assertNotEquals(null, addFruitsTag);
 
         // different item -> returns false
-        assertFalse(addPotatoCommand.equals(addCucumberCommand));
+        assertNotEquals(addFruitsTag, addVegetableTag);
     }
 
     /**
@@ -184,37 +185,37 @@ public class NewCommandTest {
     /**
      * A Model stub that contains a single item.
      */
-    private static class ModelStubWithItem extends ModelStub {
-        private final Item item;
+    private static class ModelStubWithTag extends ModelStub {
+        private final Tag tag;
 
-        ModelStubWithItem(Item item) {
-            requireNonNull(item);
-            this.item = item;
+        ModelStubWithTag(Tag tag) {
+            requireNonNull(tag);
+            this.tag = tag;
         }
 
         @Override
-        public boolean hasItem(Item item) {
-            requireNonNull(item);
-            return this.item.isSameItem(item);
+        public boolean hasTag(Tag tag) {
+            requireNonNull(tag);
+            return this.tag.equals(tag);
         }
     }
 
     /**
      * A Model stub that always accept the item being added.
      */
-    private static class ModelStubAcceptingItemAdded extends ModelStub {
-        final ArrayList<Item> itemsAdded = new ArrayList<>();
+    private static class ModelStubAcceptingTagAdded extends ModelStub {
+        final ArrayList<Tag> tagsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasItem(Item item) {
-            requireNonNull(item);
-            return itemsAdded.stream().anyMatch(item::isSameItem);
+        public boolean hasTag(Tag tag) {
+            requireNonNull(tag);
+            return tagsAdded.stream().anyMatch(tag::equals);
         }
 
         @Override
-        public void addItem(Item item) {
-            requireNonNull(item);
-            itemsAdded.add(item);
+        public void addTag(Tag tag) {
+            requireNonNull(tag);
+            tagsAdded.add(tag);
         }
 
         @Override
@@ -222,5 +223,4 @@ public class NewCommandTest {
             return new FoodRem();
         }
     }
-
 }

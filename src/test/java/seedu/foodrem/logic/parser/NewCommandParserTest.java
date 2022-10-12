@@ -32,11 +32,12 @@ import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS;
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
+import seedu.foodrem.logic.parser.itemcommandparser.NewCommandParser;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.testutil.ItemBuilder;
 
 public class NewCommandParserTest {
-    private final AddCommandParser parser = new AddCommandParser();
+    private final NewCommandParser parser = new NewCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

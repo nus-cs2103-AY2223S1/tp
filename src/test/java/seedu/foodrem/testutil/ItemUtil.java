@@ -2,9 +2,9 @@ package seedu.foodrem.testutil;
 
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
@@ -27,7 +27,7 @@ public class ItemUtil {
      */
     public static String getItemDetails(Item item) {
         return String.format("%s%s %s%s %s%s %s%s %s%s",
-                PREFIX_ITEM_NAME,
+                PREFIX_NAME,
                 item.getName(),
                 PREFIX_ITEM_QUANTITY,
                 item.getQuantity(),
@@ -45,7 +45,7 @@ public class ItemUtil {
     public static String getEditItemDescriptorDetails(EditItemDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getItemName()
-                .ifPresent(name -> sb.append(PREFIX_ITEM_NAME).append(name).append(" "));
+                .ifPresent(name -> sb.append(PREFIX_NAME).append(name).append(" "));
         descriptor.getItemQuantity()
                 .ifPresent(quantity -> sb.append(PREFIX_ITEM_QUANTITY).append(quantity).append(" "));
         descriptor.getItemUnit()

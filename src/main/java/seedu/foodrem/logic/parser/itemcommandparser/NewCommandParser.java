@@ -1,15 +1,18 @@
-package seedu.foodrem.logic.parser;
+package seedu.foodrem.logic.parser.itemcommandparser;
 
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
-
-import java.util.stream.Stream;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
+import seedu.foodrem.logic.parser.ArgumentMultimap;
+import seedu.foodrem.logic.parser.ArgumentTokenizer;
+import seedu.foodrem.logic.parser.Parser;
+import seedu.foodrem.logic.parser.ParserUtil;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
@@ -21,15 +24,7 @@ import seedu.foodrem.model.item.ItemUnit;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<NewCommand> {
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
+public class NewCommandParser implements Parser<NewCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -40,18 +35,18 @@ public class AddCommandParser implements Parser<NewCommand> {
     public NewCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_ITEM_NAME,
+                        PREFIX_NAME,
                         PREFIX_ITEM_QUANTITY,
                         PREFIX_ITEM_UNIT,
                         PREFIX_ITEM_BOUGHT_DATE,
                         PREFIX_ITEM_EXPIRY_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.MESSAGE_USAGE));
         }
 
-        ItemName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
+        ItemName name = ParserUtil.parseItemName(argMultimap.getValue(PREFIX_NAME).get());
 
         String quantity = argMultimap.getValue(PREFIX_ITEM_QUANTITY).orElse("");
         ItemQuantity itemQuantity = ParserUtil.parseQuantity(quantity);
