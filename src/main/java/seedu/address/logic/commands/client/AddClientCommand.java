@@ -29,7 +29,7 @@ public class AddClientCommand extends ClientCommand {
             + PREFIX_CLIENT_NAME + "John Doe "
             + PREFIX_CLIENT_PHONE + "98765432 "
             + PREFIX_CLIENT_EMAIL + "johnd@example.com "
-            + PREFIX_CLIENT_ID + "1";;
+            + PREFIX_CLIENT_ID + "1";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book";
