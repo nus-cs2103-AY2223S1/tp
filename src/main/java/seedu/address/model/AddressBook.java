@@ -122,4 +122,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    @Override
+    public AddressBook clone() {
+        return new AddressBook(this);
+    }
 }
