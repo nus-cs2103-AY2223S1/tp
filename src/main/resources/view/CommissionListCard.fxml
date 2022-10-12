@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.layout.BorderPane?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -36,11 +35,13 @@
                         </center>
                         <right>
                             <HBox alignment="CENTER_LEFT">
-                                <Circle fx:id="completionStatusCircle" radius="4">
+                                <!-- workaround to buggy ui when using a shape node: use an empty rounded label -->
+                                <Label fx:id="completionStatusCircle" id="completionStatusCircle"
+                                    minWidth="8" minHeight="8" maxWidth="8" maxHeight="8" >
                                     <HBox.margin>
                                         <Insets right="8"/>
                                     </HBox.margin>
-                                </Circle>
+                                </Label>
                                 <Label fx:id="completionStatus" id="cell_completion_label"
                                        text="\$completionStatus" />
                             </HBox>

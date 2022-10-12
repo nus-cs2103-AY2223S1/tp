@@ -114,7 +114,6 @@
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #49505A;
-    -fx-border-width: 1;
 }
 
 .list-cell .label {
@@ -439,4 +438,9 @@
     -fx-font-size: 14px;
     -fx-font-family: "Arial";
     -fx-font-weight: bold;
+}
+
+#completionStatusCircle {
+    -fx-background-color: red;
+    -fx-background-radius: 8px;
 }

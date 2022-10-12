@@ -7,8 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import seedu.address.model.commission.Commission;
 
 /**
@@ -17,8 +15,8 @@ import seedu.address.model.commission.Commission;
 public class CommissionCard extends UiPart<Region> {
 
     private static final String FXML = "CommissionListCard.fxml";
-    private static final Color COMPLETED_COLOR = Color.rgb(50, 174, 70);
-    private static final Color NOT_COMPLETED_COLOR = Color.rgb(84, 141, 225);
+    private static final String COMPLETED_COLOR_STYLE = "-fx-background-color: #32AE46;";
+    private static final String NOT_COMPLETED_COLOR_STYLE = "-fx-background-color: #548DE1";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -36,8 +34,10 @@ public class CommissionCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label title;
+    // JavaFx Shape nodes seem to be buggy instead the ListView, using an
+    // empty label to mimic a Circle seems to work
     @FXML
-    private Circle completionStatusCircle;
+    private Label completionStatusCircle;
     @FXML
     private Label completionStatus;
     @FXML
@@ -53,10 +53,10 @@ public class CommissionCard extends UiPart<Region> {
         title.setText(commission.getTitle().title);
 
         if (commission.getCompletionStatus().isCompleted) {
-            completionStatusCircle.setFill(COMPLETED_COLOR);
+            completionStatusCircle.setStyle(COMPLETED_COLOR_STYLE);
             completionStatus.setText("Completed");
         } else {
-            completionStatusCircle.setFill(NOT_COMPLETED_COLOR);
+            completionStatusCircle.setStyle(NOT_COMPLETED_COLOR_STYLE);
             completionStatus.setText("Not Completed");
         }
 
