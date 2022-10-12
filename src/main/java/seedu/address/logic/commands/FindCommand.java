@@ -45,58 +45,28 @@ public class FindCommand extends Command {
 
         switch (type) {
         case STUDENT_LIST:
-            this.studentPredicate = new NameContainsKeywordsPredicate<Student>(keywords);
+            this.studentPredicate = new NameContainsKeywordsPredicate<>(keywords);
             model.updateFilteredStudentList(studentPredicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
         case TUTOR_LIST:
-            this.tutorPredicate = new NameContainsKeywordsPredicate<Tutor>(keywords);
+            this.tutorPredicate = new NameContainsKeywordsPredicate<>(keywords);
             model.updateFilteredTutorList(tutorPredicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_TUTORS_LISTED_OVERVIEW, model.getFilteredTutorList().size()));
         case TUITIONCLASS_LIST:
-            this.classPredicate = new NameContainsKeywordsPredicate<TuitionClass>(keywords);
+            this.classPredicate = new NameContainsKeywordsPredicate<>(keywords);
             model.updateFilteredTuitionClassList(classPredicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW, model.getFilteredTuitionClassList().size()));
         case PERSON_LIST:
-            this.personPredicate = new NameContainsKeywordsPredicate<Person>(keywords);
+            this.personPredicate = new NameContainsKeywordsPredicate<>(keywords);
             model.updateFilteredPersonList(personPredicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
         }
 
         throw new CommandException("Current list type is not valid");
-        /*
-        if (model.getCurrentListType() == Model.ListType.STUDENT_LIST) {
-            model.updateFilteredStudentList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
-
-        }
-
-        if (model.getCurrentListType() == Model.ListType.TUTOR_LIST) {
-            model.updateFilteredTutorList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_TUTORS_LISTED_OVERVIEW, model.getFilteredTutorList().size()));
-
-        }
-
-        if (model.getCurrentListType() == Model.ListType.PERSON_LIST) {
-            model.updateFilteredPersonList(predicate);
-            return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
-                    model.getFilteredPersonList().size()));
-
-        }
-
-        if (model.getCurrentListType() == Model.ListType.TUITIONCLASS_LIST) {
-            model.updateFilteredTuitionClassList(predicate);
-            return new CommandResult(String.format(Messages.MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW,
-                    model.getFilteredTuitionClassList().size()));
-        }
-        throw new ClassCastException();
-
-         */
     }
 
     @Override

@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import seedu.address.model.person.tutor.Tutor;
 
@@ -8,7 +9,7 @@ import seedu.address.model.person.tutor.Tutor;
  */
 public class TutorCard extends PersonCard {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TutorCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -19,8 +20,9 @@ public class TutorCard extends PersonCard {
      */
 
     public final Tutor tutor;
-
+    @FXML
     protected Label institution;
+    @FXML
     protected Label qualification;
 
     /**

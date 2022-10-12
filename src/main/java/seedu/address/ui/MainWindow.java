@@ -46,13 +46,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane entityListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane entityLabel;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -116,12 +119,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
         tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
-        //personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -180,19 +182,19 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleList() {
         Model.ListType type = logic.getCurrentListType();
-        personListPanelPlaceholder.getChildren().clear();
+        entityListPanelPlaceholder.getChildren().clear();
         switch (type) {
         case STUDENT_LIST:
-            personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
         case TUTOR_LIST:
-            personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+            entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
             break;
         case TUITIONCLASS_LIST:
-            personListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+            entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
             break;
         case PERSON_LIST:
-            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            entityListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             break;
         default:
             break;
