@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import seedu.foodrem.model.item.itemvalidator.ItemBoughtDateValidator;
+import seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator;
 
 /**
  * Represents an item date in an {@link Item}.
@@ -55,6 +55,18 @@ public class ItemBoughtDate {
         }
 
         return boughtDate.equals(((ItemBoughtDate) other).boughtDate);
+    }
+
+    /**
+     * Compares two item bought dates. The method returns 0 if the bought date is equal to the other
+     * bought date.
+     * A value less than 0 is returned if the bought date is less than the other bought date (earlier) and
+     * a value greater than 0 if the bought date is greater than the other bought date (later).
+     *
+     * @param other The ItemBoughtDate to compare this ItemBoughtDate against.
+     */
+    public int compareTo(ItemBoughtDate other) {
+        return boughtDate.compareTo(other.boughtDate);
     }
 
     /**
