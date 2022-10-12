@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_PROJECT_DONT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
@@ -74,6 +75,11 @@ public class AddStaffCommand extends Command {
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        }
+
+        ProjectName projectName = lastShownList.get(index.getZeroBased()).getProjectName();
+        if (!projectName.equals(addTo)) {
+            throw new CommandException(String.format(MESSAGE_PROJECT_DONT_EXIST, addTo.fullName));
         }
 
         Project projectToAdd = lastShownList.get(index.getZeroBased());

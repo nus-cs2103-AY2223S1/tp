@@ -28,6 +28,7 @@
                 <Label fx:id="staffName" text="\$first" styleClass="cell_big_label" />
             </HBox>
             <Label fx:id="staffTitle" styleClass="cell_small_label" text="\$staffTitle"/>
+            <Label fx:id="staffDepartment" styleClass="cell_small_label" text="\$staffDepartment"/>
             <Label fx:id="staffContact" styleClass="cell_small_label" text="\$staffContact" />
             <FlowPane fx:id="staffInsurance" />
         </VBox>

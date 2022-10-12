@@ -101,6 +101,7 @@ public class UniqueStaffList implements Iterable<Staff> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Staff> asUnmodifiableObservableList() {
+        System.out.println(internalUnmodifiableList);
         return internalUnmodifiableList;
     }
 

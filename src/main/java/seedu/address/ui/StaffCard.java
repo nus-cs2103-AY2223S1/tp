@@ -35,6 +35,8 @@ public class StaffCard extends UiPart<Region> {
     @FXML
     private Label staffContact;
     @FXML
+    private Label staffDepartment;
+    @FXML
     private Label id;
     @FXML
     private FlowPane staffInsurance;
@@ -49,8 +51,16 @@ public class StaffCard extends UiPart<Region> {
         this.staff = staff;
         id.setText(displayedIndex + ". ");
         staffName.setText(staff.getStaffName().toString());
-        staffTitle.setText(staff.getStaffTitle().toString());
-        staffContact.setText("Phone : " + staff.getStaffContact());
+        staffTitle.setText("Title : " + staff.getStaffTitle().toString());
+        staffDepartment.setText("Department : " + staff.getStaffDepartment().toString());
+        staffContact.setText("Phone Number : " + staff.getStaffContact());
+        boolean isInsured = staff.getStaffInsurance().staffInsurance.equals("true");
+        if (isInsured) {
+            staffInsurance.getChildren().add(new Label("Insured"));
+        } else {
+            staffInsurance.getChildren().add(new Label("Not insured"));
+        }
+
 
         staff.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
