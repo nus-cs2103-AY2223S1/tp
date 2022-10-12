@@ -57,9 +57,9 @@ public class AttendanceCommand extends Command {
         assert studentToMarkAttendance != null;
 
         Attendance attendance = studentToMarkAttendance.getAttendance();
-        Name name = studentToMarkAttendance.getName();
+        StuName name = studentToMarkAttendance.getName();
         Telegram telegram = studentToMarkAttendance.getTelegram();
-        Email email = studentToMarkAttendance.getEmail();
+        StuEmail email = studentToMarkAttendance.getEmail();
         Response response = studentToMarkAttendance.getResponse();
 
 
