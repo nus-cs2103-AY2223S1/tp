@@ -68,7 +68,7 @@ public class ParserUtil {
         String trimmedClientId = clientId.trim();
         try {
             Integer.parseInt(trimmedClientId);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new ParseException(ClientId.MESSAGE_INVALID);
         }
         ClientId clientIdRes = new ClientId(Integer.parseInt(trimmedClientId));
