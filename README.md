@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/AY2223S1-CS2103T-T08-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T08-4/tp/actions)
 
-![Ui](docs/images/userguide-screenshots/Ui.png)
+![Ui](docs/images/Ui.png)
 
 * The project simulates an ongoing software project for a desktop application (called _SETA_) used for managing student and tutorial details.
 
