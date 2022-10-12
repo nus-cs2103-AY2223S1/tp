@@ -1,9 +1,9 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.showPersonAtIndex;
-import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.rc4hdb.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.showResidentAtIndex;
+import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
+import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalResidentBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getResidentBook(), new UserPrefs());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showResidentAtIndex(model, INDEX_FIRST_RESIDENT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

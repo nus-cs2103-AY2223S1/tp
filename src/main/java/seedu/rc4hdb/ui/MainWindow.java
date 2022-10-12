@@ -2,6 +2,7 @@ package seedu.rc4hdb.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -31,7 +32,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+
+    private ResidentTableView residentTableView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane residentTableViewPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -59,6 +61,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.logic.getObservableFields().addListener(getListChangeListener());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -110,13 +113,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        residentTableView = new ResidentTableView(logic.getFilteredResidentList(), logic.getObservableFields());
+        residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getResidentBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -163,8 +166,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ResidentTableView getResidentTablePanel() {
+        return residentTableView;
     }
 
     /**
@@ -192,5 +195,10 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private ListChangeListener<String> getListChangeListener() {
+        // Update the observable field list within the logic attribute
+        return c -> residentTableView.setObservableFields(logic.getObservableFields());
     }
 }

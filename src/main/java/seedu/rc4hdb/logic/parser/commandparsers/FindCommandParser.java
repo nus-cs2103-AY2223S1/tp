@@ -7,7 +7,7 @@ import java.util.Arrays;
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
 import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.person.NameContainsKeywordsPredicate;
+import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

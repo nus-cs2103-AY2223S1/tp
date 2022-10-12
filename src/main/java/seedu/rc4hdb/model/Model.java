@@ -1,18 +1,19 @@
 package seedu.rc4hdb.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
-import seedu.rc4hdb.model.person.Person;
+import seedu.rc4hdb.model.resident.Resident;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Resident> PREDICATE_SHOW_ALL_RESIDENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +36,58 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' resident book file path.
      */
-    Path getAddressBookFilePath();
+    Path getResidentBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' resident book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setResidentBookFilePath(Path residentBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces resident book data with the data in {@code residentBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setResidentBook(ReadOnlyResidentBook residentBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ResidentBook */
+    ReadOnlyResidentBook getResidentBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a resident with the same identity as {@code resident} exists in the resident book.
      */
-    boolean hasPerson(Person person);
+    boolean hasResident(Resident resident);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given resident.
+     * The resident must exist in the resident book.
      */
-    void deletePerson(Person target);
+    void deleteResident(Resident target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given resident.
+     * {@code resident} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addResident(Resident resident);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given resident {@code target} with {@code editedResident}.
+     * {@code target} must exist in the resident book.
+     * The resident identity of {@code editedResident} must not be the same as another existing resident in the
+     * resident book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setResident(Resident target, Resident editedResident);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered resident list */
+    ObservableList<Resident> getFilteredResidentList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered resident list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredResidentList(Predicate<Resident> predicate);
+
+    ObservableList<String> getObservableFields();
+
+    void setObservableFields(List<String> modifiableList);
 }

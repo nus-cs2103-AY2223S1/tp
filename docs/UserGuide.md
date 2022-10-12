@@ -99,9 +99,15 @@ Examples:
 
 ### Listing all residents : `list`
 
-Shows a list of all residents in the RC4HDB database.
+Shows a list of all residents in the RC4HDB database. Use the specifiers `/i` for include and `/e` for exclude, followed by the field names of the columns to show or hide. All field names entered are case-insensitive.
 
-Format: `list`
+Format:
+
+`list` to list all residents in the database with all fields visible
+
+`list /i [FIELD_1] [FIELD_2]...` to list all residents in the database with only `[FIELD_1] [FIELD_2]...` visible.
+
+`list /e [FIELD_1] [FIELD_2]...` to list all residents in the database with all fields visible except `[FIELD_1] [FIELD_2]...`
 
 ### Editing an existing resident : `edit`
 
@@ -142,18 +148,13 @@ Examples:
 
 Shows a list of residents whose fields match the input keywords.
 
-Format: `filter [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-
-* The default specifier, if not specified by the user is `/all`.
-* Currently, only two specifiers are supported:
-  * `/all` returns a resident if it fulfills **all** of the specified keywords (Logical AND operation).
-  * `/any` returns a resident if it fulfills **any** of the specified keywords (Logical OR operation).
-* Repeated keys are not permitted for `/all` specifier, e.g. `filter /all h/D h/A` will not work.
+Format: `filter KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
+* The fields have to be the same (no substrings allowed) for the resident to be filtered.
+* Commands with multiple fields require the resident to match all the fields to be filtered.
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
-* `filter /all h/D g/M` returns residents who are in Draco house, **and** are Male.
-* `filter /any h/D h/A` returns residents belonging to either `Draco` **or** `Aquila` house.
+* `filter h/D g/M` returns residents who are in Draco house, **and** are Male.
 * `filter g/M` returns residents who are male.
 
 ### Deleting a resident : `delete`
@@ -285,7 +286,7 @@ Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com r/2-1 g/M h/D m/A9876543B`
-**List** | `list`
+**List** | `list`, `list /i [FIELD_1] [FIELD_2]...`, or `list /e [FIELD_1] [FIELD_2]...` e.g., `list /i name phone address`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter [/specifier] KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g., `filter /all h/D g/M`

@@ -7,8 +7,8 @@ import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.ReadOnlyAddressBook;
-import seedu.rc4hdb.model.person.Person;
+import seedu.rc4hdb.model.ReadOnlyResidentBook;
+import seedu.rc4hdb.model.resident.Resident;
 
 /**
  * API of the Logic component
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ResidentBook.
      *
-     * @see seedu.rc4hdb.model.Model#getAddressBook()
+     * @see seedu.rc4hdb.model.Model#getResidentBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyResidentBook getResidentBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of residents */
+    ObservableList<Resident> getFilteredResidentList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' resident book file path.
      */
-    Path getAddressBookFilePath();
+    Path getResidentBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +47,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    ObservableList<String> getObservableFields();
 }
