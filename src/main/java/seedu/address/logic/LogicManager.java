@@ -14,6 +14,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
@@ -73,6 +74,11 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<TeachingAssistant> getFilteredTeachingAssistantList() { return model.getFilteredTeachingAssistantList(); }
+
+    @Override
+    public ObservableList<Consultation> getFilteredConsultationList() {
+        return model.getFilteredConsultationList();
+    }
 
     @Override
     public Path getAddressBookFilePath() {

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
@@ -27,4 +28,10 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate teaching assistants.
      */
     ObservableList<TeachingAssistant> getTeachingAssistantList();
+
+    /**
+     * Returns an unmodifiable view of the consultations list.
+     * This list will not contain any duplicate consultations.
+     */
+    ObservableList<Consultation> getConsultationList();
 }

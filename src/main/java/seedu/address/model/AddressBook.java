@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.consultation.Consultation;
+import seedu.address.model.consultation.UniqueConsultationList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.ta.TeachingAssistant;
@@ -22,6 +24,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueTutorialList tutorials;
     private final UniqueTeachingAssistantList teachingAssistants;
 
+    private final UniqueConsultationList consultations;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -33,6 +37,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
         tutorials = new UniqueTutorialList();
         teachingAssistants = new UniqueTeachingAssistantList();
+        consultations = new UniqueConsultationList();
     }
 
     public AddressBook() {}
@@ -72,6 +77,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the consultation list with {@code consultations}.
+     * {@code tutorials} must not contain duplicate consultations.
+     */
+    public void setConsultations(List<Consultation> consultations) {
+        this.consultations.setConsultations(consultations);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -82,6 +95,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         setTutorials(newData.getTutorialList());
 
         setTeachingAssistants(newData.getTeachingAssistantList());
+
+        setConsultations(newData.getConsultationList());
+
     }
 
     //// person-level operations
@@ -147,6 +163,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorials.add(t);
     }
 
+
     //// ta-level operations
 
     /**
@@ -165,12 +182,45 @@ public class AddressBook implements ReadOnlyAddressBook {
         teachingAssistants.add(ta);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTutorial(Tutorial key) {
+        tutorials.remove(key);
+    }
+    //// consultation-level operations
+    /**
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuilk.
+     */
+    public boolean hasConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return consultations.contains(consultation);
+    }
+
+    /**
+     * Returns true if a Consultation with the same venue and timeslot as {@code Consultation} exists in the ModQuik.
+     */
+    public boolean hasConsultationClashingWith(Consultation consultation) {
+        requireNonNull(consultation);
+        return consultations.containsClashingWith(consultation);
+    }
+
+    /**
+     * Adds a Consultation to the ModQuik.
+     * The consultation must not already exist in the ModQuik.
+     */
+    public void addConsulation(Consultation consultation) {
+        consultations.add(consultation);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
         String result = persons.asUnmodifiableObservableList().size() + " persons, "
-                + tutorials.asUnmodifiableObservableList().size() + " tutorials";
+                + tutorials.asUnmodifiableObservableList().size() + " tutorials"
+                + consultations.asUnmodifiableObservableList().size() + " consultations";
         return result;
         // TODO: refine later
     }
@@ -187,6 +237,11 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<TeachingAssistant> getTeachingAssistantList() { return teachingAssistants.asUnmodifiableObservableList(); }
+
+    @Override
+    public ObservableList<Consultation> getConsultationList() {
+        return consultations.asUnmodifiableObservableList();
+    }
 
     @Override
     public boolean equals(Object other) {
