@@ -229,9 +229,10 @@ _Details coming soon ..._
 | Action     | Format, Examples                                                                                                                                         | Shortcut |
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
 | **Create** | `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] `<br> e.g., `create name:Betsy Crowe address:Newgate Prison num:1234567`      | c        |
-| **Clear**  | `clear`                                                                                                                                                  |          |
-| **Delete** | `delete NAME`<br> e.g., `delete Aaron Judge`                                                                                                             |          |
+| **Clear**  | `clear`                                                                                                                                                  | cl       |
+| **Delete** | `delete NAME`<br> e.g., `delete Aaron Judge`                                                                                                             | d        |
 | **Update** | `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`<br> e.g.,`edit name:John Doe number:91234567 address:21 Lower Kent Ridge Rd` | u        |
 | **Find**   | `find NAME…`__or__ `find NUMBER` <br> e.g., `find James Jake` __or__ `find 09122222`                                                                     | f        |
-| **List**   | `list`                                                                                                                                                   |          |
+| **List**   | `list`                                                                                                                                                   | l        |
 | **Help**   | `help`                                                                                                                                                   |          |
+| **Exit**   | `exit`                                                                                                                                                   | e        |
