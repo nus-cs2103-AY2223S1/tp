@@ -1,12 +1,5 @@
 package seedu.condonery.testutil;
 
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
