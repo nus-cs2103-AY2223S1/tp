@@ -1,30 +1,42 @@
 package seedu.taassist.model.util;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
+import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
 import seedu.taassist.model.student.Phone;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentModuleData;
+import seedu.taassist.model.student.StudentSessionData;
 
 /**
  * Contains utility methods for populating {@code TaAssist} with sample data.
  */
 public class SampleDataUtil {
+
+    private static final List<SessionData> DEFAULT_SESSION_DATA_LIST =
+            List.of(new SessionData(new Session("Lab 1"), new StudentSessionData(100.0)));
+    private static final List<StudentModuleData> DEFAULT_STUDENT_MODULE_DATA =
+            List.of(new StudentModuleData(new ModuleClass("CS1231S"), DEFAULT_SESSION_DATA_LIST),
+                    new StudentModuleData(new ModuleClass("CS1101S"), DEFAULT_SESSION_DATA_LIST));
+
     public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getModuleClassSet("friends")),
+                getModuleClassSet("friends"), DEFAULT_STUDENT_MODULE_DATA),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getModuleClassSet("colleagues", "friends")),
+                getModuleClassSet("colleagues", "friends"), DEFAULT_STUDENT_MODULE_DATA),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getModuleClassSet("neighbours")),
