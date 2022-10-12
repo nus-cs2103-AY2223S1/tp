@@ -13,7 +13,7 @@ Teacher’s Address Book (TAB) is a **desktop app made for teachers for managing
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `TAB.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `TAB.jar` from [here](https://github.com/AY2223S1-CS2103T-T17-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your TAB.
 
@@ -25,7 +25,7 @@ Teacher’s Address Book (TAB) is a **desktop app made for teachers for managing
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com pos/Student a/John street, block 123, #01-01 t/CS2103T-T17` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -50,7 +50,7 @@ Teacher’s Address Book (TAB) is a **desktop app made for teachers for managing
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/CS2103T-T12`, `t/CS2103T-T12 t/CS2103T-15` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -65,9 +65,9 @@ Teacher’s Address Book (TAB) is a **desktop app made for teachers for managing
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Launches the user guide in a browser window.
 
-![help message](images/helpMessage.png)
+![User Guide](images/userGuideWindow.png)
 
 Format: `help`
 
@@ -76,15 +76,17 @@ Format: `help`
 
 Adds a person to TAB.
 
-Format: `add n/NAME r/ROLE p/PHONE_NUMBER e/EMAIL c/CLASS [g/GRADE]...`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL pos/POSITION a/ADDRESS [t/MODULE-GROUP]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
+Adds a new contact with the provided details. Required fields include name, phone number, email, and position. Tags representing the module and tutorial group a person is associated with are optional and must be in the format of module-tutorial group.
+
 Examples:
-* `add n/John Doe r/Student p/98765432 e/johnd@example.com c/T12 g/A-`
-* `add n/Betsy Crowe r/TA p/92498754 e/betsycrowe@example.com c/T11 T12 T13`
+* `add n/Alex Yeoh p/87438807 e/alexyeoh@example.com pos/Student a/Blk 30 Geylang Street 29, #06-40 t/CS2103T-T17`
+* `add n/Betsy Crowe p/92498754 e/betsycrowe@example.com pos/TA a/Blk 30 Lorong 3 Serangoon Gardens, #07-18`
 
 ### Listing all persons : `list`
 
@@ -96,18 +98,64 @@ Format: `list`
 
 Edits an existing person in TAB.
 
-Format: `edit INDEX [n/NAME] [r/ROLE] [p/PHONE] [e/EMAIL] [c/CLASS] [t/TAGS]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [pos/POSITION] [t/TAGS]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s grade by typing `g/` without
+* You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Editing the attendance of a student : `attendance`
+
+Edits the attendance of an existing student in TAB.
+
+Format: `attendance INDEX attendance/ATTENDANCE`
+
+Edits the attendance of the person (whose position must be student) at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+*  `attendance 1 attendance/10/13` edits the attendance of the 1st person to be `10/13`.
+
+### Editing the grade of a student : `grade`
+
+Edits the grade of an existing student in TAB.
+
+Format: `grade INDEX grade/GRADE`
+
+Edits the grade of the person (whose position must be student) at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+*  `grade 2 grade/68/80` edits the grade of the 2nd person to be `68/80`.
+
+### Editing the availability of a TA : `avail`
+
+Edits the availability of an existing TA in TAB.
+
+Format: `avail INDEX avail/AVAILABILITY`
+
+Edits the availability of the person (whose position must be TA) at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+*  `avail 1 avail/Available` edits the availability of the 1st person to be `Available`.
+
+### Editing the roles of a Professor : `roles`
+
+Edits the roles of an existing professor in TAB.
+
+Format: `roles INDEX roles/ROLE1, ROLE2,...`
+
+Edits the roles of the person (whose position must be professor) at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+*  Multiple roles may be added and must be separated by a comma.
+
+Examples:
+*  `roles 1 roles/Coordinator, Lecturer, Advisor` edits the roles of the 1st person to be `Coordinator, Lecturer, Advisor`.
+
 
 ### Locating persons by name: `find`
 
@@ -182,10 +230,14 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS pos/ POSITION [t/TAG]…​` <br> e.g., `add n/Alex Yeoh p/87438807 e/alexyeoh@example.com pos/Student a/Blk 30 Geylang Street 29, #06-40 t/CS2103T-T17`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [pos/POSITION] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Attendance** | `attendance INDEX attendance/ATTENDANCE` <br> e.g., `attendance 1 attendance/10/13`
+**Grade** | `grade INDEX grade/GRADE` <br> e.g., `grade 2 grade/68/80`
+**Availability** | `avail INDEX avail/AVAILABILITY` <br> e.g., `avail 1 avail/Available`
+**Roles** | `roles INDEX roles/ROLE1, ROLE2,...` <br> e.g., `roles 1 roles/Coordinator, Lecturer, Advisor`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
