@@ -147,6 +147,16 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Deletes a book {@code book} from the person set of loanedBooks.
+     */
+    public void delete(Book book) {
+        CollectionUtil.requireAllNonNull(book);
+        Person person = book.getLoanee();
+        int index = internalList.indexOf(person);
+        internalList.set(index, person);
+    }
+
+    /**
      * Returns the {@code book} loan.
      */
     public void returnLoanedBook(Book book) {

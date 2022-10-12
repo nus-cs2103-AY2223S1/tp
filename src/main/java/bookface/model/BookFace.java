@@ -117,6 +117,7 @@ public class BookFace implements ReadOnlyBookFace {
      */
     public void deleteBook(Book book) {
         books.delete(book);
+        persons.delete(book);
     }
 
     /**
