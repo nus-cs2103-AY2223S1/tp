@@ -1,13 +1,12 @@
 package seedu.travelr.logic.parser;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.parser.DeleteCommandParser;
+import seedu.travelr.logic.commands.DeleteCommand;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -22,7 +21,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_TRIP));
     }
 
     @Test

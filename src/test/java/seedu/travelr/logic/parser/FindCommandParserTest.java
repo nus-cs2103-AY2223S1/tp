@@ -1,15 +1,14 @@
 package seedu.travelr.logic.parser;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.parser.FindCommandParser;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.travelr.logic.commands.FindCommand;
+import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
 
 import java.util.Arrays;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class FindCommandParserTest {
 
@@ -24,7 +23,7 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new FindCommand(new TitleContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords

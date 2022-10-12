@@ -1,141 +1,122 @@
 package seedu.travelr.logic.parser;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.parser.AddCommandParser;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.travelr.logic.commands.AddCommand;
+import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.Description;
+import seedu.travelr.model.trip.Title;
+import seedu.travelr.model.trip.Trip;
+import seedu.travelr.testutil.TripBuilder;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GERMANY;
+import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_ANTARCTICA;
+import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_EVENT_DESC;
+import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_GERMANY;
+import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_ANTARCTICA;
+import static seedu.travelr.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.travelr.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.travelr.logic.commands.CommandTestUtil.EVENT_DESC_EATING;
+import static seedu.travelr.logic.commands.CommandTestUtil.EVENT_DESC_SIGHTSEEING;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ANTARCTICA;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_TITLE_ANTARCTICA;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_EATING;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_SIGHTSEEING;
+import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.travelr.testutil.TypicalTrips.GERMANY;
+import static seedu.travelr.testutil.TypicalTrips.ANTARCTICA;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Trip expectedTrip = new TripBuilder(ANTARCTICA).withEvents(VALID_EVENT_EATING).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_ANTARCTICA
+                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING, new AddCommand(expectedTrip));
 
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple titles - last title accepted
+        assertParseSuccess(parser, TITLE_DESC_GERMANY + TITLE_DESC_ANTARCTICA
+                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING, new AddCommand(expectedTrip));
 
         // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, TITLE_DESC_ANTARCTICA
+                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING, new AddCommand(expectedTrip));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, TITLE_DESC_ANTARCTICA
+                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING, new AddCommand(expectedTrip));
 
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple descriptions - last description accepted
+        assertParseSuccess(parser, TITLE_DESC_ANTARCTICA + DESCRIPTION_DESC_GERMANY
+                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING, new AddCommand(expectedTrip));
 
-        // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        // multiple events - all accepted
+        Trip expectedTripMultipleEvents = new TripBuilder(ANTARCTICA).withEvents(VALID_EVENT_EATING, VALID_EVENT_SIGHTSEEING)
                 .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+        assertParseSuccess(parser, TITLE_DESC_ANTARCTICA + DESCRIPTION_DESC_ANTARCTICA
+                + EVENT_DESC_SIGHTSEEING + EVENT_DESC_EATING, new AddCommand(expectedTripMultipleEvents));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+        // zero events
+        Trip expectedTrip = new TripBuilder(GERMANY).withEvents().build();
+        assertParseSuccess(parser, TITLE_DESC_GERMANY + DESCRIPTION_DESC_GERMANY,
+                new AddCommand(expectedTrip));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+        // missing title prefix
+        assertParseFailure(parser, VALID_TITLE_ANTARCTICA + DESCRIPTION_DESC_ANTARCTICA,
                 expectedMessage);
 
         // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+        assertParseFailure(parser, TITLE_DESC_ANTARCTICA + DESCRIPTION_DESC_ANTARCTICA,
                 expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
+        assertParseFailure(parser, TITLE_DESC_ANTARCTICA + DESCRIPTION_DESC_ANTARCTICA,
                 expectedMessage);
 
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
+        // missing description prefix
+        assertParseFailure(parser, TITLE_DESC_ANTARCTICA + VALID_DESCRIPTION_ANTARCTICA,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, VALID_TITLE_ANTARCTICA + VALID_DESCRIPTION_ANTARCTICA,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+        // invalid title
+        assertParseFailure(parser, INVALID_TITLE_DESC + DESCRIPTION_DESC_ANTARCTICA
+                + EVENT_DESC_SIGHTSEEING + EVENT_DESC_EATING, Title.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+        // invalid description
+        assertParseFailure(parser, TITLE_DESC_ANTARCTICA + INVALID_DESCRIPTION_DESC
+                + EVENT_DESC_SIGHTSEEING + EVENT_DESC_EATING, Description.MESSAGE_CONSTRAINTS);
 
-        // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
-
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
-
-        // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        // invalid event
+        assertParseFailure(parser, TITLE_DESC_ANTARCTICA + DESCRIPTION_DESC_ANTARCTICA
+                + INVALID_EVENT_DESC + VALID_EVENT_EATING, Event.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_TITLE_DESC + INVALID_DESCRIPTION_DESC,
+                Title.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + TITLE_DESC_ANTARCTICA
+                + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_SIGHTSEEING + EVENT_DESC_EATING,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
