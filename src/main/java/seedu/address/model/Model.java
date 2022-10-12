@@ -128,6 +128,8 @@ public interface Model {
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
+    void deleteRelativeAppointments(Person patient);
+
     /**
      * Sorts the namelist by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.

@@ -5,8 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -106,6 +108,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        deleteRelativeAppointments(target);
         addressBook.removePerson(target);
     }
 
@@ -173,6 +176,13 @@ public class ModelManager implements Model {
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
+    }
+
+    @Override
+    public void deleteRelativeAppointments(Person patient) {
+        List<Appointment> toDelete = addressBook.getAppointmentList().stream()
+                .filter(a -> a.getName().equals(patient.getName())).collect(Collectors.toList());
+        toDelete.stream().forEach(a -> addressBook.removeAppointment(a));
     }
 
     @Override
