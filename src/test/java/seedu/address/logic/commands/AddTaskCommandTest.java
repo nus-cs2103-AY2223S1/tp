@@ -30,7 +30,6 @@ import seedu.address.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for {@code AddTaskCommand}.
  */
 public class AddTaskCommandTest {
-    private static final String TASK_DESCRIPTION_STUB = "Change dressing";
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -53,7 +52,7 @@ public class AddTaskCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Patient patientToAddTask = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(patientToAddTask)
-                .withTasks(TASK_DESCRIPTION_STUB, VALID_TASK_DESC_FIRST).build();
+                .withTasks(VALID_TASK_DESC_FIRST).build();
         int lastTaskIndex = editedPatient.getTasks().size() - 1;
         Task addedTask = editedPatient.getTasks().get(lastTaskIndex);
 
@@ -82,7 +81,7 @@ public class AddTaskCommandTest {
 
         Patient patientToAddTask = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
-                .withTasks(TASK_DESCRIPTION_STUB, VALID_TASK_DESC_FIRST).build();
+                .withTasks(VALID_TASK_DESC_FIRST).build();
         int lastTaskIndex = editedPatient.getTasks().size() - 1;
         Task addedTask = editedPatient.getTasks().get(lastTaskIndex);
 
