@@ -105,6 +105,19 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void isFilteredFoodListEmpty_emptyFilteredList_returnsTrue() {
+        modelManager.updateFilteredFoodList(unused -> false);
+        assertTrue(modelManager.isFilteredFoodListEmpty());
+    }
+
+    @Test
+    public void isFilteredFoodListEmpty_nonEmptyFilteredList_returnsFalse() {
+        modelManager.addFood(APPLE);
+        modelManager.updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
+        assertFalse(modelManager.isFilteredFoodListEmpty());
+    }
+
+    @Test
     public void equals() {
         NutriGoals nutriGoals = new NutriGoalsBuilder().withFood(APPLE).withFood(BREAD).build();
         NutriGoals differentNutriGoals = new NutriGoals();

@@ -123,8 +123,8 @@ public class ModelManager implements Model {
     @Override
     public void addFood(Food food) {
         nutriGoals.addFood(food);
-        currentDatePredicate = new IsFoodAddedOnThisDatePredicate(new DateTime());
-        updateFilteredFoodList(currentDatePredicate);
+        IsFoodAddedOnThisDatePredicate predicate = new IsFoodAddedOnThisDatePredicate(new DateTime());
+        updateFilteredFoodList(predicate);
     }
 
     @Override
@@ -162,6 +162,15 @@ public class ModelManager implements Model {
     @Override
     public IsFoodAddedOnThisDatePredicate getDatePredicate() {
         return currentDatePredicate;
+    }
+
+    /**
+     * Checks if the filtered food list contains any food items.
+     * @return True if the filtered food list contains no food items.
+     */
+    @Override
+    public boolean isFilteredFoodListEmpty() {
+        return filteredFoods.isEmpty();
     }
 
     @Override

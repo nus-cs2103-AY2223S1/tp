@@ -170,6 +170,11 @@ public class AddCommandTest {
         public IsFoodAddedOnThisDatePredicate getDatePredicate() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean isFilteredFoodListEmpty() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

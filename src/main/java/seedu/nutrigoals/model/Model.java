@@ -106,4 +106,7 @@ public interface Model {
 
     /** Returns the most recent {@code IsFoodAddedOnThisDatePredicate} applied on the filtered food list */
     IsFoodAddedOnThisDatePredicate getDatePredicate();
+
+    /** Returns true if the filtered food list has no food items */
+    boolean isFilteredFoodListEmpty();
 }

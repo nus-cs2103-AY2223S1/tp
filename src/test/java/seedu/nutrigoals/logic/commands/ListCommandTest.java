@@ -13,7 +13,9 @@ import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.ModelManager;
 import seedu.nutrigoals.model.UserPrefs;
 import seedu.nutrigoals.model.meal.DateTime;
+import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
+import seedu.nutrigoals.testutil.FoodBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -52,10 +54,25 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFilteredForADay_showsAllFoodsAddedOnThatDay() {
+        Food foodToAdd = new FoodBuilder().withDateTime(DEFAULT_EARLIER_TIME).build();
+        model.addFood(foodToAdd);
+        expectedModel.addFood(foodToAdd);
+
         DateTime date = new DateTime(DEFAULT_EARLIER_TIME);
         IsFoodAddedOnThisDatePredicate datePredicate = new IsFoodAddedOnThisDatePredicate(date);
         ListCommand listCommand = new ListCommand(datePredicate);
         String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS, date.getDate());
+
+        expectedModel.updateFilteredFoodList(datePredicate);
+        assertCommandSuccess(listCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_filteredListIsEmpty_showsNoFoods() {
+        DateTime date = new DateTime(DEFAULT_EARLIER_TIME);
+        IsFoodAddedOnThisDatePredicate datePredicate = new IsFoodAddedOnThisDatePredicate(date);
+        ListCommand listCommand = new ListCommand(datePredicate);
+        String expectedMessage = String.format(ListCommand.EMPTY_FOOD_LIST, date.getDate());
 
         expectedModel.updateFilteredFoodList(datePredicate);
         assertCommandSuccess(listCommand, model, expectedMessage, expectedModel);
