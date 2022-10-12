@@ -14,7 +14,7 @@ public class EntryTypeTest {
     }
 
     @Test
-    public void constructor_invalidEntryTYpe_throwsIllegalArgumentException() {
+    public void constructor_invalidEntryType_throwsIllegalArgumentException() {
         String invalidEntryType = "c";
         assertThrows(IllegalArgumentException.class, () -> new EntryType(invalidEntryType));
     }
