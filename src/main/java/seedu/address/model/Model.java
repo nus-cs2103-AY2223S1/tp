@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.SortField;
 
@@ -78,7 +79,19 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Sorts all the persons in the addres book by the given {@code SortField}.
+     * Adds the given event.
+     * {@code event} must not already exist in the address book.
+     */
+    void addEvent(Event event);
+
+    /**
+     * Deletes the given event.
+     * The event must exist in the address book.
+     */
+    void deleteEvent(Event event);
+
+    /**
+     * Sorts all the persons in the address book by the given {@code sortField}.
      */
     void sortPersons(SortField sortField);
 
@@ -90,4 +103,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns an unmodifiable view of the filtered event list */
+    ObservableList<Event> getFilteredEventList();
 }

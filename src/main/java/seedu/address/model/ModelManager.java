@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.SortField;
 
@@ -24,6 +25,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final FilteredList<Event> filteredEvents;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -35,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
     }
 
     public ModelManager() {
@@ -110,6 +114,27 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        requireNonNull(event);
+        addressBook.addEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event event) {
+        requireNonNull(event);
+        addressBook.deleteEvent(event);
+    }
+
+    //=========== Filtered Event List Accessor =================
+    /**
+     * Returns an unmodifiable view of the list of Events backed by the internal list present in the AddressBook
+     */
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
     }
 
     @Override

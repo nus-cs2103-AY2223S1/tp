@@ -161,4 +161,40 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Returns the String eventTitle passed to it.
+     */
+    public static String parseEventTitle(String eventTitle) {
+        requireNonNull(eventTitle);
+
+        return eventTitle;
+    }
+
+    /**
+     * Returns the String date passed to it.
+     */
+    public static String parseDate(String date) {
+        requireNonNull(date);
+
+        return date;
+    }
+
+    /**
+     * Returns the String time passed to it.
+     */
+    public static String parseTime(String time) {
+        requireNonNull(time);
+
+        return time;
+    }
+
+    /**
+     * Returns the String purpose passed to it.
+     */
+    public static String parsePurpose(String purpose) {
+        requireNonNull(purpose);
+
+        return purpose;
+    }
 }
