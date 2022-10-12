@@ -48,16 +48,17 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
 
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            editModuleDescriptor.setModuleCode(ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get()));
+            editModuleDescriptor.setModuleCode(ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get()));
         }
         if (argMultimap.getValue(PREFIX_LECTURE).isPresent()) {
-            editModuleDescriptor.setLecture(ParserUtil.parseLecture(argMultimap.getValue(PREFIX_LECTURE).get()));
+            editModuleDescriptor.setLecture(ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).get()));
         }
         if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
-            editModuleDescriptor.setTutorial(ParserUtil.parseTutorial(argMultimap.getValue(PREFIX_TUTORIAL).get()));
+            editModuleDescriptor.setTutorial(
+                ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL).get()));
         }
         if (argMultimap.getValue(PREFIX_ZOOM).isPresent()) {
-            editModuleDescriptor.setZoomLink(ParserUtil.parseZoom(argMultimap.getValue(PREFIX_ZOOM).get()));
+            editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM).get()));
         }
         parseAssignmentsForEdit(argMultimap
             .getAllValues(PREFIX_ASSIGNMENT)).ifPresent(editModuleDescriptor::setAssignments);
@@ -85,7 +86,7 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
         }
         Collection<String> assignmentSet =
             assignments.size() == 1 && assignments.contains("") ? Collections.emptySet() : assignments;
-        return Optional.of(ParserUtil.parseAssignments(assignmentSet));
+        return Optional.of(ParserUtil.parseAssignmentDetails(assignmentSet));
     }
 
 }

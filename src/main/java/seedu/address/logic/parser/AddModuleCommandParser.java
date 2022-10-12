@@ -33,22 +33,22 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
      */
     public AddModuleCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args,
-                        PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TUTORIAL, PREFIX_ZOOM, PREFIX_ASSIGNMENT);
+            ArgumentTokenizer.tokenize(args,
+                PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TUTORIAL, PREFIX_ZOOM, PREFIX_ASSIGNMENT);
 
         if (!arePrefixesPresent(argMultimap,
-                //can remove zoom here to make optional
-                PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TUTORIAL, PREFIX_ZOOM)
-                || !argMultimap.getPreamble().isEmpty()) {
+            //can remove zoom here to make optional
+            PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TUTORIAL, PREFIX_ZOOM)
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
         }
 
-        ModuleCode moduleCode = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
-        LectureDetails lecture = ParserUtil.parseLecture(argMultimap.getValue(PREFIX_LECTURE).get());
-        TutorialDetails tutorial = ParserUtil.parseTutorial(argMultimap.getValue(PREFIX_TUTORIAL).get());
-        ZoomLink zoom = ParserUtil.parseZoom(argMultimap.getValue(PREFIX_ZOOM).get());
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
+        LectureDetails lecture = ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).get());
+        TutorialDetails tutorial = ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL).get());
+        ZoomLink zoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM).get());
         Set<AssignmentDetails> assignmentList =
-                ParserUtil.parseAssignments(argMultimap.getAllValues(PREFIX_ASSIGNMENT));
+            ParserUtil.parseAssignmentDetails(argMultimap.getAllValues(PREFIX_ASSIGNMENT));
 
         Module module = new Module(moduleCode, lecture, tutorial, zoom, assignmentList);
 
