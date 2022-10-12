@@ -180,10 +180,12 @@ Examples:
 
 Sorts the contacts shown in the list of clients by alphabetical order.
 
-Format: `sort alphabet`
+Format: sort `KEYWORD`
 
-* Returns all the contacts in alphabetical order
-  ![result for 'sort alphabet'](images/sortAlphabetResult.png)
+Types of `KEYWORD`: name
+
+* Returns all the contacts sorted by the given `KEYWORD`
+  ![result for 'sort name'](images/sortAlphabetResult.png)
 
 
 ### Clearing all entries : `clear`
