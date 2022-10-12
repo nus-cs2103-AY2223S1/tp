@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -15,6 +13,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -80,13 +80,21 @@ public class EditPatientCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-
-        model.setPerson(personToEdit, editedPerson);
+        updateModelNames(model, personToEdit, editedPerson);
         updateDisplay(model, editedPerson, personToEdit.getAppointments());
-
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
+    public static void updateModelNames(Model model, Person personToEdit, Person editedPerson) {
+        model.setPerson(personToEdit, editedPerson);
+        ObservableList<Person> currentList = model.getFilteredPersonList();
+        for (int i = 0; i < currentList.size(); i++) {
+            model.currentNames.add(currentList.get(i).getName());
+        }
+        model.currentNames.remove(personToEdit.getName());
+        model.currentNames.add(editedPerson.getName());
+        model.updateFilteredPersonList(Model.currentPrediate);
+    }
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
